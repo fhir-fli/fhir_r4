@@ -8,9 +8,15 @@ import 'export.dart';
 @JsonCodable()
 class Range {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final Quantity low;
   final Quantity high;
+  const Range({
+    required this.id,
+    required this.extension_,
+    required this.low,
+    required this.high,
+  });
 }
 
 

@@ -11,25 +11,25 @@ class Location {
   final String id;
   final FhirMeta meta;
   final FhirUri implicitRules;
-  final PrimitiveElement ImplicitRules;
+  final PrimitiveElement implicitRulesElement;
   final FhirCode language;
-  final PrimitiveElement Language;
+  final PrimitiveElement languageElement;
   final Narrative text;
-  final List<ResourceList> contained;
-  final List<FhirExtension> extension;
+  final List<Resource> contained;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final List<Identifier> identifier;
   final FhirCode status;
-  final PrimitiveElement Status;
+  final PrimitiveElement statusElement;
   final Coding operationalStatus;
   final String name;
-  final PrimitiveElement Name;
+  final PrimitiveElement nameElement;
   final List<String> alias;
-  final List<PrimitiveElement> Alias;
+  final List<PrimitiveElement> aliasElement;
   final String description;
-  final PrimitiveElement Description;
+  final PrimitiveElement descriptionElement;
   final FhirCode mode;
-  final PrimitiveElement Mode;
+  final PrimitiveElement modeElement;
   final List<CodeableConcept> type;
   final List<ContactPoint> telecom;
   final Address address;
@@ -39,38 +39,98 @@ class Location {
   final Reference partOf;
   final List<LocationHoursOfOperation> hoursOfOperation;
   final String availabilityExceptions;
-  final PrimitiveElement AvailabilityExceptions;
+  final PrimitiveElement availabilityExceptionsElement;
   final List<Reference> endpoint;
+  const Location({
+    required this.resourceType,
+    required this.id,
+    required this.meta,
+    required this.implicitRules,
+    required this.implicitRulesElement,
+    required this.language,
+    required this.languageElement,
+    required this.text,
+    required this.contained,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.identifier,
+    required this.status,
+    required this.statusElement,
+    required this.operationalStatus,
+    required this.name,
+    required this.nameElement,
+    required this.alias,
+    required this.aliasElement,
+    required this.description,
+    required this.descriptionElement,
+    required this.mode,
+    required this.modeElement,
+    required this.type,
+    required this.telecom,
+    required this.address,
+    required this.physicalType,
+    required this.position,
+    required this.managingOrganization,
+    required this.partOf,
+    required this.hoursOfOperation,
+    required this.availabilityExceptions,
+    required this.availabilityExceptionsElement,
+    required this.endpoint,
+  });
 }
 
 @Data()
 @JsonCodable()
 class LocationPosition {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final FhirDecimal longitude;
-  final PrimitiveElement Longitude;
+  final PrimitiveElement longitudeElement;
   final FhirDecimal latitude;
-  final PrimitiveElement Latitude;
+  final PrimitiveElement latitudeElement;
   final FhirDecimal altitude;
-  final PrimitiveElement Altitude;
+  final PrimitiveElement altitudeElement;
+  const LocationPosition({
+    required this.id,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.longitude,
+    required this.longitudeElement,
+    required this.latitude,
+    required this.latitudeElement,
+    required this.altitude,
+    required this.altitudeElement,
+  });
 }
 
 @Data()
 @JsonCodable()
 class LocationHoursOfOperation {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final List<FhirCode> daysOfWeek;
-  final List<PrimitiveElement> DaysOfWeek;
+  final List<PrimitiveElement> daysOfWeekElement;
   final FhirBoolean allDay;
-  final PrimitiveElement AllDay;
+  final PrimitiveElement allDayElement;
   final FhirTime openingTime;
-  final PrimitiveElement OpeningTime;
+  final PrimitiveElement openingTimeElement;
   final FhirTime closingTime;
-  final PrimitiveElement ClosingTime;
+  final PrimitiveElement closingTimeElement;
+  const LocationHoursOfOperation({
+    required this.id,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.daysOfWeek,
+    required this.daysOfWeekElement,
+    required this.allDay,
+    required this.allDayElement,
+    required this.openingTime,
+    required this.openingTimeElement,
+    required this.closingTime,
+    required this.closingTimeElement,
+  });
 }
 
 

@@ -11,49 +11,49 @@ class EventDefinition {
   final String id;
   final FhirMeta meta;
   final FhirUri implicitRules;
-  final PrimitiveElement ImplicitRules;
+  final PrimitiveElement implicitRulesElement;
   final FhirCode language;
-  final PrimitiveElement Language;
+  final PrimitiveElement languageElement;
   final Narrative text;
-  final List<ResourceList> contained;
-  final List<FhirExtension> extension;
+  final List<Resource> contained;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final FhirUri url;
-  final PrimitiveElement Url;
+  final PrimitiveElement urlElement;
   final List<Identifier> identifier;
   final String version;
-  final PrimitiveElement Version;
+  final PrimitiveElement versionElement;
   final String name;
-  final PrimitiveElement Name;
+  final PrimitiveElement nameElement;
   final String title;
-  final PrimitiveElement Title;
+  final PrimitiveElement titleElement;
   final String subtitle;
-  final PrimitiveElement Subtitle;
+  final PrimitiveElement subtitleElement;
   final FhirCode status;
-  final PrimitiveElement Status;
+  final PrimitiveElement statusElement;
   final FhirBoolean experimental;
-  final PrimitiveElement Experimental;
+  final PrimitiveElement experimentalElement;
   final CodeableConcept subjectCodeableConcept;
   final Reference subjectReference;
   final FhirDateTime date;
-  final PrimitiveElement Date;
+  final PrimitiveElement dateElement;
   final String publisher;
-  final PrimitiveElement Publisher;
+  final PrimitiveElement publisherElement;
   final List<ContactDetail> contact;
   final FhirMarkdown description;
-  final PrimitiveElement Description;
+  final PrimitiveElement descriptionElement;
   final List<UsageContext> useContext;
   final List<CodeableConcept> jurisdiction;
   final FhirMarkdown purpose;
-  final PrimitiveElement Purpose;
+  final PrimitiveElement purposeElement;
   final String usage;
-  final PrimitiveElement Usage;
+  final PrimitiveElement usageElement;
   final FhirMarkdown copyright;
-  final PrimitiveElement Copyright;
+  final PrimitiveElement copyrightElement;
   final FhirDate approvalDate;
-  final PrimitiveElement ApprovalDate;
+  final PrimitiveElement approvalDateElement;
   final FhirDate lastReviewDate;
-  final PrimitiveElement LastReviewDate;
+  final PrimitiveElement lastReviewDateElement;
   final Period effectivePeriod;
   final List<CodeableConcept> topic;
   final List<ContactDetail> author;
@@ -62,6 +62,63 @@ class EventDefinition {
   final List<ContactDetail> endorser;
   final List<RelatedArtifact> relatedArtifact;
   final List<TriggerDefinition> trigger;
+  const EventDefinition({
+    required this.resourceType,
+    required this.id,
+    required this.meta,
+    required this.implicitRules,
+    required this.implicitRulesElement,
+    required this.language,
+    required this.languageElement,
+    required this.text,
+    required this.contained,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.url,
+    required this.urlElement,
+    required this.identifier,
+    required this.version,
+    required this.versionElement,
+    required this.name,
+    required this.nameElement,
+    required this.title,
+    required this.titleElement,
+    required this.subtitle,
+    required this.subtitleElement,
+    required this.status,
+    required this.statusElement,
+    required this.experimental,
+    required this.experimentalElement,
+    required this.subjectCodeableConcept,
+    required this.subjectReference,
+    required this.date,
+    required this.dateElement,
+    required this.publisher,
+    required this.publisherElement,
+    required this.contact,
+    required this.description,
+    required this.descriptionElement,
+    required this.useContext,
+    required this.jurisdiction,
+    required this.purpose,
+    required this.purposeElement,
+    required this.usage,
+    required this.usageElement,
+    required this.copyright,
+    required this.copyrightElement,
+    required this.approvalDate,
+    required this.approvalDateElement,
+    required this.lastReviewDate,
+    required this.lastReviewDateElement,
+    required this.effectivePeriod,
+    required this.topic,
+    required this.author,
+    required this.editor,
+    required this.reviewer,
+    required this.endorser,
+    required this.relatedArtifact,
+    required this.trigger,
+  });
 }
 
 

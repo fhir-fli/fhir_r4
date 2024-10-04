@@ -8,47 +8,47 @@ import 'export.dart';
 @JsonCodable()
 class FhirExtension {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final FhirUri url;
-  final PrimitiveElement Url;
+  final PrimitiveElement urlElement;
   final String valueBase64Binary;
-  final PrimitiveElement ValueBase64Binary;
+  final PrimitiveElement valueBase64BinaryElement;
   final bool valueBoolean;
-  final PrimitiveElement ValueBoolean;
+  final PrimitiveElement valueBooleanElement;
   final String valueCanonical;
-  final PrimitiveElement ValueCanonical;
+  final PrimitiveElement valueCanonicalElement;
   final String valueCode;
-  final PrimitiveElement ValueCode;
+  final PrimitiveElement valueCodeElement;
   final String valueDate;
-  final PrimitiveElement ValueDate;
+  final PrimitiveElement valueDateElement;
   final String valueDateTime;
-  final PrimitiveElement ValueDateTime;
+  final PrimitiveElement valueDateTimeElement;
   final double valueDecimal;
-  final PrimitiveElement ValueDecimal;
+  final PrimitiveElement valueDecimalElement;
   final String valueId;
-  final PrimitiveElement ValueId;
+  final PrimitiveElement valueIdElement;
   final String valueInstant;
-  final PrimitiveElement ValueInstant;
+  final PrimitiveElement valueInstantElement;
   final double valueInteger;
-  final PrimitiveElement ValueInteger;
+  final PrimitiveElement valueIntegerElement;
   final String valueMarkdown;
-  final PrimitiveElement ValueMarkdown;
+  final PrimitiveElement valueMarkdownElement;
   final String valueOid;
-  final PrimitiveElement ValueOid;
+  final PrimitiveElement valueOidElement;
   final double valuePositiveInt;
-  final PrimitiveElement ValuePositiveInt;
+  final PrimitiveElement valuePositiveIntElement;
   final String valueString;
-  final PrimitiveElement ValueString;
+  final PrimitiveElement valueStringElement;
   final String valueTime;
-  final PrimitiveElement ValueTime;
+  final PrimitiveElement valueTimeElement;
   final double valueUnsignedInt;
-  final PrimitiveElement ValueUnsignedInt;
+  final PrimitiveElement valueUnsignedIntElement;
   final String valueUri;
-  final PrimitiveElement ValueUri;
+  final PrimitiveElement valueUriElement;
   final String valueUrl;
-  final PrimitiveElement ValueUrl;
+  final PrimitiveElement valueUrlElement;
   final String valueUuid;
-  final PrimitiveElement ValueUuid;
+  final PrimitiveElement valueUuidElement;
   final Address valueAddress;
   final Age valueAge;
   final Annotation valueAnnotation;
@@ -81,6 +81,82 @@ class FhirExtension {
   final TriggerDefinition valueTriggerDefinition;
   final UsageContext valueUsageContext;
   final Dosage valueDosage;
+  const FhirExtension({
+    required this.id,
+    required this.extension_,
+    required this.url,
+    required this.urlElement,
+    required this.valueBase64Binary,
+    required this.valueBase64BinaryElement,
+    required this.valueBoolean,
+    required this.valueBooleanElement,
+    required this.valueCanonical,
+    required this.valueCanonicalElement,
+    required this.valueCode,
+    required this.valueCodeElement,
+    required this.valueDate,
+    required this.valueDateElement,
+    required this.valueDateTime,
+    required this.valueDateTimeElement,
+    required this.valueDecimal,
+    required this.valueDecimalElement,
+    required this.valueId,
+    required this.valueIdElement,
+    required this.valueInstant,
+    required this.valueInstantElement,
+    required this.valueInteger,
+    required this.valueIntegerElement,
+    required this.valueMarkdown,
+    required this.valueMarkdownElement,
+    required this.valueOid,
+    required this.valueOidElement,
+    required this.valuePositiveInt,
+    required this.valuePositiveIntElement,
+    required this.valueString,
+    required this.valueStringElement,
+    required this.valueTime,
+    required this.valueTimeElement,
+    required this.valueUnsignedInt,
+    required this.valueUnsignedIntElement,
+    required this.valueUri,
+    required this.valueUriElement,
+    required this.valueUrl,
+    required this.valueUrlElement,
+    required this.valueUuid,
+    required this.valueUuidElement,
+    required this.valueAddress,
+    required this.valueAge,
+    required this.valueAnnotation,
+    required this.valueAttachment,
+    required this.valueCodeableConcept,
+    required this.valueCodeableReference,
+    required this.valueCoding,
+    required this.valueContactPoint,
+    required this.valueCount,
+    required this.valueDistance,
+    required this.valueDuration,
+    required this.valueHumanName,
+    required this.valueIdentifier,
+    required this.valueMoney,
+    required this.valuePeriod,
+    required this.valueQuantity,
+    required this.valueRange,
+    required this.valueRatio,
+    required this.valueRatioRange,
+    required this.valueReference,
+    required this.valueSampledData,
+    required this.valueSignature,
+    required this.valueTiming,
+    required this.valueContactDetail,
+    required this.valueContributor,
+    required this.valueDataRequirement,
+    required this.valueExpression,
+    required this.valueParameterDefinition,
+    required this.valueRelatedArtifact,
+    required this.valueTriggerDefinition,
+    required this.valueUsageContext,
+    required this.valueDosage,
+  });
 }
 
 

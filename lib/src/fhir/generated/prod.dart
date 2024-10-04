@@ -8,7 +8,7 @@ import 'export.dart';
 @JsonCodable()
 class ProdCharacteristic {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final Quantity height;
   final Quantity width;
@@ -17,13 +17,32 @@ class ProdCharacteristic {
   final Quantity nominalVolume;
   final Quantity externalDiameter;
   final String shape;
-  final PrimitiveElement Shape;
+  final PrimitiveElement shapeElement;
   final List<String> color;
-  final List<PrimitiveElement> Color;
+  final List<PrimitiveElement> colorElement;
   final List<String> imprint;
-  final List<PrimitiveElement> Imprint;
+  final List<PrimitiveElement> imprintElement;
   final List<Attachment> image;
   final CodeableConcept scoring;
+  const ProdCharacteristic({
+    required this.id,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.height,
+    required this.width,
+    required this.depth,
+    required this.weight,
+    required this.nominalVolume,
+    required this.externalDiameter,
+    required this.shape,
+    required this.shapeElement,
+    required this.color,
+    required this.colorElement,
+    required this.imprint,
+    required this.imprintElement,
+    required this.image,
+    required this.scoring,
+  });
 }
 
 

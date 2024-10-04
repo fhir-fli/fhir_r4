@@ -11,53 +11,53 @@ class ResearchDefinition {
   final String id;
   final FhirMeta meta;
   final FhirUri implicitRules;
-  final PrimitiveElement ImplicitRules;
+  final PrimitiveElement implicitRulesElement;
   final FhirCode language;
-  final PrimitiveElement Language;
+  final PrimitiveElement languageElement;
   final Narrative text;
-  final List<ResourceList> contained;
-  final List<FhirExtension> extension;
+  final List<Resource> contained;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final FhirUri url;
-  final PrimitiveElement Url;
+  final PrimitiveElement urlElement;
   final List<Identifier> identifier;
   final String version;
-  final PrimitiveElement Version;
+  final PrimitiveElement versionElement;
   final String name;
-  final PrimitiveElement Name;
+  final PrimitiveElement nameElement;
   final String title;
-  final PrimitiveElement Title;
+  final PrimitiveElement titleElement;
   final String shortTitle;
-  final PrimitiveElement ShortTitle;
+  final PrimitiveElement shortTitleElement;
   final String subtitle;
-  final PrimitiveElement Subtitle;
+  final PrimitiveElement subtitleElement;
   final FhirCode status;
-  final PrimitiveElement Status;
+  final PrimitiveElement statusElement;
   final FhirBoolean experimental;
-  final PrimitiveElement Experimental;
+  final PrimitiveElement experimentalElement;
   final CodeableConcept subjectCodeableConcept;
   final Reference subjectReference;
   final FhirDateTime date;
-  final PrimitiveElement Date;
+  final PrimitiveElement dateElement;
   final String publisher;
-  final PrimitiveElement Publisher;
+  final PrimitiveElement publisherElement;
   final List<ContactDetail> contact;
   final FhirMarkdown description;
-  final PrimitiveElement Description;
+  final PrimitiveElement descriptionElement;
   final List<String> comment;
-  final List<PrimitiveElement> Comment;
+  final List<PrimitiveElement> commentElement;
   final List<UsageContext> useContext;
   final List<CodeableConcept> jurisdiction;
   final FhirMarkdown purpose;
-  final PrimitiveElement Purpose;
+  final PrimitiveElement purposeElement;
   final String usage;
-  final PrimitiveElement Usage;
+  final PrimitiveElement usageElement;
   final FhirMarkdown copyright;
-  final PrimitiveElement Copyright;
+  final PrimitiveElement copyrightElement;
   final FhirDate approvalDate;
-  final PrimitiveElement ApprovalDate;
+  final PrimitiveElement approvalDateElement;
   final FhirDate lastReviewDate;
-  final PrimitiveElement LastReviewDate;
+  final PrimitiveElement lastReviewDateElement;
   final Period effectivePeriod;
   final List<CodeableConcept> topic;
   final List<ContactDetail> author;
@@ -65,11 +65,76 @@ class ResearchDefinition {
   final List<ContactDetail> reviewer;
   final List<ContactDetail> endorser;
   final List<RelatedArtifact> relatedArtifact;
-  final List<FhirCanonical> library;
+  final List<FhirCanonical> library_;
   final Reference population;
   final Reference exposure;
   final Reference exposureAlternative;
   final Reference outcome;
+  const ResearchDefinition({
+    required this.resourceType,
+    required this.id,
+    required this.meta,
+    required this.implicitRules,
+    required this.implicitRulesElement,
+    required this.language,
+    required this.languageElement,
+    required this.text,
+    required this.contained,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.url,
+    required this.urlElement,
+    required this.identifier,
+    required this.version,
+    required this.versionElement,
+    required this.name,
+    required this.nameElement,
+    required this.title,
+    required this.titleElement,
+    required this.shortTitle,
+    required this.shortTitleElement,
+    required this.subtitle,
+    required this.subtitleElement,
+    required this.status,
+    required this.statusElement,
+    required this.experimental,
+    required this.experimentalElement,
+    required this.subjectCodeableConcept,
+    required this.subjectReference,
+    required this.date,
+    required this.dateElement,
+    required this.publisher,
+    required this.publisherElement,
+    required this.contact,
+    required this.description,
+    required this.descriptionElement,
+    required this.comment,
+    required this.commentElement,
+    required this.useContext,
+    required this.jurisdiction,
+    required this.purpose,
+    required this.purposeElement,
+    required this.usage,
+    required this.usageElement,
+    required this.copyright,
+    required this.copyrightElement,
+    required this.approvalDate,
+    required this.approvalDateElement,
+    required this.lastReviewDate,
+    required this.lastReviewDateElement,
+    required this.effectivePeriod,
+    required this.topic,
+    required this.author,
+    required this.editor,
+    required this.reviewer,
+    required this.endorser,
+    required this.relatedArtifact,
+    required this.library_,
+    required this.population,
+    required this.exposure,
+    required this.exposureAlternative,
+    required this.outcome,
+  });
 }
 
 @Data()
@@ -79,53 +144,53 @@ class ResearchElementDefinition {
   final String id;
   final FhirMeta meta;
   final FhirUri implicitRules;
-  final PrimitiveElement ImplicitRules;
+  final PrimitiveElement implicitRulesElement;
   final FhirCode language;
-  final PrimitiveElement Language;
+  final PrimitiveElement languageElement;
   final Narrative text;
-  final List<ResourceList> contained;
-  final List<FhirExtension> extension;
+  final List<Resource> contained;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final FhirUri url;
-  final PrimitiveElement Url;
+  final PrimitiveElement urlElement;
   final List<Identifier> identifier;
   final String version;
-  final PrimitiveElement Version;
+  final PrimitiveElement versionElement;
   final String name;
-  final PrimitiveElement Name;
+  final PrimitiveElement nameElement;
   final String title;
-  final PrimitiveElement Title;
+  final PrimitiveElement titleElement;
   final String shortTitle;
-  final PrimitiveElement ShortTitle;
+  final PrimitiveElement shortTitleElement;
   final String subtitle;
-  final PrimitiveElement Subtitle;
+  final PrimitiveElement subtitleElement;
   final FhirCode status;
-  final PrimitiveElement Status;
+  final PrimitiveElement statusElement;
   final FhirBoolean experimental;
-  final PrimitiveElement Experimental;
+  final PrimitiveElement experimentalElement;
   final CodeableConcept subjectCodeableConcept;
   final Reference subjectReference;
   final FhirDateTime date;
-  final PrimitiveElement Date;
+  final PrimitiveElement dateElement;
   final String publisher;
-  final PrimitiveElement Publisher;
+  final PrimitiveElement publisherElement;
   final List<ContactDetail> contact;
   final FhirMarkdown description;
-  final PrimitiveElement Description;
+  final PrimitiveElement descriptionElement;
   final List<String> comment;
-  final List<PrimitiveElement> Comment;
+  final List<PrimitiveElement> commentElement;
   final List<UsageContext> useContext;
   final List<CodeableConcept> jurisdiction;
   final FhirMarkdown purpose;
-  final PrimitiveElement Purpose;
+  final PrimitiveElement purposeElement;
   final String usage;
-  final PrimitiveElement Usage;
+  final PrimitiveElement usageElement;
   final FhirMarkdown copyright;
-  final PrimitiveElement Copyright;
+  final PrimitiveElement copyrightElement;
   final FhirDate approvalDate;
-  final PrimitiveElement ApprovalDate;
+  final PrimitiveElement approvalDateElement;
   final FhirDate lastReviewDate;
-  final PrimitiveElement LastReviewDate;
+  final PrimitiveElement lastReviewDateElement;
   final Period effectivePeriod;
   final List<CodeableConcept> topic;
   final List<ContactDetail> author;
@@ -133,49 +198,149 @@ class ResearchElementDefinition {
   final List<ContactDetail> reviewer;
   final List<ContactDetail> endorser;
   final List<RelatedArtifact> relatedArtifact;
-  final List<FhirCanonical> library;
+  final List<FhirCanonical> library_;
   final FhirCode type;
-  final PrimitiveElement Type;
+  final PrimitiveElement typeElement;
   final FhirCode variableType;
-  final PrimitiveElement VariableType;
+  final PrimitiveElement variableTypeElement;
   final List<ResearchElementDefinitionCharacteristic> characteristic;
+  const ResearchElementDefinition({
+    required this.resourceType,
+    required this.id,
+    required this.meta,
+    required this.implicitRules,
+    required this.implicitRulesElement,
+    required this.language,
+    required this.languageElement,
+    required this.text,
+    required this.contained,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.url,
+    required this.urlElement,
+    required this.identifier,
+    required this.version,
+    required this.versionElement,
+    required this.name,
+    required this.nameElement,
+    required this.title,
+    required this.titleElement,
+    required this.shortTitle,
+    required this.shortTitleElement,
+    required this.subtitle,
+    required this.subtitleElement,
+    required this.status,
+    required this.statusElement,
+    required this.experimental,
+    required this.experimentalElement,
+    required this.subjectCodeableConcept,
+    required this.subjectReference,
+    required this.date,
+    required this.dateElement,
+    required this.publisher,
+    required this.publisherElement,
+    required this.contact,
+    required this.description,
+    required this.descriptionElement,
+    required this.comment,
+    required this.commentElement,
+    required this.useContext,
+    required this.jurisdiction,
+    required this.purpose,
+    required this.purposeElement,
+    required this.usage,
+    required this.usageElement,
+    required this.copyright,
+    required this.copyrightElement,
+    required this.approvalDate,
+    required this.approvalDateElement,
+    required this.lastReviewDate,
+    required this.lastReviewDateElement,
+    required this.effectivePeriod,
+    required this.topic,
+    required this.author,
+    required this.editor,
+    required this.reviewer,
+    required this.endorser,
+    required this.relatedArtifact,
+    required this.library_,
+    required this.type,
+    required this.typeElement,
+    required this.variableType,
+    required this.variableTypeElement,
+    required this.characteristic,
+  });
 }
 
 @Data()
 @JsonCodable()
 class ResearchElementDefinitionCharacteristic {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final CodeableConcept definitionCodeableConcept;
   final String definitionCanonical;
-  final PrimitiveElement DefinitionCanonical;
+  final PrimitiveElement definitionCanonicalElement;
   final FhirExpression definitionExpression;
   final DataRequirement definitionDataRequirement;
   final List<UsageContext> usageContext;
   final FhirBoolean exclude;
-  final PrimitiveElement Exclude;
+  final PrimitiveElement excludeElement;
   final CodeableConcept unitOfMeasure;
   final String studyEffectiveDescription;
-  final PrimitiveElement StudyEffectiveDescription;
+  final PrimitiveElement studyEffectiveDescriptionElement;
   final String studyEffectiveDateTime;
-  final PrimitiveElement StudyEffectiveDateTime;
+  final PrimitiveElement studyEffectiveDateTimeElement;
   final Period studyEffectivePeriod;
   final FhirDuration studyEffectiveDuration;
   final Timing studyEffectiveTiming;
   final FhirDuration studyEffectiveTimeFromStart;
   final FhirCode studyEffectiveGroupMeasure;
-  final PrimitiveElement StudyEffectiveGroupMeasure;
+  final PrimitiveElement studyEffectiveGroupMeasureElement;
   final String participantEffectiveDescription;
-  final PrimitiveElement ParticipantEffectiveDescription;
+  final PrimitiveElement participantEffectiveDescriptionElement;
   final String participantEffectiveDateTime;
-  final PrimitiveElement ParticipantEffectiveDateTime;
+  final PrimitiveElement participantEffectiveDateTimeElement;
   final Period participantEffectivePeriod;
   final FhirDuration participantEffectiveDuration;
   final Timing participantEffectiveTiming;
   final FhirDuration participantEffectiveTimeFromStart;
   final FhirCode participantEffectiveGroupMeasure;
-  final PrimitiveElement ParticipantEffectiveGroupMeasure;
+  final PrimitiveElement participantEffectiveGroupMeasureElement;
+  const ResearchElementDefinitionCharacteristic({
+    required this.id,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.definitionCodeableConcept,
+    required this.definitionCanonical,
+    required this.definitionCanonicalElement,
+    required this.definitionExpression,
+    required this.definitionDataRequirement,
+    required this.usageContext,
+    required this.exclude,
+    required this.excludeElement,
+    required this.unitOfMeasure,
+    required this.studyEffectiveDescription,
+    required this.studyEffectiveDescriptionElement,
+    required this.studyEffectiveDateTime,
+    required this.studyEffectiveDateTimeElement,
+    required this.studyEffectivePeriod,
+    required this.studyEffectiveDuration,
+    required this.studyEffectiveTiming,
+    required this.studyEffectiveTimeFromStart,
+    required this.studyEffectiveGroupMeasure,
+    required this.studyEffectiveGroupMeasureElement,
+    required this.participantEffectiveDescription,
+    required this.participantEffectiveDescriptionElement,
+    required this.participantEffectiveDateTime,
+    required this.participantEffectiveDateTimeElement,
+    required this.participantEffectivePeriod,
+    required this.participantEffectiveDuration,
+    required this.participantEffectiveTiming,
+    required this.participantEffectiveTimeFromStart,
+    required this.participantEffectiveGroupMeasure,
+    required this.participantEffectiveGroupMeasureElement,
+  });
 }
 
 @Data()
@@ -185,20 +350,20 @@ class ResearchStudy {
   final String id;
   final FhirMeta meta;
   final FhirUri implicitRules;
-  final PrimitiveElement ImplicitRules;
+  final PrimitiveElement implicitRulesElement;
   final FhirCode language;
-  final PrimitiveElement Language;
+  final PrimitiveElement languageElement;
   final Narrative text;
-  final List<ResourceList> contained;
-  final List<FhirExtension> extension;
+  final List<Resource> contained;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final List<Identifier> identifier;
   final String title;
-  final PrimitiveElement Title;
+  final PrimitiveElement titleElement;
   final List<Reference> protocol;
   final List<Reference> partOf;
   final FhirCode status;
-  final PrimitiveElement Status;
+  final PrimitiveElement statusElement;
   final CodeableConcept primaryPurposeType;
   final CodeableConcept phase;
   final List<CodeableConcept> category;
@@ -209,7 +374,7 @@ class ResearchStudy {
   final List<CodeableConcept> keyword;
   final List<CodeableConcept> location;
   final FhirMarkdown description;
-  final PrimitiveElement Description;
+  final PrimitiveElement descriptionElement;
   final List<Reference> enrollment;
   final Period period;
   final Reference sponsor;
@@ -219,30 +384,88 @@ class ResearchStudy {
   final List<Annotation> note;
   final List<ResearchStudyArm> arm;
   final List<ResearchStudyObjective> objective;
+  const ResearchStudy({
+    required this.resourceType,
+    required this.id,
+    required this.meta,
+    required this.implicitRules,
+    required this.implicitRulesElement,
+    required this.language,
+    required this.languageElement,
+    required this.text,
+    required this.contained,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.identifier,
+    required this.title,
+    required this.titleElement,
+    required this.protocol,
+    required this.partOf,
+    required this.status,
+    required this.statusElement,
+    required this.primaryPurposeType,
+    required this.phase,
+    required this.category,
+    required this.focus,
+    required this.condition,
+    required this.contact,
+    required this.relatedArtifact,
+    required this.keyword,
+    required this.location,
+    required this.description,
+    required this.descriptionElement,
+    required this.enrollment,
+    required this.period,
+    required this.sponsor,
+    required this.principalInvestigator,
+    required this.site,
+    required this.reasonStopped,
+    required this.note,
+    required this.arm,
+    required this.objective,
+  });
 }
 
 @Data()
 @JsonCodable()
 class ResearchStudyArm {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final String name;
-  final PrimitiveElement Name;
+  final PrimitiveElement nameElement;
   final CodeableConcept type;
   final String description;
-  final PrimitiveElement Description;
+  final PrimitiveElement descriptionElement;
+  const ResearchStudyArm({
+    required this.id,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.name,
+    required this.nameElement,
+    required this.type,
+    required this.description,
+    required this.descriptionElement,
+  });
 }
 
 @Data()
 @JsonCodable()
 class ResearchStudyObjective {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final String name;
-  final PrimitiveElement Name;
+  final PrimitiveElement nameElement;
   final CodeableConcept type;
+  const ResearchStudyObjective({
+    required this.id,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.name,
+    required this.nameElement,
+    required this.type,
+  });
 }
 
 @Data()
@@ -252,24 +475,48 @@ class ResearchSubject {
   final String id;
   final FhirMeta meta;
   final FhirUri implicitRules;
-  final PrimitiveElement ImplicitRules;
+  final PrimitiveElement implicitRulesElement;
   final FhirCode language;
-  final PrimitiveElement Language;
+  final PrimitiveElement languageElement;
   final Narrative text;
-  final List<ResourceList> contained;
-  final List<FhirExtension> extension;
+  final List<Resource> contained;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final List<Identifier> identifier;
   final FhirCode status;
-  final PrimitiveElement Status;
+  final PrimitiveElement statusElement;
   final Period period;
   final Reference study;
   final Reference individual;
   final String assignedArm;
-  final PrimitiveElement AssignedArm;
+  final PrimitiveElement assignedArmElement;
   final String actualArm;
-  final PrimitiveElement ActualArm;
+  final PrimitiveElement actualArmElement;
   final Reference consent;
+  const ResearchSubject({
+    required this.resourceType,
+    required this.id,
+    required this.meta,
+    required this.implicitRules,
+    required this.implicitRulesElement,
+    required this.language,
+    required this.languageElement,
+    required this.text,
+    required this.contained,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.identifier,
+    required this.status,
+    required this.statusElement,
+    required this.period,
+    required this.study,
+    required this.individual,
+    required this.assignedArm,
+    required this.assignedArmElement,
+    required this.actualArm,
+    required this.actualArmElement,
+    required this.consent,
+  });
 }
 
 

@@ -8,11 +8,19 @@ import 'export.dart';
 @JsonCodable()
 class Period {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final FhirDateTime start;
-  final PrimitiveElement Start;
+  final PrimitiveElement startElement;
   final FhirDateTime end;
-  final PrimitiveElement End;
+  final PrimitiveElement endElement;
+  const Period({
+    required this.id,
+    required this.extension_,
+    required this.start,
+    required this.startElement,
+    required this.end,
+    required this.endElement,
+  });
 }
 
 

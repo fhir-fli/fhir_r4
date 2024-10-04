@@ -8,23 +8,43 @@ import 'export.dart';
 @JsonCodable()
 class Attachment {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final FhirCode contentType;
-  final PrimitiveElement ContentType;
+  final PrimitiveElement contentTypeElement;
   final FhirCode language;
-  final PrimitiveElement Language;
+  final PrimitiveElement languageElement;
   final FhirBase64Binary data;
-  final PrimitiveElement Data;
+  final PrimitiveElement dataElement;
   final FhirUrl url;
-  final PrimitiveElement Url;
+  final PrimitiveElement urlElement;
   final FhirUnsignedInt size;
-  final PrimitiveElement Size;
+  final PrimitiveElement sizeElement;
   final FhirBase64Binary hash;
-  final PrimitiveElement Hash;
+  final PrimitiveElement hashElement;
   final String title;
-  final PrimitiveElement Title;
+  final PrimitiveElement titleElement;
   final FhirDateTime creation;
-  final PrimitiveElement Creation;
+  final PrimitiveElement creationElement;
+  const Attachment({
+    required this.id,
+    required this.extension_,
+    required this.contentType,
+    required this.contentTypeElement,
+    required this.language,
+    required this.languageElement,
+    required this.data,
+    required this.dataElement,
+    required this.url,
+    required this.urlElement,
+    required this.size,
+    required this.sizeElement,
+    required this.hash,
+    required this.hashElement,
+    required this.title,
+    required this.titleElement,
+    required this.creation,
+    required this.creationElement,
+  });
 }
 
 

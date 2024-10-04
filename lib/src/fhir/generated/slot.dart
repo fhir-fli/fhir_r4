@@ -11,12 +11,12 @@ class Slot {
   final String id;
   final FhirMeta meta;
   final FhirUri implicitRules;
-  final PrimitiveElement ImplicitRules;
+  final PrimitiveElement implicitRulesElement;
   final FhirCode language;
-  final PrimitiveElement Language;
+  final PrimitiveElement languageElement;
   final Narrative text;
-  final List<ResourceList> contained;
-  final List<FhirExtension> extension;
+  final List<Resource> contained;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final List<Identifier> identifier;
   final List<CodeableConcept> serviceCategory;
@@ -25,15 +25,44 @@ class Slot {
   final CodeableConcept appointmentType;
   final Reference schedule;
   final FhirCode status;
-  final PrimitiveElement Status;
+  final PrimitiveElement statusElement;
   final FhirInstant start;
-  final PrimitiveElement Start;
+  final PrimitiveElement startElement;
   final FhirInstant end;
-  final PrimitiveElement End;
+  final PrimitiveElement endElement;
   final FhirBoolean overbooked;
-  final PrimitiveElement Overbooked;
+  final PrimitiveElement overbookedElement;
   final String comment;
-  final PrimitiveElement Comment;
+  final PrimitiveElement commentElement;
+  const Slot({
+    required this.resourceType,
+    required this.id,
+    required this.meta,
+    required this.implicitRules,
+    required this.implicitRulesElement,
+    required this.language,
+    required this.languageElement,
+    required this.text,
+    required this.contained,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.identifier,
+    required this.serviceCategory,
+    required this.serviceType,
+    required this.specialty,
+    required this.appointmentType,
+    required this.schedule,
+    required this.status,
+    required this.statusElement,
+    required this.start,
+    required this.startElement,
+    required this.end,
+    required this.endElement,
+    required this.overbooked,
+    required this.overbookedElement,
+    required this.comment,
+    required this.commentElement,
+  });
 }
 
 

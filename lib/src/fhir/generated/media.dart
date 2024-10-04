@@ -11,44 +11,88 @@ class Media {
   final String id;
   final FhirMeta meta;
   final FhirUri implicitRules;
-  final PrimitiveElement ImplicitRules;
+  final PrimitiveElement implicitRulesElement;
   final FhirCode language;
-  final PrimitiveElement Language;
+  final PrimitiveElement languageElement;
   final Narrative text;
-  final List<ResourceList> contained;
-  final List<FhirExtension> extension;
+  final List<Resource> contained;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final List<Identifier> identifier;
   final List<Reference> basedOn;
   final List<Reference> partOf;
   final FhirCode status;
-  final PrimitiveElement Status;
+  final PrimitiveElement statusElement;
   final CodeableConcept type;
   final CodeableConcept modality;
   final CodeableConcept view;
   final Reference subject;
   final Reference encounter;
   final String createdDateTime;
-  final PrimitiveElement CreatedDateTime;
+  final PrimitiveElement createdDateTimeElement;
   final Period createdPeriod;
   final FhirInstant issued;
-  final PrimitiveElement Issued;
-  final Reference operator;
+  final PrimitiveElement issuedElement;
+  final Reference operator_;
   final List<CodeableConcept> reasonCode;
   final CodeableConcept bodySite;
   final String deviceName;
-  final PrimitiveElement DeviceName;
+  final PrimitiveElement deviceNameElement;
   final Reference device;
   final FhirPositiveInt height;
-  final PrimitiveElement Height;
+  final PrimitiveElement heightElement;
   final FhirPositiveInt width;
-  final PrimitiveElement Width;
+  final PrimitiveElement widthElement;
   final FhirPositiveInt frames;
-  final PrimitiveElement Frames;
+  final PrimitiveElement framesElement;
   final FhirDecimal duration;
-  final PrimitiveElement Duration;
+  final PrimitiveElement durationElement;
   final Attachment content;
   final List<Annotation> note;
+  const Media({
+    required this.resourceType,
+    required this.id,
+    required this.meta,
+    required this.implicitRules,
+    required this.implicitRulesElement,
+    required this.language,
+    required this.languageElement,
+    required this.text,
+    required this.contained,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.identifier,
+    required this.basedOn,
+    required this.partOf,
+    required this.status,
+    required this.statusElement,
+    required this.type,
+    required this.modality,
+    required this.view,
+    required this.subject,
+    required this.encounter,
+    required this.createdDateTime,
+    required this.createdDateTimeElement,
+    required this.createdPeriod,
+    required this.issued,
+    required this.issuedElement,
+    required this.operator_,
+    required this.reasonCode,
+    required this.bodySite,
+    required this.deviceName,
+    required this.deviceNameElement,
+    required this.device,
+    required this.height,
+    required this.heightElement,
+    required this.width,
+    required this.widthElement,
+    required this.frames,
+    required this.framesElement,
+    required this.duration,
+    required this.durationElement,
+    required this.content,
+    required this.note,
+  });
 }
 
 

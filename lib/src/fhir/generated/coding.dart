@@ -8,17 +8,31 @@ import 'export.dart';
 @JsonCodable()
 class Coding {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final FhirUri system;
-  final PrimitiveElement System;
+  final PrimitiveElement systemElement;
   final String version;
-  final PrimitiveElement Version;
+  final PrimitiveElement versionElement;
   final FhirCode code;
-  final PrimitiveElement Code;
+  final PrimitiveElement codeElement;
   final String display;
-  final PrimitiveElement Display;
+  final PrimitiveElement displayElement;
   final FhirBoolean userSelected;
-  final PrimitiveElement UserSelected;
+  final PrimitiveElement userSelectedElement;
+  const Coding({
+    required this.id,
+    required this.extension_,
+    required this.system,
+    required this.systemElement,
+    required this.version,
+    required this.versionElement,
+    required this.code,
+    required this.codeElement,
+    required this.display,
+    required this.displayElement,
+    required this.userSelected,
+    required this.userSelectedElement,
+  });
 }
 
 

@@ -8,16 +8,29 @@ import 'export.dart';
 @JsonCodable()
 class FhirMeta {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final FhirId versionId;
-  final PrimitiveElement VersionId;
+  final PrimitiveElement versionIdElement;
   final FhirInstant lastUpdated;
-  final PrimitiveElement LastUpdated;
+  final PrimitiveElement lastUpdatedElement;
   final FhirUri source;
-  final PrimitiveElement Source;
+  final PrimitiveElement sourceElement;
   final List<FhirCanonical> profile;
   final List<Coding> security;
   final List<Coding> tag;
+  const FhirMeta({
+    required this.id,
+    required this.extension_,
+    required this.versionId,
+    required this.versionIdElement,
+    required this.lastUpdated,
+    required this.lastUpdatedElement,
+    required this.source,
+    required this.sourceElement,
+    required this.profile,
+    required this.security,
+    required this.tag,
+  });
 }
 
 

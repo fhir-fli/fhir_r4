@@ -8,14 +8,25 @@ import 'export.dart';
 @JsonCodable()
 class Reference {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final String reference;
-  final PrimitiveElement Reference;
+  final PrimitiveElement referenceElement;
   final FhirUri type;
-  final PrimitiveElement Type;
+  final PrimitiveElement typeElement;
   final Identifier identifier;
   final String display;
-  final PrimitiveElement Display;
+  final PrimitiveElement displayElement;
+  const Reference({
+    required this.id,
+    required this.extension_,
+    required this.reference,
+    required this.referenceElement,
+    required this.type,
+    required this.typeElement,
+    required this.identifier,
+    required this.display,
+    required this.displayElement,
+  });
 }
 
 

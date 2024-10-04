@@ -8,19 +8,35 @@ import 'export.dart';
 @JsonCodable()
 class TriggerDefinition {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final dynamic type;
-  final PrimitiveElement Type;
+  final PrimitiveElement typeElement;
   final String name;
-  final PrimitiveElement Name;
+  final PrimitiveElement nameElement;
   final Timing timingTiming;
   final Reference timingReference;
   final String timingDate;
-  final PrimitiveElement TimingDate;
+  final PrimitiveElement timingDateElement;
   final String timingDateTime;
-  final PrimitiveElement TimingDateTime;
+  final PrimitiveElement timingDateTimeElement;
   final List<DataRequirement> data;
   final FhirExpression condition;
+  const TriggerDefinition({
+    required this.id,
+    required this.extension_,
+    required this.type,
+    required this.typeElement,
+    required this.name,
+    required this.nameElement,
+    required this.timingTiming,
+    required this.timingReference,
+    required this.timingDate,
+    required this.timingDateElement,
+    required this.timingDateTime,
+    required this.timingDateTimeElement,
+    required this.data,
+    required this.condition,
+  });
 }
 
 

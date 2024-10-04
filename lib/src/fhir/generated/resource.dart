@@ -6,7 +6,6 @@ import 'export.dart';
 
 @Data()
 @JsonCodable()
-class ResourceList {
+class Resource {
+  const Resource();
 }
-
-

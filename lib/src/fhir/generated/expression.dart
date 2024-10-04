@@ -8,17 +8,31 @@ import 'export.dart';
 @JsonCodable()
 class FhirExpression {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final String description;
-  final PrimitiveElement Description;
+  final PrimitiveElement descriptionElement;
   final FhirId name;
-  final PrimitiveElement Name;
+  final PrimitiveElement nameElement;
   final dynamic language;
-  final PrimitiveElement Language;
+  final PrimitiveElement languageElement;
   final String expression;
-  final PrimitiveElement Expression;
+  final PrimitiveElement expressionElement;
   final FhirUri reference;
-  final PrimitiveElement Reference;
+  final PrimitiveElement referenceElement;
+  const FhirExpression({
+    required this.id,
+    required this.extension_,
+    required this.description,
+    required this.descriptionElement,
+    required this.name,
+    required this.nameElement,
+    required this.language,
+    required this.languageElement,
+    required this.expression,
+    required this.expressionElement,
+    required this.reference,
+    required this.referenceElement,
+  });
 }
 
 

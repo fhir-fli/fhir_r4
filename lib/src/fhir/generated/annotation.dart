@@ -8,14 +8,25 @@ import 'export.dart';
 @JsonCodable()
 class Annotation {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final Reference authorReference;
   final String authorString;
-  final PrimitiveElement AuthorString;
+  final PrimitiveElement authorStringElement;
   final FhirDateTime time;
-  final PrimitiveElement Time;
+  final PrimitiveElement timeElement;
   final FhirMarkdown text;
-  final PrimitiveElement Text;
+  final PrimitiveElement textElement;
+  const Annotation({
+    required this.id,
+    required this.extension_,
+    required this.authorReference,
+    required this.authorString,
+    required this.authorStringElement,
+    required this.time,
+    required this.timeElement,
+    required this.text,
+    required this.textElement,
+  });
 }
 
 

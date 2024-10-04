@@ -8,17 +8,31 @@ import 'export.dart';
 @JsonCodable()
 class Quantity {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final FhirDecimal value;
-  final PrimitiveElement Value;
+  final PrimitiveElement valueElement;
   final dynamic comparator;
-  final PrimitiveElement Comparator;
+  final PrimitiveElement comparatorElement;
   final String unit;
-  final PrimitiveElement Unit;
+  final PrimitiveElement unitElement;
   final FhirUri system;
-  final PrimitiveElement System;
+  final PrimitiveElement systemElement;
   final FhirCode code;
-  final PrimitiveElement Code;
+  final PrimitiveElement codeElement;
+  const Quantity({
+    required this.id,
+    required this.extension_,
+    required this.value,
+    required this.valueElement,
+    required this.comparator,
+    required this.comparatorElement,
+    required this.unit,
+    required this.unitElement,
+    required this.system,
+    required this.systemElement,
+    required this.code,
+    required this.codeElement,
+  });
 }
 
 

@@ -11,50 +11,94 @@ class Account {
   final String id;
   final FhirMeta meta;
   final FhirUri implicitRules;
-  final PrimitiveElement ImplicitRules;
+  final PrimitiveElement implicitRulesElement;
   final FhirCode language;
-  final PrimitiveElement Language;
+  final PrimitiveElement languageElement;
   final Narrative text;
-  final List<ResourceList> contained;
-  final List<FhirExtension> extension;
+  final List<Resource> contained;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final List<Identifier> identifier;
   final FhirCode status;
-  final PrimitiveElement Status;
+  final PrimitiveElement statusElement;
   final CodeableConcept type;
   final String name;
-  final PrimitiveElement Name;
+  final PrimitiveElement nameElement;
   final List<Reference> subject;
   final Period servicePeriod;
   final List<AccountCoverage> coverage;
   final Reference owner;
   final String description;
-  final PrimitiveElement Description;
+  final PrimitiveElement descriptionElement;
   final List<AccountGuarantor> guarantor;
   final Reference partOf;
+  const Account({
+    required this.resourceType,
+    required this.id,
+    required this.meta,
+    required this.implicitRules,
+    required this.implicitRulesElement,
+    required this.language,
+    required this.languageElement,
+    required this.text,
+    required this.contained,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.identifier,
+    required this.status,
+    required this.statusElement,
+    required this.type,
+    required this.name,
+    required this.nameElement,
+    required this.subject,
+    required this.servicePeriod,
+    required this.coverage,
+    required this.owner,
+    required this.description,
+    required this.descriptionElement,
+    required this.guarantor,
+    required this.partOf,
+  });
 }
 
 @Data()
 @JsonCodable()
 class AccountCoverage {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final Reference coverage;
   final FhirPositiveInt priority;
-  final PrimitiveElement Priority;
+  final PrimitiveElement priorityElement;
+  const AccountCoverage({
+    required this.id,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.coverage,
+    required this.priority,
+    required this.priorityElement,
+  });
 }
 
 @Data()
 @JsonCodable()
 class AccountGuarantor {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final Reference party;
   final FhirBoolean onHold;
-  final PrimitiveElement OnHold;
+  final PrimitiveElement onHoldElement;
   final Period period;
+  const AccountGuarantor({
+    required this.id,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.party,
+    required this.onHold,
+    required this.onHoldElement,
+    required this.period,
+  });
 }
 
 

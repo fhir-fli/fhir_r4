@@ -8,19 +8,32 @@ import 'export.dart';
 @JsonCodable()
 class Ratio {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final Quantity numerator;
   final Quantity denominator;
+  const Ratio({
+    required this.id,
+    required this.extension_,
+    required this.numerator,
+    required this.denominator,
+  });
 }
 
 @Data()
 @JsonCodable()
 class RatioRange {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final Quantity lowNumerator;
   final Quantity highNumerator;
   final Quantity denominator;
+  const RatioRange({
+    required this.id,
+    required this.extension_,
+    required this.lowNumerator,
+    required this.highNumerator,
+    required this.denominator,
+  });
 }
 
 

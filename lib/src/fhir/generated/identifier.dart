@@ -8,16 +8,29 @@ import 'export.dart';
 @JsonCodable()
 class Identifier {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final dynamic use;
-  final PrimitiveElement Use;
+  final PrimitiveElement useElement;
   final CodeableConcept type;
   final FhirUri system;
-  final PrimitiveElement System;
+  final PrimitiveElement systemElement;
   final String value;
-  final PrimitiveElement Value;
+  final PrimitiveElement valueElement;
   final Period period;
   final Reference assigner;
+  const Identifier({
+    required this.id,
+    required this.extension_,
+    required this.use,
+    required this.useElement,
+    required this.type,
+    required this.system,
+    required this.systemElement,
+    required this.value,
+    required this.valueElement,
+    required this.period,
+    required this.assigner,
+  });
 }
 
 

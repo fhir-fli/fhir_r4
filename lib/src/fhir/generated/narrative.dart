@@ -8,10 +8,17 @@ import 'export.dart';
 @JsonCodable()
 class Narrative {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final dynamic status;
-  final PrimitiveElement Status;
+  final PrimitiveElement statusElement;
   final FhirMarkdown div;
+  const Narrative({
+    required this.id,
+    required this.extension_,
+    required this.status,
+    required this.statusElement,
+    required this.div,
+  });
 }
 
 

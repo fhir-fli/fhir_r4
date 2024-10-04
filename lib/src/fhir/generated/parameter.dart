@@ -8,20 +8,37 @@ import 'export.dart';
 @JsonCodable()
 class ParameterDefinition {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final FhirCode name;
-  final PrimitiveElement Name;
+  final PrimitiveElement nameElement;
   final FhirCode use;
-  final PrimitiveElement Use;
+  final PrimitiveElement useElement;
   final FhirInteger min;
-  final PrimitiveElement Min;
+  final PrimitiveElement minElement;
   final String max;
-  final PrimitiveElement Max;
+  final PrimitiveElement maxElement;
   final String documentation;
-  final PrimitiveElement Documentation;
+  final PrimitiveElement documentationElement;
   final FhirCode type;
-  final PrimitiveElement Type;
+  final PrimitiveElement typeElement;
   final FhirCanonical profile;
+  const ParameterDefinition({
+    required this.id,
+    required this.extension_,
+    required this.name,
+    required this.nameElement,
+    required this.use,
+    required this.useElement,
+    required this.min,
+    required this.minElement,
+    required this.max,
+    required this.maxElement,
+    required this.documentation,
+    required this.documentationElement,
+    required this.type,
+    required this.typeElement,
+    required this.profile,
+  });
 }
 
 

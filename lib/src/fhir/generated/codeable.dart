@@ -8,19 +8,32 @@ import 'export.dart';
 @JsonCodable()
 class CodeableConcept {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final List<Coding> coding;
   final String text;
-  final PrimitiveElement Text;
+  final PrimitiveElement textElement;
+  const CodeableConcept({
+    required this.id,
+    required this.extension_,
+    required this.coding,
+    required this.text,
+    required this.textElement,
+  });
 }
 
 @Data()
 @JsonCodable()
 class CodeableReference {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final CodeableConcept concept;
   final Reference reference;
+  const CodeableReference({
+    required this.id,
+    required this.extension_,
+    required this.concept,
+    required this.reference,
+  });
 }
 
 

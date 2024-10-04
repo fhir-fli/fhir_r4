@@ -8,12 +8,21 @@ import 'export.dart';
 @JsonCodable()
 class ProductShelfLife {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final Identifier identifier;
   final CodeableConcept type;
   final Quantity period;
   final List<CodeableConcept> specialPrecautionsForStorage;
+  const ProductShelfLife({
+    required this.id,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.identifier,
+    required this.type,
+    required this.period,
+    required this.specialPrecautionsForStorage,
+  });
 }
 
 

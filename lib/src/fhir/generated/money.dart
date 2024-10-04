@@ -8,11 +8,19 @@ import 'export.dart';
 @JsonCodable()
 class Money {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final FhirDecimal value;
-  final PrimitiveElement Value;
+  final PrimitiveElement valueElement;
   final FhirCode currency;
-  final PrimitiveElement Currency;
+  final PrimitiveElement currencyElement;
+  const Money({
+    required this.id,
+    required this.extension_,
+    required this.value,
+    required this.valueElement,
+    required this.currency,
+    required this.currencyElement,
+  });
 }
 
 

@@ -8,18 +8,33 @@ import 'export.dart';
 @JsonCodable()
 class Signature {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final List<Coding> type;
   final FhirInstant when;
-  final PrimitiveElement When;
+  final PrimitiveElement whenElement;
   final Reference who;
   final Reference onBehalfOf;
   final FhirCode targetFormat;
-  final PrimitiveElement TargetFormat;
+  final PrimitiveElement targetFormatElement;
   final FhirCode sigFormat;
-  final PrimitiveElement SigFormat;
+  final PrimitiveElement sigFormatElement;
   final FhirBase64Binary data;
-  final PrimitiveElement Data;
+  final PrimitiveElement dataElement;
+  const Signature({
+    required this.id,
+    required this.extension_,
+    required this.type,
+    required this.when,
+    required this.whenElement,
+    required this.who,
+    required this.onBehalfOf,
+    required this.targetFormat,
+    required this.targetFormatElement,
+    required this.sigFormat,
+    required this.sigFormatElement,
+    required this.data,
+    required this.dataElement,
+  });
 }
 
 

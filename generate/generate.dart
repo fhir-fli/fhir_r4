@@ -31,6 +31,10 @@ Future<void> actualFHIRClasses() async {
 
   // Iterate over all types and generate Dart classes
   for (final String key in definitions.keys) {
+    if (key == 'xhtml') {
+      continue;
+    }
+
     final Map<String, dynamic> classDefinition =
         definitions[key] as Map<String, dynamic>;
 
@@ -127,6 +131,14 @@ String generateDartClass(
     }
   });
 
+  // Constructor
+  buffer.writeln('  const ${_mapToDartType(className)}({');
+  properties?.forEach((String field, dynamic details) {
+    final String camelCaseField = toCamelCase(field);
+    buffer.writeln('    required this.$camelCaseField,');
+  });
+  buffer.writeln('  });');
+
   // Close class
   buffer.writeln('}');
 
@@ -135,12 +147,17 @@ String generateDartClass(
 
 // Function to convert snake_case to camelCase for fields
 String toCamelCase(String text) {
+  if (text[0] == '_') {
+    return '${text.substring(1)}Element';
+  }
   final List<String> words = text.split('_');
-  return words.first +
+  final String camelCaseWord = words.first +
       words
           .skip(1)
           .map((String word) => word[0].toUpperCase() + word.substring(1))
           .join();
+
+  return reserved.contains(camelCaseWord) ? '${camelCaseWord}_' : camelCaseWord;
 }
 
 String mapType(Map<String, dynamic> details) {

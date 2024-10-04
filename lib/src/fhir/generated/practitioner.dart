@@ -11,38 +11,73 @@ class Practitioner {
   final String id;
   final FhirMeta meta;
   final FhirUri implicitRules;
-  final PrimitiveElement ImplicitRules;
+  final PrimitiveElement implicitRulesElement;
   final FhirCode language;
-  final PrimitiveElement Language;
+  final PrimitiveElement languageElement;
   final Narrative text;
-  final List<ResourceList> contained;
-  final List<FhirExtension> extension;
+  final List<Resource> contained;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final List<Identifier> identifier;
   final FhirBoolean active;
-  final PrimitiveElement Active;
+  final PrimitiveElement activeElement;
   final List<HumanName> name;
   final List<ContactPoint> telecom;
   final List<Address> address;
   final FhirCode gender;
-  final PrimitiveElement Gender;
+  final PrimitiveElement genderElement;
   final FhirDate birthDate;
-  final PrimitiveElement BirthDate;
+  final PrimitiveElement birthDateElement;
   final List<Attachment> photo;
   final List<PractitionerQualification> qualification;
   final List<CodeableConcept> communication;
+  const Practitioner({
+    required this.resourceType,
+    required this.id,
+    required this.meta,
+    required this.implicitRules,
+    required this.implicitRulesElement,
+    required this.language,
+    required this.languageElement,
+    required this.text,
+    required this.contained,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.identifier,
+    required this.active,
+    required this.activeElement,
+    required this.name,
+    required this.telecom,
+    required this.address,
+    required this.gender,
+    required this.genderElement,
+    required this.birthDate,
+    required this.birthDateElement,
+    required this.photo,
+    required this.qualification,
+    required this.communication,
+  });
 }
 
 @Data()
 @JsonCodable()
 class PractitionerQualification {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final List<Identifier> identifier;
   final CodeableConcept code;
   final Period period;
   final Reference issuer;
+  const PractitionerQualification({
+    required this.id,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.identifier,
+    required this.code,
+    required this.period,
+    required this.issuer,
+  });
 }
 
 @Data()
@@ -52,16 +87,16 @@ class PractitionerRole {
   final String id;
   final FhirMeta meta;
   final FhirUri implicitRules;
-  final PrimitiveElement ImplicitRules;
+  final PrimitiveElement implicitRulesElement;
   final FhirCode language;
-  final PrimitiveElement Language;
+  final PrimitiveElement languageElement;
   final Narrative text;
-  final List<ResourceList> contained;
-  final List<FhirExtension> extension;
+  final List<Resource> contained;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final List<Identifier> identifier;
   final FhirBoolean active;
-  final PrimitiveElement Active;
+  final PrimitiveElement activeElement;
   final Period period;
   final Reference practitioner;
   final Reference organization;
@@ -73,35 +108,85 @@ class PractitionerRole {
   final List<PractitionerRoleAvailableTime> availableTime;
   final List<PractitionerRoleNotAvailable> notAvailable;
   final String availabilityExceptions;
-  final PrimitiveElement AvailabilityExceptions;
+  final PrimitiveElement availabilityExceptionsElement;
   final List<Reference> endpoint;
+  const PractitionerRole({
+    required this.resourceType,
+    required this.id,
+    required this.meta,
+    required this.implicitRules,
+    required this.implicitRulesElement,
+    required this.language,
+    required this.languageElement,
+    required this.text,
+    required this.contained,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.identifier,
+    required this.active,
+    required this.activeElement,
+    required this.period,
+    required this.practitioner,
+    required this.organization,
+    required this.code,
+    required this.specialty,
+    required this.location,
+    required this.healthcareService,
+    required this.telecom,
+    required this.availableTime,
+    required this.notAvailable,
+    required this.availabilityExceptions,
+    required this.availabilityExceptionsElement,
+    required this.endpoint,
+  });
 }
 
 @Data()
 @JsonCodable()
 class PractitionerRoleAvailableTime {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final List<FhirCode> daysOfWeek;
-  final List<PrimitiveElement> DaysOfWeek;
+  final List<PrimitiveElement> daysOfWeekElement;
   final FhirBoolean allDay;
-  final PrimitiveElement AllDay;
+  final PrimitiveElement allDayElement;
   final FhirTime availableStartTime;
-  final PrimitiveElement AvailableStartTime;
+  final PrimitiveElement availableStartTimeElement;
   final FhirTime availableEndTime;
-  final PrimitiveElement AvailableEndTime;
+  final PrimitiveElement availableEndTimeElement;
+  const PractitionerRoleAvailableTime({
+    required this.id,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.daysOfWeek,
+    required this.daysOfWeekElement,
+    required this.allDay,
+    required this.allDayElement,
+    required this.availableStartTime,
+    required this.availableStartTimeElement,
+    required this.availableEndTime,
+    required this.availableEndTimeElement,
+  });
 }
 
 @Data()
 @JsonCodable()
 class PractitionerRoleNotAvailable {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final String description;
-  final PrimitiveElement Description;
+  final PrimitiveElement descriptionElement;
   final Period during;
+  const PractitionerRoleNotAvailable({
+    required this.id,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.description,
+    required this.descriptionElement,
+    required this.during,
+  });
 }
 
 

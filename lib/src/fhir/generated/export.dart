@@ -54,7 +54,6 @@ export 'human.dart';
 export 'coding.dart';
 export 'compartment.dart';
 export 'diagnostic.dart';
-export 'xhtml.dart';
 export 'activity.dart';
 export 'vision.dart';
 export 'related.dart';

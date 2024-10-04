@@ -11,39 +11,39 @@ class Task {
   final String id;
   final FhirMeta meta;
   final FhirUri implicitRules;
-  final PrimitiveElement ImplicitRules;
+  final PrimitiveElement implicitRulesElement;
   final FhirCode language;
-  final PrimitiveElement Language;
+  final PrimitiveElement languageElement;
   final Narrative text;
-  final List<ResourceList> contained;
-  final List<FhirExtension> extension;
+  final List<Resource> contained;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final List<Identifier> identifier;
   final FhirCanonical instantiatesCanonical;
   final FhirUri instantiatesUri;
-  final PrimitiveElement InstantiatesUri;
+  final PrimitiveElement instantiatesUriElement;
   final List<Reference> basedOn;
   final Identifier groupIdentifier;
   final List<Reference> partOf;
   final FhirCode status;
-  final PrimitiveElement Status;
+  final PrimitiveElement statusElement;
   final CodeableConcept statusReason;
   final CodeableConcept businessStatus;
   final FhirCode intent;
-  final PrimitiveElement Intent;
+  final PrimitiveElement intentElement;
   final FhirCode priority;
-  final PrimitiveElement Priority;
+  final PrimitiveElement priorityElement;
   final CodeableConcept code;
   final String description;
-  final PrimitiveElement Description;
+  final PrimitiveElement descriptionElement;
   final Reference focus;
-  final Reference for;
+  final Reference for_;
   final Reference encounter;
   final Period executionPeriod;
   final FhirDateTime authoredOn;
-  final PrimitiveElement AuthoredOn;
+  final PrimitiveElement authoredOnElement;
   final FhirDateTime lastModified;
-  final PrimitiveElement LastModified;
+  final PrimitiveElement lastModifiedElement;
   final Reference requester;
   final List<CodeableConcept> performerType;
   final Reference owner;
@@ -56,65 +56,125 @@ class Task {
   final TaskRestriction restriction;
   final List<TaskInput> input;
   final List<TaskOutput> output;
+  const Task({
+    required this.resourceType,
+    required this.id,
+    required this.meta,
+    required this.implicitRules,
+    required this.implicitRulesElement,
+    required this.language,
+    required this.languageElement,
+    required this.text,
+    required this.contained,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.identifier,
+    required this.instantiatesCanonical,
+    required this.instantiatesUri,
+    required this.instantiatesUriElement,
+    required this.basedOn,
+    required this.groupIdentifier,
+    required this.partOf,
+    required this.status,
+    required this.statusElement,
+    required this.statusReason,
+    required this.businessStatus,
+    required this.intent,
+    required this.intentElement,
+    required this.priority,
+    required this.priorityElement,
+    required this.code,
+    required this.description,
+    required this.descriptionElement,
+    required this.focus,
+    required this.for_,
+    required this.encounter,
+    required this.executionPeriod,
+    required this.authoredOn,
+    required this.authoredOnElement,
+    required this.lastModified,
+    required this.lastModifiedElement,
+    required this.requester,
+    required this.performerType,
+    required this.owner,
+    required this.location,
+    required this.reasonCode,
+    required this.reasonReference,
+    required this.insurance,
+    required this.note,
+    required this.relevantHistory,
+    required this.restriction,
+    required this.input,
+    required this.output,
+  });
 }
 
 @Data()
 @JsonCodable()
 class TaskRestriction {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final FhirPositiveInt repetitions;
-  final PrimitiveElement Repetitions;
+  final PrimitiveElement repetitionsElement;
   final Period period;
   final List<Reference> recipient;
+  const TaskRestriction({
+    required this.id,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.repetitions,
+    required this.repetitionsElement,
+    required this.period,
+    required this.recipient,
+  });
 }
 
 @Data()
 @JsonCodable()
 class TaskInput {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final CodeableConcept type;
   final String valueBase64Binary;
-  final PrimitiveElement ValueBase64Binary;
+  final PrimitiveElement valueBase64BinaryElement;
   final bool valueBoolean;
-  final PrimitiveElement ValueBoolean;
+  final PrimitiveElement valueBooleanElement;
   final String valueCanonical;
-  final PrimitiveElement ValueCanonical;
+  final PrimitiveElement valueCanonicalElement;
   final String valueCode;
-  final PrimitiveElement ValueCode;
+  final PrimitiveElement valueCodeElement;
   final String valueDate;
-  final PrimitiveElement ValueDate;
+  final PrimitiveElement valueDateElement;
   final String valueDateTime;
-  final PrimitiveElement ValueDateTime;
+  final PrimitiveElement valueDateTimeElement;
   final double valueDecimal;
-  final PrimitiveElement ValueDecimal;
+  final PrimitiveElement valueDecimalElement;
   final String valueId;
-  final PrimitiveElement ValueId;
+  final PrimitiveElement valueIdElement;
   final String valueInstant;
-  final PrimitiveElement ValueInstant;
+  final PrimitiveElement valueInstantElement;
   final double valueInteger;
-  final PrimitiveElement ValueInteger;
+  final PrimitiveElement valueIntegerElement;
   final String valueMarkdown;
-  final PrimitiveElement ValueMarkdown;
+  final PrimitiveElement valueMarkdownElement;
   final String valueOid;
-  final PrimitiveElement ValueOid;
+  final PrimitiveElement valueOidElement;
   final double valuePositiveInt;
-  final PrimitiveElement ValuePositiveInt;
+  final PrimitiveElement valuePositiveIntElement;
   final String valueString;
-  final PrimitiveElement ValueString;
+  final PrimitiveElement valueStringElement;
   final String valueTime;
-  final PrimitiveElement ValueTime;
+  final PrimitiveElement valueTimeElement;
   final double valueUnsignedInt;
-  final PrimitiveElement ValueUnsignedInt;
+  final PrimitiveElement valueUnsignedIntElement;
   final String valueUri;
-  final PrimitiveElement ValueUri;
+  final PrimitiveElement valueUriElement;
   final String valueUrl;
-  final PrimitiveElement ValueUrl;
+  final PrimitiveElement valueUrlElement;
   final String valueUuid;
-  final PrimitiveElement ValueUuid;
+  final PrimitiveElement valueUuidElement;
   final Address valueAddress;
   final Age valueAge;
   final Annotation valueAnnotation;
@@ -146,53 +206,128 @@ class TaskInput {
   final UsageContext valueUsageContext;
   final Dosage valueDosage;
   final FhirMeta valueMeta;
+  const TaskInput({
+    required this.id,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.type,
+    required this.valueBase64Binary,
+    required this.valueBase64BinaryElement,
+    required this.valueBoolean,
+    required this.valueBooleanElement,
+    required this.valueCanonical,
+    required this.valueCanonicalElement,
+    required this.valueCode,
+    required this.valueCodeElement,
+    required this.valueDate,
+    required this.valueDateElement,
+    required this.valueDateTime,
+    required this.valueDateTimeElement,
+    required this.valueDecimal,
+    required this.valueDecimalElement,
+    required this.valueId,
+    required this.valueIdElement,
+    required this.valueInstant,
+    required this.valueInstantElement,
+    required this.valueInteger,
+    required this.valueIntegerElement,
+    required this.valueMarkdown,
+    required this.valueMarkdownElement,
+    required this.valueOid,
+    required this.valueOidElement,
+    required this.valuePositiveInt,
+    required this.valuePositiveIntElement,
+    required this.valueString,
+    required this.valueStringElement,
+    required this.valueTime,
+    required this.valueTimeElement,
+    required this.valueUnsignedInt,
+    required this.valueUnsignedIntElement,
+    required this.valueUri,
+    required this.valueUriElement,
+    required this.valueUrl,
+    required this.valueUrlElement,
+    required this.valueUuid,
+    required this.valueUuidElement,
+    required this.valueAddress,
+    required this.valueAge,
+    required this.valueAnnotation,
+    required this.valueAttachment,
+    required this.valueCodeableConcept,
+    required this.valueCoding,
+    required this.valueContactPoint,
+    required this.valueCount,
+    required this.valueDistance,
+    required this.valueDuration,
+    required this.valueHumanName,
+    required this.valueIdentifier,
+    required this.valueMoney,
+    required this.valuePeriod,
+    required this.valueQuantity,
+    required this.valueRange,
+    required this.valueRatio,
+    required this.valueReference,
+    required this.valueSampledData,
+    required this.valueSignature,
+    required this.valueTiming,
+    required this.valueContactDetail,
+    required this.valueContributor,
+    required this.valueDataRequirement,
+    required this.valueExpression,
+    required this.valueParameterDefinition,
+    required this.valueRelatedArtifact,
+    required this.valueTriggerDefinition,
+    required this.valueUsageContext,
+    required this.valueDosage,
+    required this.valueMeta,
+  });
 }
 
 @Data()
 @JsonCodable()
 class TaskOutput {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final CodeableConcept type;
   final String valueBase64Binary;
-  final PrimitiveElement ValueBase64Binary;
+  final PrimitiveElement valueBase64BinaryElement;
   final bool valueBoolean;
-  final PrimitiveElement ValueBoolean;
+  final PrimitiveElement valueBooleanElement;
   final String valueCanonical;
-  final PrimitiveElement ValueCanonical;
+  final PrimitiveElement valueCanonicalElement;
   final String valueCode;
-  final PrimitiveElement ValueCode;
+  final PrimitiveElement valueCodeElement;
   final String valueDate;
-  final PrimitiveElement ValueDate;
+  final PrimitiveElement valueDateElement;
   final String valueDateTime;
-  final PrimitiveElement ValueDateTime;
+  final PrimitiveElement valueDateTimeElement;
   final double valueDecimal;
-  final PrimitiveElement ValueDecimal;
+  final PrimitiveElement valueDecimalElement;
   final String valueId;
-  final PrimitiveElement ValueId;
+  final PrimitiveElement valueIdElement;
   final String valueInstant;
-  final PrimitiveElement ValueInstant;
+  final PrimitiveElement valueInstantElement;
   final double valueInteger;
-  final PrimitiveElement ValueInteger;
+  final PrimitiveElement valueIntegerElement;
   final String valueMarkdown;
-  final PrimitiveElement ValueMarkdown;
+  final PrimitiveElement valueMarkdownElement;
   final String valueOid;
-  final PrimitiveElement ValueOid;
+  final PrimitiveElement valueOidElement;
   final double valuePositiveInt;
-  final PrimitiveElement ValuePositiveInt;
+  final PrimitiveElement valuePositiveIntElement;
   final String valueString;
-  final PrimitiveElement ValueString;
+  final PrimitiveElement valueStringElement;
   final String valueTime;
-  final PrimitiveElement ValueTime;
+  final PrimitiveElement valueTimeElement;
   final double valueUnsignedInt;
-  final PrimitiveElement ValueUnsignedInt;
+  final PrimitiveElement valueUnsignedIntElement;
   final String valueUri;
-  final PrimitiveElement ValueUri;
+  final PrimitiveElement valueUriElement;
   final String valueUrl;
-  final PrimitiveElement ValueUrl;
+  final PrimitiveElement valueUrlElement;
   final String valueUuid;
-  final PrimitiveElement ValueUuid;
+  final PrimitiveElement valueUuidElement;
   final Address valueAddress;
   final Age valueAge;
   final Annotation valueAnnotation;
@@ -224,6 +359,81 @@ class TaskOutput {
   final UsageContext valueUsageContext;
   final Dosage valueDosage;
   final FhirMeta valueMeta;
+  const TaskOutput({
+    required this.id,
+    required this.extension_,
+    required this.modifierExtension,
+    required this.type,
+    required this.valueBase64Binary,
+    required this.valueBase64BinaryElement,
+    required this.valueBoolean,
+    required this.valueBooleanElement,
+    required this.valueCanonical,
+    required this.valueCanonicalElement,
+    required this.valueCode,
+    required this.valueCodeElement,
+    required this.valueDate,
+    required this.valueDateElement,
+    required this.valueDateTime,
+    required this.valueDateTimeElement,
+    required this.valueDecimal,
+    required this.valueDecimalElement,
+    required this.valueId,
+    required this.valueIdElement,
+    required this.valueInstant,
+    required this.valueInstantElement,
+    required this.valueInteger,
+    required this.valueIntegerElement,
+    required this.valueMarkdown,
+    required this.valueMarkdownElement,
+    required this.valueOid,
+    required this.valueOidElement,
+    required this.valuePositiveInt,
+    required this.valuePositiveIntElement,
+    required this.valueString,
+    required this.valueStringElement,
+    required this.valueTime,
+    required this.valueTimeElement,
+    required this.valueUnsignedInt,
+    required this.valueUnsignedIntElement,
+    required this.valueUri,
+    required this.valueUriElement,
+    required this.valueUrl,
+    required this.valueUrlElement,
+    required this.valueUuid,
+    required this.valueUuidElement,
+    required this.valueAddress,
+    required this.valueAge,
+    required this.valueAnnotation,
+    required this.valueAttachment,
+    required this.valueCodeableConcept,
+    required this.valueCoding,
+    required this.valueContactPoint,
+    required this.valueCount,
+    required this.valueDistance,
+    required this.valueDuration,
+    required this.valueHumanName,
+    required this.valueIdentifier,
+    required this.valueMoney,
+    required this.valuePeriod,
+    required this.valueQuantity,
+    required this.valueRange,
+    required this.valueRatio,
+    required this.valueReference,
+    required this.valueSampledData,
+    required this.valueSignature,
+    required this.valueTiming,
+    required this.valueContactDetail,
+    required this.valueContributor,
+    required this.valueDataRequirement,
+    required this.valueExpression,
+    required this.valueParameterDefinition,
+    required this.valueRelatedArtifact,
+    required this.valueTriggerDefinition,
+    required this.valueUsageContext,
+    required this.valueDosage,
+    required this.valueMeta,
+  });
 }
 
 

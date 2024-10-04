@@ -8,20 +8,37 @@ import 'export.dart';
 @JsonCodable()
 class SampledData {
   final String id;
-  final List<FhirExtension> extension;
+  final List<FhirExtension> extension_;
   final Quantity origin;
   final FhirDecimal period;
-  final PrimitiveElement Period;
+  final PrimitiveElement periodElement;
   final FhirDecimal factor;
-  final PrimitiveElement Factor;
+  final PrimitiveElement factorElement;
   final FhirDecimal lowerLimit;
-  final PrimitiveElement LowerLimit;
+  final PrimitiveElement lowerLimitElement;
   final FhirDecimal upperLimit;
-  final PrimitiveElement UpperLimit;
+  final PrimitiveElement upperLimitElement;
   final FhirPositiveInt dimensions;
-  final PrimitiveElement Dimensions;
+  final PrimitiveElement dimensionsElement;
   final String data;
-  final PrimitiveElement Data;
+  final PrimitiveElement dataElement;
+  const SampledData({
+    required this.id,
+    required this.extension_,
+    required this.origin,
+    required this.period,
+    required this.periodElement,
+    required this.factor,
+    required this.factorElement,
+    required this.lowerLimit,
+    required this.lowerLimitElement,
+    required this.upperLimit,
+    required this.upperLimitElement,
+    required this.dimensions,
+    required this.dimensionsElement,
+    required this.data,
+    required this.dataElement,
+  });
 }
 
 
