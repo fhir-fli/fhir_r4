@@ -5,6 +5,8 @@ import 'dart:io';
 
 import 'package:archive/archive_io.dart';
 
+import 'types.dart';
+
 Future<void> main() async {
   await extractFilesToDisk();
   await moveJsonExamples();
@@ -15,7 +17,7 @@ Future<void> main() async {
 Future<void> actualFHIRClasses() async {
   await extractFileToDisk('definitions.json/fhir.schema.json.zip', '.');
 
-  final String schemaString = await File('fhir.schema.json').readAsString();
+  final String schemaString = File('fhir.schema.json').readAsStringSync();
   final Map<String, dynamic> schema =
       jsonDecode(schemaString) as Map<String, dynamic>;
 
@@ -33,8 +35,8 @@ Future<void> actualFHIRClasses() async {
 
     // Write the Dart class to a file
     final String outputPath =
-        '../lib/src/fhir/generated/${toUpperCamelCase(key)}.dart'; // Organize paths based on categories
-    await File(outputPath).writeAsString(dartClass);
+        '../lib/src/fhir/generated/${key.toLowerCase()}.dart'; // Organize paths based on categories
+    File(outputPath).writeAsStringSync(dartClass);
   }
 }
 
@@ -55,8 +57,8 @@ String generateDartClass(
   className = toUpperCamelCase(className);
 
   // Add imports
-  buffer.writeln("import 'package:meta/meta.dart';");
-  buffer.writeln("import 'package:json_annotation/json_annotation.dart';");
+  buffer.writeln("import 'package:data_class/data_class.dart';");
+  buffer.writeln("import 'package:json/json.dart';\n");
 
   // Class declaration with @Data() and @JsonCodable() annotations
   buffer.writeln('@Data()');
@@ -114,31 +116,53 @@ String toCamelCase(String text) {
           .join();
 }
 
-// Function to map the JSON schema type to Dart types
 String mapType(Map<String, dynamic> details) {
-  final String? jsonType = details['type'] as String?;
-  if (jsonType == 'array') {
-    // Get the item type inside the array and map it
+  if (details.containsKey(r'$ref')) {
+    // Extract the type from $ref and map it using allTypes
+    final String ref = details[r'$ref'] as String;
+    return _extractTypeFromRef(ref);
+  } else if (details['type'] == 'array') {
+    // Handle arrays as List<T>
     final Map<String, dynamic> items = details['items'] as Map<String, dynamic>;
     final String itemType = mapType(items);
-    return 'List<$itemType>';
+    return 'List<${_mapToDartType(itemType)}>';
+  } else if (details['type'] == 'string') {
+    return 'String';
+  } else if (details['type'] == 'boolean') {
+    return 'bool';
+  } else if (details['type'] == 'integer') {
+    return 'int';
+  } else if (details['type'] == 'number') {
+    return 'double';
+  } else if (details['type'] == 'object') {
+    // Handle specific object types (e.g., Extension, Reference)
+    if (details.containsKey(r'$ref')) {
+      return _extractTypeFromRef(details[r'$ref'] as String);
+    }
+    // Otherwise, return a generic Map<String, dynamic> for plain objects
+    return 'Map<String, dynamic>';
   }
 
-  // Handle other types or fall back to dynamic if type not found
-  switch (jsonType) {
-    case 'string':
-      return 'String';
-    case 'integer':
-      return 'int';
-    case 'boolean':
-      return 'bool';
-    case 'number':
-      return 'double';
-    case 'object':
-      return 'Map<String, dynamic>';
-    default:
-      return 'dynamic';
+  // Default fallback to 'dynamic'
+  return 'dynamic';
+}
+
+String _extractTypeFromRef(String ref) {
+  // Ref will be something like "#/definitions/Extension", we extract the type name
+  final String typeName = ref.split('/').last;
+
+  // Use allTypes to map the type name to Dart types
+  if (allTypes.containsKey(typeName)) {
+    return _mapToDartType(typeName);
   }
+
+  // If type is not found, assume it's a custom class and return as-is
+  return typeName;
+}
+
+String _mapToDartType(String typeName) {
+  typeName = typeName.replaceAll('_', '');
+  return typeNames[typeName] ?? typeName;
 }
 
 Future<void> moveNdJsonExamples() async {
@@ -162,7 +186,6 @@ Future<void> moveNdJsonExamples() async {
       }
     }
   }
-  examplesJsonDirectory.deleteSync(recursive: true);
 }
 
 Future<void> moveJsonExamples() async {
@@ -174,14 +197,12 @@ Future<void> moveJsonExamples() async {
           .copy(file.path.replaceAll('examples-json', '../test/fhir/examples'));
     }
   }
-  examplesJsonDirectory.deleteSync(recursive: true);
 }
 
 Future<void> extractFilesToDisk() async {
   await extractFileToDisk('definitions.json.zip', '.');
   await extractFileToDisk('examples-json.zip', '.');
   await extractFileToDisk('examples-ndjson.zip', '.');
-  Directory('./__MACOSX').deleteSync(recursive: true);
 }
 
 // Extracts files from a zip archive
