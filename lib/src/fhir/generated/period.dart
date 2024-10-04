@@ -13,14 +13,6 @@ class Period {
   final PrimitiveElement startElement;
   final FhirDateTime end;
   final PrimitiveElement endElement;
-  const Period({
-    required this.id,
-    required this.extension_,
-    required this.start,
-    required this.startElement,
-    required this.end,
-    required this.endElement,
-  });
 }
 
 

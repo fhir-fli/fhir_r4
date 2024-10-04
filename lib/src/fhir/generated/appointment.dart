@@ -49,50 +49,6 @@ class Appointment {
   final List<Reference> basedOn;
   final List<AppointmentParticipant> participant;
   final List<Period> requestedPeriod;
-  const Appointment({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.status,
-    required this.statusElement,
-    required this.cancelationReason,
-    required this.serviceCategory,
-    required this.serviceType,
-    required this.specialty,
-    required this.appointmentType,
-    required this.reasonCode,
-    required this.reasonReference,
-    required this.priority,
-    required this.priorityElement,
-    required this.description,
-    required this.descriptionElement,
-    required this.supportingInformation,
-    required this.start,
-    required this.startElement,
-    required this.end,
-    required this.endElement,
-    required this.minutesDuration,
-    required this.minutesDurationElement,
-    required this.slot,
-    required this.created,
-    required this.createdElement,
-    required this.comment,
-    required this.commentElement,
-    required this.patientInstruction,
-    required this.patientInstructionElement,
-    required this.basedOn,
-    required this.participant,
-    required this.requestedPeriod,
-  });
 }
 
 @Data()
@@ -108,18 +64,6 @@ class AppointmentParticipant {
   final FhirCode status;
   final PrimitiveElement statusElement;
   final Period period;
-  const AppointmentParticipant({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.actor,
-    required this.required_,
-    required this.requiredElement,
-    required this.status,
-    required this.statusElement,
-    required this.period,
-  });
 }
 
 @Data()
@@ -148,31 +92,6 @@ class AppointmentResponse {
   final PrimitiveElement participantStatusElement;
   final String comment;
   final PrimitiveElement commentElement;
-  const AppointmentResponse({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.appointment,
-    required this.start,
-    required this.startElement,
-    required this.end,
-    required this.endElement,
-    required this.participantType,
-    required this.actor,
-    required this.participantStatus,
-    required this.participantStatusElement,
-    required this.comment,
-    required this.commentElement,
-  });
 }
 
 

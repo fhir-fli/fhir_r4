@@ -30,31 +30,6 @@ class Subscription {
   final String error;
   final PrimitiveElement errorElement;
   final SubscriptionChannel channel;
-  const Subscription({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.status,
-    required this.statusElement,
-    required this.contact,
-    required this.end,
-    required this.endElement,
-    required this.reason,
-    required this.reasonElement,
-    required this.criteria,
-    required this.criteriaElement,
-    required this.error,
-    required this.errorElement,
-    required this.channel,
-  });
 }
 
 @Data()
@@ -71,19 +46,6 @@ class SubscriptionChannel {
   final PrimitiveElement payloadElement;
   final List<String> header;
   final List<PrimitiveElement> headerElement;
-  const SubscriptionChannel({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.typeElement,
-    required this.endpoint,
-    required this.endpointElement,
-    required this.payload,
-    required this.payloadElement,
-    required this.header,
-    required this.headerElement,
-  });
 }
 
 @Data()
@@ -110,29 +72,6 @@ class SubscriptionStatus {
   final Reference subscription;
   final FhirCanonical topic;
   final List<CodeableConcept> error;
-  const SubscriptionStatus({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.status,
-    required this.statusElement,
-    required this.type,
-    required this.typeElement,
-    required this.eventsSinceSubscriptionStart,
-    required this.eventsSinceSubscriptionStartElement,
-    required this.notificationEvent,
-    required this.subscription,
-    required this.topic,
-    required this.error,
-  });
 }
 
 @Data()
@@ -147,17 +86,6 @@ class SubscriptionStatusNotificationEvent {
   final PrimitiveElement timestampElement;
   final Reference focus;
   final List<Reference> additionalContext;
-  const SubscriptionStatusNotificationEvent({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.eventNumber,
-    required this.eventNumberElement,
-    required this.timestamp,
-    required this.timestampElement,
-    required this.focus,
-    required this.additionalContext,
-  });
 }
 
 @Data()
@@ -208,53 +136,6 @@ class SubscriptionTopic {
   final List<SubscriptionTopicEventTrigger> eventTrigger;
   final List<SubscriptionTopicCanFilterBy> canFilterBy;
   final List<SubscriptionTopicNotificationShape> notificationShape;
-  const SubscriptionTopic({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.url,
-    required this.urlElement,
-    required this.identifier,
-    required this.version,
-    required this.versionElement,
-    required this.title,
-    required this.titleElement,
-    required this.derivedFrom,
-    required this.status,
-    required this.statusElement,
-    required this.experimental,
-    required this.experimentalElement,
-    required this.date,
-    required this.dateElement,
-    required this.publisher,
-    required this.publisherElement,
-    required this.contact,
-    required this.description,
-    required this.descriptionElement,
-    required this.useContext,
-    required this.jurisdiction,
-    required this.purpose,
-    required this.purposeElement,
-    required this.copyright,
-    required this.copyrightElement,
-    required this.approvalDate,
-    required this.approvalDateElement,
-    required this.lastReviewDate,
-    required this.lastReviewDateElement,
-    required this.effectivePeriod,
-    required this.resourceTrigger,
-    required this.eventTrigger,
-    required this.canFilterBy,
-    required this.notificationShape,
-  });
 }
 
 @Data()
@@ -272,20 +153,6 @@ class SubscriptionTopicResourceTrigger {
   final SubscriptionTopicQueryCriteria queryCriteria;
   final String fhirPathCriteria;
   final PrimitiveElement fhirPathCriteriaElement;
-  const SubscriptionTopicResourceTrigger({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.description,
-    required this.descriptionElement,
-    required this.resource,
-    required this.resourceElement,
-    required this.supportedInteraction,
-    required this.supportedInteractionElement,
-    required this.queryCriteria,
-    required this.fhirPathCriteria,
-    required this.fhirPathCriteriaElement,
-  });
 }
 
 @Data()
@@ -304,21 +171,6 @@ class SubscriptionTopicQueryCriteria {
   final PrimitiveElement resultForDeleteElement;
   final FhirBoolean requireBoth;
   final PrimitiveElement requireBothElement;
-  const SubscriptionTopicQueryCriteria({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.previous,
-    required this.previousElement,
-    required this.resultForCreate,
-    required this.resultForCreateElement,
-    required this.current,
-    required this.currentElement,
-    required this.resultForDelete,
-    required this.resultForDeleteElement,
-    required this.requireBoth,
-    required this.requireBothElement,
-  });
 }
 
 @Data()
@@ -332,16 +184,6 @@ class SubscriptionTopicEventTrigger {
   final CodeableConcept event;
   final FhirUri resource;
   final PrimitiveElement resourceElement;
-  const SubscriptionTopicEventTrigger({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.description,
-    required this.descriptionElement,
-    required this.event,
-    required this.resource,
-    required this.resourceElement,
-  });
 }
 
 @Data()
@@ -360,21 +202,6 @@ class SubscriptionTopicCanFilterBy {
   final PrimitiveElement filterDefinitionElement;
   final List<FhirCode> modifier;
   final List<PrimitiveElement> modifierElement;
-  const SubscriptionTopicCanFilterBy({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.description,
-    required this.descriptionElement,
-    required this.resource,
-    required this.resourceElement,
-    required this.filterParameter,
-    required this.filterParameterElement,
-    required this.filterDefinition,
-    required this.filterDefinitionElement,
-    required this.modifier,
-    required this.modifierElement,
-  });
 }
 
 @Data()
@@ -389,17 +216,6 @@ class SubscriptionTopicNotificationShape {
   final List<PrimitiveElement> includeElement;
   final List<String> revInclude;
   final List<PrimitiveElement> revIncludeElement;
-  const SubscriptionTopicNotificationShape({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.resource,
-    required this.resourceElement,
-    required this.include,
-    required this.includeElement,
-    required this.revInclude,
-    required this.revIncludeElement,
-  });
 }
 
 

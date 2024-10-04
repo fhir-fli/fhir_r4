@@ -11,12 +11,6 @@ class Range {
   final List<FhirExtension> extension_;
   final Quantity low;
   final Quantity high;
-  const Range({
-    required this.id,
-    required this.extension_,
-    required this.low,
-    required this.high,
-  });
 }
 
 

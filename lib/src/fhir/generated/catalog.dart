@@ -35,36 +35,6 @@ class CatalogEntry {
   final List<CodeableConcept> additionalCharacteristic;
   final List<CodeableConcept> additionalClassification;
   final List<CatalogEntryRelatedEntry> relatedEntry;
-  const CatalogEntry({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.type,
-    required this.orderable,
-    required this.orderableElement,
-    required this.referencedItem,
-    required this.additionalIdentifier,
-    required this.classification,
-    required this.status,
-    required this.statusElement,
-    required this.validityPeriod,
-    required this.validTo,
-    required this.validToElement,
-    required this.lastUpdated,
-    required this.lastUpdatedElement,
-    required this.additionalCharacteristic,
-    required this.additionalClassification,
-    required this.relatedEntry,
-  });
 }
 
 @Data()
@@ -76,14 +46,6 @@ class CatalogEntryRelatedEntry {
   final FhirCode relationtype;
   final PrimitiveElement relationtypeElement;
   final Reference item;
-  const CatalogEntryRelatedEntry({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.relationtype,
-    required this.relationtypeElement,
-    required this.item,
-  });
 }
 
 

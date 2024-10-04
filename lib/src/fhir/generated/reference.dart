@@ -16,17 +16,6 @@ class Reference {
   final Identifier identifier;
   final String display;
   final PrimitiveElement displayElement;
-  const Reference({
-    required this.id,
-    required this.extension_,
-    required this.reference,
-    required this.referenceElement,
-    required this.type,
-    required this.typeElement,
-    required this.identifier,
-    required this.display,
-    required this.displayElement,
-  });
 }
 
 

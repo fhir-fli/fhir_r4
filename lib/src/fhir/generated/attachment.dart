@@ -25,26 +25,6 @@ class Attachment {
   final PrimitiveElement titleElement;
   final FhirDateTime creation;
   final PrimitiveElement creationElement;
-  const Attachment({
-    required this.id,
-    required this.extension_,
-    required this.contentType,
-    required this.contentTypeElement,
-    required this.language,
-    required this.languageElement,
-    required this.data,
-    required this.dataElement,
-    required this.url,
-    required this.urlElement,
-    required this.size,
-    required this.sizeElement,
-    required this.hash,
-    required this.hashElement,
-    required this.title,
-    required this.titleElement,
-    required this.creation,
-    required this.creationElement,
-  });
 }
 
 

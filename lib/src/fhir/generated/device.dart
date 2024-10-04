@@ -54,55 +54,6 @@ class Device {
   final List<Annotation> note;
   final List<CodeableConcept> safety;
   final Reference parent;
-  const Device({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.definition,
-    required this.udiCarrier,
-    required this.status,
-    required this.statusElement,
-    required this.statusReason,
-    required this.distinctIdentifier,
-    required this.distinctIdentifierElement,
-    required this.manufacturer,
-    required this.manufacturerElement,
-    required this.manufactureDate,
-    required this.manufactureDateElement,
-    required this.expirationDate,
-    required this.expirationDateElement,
-    required this.lotNumber,
-    required this.lotNumberElement,
-    required this.serialNumber,
-    required this.serialNumberElement,
-    required this.deviceName,
-    required this.modelNumber,
-    required this.modelNumberElement,
-    required this.partNumber,
-    required this.partNumberElement,
-    required this.type,
-    required this.specialization,
-    required this.version,
-    required this.property,
-    required this.patient,
-    required this.owner,
-    required this.contact,
-    required this.location,
-    required this.url,
-    required this.urlElement,
-    required this.note,
-    required this.safety,
-    required this.parent,
-  });
 }
 
 @Data()
@@ -123,23 +74,6 @@ class DeviceUdiCarrier {
   final PrimitiveElement carrierHRFElement;
   final FhirCode entryType;
   final PrimitiveElement entryTypeElement;
-  const DeviceUdiCarrier({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.deviceIdentifier,
-    required this.deviceIdentifierElement,
-    required this.issuer,
-    required this.issuerElement,
-    required this.jurisdiction,
-    required this.jurisdictionElement,
-    required this.carrierAIDC,
-    required this.carrierAIDCElement,
-    required this.carrierHRF,
-    required this.carrierHRFElement,
-    required this.entryType,
-    required this.entryTypeElement,
-  });
 }
 
 @Data()
@@ -152,15 +86,6 @@ class DeviceDeviceName {
   final PrimitiveElement nameElement;
   final FhirCode type;
   final PrimitiveElement typeElement;
-  const DeviceDeviceName({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.name,
-    required this.nameElement,
-    required this.type,
-    required this.typeElement,
-  });
 }
 
 @Data()
@@ -172,14 +97,6 @@ class DeviceSpecialization {
   final CodeableConcept systemType;
   final String version;
   final PrimitiveElement versionElement;
-  const DeviceSpecialization({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.systemType,
-    required this.version,
-    required this.versionElement,
-  });
 }
 
 @Data()
@@ -192,15 +109,6 @@ class DeviceVersion {
   final Identifier component;
   final String value;
   final PrimitiveElement valueElement;
-  const DeviceVersion({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.component,
-    required this.value,
-    required this.valueElement,
-  });
 }
 
 @Data()
@@ -212,14 +120,6 @@ class DeviceProperty {
   final CodeableConcept type;
   final List<Quantity> valueQuantity;
   final List<CodeableConcept> valueCode;
-  const DeviceProperty({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.valueQuantity,
-    required this.valueCode,
-  });
 }
 
 @Data()
@@ -264,47 +164,6 @@ class DeviceDefinition {
   final Quantity quantity;
   final Reference parentDevice;
   final List<DeviceDefinitionMaterial> material;
-  const DeviceDefinition({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.udiDeviceIdentifier,
-    required this.manufacturerString,
-    required this.manufacturerStringElement,
-    required this.manufacturerReference,
-    required this.deviceName,
-    required this.modelNumber,
-    required this.modelNumberElement,
-    required this.type,
-    required this.specialization,
-    required this.version,
-    required this.versionElement,
-    required this.safety,
-    required this.shelfLifeStorage,
-    required this.physicalCharacteristics,
-    required this.languageCode,
-    required this.capability,
-    required this.property,
-    required this.owner,
-    required this.contact,
-    required this.url,
-    required this.urlElement,
-    required this.onlineInformation,
-    required this.onlineInformationElement,
-    required this.note,
-    required this.quantity,
-    required this.parentDevice,
-    required this.material,
-  });
 }
 
 @Data()
@@ -319,17 +178,6 @@ class DeviceDefinitionUdiDeviceIdentifier {
   final PrimitiveElement issuerElement;
   final FhirUri jurisdiction;
   final PrimitiveElement jurisdictionElement;
-  const DeviceDefinitionUdiDeviceIdentifier({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.deviceIdentifier,
-    required this.deviceIdentifierElement,
-    required this.issuer,
-    required this.issuerElement,
-    required this.jurisdiction,
-    required this.jurisdictionElement,
-  });
 }
 
 @Data()
@@ -342,15 +190,6 @@ class DeviceDefinitionDeviceName {
   final PrimitiveElement nameElement;
   final FhirCode type;
   final PrimitiveElement typeElement;
-  const DeviceDefinitionDeviceName({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.name,
-    required this.nameElement,
-    required this.type,
-    required this.typeElement,
-  });
 }
 
 @Data()
@@ -363,15 +202,6 @@ class DeviceDefinitionSpecialization {
   final PrimitiveElement systemTypeElement;
   final String version;
   final PrimitiveElement versionElement;
-  const DeviceDefinitionSpecialization({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.systemType,
-    required this.systemTypeElement,
-    required this.version,
-    required this.versionElement,
-  });
 }
 
 @Data()
@@ -382,13 +212,6 @@ class DeviceDefinitionCapability {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept type;
   final List<CodeableConcept> description;
-  const DeviceDefinitionCapability({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.description,
-  });
 }
 
 @Data()
@@ -400,14 +223,6 @@ class DeviceDefinitionProperty {
   final CodeableConcept type;
   final List<Quantity> valueQuantity;
   final List<CodeableConcept> valueCode;
-  const DeviceDefinitionProperty({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.valueQuantity,
-    required this.valueCode,
-  });
 }
 
 @Data()
@@ -421,16 +236,6 @@ class DeviceDefinitionMaterial {
   final PrimitiveElement alternateElement;
   final FhirBoolean allergenicIndicator;
   final PrimitiveElement allergenicIndicatorElement;
-  const DeviceDefinitionMaterial({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.substance,
-    required this.alternate,
-    required this.alternateElement,
-    required this.allergenicIndicator,
-    required this.allergenicIndicatorElement,
-  });
 }
 
 @Data()
@@ -460,32 +265,6 @@ class DeviceMetric {
   final PrimitiveElement categoryElement;
   final Timing measurementPeriod;
   final List<DeviceMetricCalibration> calibration;
-  const DeviceMetric({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.type,
-    required this.unit,
-    required this.source,
-    required this.parent,
-    required this.operationalStatus,
-    required this.operationalStatusElement,
-    required this.color,
-    required this.colorElement,
-    required this.category,
-    required this.categoryElement,
-    required this.measurementPeriod,
-    required this.calibration,
-  });
 }
 
 @Data()
@@ -500,17 +279,6 @@ class DeviceMetricCalibration {
   final PrimitiveElement stateElement;
   final FhirInstant time;
   final PrimitiveElement timeElement;
-  const DeviceMetricCalibration({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.typeElement,
-    required this.state,
-    required this.stateElement,
-    required this.time,
-    required this.timeElement,
-  });
 }
 
 @Data()
@@ -560,52 +328,6 @@ class DeviceRequest {
   final List<Reference> supportingInfo;
   final List<Annotation> note;
   final List<Reference> relevantHistory;
-  const DeviceRequest({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.instantiatesCanonical,
-    required this.instantiatesUri,
-    required this.instantiatesUriElement,
-    required this.basedOn,
-    required this.priorRequest,
-    required this.groupIdentifier,
-    required this.status,
-    required this.statusElement,
-    required this.intent,
-    required this.intentElement,
-    required this.priority,
-    required this.priorityElement,
-    required this.codeReference,
-    required this.codeCodeableConcept,
-    required this.parameter,
-    required this.subject,
-    required this.encounter,
-    required this.occurrenceDateTime,
-    required this.occurrenceDateTimeElement,
-    required this.occurrencePeriod,
-    required this.occurrenceTiming,
-    required this.authoredOn,
-    required this.authoredOnElement,
-    required this.requester,
-    required this.performerType,
-    required this.performer,
-    required this.reasonCode,
-    required this.reasonReference,
-    required this.insurance,
-    required this.supportingInfo,
-    required this.note,
-    required this.relevantHistory,
-  });
 }
 
 @Data()
@@ -620,17 +342,6 @@ class DeviceRequestParameter {
   final Range valueRange;
   final bool valueBoolean;
   final PrimitiveElement valueBooleanElement;
-  const DeviceRequestParameter({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.valueCodeableConcept,
-    required this.valueQuantity,
-    required this.valueRange,
-    required this.valueBoolean,
-    required this.valueBooleanElement,
-  });
 }
 
 @Data()
@@ -665,37 +376,6 @@ class DeviceUseStatement {
   final List<Reference> reasonReference;
   final CodeableConcept bodySite;
   final List<Annotation> note;
-  const DeviceUseStatement({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.basedOn,
-    required this.status,
-    required this.statusElement,
-    required this.subject,
-    required this.derivedFrom,
-    required this.timingTiming,
-    required this.timingPeriod,
-    required this.timingDateTime,
-    required this.timingDateTimeElement,
-    required this.recordedOn,
-    required this.recordedOnElement,
-    required this.source,
-    required this.device,
-    required this.reasonCode,
-    required this.reasonReference,
-    required this.bodySite,
-    required this.note,
-  });
 }
 
 

@@ -43,44 +43,6 @@ class GraphDefinition {
   final PrimitiveElement startElement;
   final FhirCanonical profile;
   final List<GraphDefinitionLink> link;
-  const GraphDefinition({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.url,
-    required this.urlElement,
-    required this.version,
-    required this.versionElement,
-    required this.name,
-    required this.nameElement,
-    required this.status,
-    required this.statusElement,
-    required this.experimental,
-    required this.experimentalElement,
-    required this.date,
-    required this.dateElement,
-    required this.publisher,
-    required this.publisherElement,
-    required this.contact,
-    required this.description,
-    required this.descriptionElement,
-    required this.useContext,
-    required this.jurisdiction,
-    required this.purpose,
-    required this.purposeElement,
-    required this.start,
-    required this.startElement,
-    required this.profile,
-    required this.link,
-  });
 }
 
 @Data()
@@ -100,22 +62,6 @@ class GraphDefinitionLink {
   final String description;
   final PrimitiveElement descriptionElement;
   final List<GraphDefinitionTarget> target;
-  const GraphDefinitionLink({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.path,
-    required this.pathElement,
-    required this.sliceName,
-    required this.sliceNameElement,
-    required this.min,
-    required this.minElement,
-    required this.max,
-    required this.maxElement,
-    required this.description,
-    required this.descriptionElement,
-    required this.target,
-  });
 }
 
 @Data()
@@ -131,18 +77,6 @@ class GraphDefinitionTarget {
   final FhirCanonical profile;
   final List<GraphDefinitionCompartment> compartment;
   final List<GraphDefinitionLink> link;
-  const GraphDefinitionTarget({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.typeElement,
-    required this.params,
-    required this.paramsElement,
-    required this.profile,
-    required this.compartment,
-    required this.link,
-  });
 }
 
 @Data()
@@ -161,21 +95,6 @@ class GraphDefinitionCompartment {
   final PrimitiveElement expressionElement;
   final String description;
   final PrimitiveElement descriptionElement;
-  const GraphDefinitionCompartment({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.use,
-    required this.useElement,
-    required this.code,
-    required this.codeElement,
-    required this.rule,
-    required this.ruleElement,
-    required this.expression,
-    required this.expressionElement,
-    required this.description,
-    required this.descriptionElement,
-  });
 }
 
 

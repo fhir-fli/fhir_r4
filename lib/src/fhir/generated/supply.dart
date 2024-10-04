@@ -33,34 +33,6 @@ class SupplyDelivery {
   final Reference supplier;
   final Reference destination;
   final List<Reference> receiver;
-  const SupplyDelivery({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.basedOn,
-    required this.partOf,
-    required this.status,
-    required this.statusElement,
-    required this.patient,
-    required this.type,
-    required this.suppliedItem,
-    required this.occurrenceDateTime,
-    required this.occurrenceDateTimeElement,
-    required this.occurrencePeriod,
-    required this.occurrenceTiming,
-    required this.supplier,
-    required this.destination,
-    required this.receiver,
-  });
 }
 
 @Data()
@@ -72,14 +44,6 @@ class SupplyDeliverySuppliedItem {
   final Quantity quantity;
   final CodeableConcept itemCodeableConcept;
   final Reference itemReference;
-  const SupplyDeliverySuppliedItem({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.quantity,
-    required this.itemCodeableConcept,
-    required this.itemReference,
-  });
 }
 
 @Data()
@@ -118,41 +82,6 @@ class SupplyRequest {
   final List<Reference> reasonReference;
   final Reference deliverFrom;
   final Reference deliverTo;
-  const SupplyRequest({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.status,
-    required this.statusElement,
-    required this.category,
-    required this.priority,
-    required this.priorityElement,
-    required this.itemCodeableConcept,
-    required this.itemReference,
-    required this.quantity,
-    required this.parameter,
-    required this.occurrenceDateTime,
-    required this.occurrenceDateTimeElement,
-    required this.occurrencePeriod,
-    required this.occurrenceTiming,
-    required this.authoredOn,
-    required this.authoredOnElement,
-    required this.requester,
-    required this.supplier,
-    required this.reasonCode,
-    required this.reasonReference,
-    required this.deliverFrom,
-    required this.deliverTo,
-  });
 }
 
 @Data()
@@ -167,17 +96,6 @@ class SupplyRequestParameter {
   final Range valueRange;
   final bool valueBoolean;
   final PrimitiveElement valueBooleanElement;
-  const SupplyRequestParameter({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.valueCodeableConcept,
-    required this.valueQuantity,
-    required this.valueRange,
-    required this.valueBoolean,
-    required this.valueBooleanElement,
-  });
 }
 
 

@@ -53,54 +53,6 @@ class ChargeItem {
   final List<Reference> account;
   final List<Annotation> note;
   final List<Reference> supportingInformation;
-  const ChargeItem({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.definitionUri,
-    required this.definitionUriElement,
-    required this.definitionCanonical,
-    required this.status,
-    required this.statusElement,
-    required this.partOf,
-    required this.code,
-    required this.subject,
-    required this.context,
-    required this.occurrenceDateTime,
-    required this.occurrenceDateTimeElement,
-    required this.occurrencePeriod,
-    required this.occurrenceTiming,
-    required this.performer,
-    required this.performingOrganization,
-    required this.requestingOrganization,
-    required this.costCenter,
-    required this.quantity,
-    required this.bodysite,
-    required this.factorOverride,
-    required this.factorOverrideElement,
-    required this.priceOverride,
-    required this.overrideReason,
-    required this.overrideReasonElement,
-    required this.enterer,
-    required this.enteredDate,
-    required this.enteredDateElement,
-    required this.reason,
-    required this.service,
-    required this.productReference,
-    required this.productCodeableConcept,
-    required this.account,
-    required this.note,
-    required this.supportingInformation,
-  });
 }
 
 @Data()
@@ -111,13 +63,6 @@ class ChargeItemPerformer {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept function_;
   final Reference actor;
-  const ChargeItemPerformer({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.function_,
-    required this.actor,
-  });
 }
 
 @Data()
@@ -169,54 +114,6 @@ class ChargeItemDefinition {
   final List<Reference> instance;
   final List<ChargeItemDefinitionApplicability> applicability;
   final List<ChargeItemDefinitionPropertyGroup> propertyGroup;
-  const ChargeItemDefinition({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.url,
-    required this.urlElement,
-    required this.identifier,
-    required this.version,
-    required this.versionElement,
-    required this.title,
-    required this.titleElement,
-    required this.derivedFromUri,
-    required this.derivedFromUriElement,
-    required this.partOf,
-    required this.replaces,
-    required this.status,
-    required this.statusElement,
-    required this.experimental,
-    required this.experimentalElement,
-    required this.date,
-    required this.dateElement,
-    required this.publisher,
-    required this.publisherElement,
-    required this.contact,
-    required this.description,
-    required this.descriptionElement,
-    required this.useContext,
-    required this.jurisdiction,
-    required this.copyright,
-    required this.copyrightElement,
-    required this.approvalDate,
-    required this.approvalDateElement,
-    required this.lastReviewDate,
-    required this.lastReviewDateElement,
-    required this.effectivePeriod,
-    required this.code,
-    required this.instance,
-    required this.applicability,
-    required this.propertyGroup,
-  });
 }
 
 @Data()
@@ -231,17 +128,6 @@ class ChargeItemDefinitionApplicability {
   final PrimitiveElement languageElement;
   final String expression;
   final PrimitiveElement expressionElement;
-  const ChargeItemDefinitionApplicability({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.description,
-    required this.descriptionElement,
-    required this.language,
-    required this.languageElement,
-    required this.expression,
-    required this.expressionElement,
-  });
 }
 
 @Data()
@@ -252,13 +138,6 @@ class ChargeItemDefinitionPropertyGroup {
   final List<FhirExtension> modifierExtension;
   final List<ChargeItemDefinitionApplicability> applicability;
   final List<ChargeItemDefinitionPriceComponent> priceComponent;
-  const ChargeItemDefinitionPropertyGroup({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.applicability,
-    required this.priceComponent,
-  });
 }
 
 @Data()
@@ -273,17 +152,6 @@ class ChargeItemDefinitionPriceComponent {
   final FhirDecimal factor;
   final PrimitiveElement factorElement;
   final Money amount;
-  const ChargeItemDefinitionPriceComponent({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.typeElement,
-    required this.code,
-    required this.factor,
-    required this.factorElement,
-    required this.amount,
-  });
 }
 
 

@@ -43,44 +43,6 @@ class ImagingStudy {
   final String description;
   final PrimitiveElement descriptionElement;
   final List<ImagingStudySeries> series;
-  const ImagingStudy({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.status,
-    required this.statusElement,
-    required this.modality,
-    required this.subject,
-    required this.encounter,
-    required this.started,
-    required this.startedElement,
-    required this.basedOn,
-    required this.referrer,
-    required this.interpreter,
-    required this.endpoint,
-    required this.numberOfSeries,
-    required this.numberOfSeriesElement,
-    required this.numberOfInstances,
-    required this.numberOfInstancesElement,
-    required this.procedureReference,
-    required this.procedureCode,
-    required this.location,
-    required this.reasonCode,
-    required this.reasonReference,
-    required this.note,
-    required this.description,
-    required this.descriptionElement,
-    required this.series,
-  });
 }
 
 @Data()
@@ -106,28 +68,6 @@ class ImagingStudySeries {
   final PrimitiveElement startedElement;
   final List<ImagingStudyPerformer> performer;
   final List<ImagingStudyInstance> instance;
-  const ImagingStudySeries({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.uid,
-    required this.uidElement,
-    required this.number,
-    required this.numberElement,
-    required this.modality,
-    required this.description,
-    required this.descriptionElement,
-    required this.numberOfInstances,
-    required this.numberOfInstancesElement,
-    required this.endpoint,
-    required this.bodySite,
-    required this.laterality,
-    required this.specimen,
-    required this.started,
-    required this.startedElement,
-    required this.performer,
-    required this.instance,
-  });
 }
 
 @Data()
@@ -138,13 +78,6 @@ class ImagingStudyPerformer {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept function_;
   final Reference actor;
-  const ImagingStudyPerformer({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.function_,
-    required this.actor,
-  });
 }
 
 @Data()
@@ -160,18 +93,6 @@ class ImagingStudyInstance {
   final PrimitiveElement numberElement;
   final String title;
   final PrimitiveElement titleElement;
-  const ImagingStudyInstance({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.uid,
-    required this.uidElement,
-    required this.sopClass,
-    required this.number,
-    required this.numberElement,
-    required this.title,
-    required this.titleElement,
-  });
 }
 
 

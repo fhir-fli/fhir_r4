@@ -22,23 +22,6 @@ class ParameterDefinition {
   final FhirCode type;
   final PrimitiveElement typeElement;
   final FhirCanonical profile;
-  const ParameterDefinition({
-    required this.id,
-    required this.extension_,
-    required this.name,
-    required this.nameElement,
-    required this.use,
-    required this.useElement,
-    required this.min,
-    required this.minElement,
-    required this.max,
-    required this.maxElement,
-    required this.documentation,
-    required this.documentationElement,
-    required this.type,
-    required this.typeElement,
-    required this.profile,
-  });
 }
 
 

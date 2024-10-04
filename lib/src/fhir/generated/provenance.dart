@@ -32,33 +32,6 @@ class Provenance {
   final List<ProvenanceAgent> agent;
   final List<ProvenanceEntity> entity;
   final List<Signature> signature;
-  const Provenance({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.target,
-    required this.occurredPeriod,
-    required this.occurredDateTime,
-    required this.occurredDateTimeElement,
-    required this.recorded,
-    required this.recordedElement,
-    required this.policy,
-    required this.policyElement,
-    required this.location,
-    required this.reason,
-    required this.activity,
-    required this.agent,
-    required this.entity,
-    required this.signature,
-  });
 }
 
 @Data()
@@ -71,15 +44,6 @@ class ProvenanceAgent {
   final List<CodeableConcept> role;
   final Reference who;
   final Reference onBehalfOf;
-  const ProvenanceAgent({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.role,
-    required this.who,
-    required this.onBehalfOf,
-  });
 }
 
 @Data()
@@ -92,15 +56,6 @@ class ProvenanceEntity {
   final PrimitiveElement roleElement;
   final Reference what;
   final List<ProvenanceAgent> agent;
-  const ProvenanceEntity({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.role,
-    required this.roleElement,
-    required this.what,
-    required this.agent,
-  });
 }
 
 

@@ -148,11 +148,6 @@ abstract class $ImmunizationRecommendationCopyWith<$Res> {
       @JsonKey(name: '_date') PrimitiveElement? dateElement,
       Reference? authority,
       List<ImmunizationRecommendationRecommendation> recommendation});
-
-  $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
-  $ReferenceCopyWith<$Res> get patient;
-  $ReferenceCopyWith<$Res>? get authority;
 }
 
 /// @nodoc
@@ -183,7 +178,7 @@ class _$ImmunizationRecommendationCopyWithImpl<$Res,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? identifier = freezed,
-    Object? patient = null,
+    Object? patient = freezed,
     Object? date = freezed,
     Object? dateElement = freezed,
     Object? authority = freezed,
@@ -238,7 +233,7 @@ class _$ImmunizationRecommendationCopyWithImpl<$Res,
           ? _value.identifier
           : identifier // ignore: cast_nullable_to_non_nullable
               as List<Identifier>?,
-      patient: null == patient
+      patient: freezed == patient
           ? _value.patient
           : patient // ignore: cast_nullable_to_non_nullable
               as Reference,
@@ -259,58 +254,6 @@ class _$ImmunizationRecommendationCopyWithImpl<$Res,
           : recommendation // ignore: cast_nullable_to_non_nullable
               as List<ImmunizationRecommendationRecommendation>,
     ) as $Val);
-  }
-
-  /// Create a copy of ImmunizationRecommendation
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $FhirMetaCopyWith<$Res>? get meta {
-    if (_value.meta == null) {
-      return null;
-    }
-
-    return $FhirMetaCopyWith<$Res>(_value.meta!, (value) {
-      return _then(_value.copyWith(meta: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ImmunizationRecommendation
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ImmunizationRecommendation
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res> get patient {
-    return $ReferenceCopyWith<$Res>(_value.patient, (value) {
-      return _then(_value.copyWith(patient: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ImmunizationRecommendation
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get authority {
-    if (_value.authority == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.authority!, (value) {
-      return _then(_value.copyWith(authority: value) as $Val);
-    });
   }
 }
 
@@ -342,15 +285,6 @@ abstract class _$$ImmunizationRecommendationImplCopyWith<$Res>
       @JsonKey(name: '_date') PrimitiveElement? dateElement,
       Reference? authority,
       List<ImmunizationRecommendationRecommendation> recommendation});
-
-  @override
-  $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
-  @override
-  $ReferenceCopyWith<$Res> get patient;
-  @override
-  $ReferenceCopyWith<$Res>? get authority;
 }
 
 /// @nodoc
@@ -380,7 +314,7 @@ class __$$ImmunizationRecommendationImplCopyWithImpl<$Res>
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
     Object? identifier = freezed,
-    Object? patient = null,
+    Object? patient = freezed,
     Object? date = freezed,
     Object? dateElement = freezed,
     Object? authority = freezed,
@@ -435,7 +369,7 @@ class __$$ImmunizationRecommendationImplCopyWithImpl<$Res>
           ? _value._identifier
           : identifier // ignore: cast_nullable_to_non_nullable
               as List<Identifier>?,
-      patient: null == patient
+      patient: freezed == patient
           ? _value.patient
           : patient // ignore: cast_nullable_to_non_nullable
               as Reference,
@@ -676,7 +610,7 @@ class _$ImmunizationRecommendationImpl extends _ImmunizationRecommendation {
             (identical(other.resourceType, resourceType) ||
                 other.resourceType == resourceType) &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.meta, meta) || other.meta == meta) &&
+            const DeepCollectionEquality().equals(other.meta, meta) &&
             (identical(other.implicitRules, implicitRules) ||
                 other.implicitRules == implicitRules) &&
             (identical(other.implicitRulesElement, implicitRulesElement) ||
@@ -685,7 +619,7 @@ class _$ImmunizationRecommendationImpl extends _ImmunizationRecommendation {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -694,12 +628,11 @@ class _$ImmunizationRecommendationImpl extends _ImmunizationRecommendation {
                 .equals(other._modifierExtension, _modifierExtension) &&
             const DeepCollectionEquality()
                 .equals(other._identifier, _identifier) &&
-            (identical(other.patient, patient) || other.patient == patient) &&
+            const DeepCollectionEquality().equals(other.patient, patient) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.dateElement, dateElement) ||
                 other.dateElement == dateElement) &&
-            (identical(other.authority, authority) ||
-                other.authority == authority) &&
+            const DeepCollectionEquality().equals(other.authority, authority) &&
             const DeepCollectionEquality()
                 .equals(other._recommendation, _recommendation));
   }
@@ -710,20 +643,20 @@ class _$ImmunizationRecommendationImpl extends _ImmunizationRecommendation {
       runtimeType,
       resourceType,
       id,
-      meta,
+      const DeepCollectionEquality().hash(meta),
       implicitRules,
       implicitRulesElement,
       language,
       languageElement,
-      text,
+      const DeepCollectionEquality().hash(text),
       const DeepCollectionEquality().hash(_contained),
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       const DeepCollectionEquality().hash(_identifier),
-      patient,
+      const DeepCollectionEquality().hash(patient),
       date,
       dateElement,
-      authority,
+      const DeepCollectionEquality().hash(authority),
       const DeepCollectionEquality().hash(_recommendation));
 
   /// Create a copy of ImmunizationRecommendation
@@ -1053,9 +986,6 @@ abstract class $ImmunizationRecommendationRecommendationCopyWith<$Res> {
       PrimitiveElement? seriesDosesStringElement,
       List<Reference>? supportingImmunization,
       List<Reference>? supportingPatientInformation});
-
-  $CodeableConceptCopyWith<$Res>? get targetDisease;
-  $CodeableConceptCopyWith<$Res> get forecastStatus;
 }
 
 /// @nodoc
@@ -1081,7 +1011,7 @@ class _$ImmunizationRecommendationRecommendationCopyWithImpl<$Res,
     Object? vaccineCode = freezed,
     Object? targetDisease = freezed,
     Object? contraindicatedVaccineCode = freezed,
-    Object? forecastStatus = null,
+    Object? forecastStatus = freezed,
     Object? forecastReason = freezed,
     Object? dateCriterion = freezed,
     Object? description = freezed,
@@ -1124,7 +1054,7 @@ class _$ImmunizationRecommendationRecommendationCopyWithImpl<$Res,
           ? _value.contraindicatedVaccineCode
           : contraindicatedVaccineCode // ignore: cast_nullable_to_non_nullable
               as List<CodeableConcept>?,
-      forecastStatus: null == forecastStatus
+      forecastStatus: freezed == forecastStatus
           ? _value.forecastStatus
           : forecastStatus // ignore: cast_nullable_to_non_nullable
               as CodeableConcept,
@@ -1194,30 +1124,6 @@ class _$ImmunizationRecommendationRecommendationCopyWithImpl<$Res,
               as List<Reference>?,
     ) as $Val);
   }
-
-  /// Create a copy of ImmunizationRecommendationRecommendation
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get targetDisease {
-    if (_value.targetDisease == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.targetDisease!, (value) {
-      return _then(_value.copyWith(targetDisease: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ImmunizationRecommendationRecommendation
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res> get forecastStatus {
-    return $CodeableConceptCopyWith<$Res>(_value.forecastStatus, (value) {
-      return _then(_value.copyWith(forecastStatus: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -1257,11 +1163,6 @@ abstract class _$$ImmunizationRecommendationRecommendationImplCopyWith<$Res>
       PrimitiveElement? seriesDosesStringElement,
       List<Reference>? supportingImmunization,
       List<Reference>? supportingPatientInformation});
-
-  @override
-  $CodeableConceptCopyWith<$Res>? get targetDisease;
-  @override
-  $CodeableConceptCopyWith<$Res> get forecastStatus;
 }
 
 /// @nodoc
@@ -1285,7 +1186,7 @@ class __$$ImmunizationRecommendationRecommendationImplCopyWithImpl<$Res>
     Object? vaccineCode = freezed,
     Object? targetDisease = freezed,
     Object? contraindicatedVaccineCode = freezed,
-    Object? forecastStatus = null,
+    Object? forecastStatus = freezed,
     Object? forecastReason = freezed,
     Object? dateCriterion = freezed,
     Object? description = freezed,
@@ -1328,7 +1229,7 @@ class __$$ImmunizationRecommendationRecommendationImplCopyWithImpl<$Res>
           ? _value._contraindicatedVaccineCode
           : contraindicatedVaccineCode // ignore: cast_nullable_to_non_nullable
               as List<CodeableConcept>?,
-      forecastStatus: null == forecastStatus
+      forecastStatus: freezed == forecastStatus
           ? _value.forecastStatus
           : forecastStatus // ignore: cast_nullable_to_non_nullable
               as CodeableConcept,
@@ -1685,13 +1586,13 @@ class _$ImmunizationRecommendationRecommendationImpl
                 .equals(other._modifierExtension, _modifierExtension) &&
             const DeepCollectionEquality()
                 .equals(other._vaccineCode, _vaccineCode) &&
-            (identical(other.targetDisease, targetDisease) ||
-                other.targetDisease == targetDisease) &&
+            const DeepCollectionEquality()
+                .equals(other.targetDisease, targetDisease) &&
             const DeepCollectionEquality().equals(
                 other._contraindicatedVaccineCode,
                 _contraindicatedVaccineCode) &&
-            (identical(other.forecastStatus, forecastStatus) ||
-                other.forecastStatus == forecastStatus) &&
+            const DeepCollectionEquality()
+                .equals(other.forecastStatus, forecastStatus) &&
             const DeepCollectionEquality()
                 .equals(other._forecastReason, _forecastReason) &&
             const DeepCollectionEquality()
@@ -1739,9 +1640,9 @@ class _$ImmunizationRecommendationRecommendationImpl
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
         const DeepCollectionEquality().hash(_vaccineCode),
-        targetDisease,
+        const DeepCollectionEquality().hash(targetDisease),
         const DeepCollectionEquality().hash(_contraindicatedVaccineCode),
-        forecastStatus,
+        const DeepCollectionEquality().hash(forecastStatus),
         const DeepCollectionEquality().hash(_forecastReason),
         const DeepCollectionEquality().hash(_dateCriterion),
         description,
@@ -2024,8 +1925,6 @@ abstract class $ImmunizationRecommendationDateCriterionCopyWith<$Res> {
       CodeableConcept code,
       FhirDateTime? value,
       @JsonKey(name: '_value') PrimitiveElement? valueElement});
-
-  $CodeableConceptCopyWith<$Res> get code;
 }
 
 /// @nodoc
@@ -2048,7 +1947,7 @@ class _$ImmunizationRecommendationDateCriterionCopyWithImpl<$Res,
     Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
-    Object? code = null,
+    Object? code = freezed,
     Object? value = freezed,
     Object? valueElement = freezed,
   }) {
@@ -2065,7 +1964,7 @@ class _$ImmunizationRecommendationDateCriterionCopyWithImpl<$Res,
           ? _value.modifierExtension
           : modifierExtension // ignore: cast_nullable_to_non_nullable
               as List<FhirExtension>?,
-      code: null == code
+      code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as CodeableConcept,
@@ -2078,16 +1977,6 @@ class _$ImmunizationRecommendationDateCriterionCopyWithImpl<$Res,
           : valueElement // ignore: cast_nullable_to_non_nullable
               as PrimitiveElement?,
     ) as $Val);
-  }
-
-  /// Create a copy of ImmunizationRecommendationDateCriterion
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res> get code {
-    return $CodeableConceptCopyWith<$Res>(_value.code, (value) {
-      return _then(_value.copyWith(code: value) as $Val);
-    });
   }
 }
 
@@ -2107,9 +1996,6 @@ abstract class _$$ImmunizationRecommendationDateCriterionImplCopyWith<$Res>
       CodeableConcept code,
       FhirDateTime? value,
       @JsonKey(name: '_value') PrimitiveElement? valueElement});
-
-  @override
-  $CodeableConceptCopyWith<$Res> get code;
 }
 
 /// @nodoc
@@ -2130,7 +2016,7 @@ class __$$ImmunizationRecommendationDateCriterionImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
-    Object? code = null,
+    Object? code = freezed,
     Object? value = freezed,
     Object? valueElement = freezed,
   }) {
@@ -2147,7 +2033,7 @@ class __$$ImmunizationRecommendationDateCriterionImplCopyWithImpl<$Res>
           ? _value._modifierExtension
           : modifierExtension // ignore: cast_nullable_to_non_nullable
               as List<FhirExtension>?,
-      code: null == code
+      code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as CodeableConcept,
@@ -2278,7 +2164,7 @@ class _$ImmunizationRecommendationDateCriterionImpl
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
                 .equals(other._modifierExtension, _modifierExtension) &&
-            (identical(other.code, code) || other.code == code) &&
+            const DeepCollectionEquality().equals(other.code, code) &&
             (identical(other.value, value) || other.value == value) &&
             (identical(other.valueElement, valueElement) ||
                 other.valueElement == valueElement));
@@ -2291,7 +2177,7 @@ class _$ImmunizationRecommendationDateCriterionImpl
       id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
-      code,
+      const DeepCollectionEquality().hash(code),
       value,
       valueElement);
 

@@ -18,19 +18,6 @@ class Identifier {
   final PrimitiveElement valueElement;
   final Period period;
   final Reference assigner;
-  const Identifier({
-    required this.id,
-    required this.extension_,
-    required this.use,
-    required this.useElement,
-    required this.type,
-    required this.system,
-    required this.systemElement,
-    required this.value,
-    required this.valueElement,
-    required this.period,
-    required this.assigner,
-  });
 }
 
 

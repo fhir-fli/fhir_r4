@@ -29,30 +29,6 @@ class AdministrableProductDefinition {
   final Reference device;
   final List<AdministrableProductDefinitionProperty> property;
   final List<AdministrableProductDefinitionRouteOfAdministration> routeOfAdministration;
-  const AdministrableProductDefinition({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.status,
-    required this.statusElement,
-    required this.formOf,
-    required this.administrableDoseForm,
-    required this.unitOfPresentation,
-    required this.producedFrom,
-    required this.ingredient,
-    required this.device,
-    required this.property,
-    required this.routeOfAdministration,
-  });
 }
 
 @Data()
@@ -70,20 +46,6 @@ class AdministrableProductDefinitionProperty {
   final PrimitiveElement valueBooleanElement;
   final Attachment valueAttachment;
   final CodeableConcept status;
-  const AdministrableProductDefinitionProperty({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.valueCodeableConcept,
-    required this.valueQuantity,
-    required this.valueDate,
-    required this.valueDateElement,
-    required this.valueBoolean,
-    required this.valueBooleanElement,
-    required this.valueAttachment,
-    required this.status,
-  });
 }
 
 @Data()
@@ -99,18 +61,6 @@ class AdministrableProductDefinitionRouteOfAdministration {
   final Ratio maxDosePerTreatmentPeriod;
   final FhirDuration maxTreatmentPeriod;
   final List<AdministrableProductDefinitionTargetSpecies> targetSpecies;
-  const AdministrableProductDefinitionRouteOfAdministration({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.firstDose,
-    required this.maxSingleDose,
-    required this.maxDosePerDay,
-    required this.maxDosePerTreatmentPeriod,
-    required this.maxTreatmentPeriod,
-    required this.targetSpecies,
-  });
 }
 
 @Data()
@@ -121,13 +71,6 @@ class AdministrableProductDefinitionTargetSpecies {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept code;
   final List<AdministrableProductDefinitionWithdrawalPeriod> withdrawalPeriod;
-  const AdministrableProductDefinitionTargetSpecies({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.withdrawalPeriod,
-  });
 }
 
 @Data()
@@ -140,15 +83,6 @@ class AdministrableProductDefinitionWithdrawalPeriod {
   final Quantity value;
   final String supportingInformation;
   final PrimitiveElement supportingInformationElement;
-  const AdministrableProductDefinitionWithdrawalPeriod({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.tissue,
-    required this.value,
-    required this.supportingInformation,
-    required this.supportingInformationElement,
-  });
 }
 
 

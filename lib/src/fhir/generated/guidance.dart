@@ -39,40 +39,6 @@ class GuidanceResponse {
   final Reference outputParameters;
   final Reference result;
   final List<DataRequirement> dataRequirement;
-  const GuidanceResponse({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.requestIdentifier,
-    required this.identifier,
-    required this.moduleUri,
-    required this.moduleUriElement,
-    required this.moduleCanonical,
-    required this.moduleCanonicalElement,
-    required this.moduleCodeableConcept,
-    required this.status,
-    required this.statusElement,
-    required this.subject,
-    required this.encounter,
-    required this.occurrenceDateTime,
-    required this.occurrenceDateTimeElement,
-    required this.performer,
-    required this.reasonCode,
-    required this.reasonReference,
-    required this.note,
-    required this.evaluationMessage,
-    required this.outputParameters,
-    required this.result,
-    required this.dataRequirement,
-  });
 }
 
 

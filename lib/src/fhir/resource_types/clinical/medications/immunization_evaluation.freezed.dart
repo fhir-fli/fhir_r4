@@ -237,14 +237,6 @@ abstract class $ImmunizationEvaluationCopyWith<$Res> {
       String? seriesDosesString,
       @JsonKey(name: '_seriesDosesString')
       PrimitiveElement? seriesDosesStringElement});
-
-  $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
-  $ReferenceCopyWith<$Res> get patient;
-  $ReferenceCopyWith<$Res>? get authority;
-  $CodeableConceptCopyWith<$Res> get targetDisease;
-  $ReferenceCopyWith<$Res> get immunizationEvent;
-  $CodeableConceptCopyWith<$Res> get doseStatus;
 }
 
 /// @nodoc
@@ -277,13 +269,13 @@ class _$ImmunizationEvaluationCopyWithImpl<$Res,
     Object? identifier = freezed,
     Object? status = freezed,
     Object? statusElement = freezed,
-    Object? patient = null,
+    Object? patient = freezed,
     Object? date = freezed,
     Object? dateElement = freezed,
     Object? authority = freezed,
-    Object? targetDisease = null,
-    Object? immunizationEvent = null,
-    Object? doseStatus = null,
+    Object? targetDisease = freezed,
+    Object? immunizationEvent = freezed,
+    Object? doseStatus = freezed,
     Object? doseStatusReason = freezed,
     Object? description = freezed,
     Object? descriptionElement = freezed,
@@ -355,7 +347,7 @@ class _$ImmunizationEvaluationCopyWithImpl<$Res,
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
               as PrimitiveElement?,
-      patient: null == patient
+      patient: freezed == patient
           ? _value.patient
           : patient // ignore: cast_nullable_to_non_nullable
               as Reference,
@@ -371,15 +363,15 @@ class _$ImmunizationEvaluationCopyWithImpl<$Res,
           ? _value.authority
           : authority // ignore: cast_nullable_to_non_nullable
               as Reference?,
-      targetDisease: null == targetDisease
+      targetDisease: freezed == targetDisease
           ? _value.targetDisease
           : targetDisease // ignore: cast_nullable_to_non_nullable
               as CodeableConcept,
-      immunizationEvent: null == immunizationEvent
+      immunizationEvent: freezed == immunizationEvent
           ? _value.immunizationEvent
           : immunizationEvent // ignore: cast_nullable_to_non_nullable
               as Reference,
-      doseStatus: null == doseStatus
+      doseStatus: freezed == doseStatus
           ? _value.doseStatus
           : doseStatus // ignore: cast_nullable_to_non_nullable
               as CodeableConcept,
@@ -437,88 +429,6 @@ class _$ImmunizationEvaluationCopyWithImpl<$Res,
               as PrimitiveElement?,
     ) as $Val);
   }
-
-  /// Create a copy of ImmunizationEvaluation
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $FhirMetaCopyWith<$Res>? get meta {
-    if (_value.meta == null) {
-      return null;
-    }
-
-    return $FhirMetaCopyWith<$Res>(_value.meta!, (value) {
-      return _then(_value.copyWith(meta: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ImmunizationEvaluation
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ImmunizationEvaluation
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res> get patient {
-    return $ReferenceCopyWith<$Res>(_value.patient, (value) {
-      return _then(_value.copyWith(patient: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ImmunizationEvaluation
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get authority {
-    if (_value.authority == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.authority!, (value) {
-      return _then(_value.copyWith(authority: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ImmunizationEvaluation
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res> get targetDisease {
-    return $CodeableConceptCopyWith<$Res>(_value.targetDisease, (value) {
-      return _then(_value.copyWith(targetDisease: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ImmunizationEvaluation
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res> get immunizationEvent {
-    return $ReferenceCopyWith<$Res>(_value.immunizationEvent, (value) {
-      return _then(_value.copyWith(immunizationEvent: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ImmunizationEvaluation
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res> get doseStatus {
-    return $CodeableConceptCopyWith<$Res>(_value.doseStatus, (value) {
-      return _then(_value.copyWith(doseStatus: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -570,21 +480,6 @@ abstract class _$$ImmunizationEvaluationImplCopyWith<$Res>
       String? seriesDosesString,
       @JsonKey(name: '_seriesDosesString')
       PrimitiveElement? seriesDosesStringElement});
-
-  @override
-  $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
-  @override
-  $ReferenceCopyWith<$Res> get patient;
-  @override
-  $ReferenceCopyWith<$Res>? get authority;
-  @override
-  $CodeableConceptCopyWith<$Res> get targetDisease;
-  @override
-  $ReferenceCopyWith<$Res> get immunizationEvent;
-  @override
-  $CodeableConceptCopyWith<$Res> get doseStatus;
 }
 
 /// @nodoc
@@ -616,13 +511,13 @@ class __$$ImmunizationEvaluationImplCopyWithImpl<$Res>
     Object? identifier = freezed,
     Object? status = freezed,
     Object? statusElement = freezed,
-    Object? patient = null,
+    Object? patient = freezed,
     Object? date = freezed,
     Object? dateElement = freezed,
     Object? authority = freezed,
-    Object? targetDisease = null,
-    Object? immunizationEvent = null,
-    Object? doseStatus = null,
+    Object? targetDisease = freezed,
+    Object? immunizationEvent = freezed,
+    Object? doseStatus = freezed,
     Object? doseStatusReason = freezed,
     Object? description = freezed,
     Object? descriptionElement = freezed,
@@ -694,7 +589,7 @@ class __$$ImmunizationEvaluationImplCopyWithImpl<$Res>
           ? _value.statusElement
           : statusElement // ignore: cast_nullable_to_non_nullable
               as PrimitiveElement?,
-      patient: null == patient
+      patient: freezed == patient
           ? _value.patient
           : patient // ignore: cast_nullable_to_non_nullable
               as Reference,
@@ -710,15 +605,15 @@ class __$$ImmunizationEvaluationImplCopyWithImpl<$Res>
           ? _value.authority
           : authority // ignore: cast_nullable_to_non_nullable
               as Reference?,
-      targetDisease: null == targetDisease
+      targetDisease: freezed == targetDisease
           ? _value.targetDisease
           : targetDisease // ignore: cast_nullable_to_non_nullable
               as CodeableConcept,
-      immunizationEvent: null == immunizationEvent
+      immunizationEvent: freezed == immunizationEvent
           ? _value.immunizationEvent
           : immunizationEvent // ignore: cast_nullable_to_non_nullable
               as Reference,
-      doseStatus: null == doseStatus
+      doseStatus: freezed == doseStatus
           ? _value.doseStatus
           : doseStatus // ignore: cast_nullable_to_non_nullable
               as CodeableConcept,
@@ -1096,7 +991,7 @@ class _$ImmunizationEvaluationImpl extends _ImmunizationEvaluation {
             (identical(other.resourceType, resourceType) ||
                 other.resourceType == resourceType) &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.meta, meta) || other.meta == meta) &&
+            const DeepCollectionEquality().equals(other.meta, meta) &&
             (identical(other.implicitRules, implicitRules) ||
                 other.implicitRules == implicitRules) &&
             (identical(other.implicitRulesElement, implicitRulesElement) ||
@@ -1105,7 +1000,7 @@ class _$ImmunizationEvaluationImpl extends _ImmunizationEvaluation {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -1117,18 +1012,17 @@ class _$ImmunizationEvaluationImpl extends _ImmunizationEvaluation {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.statusElement, statusElement) ||
                 other.statusElement == statusElement) &&
-            (identical(other.patient, patient) || other.patient == patient) &&
+            const DeepCollectionEquality().equals(other.patient, patient) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.dateElement, dateElement) ||
                 other.dateElement == dateElement) &&
-            (identical(other.authority, authority) ||
-                other.authority == authority) &&
-            (identical(other.targetDisease, targetDisease) ||
-                other.targetDisease == targetDisease) &&
-            (identical(other.immunizationEvent, immunizationEvent) ||
-                other.immunizationEvent == immunizationEvent) &&
-            (identical(other.doseStatus, doseStatus) ||
-                other.doseStatus == doseStatus) &&
+            const DeepCollectionEquality().equals(other.authority, authority) &&
+            const DeepCollectionEquality()
+                .equals(other.targetDisease, targetDisease) &&
+            const DeepCollectionEquality()
+                .equals(other.immunizationEvent, immunizationEvent) &&
+            const DeepCollectionEquality()
+                .equals(other.doseStatus, doseStatus) &&
             const DeepCollectionEquality()
                 .equals(other._doseStatusReason, _doseStatusReason) &&
             (identical(other.description, description) ||
@@ -1168,25 +1062,25 @@ class _$ImmunizationEvaluationImpl extends _ImmunizationEvaluation {
         runtimeType,
         resourceType,
         id,
-        meta,
+        const DeepCollectionEquality().hash(meta),
         implicitRules,
         implicitRulesElement,
         language,
         languageElement,
-        text,
+        const DeepCollectionEquality().hash(text),
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
         const DeepCollectionEquality().hash(_identifier),
         status,
         statusElement,
-        patient,
+        const DeepCollectionEquality().hash(patient),
         date,
         dateElement,
-        authority,
-        targetDisease,
-        immunizationEvent,
-        doseStatus,
+        const DeepCollectionEquality().hash(authority),
+        const DeepCollectionEquality().hash(targetDisease),
+        const DeepCollectionEquality().hash(immunizationEvent),
+        const DeepCollectionEquality().hash(doseStatus),
         const DeepCollectionEquality().hash(_doseStatusReason),
         description,
         descriptionElement,

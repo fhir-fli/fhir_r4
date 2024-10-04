@@ -36,37 +36,6 @@ class TestReport {
   final TestReportSetup setup;
   final List<TestReportTest> test;
   final TestReportTeardown teardown;
-  const TestReport({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.name,
-    required this.nameElement,
-    required this.status,
-    required this.statusElement,
-    required this.testScript,
-    required this.result,
-    required this.resultElement,
-    required this.score,
-    required this.scoreElement,
-    required this.tester,
-    required this.testerElement,
-    required this.issued,
-    required this.issuedElement,
-    required this.participant,
-    required this.setup,
-    required this.test,
-    required this.teardown,
-  });
 }
 
 @Data()
@@ -81,17 +50,6 @@ class TestReportParticipant {
   final PrimitiveElement uriElement;
   final String display;
   final PrimitiveElement displayElement;
-  const TestReportParticipant({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.typeElement,
-    required this.uri,
-    required this.uriElement,
-    required this.display,
-    required this.displayElement,
-  });
 }
 
 @Data()
@@ -101,12 +59,6 @@ class TestReportSetup {
   final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final List<TestReportAction> action;
-  const TestReportSetup({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.action,
-  });
 }
 
 @Data()
@@ -117,13 +69,6 @@ class TestReportAction {
   final List<FhirExtension> modifierExtension;
   final TestReportOperation operation;
   final TestReportAssert assert_;
-  const TestReportAction({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.operation,
-    required this.assert_,
-  });
 }
 
 @Data()
@@ -138,17 +83,6 @@ class TestReportOperation {
   final PrimitiveElement messageElement;
   final FhirUri detail;
   final PrimitiveElement detailElement;
-  const TestReportOperation({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.result,
-    required this.resultElement,
-    required this.message,
-    required this.messageElement,
-    required this.detail,
-    required this.detailElement,
-  });
 }
 
 @Data()
@@ -163,17 +97,6 @@ class TestReportAssert {
   final PrimitiveElement messageElement;
   final String detail;
   final PrimitiveElement detailElement;
-  const TestReportAssert({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.result,
-    required this.resultElement,
-    required this.message,
-    required this.messageElement,
-    required this.detail,
-    required this.detailElement,
-  });
 }
 
 @Data()
@@ -187,16 +110,6 @@ class TestReportTest {
   final String description;
   final PrimitiveElement descriptionElement;
   final List<TestReportAction1> action;
-  const TestReportTest({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.name,
-    required this.nameElement,
-    required this.description,
-    required this.descriptionElement,
-    required this.action,
-  });
 }
 
 @Data()
@@ -207,13 +120,6 @@ class TestReportAction1 {
   final List<FhirExtension> modifierExtension;
   final TestReportOperation operation;
   final TestReportAssert assert_;
-  const TestReportAction1({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.operation,
-    required this.assert_,
-  });
 }
 
 @Data()
@@ -223,12 +129,6 @@ class TestReportTeardown {
   final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final List<TestReportAction2> action;
-  const TestReportTeardown({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.action,
-  });
 }
 
 @Data()
@@ -238,12 +138,6 @@ class TestReportAction2 {
   final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final TestReportOperation operation;
-  const TestReportAction2({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.operation,
-  });
 }
 
 @Data()
@@ -295,54 +189,6 @@ class TestScript {
   final TestScriptSetup setup;
   final List<TestScriptTest> test;
   final TestScriptTeardown teardown;
-  const TestScript({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.url,
-    required this.urlElement,
-    required this.identifier,
-    required this.version,
-    required this.versionElement,
-    required this.name,
-    required this.nameElement,
-    required this.title,
-    required this.titleElement,
-    required this.status,
-    required this.statusElement,
-    required this.experimental,
-    required this.experimentalElement,
-    required this.date,
-    required this.dateElement,
-    required this.publisher,
-    required this.publisherElement,
-    required this.contact,
-    required this.description,
-    required this.descriptionElement,
-    required this.useContext,
-    required this.jurisdiction,
-    required this.purpose,
-    required this.purposeElement,
-    required this.copyright,
-    required this.copyrightElement,
-    required this.origin,
-    required this.destination,
-    required this.metadata,
-    required this.fixture,
-    required this.profile,
-    required this.variable,
-    required this.setup,
-    required this.test,
-    required this.teardown,
-  });
 }
 
 @Data()
@@ -354,14 +200,6 @@ class TestScriptOrigin {
   final FhirInteger index;
   final PrimitiveElement indexElement;
   final Coding profile;
-  const TestScriptOrigin({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.index,
-    required this.indexElement,
-    required this.profile,
-  });
 }
 
 @Data()
@@ -373,14 +211,6 @@ class TestScriptDestination {
   final FhirInteger index;
   final PrimitiveElement indexElement;
   final Coding profile;
-  const TestScriptDestination({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.index,
-    required this.indexElement,
-    required this.profile,
-  });
 }
 
 @Data()
@@ -391,13 +221,6 @@ class TestScriptMetadata {
   final List<FhirExtension> modifierExtension;
   final List<TestScriptLink> link;
   final List<TestScriptCapability> capability;
-  const TestScriptMetadata({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.link,
-    required this.capability,
-  });
 }
 
 @Data()
@@ -410,15 +233,6 @@ class TestScriptLink {
   final PrimitiveElement urlElement;
   final String description;
   final PrimitiveElement descriptionElement;
-  const TestScriptLink({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.url,
-    required this.urlElement,
-    required this.description,
-    required this.descriptionElement,
-  });
 }
 
 @Data()
@@ -440,24 +254,6 @@ class TestScriptCapability {
   final List<FhirUri> link;
   final List<PrimitiveElement> linkElement;
   final FhirCanonical capabilities;
-  const TestScriptCapability({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.required_,
-    required this.requiredElement,
-    required this.validated,
-    required this.validatedElement,
-    required this.description,
-    required this.descriptionElement,
-    required this.origin,
-    required this.originElement,
-    required this.destination,
-    required this.destinationElement,
-    required this.link,
-    required this.linkElement,
-    required this.capabilities,
-  });
 }
 
 @Data()
@@ -471,16 +267,6 @@ class TestScriptFixture {
   final FhirBoolean autodelete;
   final PrimitiveElement autodeleteElement;
   final Reference resource;
-  const TestScriptFixture({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.autocreate,
-    required this.autocreateElement,
-    required this.autodelete,
-    required this.autodeleteElement,
-    required this.resource,
-  });
 }
 
 @Data()
@@ -505,27 +291,6 @@ class TestScriptVariable {
   final PrimitiveElement pathElement;
   final FhirId sourceId;
   final PrimitiveElement sourceIdElement;
-  const TestScriptVariable({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.name,
-    required this.nameElement,
-    required this.defaultValue,
-    required this.defaultValueElement,
-    required this.description,
-    required this.descriptionElement,
-    required this.expression,
-    required this.expressionElement,
-    required this.headerField,
-    required this.headerFieldElement,
-    required this.hint,
-    required this.hintElement,
-    required this.path,
-    required this.pathElement,
-    required this.sourceId,
-    required this.sourceIdElement,
-  });
 }
 
 @Data()
@@ -535,12 +300,6 @@ class TestScriptSetup {
   final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final List<TestScriptAction> action;
-  const TestScriptSetup({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.action,
-  });
 }
 
 @Data()
@@ -551,13 +310,6 @@ class TestScriptAction {
   final List<FhirExtension> modifierExtension;
   final TestScriptOperation operation;
   final TestScriptAssert assert_;
-  const TestScriptAction({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.operation,
-    required this.assert_,
-  });
 }
 
 @Data()
@@ -598,43 +350,6 @@ class TestScriptOperation {
   final PrimitiveElement targetIdElement;
   final String url;
   final PrimitiveElement urlElement;
-  const TestScriptOperation({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.resource,
-    required this.resourceElement,
-    required this.label,
-    required this.labelElement,
-    required this.description,
-    required this.descriptionElement,
-    required this.accept,
-    required this.acceptElement,
-    required this.contentType,
-    required this.contentTypeElement,
-    required this.destination,
-    required this.destinationElement,
-    required this.encodeRequestUrl,
-    required this.encodeRequestUrlElement,
-    required this.method,
-    required this.methodElement,
-    required this.origin,
-    required this.originElement,
-    required this.params,
-    required this.paramsElement,
-    required this.requestHeader,
-    required this.requestId,
-    required this.requestIdElement,
-    required this.responseId,
-    required this.responseIdElement,
-    required this.sourceId,
-    required this.sourceIdElement,
-    required this.targetId,
-    required this.targetIdElement,
-    required this.url,
-    required this.urlElement,
-  });
 }
 
 @Data()
@@ -647,15 +362,6 @@ class TestScriptRequestHeader {
   final PrimitiveElement fieldElement;
   final String value;
   final PrimitiveElement valueElement;
-  const TestScriptRequestHeader({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.field,
-    required this.fieldElement,
-    required this.value,
-    required this.valueElement,
-  });
 }
 
 @Data()
@@ -708,55 +414,6 @@ class TestScriptAssert {
   final PrimitiveElement valueElement;
   final FhirBoolean warningOnly;
   final PrimitiveElement warningOnlyElement;
-  const TestScriptAssert({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.label,
-    required this.labelElement,
-    required this.description,
-    required this.descriptionElement,
-    required this.direction,
-    required this.directionElement,
-    required this.compareToSourceId,
-    required this.compareToSourceIdElement,
-    required this.compareToSourceExpression,
-    required this.compareToSourceExpressionElement,
-    required this.compareToSourcePath,
-    required this.compareToSourcePathElement,
-    required this.contentType,
-    required this.contentTypeElement,
-    required this.expression,
-    required this.expressionElement,
-    required this.headerField,
-    required this.headerFieldElement,
-    required this.minimumId,
-    required this.minimumIdElement,
-    required this.navigationLinks,
-    required this.navigationLinksElement,
-    required this.operator_,
-    required this.operatorElement,
-    required this.path,
-    required this.pathElement,
-    required this.requestMethod,
-    required this.requestMethodElement,
-    required this.requestURL,
-    required this.requestURLElement,
-    required this.resource,
-    required this.resourceElement,
-    required this.response,
-    required this.responseElement,
-    required this.responseCode,
-    required this.responseCodeElement,
-    required this.sourceId,
-    required this.sourceIdElement,
-    required this.validateProfileId,
-    required this.validateProfileIdElement,
-    required this.value,
-    required this.valueElement,
-    required this.warningOnly,
-    required this.warningOnlyElement,
-  });
 }
 
 @Data()
@@ -770,16 +427,6 @@ class TestScriptTest {
   final String description;
   final PrimitiveElement descriptionElement;
   final List<TestScriptAction1> action;
-  const TestScriptTest({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.name,
-    required this.nameElement,
-    required this.description,
-    required this.descriptionElement,
-    required this.action,
-  });
 }
 
 @Data()
@@ -790,13 +437,6 @@ class TestScriptAction1 {
   final List<FhirExtension> modifierExtension;
   final TestScriptOperation operation;
   final TestScriptAssert assert_;
-  const TestScriptAction1({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.operation,
-    required this.assert_,
-  });
 }
 
 @Data()
@@ -806,12 +446,6 @@ class TestScriptTeardown {
   final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final List<TestScriptAction2> action;
-  const TestScriptTeardown({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.action,
-  });
 }
 
 @Data()
@@ -821,12 +455,6 @@ class TestScriptAction2 {
   final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final TestScriptOperation operation;
-  const TestScriptAction2({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.operation,
-  });
 }
 
 

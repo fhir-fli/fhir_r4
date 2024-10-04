@@ -68,69 +68,6 @@ class ExplanationOfBenefit {
   final List<ExplanationOfBenefitProcessNote> processNote;
   final Period benefitPeriod;
   final List<ExplanationOfBenefitBenefitBalance> benefitBalance;
-  const ExplanationOfBenefit({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.status,
-    required this.statusElement,
-    required this.type,
-    required this.subType,
-    required this.use,
-    required this.useElement,
-    required this.patient,
-    required this.billablePeriod,
-    required this.created,
-    required this.createdElement,
-    required this.enterer,
-    required this.insurer,
-    required this.provider,
-    required this.priority,
-    required this.fundsReserveRequested,
-    required this.fundsReserve,
-    required this.related,
-    required this.prescription,
-    required this.originalPrescription,
-    required this.payee,
-    required this.referral,
-    required this.facility,
-    required this.claim,
-    required this.claimResponse,
-    required this.outcome,
-    required this.outcomeElement,
-    required this.disposition,
-    required this.dispositionElement,
-    required this.preAuthRef,
-    required this.preAuthRefElement,
-    required this.preAuthRefPeriod,
-    required this.careTeam,
-    required this.supportingInfo,
-    required this.diagnosis,
-    required this.procedure,
-    required this.precedence,
-    required this.precedenceElement,
-    required this.insurance,
-    required this.accident,
-    required this.item,
-    required this.addItem,
-    required this.adjudication,
-    required this.total,
-    required this.payment,
-    required this.formCode,
-    required this.form,
-    required this.processNote,
-    required this.benefitPeriod,
-    required this.benefitBalance,
-  });
 }
 
 @Data()
@@ -142,14 +79,6 @@ class ExplanationOfBenefitRelated {
   final Reference claim;
   final CodeableConcept relationship;
   final Identifier reference;
-  const ExplanationOfBenefitRelated({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.claim,
-    required this.relationship,
-    required this.reference,
-  });
 }
 
 @Data()
@@ -160,13 +89,6 @@ class ExplanationOfBenefitPayee {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept type;
   final Reference party;
-  const ExplanationOfBenefitPayee({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.party,
-  });
 }
 
 @Data()
@@ -182,18 +104,6 @@ class ExplanationOfBenefitCareTeam {
   final PrimitiveElement responsibleElement;
   final CodeableConcept role;
   final CodeableConcept qualification;
-  const ExplanationOfBenefitCareTeam({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.sequence,
-    required this.sequenceElement,
-    required this.provider,
-    required this.responsible,
-    required this.responsibleElement,
-    required this.role,
-    required this.qualification,
-  });
 }
 
 @Data()
@@ -217,26 +127,6 @@ class ExplanationOfBenefitSupportingInfo {
   final Attachment valueAttachment;
   final Reference valueReference;
   final Coding reason;
-  const ExplanationOfBenefitSupportingInfo({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.sequence,
-    required this.sequenceElement,
-    required this.category,
-    required this.code,
-    required this.timingDate,
-    required this.timingDateElement,
-    required this.timingPeriod,
-    required this.valueBoolean,
-    required this.valueBooleanElement,
-    required this.valueString,
-    required this.valueStringElement,
-    required this.valueQuantity,
-    required this.valueAttachment,
-    required this.valueReference,
-    required this.reason,
-  });
 }
 
 @Data()
@@ -252,18 +142,6 @@ class ExplanationOfBenefitDiagnosis {
   final List<CodeableConcept> type;
   final CodeableConcept onAdmission;
   final CodeableConcept packageCode;
-  const ExplanationOfBenefitDiagnosis({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.sequence,
-    required this.sequenceElement,
-    required this.diagnosisCodeableConcept,
-    required this.diagnosisReference,
-    required this.type,
-    required this.onAdmission,
-    required this.packageCode,
-  });
 }
 
 @Data()
@@ -280,19 +158,6 @@ class ExplanationOfBenefitProcedure {
   final CodeableConcept procedureCodeableConcept;
   final Reference procedureReference;
   final List<Reference> udi;
-  const ExplanationOfBenefitProcedure({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.sequence,
-    required this.sequenceElement,
-    required this.type,
-    required this.date,
-    required this.dateElement,
-    required this.procedureCodeableConcept,
-    required this.procedureReference,
-    required this.udi,
-  });
 }
 
 @Data()
@@ -306,16 +171,6 @@ class ExplanationOfBenefitInsurance {
   final Reference coverage;
   final List<String> preAuthRef;
   final List<PrimitiveElement> preAuthRefElement;
-  const ExplanationOfBenefitInsurance({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.focal,
-    required this.focalElement,
-    required this.coverage,
-    required this.preAuthRef,
-    required this.preAuthRefElement,
-  });
 }
 
 @Data()
@@ -329,16 +184,6 @@ class ExplanationOfBenefitAccident {
   final CodeableConcept type;
   final Address locationAddress;
   final Reference locationReference;
-  const ExplanationOfBenefitAccident({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.date,
-    required this.dateElement,
-    required this.type,
-    required this.locationAddress,
-    required this.locationReference,
-  });
 }
 
 @Data()
@@ -381,45 +226,6 @@ class ExplanationOfBenefitItem {
   final List<PrimitiveElement> noteNumberElement;
   final List<ExplanationOfBenefitAdjudication> adjudication;
   final List<ExplanationOfBenefitDetail> detail;
-  const ExplanationOfBenefitItem({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.sequence,
-    required this.sequenceElement,
-    required this.careTeamSequence,
-    required this.careTeamSequenceElement,
-    required this.diagnosisSequence,
-    required this.diagnosisSequenceElement,
-    required this.procedureSequence,
-    required this.procedureSequenceElement,
-    required this.informationSequence,
-    required this.informationSequenceElement,
-    required this.revenue,
-    required this.category,
-    required this.productOrService,
-    required this.modifier,
-    required this.programCode,
-    required this.servicedDate,
-    required this.servicedDateElement,
-    required this.servicedPeriod,
-    required this.locationCodeableConcept,
-    required this.locationAddress,
-    required this.locationReference,
-    required this.quantity,
-    required this.unitPrice,
-    required this.factor,
-    required this.factorElement,
-    required this.net,
-    required this.udi,
-    required this.bodySite,
-    required this.subSite,
-    required this.encounter,
-    required this.noteNumber,
-    required this.noteNumberElement,
-    required this.adjudication,
-    required this.detail,
-  });
 }
 
 @Data()
@@ -433,16 +239,6 @@ class ExplanationOfBenefitAdjudication {
   final Money amount;
   final FhirDecimal value;
   final PrimitiveElement valueElement;
-  const ExplanationOfBenefitAdjudication({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.category,
-    required this.reason,
-    required this.amount,
-    required this.value,
-    required this.valueElement,
-  });
 }
 
 @Data()
@@ -468,28 +264,6 @@ class ExplanationOfBenefitDetail {
   final List<PrimitiveElement> noteNumberElement;
   final List<ExplanationOfBenefitAdjudication> adjudication;
   final List<ExplanationOfBenefitSubDetail> subDetail;
-  const ExplanationOfBenefitDetail({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.sequence,
-    required this.sequenceElement,
-    required this.revenue,
-    required this.category,
-    required this.productOrService,
-    required this.modifier,
-    required this.programCode,
-    required this.quantity,
-    required this.unitPrice,
-    required this.factor,
-    required this.factorElement,
-    required this.net,
-    required this.udi,
-    required this.noteNumber,
-    required this.noteNumberElement,
-    required this.adjudication,
-    required this.subDetail,
-  });
 }
 
 @Data()
@@ -514,27 +288,6 @@ class ExplanationOfBenefitSubDetail {
   final List<FhirPositiveInt> noteNumber;
   final List<PrimitiveElement> noteNumberElement;
   final List<ExplanationOfBenefitAdjudication> adjudication;
-  const ExplanationOfBenefitSubDetail({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.sequence,
-    required this.sequenceElement,
-    required this.revenue,
-    required this.category,
-    required this.productOrService,
-    required this.modifier,
-    required this.programCode,
-    required this.quantity,
-    required this.unitPrice,
-    required this.factor,
-    required this.factorElement,
-    required this.net,
-    required this.udi,
-    required this.noteNumber,
-    required this.noteNumberElement,
-    required this.adjudication,
-  });
 }
 
 @Data()
@@ -570,38 +323,6 @@ class ExplanationOfBenefitAddItem {
   final List<PrimitiveElement> noteNumberElement;
   final List<ExplanationOfBenefitAdjudication> adjudication;
   final List<ExplanationOfBenefitDetail1> detail;
-  const ExplanationOfBenefitAddItem({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.itemSequence,
-    required this.itemSequenceElement,
-    required this.detailSequence,
-    required this.detailSequenceElement,
-    required this.subDetailSequence,
-    required this.subDetailSequenceElement,
-    required this.provider,
-    required this.productOrService,
-    required this.modifier,
-    required this.programCode,
-    required this.servicedDate,
-    required this.servicedDateElement,
-    required this.servicedPeriod,
-    required this.locationCodeableConcept,
-    required this.locationAddress,
-    required this.locationReference,
-    required this.quantity,
-    required this.unitPrice,
-    required this.factor,
-    required this.factorElement,
-    required this.net,
-    required this.bodySite,
-    required this.subSite,
-    required this.noteNumber,
-    required this.noteNumberElement,
-    required this.adjudication,
-    required this.detail,
-  });
 }
 
 @Data()
@@ -621,22 +342,6 @@ class ExplanationOfBenefitDetail1 {
   final List<PrimitiveElement> noteNumberElement;
   final List<ExplanationOfBenefitAdjudication> adjudication;
   final List<ExplanationOfBenefitSubDetail1> subDetail;
-  const ExplanationOfBenefitDetail1({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.productOrService,
-    required this.modifier,
-    required this.quantity,
-    required this.unitPrice,
-    required this.factor,
-    required this.factorElement,
-    required this.net,
-    required this.noteNumber,
-    required this.noteNumberElement,
-    required this.adjudication,
-    required this.subDetail,
-  });
 }
 
 @Data()
@@ -655,21 +360,6 @@ class ExplanationOfBenefitSubDetail1 {
   final List<FhirPositiveInt> noteNumber;
   final List<PrimitiveElement> noteNumberElement;
   final List<ExplanationOfBenefitAdjudication> adjudication;
-  const ExplanationOfBenefitSubDetail1({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.productOrService,
-    required this.modifier,
-    required this.quantity,
-    required this.unitPrice,
-    required this.factor,
-    required this.factorElement,
-    required this.net,
-    required this.noteNumber,
-    required this.noteNumberElement,
-    required this.adjudication,
-  });
 }
 
 @Data()
@@ -680,13 +370,6 @@ class ExplanationOfBenefitTotal {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept category;
   final Money amount;
-  const ExplanationOfBenefitTotal({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.category,
-    required this.amount,
-  });
 }
 
 @Data()
@@ -702,18 +385,6 @@ class ExplanationOfBenefitPayment {
   final PrimitiveElement dateElement;
   final Money amount;
   final Identifier identifier;
-  const ExplanationOfBenefitPayment({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.adjustment,
-    required this.adjustmentReason,
-    required this.date,
-    required this.dateElement,
-    required this.amount,
-    required this.identifier,
-  });
 }
 
 @Data()
@@ -729,18 +400,6 @@ class ExplanationOfBenefitProcessNote {
   final String text;
   final PrimitiveElement textElement;
   final CodeableConcept language;
-  const ExplanationOfBenefitProcessNote({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.number,
-    required this.numberElement,
-    required this.type,
-    required this.typeElement,
-    required this.text,
-    required this.textElement,
-    required this.language,
-  });
 }
 
 @Data()
@@ -760,22 +419,6 @@ class ExplanationOfBenefitBenefitBalance {
   final CodeableConcept unit;
   final CodeableConcept term;
   final List<ExplanationOfBenefitFinancial> financial;
-  const ExplanationOfBenefitBenefitBalance({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.category,
-    required this.excluded,
-    required this.excludedElement,
-    required this.name,
-    required this.nameElement,
-    required this.description,
-    required this.descriptionElement,
-    required this.network,
-    required this.unit,
-    required this.term,
-    required this.financial,
-  });
 }
 
 @Data()
@@ -793,20 +436,6 @@ class ExplanationOfBenefitFinancial {
   final double usedUnsignedInt;
   final PrimitiveElement usedUnsignedIntElement;
   final Money usedMoney;
-  const ExplanationOfBenefitFinancial({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.allowedUnsignedInt,
-    required this.allowedUnsignedIntElement,
-    required this.allowedString,
-    required this.allowedStringElement,
-    required this.allowedMoney,
-    required this.usedUnsignedInt,
-    required this.usedUnsignedIntElement,
-    required this.usedMoney,
-  });
 }
 
 

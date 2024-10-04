@@ -39,40 +39,6 @@ class NamingSystem {
   final String usage;
   final PrimitiveElement usageElement;
   final List<NamingSystemUniqueId> uniqueId;
-  const NamingSystem({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.name,
-    required this.nameElement,
-    required this.status,
-    required this.statusElement,
-    required this.kind,
-    required this.kindElement,
-    required this.date,
-    required this.dateElement,
-    required this.publisher,
-    required this.publisherElement,
-    required this.contact,
-    required this.responsible,
-    required this.responsibleElement,
-    required this.type,
-    required this.description,
-    required this.descriptionElement,
-    required this.useContext,
-    required this.jurisdiction,
-    required this.usage,
-    required this.usageElement,
-    required this.uniqueId,
-  });
 }
 
 @Data()
@@ -90,20 +56,6 @@ class NamingSystemUniqueId {
   final String comment;
   final PrimitiveElement commentElement;
   final Period period;
-  const NamingSystemUniqueId({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.typeElement,
-    required this.value,
-    required this.valueElement,
-    required this.preferred,
-    required this.preferredElement,
-    required this.comment,
-    required this.commentElement,
-    required this.period,
-  });
 }
 
 

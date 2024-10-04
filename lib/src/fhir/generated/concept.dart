@@ -53,54 +53,6 @@ class ConceptMap {
   final String targetCanonical;
   final PrimitiveElement targetCanonicalElement;
   final List<ConceptMapGroup> group;
-  const ConceptMap({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.url,
-    required this.urlElement,
-    required this.identifier,
-    required this.version,
-    required this.versionElement,
-    required this.name,
-    required this.nameElement,
-    required this.title,
-    required this.titleElement,
-    required this.status,
-    required this.statusElement,
-    required this.experimental,
-    required this.experimentalElement,
-    required this.date,
-    required this.dateElement,
-    required this.publisher,
-    required this.publisherElement,
-    required this.contact,
-    required this.description,
-    required this.descriptionElement,
-    required this.useContext,
-    required this.jurisdiction,
-    required this.purpose,
-    required this.purposeElement,
-    required this.copyright,
-    required this.copyrightElement,
-    required this.sourceUri,
-    required this.sourceUriElement,
-    required this.sourceCanonical,
-    required this.sourceCanonicalElement,
-    required this.targetUri,
-    required this.targetUriElement,
-    required this.targetCanonical,
-    required this.targetCanonicalElement,
-    required this.group,
-  });
 }
 
 @Data()
@@ -119,21 +71,6 @@ class ConceptMapGroup {
   final PrimitiveElement targetVersionElement;
   final List<ConceptMapElement> element;
   final ConceptMapUnmapped unmapped;
-  const ConceptMapGroup({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.source,
-    required this.sourceElement,
-    required this.sourceVersion,
-    required this.sourceVersionElement,
-    required this.target,
-    required this.targetElement,
-    required this.targetVersion,
-    required this.targetVersionElement,
-    required this.element,
-    required this.unmapped,
-  });
 }
 
 @Data()
@@ -147,16 +84,6 @@ class ConceptMapElement {
   final String display;
   final PrimitiveElement displayElement;
   final List<ConceptMapTarget> target;
-  const ConceptMapElement({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.codeElement,
-    required this.display,
-    required this.displayElement,
-    required this.target,
-  });
 }
 
 @Data()
@@ -175,21 +102,6 @@ class ConceptMapTarget {
   final PrimitiveElement commentElement;
   final List<ConceptMapDependsOn> dependsOn;
   final List<ConceptMapDependsOn> product;
-  const ConceptMapTarget({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.codeElement,
-    required this.display,
-    required this.displayElement,
-    required this.equivalence,
-    required this.equivalenceElement,
-    required this.comment,
-    required this.commentElement,
-    required this.dependsOn,
-    required this.product,
-  });
 }
 
 @Data()
@@ -205,18 +117,6 @@ class ConceptMapDependsOn {
   final PrimitiveElement valueElement;
   final String display;
   final PrimitiveElement displayElement;
-  const ConceptMapDependsOn({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.property,
-    required this.propertyElement,
-    required this.system,
-    required this.value,
-    required this.valueElement,
-    required this.display,
-    required this.displayElement,
-  });
 }
 
 @Data()
@@ -232,18 +132,6 @@ class ConceptMapUnmapped {
   final String display;
   final PrimitiveElement displayElement;
   final FhirCanonical url;
-  const ConceptMapUnmapped({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.mode,
-    required this.modeElement,
-    required this.code,
-    required this.codeElement,
-    required this.display,
-    required this.displayElement,
-    required this.url,
-  });
 }
 
 

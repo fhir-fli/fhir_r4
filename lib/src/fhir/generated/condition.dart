@@ -48,49 +48,6 @@ class Condition {
   final List<ConditionStage> stage;
   final List<ConditionEvidence> evidence;
   final List<Annotation> note;
-  const Condition({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.clinicalStatus,
-    required this.verificationStatus,
-    required this.category,
-    required this.severity,
-    required this.code,
-    required this.bodySite,
-    required this.subject,
-    required this.encounter,
-    required this.onsetDateTime,
-    required this.onsetDateTimeElement,
-    required this.onsetAge,
-    required this.onsetPeriod,
-    required this.onsetRange,
-    required this.onsetString,
-    required this.onsetStringElement,
-    required this.abatementDateTime,
-    required this.abatementDateTimeElement,
-    required this.abatementAge,
-    required this.abatementPeriod,
-    required this.abatementRange,
-    required this.abatementString,
-    required this.abatementStringElement,
-    required this.recordedDate,
-    required this.recordedDateElement,
-    required this.recorder,
-    required this.asserter,
-    required this.stage,
-    required this.evidence,
-    required this.note,
-  });
 }
 
 @Data()
@@ -102,14 +59,6 @@ class ConditionStage {
   final CodeableConcept summary;
   final List<Reference> assessment;
   final CodeableConcept type;
-  const ConditionStage({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.summary,
-    required this.assessment,
-    required this.type,
-  });
 }
 
 @Data()
@@ -120,13 +69,6 @@ class ConditionEvidence {
   final List<FhirExtension> modifierExtension;
   final List<CodeableConcept> code;
   final List<Reference> detail;
-  const ConditionEvidence({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.detail,
-  });
 }
 
 

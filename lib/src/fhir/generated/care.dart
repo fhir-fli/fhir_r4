@@ -47,48 +47,6 @@ class CarePlan {
   final List<Reference> goal;
   final List<CarePlanActivity> activity;
   final List<Annotation> note;
-  const CarePlan({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.instantiatesCanonical,
-    required this.instantiatesUri,
-    required this.instantiatesUriElement,
-    required this.basedOn,
-    required this.replaces,
-    required this.partOf,
-    required this.status,
-    required this.statusElement,
-    required this.intent,
-    required this.intentElement,
-    required this.category,
-    required this.title,
-    required this.titleElement,
-    required this.description,
-    required this.descriptionElement,
-    required this.subject,
-    required this.encounter,
-    required this.period,
-    required this.created,
-    required this.createdElement,
-    required this.author,
-    required this.contributor,
-    required this.careTeam,
-    required this.addresses,
-    required this.supportingInfo,
-    required this.goal,
-    required this.activity,
-    required this.note,
-  });
 }
 
 @Data()
@@ -102,16 +60,6 @@ class CarePlanActivity {
   final List<Annotation> progress;
   final Reference reference;
   final CarePlanDetail detail;
-  const CarePlanActivity({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.outcomeCodeableConcept,
-    required this.outcomeReference,
-    required this.progress,
-    required this.reference,
-    required this.detail,
-  });
 }
 
 @Data()
@@ -146,37 +94,6 @@ class CarePlanDetail {
   final Quantity quantity;
   final String description;
   final PrimitiveElement descriptionElement;
-  const CarePlanDetail({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.kind,
-    required this.kindElement,
-    required this.instantiatesCanonical,
-    required this.instantiatesUri,
-    required this.instantiatesUriElement,
-    required this.code,
-    required this.reasonCode,
-    required this.reasonReference,
-    required this.goal,
-    required this.status,
-    required this.statusElement,
-    required this.statusReason,
-    required this.doNotPerform,
-    required this.doNotPerformElement,
-    required this.scheduledTiming,
-    required this.scheduledPeriod,
-    required this.scheduledString,
-    required this.scheduledStringElement,
-    required this.location,
-    required this.performer,
-    required this.productCodeableConcept,
-    required this.productReference,
-    required this.dailyAmount,
-    required this.quantity,
-    required this.description,
-    required this.descriptionElement,
-  });
 }
 
 @Data()
@@ -208,34 +125,6 @@ class CareTeam {
   final List<Reference> managingOrganization;
   final List<ContactPoint> telecom;
   final List<Annotation> note;
-  const CareTeam({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.status,
-    required this.statusElement,
-    required this.category,
-    required this.name,
-    required this.nameElement,
-    required this.subject,
-    required this.encounter,
-    required this.period,
-    required this.participant,
-    required this.reasonCode,
-    required this.reasonReference,
-    required this.managingOrganization,
-    required this.telecom,
-    required this.note,
-  });
 }
 
 @Data()
@@ -248,15 +137,6 @@ class CareTeamParticipant {
   final Reference member;
   final Reference onBehalfOf;
   final Period period;
-  const CareTeamParticipant({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.role,
-    required this.member,
-    required this.onBehalfOf,
-    required this.period,
-  });
 }
 
 

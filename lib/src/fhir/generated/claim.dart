@@ -48,49 +48,6 @@ class Claim {
   final ClaimAccident accident;
   final List<ClaimItem> item;
   final Money total;
-  const Claim({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.status,
-    required this.statusElement,
-    required this.type,
-    required this.subType,
-    required this.use,
-    required this.useElement,
-    required this.patient,
-    required this.billablePeriod,
-    required this.created,
-    required this.createdElement,
-    required this.enterer,
-    required this.insurer,
-    required this.provider,
-    required this.priority,
-    required this.fundsReserve,
-    required this.related,
-    required this.prescription,
-    required this.originalPrescription,
-    required this.payee,
-    required this.referral,
-    required this.facility,
-    required this.careTeam,
-    required this.supportingInfo,
-    required this.diagnosis,
-    required this.procedure,
-    required this.insurance,
-    required this.accident,
-    required this.item,
-    required this.total,
-  });
 }
 
 @Data()
@@ -102,14 +59,6 @@ class ClaimRelated {
   final Reference claim;
   final CodeableConcept relationship;
   final Identifier reference;
-  const ClaimRelated({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.claim,
-    required this.relationship,
-    required this.reference,
-  });
 }
 
 @Data()
@@ -120,13 +69,6 @@ class ClaimPayee {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept type;
   final Reference party;
-  const ClaimPayee({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.party,
-  });
 }
 
 @Data()
@@ -142,18 +84,6 @@ class ClaimCareTeam {
   final PrimitiveElement responsibleElement;
   final CodeableConcept role;
   final CodeableConcept qualification;
-  const ClaimCareTeam({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.sequence,
-    required this.sequenceElement,
-    required this.provider,
-    required this.responsible,
-    required this.responsibleElement,
-    required this.role,
-    required this.qualification,
-  });
 }
 
 @Data()
@@ -177,26 +107,6 @@ class ClaimSupportingInfo {
   final Attachment valueAttachment;
   final Reference valueReference;
   final CodeableConcept reason;
-  const ClaimSupportingInfo({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.sequence,
-    required this.sequenceElement,
-    required this.category,
-    required this.code,
-    required this.timingDate,
-    required this.timingDateElement,
-    required this.timingPeriod,
-    required this.valueBoolean,
-    required this.valueBooleanElement,
-    required this.valueString,
-    required this.valueStringElement,
-    required this.valueQuantity,
-    required this.valueAttachment,
-    required this.valueReference,
-    required this.reason,
-  });
 }
 
 @Data()
@@ -212,18 +122,6 @@ class ClaimDiagnosis {
   final List<CodeableConcept> type;
   final CodeableConcept onAdmission;
   final CodeableConcept packageCode;
-  const ClaimDiagnosis({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.sequence,
-    required this.sequenceElement,
-    required this.diagnosisCodeableConcept,
-    required this.diagnosisReference,
-    required this.type,
-    required this.onAdmission,
-    required this.packageCode,
-  });
 }
 
 @Data()
@@ -240,19 +138,6 @@ class ClaimProcedure {
   final CodeableConcept procedureCodeableConcept;
   final Reference procedureReference;
   final List<Reference> udi;
-  const ClaimProcedure({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.sequence,
-    required this.sequenceElement,
-    required this.type,
-    required this.date,
-    required this.dateElement,
-    required this.procedureCodeableConcept,
-    required this.procedureReference,
-    required this.udi,
-  });
 }
 
 @Data()
@@ -272,22 +157,6 @@ class ClaimInsurance {
   final List<String> preAuthRef;
   final List<PrimitiveElement> preAuthRefElement;
   final Reference claimResponse;
-  const ClaimInsurance({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.sequence,
-    required this.sequenceElement,
-    required this.focal,
-    required this.focalElement,
-    required this.identifier,
-    required this.coverage,
-    required this.businessArrangement,
-    required this.businessArrangementElement,
-    required this.preAuthRef,
-    required this.preAuthRefElement,
-    required this.claimResponse,
-  });
 }
 
 @Data()
@@ -301,16 +170,6 @@ class ClaimAccident {
   final CodeableConcept type;
   final Address locationAddress;
   final Reference locationReference;
-  const ClaimAccident({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.date,
-    required this.dateElement,
-    required this.type,
-    required this.locationAddress,
-    required this.locationReference,
-  });
 }
 
 @Data()
@@ -350,42 +209,6 @@ class ClaimItem {
   final List<CodeableConcept> subSite;
   final List<Reference> encounter;
   final List<ClaimDetail> detail;
-  const ClaimItem({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.sequence,
-    required this.sequenceElement,
-    required this.careTeamSequence,
-    required this.careTeamSequenceElement,
-    required this.diagnosisSequence,
-    required this.diagnosisSequenceElement,
-    required this.procedureSequence,
-    required this.procedureSequenceElement,
-    required this.informationSequence,
-    required this.informationSequenceElement,
-    required this.revenue,
-    required this.category,
-    required this.productOrService,
-    required this.modifier,
-    required this.programCode,
-    required this.servicedDate,
-    required this.servicedDateElement,
-    required this.servicedPeriod,
-    required this.locationCodeableConcept,
-    required this.locationAddress,
-    required this.locationReference,
-    required this.quantity,
-    required this.unitPrice,
-    required this.factor,
-    required this.factorElement,
-    required this.net,
-    required this.udi,
-    required this.bodySite,
-    required this.subSite,
-    required this.encounter,
-    required this.detail,
-  });
 }
 
 @Data()
@@ -408,25 +231,6 @@ class ClaimDetail {
   final Money net;
   final List<Reference> udi;
   final List<ClaimSubDetail> subDetail;
-  const ClaimDetail({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.sequence,
-    required this.sequenceElement,
-    required this.revenue,
-    required this.category,
-    required this.productOrService,
-    required this.modifier,
-    required this.programCode,
-    required this.quantity,
-    required this.unitPrice,
-    required this.factor,
-    required this.factorElement,
-    required this.net,
-    required this.udi,
-    required this.subDetail,
-  });
 }
 
 @Data()
@@ -448,24 +252,6 @@ class ClaimSubDetail {
   final PrimitiveElement factorElement;
   final Money net;
   final List<Reference> udi;
-  const ClaimSubDetail({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.sequence,
-    required this.sequenceElement,
-    required this.revenue,
-    required this.category,
-    required this.productOrService,
-    required this.modifier,
-    required this.programCode,
-    required this.quantity,
-    required this.unitPrice,
-    required this.factor,
-    required this.factorElement,
-    required this.net,
-    required this.udi,
-  });
 }
 
 @Data()
@@ -515,52 +301,6 @@ class ClaimResponse {
   final List<Reference> communicationRequest;
   final List<ClaimResponseInsurance> insurance;
   final List<ClaimResponseError> error;
-  const ClaimResponse({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.status,
-    required this.statusElement,
-    required this.type,
-    required this.subType,
-    required this.use,
-    required this.useElement,
-    required this.patient,
-    required this.created,
-    required this.createdElement,
-    required this.insurer,
-    required this.requestor,
-    required this.request,
-    required this.outcome,
-    required this.outcomeElement,
-    required this.disposition,
-    required this.dispositionElement,
-    required this.preAuthRef,
-    required this.preAuthRefElement,
-    required this.preAuthPeriod,
-    required this.payeeType,
-    required this.item,
-    required this.addItem,
-    required this.adjudication,
-    required this.total,
-    required this.payment,
-    required this.fundsReserve,
-    required this.formCode,
-    required this.form,
-    required this.processNote,
-    required this.communicationRequest,
-    required this.insurance,
-    required this.error,
-  });
 }
 
 @Data()
@@ -575,17 +315,6 @@ class ClaimResponseItem {
   final List<PrimitiveElement> noteNumberElement;
   final List<ClaimResponseAdjudication> adjudication;
   final List<ClaimResponseDetail> detail;
-  const ClaimResponseItem({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.itemSequence,
-    required this.itemSequenceElement,
-    required this.noteNumber,
-    required this.noteNumberElement,
-    required this.adjudication,
-    required this.detail,
-  });
 }
 
 @Data()
@@ -599,16 +328,6 @@ class ClaimResponseAdjudication {
   final Money amount;
   final FhirDecimal value;
   final PrimitiveElement valueElement;
-  const ClaimResponseAdjudication({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.category,
-    required this.reason,
-    required this.amount,
-    required this.value,
-    required this.valueElement,
-  });
 }
 
 @Data()
@@ -623,17 +342,6 @@ class ClaimResponseDetail {
   final List<PrimitiveElement> noteNumberElement;
   final List<ClaimResponseAdjudication> adjudication;
   final List<ClaimResponseSubDetail> subDetail;
-  const ClaimResponseDetail({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.detailSequence,
-    required this.detailSequenceElement,
-    required this.noteNumber,
-    required this.noteNumberElement,
-    required this.adjudication,
-    required this.subDetail,
-  });
 }
 
 @Data()
@@ -647,16 +355,6 @@ class ClaimResponseSubDetail {
   final List<FhirPositiveInt> noteNumber;
   final List<PrimitiveElement> noteNumberElement;
   final List<ClaimResponseAdjudication> adjudication;
-  const ClaimResponseSubDetail({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.subDetailSequence,
-    required this.subDetailSequenceElement,
-    required this.noteNumber,
-    required this.noteNumberElement,
-    required this.adjudication,
-  });
 }
 
 @Data()
@@ -692,38 +390,6 @@ class ClaimResponseAddItem {
   final List<PrimitiveElement> noteNumberElement;
   final List<ClaimResponseAdjudication> adjudication;
   final List<ClaimResponseDetail1> detail;
-  const ClaimResponseAddItem({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.itemSequence,
-    required this.itemSequenceElement,
-    required this.detailSequence,
-    required this.detailSequenceElement,
-    required this.subdetailSequence,
-    required this.subdetailSequenceElement,
-    required this.provider,
-    required this.productOrService,
-    required this.modifier,
-    required this.programCode,
-    required this.servicedDate,
-    required this.servicedDateElement,
-    required this.servicedPeriod,
-    required this.locationCodeableConcept,
-    required this.locationAddress,
-    required this.locationReference,
-    required this.quantity,
-    required this.unitPrice,
-    required this.factor,
-    required this.factorElement,
-    required this.net,
-    required this.bodySite,
-    required this.subSite,
-    required this.noteNumber,
-    required this.noteNumberElement,
-    required this.adjudication,
-    required this.detail,
-  });
 }
 
 @Data()
@@ -743,22 +409,6 @@ class ClaimResponseDetail1 {
   final List<PrimitiveElement> noteNumberElement;
   final List<ClaimResponseAdjudication> adjudication;
   final List<ClaimResponseSubDetail1> subDetail;
-  const ClaimResponseDetail1({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.productOrService,
-    required this.modifier,
-    required this.quantity,
-    required this.unitPrice,
-    required this.factor,
-    required this.factorElement,
-    required this.net,
-    required this.noteNumber,
-    required this.noteNumberElement,
-    required this.adjudication,
-    required this.subDetail,
-  });
 }
 
 @Data()
@@ -777,21 +427,6 @@ class ClaimResponseSubDetail1 {
   final List<FhirPositiveInt> noteNumber;
   final List<PrimitiveElement> noteNumberElement;
   final List<ClaimResponseAdjudication> adjudication;
-  const ClaimResponseSubDetail1({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.productOrService,
-    required this.modifier,
-    required this.quantity,
-    required this.unitPrice,
-    required this.factor,
-    required this.factorElement,
-    required this.net,
-    required this.noteNumber,
-    required this.noteNumberElement,
-    required this.adjudication,
-  });
 }
 
 @Data()
@@ -802,13 +437,6 @@ class ClaimResponseTotal {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept category;
   final Money amount;
-  const ClaimResponseTotal({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.category,
-    required this.amount,
-  });
 }
 
 @Data()
@@ -824,18 +452,6 @@ class ClaimResponsePayment {
   final PrimitiveElement dateElement;
   final Money amount;
   final Identifier identifier;
-  const ClaimResponsePayment({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.adjustment,
-    required this.adjustmentReason,
-    required this.date,
-    required this.dateElement,
-    required this.amount,
-    required this.identifier,
-  });
 }
 
 @Data()
@@ -851,18 +467,6 @@ class ClaimResponseProcessNote {
   final String text;
   final PrimitiveElement textElement;
   final CodeableConcept language;
-  const ClaimResponseProcessNote({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.number,
-    required this.numberElement,
-    required this.type,
-    required this.typeElement,
-    required this.text,
-    required this.textElement,
-    required this.language,
-  });
 }
 
 @Data()
@@ -879,19 +483,6 @@ class ClaimResponseInsurance {
   final String businessArrangement;
   final PrimitiveElement businessArrangementElement;
   final Reference claimResponse;
-  const ClaimResponseInsurance({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.sequence,
-    required this.sequenceElement,
-    required this.focal,
-    required this.focalElement,
-    required this.coverage,
-    required this.businessArrangement,
-    required this.businessArrangementElement,
-    required this.claimResponse,
-  });
 }
 
 @Data()
@@ -907,18 +498,6 @@ class ClaimResponseError {
   final FhirPositiveInt subDetailSequence;
   final PrimitiveElement subDetailSequenceElement;
   final CodeableConcept code;
-  const ClaimResponseError({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.itemSequence,
-    required this.itemSequenceElement,
-    required this.detailSequence,
-    required this.detailSequenceElement,
-    required this.subDetailSequence,
-    required this.subDetailSequenceElement,
-    required this.code,
-  });
 }
 
 

@@ -15,16 +15,6 @@ class Population {
   final CodeableConcept gender;
   final CodeableConcept race;
   final CodeableConcept physiologicalCondition;
-  const Population({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.ageRange,
-    required this.ageCodeableConcept,
-    required this.gender,
-    required this.race,
-    required this.physiologicalCondition,
-  });
 }
 
 

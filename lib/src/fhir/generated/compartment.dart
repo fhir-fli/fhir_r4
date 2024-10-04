@@ -43,44 +43,6 @@ class CompartmentDefinition {
   final FhirBoolean search;
   final PrimitiveElement searchElement;
   final List<CompartmentDefinitionResource> resource;
-  const CompartmentDefinition({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.url,
-    required this.urlElement,
-    required this.version,
-    required this.versionElement,
-    required this.name,
-    required this.nameElement,
-    required this.status,
-    required this.statusElement,
-    required this.experimental,
-    required this.experimentalElement,
-    required this.date,
-    required this.dateElement,
-    required this.publisher,
-    required this.publisherElement,
-    required this.contact,
-    required this.description,
-    required this.descriptionElement,
-    required this.useContext,
-    required this.purpose,
-    required this.purposeElement,
-    required this.code,
-    required this.codeElement,
-    required this.search,
-    required this.searchElement,
-    required this.resource,
-  });
 }
 
 @Data()
@@ -95,17 +57,6 @@ class CompartmentDefinitionResource {
   final List<PrimitiveElement> paramElement;
   final String documentation;
   final PrimitiveElement documentationElement;
-  const CompartmentDefinitionResource({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.codeElement,
-    required this.param,
-    required this.paramElement,
-    required this.documentation,
-    required this.documentationElement,
-  });
 }
 
 

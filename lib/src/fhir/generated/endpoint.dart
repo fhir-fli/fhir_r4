@@ -34,35 +34,6 @@ class Endpoint {
   final PrimitiveElement addressElement;
   final List<String> header;
   final List<PrimitiveElement> headerElement;
-  const Endpoint({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.status,
-    required this.statusElement,
-    required this.connectionType,
-    required this.name,
-    required this.nameElement,
-    required this.managingOrganization,
-    required this.contact,
-    required this.period,
-    required this.payloadType,
-    required this.payloadMimeType,
-    required this.payloadMimeTypeElement,
-    required this.address,
-    required this.addressElement,
-    required this.header,
-    required this.headerElement,
-  });
 }
 
 

@@ -244,16 +244,6 @@ abstract class $MedicationStatementCopyWith<$Res> {
       List<Reference>? reasonReference,
       List<Annotation>? note,
       List<Dosage>? dosage});
-
-  $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
-  $CodeableConceptCopyWith<$Res>? get category;
-  $CodeableConceptCopyWith<$Res>? get medicationCodeableConcept;
-  $ReferenceCopyWith<$Res>? get medicationReference;
-  $ReferenceCopyWith<$Res> get subject;
-  $ReferenceCopyWith<$Res>? get context;
-  $PeriodCopyWith<$Res>? get effectivePeriod;
-  $ReferenceCopyWith<$Res>? get informationSource;
 }
 
 /// @nodoc
@@ -291,7 +281,7 @@ class _$MedicationStatementCopyWithImpl<$Res, $Val extends MedicationStatement>
     Object? category = freezed,
     Object? medicationCodeableConcept = freezed,
     Object? medicationReference = freezed,
-    Object? subject = null,
+    Object? subject = freezed,
     Object? context = freezed,
     Object? effectiveDateTime = freezed,
     Object? effectiveDateTimeElement = freezed,
@@ -386,7 +376,7 @@ class _$MedicationStatementCopyWithImpl<$Res, $Val extends MedicationStatement>
           ? _value.medicationReference
           : medicationReference // ignore: cast_nullable_to_non_nullable
               as Reference?,
-      subject: null == subject
+      subject: freezed == subject
           ? _value.subject
           : subject // ignore: cast_nullable_to_non_nullable
               as Reference,
@@ -440,129 +430,6 @@ class _$MedicationStatementCopyWithImpl<$Res, $Val extends MedicationStatement>
               as List<Dosage>?,
     ) as $Val);
   }
-
-  /// Create a copy of MedicationStatement
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $FhirMetaCopyWith<$Res>? get meta {
-    if (_value.meta == null) {
-      return null;
-    }
-
-    return $FhirMetaCopyWith<$Res>(_value.meta!, (value) {
-      return _then(_value.copyWith(meta: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationStatement
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationStatement
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get category {
-    if (_value.category == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.category!, (value) {
-      return _then(_value.copyWith(category: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationStatement
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get medicationCodeableConcept {
-    if (_value.medicationCodeableConcept == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.medicationCodeableConcept!,
-        (value) {
-      return _then(_value.copyWith(medicationCodeableConcept: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationStatement
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get medicationReference {
-    if (_value.medicationReference == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.medicationReference!, (value) {
-      return _then(_value.copyWith(medicationReference: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationStatement
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res> get subject {
-    return $ReferenceCopyWith<$Res>(_value.subject, (value) {
-      return _then(_value.copyWith(subject: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationStatement
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get context {
-    if (_value.context == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.context!, (value) {
-      return _then(_value.copyWith(context: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationStatement
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PeriodCopyWith<$Res>? get effectivePeriod {
-    if (_value.effectivePeriod == null) {
-      return null;
-    }
-
-    return $PeriodCopyWith<$Res>(_value.effectivePeriod!, (value) {
-      return _then(_value.copyWith(effectivePeriod: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationStatement
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get informationSource {
-    if (_value.informationSource == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.informationSource!, (value) {
-      return _then(_value.copyWith(informationSource: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -609,25 +476,6 @@ abstract class _$$MedicationStatementImplCopyWith<$Res>
       List<Reference>? reasonReference,
       List<Annotation>? note,
       List<Dosage>? dosage});
-
-  @override
-  $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
-  @override
-  $CodeableConceptCopyWith<$Res>? get category;
-  @override
-  $CodeableConceptCopyWith<$Res>? get medicationCodeableConcept;
-  @override
-  $ReferenceCopyWith<$Res>? get medicationReference;
-  @override
-  $ReferenceCopyWith<$Res> get subject;
-  @override
-  $ReferenceCopyWith<$Res>? get context;
-  @override
-  $PeriodCopyWith<$Res>? get effectivePeriod;
-  @override
-  $ReferenceCopyWith<$Res>? get informationSource;
 }
 
 /// @nodoc
@@ -663,7 +511,7 @@ class __$$MedicationStatementImplCopyWithImpl<$Res>
     Object? category = freezed,
     Object? medicationCodeableConcept = freezed,
     Object? medicationReference = freezed,
-    Object? subject = null,
+    Object? subject = freezed,
     Object? context = freezed,
     Object? effectiveDateTime = freezed,
     Object? effectiveDateTimeElement = freezed,
@@ -758,7 +606,7 @@ class __$$MedicationStatementImplCopyWithImpl<$Res>
           ? _value.medicationReference
           : medicationReference // ignore: cast_nullable_to_non_nullable
               as Reference?,
-      subject: null == subject
+      subject: freezed == subject
           ? _value.subject
           : subject // ignore: cast_nullable_to_non_nullable
               as Reference,
@@ -1224,7 +1072,7 @@ class _$MedicationStatementImpl extends _MedicationStatement {
             (identical(other.resourceType, resourceType) ||
                 other.resourceType == resourceType) &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.meta, meta) || other.meta == meta) &&
+            const DeepCollectionEquality().equals(other.meta, meta) &&
             (identical(other.implicitRules, implicitRules) ||
                 other.implicitRules == implicitRules) &&
             (identical(other.implicitRulesElement, implicitRulesElement) ||
@@ -1233,7 +1081,7 @@ class _$MedicationStatementImpl extends _MedicationStatement {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -1249,28 +1097,26 @@ class _$MedicationStatementImpl extends _MedicationStatement {
                 other.statusElement == statusElement) &&
             const DeepCollectionEquality()
                 .equals(other._statusReason, _statusReason) &&
-            (identical(other.category, category) ||
-                other.category == category) &&
-            (identical(other.medicationCodeableConcept,
-                    medicationCodeableConcept) ||
-                other.medicationCodeableConcept == medicationCodeableConcept) &&
-            (identical(other.medicationReference, medicationReference) ||
-                other.medicationReference == medicationReference) &&
-            (identical(other.subject, subject) || other.subject == subject) &&
-            (identical(other.context, context) || other.context == context) &&
+            const DeepCollectionEquality().equals(other.category, category) &&
+            const DeepCollectionEquality().equals(
+                other.medicationCodeableConcept, medicationCodeableConcept) &&
+            const DeepCollectionEquality()
+                .equals(other.medicationReference, medicationReference) &&
+            const DeepCollectionEquality().equals(other.subject, subject) &&
+            const DeepCollectionEquality().equals(other.context, context) &&
             (identical(other.effectiveDateTime, effectiveDateTime) ||
                 other.effectiveDateTime == effectiveDateTime) &&
             (identical(
                     other.effectiveDateTimeElement, effectiveDateTimeElement) ||
                 other.effectiveDateTimeElement == effectiveDateTimeElement) &&
-            (identical(other.effectivePeriod, effectivePeriod) ||
-                other.effectivePeriod == effectivePeriod) &&
+            const DeepCollectionEquality()
+                .equals(other.effectivePeriod, effectivePeriod) &&
             (identical(other.dateAsserted, dateAsserted) ||
                 other.dateAsserted == dateAsserted) &&
             (identical(other.dateAssertedElement, dateAssertedElement) ||
                 other.dateAssertedElement == dateAssertedElement) &&
-            (identical(other.informationSource, informationSource) ||
-                other.informationSource == informationSource) &&
+            const DeepCollectionEquality()
+                .equals(other.informationSource, informationSource) &&
             const DeepCollectionEquality()
                 .equals(other._derivedFrom, _derivedFrom) &&
             const DeepCollectionEquality()
@@ -1287,12 +1133,12 @@ class _$MedicationStatementImpl extends _MedicationStatement {
         runtimeType,
         resourceType,
         id,
-        meta,
+        const DeepCollectionEquality().hash(meta),
         implicitRules,
         implicitRulesElement,
         language,
         languageElement,
-        text,
+        const DeepCollectionEquality().hash(text),
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
@@ -1302,17 +1148,17 @@ class _$MedicationStatementImpl extends _MedicationStatement {
         status,
         statusElement,
         const DeepCollectionEquality().hash(_statusReason),
-        category,
-        medicationCodeableConcept,
-        medicationReference,
-        subject,
-        context,
+        const DeepCollectionEquality().hash(category),
+        const DeepCollectionEquality().hash(medicationCodeableConcept),
+        const DeepCollectionEquality().hash(medicationReference),
+        const DeepCollectionEquality().hash(subject),
+        const DeepCollectionEquality().hash(context),
         effectiveDateTime,
         effectiveDateTimeElement,
-        effectivePeriod,
+        const DeepCollectionEquality().hash(effectivePeriod),
         dateAsserted,
         dateAssertedElement,
-        informationSource,
+        const DeepCollectionEquality().hash(informationSource),
         const DeepCollectionEquality().hash(_derivedFrom),
         const DeepCollectionEquality().hash(_reasonCode),
         const DeepCollectionEquality().hash(_reasonReference),

@@ -363,23 +363,8 @@ abstract class $MedicationRequestCopyWith<$Res> {
       List<Reference>? detectedIssue,
       List<Reference>? eventHistory});
 
-  $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
-  $CodeableConceptCopyWith<$Res>? get statusReason;
-  $ReferenceCopyWith<$Res>? get reportedReference;
-  $CodeableConceptCopyWith<$Res>? get medicationCodeableConcept;
-  $ReferenceCopyWith<$Res>? get medicationReference;
-  $ReferenceCopyWith<$Res> get subject;
-  $ReferenceCopyWith<$Res>? get encounter;
-  $ReferenceCopyWith<$Res>? get requester;
-  $ReferenceCopyWith<$Res>? get performer;
-  $CodeableConceptCopyWith<$Res>? get performerType;
-  $ReferenceCopyWith<$Res>? get recorder;
-  $IdentifierCopyWith<$Res>? get groupIdentifier;
-  $CodeableConceptCopyWith<$Res>? get courseOfTherapyType;
   $MedicationRequestDispenseRequestCopyWith<$Res>? get dispenseRequest;
   $MedicationRequestSubstitutionCopyWith<$Res>? get substitution;
-  $ReferenceCopyWith<$Res>? get priorPrescription;
 }
 
 /// @nodoc
@@ -424,7 +409,7 @@ class _$MedicationRequestCopyWithImpl<$Res, $Val extends MedicationRequest>
     Object? reportedReference = freezed,
     Object? medicationCodeableConcept = freezed,
     Object? medicationReference = freezed,
-    Object? subject = null,
+    Object? subject = freezed,
     Object? encounter = freezed,
     Object? supportingInformation = freezed,
     Object? authoredOn = freezed,
@@ -560,7 +545,7 @@ class _$MedicationRequestCopyWithImpl<$Res, $Val extends MedicationRequest>
           ? _value.medicationReference
           : medicationReference // ignore: cast_nullable_to_non_nullable
               as Reference?,
-      subject: null == subject
+      subject: freezed == subject
           ? _value.subject
           : subject // ignore: cast_nullable_to_non_nullable
               as Reference,
@@ -671,199 +656,6 @@ class _$MedicationRequestCopyWithImpl<$Res, $Val extends MedicationRequest>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $FhirMetaCopyWith<$Res>? get meta {
-    if (_value.meta == null) {
-      return null;
-    }
-
-    return $FhirMetaCopyWith<$Res>(_value.meta!, (value) {
-      return _then(_value.copyWith(meta: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get statusReason {
-    if (_value.statusReason == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.statusReason!, (value) {
-      return _then(_value.copyWith(statusReason: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get reportedReference {
-    if (_value.reportedReference == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.reportedReference!, (value) {
-      return _then(_value.copyWith(reportedReference: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get medicationCodeableConcept {
-    if (_value.medicationCodeableConcept == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.medicationCodeableConcept!,
-        (value) {
-      return _then(_value.copyWith(medicationCodeableConcept: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get medicationReference {
-    if (_value.medicationReference == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.medicationReference!, (value) {
-      return _then(_value.copyWith(medicationReference: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res> get subject {
-    return $ReferenceCopyWith<$Res>(_value.subject, (value) {
-      return _then(_value.copyWith(subject: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get encounter {
-    if (_value.encounter == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.encounter!, (value) {
-      return _then(_value.copyWith(encounter: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get requester {
-    if (_value.requester == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.requester!, (value) {
-      return _then(_value.copyWith(requester: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get performer {
-    if (_value.performer == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.performer!, (value) {
-      return _then(_value.copyWith(performer: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get performerType {
-    if (_value.performerType == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.performerType!, (value) {
-      return _then(_value.copyWith(performerType: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get recorder {
-    if (_value.recorder == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.recorder!, (value) {
-      return _then(_value.copyWith(recorder: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $IdentifierCopyWith<$Res>? get groupIdentifier {
-    if (_value.groupIdentifier == null) {
-      return null;
-    }
-
-    return $IdentifierCopyWith<$Res>(_value.groupIdentifier!, (value) {
-      return _then(_value.copyWith(groupIdentifier: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get courseOfTherapyType {
-    if (_value.courseOfTherapyType == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.courseOfTherapyType!, (value) {
-      return _then(_value.copyWith(courseOfTherapyType: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
   $MedicationRequestDispenseRequestCopyWith<$Res>? get dispenseRequest {
     if (_value.dispenseRequest == null) {
       return null;
@@ -887,20 +679,6 @@ class _$MedicationRequestCopyWithImpl<$Res, $Val extends MedicationRequest>
     return $MedicationRequestSubstitutionCopyWith<$Res>(_value.substitution!,
         (value) {
       return _then(_value.copyWith(substitution: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get priorPrescription {
-    if (_value.priorPrescription == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.priorPrescription!, (value) {
-      return _then(_value.copyWith(priorPrescription: value) as $Val);
     });
   }
 }
@@ -973,39 +751,9 @@ abstract class _$$MedicationRequestImplCopyWith<$Res>
       List<Reference>? eventHistory});
 
   @override
-  $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
-  @override
-  $CodeableConceptCopyWith<$Res>? get statusReason;
-  @override
-  $ReferenceCopyWith<$Res>? get reportedReference;
-  @override
-  $CodeableConceptCopyWith<$Res>? get medicationCodeableConcept;
-  @override
-  $ReferenceCopyWith<$Res>? get medicationReference;
-  @override
-  $ReferenceCopyWith<$Res> get subject;
-  @override
-  $ReferenceCopyWith<$Res>? get encounter;
-  @override
-  $ReferenceCopyWith<$Res>? get requester;
-  @override
-  $ReferenceCopyWith<$Res>? get performer;
-  @override
-  $CodeableConceptCopyWith<$Res>? get performerType;
-  @override
-  $ReferenceCopyWith<$Res>? get recorder;
-  @override
-  $IdentifierCopyWith<$Res>? get groupIdentifier;
-  @override
-  $CodeableConceptCopyWith<$Res>? get courseOfTherapyType;
-  @override
   $MedicationRequestDispenseRequestCopyWith<$Res>? get dispenseRequest;
   @override
   $MedicationRequestSubstitutionCopyWith<$Res>? get substitution;
-  @override
-  $ReferenceCopyWith<$Res>? get priorPrescription;
 }
 
 /// @nodoc
@@ -1048,7 +796,7 @@ class __$$MedicationRequestImplCopyWithImpl<$Res>
     Object? reportedReference = freezed,
     Object? medicationCodeableConcept = freezed,
     Object? medicationReference = freezed,
-    Object? subject = null,
+    Object? subject = freezed,
     Object? encounter = freezed,
     Object? supportingInformation = freezed,
     Object? authoredOn = freezed,
@@ -1184,7 +932,7 @@ class __$$MedicationRequestImplCopyWithImpl<$Res>
           ? _value.medicationReference
           : medicationReference // ignore: cast_nullable_to_non_nullable
               as Reference?,
-      subject: null == subject
+      subject: freezed == subject
           ? _value.subject
           : subject // ignore: cast_nullable_to_non_nullable
               as Reference,
@@ -1908,7 +1656,7 @@ class _$MedicationRequestImpl extends _MedicationRequest {
             (identical(other.resourceType, resourceType) ||
                 other.resourceType == resourceType) &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.meta, meta) || other.meta == meta) &&
+            const DeepCollectionEquality().equals(other.meta, meta) &&
             (identical(other.implicitRules, implicitRules) ||
                 other.implicitRules == implicitRules) &&
             (identical(other.implicitRulesElement, implicitRulesElement) ||
@@ -1917,7 +1665,7 @@ class _$MedicationRequestImpl extends _MedicationRequest {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -1929,8 +1677,8 @@ class _$MedicationRequestImpl extends _MedicationRequest {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.statusElement, statusElement) ||
                 other.statusElement == statusElement) &&
-            (identical(other.statusReason, statusReason) ||
-                other.statusReason == statusReason) &&
+            const DeepCollectionEquality()
+                .equals(other.statusReason, statusReason) &&
             (identical(other.intent, intent) || other.intent == intent) &&
             (identical(other.intentElement, intentElement) ||
                 other.intentElement == intentElement) &&
@@ -1947,29 +1695,25 @@ class _$MedicationRequestImpl extends _MedicationRequest {
                 other.reportedBoolean == reportedBoolean) &&
             (identical(other.reportedBooleanElement, reportedBooleanElement) ||
                 other.reportedBooleanElement == reportedBooleanElement) &&
-            (identical(other.reportedReference, reportedReference) ||
-                other.reportedReference == reportedReference) &&
-            (identical(other.medicationCodeableConcept, medicationCodeableConcept) ||
-                other.medicationCodeableConcept == medicationCodeableConcept) &&
-            (identical(other.medicationReference, medicationReference) ||
-                other.medicationReference == medicationReference) &&
-            (identical(other.subject, subject) || other.subject == subject) &&
-            (identical(other.encounter, encounter) ||
-                other.encounter == encounter) &&
+            const DeepCollectionEquality()
+                .equals(other.reportedReference, reportedReference) &&
+            const DeepCollectionEquality().equals(
+                other.medicationCodeableConcept, medicationCodeableConcept) &&
+            const DeepCollectionEquality()
+                .equals(other.medicationReference, medicationReference) &&
+            const DeepCollectionEquality().equals(other.subject, subject) &&
+            const DeepCollectionEquality().equals(other.encounter, encounter) &&
             const DeepCollectionEquality()
                 .equals(other._supportingInformation, _supportingInformation) &&
             (identical(other.authoredOn, authoredOn) ||
                 other.authoredOn == authoredOn) &&
             (identical(other.authoredOnElement, authoredOnElement) ||
                 other.authoredOnElement == authoredOnElement) &&
-            (identical(other.requester, requester) ||
-                other.requester == requester) &&
-            (identical(other.performer, performer) ||
-                other.performer == performer) &&
-            (identical(other.performerType, performerType) ||
-                other.performerType == performerType) &&
-            (identical(other.recorder, recorder) ||
-                other.recorder == recorder) &&
+            const DeepCollectionEquality().equals(other.requester, requester) &&
+            const DeepCollectionEquality().equals(other.performer, performer) &&
+            const DeepCollectionEquality()
+                .equals(other.performerType, performerType) &&
+            const DeepCollectionEquality().equals(other.recorder, recorder) &&
             const DeepCollectionEquality()
                 .equals(other._reasonCode, _reasonCode) &&
             const DeepCollectionEquality()
@@ -1984,18 +1728,25 @@ class _$MedicationRequestImpl extends _MedicationRequest {
             const DeepCollectionEquality().equals(
                 other._instantiatesUriElement, _instantiatesUriElement) &&
             const DeepCollectionEquality().equals(other._basedOn, _basedOn) &&
-            (identical(other.groupIdentifier, groupIdentifier) ||
-                other.groupIdentifier == groupIdentifier) &&
-            (identical(other.courseOfTherapyType, courseOfTherapyType) ||
-                other.courseOfTherapyType == courseOfTherapyType) &&
-            const DeepCollectionEquality().equals(other._insurance, _insurance) &&
+            const DeepCollectionEquality()
+                .equals(other.groupIdentifier, groupIdentifier) &&
+            const DeepCollectionEquality()
+                .equals(other.courseOfTherapyType, courseOfTherapyType) &&
+            const DeepCollectionEquality()
+                .equals(other._insurance, _insurance) &&
             const DeepCollectionEquality().equals(other._note, _note) &&
-            const DeepCollectionEquality().equals(other._dosageInstruction, _dosageInstruction) &&
-            (identical(other.dispenseRequest, dispenseRequest) || other.dispenseRequest == dispenseRequest) &&
-            (identical(other.substitution, substitution) || other.substitution == substitution) &&
-            (identical(other.priorPrescription, priorPrescription) || other.priorPrescription == priorPrescription) &&
-            const DeepCollectionEquality().equals(other._detectedIssue, _detectedIssue) &&
-            const DeepCollectionEquality().equals(other._eventHistory, _eventHistory));
+            const DeepCollectionEquality()
+                .equals(other._dosageInstruction, _dosageInstruction) &&
+            (identical(other.dispenseRequest, dispenseRequest) ||
+                other.dispenseRequest == dispenseRequest) &&
+            (identical(other.substitution, substitution) ||
+                other.substitution == substitution) &&
+            const DeepCollectionEquality()
+                .equals(other.priorPrescription, priorPrescription) &&
+            const DeepCollectionEquality()
+                .equals(other._detectedIssue, _detectedIssue) &&
+            const DeepCollectionEquality()
+                .equals(other._eventHistory, _eventHistory));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2004,19 +1755,19 @@ class _$MedicationRequestImpl extends _MedicationRequest {
         runtimeType,
         resourceType,
         id,
-        meta,
+        const DeepCollectionEquality().hash(meta),
         implicitRules,
         implicitRulesElement,
         language,
         languageElement,
-        text,
+        const DeepCollectionEquality().hash(text),
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
         const DeepCollectionEquality().hash(_identifier),
         status,
         statusElement,
-        statusReason,
+        const DeepCollectionEquality().hash(statusReason),
         intent,
         intentElement,
         const DeepCollectionEquality().hash(_category),
@@ -2026,18 +1777,18 @@ class _$MedicationRequestImpl extends _MedicationRequest {
         doNotPerformElement,
         reportedBoolean,
         reportedBooleanElement,
-        reportedReference,
-        medicationCodeableConcept,
-        medicationReference,
-        subject,
-        encounter,
+        const DeepCollectionEquality().hash(reportedReference),
+        const DeepCollectionEquality().hash(medicationCodeableConcept),
+        const DeepCollectionEquality().hash(medicationReference),
+        const DeepCollectionEquality().hash(subject),
+        const DeepCollectionEquality().hash(encounter),
         const DeepCollectionEquality().hash(_supportingInformation),
         authoredOn,
         authoredOnElement,
-        requester,
-        performer,
-        performerType,
-        recorder,
+        const DeepCollectionEquality().hash(requester),
+        const DeepCollectionEquality().hash(performer),
+        const DeepCollectionEquality().hash(performerType),
+        const DeepCollectionEquality().hash(recorder),
         const DeepCollectionEquality().hash(_reasonCode),
         const DeepCollectionEquality().hash(_reasonReference),
         const DeepCollectionEquality().hash(_instantiatesCanonical),
@@ -2045,14 +1796,14 @@ class _$MedicationRequestImpl extends _MedicationRequest {
         const DeepCollectionEquality().hash(_instantiatesUri),
         const DeepCollectionEquality().hash(_instantiatesUriElement),
         const DeepCollectionEquality().hash(_basedOn),
-        groupIdentifier,
-        courseOfTherapyType,
+        const DeepCollectionEquality().hash(groupIdentifier),
+        const DeepCollectionEquality().hash(courseOfTherapyType),
         const DeepCollectionEquality().hash(_insurance),
         const DeepCollectionEquality().hash(_note),
         const DeepCollectionEquality().hash(_dosageInstruction),
         dispenseRequest,
         substitution,
-        priorPrescription,
+        const DeepCollectionEquality().hash(priorPrescription),
         const DeepCollectionEquality().hash(_detectedIssue),
         const DeepCollectionEquality().hash(_eventHistory)
       ]);
@@ -2566,11 +2317,6 @@ abstract class $MedicationRequestDispenseRequestCopyWith<$Res> {
       Reference? performer});
 
   $MedicationRequestInitialFillCopyWith<$Res>? get initialFill;
-  $FhirDurationCopyWith<$Res>? get dispenseInterval;
-  $PeriodCopyWith<$Res>? get validityPeriod;
-  $QuantityCopyWith<$Res>? get quantity;
-  $FhirDurationCopyWith<$Res>? get expectedSupplyDuration;
-  $ReferenceCopyWith<$Res>? get performer;
 }
 
 /// @nodoc
@@ -2663,76 +2409,6 @@ class _$MedicationRequestDispenseRequestCopyWithImpl<$Res,
       return _then(_value.copyWith(initialFill: value) as $Val);
     });
   }
-
-  /// Create a copy of MedicationRequestDispenseRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $FhirDurationCopyWith<$Res>? get dispenseInterval {
-    if (_value.dispenseInterval == null) {
-      return null;
-    }
-
-    return $FhirDurationCopyWith<$Res>(_value.dispenseInterval!, (value) {
-      return _then(_value.copyWith(dispenseInterval: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationRequestDispenseRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PeriodCopyWith<$Res>? get validityPeriod {
-    if (_value.validityPeriod == null) {
-      return null;
-    }
-
-    return $PeriodCopyWith<$Res>(_value.validityPeriod!, (value) {
-      return _then(_value.copyWith(validityPeriod: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationRequestDispenseRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $QuantityCopyWith<$Res>? get quantity {
-    if (_value.quantity == null) {
-      return null;
-    }
-
-    return $QuantityCopyWith<$Res>(_value.quantity!, (value) {
-      return _then(_value.copyWith(quantity: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationRequestDispenseRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $FhirDurationCopyWith<$Res>? get expectedSupplyDuration {
-    if (_value.expectedSupplyDuration == null) {
-      return null;
-    }
-
-    return $FhirDurationCopyWith<$Res>(_value.expectedSupplyDuration!, (value) {
-      return _then(_value.copyWith(expectedSupplyDuration: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationRequestDispenseRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get performer {
-    if (_value.performer == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.performer!, (value) {
-      return _then(_value.copyWith(performer: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -2760,16 +2436,6 @@ abstract class _$$MedicationRequestDispenseRequestImplCopyWith<$Res>
 
   @override
   $MedicationRequestInitialFillCopyWith<$Res>? get initialFill;
-  @override
-  $FhirDurationCopyWith<$Res>? get dispenseInterval;
-  @override
-  $PeriodCopyWith<$Res>? get validityPeriod;
-  @override
-  $QuantityCopyWith<$Res>? get quantity;
-  @override
-  $FhirDurationCopyWith<$Res>? get expectedSupplyDuration;
-  @override
-  $ReferenceCopyWith<$Res>? get performer;
 }
 
 /// @nodoc
@@ -3001,22 +2667,20 @@ class _$MedicationRequestDispenseRequestImpl
                 .equals(other._modifierExtension, _modifierExtension) &&
             (identical(other.initialFill, initialFill) ||
                 other.initialFill == initialFill) &&
-            (identical(other.dispenseInterval, dispenseInterval) ||
-                other.dispenseInterval == dispenseInterval) &&
-            (identical(other.validityPeriod, validityPeriod) ||
-                other.validityPeriod == validityPeriod) &&
+            const DeepCollectionEquality()
+                .equals(other.dispenseInterval, dispenseInterval) &&
+            const DeepCollectionEquality()
+                .equals(other.validityPeriod, validityPeriod) &&
             (identical(other.numberOfRepeatsAllowed, numberOfRepeatsAllowed) ||
                 other.numberOfRepeatsAllowed == numberOfRepeatsAllowed) &&
             (identical(other.numberOfRepeatsAllowedElement,
                     numberOfRepeatsAllowedElement) ||
                 other.numberOfRepeatsAllowedElement ==
                     numberOfRepeatsAllowedElement) &&
-            (identical(other.quantity, quantity) ||
-                other.quantity == quantity) &&
-            (identical(other.expectedSupplyDuration, expectedSupplyDuration) ||
-                other.expectedSupplyDuration == expectedSupplyDuration) &&
-            (identical(other.performer, performer) ||
-                other.performer == performer));
+            const DeepCollectionEquality().equals(other.quantity, quantity) &&
+            const DeepCollectionEquality()
+                .equals(other.expectedSupplyDuration, expectedSupplyDuration) &&
+            const DeepCollectionEquality().equals(other.performer, performer));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3027,13 +2691,13 @@ class _$MedicationRequestDispenseRequestImpl
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       initialFill,
-      dispenseInterval,
-      validityPeriod,
+      const DeepCollectionEquality().hash(dispenseInterval),
+      const DeepCollectionEquality().hash(validityPeriod),
       numberOfRepeatsAllowed,
       numberOfRepeatsAllowedElement,
-      quantity,
-      expectedSupplyDuration,
-      performer);
+      const DeepCollectionEquality().hash(quantity),
+      const DeepCollectionEquality().hash(expectedSupplyDuration),
+      const DeepCollectionEquality().hash(performer));
 
   /// Create a copy of MedicationRequestDispenseRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -3226,9 +2890,6 @@ abstract class $MedicationRequestInitialFillCopyWith<$Res> {
       List<FhirExtension>? modifierExtension,
       Quantity? quantity,
       FhirDuration? duration});
-
-  $QuantityCopyWith<$Res>? get quantity;
-  $FhirDurationCopyWith<$Res>? get duration;
 }
 
 /// @nodoc
@@ -3276,34 +2937,6 @@ class _$MedicationRequestInitialFillCopyWithImpl<$Res,
               as FhirDuration?,
     ) as $Val);
   }
-
-  /// Create a copy of MedicationRequestInitialFill
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $QuantityCopyWith<$Res>? get quantity {
-    if (_value.quantity == null) {
-      return null;
-    }
-
-    return $QuantityCopyWith<$Res>(_value.quantity!, (value) {
-      return _then(_value.copyWith(quantity: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationRequestInitialFill
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $FhirDurationCopyWith<$Res>? get duration {
-    if (_value.duration == null) {
-      return null;
-    }
-
-    return $FhirDurationCopyWith<$Res>(_value.duration!, (value) {
-      return _then(_value.copyWith(duration: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -3321,11 +2954,6 @@ abstract class _$$MedicationRequestInitialFillImplCopyWith<$Res>
       List<FhirExtension>? modifierExtension,
       Quantity? quantity,
       FhirDuration? duration});
-
-  @override
-  $QuantityCopyWith<$Res>? get quantity;
-  @override
-  $FhirDurationCopyWith<$Res>? get duration;
 }
 
 /// @nodoc
@@ -3483,10 +3111,8 @@ class _$MedicationRequestInitialFillImpl extends _MedicationRequestInitialFill {
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
                 .equals(other._modifierExtension, _modifierExtension) &&
-            (identical(other.quantity, quantity) ||
-                other.quantity == quantity) &&
-            (identical(other.duration, duration) ||
-                other.duration == duration));
+            const DeepCollectionEquality().equals(other.quantity, quantity) &&
+            const DeepCollectionEquality().equals(other.duration, duration));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3496,8 +3122,8 @@ class _$MedicationRequestInitialFillImpl extends _MedicationRequestInitialFill {
       id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
-      quantity,
-      duration);
+      const DeepCollectionEquality().hash(quantity),
+      const DeepCollectionEquality().hash(duration));
 
   /// Create a copy of MedicationRequestInitialFill
   /// with the given fields replaced by the non-null parameter values.
@@ -3660,9 +3286,6 @@ abstract class $MedicationRequestSubstitutionCopyWith<$Res> {
       @JsonKey(name: '_allowedBoolean') PrimitiveElement? allowedBooleanElement,
       CodeableConcept? allowedCodeableConcept,
       CodeableConcept? reason});
-
-  $CodeableConceptCopyWith<$Res>? get allowedCodeableConcept;
-  $CodeableConceptCopyWith<$Res>? get reason;
 }
 
 /// @nodoc
@@ -3720,35 +3343,6 @@ class _$MedicationRequestSubstitutionCopyWithImpl<$Res,
               as CodeableConcept?,
     ) as $Val);
   }
-
-  /// Create a copy of MedicationRequestSubstitution
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get allowedCodeableConcept {
-    if (_value.allowedCodeableConcept == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.allowedCodeableConcept!,
-        (value) {
-      return _then(_value.copyWith(allowedCodeableConcept: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationRequestSubstitution
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get reason {
-    if (_value.reason == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.reason!, (value) {
-      return _then(_value.copyWith(reason: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -3768,11 +3362,6 @@ abstract class _$$MedicationRequestSubstitutionImplCopyWith<$Res>
       @JsonKey(name: '_allowedBoolean') PrimitiveElement? allowedBooleanElement,
       CodeableConcept? allowedCodeableConcept,
       CodeableConcept? reason});
-
-  @override
-  $CodeableConceptCopyWith<$Res>? get allowedCodeableConcept;
-  @override
-  $CodeableConceptCopyWith<$Res>? get reason;
 }
 
 /// @nodoc
@@ -3957,9 +3546,9 @@ class _$MedicationRequestSubstitutionImpl
                 other.allowedBoolean == allowedBoolean) &&
             (identical(other.allowedBooleanElement, allowedBooleanElement) ||
                 other.allowedBooleanElement == allowedBooleanElement) &&
-            (identical(other.allowedCodeableConcept, allowedCodeableConcept) ||
-                other.allowedCodeableConcept == allowedCodeableConcept) &&
-            (identical(other.reason, reason) || other.reason == reason));
+            const DeepCollectionEquality()
+                .equals(other.allowedCodeableConcept, allowedCodeableConcept) &&
+            const DeepCollectionEquality().equals(other.reason, reason));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3971,8 +3560,8 @@ class _$MedicationRequestSubstitutionImpl
       const DeepCollectionEquality().hash(_modifierExtension),
       allowedBoolean,
       allowedBooleanElement,
-      allowedCodeableConcept,
-      reason);
+      const DeepCollectionEquality().hash(allowedCodeableConcept),
+      const DeepCollectionEquality().hash(reason));
 
   /// Create a copy of MedicationRequestSubstitution
   /// with the given fields replaced by the non-null parameter values.

@@ -38,39 +38,6 @@ class Invoice {
   final FhirMarkdown paymentTerms;
   final PrimitiveElement paymentTermsElement;
   final List<Annotation> note;
-  const Invoice({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.status,
-    required this.statusElement,
-    required this.cancelledReason,
-    required this.cancelledReasonElement,
-    required this.type,
-    required this.subject,
-    required this.recipient,
-    required this.date,
-    required this.dateElement,
-    required this.participant,
-    required this.issuer,
-    required this.account,
-    required this.lineItem,
-    required this.totalPriceComponent,
-    required this.totalNet,
-    required this.totalGross,
-    required this.paymentTerms,
-    required this.paymentTermsElement,
-    required this.note,
-  });
 }
 
 @Data()
@@ -81,13 +48,6 @@ class InvoiceParticipant {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept role;
   final Reference actor;
-  const InvoiceParticipant({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.role,
-    required this.actor,
-  });
 }
 
 @Data()
@@ -101,16 +61,6 @@ class InvoiceLineItem {
   final Reference chargeItemReference;
   final CodeableConcept chargeItemCodeableConcept;
   final List<InvoicePriceComponent> priceComponent;
-  const InvoiceLineItem({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.sequence,
-    required this.sequenceElement,
-    required this.chargeItemReference,
-    required this.chargeItemCodeableConcept,
-    required this.priceComponent,
-  });
 }
 
 @Data()
@@ -125,17 +75,6 @@ class InvoicePriceComponent {
   final FhirDecimal factor;
   final PrimitiveElement factorElement;
   final Money amount;
-  const InvoicePriceComponent({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.typeElement,
-    required this.code,
-    required this.factor,
-    required this.factorElement,
-    required this.amount,
-  });
 }
 
 

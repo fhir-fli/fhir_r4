@@ -27,28 +27,6 @@ class EnrollmentRequest {
   final Reference provider;
   final Reference candidate;
   final Reference coverage;
-  const EnrollmentRequest({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.status,
-    required this.statusElement,
-    required this.created,
-    required this.createdElement,
-    required this.insurer,
-    required this.provider,
-    required this.candidate,
-    required this.coverage,
-  });
 }
 
 @Data()
@@ -77,31 +55,6 @@ class EnrollmentResponse {
   final PrimitiveElement createdElement;
   final Reference organization;
   final Reference requestProvider;
-  const EnrollmentResponse({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.status,
-    required this.statusElement,
-    required this.request,
-    required this.outcome,
-    required this.outcomeElement,
-    required this.disposition,
-    required this.dispositionElement,
-    required this.created,
-    required this.createdElement,
-    required this.organization,
-    required this.requestProvider,
-  });
 }
 
 

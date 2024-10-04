@@ -21,22 +21,6 @@ class TriggerDefinition {
   final PrimitiveElement timingDateTimeElement;
   final List<DataRequirement> data;
   final FhirExpression condition;
-  const TriggerDefinition({
-    required this.id,
-    required this.extension_,
-    required this.type,
-    required this.typeElement,
-    required this.name,
-    required this.nameElement,
-    required this.timingTiming,
-    required this.timingReference,
-    required this.timingDate,
-    required this.timingDateElement,
-    required this.timingDateTime,
-    required this.timingDateTimeElement,
-    required this.data,
-    required this.condition,
-  });
 }
 
 

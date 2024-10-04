@@ -34,35 +34,6 @@ class Slot {
   final PrimitiveElement overbookedElement;
   final String comment;
   final PrimitiveElement commentElement;
-  const Slot({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.serviceCategory,
-    required this.serviceType,
-    required this.specialty,
-    required this.appointmentType,
-    required this.schedule,
-    required this.status,
-    required this.statusElement,
-    required this.start,
-    required this.startElement,
-    required this.end,
-    required this.endElement,
-    required this.overbooked,
-    required this.overbookedElement,
-    required this.comment,
-    required this.commentElement,
-  });
 }
 
 

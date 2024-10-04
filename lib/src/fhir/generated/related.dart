@@ -21,22 +21,6 @@ class RelatedArtifact {
   final PrimitiveElement urlElement;
   final Attachment document;
   final FhirCanonical resource;
-  const RelatedArtifact({
-    required this.id,
-    required this.extension_,
-    required this.type,
-    required this.typeElement,
-    required this.label,
-    required this.labelElement,
-    required this.display,
-    required this.displayElement,
-    required this.citation,
-    required this.citationElement,
-    required this.url,
-    required this.urlElement,
-    required this.document,
-    required this.resource,
-  });
 }
 
 @Data()
@@ -68,34 +52,6 @@ class RelatedPerson {
   final List<Attachment> photo;
   final Period period;
   final List<RelatedPersonCommunication> communication;
-  const RelatedPerson({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.active,
-    required this.activeElement,
-    required this.patient,
-    required this.relationship,
-    required this.name,
-    required this.telecom,
-    required this.gender,
-    required this.genderElement,
-    required this.birthDate,
-    required this.birthDateElement,
-    required this.address,
-    required this.photo,
-    required this.period,
-    required this.communication,
-  });
 }
 
 @Data()
@@ -107,14 +63,6 @@ class RelatedPersonCommunication {
   final CodeableConcept language;
   final FhirBoolean preferred;
   final PrimitiveElement preferredElement;
-  const RelatedPersonCommunication({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.language,
-    required this.preferred,
-    required this.preferredElement,
-  });
 }
 
 

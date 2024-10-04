@@ -62,63 +62,6 @@ class StructureDefinition {
   final PrimitiveElement derivationElement;
   final StructureDefinitionSnapshot snapshot;
   final StructureDefinitionDifferential differential;
-  const StructureDefinition({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.url,
-    required this.urlElement,
-    required this.identifier,
-    required this.version,
-    required this.versionElement,
-    required this.name,
-    required this.nameElement,
-    required this.title,
-    required this.titleElement,
-    required this.status,
-    required this.statusElement,
-    required this.experimental,
-    required this.experimentalElement,
-    required this.date,
-    required this.dateElement,
-    required this.publisher,
-    required this.publisherElement,
-    required this.contact,
-    required this.description,
-    required this.descriptionElement,
-    required this.useContext,
-    required this.jurisdiction,
-    required this.purpose,
-    required this.purposeElement,
-    required this.copyright,
-    required this.copyrightElement,
-    required this.keyword,
-    required this.fhirVersion,
-    required this.fhirVersionElement,
-    required this.mapping,
-    required this.kind,
-    required this.kindElement,
-    required this.abstract_,
-    required this.abstractElement,
-    required this.context,
-    required this.contextInvariant,
-    required this.contextInvariantElement,
-    required this.type,
-    required this.typeElement,
-    required this.baseDefinition,
-    required this.derivation,
-    required this.derivationElement,
-    required this.snapshot,
-    required this.differential,
-  });
 }
 
 @Data()
@@ -135,19 +78,6 @@ class StructureDefinitionMapping {
   final PrimitiveElement nameElement;
   final String comment;
   final PrimitiveElement commentElement;
-  const StructureDefinitionMapping({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identity,
-    required this.identityElement,
-    required this.uri,
-    required this.uriElement,
-    required this.name,
-    required this.nameElement,
-    required this.comment,
-    required this.commentElement,
-  });
 }
 
 @Data()
@@ -160,15 +90,6 @@ class StructureDefinitionContext {
   final PrimitiveElement typeElement;
   final String expression;
   final PrimitiveElement expressionElement;
-  const StructureDefinitionContext({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.typeElement,
-    required this.expression,
-    required this.expressionElement,
-  });
 }
 
 @Data()
@@ -178,12 +99,6 @@ class StructureDefinitionSnapshot {
   final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final List<ElementDefinition> element;
-  const StructureDefinitionSnapshot({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.element,
-  });
 }
 
 @Data()
@@ -193,12 +108,6 @@ class StructureDefinitionDifferential {
   final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final List<ElementDefinition> element;
-  const StructureDefinitionDifferential({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.element,
-  });
 }
 
 @Data()
@@ -244,48 +153,6 @@ class StructureMap {
   final List<StructureMapStructure> structure;
   final List<FhirCanonical> import_;
   final List<StructureMapGroup> group;
-  const StructureMap({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.url,
-    required this.urlElement,
-    required this.identifier,
-    required this.version,
-    required this.versionElement,
-    required this.name,
-    required this.nameElement,
-    required this.title,
-    required this.titleElement,
-    required this.status,
-    required this.statusElement,
-    required this.experimental,
-    required this.experimentalElement,
-    required this.date,
-    required this.dateElement,
-    required this.publisher,
-    required this.publisherElement,
-    required this.contact,
-    required this.description,
-    required this.descriptionElement,
-    required this.useContext,
-    required this.jurisdiction,
-    required this.purpose,
-    required this.purposeElement,
-    required this.copyright,
-    required this.copyrightElement,
-    required this.structure,
-    required this.import_,
-    required this.group,
-  });
 }
 
 @Data()
@@ -301,18 +168,6 @@ class StructureMapStructure {
   final PrimitiveElement aliasElement;
   final String documentation;
   final PrimitiveElement documentationElement;
-  const StructureMapStructure({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.url,
-    required this.mode,
-    required this.modeElement,
-    required this.alias,
-    required this.aliasElement,
-    required this.documentation,
-    required this.documentationElement,
-  });
 }
 
 @Data()
@@ -331,21 +186,6 @@ class StructureMapGroup {
   final PrimitiveElement documentationElement;
   final List<StructureMapInput> input;
   final List<StructureMapRule> rule;
-  const StructureMapGroup({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.name,
-    required this.nameElement,
-    required this.extends_,
-    required this.extendsElement,
-    required this.typeMode,
-    required this.typeModeElement,
-    required this.documentation,
-    required this.documentationElement,
-    required this.input,
-    required this.rule,
-  });
 }
 
 @Data()
@@ -362,19 +202,6 @@ class StructureMapInput {
   final PrimitiveElement modeElement;
   final String documentation;
   final PrimitiveElement documentationElement;
-  const StructureMapInput({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.name,
-    required this.nameElement,
-    required this.type,
-    required this.typeElement,
-    required this.mode,
-    required this.modeElement,
-    required this.documentation,
-    required this.documentationElement,
-  });
 }
 
 @Data()
@@ -391,19 +218,6 @@ class StructureMapRule {
   final List<StructureMapDependent> dependent;
   final String documentation;
   final PrimitiveElement documentationElement;
-  const StructureMapRule({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.name,
-    required this.nameElement,
-    required this.source,
-    required this.target,
-    required this.rule,
-    required this.dependent,
-    required this.documentation,
-    required this.documentationElement,
-  });
 }
 
 @Data()
@@ -501,100 +315,6 @@ class StructureMapSource {
   final PrimitiveElement checkElement;
   final String logMessage;
   final PrimitiveElement logMessageElement;
-  const StructureMapSource({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.context,
-    required this.contextElement,
-    required this.min,
-    required this.minElement,
-    required this.max,
-    required this.maxElement,
-    required this.type,
-    required this.typeElement,
-    required this.defaultValueBase64Binary,
-    required this.defaultValueBase64BinaryElement,
-    required this.defaultValueBoolean,
-    required this.defaultValueBooleanElement,
-    required this.defaultValueCanonical,
-    required this.defaultValueCanonicalElement,
-    required this.defaultValueCode,
-    required this.defaultValueCodeElement,
-    required this.defaultValueDate,
-    required this.defaultValueDateElement,
-    required this.defaultValueDateTime,
-    required this.defaultValueDateTimeElement,
-    required this.defaultValueDecimal,
-    required this.defaultValueDecimalElement,
-    required this.defaultValueId,
-    required this.defaultValueIdElement,
-    required this.defaultValueInstant,
-    required this.defaultValueInstantElement,
-    required this.defaultValueInteger,
-    required this.defaultValueIntegerElement,
-    required this.defaultValueMarkdown,
-    required this.defaultValueMarkdownElement,
-    required this.defaultValueOid,
-    required this.defaultValueOidElement,
-    required this.defaultValuePositiveInt,
-    required this.defaultValuePositiveIntElement,
-    required this.defaultValueString,
-    required this.defaultValueStringElement,
-    required this.defaultValueTime,
-    required this.defaultValueTimeElement,
-    required this.defaultValueUnsignedInt,
-    required this.defaultValueUnsignedIntElement,
-    required this.defaultValueUri,
-    required this.defaultValueUriElement,
-    required this.defaultValueUrl,
-    required this.defaultValueUrlElement,
-    required this.defaultValueUuid,
-    required this.defaultValueUuidElement,
-    required this.defaultValueAddress,
-    required this.defaultValueAge,
-    required this.defaultValueAnnotation,
-    required this.defaultValueAttachment,
-    required this.defaultValueCodeableConcept,
-    required this.defaultValueCoding,
-    required this.defaultValueContactPoint,
-    required this.defaultValueCount,
-    required this.defaultValueDistance,
-    required this.defaultValueDuration,
-    required this.defaultValueHumanName,
-    required this.defaultValueIdentifier,
-    required this.defaultValueMoney,
-    required this.defaultValuePeriod,
-    required this.defaultValueQuantity,
-    required this.defaultValueRange,
-    required this.defaultValueRatio,
-    required this.defaultValueReference,
-    required this.defaultValueSampledData,
-    required this.defaultValueSignature,
-    required this.defaultValueTiming,
-    required this.defaultValueContactDetail,
-    required this.defaultValueContributor,
-    required this.defaultValueDataRequirement,
-    required this.defaultValueExpression,
-    required this.defaultValueParameterDefinition,
-    required this.defaultValueRelatedArtifact,
-    required this.defaultValueTriggerDefinition,
-    required this.defaultValueUsageContext,
-    required this.defaultValueDosage,
-    required this.defaultValueMeta,
-    required this.element,
-    required this.elementElement,
-    required this.listMode,
-    required this.listModeElement,
-    required this.variable,
-    required this.variableElement,
-    required this.condition,
-    required this.conditionElement,
-    required this.check,
-    required this.checkElement,
-    required this.logMessage,
-    required this.logMessageElement,
-  });
 }
 
 @Data()
@@ -618,26 +338,6 @@ class StructureMapTarget {
   final FhirCode transform;
   final PrimitiveElement transformElement;
   final List<StructureMapParameter> parameter;
-  const StructureMapTarget({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.context,
-    required this.contextElement,
-    required this.contextType,
-    required this.contextTypeElement,
-    required this.element,
-    required this.elementElement,
-    required this.variable,
-    required this.variableElement,
-    required this.listMode,
-    required this.listModeElement,
-    required this.listRuleId,
-    required this.listRuleIdElement,
-    required this.transform,
-    required this.transformElement,
-    required this.parameter,
-  });
 }
 
 @Data()
@@ -656,21 +356,6 @@ class StructureMapParameter {
   final PrimitiveElement valueIntegerElement;
   final double valueDecimal;
   final PrimitiveElement valueDecimalElement;
-  const StructureMapParameter({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.valueId,
-    required this.valueIdElement,
-    required this.valueString,
-    required this.valueStringElement,
-    required this.valueBoolean,
-    required this.valueBooleanElement,
-    required this.valueInteger,
-    required this.valueIntegerElement,
-    required this.valueDecimal,
-    required this.valueDecimalElement,
-  });
 }
 
 @Data()
@@ -683,15 +368,6 @@ class StructureMapDependent {
   final PrimitiveElement nameElement;
   final List<String> variable;
   final List<PrimitiveElement> variableElement;
-  const StructureMapDependent({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.name,
-    required this.nameElement,
-    required this.variable,
-    required this.variableElement,
-  });
 }
 
 

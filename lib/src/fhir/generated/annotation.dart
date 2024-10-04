@@ -16,17 +16,6 @@ class Annotation {
   final PrimitiveElement timeElement;
   final FhirMarkdown text;
   final PrimitiveElement textElement;
-  const Annotation({
-    required this.id,
-    required this.extension_,
-    required this.authorReference,
-    required this.authorString,
-    required this.authorStringElement,
-    required this.time,
-    required this.timeElement,
-    required this.text,
-    required this.textElement,
-  });
 }
 
 

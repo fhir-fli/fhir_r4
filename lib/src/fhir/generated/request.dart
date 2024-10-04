@@ -42,43 +42,6 @@ class RequestGroup {
   final List<Reference> reasonReference;
   final List<Annotation> note;
   final List<RequestGroupAction> action;
-  const RequestGroup({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.instantiatesCanonical,
-    required this.instantiatesCanonicalElement,
-    required this.instantiatesUri,
-    required this.instantiatesUriElement,
-    required this.basedOn,
-    required this.replaces,
-    required this.groupIdentifier,
-    required this.status,
-    required this.statusElement,
-    required this.intent,
-    required this.intentElement,
-    required this.priority,
-    required this.priorityElement,
-    required this.code,
-    required this.subject,
-    required this.encounter,
-    required this.authoredOn,
-    required this.authoredOnElement,
-    required this.author,
-    required this.reasonCode,
-    required this.reasonReference,
-    required this.note,
-    required this.action,
-  });
 }
 
 @Data()
@@ -122,46 +85,6 @@ class RequestGroupAction {
   final PrimitiveElement cardinalityBehaviorElement;
   final Reference resource;
   final List<RequestGroupAction> action;
-  const RequestGroupAction({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.prefix,
-    required this.prefixElement,
-    required this.title,
-    required this.titleElement,
-    required this.description,
-    required this.descriptionElement,
-    required this.textEquivalent,
-    required this.textEquivalentElement,
-    required this.priority,
-    required this.priorityElement,
-    required this.code,
-    required this.documentation,
-    required this.condition,
-    required this.relatedAction,
-    required this.timingDateTime,
-    required this.timingDateTimeElement,
-    required this.timingAge,
-    required this.timingPeriod,
-    required this.timingDuration,
-    required this.timingRange,
-    required this.timingTiming,
-    required this.participant,
-    required this.type,
-    required this.groupingBehavior,
-    required this.groupingBehaviorElement,
-    required this.selectionBehavior,
-    required this.selectionBehaviorElement,
-    required this.requiredBehavior,
-    required this.requiredBehaviorElement,
-    required this.precheckBehavior,
-    required this.precheckBehaviorElement,
-    required this.cardinalityBehavior,
-    required this.cardinalityBehaviorElement,
-    required this.resource,
-    required this.action,
-  });
 }
 
 @Data()
@@ -173,14 +96,6 @@ class RequestGroupCondition {
   final FhirCode kind;
   final PrimitiveElement kindElement;
   final FhirExpression expression;
-  const RequestGroupCondition({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.kind,
-    required this.kindElement,
-    required this.expression,
-  });
 }
 
 @Data()
@@ -195,17 +110,6 @@ class RequestGroupRelatedAction {
   final PrimitiveElement relationshipElement;
   final FhirDuration offsetDuration;
   final Range offsetRange;
-  const RequestGroupRelatedAction({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.actionId,
-    required this.actionIdElement,
-    required this.relationship,
-    required this.relationshipElement,
-    required this.offsetDuration,
-    required this.offsetRange,
-  });
 }
 
 

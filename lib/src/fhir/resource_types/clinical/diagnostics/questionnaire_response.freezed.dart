@@ -194,14 +194,6 @@ abstract class $QuestionnaireResponseCopyWith<$Res> {
       Reference? author,
       Reference? source,
       List<QuestionnaireResponseItem>? item});
-
-  $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
-  $IdentifierCopyWith<$Res>? get identifier;
-  $ReferenceCopyWith<$Res>? get subject;
-  $ReferenceCopyWith<$Res>? get encounter;
-  $ReferenceCopyWith<$Res>? get author;
-  $ReferenceCopyWith<$Res>? get source;
 }
 
 /// @nodoc
@@ -349,104 +341,6 @@ class _$QuestionnaireResponseCopyWithImpl<$Res,
               as List<QuestionnaireResponseItem>?,
     ) as $Val);
   }
-
-  /// Create a copy of QuestionnaireResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $FhirMetaCopyWith<$Res>? get meta {
-    if (_value.meta == null) {
-      return null;
-    }
-
-    return $FhirMetaCopyWith<$Res>(_value.meta!, (value) {
-      return _then(_value.copyWith(meta: value) as $Val);
-    });
-  }
-
-  /// Create a copy of QuestionnaireResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  /// Create a copy of QuestionnaireResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $IdentifierCopyWith<$Res>? get identifier {
-    if (_value.identifier == null) {
-      return null;
-    }
-
-    return $IdentifierCopyWith<$Res>(_value.identifier!, (value) {
-      return _then(_value.copyWith(identifier: value) as $Val);
-    });
-  }
-
-  /// Create a copy of QuestionnaireResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get subject {
-    if (_value.subject == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.subject!, (value) {
-      return _then(_value.copyWith(subject: value) as $Val);
-    });
-  }
-
-  /// Create a copy of QuestionnaireResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get encounter {
-    if (_value.encounter == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.encounter!, (value) {
-      return _then(_value.copyWith(encounter: value) as $Val);
-    });
-  }
-
-  /// Create a copy of QuestionnaireResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get author {
-    if (_value.author == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.author!, (value) {
-      return _then(_value.copyWith(author: value) as $Val);
-    });
-  }
-
-  /// Create a copy of QuestionnaireResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get source {
-    if (_value.source == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.source!, (value) {
-      return _then(_value.copyWith(source: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -485,21 +379,6 @@ abstract class _$$QuestionnaireResponseImplCopyWith<$Res>
       Reference? author,
       Reference? source,
       List<QuestionnaireResponseItem>? item});
-
-  @override
-  $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
-  @override
-  $IdentifierCopyWith<$Res>? get identifier;
-  @override
-  $ReferenceCopyWith<$Res>? get subject;
-  @override
-  $ReferenceCopyWith<$Res>? get encounter;
-  @override
-  $ReferenceCopyWith<$Res>? get author;
-  @override
-  $ReferenceCopyWith<$Res>? get source;
 }
 
 /// @nodoc
@@ -933,7 +812,7 @@ class _$QuestionnaireResponseImpl extends _QuestionnaireResponse {
             (identical(other.resourceType, resourceType) ||
                 other.resourceType == resourceType) &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.meta, meta) || other.meta == meta) &&
+            const DeepCollectionEquality().equals(other.meta, meta) &&
             (identical(other.implicitRules, implicitRules) ||
                 other.implicitRules == implicitRules) &&
             (identical(other.implicitRulesElement, implicitRulesElement) ||
@@ -942,15 +821,15 @@ class _$QuestionnaireResponseImpl extends _QuestionnaireResponse {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
                 .equals(other._modifierExtension, _modifierExtension) &&
-            (identical(other.identifier, identifier) ||
-                other.identifier == identifier) &&
+            const DeepCollectionEquality()
+                .equals(other.identifier, identifier) &&
             const DeepCollectionEquality().equals(other._basedOn, _basedOn) &&
             const DeepCollectionEquality().equals(other._partOf, _partOf) &&
             (identical(other.questionnaire, questionnaire) ||
@@ -960,15 +839,14 @@ class _$QuestionnaireResponseImpl extends _QuestionnaireResponse {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.statusElement, statusElement) ||
                 other.statusElement == statusElement) &&
-            (identical(other.subject, subject) || other.subject == subject) &&
-            (identical(other.encounter, encounter) ||
-                other.encounter == encounter) &&
+            const DeepCollectionEquality().equals(other.subject, subject) &&
+            const DeepCollectionEquality().equals(other.encounter, encounter) &&
             (identical(other.authored, authored) ||
                 other.authored == authored) &&
             (identical(other.authoredElement, authoredElement) ||
                 other.authoredElement == authoredElement) &&
-            (identical(other.author, author) || other.author == author) &&
-            (identical(other.source, source) || other.source == source) &&
+            const DeepCollectionEquality().equals(other.author, author) &&
+            const DeepCollectionEquality().equals(other.source, source) &&
             const DeepCollectionEquality().equals(other._item, _item));
   }
 
@@ -978,28 +856,28 @@ class _$QuestionnaireResponseImpl extends _QuestionnaireResponse {
         runtimeType,
         resourceType,
         id,
-        meta,
+        const DeepCollectionEquality().hash(meta),
         implicitRules,
         implicitRulesElement,
         language,
         languageElement,
-        text,
+        const DeepCollectionEquality().hash(text),
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
-        identifier,
+        const DeepCollectionEquality().hash(identifier),
         const DeepCollectionEquality().hash(_basedOn),
         const DeepCollectionEquality().hash(_partOf),
         questionnaire,
         questionnaireElement,
         status,
         statusElement,
-        subject,
-        encounter,
+        const DeepCollectionEquality().hash(subject),
+        const DeepCollectionEquality().hash(encounter),
         authored,
         authoredElement,
-        author,
-        source,
+        const DeepCollectionEquality().hash(author),
+        const DeepCollectionEquality().hash(source),
         const DeepCollectionEquality().hash(_item)
       ]);
 
@@ -1963,11 +1841,6 @@ abstract class $QuestionnaireResponseAnswerCopyWith<$Res> {
       Quantity? valueQuantity,
       Reference? valueReference,
       List<QuestionnaireResponseItem>? item});
-
-  $AttachmentCopyWith<$Res>? get valueAttachment;
-  $CodingCopyWith<$Res>? get valueCoding;
-  $QuantityCopyWith<$Res>? get valueQuantity;
-  $ReferenceCopyWith<$Res>? get valueReference;
 }
 
 /// @nodoc
@@ -2110,62 +1983,6 @@ class _$QuestionnaireResponseAnswerCopyWithImpl<$Res,
               as List<QuestionnaireResponseItem>?,
     ) as $Val);
   }
-
-  /// Create a copy of QuestionnaireResponseAnswer
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AttachmentCopyWith<$Res>? get valueAttachment {
-    if (_value.valueAttachment == null) {
-      return null;
-    }
-
-    return $AttachmentCopyWith<$Res>(_value.valueAttachment!, (value) {
-      return _then(_value.copyWith(valueAttachment: value) as $Val);
-    });
-  }
-
-  /// Create a copy of QuestionnaireResponseAnswer
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodingCopyWith<$Res>? get valueCoding {
-    if (_value.valueCoding == null) {
-      return null;
-    }
-
-    return $CodingCopyWith<$Res>(_value.valueCoding!, (value) {
-      return _then(_value.copyWith(valueCoding: value) as $Val);
-    });
-  }
-
-  /// Create a copy of QuestionnaireResponseAnswer
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $QuantityCopyWith<$Res>? get valueQuantity {
-    if (_value.valueQuantity == null) {
-      return null;
-    }
-
-    return $QuantityCopyWith<$Res>(_value.valueQuantity!, (value) {
-      return _then(_value.copyWith(valueQuantity: value) as $Val);
-    });
-  }
-
-  /// Create a copy of QuestionnaireResponseAnswer
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get valueReference {
-    if (_value.valueReference == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.valueReference!, (value) {
-      return _then(_value.copyWith(valueReference: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -2202,15 +2019,6 @@ abstract class _$$QuestionnaireResponseAnswerImplCopyWith<$Res>
       Quantity? valueQuantity,
       Reference? valueReference,
       List<QuestionnaireResponseItem>? item});
-
-  @override
-  $AttachmentCopyWith<$Res>? get valueAttachment;
-  @override
-  $CodingCopyWith<$Res>? get valueCoding;
-  @override
-  $QuantityCopyWith<$Res>? get valueQuantity;
-  @override
-  $ReferenceCopyWith<$Res>? get valueReference;
 }
 
 /// @nodoc
@@ -2620,14 +2428,14 @@ class _$QuestionnaireResponseAnswerImpl extends _QuestionnaireResponseAnswer {
                 other.valueUri == valueUri) &&
             (identical(other.valueUriElement, valueUriElement) ||
                 other.valueUriElement == valueUriElement) &&
-            (identical(other.valueAttachment, valueAttachment) ||
-                other.valueAttachment == valueAttachment) &&
-            (identical(other.valueCoding, valueCoding) ||
-                other.valueCoding == valueCoding) &&
-            (identical(other.valueQuantity, valueQuantity) ||
-                other.valueQuantity == valueQuantity) &&
-            (identical(other.valueReference, valueReference) ||
-                other.valueReference == valueReference) &&
+            const DeepCollectionEquality()
+                .equals(other.valueAttachment, valueAttachment) &&
+            const DeepCollectionEquality()
+                .equals(other.valueCoding, valueCoding) &&
+            const DeepCollectionEquality()
+                .equals(other.valueQuantity, valueQuantity) &&
+            const DeepCollectionEquality()
+                .equals(other.valueReference, valueReference) &&
             const DeepCollectionEquality().equals(other._item, _item));
   }
 
@@ -2654,10 +2462,10 @@ class _$QuestionnaireResponseAnswerImpl extends _QuestionnaireResponseAnswer {
         valueStringElement,
         valueUri,
         valueUriElement,
-        valueAttachment,
-        valueCoding,
-        valueQuantity,
-        valueReference,
+        const DeepCollectionEquality().hash(valueAttachment),
+        const DeepCollectionEquality().hash(valueCoding),
+        const DeepCollectionEquality().hash(valueQuantity),
+        const DeepCollectionEquality().hash(valueReference),
         const DeepCollectionEquality().hash(_item)
       ]);
 

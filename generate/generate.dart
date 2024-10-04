@@ -132,12 +132,12 @@ String generateDartClass(
   });
 
   // Constructor
-  buffer.writeln('  const ${_mapToDartType(className)}({');
-  properties?.forEach((String field, dynamic details) {
-    final String camelCaseField = toCamelCase(field);
-    buffer.writeln('    required this.$camelCaseField,');
-  });
-  buffer.writeln('  });');
+  // buffer.writeln('  const ${_mapToDartType(className)}({');
+  // properties?.forEach((String field, dynamic details) {
+  //   final String camelCaseField = toCamelCase(field);
+  //   buffer.writeln('    required this.$camelCaseField,');
+  // });
+  // buffer.writeln('  });');
 
   // Close class
   buffer.writeln('}');

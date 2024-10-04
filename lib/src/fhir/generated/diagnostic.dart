@@ -41,42 +41,6 @@ class DiagnosticReport {
   final PrimitiveElement conclusionElement;
   final List<CodeableConcept> conclusionCode;
   final List<Attachment> presentedForm;
-  const DiagnosticReport({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.basedOn,
-    required this.status,
-    required this.statusElement,
-    required this.category,
-    required this.code,
-    required this.subject,
-    required this.encounter,
-    required this.effectiveDateTime,
-    required this.effectiveDateTimeElement,
-    required this.effectivePeriod,
-    required this.issued,
-    required this.issuedElement,
-    required this.performer,
-    required this.resultsInterpreter,
-    required this.specimen,
-    required this.result,
-    required this.imagingStudy,
-    required this.media,
-    required this.conclusion,
-    required this.conclusionElement,
-    required this.conclusionCode,
-    required this.presentedForm,
-  });
 }
 
 @Data()
@@ -88,14 +52,6 @@ class DiagnosticReportMedia {
   final String comment;
   final PrimitiveElement commentElement;
   final Reference link;
-  const DiagnosticReportMedia({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.comment,
-    required this.commentElement,
-    required this.link,
-  });
 }
 
 

@@ -50,51 +50,6 @@ class MedicinalProductDefinition {
   final List<MedicinalProductDefinitionCrossReference> crossReference;
   final List<MedicinalProductDefinitionOperation> operation;
   final List<MedicinalProductDefinitionCharacteristic> characteristic;
-  const MedicinalProductDefinition({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.type,
-    required this.domain,
-    required this.version,
-    required this.versionElement,
-    required this.status,
-    required this.statusDate,
-    required this.statusDateElement,
-    required this.description,
-    required this.descriptionElement,
-    required this.combinedPharmaceuticalDoseForm,
-    required this.route,
-    required this.indication,
-    required this.indicationElement,
-    required this.legalStatusOfSupply,
-    required this.additionalMonitoringIndicator,
-    required this.specialMeasures,
-    required this.pediatricUseIndicator,
-    required this.classification,
-    required this.marketingStatus,
-    required this.packagedMedicinalProduct,
-    required this.ingredient,
-    required this.impurity,
-    required this.attachedDocument,
-    required this.masterFile,
-    required this.contact,
-    required this.clinicalTrial,
-    required this.code,
-    required this.name,
-    required this.crossReference,
-    required this.operation,
-    required this.characteristic,
-  });
 }
 
 @Data()
@@ -105,13 +60,6 @@ class MedicinalProductDefinitionContact {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept type;
   final Reference contact;
-  const MedicinalProductDefinitionContact({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.contact,
-  });
 }
 
 @Data()
@@ -125,16 +73,6 @@ class MedicinalProductDefinitionName {
   final CodeableConcept type;
   final List<MedicinalProductDefinitionNamePart> namePart;
   final List<MedicinalProductDefinitionCountryLanguage> countryLanguage;
-  const MedicinalProductDefinitionName({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.productName,
-    required this.productNameElement,
-    required this.type,
-    required this.namePart,
-    required this.countryLanguage,
-  });
 }
 
 @Data()
@@ -146,14 +84,6 @@ class MedicinalProductDefinitionNamePart {
   final String part_;
   final PrimitiveElement partElement;
   final CodeableConcept type;
-  const MedicinalProductDefinitionNamePart({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.part_,
-    required this.partElement,
-    required this.type,
-  });
 }
 
 @Data()
@@ -165,14 +95,6 @@ class MedicinalProductDefinitionCountryLanguage {
   final CodeableConcept country;
   final CodeableConcept jurisdiction;
   final CodeableConcept language;
-  const MedicinalProductDefinitionCountryLanguage({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.country,
-    required this.jurisdiction,
-    required this.language,
-  });
 }
 
 @Data()
@@ -183,13 +105,6 @@ class MedicinalProductDefinitionCrossReference {
   final List<FhirExtension> modifierExtension;
   final CodeableReference product;
   final CodeableConcept type;
-  const MedicinalProductDefinitionCrossReference({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.product,
-    required this.type,
-  });
 }
 
 @Data()
@@ -202,15 +117,6 @@ class MedicinalProductDefinitionOperation {
   final Period effectiveDate;
   final List<Reference> organization;
   final CodeableConcept confidentialityIndicator;
-  const MedicinalProductDefinitionOperation({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.effectiveDate,
-    required this.organization,
-    required this.confidentialityIndicator,
-  });
 }
 
 @Data()
@@ -227,19 +133,6 @@ class MedicinalProductDefinitionCharacteristic {
   final bool valueBoolean;
   final PrimitiveElement valueBooleanElement;
   final Attachment valueAttachment;
-  const MedicinalProductDefinitionCharacteristic({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.valueCodeableConcept,
-    required this.valueQuantity,
-    required this.valueDate,
-    required this.valueDateElement,
-    required this.valueBoolean,
-    required this.valueBooleanElement,
-    required this.valueAttachment,
-  });
 }
 
 

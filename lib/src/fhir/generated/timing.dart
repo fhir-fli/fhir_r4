@@ -14,15 +14,6 @@ class Timing {
   final List<PrimitiveElement> eventElement;
   final TimingRepeat repeat;
   final CodeableConcept code;
-  const Timing({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.event,
-    required this.eventElement,
-    required this.repeat,
-    required this.code,
-  });
 }
 
 @Data()
@@ -62,42 +53,6 @@ class TimingRepeat {
   final List<PrimitiveElement> whenElement;
   final FhirUnsignedInt offset;
   final PrimitiveElement offsetElement;
-  const TimingRepeat({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.boundsDuration,
-    required this.boundsRange,
-    required this.boundsPeriod,
-    required this.count,
-    required this.countElement,
-    required this.countMax,
-    required this.countMaxElement,
-    required this.duration,
-    required this.durationElement,
-    required this.durationMax,
-    required this.durationMaxElement,
-    required this.durationUnit,
-    required this.durationUnitElement,
-    required this.frequency,
-    required this.frequencyElement,
-    required this.frequencyMax,
-    required this.frequencyMaxElement,
-    required this.period,
-    required this.periodElement,
-    required this.periodMax,
-    required this.periodMaxElement,
-    required this.periodUnit,
-    required this.periodUnitElement,
-    required this.dayOfWeek,
-    required this.dayOfWeekElement,
-    required this.timeOfDay,
-    required this.timeOfDayElement,
-    required this.when,
-    required this.whenElement,
-    required this.offset,
-    required this.offsetElement,
-  });
 }
 
 

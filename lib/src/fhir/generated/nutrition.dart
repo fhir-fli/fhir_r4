@@ -40,41 +40,6 @@ class NutritionOrder {
   final List<NutritionOrderSupplement> supplement;
   final NutritionOrderEnteralFormula enteralFormula;
   final List<Annotation> note;
-  const NutritionOrder({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.instantiatesCanonical,
-    required this.instantiatesUri,
-    required this.instantiatesUriElement,
-    required this.instantiates,
-    required this.instantiatesElement,
-    required this.status,
-    required this.statusElement,
-    required this.intent,
-    required this.intentElement,
-    required this.patient,
-    required this.encounter,
-    required this.dateTime,
-    required this.dateTimeElement,
-    required this.orderer,
-    required this.allergyIntolerance,
-    required this.foodPreferenceModifier,
-    required this.excludeFoodModifier,
-    required this.oralDiet,
-    required this.supplement,
-    required this.enteralFormula,
-    required this.note,
-  });
 }
 
 @Data()
@@ -90,18 +55,6 @@ class NutritionOrderOralDiet {
   final List<CodeableConcept> fluidConsistencyType;
   final String instruction;
   final PrimitiveElement instructionElement;
-  const NutritionOrderOralDiet({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.schedule,
-    required this.nutrient,
-    required this.texture,
-    required this.fluidConsistencyType,
-    required this.instruction,
-    required this.instructionElement,
-  });
 }
 
 @Data()
@@ -112,13 +65,6 @@ class NutritionOrderNutrient {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept modifier;
   final Quantity amount;
-  const NutritionOrderNutrient({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.modifier,
-    required this.amount,
-  });
 }
 
 @Data()
@@ -129,13 +75,6 @@ class NutritionOrderTexture {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept modifier;
   final CodeableConcept foodType;
-  const NutritionOrderTexture({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.modifier,
-    required this.foodType,
-  });
 }
 
 @Data()
@@ -151,18 +90,6 @@ class NutritionOrderSupplement {
   final Quantity quantity;
   final String instruction;
   final PrimitiveElement instructionElement;
-  const NutritionOrderSupplement({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.productName,
-    required this.productNameElement,
-    required this.schedule,
-    required this.quantity,
-    required this.instruction,
-    required this.instructionElement,
-  });
 }
 
 @Data()
@@ -183,23 +110,6 @@ class NutritionOrderEnteralFormula {
   final Quantity maxVolumeToDeliver;
   final String administrationInstruction;
   final PrimitiveElement administrationInstructionElement;
-  const NutritionOrderEnteralFormula({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.baseFormulaType,
-    required this.baseFormulaProductName,
-    required this.baseFormulaProductNameElement,
-    required this.additiveType,
-    required this.additiveProductName,
-    required this.additiveProductNameElement,
-    required this.caloricDensity,
-    required this.routeofAdministration,
-    required this.administration,
-    required this.maxVolumeToDeliver,
-    required this.administrationInstruction,
-    required this.administrationInstructionElement,
-  });
 }
 
 @Data()
@@ -212,15 +122,6 @@ class NutritionOrderAdministration {
   final Quantity quantity;
   final Quantity rateQuantity;
   final Ratio rateRatio;
-  const NutritionOrderAdministration({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.schedule,
-    required this.quantity,
-    required this.rateQuantity,
-    required this.rateRatio,
-  });
 }
 
 @Data()
@@ -248,30 +149,6 @@ class NutritionProduct {
   final List<NutritionProductProductCharacteristic> productCharacteristic;
   final NutritionProductInstance instance;
   final List<Annotation> note;
-  const NutritionProduct({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.status,
-    required this.statusElement,
-    required this.category,
-    required this.code,
-    required this.manufacturer,
-    required this.nutrient,
-    required this.ingredient,
-    required this.knownAllergen,
-    required this.productCharacteristic,
-    required this.instance,
-    required this.note,
-  });
 }
 
 @Data()
@@ -282,13 +159,6 @@ class NutritionProductNutrient {
   final List<FhirExtension> modifierExtension;
   final CodeableReference item;
   final List<Ratio> amount;
-  const NutritionProductNutrient({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.item,
-    required this.amount,
-  });
 }
 
 @Data()
@@ -299,13 +169,6 @@ class NutritionProductIngredient {
   final List<FhirExtension> modifierExtension;
   final CodeableReference item;
   final List<Ratio> amount;
-  const NutritionProductIngredient({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.item,
-    required this.amount,
-  });
 }
 
 @Data()
@@ -324,21 +187,6 @@ class NutritionProductProductCharacteristic {
   final Attachment valueAttachment;
   final bool valueBoolean;
   final PrimitiveElement valueBooleanElement;
-  const NutritionProductProductCharacteristic({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.valueCodeableConcept,
-    required this.valueString,
-    required this.valueStringElement,
-    required this.valueQuantity,
-    required this.valueBase64Binary,
-    required this.valueBase64BinaryElement,
-    required this.valueAttachment,
-    required this.valueBoolean,
-    required this.valueBooleanElement,
-  });
 }
 
 @Data()
@@ -355,19 +203,6 @@ class NutritionProductInstance {
   final PrimitiveElement expiryElement;
   final FhirDateTime useBy;
   final PrimitiveElement useByElement;
-  const NutritionProductInstance({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.quantity,
-    required this.identifier,
-    required this.lotNumber,
-    required this.lotNumberElement,
-    required this.expiry,
-    required this.expiryElement,
-    required this.useBy,
-    required this.useByElement,
-  });
 }
 
 

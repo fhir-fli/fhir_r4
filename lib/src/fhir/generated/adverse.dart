@@ -42,43 +42,6 @@ class AdverseEvent {
   final List<Reference> subjectMedicalHistory;
   final List<Reference> referenceDocument;
   final List<Reference> study;
-  const AdverseEvent({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.actuality,
-    required this.actualityElement,
-    required this.category,
-    required this.event,
-    required this.subject,
-    required this.encounter,
-    required this.date,
-    required this.dateElement,
-    required this.detected,
-    required this.detectedElement,
-    required this.recordedDate,
-    required this.recordedDateElement,
-    required this.resultingCondition,
-    required this.location,
-    required this.seriousness,
-    required this.severity,
-    required this.outcome,
-    required this.recorder,
-    required this.contributor,
-    required this.suspectEntity,
-    required this.subjectMedicalHistory,
-    required this.referenceDocument,
-    required this.study,
-  });
 }
 
 @Data()
@@ -89,13 +52,6 @@ class AdverseEventSuspectEntity {
   final List<FhirExtension> modifierExtension;
   final Reference instance;
   final List<AdverseEventCausality> causality;
-  const AdverseEventSuspectEntity({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.instance,
-    required this.causality,
-  });
 }
 
 @Data()
@@ -109,16 +65,6 @@ class AdverseEventCausality {
   final PrimitiveElement productRelatednessElement;
   final Reference author;
   final CodeableConcept method;
-  const AdverseEventCausality({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.assessment,
-    required this.productRelatedness,
-    required this.productRelatednessElement,
-    required this.author,
-    required this.method,
-  });
 }
 
 

@@ -16,17 +16,6 @@ class MarketingStatus {
   final Period dateRange;
   final FhirDateTime restoreDate;
   final PrimitiveElement restoreDateElement;
-  const MarketingStatus({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.country,
-    required this.jurisdiction,
-    required this.status,
-    required this.dateRange,
-    required this.restoreDate,
-    required this.restoreDateElement,
-  });
 }
 
 

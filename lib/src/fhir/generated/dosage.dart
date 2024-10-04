@@ -28,29 +28,6 @@ class Dosage {
   final Ratio maxDosePerPeriod;
   final Quantity maxDosePerAdministration;
   final Quantity maxDosePerLifetime;
-  const Dosage({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.sequence,
-    required this.sequenceElement,
-    required this.text,
-    required this.textElement,
-    required this.additionalInstruction,
-    required this.patientInstruction,
-    required this.patientInstructionElement,
-    required this.timing,
-    required this.asNeededBoolean,
-    required this.asNeededBooleanElement,
-    required this.asNeededCodeableConcept,
-    required this.site,
-    required this.route,
-    required this.method,
-    required this.doseAndRate,
-    required this.maxDosePerPeriod,
-    required this.maxDosePerAdministration,
-    required this.maxDosePerLifetime,
-  });
 }
 
 @Data()
@@ -65,17 +42,6 @@ class DosageDoseAndRate {
   final Ratio rateRatio;
   final Range rateRange;
   final Quantity rateQuantity;
-  const DosageDoseAndRate({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.doseRange,
-    required this.doseQuantity,
-    required this.rateRatio,
-    required this.rateRange,
-    required this.rateQuantity,
-  });
 }
 
 

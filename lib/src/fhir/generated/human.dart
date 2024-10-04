@@ -22,23 +22,6 @@ class HumanName {
   final List<String> suffix;
   final List<PrimitiveElement> suffixElement;
   final Period period;
-  const HumanName({
-    required this.id,
-    required this.extension_,
-    required this.use,
-    required this.useElement,
-    required this.text,
-    required this.textElement,
-    required this.family,
-    required this.familyElement,
-    required this.given,
-    required this.givenElement,
-    required this.prefix,
-    required this.prefixElement,
-    required this.suffix,
-    required this.suffixElement,
-    required this.period,
-  });
 }
 
 

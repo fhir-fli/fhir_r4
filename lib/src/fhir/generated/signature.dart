@@ -20,21 +20,6 @@ class Signature {
   final PrimitiveElement sigFormatElement;
   final FhirBase64Binary data;
   final PrimitiveElement dataElement;
-  const Signature({
-    required this.id,
-    required this.extension_,
-    required this.type,
-    required this.when,
-    required this.whenElement,
-    required this.who,
-    required this.onBehalfOf,
-    required this.targetFormat,
-    required this.targetFormatElement,
-    required this.sigFormat,
-    required this.sigFormatElement,
-    required this.data,
-    required this.dataElement,
-  });
 }
 
 

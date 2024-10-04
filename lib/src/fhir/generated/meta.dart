@@ -18,19 +18,6 @@ class FhirMeta {
   final List<FhirCanonical> profile;
   final List<Coding> security;
   final List<Coding> tag;
-  const FhirMeta({
-    required this.id,
-    required this.extension_,
-    required this.versionId,
-    required this.versionIdElement,
-    required this.lastUpdated,
-    required this.lastUpdatedElement,
-    required this.source,
-    required this.sourceElement,
-    required this.profile,
-    required this.security,
-    required this.tag,
-  });
 }
 
 

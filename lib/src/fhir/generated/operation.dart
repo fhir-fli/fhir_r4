@@ -62,63 +62,6 @@ class OperationDefinition {
   final FhirCanonical outputProfile;
   final List<OperationDefinitionParameter> parameter;
   final List<OperationDefinitionOverload> overload;
-  const OperationDefinition({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.url,
-    required this.urlElement,
-    required this.version,
-    required this.versionElement,
-    required this.name,
-    required this.nameElement,
-    required this.title,
-    required this.titleElement,
-    required this.status,
-    required this.statusElement,
-    required this.kind,
-    required this.kindElement,
-    required this.experimental,
-    required this.experimentalElement,
-    required this.date,
-    required this.dateElement,
-    required this.publisher,
-    required this.publisherElement,
-    required this.contact,
-    required this.description,
-    required this.descriptionElement,
-    required this.useContext,
-    required this.jurisdiction,
-    required this.purpose,
-    required this.purposeElement,
-    required this.affectsState,
-    required this.affectsStateElement,
-    required this.code,
-    required this.codeElement,
-    required this.comment,
-    required this.commentElement,
-    required this.base,
-    required this.resource,
-    required this.resourceElement,
-    required this.system,
-    required this.systemElement,
-    required this.type,
-    required this.typeElement,
-    required this.instance,
-    required this.instanceElement,
-    required this.inputProfile,
-    required this.outputProfile,
-    required this.parameter,
-    required this.overload,
-  });
 }
 
 @Data()
@@ -145,29 +88,6 @@ class OperationDefinitionParameter {
   final OperationDefinitionBinding binding;
   final List<OperationDefinitionReferencedFrom> referencedFrom;
   final List<OperationDefinitionParameter> part_;
-  const OperationDefinitionParameter({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.name,
-    required this.nameElement,
-    required this.use,
-    required this.useElement,
-    required this.min,
-    required this.minElement,
-    required this.max,
-    required this.maxElement,
-    required this.documentation,
-    required this.documentationElement,
-    required this.type,
-    required this.typeElement,
-    required this.targetProfile,
-    required this.searchType,
-    required this.searchTypeElement,
-    required this.binding,
-    required this.referencedFrom,
-    required this.part_,
-  });
 }
 
 @Data()
@@ -179,14 +99,6 @@ class OperationDefinitionBinding {
   final FhirCode strength;
   final PrimitiveElement strengthElement;
   final FhirCanonical valueSet;
-  const OperationDefinitionBinding({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.strength,
-    required this.strengthElement,
-    required this.valueSet,
-  });
 }
 
 @Data()
@@ -199,15 +111,6 @@ class OperationDefinitionReferencedFrom {
   final PrimitiveElement sourceElement;
   final String sourceId;
   final PrimitiveElement sourceIdElement;
-  const OperationDefinitionReferencedFrom({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.source,
-    required this.sourceElement,
-    required this.sourceId,
-    required this.sourceIdElement,
-  });
 }
 
 @Data()
@@ -220,15 +123,6 @@ class OperationDefinitionOverload {
   final List<PrimitiveElement> parameterNameElement;
   final String comment;
   final PrimitiveElement commentElement;
-  const OperationDefinitionOverload({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.parameterName,
-    required this.parameterNameElement,
-    required this.comment,
-    required this.commentElement,
-  });
 }
 
 @Data()
@@ -246,20 +140,6 @@ class OperationOutcome {
   final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final List<OperationOutcomeIssue> issue;
-  const OperationOutcome({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.issue,
-  });
 }
 
 @Data()
@@ -279,22 +159,6 @@ class OperationOutcomeIssue {
   final List<PrimitiveElement> locationElement;
   final List<String> expression;
   final List<PrimitiveElement> expressionElement;
-  const OperationOutcomeIssue({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.severity,
-    required this.severityElement,
-    required this.code,
-    required this.codeElement,
-    required this.details,
-    required this.diagnostics,
-    required this.diagnosticsElement,
-    required this.location,
-    required this.locationElement,
-    required this.expression,
-    required this.expressionElement,
-  });
 }
 
 

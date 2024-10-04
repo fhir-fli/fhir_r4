@@ -34,35 +34,6 @@ class DocumentManifest {
   final PrimitiveElement descriptionElement;
   final List<Reference> content;
   final List<DocumentManifestRelated> related;
-  const DocumentManifest({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.masterIdentifier,
-    required this.identifier,
-    required this.status,
-    required this.statusElement,
-    required this.type,
-    required this.subject,
-    required this.created,
-    required this.createdElement,
-    required this.author,
-    required this.recipient,
-    required this.source,
-    required this.sourceElement,
-    required this.description,
-    required this.descriptionElement,
-    required this.content,
-    required this.related,
-  });
 }
 
 @Data()
@@ -73,13 +44,6 @@ class DocumentManifestRelated {
   final List<FhirExtension> modifierExtension;
   final Identifier identifier;
   final Reference ref;
-  const DocumentManifestRelated({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.ref,
-  });
 }
 
 @Data()
@@ -116,39 +80,6 @@ class DocumentReference {
   final List<CodeableConcept> securityLabel;
   final List<DocumentReferenceContent> content;
   final DocumentReferenceContext context;
-  const DocumentReference({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.masterIdentifier,
-    required this.identifier,
-    required this.status,
-    required this.statusElement,
-    required this.docStatus,
-    required this.docStatusElement,
-    required this.type,
-    required this.category,
-    required this.subject,
-    required this.date,
-    required this.dateElement,
-    required this.author,
-    required this.authenticator,
-    required this.custodian,
-    required this.relatesTo,
-    required this.description,
-    required this.descriptionElement,
-    required this.securityLabel,
-    required this.content,
-    required this.context,
-  });
 }
 
 @Data()
@@ -160,14 +91,6 @@ class DocumentReferenceRelatesTo {
   final FhirCode code;
   final PrimitiveElement codeElement;
   final Reference target;
-  const DocumentReferenceRelatesTo({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.codeElement,
-    required this.target,
-  });
 }
 
 @Data()
@@ -178,13 +101,6 @@ class DocumentReferenceContent {
   final List<FhirExtension> modifierExtension;
   final Attachment attachment;
   final Coding format;
-  const DocumentReferenceContent({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.attachment,
-    required this.format,
-  });
 }
 
 @Data()
@@ -200,18 +116,6 @@ class DocumentReferenceContext {
   final CodeableConcept practiceSetting;
   final Reference sourcePatientInfo;
   final List<Reference> related;
-  const DocumentReferenceContext({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.encounter,
-    required this.event,
-    required this.period,
-    required this.facilityType,
-    required this.practiceSetting,
-    required this.sourcePatientInfo,
-    required this.related,
-  });
 }
 
 

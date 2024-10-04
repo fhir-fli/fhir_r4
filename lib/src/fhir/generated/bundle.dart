@@ -24,25 +24,6 @@ class Bundle {
   final List<BundleLink> link;
   final List<BundleEntry> entry;
   final Signature signature;
-  const Bundle({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.identifier,
-    required this.type,
-    required this.typeElement,
-    required this.timestamp,
-    required this.timestampElement,
-    required this.total,
-    required this.totalElement,
-    required this.link,
-    required this.entry,
-    required this.signature,
-  });
 }
 
 @Data()
@@ -55,15 +36,6 @@ class BundleLink {
   final PrimitiveElement relationElement;
   final FhirUri url;
   final PrimitiveElement urlElement;
-  const BundleLink({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.relation,
-    required this.relationElement,
-    required this.url,
-    required this.urlElement,
-  });
 }
 
 @Data()
@@ -79,18 +51,6 @@ class BundleEntry {
   final BundleSearch search;
   final BundleRequest request;
   final BundleResponse response;
-  const BundleEntry({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.link,
-    required this.fullUrl,
-    required this.fullUrlElement,
-    required this.resource,
-    required this.search,
-    required this.request,
-    required this.response,
-  });
 }
 
 @Data()
@@ -103,15 +63,6 @@ class BundleSearch {
   final PrimitiveElement modeElement;
   final FhirDecimal score;
   final PrimitiveElement scoreElement;
-  const BundleSearch({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.mode,
-    required this.modeElement,
-    required this.score,
-    required this.scoreElement,
-  });
 }
 
 @Data()
@@ -132,23 +83,6 @@ class BundleRequest {
   final PrimitiveElement ifMatchElement;
   final String ifNoneExist;
   final PrimitiveElement ifNoneExistElement;
-  const BundleRequest({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.method,
-    required this.methodElement,
-    required this.url,
-    required this.urlElement,
-    required this.ifNoneMatch,
-    required this.ifNoneMatchElement,
-    required this.ifModifiedSince,
-    required this.ifModifiedSinceElement,
-    required this.ifMatch,
-    required this.ifMatchElement,
-    required this.ifNoneExist,
-    required this.ifNoneExistElement,
-  });
 }
 
 @Data()
@@ -166,20 +100,6 @@ class BundleResponse {
   final FhirInstant lastModified;
   final PrimitiveElement lastModifiedElement;
   final Resource outcome;
-  const BundleResponse({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.status,
-    required this.statusElement,
-    required this.location,
-    required this.locationElement,
-    required this.etag,
-    required this.etagElement,
-    required this.lastModified,
-    required this.lastModifiedElement,
-    required this.outcome,
-  });
 }
 
 

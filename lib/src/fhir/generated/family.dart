@@ -55,56 +55,6 @@ class FamilyMemberHistory {
   final List<Reference> reasonReference;
   final List<Annotation> note;
   final List<FamilyMemberHistoryCondition> condition;
-  const FamilyMemberHistory({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.instantiatesCanonical,
-    required this.instantiatesUri,
-    required this.instantiatesUriElement,
-    required this.status,
-    required this.statusElement,
-    required this.dataAbsentReason,
-    required this.patient,
-    required this.date,
-    required this.dateElement,
-    required this.name,
-    required this.nameElement,
-    required this.relationship,
-    required this.sex,
-    required this.bornPeriod,
-    required this.bornDate,
-    required this.bornDateElement,
-    required this.bornString,
-    required this.bornStringElement,
-    required this.ageAge,
-    required this.ageRange,
-    required this.ageString,
-    required this.ageStringElement,
-    required this.estimatedAge,
-    required this.estimatedAgeElement,
-    required this.deceasedBoolean,
-    required this.deceasedBooleanElement,
-    required this.deceasedAge,
-    required this.deceasedRange,
-    required this.deceasedDate,
-    required this.deceasedDateElement,
-    required this.deceasedString,
-    required this.deceasedStringElement,
-    required this.reasonCode,
-    required this.reasonReference,
-    required this.note,
-    required this.condition,
-  });
 }
 
 @Data()
@@ -123,21 +73,6 @@ class FamilyMemberHistoryCondition {
   final String onsetString;
   final PrimitiveElement onsetStringElement;
   final List<Annotation> note;
-  const FamilyMemberHistoryCondition({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.outcome,
-    required this.contributedToDeath,
-    required this.contributedToDeathElement,
-    required this.onsetAge,
-    required this.onsetRange,
-    required this.onsetPeriod,
-    required this.onsetString,
-    required this.onsetStringElement,
-    required this.note,
-  });
 }
 
 

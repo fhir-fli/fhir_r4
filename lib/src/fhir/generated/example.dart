@@ -44,45 +44,6 @@ class ExampleScenario {
   final List<ExampleScenarioInstance> instance;
   final List<ExampleScenarioProcess> process;
   final List<FhirCanonical> workflow;
-  const ExampleScenario({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.url,
-    required this.urlElement,
-    required this.identifier,
-    required this.version,
-    required this.versionElement,
-    required this.name,
-    required this.nameElement,
-    required this.status,
-    required this.statusElement,
-    required this.experimental,
-    required this.experimentalElement,
-    required this.date,
-    required this.dateElement,
-    required this.publisher,
-    required this.publisherElement,
-    required this.contact,
-    required this.useContext,
-    required this.jurisdiction,
-    required this.copyright,
-    required this.copyrightElement,
-    required this.purpose,
-    required this.purposeElement,
-    required this.actor,
-    required this.instance,
-    required this.process,
-    required this.workflow,
-  });
 }
 
 @Data()
@@ -99,19 +60,6 @@ class ExampleScenarioActor {
   final PrimitiveElement nameElement;
   final FhirMarkdown description;
   final PrimitiveElement descriptionElement;
-  const ExampleScenarioActor({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.actorId,
-    required this.actorIdElement,
-    required this.type,
-    required this.typeElement,
-    required this.name,
-    required this.nameElement,
-    required this.description,
-    required this.descriptionElement,
-  });
 }
 
 @Data()
@@ -130,21 +78,6 @@ class ExampleScenarioInstance {
   final PrimitiveElement descriptionElement;
   final List<ExampleScenarioVersion> version;
   final List<ExampleScenarioContainedInstance> containedInstance;
-  const ExampleScenarioInstance({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.resourceId,
-    required this.resourceIdElement,
-    required this.resourceType,
-    required this.resourceTypeElement,
-    required this.name,
-    required this.nameElement,
-    required this.description,
-    required this.descriptionElement,
-    required this.version,
-    required this.containedInstance,
-  });
 }
 
 @Data()
@@ -157,15 +90,6 @@ class ExampleScenarioVersion {
   final PrimitiveElement versionIdElement;
   final FhirMarkdown description;
   final PrimitiveElement descriptionElement;
-  const ExampleScenarioVersion({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.versionId,
-    required this.versionIdElement,
-    required this.description,
-    required this.descriptionElement,
-  });
 }
 
 @Data()
@@ -178,15 +102,6 @@ class ExampleScenarioContainedInstance {
   final PrimitiveElement resourceIdElement;
   final String versionId;
   final PrimitiveElement versionIdElement;
-  const ExampleScenarioContainedInstance({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.resourceId,
-    required this.resourceIdElement,
-    required this.versionId,
-    required this.versionIdElement,
-  });
 }
 
 @Data()
@@ -204,20 +119,6 @@ class ExampleScenarioProcess {
   final FhirMarkdown postConditions;
   final PrimitiveElement postConditionsElement;
   final List<ExampleScenarioStep> step;
-  const ExampleScenarioProcess({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.title,
-    required this.titleElement,
-    required this.description,
-    required this.descriptionElement,
-    required this.preConditions,
-    required this.preConditionsElement,
-    required this.postConditions,
-    required this.postConditionsElement,
-    required this.step,
-  });
 }
 
 @Data()
@@ -231,16 +132,6 @@ class ExampleScenarioStep {
   final PrimitiveElement pauseElement;
   final ExampleScenarioOperation operation;
   final List<ExampleScenarioAlternative> alternative;
-  const ExampleScenarioStep({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.process,
-    required this.pause,
-    required this.pauseElement,
-    required this.operation,
-    required this.alternative,
-  });
 }
 
 @Data()
@@ -267,29 +158,6 @@ class ExampleScenarioOperation {
   final PrimitiveElement receiverActiveElement;
   final ExampleScenarioContainedInstance request;
   final ExampleScenarioContainedInstance response;
-  const ExampleScenarioOperation({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.number,
-    required this.numberElement,
-    required this.type,
-    required this.typeElement,
-    required this.name,
-    required this.nameElement,
-    required this.initiator,
-    required this.initiatorElement,
-    required this.receiver,
-    required this.receiverElement,
-    required this.description,
-    required this.descriptionElement,
-    required this.initiatorActive,
-    required this.initiatorActiveElement,
-    required this.receiverActive,
-    required this.receiverActiveElement,
-    required this.request,
-    required this.response,
-  });
 }
 
 @Data()
@@ -303,16 +171,6 @@ class ExampleScenarioAlternative {
   final FhirMarkdown description;
   final PrimitiveElement descriptionElement;
   final List<ExampleScenarioStep> step;
-  const ExampleScenarioAlternative({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.title,
-    required this.titleElement,
-    required this.description,
-    required this.descriptionElement,
-    required this.step,
-  });
 }
 
 

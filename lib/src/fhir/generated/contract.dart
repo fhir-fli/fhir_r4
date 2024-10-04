@@ -62,63 +62,6 @@ class Contract {
   final List<ContractRule> rule;
   final Attachment legallyBindingAttachment;
   final Reference legallyBindingReference;
-  const Contract({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.url,
-    required this.urlElement,
-    required this.version,
-    required this.versionElement,
-    required this.status,
-    required this.statusElement,
-    required this.legalState,
-    required this.instantiatesCanonical,
-    required this.instantiatesUri,
-    required this.instantiatesUriElement,
-    required this.contentDerivative,
-    required this.issued,
-    required this.issuedElement,
-    required this.applies,
-    required this.expirationType,
-    required this.subject,
-    required this.authority,
-    required this.domain,
-    required this.site,
-    required this.name,
-    required this.nameElement,
-    required this.title,
-    required this.titleElement,
-    required this.subtitle,
-    required this.subtitleElement,
-    required this.alias,
-    required this.aliasElement,
-    required this.author,
-    required this.scope,
-    required this.topicCodeableConcept,
-    required this.topicReference,
-    required this.type,
-    required this.subType,
-    required this.contentDefinition,
-    required this.term,
-    required this.supportingInfo,
-    required this.relevantHistory,
-    required this.signer,
-    required this.friendly,
-    required this.legal,
-    required this.rule,
-    required this.legallyBindingAttachment,
-    required this.legallyBindingReference,
-  });
 }
 
 @Data()
@@ -136,20 +79,6 @@ class ContractContentDefinition {
   final PrimitiveElement publicationStatusElement;
   final FhirMarkdown copyright;
   final PrimitiveElement copyrightElement;
-  const ContractContentDefinition({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.subType,
-    required this.publisher,
-    required this.publicationDate,
-    required this.publicationDateElement,
-    required this.publicationStatus,
-    required this.publicationStatusElement,
-    required this.copyright,
-    required this.copyrightElement,
-  });
 }
 
 @Data()
@@ -173,26 +102,6 @@ class ContractTerm {
   final List<ContractAsset> asset;
   final List<ContractAction> action;
   final List<ContractTerm> group;
-  const ContractTerm({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.issued,
-    required this.issuedElement,
-    required this.applies,
-    required this.topicCodeableConcept,
-    required this.topicReference,
-    required this.type,
-    required this.subType,
-    required this.text,
-    required this.textElement,
-    required this.securityLabel,
-    required this.offer,
-    required this.asset,
-    required this.action,
-    required this.group,
-  });
 }
 
 @Data()
@@ -206,16 +115,6 @@ class ContractSecurityLabel {
   final Coding classification;
   final List<Coding> category;
   final List<Coding> control;
-  const ContractSecurityLabel({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.number,
-    required this.numberElement,
-    required this.classification,
-    required this.category,
-    required this.control,
-  });
 }
 
 @Data()
@@ -237,24 +136,6 @@ class ContractOffer {
   final List<PrimitiveElement> linkIdElement;
   final List<FhirUnsignedInt> securityLabelNumber;
   final List<PrimitiveElement> securityLabelNumberElement;
-  const ContractOffer({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.party,
-    required this.topic,
-    required this.type,
-    required this.decision,
-    required this.decisionMode,
-    required this.answer,
-    required this.text,
-    required this.textElement,
-    required this.linkId,
-    required this.linkIdElement,
-    required this.securityLabelNumber,
-    required this.securityLabelNumberElement,
-  });
 }
 
 @Data()
@@ -265,13 +146,6 @@ class ContractParty {
   final List<FhirExtension> modifierExtension;
   final List<Reference> reference;
   final CodeableConcept role;
-  const ContractParty({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.reference,
-    required this.role,
-  });
 }
 
 @Data()
@@ -300,31 +174,6 @@ class ContractAnswer {
   final Coding valueCoding;
   final Quantity valueQuantity;
   final Reference valueReference;
-  const ContractAnswer({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.valueBoolean,
-    required this.valueBooleanElement,
-    required this.valueDecimal,
-    required this.valueDecimalElement,
-    required this.valueInteger,
-    required this.valueIntegerElement,
-    required this.valueDate,
-    required this.valueDateElement,
-    required this.valueDateTime,
-    required this.valueDateTimeElement,
-    required this.valueTime,
-    required this.valueTimeElement,
-    required this.valueString,
-    required this.valueStringElement,
-    required this.valueUri,
-    required this.valueUriElement,
-    required this.valueAttachment,
-    required this.valueCoding,
-    required this.valueQuantity,
-    required this.valueReference,
-  });
 }
 
 @Data()
@@ -352,30 +201,6 @@ class ContractAsset {
   final List<FhirUnsignedInt> securityLabelNumber;
   final List<PrimitiveElement> securityLabelNumberElement;
   final List<ContractValuedItem> valuedItem;
-  const ContractAsset({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.scope,
-    required this.type,
-    required this.typeReference,
-    required this.subtype,
-    required this.relationship,
-    required this.context,
-    required this.condition,
-    required this.conditionElement,
-    required this.periodType,
-    required this.period,
-    required this.usePeriod,
-    required this.text,
-    required this.textElement,
-    required this.linkId,
-    required this.linkIdElement,
-    required this.answer,
-    required this.securityLabelNumber,
-    required this.securityLabelNumberElement,
-    required this.valuedItem,
-  });
 }
 
 @Data()
@@ -388,15 +213,6 @@ class ContractContext {
   final List<CodeableConcept> code;
   final String text;
   final PrimitiveElement textElement;
-  const ContractContext({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.reference,
-    required this.code,
-    required this.text,
-    required this.textElement,
-  });
 }
 
 @Data()
@@ -427,33 +243,6 @@ class ContractValuedItem {
   final List<PrimitiveElement> linkIdElement;
   final List<FhirUnsignedInt> securityLabelNumber;
   final List<PrimitiveElement> securityLabelNumberElement;
-  const ContractValuedItem({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.entityCodeableConcept,
-    required this.entityReference,
-    required this.identifier,
-    required this.effectiveTime,
-    required this.effectiveTimeElement,
-    required this.quantity,
-    required this.unitPrice,
-    required this.factor,
-    required this.factorElement,
-    required this.points,
-    required this.pointsElement,
-    required this.net,
-    required this.payment,
-    required this.paymentElement,
-    required this.paymentDate,
-    required this.paymentDateElement,
-    required this.responsible,
-    required this.recipient,
-    required this.linkId,
-    required this.linkIdElement,
-    required this.securityLabelNumber,
-    required this.securityLabelNumberElement,
-  });
 }
 
 @Data()
@@ -494,43 +283,6 @@ class ContractAction {
   final List<Annotation> note;
   final List<FhirUnsignedInt> securityLabelNumber;
   final List<PrimitiveElement> securityLabelNumberElement;
-  const ContractAction({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.doNotPerform,
-    required this.doNotPerformElement,
-    required this.type,
-    required this.subject,
-    required this.intent,
-    required this.linkId,
-    required this.linkIdElement,
-    required this.status,
-    required this.context,
-    required this.contextLinkId,
-    required this.contextLinkIdElement,
-    required this.occurrenceDateTime,
-    required this.occurrenceDateTimeElement,
-    required this.occurrencePeriod,
-    required this.occurrenceTiming,
-    required this.requester,
-    required this.requesterLinkId,
-    required this.requesterLinkIdElement,
-    required this.performerType,
-    required this.performerRole,
-    required this.performer,
-    required this.performerLinkId,
-    required this.performerLinkIdElement,
-    required this.reasonCode,
-    required this.reasonReference,
-    required this.reason,
-    required this.reasonElement,
-    required this.reasonLinkId,
-    required this.reasonLinkIdElement,
-    required this.note,
-    required this.securityLabelNumber,
-    required this.securityLabelNumberElement,
-  });
 }
 
 @Data()
@@ -541,13 +293,6 @@ class ContractSubject {
   final List<FhirExtension> modifierExtension;
   final List<Reference> reference;
   final CodeableConcept role;
-  const ContractSubject({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.reference,
-    required this.role,
-  });
 }
 
 @Data()
@@ -559,14 +304,6 @@ class ContractSigner {
   final Coding type;
   final Reference party;
   final List<Signature> signature;
-  const ContractSigner({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.party,
-    required this.signature,
-  });
 }
 
 @Data()
@@ -577,13 +314,6 @@ class ContractFriendly {
   final List<FhirExtension> modifierExtension;
   final Attachment contentAttachment;
   final Reference contentReference;
-  const ContractFriendly({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.contentAttachment,
-    required this.contentReference,
-  });
 }
 
 @Data()
@@ -594,13 +324,6 @@ class ContractLegal {
   final List<FhirExtension> modifierExtension;
   final Attachment contentAttachment;
   final Reference contentReference;
-  const ContractLegal({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.contentAttachment,
-    required this.contentReference,
-  });
 }
 
 @Data()
@@ -611,13 +334,6 @@ class ContractRule {
   final List<FhirExtension> modifierExtension;
   final Attachment contentAttachment;
   final Reference contentReference;
-  const ContractRule({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.contentAttachment,
-    required this.contentReference,
-  });
 }
 
 

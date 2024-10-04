@@ -36,37 +36,6 @@ class DetectedIssue {
   final FhirUri reference;
   final PrimitiveElement referenceElement;
   final List<DetectedIssueMitigation> mitigation;
-  const DetectedIssue({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.status,
-    required this.statusElement,
-    required this.code,
-    required this.severity,
-    required this.severityElement,
-    required this.patient,
-    required this.identifiedDateTime,
-    required this.identifiedDateTimeElement,
-    required this.identifiedPeriod,
-    required this.author,
-    required this.implicated,
-    required this.evidence,
-    required this.detail,
-    required this.detailElement,
-    required this.reference,
-    required this.referenceElement,
-    required this.mitigation,
-  });
 }
 
 @Data()
@@ -77,13 +46,6 @@ class DetectedIssueEvidence {
   final List<FhirExtension> modifierExtension;
   final List<CodeableConcept> code;
   final List<Reference> detail;
-  const DetectedIssueEvidence({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.detail,
-  });
 }
 
 @Data()
@@ -96,15 +58,6 @@ class DetectedIssueMitigation {
   final FhirDateTime date;
   final PrimitiveElement dateElement;
   final Reference author;
-  const DetectedIssueMitigation({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.action,
-    required this.date,
-    required this.dateElement,
-    required this.author,
-  });
 }
 
 

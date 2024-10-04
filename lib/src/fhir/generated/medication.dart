@@ -27,28 +27,6 @@ class Medication {
   final Ratio amount;
   final List<MedicationIngredient> ingredient;
   final MedicationBatch batch;
-  const Medication({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.code,
-    required this.status,
-    required this.statusElement,
-    required this.manufacturer,
-    required this.form,
-    required this.amount,
-    required this.ingredient,
-    required this.batch,
-  });
 }
 
 @Data()
@@ -62,16 +40,6 @@ class MedicationIngredient {
   final FhirBoolean isActive;
   final PrimitiveElement isActiveElement;
   final Ratio strength;
-  const MedicationIngredient({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.itemCodeableConcept,
-    required this.itemReference,
-    required this.isActive,
-    required this.isActiveElement,
-    required this.strength,
-  });
 }
 
 @Data()
@@ -84,15 +52,6 @@ class MedicationBatch {
   final PrimitiveElement lotNumberElement;
   final FhirDateTime expirationDate;
   final PrimitiveElement expirationDateElement;
-  const MedicationBatch({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.lotNumber,
-    required this.lotNumberElement,
-    required this.expirationDate,
-    required this.expirationDateElement,
-  });
 }
 
 @Data()
@@ -133,43 +92,6 @@ class MedicationAdministration {
   final List<Annotation> note;
   final MedicationAdministrationDosage dosage;
   final List<Reference> eventHistory;
-  const MedicationAdministration({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.instantiates,
-    required this.instantiatesElement,
-    required this.partOf,
-    required this.status,
-    required this.statusElement,
-    required this.statusReason,
-    required this.category,
-    required this.medicationCodeableConcept,
-    required this.medicationReference,
-    required this.subject,
-    required this.context,
-    required this.supportingInformation,
-    required this.effectiveDateTime,
-    required this.effectiveDateTimeElement,
-    required this.effectivePeriod,
-    required this.performer,
-    required this.reasonCode,
-    required this.reasonReference,
-    required this.request,
-    required this.device,
-    required this.note,
-    required this.dosage,
-    required this.eventHistory,
-  });
 }
 
 @Data()
@@ -180,13 +102,6 @@ class MedicationAdministrationPerformer {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept function_;
   final Reference actor;
-  const MedicationAdministrationPerformer({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.function_,
-    required this.actor,
-  });
 }
 
 @Data()
@@ -203,19 +118,6 @@ class MedicationAdministrationDosage {
   final Quantity dose;
   final Ratio rateRatio;
   final Quantity rateQuantity;
-  const MedicationAdministrationDosage({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.text,
-    required this.textElement,
-    required this.site,
-    required this.route,
-    required this.method,
-    required this.dose,
-    required this.rateRatio,
-    required this.rateQuantity,
-  });
 }
 
 @Data()
@@ -261,48 +163,6 @@ class MedicationDispense {
   final MedicationDispenseSubstitution substitution;
   final List<Reference> detectedIssue;
   final List<Reference> eventHistory;
-  const MedicationDispense({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.partOf,
-    required this.status,
-    required this.statusElement,
-    required this.statusReasonCodeableConcept,
-    required this.statusReasonReference,
-    required this.category,
-    required this.medicationCodeableConcept,
-    required this.medicationReference,
-    required this.subject,
-    required this.context,
-    required this.supportingInformation,
-    required this.performer,
-    required this.location,
-    required this.authorizingPrescription,
-    required this.type,
-    required this.quantity,
-    required this.daysSupply,
-    required this.whenPrepared,
-    required this.whenPreparedElement,
-    required this.whenHandedOver,
-    required this.whenHandedOverElement,
-    required this.destination,
-    required this.receiver,
-    required this.note,
-    required this.dosageInstruction,
-    required this.substitution,
-    required this.detectedIssue,
-    required this.eventHistory,
-  });
 }
 
 @Data()
@@ -313,13 +173,6 @@ class MedicationDispensePerformer {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept function_;
   final Reference actor;
-  const MedicationDispensePerformer({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.function_,
-    required this.actor,
-  });
 }
 
 @Data()
@@ -333,16 +186,6 @@ class MedicationDispenseSubstitution {
   final CodeableConcept type;
   final List<CodeableConcept> reason;
   final List<Reference> responsibleParty;
-  const MedicationDispenseSubstitution({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.wasSubstituted,
-    required this.wasSubstitutedElement,
-    required this.type,
-    required this.reason,
-    required this.responsibleParty,
-  });
 }
 
 @Data()
@@ -384,44 +227,6 @@ class MedicationKnowledge {
   final List<Reference> contraindication;
   final List<MedicationKnowledgeRegulatory> regulatory;
   final List<MedicationKnowledgeKinetics> kinetics;
-  const MedicationKnowledge({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.status,
-    required this.statusElement,
-    required this.manufacturer,
-    required this.doseForm,
-    required this.amount,
-    required this.synonym,
-    required this.synonymElement,
-    required this.relatedMedicationKnowledge,
-    required this.associatedMedication,
-    required this.productType,
-    required this.monograph,
-    required this.ingredient,
-    required this.preparationInstruction,
-    required this.preparationInstructionElement,
-    required this.intendedRoute,
-    required this.cost,
-    required this.monitoringProgram,
-    required this.administrationGuidelines,
-    required this.medicineClassification,
-    required this.packaging,
-    required this.drugCharacteristic,
-    required this.contraindication,
-    required this.regulatory,
-    required this.kinetics,
-  });
 }
 
 @Data()
@@ -432,13 +237,6 @@ class MedicationKnowledgeRelatedMedicationKnowledge {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept type;
   final List<Reference> reference;
-  const MedicationKnowledgeRelatedMedicationKnowledge({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.reference,
-  });
 }
 
 @Data()
@@ -449,13 +247,6 @@ class MedicationKnowledgeMonograph {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept type;
   final Reference source;
-  const MedicationKnowledgeMonograph({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.source,
-  });
 }
 
 @Data()
@@ -469,16 +260,6 @@ class MedicationKnowledgeIngredient {
   final FhirBoolean isActive;
   final PrimitiveElement isActiveElement;
   final Ratio strength;
-  const MedicationKnowledgeIngredient({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.itemCodeableConcept,
-    required this.itemReference,
-    required this.isActive,
-    required this.isActiveElement,
-    required this.strength,
-  });
 }
 
 @Data()
@@ -491,15 +272,6 @@ class MedicationKnowledgeCost {
   final String source;
   final PrimitiveElement sourceElement;
   final Money cost;
-  const MedicationKnowledgeCost({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.source,
-    required this.sourceElement,
-    required this.cost,
-  });
 }
 
 @Data()
@@ -511,14 +283,6 @@ class MedicationKnowledgeMonitoringProgram {
   final CodeableConcept type;
   final String name;
   final PrimitiveElement nameElement;
-  const MedicationKnowledgeMonitoringProgram({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.name,
-    required this.nameElement,
-  });
 }
 
 @Data()
@@ -531,15 +295,6 @@ class MedicationKnowledgeAdministrationGuidelines {
   final CodeableConcept indicationCodeableConcept;
   final Reference indicationReference;
   final List<MedicationKnowledgePatientCharacteristics> patientCharacteristics;
-  const MedicationKnowledgeAdministrationGuidelines({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.dosage,
-    required this.indicationCodeableConcept,
-    required this.indicationReference,
-    required this.patientCharacteristics,
-  });
 }
 
 @Data()
@@ -550,13 +305,6 @@ class MedicationKnowledgeDosage {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept type;
   final List<Dosage> dosage;
-  const MedicationKnowledgeDosage({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.dosage,
-  });
 }
 
 @Data()
@@ -569,15 +317,6 @@ class MedicationKnowledgePatientCharacteristics {
   final Quantity characteristicQuantity;
   final List<String> value;
   final List<PrimitiveElement> valueElement;
-  const MedicationKnowledgePatientCharacteristics({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.characteristicCodeableConcept,
-    required this.characteristicQuantity,
-    required this.value,
-    required this.valueElement,
-  });
 }
 
 @Data()
@@ -588,13 +327,6 @@ class MedicationKnowledgeMedicineClassification {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept type;
   final List<CodeableConcept> classification;
-  const MedicationKnowledgeMedicineClassification({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.classification,
-  });
 }
 
 @Data()
@@ -605,13 +337,6 @@ class MedicationKnowledgePackaging {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept type;
   final Quantity quantity;
-  const MedicationKnowledgePackaging({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.quantity,
-  });
 }
 
 @Data()
@@ -627,18 +352,6 @@ class MedicationKnowledgeDrugCharacteristic {
   final Quantity valueQuantity;
   final String valueBase64Binary;
   final PrimitiveElement valueBase64BinaryElement;
-  const MedicationKnowledgeDrugCharacteristic({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.valueCodeableConcept,
-    required this.valueString,
-    required this.valueStringElement,
-    required this.valueQuantity,
-    required this.valueBase64Binary,
-    required this.valueBase64BinaryElement,
-  });
 }
 
 @Data()
@@ -651,15 +364,6 @@ class MedicationKnowledgeRegulatory {
   final List<MedicationKnowledgeSubstitution> substitution;
   final List<MedicationKnowledgeSchedule> schedule;
   final MedicationKnowledgeMaxDispense maxDispense;
-  const MedicationKnowledgeRegulatory({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.regulatoryAuthority,
-    required this.substitution,
-    required this.schedule,
-    required this.maxDispense,
-  });
 }
 
 @Data()
@@ -671,14 +375,6 @@ class MedicationKnowledgeSubstitution {
   final CodeableConcept type;
   final FhirBoolean allowed;
   final PrimitiveElement allowedElement;
-  const MedicationKnowledgeSubstitution({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.allowed,
-    required this.allowedElement,
-  });
 }
 
 @Data()
@@ -688,12 +384,6 @@ class MedicationKnowledgeSchedule {
   final List<FhirExtension> extension_;
   final List<FhirExtension> modifierExtension;
   final CodeableConcept schedule;
-  const MedicationKnowledgeSchedule({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.schedule,
-  });
 }
 
 @Data()
@@ -704,13 +394,6 @@ class MedicationKnowledgeMaxDispense {
   final List<FhirExtension> modifierExtension;
   final Quantity quantity;
   final FhirDuration period;
-  const MedicationKnowledgeMaxDispense({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.quantity,
-    required this.period,
-  });
 }
 
 @Data()
@@ -722,14 +405,6 @@ class MedicationKnowledgeKinetics {
   final List<Quantity> areaUnderCurve;
   final List<Quantity> lethalDose50;
   final FhirDuration halfLifePeriod;
-  const MedicationKnowledgeKinetics({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.areaUnderCurve,
-    required this.lethalDose50,
-    required this.halfLifePeriod,
-  });
 }
 
 @Data()
@@ -788,61 +463,6 @@ class MedicationRequest {
   final Reference priorPrescription;
   final List<Reference> detectedIssue;
   final List<Reference> eventHistory;
-  const MedicationRequest({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.status,
-    required this.statusElement,
-    required this.statusReason,
-    required this.intent,
-    required this.intentElement,
-    required this.category,
-    required this.priority,
-    required this.priorityElement,
-    required this.doNotPerform,
-    required this.doNotPerformElement,
-    required this.reportedBoolean,
-    required this.reportedBooleanElement,
-    required this.reportedReference,
-    required this.medicationCodeableConcept,
-    required this.medicationReference,
-    required this.subject,
-    required this.encounter,
-    required this.supportingInformation,
-    required this.authoredOn,
-    required this.authoredOnElement,
-    required this.requester,
-    required this.performer,
-    required this.performerType,
-    required this.recorder,
-    required this.reasonCode,
-    required this.reasonReference,
-    required this.instantiatesCanonical,
-    required this.instantiatesCanonicalElement,
-    required this.instantiatesUri,
-    required this.instantiatesUriElement,
-    required this.basedOn,
-    required this.groupIdentifier,
-    required this.courseOfTherapyType,
-    required this.insurance,
-    required this.note,
-    required this.dosageInstruction,
-    required this.dispenseRequest,
-    required this.substitution,
-    required this.priorPrescription,
-    required this.detectedIssue,
-    required this.eventHistory,
-  });
 }
 
 @Data()
@@ -859,19 +479,6 @@ class MedicationRequestDispenseRequest {
   final Quantity quantity;
   final FhirDuration expectedSupplyDuration;
   final Reference performer;
-  const MedicationRequestDispenseRequest({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.initialFill,
-    required this.dispenseInterval,
-    required this.validityPeriod,
-    required this.numberOfRepeatsAllowed,
-    required this.numberOfRepeatsAllowedElement,
-    required this.quantity,
-    required this.expectedSupplyDuration,
-    required this.performer,
-  });
 }
 
 @Data()
@@ -882,13 +489,6 @@ class MedicationRequestInitialFill {
   final List<FhirExtension> modifierExtension;
   final Quantity quantity;
   final FhirDuration duration;
-  const MedicationRequestInitialFill({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.quantity,
-    required this.duration,
-  });
 }
 
 @Data()
@@ -901,15 +501,6 @@ class MedicationRequestSubstitution {
   final PrimitiveElement allowedBooleanElement;
   final CodeableConcept allowedCodeableConcept;
   final CodeableConcept reason;
-  const MedicationRequestSubstitution({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.allowedBoolean,
-    required this.allowedBooleanElement,
-    required this.allowedCodeableConcept,
-    required this.reason,
-  });
 }
 
 @Data()
@@ -948,41 +539,6 @@ class MedicationStatement {
   final List<Reference> reasonReference;
   final List<Annotation> note;
   final List<Dosage> dosage;
-  const MedicationStatement({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.basedOn,
-    required this.partOf,
-    required this.status,
-    required this.statusElement,
-    required this.statusReason,
-    required this.category,
-    required this.medicationCodeableConcept,
-    required this.medicationReference,
-    required this.subject,
-    required this.context,
-    required this.effectiveDateTime,
-    required this.effectiveDateTimeElement,
-    required this.effectivePeriod,
-    required this.dateAsserted,
-    required this.dateAssertedElement,
-    required this.informationSource,
-    required this.derivedFrom,
-    required this.reasonCode,
-    required this.reasonReference,
-    required this.note,
-    required this.dosage,
-  });
 }
 
 

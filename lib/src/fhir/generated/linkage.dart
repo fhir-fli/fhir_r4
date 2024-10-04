@@ -22,23 +22,6 @@ class Linkage {
   final PrimitiveElement activeElement;
   final Reference author;
   final List<LinkageItem> item;
-  const Linkage({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.active,
-    required this.activeElement,
-    required this.author,
-    required this.item,
-  });
 }
 
 @Data()
@@ -50,14 +33,6 @@ class LinkageItem {
   final FhirCode type;
   final PrimitiveElement typeElement;
   final Reference resource;
-  const LinkageItem({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.typeElement,
-    required this.resource,
-  });
 }
 
 

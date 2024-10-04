@@ -43,44 +43,6 @@ class Patient {
   final List<Reference> generalPractitioner;
   final Reference managingOrganization;
   final List<PatientLink> link;
-  const Patient({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.active,
-    required this.activeElement,
-    required this.name,
-    required this.telecom,
-    required this.gender,
-    required this.genderElement,
-    required this.birthDate,
-    required this.birthDateElement,
-    required this.deceasedBoolean,
-    required this.deceasedBooleanElement,
-    required this.deceasedDateTime,
-    required this.deceasedDateTimeElement,
-    required this.address,
-    required this.maritalStatus,
-    required this.multipleBirthBoolean,
-    required this.multipleBirthBooleanElement,
-    required this.multipleBirthInteger,
-    required this.multipleBirthIntegerElement,
-    required this.photo,
-    required this.contact,
-    required this.communication,
-    required this.generalPractitioner,
-    required this.managingOrganization,
-    required this.link,
-  });
 }
 
 @Data()
@@ -97,19 +59,6 @@ class PatientContact {
   final PrimitiveElement genderElement;
   final Reference organization;
   final Period period;
-  const PatientContact({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.relationship,
-    required this.name,
-    required this.telecom,
-    required this.address,
-    required this.gender,
-    required this.genderElement,
-    required this.organization,
-    required this.period,
-  });
 }
 
 @Data()
@@ -121,14 +70,6 @@ class PatientCommunication {
   final CodeableConcept language;
   final FhirBoolean preferred;
   final PrimitiveElement preferredElement;
-  const PatientCommunication({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.language,
-    required this.preferred,
-    required this.preferredElement,
-  });
 }
 
 @Data()
@@ -140,14 +81,6 @@ class PatientLink {
   final Reference other;
   final FhirCode type;
   final PrimitiveElement typeElement;
-  const PatientLink({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.other,
-    required this.type,
-    required this.typeElement,
-  });
 }
 
 

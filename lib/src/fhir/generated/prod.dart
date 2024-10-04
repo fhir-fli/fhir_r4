@@ -24,25 +24,6 @@ class ProdCharacteristic {
   final List<PrimitiveElement> imprintElement;
   final List<Attachment> image;
   final CodeableConcept scoring;
-  const ProdCharacteristic({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.height,
-    required this.width,
-    required this.depth,
-    required this.weight,
-    required this.nominalVolume,
-    required this.externalDiameter,
-    required this.shape,
-    required this.shapeElement,
-    required this.color,
-    required this.colorElement,
-    required this.imprint,
-    required this.imprintElement,
-    required this.image,
-    required this.scoring,
-  });
 }
 
 

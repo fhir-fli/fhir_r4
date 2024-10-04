@@ -57,58 +57,6 @@ class MessageDefinition {
   final PrimitiveElement responseRequiredElement;
   final List<MessageDefinitionAllowedResponse> allowedResponse;
   final List<FhirCanonical> graph;
-  const MessageDefinition({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.url,
-    required this.urlElement,
-    required this.identifier,
-    required this.version,
-    required this.versionElement,
-    required this.name,
-    required this.nameElement,
-    required this.title,
-    required this.titleElement,
-    required this.replaces,
-    required this.status,
-    required this.statusElement,
-    required this.experimental,
-    required this.experimentalElement,
-    required this.date,
-    required this.dateElement,
-    required this.publisher,
-    required this.publisherElement,
-    required this.contact,
-    required this.description,
-    required this.descriptionElement,
-    required this.useContext,
-    required this.jurisdiction,
-    required this.purpose,
-    required this.purposeElement,
-    required this.copyright,
-    required this.copyrightElement,
-    required this.base,
-    required this.parent,
-    required this.eventCoding,
-    required this.eventUri,
-    required this.eventUriElement,
-    required this.category,
-    required this.categoryElement,
-    required this.focus,
-    required this.responseRequired,
-    required this.responseRequiredElement,
-    required this.allowedResponse,
-    required this.graph,
-  });
 }
 
 @Data()
@@ -124,18 +72,6 @@ class MessageDefinitionFocus {
   final PrimitiveElement minElement;
   final String max;
   final PrimitiveElement maxElement;
-  const MessageDefinitionFocus({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.codeElement,
-    required this.profile,
-    required this.min,
-    required this.minElement,
-    required this.max,
-    required this.maxElement,
-  });
 }
 
 @Data()
@@ -147,14 +83,6 @@ class MessageDefinitionAllowedResponse {
   final FhirCanonical message;
   final FhirMarkdown situation;
   final PrimitiveElement situationElement;
-  const MessageDefinitionAllowedResponse({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.message,
-    required this.situation,
-    required this.situationElement,
-  });
 }
 
 @Data()
@@ -184,32 +112,6 @@ class MessageHeader {
   final MessageHeaderResponse response;
   final List<Reference> focus;
   final FhirCanonical definition;
-  const MessageHeader({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.eventCoding,
-    required this.eventUri,
-    required this.eventUriElement,
-    required this.destination,
-    required this.sender,
-    required this.enterer,
-    required this.author,
-    required this.source,
-    required this.responsible,
-    required this.reason,
-    required this.response,
-    required this.focus,
-    required this.definition,
-  });
 }
 
 @Data()
@@ -224,17 +126,6 @@ class MessageHeaderDestination {
   final FhirUrl endpoint;
   final PrimitiveElement endpointElement;
   final Reference receiver;
-  const MessageHeaderDestination({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.name,
-    required this.nameElement,
-    required this.target,
-    required this.endpoint,
-    required this.endpointElement,
-    required this.receiver,
-  });
 }
 
 @Data()
@@ -252,20 +143,6 @@ class MessageHeaderSource {
   final ContactPoint contact;
   final FhirUrl endpoint;
   final PrimitiveElement endpointElement;
-  const MessageHeaderSource({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.name,
-    required this.nameElement,
-    required this.software,
-    required this.softwareElement,
-    required this.version,
-    required this.versionElement,
-    required this.contact,
-    required this.endpoint,
-    required this.endpointElement,
-  });
 }
 
 @Data()
@@ -279,16 +156,6 @@ class MessageHeaderResponse {
   final FhirCode code;
   final PrimitiveElement codeElement;
   final Reference details;
-  const MessageHeaderResponse({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.identifierElement,
-    required this.code,
-    required this.codeElement,
-    required this.details,
-  });
 }
 
 

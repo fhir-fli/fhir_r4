@@ -24,25 +24,6 @@ class Basic {
   final FhirDate created;
   final PrimitiveElement createdElement;
   final Reference author;
-  const Basic({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.code,
-    required this.subject,
-    required this.created,
-    required this.createdElement,
-    required this.author,
-  });
 }
 
 

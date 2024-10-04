@@ -12,13 +12,6 @@ class CodeableConcept {
   final List<Coding> coding;
   final String text;
   final PrimitiveElement textElement;
-  const CodeableConcept({
-    required this.id,
-    required this.extension_,
-    required this.coding,
-    required this.text,
-    required this.textElement,
-  });
 }
 
 @Data()
@@ -28,12 +21,6 @@ class CodeableReference {
   final List<FhirExtension> extension_;
   final CodeableConcept concept;
   final Reference reference;
-  const CodeableReference({
-    required this.id,
-    required this.extension_,
-    required this.concept,
-    required this.reference,
-  });
 }
 
 

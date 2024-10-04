@@ -28,29 +28,6 @@ class Address {
   final String country;
   final PrimitiveElement countryElement;
   final Period period;
-  const Address({
-    required this.id,
-    required this.extension_,
-    required this.use,
-    required this.useElement,
-    required this.type,
-    required this.typeElement,
-    required this.text,
-    required this.textElement,
-    required this.line,
-    required this.lineElement,
-    required this.city,
-    required this.cityElement,
-    required this.district,
-    required this.districtElement,
-    required this.state,
-    required this.stateElement,
-    required this.postalCode,
-    required this.postalCodeElement,
-    required this.country,
-    required this.countryElement,
-    required this.period,
-  });
 }
 
 

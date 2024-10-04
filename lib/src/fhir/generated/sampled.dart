@@ -22,23 +22,6 @@ class SampledData {
   final PrimitiveElement dimensionsElement;
   final String data;
   final PrimitiveElement dataElement;
-  const SampledData({
-    required this.id,
-    required this.extension_,
-    required this.origin,
-    required this.period,
-    required this.periodElement,
-    required this.factor,
-    required this.factorElement,
-    required this.lowerLimit,
-    required this.lowerLimitElement,
-    required this.upperLimit,
-    required this.upperLimitElement,
-    required this.dimensions,
-    required this.dimensionsElement,
-    required this.data,
-    required this.dataElement,
-  });
 }
 
 

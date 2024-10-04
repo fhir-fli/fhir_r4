@@ -261,12 +261,6 @@ abstract class $MedicationKnowledgeCopyWith<$Res> {
       List<MedicationKnowledgeRegulatory>? regulatory,
       List<MedicationKnowledgeKinetics>? kinetics});
 
-  $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
-  $CodeableConceptCopyWith<$Res>? get code;
-  $ReferenceCopyWith<$Res>? get manufacturer;
-  $CodeableConceptCopyWith<$Res>? get doseForm;
-  $QuantityCopyWith<$Res>? get amount;
   $MedicationKnowledgePackagingCopyWith<$Res>? get packaging;
 }
 
@@ -474,90 +468,6 @@ class _$MedicationKnowledgeCopyWithImpl<$Res, $Val extends MedicationKnowledge>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $FhirMetaCopyWith<$Res>? get meta {
-    if (_value.meta == null) {
-      return null;
-    }
-
-    return $FhirMetaCopyWith<$Res>(_value.meta!, (value) {
-      return _then(_value.copyWith(meta: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationKnowledge
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationKnowledge
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get code {
-    if (_value.code == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.code!, (value) {
-      return _then(_value.copyWith(code: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationKnowledge
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get manufacturer {
-    if (_value.manufacturer == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.manufacturer!, (value) {
-      return _then(_value.copyWith(manufacturer: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationKnowledge
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get doseForm {
-    if (_value.doseForm == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.doseForm!, (value) {
-      return _then(_value.copyWith(doseForm: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationKnowledge
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $QuantityCopyWith<$Res>? get amount {
-    if (_value.amount == null) {
-      return null;
-    }
-
-    return $QuantityCopyWith<$Res>(_value.amount!, (value) {
-      return _then(_value.copyWith(amount: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationKnowledge
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
   $MedicationKnowledgePackagingCopyWith<$Res>? get packaging {
     if (_value.packaging == null) {
       return null;
@@ -620,18 +530,6 @@ abstract class _$$MedicationKnowledgeImplCopyWith<$Res>
       List<MedicationKnowledgeRegulatory>? regulatory,
       List<MedicationKnowledgeKinetics>? kinetics});
 
-  @override
-  $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
-  @override
-  $CodeableConceptCopyWith<$Res>? get code;
-  @override
-  $ReferenceCopyWith<$Res>? get manufacturer;
-  @override
-  $CodeableConceptCopyWith<$Res>? get doseForm;
-  @override
-  $QuantityCopyWith<$Res>? get amount;
   @override
   $MedicationKnowledgePackagingCopyWith<$Res>? get packaging;
 }
@@ -1335,7 +1233,7 @@ class _$MedicationKnowledgeImpl extends _MedicationKnowledge {
             (identical(other.resourceType, resourceType) ||
                 other.resourceType == resourceType) &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.meta, meta) || other.meta == meta) &&
+            const DeepCollectionEquality().equals(other.meta, meta) &&
             (identical(other.implicitRules, implicitRules) ||
                 other.implicitRules == implicitRules) &&
             (identical(other.implicitRulesElement, implicitRulesElement) ||
@@ -1344,22 +1242,21 @@ class _$MedicationKnowledgeImpl extends _MedicationKnowledge {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
                 .equals(other._modifierExtension, _modifierExtension) &&
-            (identical(other.code, code) || other.code == code) &&
+            const DeepCollectionEquality().equals(other.code, code) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.statusElement, statusElement) ||
                 other.statusElement == statusElement) &&
-            (identical(other.manufacturer, manufacturer) ||
-                other.manufacturer == manufacturer) &&
-            (identical(other.doseForm, doseForm) ||
-                other.doseForm == doseForm) &&
-            (identical(other.amount, amount) || other.amount == amount) &&
+            const DeepCollectionEquality()
+                .equals(other.manufacturer, manufacturer) &&
+            const DeepCollectionEquality().equals(other.doseForm, doseForm) &&
+            const DeepCollectionEquality().equals(other.amount, amount) &&
             const DeepCollectionEquality().equals(other._synonym, _synonym) &&
             const DeepCollectionEquality()
                 .equals(other._synonymElement, _synonymElement) &&
@@ -1406,21 +1303,21 @@ class _$MedicationKnowledgeImpl extends _MedicationKnowledge {
         runtimeType,
         resourceType,
         id,
-        meta,
+        const DeepCollectionEquality().hash(meta),
         implicitRules,
         implicitRulesElement,
         language,
         languageElement,
-        text,
+        const DeepCollectionEquality().hash(text),
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
-        code,
+        const DeepCollectionEquality().hash(code),
         status,
         statusElement,
-        manufacturer,
-        doseForm,
-        amount,
+        const DeepCollectionEquality().hash(manufacturer),
+        const DeepCollectionEquality().hash(doseForm),
+        const DeepCollectionEquality().hash(amount),
         const DeepCollectionEquality().hash(_synonym),
         const DeepCollectionEquality().hash(_synonymElement),
         const DeepCollectionEquality().hash(_relatedMedicationKnowledge),
@@ -1790,8 +1687,6 @@ abstract class $MedicationKnowledgeRelatedMedicationKnowledgeCopyWith<$Res> {
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
       List<Reference> reference});
-
-  $CodeableConceptCopyWith<$Res> get type;
 }
 
 /// @nodoc
@@ -1814,7 +1709,7 @@ class _$MedicationKnowledgeRelatedMedicationKnowledgeCopyWithImpl<$Res,
     Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
-    Object? type = null,
+    Object? type = freezed,
     Object? reference = null,
   }) {
     return _then(_value.copyWith(
@@ -1830,7 +1725,7 @@ class _$MedicationKnowledgeRelatedMedicationKnowledgeCopyWithImpl<$Res,
           ? _value.modifierExtension
           : modifierExtension // ignore: cast_nullable_to_non_nullable
               as List<FhirExtension>?,
-      type: null == type
+      type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as CodeableConcept,
@@ -1839,16 +1734,6 @@ class _$MedicationKnowledgeRelatedMedicationKnowledgeCopyWithImpl<$Res,
           : reference // ignore: cast_nullable_to_non_nullable
               as List<Reference>,
     ) as $Val);
-  }
-
-  /// Create a copy of MedicationKnowledgeRelatedMedicationKnowledge
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res> get type {
-    return $CodeableConceptCopyWith<$Res>(_value.type, (value) {
-      return _then(_value.copyWith(type: value) as $Val);
-    });
   }
 }
 
@@ -1869,9 +1754,6 @@ abstract class _$$MedicationKnowledgeRelatedMedicationKnowledgeImplCopyWith<
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
       List<Reference> reference});
-
-  @override
-  $CodeableConceptCopyWith<$Res> get type;
 }
 
 /// @nodoc
@@ -1893,7 +1775,7 @@ class __$$MedicationKnowledgeRelatedMedicationKnowledgeImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
-    Object? type = null,
+    Object? type = freezed,
     Object? reference = null,
   }) {
     return _then(_$MedicationKnowledgeRelatedMedicationKnowledgeImpl(
@@ -1909,7 +1791,7 @@ class __$$MedicationKnowledgeRelatedMedicationKnowledgeImplCopyWithImpl<$Res>
           ? _value._modifierExtension
           : modifierExtension // ignore: cast_nullable_to_non_nullable
               as List<FhirExtension>?,
-      type: null == type
+      type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as CodeableConcept,
@@ -2039,7 +1921,7 @@ class _$MedicationKnowledgeRelatedMedicationKnowledgeImpl
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
                 .equals(other._modifierExtension, _modifierExtension) &&
-            (identical(other.type, type) || other.type == type) &&
+            const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality()
                 .equals(other._reference, _reference));
   }
@@ -2051,7 +1933,7 @@ class _$MedicationKnowledgeRelatedMedicationKnowledgeImpl
       id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
-      type,
+      const DeepCollectionEquality().hash(type),
       const DeepCollectionEquality().hash(_reference));
 
   /// Create a copy of MedicationKnowledgeRelatedMedicationKnowledge
@@ -2205,9 +2087,6 @@ abstract class $MedicationKnowledgeMonographCopyWith<$Res> {
       List<FhirExtension>? modifierExtension,
       CodeableConcept? type,
       Reference? source});
-
-  $CodeableConceptCopyWith<$Res>? get type;
-  $ReferenceCopyWith<$Res>? get source;
 }
 
 /// @nodoc
@@ -2255,34 +2134,6 @@ class _$MedicationKnowledgeMonographCopyWithImpl<$Res,
               as Reference?,
     ) as $Val);
   }
-
-  /// Create a copy of MedicationKnowledgeMonograph
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get type {
-    if (_value.type == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.type!, (value) {
-      return _then(_value.copyWith(type: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationKnowledgeMonograph
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get source {
-    if (_value.source == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.source!, (value) {
-      return _then(_value.copyWith(source: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -2300,11 +2151,6 @@ abstract class _$$MedicationKnowledgeMonographImplCopyWith<$Res>
       List<FhirExtension>? modifierExtension,
       CodeableConcept? type,
       Reference? source});
-
-  @override
-  $CodeableConceptCopyWith<$Res>? get type;
-  @override
-  $ReferenceCopyWith<$Res>? get source;
 }
 
 /// @nodoc
@@ -2461,8 +2307,8 @@ class _$MedicationKnowledgeMonographImpl extends _MedicationKnowledgeMonograph {
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
                 .equals(other._modifierExtension, _modifierExtension) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.source, source) || other.source == source));
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.source, source));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2472,8 +2318,8 @@ class _$MedicationKnowledgeMonographImpl extends _MedicationKnowledgeMonograph {
       id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
-      type,
-      source);
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(source));
 
   /// Create a copy of MedicationKnowledgeMonograph
   /// with the given fields replaced by the non-null parameter values.
@@ -2640,10 +2486,6 @@ abstract class $MedicationKnowledgeIngredientCopyWith<$Res> {
       FhirBoolean? isActive,
       @JsonKey(name: '_isActive') PrimitiveElement? isActiveElement,
       Ratio? strength});
-
-  $CodeableConceptCopyWith<$Res>? get itemCodeableConcept;
-  $ReferenceCopyWith<$Res>? get itemReference;
-  $RatioCopyWith<$Res>? get strength;
 }
 
 /// @nodoc
@@ -2706,48 +2548,6 @@ class _$MedicationKnowledgeIngredientCopyWithImpl<$Res,
               as Ratio?,
     ) as $Val);
   }
-
-  /// Create a copy of MedicationKnowledgeIngredient
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get itemCodeableConcept {
-    if (_value.itemCodeableConcept == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.itemCodeableConcept!, (value) {
-      return _then(_value.copyWith(itemCodeableConcept: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationKnowledgeIngredient
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get itemReference {
-    if (_value.itemReference == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.itemReference!, (value) {
-      return _then(_value.copyWith(itemReference: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationKnowledgeIngredient
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $RatioCopyWith<$Res>? get strength {
-    if (_value.strength == null) {
-      return null;
-    }
-
-    return $RatioCopyWith<$Res>(_value.strength!, (value) {
-      return _then(_value.copyWith(strength: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -2768,13 +2568,6 @@ abstract class _$$MedicationKnowledgeIngredientImplCopyWith<$Res>
       FhirBoolean? isActive,
       @JsonKey(name: '_isActive') PrimitiveElement? isActiveElement,
       Ratio? strength});
-
-  @override
-  $CodeableConceptCopyWith<$Res>? get itemCodeableConcept;
-  @override
-  $ReferenceCopyWith<$Res>? get itemReference;
-  @override
-  $RatioCopyWith<$Res>? get strength;
 }
 
 /// @nodoc
@@ -2967,16 +2760,15 @@ class _$MedicationKnowledgeIngredientImpl
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
                 .equals(other._modifierExtension, _modifierExtension) &&
-            (identical(other.itemCodeableConcept, itemCodeableConcept) ||
-                other.itemCodeableConcept == itemCodeableConcept) &&
-            (identical(other.itemReference, itemReference) ||
-                other.itemReference == itemReference) &&
+            const DeepCollectionEquality()
+                .equals(other.itemCodeableConcept, itemCodeableConcept) &&
+            const DeepCollectionEquality()
+                .equals(other.itemReference, itemReference) &&
             (identical(other.isActive, isActive) ||
                 other.isActive == isActive) &&
             (identical(other.isActiveElement, isActiveElement) ||
                 other.isActiveElement == isActiveElement) &&
-            (identical(other.strength, strength) ||
-                other.strength == strength));
+            const DeepCollectionEquality().equals(other.strength, strength));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2986,11 +2778,11 @@ class _$MedicationKnowledgeIngredientImpl
       id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
-      itemCodeableConcept,
-      itemReference,
+      const DeepCollectionEquality().hash(itemCodeableConcept),
+      const DeepCollectionEquality().hash(itemReference),
       isActive,
       isActiveElement,
-      strength);
+      const DeepCollectionEquality().hash(strength));
 
   /// Create a copy of MedicationKnowledgeIngredient
   /// with the given fields replaced by the non-null parameter values.
@@ -3166,9 +2958,6 @@ abstract class $MedicationKnowledgeCostCopyWith<$Res> {
       String? source,
       @JsonKey(name: '_source') PrimitiveElement? sourceElement,
       Money cost});
-
-  $CodeableConceptCopyWith<$Res> get type;
-  $MoneyCopyWith<$Res> get cost;
 }
 
 /// @nodoc
@@ -3190,10 +2979,10 @@ class _$MedicationKnowledgeCostCopyWithImpl<$Res,
     Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
-    Object? type = null,
+    Object? type = freezed,
     Object? source = freezed,
     Object? sourceElement = freezed,
-    Object? cost = null,
+    Object? cost = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -3208,7 +2997,7 @@ class _$MedicationKnowledgeCostCopyWithImpl<$Res,
           ? _value.modifierExtension
           : modifierExtension // ignore: cast_nullable_to_non_nullable
               as List<FhirExtension>?,
-      type: null == type
+      type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as CodeableConcept,
@@ -3220,31 +3009,11 @@ class _$MedicationKnowledgeCostCopyWithImpl<$Res,
           ? _value.sourceElement
           : sourceElement // ignore: cast_nullable_to_non_nullable
               as PrimitiveElement?,
-      cost: null == cost
+      cost: freezed == cost
           ? _value.cost
           : cost // ignore: cast_nullable_to_non_nullable
               as Money,
     ) as $Val);
-  }
-
-  /// Create a copy of MedicationKnowledgeCost
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res> get type {
-    return $CodeableConceptCopyWith<$Res>(_value.type, (value) {
-      return _then(_value.copyWith(type: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationKnowledgeCost
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $MoneyCopyWith<$Res> get cost {
-    return $MoneyCopyWith<$Res>(_value.cost, (value) {
-      return _then(_value.copyWith(cost: value) as $Val);
-    });
   }
 }
 
@@ -3265,11 +3034,6 @@ abstract class _$$MedicationKnowledgeCostImplCopyWith<$Res>
       String? source,
       @JsonKey(name: '_source') PrimitiveElement? sourceElement,
       Money cost});
-
-  @override
-  $CodeableConceptCopyWith<$Res> get type;
-  @override
-  $MoneyCopyWith<$Res> get cost;
 }
 
 /// @nodoc
@@ -3290,10 +3054,10 @@ class __$$MedicationKnowledgeCostImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
-    Object? type = null,
+    Object? type = freezed,
     Object? source = freezed,
     Object? sourceElement = freezed,
-    Object? cost = null,
+    Object? cost = freezed,
   }) {
     return _then(_$MedicationKnowledgeCostImpl(
       id: freezed == id
@@ -3308,7 +3072,7 @@ class __$$MedicationKnowledgeCostImplCopyWithImpl<$Res>
           ? _value._modifierExtension
           : modifierExtension // ignore: cast_nullable_to_non_nullable
               as List<FhirExtension>?,
-      type: null == type
+      type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as CodeableConcept,
@@ -3320,7 +3084,7 @@ class __$$MedicationKnowledgeCostImplCopyWithImpl<$Res>
           ? _value.sourceElement
           : sourceElement // ignore: cast_nullable_to_non_nullable
               as PrimitiveElement?,
-      cost: null == cost
+      cost: freezed == cost
           ? _value.cost
           : cost // ignore: cast_nullable_to_non_nullable
               as Money,
@@ -3446,11 +3210,11 @@ class _$MedicationKnowledgeCostImpl extends _MedicationKnowledgeCost {
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
                 .equals(other._modifierExtension, _modifierExtension) &&
-            (identical(other.type, type) || other.type == type) &&
+            const DeepCollectionEquality().equals(other.type, type) &&
             (identical(other.source, source) || other.source == source) &&
             (identical(other.sourceElement, sourceElement) ||
                 other.sourceElement == sourceElement) &&
-            (identical(other.cost, cost) || other.cost == cost));
+            const DeepCollectionEquality().equals(other.cost, cost));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3460,10 +3224,10 @@ class _$MedicationKnowledgeCostImpl extends _MedicationKnowledgeCost {
       id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
-      type,
+      const DeepCollectionEquality().hash(type),
       source,
       sourceElement,
-      cost);
+      const DeepCollectionEquality().hash(cost));
 
   /// Create a copy of MedicationKnowledgeCost
   /// with the given fields replaced by the non-null parameter values.
@@ -3625,8 +3389,6 @@ abstract class $MedicationKnowledgeMonitoringProgramCopyWith<$Res> {
       CodeableConcept? type,
       String? name,
       @JsonKey(name: '_name') PrimitiveElement? nameElement});
-
-  $CodeableConceptCopyWith<$Res>? get type;
 }
 
 /// @nodoc
@@ -3679,20 +3441,6 @@ class _$MedicationKnowledgeMonitoringProgramCopyWithImpl<$Res,
               as PrimitiveElement?,
     ) as $Val);
   }
-
-  /// Create a copy of MedicationKnowledgeMonitoringProgram
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get type {
-    if (_value.type == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.type!, (value) {
-      return _then(_value.copyWith(type: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -3711,9 +3459,6 @@ abstract class _$$MedicationKnowledgeMonitoringProgramImplCopyWith<$Res>
       CodeableConcept? type,
       String? name,
       @JsonKey(name: '_name') PrimitiveElement? nameElement});
-
-  @override
-  $CodeableConceptCopyWith<$Res>? get type;
 }
 
 /// @nodoc
@@ -3881,7 +3626,7 @@ class _$MedicationKnowledgeMonitoringProgramImpl
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
                 .equals(other._modifierExtension, _modifierExtension) &&
-            (identical(other.type, type) || other.type == type) &&
+            const DeepCollectionEquality().equals(other.type, type) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.nameElement, nameElement) ||
                 other.nameElement == nameElement));
@@ -3894,7 +3639,7 @@ class _$MedicationKnowledgeMonitoringProgramImpl
       id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
-      type,
+      const DeepCollectionEquality().hash(type),
       name,
       nameElement);
 
@@ -4068,9 +3813,6 @@ abstract class $MedicationKnowledgeAdministrationGuidelinesCopyWith<$Res> {
       CodeableConcept? indicationCodeableConcept,
       Reference? indicationReference,
       List<MedicationKnowledgePatientCharacteristics>? patientCharacteristics});
-
-  $CodeableConceptCopyWith<$Res>? get indicationCodeableConcept;
-  $ReferenceCopyWith<$Res>? get indicationReference;
 }
 
 /// @nodoc
@@ -4129,35 +3871,6 @@ class _$MedicationKnowledgeAdministrationGuidelinesCopyWithImpl<$Res,
               as List<MedicationKnowledgePatientCharacteristics>?,
     ) as $Val);
   }
-
-  /// Create a copy of MedicationKnowledgeAdministrationGuidelines
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get indicationCodeableConcept {
-    if (_value.indicationCodeableConcept == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.indicationCodeableConcept!,
-        (value) {
-      return _then(_value.copyWith(indicationCodeableConcept: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationKnowledgeAdministrationGuidelines
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get indicationReference {
-    if (_value.indicationReference == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.indicationReference!, (value) {
-      return _then(_value.copyWith(indicationReference: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -4178,11 +3891,6 @@ abstract class _$$MedicationKnowledgeAdministrationGuidelinesImplCopyWith<$Res>
       CodeableConcept? indicationCodeableConcept,
       Reference? indicationReference,
       List<MedicationKnowledgePatientCharacteristics>? patientCharacteristics});
-
-  @override
-  $CodeableConceptCopyWith<$Res>? get indicationCodeableConcept;
-  @override
-  $ReferenceCopyWith<$Res>? get indicationReference;
 }
 
 /// @nodoc
@@ -4390,11 +4098,10 @@ class _$MedicationKnowledgeAdministrationGuidelinesImpl
             const DeepCollectionEquality()
                 .equals(other._modifierExtension, _modifierExtension) &&
             const DeepCollectionEquality().equals(other._dosage, _dosage) &&
-            (identical(other.indicationCodeableConcept,
-                    indicationCodeableConcept) ||
-                other.indicationCodeableConcept == indicationCodeableConcept) &&
-            (identical(other.indicationReference, indicationReference) ||
-                other.indicationReference == indicationReference) &&
+            const DeepCollectionEquality().equals(
+                other.indicationCodeableConcept, indicationCodeableConcept) &&
+            const DeepCollectionEquality()
+                .equals(other.indicationReference, indicationReference) &&
             const DeepCollectionEquality().equals(
                 other._patientCharacteristics, _patientCharacteristics));
   }
@@ -4407,8 +4114,8 @@ class _$MedicationKnowledgeAdministrationGuidelinesImpl
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
       const DeepCollectionEquality().hash(_dosage),
-      indicationCodeableConcept,
-      indicationReference,
+      const DeepCollectionEquality().hash(indicationCodeableConcept),
+      const DeepCollectionEquality().hash(indicationReference),
       const DeepCollectionEquality().hash(_patientCharacteristics));
 
   /// Create a copy of MedicationKnowledgeAdministrationGuidelines
@@ -4574,8 +4281,6 @@ abstract class $MedicationKnowledgeDosageCopyWith<$Res> {
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
       List<Dosage> dosage});
-
-  $CodeableConceptCopyWith<$Res> get type;
 }
 
 /// @nodoc
@@ -4597,7 +4302,7 @@ class _$MedicationKnowledgeDosageCopyWithImpl<$Res,
     Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
-    Object? type = null,
+    Object? type = freezed,
     Object? dosage = null,
   }) {
     return _then(_value.copyWith(
@@ -4613,7 +4318,7 @@ class _$MedicationKnowledgeDosageCopyWithImpl<$Res,
           ? _value.modifierExtension
           : modifierExtension // ignore: cast_nullable_to_non_nullable
               as List<FhirExtension>?,
-      type: null == type
+      type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as CodeableConcept,
@@ -4622,16 +4327,6 @@ class _$MedicationKnowledgeDosageCopyWithImpl<$Res,
           : dosage // ignore: cast_nullable_to_non_nullable
               as List<Dosage>,
     ) as $Val);
-  }
-
-  /// Create a copy of MedicationKnowledgeDosage
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res> get type {
-    return $CodeableConceptCopyWith<$Res>(_value.type, (value) {
-      return _then(_value.copyWith(type: value) as $Val);
-    });
   }
 }
 
@@ -4650,9 +4345,6 @@ abstract class _$$MedicationKnowledgeDosageImplCopyWith<$Res>
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
       List<Dosage> dosage});
-
-  @override
-  $CodeableConceptCopyWith<$Res> get type;
 }
 
 /// @nodoc
@@ -4673,7 +4365,7 @@ class __$$MedicationKnowledgeDosageImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
-    Object? type = null,
+    Object? type = freezed,
     Object? dosage = null,
   }) {
     return _then(_$MedicationKnowledgeDosageImpl(
@@ -4689,7 +4381,7 @@ class __$$MedicationKnowledgeDosageImplCopyWithImpl<$Res>
           ? _value._modifierExtension
           : modifierExtension // ignore: cast_nullable_to_non_nullable
               as List<FhirExtension>?,
-      type: null == type
+      type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as CodeableConcept,
@@ -4816,7 +4508,7 @@ class _$MedicationKnowledgeDosageImpl extends _MedicationKnowledgeDosage {
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
                 .equals(other._modifierExtension, _modifierExtension) &&
-            (identical(other.type, type) || other.type == type) &&
+            const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality().equals(other._dosage, _dosage));
   }
 
@@ -4827,7 +4519,7 @@ class _$MedicationKnowledgeDosageImpl extends _MedicationKnowledgeDosage {
       id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
-      type,
+      const DeepCollectionEquality().hash(type),
       const DeepCollectionEquality().hash(_dosage));
 
   /// Create a copy of MedicationKnowledgeDosage
@@ -4988,9 +4680,6 @@ abstract class $MedicationKnowledgePatientCharacteristicsCopyWith<$Res> {
       Quantity? characteristicQuantity,
       List<String>? value,
       @JsonKey(name: '_value') List<PrimitiveElement>? valueElement});
-
-  $CodeableConceptCopyWith<$Res>? get characteristicCodeableConcept;
-  $QuantityCopyWith<$Res>? get characteristicQuantity;
 }
 
 /// @nodoc
@@ -5049,36 +4738,6 @@ class _$MedicationKnowledgePatientCharacteristicsCopyWithImpl<$Res,
               as List<PrimitiveElement>?,
     ) as $Val);
   }
-
-  /// Create a copy of MedicationKnowledgePatientCharacteristics
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get characteristicCodeableConcept {
-    if (_value.characteristicCodeableConcept == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.characteristicCodeableConcept!,
-        (value) {
-      return _then(
-          _value.copyWith(characteristicCodeableConcept: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationKnowledgePatientCharacteristics
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $QuantityCopyWith<$Res>? get characteristicQuantity {
-    if (_value.characteristicQuantity == null) {
-      return null;
-    }
-
-    return $QuantityCopyWith<$Res>(_value.characteristicQuantity!, (value) {
-      return _then(_value.copyWith(characteristicQuantity: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -5098,11 +4757,6 @@ abstract class _$$MedicationKnowledgePatientCharacteristicsImplCopyWith<$Res>
       Quantity? characteristicQuantity,
       List<String>? value,
       @JsonKey(name: '_value') List<PrimitiveElement>? valueElement});
-
-  @override
-  $CodeableConceptCopyWith<$Res>? get characteristicCodeableConcept;
-  @override
-  $QuantityCopyWith<$Res>? get characteristicQuantity;
 }
 
 /// @nodoc
@@ -5302,12 +4956,11 @@ class _$MedicationKnowledgePatientCharacteristicsImpl
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
                 .equals(other._modifierExtension, _modifierExtension) &&
-            (identical(other.characteristicCodeableConcept,
-                    characteristicCodeableConcept) ||
-                other.characteristicCodeableConcept ==
-                    characteristicCodeableConcept) &&
-            (identical(other.characteristicQuantity, characteristicQuantity) ||
-                other.characteristicQuantity == characteristicQuantity) &&
+            const DeepCollectionEquality().equals(
+                other.characteristicCodeableConcept,
+                characteristicCodeableConcept) &&
+            const DeepCollectionEquality()
+                .equals(other.characteristicQuantity, characteristicQuantity) &&
             const DeepCollectionEquality().equals(other._value, _value) &&
             const DeepCollectionEquality()
                 .equals(other._valueElement, _valueElement));
@@ -5320,8 +4973,8 @@ class _$MedicationKnowledgePatientCharacteristicsImpl
       id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
-      characteristicCodeableConcept,
-      characteristicQuantity,
+      const DeepCollectionEquality().hash(characteristicCodeableConcept),
+      const DeepCollectionEquality().hash(characteristicQuantity),
       const DeepCollectionEquality().hash(_value),
       const DeepCollectionEquality().hash(_valueElement));
 
@@ -5493,8 +5146,6 @@ abstract class $MedicationKnowledgeMedicineClassificationCopyWith<$Res> {
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
       List<CodeableConcept>? classification});
-
-  $CodeableConceptCopyWith<$Res> get type;
 }
 
 /// @nodoc
@@ -5517,7 +5168,7 @@ class _$MedicationKnowledgeMedicineClassificationCopyWithImpl<$Res,
     Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
-    Object? type = null,
+    Object? type = freezed,
     Object? classification = freezed,
   }) {
     return _then(_value.copyWith(
@@ -5533,7 +5184,7 @@ class _$MedicationKnowledgeMedicineClassificationCopyWithImpl<$Res,
           ? _value.modifierExtension
           : modifierExtension // ignore: cast_nullable_to_non_nullable
               as List<FhirExtension>?,
-      type: null == type
+      type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as CodeableConcept,
@@ -5542,16 +5193,6 @@ class _$MedicationKnowledgeMedicineClassificationCopyWithImpl<$Res,
           : classification // ignore: cast_nullable_to_non_nullable
               as List<CodeableConcept>?,
     ) as $Val);
-  }
-
-  /// Create a copy of MedicationKnowledgeMedicineClassification
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res> get type {
-    return $CodeableConceptCopyWith<$Res>(_value.type, (value) {
-      return _then(_value.copyWith(type: value) as $Val);
-    });
   }
 }
 
@@ -5570,9 +5211,6 @@ abstract class _$$MedicationKnowledgeMedicineClassificationImplCopyWith<$Res>
       List<FhirExtension>? modifierExtension,
       CodeableConcept type,
       List<CodeableConcept>? classification});
-
-  @override
-  $CodeableConceptCopyWith<$Res> get type;
 }
 
 /// @nodoc
@@ -5593,7 +5231,7 @@ class __$$MedicationKnowledgeMedicineClassificationImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
-    Object? type = null,
+    Object? type = freezed,
     Object? classification = freezed,
   }) {
     return _then(_$MedicationKnowledgeMedicineClassificationImpl(
@@ -5609,7 +5247,7 @@ class __$$MedicationKnowledgeMedicineClassificationImplCopyWithImpl<$Res>
           ? _value._modifierExtension
           : modifierExtension // ignore: cast_nullable_to_non_nullable
               as List<FhirExtension>?,
-      type: null == type
+      type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as CodeableConcept,
@@ -5742,7 +5380,7 @@ class _$MedicationKnowledgeMedicineClassificationImpl
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
                 .equals(other._modifierExtension, _modifierExtension) &&
-            (identical(other.type, type) || other.type == type) &&
+            const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality()
                 .equals(other._classification, _classification));
   }
@@ -5754,7 +5392,7 @@ class _$MedicationKnowledgeMedicineClassificationImpl
       id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
-      type,
+      const DeepCollectionEquality().hash(type),
       const DeepCollectionEquality().hash(_classification));
 
   /// Create a copy of MedicationKnowledgeMedicineClassification
@@ -5910,9 +5548,6 @@ abstract class $MedicationKnowledgePackagingCopyWith<$Res> {
       List<FhirExtension>? modifierExtension,
       CodeableConcept? type,
       Quantity? quantity});
-
-  $CodeableConceptCopyWith<$Res>? get type;
-  $QuantityCopyWith<$Res>? get quantity;
 }
 
 /// @nodoc
@@ -5960,34 +5595,6 @@ class _$MedicationKnowledgePackagingCopyWithImpl<$Res,
               as Quantity?,
     ) as $Val);
   }
-
-  /// Create a copy of MedicationKnowledgePackaging
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get type {
-    if (_value.type == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.type!, (value) {
-      return _then(_value.copyWith(type: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationKnowledgePackaging
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $QuantityCopyWith<$Res>? get quantity {
-    if (_value.quantity == null) {
-      return null;
-    }
-
-    return $QuantityCopyWith<$Res>(_value.quantity!, (value) {
-      return _then(_value.copyWith(quantity: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -6005,11 +5612,6 @@ abstract class _$$MedicationKnowledgePackagingImplCopyWith<$Res>
       List<FhirExtension>? modifierExtension,
       CodeableConcept? type,
       Quantity? quantity});
-
-  @override
-  $CodeableConceptCopyWith<$Res>? get type;
-  @override
-  $QuantityCopyWith<$Res>? get quantity;
 }
 
 /// @nodoc
@@ -6167,9 +5769,8 @@ class _$MedicationKnowledgePackagingImpl extends _MedicationKnowledgePackaging {
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
                 .equals(other._modifierExtension, _modifierExtension) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.quantity, quantity) ||
-                other.quantity == quantity));
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.quantity, quantity));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -6179,8 +5780,8 @@ class _$MedicationKnowledgePackagingImpl extends _MedicationKnowledgePackaging {
       id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
-      type,
-      quantity);
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(quantity));
 
   /// Create a copy of MedicationKnowledgePackaging
   /// with the given fields replaced by the non-null parameter values.
@@ -6357,10 +5958,6 @@ abstract class $MedicationKnowledgeDrugCharacteristicCopyWith<$Res> {
       FhirBase64Binary? valueBase64Binary,
       @JsonKey(name: '_valueBase64Binary')
       PrimitiveElement? valueBase64BinaryElement});
-
-  $CodeableConceptCopyWith<$Res>? get type;
-  $CodeableConceptCopyWith<$Res>? get valueCodeableConcept;
-  $QuantityCopyWith<$Res>? get valueQuantity;
 }
 
 /// @nodoc
@@ -6433,49 +6030,6 @@ class _$MedicationKnowledgeDrugCharacteristicCopyWithImpl<$Res,
               as PrimitiveElement?,
     ) as $Val);
   }
-
-  /// Create a copy of MedicationKnowledgeDrugCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get type {
-    if (_value.type == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.type!, (value) {
-      return _then(_value.copyWith(type: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationKnowledgeDrugCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get valueCodeableConcept {
-    if (_value.valueCodeableConcept == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.valueCodeableConcept!,
-        (value) {
-      return _then(_value.copyWith(valueCodeableConcept: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationKnowledgeDrugCharacteristic
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $QuantityCopyWith<$Res>? get valueQuantity {
-    if (_value.valueQuantity == null) {
-      return null;
-    }
-
-    return $QuantityCopyWith<$Res>(_value.valueQuantity!, (value) {
-      return _then(_value.copyWith(valueQuantity: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -6499,13 +6053,6 @@ abstract class _$$MedicationKnowledgeDrugCharacteristicImplCopyWith<$Res>
       FhirBase64Binary? valueBase64Binary,
       @JsonKey(name: '_valueBase64Binary')
       PrimitiveElement? valueBase64BinaryElement});
-
-  @override
-  $CodeableConceptCopyWith<$Res>? get type;
-  @override
-  $CodeableConceptCopyWith<$Res>? get valueCodeableConcept;
-  @override
-  $QuantityCopyWith<$Res>? get valueQuantity;
 }
 
 /// @nodoc
@@ -6715,15 +6262,15 @@ class _$MedicationKnowledgeDrugCharacteristicImpl
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
                 .equals(other._modifierExtension, _modifierExtension) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.valueCodeableConcept, valueCodeableConcept) ||
-                other.valueCodeableConcept == valueCodeableConcept) &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality()
+                .equals(other.valueCodeableConcept, valueCodeableConcept) &&
             (identical(other.valueString, valueString) ||
                 other.valueString == valueString) &&
             (identical(other.valueStringElement, valueStringElement) ||
                 other.valueStringElement == valueStringElement) &&
-            (identical(other.valueQuantity, valueQuantity) ||
-                other.valueQuantity == valueQuantity) &&
+            const DeepCollectionEquality()
+                .equals(other.valueQuantity, valueQuantity) &&
             (identical(other.valueBase64Binary, valueBase64Binary) ||
                 other.valueBase64Binary == valueBase64Binary) &&
             (identical(
@@ -6738,11 +6285,11 @@ class _$MedicationKnowledgeDrugCharacteristicImpl
       id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
-      type,
-      valueCodeableConcept,
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(valueCodeableConcept),
       valueString,
       valueStringElement,
-      valueQuantity,
+      const DeepCollectionEquality().hash(valueQuantity),
       valueBase64Binary,
       valueBase64BinaryElement);
 
@@ -6936,7 +6483,6 @@ abstract class $MedicationKnowledgeRegulatoryCopyWith<$Res> {
       List<MedicationKnowledgeSchedule>? schedule,
       MedicationKnowledgeMaxDispense? maxDispense});
 
-  $ReferenceCopyWith<$Res> get regulatoryAuthority;
   $MedicationKnowledgeMaxDispenseCopyWith<$Res>? get maxDispense;
 }
 
@@ -6959,7 +6505,7 @@ class _$MedicationKnowledgeRegulatoryCopyWithImpl<$Res,
     Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
-    Object? regulatoryAuthority = null,
+    Object? regulatoryAuthority = freezed,
     Object? substitution = freezed,
     Object? schedule = freezed,
     Object? maxDispense = freezed,
@@ -6977,7 +6523,7 @@ class _$MedicationKnowledgeRegulatoryCopyWithImpl<$Res,
           ? _value.modifierExtension
           : modifierExtension // ignore: cast_nullable_to_non_nullable
               as List<FhirExtension>?,
-      regulatoryAuthority: null == regulatoryAuthority
+      regulatoryAuthority: freezed == regulatoryAuthority
           ? _value.regulatoryAuthority
           : regulatoryAuthority // ignore: cast_nullable_to_non_nullable
               as Reference,
@@ -6994,16 +6540,6 @@ class _$MedicationKnowledgeRegulatoryCopyWithImpl<$Res,
           : maxDispense // ignore: cast_nullable_to_non_nullable
               as MedicationKnowledgeMaxDispense?,
     ) as $Val);
-  }
-
-  /// Create a copy of MedicationKnowledgeRegulatory
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res> get regulatoryAuthority {
-    return $ReferenceCopyWith<$Res>(_value.regulatoryAuthority, (value) {
-      return _then(_value.copyWith(regulatoryAuthority: value) as $Val);
-    });
   }
 
   /// Create a copy of MedicationKnowledgeRegulatory
@@ -7041,8 +6577,6 @@ abstract class _$$MedicationKnowledgeRegulatoryImplCopyWith<$Res>
       MedicationKnowledgeMaxDispense? maxDispense});
 
   @override
-  $ReferenceCopyWith<$Res> get regulatoryAuthority;
-  @override
   $MedicationKnowledgeMaxDispenseCopyWith<$Res>? get maxDispense;
 }
 
@@ -7064,7 +6598,7 @@ class __$$MedicationKnowledgeRegulatoryImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
-    Object? regulatoryAuthority = null,
+    Object? regulatoryAuthority = freezed,
     Object? substitution = freezed,
     Object? schedule = freezed,
     Object? maxDispense = freezed,
@@ -7082,7 +6616,7 @@ class __$$MedicationKnowledgeRegulatoryImplCopyWithImpl<$Res>
           ? _value._modifierExtension
           : modifierExtension // ignore: cast_nullable_to_non_nullable
               as List<FhirExtension>?,
-      regulatoryAuthority: null == regulatoryAuthority
+      regulatoryAuthority: freezed == regulatoryAuthority
           ? _value.regulatoryAuthority
           : regulatoryAuthority // ignore: cast_nullable_to_non_nullable
               as Reference,
@@ -7243,8 +6777,8 @@ class _$MedicationKnowledgeRegulatoryImpl
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
                 .equals(other._modifierExtension, _modifierExtension) &&
-            (identical(other.regulatoryAuthority, regulatoryAuthority) ||
-                other.regulatoryAuthority == regulatoryAuthority) &&
+            const DeepCollectionEquality()
+                .equals(other.regulatoryAuthority, regulatoryAuthority) &&
             const DeepCollectionEquality()
                 .equals(other._substitution, _substitution) &&
             const DeepCollectionEquality().equals(other._schedule, _schedule) &&
@@ -7259,7 +6793,7 @@ class _$MedicationKnowledgeRegulatoryImpl
       id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
-      regulatoryAuthority,
+      const DeepCollectionEquality().hash(regulatoryAuthority),
       const DeepCollectionEquality().hash(_substitution),
       const DeepCollectionEquality().hash(_schedule),
       maxDispense);
@@ -7428,8 +6962,6 @@ abstract class $MedicationKnowledgeSubstitutionCopyWith<$Res> {
       CodeableConcept type,
       FhirBoolean? allowed,
       @JsonKey(name: '_allowed') PrimitiveElement? allowedElement});
-
-  $CodeableConceptCopyWith<$Res> get type;
 }
 
 /// @nodoc
@@ -7451,7 +6983,7 @@ class _$MedicationKnowledgeSubstitutionCopyWithImpl<$Res,
     Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
-    Object? type = null,
+    Object? type = freezed,
     Object? allowed = freezed,
     Object? allowedElement = freezed,
   }) {
@@ -7468,7 +7000,7 @@ class _$MedicationKnowledgeSubstitutionCopyWithImpl<$Res,
           ? _value.modifierExtension
           : modifierExtension // ignore: cast_nullable_to_non_nullable
               as List<FhirExtension>?,
-      type: null == type
+      type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as CodeableConcept,
@@ -7481,16 +7013,6 @@ class _$MedicationKnowledgeSubstitutionCopyWithImpl<$Res,
           : allowedElement // ignore: cast_nullable_to_non_nullable
               as PrimitiveElement?,
     ) as $Val);
-  }
-
-  /// Create a copy of MedicationKnowledgeSubstitution
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res> get type {
-    return $CodeableConceptCopyWith<$Res>(_value.type, (value) {
-      return _then(_value.copyWith(type: value) as $Val);
-    });
   }
 }
 
@@ -7510,9 +7032,6 @@ abstract class _$$MedicationKnowledgeSubstitutionImplCopyWith<$Res>
       CodeableConcept type,
       FhirBoolean? allowed,
       @JsonKey(name: '_allowed') PrimitiveElement? allowedElement});
-
-  @override
-  $CodeableConceptCopyWith<$Res> get type;
 }
 
 /// @nodoc
@@ -7533,7 +7052,7 @@ class __$$MedicationKnowledgeSubstitutionImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
-    Object? type = null,
+    Object? type = freezed,
     Object? allowed = freezed,
     Object? allowedElement = freezed,
   }) {
@@ -7550,7 +7069,7 @@ class __$$MedicationKnowledgeSubstitutionImplCopyWithImpl<$Res>
           ? _value._modifierExtension
           : modifierExtension // ignore: cast_nullable_to_non_nullable
               as List<FhirExtension>?,
-      type: null == type
+      type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as CodeableConcept,
@@ -7681,7 +7200,7 @@ class _$MedicationKnowledgeSubstitutionImpl
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
                 .equals(other._modifierExtension, _modifierExtension) &&
-            (identical(other.type, type) || other.type == type) &&
+            const DeepCollectionEquality().equals(other.type, type) &&
             (identical(other.allowed, allowed) || other.allowed == allowed) &&
             (identical(other.allowedElement, allowedElement) ||
                 other.allowedElement == allowedElement));
@@ -7694,7 +7213,7 @@ class _$MedicationKnowledgeSubstitutionImpl
       id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
-      type,
+      const DeepCollectionEquality().hash(type),
       allowed,
       allowedElement);
 
@@ -7847,8 +7366,6 @@ abstract class $MedicationKnowledgeScheduleCopyWith<$Res> {
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept schedule});
-
-  $CodeableConceptCopyWith<$Res> get schedule;
 }
 
 /// @nodoc
@@ -7870,7 +7387,7 @@ class _$MedicationKnowledgeScheduleCopyWithImpl<$Res,
     Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
-    Object? schedule = null,
+    Object? schedule = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -7885,21 +7402,11 @@ class _$MedicationKnowledgeScheduleCopyWithImpl<$Res,
           ? _value.modifierExtension
           : modifierExtension // ignore: cast_nullable_to_non_nullable
               as List<FhirExtension>?,
-      schedule: null == schedule
+      schedule: freezed == schedule
           ? _value.schedule
           : schedule // ignore: cast_nullable_to_non_nullable
               as CodeableConcept,
     ) as $Val);
-  }
-
-  /// Create a copy of MedicationKnowledgeSchedule
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res> get schedule {
-    return $CodeableConceptCopyWith<$Res>(_value.schedule, (value) {
-      return _then(_value.copyWith(schedule: value) as $Val);
-    });
   }
 }
 
@@ -7917,9 +7424,6 @@ abstract class _$$MedicationKnowledgeScheduleImplCopyWith<$Res>
       @JsonKey(name: 'extension') List<FhirExtension>? extension_,
       List<FhirExtension>? modifierExtension,
       CodeableConcept schedule});
-
-  @override
-  $CodeableConceptCopyWith<$Res> get schedule;
 }
 
 /// @nodoc
@@ -7940,7 +7444,7 @@ class __$$MedicationKnowledgeScheduleImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
-    Object? schedule = null,
+    Object? schedule = freezed,
   }) {
     return _then(_$MedicationKnowledgeScheduleImpl(
       id: freezed == id
@@ -7955,7 +7459,7 @@ class __$$MedicationKnowledgeScheduleImplCopyWithImpl<$Res>
           ? _value._modifierExtension
           : modifierExtension // ignore: cast_nullable_to_non_nullable
               as List<FhirExtension>?,
-      schedule: null == schedule
+      schedule: freezed == schedule
           ? _value.schedule
           : schedule // ignore: cast_nullable_to_non_nullable
               as CodeableConcept,
@@ -8065,8 +7569,7 @@ class _$MedicationKnowledgeScheduleImpl extends _MedicationKnowledgeSchedule {
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
                 .equals(other._modifierExtension, _modifierExtension) &&
-            (identical(other.schedule, schedule) ||
-                other.schedule == schedule));
+            const DeepCollectionEquality().equals(other.schedule, schedule));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -8076,7 +7579,7 @@ class _$MedicationKnowledgeScheduleImpl extends _MedicationKnowledgeSchedule {
       id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
-      schedule);
+      const DeepCollectionEquality().hash(schedule));
 
   /// Create a copy of MedicationKnowledgeSchedule
   /// with the given fields replaced by the non-null parameter values.
@@ -8218,9 +7721,6 @@ abstract class $MedicationKnowledgeMaxDispenseCopyWith<$Res> {
       List<FhirExtension>? modifierExtension,
       Quantity quantity,
       FhirDuration? period});
-
-  $QuantityCopyWith<$Res> get quantity;
-  $FhirDurationCopyWith<$Res>? get period;
 }
 
 /// @nodoc
@@ -8242,7 +7742,7 @@ class _$MedicationKnowledgeMaxDispenseCopyWithImpl<$Res,
     Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
-    Object? quantity = null,
+    Object? quantity = freezed,
     Object? period = freezed,
   }) {
     return _then(_value.copyWith(
@@ -8258,7 +7758,7 @@ class _$MedicationKnowledgeMaxDispenseCopyWithImpl<$Res,
           ? _value.modifierExtension
           : modifierExtension // ignore: cast_nullable_to_non_nullable
               as List<FhirExtension>?,
-      quantity: null == quantity
+      quantity: freezed == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as Quantity,
@@ -8267,30 +7767,6 @@ class _$MedicationKnowledgeMaxDispenseCopyWithImpl<$Res,
           : period // ignore: cast_nullable_to_non_nullable
               as FhirDuration?,
     ) as $Val);
-  }
-
-  /// Create a copy of MedicationKnowledgeMaxDispense
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $QuantityCopyWith<$Res> get quantity {
-    return $QuantityCopyWith<$Res>(_value.quantity, (value) {
-      return _then(_value.copyWith(quantity: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationKnowledgeMaxDispense
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $FhirDurationCopyWith<$Res>? get period {
-    if (_value.period == null) {
-      return null;
-    }
-
-    return $FhirDurationCopyWith<$Res>(_value.period!, (value) {
-      return _then(_value.copyWith(period: value) as $Val);
-    });
   }
 }
 
@@ -8309,11 +7785,6 @@ abstract class _$$MedicationKnowledgeMaxDispenseImplCopyWith<$Res>
       List<FhirExtension>? modifierExtension,
       Quantity quantity,
       FhirDuration? period});
-
-  @override
-  $QuantityCopyWith<$Res> get quantity;
-  @override
-  $FhirDurationCopyWith<$Res>? get period;
 }
 
 /// @nodoc
@@ -8334,7 +7805,7 @@ class __$$MedicationKnowledgeMaxDispenseImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? extension_ = freezed,
     Object? modifierExtension = freezed,
-    Object? quantity = null,
+    Object? quantity = freezed,
     Object? period = freezed,
   }) {
     return _then(_$MedicationKnowledgeMaxDispenseImpl(
@@ -8350,7 +7821,7 @@ class __$$MedicationKnowledgeMaxDispenseImplCopyWithImpl<$Res>
           ? _value._modifierExtension
           : modifierExtension // ignore: cast_nullable_to_non_nullable
               as List<FhirExtension>?,
-      quantity: null == quantity
+      quantity: freezed == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as Quantity,
@@ -8471,9 +7942,8 @@ class _$MedicationKnowledgeMaxDispenseImpl
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
                 .equals(other._modifierExtension, _modifierExtension) &&
-            (identical(other.quantity, quantity) ||
-                other.quantity == quantity) &&
-            (identical(other.period, period) || other.period == period));
+            const DeepCollectionEquality().equals(other.quantity, quantity) &&
+            const DeepCollectionEquality().equals(other.period, period));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -8483,8 +7953,8 @@ class _$MedicationKnowledgeMaxDispenseImpl
       id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
-      quantity,
-      period);
+      const DeepCollectionEquality().hash(quantity),
+      const DeepCollectionEquality().hash(period));
 
   /// Create a copy of MedicationKnowledgeMaxDispense
   /// with the given fields replaced by the non-null parameter values.
@@ -8638,8 +8108,6 @@ abstract class $MedicationKnowledgeKineticsCopyWith<$Res> {
       List<Quantity>? areaUnderCurve,
       List<Quantity>? lethalDose50,
       FhirDuration? halfLifePeriod});
-
-  $FhirDurationCopyWith<$Res>? get halfLifePeriod;
 }
 
 /// @nodoc
@@ -8692,20 +8160,6 @@ class _$MedicationKnowledgeKineticsCopyWithImpl<$Res,
               as FhirDuration?,
     ) as $Val);
   }
-
-  /// Create a copy of MedicationKnowledgeKinetics
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $FhirDurationCopyWith<$Res>? get halfLifePeriod {
-    if (_value.halfLifePeriod == null) {
-      return null;
-    }
-
-    return $FhirDurationCopyWith<$Res>(_value.halfLifePeriod!, (value) {
-      return _then(_value.copyWith(halfLifePeriod: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -8724,9 +8178,6 @@ abstract class _$$MedicationKnowledgeKineticsImplCopyWith<$Res>
       List<Quantity>? areaUnderCurve,
       List<Quantity>? lethalDose50,
       FhirDuration? halfLifePeriod});
-
-  @override
-  $FhirDurationCopyWith<$Res>? get halfLifePeriod;
 }
 
 /// @nodoc
@@ -8919,8 +8370,8 @@ class _$MedicationKnowledgeKineticsImpl extends _MedicationKnowledgeKinetics {
                 .equals(other._areaUnderCurve, _areaUnderCurve) &&
             const DeepCollectionEquality()
                 .equals(other._lethalDose50, _lethalDose50) &&
-            (identical(other.halfLifePeriod, halfLifePeriod) ||
-                other.halfLifePeriod == halfLifePeriod));
+            const DeepCollectionEquality()
+                .equals(other.halfLifePeriod, halfLifePeriod));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -8932,7 +8383,7 @@ class _$MedicationKnowledgeKineticsImpl extends _MedicationKnowledgeKinetics {
       const DeepCollectionEquality().hash(_modifierExtension),
       const DeepCollectionEquality().hash(_areaUnderCurve),
       const DeepCollectionEquality().hash(_lethalDose50),
-      halfLifePeriod);
+      const DeepCollectionEquality().hash(halfLifePeriod));
 
   /// Create a copy of MedicationKnowledgeKinetics
   /// with the given fields replaced by the non-null parameter values.

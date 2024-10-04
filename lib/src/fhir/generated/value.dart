@@ -48,49 +48,6 @@ class ValueSet {
   final PrimitiveElement copyrightElement;
   final ValueSetCompose compose;
   final ValueSetExpansion expansion;
-  const ValueSet({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.url,
-    required this.urlElement,
-    required this.identifier,
-    required this.version,
-    required this.versionElement,
-    required this.name,
-    required this.nameElement,
-    required this.title,
-    required this.titleElement,
-    required this.status,
-    required this.statusElement,
-    required this.experimental,
-    required this.experimentalElement,
-    required this.date,
-    required this.dateElement,
-    required this.publisher,
-    required this.publisherElement,
-    required this.contact,
-    required this.description,
-    required this.descriptionElement,
-    required this.useContext,
-    required this.jurisdiction,
-    required this.immutable,
-    required this.immutableElement,
-    required this.purpose,
-    required this.purposeElement,
-    required this.copyright,
-    required this.copyrightElement,
-    required this.compose,
-    required this.expansion,
-  });
 }
 
 @Data()
@@ -105,17 +62,6 @@ class ValueSetCompose {
   final PrimitiveElement inactiveElement;
   final List<ValueSetInclude> include;
   final List<ValueSetInclude> exclude;
-  const ValueSetCompose({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.lockedDate,
-    required this.lockedDateElement,
-    required this.inactive,
-    required this.inactiveElement,
-    required this.include,
-    required this.exclude,
-  });
 }
 
 @Data()
@@ -131,18 +77,6 @@ class ValueSetInclude {
   final List<ValueSetConcept> concept;
   final List<ValueSetFilter> filter;
   final List<FhirCanonical> valueSet;
-  const ValueSetInclude({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.system,
-    required this.systemElement,
-    required this.version,
-    required this.versionElement,
-    required this.concept,
-    required this.filter,
-    required this.valueSet,
-  });
 }
 
 @Data()
@@ -156,16 +90,6 @@ class ValueSetConcept {
   final String display;
   final PrimitiveElement displayElement;
   final List<ValueSetDesignation> designation;
-  const ValueSetConcept({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.codeElement,
-    required this.display,
-    required this.displayElement,
-    required this.designation,
-  });
 }
 
 @Data()
@@ -179,16 +103,6 @@ class ValueSetDesignation {
   final Coding use;
   final String value;
   final PrimitiveElement valueElement;
-  const ValueSetDesignation({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.language,
-    required this.languageElement,
-    required this.use,
-    required this.value,
-    required this.valueElement,
-  });
 }
 
 @Data()
@@ -203,17 +117,6 @@ class ValueSetFilter {
   final PrimitiveElement opElement;
   final String value;
   final PrimitiveElement valueElement;
-  const ValueSetFilter({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.property,
-    required this.propertyElement,
-    required this.op,
-    required this.opElement,
-    required this.value,
-    required this.valueElement,
-  });
 }
 
 @Data()
@@ -232,21 +135,6 @@ class ValueSetExpansion {
   final PrimitiveElement offsetElement;
   final List<ValueSetParameter> parameter;
   final List<ValueSetContains> contains;
-  const ValueSetExpansion({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.identifierElement,
-    required this.timestamp,
-    required this.timestampElement,
-    required this.total,
-    required this.totalElement,
-    required this.offset,
-    required this.offsetElement,
-    required this.parameter,
-    required this.contains,
-  });
 }
 
 @Data()
@@ -271,27 +159,6 @@ class ValueSetParameter {
   final PrimitiveElement valueCodeElement;
   final String valueDateTime;
   final PrimitiveElement valueDateTimeElement;
-  const ValueSetParameter({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.name,
-    required this.nameElement,
-    required this.valueString,
-    required this.valueStringElement,
-    required this.valueBoolean,
-    required this.valueBooleanElement,
-    required this.valueInteger,
-    required this.valueIntegerElement,
-    required this.valueDecimal,
-    required this.valueDecimalElement,
-    required this.valueUri,
-    required this.valueUriElement,
-    required this.valueCode,
-    required this.valueCodeElement,
-    required this.valueDateTime,
-    required this.valueDateTimeElement,
-  });
 }
 
 @Data()
@@ -314,25 +181,6 @@ class ValueSetContains {
   final PrimitiveElement displayElement;
   final List<ValueSetDesignation> designation;
   final List<ValueSetContains> contains;
-  const ValueSetContains({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.system,
-    required this.systemElement,
-    required this.abstract_,
-    required this.abstractElement,
-    required this.inactive,
-    required this.inactiveElement,
-    required this.version,
-    required this.versionElement,
-    required this.code,
-    required this.codeElement,
-    required this.display,
-    required this.displayElement,
-    required this.designation,
-    required this.contains,
-  });
 }
 
 

@@ -18,19 +18,6 @@ class ContactPoint {
   final FhirPositiveInt rank;
   final PrimitiveElement rankElement;
   final Period period;
-  const ContactPoint({
-    required this.id,
-    required this.extension_,
-    required this.system,
-    required this.systemElement,
-    required this.value,
-    required this.valueElement,
-    required this.use,
-    required this.useElement,
-    required this.rank,
-    required this.rankElement,
-    required this.period,
-  });
 }
 
 @Data()
@@ -41,13 +28,6 @@ class ContactDetail {
   final String name;
   final PrimitiveElement nameElement;
   final List<ContactPoint> telecom;
-  const ContactDetail({
-    required this.id,
-    required this.extension_,
-    required this.name,
-    required this.nameElement,
-    required this.telecom,
-  });
 }
 
 

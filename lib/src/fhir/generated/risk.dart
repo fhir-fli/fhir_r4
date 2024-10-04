@@ -39,40 +39,6 @@ class RiskAssessment {
   final String mitigation;
   final PrimitiveElement mitigationElement;
   final List<Annotation> note;
-  const RiskAssessment({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.basedOn,
-    required this.parent,
-    required this.status,
-    required this.statusElement,
-    required this.method,
-    required this.code,
-    required this.subject,
-    required this.encounter,
-    required this.occurrenceDateTime,
-    required this.occurrenceDateTimeElement,
-    required this.occurrencePeriod,
-    required this.condition,
-    required this.performer,
-    required this.reasonCode,
-    required this.reasonReference,
-    required this.basis,
-    required this.prediction,
-    required this.mitigation,
-    required this.mitigationElement,
-    required this.note,
-  });
 }
 
 @Data()
@@ -92,22 +58,6 @@ class RiskAssessmentPrediction {
   final Range whenRange;
   final String rationale;
   final PrimitiveElement rationaleElement;
-  const RiskAssessmentPrediction({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.outcome,
-    required this.probabilityDecimal,
-    required this.probabilityDecimalElement,
-    required this.probabilityRange,
-    required this.qualitativeRisk,
-    required this.relativeRisk,
-    required this.relativeRiskElement,
-    required this.whenPeriod,
-    required this.whenRange,
-    required this.rationale,
-    required this.rationaleElement,
-  });
 }
 
 

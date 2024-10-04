@@ -13,14 +13,6 @@ class Money {
   final PrimitiveElement valueElement;
   final FhirCode currency;
   final PrimitiveElement currencyElement;
-  const Money({
-    required this.id,
-    required this.extension_,
-    required this.value,
-    required this.valueElement,
-    required this.currency,
-    required this.currencyElement,
-  });
 }
 
 

@@ -231,13 +231,6 @@ abstract class $MolecularSequenceCopyWith<$Res> {
       List<Reference>? pointer,
       List<MolecularSequenceStructureVariant>? structureVariant});
 
-  $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
-  $ReferenceCopyWith<$Res>? get patient;
-  $ReferenceCopyWith<$Res>? get specimen;
-  $ReferenceCopyWith<$Res>? get device;
-  $ReferenceCopyWith<$Res>? get performer;
-  $QuantityCopyWith<$Res>? get quantity;
   $MolecularSequenceReferenceSeqCopyWith<$Res>? get referenceSeq;
 }
 
@@ -420,104 +413,6 @@ class _$MolecularSequenceCopyWithImpl<$Res, $Val extends MolecularSequence>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $FhirMetaCopyWith<$Res>? get meta {
-    if (_value.meta == null) {
-      return null;
-    }
-
-    return $FhirMetaCopyWith<$Res>(_value.meta!, (value) {
-      return _then(_value.copyWith(meta: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MolecularSequence
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MolecularSequence
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get patient {
-    if (_value.patient == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.patient!, (value) {
-      return _then(_value.copyWith(patient: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MolecularSequence
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get specimen {
-    if (_value.specimen == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.specimen!, (value) {
-      return _then(_value.copyWith(specimen: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MolecularSequence
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get device {
-    if (_value.device == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.device!, (value) {
-      return _then(_value.copyWith(device: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MolecularSequence
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get performer {
-    if (_value.performer == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.performer!, (value) {
-      return _then(_value.copyWith(performer: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MolecularSequence
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $QuantityCopyWith<$Res>? get quantity {
-    if (_value.quantity == null) {
-      return null;
-    }
-
-    return $QuantityCopyWith<$Res>(_value.quantity!, (value) {
-      return _then(_value.copyWith(quantity: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MolecularSequence
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
   $MolecularSequenceReferenceSeqCopyWith<$Res>? get referenceSeq {
     if (_value.referenceSeq == null) {
       return null;
@@ -573,20 +468,6 @@ abstract class _$$MolecularSequenceImplCopyWith<$Res>
       List<Reference>? pointer,
       List<MolecularSequenceStructureVariant>? structureVariant});
 
-  @override
-  $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
-  @override
-  $ReferenceCopyWith<$Res>? get patient;
-  @override
-  $ReferenceCopyWith<$Res>? get specimen;
-  @override
-  $ReferenceCopyWith<$Res>? get device;
-  @override
-  $ReferenceCopyWith<$Res>? get performer;
-  @override
-  $QuantityCopyWith<$Res>? get quantity;
   @override
   $MolecularSequenceReferenceSeqCopyWith<$Res>? get referenceSeq;
 }
@@ -1123,7 +1004,7 @@ class _$MolecularSequenceImpl extends _MolecularSequence {
             (identical(other.resourceType, resourceType) ||
                 other.resourceType == resourceType) &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.meta, meta) || other.meta == meta) &&
+            const DeepCollectionEquality().equals(other.meta, meta) &&
             (identical(other.implicitRules, implicitRules) ||
                 other.implicitRules == implicitRules) &&
             (identical(other.implicitRulesElement, implicitRulesElement) ||
@@ -1132,7 +1013,7 @@ class _$MolecularSequenceImpl extends _MolecularSequence {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -1149,14 +1030,11 @@ class _$MolecularSequenceImpl extends _MolecularSequence {
             (identical(
                     other.coordinateSystemElement, coordinateSystemElement) ||
                 other.coordinateSystemElement == coordinateSystemElement) &&
-            (identical(other.patient, patient) || other.patient == patient) &&
-            (identical(other.specimen, specimen) ||
-                other.specimen == specimen) &&
-            (identical(other.device, device) || other.device == device) &&
-            (identical(other.performer, performer) ||
-                other.performer == performer) &&
-            (identical(other.quantity, quantity) ||
-                other.quantity == quantity) &&
+            const DeepCollectionEquality().equals(other.patient, patient) &&
+            const DeepCollectionEquality().equals(other.specimen, specimen) &&
+            const DeepCollectionEquality().equals(other.device, device) &&
+            const DeepCollectionEquality().equals(other.performer, performer) &&
+            const DeepCollectionEquality().equals(other.quantity, quantity) &&
             (identical(other.referenceSeq, referenceSeq) ||
                 other.referenceSeq == referenceSeq) &&
             const DeepCollectionEquality().equals(other._variant, _variant) &&
@@ -1182,12 +1060,12 @@ class _$MolecularSequenceImpl extends _MolecularSequence {
         runtimeType,
         resourceType,
         id,
-        meta,
+        const DeepCollectionEquality().hash(meta),
         implicitRules,
         implicitRulesElement,
         language,
         languageElement,
-        text,
+        const DeepCollectionEquality().hash(text),
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
@@ -1196,11 +1074,11 @@ class _$MolecularSequenceImpl extends _MolecularSequence {
         typeElement,
         coordinateSystem,
         coordinateSystemElement,
-        patient,
-        specimen,
-        device,
-        performer,
-        quantity,
+        const DeepCollectionEquality().hash(patient),
+        const DeepCollectionEquality().hash(specimen),
+        const DeepCollectionEquality().hash(device),
+        const DeepCollectionEquality().hash(performer),
+        const DeepCollectionEquality().hash(quantity),
         referenceSeq,
         const DeepCollectionEquality().hash(_variant),
         observedSeq,
@@ -1610,10 +1488,6 @@ abstract class $MolecularSequenceReferenceSeqCopyWith<$Res> {
       @JsonKey(name: '_windowStart') PrimitiveElement? windowStartElement,
       FhirInteger? windowEnd,
       @JsonKey(name: '_windowEnd') PrimitiveElement? windowEndElement});
-
-  $CodeableConceptCopyWith<$Res>? get chromosome;
-  $CodeableConceptCopyWith<$Res>? get referenceSeqId;
-  $ReferenceCopyWith<$Res>? get referenceSeqPointer;
 }
 
 /// @nodoc
@@ -1726,48 +1600,6 @@ class _$MolecularSequenceReferenceSeqCopyWithImpl<$Res,
               as PrimitiveElement?,
     ) as $Val);
   }
-
-  /// Create a copy of MolecularSequenceReferenceSeq
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get chromosome {
-    if (_value.chromosome == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.chromosome!, (value) {
-      return _then(_value.copyWith(chromosome: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MolecularSequenceReferenceSeq
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get referenceSeqId {
-    if (_value.referenceSeqId == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.referenceSeqId!, (value) {
-      return _then(_value.copyWith(referenceSeqId: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MolecularSequenceReferenceSeq
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get referenceSeqPointer {
-    if (_value.referenceSeqPointer == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.referenceSeqPointer!, (value) {
-      return _then(_value.copyWith(referenceSeqPointer: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -1799,13 +1631,6 @@ abstract class _$$MolecularSequenceReferenceSeqImplCopyWith<$Res>
       @JsonKey(name: '_windowStart') PrimitiveElement? windowStartElement,
       FhirInteger? windowEnd,
       @JsonKey(name: '_windowEnd') PrimitiveElement? windowEndElement});
-
-  @override
-  $CodeableConceptCopyWith<$Res>? get chromosome;
-  @override
-  $CodeableConceptCopyWith<$Res>? get referenceSeqId;
-  @override
-  $ReferenceCopyWith<$Res>? get referenceSeqPointer;
 }
 
 /// @nodoc
@@ -2117,8 +1942,8 @@ class _$MolecularSequenceReferenceSeqImpl
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
                 .equals(other._modifierExtension, _modifierExtension) &&
-            (identical(other.chromosome, chromosome) ||
-                other.chromosome == chromosome) &&
+            const DeepCollectionEquality()
+                .equals(other.chromosome, chromosome) &&
             (identical(other.genomeBuild, genomeBuild) ||
                 other.genomeBuild == genomeBuild) &&
             (identical(other.genomeBuildElement, genomeBuildElement) ||
@@ -2127,10 +1952,10 @@ class _$MolecularSequenceReferenceSeqImpl
                 other.orientation == orientation) &&
             (identical(other.orientationElement, orientationElement) ||
                 other.orientationElement == orientationElement) &&
-            (identical(other.referenceSeqId, referenceSeqId) ||
-                other.referenceSeqId == referenceSeqId) &&
-            (identical(other.referenceSeqPointer, referenceSeqPointer) ||
-                other.referenceSeqPointer == referenceSeqPointer) &&
+            const DeepCollectionEquality()
+                .equals(other.referenceSeqId, referenceSeqId) &&
+            const DeepCollectionEquality()
+                .equals(other.referenceSeqPointer, referenceSeqPointer) &&
             (identical(other.referenceSeqString, referenceSeqString) ||
                 other.referenceSeqString == referenceSeqString) &&
             (identical(other.referenceSeqStringElement,
@@ -2156,13 +1981,13 @@ class _$MolecularSequenceReferenceSeqImpl
       id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
-      chromosome,
+      const DeepCollectionEquality().hash(chromosome),
       genomeBuild,
       genomeBuildElement,
       orientation,
       orientationElement,
-      referenceSeqId,
-      referenceSeqPointer,
+      const DeepCollectionEquality().hash(referenceSeqId),
+      const DeepCollectionEquality().hash(referenceSeqPointer),
       referenceSeqString,
       referenceSeqStringElement,
       strand,
@@ -2472,8 +2297,6 @@ abstract class $MolecularSequenceVariantCopyWith<$Res> {
       String? cigar,
       @JsonKey(name: '_cigar') PrimitiveElement? cigarElement,
       Reference? variantPointer});
-
-  $ReferenceCopyWith<$Res>? get variantPointer;
 }
 
 /// @nodoc
@@ -2566,20 +2389,6 @@ class _$MolecularSequenceVariantCopyWithImpl<$Res,
               as Reference?,
     ) as $Val);
   }
-
-  /// Create a copy of MolecularSequenceVariant
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get variantPointer {
-    if (_value.variantPointer == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.variantPointer!, (value) {
-      return _then(_value.copyWith(variantPointer: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -2607,9 +2416,6 @@ abstract class _$$MolecularSequenceVariantImplCopyWith<$Res>
       String? cigar,
       @JsonKey(name: '_cigar') PrimitiveElement? cigarElement,
       Reference? variantPointer});
-
-  @override
-  $ReferenceCopyWith<$Res>? get variantPointer;
 }
 
 /// @nodoc
@@ -2896,8 +2702,8 @@ class _$MolecularSequenceVariantImpl extends _MolecularSequenceVariant {
             (identical(other.cigar, cigar) || other.cigar == cigar) &&
             (identical(other.cigarElement, cigarElement) ||
                 other.cigarElement == cigarElement) &&
-            (identical(other.variantPointer, variantPointer) ||
-                other.variantPointer == variantPointer));
+            const DeepCollectionEquality()
+                .equals(other.variantPointer, variantPointer));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2917,7 +2723,7 @@ class _$MolecularSequenceVariantImpl extends _MolecularSequenceVariant {
       referenceAlleleElement,
       cigar,
       cigarElement,
-      variantPointer);
+      const DeepCollectionEquality().hash(variantPointer));
 
   /// Create a copy of MolecularSequenceVariant
   /// with the given fields replaced by the non-null parameter values.
@@ -3263,9 +3069,6 @@ abstract class $MolecularSequenceQualityCopyWith<$Res> {
       @JsonKey(name: '_fScore') PrimitiveElement? fScoreElement,
       MolecularSequenceRoc? roc});
 
-  $CodeableConceptCopyWith<$Res>? get standardSequence;
-  $QuantityCopyWith<$Res>? get score;
-  $CodeableConceptCopyWith<$Res>? get method;
   $MolecularSequenceRocCopyWith<$Res>? get roc;
 }
 
@@ -3439,48 +3242,6 @@ class _$MolecularSequenceQualityCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get standardSequence {
-    if (_value.standardSequence == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.standardSequence!, (value) {
-      return _then(_value.copyWith(standardSequence: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MolecularSequenceQuality
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $QuantityCopyWith<$Res>? get score {
-    if (_value.score == null) {
-      return null;
-    }
-
-    return $QuantityCopyWith<$Res>(_value.score!, (value) {
-      return _then(_value.copyWith(score: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MolecularSequenceQuality
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get method {
-    if (_value.method == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.method!, (value) {
-      return _then(_value.copyWith(method: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MolecularSequenceQuality
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
   $MolecularSequenceRocCopyWith<$Res>? get roc {
     if (_value.roc == null) {
       return null;
@@ -3532,12 +3293,6 @@ abstract class _$$MolecularSequenceQualityImplCopyWith<$Res>
       @JsonKey(name: '_fScore') PrimitiveElement? fScoreElement,
       MolecularSequenceRoc? roc});
 
-  @override
-  $CodeableConceptCopyWith<$Res>? get standardSequence;
-  @override
-  $QuantityCopyWith<$Res>? get score;
-  @override
-  $CodeableConceptCopyWith<$Res>? get method;
   @override
   $MolecularSequenceRocCopyWith<$Res>? get roc;
 }
@@ -3972,16 +3727,16 @@ class _$MolecularSequenceQualityImpl extends _MolecularSequenceQuality {
             (identical(other.type, type) || other.type == type) &&
             (identical(other.typeElement, typeElement) ||
                 other.typeElement == typeElement) &&
-            (identical(other.standardSequence, standardSequence) ||
-                other.standardSequence == standardSequence) &&
+            const DeepCollectionEquality()
+                .equals(other.standardSequence, standardSequence) &&
             (identical(other.start, start) || other.start == start) &&
             (identical(other.startElement, startElement) ||
                 other.startElement == startElement) &&
             (identical(other.end, end) || other.end == end) &&
             (identical(other.endElement, endElement) ||
                 other.endElement == endElement) &&
-            (identical(other.score, score) || other.score == score) &&
-            (identical(other.method, method) || other.method == method) &&
+            const DeepCollectionEquality().equals(other.score, score) &&
+            const DeepCollectionEquality().equals(other.method, method) &&
             (identical(other.truthTP, truthTP) || other.truthTP == truthTP) &&
             (identical(other.truthTPElement, truthTPElement) ||
                 other.truthTPElement == truthTPElement) &&
@@ -4019,13 +3774,13 @@ class _$MolecularSequenceQualityImpl extends _MolecularSequenceQuality {
         const DeepCollectionEquality().hash(_modifierExtension),
         type,
         typeElement,
-        standardSequence,
+        const DeepCollectionEquality().hash(standardSequence),
         start,
         startElement,
         end,
         endElement,
-        score,
-        method,
+        const DeepCollectionEquality().hash(score),
+        const DeepCollectionEquality().hash(method),
         truthTP,
         truthTPElement,
         queryTP,
@@ -5972,7 +5727,6 @@ abstract class $MolecularSequenceStructureVariantCopyWith<$Res> {
       MolecularSequenceOuter? outer,
       MolecularSequenceInner? inner});
 
-  $CodeableConceptCopyWith<$Res>? get variantType;
   $MolecularSequenceOuterCopyWith<$Res>? get outer;
   $MolecularSequenceInnerCopyWith<$Res>? get inner;
 }
@@ -6052,20 +5806,6 @@ class _$MolecularSequenceStructureVariantCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get variantType {
-    if (_value.variantType == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.variantType!, (value) {
-      return _then(_value.copyWith(variantType: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MolecularSequenceStructureVariant
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
   $MolecularSequenceOuterCopyWith<$Res>? get outer {
     if (_value.outer == null) {
       return null;
@@ -6112,8 +5852,6 @@ abstract class _$$MolecularSequenceStructureVariantImplCopyWith<$Res>
       MolecularSequenceOuter? outer,
       MolecularSequenceInner? inner});
 
-  @override
-  $CodeableConceptCopyWith<$Res>? get variantType;
   @override
   $MolecularSequenceOuterCopyWith<$Res>? get outer;
   @override
@@ -6328,8 +6066,8 @@ class _$MolecularSequenceStructureVariantImpl
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
                 .equals(other._modifierExtension, _modifierExtension) &&
-            (identical(other.variantType, variantType) ||
-                other.variantType == variantType) &&
+            const DeepCollectionEquality()
+                .equals(other.variantType, variantType) &&
             (identical(other.exact, exact) || other.exact == exact) &&
             (identical(other.exactElement, exactElement) ||
                 other.exactElement == exactElement) &&
@@ -6347,7 +6085,7 @@ class _$MolecularSequenceStructureVariantImpl
       id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
-      variantType,
+      const DeepCollectionEquality().hash(variantType),
       exact,
       exactElement,
       length,

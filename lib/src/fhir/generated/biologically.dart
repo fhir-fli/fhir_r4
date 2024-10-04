@@ -32,33 +32,6 @@ class BiologicallyDerivedProduct {
   final List<BiologicallyDerivedProductProcessing> processing;
   final BiologicallyDerivedProductManipulation manipulation;
   final List<BiologicallyDerivedProductStorage> storage;
-  const BiologicallyDerivedProduct({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.productCategory,
-    required this.productCategoryElement,
-    required this.productCode,
-    required this.status,
-    required this.statusElement,
-    required this.request,
-    required this.quantity,
-    required this.quantityElement,
-    required this.parent,
-    required this.collection,
-    required this.processing,
-    required this.manipulation,
-    required this.storage,
-  });
 }
 
 @Data()
@@ -72,16 +45,6 @@ class BiologicallyDerivedProductCollection {
   final String collectedDateTime;
   final PrimitiveElement collectedDateTimeElement;
   final Period collectedPeriod;
-  const BiologicallyDerivedProductCollection({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.collector,
-    required this.source,
-    required this.collectedDateTime,
-    required this.collectedDateTimeElement,
-    required this.collectedPeriod,
-  });
 }
 
 @Data()
@@ -97,18 +60,6 @@ class BiologicallyDerivedProductProcessing {
   final String timeDateTime;
   final PrimitiveElement timeDateTimeElement;
   final Period timePeriod;
-  const BiologicallyDerivedProductProcessing({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.description,
-    required this.descriptionElement,
-    required this.procedure,
-    required this.additive,
-    required this.timeDateTime,
-    required this.timeDateTimeElement,
-    required this.timePeriod,
-  });
 }
 
 @Data()
@@ -122,16 +73,6 @@ class BiologicallyDerivedProductManipulation {
   final String timeDateTime;
   final PrimitiveElement timeDateTimeElement;
   final Period timePeriod;
-  const BiologicallyDerivedProductManipulation({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.description,
-    required this.descriptionElement,
-    required this.timeDateTime,
-    required this.timeDateTimeElement,
-    required this.timePeriod,
-  });
 }
 
 @Data()
@@ -147,18 +88,6 @@ class BiologicallyDerivedProductStorage {
   final FhirCode scale;
   final PrimitiveElement scaleElement;
   final Period duration;
-  const BiologicallyDerivedProductStorage({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.description,
-    required this.descriptionElement,
-    required this.temperature,
-    required this.temperatureElement,
-    required this.scale,
-    required this.scaleElement,
-    required this.duration,
-  });
 }
 
 

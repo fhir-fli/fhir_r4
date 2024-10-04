@@ -32,33 +32,6 @@ class Account {
   final PrimitiveElement descriptionElement;
   final List<AccountGuarantor> guarantor;
   final Reference partOf;
-  const Account({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.status,
-    required this.statusElement,
-    required this.type,
-    required this.name,
-    required this.nameElement,
-    required this.subject,
-    required this.servicePeriod,
-    required this.coverage,
-    required this.owner,
-    required this.description,
-    required this.descriptionElement,
-    required this.guarantor,
-    required this.partOf,
-  });
 }
 
 @Data()
@@ -70,14 +43,6 @@ class AccountCoverage {
   final Reference coverage;
   final FhirPositiveInt priority;
   final PrimitiveElement priorityElement;
-  const AccountCoverage({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.coverage,
-    required this.priority,
-    required this.priorityElement,
-  });
 }
 
 @Data()
@@ -90,15 +55,6 @@ class AccountGuarantor {
   final FhirBoolean onHold;
   final PrimitiveElement onHoldElement;
   final Period period;
-  const AccountGuarantor({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.party,
-    required this.onHold,
-    required this.onHoldElement,
-    required this.period,
-  });
 }
 
 

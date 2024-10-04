@@ -21,22 +21,6 @@ class DataRequirement {
   final FhirPositiveInt limit;
   final PrimitiveElement limitElement;
   final List<DataRequirementSort> sort;
-  const DataRequirement({
-    required this.id,
-    required this.extension_,
-    required this.type,
-    required this.typeElement,
-    required this.profile,
-    required this.subjectCodeableConcept,
-    required this.subjectReference,
-    required this.mustSupport,
-    required this.mustSupportElement,
-    required this.codeFilter,
-    required this.dateFilter,
-    required this.limit,
-    required this.limitElement,
-    required this.sort,
-  });
 }
 
 @Data()
@@ -51,17 +35,6 @@ class DataRequirementCodeFilter {
   final PrimitiveElement searchParamElement;
   final FhirCanonical valueSet;
   final List<Coding> code;
-  const DataRequirementCodeFilter({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.path,
-    required this.pathElement,
-    required this.searchParam,
-    required this.searchParamElement,
-    required this.valueSet,
-    required this.code,
-  });
 }
 
 @Data()
@@ -78,19 +51,6 @@ class DataRequirementDateFilter {
   final PrimitiveElement valueDateTimeElement;
   final Period valuePeriod;
   final FhirDuration valueDuration;
-  const DataRequirementDateFilter({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.path,
-    required this.pathElement,
-    required this.searchParam,
-    required this.searchParamElement,
-    required this.valueDateTime,
-    required this.valueDateTimeElement,
-    required this.valuePeriod,
-    required this.valueDuration,
-  });
 }
 
 @Data()
@@ -103,15 +63,6 @@ class DataRequirementSort {
   final PrimitiveElement pathElement;
   final dynamic direction;
   final PrimitiveElement directionElement;
-  const DataRequirementSort({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.path,
-    required this.pathElement,
-    required this.direction,
-    required this.directionElement,
-  });
 }
 
 

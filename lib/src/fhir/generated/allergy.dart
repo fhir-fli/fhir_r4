@@ -45,46 +45,6 @@ class AllergyIntolerance {
   final PrimitiveElement lastOccurrenceElement;
   final List<Annotation> note;
   final List<AllergyIntoleranceReaction> reaction;
-  const AllergyIntolerance({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.clinicalStatus,
-    required this.verificationStatus,
-    required this.type,
-    required this.typeElement,
-    required this.category,
-    required this.categoryElement,
-    required this.criticality,
-    required this.criticalityElement,
-    required this.code,
-    required this.patient,
-    required this.encounter,
-    required this.onsetDateTime,
-    required this.onsetDateTimeElement,
-    required this.onsetAge,
-    required this.onsetPeriod,
-    required this.onsetRange,
-    required this.onsetString,
-    required this.onsetStringElement,
-    required this.recordedDate,
-    required this.recordedDateElement,
-    required this.recorder,
-    required this.asserter,
-    required this.lastOccurrence,
-    required this.lastOccurrenceElement,
-    required this.note,
-    required this.reaction,
-  });
 }
 
 @Data()
@@ -103,21 +63,6 @@ class AllergyIntoleranceReaction {
   final PrimitiveElement severityElement;
   final CodeableConcept exposureRoute;
   final List<Annotation> note;
-  const AllergyIntoleranceReaction({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.substance,
-    required this.manifestation,
-    required this.description,
-    required this.descriptionElement,
-    required this.onset,
-    required this.onsetElement,
-    required this.severity,
-    required this.severityElement,
-    required this.exposureRoute,
-    required this.note,
-  });
 }
 
 

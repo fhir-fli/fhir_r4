@@ -31,32 +31,6 @@ class Organization {
   final Reference partOf;
   final List<OrganizationContact> contact;
   final List<Reference> endpoint;
-  const Organization({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.active,
-    required this.activeElement,
-    required this.type,
-    required this.name,
-    required this.nameElement,
-    required this.alias,
-    required this.aliasElement,
-    required this.telecom,
-    required this.address,
-    required this.partOf,
-    required this.contact,
-    required this.endpoint,
-  });
 }
 
 @Data()
@@ -69,15 +43,6 @@ class OrganizationContact {
   final HumanName name;
   final List<ContactPoint> telecom;
   final Address address;
-  const OrganizationContact({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.purpose,
-    required this.name,
-    required this.telecom,
-    required this.address,
-  });
 }
 
 @Data()
@@ -107,32 +72,6 @@ class OrganizationAffiliation {
   final List<Reference> healthcareService;
   final List<ContactPoint> telecom;
   final List<Reference> endpoint;
-  const OrganizationAffiliation({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.active,
-    required this.activeElement,
-    required this.period,
-    required this.organization,
-    required this.participatingOrganization,
-    required this.network,
-    required this.code,
-    required this.specialty,
-    required this.location,
-    required this.healthcareService,
-    required this.telecom,
-    required this.endpoint,
-  });
 }
 
 

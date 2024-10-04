@@ -35,36 +35,6 @@ class FhirList {
   final List<Annotation> note;
   final List<ListEntry> entry;
   final CodeableConcept emptyReason;
-  const FhirList({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.status,
-    required this.statusElement,
-    required this.mode,
-    required this.modeElement,
-    required this.title,
-    required this.titleElement,
-    required this.code,
-    required this.subject,
-    required this.encounter,
-    required this.date,
-    required this.dateElement,
-    required this.source,
-    required this.orderedBy,
-    required this.note,
-    required this.entry,
-    required this.emptyReason,
-  });
 }
 
 @Data()
@@ -79,17 +49,6 @@ class ListEntry {
   final FhirDateTime date;
   final PrimitiveElement dateElement;
   final Reference item;
-  const ListEntry({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.flag,
-    required this.deleted,
-    required this.deletedElement,
-    required this.date,
-    required this.dateElement,
-    required this.item,
-  });
 }
 
 

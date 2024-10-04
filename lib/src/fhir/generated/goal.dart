@@ -39,40 +39,6 @@ class Goal {
   final List<Annotation> note;
   final List<CodeableConcept> outcomeCode;
   final List<Reference> outcomeReference;
-  const Goal({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.lifecycleStatus,
-    required this.lifecycleStatusElement,
-    required this.achievementStatus,
-    required this.category,
-    required this.priority,
-    required this.description,
-    required this.subject,
-    required this.startDate,
-    required this.startDateElement,
-    required this.startCodeableConcept,
-    required this.target,
-    required this.statusDate,
-    required this.statusDateElement,
-    required this.statusReason,
-    required this.statusReasonElement,
-    required this.expressedBy,
-    required this.addresses,
-    required this.note,
-    required this.outcomeCode,
-    required this.outcomeReference,
-  });
 }
 
 @Data()
@@ -95,25 +61,6 @@ class GoalTarget {
   final String dueDate;
   final PrimitiveElement dueDateElement;
   final FhirDuration dueDuration;
-  const GoalTarget({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.measure,
-    required this.detailQuantity,
-    required this.detailRange,
-    required this.detailCodeableConcept,
-    required this.detailString,
-    required this.detailStringElement,
-    required this.detailBoolean,
-    required this.detailBooleanElement,
-    required this.detailInteger,
-    required this.detailIntegerElement,
-    required this.detailRatio,
-    required this.dueDate,
-    required this.dueDateElement,
-    required this.dueDuration,
-  });
 }
 
 

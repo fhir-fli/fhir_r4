@@ -65,66 +65,6 @@ class SearchParameter {
   final List<String> chain;
   final List<PrimitiveElement> chainElement;
   final List<SearchParameterComponent> component;
-  const SearchParameter({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.url,
-    required this.urlElement,
-    required this.version,
-    required this.versionElement,
-    required this.name,
-    required this.nameElement,
-    required this.derivedFrom,
-    required this.status,
-    required this.statusElement,
-    required this.experimental,
-    required this.experimentalElement,
-    required this.date,
-    required this.dateElement,
-    required this.publisher,
-    required this.publisherElement,
-    required this.contact,
-    required this.description,
-    required this.descriptionElement,
-    required this.useContext,
-    required this.jurisdiction,
-    required this.purpose,
-    required this.purposeElement,
-    required this.code,
-    required this.codeElement,
-    required this.base,
-    required this.baseElement,
-    required this.type,
-    required this.typeElement,
-    required this.expression,
-    required this.expressionElement,
-    required this.xpath,
-    required this.xpathElement,
-    required this.xpathUsage,
-    required this.xpathUsageElement,
-    required this.target,
-    required this.targetElement,
-    required this.multipleOr,
-    required this.multipleOrElement,
-    required this.multipleAnd,
-    required this.multipleAndElement,
-    required this.comparator,
-    required this.comparatorElement,
-    required this.modifier,
-    required this.modifierElement,
-    required this.chain,
-    required this.chainElement,
-    required this.component,
-  });
 }
 
 @Data()
@@ -136,14 +76,6 @@ class SearchParameterComponent {
   final FhirCanonical definition;
   final String expression;
   final PrimitiveElement expressionElement;
-  const SearchParameterComponent({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.definition,
-    required this.expression,
-    required this.expressionElement,
-  });
 }
 
 

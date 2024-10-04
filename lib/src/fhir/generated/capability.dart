@@ -59,60 +59,6 @@ class CapabilityStatement {
   final List<CapabilityStatementRest> rest;
   final List<CapabilityStatementMessaging> messaging;
   final List<CapabilityStatementDocument> document;
-  const CapabilityStatement({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.url,
-    required this.urlElement,
-    required this.version,
-    required this.versionElement,
-    required this.name,
-    required this.nameElement,
-    required this.title,
-    required this.titleElement,
-    required this.status,
-    required this.statusElement,
-    required this.experimental,
-    required this.experimentalElement,
-    required this.date,
-    required this.dateElement,
-    required this.publisher,
-    required this.publisherElement,
-    required this.contact,
-    required this.description,
-    required this.descriptionElement,
-    required this.useContext,
-    required this.jurisdiction,
-    required this.purpose,
-    required this.purposeElement,
-    required this.copyright,
-    required this.copyrightElement,
-    required this.kind,
-    required this.kindElement,
-    required this.instantiates,
-    required this.imports,
-    required this.software,
-    required this.implementation,
-    required this.fhirVersion,
-    required this.fhirVersionElement,
-    required this.format,
-    required this.formatElement,
-    required this.patchFormat,
-    required this.patchFormatElement,
-    required this.implementationGuide,
-    required this.rest,
-    required this.messaging,
-    required this.document,
-  });
 }
 
 @Data()
@@ -127,17 +73,6 @@ class CapabilityStatementSoftware {
   final PrimitiveElement versionElement;
   final FhirDateTime releaseDate;
   final PrimitiveElement releaseDateElement;
-  const CapabilityStatementSoftware({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.name,
-    required this.nameElement,
-    required this.version,
-    required this.versionElement,
-    required this.releaseDate,
-    required this.releaseDateElement,
-  });
 }
 
 @Data()
@@ -151,16 +86,6 @@ class CapabilityStatementImplementation {
   final FhirUrl url;
   final PrimitiveElement urlElement;
   final Reference custodian;
-  const CapabilityStatementImplementation({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.description,
-    required this.descriptionElement,
-    required this.url,
-    required this.urlElement,
-    required this.custodian,
-  });
 }
 
 @Data()
@@ -179,21 +104,6 @@ class CapabilityStatementRest {
   final List<CapabilityStatementSearchParam> searchParam;
   final List<CapabilityStatementOperation> operation;
   final List<FhirCanonical> compartment;
-  const CapabilityStatementRest({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.mode,
-    required this.modeElement,
-    required this.documentation,
-    required this.documentationElement,
-    required this.security,
-    required this.resource,
-    required this.interaction,
-    required this.searchParam,
-    required this.operation,
-    required this.compartment,
-  });
 }
 
 @Data()
@@ -207,16 +117,6 @@ class CapabilityStatementSecurity {
   final List<CodeableConcept> service;
   final FhirMarkdown description;
   final PrimitiveElement descriptionElement;
-  const CapabilityStatementSecurity({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.cors,
-    required this.corsElement,
-    required this.service,
-    required this.description,
-    required this.descriptionElement,
-  });
 }
 
 @Data()
@@ -254,40 +154,6 @@ class CapabilityStatementResource {
   final List<PrimitiveElement> searchRevIncludeElement;
   final List<CapabilityStatementSearchParam> searchParam;
   final List<CapabilityStatementOperation> operation;
-  const CapabilityStatementResource({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.typeElement,
-    required this.profile,
-    required this.supportedProfile,
-    required this.documentation,
-    required this.documentationElement,
-    required this.interaction,
-    required this.versioning,
-    required this.versioningElement,
-    required this.readHistory,
-    required this.readHistoryElement,
-    required this.updateCreate,
-    required this.updateCreateElement,
-    required this.conditionalCreate,
-    required this.conditionalCreateElement,
-    required this.conditionalRead,
-    required this.conditionalReadElement,
-    required this.conditionalUpdate,
-    required this.conditionalUpdateElement,
-    required this.conditionalDelete,
-    required this.conditionalDeleteElement,
-    required this.referencePolicy,
-    required this.referencePolicyElement,
-    required this.searchInclude,
-    required this.searchIncludeElement,
-    required this.searchRevInclude,
-    required this.searchRevIncludeElement,
-    required this.searchParam,
-    required this.operation,
-  });
 }
 
 @Data()
@@ -300,15 +166,6 @@ class CapabilityStatementInteraction {
   final PrimitiveElement codeElement;
   final FhirMarkdown documentation;
   final PrimitiveElement documentationElement;
-  const CapabilityStatementInteraction({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.codeElement,
-    required this.documentation,
-    required this.documentationElement,
-  });
 }
 
 @Data()
@@ -324,18 +181,6 @@ class CapabilityStatementSearchParam {
   final PrimitiveElement typeElement;
   final FhirMarkdown documentation;
   final PrimitiveElement documentationElement;
-  const CapabilityStatementSearchParam({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.name,
-    required this.nameElement,
-    required this.definition,
-    required this.type,
-    required this.typeElement,
-    required this.documentation,
-    required this.documentationElement,
-  });
 }
 
 @Data()
@@ -349,16 +194,6 @@ class CapabilityStatementOperation {
   final FhirCanonical definition;
   final FhirMarkdown documentation;
   final PrimitiveElement documentationElement;
-  const CapabilityStatementOperation({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.name,
-    required this.nameElement,
-    required this.definition,
-    required this.documentation,
-    required this.documentationElement,
-  });
 }
 
 @Data()
@@ -371,15 +206,6 @@ class CapabilityStatementInteraction1 {
   final PrimitiveElement codeElement;
   final FhirMarkdown documentation;
   final PrimitiveElement documentationElement;
-  const CapabilityStatementInteraction1({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.codeElement,
-    required this.documentation,
-    required this.documentationElement,
-  });
 }
 
 @Data()
@@ -394,17 +220,6 @@ class CapabilityStatementMessaging {
   final FhirMarkdown documentation;
   final PrimitiveElement documentationElement;
   final List<CapabilityStatementSupportedMessage> supportedMessage;
-  const CapabilityStatementMessaging({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.endpoint,
-    required this.reliableCache,
-    required this.reliableCacheElement,
-    required this.documentation,
-    required this.documentationElement,
-    required this.supportedMessage,
-  });
 }
 
 @Data()
@@ -416,14 +231,6 @@ class CapabilityStatementEndpoint {
   final Coding protocol;
   final FhirUrl address;
   final PrimitiveElement addressElement;
-  const CapabilityStatementEndpoint({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.protocol,
-    required this.address,
-    required this.addressElement,
-  });
 }
 
 @Data()
@@ -435,14 +242,6 @@ class CapabilityStatementSupportedMessage {
   final FhirCode mode;
   final PrimitiveElement modeElement;
   final FhirCanonical definition;
-  const CapabilityStatementSupportedMessage({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.mode,
-    required this.modeElement,
-    required this.definition,
-  });
 }
 
 @Data()
@@ -456,16 +255,6 @@ class CapabilityStatementDocument {
   final FhirMarkdown documentation;
   final PrimitiveElement documentationElement;
   final FhirCanonical profile;
-  const CapabilityStatementDocument({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.mode,
-    required this.modeElement,
-    required this.documentation,
-    required this.documentationElement,
-    required this.profile,
-  });
 }
 
 

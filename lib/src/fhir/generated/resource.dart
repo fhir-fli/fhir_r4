@@ -7,5 +7,6 @@ import 'export.dart';
 @Data()
 @JsonCodable()
 class Resource {
-  const Resource();
 }
+
+

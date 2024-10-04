@@ -33,34 +33,6 @@ class AuditEvent {
   final List<AuditEventAgent> agent;
   final AuditEventSource source;
   final List<AuditEventEntity> entity;
-  const AuditEvent({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.subtype,
-    required this.action,
-    required this.actionElement,
-    required this.period,
-    required this.recorded,
-    required this.recordedElement,
-    required this.outcome,
-    required this.outcomeElement,
-    required this.outcomeDesc,
-    required this.outcomeDescElement,
-    required this.purposeOfEvent,
-    required this.agent,
-    required this.source,
-    required this.entity,
-  });
 }
 
 @Data()
@@ -84,26 +56,6 @@ class AuditEventAgent {
   final Coding media;
   final AuditEventNetwork network;
   final List<CodeableConcept> purposeOfUse;
-  const AuditEventAgent({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.role,
-    required this.who,
-    required this.altId,
-    required this.altIdElement,
-    required this.name,
-    required this.nameElement,
-    required this.requestor,
-    required this.requestorElement,
-    required this.location,
-    required this.policy,
-    required this.policyElement,
-    required this.media,
-    required this.network,
-    required this.purposeOfUse,
-  });
 }
 
 @Data()
@@ -116,15 +68,6 @@ class AuditEventNetwork {
   final PrimitiveElement addressElement;
   final FhirCode type;
   final PrimitiveElement typeElement;
-  const AuditEventNetwork({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.address,
-    required this.addressElement,
-    required this.type,
-    required this.typeElement,
-  });
 }
 
 @Data()
@@ -137,15 +80,6 @@ class AuditEventSource {
   final PrimitiveElement siteElement;
   final Reference observer;
   final List<Coding> type;
-  const AuditEventSource({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.site,
-    required this.siteElement,
-    required this.observer,
-    required this.type,
-  });
 }
 
 @Data()
@@ -166,23 +100,6 @@ class AuditEventEntity {
   final FhirBase64Binary query;
   final PrimitiveElement queryElement;
   final List<AuditEventDetail> detail;
-  const AuditEventEntity({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.what,
-    required this.type,
-    required this.role,
-    required this.lifecycle,
-    required this.securityLabel,
-    required this.name,
-    required this.nameElement,
-    required this.description,
-    required this.descriptionElement,
-    required this.query,
-    required this.queryElement,
-    required this.detail,
-  });
 }
 
 @Data()
@@ -197,17 +114,6 @@ class AuditEventDetail {
   final PrimitiveElement valueStringElement;
   final String valueBase64Binary;
   final PrimitiveElement valueBase64BinaryElement;
-  const AuditEventDetail({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.typeElement,
-    required this.valueString,
-    required this.valueStringElement,
-    required this.valueBase64Binary,
-    required this.valueBase64BinaryElement,
-  });
 }
 
 

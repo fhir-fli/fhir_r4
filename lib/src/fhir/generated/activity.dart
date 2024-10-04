@@ -93,94 +93,6 @@ class ActivityDefinition {
   final List<Reference> observationResultRequirement;
   final FhirCanonical transform;
   final List<ActivityDefinitionDynamicValue> dynamicValue;
-  const ActivityDefinition({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.url,
-    required this.urlElement,
-    required this.identifier,
-    required this.version,
-    required this.versionElement,
-    required this.name,
-    required this.nameElement,
-    required this.title,
-    required this.titleElement,
-    required this.subtitle,
-    required this.subtitleElement,
-    required this.status,
-    required this.statusElement,
-    required this.experimental,
-    required this.experimentalElement,
-    required this.subjectCodeableConcept,
-    required this.subjectReference,
-    required this.subjectCanonical,
-    required this.subjectCanonicalElement,
-    required this.date,
-    required this.dateElement,
-    required this.publisher,
-    required this.publisherElement,
-    required this.contact,
-    required this.description,
-    required this.descriptionElement,
-    required this.useContext,
-    required this.jurisdiction,
-    required this.purpose,
-    required this.purposeElement,
-    required this.usage,
-    required this.usageElement,
-    required this.copyright,
-    required this.copyrightElement,
-    required this.approvalDate,
-    required this.approvalDateElement,
-    required this.lastReviewDate,
-    required this.lastReviewDateElement,
-    required this.effectivePeriod,
-    required this.topic,
-    required this.author,
-    required this.editor,
-    required this.reviewer,
-    required this.endorser,
-    required this.relatedArtifact,
-    required this.library_,
-    required this.kind,
-    required this.kindElement,
-    required this.profile,
-    required this.code,
-    required this.intent,
-    required this.intentElement,
-    required this.priority,
-    required this.priorityElement,
-    required this.doNotPerform,
-    required this.doNotPerformElement,
-    required this.timingTiming,
-    required this.timingDateTime,
-    required this.timingDateTimeElement,
-    required this.timingAge,
-    required this.timingPeriod,
-    required this.timingRange,
-    required this.timingDuration,
-    required this.location,
-    required this.participant,
-    required this.productReference,
-    required this.productCodeableConcept,
-    required this.quantity,
-    required this.dosage,
-    required this.bodySite,
-    required this.specimenRequirement,
-    required this.observationRequirement,
-    required this.observationResultRequirement,
-    required this.transform,
-    required this.dynamicValue,
-  });
 }
 
 @Data()
@@ -192,14 +104,6 @@ class ActivityDefinitionParticipant {
   final FhirCode type;
   final PrimitiveElement typeElement;
   final CodeableConcept role;
-  const ActivityDefinitionParticipant({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.typeElement,
-    required this.role,
-  });
 }
 
 @Data()
@@ -211,14 +115,6 @@ class ActivityDefinitionDynamicValue {
   final String path;
   final PrimitiveElement pathElement;
   final FhirExpression expression;
-  const ActivityDefinitionDynamicValue({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.path,
-    required this.pathElement,
-    required this.expression,
-  });
 }
 
 

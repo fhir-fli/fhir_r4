@@ -19,20 +19,6 @@ class Coding {
   final PrimitiveElement displayElement;
   final FhirBoolean userSelected;
   final PrimitiveElement userSelectedElement;
-  const Coding({
-    required this.id,
-    required this.extension_,
-    required this.system,
-    required this.systemElement,
-    required this.version,
-    required this.versionElement,
-    required this.code,
-    required this.codeElement,
-    required this.display,
-    required this.displayElement,
-    required this.userSelected,
-    required this.userSelectedElement,
-  });
 }
 
 

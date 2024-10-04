@@ -14,15 +14,6 @@ class UsageContext {
   final Quantity valueQuantity;
   final Range valueRange;
   final Reference valueReference;
-  const UsageContext({
-    required this.id,
-    required this.extension_,
-    required this.code,
-    required this.valueCodeableConcept,
-    required this.valueQuantity,
-    required this.valueRange,
-    required this.valueReference,
-  });
 }
 
 

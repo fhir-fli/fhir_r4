@@ -60,61 +60,6 @@ class Citation {
   final List<CitationStatusDate> statusDate;
   final List<CitationRelatesTo> relatesTo;
   final CitationCitedArtifact citedArtifact;
-  const Citation({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.url,
-    required this.urlElement,
-    required this.identifier,
-    required this.version,
-    required this.versionElement,
-    required this.name,
-    required this.nameElement,
-    required this.title,
-    required this.titleElement,
-    required this.status,
-    required this.statusElement,
-    required this.experimental,
-    required this.experimentalElement,
-    required this.date,
-    required this.dateElement,
-    required this.publisher,
-    required this.publisherElement,
-    required this.contact,
-    required this.description,
-    required this.descriptionElement,
-    required this.useContext,
-    required this.jurisdiction,
-    required this.purpose,
-    required this.purposeElement,
-    required this.copyright,
-    required this.copyrightElement,
-    required this.approvalDate,
-    required this.approvalDateElement,
-    required this.lastReviewDate,
-    required this.lastReviewDateElement,
-    required this.effectivePeriod,
-    required this.author,
-    required this.editor,
-    required this.reviewer,
-    required this.endorser,
-    required this.summary,
-    required this.classification,
-    required this.note,
-    required this.currentState,
-    required this.statusDate,
-    required this.relatesTo,
-    required this.citedArtifact,
-  });
 }
 
 @Data()
@@ -126,14 +71,6 @@ class CitationSummary {
   final CodeableConcept style;
   final FhirMarkdown text;
   final PrimitiveElement textElement;
-  const CitationSummary({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.style,
-    required this.text,
-    required this.textElement,
-  });
 }
 
 @Data()
@@ -144,13 +81,6 @@ class CitationClassification {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept type;
   final List<CodeableConcept> classifier;
-  const CitationClassification({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.classifier,
-  });
 }
 
 @Data()
@@ -163,15 +93,6 @@ class CitationStatusDate {
   final FhirBoolean actual;
   final PrimitiveElement actualElement;
   final Period period;
-  const CitationStatusDate({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.activity,
-    required this.actual,
-    required this.actualElement,
-    required this.period,
-  });
 }
 
 @Data()
@@ -187,18 +108,6 @@ class CitationRelatesTo {
   final Identifier targetIdentifier;
   final Reference targetReference;
   final Attachment targetAttachment;
-  const CitationRelatesTo({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.relationshipType,
-    required this.targetClassifier,
-    required this.targetUri,
-    required this.targetUriElement,
-    required this.targetIdentifier,
-    required this.targetReference,
-    required this.targetAttachment,
-  });
 }
 
 @Data()
@@ -223,27 +132,6 @@ class CitationCitedArtifact {
   final List<CitationClassification1> classification;
   final CitationContributorship contributorship;
   final List<Annotation> note;
-  const CitationCitedArtifact({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.relatedIdentifier,
-    required this.dateAccessed,
-    required this.dateAccessedElement,
-    required this.version,
-    required this.currentState,
-    required this.statusDate,
-    required this.title,
-    required this.abstract_,
-    required this.part_,
-    required this.relatesTo,
-    required this.publicationForm,
-    required this.webLocation,
-    required this.classification,
-    required this.contributorship,
-    required this.note,
-  });
 }
 
 @Data()
@@ -255,14 +143,6 @@ class CitationVersion {
   final String value;
   final PrimitiveElement valueElement;
   final Reference baseCitation;
-  const CitationVersion({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.value,
-    required this.valueElement,
-    required this.baseCitation,
-  });
 }
 
 @Data()
@@ -275,15 +155,6 @@ class CitationStatusDate1 {
   final FhirBoolean actual;
   final PrimitiveElement actualElement;
   final Period period;
-  const CitationStatusDate1({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.activity,
-    required this.actual,
-    required this.actualElement,
-    required this.period,
-  });
 }
 
 @Data()
@@ -296,15 +167,6 @@ class CitationTitle {
   final CodeableConcept language;
   final FhirMarkdown text;
   final PrimitiveElement textElement;
-  const CitationTitle({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.language,
-    required this.text,
-    required this.textElement,
-  });
 }
 
 @Data()
@@ -319,17 +181,6 @@ class CitationAbstract {
   final PrimitiveElement textElement;
   final FhirMarkdown copyright;
   final PrimitiveElement copyrightElement;
-  const CitationAbstract({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.language,
-    required this.text,
-    required this.textElement,
-    required this.copyright,
-    required this.copyrightElement,
-  });
 }
 
 @Data()
@@ -342,15 +193,6 @@ class CitationPart {
   final String value;
   final PrimitiveElement valueElement;
   final Reference baseCitation;
-  const CitationPart({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.value,
-    required this.valueElement,
-    required this.baseCitation,
-  });
 }
 
 @Data()
@@ -366,18 +208,6 @@ class CitationRelatesTo1 {
   final Identifier targetIdentifier;
   final Reference targetReference;
   final Attachment targetAttachment;
-  const CitationRelatesTo1({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.relationshipType,
-    required this.targetClassifier,
-    required this.targetUri,
-    required this.targetUriElement,
-    required this.targetIdentifier,
-    required this.targetReference,
-    required this.targetAttachment,
-  });
 }
 
 @Data()
@@ -405,30 +235,6 @@ class CitationPublicationForm {
   final PrimitiveElement pageCountElement;
   final FhirMarkdown copyright;
   final PrimitiveElement copyrightElement;
-  const CitationPublicationForm({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.publishedIn,
-    required this.periodicRelease,
-    required this.articleDate,
-    required this.articleDateElement,
-    required this.lastRevisionDate,
-    required this.lastRevisionDateElement,
-    required this.language,
-    required this.accessionNumber,
-    required this.accessionNumberElement,
-    required this.pageString,
-    required this.pageStringElement,
-    required this.firstPage,
-    required this.firstPageElement,
-    required this.lastPage,
-    required this.lastPageElement,
-    required this.pageCount,
-    required this.pageCountElement,
-    required this.copyright,
-    required this.copyrightElement,
-  });
 }
 
 @Data()
@@ -444,18 +250,6 @@ class CitationPublishedIn {
   final Reference publisher;
   final String publisherLocation;
   final PrimitiveElement publisherLocationElement;
-  const CitationPublishedIn({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.identifier,
-    required this.title,
-    required this.titleElement,
-    required this.publisher,
-    required this.publisherLocation,
-    required this.publisherLocationElement,
-  });
 }
 
 @Data()
@@ -470,17 +264,6 @@ class CitationPeriodicRelease {
   final String issue;
   final PrimitiveElement issueElement;
   final CitationDateOfPublication dateOfPublication;
-  const CitationPeriodicRelease({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.citedMedium,
-    required this.volume,
-    required this.volumeElement,
-    required this.issue,
-    required this.issueElement,
-    required this.dateOfPublication,
-  });
 }
 
 @Data()
@@ -501,23 +284,6 @@ class CitationDateOfPublication {
   final PrimitiveElement seasonElement;
   final String text;
   final PrimitiveElement textElement;
-  const CitationDateOfPublication({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.date,
-    required this.dateElement,
-    required this.year,
-    required this.yearElement,
-    required this.month,
-    required this.monthElement,
-    required this.day,
-    required this.dayElement,
-    required this.season,
-    required this.seasonElement,
-    required this.text,
-    required this.textElement,
-  });
 }
 
 @Data()
@@ -529,14 +295,6 @@ class CitationWebLocation {
   final CodeableConcept type;
   final FhirUri url;
   final PrimitiveElement urlElement;
-  const CitationWebLocation({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.url,
-    required this.urlElement,
-  });
 }
 
 @Data()
@@ -548,14 +306,6 @@ class CitationClassification1 {
   final CodeableConcept type;
   final List<CodeableConcept> classifier;
   final CitationWhoClassified whoClassified;
-  const CitationClassification1({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.classifier,
-    required this.whoClassified,
-  });
 }
 
 @Data()
@@ -571,18 +321,6 @@ class CitationWhoClassified {
   final PrimitiveElement classifierCopyrightElement;
   final FhirBoolean freeToShare;
   final PrimitiveElement freeToShareElement;
-  const CitationWhoClassified({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.person,
-    required this.organization,
-    required this.publisher,
-    required this.classifierCopyright,
-    required this.classifierCopyrightElement,
-    required this.freeToShare,
-    required this.freeToShareElement,
-  });
 }
 
 @Data()
@@ -595,15 +333,6 @@ class CitationContributorship {
   final PrimitiveElement completeElement;
   final List<CitationEntry> entry;
   final List<CitationSummary1> summary;
-  const CitationContributorship({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.complete,
-    required this.completeElement,
-    required this.entry,
-    required this.summary,
-  });
 }
 
 @Data()
@@ -628,27 +357,6 @@ class CitationEntry {
   final PrimitiveElement correspondingContactElement;
   final FhirPositiveInt listOrder;
   final PrimitiveElement listOrderElement;
-  const CitationEntry({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.name,
-    required this.initials,
-    required this.initialsElement,
-    required this.collectiveName,
-    required this.collectiveNameElement,
-    required this.identifier,
-    required this.affiliationInfo,
-    required this.address,
-    required this.telecom,
-    required this.contributionType,
-    required this.role,
-    required this.contributionInstance,
-    required this.correspondingContact,
-    required this.correspondingContactElement,
-    required this.listOrder,
-    required this.listOrderElement,
-  });
 }
 
 @Data()
@@ -662,16 +370,6 @@ class CitationAffiliationInfo {
   final String role;
   final PrimitiveElement roleElement;
   final List<Identifier> identifier;
-  const CitationAffiliationInfo({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.affiliation,
-    required this.affiliationElement,
-    required this.role,
-    required this.roleElement,
-    required this.identifier,
-  });
 }
 
 @Data()
@@ -683,14 +381,6 @@ class CitationContributionInstance {
   final CodeableConcept type;
   final FhirDateTime time;
   final PrimitiveElement timeElement;
-  const CitationContributionInstance({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.time,
-    required this.timeElement,
-  });
 }
 
 @Data()
@@ -704,16 +394,6 @@ class CitationSummary1 {
   final CodeableConcept source;
   final FhirMarkdown value;
   final PrimitiveElement valueElement;
-  const CitationSummary1({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.style,
-    required this.source,
-    required this.value,
-    required this.valueElement,
-  });
 }
 
 

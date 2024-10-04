@@ -28,29 +28,6 @@ class Ingredient {
   final PrimitiveElement allergenicIndicatorElement;
   final List<IngredientManufacturer> manufacturer;
   final IngredientSubstance substance;
-  const Ingredient({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.status,
-    required this.statusElement,
-    required this.for_,
-    required this.role,
-    required this.function_,
-    required this.allergenicIndicator,
-    required this.allergenicIndicatorElement,
-    required this.manufacturer,
-    required this.substance,
-  });
 }
 
 @Data()
@@ -62,14 +39,6 @@ class IngredientManufacturer {
   final FhirCode role;
   final PrimitiveElement roleElement;
   final Reference manufacturer;
-  const IngredientManufacturer({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.role,
-    required this.roleElement,
-    required this.manufacturer,
-  });
 }
 
 @Data()
@@ -80,13 +49,6 @@ class IngredientSubstance {
   final List<FhirExtension> modifierExtension;
   final CodeableReference code;
   final List<IngredientStrength> strength;
-  const IngredientSubstance({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.strength,
-  });
 }
 
 @Data()
@@ -107,23 +69,6 @@ class IngredientStrength {
   final PrimitiveElement measurementPointElement;
   final List<CodeableConcept> country;
   final List<IngredientReferenceStrength> referenceStrength;
-  const IngredientStrength({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.presentationRatio,
-    required this.presentationRatioRange,
-    required this.textPresentation,
-    required this.textPresentationElement,
-    required this.concentrationRatio,
-    required this.concentrationRatioRange,
-    required this.textConcentration,
-    required this.textConcentrationElement,
-    required this.measurementPoint,
-    required this.measurementPointElement,
-    required this.country,
-    required this.referenceStrength,
-  });
 }
 
 @Data()
@@ -138,17 +83,6 @@ class IngredientReferenceStrength {
   final String measurementPoint;
   final PrimitiveElement measurementPointElement;
   final List<CodeableConcept> country;
-  const IngredientReferenceStrength({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.substance,
-    required this.strengthRatio,
-    required this.strengthRatioRange,
-    required this.measurementPoint,
-    required this.measurementPointElement,
-    required this.country,
-  });
 }
 
 

@@ -33,34 +33,6 @@ class Specimen {
   final List<SpecimenContainer> container;
   final List<CodeableConcept> condition;
   final List<Annotation> note;
-  const Specimen({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.accessionIdentifier,
-    required this.status,
-    required this.statusElement,
-    required this.type,
-    required this.subject,
-    required this.receivedTime,
-    required this.receivedTimeElement,
-    required this.parent,
-    required this.request,
-    required this.collection,
-    required this.processing,
-    required this.container,
-    required this.condition,
-    required this.note,
-  });
 }
 
 @Data()
@@ -79,21 +51,6 @@ class SpecimenCollection {
   final CodeableConcept bodySite;
   final CodeableConcept fastingStatusCodeableConcept;
   final FhirDuration fastingStatusDuration;
-  const SpecimenCollection({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.collector,
-    required this.collectedDateTime,
-    required this.collectedDateTimeElement,
-    required this.collectedPeriod,
-    required this.duration,
-    required this.quantity,
-    required this.method,
-    required this.bodySite,
-    required this.fastingStatusCodeableConcept,
-    required this.fastingStatusDuration,
-  });
 }
 
 @Data()
@@ -109,18 +66,6 @@ class SpecimenProcessing {
   final String timeDateTime;
   final PrimitiveElement timeDateTimeElement;
   final Period timePeriod;
-  const SpecimenProcessing({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.description,
-    required this.descriptionElement,
-    required this.procedure,
-    required this.additive,
-    required this.timeDateTime,
-    required this.timeDateTimeElement,
-    required this.timePeriod,
-  });
 }
 
 @Data()
@@ -137,19 +82,6 @@ class SpecimenContainer {
   final Quantity specimenQuantity;
   final CodeableConcept additiveCodeableConcept;
   final Reference additiveReference;
-  const SpecimenContainer({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.description,
-    required this.descriptionElement,
-    required this.type,
-    required this.capacity,
-    required this.specimenQuantity,
-    required this.additiveCodeableConcept,
-    required this.additiveReference,
-  });
 }
 
 @Data()
@@ -173,26 +105,6 @@ class SpecimenDefinition {
   final PrimitiveElement timeAspectElement;
   final List<CodeableConcept> collection;
   final List<SpecimenDefinitionTypeTested> typeTested;
-  const SpecimenDefinition({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.typeCollected,
-    required this.patientPreparation,
-    required this.timeAspect,
-    required this.timeAspectElement,
-    required this.collection,
-    required this.typeTested,
-  });
 }
 
 @Data()
@@ -212,22 +124,6 @@ class SpecimenDefinitionTypeTested {
   final FhirDuration retentionTime;
   final List<CodeableConcept> rejectionCriterion;
   final List<SpecimenDefinitionHandling> handling;
-  const SpecimenDefinitionTypeTested({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.isDerived,
-    required this.isDerivedElement,
-    required this.type,
-    required this.preference,
-    required this.preferenceElement,
-    required this.container,
-    required this.requirement,
-    required this.requirementElement,
-    required this.retentionTime,
-    required this.rejectionCriterion,
-    required this.handling,
-  });
 }
 
 @Data()
@@ -248,23 +144,6 @@ class SpecimenDefinitionContainer {
   final List<SpecimenDefinitionAdditive> additive;
   final String preparation;
   final PrimitiveElement preparationElement;
-  const SpecimenDefinitionContainer({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.material,
-    required this.type,
-    required this.cap,
-    required this.description,
-    required this.descriptionElement,
-    required this.capacity,
-    required this.minimumVolumeQuantity,
-    required this.minimumVolumeString,
-    required this.minimumVolumeStringElement,
-    required this.additive,
-    required this.preparation,
-    required this.preparationElement,
-  });
 }
 
 @Data()
@@ -275,13 +154,6 @@ class SpecimenDefinitionAdditive {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept additiveCodeableConcept;
   final Reference additiveReference;
-  const SpecimenDefinitionAdditive({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.additiveCodeableConcept,
-    required this.additiveReference,
-  });
 }
 
 @Data()
@@ -295,16 +167,6 @@ class SpecimenDefinitionHandling {
   final FhirDuration maxDuration;
   final String instruction;
   final PrimitiveElement instructionElement;
-  const SpecimenDefinitionHandling({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.temperatureQualifier,
-    required this.temperatureRange,
-    required this.maxDuration,
-    required this.instruction,
-    required this.instructionElement,
-  });
 }
 
 

@@ -31,32 +31,6 @@ class Person {
   final FhirBoolean active;
   final PrimitiveElement activeElement;
   final List<PersonLink> link;
-  const Person({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.name,
-    required this.telecom,
-    required this.gender,
-    required this.genderElement,
-    required this.birthDate,
-    required this.birthDateElement,
-    required this.address,
-    required this.photo,
-    required this.managingOrganization,
-    required this.active,
-    required this.activeElement,
-    required this.link,
-  });
 }
 
 @Data()
@@ -68,14 +42,6 @@ class PersonLink {
   final Reference target;
   final FhirCode assurance;
   final PrimitiveElement assuranceElement;
-  const PersonLink({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.target,
-    required this.assurance,
-    required this.assuranceElement,
-  });
 }
 
 

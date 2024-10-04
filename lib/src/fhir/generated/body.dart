@@ -28,29 +28,6 @@ class BodyStructure {
   final PrimitiveElement descriptionElement;
   final List<Attachment> image;
   final Reference patient;
-  const BodyStructure({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.active,
-    required this.activeElement,
-    required this.morphology,
-    required this.location,
-    required this.locationQualifier,
-    required this.description,
-    required this.descriptionElement,
-    required this.image,
-    required this.patient,
-  });
 }
 
 

@@ -67,68 +67,6 @@ class PlanDefinition {
   final List<FhirCanonical> library_;
   final List<PlanDefinitionGoal> goal;
   final List<PlanDefinitionAction> action;
-  const PlanDefinition({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.url,
-    required this.urlElement,
-    required this.identifier,
-    required this.version,
-    required this.versionElement,
-    required this.name,
-    required this.nameElement,
-    required this.title,
-    required this.titleElement,
-    required this.subtitle,
-    required this.subtitleElement,
-    required this.type,
-    required this.status,
-    required this.statusElement,
-    required this.experimental,
-    required this.experimentalElement,
-    required this.subjectCodeableConcept,
-    required this.subjectReference,
-    required this.subjectCanonical,
-    required this.subjectCanonicalElement,
-    required this.date,
-    required this.dateElement,
-    required this.publisher,
-    required this.publisherElement,
-    required this.contact,
-    required this.description,
-    required this.descriptionElement,
-    required this.useContext,
-    required this.jurisdiction,
-    required this.purpose,
-    required this.purposeElement,
-    required this.usage,
-    required this.usageElement,
-    required this.copyright,
-    required this.copyrightElement,
-    required this.approvalDate,
-    required this.approvalDateElement,
-    required this.lastReviewDate,
-    required this.lastReviewDateElement,
-    required this.effectivePeriod,
-    required this.topic,
-    required this.author,
-    required this.editor,
-    required this.reviewer,
-    required this.endorser,
-    required this.relatedArtifact,
-    required this.library_,
-    required this.goal,
-    required this.action,
-  });
 }
 
 @Data()
@@ -144,18 +82,6 @@ class PlanDefinitionGoal {
   final List<CodeableConcept> addresses;
   final List<RelatedArtifact> documentation;
   final List<PlanDefinitionTarget> target;
-  const PlanDefinitionGoal({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.category,
-    required this.description,
-    required this.priority,
-    required this.start,
-    required this.addresses,
-    required this.documentation,
-    required this.target,
-  });
 }
 
 @Data()
@@ -169,16 +95,6 @@ class PlanDefinitionTarget {
   final Range detailRange;
   final CodeableConcept detailCodeableConcept;
   final FhirDuration due;
-  const PlanDefinitionTarget({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.measure,
-    required this.detailQuantity,
-    required this.detailRange,
-    required this.detailCodeableConcept,
-    required this.due,
-  });
 }
 
 @Data()
@@ -237,61 +153,6 @@ class PlanDefinitionAction {
   final FhirCanonical transform;
   final List<PlanDefinitionDynamicValue> dynamicValue;
   final List<PlanDefinitionAction> action;
-  const PlanDefinitionAction({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.prefix,
-    required this.prefixElement,
-    required this.title,
-    required this.titleElement,
-    required this.description,
-    required this.descriptionElement,
-    required this.textEquivalent,
-    required this.textEquivalentElement,
-    required this.priority,
-    required this.priorityElement,
-    required this.code,
-    required this.reason,
-    required this.documentation,
-    required this.goalId,
-    required this.goalIdElement,
-    required this.subjectCodeableConcept,
-    required this.subjectReference,
-    required this.subjectCanonical,
-    required this.subjectCanonicalElement,
-    required this.trigger,
-    required this.condition,
-    required this.input,
-    required this.output,
-    required this.relatedAction,
-    required this.timingDateTime,
-    required this.timingDateTimeElement,
-    required this.timingAge,
-    required this.timingPeriod,
-    required this.timingDuration,
-    required this.timingRange,
-    required this.timingTiming,
-    required this.participant,
-    required this.type,
-    required this.groupingBehavior,
-    required this.groupingBehaviorElement,
-    required this.selectionBehavior,
-    required this.selectionBehaviorElement,
-    required this.requiredBehavior,
-    required this.requiredBehaviorElement,
-    required this.precheckBehavior,
-    required this.precheckBehaviorElement,
-    required this.cardinalityBehavior,
-    required this.cardinalityBehaviorElement,
-    required this.definitionCanonical,
-    required this.definitionCanonicalElement,
-    required this.definitionUri,
-    required this.definitionUriElement,
-    required this.transform,
-    required this.dynamicValue,
-    required this.action,
-  });
 }
 
 @Data()
@@ -303,14 +164,6 @@ class PlanDefinitionCondition {
   final FhirCode kind;
   final PrimitiveElement kindElement;
   final FhirExpression expression;
-  const PlanDefinitionCondition({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.kind,
-    required this.kindElement,
-    required this.expression,
-  });
 }
 
 @Data()
@@ -325,17 +178,6 @@ class PlanDefinitionRelatedAction {
   final PrimitiveElement relationshipElement;
   final FhirDuration offsetDuration;
   final Range offsetRange;
-  const PlanDefinitionRelatedAction({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.actionId,
-    required this.actionIdElement,
-    required this.relationship,
-    required this.relationshipElement,
-    required this.offsetDuration,
-    required this.offsetRange,
-  });
 }
 
 @Data()
@@ -347,14 +189,6 @@ class PlanDefinitionParticipant {
   final FhirCode type;
   final PrimitiveElement typeElement;
   final CodeableConcept role;
-  const PlanDefinitionParticipant({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.typeElement,
-    required this.role,
-  });
 }
 
 @Data()
@@ -366,14 +200,6 @@ class PlanDefinitionDynamicValue {
   final String path;
   final PrimitiveElement pathElement;
   final FhirExpression expression;
-  const PlanDefinitionDynamicValue({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.path,
-    required this.pathElement,
-    required this.expression,
-  });
 }
 
 

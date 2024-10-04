@@ -14,15 +14,6 @@ class ProductShelfLife {
   final CodeableConcept type;
   final Quantity period;
   final List<CodeableConcept> specialPrecautionsForStorage;
-  const ProductShelfLife({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.type,
-    required this.period,
-    required this.specialPrecautionsForStorage,
-  });
 }
 
 

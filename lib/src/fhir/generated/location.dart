@@ -41,42 +41,6 @@ class Location {
   final String availabilityExceptions;
   final PrimitiveElement availabilityExceptionsElement;
   final List<Reference> endpoint;
-  const Location({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.status,
-    required this.statusElement,
-    required this.operationalStatus,
-    required this.name,
-    required this.nameElement,
-    required this.alias,
-    required this.aliasElement,
-    required this.description,
-    required this.descriptionElement,
-    required this.mode,
-    required this.modeElement,
-    required this.type,
-    required this.telecom,
-    required this.address,
-    required this.physicalType,
-    required this.position,
-    required this.managingOrganization,
-    required this.partOf,
-    required this.hoursOfOperation,
-    required this.availabilityExceptions,
-    required this.availabilityExceptionsElement,
-    required this.endpoint,
-  });
 }
 
 @Data()
@@ -91,17 +55,6 @@ class LocationPosition {
   final PrimitiveElement latitudeElement;
   final FhirDecimal altitude;
   final PrimitiveElement altitudeElement;
-  const LocationPosition({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.longitude,
-    required this.longitudeElement,
-    required this.latitude,
-    required this.latitudeElement,
-    required this.altitude,
-    required this.altitudeElement,
-  });
 }
 
 @Data()
@@ -118,19 +71,6 @@ class LocationHoursOfOperation {
   final PrimitiveElement openingTimeElement;
   final FhirTime closingTime;
   final PrimitiveElement closingTimeElement;
-  const LocationHoursOfOperation({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.daysOfWeek,
-    required this.daysOfWeekElement,
-    required this.allDay,
-    required this.allDayElement,
-    required this.openingTime,
-    required this.openingTimeElement,
-    required this.closingTime,
-    required this.closingTimeElement,
-  });
 }
 
 

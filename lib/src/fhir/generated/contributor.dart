@@ -14,15 +14,6 @@ class Contributor {
   final String name;
   final PrimitiveElement nameElement;
   final List<ContactDetail> contact;
-  const Contributor({
-    required this.id,
-    required this.extension_,
-    required this.type,
-    required this.typeElement,
-    required this.name,
-    required this.nameElement,
-    required this.contact,
-  });
 }
 
 

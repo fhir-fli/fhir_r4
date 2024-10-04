@@ -48,49 +48,6 @@ class HealthcareService {
   final String availabilityExceptions;
   final PrimitiveElement availabilityExceptionsElement;
   final List<Reference> endpoint;
-  const HealthcareService({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.active,
-    required this.activeElement,
-    required this.providedBy,
-    required this.category,
-    required this.type,
-    required this.specialty,
-    required this.location,
-    required this.name,
-    required this.nameElement,
-    required this.comment,
-    required this.commentElement,
-    required this.extraDetails,
-    required this.extraDetailsElement,
-    required this.photo,
-    required this.telecom,
-    required this.coverageArea,
-    required this.serviceProvisionCode,
-    required this.eligibility,
-    required this.program,
-    required this.characteristic,
-    required this.communication,
-    required this.referralMethod,
-    required this.appointmentRequired,
-    required this.appointmentRequiredElement,
-    required this.availableTime,
-    required this.notAvailable,
-    required this.availabilityExceptions,
-    required this.availabilityExceptionsElement,
-    required this.endpoint,
-  });
 }
 
 @Data()
@@ -102,14 +59,6 @@ class HealthcareServiceEligibility {
   final CodeableConcept code;
   final FhirMarkdown comment;
   final PrimitiveElement commentElement;
-  const HealthcareServiceEligibility({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.comment,
-    required this.commentElement,
-  });
 }
 
 @Data()
@@ -126,19 +75,6 @@ class HealthcareServiceAvailableTime {
   final PrimitiveElement availableStartTimeElement;
   final FhirTime availableEndTime;
   final PrimitiveElement availableEndTimeElement;
-  const HealthcareServiceAvailableTime({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.daysOfWeek,
-    required this.daysOfWeekElement,
-    required this.allDay,
-    required this.allDayElement,
-    required this.availableStartTime,
-    required this.availableStartTimeElement,
-    required this.availableEndTime,
-    required this.availableEndTimeElement,
-  });
 }
 
 @Data()
@@ -150,14 +86,6 @@ class HealthcareServiceNotAvailable {
   final String description;
   final PrimitiveElement descriptionElement;
   final Period during;
-  const HealthcareServiceNotAvailable({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.description,
-    required this.descriptionElement,
-    required this.during,
-  });
 }
 
 

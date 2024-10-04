@@ -45,46 +45,6 @@ class ClinicalImpression {
   final List<Reference> prognosisReference;
   final List<Reference> supportingInfo;
   final List<Annotation> note;
-  const ClinicalImpression({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.status,
-    required this.statusElement,
-    required this.statusReason,
-    required this.code,
-    required this.description,
-    required this.descriptionElement,
-    required this.subject,
-    required this.encounter,
-    required this.effectiveDateTime,
-    required this.effectiveDateTimeElement,
-    required this.effectivePeriod,
-    required this.date,
-    required this.dateElement,
-    required this.assessor,
-    required this.previous,
-    required this.problem,
-    required this.investigation,
-    required this.protocol,
-    required this.protocolElement,
-    required this.summary,
-    required this.summaryElement,
-    required this.finding,
-    required this.prognosisCodeableConcept,
-    required this.prognosisReference,
-    required this.supportingInfo,
-    required this.note,
-  });
 }
 
 @Data()
@@ -95,13 +55,6 @@ class ClinicalImpressionInvestigation {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept code;
   final List<Reference> item;
-  const ClinicalImpressionInvestigation({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.item,
-  });
 }
 
 @Data()
@@ -114,15 +67,6 @@ class ClinicalImpressionFinding {
   final Reference itemReference;
   final String basis;
   final PrimitiveElement basisElement;
-  const ClinicalImpressionFinding({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.itemCodeableConcept,
-    required this.itemReference,
-    required this.basis,
-    required this.basisElement,
-  });
 }
 
 @Data()
@@ -151,31 +95,6 @@ class ClinicalUseDefinition {
   final List<Reference> population;
   final ClinicalUseDefinitionUndesirableEffect undesirableEffect;
   final ClinicalUseDefinitionWarning warning;
-  const ClinicalUseDefinition({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.type,
-    required this.typeElement,
-    required this.category,
-    required this.subject,
-    required this.status,
-    required this.contraindication,
-    required this.indication,
-    required this.interaction,
-    required this.population,
-    required this.undesirableEffect,
-    required this.warning,
-  });
 }
 
 @Data()
@@ -189,16 +108,6 @@ class ClinicalUseDefinitionContraindication {
   final List<CodeableReference> comorbidity;
   final List<Reference> indication;
   final List<ClinicalUseDefinitionOtherTherapy> otherTherapy;
-  const ClinicalUseDefinitionContraindication({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.diseaseSymptomProcedure,
-    required this.diseaseStatus,
-    required this.comorbidity,
-    required this.indication,
-    required this.otherTherapy,
-  });
 }
 
 @Data()
@@ -209,13 +118,6 @@ class ClinicalUseDefinitionOtherTherapy {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept relationshipType;
   final CodeableReference therapy;
-  const ClinicalUseDefinitionOtherTherapy({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.relationshipType,
-    required this.therapy,
-  });
 }
 
 @Data()
@@ -233,20 +135,6 @@ class ClinicalUseDefinitionIndication {
   final PrimitiveElement durationStringElement;
   final List<Reference> undesirableEffect;
   final List<ClinicalUseDefinitionOtherTherapy> otherTherapy;
-  const ClinicalUseDefinitionIndication({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.diseaseSymptomProcedure,
-    required this.diseaseStatus,
-    required this.comorbidity,
-    required this.intendedEffect,
-    required this.durationRange,
-    required this.durationString,
-    required this.durationStringElement,
-    required this.undesirableEffect,
-    required this.otherTherapy,
-  });
 }
 
 @Data()
@@ -260,16 +148,6 @@ class ClinicalUseDefinitionInteraction {
   final CodeableReference effect;
   final CodeableConcept incidence;
   final List<CodeableConcept> management;
-  const ClinicalUseDefinitionInteraction({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.interactant,
-    required this.type,
-    required this.effect,
-    required this.incidence,
-    required this.management,
-  });
 }
 
 @Data()
@@ -280,13 +158,6 @@ class ClinicalUseDefinitionInteractant {
   final List<FhirExtension> modifierExtension;
   final Reference itemReference;
   final CodeableConcept itemCodeableConcept;
-  const ClinicalUseDefinitionInteractant({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.itemReference,
-    required this.itemCodeableConcept,
-  });
 }
 
 @Data()
@@ -298,14 +169,6 @@ class ClinicalUseDefinitionUndesirableEffect {
   final CodeableReference symptomConditionEffect;
   final CodeableConcept classification;
   final CodeableConcept frequencyOfOccurrence;
-  const ClinicalUseDefinitionUndesirableEffect({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.symptomConditionEffect,
-    required this.classification,
-    required this.frequencyOfOccurrence,
-  });
 }
 
 @Data()
@@ -317,14 +180,6 @@ class ClinicalUseDefinitionWarning {
   final FhirMarkdown description;
   final PrimitiveElement descriptionElement;
   final CodeableConcept code;
-  const ClinicalUseDefinitionWarning({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.description,
-    required this.descriptionElement,
-    required this.code,
-  });
 }
 
 

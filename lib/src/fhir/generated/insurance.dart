@@ -35,36 +35,6 @@ class InsurancePlan {
   final List<Reference> network;
   final List<InsurancePlanCoverage> coverage;
   final List<InsurancePlanPlan> plan;
-  const InsurancePlan({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.status,
-    required this.statusElement,
-    required this.type,
-    required this.name,
-    required this.nameElement,
-    required this.alias,
-    required this.aliasElement,
-    required this.period,
-    required this.ownedBy,
-    required this.administeredBy,
-    required this.coverageArea,
-    required this.contact,
-    required this.endpoint,
-    required this.network,
-    required this.coverage,
-    required this.plan,
-  });
 }
 
 @Data()
@@ -77,15 +47,6 @@ class InsurancePlanContact {
   final HumanName name;
   final List<ContactPoint> telecom;
   final Address address;
-  const InsurancePlanContact({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.purpose,
-    required this.name,
-    required this.telecom,
-    required this.address,
-  });
 }
 
 @Data()
@@ -97,14 +58,6 @@ class InsurancePlanCoverage {
   final CodeableConcept type;
   final List<Reference> network;
   final List<InsurancePlanBenefit> benefit;
-  const InsurancePlanCoverage({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.network,
-    required this.benefit,
-  });
 }
 
 @Data()
@@ -117,15 +70,6 @@ class InsurancePlanBenefit {
   final String requirement;
   final PrimitiveElement requirementElement;
   final List<InsurancePlanLimit> limit;
-  const InsurancePlanBenefit({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.requirement,
-    required this.requirementElement,
-    required this.limit,
-  });
 }
 
 @Data()
@@ -136,13 +80,6 @@ class InsurancePlanLimit {
   final List<FhirExtension> modifierExtension;
   final Quantity value;
   final CodeableConcept code;
-  const InsurancePlanLimit({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.value,
-    required this.code,
-  });
 }
 
 @Data()
@@ -157,17 +94,6 @@ class InsurancePlanPlan {
   final List<Reference> network;
   final List<InsurancePlanGeneralCost> generalCost;
   final List<InsurancePlanSpecificCost> specificCost;
-  const InsurancePlanPlan({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.type,
-    required this.coverageArea,
-    required this.network,
-    required this.generalCost,
-    required this.specificCost,
-  });
 }
 
 @Data()
@@ -182,17 +108,6 @@ class InsurancePlanGeneralCost {
   final Money cost;
   final String comment;
   final PrimitiveElement commentElement;
-  const InsurancePlanGeneralCost({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.groupSize,
-    required this.groupSizeElement,
-    required this.cost,
-    required this.comment,
-    required this.commentElement,
-  });
 }
 
 @Data()
@@ -203,13 +118,6 @@ class InsurancePlanSpecificCost {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept category;
   final List<InsurancePlanBenefit1> benefit;
-  const InsurancePlanSpecificCost({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.category,
-    required this.benefit,
-  });
 }
 
 @Data()
@@ -220,13 +128,6 @@ class InsurancePlanBenefit1 {
   final List<FhirExtension> modifierExtension;
   final CodeableConcept type;
   final List<InsurancePlanCost> cost;
-  const InsurancePlanBenefit1({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.cost,
-  });
 }
 
 @Data()
@@ -239,15 +140,6 @@ class InsurancePlanCost {
   final CodeableConcept applicability;
   final List<CodeableConcept> qualifiers;
   final Quantity value;
-  const InsurancePlanCost({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.applicability,
-    required this.qualifiers,
-    required this.value,
-  });
 }
 
 

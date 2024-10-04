@@ -61,62 +61,6 @@ class CodeSystem {
   final List<CodeSystemFilter> filter;
   final List<CodeSystemProperty> property;
   final List<CodeSystemConcept> concept;
-  const CodeSystem({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.url,
-    required this.urlElement,
-    required this.identifier,
-    required this.version,
-    required this.versionElement,
-    required this.name,
-    required this.nameElement,
-    required this.title,
-    required this.titleElement,
-    required this.status,
-    required this.statusElement,
-    required this.experimental,
-    required this.experimentalElement,
-    required this.date,
-    required this.dateElement,
-    required this.publisher,
-    required this.publisherElement,
-    required this.contact,
-    required this.description,
-    required this.descriptionElement,
-    required this.useContext,
-    required this.jurisdiction,
-    required this.purpose,
-    required this.purposeElement,
-    required this.copyright,
-    required this.copyrightElement,
-    required this.caseSensitive,
-    required this.caseSensitiveElement,
-    required this.valueSet,
-    required this.hierarchyMeaning,
-    required this.hierarchyMeaningElement,
-    required this.compositional,
-    required this.compositionalElement,
-    required this.versionNeeded,
-    required this.versionNeededElement,
-    required this.content,
-    required this.contentElement,
-    required this.supplements,
-    required this.count,
-    required this.countElement,
-    required this.filter,
-    required this.property,
-    required this.concept,
-  });
 }
 
 @Data()
@@ -133,19 +77,6 @@ class CodeSystemFilter {
   final List<PrimitiveElement> operatorElement;
   final String value;
   final PrimitiveElement valueElement;
-  const CodeSystemFilter({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.codeElement,
-    required this.description,
-    required this.descriptionElement,
-    required this.operator_,
-    required this.operatorElement,
-    required this.value,
-    required this.valueElement,
-  });
 }
 
 @Data()
@@ -162,19 +93,6 @@ class CodeSystemProperty {
   final PrimitiveElement descriptionElement;
   final FhirCode type;
   final PrimitiveElement typeElement;
-  const CodeSystemProperty({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.codeElement,
-    required this.uri,
-    required this.uriElement,
-    required this.description,
-    required this.descriptionElement,
-    required this.type,
-    required this.typeElement,
-  });
 }
 
 @Data()
@@ -192,20 +110,6 @@ class CodeSystemConcept {
   final List<CodeSystemDesignation> designation;
   final List<CodeSystemProperty1> property;
   final List<CodeSystemConcept> concept;
-  const CodeSystemConcept({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.codeElement,
-    required this.display,
-    required this.displayElement,
-    required this.definition,
-    required this.definitionElement,
-    required this.designation,
-    required this.property,
-    required this.concept,
-  });
 }
 
 @Data()
@@ -219,16 +123,6 @@ class CodeSystemDesignation {
   final Coding use;
   final String value;
   final PrimitiveElement valueElement;
-  const CodeSystemDesignation({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.language,
-    required this.languageElement,
-    required this.use,
-    required this.value,
-    required this.valueElement,
-  });
 }
 
 @Data()
@@ -252,26 +146,6 @@ class CodeSystemProperty1 {
   final PrimitiveElement valueDateTimeElement;
   final double valueDecimal;
   final PrimitiveElement valueDecimalElement;
-  const CodeSystemProperty1({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.codeElement,
-    required this.valueCode,
-    required this.valueCodeElement,
-    required this.valueCoding,
-    required this.valueString,
-    required this.valueStringElement,
-    required this.valueInteger,
-    required this.valueIntegerElement,
-    required this.valueBoolean,
-    required this.valueBooleanElement,
-    required this.valueDateTime,
-    required this.valueDateTimeElement,
-    required this.valueDecimal,
-    required this.valueDecimalElement,
-  });
 }
 
 

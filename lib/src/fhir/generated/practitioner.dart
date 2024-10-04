@@ -31,32 +31,6 @@ class Practitioner {
   final List<Attachment> photo;
   final List<PractitionerQualification> qualification;
   final List<CodeableConcept> communication;
-  const Practitioner({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.active,
-    required this.activeElement,
-    required this.name,
-    required this.telecom,
-    required this.address,
-    required this.gender,
-    required this.genderElement,
-    required this.birthDate,
-    required this.birthDateElement,
-    required this.photo,
-    required this.qualification,
-    required this.communication,
-  });
 }
 
 @Data()
@@ -69,15 +43,6 @@ class PractitionerQualification {
   final CodeableConcept code;
   final Period period;
   final Reference issuer;
-  const PractitionerQualification({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.code,
-    required this.period,
-    required this.issuer,
-  });
 }
 
 @Data()
@@ -110,35 +75,6 @@ class PractitionerRole {
   final String availabilityExceptions;
   final PrimitiveElement availabilityExceptionsElement;
   final List<Reference> endpoint;
-  const PractitionerRole({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.active,
-    required this.activeElement,
-    required this.period,
-    required this.practitioner,
-    required this.organization,
-    required this.code,
-    required this.specialty,
-    required this.location,
-    required this.healthcareService,
-    required this.telecom,
-    required this.availableTime,
-    required this.notAvailable,
-    required this.availabilityExceptions,
-    required this.availabilityExceptionsElement,
-    required this.endpoint,
-  });
 }
 
 @Data()
@@ -155,19 +91,6 @@ class PractitionerRoleAvailableTime {
   final PrimitiveElement availableStartTimeElement;
   final FhirTime availableEndTime;
   final PrimitiveElement availableEndTimeElement;
-  const PractitionerRoleAvailableTime({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.daysOfWeek,
-    required this.daysOfWeekElement,
-    required this.allDay,
-    required this.allDayElement,
-    required this.availableStartTime,
-    required this.availableStartTimeElement,
-    required this.availableEndTime,
-    required this.availableEndTimeElement,
-  });
 }
 
 @Data()
@@ -179,14 +102,6 @@ class PractitionerRoleNotAvailable {
   final String description;
   final PrimitiveElement descriptionElement;
   final Period during;
-  const PractitionerRoleNotAvailable({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.description,
-    required this.descriptionElement,
-    required this.during,
-  });
 }
 
 

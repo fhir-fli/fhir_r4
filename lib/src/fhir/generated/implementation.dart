@@ -51,52 +51,6 @@ class ImplementationGuide {
   final List<ImplementationGuideGlobal> global;
   final ImplementationGuideDefinition definition;
   final ImplementationGuideManifest manifest;
-  const ImplementationGuide({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.url,
-    required this.urlElement,
-    required this.version,
-    required this.versionElement,
-    required this.name,
-    required this.nameElement,
-    required this.title,
-    required this.titleElement,
-    required this.status,
-    required this.statusElement,
-    required this.experimental,
-    required this.experimentalElement,
-    required this.date,
-    required this.dateElement,
-    required this.publisher,
-    required this.publisherElement,
-    required this.contact,
-    required this.description,
-    required this.descriptionElement,
-    required this.useContext,
-    required this.jurisdiction,
-    required this.copyright,
-    required this.copyrightElement,
-    required this.packageId,
-    required this.packageIdElement,
-    required this.license,
-    required this.licenseElement,
-    required this.fhirVersion,
-    required this.fhirVersionElement,
-    required this.dependsOn,
-    required this.global,
-    required this.definition,
-    required this.manifest,
-  });
 }
 
 @Data()
@@ -110,16 +64,6 @@ class ImplementationGuideDependsOn {
   final PrimitiveElement packageIdElement;
   final String version;
   final PrimitiveElement versionElement;
-  const ImplementationGuideDependsOn({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.uri,
-    required this.packageId,
-    required this.packageIdElement,
-    required this.version,
-    required this.versionElement,
-  });
 }
 
 @Data()
@@ -131,14 +75,6 @@ class ImplementationGuideGlobal {
   final FhirCode type;
   final PrimitiveElement typeElement;
   final FhirCanonical profile;
-  const ImplementationGuideGlobal({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.type,
-    required this.typeElement,
-    required this.profile,
-  });
 }
 
 @Data()
@@ -152,16 +88,6 @@ class ImplementationGuideDefinition {
   final ImplementationGuidePage page;
   final List<ImplementationGuideParameter> parameter;
   final List<ImplementationGuideTemplate> template;
-  const ImplementationGuideDefinition({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.grouping,
-    required this.resource,
-    required this.page,
-    required this.parameter,
-    required this.template,
-  });
 }
 
 @Data()
@@ -174,15 +100,6 @@ class ImplementationGuideGrouping {
   final PrimitiveElement nameElement;
   final String description;
   final PrimitiveElement descriptionElement;
-  const ImplementationGuideGrouping({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.name,
-    required this.nameElement,
-    required this.description,
-    required this.descriptionElement,
-  });
 }
 
 @Data()
@@ -204,24 +121,6 @@ class ImplementationGuideResource {
   final PrimitiveElement exampleCanonicalElement;
   final FhirId groupingId;
   final PrimitiveElement groupingIdElement;
-  const ImplementationGuideResource({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.reference,
-    required this.fhirVersion,
-    required this.fhirVersionElement,
-    required this.name,
-    required this.nameElement,
-    required this.description,
-    required this.descriptionElement,
-    required this.exampleBoolean,
-    required this.exampleBooleanElement,
-    required this.exampleCanonical,
-    required this.exampleCanonicalElement,
-    required this.groupingId,
-    required this.groupingIdElement,
-  });
 }
 
 @Data()
@@ -238,19 +137,6 @@ class ImplementationGuidePage {
   final FhirCode generation;
   final PrimitiveElement generationElement;
   final List<ImplementationGuidePage> page;
-  const ImplementationGuidePage({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.nameUrl,
-    required this.nameUrlElement,
-    required this.nameReference,
-    required this.title,
-    required this.titleElement,
-    required this.generation,
-    required this.generationElement,
-    required this.page,
-  });
 }
 
 @Data()
@@ -263,15 +149,6 @@ class ImplementationGuideParameter {
   final PrimitiveElement codeElement;
   final String value;
   final PrimitiveElement valueElement;
-  const ImplementationGuideParameter({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.codeElement,
-    required this.value,
-    required this.valueElement,
-  });
 }
 
 @Data()
@@ -286,17 +163,6 @@ class ImplementationGuideTemplate {
   final PrimitiveElement sourceElement;
   final String scope;
   final PrimitiveElement scopeElement;
-  const ImplementationGuideTemplate({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.code,
-    required this.codeElement,
-    required this.source,
-    required this.sourceElement,
-    required this.scope,
-    required this.scopeElement,
-  });
 }
 
 @Data()
@@ -313,19 +179,6 @@ class ImplementationGuideManifest {
   final List<PrimitiveElement> imageElement;
   final List<String> other;
   final List<PrimitiveElement> otherElement;
-  const ImplementationGuideManifest({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.rendering,
-    required this.renderingElement,
-    required this.resource,
-    required this.page,
-    required this.image,
-    required this.imageElement,
-    required this.other,
-    required this.otherElement,
-  });
 }
 
 @Data()
@@ -341,18 +194,6 @@ class ImplementationGuideResource1 {
   final PrimitiveElement exampleCanonicalElement;
   final FhirUrl relativePath;
   final PrimitiveElement relativePathElement;
-  const ImplementationGuideResource1({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.reference,
-    required this.exampleBoolean,
-    required this.exampleBooleanElement,
-    required this.exampleCanonical,
-    required this.exampleCanonicalElement,
-    required this.relativePath,
-    required this.relativePathElement,
-  });
 }
 
 @Data()
@@ -367,17 +208,6 @@ class ImplementationGuidePage1 {
   final PrimitiveElement titleElement;
   final List<String> anchor;
   final List<PrimitiveElement> anchorElement;
-  const ImplementationGuidePage1({
-    required this.id,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.name,
-    required this.nameElement,
-    required this.title,
-    required this.titleElement,
-    required this.anchor,
-    required this.anchorElement,
-  });
 }
 
 

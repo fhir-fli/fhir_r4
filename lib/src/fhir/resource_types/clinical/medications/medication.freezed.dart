@@ -168,12 +168,6 @@ abstract class $MedicationCopyWith<$Res> {
       List<MedicationIngredient>? ingredient,
       MedicationBatch? batch});
 
-  $FhirMetaCopyWith<$Res>? get meta;
-  $NarrativeCopyWith<$Res>? get text;
-  $CodeableConceptCopyWith<$Res>? get code;
-  $ReferenceCopyWith<$Res>? get manufacturer;
-  $CodeableConceptCopyWith<$Res>? get form;
-  $RatioCopyWith<$Res>? get amount;
   $MedicationBatchCopyWith<$Res>? get batch;
 }
 
@@ -301,90 +295,6 @@ class _$MedicationCopyWithImpl<$Res, $Val extends Medication>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $FhirMetaCopyWith<$Res>? get meta {
-    if (_value.meta == null) {
-      return null;
-    }
-
-    return $FhirMetaCopyWith<$Res>(_value.meta!, (value) {
-      return _then(_value.copyWith(meta: value) as $Val);
-    });
-  }
-
-  /// Create a copy of Medication
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $NarrativeCopyWith<$Res>? get text {
-    if (_value.text == null) {
-      return null;
-    }
-
-    return $NarrativeCopyWith<$Res>(_value.text!, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  /// Create a copy of Medication
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get code {
-    if (_value.code == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.code!, (value) {
-      return _then(_value.copyWith(code: value) as $Val);
-    });
-  }
-
-  /// Create a copy of Medication
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get manufacturer {
-    if (_value.manufacturer == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.manufacturer!, (value) {
-      return _then(_value.copyWith(manufacturer: value) as $Val);
-    });
-  }
-
-  /// Create a copy of Medication
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get form {
-    if (_value.form == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.form!, (value) {
-      return _then(_value.copyWith(form: value) as $Val);
-    });
-  }
-
-  /// Create a copy of Medication
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $RatioCopyWith<$Res>? get amount {
-    if (_value.amount == null) {
-      return null;
-    }
-
-    return $RatioCopyWith<$Res>(_value.amount!, (value) {
-      return _then(_value.copyWith(amount: value) as $Val);
-    });
-  }
-
-  /// Create a copy of Medication
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
   $MedicationBatchCopyWith<$Res>? get batch {
     if (_value.batch == null) {
       return null;
@@ -427,18 +337,6 @@ abstract class _$$MedicationImplCopyWith<$Res>
       List<MedicationIngredient>? ingredient,
       MedicationBatch? batch});
 
-  @override
-  $FhirMetaCopyWith<$Res>? get meta;
-  @override
-  $NarrativeCopyWith<$Res>? get text;
-  @override
-  $CodeableConceptCopyWith<$Res>? get code;
-  @override
-  $ReferenceCopyWith<$Res>? get manufacturer;
-  @override
-  $CodeableConceptCopyWith<$Res>? get form;
-  @override
-  $RatioCopyWith<$Res>? get amount;
   @override
   $MedicationBatchCopyWith<$Res>? get batch;
 }
@@ -803,7 +701,7 @@ class _$MedicationImpl extends _Medication {
             (identical(other.resourceType, resourceType) ||
                 other.resourceType == resourceType) &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.meta, meta) || other.meta == meta) &&
+            const DeepCollectionEquality().equals(other.meta, meta) &&
             (identical(other.implicitRules, implicitRules) ||
                 other.implicitRules == implicitRules) &&
             (identical(other.implicitRulesElement, implicitRulesElement) ||
@@ -812,7 +710,7 @@ class _$MedicationImpl extends _Medication {
                 other.language == language) &&
             (identical(other.languageElement, languageElement) ||
                 other.languageElement == languageElement) &&
-            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other.text, text) &&
             const DeepCollectionEquality()
                 .equals(other._contained, _contained) &&
             const DeepCollectionEquality()
@@ -821,14 +719,14 @@ class _$MedicationImpl extends _Medication {
                 .equals(other._modifierExtension, _modifierExtension) &&
             const DeepCollectionEquality()
                 .equals(other._identifier, _identifier) &&
-            (identical(other.code, code) || other.code == code) &&
+            const DeepCollectionEquality().equals(other.code, code) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.statusElement, statusElement) ||
                 other.statusElement == statusElement) &&
-            (identical(other.manufacturer, manufacturer) ||
-                other.manufacturer == manufacturer) &&
-            (identical(other.form, form) || other.form == form) &&
-            (identical(other.amount, amount) || other.amount == amount) &&
+            const DeepCollectionEquality()
+                .equals(other.manufacturer, manufacturer) &&
+            const DeepCollectionEquality().equals(other.form, form) &&
+            const DeepCollectionEquality().equals(other.amount, amount) &&
             const DeepCollectionEquality()
                 .equals(other._ingredient, _ingredient) &&
             (identical(other.batch, batch) || other.batch == batch));
@@ -840,22 +738,22 @@ class _$MedicationImpl extends _Medication {
         runtimeType,
         resourceType,
         id,
-        meta,
+        const DeepCollectionEquality().hash(meta),
         implicitRules,
         implicitRulesElement,
         language,
         languageElement,
-        text,
+        const DeepCollectionEquality().hash(text),
         const DeepCollectionEquality().hash(_contained),
         const DeepCollectionEquality().hash(_extension_),
         const DeepCollectionEquality().hash(_modifierExtension),
         const DeepCollectionEquality().hash(_identifier),
-        code,
+        const DeepCollectionEquality().hash(code),
         status,
         statusElement,
-        manufacturer,
-        form,
-        amount,
+        const DeepCollectionEquality().hash(manufacturer),
+        const DeepCollectionEquality().hash(form),
+        const DeepCollectionEquality().hash(amount),
         const DeepCollectionEquality().hash(_ingredient),
         batch
       ]);
@@ -1121,10 +1019,6 @@ abstract class $MedicationIngredientCopyWith<$Res> {
       FhirBoolean? isActive,
       @JsonKey(name: '_isActive') PrimitiveElement? isActiveElement,
       Ratio? strength});
-
-  $CodeableConceptCopyWith<$Res>? get itemCodeableConcept;
-  $ReferenceCopyWith<$Res>? get itemReference;
-  $RatioCopyWith<$Res>? get strength;
 }
 
 /// @nodoc
@@ -1187,48 +1081,6 @@ class _$MedicationIngredientCopyWithImpl<$Res,
               as Ratio?,
     ) as $Val);
   }
-
-  /// Create a copy of MedicationIngredient
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CodeableConceptCopyWith<$Res>? get itemCodeableConcept {
-    if (_value.itemCodeableConcept == null) {
-      return null;
-    }
-
-    return $CodeableConceptCopyWith<$Res>(_value.itemCodeableConcept!, (value) {
-      return _then(_value.copyWith(itemCodeableConcept: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationIngredient
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ReferenceCopyWith<$Res>? get itemReference {
-    if (_value.itemReference == null) {
-      return null;
-    }
-
-    return $ReferenceCopyWith<$Res>(_value.itemReference!, (value) {
-      return _then(_value.copyWith(itemReference: value) as $Val);
-    });
-  }
-
-  /// Create a copy of MedicationIngredient
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $RatioCopyWith<$Res>? get strength {
-    if (_value.strength == null) {
-      return null;
-    }
-
-    return $RatioCopyWith<$Res>(_value.strength!, (value) {
-      return _then(_value.copyWith(strength: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -1248,13 +1100,6 @@ abstract class _$$MedicationIngredientImplCopyWith<$Res>
       FhirBoolean? isActive,
       @JsonKey(name: '_isActive') PrimitiveElement? isActiveElement,
       Ratio? strength});
-
-  @override
-  $CodeableConceptCopyWith<$Res>? get itemCodeableConcept;
-  @override
-  $ReferenceCopyWith<$Res>? get itemReference;
-  @override
-  $RatioCopyWith<$Res>? get strength;
 }
 
 /// @nodoc
@@ -1443,16 +1288,15 @@ class _$MedicationIngredientImpl extends _MedicationIngredient {
                 .equals(other._extension_, _extension_) &&
             const DeepCollectionEquality()
                 .equals(other._modifierExtension, _modifierExtension) &&
-            (identical(other.itemCodeableConcept, itemCodeableConcept) ||
-                other.itemCodeableConcept == itemCodeableConcept) &&
-            (identical(other.itemReference, itemReference) ||
-                other.itemReference == itemReference) &&
+            const DeepCollectionEquality()
+                .equals(other.itemCodeableConcept, itemCodeableConcept) &&
+            const DeepCollectionEquality()
+                .equals(other.itemReference, itemReference) &&
             (identical(other.isActive, isActive) ||
                 other.isActive == isActive) &&
             (identical(other.isActiveElement, isActiveElement) ||
                 other.isActiveElement == isActiveElement) &&
-            (identical(other.strength, strength) ||
-                other.strength == strength));
+            const DeepCollectionEquality().equals(other.strength, strength));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1462,11 +1306,11 @@ class _$MedicationIngredientImpl extends _MedicationIngredient {
       id,
       const DeepCollectionEquality().hash(_extension_),
       const DeepCollectionEquality().hash(_modifierExtension),
-      itemCodeableConcept,
-      itemReference,
+      const DeepCollectionEquality().hash(itemCodeableConcept),
+      const DeepCollectionEquality().hash(itemReference),
       isActive,
       isActiveElement,
-      strength);
+      const DeepCollectionEquality().hash(strength));
 
   /// Create a copy of MedicationIngredient
   /// with the given fields replaced by the non-null parameter values.

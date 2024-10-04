@@ -28,29 +28,6 @@ class Schedule {
   final Period planningHorizon;
   final String comment;
   final PrimitiveElement commentElement;
-  const Schedule({
-    required this.resourceType,
-    required this.id,
-    required this.meta,
-    required this.implicitRules,
-    required this.implicitRulesElement,
-    required this.language,
-    required this.languageElement,
-    required this.text,
-    required this.contained,
-    required this.extension_,
-    required this.modifierExtension,
-    required this.identifier,
-    required this.active,
-    required this.activeElement,
-    required this.serviceCategory,
-    required this.serviceType,
-    required this.specialty,
-    required this.actor,
-    required this.planningHorizon,
-    required this.comment,
-    required this.commentElement,
-  });
 }
 
 

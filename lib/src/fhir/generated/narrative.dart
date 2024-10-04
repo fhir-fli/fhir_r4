@@ -12,13 +12,6 @@ class Narrative {
   final dynamic status;
   final PrimitiveElement statusElement;
   final FhirMarkdown div;
-  const Narrative({
-    required this.id,
-    required this.extension_,
-    required this.status,
-    required this.statusElement,
-    required this.div,
-  });
 }
 
 
