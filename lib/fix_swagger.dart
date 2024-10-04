@@ -23,15 +23,15 @@ void main() async {
     // Convert the immutable YamlMap to a modifiable Map
     final Map<String, dynamic> modifiableMap = deepCopyMap(yamlDoc);
 
-    // Traverse through the paths to check and fix XML schema references
-    fixXmlReferences(modifiableMap);
+    // Traverse through the paths to check and fix schema references
+    fixReferences(modifiableMap);
 
     // Convert back to YAML and write to the file
     final YamlWriter yamlWriter = YamlWriter();
     final String updatedYaml = yamlWriter.write(modifiableMap);
     await file.writeAsString(updatedYaml);
 
-    print('File updated with corrected XML schema references.');
+    print('File updated with corrected schema references.');
   } else {
     print('The root of the YAML document is not a map.');
   }
@@ -66,35 +66,61 @@ List<dynamic> deepCopyList(YamlList yamlList) {
   return result;
 }
 
-void fixXmlReferences(Map<String, dynamic> map, {String parentKey = ''}) {
+void fixReferences(Map<String, dynamic> map, {String parentKey = ''}) {
   map.forEach((dynamic key, dynamic value) {
     final String keyStr = key.toString(); // Cast the key to String explicitly
-    if (value is Map<String, dynamic>) {
+    if (value is Map<String, dynamic>?) {
+      // Handle null value explicitly
+      if (value == null) {
+        // Print the null value and context for further debugging
+        print('Null value found at $parentKey$keyStr. Full map context: $map');
+        return;
+      }
+
       if (value.containsKey('schema')) {
-        final Map<String, dynamic> schema =
-            value['schema'] as Map<String, dynamic>;
-        // Check if there is a $ref key pointing to the FHIR-XML-RESOURCE schema
-        if (schema.containsKey(r'$ref') &&
-            schema[r'$ref'] == '#/components/schemas/FHIR-XML-RESOURCE') {
-          // Extract the resource type from the path
-          final String resourceType = extractResourceTypeFromPath(parentKey);
-          if (resourceType.isNotEmpty) {
-            final String correctedRef = './lib/fhir-all-xsd/$resourceType.xsd';
-            print('Correcting reference in schema at $parentKey$keyStr:');
-            print('Old: ${schema[r'$ref']}');
-            print('New: $correctedRef');
-            schema[r'$ref'] =
-                correctedRef; // Replace with the correct reference
+        final Map<String, dynamic>? schema =
+            value['schema'] as Map<String, dynamic>?;
+
+        // Ensure schema is not null before processing
+        if (schema != null) {
+          // Fix JSON schema reference
+          if (schema.containsKey(r'$ref') &&
+              schema[r'$ref'] == '#/components/schemas/FHIR-JSON-RESOURCE') {
+            // Extract the resource type from the path
+            final String resourceType = extractResourceTypeFromPath(parentKey);
+            if (resourceType.isNotEmpty) {
+              final String correctedJsonRef =
+                  './fhir.schema.json#/definitions/$resourceType';
+              schema[r'$ref'] =
+                  correctedJsonRef; // Replace with the correct reference
+            }
+          }
+
+          // Fix XML schema reference
+          if (schema.containsKey(r'$ref') &&
+              schema[r'$ref'] == '#/components/schemas/FHIR-XML-RESOURCE') {
+            // Extract the resource type from the path
+            final String resourceType = extractResourceTypeFromPath(parentKey);
+            if (resourceType.isNotEmpty) {
+              final String correctedXmlRef =
+                  './lib/fhir-all-xsd/$resourceType.xsd';
+              schema[r'$ref'] =
+                  correctedXmlRef; // Replace with the correct reference
+            }
           }
         }
       }
-      fixXmlReferences(value, parentKey: '$parentKey$keyStr.');
+      fixReferences(value, parentKey: '$parentKey$keyStr.');
     } else if (value is List) {
       // If there is a list, traverse through the list
       for (int i = 0; i < value.length; i++) {
-        if (value[i] is Map<String, dynamic>) {
-          fixXmlReferences(value[i] as Map<String, dynamic>,
-              parentKey: '$parentKey$keyStr[$i].');
+        final dynamic listItem = value[i];
+
+        if (listItem is Map<String, dynamic>) {
+          fixReferences(listItem, parentKey: '$parentKey$keyStr[$i].');
+        } else if (listItem == null) {
+          // Handle null values inside lists
+          print('Null value found in list at $parentKey$keyStr[$i].');
         }
       }
     }
