@@ -1,5 +1,8 @@
 import 'package:data_class/data_class.dart';
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json/json.dart';
+
+import 'export.dart';
 
 @Data()
 @JsonCodable()
@@ -13,8 +16,8 @@ class Encounter {
   final PrimitiveElement Language;
   final Narrative text;
   final List<ResourceList> contained;
-  final List<Extension> extension;
-  final List<Extension> modifierExtension;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
   final List<Identifier> identifier;
   final FhirCode status;
   final PrimitiveElement Status;
@@ -35,45 +38,84 @@ class Encounter {
   final List<Reference> reasonReference;
   final List<EncounterDiagnosis> diagnosis;
   final List<Reference> account;
-  final Encounter_Hospitalization hospitalization;
+  final EncounterHospitalization hospitalization;
   final List<EncounterLocation> location;
   final Reference serviceProvider;
   final Reference partOf;
-  const Encounter({
-    required this.resourceType,
-    this.id,
-    this.meta,
-    this.implicitRules,
-    this.ImplicitRules,
-    this.language,
-    this.Language,
-    this.text,
-    this.contained,
-    this.extension,
-    this.modifierExtension,
-    this.identifier,
-    this.status,
-    this.Status,
-    this.statusHistory,
-    required this.class,
-    this.classHistory,
-    this.type,
-    this.serviceType,
-    this.priority,
-    this.subject,
-    this.episodeOfCare,
-    this.basedOn,
-    this.participant,
-    this.appointment,
-    this.period,
-    this.length,
-    this.reasonCode,
-    this.reasonReference,
-    this.diagnosis,
-    this.account,
-    this.hospitalization,
-    this.location,
-    this.serviceProvider,
-    this.partOf,
-  });
 }
+
+@Data()
+@JsonCodable()
+class EncounterStatusHistory {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final FhirCode status;
+  final PrimitiveElement Status;
+  final Period period;
+}
+
+@Data()
+@JsonCodable()
+class EncounterClassHistory {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final Coding class;
+  final Period period;
+}
+
+@Data()
+@JsonCodable()
+class EncounterParticipant {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final List<CodeableConcept> type;
+  final Period period;
+  final Reference individual;
+}
+
+@Data()
+@JsonCodable()
+class EncounterDiagnosis {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final Reference condition;
+  final CodeableConcept use;
+  final FhirPositiveInt rank;
+  final PrimitiveElement Rank;
+}
+
+@Data()
+@JsonCodable()
+class EncounterHospitalization {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final Identifier preAdmissionIdentifier;
+  final Reference origin;
+  final CodeableConcept admitSource;
+  final CodeableConcept reAdmission;
+  final List<CodeableConcept> dietPreference;
+  final List<CodeableConcept> specialCourtesy;
+  final List<CodeableConcept> specialArrangement;
+  final Reference destination;
+  final CodeableConcept dischargeDisposition;
+}
+
+@Data()
+@JsonCodable()
+class EncounterLocation {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final Reference location;
+  final FhirCode status;
+  final PrimitiveElement Status;
+  final CodeableConcept physicalType;
+  final Period period;
+}
+
+

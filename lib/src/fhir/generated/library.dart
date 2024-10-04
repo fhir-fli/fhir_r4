@@ -1,5 +1,8 @@
 import 'package:data_class/data_class.dart';
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json/json.dart';
+
+import 'export.dart';
 
 @Data()
 @JsonCodable()
@@ -13,8 +16,8 @@ class Library {
   final PrimitiveElement Language;
   final Narrative text;
   final List<ResourceList> contained;
-  final List<Extension> extension;
-  final List<Extension> modifierExtension;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
   final FhirUri url;
   final PrimitiveElement Url;
   final List<Identifier> identifier;
@@ -62,64 +65,6 @@ class Library {
   final List<ParameterDefinition> parameter;
   final List<DataRequirement> dataRequirement;
   final List<Attachment> content;
-  const Library({
-    required this.resourceType,
-    this.id,
-    this.meta,
-    this.implicitRules,
-    this.ImplicitRules,
-    this.language,
-    this.Language,
-    this.text,
-    this.contained,
-    this.extension,
-    this.modifierExtension,
-    this.url,
-    this.Url,
-    this.identifier,
-    this.version,
-    this.Version,
-    this.name,
-    this.Name,
-    this.title,
-    this.Title,
-    this.subtitle,
-    this.Subtitle,
-    this.status,
-    this.Status,
-    this.experimental,
-    this.Experimental,
-    required this.type,
-    this.subjectCodeableConcept,
-    this.subjectReference,
-    this.date,
-    this.Date,
-    this.publisher,
-    this.Publisher,
-    this.contact,
-    this.description,
-    this.Description,
-    this.useContext,
-    this.jurisdiction,
-    this.purpose,
-    this.Purpose,
-    this.usage,
-    this.Usage,
-    this.copyright,
-    this.Copyright,
-    this.approvalDate,
-    this.ApprovalDate,
-    this.lastReviewDate,
-    this.LastReviewDate,
-    this.effectivePeriod,
-    this.topic,
-    this.author,
-    this.editor,
-    this.reviewer,
-    this.endorser,
-    this.relatedArtifact,
-    this.parameter,
-    this.dataRequirement,
-    this.content,
-  });
 }
+
+

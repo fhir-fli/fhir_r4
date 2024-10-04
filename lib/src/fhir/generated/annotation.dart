@@ -1,11 +1,14 @@
 import 'package:data_class/data_class.dart';
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json/json.dart';
+
+import 'export.dart';
 
 @Data()
 @JsonCodable()
 class Annotation {
   final String id;
-  final List<Extension> extension;
+  final List<FhirExtension> extension;
   final Reference authorReference;
   final String authorString;
   final PrimitiveElement AuthorString;
@@ -13,15 +16,6 @@ class Annotation {
   final PrimitiveElement Time;
   final FhirMarkdown text;
   final PrimitiveElement Text;
-  const Annotation({
-    this.id,
-    this.extension,
-    this.authorReference,
-    this.authorString,
-    this.AuthorString,
-    this.time,
-    this.Time,
-    this.text,
-    this.Text,
-  });
 }
+
+

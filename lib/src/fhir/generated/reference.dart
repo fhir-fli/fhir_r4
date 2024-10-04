@@ -1,11 +1,14 @@
 import 'package:data_class/data_class.dart';
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json/json.dart';
+
+import 'export.dart';
 
 @Data()
 @JsonCodable()
 class Reference {
   final String id;
-  final List<Extension> extension;
+  final List<FhirExtension> extension;
   final String reference;
   final PrimitiveElement Reference;
   final FhirUri type;
@@ -13,15 +16,6 @@ class Reference {
   final Identifier identifier;
   final String display;
   final PrimitiveElement Display;
-  const Reference({
-    this.id,
-    this.extension,
-    this.reference,
-    this.Reference,
-    this.type,
-    this.Type,
-    this.identifier,
-    this.display,
-    this.Display,
-  });
 }
+
+

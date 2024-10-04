@@ -1,11 +1,14 @@
 import 'package:data_class/data_class.dart';
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json/json.dart';
+
+import 'export.dart';
 
 @Data()
 @JsonCodable()
 class Signature {
   final String id;
-  final List<Extension> extension;
+  final List<FhirExtension> extension;
   final List<Coding> type;
   final FhirInstant when;
   final PrimitiveElement When;
@@ -17,19 +20,6 @@ class Signature {
   final PrimitiveElement SigFormat;
   final FhirBase64Binary data;
   final PrimitiveElement Data;
-  const Signature({
-    this.id,
-    this.extension,
-    required this.type,
-    this.when,
-    this.When,
-    required this.who,
-    this.onBehalfOf,
-    this.targetFormat,
-    this.TargetFormat,
-    this.sigFormat,
-    this.SigFormat,
-    this.data,
-    this.Data,
-  });
 }
+
+

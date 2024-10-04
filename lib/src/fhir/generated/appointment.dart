@@ -1,5 +1,8 @@
 import 'package:data_class/data_class.dart';
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json/json.dart';
+
+import 'export.dart';
 
 @Data()
 @JsonCodable()
@@ -13,8 +16,8 @@ class Appointment {
   final PrimitiveElement Language;
   final Narrative text;
   final List<ResourceList> contained;
-  final List<Extension> extension;
-  final List<Extension> modifierExtension;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
   final List<Identifier> identifier;
   final FhirCode status;
   final PrimitiveElement Status;
@@ -46,48 +49,49 @@ class Appointment {
   final List<Reference> basedOn;
   final List<AppointmentParticipant> participant;
   final List<Period> requestedPeriod;
-  const Appointment({
-    required this.resourceType,
-    this.id,
-    this.meta,
-    this.implicitRules,
-    this.ImplicitRules,
-    this.language,
-    this.Language,
-    this.text,
-    this.contained,
-    this.extension,
-    this.modifierExtension,
-    this.identifier,
-    this.status,
-    this.Status,
-    this.cancelationReason,
-    this.serviceCategory,
-    this.serviceType,
-    this.specialty,
-    this.appointmentType,
-    this.reasonCode,
-    this.reasonReference,
-    this.priority,
-    this.Priority,
-    this.description,
-    this.Description,
-    this.supportingInformation,
-    this.start,
-    this.Start,
-    this.end,
-    this.End,
-    this.minutesDuration,
-    this.MinutesDuration,
-    this.slot,
-    this.created,
-    this.Created,
-    this.comment,
-    this.Comment,
-    this.patientInstruction,
-    this.PatientInstruction,
-    this.basedOn,
-    required this.participant,
-    this.requestedPeriod,
-  });
 }
+
+@Data()
+@JsonCodable()
+class AppointmentParticipant {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final List<CodeableConcept> type;
+  final Reference actor;
+  final FhirCode required;
+  final PrimitiveElement Required;
+  final FhirCode status;
+  final PrimitiveElement Status;
+  final Period period;
+}
+
+@Data()
+@JsonCodable()
+class AppointmentResponse {
+  final dynamic resourceType;
+  final String id;
+  final FhirMeta meta;
+  final FhirUri implicitRules;
+  final PrimitiveElement ImplicitRules;
+  final FhirCode language;
+  final PrimitiveElement Language;
+  final Narrative text;
+  final List<ResourceList> contained;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final List<Identifier> identifier;
+  final Reference appointment;
+  final FhirInstant start;
+  final PrimitiveElement Start;
+  final FhirInstant end;
+  final PrimitiveElement End;
+  final List<CodeableConcept> participantType;
+  final Reference actor;
+  final FhirCode participantStatus;
+  final PrimitiveElement ParticipantStatus;
+  final String comment;
+  final PrimitiveElement Comment;
+}
+
+

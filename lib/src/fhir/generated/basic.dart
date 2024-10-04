@@ -1,5 +1,8 @@
 import 'package:data_class/data_class.dart';
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json/json.dart';
+
+import 'export.dart';
 
 @Data()
 @JsonCodable()
@@ -13,31 +16,14 @@ class Basic {
   final PrimitiveElement Language;
   final Narrative text;
   final List<ResourceList> contained;
-  final List<Extension> extension;
-  final List<Extension> modifierExtension;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
   final List<Identifier> identifier;
   final CodeableConcept code;
   final Reference subject;
   final FhirDate created;
   final PrimitiveElement Created;
   final Reference author;
-  const Basic({
-    required this.resourceType,
-    this.id,
-    this.meta,
-    this.implicitRules,
-    this.ImplicitRules,
-    this.language,
-    this.Language,
-    this.text,
-    this.contained,
-    this.extension,
-    this.modifierExtension,
-    this.identifier,
-    required this.code,
-    this.subject,
-    this.created,
-    this.Created,
-    this.author,
-  });
 }
+
+

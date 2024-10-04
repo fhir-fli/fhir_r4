@@ -1,13 +1,503 @@
 import 'package:data_class/data_class.dart';
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json/json.dart';
+
+import 'export.dart';
 
 @Data()
 @JsonCodable()
-class Element {
+class PrimitiveElement {
   final String id;
-  final List<Extension> extension;
-  const Element({
-    this.id,
-    this.extension,
-  });
+  final List<FhirExtension> extension;
 }
+
+@Data()
+@JsonCodable()
+class ElementDefinition {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final String path;
+  final PrimitiveElement Path;
+  final List<dynamic> representation;
+  final List<PrimitiveElement> Representation;
+  final String sliceName;
+  final PrimitiveElement SliceName;
+  final FhirBoolean sliceIsConstraining;
+  final PrimitiveElement SliceIsConstraining;
+  final String label;
+  final PrimitiveElement Label;
+  final List<Coding> code;
+  final ElementDefinitionSlicing slicing;
+  final String short;
+  final PrimitiveElement Short;
+  final FhirMarkdown definition;
+  final PrimitiveElement Definition;
+  final FhirMarkdown comment;
+  final PrimitiveElement Comment;
+  final FhirMarkdown requirements;
+  final PrimitiveElement Requirements;
+  final List<String> alias;
+  final List<PrimitiveElement> Alias;
+  final FhirUnsignedInt min;
+  final PrimitiveElement Min;
+  final String max;
+  final PrimitiveElement Max;
+  final ElementDefinitionBase base;
+  final FhirUri contentReference;
+  final PrimitiveElement ContentReference;
+  final List<ElementDefinitionType> type;
+  final String defaultValueBase64Binary;
+  final PrimitiveElement DefaultValueBase64Binary;
+  final bool defaultValueBoolean;
+  final PrimitiveElement DefaultValueBoolean;
+  final String defaultValueCanonical;
+  final PrimitiveElement DefaultValueCanonical;
+  final String defaultValueCode;
+  final PrimitiveElement DefaultValueCode;
+  final String defaultValueDate;
+  final PrimitiveElement DefaultValueDate;
+  final String defaultValueDateTime;
+  final PrimitiveElement DefaultValueDateTime;
+  final double defaultValueDecimal;
+  final PrimitiveElement DefaultValueDecimal;
+  final String defaultValueId;
+  final PrimitiveElement DefaultValueId;
+  final String defaultValueInstant;
+  final PrimitiveElement DefaultValueInstant;
+  final double defaultValueInteger;
+  final PrimitiveElement DefaultValueInteger;
+  final String defaultValueMarkdown;
+  final PrimitiveElement DefaultValueMarkdown;
+  final String defaultValueOid;
+  final PrimitiveElement DefaultValueOid;
+  final double defaultValuePositiveInt;
+  final PrimitiveElement DefaultValuePositiveInt;
+  final String defaultValueString;
+  final PrimitiveElement DefaultValueString;
+  final String defaultValueTime;
+  final PrimitiveElement DefaultValueTime;
+  final double defaultValueUnsignedInt;
+  final PrimitiveElement DefaultValueUnsignedInt;
+  final String defaultValueUri;
+  final PrimitiveElement DefaultValueUri;
+  final String defaultValueUrl;
+  final PrimitiveElement DefaultValueUrl;
+  final String defaultValueUuid;
+  final PrimitiveElement DefaultValueUuid;
+  final Address defaultValueAddress;
+  final Age defaultValueAge;
+  final Annotation defaultValueAnnotation;
+  final Attachment defaultValueAttachment;
+  final CodeableConcept defaultValueCodeableConcept;
+  final CodeableReference defaultValueCodeableReference;
+  final Coding defaultValueCoding;
+  final ContactPoint defaultValueContactPoint;
+  final Count defaultValueCount;
+  final Distance defaultValueDistance;
+  final FhirDuration defaultValueDuration;
+  final HumanName defaultValueHumanName;
+  final Identifier defaultValueIdentifier;
+  final Money defaultValueMoney;
+  final Period defaultValuePeriod;
+  final Quantity defaultValueQuantity;
+  final Range defaultValueRange;
+  final Ratio defaultValueRatio;
+  final RatioRange defaultValueRatioRange;
+  final Reference defaultValueReference;
+  final SampledData defaultValueSampledData;
+  final Signature defaultValueSignature;
+  final Timing defaultValueTiming;
+  final ContactDetail defaultValueContactDetail;
+  final Contributor defaultValueContributor;
+  final DataRequirement defaultValueDataRequirement;
+  final FhirExpression defaultValueExpression;
+  final ParameterDefinition defaultValueParameterDefinition;
+  final RelatedArtifact defaultValueRelatedArtifact;
+  final TriggerDefinition defaultValueTriggerDefinition;
+  final UsageContext defaultValueUsageContext;
+  final Dosage defaultValueDosage;
+  final FhirMarkdown meaningWhenMissing;
+  final PrimitiveElement MeaningWhenMissing;
+  final String orderMeaning;
+  final PrimitiveElement OrderMeaning;
+  final String fixedBase64Binary;
+  final PrimitiveElement FixedBase64Binary;
+  final bool fixedBoolean;
+  final PrimitiveElement FixedBoolean;
+  final String fixedCanonical;
+  final PrimitiveElement FixedCanonical;
+  final String fixedCode;
+  final PrimitiveElement FixedCode;
+  final String fixedDate;
+  final PrimitiveElement FixedDate;
+  final String fixedDateTime;
+  final PrimitiveElement FixedDateTime;
+  final double fixedDecimal;
+  final PrimitiveElement FixedDecimal;
+  final String fixedId;
+  final PrimitiveElement FixedId;
+  final String fixedInstant;
+  final PrimitiveElement FixedInstant;
+  final double fixedInteger;
+  final PrimitiveElement FixedInteger;
+  final String fixedMarkdown;
+  final PrimitiveElement FixedMarkdown;
+  final String fixedOid;
+  final PrimitiveElement FixedOid;
+  final double fixedPositiveInt;
+  final PrimitiveElement FixedPositiveInt;
+  final String fixedString;
+  final PrimitiveElement FixedString;
+  final String fixedTime;
+  final PrimitiveElement FixedTime;
+  final double fixedUnsignedInt;
+  final PrimitiveElement FixedUnsignedInt;
+  final String fixedUri;
+  final PrimitiveElement FixedUri;
+  final String fixedUrl;
+  final PrimitiveElement FixedUrl;
+  final String fixedUuid;
+  final PrimitiveElement FixedUuid;
+  final Address fixedAddress;
+  final Age fixedAge;
+  final Annotation fixedAnnotation;
+  final Attachment fixedAttachment;
+  final CodeableConcept fixedCodeableConcept;
+  final CodeableReference fixedCodeableReference;
+  final Coding fixedCoding;
+  final ContactPoint fixedContactPoint;
+  final Count fixedCount;
+  final Distance fixedDistance;
+  final FhirDuration fixedDuration;
+  final HumanName fixedHumanName;
+  final Identifier fixedIdentifier;
+  final Money fixedMoney;
+  final Period fixedPeriod;
+  final Quantity fixedQuantity;
+  final Range fixedRange;
+  final Ratio fixedRatio;
+  final RatioRange fixedRatioRange;
+  final Reference fixedReference;
+  final SampledData fixedSampledData;
+  final Signature fixedSignature;
+  final Timing fixedTiming;
+  final ContactDetail fixedContactDetail;
+  final Contributor fixedContributor;
+  final DataRequirement fixedDataRequirement;
+  final FhirExpression fixedExpression;
+  final ParameterDefinition fixedParameterDefinition;
+  final RelatedArtifact fixedRelatedArtifact;
+  final TriggerDefinition fixedTriggerDefinition;
+  final UsageContext fixedUsageContext;
+  final Dosage fixedDosage;
+  final String patternBase64Binary;
+  final PrimitiveElement PatternBase64Binary;
+  final bool patternBoolean;
+  final PrimitiveElement PatternBoolean;
+  final String patternCanonical;
+  final PrimitiveElement PatternCanonical;
+  final String patternCode;
+  final PrimitiveElement PatternCode;
+  final String patternDate;
+  final PrimitiveElement PatternDate;
+  final String patternDateTime;
+  final PrimitiveElement PatternDateTime;
+  final double patternDecimal;
+  final PrimitiveElement PatternDecimal;
+  final String patternId;
+  final PrimitiveElement PatternId;
+  final String patternInstant;
+  final PrimitiveElement PatternInstant;
+  final double patternInteger;
+  final PrimitiveElement PatternInteger;
+  final String patternMarkdown;
+  final PrimitiveElement PatternMarkdown;
+  final String patternOid;
+  final PrimitiveElement PatternOid;
+  final double patternPositiveInt;
+  final PrimitiveElement PatternPositiveInt;
+  final String patternString;
+  final PrimitiveElement PatternString;
+  final String patternTime;
+  final PrimitiveElement PatternTime;
+  final double patternUnsignedInt;
+  final PrimitiveElement PatternUnsignedInt;
+  final String patternUri;
+  final PrimitiveElement PatternUri;
+  final String patternUrl;
+  final PrimitiveElement PatternUrl;
+  final String patternUuid;
+  final PrimitiveElement PatternUuid;
+  final Address patternAddress;
+  final Age patternAge;
+  final Annotation patternAnnotation;
+  final Attachment patternAttachment;
+  final CodeableConcept patternCodeableConcept;
+  final CodeableReference patternCodeableReference;
+  final Coding patternCoding;
+  final ContactPoint patternContactPoint;
+  final Count patternCount;
+  final Distance patternDistance;
+  final FhirDuration patternDuration;
+  final HumanName patternHumanName;
+  final Identifier patternIdentifier;
+  final Money patternMoney;
+  final Period patternPeriod;
+  final Quantity patternQuantity;
+  final Range patternRange;
+  final Ratio patternRatio;
+  final RatioRange patternRatioRange;
+  final Reference patternReference;
+  final SampledData patternSampledData;
+  final Signature patternSignature;
+  final Timing patternTiming;
+  final ContactDetail patternContactDetail;
+  final Contributor patternContributor;
+  final DataRequirement patternDataRequirement;
+  final FhirExpression patternExpression;
+  final ParameterDefinition patternParameterDefinition;
+  final RelatedArtifact patternRelatedArtifact;
+  final TriggerDefinition patternTriggerDefinition;
+  final UsageContext patternUsageContext;
+  final Dosage patternDosage;
+  final List<ElementDefinitionExample> example;
+  final String minValueDate;
+  final PrimitiveElement MinValueDate;
+  final String minValueDateTime;
+  final PrimitiveElement MinValueDateTime;
+  final String minValueInstant;
+  final PrimitiveElement MinValueInstant;
+  final String minValueTime;
+  final PrimitiveElement MinValueTime;
+  final double minValueDecimal;
+  final PrimitiveElement MinValueDecimal;
+  final double minValueInteger;
+  final PrimitiveElement MinValueInteger;
+  final double minValuePositiveInt;
+  final PrimitiveElement MinValuePositiveInt;
+  final double minValueUnsignedInt;
+  final PrimitiveElement MinValueUnsignedInt;
+  final Quantity minValueQuantity;
+  final String maxValueDate;
+  final PrimitiveElement MaxValueDate;
+  final String maxValueDateTime;
+  final PrimitiveElement MaxValueDateTime;
+  final String maxValueInstant;
+  final PrimitiveElement MaxValueInstant;
+  final String maxValueTime;
+  final PrimitiveElement MaxValueTime;
+  final double maxValueDecimal;
+  final PrimitiveElement MaxValueDecimal;
+  final double maxValueInteger;
+  final PrimitiveElement MaxValueInteger;
+  final double maxValuePositiveInt;
+  final PrimitiveElement MaxValuePositiveInt;
+  final double maxValueUnsignedInt;
+  final PrimitiveElement MaxValueUnsignedInt;
+  final Quantity maxValueQuantity;
+  final FhirInteger maxLength;
+  final PrimitiveElement MaxLength;
+  final List<FhirId> condition;
+  final List<PrimitiveElement> Condition;
+  final List<ElementDefinitionConstraint> constraint;
+  final FhirBoolean mustSupport;
+  final PrimitiveElement MustSupport;
+  final FhirBoolean isModifier;
+  final PrimitiveElement IsModifier;
+  final String isModifierReason;
+  final PrimitiveElement IsModifierReason;
+  final FhirBoolean isSummary;
+  final PrimitiveElement IsSummary;
+  final ElementDefinitionBinding binding;
+  final List<ElementDefinitionMapping> mapping;
+}
+
+@Data()
+@JsonCodable()
+class ElementDefinitionSlicing {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final List<ElementDefinitionDiscriminator> discriminator;
+  final String description;
+  final PrimitiveElement Description;
+  final FhirBoolean ordered;
+  final PrimitiveElement Ordered;
+  final dynamic rules;
+  final PrimitiveElement Rules;
+}
+
+@Data()
+@JsonCodable()
+class ElementDefinitionDiscriminator {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final dynamic type;
+  final PrimitiveElement Type;
+  final String path;
+  final PrimitiveElement Path;
+}
+
+@Data()
+@JsonCodable()
+class ElementDefinitionBase {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final String path;
+  final PrimitiveElement Path;
+  final FhirUnsignedInt min;
+  final PrimitiveElement Min;
+  final String max;
+  final PrimitiveElement Max;
+}
+
+@Data()
+@JsonCodable()
+class ElementDefinitionType {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final FhirUri code;
+  final PrimitiveElement Code;
+  final List<FhirCanonical> profile;
+  final List<FhirCanonical> targetProfile;
+  final List<dynamic> aggregation;
+  final List<PrimitiveElement> Aggregation;
+  final dynamic versioning;
+  final PrimitiveElement Versioning;
+}
+
+@Data()
+@JsonCodable()
+class ElementDefinitionExample {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final String label;
+  final PrimitiveElement Label;
+  final String valueBase64Binary;
+  final PrimitiveElement ValueBase64Binary;
+  final bool valueBoolean;
+  final PrimitiveElement ValueBoolean;
+  final String valueCanonical;
+  final PrimitiveElement ValueCanonical;
+  final String valueCode;
+  final PrimitiveElement ValueCode;
+  final String valueDate;
+  final PrimitiveElement ValueDate;
+  final String valueDateTime;
+  final PrimitiveElement ValueDateTime;
+  final double valueDecimal;
+  final PrimitiveElement ValueDecimal;
+  final String valueId;
+  final PrimitiveElement ValueId;
+  final String valueInstant;
+  final PrimitiveElement ValueInstant;
+  final double valueInteger;
+  final PrimitiveElement ValueInteger;
+  final String valueMarkdown;
+  final PrimitiveElement ValueMarkdown;
+  final String valueOid;
+  final PrimitiveElement ValueOid;
+  final double valuePositiveInt;
+  final PrimitiveElement ValuePositiveInt;
+  final String valueString;
+  final PrimitiveElement ValueString;
+  final String valueTime;
+  final PrimitiveElement ValueTime;
+  final double valueUnsignedInt;
+  final PrimitiveElement ValueUnsignedInt;
+  final String valueUri;
+  final PrimitiveElement ValueUri;
+  final String valueUrl;
+  final PrimitiveElement ValueUrl;
+  final String valueUuid;
+  final PrimitiveElement ValueUuid;
+  final Address valueAddress;
+  final Age valueAge;
+  final Annotation valueAnnotation;
+  final Attachment valueAttachment;
+  final CodeableConcept valueCodeableConcept;
+  final CodeableReference valueCodeableReference;
+  final Coding valueCoding;
+  final ContactPoint valueContactPoint;
+  final Count valueCount;
+  final Distance valueDistance;
+  final FhirDuration valueDuration;
+  final HumanName valueHumanName;
+  final Identifier valueIdentifier;
+  final Money valueMoney;
+  final Period valuePeriod;
+  final Quantity valueQuantity;
+  final Range valueRange;
+  final Ratio valueRatio;
+  final RatioRange valueRatioRange;
+  final Reference valueReference;
+  final SampledData valueSampledData;
+  final Signature valueSignature;
+  final Timing valueTiming;
+  final ContactDetail valueContactDetail;
+  final Contributor valueContributor;
+  final DataRequirement valueDataRequirement;
+  final FhirExpression valueExpression;
+  final ParameterDefinition valueParameterDefinition;
+  final RelatedArtifact valueRelatedArtifact;
+  final TriggerDefinition valueTriggerDefinition;
+  final UsageContext valueUsageContext;
+  final Dosage valueDosage;
+}
+
+@Data()
+@JsonCodable()
+class ElementDefinitionConstraint {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final FhirId key;
+  final PrimitiveElement Key;
+  final String requirements;
+  final PrimitiveElement Requirements;
+  final dynamic severity;
+  final PrimitiveElement Severity;
+  final String human;
+  final PrimitiveElement Human;
+  final String expression;
+  final PrimitiveElement Expression;
+  final String xpath;
+  final PrimitiveElement Xpath;
+  final FhirCanonical source;
+}
+
+@Data()
+@JsonCodable()
+class ElementDefinitionBinding {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final dynamic strength;
+  final PrimitiveElement Strength;
+  final String description;
+  final PrimitiveElement Description;
+  final FhirCanonical valueSet;
+}
+
+@Data()
+@JsonCodable()
+class ElementDefinitionMapping {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final FhirId identity;
+  final PrimitiveElement Identity;
+  final FhirCode language;
+  final PrimitiveElement Language;
+  final String map;
+  final PrimitiveElement Map;
+  final String comment;
+  final PrimitiveElement Comment;
+}
+
+

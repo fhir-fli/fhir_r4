@@ -1,11 +1,14 @@
 import 'package:data_class/data_class.dart';
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json/json.dart';
+
+import 'export.dart';
 
 @Data()
 @JsonCodable()
-class Expression {
+class FhirExpression {
   final String id;
-  final List<Extension> extension;
+  final List<FhirExtension> extension;
   final String description;
   final PrimitiveElement Description;
   final FhirId name;
@@ -16,18 +19,6 @@ class Expression {
   final PrimitiveElement Expression;
   final FhirUri reference;
   final PrimitiveElement Reference;
-  const Expression({
-    this.id,
-    this.extension,
-    this.description,
-    this.Description,
-    this.name,
-    this.Name,
-    this.language,
-    this.Language,
-    this.expression,
-    this.Expression,
-    this.reference,
-    this.Reference,
-  });
 }
+
+

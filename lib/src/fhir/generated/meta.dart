@@ -1,11 +1,14 @@
 import 'package:data_class/data_class.dart';
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json/json.dart';
+
+import 'export.dart';
 
 @Data()
 @JsonCodable()
-class Meta {
+class FhirMeta {
   final String id;
-  final List<Extension> extension;
+  final List<FhirExtension> extension;
   final FhirId versionId;
   final PrimitiveElement VersionId;
   final FhirInstant lastUpdated;
@@ -15,17 +18,6 @@ class Meta {
   final List<FhirCanonical> profile;
   final List<Coding> security;
   final List<Coding> tag;
-  const Meta({
-    this.id,
-    this.extension,
-    this.versionId,
-    this.VersionId,
-    this.lastUpdated,
-    this.LastUpdated,
-    this.source,
-    this.Source,
-    this.profile,
-    this.security,
-    this.tag,
-  });
 }
+
+

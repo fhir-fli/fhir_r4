@@ -1,5 +1,8 @@
 import 'package:data_class/data_class.dart';
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json/json.dart';
+
+import 'export.dart';
 
 @Data()
 @JsonCodable()
@@ -13,8 +16,8 @@ class Account {
   final PrimitiveElement Language;
   final Narrative text;
   final List<ResourceList> contained;
-  final List<Extension> extension;
-  final List<Extension> modifierExtension;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
   final List<Identifier> identifier;
   final FhirCode status;
   final PrimitiveElement Status;
@@ -29,31 +32,29 @@ class Account {
   final PrimitiveElement Description;
   final List<AccountGuarantor> guarantor;
   final Reference partOf;
-  const Account({
-    required this.resourceType,
-    this.id,
-    this.meta,
-    this.implicitRules,
-    this.ImplicitRules,
-    this.language,
-    this.Language,
-    this.text,
-    this.contained,
-    this.extension,
-    this.modifierExtension,
-    this.identifier,
-    this.status,
-    this.Status,
-    this.type,
-    this.name,
-    this.Name,
-    this.subject,
-    this.servicePeriod,
-    this.coverage,
-    this.owner,
-    this.description,
-    this.Description,
-    this.guarantor,
-    this.partOf,
-  });
 }
+
+@Data()
+@JsonCodable()
+class AccountCoverage {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final Reference coverage;
+  final FhirPositiveInt priority;
+  final PrimitiveElement Priority;
+}
+
+@Data()
+@JsonCodable()
+class AccountGuarantor {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final Reference party;
+  final FhirBoolean onHold;
+  final PrimitiveElement OnHold;
+  final Period period;
+}
+
+

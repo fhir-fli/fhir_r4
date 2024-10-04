@@ -1,5 +1,8 @@
 import 'package:data_class/data_class.dart';
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json/json.dart';
+
+import 'export.dart';
 
 @Data()
 @JsonCodable()
@@ -13,8 +16,8 @@ class Location {
   final PrimitiveElement Language;
   final Narrative text;
   final List<ResourceList> contained;
-  final List<Extension> extension;
-  final List<Extension> modifierExtension;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
   final List<Identifier> identifier;
   final FhirCode status;
   final PrimitiveElement Status;
@@ -31,47 +34,43 @@ class Location {
   final List<ContactPoint> telecom;
   final Address address;
   final CodeableConcept physicalType;
-  final Location_Position position;
+  final LocationPosition position;
   final Reference managingOrganization;
   final Reference partOf;
   final List<LocationHoursOfOperation> hoursOfOperation;
   final String availabilityExceptions;
   final PrimitiveElement AvailabilityExceptions;
   final List<Reference> endpoint;
-  const Location({
-    required this.resourceType,
-    this.id,
-    this.meta,
-    this.implicitRules,
-    this.ImplicitRules,
-    this.language,
-    this.Language,
-    this.text,
-    this.contained,
-    this.extension,
-    this.modifierExtension,
-    this.identifier,
-    this.status,
-    this.Status,
-    this.operationalStatus,
-    this.name,
-    this.Name,
-    this.alias,
-    this.Alias,
-    this.description,
-    this.Description,
-    this.mode,
-    this.Mode,
-    this.type,
-    this.telecom,
-    this.address,
-    this.physicalType,
-    this.position,
-    this.managingOrganization,
-    this.partOf,
-    this.hoursOfOperation,
-    this.availabilityExceptions,
-    this.AvailabilityExceptions,
-    this.endpoint,
-  });
 }
+
+@Data()
+@JsonCodable()
+class LocationPosition {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final FhirDecimal longitude;
+  final PrimitiveElement Longitude;
+  final FhirDecimal latitude;
+  final PrimitiveElement Latitude;
+  final FhirDecimal altitude;
+  final PrimitiveElement Altitude;
+}
+
+@Data()
+@JsonCodable()
+class LocationHoursOfOperation {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final List<FhirCode> daysOfWeek;
+  final List<PrimitiveElement> DaysOfWeek;
+  final FhirBoolean allDay;
+  final PrimitiveElement AllDay;
+  final FhirTime openingTime;
+  final PrimitiveElement OpeningTime;
+  final FhirTime closingTime;
+  final PrimitiveElement ClosingTime;
+}
+
+

@@ -1,5 +1,8 @@
 import 'package:data_class/data_class.dart';
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json/json.dart';
+
+import 'export.dart';
 
 @Data()
 @JsonCodable()
@@ -13,8 +16,8 @@ class Person {
   final PrimitiveElement Language;
   final Narrative text;
   final List<ResourceList> contained;
-  final List<Extension> extension;
-  final List<Extension> modifierExtension;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
   final List<Identifier> identifier;
   final List<HumanName> name;
   final List<ContactPoint> telecom;
@@ -28,30 +31,17 @@ class Person {
   final FhirBoolean active;
   final PrimitiveElement Active;
   final List<PersonLink> link;
-  const Person({
-    required this.resourceType,
-    this.id,
-    this.meta,
-    this.implicitRules,
-    this.ImplicitRules,
-    this.language,
-    this.Language,
-    this.text,
-    this.contained,
-    this.extension,
-    this.modifierExtension,
-    this.identifier,
-    this.name,
-    this.telecom,
-    this.gender,
-    this.Gender,
-    this.birthDate,
-    this.BirthDate,
-    this.address,
-    this.photo,
-    this.managingOrganization,
-    this.active,
-    this.Active,
-    this.link,
-  });
 }
+
+@Data()
+@JsonCodable()
+class PersonLink {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final Reference target;
+  final FhirCode assurance;
+  final PrimitiveElement Assurance;
+}
+
+

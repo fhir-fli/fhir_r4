@@ -1,5 +1,8 @@
 import 'package:data_class/data_class.dart';
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json/json.dart';
+
+import 'export.dart';
 
 @Data()
 @JsonCodable()
@@ -13,8 +16,8 @@ class Endpoint {
   final PrimitiveElement Language;
   final Narrative text;
   final List<ResourceList> contained;
-  final List<Extension> extension;
-  final List<Extension> modifierExtension;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
   final List<Identifier> identifier;
   final FhirCode status;
   final PrimitiveElement Status;
@@ -31,33 +34,6 @@ class Endpoint {
   final PrimitiveElement Address;
   final List<String> header;
   final List<PrimitiveElement> Header;
-  const Endpoint({
-    required this.resourceType,
-    this.id,
-    this.meta,
-    this.implicitRules,
-    this.ImplicitRules,
-    this.language,
-    this.Language,
-    this.text,
-    this.contained,
-    this.extension,
-    this.modifierExtension,
-    this.identifier,
-    this.status,
-    this.Status,
-    required this.connectionType,
-    this.name,
-    this.Name,
-    this.managingOrganization,
-    this.contact,
-    this.period,
-    required this.payloadType,
-    this.payloadMimeType,
-    this.PayloadMimeType,
-    this.address,
-    this.Address,
-    this.header,
-    this.Header,
-  });
 }
+
+

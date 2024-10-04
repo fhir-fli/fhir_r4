@@ -25,6 +25,7 @@ const Map<String, String> typeNames = <String, String>{
   'Expression': 'FhirExpression',
   'List': 'FhirList',
   'Element': 'PrimitiveElement',
+  'Extension': 'FhirExtension',
 };
 
 const Map<String, String> allTypes = <String, String>{

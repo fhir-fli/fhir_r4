@@ -1,5 +1,8 @@
 import 'package:data_class/data_class.dart';
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json/json.dart';
+
+import 'export.dart';
 
 @Data()
 @JsonCodable()
@@ -13,8 +16,8 @@ class Patient {
   final PrimitiveElement Language;
   final Narrative text;
   final List<ResourceList> contained;
-  final List<Extension> extension;
-  final List<Extension> modifierExtension;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
   final List<Identifier> identifier;
   final FhirBoolean active;
   final PrimitiveElement Active;
@@ -40,42 +43,44 @@ class Patient {
   final List<Reference> generalPractitioner;
   final Reference managingOrganization;
   final List<PatientLink> link;
-  const Patient({
-    required this.resourceType,
-    this.id,
-    this.meta,
-    this.implicitRules,
-    this.ImplicitRules,
-    this.language,
-    this.Language,
-    this.text,
-    this.contained,
-    this.extension,
-    this.modifierExtension,
-    this.identifier,
-    this.active,
-    this.Active,
-    this.name,
-    this.telecom,
-    this.gender,
-    this.Gender,
-    this.birthDate,
-    this.BirthDate,
-    this.deceasedBoolean,
-    this.DeceasedBoolean,
-    this.deceasedDateTime,
-    this.DeceasedDateTime,
-    this.address,
-    this.maritalStatus,
-    this.multipleBirthBoolean,
-    this.MultipleBirthBoolean,
-    this.multipleBirthInteger,
-    this.MultipleBirthInteger,
-    this.photo,
-    this.contact,
-    this.communication,
-    this.generalPractitioner,
-    this.managingOrganization,
-    this.link,
-  });
 }
+
+@Data()
+@JsonCodable()
+class PatientContact {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final List<CodeableConcept> relationship;
+  final HumanName name;
+  final List<ContactPoint> telecom;
+  final Address address;
+  final FhirCode gender;
+  final PrimitiveElement Gender;
+  final Reference organization;
+  final Period period;
+}
+
+@Data()
+@JsonCodable()
+class PatientCommunication {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final CodeableConcept language;
+  final FhirBoolean preferred;
+  final PrimitiveElement Preferred;
+}
+
+@Data()
+@JsonCodable()
+class PatientLink {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final Reference other;
+  final FhirCode type;
+  final PrimitiveElement Type;
+}
+
+

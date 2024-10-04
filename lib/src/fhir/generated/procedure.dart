@@ -1,5 +1,8 @@
 import 'package:data_class/data_class.dart';
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json/json.dart';
+
+import 'export.dart';
 
 @Data()
 @JsonCodable()
@@ -13,8 +16,8 @@ class Procedure {
   final PrimitiveElement Language;
   final Narrative text;
   final List<ResourceList> contained;
-  final List<Extension> extension;
-  final List<Extension> modifierExtension;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
   final List<Identifier> identifier;
   final List<FhirCanonical> instantiatesCanonical;
   final List<FhirUri> instantiatesUri;
@@ -51,53 +54,27 @@ class Procedure {
   final List<ProcedureFocalDevice> focalDevice;
   final List<Reference> usedReference;
   final List<CodeableConcept> usedCode;
-  const Procedure({
-    required this.resourceType,
-    this.id,
-    this.meta,
-    this.implicitRules,
-    this.ImplicitRules,
-    this.language,
-    this.Language,
-    this.text,
-    this.contained,
-    this.extension,
-    this.modifierExtension,
-    this.identifier,
-    this.instantiatesCanonical,
-    this.instantiatesUri,
-    this.InstantiatesUri,
-    this.basedOn,
-    this.partOf,
-    this.status,
-    this.Status,
-    this.statusReason,
-    this.category,
-    this.code,
-    required this.subject,
-    this.encounter,
-    this.performedDateTime,
-    this.PerformedDateTime,
-    this.performedPeriod,
-    this.performedString,
-    this.PerformedString,
-    this.performedAge,
-    this.performedRange,
-    this.recorder,
-    this.asserter,
-    this.performer,
-    this.location,
-    this.reasonCode,
-    this.reasonReference,
-    this.bodySite,
-    this.outcome,
-    this.report,
-    this.complication,
-    this.complicationDetail,
-    this.followUp,
-    this.note,
-    this.focalDevice,
-    this.usedReference,
-    this.usedCode,
-  });
 }
+
+@Data()
+@JsonCodable()
+class ProcedurePerformer {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final CodeableConcept function;
+  final Reference actor;
+  final Reference onBehalfOf;
+}
+
+@Data()
+@JsonCodable()
+class ProcedureFocalDevice {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final CodeableConcept action;
+  final Reference manipulated;
+}
+
+

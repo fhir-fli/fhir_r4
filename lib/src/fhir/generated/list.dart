@@ -1,9 +1,12 @@
 import 'package:data_class/data_class.dart';
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json/json.dart';
+
+import 'export.dart';
 
 @Data()
 @JsonCodable()
-class List {
+class FhirList {
   final dynamic resourceType;
   final String id;
   final FhirMeta meta;
@@ -13,8 +16,8 @@ class List {
   final PrimitiveElement Language;
   final Narrative text;
   final List<ResourceList> contained;
-  final List<Extension> extension;
-  final List<Extension> modifierExtension;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
   final List<Identifier> identifier;
   final FhirCode status;
   final PrimitiveElement Status;
@@ -32,34 +35,20 @@ class List {
   final List<Annotation> note;
   final List<ListEntry> entry;
   final CodeableConcept emptyReason;
-  const List({
-    required this.resourceType,
-    this.id,
-    this.meta,
-    this.implicitRules,
-    this.ImplicitRules,
-    this.language,
-    this.Language,
-    this.text,
-    this.contained,
-    this.extension,
-    this.modifierExtension,
-    this.identifier,
-    this.status,
-    this.Status,
-    this.mode,
-    this.Mode,
-    this.title,
-    this.Title,
-    this.code,
-    this.subject,
-    this.encounter,
-    this.date,
-    this.Date,
-    this.source,
-    this.orderedBy,
-    this.note,
-    this.entry,
-    this.emptyReason,
-  });
 }
+
+@Data()
+@JsonCodable()
+class ListEntry {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final CodeableConcept flag;
+  final FhirBoolean deleted;
+  final PrimitiveElement Deleted;
+  final FhirDateTime date;
+  final PrimitiveElement Date;
+  final Reference item;
+}
+
+

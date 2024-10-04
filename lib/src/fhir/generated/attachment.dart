@@ -1,11 +1,14 @@
 import 'package:data_class/data_class.dart';
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json/json.dart';
+
+import 'export.dart';
 
 @Data()
 @JsonCodable()
 class Attachment {
   final String id;
-  final List<Extension> extension;
+  final List<FhirExtension> extension;
   final FhirCode contentType;
   final PrimitiveElement ContentType;
   final FhirCode language;
@@ -22,24 +25,6 @@ class Attachment {
   final PrimitiveElement Title;
   final FhirDateTime creation;
   final PrimitiveElement Creation;
-  const Attachment({
-    this.id,
-    this.extension,
-    this.contentType,
-    this.ContentType,
-    this.language,
-    this.Language,
-    this.data,
-    this.Data,
-    this.url,
-    this.Url,
-    this.size,
-    this.Size,
-    this.hash,
-    this.Hash,
-    this.title,
-    this.Title,
-    this.creation,
-    this.Creation,
-  });
 }
+
+

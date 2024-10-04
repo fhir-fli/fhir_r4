@@ -1,5 +1,8 @@
 import 'package:data_class/data_class.dart';
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json/json.dart';
+
+import 'export.dart';
 
 @Data()
 @JsonCodable()
@@ -13,8 +16,8 @@ class Invoice {
   final PrimitiveElement Language;
   final Narrative text;
   final List<ResourceList> contained;
-  final List<Extension> extension;
-  final List<Extension> modifierExtension;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
   final List<Identifier> identifier;
   final FhirCode status;
   final PrimitiveElement Status;
@@ -35,37 +38,43 @@ class Invoice {
   final FhirMarkdown paymentTerms;
   final PrimitiveElement PaymentTerms;
   final List<Annotation> note;
-  const Invoice({
-    required this.resourceType,
-    this.id,
-    this.meta,
-    this.implicitRules,
-    this.ImplicitRules,
-    this.language,
-    this.Language,
-    this.text,
-    this.contained,
-    this.extension,
-    this.modifierExtension,
-    this.identifier,
-    this.status,
-    this.Status,
-    this.cancelledReason,
-    this.CancelledReason,
-    this.type,
-    this.subject,
-    this.recipient,
-    this.date,
-    this.Date,
-    this.participant,
-    this.issuer,
-    this.account,
-    this.lineItem,
-    this.totalPriceComponent,
-    this.totalNet,
-    this.totalGross,
-    this.paymentTerms,
-    this.PaymentTerms,
-    this.note,
-  });
 }
+
+@Data()
+@JsonCodable()
+class InvoiceParticipant {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final CodeableConcept role;
+  final Reference actor;
+}
+
+@Data()
+@JsonCodable()
+class InvoiceLineItem {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final FhirPositiveInt sequence;
+  final PrimitiveElement Sequence;
+  final Reference chargeItemReference;
+  final CodeableConcept chargeItemCodeableConcept;
+  final List<InvoicePriceComponent> priceComponent;
+}
+
+@Data()
+@JsonCodable()
+class InvoicePriceComponent {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final FhirCode type;
+  final PrimitiveElement Type;
+  final CodeableConcept code;
+  final FhirDecimal factor;
+  final PrimitiveElement Factor;
+  final Money amount;
+}
+
+

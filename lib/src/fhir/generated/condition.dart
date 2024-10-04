@@ -1,5 +1,8 @@
 import 'package:data_class/data_class.dart';
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json/json.dart';
+
+import 'export.dart';
 
 @Data()
 @JsonCodable()
@@ -13,8 +16,8 @@ class Condition {
   final PrimitiveElement Language;
   final Narrative text;
   final List<ResourceList> contained;
-  final List<Extension> extension;
-  final List<Extension> modifierExtension;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
   final List<Identifier> identifier;
   final CodeableConcept clinicalStatus;
   final CodeableConcept verificationStatus;
@@ -45,47 +48,27 @@ class Condition {
   final List<ConditionStage> stage;
   final List<ConditionEvidence> evidence;
   final List<Annotation> note;
-  const Condition({
-    required this.resourceType,
-    this.id,
-    this.meta,
-    this.implicitRules,
-    this.ImplicitRules,
-    this.language,
-    this.Language,
-    this.text,
-    this.contained,
-    this.extension,
-    this.modifierExtension,
-    this.identifier,
-    this.clinicalStatus,
-    this.verificationStatus,
-    this.category,
-    this.severity,
-    this.code,
-    this.bodySite,
-    required this.subject,
-    this.encounter,
-    this.onsetDateTime,
-    this.OnsetDateTime,
-    this.onsetAge,
-    this.onsetPeriod,
-    this.onsetRange,
-    this.onsetString,
-    this.OnsetString,
-    this.abatementDateTime,
-    this.AbatementDateTime,
-    this.abatementAge,
-    this.abatementPeriod,
-    this.abatementRange,
-    this.abatementString,
-    this.AbatementString,
-    this.recordedDate,
-    this.RecordedDate,
-    this.recorder,
-    this.asserter,
-    this.stage,
-    this.evidence,
-    this.note,
-  });
 }
+
+@Data()
+@JsonCodable()
+class ConditionStage {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final CodeableConcept summary;
+  final List<Reference> assessment;
+  final CodeableConcept type;
+}
+
+@Data()
+@JsonCodable()
+class ConditionEvidence {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final List<CodeableConcept> code;
+  final List<Reference> detail;
+}
+
+

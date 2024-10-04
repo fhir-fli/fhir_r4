@@ -1,21 +1,18 @@
 import 'package:data_class/data_class.dart';
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json/json.dart';
+
+import 'export.dart';
 
 @Data()
 @JsonCodable()
 class Period {
   final String id;
-  final List<Extension> extension;
+  final List<FhirExtension> extension;
   final FhirDateTime start;
   final PrimitiveElement Start;
   final FhirDateTime end;
   final PrimitiveElement End;
-  const Period({
-    this.id,
-    this.extension,
-    this.start,
-    this.Start,
-    this.end,
-    this.End,
-  });
 }
+
+

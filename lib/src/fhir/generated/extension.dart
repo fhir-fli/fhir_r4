@@ -1,11 +1,14 @@
 import 'package:data_class/data_class.dart';
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json/json.dart';
+
+import 'export.dart';
 
 @Data()
 @JsonCodable()
-class Extension {
+class FhirExtension {
   final String id;
-  final List<Extension> extension;
+  final List<FhirExtension> extension;
   final FhirUri url;
   final PrimitiveElement Url;
   final String valueBase64Binary;
@@ -78,80 +81,6 @@ class Extension {
   final TriggerDefinition valueTriggerDefinition;
   final UsageContext valueUsageContext;
   final Dosage valueDosage;
-  const Extension({
-    this.id,
-    this.extension,
-    this.url,
-    this.Url,
-    this.valueBase64Binary,
-    this.ValueBase64Binary,
-    this.valueBoolean,
-    this.ValueBoolean,
-    this.valueCanonical,
-    this.ValueCanonical,
-    this.valueCode,
-    this.ValueCode,
-    this.valueDate,
-    this.ValueDate,
-    this.valueDateTime,
-    this.ValueDateTime,
-    this.valueDecimal,
-    this.ValueDecimal,
-    this.valueId,
-    this.ValueId,
-    this.valueInstant,
-    this.ValueInstant,
-    this.valueInteger,
-    this.ValueInteger,
-    this.valueMarkdown,
-    this.ValueMarkdown,
-    this.valueOid,
-    this.ValueOid,
-    this.valuePositiveInt,
-    this.ValuePositiveInt,
-    this.valueString,
-    this.ValueString,
-    this.valueTime,
-    this.ValueTime,
-    this.valueUnsignedInt,
-    this.ValueUnsignedInt,
-    this.valueUri,
-    this.ValueUri,
-    this.valueUrl,
-    this.ValueUrl,
-    this.valueUuid,
-    this.ValueUuid,
-    this.valueAddress,
-    this.valueAge,
-    this.valueAnnotation,
-    this.valueAttachment,
-    this.valueCodeableConcept,
-    this.valueCodeableReference,
-    this.valueCoding,
-    this.valueContactPoint,
-    this.valueCount,
-    this.valueDistance,
-    this.valueDuration,
-    this.valueHumanName,
-    this.valueIdentifier,
-    this.valueMoney,
-    this.valuePeriod,
-    this.valueQuantity,
-    this.valueRange,
-    this.valueRatio,
-    this.valueRatioRange,
-    this.valueReference,
-    this.valueSampledData,
-    this.valueSignature,
-    this.valueTiming,
-    this.valueContactDetail,
-    this.valueContributor,
-    this.valueDataRequirement,
-    this.valueExpression,
-    this.valueParameterDefinition,
-    this.valueRelatedArtifact,
-    this.valueTriggerDefinition,
-    this.valueUsageContext,
-    this.valueDosage,
-  });
 }
+
+

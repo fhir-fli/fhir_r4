@@ -1,12 +1,15 @@
 import 'package:data_class/data_class.dart';
+import 'package:fhir_primitives/fhir_primitives.dart';
 import 'package:json/json.dart';
+
+import 'export.dart';
 
 @Data()
 @JsonCodable()
 class Dosage {
   final String id;
-  final List<Extension> extension;
-  final List<Extension> modifierExtension;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
   final FhirInteger sequence;
   final PrimitiveElement Sequence;
   final String text;
@@ -25,27 +28,20 @@ class Dosage {
   final Ratio maxDosePerPeriod;
   final Quantity maxDosePerAdministration;
   final Quantity maxDosePerLifetime;
-  const Dosage({
-    this.id,
-    this.extension,
-    this.modifierExtension,
-    this.sequence,
-    this.Sequence,
-    this.text,
-    this.Text,
-    this.additionalInstruction,
-    this.patientInstruction,
-    this.PatientInstruction,
-    this.timing,
-    this.asNeededBoolean,
-    this.AsNeededBoolean,
-    this.asNeededCodeableConcept,
-    this.site,
-    this.route,
-    this.method,
-    this.doseAndRate,
-    this.maxDosePerPeriod,
-    this.maxDosePerAdministration,
-    this.maxDosePerLifetime,
-  });
 }
+
+@Data()
+@JsonCodable()
+class DosageDoseAndRate {
+  final String id;
+  final List<FhirExtension> extension;
+  final List<FhirExtension> modifierExtension;
+  final CodeableConcept type;
+  final Range doseRange;
+  final Quantity doseQuantity;
+  final Ratio rateRatio;
+  final Range rateRange;
+  final Quantity rateQuantity;
+}
+
+

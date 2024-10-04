@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_dynamic_calls
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -12,10 +10,13 @@ Future<void> main() async {
   await moveJsonExamples();
   await moveNdJsonExamples();
   await actualFHIRClasses();
+  await generateExportFile(); // Generate export.dart after generating class files
 }
 
 Future<void> actualFHIRClasses() async {
   await extractFileToDisk('definitions.json/fhir.schema.json.zip', '.');
+
+  while (!File('fhir.schema.json').existsSync()) {}
 
   final String schemaString = File('fhir.schema.json').readAsStringSync();
   final Map<String, dynamic> schema =
@@ -25,19 +26,70 @@ Future<void> actualFHIRClasses() async {
   final Map<String, dynamic> definitions =
       schema['definitions'] as Map<String, dynamic>;
 
+  // Group classes by prefix
+  final Map<String, StringBuffer> groupedClasses = <String, StringBuffer>{};
+
   // Iterate over all types and generate Dart classes
   for (final String key in definitions.keys) {
     final Map<String, dynamic> classDefinition =
         definitions[key] as Map<String, dynamic>;
 
-    // Generate Dart code for the class
-    final String dartClass = generateDartClass(key, classDefinition);
+    // Skip primitives, generate Dart code for the class otherwise
+    if (!isPrimitiveType(classDefinition)) {
+      final String dartClass = generateDartClass(key, classDefinition);
 
-    // Write the Dart class to a file
-    final String outputPath =
-        '../lib/src/fhir/generated/${key.toLowerCase()}.dart'; // Organize paths based on categories
-    File(outputPath).writeAsStringSync(dartClass);
+      // Extract prefix (everything before the first uppercase letter after the first word)
+      final String prefix = extractPrefix(key);
+
+      // Add to the buffer of that prefix group
+      groupedClasses.putIfAbsent(prefix, () => StringBuffer());
+      groupedClasses[prefix]!.writeln(dartClass);
+    }
   }
+
+  // Write grouped classes to their respective files with imports at the top
+  for (final String prefix in groupedClasses.keys) {
+    final String outputPath =
+        '../lib/src/fhir/generated/${prefix.toLowerCase()}.dart';
+
+    // Ensure directory exists
+    final File outputFile = File(outputPath);
+    outputFile.createSync(recursive: true);
+
+    // Add imports at the top of the file
+    final StringBuffer fileContent = StringBuffer();
+    fileContent.writeln("import 'package:data_class/data_class.dart';");
+    fileContent
+        .writeln("import 'package:fhir_primitives/fhir_primitives.dart';");
+    fileContent.writeln("import 'package:json/json.dart';\n");
+
+    fileContent.writeln("import 'export.dart';\n");
+
+    // Add the class definitions
+    fileContent.writeln(groupedClasses[prefix]!.toString());
+
+    // Write the classes and imports to the file
+    outputFile.writeAsStringSync(fileContent.toString());
+  }
+}
+
+// Function to extract the prefix from the class name (e.g., CapabilityStatement)
+String extractPrefix(String className) {
+  final RegExp regex = RegExp(r'^[A-Z][a-z]*');
+  final RegExpMatch? match = regex.firstMatch(className);
+  return match?.group(0) ?? className;
+}
+
+// Helper function to check if a class is a primitive type
+bool isPrimitiveType(Map<String, dynamic> classDefinition) {
+  final List<String> primitiveTypes = <String>[
+    'string',
+    'boolean',
+    'integer',
+    'number'
+  ];
+  final String? type = classDefinition['type'] as String?;
+  return primitiveTypes.contains(type);
 }
 
 // Helper function to convert snake_case to UpperCamelCase
@@ -56,49 +108,24 @@ String generateDartClass(
   // Convert className to UpperCamelCase
   className = toUpperCamelCase(className);
 
-  // Add imports
-  buffer.writeln("import 'package:data_class/data_class.dart';");
-  buffer.writeln("import 'package:json/json.dart';\n");
-
   // Class declaration with @Data() and @JsonCodable() annotations
   buffer.writeln('@Data()');
   buffer.writeln('@JsonCodable()');
-  buffer.writeln('class $className {');
+  buffer.writeln('class ${_mapToDartType(className)} {');
 
-// Fields
+  // Fields
   final Map<String, dynamic>? properties =
       classDefinition['properties'] as Map<String, dynamic>?;
   properties?.forEach((String field, dynamic details) {
-    // Check if details is a Map<String, dynamic>
     if (details is Map<String, dynamic>) {
-      // Handle array type as List<T> and map other types properly
       final String type = mapType(details);
-      final bool isRequired =
-          (classDefinition['required'] as List<dynamic>?)?.contains(field) ??
-              false;
-
-      // Convert field name to camelCase and make fields final
       final String camelCaseField = toCamelCase(field);
-      buffer.writeln('  final ${isRequired ? '' : ''}$type $camelCaseField;');
+      buffer.writeln('  final $type $camelCaseField;');
     } else {
-      // If details is not a map, default to dynamic or handle accordingly
       final String camelCaseField = toCamelCase(field);
       buffer.writeln('  final dynamic $camelCaseField;');
     }
   });
-
-  // Constructor
-  buffer.writeln('  const $className({');
-  properties?.forEach((String field, dynamic details) {
-    final bool isRequired =
-        (classDefinition['required'] as List<dynamic>?)?.contains(field) ??
-            false;
-
-    final String camelCaseField = toCamelCase(field);
-    buffer.writeln(
-        '    ${isRequired ? 'required this.' : 'this.'}$camelCaseField,');
-  });
-  buffer.writeln('  });');
 
   // Close class
   buffer.writeln('}');
@@ -118,11 +145,9 @@ String toCamelCase(String text) {
 
 String mapType(Map<String, dynamic> details) {
   if (details.containsKey(r'$ref')) {
-    // Extract the type from $ref and map it using allTypes
     final String ref = details[r'$ref'] as String;
     return _extractTypeFromRef(ref);
   } else if (details['type'] == 'array') {
-    // Handle arrays as List<T>
     final Map<String, dynamic> items = details['items'] as Map<String, dynamic>;
     final String itemType = mapType(items);
     return 'List<${_mapToDartType(itemType)}>';
@@ -135,29 +160,17 @@ String mapType(Map<String, dynamic> details) {
   } else if (details['type'] == 'number') {
     return 'double';
   } else if (details['type'] == 'object') {
-    // Handle specific object types (e.g., Extension, Reference)
     if (details.containsKey(r'$ref')) {
       return _extractTypeFromRef(details[r'$ref'] as String);
     }
-    // Otherwise, return a generic Map<String, dynamic> for plain objects
     return 'Map<String, dynamic>';
   }
-
-  // Default fallback to 'dynamic'
   return 'dynamic';
 }
 
 String _extractTypeFromRef(String ref) {
-  // Ref will be something like "#/definitions/Extension", we extract the type name
   final String typeName = ref.split('/').last;
-
-  // Use allTypes to map the type name to Dart types
-  if (allTypes.containsKey(typeName)) {
-    return _mapToDartType(typeName);
-  }
-
-  // If type is not found, assume it's a custom class and return as-is
-  return typeName;
+  return _mapToDartType(typeName);
 }
 
 String _mapToDartType(String typeName) {
@@ -210,4 +223,22 @@ Future<void> extractFileToDisk(String path, String destination) async {
   final InputFileStream inputStream = InputFileStream(path);
   final Archive archive = ZipDecoder().decodeBuffer(inputStream);
   extractArchiveToDisk(archive, destination);
+}
+
+// Generate a single `export.dart` file
+Future<void> generateExportFile() async {
+  final Directory generatedDir = Directory('../lib/src/fhir/generated');
+  final List<FileSystemEntity> files = generatedDir.listSync();
+
+  final StringBuffer exportBuffer = StringBuffer();
+
+  for (final FileSystemEntity file in files) {
+    if (file is File && file.path.endsWith('.dart')) {
+      final String fileName = file.path.split('/').last;
+      exportBuffer.writeln("export '$fileName';");
+    }
+  }
+
+  final File exportFile = File('../lib/src/fhir/generated/export.dart');
+  await exportFile.writeAsString(exportBuffer.toString());
 }
