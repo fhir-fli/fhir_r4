@@ -129,7 +129,7 @@ String _toCamelCase(String text) {
           .map((String word) => word[0].toUpperCase() + word.substring(1))
           .join();
 
-  return reserved.contains(camelCaseWord) ? '${camelCaseWord}_' : camelCaseWord;
+  return editIfReserved(camelCaseWord);
 }
 
 String mapType(Map<String, dynamic> details) {
