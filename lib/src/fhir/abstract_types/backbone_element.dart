@@ -88,8 +88,8 @@ abstract class BackboneElement extends DataType {
               'BackboneElement cannot be constructed from input provided,'
               ' it is neither a yaml string nor a yaml map.');
 
-  static BackboneElement fromJson(Map<String, Object?> json) {
-    throw UnimplementedError('BackboneElement.fromJson');
+  factory BackboneElement.fromJson(Map<String, Object?> json) {
+    throw UnimplementedError('BackboneElement.fromJson $json');
   }
 
   static BackboneElement fromJsonString(String source) {
