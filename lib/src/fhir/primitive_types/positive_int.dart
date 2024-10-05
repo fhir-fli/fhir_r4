@@ -41,6 +41,9 @@ class FhirPositiveInt extends FhirNumber {
   int? get value => valueNumber as int?;
 
   @override
+  int? toJson() => valueNumber as int?;
+
+  @override
   FhirPositiveInt clone() =>
       FhirPositiveInt._(valueString, valueNumber, isValid,
           element: element?.clone() as Element?);

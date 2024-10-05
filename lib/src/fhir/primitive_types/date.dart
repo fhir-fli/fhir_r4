@@ -53,6 +53,9 @@ class FhirDate extends FhirDateTimeBase {
           element: element) as FhirDate;
 
   @override
+  String toJson() => input.toString();
+
+  @override
   bool equals(Object other) => isEqual(other) ?? false;
 
   FhirDate plus(ExtendedDuration other) =>

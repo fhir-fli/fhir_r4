@@ -1,3 +1,43 @@
+bool fieldInQuantity(String field, String className) =>
+    <String>[
+      'id',
+      'extension_',
+      'value',
+      'valueElement',
+      'comparator',
+      'comparatorElement',
+      'unit',
+      'unitElement',
+      'system',
+      'systemElement',
+      'code',
+      'codeElement',
+    ].contains(editIfReserved(field)) &&
+    isQuantity(className);
+
+bool fieldInDataType(String field, String className) =>
+    <String>[
+      'id',
+      'extension_',
+    ].contains(editIfReserved(field)) &&
+    isDataType(className);
+
+bool fieldInDomainResource(String field, String className) =>
+    <String>[
+      'resourceType',
+      'id',
+      'meta',
+      'implicitRules',
+      'implicitRulesElement',
+      'language',
+      'languageElement',
+      'text',
+      'contained',
+      'extension_',
+      'modifierExtension',
+    ].contains(editIfReserved(field)) &&
+    isResourceType(className);
+
 bool typeToGenerate(String type) {
   return !<String>[
     'resourcelist',
@@ -20,6 +60,7 @@ bool typeToGenerate(String type) {
     'uri',
     'url',
     'uuid',
+    'xhtml',
   ].contains(type.toLowerCase());
 }
 
@@ -264,20 +305,80 @@ String changeName(String typeName) =>
       'Meta': 'FhirMeta',
       'Expression': 'FhirExpression',
       'List': 'FhirList',
-      'Element': 'PrimitiveElement',
       'Extension': 'FhirExtension',
       'ResourceList': 'Resource',
       'Group': 'FhirGroup',
       'Endpoint': 'FhirEndpoint',
-    }[typeName] ??
+    }[typeName.replaceAll('?', '')] ??
     typeName;
 
-String fhirToDartType(String typeName) {
+String fhirToDartType(String typeName, [bool isClassName = false]) {
   typeName = typeName.replaceAll('_', '');
   typeName = changeName(typeName);
-  if (isResourceType(typeName)) {
+  if (isResourceType(typeName) && isClassName) {
     return '$typeName extends DomainResource';
+  } else if (isDataType(typeName) && isClassName) {
+    return '$typeName extends DataType';
+  } else if (isQuantity(typeName) && isClassName) {
+    return '$typeName extends Quantity';
+  } else if (isBackboneType(typeName) && isClassName) {
+    return '$typeName extends BackboneType';
   } else {
     return typeName;
   }
+}
+
+bool isDataType(String className) {
+  return <String>[
+    'Address',
+    'Annotation',
+    'Attachment',
+    'CodeableConcept',
+    'Coding',
+    'ContactDetail',
+    'ContactPoint',
+    'Contributor',
+    'DataRequirement',
+    'Expression',
+    'Extension',
+    'FhirExtension',
+    'HumanName',
+    'Identifier',
+    'Meta',
+    'Money',
+    'Narrative',
+    'ParameterDefinition',
+    'Period',
+    'Quantity',
+    'Range',
+    'Ratio',
+    'RatioRange',
+    'Reference',
+    'RelatedArtifact',
+    'SampledData',
+    'Signature',
+    'TriggerDefinition',
+    'UsageContext',
+  ].contains(className);
+}
+
+bool isQuantity(String className) {
+  return <String>[
+    'Age',
+    'Count',
+    'Distance',
+    'Duration',
+  ].contains(className);
+}
+
+bool isBackboneType(String className) {
+  return <String>[
+    'Dosage',
+    'ElementDefinition',
+    'MarketingStatus',
+    'Population',
+    'ProdCharacteristic',
+    'ProductShelfLife',
+    'Timing',
+  ].contains(className);
 }

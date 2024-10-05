@@ -94,7 +94,7 @@ class FhirUrl extends PrimitiveType<Uri> {
   }
 
   @override
-  FhirUrl setElement(String name, dynamic value) {
-    return FhirUrl(value, element?.setProperty(name, value));
+  FhirUrl setElement(String name, dynamic elementValue) {
+    return FhirUrl(value, element?.setProperty(name, elementValue));
   }
 }

@@ -100,7 +100,7 @@ class FhirUri extends PrimitiveType<Uri> {
   }
 
   @override
-  FhirUri setElement(String name, dynamic value) {
-    return FhirUri(value, element?.setProperty(name, value));
+  FhirUri setElement(String name, dynamic elementValue) {
+    return FhirUri(value, element?.setProperty(name, elementValue));
   }
 }

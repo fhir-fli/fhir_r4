@@ -84,7 +84,6 @@ void _generateClasses(
   outputFile.writeAsStringSync(fileContent.toString());
 }
 
-// Function to generate Dart class from schema definition
 String _generateDartClass(
     String className, Map<String, dynamic> classDefinition) {
   final StringBuffer buffer = StringBuffer();
@@ -98,26 +97,88 @@ String _generateDartClass(
   // Class declaration with @Data() and @JsonCodable() annotations
   buffer.writeln('@Data()');
   buffer.writeln('@JsonCodable()');
-  buffer.writeln('class ${fhirToDartType(className)} {');
+  buffer.writeln('class ${fhirToDartType(className, true)} {');
 
-// Fields
+  // Get required fields from the class definition
+  final List<String> requiredFields =
+      (classDefinition['required'] as List<dynamic>?)
+              ?.map((dynamic item) => item as String)
+              .toList() ??
+          <String>[];
+
+  // Prepare to collect constructor parameters
+  final StringBuffer constructorBuffer = StringBuffer();
+  constructorBuffer.writeln('\n  ${fhirToDartType(className)}({');
+
+  // Fields
   final Map<String, dynamic>? properties =
       classDefinition['properties'] as Map<String, dynamic>?;
   properties?.forEach((String field, dynamic details) {
     if (details is Map<String, dynamic>) {
-      final String type = mapType(details);
+      String type = mapType(details);
       final String camelCaseField = _toCamelCase(field);
-      if (camelCaseField == 'resourceType') {
+
+      // Check if the field is in the required list
+      final bool isRequired = requiredFields.contains(field);
+
+      // Make field nullable if not required
+      final String nullableMark = isRequired ? '' : '?';
+
+      if (camelCaseField == 'id') {
+        type = 'FhirId';
+      }
+
+      if (type == 'String') {
+        type = 'FhirString';
+      }
+
+      if (!fieldInDomainResource(camelCaseField, className) &&
+          !fieldInDataType(camelCaseField, className) &&
+          !fieldInQuantity(camelCaseField, className)) {
         buffer.writeln(
-            '  final R4ResourceType resourceType = R4ResourceType.$className;');
-      } else if (camelCaseField == 'id') {
-        buffer.writeln('  final FhirId id;');
+            '  final $type$nullableMark ${editIfReserved(camelCaseField)};');
+      }
+      // Add to constructor parameters
+      if (isRequired) {
+        if (fieldInDomainResource(camelCaseField, className) ||
+            fieldInDataType(camelCaseField, className) ||
+            fieldInQuantity(camelCaseField, className)) {
+          if (camelCaseField != 'resourceType') {
+            constructorBuffer.writeln(
+                '    required super.${editIfReserved(camelCaseField)},');
+          }
+        } else {
+          constructorBuffer
+              .writeln('    required this.${editIfReserved(camelCaseField)},');
+        }
       } else {
-        buffer.writeln('  final $type ${editIfReserved(camelCaseField)};');
+        if (fieldInDomainResource(camelCaseField, className) ||
+            fieldInDataType(camelCaseField, className) ||
+            fieldInQuantity(camelCaseField, className)) {
+          constructorBuffer
+              .writeln('    super.${editIfReserved(camelCaseField)},');
+        } else {
+          constructorBuffer
+              .writeln('    this.${editIfReserved(camelCaseField)},');
+        }
       }
     }
   });
 
+  if (isResourceType(className)) {
+    constructorBuffer
+        .writeln('  }): super(resourceType: R4ResourceType.$className);');
+  } else {
+    // Close constructor
+    constructorBuffer.writeln('  });');
+  }
+  // Add constructor to the class
+  buffer.writeln(constructorBuffer.toString());
+
+  if (isResourceType(className)) {
+    buffer.writeln('@override');
+    buffer.writeln('$className clone() => this;\n');
+  }
   // Close class
   buffer.writeln('}\n');
 

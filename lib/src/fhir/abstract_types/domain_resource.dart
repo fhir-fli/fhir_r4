@@ -6,10 +6,24 @@ import '../../../fhir_r4.dart';
 
 /// [DomainResource] Base definition for all FHIR elements.
 abstract class DomainResource extends Resource {
-  Narrative? get text;
-  List<Resource>? get contained;
-  List<FhirExtension>? get extension_;
-  List<FhirExtension>? get modifierExtension;
+  DomainResource({
+    required super.resourceType,
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    this.text,
+    this.contained,
+    this.extension_,
+    this.modifierExtension,
+  });
+
+  Narrative? text;
+  List<Resource>? contained;
+  List<FhirExtension>? extension_;
+  List<FhirExtension>? modifierExtension;
 
   /// Returns a [Map<String, dynamic>] of the [DomainResource]
   @override
@@ -38,6 +52,9 @@ abstract class DomainResource extends Resource {
         modifierExtension?.map((FhirExtension e) => e.toJson()).toList());
     return val;
   }
+
+  factory DomainResource.fromJson(Map<String, dynamic> json) =>
+      Resource.fromJson(json) as DomainResource;
 
   static DomainResource fromYaml(dynamic yaml) => yaml is String
       ? Resource.fromJson(

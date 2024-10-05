@@ -8,34 +8,34 @@ import '../../../fhir_r4.dart';
 /// [Resource] Base definition for all FHIR elements.
 abstract class Resource extends FhirBase {
   Resource({
-    this.resourceType,
+    required this.resourceType,
     this.id,
     this.meta,
     this.implicitRules,
     this.implicitRulesElement,
     this.language,
     this.languageElement,
-    super.extensions,
-  }) : super(fhirType: 'Resource');
+  }) : super(fhirType: resourceType.toString());
 
-  R4ResourceType? resourceType;
+  R4ResourceType resourceType;
   FhirId? id;
   FhirMeta? meta;
   FhirUri? implicitRules;
-  PrimitiveElement? implicitRulesElement;
+  Element? implicitRulesElement;
   FhirCode? language;
-  PrimitiveElement? languageElement;
+  Element? languageElement;
 
   /// Acts like a constructor, returns a [Resource], accepts a
   /// [Map<String, Dynamic>] as an argument
-  static Resource fromJson(Map<String, dynamic> json) => resourceFromJson(json);
+  static T fromJson<T extends Resource>(Map<String, dynamic> json) =>
+      resourceFromJson(json) as T;
 
   /// Acts like a constructor, returns a [Resource], accepts a
   /// [String] as an argument, mostly because I got tired of typing it out
-  static Resource fromJsonString(String source) {
+  static T fromJsonString<T extends Resource>(String source) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return resourceFromJson(json);
+      return resourceFromJson(json) as T;
     } else {
       throw FormatException('FormatException:\nYou passed $json\n'
           'This does not properly decode to a Map<String,dynamic>.');
@@ -43,12 +43,12 @@ abstract class Resource extends FhirBase {
   }
 
   /// Returns a Resource, accepts a [String] in YAML format as an argument
-  static Resource fromYaml(dynamic yaml) => yaml is String
+  static T fromYaml<T extends Resource>(dynamic yaml) => yaml is String
       ? Resource.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>)
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>) as T
       : yaml is YamlMap
           ? Resource.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>)
+              jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>) as T
           : throw ArgumentError(
               'Resource cannot be constructed from input provided,'
               ' it is neither a yaml string nor a yaml map.');
@@ -83,7 +83,7 @@ abstract class Resource extends FhirBase {
 
   /// Convenience method to return a [Reference] referring to that [Resource]
   Reference get thisReference =>
-      Reference(reference: path, type: FhirUri(resourceTypeString));
+      Reference(reference: FhirString(path), type: FhirUri(resourceTypeString));
 
   /// Local Reference for this Resource, form is "ResourceType/Id"
   String get path => '$fhirType/$id';

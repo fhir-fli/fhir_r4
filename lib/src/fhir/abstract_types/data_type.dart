@@ -9,7 +9,7 @@ abstract class DataType extends Element {
   /// Constructor for DataType
   DataType({
     super.id,
-    super.extension_ = const <FhirExtension>[],
+    super.extension_,
     super.fhirType = 'DataType',
   });
 
@@ -29,8 +29,8 @@ abstract class DataType extends Element {
               'DataType cannot be constructed from input provided,'
               ' it is neither a yaml string nor a yaml map.');
 
-  static DataType fromJson(Map<String, dynamic> json) {
-    throw UnimplementedError('DataType.fromJson');
+  factory DataType.fromJson(Map<String, dynamic> json) {
+    throw UnimplementedError('DataType.fromJson $json');
   }
 
   static DataType fromJsonString(String source) {

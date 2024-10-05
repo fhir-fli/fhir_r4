@@ -46,7 +46,7 @@ class FhirDecimal extends FhirNumber {
   double? get value => valueNumber as double?;
 
   @override
-  dynamic toJson() => isInt ? valueNumber?.toInt() : valueNumber;
+  num? toJson() => isInt ? valueNumber?.toInt() : valueNumber;
 
   @override
   dynamic toYaml() => isInt ? valueNumber?.toInt() : valueNumber;

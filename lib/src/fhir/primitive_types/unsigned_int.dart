@@ -41,6 +41,9 @@ class FhirUnsignedInt extends FhirNumber {
   int? get value => valueNumber as int?;
 
   @override
+  int? toJson() => valueNumber as int?;
+
+  @override
   FhirUnsignedInt clone() =>
       FhirUnsignedInt._(valueString, valueNumber, isValid,
           element: element?.clone() as Element?);

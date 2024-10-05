@@ -49,7 +49,8 @@ abstract class BackboneElement extends DataType {
       return false;
     }
     return super.equalsDeep(other) &&
-        compareDeepLists(modifierExtension, other.modifierExtension);
+        compareDeepLists<FhirExtension>(
+            modifierExtension, other.modifierExtension);
   }
 
   @override

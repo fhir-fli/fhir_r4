@@ -67,7 +67,7 @@ class FhirInstant extends FhirDateTimeBase {
       ) as FhirInstant;
 
   @override
-  String get fhirType => 'instant';
+  String toJson() => input.toString();
 
   @override
   bool equals(Object other) => isEqual(other) ?? false;

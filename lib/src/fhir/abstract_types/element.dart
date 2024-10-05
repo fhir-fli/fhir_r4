@@ -7,16 +7,16 @@ import '../../../fhir_r4.dart';
 class Element extends FhirBase {
   // Constructor for Element with optional id and extension_s
   Element({
-    this.id,
-    this.extension_ = const <FhirExtension>[],
+    String? id,
+    this.extension_,
     super.fhirType = 'Element',
-  });
+  }) : id = id == null ? null : FhirId(id);
 
   // Unique id for the element within a resource
-  final String? id;
+  final FhirId? id;
 
   // List of extensions for additional information
-  final List<FhirExtension> extension_;
+  final List<FhirExtension>? extension_;
 
   // Method to copy the current Element with modifications
   Element copyWith({
@@ -24,38 +24,41 @@ class Element extends FhirBase {
     List<FhirExtension>? extension_,
   }) {
     return Element(
-      id: id ?? this.id,
+      id: id ?? this.id?.value,
       extension_: extension_ ?? this.extension_,
     );
   }
 
   // Getter for checking if the element has an id
-  bool get hasId => id != null && id!.isNotEmpty;
+  bool get hasId => id != null && (id!.value?.isNotEmpty ?? false);
 
   // Extension handling methods
-  bool hasExtension() => extension_.isNotEmpty;
+  bool hasExtension() => extension_?.isNotEmpty ?? false;
 
   FhirExtension getExtensionFirstRep() {
-    return extension_.isEmpty ? FhirExtension() : extension_.first;
+    return (extension_?.isEmpty ?? false) ? FhirExtension() : extension_!.first;
   }
 
   List<FhirExtension> getExtensionsByUrl(String url) {
     return extension_
-        .where((FhirExtension ext) => ext.url?.equals(url) ?? false)
-        .toList();
+            ?.where((FhirExtension ext) => ext.url?.equals(url) ?? false)
+            .toList() ??
+        <FhirExtension>[];
   }
 
   bool hasExtensionByUrl(String url) {
-    return extension_.any((FhirExtension ext) => ext.url?.equals(url) ?? false);
+    return extension_
+            ?.any((FhirExtension ext) => ext.url?.equals(url) ?? false) ??
+        false;
   }
 
   void addExtension(FhirExtension ext) {
-    extension_.add(ext);
+    extension_?.add(ext);
   }
 
   void removeExtension(String url) {
     extension_
-        .removeWhere((FhirExtension ext) => ext.url?.equals(url) ?? false);
+        ?.removeWhere((FhirExtension ext) => ext.url?.equals(url) ?? false);
   }
 
   // Implementing the getProperty method
@@ -93,7 +96,7 @@ class Element extends FhirBase {
         }
       case 'extension':
         if (value is List<FhirExtension>) {
-          return Element(id: id, extension_: value);
+          return Element(id: id?.value, extension_: value);
         } else {
           throw ArgumentError(
               'Invalid type for extension. Expected List<FhirExtension>.');
@@ -114,7 +117,7 @@ class Element extends FhirBase {
         }
       case -612557761: // hash for 'extension'
         if (value is List<FhirExtension>) {
-          return Element(id: id, extension_: value);
+          return Element(id: id?.value, extension_: value);
         } else {
           throw ArgumentError(
               'Invalid type for extension. Expected List<FhirExtension>.');
@@ -140,24 +143,33 @@ class Element extends FhirBase {
 
   @override
   bool isEmpty() {
-    return super.isEmpty() && extension_.isEmpty;
+    return super.isEmpty() && (extension_?.isEmpty ?? true);
   }
 
   // Method to copy the current element
   Element copy() {
     final Element copiedElement = Element(
-      id: id,
-      extension_: List<FhirExtension>.from(
-          extension_.map((FhirExtension ext) => ext.copy())),
+      id: id?.value,
+      extension_: extension_ == null
+          ? null
+          : List<FhirExtension>.from(
+              extension_!.map((FhirExtension ext) => ext.copy())),
     );
     return copiedElement;
   }
 
   @override
-  Map<String, dynamic> toJson() => <String, dynamic>{
-        'id': id,
-        'extension_': extension_,
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id?.value != null) {
+      json['id'] = id?.value;
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['_extension'] =
+          extension_!.map((FhirExtension e) => e.toJson()).toList();
+    }
+    return json;
+  }
 
   @override
   String toYaml() => json2yaml(toJson());
@@ -172,8 +184,15 @@ class Element extends FhirBase {
               'Element cannot be constructed from input provided,'
               ' it is neither a yaml string nor a yaml map.');
 
-  static Element fromJson(Map<String, dynamic> json) {
-    throw UnimplementedError('Element.fromJson');
+  factory Element.fromJson(Map<String, dynamic> json) {
+    return Element(
+      id: json['id'] as String?,
+      extension_: json['_extension'] == null
+          ? <FhirExtension>[]
+          : List<FhirExtension>.from((json['_extension'] as List<dynamic>).map(
+              (dynamic e) =>
+                  FhirExtension.fromJson(e as Map<String, dynamic>))),
+    );
   }
 
   static Element fromJsonString(String source) {

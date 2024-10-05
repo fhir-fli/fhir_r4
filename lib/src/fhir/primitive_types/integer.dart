@@ -32,6 +32,9 @@ class FhirInteger extends FhirNumber {
   int? get value => valueNumber as int?;
 
   @override
+  int? toJson() => valueNumber as int?;
+
+  @override
   FhirInteger clone() => FhirInteger._(valueString, valueNumber, isValid,
       element: element?.clone() as Element?);
 
