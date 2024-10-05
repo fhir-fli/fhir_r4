@@ -6,9 +6,9 @@ import 'package:archive/archive_io.dart';
 import 'types.dart';
 
 Future<void> main() async {
-  // await _extractFilesToDisk();
-  // await _moveJsonExamples();
-  // await _moveNdJsonExamples();
+  await _extractFilesToDisk();
+  await _moveJsonExamples();
+  await _moveNdJsonExamples();
   await _actualFHIRClasses();
   await _generateExportFile(); // Generate export.dart after generating class files
 }
@@ -26,37 +26,71 @@ Future<void> _actualFHIRClasses() async {
   final Map<String, dynamic> definitions =
       schema['definitions'] as Map<String, dynamic>;
 
+  // Keep track of which classes have already been generated
+  final Set<String> generatedClasses = <String>{};
+
   // Iterate over all types and generate Dart classes
   for (final String key in definitions.keys) {
     // Skip primitives, generate Dart code for the class otherwise
-    if (typeToGenerate(key)) {
-      final Map<String, dynamic> classDefinition =
-          definitions[key] as Map<String, dynamic>;
-      _generate(key, classDefinition);
+    if (typeToGenerate(key) && !generatedClasses.contains(key)) {
+      // If the class has subclasses, generate them together
+      final List<String> relatedClasses = _findRelatedClasses(key, definitions);
+      for (final String relatedClass in relatedClasses) {
+        final Map<String, dynamic> relatedClassDef =
+            definitions[relatedClass] as Map<String, dynamic>;
+        _generate(relatedClass, relatedClassDef, key);
+        generatedClasses.add(relatedClass);
+      }
     }
   }
 }
 
-void _generate(String key, Map<String, dynamic> classDefinition) {
+List<String> _findRelatedClasses(
+    String className, Map<String, dynamic> definitions) {
+  // Find all classes that refer to this class (subclasses)
+  final List<String> relatedClasses = <String>[className];
+  for (final String key in definitions.keys) {
+    final Map<String, dynamic> classDefinition =
+        definitions[key] as Map<String, dynamic>;
+
+    // Check if this class refers to the parent class (indicating it's a subclass)
+    if (classDefinition.containsKey('allOf')) {
+      final List<dynamic> allOf = classDefinition['allOf'] as List<dynamic>;
+      for (final dynamic item in allOf) {
+        if (item is Map<String, dynamic> &&
+            item.containsKey(r'$ref') &&
+            (item[r'$ref'] as String).endsWith('/$className')) {
+          relatedClasses.add(key); // Add the subclass
+        }
+      }
+    }
+  }
+  return relatedClasses;
+}
+
+void _generate(
+    String key, Map<String, dynamic> classDefinition, String parent) {
   final String dartClass = _generateDartClass(key, classDefinition);
 
   // Determine the type directory (resourceType or other)
   final String typeDirectory =
-      putInResourceDirectory(key) ? 'resource_types' : 'data_types';
+      isResourceType(parent) ? 'resource_types' : 'data_types';
 
-  // Write each class to its respective file
+  // Write each class to its respective file (parent and subclass together)
   final String outputPath =
-      '../lib/src/fhir/$typeDirectory/${key.toLowerCase()}.dart';
+      '../lib/src/fhir/$typeDirectory/${parent.toLowerCase()}.dart';
 
   // Ensure the directory exists
   final File outputFile = File(outputPath);
   outputFile.createSync(recursive: true);
 
-  // Add imports at the top of the file
-  final StringBuffer fileContent = StringBuffer();
-  fileContent.writeln("import 'package:data_class/data_class.dart';");
-  fileContent.writeln("import 'package:json/json.dart';\n");
-  fileContent.writeln("import '../../../fhir_r4.dart';\n");
+  // Add imports at the top of the file if it’s a new file
+  final StringBuffer fileContent = outputFile.existsSync()
+      ? StringBuffer(outputFile.readAsStringSync())
+      : StringBuffer()
+    ..writeln("import 'package:data_class/data_class.dart';")
+    ..writeln("import 'package:json/json.dart';\n")
+    ..writeln("import '../../../fhir_r4.dart';\n");
 
   // Add the class definition
   fileContent.writeln(dartClass);

@@ -23,7 +23,7 @@ bool typeToGenerate(String type) {
   ].contains(type.toLowerCase());
 }
 
-bool putInResourceDirectory(String fileName) => <String>[
+bool isResourceType(String fileName) => <String>[
       'account',
       'activitydefinition',
       'administrableproductdefinition',
@@ -234,38 +234,45 @@ String editIfReserved(String name) => const <String>[
     ].contains(name)
         ? '${name}_'
         : name;
+String changeName(String typeName) =>
+    const <String, String>{
+      'string': 'FhirString',
+      'base64Binary': 'FhirBase64Binary',
+      'boolean': 'FhirBoolean',
+      'canonical': 'FhirCanonical',
+      'code': 'FhirCode',
+      'date': 'FhirDate',
+      'decimal': 'FhirDecimal',
+      'dateTime': 'FhirDateTime',
+      'uri': 'FhirUri',
+      'url': 'FhirUrl',
+      'id': 'FhirId',
+      'instant': 'FhirInstant',
+      'integer': 'FhirInteger',
+      'integer64': 'FhirInteger64',
+      'markdown': 'FhirMarkdown',
+      'oid': 'FhirOid',
+      'positiveInt': 'FhirPositiveInt',
+      'time': 'FhirTime',
+      'unsignedInt': 'FhirUnsignedInt',
+      'uuid': 'FhirUuid',
+      'Duration': 'FhirDuration',
+      'xhtml': 'FhirMarkdown',
+      'Meta': 'FhirMeta',
+      'Expression': 'FhirExpression',
+      'List': 'FhirList',
+      'Element': 'PrimitiveElement',
+      'Extension': 'FhirExtension',
+      'ResourceList': 'Resource',
+    }[typeName] ??
+    typeName;
 
 String fhirToDartType(String typeName) {
   typeName = typeName.replaceAll('_', '');
-  return const <String, String>{
-        'string': 'FhirString',
-        'base64Binary': 'FhirBase64Binary',
-        'boolean': 'FhirBoolean',
-        'canonical': 'FhirCanonical',
-        'code': 'FhirCode',
-        'date': 'FhirDate',
-        'decimal': 'FhirDecimal',
-        'dateTime': 'FhirDateTime',
-        'uri': 'FhirUri',
-        'url': 'FhirUrl',
-        'id': 'FhirId',
-        'instant': 'FhirInstant',
-        'integer': 'FhirInteger',
-        'integer64': 'FhirInteger64',
-        'markdown': 'FhirMarkdown',
-        'oid': 'FhirOid',
-        'positiveInt': 'FhirPositiveInt',
-        'time': 'FhirTime',
-        'unsignedInt': 'FhirUnsignedInt',
-        'uuid': 'FhirUuid',
-        'Duration': 'FhirDuration',
-        'xhtml': 'FhirMarkdown',
-        'Meta': 'FhirMeta',
-        'Expression': 'FhirExpression',
-        'List': 'FhirList',
-        'Element': 'PrimitiveElement',
-        'Extension': 'FhirExtension',
-        'ResourceList': 'Resource',
-      }[typeName] ??
-      typeName;
+  typeName = changeName(typeName);
+  if (isResourceType(typeName)) {
+    return '$typeName extends DomainResource';
+  } else {
+    return typeName;
+  }
 }
