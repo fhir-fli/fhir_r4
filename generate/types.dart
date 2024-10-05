@@ -1,53 +1,5 @@
-bool fieldInQuantity(String field, String className) =>
-    <String>[
-      'id',
-      'extension_',
-      'value',
-      'valueElement',
-      'comparator',
-      'comparatorElement',
-      'unit',
-      'unitElement',
-      'system',
-      'systemElement',
-      'code',
-      'codeElement',
-    ].contains(editIfReserved(field)) &&
-    isQuantity(className);
-
-bool fieldInDataType(String field, String className) =>
-    <String>[
-      'id',
-      'extension_',
-    ].contains(editIfReserved(field)) &&
-    isDataType(className);
-
-bool fieldInBackboneType(String field, String className) =>
-    <String>[
-      'id',
-      'extension_',
-      'modifierExtension',
-    ].contains(editIfReserved(field)) &&
-    isBackboneType(className);
-
-bool fieldInDomainResource(String field, String className) =>
-    <String>[
-      'resourceType',
-      'id',
-      'meta',
-      'implicitRules',
-      'implicitRulesElement',
-      'language',
-      'languageElement',
-      'text',
-      'contained',
-      'extension_',
-      'modifierExtension',
-    ].contains(editIfReserved(field)) &&
-    isResourceType(className);
-
-bool typeToGenerate(String type) {
-  return !<String>[
+bool shouldGenerate(String type) {
+  const List<String> excludedTypes = <String>[
     'resourcelist',
     'base64binary',
     'boolean',
@@ -69,11 +21,108 @@ bool typeToGenerate(String type) {
     'url',
     'uuid',
     'xhtml',
+    'resource',
+    'domainresource',
+    'backboneelement',
     'element',
-  ].contains(type.toLowerCase());
+  ];
+  return !excludedTypes.contains(type.toLowerCase());
 }
 
-bool isResourceType(String fileName) => <String>[
+String fhirToDartTypes(String typeName) =>
+    const <String, String>{
+      'string': 'FhirString',
+      'base64binary': 'FhirBase64Binary',
+      'boolean': 'FhirBoolean',
+      'canonical': 'FhirCanonical',
+      'code': 'FhirCode',
+      'date': 'FhirDate',
+      'decimal': 'FhirDecimal',
+      'datetime': 'FhirDateTime',
+      'uri': 'FhirUri',
+      'url': 'FhirUrl',
+      'id': 'FhirId',
+      'instant': 'FhirInstant',
+      'integer': 'FhirInteger',
+      'integer64': 'FhirInteger64',
+      'markdown': 'FhirMarkdown',
+      'oid': 'FhirOid',
+      'positiveint': 'FhirPositiveInt',
+      'time': 'FhirTime',
+      'unsignedint': 'FhirUnsignedInt',
+      'uuid': 'FhirUuid',
+      'duration': 'FhirDuration',
+      'xhtml': 'FhirMarkdown',
+      'meta': 'FhirMeta',
+      'expression': 'FhirExpression',
+      'list': 'FhirList',
+      'extension': 'FhirExtension',
+      'resourceList': 'Resource',
+      'group': 'FhirGroup',
+      'endpoint': 'FhirEndpoint',
+      'http://hl7.org/fhirpath/system.string': 'FhirString',
+    }[typeName.toLowerCase()] ??
+    typeName;
+
+bool isDataType(String className) {
+  return <String>[
+    'address',
+    'annotation',
+    'attachment',
+    'codeableconcept',
+    'codeablereference',
+    'coding',
+    'contactdetail',
+    'contactpoint',
+    'contributor',
+    'datarequirement',
+    'expression',
+    'extension',
+    'fhirextension',
+    'humanname',
+    'identifier',
+    'meta',
+    'fhirmeta',
+    'money',
+    'narrative',
+    'parameterdefinition',
+    'period',
+    'quantity',
+    'range',
+    'ratio',
+    'ratiorange',
+    'reference',
+    'relatedartifact',
+    'sampleddata',
+    'signature',
+    'triggerdefinition',
+    'usagecontext',
+  ].contains(className.toLowerCase());
+}
+
+bool isQuantity(String className) {
+  return <String>[
+    'age',
+    'count',
+    'distance',
+    'duration',
+    'fhirduration',
+  ].contains(className.toLowerCase());
+}
+
+bool isBackboneType(String className) {
+  return <String>[
+    'dosage',
+    'elementdefinition',
+    'marketingstatus',
+    'population',
+    'prodcharacteristic',
+    'productshelflife',
+    'timing',
+  ].contains(className.toLowerCase());
+}
+
+bool isResourceType(String className) => <String>[
       'account',
       'activitydefinition',
       'administrableproductdefinition',
@@ -218,9 +267,9 @@ bool isResourceType(String fileName) => <String>[
       'fhirlist',
       'fhirgroup',
       'fhirendpoint',
-    ].contains(fileName.split('_').first.toLowerCase());
+    ].contains(className.toLowerCase());
 
-String editIfReserved(String name) => const <String>[
+String fhirFieldToDartName(String name) => const <String>[
       'abstract',
       'else',
       'import',
@@ -288,109 +337,56 @@ String editIfReserved(String name) => const <String>[
         ? '${name}_'
         : name;
 
-String changeName(String typeName) =>
-    const <String, String>{
-      'string': 'FhirString',
-      'base64Binary': 'FhirBase64Binary',
-      'boolean': 'FhirBoolean',
-      'canonical': 'FhirCanonical',
-      'code': 'FhirCode',
-      'date': 'FhirDate',
-      'decimal': 'FhirDecimal',
-      'dateTime': 'FhirDateTime',
-      'uri': 'FhirUri',
-      'url': 'FhirUrl',
-      'id': 'FhirId',
-      'instant': 'FhirInstant',
-      'integer': 'FhirInteger',
-      'integer64': 'FhirInteger64',
-      'markdown': 'FhirMarkdown',
-      'oid': 'FhirOid',
-      'positiveInt': 'FhirPositiveInt',
-      'time': 'FhirTime',
-      'unsignedInt': 'FhirUnsignedInt',
-      'uuid': 'FhirUuid',
-      'Duration': 'FhirDuration',
-      'xhtml': 'FhirMarkdown',
-      'Meta': 'FhirMeta',
-      'Expression': 'FhirExpression',
-      'List': 'FhirList',
-      'Extension': 'FhirExtension',
-      'ResourceList': 'Resource',
-      'Group': 'FhirGroup',
-      'Endpoint': 'FhirEndpoint',
-    }[typeName.replaceAll('?', '')] ??
-    typeName;
+bool isSuperField(String field, String className) =>
+    _fieldInQuantity(field, className) ||
+    _fieldInDataType(field, className) ||
+    _fieldInBackboneType(field, className) ||
+    _fieldInDomainResource(field, className);
 
-String fhirToDartType(String typeName, [bool isClassName = false]) {
-  typeName = typeName.replaceAll('_', '');
-  typeName = changeName(typeName);
-  if (isResourceType(typeName) && isClassName) {
-    return '$typeName extends DomainResource';
-  } else if (isDataType(typeName) && isClassName) {
-    return '$typeName extends DataType';
-  } else if (isQuantity(typeName) && isClassName) {
-    return '$typeName extends Quantity';
-  } else if (isBackboneType(typeName) && isClassName) {
-    return '$typeName extends BackboneType';
-  } else {
-    return typeName;
-  }
-}
+bool _fieldInQuantity(String field, String className) =>
+    <String>[
+      'id',
+      'extension',
+      'value',
+      'valueelement',
+      'comparator',
+      'comparatorelement',
+      'unit',
+      'unitelement',
+      'system',
+      'systemelement',
+      'code',
+      'codeelement',
+    ].contains(field.toLowerCase()) &&
+    isQuantity(className);
 
-bool isDataType(String className) {
-  return <String>[
-    'Address',
-    'Annotation',
-    'Attachment',
-    'CodeableConcept',
-    'Coding',
-    'ContactDetail',
-    'ContactPoint',
-    'Contributor',
-    'DataRequirement',
-    'Expression',
-    'Extension',
-    'FhirExtension',
-    'HumanName',
-    'Identifier',
-    'Meta',
-    'FhirMeta',
-    'Money',
-    'Narrative',
-    'ParameterDefinition',
-    'Period',
-    'Quantity',
-    'Range',
-    'Ratio',
-    'RatioRange',
-    'Reference',
-    'RelatedArtifact',
-    'SampledData',
-    'Signature',
-    'TriggerDefinition',
-    'UsageContext',
-  ].contains(className);
-}
+bool _fieldInDataType(String field, String className) =>
+    <String>[
+      'id',
+      'extension',
+    ].contains(field.toLowerCase()) &&
+    isDataType(className);
 
-bool isQuantity(String className) {
-  return <String>[
-    'Age',
-    'Count',
-    'Distance',
-    'Duration',
-    'FhirDuration',
-  ].contains(className);
-}
+bool _fieldInBackboneType(String field, String className) =>
+    <String>[
+      'id',
+      'extension',
+      'modifierextension',
+    ].contains(field.toLowerCase()) &&
+    isBackboneType(className);
 
-bool isBackboneType(String className) {
-  return <String>[
-    'Dosage',
-    'ElementDefinition',
-    'MarketingStatus',
-    'Population',
-    'ProdCharacteristic',
-    'ProductShelfLife',
-    'Timing',
-  ].contains(className);
-}
+bool _fieldInDomainResource(String field, String className) =>
+    <String>[
+      'resourcetype',
+      'id',
+      'meta',
+      'implicitrules',
+      'implicitruleselement',
+      'language',
+      'languageelement',
+      'text',
+      'contained',
+      'extension',
+      'modifierextension',
+    ].contains(field.toLowerCase()) &&
+    isResourceType(className);

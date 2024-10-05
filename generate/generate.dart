@@ -5,14 +5,24 @@ import 'extract.dart';
 import 'types.dart';
 
 Future<void> main() async {
+  await extract();
   await _classesFromStructureDefinitions();
 }
 
+final Map<String, String> _nameMap = <String, String>{};
+
 Future<void> _classesFromStructureDefinitions() async {
   final List<String> structureDefinitionBundles = <String>[
-    'definitions.json/profiles-resources.json',
-    'definitions.json/profiles-types.json'
+    './profiles-resources.json',
+    './profiles-types.json',
   ];
+  final String fileString = File('fhir.schema.json').readAsStringSync();
+  final Map<String, dynamic> jsonSchema =
+      jsonDecode(fileString) as Map<String, dynamic>;
+  (jsonSchema['definitions'] as Map<String, dynamic>)
+      .forEach((String key, dynamic value) {
+    _nameMap[key.toLowerCase().replaceAll('_', '')] = key;
+  });
   for (final String file in structureDefinitionBundles) {
     await _generateFromBundle(file);
   }
@@ -23,206 +33,111 @@ Future<void> _generateFromBundle(String file) async {
   final Map<String, dynamic> bundle =
       jsonDecode(bundleString) as Map<String, dynamic>;
   for (final dynamic entry in bundle['entry'] as List<dynamic>) {
-    if (entry is Map<String, dynamic> &&
-        entry['resource'] != null &&
-        entry['resource'] is Map<String, dynamic> &&
-        (entry['resource'] as Map<String, dynamic>)['resourceType'] ==
-            'StructureDefinition') {
-      await _generateFromSd(entry['resource'] as Map<String, dynamic>);
+    if (_isValidStructureDefinition(entry)) {
+      await _generateFromSd(
+          (entry as Map<String, dynamic>)['resource'] as Map<String, dynamic>);
     }
   }
 }
 
+bool _isValidStructureDefinition(dynamic entry) {
+  return entry is Map<String, dynamic> &&
+      entry['resource'] != null &&
+      entry['resource'] is Map<String, dynamic> &&
+      (entry['resource'] as Map<String, dynamic>)['resourceType'] ==
+          'StructureDefinition';
+}
+
 Future<void> _generateFromSd(Map<String, dynamic> sd) async {
   final String className = sd['name'] as String;
-  if (!typeToGenerate(className)) {
+  if (!shouldGenerate(className)) {
     return;
   }
-  final StringBuffer buffer = StringBuffer();
 
+  final StringBuffer buffer = StringBuffer();
+  final StringBuffer constructorBuffer = StringBuffer();
+
+  // Write class header
+  buffer.writeln("import 'package:data_class/data_class.dart';");
+  buffer.writeln("import 'package:json/json.dart';");
+  buffer.writeln("\nimport '../../../fhir_r4.dart';\n");
   buffer.writeln('@Data()');
   buffer.writeln('@JsonCodable()');
-  buffer.writeln('class ${fhirToDartType(className, true)} {');
+  final String extendsClause = isDataType(className)
+      ? 'extends DataType'
+      : isQuantity(className)
+          ? 'extends Quantity'
+          : isBackboneType(className)
+              ? 'extends BackboneElement'
+              : isResourceType(className)
+                  ? 'extends DomainResource'
+                  : '';
+  if (extendsClause.isEmpty) {
+    // ignore: avoid_print
+    print('No extends clause for $className');
+  }
+  buffer.writeln('class $className $extendsClause {');
 
   // Prepare constructor
-  final StringBuffer constructorBuffer = StringBuffer();
-  constructorBuffer.writeln('\n  ${fhirToDartType(className)}({');
+  constructorBuffer.writeln('\n  $className({');
 
-  // Parse the snapshot to get the elements of the StructureDefinition
+  // Process elements
   final List<Map<String, dynamic>> elements =
       ((sd['snapshot'] as Map<String, dynamic>)['element'] as List<dynamic>)
           .map((dynamic item) => item as Map<String, dynamic>)
           .toList();
 
-  // Use these to store fields for subclasses
-  final Map<String, List<Map<String, dynamic>>> subClassFields =
-      <String, List<Map<String, dynamic>>>{};
-
-  // Iterate over each element and generate fields and constructor
+  // Generate fields and constructor
   for (final Map<String, dynamic> element in elements) {
-    _processElementForSd(element, buffer, constructorBuffer, subClassFields);
+    _processElement(element, buffer, constructorBuffer, className);
   }
 
   // Close constructor and class
   constructorBuffer.writeln('  });');
   buffer.writeln(constructorBuffer.toString());
-
   buffer.writeln('}\n');
 
-  // Generate the subclasses
-  for (final String subClassName in subClassFields.keys) {
-    _generateSubClass(subClassName, subClassFields[subClassName]!, buffer);
-  }
-
-  // Write the class to the appropriate file
-  _writeClassToFile(className, buffer.toString());
-}
-
-void _processElementForSd(
-    Map<String, dynamic> element,
-    StringBuffer buffer,
-    StringBuffer constructorBuffer,
-    Map<String, List<Map<String, dynamic>>> subClassFields) {
-  final String path = element['path'] as String;
-  final List<String> pathParts = path.split('.');
-  final String fieldName = pathParts.last;
-
-  // Handle sub-class generation for nested fields
-  if (pathParts.length > 2) {
-    final String parentClass = pathParts.first;
-    final String subClassName =
-        pathParts.sublist(0, pathParts.length - 1).join('_');
-
-    // Collect the fields for the subclass
-    subClassFields
-        .putIfAbsent(subClassName, () => <Map<String, dynamic>>[])
-        .add(element);
+  String? writeFileName = _fileNameFromClassName(className);
+  if (writeFileName == null) {
+    // ignore: avoid_print
+    print('Not writing: $className');
     return;
   }
+  writeFileName = writeFileName[0].toLowerCase() + writeFileName.substring(1);
+  // Write class to file
+  final String filePath = '../lib/src/fhir/generated/$writeFileName.dart';
+  File(filePath).writeAsStringSync(buffer.toString());
+}
 
-  // Determine the type of the field
-  final String type = _getElementTypeFromSd(element, fieldName);
-  final bool isRequired = _isRequiredFromSd(element);
+String? _fileNameFromClassName(String className) =>
+    _nameMap[className.toLowerCase()];
 
-  final String camelCaseField = _toCamelCase(fieldName);
+void _processElement(Map<String, dynamic> element, StringBuffer buffer,
+    StringBuffer constructorBuffer, String className) {
+  final String path = element['path'] as String;
+  String fieldName = path.split('.').last;
+  final String fieldType = fhirToDartTypes(_getElementType(element));
+  final bool isRequired = (element['min'] as int) > 0;
+
+  // Write field
   final String nullableMark = isRequired ? '' : '?';
-
-  // Replace BackboneElement type with the generated subclass name
-  final String effectiveType =
-      type == 'BackboneElement' ? _generateSubClassName(camelCaseField) : type;
-
-  buffer.writeln('  final $effectiveType$nullableMark $camelCaseField;');
-
-  // Add field to constructor
-  if (isRequired) {
-    constructorBuffer.writeln('    required this.$camelCaseField,');
-  } else {
-    constructorBuffer.writeln('    this.$camelCaseField,');
+  if (fieldName != className) {
+    final bool isSuper = isSuperField(fieldName, className);
+    fieldName = fhirFieldToDartName(fieldName);
+    if (!isSuper) {
+      buffer.writeln('  final $fieldType$nullableMark $fieldName;');
+    }
+    // Add to constructor
+    constructorBuffer.writeln('    ${isRequired ? "required " : ""}'
+        '${isSuper ? "super" : "this"}'
+        '.$fieldName,');
   }
 }
 
-String _getElementTypeFromSd(Map<String, dynamic> element, String fieldName) {
-  final List<Map<String, dynamic>>? types = (element['type'] as List<dynamic>?)
-      ?.map((dynamic item) => item as Map<String, dynamic>)
-      .toList();
-
+String _getElementType(Map<String, dynamic> element) {
+  final List<dynamic>? types = element['type'] as List<dynamic>?;
   if (types != null && types.isNotEmpty) {
-    final String code = types.first['code'] as String;
-
-    // Handle specific FHIR type mapping
-    if (code == 'http://hl7.org/fhirpath/System.String') {
-      return fieldName == 'id' ? 'FhirId' : 'FhirString';
-    }
-    return fhirToDartType(code);
+    return (types.first as Map<String, dynamic>)['code'] as String;
   }
   return 'dynamic';
-}
-
-bool _isRequiredFromSd(Map<String, dynamic> element) {
-  final int min = element['min'] as int;
-  return min > 0;
-}
-
-void _generateSubClass(String subClassName, List<Map<String, dynamic>> elements,
-    StringBuffer buffer) {
-  final String effectiveClassName = fhirToDartType(subClassName, true);
-
-  buffer.writeln('@Data()');
-  buffer.writeln('@JsonCodable()');
-  buffer.writeln('class $effectiveClassName {');
-
-  // Prepare constructor
-  final StringBuffer constructorBuffer = StringBuffer();
-  constructorBuffer.writeln('\n  $effectiveClassName({');
-
-  // Iterate through the fields collected for this subclass
-  for (final Map<String, dynamic> element in elements) {
-    final String fieldName = (element['path'] as String).split('.').last;
-    final String type = _getElementTypeFromSd(element, fieldName);
-    final bool isRequired = _isRequiredFromSd(element);
-    final String camelCaseField = _toCamelCase(fieldName);
-    final String nullableMark = isRequired ? '' : '?';
-
-    buffer.writeln('  final $type$nullableMark $camelCaseField;');
-
-    // Add field to constructor
-    if (isRequired) {
-      constructorBuffer.writeln('    required this.$camelCaseField,');
-    } else {
-      constructorBuffer.writeln('    this.$camelCaseField,');
-    }
-  }
-
-  // Close constructor and class
-  constructorBuffer.writeln('  });');
-  buffer.writeln(constructorBuffer.toString());
-
-  buffer.writeln('}\n');
-}
-
-String _generateSubClassName(String camelCaseField) {
-  // Create a class name for the subclass based on the camelCaseField
-  return fhirToDartType(_toUpperCamelCase(camelCaseField), true);
-}
-
-void _writeClassToFile(String className, String classContent) {
-  final String typeDirectory =
-      isResourceType(className) ? 'resource_types' : 'data_types';
-  final String outputPath =
-      '../lib/src/fhir/$typeDirectory/${className.toLowerCase()}.dart';
-
-  final File outputFile = File(outputPath);
-  outputFile.createSync(recursive: true);
-  outputFile.writeAsStringSync(classContent);
-}
-
-// Utility functions for type mapping and camelCase conversion
-String fhirToDartType(String type, [bool isClass = false]) {
-  if (type == 'String' || type == 'http://hl7.org/fhirpath/System.String') {
-    return 'FhirString';
-  }
-  if (type == 'id' || type == 'http://hl7.org/fhirpath/System.Id') {
-    return 'FhirId';
-  }
-  // Add other type mappings as needed
-  return isClass ? _toUpperCamelCase(type) : type;
-}
-
-String _toCamelCase(String text) {
-  if (text[0] == '_') {
-    return '${text.substring(1)}Element';
-  }
-  final List<String> words = text.split('_');
-  return words.first +
-      words
-          .skip(1)
-          .map((String word) => word[0].toUpperCase() + word.substring(1))
-          .join();
-}
-
-String _toUpperCamelCase(String text) {
-  return text
-      .split('_')
-      .map((String word) => word[0].toUpperCase() + word.substring(1))
-      .join();
 }

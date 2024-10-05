@@ -10,10 +10,10 @@ class Element extends FhirBase {
     String? id,
     this.extension_,
     super.fhirType = 'Element',
-  }) : id = id == null ? null : FhirId(id);
+  }) : id = id == null ? null : FhirString(id);
 
   // Unique id for the element within a resource
-  final FhirId? id;
+  final FhirString? id;
 
   // List of extensions for additional information
   final List<FhirExtension>? extension_;

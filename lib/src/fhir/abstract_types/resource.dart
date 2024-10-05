@@ -17,7 +17,7 @@ abstract class Resource extends FhirBase {
   }) : super(fhirType: resourceType.toString());
 
   R4ResourceType resourceType;
-  FhirId? id;
+  FhirString? id;
   FhirMeta? meta;
   FhirUri? implicitRules;
   Element? implicitRulesElement;

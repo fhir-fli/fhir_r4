@@ -6,6 +6,15 @@ Future<void> extract() async {
   await _extractFilesToDisk();
   await _moveJsonExamples();
   await _moveNdJsonExamples();
+  await _moveSourceFiles();
+}
+
+Future<void> _moveSourceFiles() async {
+  await extractFileToDisk('definitions.json/fhir.schema.json.zip', '.');
+  await File('definitions.json/profiles-resources.json')
+      .copy('./profiles-resources.json');
+  await File('definitions.json/profiles-types.json')
+      .copy('./profiles-types.json');
 }
 
 Future<void> _moveNdJsonExamples() async {
