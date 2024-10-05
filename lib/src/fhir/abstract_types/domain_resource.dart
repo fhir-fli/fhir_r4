@@ -25,10 +25,10 @@ abstract class DomainResource extends Resource {
   List<FhirExtension>? extension_;
   List<FhirExtension>? modifierExtension;
 
-  /// Returns a [Map<String, dynamic>] of the [DomainResource]
+  /// Returns a [Map<String, Object?>] of the [DomainResource]
   @override
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> val = <String, dynamic>{};
+  Map<String, Object?> toJson() {
+    final Map<String, Object?> val = <String, Object?>{};
 
     void writeNotNull(String key, dynamic value) {
       if (value != null) {
@@ -53,16 +53,16 @@ abstract class DomainResource extends Resource {
     return val;
   }
 
-  factory DomainResource.fromJson(Map<String, dynamic> json) =>
+  factory DomainResource.fromJson(Map<String, Object?> json) =>
       Resource.fromJson(json) as DomainResource;
 
   static DomainResource fromYaml(dynamic yaml) => yaml is String
       ? Resource.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>)
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
           as DomainResource
       : yaml is YamlMap
           ? Resource.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>)
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
               as DomainResource
           : throw ArgumentError(
               'DomainResource cannot be constructed from input provided,'
@@ -70,7 +70,7 @@ abstract class DomainResource extends Resource {
 
   static DomainResource fromJsonString(String source) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, dynamic>) {
+    if (json is Map<String, Object?>) {
       return Resource.fromJson(json) as DomainResource;
     } else {
       throw FormatException('FormatException: You passed $json '

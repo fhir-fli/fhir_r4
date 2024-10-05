@@ -134,7 +134,8 @@ String _generateDartClass(
 
       if (!fieldInDomainResource(camelCaseField, className) &&
           !fieldInDataType(camelCaseField, className) &&
-          !fieldInQuantity(camelCaseField, className)) {
+          !fieldInQuantity(camelCaseField, className) &&
+          !fieldInBackboneType(camelCaseField, className)) {
         buffer.writeln(
             '  final $type$nullableMark ${editIfReserved(camelCaseField)};');
       }
@@ -142,7 +143,8 @@ String _generateDartClass(
       if (isRequired) {
         if (fieldInDomainResource(camelCaseField, className) ||
             fieldInDataType(camelCaseField, className) ||
-            fieldInQuantity(camelCaseField, className)) {
+            fieldInQuantity(camelCaseField, className) ||
+            fieldInBackboneType(camelCaseField, className)) {
           if (camelCaseField != 'resourceType') {
             constructorBuffer.writeln(
                 '    required super.${editIfReserved(camelCaseField)},');
@@ -154,7 +156,8 @@ String _generateDartClass(
       } else {
         if (fieldInDomainResource(camelCaseField, className) ||
             fieldInDataType(camelCaseField, className) ||
-            fieldInQuantity(camelCaseField, className)) {
+            fieldInQuantity(camelCaseField, className) ||
+            fieldInBackboneType(camelCaseField, className)) {
           constructorBuffer
               .writeln('    super.${editIfReserved(camelCaseField)},');
         } else {
@@ -166,8 +169,8 @@ String _generateDartClass(
   });
 
   if (isResourceType(className)) {
-    constructorBuffer
-        .writeln('  }): super(resourceType: R4ResourceType.$className);');
+    constructorBuffer.writeln(
+        '  }): super(resourceType: R4ResourceType.${changeName(className)});');
   } else {
     // Close constructor
     constructorBuffer.writeln('  });');
@@ -177,7 +180,7 @@ String _generateDartClass(
 
   if (isResourceType(className)) {
     buffer.writeln('@override');
-    buffer.writeln('$className clone() => this;\n');
+    buffer.writeln('${changeName(className)} clone() => this;\n');
   }
   // Close class
   buffer.writeln('}\n');

@@ -159,8 +159,8 @@ class Element extends FhirBase {
   }
 
   @override
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+  Map<String, Object?> toJson() {
+    final Map<String, Object?> json = <String, Object?>{};
     if (id?.value != null) {
       json['id'] = id?.value;
     }
@@ -176,28 +176,28 @@ class Element extends FhirBase {
 
   static Element fromYaml(dynamic yaml) => yaml is String
       ? Element.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>)
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
       : yaml is YamlMap
           ? Element.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>)
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
           : throw ArgumentError(
               'Element cannot be constructed from input provided,'
               ' it is neither a yaml string nor a yaml map.');
 
-  factory Element.fromJson(Map<String, dynamic> json) {
+  factory Element.fromJson(Map<String, Object?> json) {
     return Element(
       id: json['id'] as String?,
       extension_: json['_extension'] == null
           ? <FhirExtension>[]
-          : List<FhirExtension>.from((json['_extension'] as List<dynamic>).map(
+          : List<FhirExtension>.from((json['_extension']! as List<dynamic>).map(
               (dynamic e) =>
-                  FhirExtension.fromJson(e as Map<String, dynamic>))),
+                  FhirExtension.fromJson(e as Map<String, Object?>))),
     );
   }
 
   static Element fromJsonString(String source) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, dynamic>) {
+    if (json is Map<String, Object?>) {
       return Element.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '

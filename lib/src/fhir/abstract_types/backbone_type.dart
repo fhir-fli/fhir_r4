@@ -7,40 +7,41 @@ abstract class BackboneType extends DataType {
   /// Constructor for BackboneType
   BackboneType({
     super.id,
-    super.extension_ = const <FhirExtension>[],
-    this.modifierExtension = const <FhirExtension>[],
+    super.extension_,
+    this.modifierExtension,
     super.fhirType = 'BackboneType',
   });
 
   /// List of modifier extensions for additional, non-core information
-  final List<FhirExtension> modifierExtension;
+  final List<FhirExtension>? modifierExtension;
 
   /// Method to check if there are any modifier extensions
-  bool hasModifierExtension() => modifierExtension.isNotEmpty;
+  bool hasModifierExtension() => modifierExtension?.isNotEmpty ?? false;
 
   /// Gets the first repetition of modifier extensions
   FhirExtension getModifierExtensionFirstRep() {
-    return modifierExtension.isEmpty
+    return modifierExtension?.isEmpty ?? true
         ? FhirExtension()
-        : modifierExtension.first;
+        : modifierExtension!.first;
   }
 
   /// Retrieves all modifier extensions by URL
   List<FhirExtension> getModifierExtensionsByUrl(String url) {
     return modifierExtension
-        .where((FhirExtension ext) => ext.url?.equals(url) ?? false)
-        .toList();
+            ?.where((FhirExtension ext) => ext.url?.equals(url) ?? false)
+            .toList() ??
+        <FhirExtension>[];
   }
 
   /// Adds a modifier extension
   void addModifierExtension(FhirExtension ext) {
-    modifierExtension.add(ext);
+    modifierExtension?.add(ext);
   }
 
   /// Removes modifier extensions by URL
   void removeModifierExtension(String url) {
     modifierExtension
-        .removeWhere((FhirExtension ext) => ext.url?.equals(url) ?? false);
+        ?.removeWhere((FhirExtension ext) => ext.url?.equals(url) ?? false);
   }
 
   @override
@@ -54,35 +55,46 @@ abstract class BackboneType extends DataType {
 
   @override
   bool isEmpty() {
-    return super.isEmpty() && modifierExtension.isEmpty;
+    return super.isEmpty() && (modifierExtension?.isEmpty ?? true);
   }
 
   @override
-  Map<String, dynamic> toJson() => <String, dynamic>{
-        ...super.toJson(),
-        'modifierExtension': modifierExtension,
-      };
+  Map<String, Object?> toJson() {
+    final Map<String, Object?> json = <String, Object?>{};
+    if (id?.value != null) {
+      json['id'] = id?.value;
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['_extension'] =
+          extension_!.map((FhirExtension e) => e.toJson()).toList();
+    }
+    if (modifierExtension?.isNotEmpty ?? false) {
+      json['modifierExtension'] =
+          modifierExtension?.map((FhirExtension e) => e.toJson()).toList();
+    }
+    return json;
+  }
 
   @override
   String toYaml() => json2yaml(toJson());
 
   static BackboneType fromYaml(dynamic yaml) => yaml is String
       ? BackboneType.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>)
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
       : yaml is YamlMap
           ? BackboneType.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>)
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
           : throw ArgumentError(
               'BackboneType cannot be constructed from input provided,'
               ' it is neither a yaml string nor a yaml map.');
 
-  static BackboneType fromJson(Map<String, dynamic> json) {
+  factory BackboneType.fromJson(Map<String, Object?> json) {
     throw UnimplementedError('BackboneType.fromJson');
   }
 
   static BackboneType fromJsonString(String source) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, dynamic>) {
+    if (json is Map<String, Object?>) {
       return BackboneType.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '

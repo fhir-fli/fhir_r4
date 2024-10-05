@@ -6,7 +6,7 @@ abstract class FhirBase {
   final String fhirType;
 
   // User appended data items - allow users to add extra information to the class
-  final Map<String, dynamic> _userData = <String, dynamic>{};
+  final Map<String, Object?> _userData = <String, Object?>{};
 
   // Round tracking xml comments for testing convenience
   final List<String> _formatCommentsPre = <String>[];
@@ -14,7 +14,7 @@ abstract class FhirBase {
 
   // JSON and YAML Methods
   dynamic toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final Map<String, Object?> json = <String, Object?>{};
     namedChildren.forEach((String key, FhirBase child) {
       json[key] = child.toJson();
     });
@@ -23,7 +23,7 @@ abstract class FhirBase {
 
   dynamic toJsonWithType() {
     final dynamic json = toJson();
-    if (json is Map<String, dynamic>) {
+    if (json is Map<String, Object?>) {
       json['fhirType'] = fhirType;
     }
     return json;

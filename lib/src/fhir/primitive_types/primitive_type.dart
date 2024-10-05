@@ -28,12 +28,14 @@ abstract class PrimitiveType<T> extends FhirBase {
   // Adjust toJson to handle both value and element
   @override
   dynamic toJson() {
-    return <String, dynamic>{
-      'value':
-          _stringValue, // Assuming string value or primitive value serialization
-      'element': element?.toJson(), // Include element if not null
-    }..removeWhere(
-        (String key, Object? value) => value == null); // Remove null fields
+    final Map<String, Object> json = <String, Object>{};
+    if (_value != null) {
+      json['value'] = _value;
+    }
+    if (element != null) {
+      json['element'] = element!.toJson();
+    }
+    return json;
   }
 
   // Converts the PrimitiveType to YAML

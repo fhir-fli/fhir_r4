@@ -22,6 +22,14 @@ bool fieldInDataType(String field, String className) =>
     ].contains(editIfReserved(field)) &&
     isDataType(className);
 
+bool fieldInBackboneType(String field, String className) =>
+    <String>[
+      'id',
+      'extension_',
+      'modifierExtension',
+    ].contains(editIfReserved(field)) &&
+    isBackboneType(className);
+
 bool fieldInDomainResource(String field, String className) =>
     <String>[
       'resourceType',
@@ -61,6 +69,7 @@ bool typeToGenerate(String type) {
     'url',
     'uuid',
     'xhtml',
+    'element',
   ].contains(type.toLowerCase());
 }
 
@@ -278,6 +287,7 @@ String editIfReserved(String name) => const <String>[
     ].contains(name)
         ? '${name}_'
         : name;
+
 String changeName(String typeName) =>
     const <String, String>{
       'string': 'FhirString',
@@ -345,6 +355,7 @@ bool isDataType(String className) {
     'HumanName',
     'Identifier',
     'Meta',
+    'FhirMeta',
     'Money',
     'Narrative',
     'ParameterDefinition',
@@ -368,6 +379,7 @@ bool isQuantity(String className) {
     'Count',
     'Distance',
     'Duration',
+    'FhirDuration',
   ].contains(className);
 }
 

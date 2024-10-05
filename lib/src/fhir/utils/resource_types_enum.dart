@@ -140,7 +140,7 @@ enum R4ResourceType {
   Encounter,
 
   @JsonValue('Endpoint')
-  Endpoint,
+  FhirEndpoint,
 
   @JsonValue('EnrollmentRequest')
   EnrollmentRequest,
@@ -182,7 +182,7 @@ enum R4ResourceType {
   GraphDefinition,
 
   @JsonValue('Group')
-  Group,
+  FhirGroup,
 
   @JsonValue('GuidanceResponse')
   GuidanceResponse,
@@ -565,7 +565,7 @@ enum R4ResourceType {
       case R4ResourceType.Encounter:
         return 'Encounter';
 
-      case R4ResourceType.Endpoint:
+      case R4ResourceType.FhirEndpoint:
         return 'Endpoint';
 
       case R4ResourceType.EnrollmentRequest:
@@ -607,7 +607,7 @@ enum R4ResourceType {
       case R4ResourceType.GraphDefinition:
         return 'GraphDefinition';
 
-      case R4ResourceType.Group:
+      case R4ResourceType.FhirGroup:
         return 'Group';
 
       case R4ResourceType.GuidanceResponse:
@@ -949,7 +949,7 @@ enum R4ResourceType {
       case 'Encounter':
         return R4ResourceType.Encounter;
       case 'Endpoint':
-        return R4ResourceType.Endpoint;
+        return R4ResourceType.FhirEndpoint;
       case 'EnrollmentRequest':
         return R4ResourceType.EnrollmentRequest;
       case 'EnrollmentResponse':
@@ -977,7 +977,7 @@ enum R4ResourceType {
       case 'GraphDefinition':
         return R4ResourceType.GraphDefinition;
       case 'Group':
-        return R4ResourceType.Group;
+        return R4ResourceType.FhirGroup;
       case 'GuidanceResponse':
         return R4ResourceType.GuidanceResponse;
       case 'HealthcareService':
@@ -1198,6 +1198,7 @@ enum R4ResourceType {
         'DocumentReference',
         'Encounter',
         'Endpoint',
+        'FhirEndpoint',
         'EnrollmentRequest',
         'EnrollmentResponse',
         'EpisodeOfCare',
@@ -1212,6 +1213,7 @@ enum R4ResourceType {
         'Goal',
         'GraphDefinition',
         'Group',
+        'FhirGroup',
         'GuidanceResponse',
         'HealthcareService',
         'ImagingStudy',

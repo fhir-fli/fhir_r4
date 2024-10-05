@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:json_annotation/json_annotation.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -26,15 +25,15 @@ abstract class Resource extends FhirBase {
   Element? languageElement;
 
   /// Acts like a constructor, returns a [Resource], accepts a
-  /// [Map<String, Dynamic>] as an argument
-  static T fromJson<T extends Resource>(Map<String, dynamic> json) =>
-      resourceFromJson(json) as T;
+  /// [Map<String, Object?>] as an argument
+  factory Resource.fromJson(Map<String, Object?> json) =>
+      resourceFromJson(json);
 
   /// Acts like a constructor, returns a [Resource], accepts a
   /// [String] as an argument, mostly because I got tired of typing it out
   static T fromJsonString<T extends Resource>(String source) {
     final dynamic json = jsonDecode(source);
-    if (json is Map<String, dynamic>) {
+    if (json is Map<String, Object?>) {
       return resourceFromJson(json) as T;
     } else {
       throw FormatException('FormatException:\nYou passed $json\n'
@@ -45,18 +44,18 @@ abstract class Resource extends FhirBase {
   /// Returns a Resource, accepts a [String] in YAML format as an argument
   static T fromYaml<T extends Resource>(dynamic yaml) => yaml is String
       ? Resource.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>) as T
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>) as T
       : yaml is YamlMap
           ? Resource.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>) as T
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>) as T
           : throw ArgumentError(
               'Resource cannot be constructed from input provided,'
               ' it is neither a yaml string nor a yaml map.');
 
-  /// Returns a [Map<String, dynamic>] of the [Resource]
+  /// Returns a [Map<String, Object?>] of the [Resource]
   @override
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> val = <String, dynamic>{};
+  Map<String, Object?> toJson() {
+    final Map<String, Object?> val = <String, Object?>{};
 
     void writeNotNull(String key, dynamic value) {
       if (value != null) {
@@ -89,16 +88,19 @@ abstract class Resource extends FhirBase {
   String get path => '$fhirType/$id';
 
   /// returns the same resource with a new ID if there is no current ID
-  Resource newIdIfNoId() => id == null ? _newId(this) : this;
+  Resource newIdIfNoId() => throw UnimplementedError();
+  // id == null ? _newId(this) : this;
 
   /// returns the same resource with a new ID (even if there is already an ID
   /// present)
-  Resource newId() => _newId(this);
+  Resource newId() => throw UnimplementedError();
+  // _newId(this);
 
   /// Updates the [meta] field of this Resource, updates the meta.lastUpdated
   /// field, adds 1 to the version number
   Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
-      _updateMeta(this, meta: oldMeta, versionIdAsTime: versionIdAsTime);
+      throw UnimplementedError();
+  // _updateMeta(this, meta: oldMeta, versionIdAsTime: versionIdAsTime);
 
   static R4ResourceType? resourceTypeFromString(String type) =>
       R4ResourceType.fromString(type);
