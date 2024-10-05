@@ -6,9 +6,9 @@ import 'package:archive/archive_io.dart';
 import 'types.dart';
 
 Future<void> main() async {
-  await _extractFilesToDisk();
-  await _moveJsonExamples();
-  await _moveNdJsonExamples();
+  // await _extractFilesToDisk();
+  // await _moveJsonExamples();
+  // await _moveNdJsonExamples();
   await _actualFHIRClasses();
   await _generateExportFile(); // Generate export.dart after generating class files
 }
@@ -26,87 +26,49 @@ Future<void> _actualFHIRClasses() async {
   final Map<String, dynamic> definitions =
       schema['definitions'] as Map<String, dynamic>;
 
-  // Group classes by their types
-  final Map<String, StringBuffer> groupedClasses = <String, StringBuffer>{};
-
   // Iterate over all types and generate Dart classes
   for (final String key in definitions.keys) {
-    if (key == 'xhtml') {
-      continue;
-    }
-
-    final Map<String, dynamic> classDefinition =
-        definitions[key] as Map<String, dynamic>;
-
     // Skip primitives, generate Dart code for the class otherwise
-    if (!_isPrimitiveType(classDefinition)) {
-      final String dartClass = _generateDartClass(key, classDefinition);
-
-      // Extract type directory (resourceType or other)
-      final String typeDirectory = determineTypeDirectory(key);
-
-      // Add to the buffer of that type group
-      groupedClasses.putIfAbsent(typeDirectory, () => StringBuffer());
-      groupedClasses[typeDirectory]!.writeln(dartClass);
+    if (typeToGenerate(key)) {
+      final Map<String, dynamic> classDefinition =
+          definitions[key] as Map<String, dynamic>;
+      _generate(key, classDefinition);
     }
   }
-
-  // Write grouped classes to their respective files with imports at the top
-  for (final String typeDirectory in groupedClasses.keys) {
-    final String outputPath =
-        '../lib/src/fhir/$typeDirectory/${typeDirectory.toLowerCase()}.dart';
-
-    // Ensure directory exists
-    final File outputFile = File(outputPath);
-    outputFile.createSync(recursive: true);
-
-    // Add imports at the top of the file
-    final StringBuffer fileContent = StringBuffer();
-    fileContent.writeln("import 'package:data_class/data_class.dart';");
-    fileContent.writeln("import 'package:json/json.dart';\n");
-    fileContent.writeln("import '../../../fhir_r4.dart';\n");
-
-    // Add the class definitions
-    fileContent.writeln(groupedClasses[typeDirectory]!.toString());
-
-    // Write the classes and imports to the file
-    outputFile.writeAsStringSync(fileContent.toString());
-  }
 }
 
-// Function to determine which directory the class belongs to
-String determineTypeDirectory(String className) {
-  if (resourceTypesAsStrings.contains(className)) {
-    return 'resource_types';
-  }
+void _generate(String key, Map<String, dynamic> classDefinition) {
+  final String dartClass = _generateDartClass(key, classDefinition);
 
-  final String dartType = _mapToDartType(className);
-  if (allTypes.containsKey(dartType)) {
-    return allTypes[dartType]!;
-  }
+  // Determine the type directory (resourceType or other)
+  final String typeDirectory =
+      putInResourceDirectory(key) ? 'resource_types' : 'data_types';
 
-  // Default to 'general_types' if type is not mapped
-  return 'general_types';
+  // Write each class to its respective file
+  final String outputPath =
+      '../lib/src/fhir/$typeDirectory/${_toLowerCamelCase(key)}.dart';
+
+  // Ensure the directory exists
+  final File outputFile = File(outputPath);
+  outputFile.createSync(recursive: true);
+
+  // Add imports at the top of the file
+  final StringBuffer fileContent = StringBuffer();
+  fileContent.writeln("import 'package:data_class/data_class.dart';");
+  fileContent.writeln("import 'package:json/json.dart';\n");
+  fileContent.writeln("import '../../../fhir_r4.dart';\n");
+
+  // Add the class definition
+  fileContent.writeln(dartClass);
+
+  // Write the class and imports to the file
+  outputFile.writeAsStringSync(fileContent.toString());
 }
 
-// Helper function to check if a class is a primitive type
-bool _isPrimitiveType(Map<String, dynamic> classDefinition) {
-  final List<String> primitiveTypes = <String>[
-    'string',
-    'boolean',
-    'integer',
-    'number'
-  ];
-  final String? type = classDefinition['type'] as String?;
-  return primitiveTypes.contains(type);
-}
-
-// Helper function to convert snake_case to UpperCamelCase
-String _toUpperCamelCase(String text) {
-  return text
-      .split('_')
-      .map((String str) => str[0].toUpperCase() + str.substring(1))
-      .join();
+// Function to convert camelCase or snake_case to lowercase (for file names)
+String _toLowerCamelCase(String text) {
+  final String camelCaseText = _toCamelCase(text);
+  return camelCaseText[0].toLowerCase() + camelCaseText.substring(1);
 }
 
 // Function to generate Dart class from schema definition
@@ -115,7 +77,10 @@ String _generateDartClass(
   final StringBuffer buffer = StringBuffer();
 
   // Convert className to UpperCamelCase
-  className = _toUpperCamelCase(className);
+  className = className
+      .split('_')
+      .map((String str) => str[0].toUpperCase() + str.substring(1))
+      .join();
 
   // Class declaration with @Data() and @JsonCodable() annotations
   buffer.writeln('@Data()');
@@ -145,14 +110,6 @@ String _generateDartClass(
       }
     }
   });
-
-  // Constructor
-  // buffer.writeln('  const ${_mapToDartType(className)}({');
-  // properties?.forEach((String field, dynamic details) {
-  //   final String camelCaseField = toCamelCase(field);
-  //   buffer.writeln('    required this.$camelCaseField,');
-  // });
-  // buffer.writeln('  });');
 
   // Close class
   buffer.writeln('}');
@@ -252,18 +209,22 @@ Future<void> _extractFilesToDisk() async {
 
 // Generate a single `export.dart` file
 Future<void> _generateExportFile() async {
-  final Directory generatedDir = Directory('../lib/src/fhir/generated');
-  final List<FileSystemEntity> files = generatedDir.listSync();
+  for (final String type in <String>['data_types', 'resource_types']) {
+    final Directory generatedDir = Directory('../lib/src/fhir/$type');
+    final List<FileSystemEntity> files = generatedDir.listSync();
 
-  final StringBuffer exportBuffer = StringBuffer();
+    final StringBuffer exportBuffer = StringBuffer();
 
-  for (final FileSystemEntity file in files) {
-    if (file is File && file.path.endsWith('.dart')) {
-      final String fileName = file.path.split('/').last;
-      exportBuffer.writeln("export '$fileName';");
+    for (final FileSystemEntity file in files) {
+      if (file is File &&
+          file.path.endsWith('.dart') &&
+          !file.path.endsWith('$type.dart')) {
+        final String fileName = file.path.split('/').last;
+        exportBuffer.writeln("export '$fileName';");
+      }
     }
-  }
 
-  final File exportFile = File('../lib/src/fhir/generated/export.dart');
-  await exportFile.writeAsString(exportBuffer.toString());
+    final File exportFile = File('../lib/src/fhir/$type/$type.dart');
+    await exportFile.writeAsString(exportBuffer.toString());
+  }
 }

@@ -28,7 +28,7 @@ abstract class BackboneType extends DataType {
   /// Retrieves all modifier extensions by URL
   List<FhirExtension> getModifierExtensionsByUrl(String url) {
     return modifierExtension
-        .where((FhirExtension ext) => ext.url == url)
+        .where((FhirExtension ext) => ext.url?.equals(url) ?? false)
         .toList();
   }
 
@@ -39,7 +39,8 @@ abstract class BackboneType extends DataType {
 
   /// Removes modifier extensions by URL
   void removeModifierExtension(String url) {
-    modifierExtension.removeWhere((FhirExtension ext) => ext.url == url);
+    modifierExtension
+        .removeWhere((FhirExtension ext) => ext.url?.equals(url) ?? false);
   }
 
   @override
