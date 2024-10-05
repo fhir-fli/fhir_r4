@@ -165,6 +165,9 @@ bool isResourceType(String fileName) => <String>[
       'valueset',
       'verificationresult',
       'visionprescription',
+      'fhirlist',
+      'fhirgroup',
+      'fhirendpoint',
     ].contains(fileName.split('_').first.toLowerCase());
 
 String editIfReserved(String name) => const <String>[
@@ -264,6 +267,8 @@ String changeName(String typeName) =>
       'Element': 'PrimitiveElement',
       'Extension': 'FhirExtension',
       'ResourceList': 'Resource',
+      'Group': 'FhirGroup',
+      'Endpoint': 'FhirEndpoint',
     }[typeName] ??
     typeName;
 

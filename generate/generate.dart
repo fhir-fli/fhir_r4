@@ -6,9 +6,9 @@ import 'package:archive/archive_io.dart';
 import 'types.dart';
 
 Future<void> main() async {
-  await _extractFilesToDisk();
-  await _moveJsonExamples();
-  await _moveNdJsonExamples();
+  // await _extractFilesToDisk();
+  // await _moveJsonExamples();
+  // await _moveNdJsonExamples();
   await _actualFHIRClasses();
   await _generateExportFile(); // Generate export.dart after generating class files
 }
@@ -26,76 +26,61 @@ Future<void> _actualFHIRClasses() async {
   final Map<String, dynamic> definitions =
       schema['definitions'] as Map<String, dynamic>;
 
-  // Keep track of which classes have already been generated
-  final Set<String> generatedClasses = <String>{};
+  // Group classes by their type and whether they share a common prefix
+  final Map<String, List<String>> groupedClasses = <String, List<String>>{};
 
-  // Iterate over all types and generate Dart classes
   for (final String key in definitions.keys) {
-    // Skip primitives, generate Dart code for the class otherwise
-    if (typeToGenerate(key) && !generatedClasses.contains(key)) {
-      // If the class has subclasses, generate them together
-      final List<String> relatedClasses = _findRelatedClasses(key, definitions);
-      for (final String relatedClass in relatedClasses) {
-        final Map<String, dynamic> relatedClassDef =
-            definitions[relatedClass] as Map<String, dynamic>;
-        _generate(relatedClass, relatedClassDef, key);
-        generatedClasses.add(relatedClass);
-      }
+    if (typeToGenerate(key)) {
+      final String prefix = _getPrefix(key);
+      groupedClasses.putIfAbsent(prefix, () => <String>[]).add(key);
     }
+  }
+
+  for (final String prefix in groupedClasses.keys) {
+    final List<String> classKeys = groupedClasses[prefix] ?? <String>[];
+    _generateClasses(prefix, classKeys, definitions);
   }
 }
 
-List<String> _findRelatedClasses(
-    String className, Map<String, dynamic> definitions) {
-  // Find all classes that refer to this class (subclasses)
-  final List<String> relatedClasses = <String>[className];
-  for (final String key in definitions.keys) {
+// Function to get prefix (e.g., for 'data_requirement_sort' -> 'data_requirement')
+String _getPrefix(String key) {
+  return key.split('_').first;
+}
+
+// Function to generate all classes in the same file
+void _generateClasses(
+    String prefix, List<String> classKeys, Map<String, dynamic> definitions) {
+  final StringBuffer buffer = StringBuffer();
+
+  // Iterate through each class and generate its code
+  for (final String classKey in classKeys) {
     final Map<String, dynamic> classDefinition =
-        definitions[key] as Map<String, dynamic>;
-
-    // Check if this class refers to the parent class (indicating it's a subclass)
-    if (classDefinition.containsKey('allOf')) {
-      final List<dynamic> allOf = classDefinition['allOf'] as List<dynamic>;
-      for (final dynamic item in allOf) {
-        if (item is Map<String, dynamic> &&
-            item.containsKey(r'$ref') &&
-            (item[r'$ref'] as String).endsWith('/$className')) {
-          relatedClasses.add(key); // Add the subclass
-        }
-      }
-    }
+        definitions[classKey] as Map<String, dynamic>;
+    buffer.writeln(_generateDartClass(classKey, classDefinition));
   }
-  return relatedClasses;
-}
 
-void _generate(
-    String key, Map<String, dynamic> classDefinition, String parent) {
-  final String dartClass = _generateDartClass(key, classDefinition);
-
-  // Determine the type directory (resourceType or other)
+  // Determine type directory (resourceType or dataType)
   final String typeDirectory =
-      isResourceType(parent) ? 'resource_types' : 'data_types';
+      isResourceType(prefix) ? 'resource_types' : 'data_types';
 
-  // Write each class to its respective file (parent and subclass together)
+  // Write to the same file with the prefix
   final String outputPath =
-      '../lib/src/fhir/$typeDirectory/${parent.toLowerCase()}.dart';
+      '../lib/src/fhir/$typeDirectory/${prefix.toLowerCase()}.dart';
 
-  // Ensure the directory exists
+  // Ensure directory exists
   final File outputFile = File(outputPath);
   outputFile.createSync(recursive: true);
 
-  // Add imports at the top of the file if it’s a new file
-  final StringBuffer fileContent = outputFile.existsSync()
-      ? StringBuffer(outputFile.readAsStringSync())
-      : StringBuffer()
-    ..writeln("import 'package:data_class/data_class.dart';")
-    ..writeln("import 'package:json/json.dart';\n")
-    ..writeln("import '../../../fhir_r4.dart';\n");
+  // Add imports at the top of the file
+  final StringBuffer fileContent = StringBuffer();
+  fileContent.writeln("import 'package:data_class/data_class.dart';");
+  fileContent.writeln("import 'package:json/json.dart';\n");
+  fileContent.writeln("import '../../../fhir_r4.dart';\n");
 
-  // Add the class definition
-  fileContent.writeln(dartClass);
+  // Add the class definitions
+  fileContent.writeln(buffer.toString());
 
-  // Write the class and imports to the file
+  // Write the classes and imports to the file
   outputFile.writeAsStringSync(fileContent.toString());
 }
 
@@ -115,7 +100,7 @@ String _generateDartClass(
   buffer.writeln('@JsonCodable()');
   buffer.writeln('class ${fhirToDartType(className)} {');
 
-  // Fields
+// Fields
   final Map<String, dynamic>? properties =
       classDefinition['properties'] as Map<String, dynamic>?;
   properties?.forEach((String field, dynamic details) {
@@ -123,24 +108,18 @@ String _generateDartClass(
       final String type = mapType(details);
       final String camelCaseField = _toCamelCase(field);
       if (camelCaseField == 'resourceType') {
-        buffer.writeln('  final R4ResourceType $camelCaseField;');
+        buffer.writeln(
+            '  final R4ResourceType resourceType = R4ResourceType.$className;');
       } else if (camelCaseField == 'id') {
-        buffer.writeln('  final FhirId $camelCaseField;');
+        buffer.writeln('  final FhirId id;');
       } else {
-        buffer.writeln('  final $type $camelCaseField;');
-      }
-    } else {
-      final String camelCaseField = _toCamelCase(field);
-      if (camelCaseField == 'resourceType') {
-        buffer.writeln('  final R4ResourceType $camelCaseField;');
-      } else {
-        buffer.writeln('  final dynamic $camelCaseField;');
+        buffer.writeln('  final $type ${editIfReserved(camelCaseField)};');
       }
     }
   });
 
   // Close class
-  buffer.writeln('}');
+  buffer.writeln('}\n');
 
   return buffer.toString();
 }
@@ -151,15 +130,14 @@ String _toCamelCase(String text) {
     return '${text.substring(1)}Element';
   }
   final List<String> words = text.split('_');
-  final String camelCaseWord = words.first +
+  return words.first +
       words
           .skip(1)
           .map((String word) => word[0].toUpperCase() + word.substring(1))
           .join();
-
-  return editIfReserved(camelCaseWord);
 }
 
+// Mapping and utilities (same as before)
 String mapType(Map<String, dynamic> details) {
   if (details.containsKey(r'$ref')) {
     final String ref = details[r'$ref'] as String;

@@ -7,25 +7,35 @@ import '../../../fhir_r4.dart';
 
 /// [Resource] Base definition for all FHIR elements.
 abstract class Resource extends FhirBase {
-  R4ResourceType? get resourceType;
-  String? get id;
-  FhirMeta? get meta;
-  FhirUri? get implicitRules;
-  PrimitiveElement? get implicitRulesElement;
-  FhirCode? get language;
-  PrimitiveElement? get languageElement;
+  Resource({
+    this.resourceType,
+    this.id,
+    this.meta,
+    this.implicitRules,
+    this.implicitRulesElement,
+    this.language,
+    this.languageElement,
+    super.extensions,
+  }) : super(fhirType: 'Resource');
+
+  R4ResourceType? resourceType;
+  FhirId? id;
+  FhirMeta? meta;
+  FhirUri? implicitRules;
+  PrimitiveElement? implicitRulesElement;
+  FhirCode? language;
+  PrimitiveElement? languageElement;
 
   /// Acts like a constructor, returns a [Resource], accepts a
   /// [Map<String, Dynamic>] as an argument
-  static Resource fromJson(Map<String, dynamic> json) =>
-      _resourceFromJson(json);
+  static Resource fromJson(Map<String, dynamic> json) => resourceFromJson(json);
 
   /// Acts like a constructor, returns a [Resource], accepts a
   /// [String] as an argument, mostly because I got tired of typing it out
   static Resource fromJsonString(String source) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
-      return _resourceFromJson(json);
+      return resourceFromJson(json);
     } else {
       throw FormatException('FormatException:\nYou passed $json\n'
           'This does not properly decode to a Map<String,dynamic>.');
