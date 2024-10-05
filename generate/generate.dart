@@ -6,14 +6,14 @@ import 'package:archive/archive_io.dart';
 import 'types.dart';
 
 Future<void> main() async {
-  await extractFilesToDisk();
-  await moveJsonExamples();
-  await moveNdJsonExamples();
-  await actualFHIRClasses();
-  await generateExportFile(); // Generate export.dart after generating class files
+  await _extractFilesToDisk();
+  await _moveJsonExamples();
+  await _moveNdJsonExamples();
+  await _actualFHIRClasses();
+  await _generateExportFile(); // Generate export.dart after generating class files
 }
 
-Future<void> actualFHIRClasses() async {
+Future<void> _actualFHIRClasses() async {
   await extractFileToDisk('definitions.json/fhir.schema.json.zip', '.');
 
   while (!File('fhir.schema.json').existsSync()) {}
@@ -26,7 +26,7 @@ Future<void> actualFHIRClasses() async {
   final Map<String, dynamic> definitions =
       schema['definitions'] as Map<String, dynamic>;
 
-  // Group classes by prefix
+  // Group classes by their types
   final Map<String, StringBuffer> groupedClasses = <String, StringBuffer>{};
 
   // Iterate over all types and generate Dart classes
@@ -39,22 +39,22 @@ Future<void> actualFHIRClasses() async {
         definitions[key] as Map<String, dynamic>;
 
     // Skip primitives, generate Dart code for the class otherwise
-    if (!isPrimitiveType(classDefinition)) {
-      final String dartClass = generateDartClass(key, classDefinition);
+    if (!_isPrimitiveType(classDefinition)) {
+      final String dartClass = _generateDartClass(key, classDefinition);
 
-      // Extract prefix (everything before the first uppercase letter after the first word)
-      final String prefix = extractPrefix(key);
+      // Extract type directory (resourceType or other)
+      final String typeDirectory = determineTypeDirectory(key);
 
-      // Add to the buffer of that prefix group
-      groupedClasses.putIfAbsent(prefix, () => StringBuffer());
-      groupedClasses[prefix]!.writeln(dartClass);
+      // Add to the buffer of that type group
+      groupedClasses.putIfAbsent(typeDirectory, () => StringBuffer());
+      groupedClasses[typeDirectory]!.writeln(dartClass);
     }
   }
 
   // Write grouped classes to their respective files with imports at the top
-  for (final String prefix in groupedClasses.keys) {
+  for (final String typeDirectory in groupedClasses.keys) {
     final String outputPath =
-        '../lib/src/fhir/generated/${prefix.toLowerCase()}.dart';
+        '../lib/src/fhir/$typeDirectory/${typeDirectory.toLowerCase()}.dart';
 
     // Ensure directory exists
     final File outputFile = File(outputPath);
@@ -63,29 +63,34 @@ Future<void> actualFHIRClasses() async {
     // Add imports at the top of the file
     final StringBuffer fileContent = StringBuffer();
     fileContent.writeln("import 'package:data_class/data_class.dart';");
-    fileContent
-        .writeln("import 'package:fhir_primitives/fhir_primitives.dart';");
     fileContent.writeln("import 'package:json/json.dart';\n");
-
-    fileContent.writeln("import 'export.dart';\n");
+    fileContent.writeln("import '../../../fhir_r4.dart';\n");
 
     // Add the class definitions
-    fileContent.writeln(groupedClasses[prefix]!.toString());
+    fileContent.writeln(groupedClasses[typeDirectory]!.toString());
 
     // Write the classes and imports to the file
     outputFile.writeAsStringSync(fileContent.toString());
   }
 }
 
-// Function to extract the prefix from the class name (e.g., CapabilityStatement)
-String extractPrefix(String className) {
-  final RegExp regex = RegExp(r'^[A-Z][a-z]*');
-  final RegExpMatch? match = regex.firstMatch(className);
-  return match?.group(0) ?? className;
+// Function to determine which directory the class belongs to
+String determineTypeDirectory(String className) {
+  if (resourceTypesAsStrings.contains(className)) {
+    return 'resource_types';
+  }
+
+  final String dartType = _mapToDartType(className);
+  if (allTypes.containsKey(dartType)) {
+    return allTypes[dartType]!;
+  }
+
+  // Default to 'general_types' if type is not mapped
+  return 'general_types';
 }
 
 // Helper function to check if a class is a primitive type
-bool isPrimitiveType(Map<String, dynamic> classDefinition) {
+bool _isPrimitiveType(Map<String, dynamic> classDefinition) {
   final List<String> primitiveTypes = <String>[
     'string',
     'boolean',
@@ -97,7 +102,7 @@ bool isPrimitiveType(Map<String, dynamic> classDefinition) {
 }
 
 // Helper function to convert snake_case to UpperCamelCase
-String toUpperCamelCase(String text) {
+String _toUpperCamelCase(String text) {
   return text
       .split('_')
       .map((String str) => str[0].toUpperCase() + str.substring(1))
@@ -105,12 +110,12 @@ String toUpperCamelCase(String text) {
 }
 
 // Function to generate Dart class from schema definition
-String generateDartClass(
+String _generateDartClass(
     String className, Map<String, dynamic> classDefinition) {
   final StringBuffer buffer = StringBuffer();
 
   // Convert className to UpperCamelCase
-  className = toUpperCamelCase(className);
+  className = _toUpperCamelCase(className);
 
   // Class declaration with @Data() and @JsonCodable() annotations
   buffer.writeln('@Data()');
@@ -123,11 +128,21 @@ String generateDartClass(
   properties?.forEach((String field, dynamic details) {
     if (details is Map<String, dynamic>) {
       final String type = mapType(details);
-      final String camelCaseField = toCamelCase(field);
-      buffer.writeln('  final $type $camelCaseField;');
+      final String camelCaseField = _toCamelCase(field);
+      if (camelCaseField == 'resourceType') {
+        buffer.writeln('  final R4ResourceType $camelCaseField;');
+      } else if (camelCaseField == 'id') {
+        buffer.writeln('  final FhirId $camelCaseField;');
+      } else {
+        buffer.writeln('  final $type $camelCaseField;');
+      }
     } else {
-      final String camelCaseField = toCamelCase(field);
-      buffer.writeln('  final dynamic $camelCaseField;');
+      final String camelCaseField = _toCamelCase(field);
+      if (camelCaseField == 'resourceType') {
+        buffer.writeln('  final R4ResourceType $camelCaseField;');
+      } else {
+        buffer.writeln('  final dynamic $camelCaseField;');
+      }
     }
   });
 
@@ -146,7 +161,7 @@ String generateDartClass(
 }
 
 // Function to convert snake_case to camelCase for fields
-String toCamelCase(String text) {
+String _toCamelCase(String text) {
   if (text[0] == '_') {
     return '${text.substring(1)}Element';
   }
@@ -195,7 +210,7 @@ String _mapToDartType(String typeName) {
   return typeNames[typeName] ?? typeName;
 }
 
-Future<void> moveNdJsonExamples() async {
+Future<void> _moveNdJsonExamples() async {
   final Directory examplesJsonDirectory = Directory('examples-ndjson');
   final List<FileSystemEntity> examplesJson = examplesJsonDirectory.listSync();
   for (final FileSystemEntity file in examplesJson) {
@@ -218,7 +233,7 @@ Future<void> moveNdJsonExamples() async {
   }
 }
 
-Future<void> moveJsonExamples() async {
+Future<void> _moveJsonExamples() async {
   final Directory examplesJsonDirectory = Directory('examples-json');
   final List<FileSystemEntity> examplesJson = examplesJsonDirectory.listSync();
   for (final FileSystemEntity file in examplesJson) {
@@ -229,21 +244,14 @@ Future<void> moveJsonExamples() async {
   }
 }
 
-Future<void> extractFilesToDisk() async {
+Future<void> _extractFilesToDisk() async {
   await extractFileToDisk('definitions.json.zip', '.');
   await extractFileToDisk('examples-json.zip', '.');
   await extractFileToDisk('examples-ndjson.zip', '.');
 }
 
-// Extracts files from a zip archive
-Future<void> extractFileToDisk(String path, String destination) async {
-  final InputFileStream inputStream = InputFileStream(path);
-  final Archive archive = ZipDecoder().decodeBuffer(inputStream);
-  extractArchiveToDisk(archive, destination);
-}
-
 // Generate a single `export.dart` file
-Future<void> generateExportFile() async {
+Future<void> _generateExportFile() async {
   final Directory generatedDir = Directory('../lib/src/fhir/generated');
   final List<FileSystemEntity> files = generatedDir.listSync();
 
