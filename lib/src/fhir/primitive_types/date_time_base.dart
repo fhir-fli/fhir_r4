@@ -536,6 +536,28 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     return fromMathUnits<T>(dateTime, fhirDateTimeBase);
   }
 
+  /// Returns the difference between this and another FhirDateTimeBase.
+  Duration difference(dynamic other) {
+    if (!(other is FhirDateTimeBase || other is DateTime)) {
+      throw ArgumentError(
+          'The difference method can only be called with another FhirDateTimeBase or a Dart DateTime');
+    }
+    final DateTime thisDateTime = DateTime(
+        year, month, day, hour, minute, second, millisecond, microsecond);
+    final FhirDateTimeBase dateTimeBase =
+        other is DateTime ? FhirDateTime(other) : other as FhirDateTimeBase;
+    final DateTime otherDateTime = DateTime(
+        dateTimeBase.year,
+        dateTimeBase.month,
+        dateTimeBase.day,
+        dateTimeBase.hour,
+        dateTimeBase.minute,
+        dateTimeBase.second,
+        dateTimeBase.millisecond,
+        dateTimeBase.microsecond);
+    return thisDateTime.difference(otherDateTime);
+  }
+
   @override
   bool equals(Object other) => _compare(Comparator.eq, other) ?? false;
 

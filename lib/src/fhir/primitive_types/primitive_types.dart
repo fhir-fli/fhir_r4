@@ -19,6 +19,7 @@ export 'oid.dart';
 export 'positive_int.dart';
 export 'primitive_type.dart';
 export 'primitive_type_exceptions.dart';
+export 'string.dart';
 export 'time.dart';
 export 'unsigned_int.dart';
 export 'uri.dart';
