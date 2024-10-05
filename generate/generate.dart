@@ -46,7 +46,7 @@ void _generate(String key, Map<String, dynamic> classDefinition) {
 
   // Write each class to its respective file
   final String outputPath =
-      '../lib/src/fhir/$typeDirectory/${_toLowerCamelCase(key)}.dart';
+      '../lib/src/fhir/$typeDirectory/${key.toLowerCase()}.dart';
 
   // Ensure the directory exists
   final File outputFile = File(outputPath);
@@ -65,12 +65,6 @@ void _generate(String key, Map<String, dynamic> classDefinition) {
   outputFile.writeAsStringSync(fileContent.toString());
 }
 
-// Function to convert camelCase or snake_case to lowercase (for file names)
-String _toLowerCamelCase(String text) {
-  final String camelCaseText = _toCamelCase(text);
-  return camelCaseText[0].toLowerCase() + camelCaseText.substring(1);
-}
-
 // Function to generate Dart class from schema definition
 String _generateDartClass(
     String className, Map<String, dynamic> classDefinition) {
@@ -85,7 +79,7 @@ String _generateDartClass(
   // Class declaration with @Data() and @JsonCodable() annotations
   buffer.writeln('@Data()');
   buffer.writeln('@JsonCodable()');
-  buffer.writeln('class ${_mapToDartType(className)} {');
+  buffer.writeln('class ${fhirToDartType(className)} {');
 
   // Fields
   final Map<String, dynamic>? properties =
@@ -139,7 +133,7 @@ String mapType(Map<String, dynamic> details) {
   } else if (details['type'] == 'array') {
     final Map<String, dynamic> items = details['items'] as Map<String, dynamic>;
     final String itemType = mapType(items);
-    return 'List<${_mapToDartType(itemType)}>';
+    return 'List<${fhirToDartType(itemType)}>';
   } else if (details['type'] == 'string') {
     return 'String';
   } else if (details['type'] == 'boolean') {
@@ -159,12 +153,7 @@ String mapType(Map<String, dynamic> details) {
 
 String _extractTypeFromRef(String ref) {
   final String typeName = ref.split('/').last;
-  return _mapToDartType(typeName);
-}
-
-String _mapToDartType(String typeName) {
-  typeName = typeName.replaceAll('_', '');
-  return typeNames[typeName] ?? typeName;
+  return fhirToDartType(typeName);
 }
 
 Future<void> _moveNdJsonExamples() async {
