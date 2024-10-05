@@ -1,9 +1,7 @@
 // ignore_for_file: annotate_overrides, overridden_fields, prefer_if_elements_to_conditional_expressions
 
-// Package imports:
 import 'package:ucum/ucum.dart';
 
-// Project imports:
 import '../../../../fhir_r4.dart';
 
 /// http://hl7.org/fhirpath/#iifcriterion-expression-true-result-collection-otherwise-result-collection-collection

@@ -1,18 +1,10 @@
-//ignore_for_file: always_specify_types
-
-// ignore_for_file: invalid_annotation_target
-// Dart imports:
 import 'dart:convert';
 
-// Package imports:
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:yaml/yaml.dart';
 
-// Project imports:
 import '../../../fhir_r4.dart';
 
 /// [DomainResource] Base definition for all FHIR elements.
-@JsonSerializable()
 abstract class DomainResource extends Resource {
   Narrative? get text;
   List<Resource>? get contained;
@@ -22,7 +14,7 @@ abstract class DomainResource extends Resource {
   /// Returns a [Map<String, dynamic>] of the [DomainResource]
   @override
   Map<String, dynamic> toJson() {
-    final val = <String, dynamic>{};
+    final Map<String, dynamic> val = <String, dynamic>{};
 
     void writeNotNull(String key, dynamic value) {
       if (value != null) {
@@ -38,10 +30,12 @@ abstract class DomainResource extends Resource {
     writeNotNull('language', language?.toJson());
     writeNotNull('_language', languageElement?.toJson());
     writeNotNull('text', text?.toJson());
-    writeNotNull('contained', contained?.map((e) => e.toJson()).toList());
-    writeNotNull('extension', extension_?.map((e) => e.toJson()).toList());
+    writeNotNull(
+        'contained', contained?.map((Resource e) => e.toJson()).toList());
+    writeNotNull(
+        'extension', extension_?.map((FhirExtension e) => e.toJson()).toList());
     writeNotNull('modifierExtension',
-        modifierExtension?.map((e) => e.toJson()).toList());
+        modifierExtension?.map((FhirExtension e) => e.toJson()).toList());
     return val;
   }
 

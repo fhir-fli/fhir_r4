@@ -1,4 +1,4 @@
-part of 'resource.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 enum R4ResourceType {
   @JsonValue('Account')

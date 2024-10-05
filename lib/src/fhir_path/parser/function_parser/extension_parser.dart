@@ -1,9 +1,7 @@
 // ignore_for_file: avoid_function_literals_in_foreach_calls, avoid_dynamic_calls
 
-// Package imports:
 import 'package:collection/collection.dart';
 
-// Project imports:
 import '../../r4.dart';
 
 class SumParser extends FhirPathParser {

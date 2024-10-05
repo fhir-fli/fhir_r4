@@ -1,9 +1,7 @@
 // ignore_for_file: annotate_overrides, overridden_fields, avoid_dynamic_calls
 
-// Package imports:
 import 'package:collection/collection.dart';
 
-// Project imports:
 import '../../r4.dart';
 
 /// Returns true if the input collection is empty ({ }) and false otherwise.

@@ -1,7 +1,7 @@
-part of 'resource.dart';
+import '../../../fhir_r4.dart';
 
 /// Creates a new [id] for the Resources that's passed
-Resource _newId(Resource resource) {
+Resource newId(Resource resource) {
   switch (resource.resourceType) {
     case R4ResourceType.Account:
       return (resource as Account).copyWith(id: generateNewUuidString());

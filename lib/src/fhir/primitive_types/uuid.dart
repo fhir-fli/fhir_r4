@@ -27,9 +27,6 @@ class FhirUuid extends PrimitiveType<UuidValue> {
           : throw YamlFormatException<FhirUuid>(
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
 
-  @override
-  String get fhirType => 'uuid';
-
   final UuidValue _valueUuid;
   final bool _isValid;
 

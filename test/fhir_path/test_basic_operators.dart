@@ -5,7 +5,6 @@
 // ignore_for_file: always_specify_types, inference_failure_on_collection_literal
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
-// Package imports:
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 

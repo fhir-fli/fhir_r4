@@ -69,7 +69,7 @@ class FhirBase64Binary extends PrimitiveType<String> {
 
   /// Sets a property value.
   @override
-  FhirBase64Binary setElement(String name, dynamic value) {
-    return FhirBase64Binary(value, element?.setProperty(name, value));
+  FhirBase64Binary setElement(String name, dynamic elementValue) {
+    return FhirBase64Binary(value, element?.setProperty(name, elementValue));
   }
 }

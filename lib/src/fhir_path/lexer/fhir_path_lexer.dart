@@ -1,10 +1,8 @@
 // ignore_for_file: avoid_dynamic_calls
 
-// Package imports:
 import 'package:collection/collection.dart';
 import 'package:petitparser/petitparser.dart';
 
-// Project imports:
 import '../../../fhir_r4.dart';
 
 /// Primary lexing function for this library

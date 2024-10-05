@@ -1,4 +1,4 @@
-part of 'resource.dart';
+import '../../../fhir_r4.dart';
 
 /// Acts like a constructor, returns a [Resource], accepts a
 /// [Map<String, Dynamic>] as an argument

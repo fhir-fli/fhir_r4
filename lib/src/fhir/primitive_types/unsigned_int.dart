@@ -1,27 +1,28 @@
 import 'dart:convert';
-
-import 'package:meta/meta.dart';
 import 'package:yaml/yaml.dart';
+import '../../../fhir_r4.dart';
 
-import 'number.dart';
-import 'primitive_type_exceptions.dart';
-
-@immutable
 class FhirUnsignedInt extends FhirNumber {
-  FhirUnsignedInt._(super.valueString, super.valueNumber, super.isValid);
+  FhirUnsignedInt._(super.valueString, super.valueNumber, super.isValid,
+      {super.element})
+      : super(fhirType: 'unsignedInt');
 
-  factory FhirUnsignedInt(dynamic inValue) {
+  factory FhirUnsignedInt(dynamic inValue, {Element? element}) {
     if (inValue is int) {
       return inValue >= 0
-          ? FhirUnsignedInt._(inValue.toString(), inValue, true)
-          : FhirUnsignedInt._(inValue.toString(), null, false);
+          ? FhirUnsignedInt._(inValue.toString(), inValue, true,
+              element: element)
+          : FhirUnsignedInt._(inValue.toString(), null, false,
+              element: element);
     } else if (inValue is num) {
       final int? tempUnsignedInt = int.tryParse(inValue.toString());
       return tempUnsignedInt == null
-          ? FhirUnsignedInt._(inValue.toString(), null, false)
+          ? FhirUnsignedInt._(inValue.toString(), null, false, element: element)
           : tempUnsignedInt >= 0
-              ? FhirUnsignedInt._(inValue.toString(), tempUnsignedInt, true)
-              : FhirUnsignedInt._(inValue.toString(), null, false);
+              ? FhirUnsignedInt._(inValue.toString(), tempUnsignedInt, true,
+                  element: element)
+              : FhirUnsignedInt._(inValue.toString(), null, false,
+                  element: element);
     }
     throw CannotBeConstructed<FhirUnsignedInt>(
         'UnsignedInt cannot be constructed from $inValue.');
@@ -37,21 +38,16 @@ class FhirUnsignedInt extends FhirNumber {
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
 
   @override
-  String get fhirType => 'unsignedInt';
-
-  @override
   int? get value => valueNumber as int?;
 
   @override
-  int compareTo(FhirNumber other) {
-    if (other.isValid && isValid) {
-      return valueNumber!.compareTo(other.valueNumber!);
-    } else {
-      throw InvalidTypes<FhirNumber>('One of the values is not valid or null\n'
-          'This number is: ${toString()}, compared number is $other');
-    }
-  }
+  FhirUnsignedInt clone() =>
+      FhirUnsignedInt._(valueString, valueNumber, isValid,
+          element: element?.clone() as Element?);
 
   @override
-  FhirUnsignedInt clone() => FhirUnsignedInt.fromJson(toJson());
+  FhirUnsignedInt setElement(String name, dynamic elementValue) {
+    return FhirUnsignedInt(value,
+        element: element?.setProperty(name, elementValue));
+  }
 }

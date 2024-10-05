@@ -1,9 +1,7 @@
 // ignore_for_file: annotate_overrides, overridden_fields, noop_primitive_operations, unnecessary_this
 
-// Package imports:
 import 'package:ucum/ucum.dart';
 
-// Project imports:
 import '../../../../fhir_r4.dart';
 
 class EqualsParser extends OperatorParser {

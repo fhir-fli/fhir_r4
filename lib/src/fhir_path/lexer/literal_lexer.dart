@@ -3,11 +3,9 @@
 // Dart imports:
 import 'dart:convert';
 
-// Package imports:
 import 'package:petitparser/petitparser.dart';
 import 'package:ucum/ucum.dart';
 
-// Project imports:
 import '../../../fhir_r4.dart';
 
 /******************************************************************************

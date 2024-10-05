@@ -1,6 +1,5 @@
 // ignore_for_file: overridden_fields, annotate_overrides
 
-// Project imports:
 import '../../r4.dart';
 
 class AndStringParser extends OperatorParser {

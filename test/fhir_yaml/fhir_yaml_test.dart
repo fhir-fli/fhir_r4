@@ -3,12 +3,9 @@
 // Dart imports:
 import 'dart:convert';
 
-// Package imports:
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 import 'package:yaml/yaml.dart';
-
-// Project imports:
 
 /// From Package: https://github.com/alexei-sintotski/json2yaml
 /// https://github.com/alexei-sintotski/json2yaml/blob/master/test/json2yaml_test.dart

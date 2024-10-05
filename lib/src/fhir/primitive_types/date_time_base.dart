@@ -1,11 +1,8 @@
 import 'dart:convert';
 
-import 'package:meta/meta.dart';
+import '../../../fhir_r4.dart';
 
-import '../fhir_primitives.dart';
-
-@immutable
-abstract class FhirDateTimeBase extends PrimitiveType
+abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     implements Comparable<FhirDateTimeBase> {
   @override
   final bool isValid;
@@ -38,36 +35,36 @@ abstract class FhirDateTimeBase extends PrimitiveType
     required this.microsecond,
     required this.timeZoneOffset,
     required this.isUtc,
+    super.fhirType = 'dateTime',
+    super.element,
   });
-
-  @override
-  int get hashCode => input.toString().hashCode;
 
   @override
   DateTime get value => valueDateTime;
 
   DateTime get valueDateTime => precision.dateTimeFromMap(toMap());
 
-  String get valueString => _string;
+  String get valueString => _formattedString;
 
   @override
-  String toString() => _string;
+  String toString() => _formattedString;
 
-  String get _string {
-    return this is FhirInstant
-        ? precision.isValidInstantPrecision
-            ? precision.dateTimeMapToString<FhirInstant>(toMap())
-            : fullInstantPrecision.dateTimeMapToString<FhirInstant>(toMap())
-        : this is FhirDateTime
-            ? precision.isValidFhirDateTimePrecision
-                ? precision.dateTimeMapToString<FhirDateTime>(toMap())
-                : fullDateTimePrecision
-                    .dateTimeMapToString<FhirDateTime>(toMap())
-            : this is FhirDate
-                ? precision.isValidDatePrecision
-                    ? precision.dateTimeMapToString<FhirDate>(toMap())
-                    : fullDatePrecision.dateTimeMapToString<FhirDate>(toMap())
-                : precision.dateTimeMapToString<FhirDateTimeBase>(toMap());
+  String get _formattedString {
+    if (this is FhirInstant) {
+      return precision.isValidInstantPrecision
+          ? precision.dateTimeMapToString<FhirInstant>(toMap())
+          : fullInstantPrecision.dateTimeMapToString<FhirInstant>(toMap());
+    } else if (this is FhirDateTime) {
+      return precision.isValidFhirDateTimePrecision
+          ? precision.dateTimeMapToString<FhirDateTime>(toMap())
+          : fullDateTimePrecision.dateTimeMapToString<FhirDateTime>(toMap());
+    } else if (this is FhirDate) {
+      return precision.isValidDatePrecision
+          ? precision.dateTimeMapToString<FhirDate>(toMap())
+          : fullDatePrecision.dateTimeMapToString<FhirDate>(toMap());
+    } else {
+      return precision.dateTimeMapToString<FhirDateTimeBase>(toMap());
+    }
   }
 
   String toIso8601String() => valueDateTime.toIso8601String();
@@ -110,12 +107,12 @@ abstract class FhirDateTimeBase extends PrimitiveType
   }
 
   static FhirDateTimeBase _constructor<T>(
-    Map<String, num?>? dateTimeMap,
-    FhirDateTimePrecision? precision,
-    String? exception,
-    dynamic output,
-    bool regexpValid,
-  ) {
+      Map<String, num?>? dateTimeMap,
+      FhirDateTimePrecision? precision,
+      String? exception,
+      dynamic output,
+      bool regexpValid,
+      [Element? element]) {
     return T == FhirInstant
         ? FhirInstant.fromBase(
             isValid: (precision?.isValidInstantPrecision ?? false) &&
@@ -136,6 +133,7 @@ abstract class FhirDateTimeBase extends PrimitiveType
             microsecond: dateTimeMap?['microsecond'] as int? ?? 0,
             timeZoneOffset: dateTimeMap?['timeZoneOffset'] ?? 0,
             isUtc: dateTimeMap?['isUtc'] == 0,
+            element: element,
           )
         : T == FhirDateTime
             ? FhirDateTime.fromBase(
@@ -146,7 +144,7 @@ abstract class FhirDateTimeBase extends PrimitiveType
                 input: output,
                 parseError: exception == null
                     ? null
-                    : PrimitiveTypeFormatException<FhirInstant>(exception),
+                    : PrimitiveTypeFormatException<FhirDateTime>(exception),
                 year: dateTimeMap?['year'] as int? ?? 1,
                 month: dateTimeMap?['month'] as int? ?? 1,
                 day: dateTimeMap?['day'] as int? ?? 1,
@@ -157,6 +155,7 @@ abstract class FhirDateTimeBase extends PrimitiveType
                 microsecond: dateTimeMap?['microsecond'] as int? ?? 0,
                 timeZoneOffset: dateTimeMap?['timeZoneOffset'] ?? 0,
                 isUtc: dateTimeMap?['isUtc'] == 0,
+                element: element,
               )
             : T == FhirDate
                 ? FhirDate.fromBase(
@@ -167,7 +166,7 @@ abstract class FhirDateTimeBase extends PrimitiveType
                     input: output,
                     parseError: exception == null
                         ? null
-                        : PrimitiveTypeFormatException<FhirInstant>(exception),
+                        : PrimitiveTypeFormatException<FhirDate>(exception),
                     year: dateTimeMap?['year'] as int? ?? 1,
                     month: dateTimeMap?['month'] as int? ?? 1,
                     day: dateTimeMap?['day'] as int? ?? 1,
@@ -178,13 +177,14 @@ abstract class FhirDateTimeBase extends PrimitiveType
                     microsecond: dateTimeMap?['microsecond'] as int? ?? 0,
                     timeZoneOffset: dateTimeMap?['timeZoneOffset'] ?? 0,
                     isUtc: dateTimeMap?['isUtc'] == 0,
+                    element: element,
                   )
                 : throw CannotBeConstructed<T>(
                     "$T cannot be constructed from '$output' (unsupported type).");
   }
 
   static FhirDateTimeBase constructor<T>(dynamic inValue,
-      [FhirDateTimePrecision? precision]) {
+      [FhirDateTimePrecision? precision, Element? element]) {
     String? input;
     String? exception;
     Map<String, num?>? dateTimeMap;
@@ -199,9 +199,7 @@ abstract class FhirDateTimeBase extends PrimitiveType
                   ? instantExp
                   : dateExp,
           '');
-      if (replaced.isNotEmpty &&
-          (replaced != 'T' || (T == FhirDate && replaced == 'T')) &&
-          replaced.trim().isNotEmpty) {
+      if (replaced.isNotEmpty && replaced.trim().isNotEmpty) {
         regexpValid = false;
       }
     } else if (inValue is DateTime) {
@@ -234,12 +232,14 @@ abstract class FhirDateTimeBase extends PrimitiveType
     }
 
     return _constructor<T>(
-        dateTimeMap, precision, exception, output ?? inValue, regexpValid);
+      dateTimeMap,
+      precision,
+      exception,
+      output ?? inValue,
+      regexpValid,
+      element,
+    );
   }
-
-  FhirDateTimeBase fromJson<T>(String json,
-          [FhirDateTimePrecision? precision]) =>
-      constructor<T>(json, precision);
 
   static FhirDateTimeBase fromUnits<T>({
     required int year,
@@ -253,6 +253,7 @@ abstract class FhirDateTimeBase extends PrimitiveType
     num? timeZoneOffset,
     required bool isUtc,
     FhirDateTimePrecision? precision,
+    Element? element,
   }) {
     final Map<String, num?> dateTimeMap = <String, num?>{
       'year': year,
@@ -272,6 +273,20 @@ abstract class FhirDateTimeBase extends PrimitiveType
     return _constructor<T>(dateTimeMap, precision, null,
         precision.dateTimeMapToString<T>(dateTimeMap), true);
   }
+
+  @override
+  int compareTo(FhirDateTimeBase other) {
+    final bool? result = _compare(Comparator.lt, other);
+    if (result != null) {
+      return result ? -1 : 1;
+    } else {
+      throw comparisonError(Comparator.lt, other);
+    }
+  }
+
+  FhirDateTimeBase fromJson<T>(String json,
+          [FhirDateTimePrecision? precision]) =>
+      constructor<T>(json, precision);
 
   InvalidTypes<FhirDateTimeBase> comparisonError(
           Comparator comparator, Object o) =>
@@ -522,7 +537,7 @@ abstract class FhirDateTimeBase extends PrimitiveType
   }
 
   @override
-  bool operator ==(Object other) => _compare(Comparator.eq, other) ?? false;
+  bool equals(Object other) => _compare(Comparator.eq, other) ?? false;
 
   bool? operator >(Object other) => _compare(Comparator.gt, other);
 
@@ -550,14 +565,4 @@ abstract class FhirDateTimeBase extends PrimitiveType
   FhirDateTimeBase operator +(ExtendedDuration other);
 
   FhirDateTimeBase operator -(ExtendedDuration other);
-
-  @override
-  int compareTo(FhirDateTimeBase other) {
-    final bool? result = _compare(Comparator.lt, other);
-    if (result != null) {
-      return result ? -1 : 1;
-    } else {
-      throw comparisonError(Comparator.lt, other);
-    }
-  }
 }

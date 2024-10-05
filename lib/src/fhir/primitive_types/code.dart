@@ -54,7 +54,7 @@ class FhirCode extends PrimitiveType<String> {
       );
 
   @override
-  FhirCode setElement(String name, dynamic value) {
-    return FhirCode(value, element?.setProperty(name, value));
+  FhirCode setElement(String name, dynamic elementValue) {
+    return FhirCode(value, element?.setProperty(name, elementValue));
   }
 }

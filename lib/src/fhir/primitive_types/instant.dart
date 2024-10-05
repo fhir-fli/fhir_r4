@@ -1,10 +1,7 @@
 import 'dart:convert';
 
-import 'package:meta/meta.dart';
+import '../../../fhir_r4.dart';
 
-import '../fhir_primitives.dart';
-
-@immutable
 class FhirInstant extends FhirDateTimeBase {
   FhirInstant.fromBase({
     required super.isValid,
@@ -21,22 +18,26 @@ class FhirInstant extends FhirDateTimeBase {
     required super.microsecond,
     required super.timeZoneOffset,
     required super.isUtc,
+    super.fhirType = 'instant',
+    super.element,
   });
 
-  factory FhirInstant(dynamic inValue, [FhirDateTimePrecision? precision]) =>
+  factory FhirInstant(dynamic inValue,
+          [FhirDateTimePrecision? precision, Element? element]) =>
       FhirDateTimeBase.constructor<FhirInstant>(
           inValue,
           inValue is DateTime
               ? precision ?? FhirDateTimePrecision.instant
-              : precision) as FhirInstant;
+              : precision,
+          element) as FhirInstant;
 
   factory FhirInstant.fromJson(String json,
-          {FhirDateTimePrecision? precision}) =>
-      FhirInstant(json, precision);
+          {FhirDateTimePrecision? precision, Element? element}) =>
+      FhirInstant(json, precision, element);
 
   factory FhirInstant.fromYaml(String yaml,
-          [FhirDateTimePrecision? precision]) =>
-      FhirInstant(jsonDecode(jsonEncode(yaml)), precision);
+          [FhirDateTimePrecision? precision, Element? element]) =>
+      FhirInstant(jsonDecode(jsonEncode(yaml)), precision, element);
 
   factory FhirInstant.fromUnits({
     required int year,
@@ -49,6 +50,7 @@ class FhirInstant extends FhirDateTimeBase {
     int? microsecond,
     required num timeZoneOffset,
     bool? isUtc,
+    Element? element,
   }) =>
       FhirDateTimeBase.fromUnits<FhirInstant>(
         year: year,
@@ -61,33 +63,19 @@ class FhirInstant extends FhirDateTimeBase {
         microsecond: microsecond,
         timeZoneOffset: timeZoneOffset,
         isUtc: isUtc ?? false,
+        element: element,
       ) as FhirInstant;
 
   @override
   String get fhirType => 'instant';
 
   @override
-  bool operator ==(Object other) => isEqual(other) ?? false;
-
-  @override
-  int get hashCode =>
-      input.hashCode ^
-      parseError.hashCode ^
-      year.hashCode ^
-      month.hashCode ^
-      day.hashCode ^
-      hour.hashCode ^
-      minute.hashCode ^
-      second.hashCode ^
-      millisecond.hashCode ^
-      microsecond.hashCode ^
-      timeZoneOffset.hashCode ^
-      isUtc.hashCode;
+  bool equals(Object other) => isEqual(other) ?? false;
 
   FhirInstant plus(ExtendedDuration other) =>
       FhirDateTimeBase.plus<FhirInstant>(this, other) as FhirInstant;
 
-  FhirInstant subtract<T>(ExtendedDuration other) =>
+  FhirInstant subtract(ExtendedDuration other) =>
       FhirDateTimeBase.subtract<FhirInstant>(this, other) as FhirInstant;
 
   @override
@@ -100,4 +88,9 @@ class FhirInstant extends FhirDateTimeBase {
 
   @override
   FhirInstant clone() => FhirInstant.fromJson(toJson());
+
+  @override
+  FhirDate setElement(String name, dynamic elementValue) {
+    return FhirDate(value, precision, element?.setProperty(name, elementValue));
+  }
 }

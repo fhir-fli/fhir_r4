@@ -2,7 +2,6 @@
 
 import 'dart:convert';
 
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -171,7 +170,7 @@ class FhirExtension extends FhirBase {
               'FhirExtension cannot be constructed from input provided.');
 
   @override
-  String toYaml() => json2yaml(toJson());
+  String toYaml() => json2yaml(toJson() as Map<String, dynamic>);
 
   factory FhirExtension.fromJsonString(String source) {
     final dynamic json = jsonDecode(source);
@@ -188,7 +187,4 @@ class FhirExtension extends FhirBase {
 
   @override
   String toJsonString() => jsonEncode(toJson());
-
-  @override
-  String toYaml() => json2yaml(toJson());
 }

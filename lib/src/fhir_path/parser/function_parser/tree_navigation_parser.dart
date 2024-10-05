@@ -1,4 +1,3 @@
-// Project imports:
 import '../../r4.dart';
 
 class ChildrenParser extends FhirPathParser {

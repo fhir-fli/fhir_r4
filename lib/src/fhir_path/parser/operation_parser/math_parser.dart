@@ -1,9 +1,7 @@
 // ignore_for_file: annotate_overrides, overridden_fields, avoid_dynamic_calls
 
-// Package imports:
 import 'package:ucum/ucum.dart';
 
-// Project imports:
 import '../../../../fhir_r4.dart';
 
 class UnaryNegateParser extends OperatorParser {

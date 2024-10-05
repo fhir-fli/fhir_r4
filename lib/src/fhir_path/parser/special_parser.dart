@@ -1,9 +1,7 @@
 // ignore_for_file: annotate_overrides, overridden_fields
 
-// Package imports:
 import 'package:collection/collection.dart';
 
-// Project imports:
 import '../../../fhir_r4.dart';
 
 class BracketsIndexParser extends ValueParser<int> {

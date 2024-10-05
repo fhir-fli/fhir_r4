@@ -1,4 +1,3 @@
-// Package imports:
 import 'package:collection/collection.dart';
 
 bool notFoundInList(List<dynamic> list, dynamic e) =>

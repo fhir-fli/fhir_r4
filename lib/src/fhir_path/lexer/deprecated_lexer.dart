@@ -1,7 +1,5 @@
-// Package imports:
 import 'package:petitparser/petitparser.dart';
 
-// Project imports:
 import '../../../fhir_r4.dart';
 
 /// These lexers help identify parts of an expression that are no longer

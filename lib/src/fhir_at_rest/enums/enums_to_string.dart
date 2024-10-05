@@ -1,4 +1,3 @@
-// Project imports:
 import '../../../fhir_r4.dart';
 
 /// A more advanced way to change an enum to a string, mostly used for

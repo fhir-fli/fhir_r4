@@ -1,4 +1,4 @@
-part of 'resource.dart';
+import '../../../fhir_r4.dart';
 
 /// Returns a [FhirMeta] object, creates a new one if none is passed, otherwise
 /// updates the [lastUpdated] and increases the [version] by 1

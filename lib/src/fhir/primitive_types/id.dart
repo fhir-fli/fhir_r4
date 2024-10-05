@@ -53,7 +53,7 @@ class FhirId extends PrimitiveType<String> {
       );
 
   @override
-  FhirId setElement(String name, dynamic value) {
-    return FhirId(value, element?.setProperty(name, value));
+  FhirId setElement(String name, dynamic elementValue) {
+    return FhirId(value, element?.setProperty(name, elementValue));
   }
 }

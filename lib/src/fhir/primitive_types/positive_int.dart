@@ -1,27 +1,28 @@
 import 'dart:convert';
-
-import 'package:meta/meta.dart';
 import 'package:yaml/yaml.dart';
+import '../../../fhir_r4.dart';
 
-import 'number.dart';
-import 'primitive_type_exceptions.dart';
-
-@immutable
 class FhirPositiveInt extends FhirNumber {
-  FhirPositiveInt._(super.valueString, super.valueNumber, super.isValid);
+  FhirPositiveInt._(super.valueString, super.valueNumber, super.isValid,
+      {super.element})
+      : super(fhirType: 'positiveInt');
 
-  factory FhirPositiveInt(dynamic inValue) {
+  factory FhirPositiveInt(dynamic inValue, {Element? element}) {
     if (inValue is int) {
       return inValue > 0
-          ? FhirPositiveInt._(inValue.toString(), inValue, true)
-          : FhirPositiveInt._(inValue.toString(), null, false);
+          ? FhirPositiveInt._(inValue.toString(), inValue, true,
+              element: element)
+          : FhirPositiveInt._(inValue.toString(), null, false,
+              element: element);
     } else if (inValue is num) {
       final int? tempPositiveInt = int.tryParse(inValue.toString());
       return tempPositiveInt == null
-          ? FhirPositiveInt._(inValue.toString(), null, false)
+          ? FhirPositiveInt._(inValue.toString(), null, false, element: element)
           : tempPositiveInt > 0
-              ? FhirPositiveInt._(inValue.toString(), tempPositiveInt, true)
-              : FhirPositiveInt._(inValue.toString(), null, false);
+              ? FhirPositiveInt._(inValue.toString(), tempPositiveInt, true,
+                  element: element)
+              : FhirPositiveInt._(inValue.toString(), null, false,
+                  element: element);
     }
     throw CannotBeConstructed<FhirPositiveInt>(
         'PositiveInt cannot be constructed from $inValue.');
@@ -37,21 +38,16 @@ class FhirPositiveInt extends FhirNumber {
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
 
   @override
-  String get fhirType => 'positiveInt';
-
-  @override
   int? get value => valueNumber as int?;
 
   @override
-  int compareTo(FhirNumber other) {
-    if (other.isValid && isValid) {
-      return valueNumber!.compareTo(other.valueNumber!);
-    } else {
-      throw InvalidTypes<FhirNumber>('One of the values is not valid or null\n'
-          'This number is: ${toString()}, compared number is $other');
-    }
-  }
+  FhirPositiveInt clone() =>
+      FhirPositiveInt._(valueString, valueNumber, isValid,
+          element: element?.clone() as Element?);
 
   @override
-  FhirPositiveInt clone() => FhirPositiveInt.fromJson(toJson());
+  FhirPositiveInt setElement(String name, dynamic elementValue) {
+    return FhirPositiveInt(value,
+        element: element?.setProperty(name, elementValue));
+  }
 }

@@ -3,11 +3,9 @@
 // Dart imports:
 import 'dart:convert';
 
-// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:http/http.dart';
 
-// Project imports:
 import '../../fhir_r4.dart';
 
 part 'bulk_request.freezed.dart';

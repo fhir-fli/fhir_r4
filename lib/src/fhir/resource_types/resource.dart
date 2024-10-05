@@ -5,13 +5,7 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'resource_from_json.dart';
-part 'resource_new_id.dart';
-part 'resource_new_version.dart';
-part 'resource_types_enum.dart';
-
 /// [Resource] Base definition for all FHIR elements.
-@JsonSerializable()
 abstract class Resource extends FhirBase {
   R4ResourceType? get resourceType;
   String? get id;

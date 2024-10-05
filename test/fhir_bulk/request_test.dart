@@ -1,6 +1,5 @@
 // ignore_for_file: invalid_annotation_target, always_specify_types
 
-// Package imports:
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 

@@ -26,9 +26,6 @@ class FhirUrl extends PrimitiveType<Uri> {
           : throw YamlFormatException<FhirUrl>(
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
 
-  @override
-  String get fhirType => 'url';
-
   final String _valueString;
   final Uri? _valueUri;
   final bool _isValid;

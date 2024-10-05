@@ -4,8 +4,7 @@ import '../../../fhir_r4.dart';
 abstract class FhirNumber extends PrimitiveType<num>
     implements Comparable<FhirNumber> {
   FhirNumber(this.valueString, this.valueNumber, this.isValid,
-      {Element? element})
-      : super(fhirType: 'number', element: element);
+      {super.element, super.fhirType = 'number'});
 
   final String valueString;
   final num? valueNumber;
@@ -136,7 +135,7 @@ abstract class FhirNumber extends PrimitiveType<num>
   }
 
   @override
-  FhirNumber setElement(String name, dynamic value) {
+  FhirNumber setElement(String name, dynamic elementValue) {
     throw UnimplementedError();
   }
 }

@@ -1,6 +1,5 @@
 // ignore_for_file: annotate_overrides, overridden_fields, avoid_function_literals_in_foreach_calls
 
-// Project imports:
 import '../../r4.dart';
 
 class UnionOperatorParser extends OperatorParser {

@@ -4,7 +4,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-// Package imports:
 import 'package:archive/archive.dart';
 import 'package:mime/mime.dart';
 import 'package:universal_io/io.dart';

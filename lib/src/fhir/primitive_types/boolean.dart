@@ -69,8 +69,8 @@ class FhirBoolean extends PrimitiveType<bool> {
 
   /// Sets a property value and returns a new `FhirBoolean` instance.
   @override
-  FhirBoolean setElement(String name, dynamic value) {
-    return FhirBoolean(value, element?.setProperty(name, value));
+  FhirBoolean setElement(String name, dynamic elementValue) {
+    return FhirBoolean(value, element?.setProperty(name, elementValue));
   }
 
   /// Returns `true` if this `FhirBoolean` is `true`, and `false` otherwise.

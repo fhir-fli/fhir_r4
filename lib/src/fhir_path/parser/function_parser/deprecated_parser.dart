@@ -1,6 +1,5 @@
 // ignore_for_file: annotate_overrides, overridden_fields
 
-// Project imports:
 import '../../../../fhir_r4.dart';
 
 /// DEPRECATED

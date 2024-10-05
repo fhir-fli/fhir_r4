@@ -1,6 +1,5 @@
 // ignore_for_file: annotate_overrides, overridden_fields, avoid_function_literals_in_foreach_calls
 
-// Package imports:
 import 'package:collection/collection.dart';
 import 'package:ucum/ucum.dart';
 

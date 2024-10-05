@@ -1,21 +1,19 @@
 import 'dart:convert';
-
-import 'package:meta/meta.dart';
 import 'package:yaml/yaml.dart';
+import '../../../fhir_r4.dart';
 
-import 'number.dart';
-import 'primitive_type_exceptions.dart';
-
-@immutable
 class FhirInteger extends FhirNumber {
-  FhirInteger._(super.valueString, super.valueNumber, super.isValid);
+  FhirInteger._(super.valueString, super.valueNumber, super.isValid,
+      {super.element})
+      : super(fhirType: 'integer');
 
-  factory FhirInteger(dynamic inValue) {
+  factory FhirInteger(dynamic inValue, {Element? element}) {
     if (inValue is int) {
-      return FhirInteger._(inValue.toString(), inValue, true);
+      return FhirInteger._(inValue.toString(), inValue, true, element: element);
     } else if (inValue is num) {
       return FhirInteger._(inValue.toString(), int.tryParse(inValue.toString()),
-          int.tryParse(inValue.toString()) != null);
+          int.tryParse(inValue.toString()) != null,
+          element: element);
     }
     throw CannotBeConstructed<FhirInteger>(
         'Integer cannot be constructed from $inValue.');
@@ -31,21 +29,15 @@ class FhirInteger extends FhirNumber {
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
 
   @override
-  String get fhirType => 'integer';
-
-  @override
   int? get value => valueNumber as int?;
 
   @override
-  int compareTo(FhirNumber other) {
-    if (other.isValid && isValid) {
-      return valueNumber!.compareTo(other.valueNumber!);
-    } else {
-      throw InvalidTypes<FhirNumber>('One of the values is not valid or null\n'
-          'This number is: ${toString()}, compared number is $other');
-    }
-  }
+  FhirInteger clone() => FhirInteger._(valueString, valueNumber, isValid,
+      element: element?.clone() as Element?);
 
   @override
-  FhirInteger clone() => FhirInteger.fromJson(toJson());
+  FhirInteger setElement(String name, dynamic elementValue) {
+    return FhirInteger(value,
+        element: element?.setProperty(name, elementValue));
+  }
 }

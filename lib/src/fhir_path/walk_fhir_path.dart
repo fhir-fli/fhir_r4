@@ -1,7 +1,5 @@
-// Package imports:
 import 'package:petitparser/core.dart';
 
-// Project imports:
 import '../../fhir_r4.dart';
 
 /// Start here! This is where the fun begins. This is a bit confusing, so we'll

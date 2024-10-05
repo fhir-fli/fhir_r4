@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_print
 
-// Package imports:
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

@@ -70,7 +70,7 @@ abstract class PrimitiveType<T> extends FhirBase {
   }
 
   /// Sets a property value.
-  PrimitiveType<T> setElement(String name, dynamic value);
+  PrimitiveType<T> setElement(String name, dynamic elementValue);
 
   /// Helper method to compute hash codes.
   int _computeHash(String name) => name.hashCode;

@@ -95,7 +95,7 @@ class FhirCanonical extends PrimitiveType<Uri> {
   }
 
   @override
-  FhirCanonical setElement(String name, dynamic value) {
-    return FhirCanonical(value, element?.setProperty(name, value));
+  FhirCanonical setElement(String name, dynamic elementValue) {
+    return FhirCanonical(value, element?.setProperty(name, elementValue));
   }
 }

@@ -1,32 +1,33 @@
 import 'dart:convert';
-
-import 'package:meta/meta.dart';
 import 'package:yaml/yaml.dart';
+import '../../../fhir_r4.dart';
 
-import '../fhir_primitives.dart';
+class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
+  final String _valueString;
+  final String? _valueTime;
+  final bool _isValid;
 
-@immutable
-class FhirTime extends PrimitiveType implements Comparable<FhirTime> {
-  FhirTime._(this._valueString, this._valueTime, this._isValid);
+  FhirTime._(this._valueString, this._valueTime, this._isValid, {super.element})
+      : super(fhirType: 'time');
 
-  factory FhirTime(dynamic inValue) {
+  factory FhirTime(dynamic inValue, [Element? element]) {
     if (inValue is String &&
         RegExp(r'^([01][0-9]|2[0-3])(:([0-5][0-9])(:([0-5][0-9]|60)(\.[0-9]+)?)?)?$')
             .hasMatch(inValue)) {
-      return FhirTime._(inValue, inValue, true);
+      return FhirTime._(inValue, inValue, true, element: element);
     } else {
-      return FhirTime._(inValue.toString(), null, false);
+      return FhirTime._(inValue.toString(), null, false, element: element);
     }
   }
 
   factory FhirTime.fromUnits({
-    dynamic hour,
-    dynamic minute,
-    dynamic second,
-    dynamic millisecond,
+    int? hour,
+    int? minute,
+    int? second,
+    int? millisecond,
   }) {
-    String? timeString = hour?.toString().padLeft(2, '0');
-    if (timeString != null && minute != null) {
+    String timeString = hour?.toString().padLeft(2, '0') ?? '';
+    if (minute != null) {
       timeString += ':${minute.toString().padLeft(2, '0')}';
       if (second != null) {
         timeString += ':${second.toString().padLeft(2, '0')}';
@@ -35,7 +36,7 @@ class FhirTime extends PrimitiveType implements Comparable<FhirTime> {
         }
       }
     }
-    return timeString == null ? FhirTime('') : FhirTime(timeString);
+    return FhirTime(timeString);
   }
 
   factory FhirTime.fromJson(dynamic json) => FhirTime(json);
@@ -53,144 +54,42 @@ class FhirTime extends PrimitiveType implements Comparable<FhirTime> {
   }
 
   @override
-  String get fhirType => 'time';
-
-  final String _valueString;
-  final String? _valueTime;
-  final bool _isValid;
-
-  @override
   bool get isValid => _isValid;
-  @override
-  int get hashCode => _valueString.hashCode;
+
   @override
   String? get value => _valueTime;
+
   int? get hour => _valueTime?.split(':')[0] == null
       ? null
       : int.tryParse(_valueTime!.split(':')[0]);
+
   int? get minute => (_valueTime?.split(':').length ?? 0) <= 1 ||
           _valueTime?.split(':')[1] == null
       ? null
       : int.tryParse(_valueTime!.split(':')[1]);
+
   int? get second => (_valueTime?.split(':').length ?? 0) <= 2 ||
           _valueTime?.split(':')[2] == null
       ? null
       : int.tryParse(_valueTime!.split(':')[2].split('.')[0]);
+
   int? get millisecond => (_valueTime?.split(':').length ?? 0) <= 2 ||
           _valueTime?.split(':')[2] == null ||
           _valueTime!.split(':')[2].split('.').length <= 1
       ? null
-      : int.tryParse(_valueTime!.split(':')[2].split('.')[1]);
+      : int.tryParse(_valueTime.split(':')[2].split('.')[1]);
 
   @override
   String toString() => _valueString;
+
   @override
   String toJson() => _valueString;
+
   @override
   String toYaml() => _valueString;
+
   @override
   String toJsonString() => jsonEncode(toJson());
-
-  bool? _compare(Comparator comparator, Object o) {
-    if (identical(this, o)) {
-      switch (comparator) {
-        case Comparator.eq:
-          return true;
-        case Comparator.gt:
-          return false;
-        case Comparator.gte:
-          return true;
-        case Comparator.lt:
-          return false;
-        case Comparator.lte:
-          return true;
-      }
-    }
-
-    final FhirTime? rhs = o is FhirTime
-        ? o
-        : o is String
-            ? FhirTime(o)
-            : null;
-
-    if (rhs == null || !rhs.isValid || !isValid) {
-      if (comparator == Comparator.eq && isValid) {
-        return false;
-      } else {
-        throw InvalidTypes<FhirTime>('Two values were passed to the time '
-            '"$comparator" comparison operator, '
-            'they were not both valid FhirTime types\n'
-            'Argument 1: $value (${value.runtimeType}): Valid - $isValid\n'
-            'Argument 2: $o (${o.runtimeType}): Valid - false}');
-      }
-    }
-
-    final List<String> lhsTime = toString().split(':');
-    final List<String> rhsTime = o.toString().split(':');
-
-    bool? comparePrecisionValue(
-        Comparator comparator, String lhsValue, String rhsValue) {
-      switch (comparator) {
-        case Comparator.eq:
-          if (num.parse(lhsValue) != num.parse(rhsValue)) {
-            return false;
-          }
-        case Comparator.gt:
-          if (num.parse(lhsValue) < num.parse(rhsValue)) {
-            return false;
-          } else if (num.parse(lhsValue) > num.parse(rhsValue)) {
-            return true;
-          }
-        case Comparator.gte:
-          if (num.parse(lhsValue) < num.parse(rhsValue)) {
-            return false;
-          } else if (num.parse(lhsValue) > num.parse(rhsValue)) {
-            return true;
-          }
-        case Comparator.lt:
-          if (num.parse(lhsValue) < num.parse(rhsValue)) {
-            return true;
-          } else if (num.parse(lhsValue) > num.parse(rhsValue)) {
-            return false;
-          }
-        case Comparator.lte:
-          if (num.parse(lhsValue) < num.parse(rhsValue)) {
-            return true;
-          } else if (num.parse(lhsValue) > num.parse(rhsValue)) {
-            return false;
-          }
-      }
-      return null;
-    }
-
-    final int timePrecision =
-        lhsTime.length > rhsTime.length ? rhsTime.length : lhsTime.length;
-
-    for (int i = 0; i < timePrecision; i++) {
-      final bool? comparedValue =
-          comparePrecisionValue(comparator, lhsTime[i], rhsTime[i]);
-      if (comparedValue != null) {
-        return comparedValue;
-      }
-    }
-
-    if (lhsTime.length != rhsTime.length) {
-      return null;
-    }
-
-    switch (comparator) {
-      case Comparator.eq:
-        return true;
-      case Comparator.gt:
-        return false;
-      case Comparator.gte:
-        return true;
-      case Comparator.lt:
-        return false;
-      case Comparator.lte:
-        return true;
-    }
-  }
 
   FhirTime plus({
     int hours = 0,
@@ -254,10 +153,64 @@ class FhirTime extends PrimitiveType implements Comparable<FhirTime> {
     );
   }
 
-  @override
-  bool operator ==(Object other) => _compare(Comparator.eq, other) ?? false;
+  bool? _compare(Comparator comparator, Object o) {
+    final FhirTime? rhs = o is FhirTime
+        ? o
+        : o is String
+            ? FhirTime(o)
+            : null;
 
-  bool? isEqual(Object other) => _compare(Comparator.eq, other);
+    if (rhs == null || !rhs.isValid || !isValid) {
+      throw InvalidTypes<FhirTime>('Invalid comparison between values.');
+    }
+
+    final List<String> lhsTime = _valueString.split(':');
+    final List<String> rhsTime = rhs._valueString.split(':');
+
+    for (int i = 0; i < lhsTime.length; i++) {
+      final int lhsPart = int.parse(lhsTime[i]);
+      final int rhsPart = int.parse(rhsTime[i]);
+      switch (comparator) {
+        case Comparator.eq:
+          if (lhsPart != rhsPart) {
+            return false;
+          }
+        case Comparator.gt:
+          if (lhsPart > rhsPart) {
+            return true;
+          }
+          if (lhsPart < rhsPart) {
+            return false;
+          }
+        case Comparator.lt:
+          if (lhsPart < rhsPart) {
+            return true;
+          }
+          if (lhsPart > rhsPart) {
+            return false;
+          }
+        case Comparator.gte:
+          if (lhsPart > rhsPart) {
+            return true;
+          }
+          if (lhsPart < rhsPart) {
+            return false;
+          }
+        case Comparator.lte:
+          if (lhsPart < rhsPart) {
+            return true;
+          }
+          if (lhsPart > rhsPart) {
+            return false;
+          }
+      }
+    }
+
+    return comparator == Comparator.eq;
+  }
+
+  @override
+  bool equals(Object other) => _compare(Comparator.eq, other) ?? false;
 
   bool? operator >(Object other) => _compare(Comparator.gt, other);
 
@@ -266,14 +219,6 @@ class FhirTime extends PrimitiveType implements Comparable<FhirTime> {
   bool? operator <(Object other) => _compare(Comparator.lt, other);
 
   bool? operator <=(Object other) => _compare(Comparator.lte, other);
-
-  bool? isAfter(Object other) => _compare(Comparator.gt, other);
-
-  bool? isBefore(Object other) => _compare(Comparator.lt, other);
-
-  bool? isSameOrAfter(Object other) => _compare(Comparator.gte, other);
-
-  bool? isSameOrBefore(Object other) => _compare(Comparator.lte, other);
 
   @override
   int compareTo(FhirTime other) => (this > other ?? false)
@@ -284,4 +229,9 @@ class FhirTime extends PrimitiveType implements Comparable<FhirTime> {
 
   @override
   FhirTime clone() => FhirTime.fromJson(toJson());
+
+  @override
+  FhirTime setElement(String name, dynamic elementValue) {
+    return FhirTime(value, element?.setProperty(name, elementValue));
+  }
 }
