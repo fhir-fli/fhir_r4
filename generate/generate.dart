@@ -52,60 +52,105 @@ bool _isValidStructureDefinition(dynamic entry) {
 
 Future<void> _generateFromSd(Map<String, dynamic> sd) async {
   final String className = sd['name'] as String;
-  if (!shouldGenerate(className)) {
+  if (!className.shouldGenerate) {
     return;
   }
 
+  final Map<String, WritableClass> classes = <String, WritableClass>{};
+  classes[className] = WritableClass()..className = className;
+
+  for (final dynamic elementDefinition
+      in (sd['snapshot'] as Map<String, dynamic>)['element'] as List<dynamic>) {
+    final Map<String, dynamic> element =
+        elementDefinition as Map<String, dynamic>;
+    final String path = element['path'] as String;
+    final List<String> pathParts = path.split('.');
+    final String fieldName = pathParts.last;
+    String fieldType = _getElementType(element).fhirToDartTypes;
+    String? thisClass;
+    if (fieldType == 'BackboneElement') {
+      fieldType = '${pathParts.first}${pathParts.last[0].toUpperCase()}'
+          '${pathParts.last.substring(1)}';
+      classes[path] ??= WritableClass()
+        ..className = fieldType
+        ..isBackboneElement = true;
+      thisClass = className;
+    } else {
+      int length = 0;
+      for (final String key in classes.keys) {
+        if (path.startsWith(key) && key.length > length) {
+          length = key.length;
+          thisClass = key;
+        }
+      }
+    }
+    final bool isRequired = (element['min'] as int) > 0;
+    final bool isSuper = fieldName.isSuperField(className);
+    classes[thisClass]!.fields.add(Field()
+      ..name = fieldName
+      ..type = fieldType
+      ..isRequired = isRequired
+      ..isSuper = isSuper);
+  }
+
   final StringBuffer buffer = StringBuffer();
-  final StringBuffer constructorBuffer = StringBuffer();
 
   // Write class header
   buffer.writeln("import 'package:data_class/data_class.dart';");
   buffer.writeln("import 'package:json/json.dart';");
   buffer.writeln("\nimport '../../../fhir_r4.dart';\n");
-  buffer.writeln('@Data()');
-  buffer.writeln('@JsonCodable()');
-  final String extendsClause = isDataType(className)
-      ? 'extends DataType'
-      : isQuantity(className)
-          ? 'extends Quantity'
-          : isBackboneType(className)
-              ? 'extends BackboneElement'
-              : isResourceType(className)
-                  ? 'extends DomainResource'
-                  : '';
-  if (extendsClause.isEmpty) {
-    print('No extends clause for $className');
-  }
-  buffer.writeln('class $className $extendsClause {');
 
-  // Prepare constructor
-  constructorBuffer.writeln('\n  $className({');
+  for (final WritableClass writableClass in classes.values) {
+    buffer.writeln('@Data()');
+    buffer.writeln('@JsonCodable()');
+    final String writableName = writableClass.className;
+    final String extendsClause = writableName.isDataType
+        ? 'extends DataType'
+        : writableName.isQuantity
+            ? 'extends Quantity'
+            : writableName.isBackboneType || writableClass.isBackboneElement
+                ? 'extends BackboneElement'
+                : writableName.isResourceType
+                    ? 'extends DomainResource'
+                    : '';
+    if (extendsClause.isEmpty) {
+      print('No extends clause for $writableName');
+    }
+    buffer.writeln('class $writableName $extendsClause {');
 
-  // Process elements
-  final List<Map<String, dynamic>> elements =
-      ((sd['snapshot'] as Map<String, dynamic>)['element'] as List<dynamic>)
-          .map((dynamic item) => item as Map<String, dynamic>)
-          .toList();
+    for (final Field field in writableClass.fields) {
+      if (field.name != writableName && !field.isSuper) {
+        buffer.writeln(
+            '  final ${field.type}${field.isRequired ? '' : '?'} ${field.name.fhirFieldToDartName};');
+        if (field.name.isPrimitiveType && field.name != 'id') {
+          buffer.writeln(
+              '  final Element${field.isRequired ? '' : '?'} ${field.name}Element;');
+        }
+      }
+    }
 
-  final Map<String, List<Map<String, dynamic>>> subClassFields =
-      <String, List<Map<String, dynamic>>>{};
-
-  // Generate fields and constructor
-  for (final Map<String, dynamic> element in elements) {
-    _processElement(
-        element, buffer, constructorBuffer, className, subClassFields);
-  }
-
-  // Close constructor and class
-  constructorBuffer.writeln('  });');
-  buffer.writeln(constructorBuffer.toString());
-  buffer.writeln('}\n');
-
-  // Generate any BackboneElement subclasses
-  for (final String subClassName in subClassFields.keys) {
-    _generateBackboneSubClass(
-        subClassName, subClassFields[subClassName]!, buffer);
+    buffer.writeln('\n  $writableName({');
+    for (final Field field in writableClass.fields) {
+      if (field.name != writableName) {
+        buffer.writeln('    ${field.isRequired ? 'required ' : ''}'
+            '${field.isSuper ? 'super' : 'this'}'
+            '.${field.name.fhirFieldToDartName},');
+        if (field.name.isPrimitiveType && field.name != 'id') {
+          buffer.writeln('    ${field.isRequired ? 'required ' : ''}'
+              '${field.isSuper ? 'super' : 'this'}'
+              '.${field.name}Element,');
+        }
+      }
+    }
+    if (writableName.isResourceType) {
+      buffer.writeln(
+          '  }) : super(resourceType: R4ResourceType.$writableName);\n');
+    } else {
+      buffer.writeln('  });\n');
+    }
+    buffer.writeln('@override');
+    buffer.writeln('$writableName clone() => throw UnimplementedError();');
+    buffer.writeln('}\n');
   }
 
   String? writeFileName = _fileNameFromClassName(className);
@@ -119,103 +164,6 @@ Future<void> _generateFromSd(Map<String, dynamic> sd) async {
   File(filePath).writeAsStringSync(buffer.toString());
 }
 
-void _processElement(
-    Map<String, dynamic> element,
-    StringBuffer buffer,
-    StringBuffer constructorBuffer,
-    String className,
-    Map<String, List<Map<String, dynamic>>> subClassFields) {
-  final String path = element['path'] as String;
-  final String fieldName = _removeUnderscores(path.split('.').last);
-  final String fieldType = fhirToDartTypes(_getElementType(element));
-  final bool isRequired = (element['min'] as int) > 0;
-
-  if (fieldType == 'BackboneElement') {
-    // Create a subclass for BackboneElement, and ensure proper naming
-    final String subClassName = _getSubClassName(fieldName, className);
-
-    // Store this element as part of the subclass fields
-    subClassFields
-        .putIfAbsent(subClassName, () => <Map<String, dynamic>>[])
-        .add(element);
-
-    // Write the field in the main class with a reference to the subclass
-    buffer.writeln('  final $subClassName? $fieldName;');
-
-    // Add the field to the constructor of the main class
-    constructorBuffer.writeln('    this.$fieldName,');
-  } else {
-    // Regular field processing
-    final String nullableMark = isRequired ? '' : '?';
-    final bool isSuper = isSuperField(fieldName, className);
-    if (!isSuper) {
-      buffer.writeln('  final $fieldType$nullableMark $fieldName;');
-      if (isPrimitiveType(fieldName)) {
-        buffer.writeln('  final FhirElement$nullableMark ${fieldName}Element;');
-      }
-    }
-    constructorBuffer.writeln('    ${isRequired ? "required " : ""}'
-        '${isSuper ? "super" : "this"}'
-        '.$fieldName,');
-    if (isPrimitiveType(fieldName)) {
-      constructorBuffer.writeln('    ${isRequired ? "required " : ""}'
-          '${isSuper ? "super" : "this"}'
-          '.${fieldName}Element,');
-    }
-  }
-}
-
-String _getSubClassName(String fieldName, String parentClassName) {
-  // Convert both parentClassName and fieldName to PascalCase without underscores
-  final String cleanedParentClassName = _removeUnderscores(parentClassName);
-  final String cleanedFieldName =
-      _removeUnderscores(_capitalizeFirstLetter(fieldName));
-
-  // Return the combined subclass name without underscores
-  return '$cleanedParentClassName$cleanedFieldName';
-}
-
-void _generateBackboneSubClass(String subClassName,
-    List<Map<String, dynamic>> elements, StringBuffer buffer) {
-  final StringBuffer constructorBuffer = StringBuffer();
-
-  // Class header for the BackboneElement subclass
-  buffer.writeln('@Data()');
-  buffer.writeln('@JsonCodable()');
-  buffer.writeln('class $subClassName extends BackboneElement {');
-
-  constructorBuffer.writeln('\n  $subClassName({');
-
-  for (final Map<String, dynamic> element in elements) {
-    final String fieldName = _removeUnderscores(
-        (element['path'] as String).split('.').last); // Remove underscores
-    final String fieldType = fhirToDartTypes(_getElementType(element));
-    final bool isRequired = (element['min'] as int) > 0;
-    final String nullableMark = isRequired ? '' : '?';
-
-    buffer.writeln('  final $fieldType$nullableMark $fieldName;');
-    constructorBuffer.writeln('    ${isRequired ? "required " : ""}'
-        'this.$fieldName,');
-  }
-
-  constructorBuffer.writeln('  });');
-  buffer.writeln(constructorBuffer.toString());
-  buffer.writeln('}\n');
-}
-
-String _capitalizeFirstLetter(String input) {
-  if (input.isEmpty) {
-    return input;
-  }
-  return input[0].toUpperCase() + input.substring(1);
-}
-
-String _removeUnderscores(String input) {
-  // Convert snake_case to PascalCase for field names
-  final List<String> parts = input.split('_');
-  return parts.first + parts.skip(1).map(_capitalizeFirstLetter).join();
-}
-
 String? _fileNameFromClassName(String className) =>
     _nameMap[className.toLowerCase()];
 
@@ -225,4 +173,18 @@ String _getElementType(Map<String, dynamic> element) {
     return (types.first as Map<String, dynamic>)['code'] as String;
   }
   return 'dynamic';
+}
+
+class WritableClass {
+  String className = '';
+  bool isBackboneElement = false;
+  final List<Field> fields = <Field>[];
+}
+
+class Field {
+  String name = '';
+  String type = '';
+  bool isList = false;
+  bool isRequired = false;
+  bool isSuper = false;
 }
