@@ -12,24 +12,14 @@ import 'write_enums.dart';
 final Map<String, String> _nameMap = <String, String>{};
 final Map<String, Map<String, dynamic>> _codesAndVS =
     <String, Map<String, dynamic>>{};
-final Map<String, Map<String, dynamic>> _valueSets =
-    <String, Map<String, dynamic>>{};
+final Set<String> _valueSets = <String>{};
 
 Future<void> main() async {
-  await extract();
+  // await extract();
   await _codesAndValueSets();
   await _classesFromStructureDefinitions();
-  await _exportFiles();
-  final List<String> keys = <String>[];
-  for (final String key in _valueSets.keys) {
-    final String nameString = key.split('/').last;
-    if (keys.contains(nameString)) {
-      print('Duplicate: $nameString');
-    } else {
-      keys.add(key);
-    }
-  }
-  await writeEnums(_valueSets);
+  // await _exportFiles();
+  await writeEnums(_valueSets, _codesAndVS);
 }
 
 Future<void> _codesAndValueSets() async {
@@ -40,11 +30,15 @@ Future<void> _codesAndValueSets() async {
 
   for (final dynamic entry in (bundle['entry'] as List<dynamic>)) {
     if ((entry as Map<String, dynamic>)['resource'] != null &&
-        entry['resource'] is Map<String, dynamic> &&
+            entry['resource'] is Map<String, dynamic> &&
+            (entry['resource'] as Map<String, dynamic>)['resourceType'] ==
+                'ValueSet' ||
         (entry['resource'] as Map<String, dynamic>)['resourceType'] ==
-            'ValueSet') {
+            'CodeSystem') {
       _codesAndVS[(entry['resource'] as Map<String, dynamic>)['url']
           as String] = entry['resource'] as Map<String, dynamic>;
+      _codesAndVS[(entry['fullUrl'] as String).splitOffVersion] =
+          entry['resource'] as Map<String, dynamic>;
     }
   }
 }
@@ -101,14 +95,14 @@ Future<void> _generateFromSd(Map<String, dynamic> sd) async {
     return;
   }
   final Map<String, WritableClass> classes =
-      _buildWritableClasses(sd, className);
+      await _buildWritableClasses(sd, className);
   final StringBuffer buffer = _generateClassBuffer(classes);
 
   _writeToFile(buffer, className);
 }
 
-Map<String, WritableClass> _buildWritableClasses(
-    Map<String, dynamic> sd, String className) {
+Future<Map<String, WritableClass>> _buildWritableClasses(
+    Map<String, dynamic> sd, String className) async {
   final Map<String, WritableClass> classes = <String, WritableClass>{};
   classes[className] = WritableClass()..className = className;
 
@@ -120,26 +114,28 @@ Map<String, WritableClass> _buildWritableClasses(
         elementDefinition as Map<String, dynamic>;
     if (element['binding'] != null &&
         (element['binding'] as Map<String, dynamic>)['valueSet'] != null) {
-      final String valueSetUrl =
-          ((element['binding'] as Map<String, dynamic>)['valueSet'] as String)
-              .splitOffVersion;
+      final String fullUrl =
+          (element['binding'] as Map<String, dynamic>)['valueSet'] as String;
+      final String valueSetUrl = fullUrl.splitOffVersion;
       if (!_codesAndVS.keys.contains(valueSetUrl)) {
-        http.get(Uri.parse(valueSetUrl), headers: <String, String>{
-          'Accept': 'application/json'
-        }).then((http.Response response) {
-          if (response.statusCode != 200) {
-            print('Error: ${response.statusCode} for $valueSetUrl');
-          } else {
-            try {
-              _codesAndVS[valueSetUrl] =
-                  jsonDecode(response.body) as Map<String, dynamic>;
-            } catch (e) {
-              print('Error: $e\n$valueSetUrl');
-            }
+        final http.Response response = await http.get(
+            Uri.parse(valueSetUrl.replaceFirst('http:', 'https:')),
+            headers: <String, String>{'Accept': 'application/json'});
+        if (response.statusCode != 200) {
+          print('Error: ${response.statusCode} for $valueSetUrl');
+        } else {
+          try {
+            _codesAndVS[valueSetUrl] =
+                jsonDecode(response.body) as Map<String, dynamic>;
+          } catch (e) {
+            print('Error: $e\n$valueSetUrl');
           }
-        });
+        }
+      }
+      if (_codesAndVS.keys.contains(valueSetUrl)) {
+        _valueSets.add(valueSetUrl);
       } else {
-        _valueSets[valueSetUrl] = _codesAndVS[valueSetUrl]!;
+        print('Error: $valueSetUrl');
       }
     }
     final String path = element['path'] as String;
@@ -188,7 +184,6 @@ String? _determineClassForField(Map<String, WritableClass> classes, String path,
     final String fullPath = pathParts.join();
     if (fieldType == 'Element') {
       print('Element: $path');
-      print(_nameMap.keys.contains(fullPath.toLowerCase().replaceAll('.', '')));
     }
 
     // Check if the field is of type 'Element' and meets the subclass criteria
@@ -326,8 +321,9 @@ void _writeFields(StringBuffer buffer, WritableClass writableClass) {
       buffer.writeln(
           '  final $fieldDeclaration ${field.name.fhirFieldToDartName};');
       if (field.type.isPrimitiveType && field.name != 'id') {
-        buffer.writeln(
-            '  final Element${field.isRequired ? '' : '?'} ${field.name}Element;');
+        buffer.writeln(field.isList
+            ? '  final List<Element>? ${field.name}Element;'
+            : '  final Element? ${field.name}Element;');
       }
     }
   }
@@ -342,7 +338,7 @@ void _writeConstructor(StringBuffer buffer, WritableClass writableClass) {
       buffer.writeln('    ${field.isRequired ? 'required ' : ''}'
           '${field.isSuper ? 'super' : 'this'}.${field.name.fhirFieldToDartName},');
       if (field.type.isPrimitiveType && field.name != 'id') {
-        buffer.writeln('    ${field.isRequired ? 'required ' : ''}'
+        buffer.writeln(
             '${field.isSuper ? 'super' : 'this'}.${field.name}Element,');
       }
     }
