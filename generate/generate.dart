@@ -3,16 +3,51 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:http/http.dart' as http;
+
 import 'extract.dart';
-import 'types.dart';
+import 'fhir_generate_extension.dart';
+import 'write_enums.dart';
+
+final Map<String, String> _nameMap = <String, String>{};
+final Map<String, Map<String, dynamic>> _codesAndVS =
+    <String, Map<String, dynamic>>{};
+final Map<String, Map<String, dynamic>> _valueSets =
+    <String, Map<String, dynamic>>{};
 
 Future<void> main() async {
   await extract();
+  await _codesAndValueSets();
   await _classesFromStructureDefinitions();
   await _exportFiles();
+  final List<String> keys = <String>[];
+  for (final String key in _valueSets.keys) {
+    final String nameString = key.split('/').last;
+    if (keys.contains(nameString)) {
+      print('Duplicate: $nameString');
+    } else {
+      keys.add(key);
+    }
+  }
+  await writeEnums(_valueSets);
 }
 
-final Map<String, String> _nameMap = <String, String>{};
+Future<void> _codesAndValueSets() async {
+  final String codesString =
+      File('./definitions.json/valuesets.json').readAsStringSync();
+  final Map<String, dynamic> bundle =
+      jsonDecode(codesString) as Map<String, dynamic>;
+
+  for (final dynamic entry in (bundle['entry'] as List<dynamic>)) {
+    if ((entry as Map<String, dynamic>)['resource'] != null &&
+        entry['resource'] is Map<String, dynamic> &&
+        (entry['resource'] as Map<String, dynamic>)['resourceType'] ==
+            'ValueSet') {
+      _codesAndVS[(entry['resource'] as Map<String, dynamic>)['url']
+          as String] = entry['resource'] as Map<String, dynamic>;
+    }
+  }
+}
 
 Future<void> _classesFromStructureDefinitions() async {
   final List<String> structureDefinitionBundles = <String>[
@@ -83,6 +118,30 @@ Map<String, WritableClass> _buildWritableClasses(
   for (final dynamic elementDefinition in elements) {
     final Map<String, dynamic> element =
         elementDefinition as Map<String, dynamic>;
+    if (element['binding'] != null &&
+        (element['binding'] as Map<String, dynamic>)['valueSet'] != null) {
+      final String valueSetUrl =
+          ((element['binding'] as Map<String, dynamic>)['valueSet'] as String)
+              .splitOffVersion;
+      if (!_codesAndVS.keys.contains(valueSetUrl)) {
+        http.get(Uri.parse(valueSetUrl), headers: <String, String>{
+          'Accept': 'application/json'
+        }).then((http.Response response) {
+          if (response.statusCode != 200) {
+            print('Error: ${response.statusCode} for $valueSetUrl');
+          } else {
+            try {
+              _codesAndVS[valueSetUrl] =
+                  jsonDecode(response.body) as Map<String, dynamic>;
+            } catch (e) {
+              print('Error: $e\n$valueSetUrl');
+            }
+          }
+        });
+      } else {
+        _valueSets[valueSetUrl] = _codesAndVS[valueSetUrl]!;
+      }
+    }
     final String path = element['path'] as String;
     final List<String> pathParts = path.split('.');
     final String fieldName = pathParts.last;

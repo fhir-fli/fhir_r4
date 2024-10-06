@@ -449,4 +449,46 @@ extension FhirGenerate on String {
     }
     return this[0].toUpperCase() + substring(1);
   }
+
+  String get camelCase {
+    final List<String> parts = split(RegExp(r'[^A-Za-z0-9]'))
+        .where((String part) => part.isNotEmpty)
+        .toList();
+    if (parts.isEmpty) {
+      return '';
+    }
+    final StringBuffer camelCaseString =
+        StringBuffer(parts.first.toLowerCase());
+    for (int i = 1; i < parts.length; i++) {
+      final String part = parts[i];
+      camelCaseString
+          .write(part[0].toUpperCase() + part.substring(1).toLowerCase());
+    }
+    return camelCaseString.toString();
+  }
+
+  // Convert a string to snake_case
+  String get snakeCase {
+    return replaceAllMapped(
+      RegExp(r'([a-z0-9])([A-Z])'),
+      (Match match) => '${match.group(1)}_${match.group(2)?.toLowerCase()}',
+    ).toLowerCase().replaceAll('-', '_');
+  }
+
+// Helper function to convert enum value format
+  String get enumValue {
+    return replaceAll('-', '_').replaceAll(' ', '_').camelCase;
+  }
+
+  String get splitOffVersion {
+    final int lastPipeIndex = lastIndexOf('|');
+
+    if (lastPipeIndex == -1) {
+      // No version number present, return the input string as is
+      return this;
+    }
+
+    // Split the base string and version
+    return substring(0, lastPipeIndex);
+  }
 }
