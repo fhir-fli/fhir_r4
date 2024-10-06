@@ -501,4 +501,16 @@ extension FhirGenerate on String {
     // Split the base string and version
     return substring(0, lastPipeIndex);
   }
+
+  String get upperCamelCase {
+    return
+        // Replace hyphens, underscores, spaces, and slashes with a space (temporary)
+        replaceAll(RegExp(r'[-_/()]'), ' ')
+            // Split by space and capitalize each word
+            .split(' ')
+            .where((String word) => word.isNotEmpty) // Remove any empty words
+            .map((String word) => word[0].toUpperCase() + word.substring(1))
+            // Join back together without spaces
+            .join();
+  }
 }

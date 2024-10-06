@@ -122,20 +122,20 @@ Future<Map<String, WritableClass>> _buildWritableClasses(
             Uri.parse(valueSetUrl.replaceFirst('http:', 'https:')),
             headers: <String, String>{'Accept': 'application/json'});
         if (response.statusCode != 200) {
-          print('Error: ${response.statusCode} for $valueSetUrl');
+          // print('Error: ${response.statusCode} for $valueSetUrl');
         } else {
           try {
             _codesAndVS[valueSetUrl] =
                 jsonDecode(response.body) as Map<String, dynamic>;
           } catch (e) {
-            print('Error: $e\n$valueSetUrl');
+            // print('Error: $e\n$valueSetUrl');
           }
         }
       }
       if (_codesAndVS.keys.contains(valueSetUrl)) {
         _valueSets.add(valueSetUrl);
       } else {
-        print('Error: $valueSetUrl');
+        // print('Error: $valueSetUrl');
       }
     }
     final String path = element['path'] as String;

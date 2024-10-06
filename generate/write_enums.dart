@@ -1,42 +1,38 @@
 // ignore_for_file: avoid_print
 
-import 'dart:convert';
+import 'dart:io';
 import 'fhir_generate_extension.dart';
 
 Future<void> writeEnums(
     Set<String> valueSets, Map<String, Map<String, dynamic>> codesAndVS) async {
-  int i = 0;
   for (final String valueSetUrl in valueSets) {
     if (!codesAndVS.containsKey(valueSetUrl)) {
-      print('No enum values found for ValueSet: $valueSetUrl');
+      print('ValueSetUrl not Found: $valueSetUrl');
     } else {
       final Map<String, dynamic> valueSet = codesAndVS[valueSetUrl]!;
       final String enumName = _getEnumNameFromValueSet(valueSetUrl, valueSet);
 
       final List<String> enumValues = _extractEnumValues(valueSet, codesAndVS);
       if (enumValues.isEmpty) {
-        print('$i: $enumName: No enum values found for ValueSet: $valueSetUrl'
-            '\n${jsonEncode(valueSet)}');
-        throw Exception('No enum values found for ValueSet: $valueSetUrl');
+        // print('No enum values found for ValueSet: $valueSetUrl'
+        //     // '\n${jsonEncode(valueSet)}'
+        //     );
+      } else {
+        // You can uncomment the following lines to continue generating and writing enums
+        final String enumString = _buildEnumString(enumName, enumValues);
+        await _writeEnumToFile(enumName, enumString);
       }
-      i++;
-
-      // You can uncomment the following lines to continue generating and writing enums
-      // final String enumString = _buildEnumString(enumName, enumValues);
-      // await _writeEnumToFile(enumName, enumString);
     }
   }
 }
 
 String _getEnumNameFromValueSet(
     String valueSetUrl, Map<String, dynamic> valueSet) {
-  final String? valueSetName = valueSet['name'] as String?;
-  if (valueSetName != null && valueSetName.isNotEmpty) {
-    return valueSetName.camelCase.capitalize;
-  }
+  final String valueSetName = valueSet['name'] as String? ??
+      valueSet['title'] as String? ??
+      valueSetUrl.split('/').last.split('|').first;
 
-  final String namePart = valueSetUrl.split('/').last.split('|').first;
-  return namePart.camelCase.capitalize;
+  return valueSetName.upperCamelCase;
 }
 
 // Extract enum values from ValueSet or CodeSystem
@@ -111,121 +107,39 @@ List<String> _extractEnumValuesFromCodeSystem(Map<String, dynamic> codeSystem) {
   return enumValues;
 }
 
-// Future<List<String>> _fetchCodeSystemValues(
-//     Map<String, dynamic> valueSet) async {
-//   final List<String> enumValues = <String>[];
+String _buildEnumString(String enumName, List<String> enumValues) {
+  final StringBuffer buffer = StringBuffer();
+  buffer.writeln('enum $enumName {');
 
-//   if (valueSet.containsKey('compose')) {
-//     final List<dynamic> include = (valueSet['compose']
-//         as Map<String, dynamic>)['include'] as List<dynamic>;
+  for (final String value in enumValues) {
+    buffer.writeln('  ${_toEnumValue(value)},');
+  }
 
-//     for (final dynamic inclusion in include) {
-//       final String? systemUrl =
-//           (inclusion as Map<String, dynamic>)['system'] as String?;
+  buffer.writeln(';\n');
 
-//       if (systemUrl != null) {
-//         // Fetch the CodeSystem from the system URL
-//         final List<String> codes =
-//             await _tryFetchingCodeSystemWithFallback(systemUrl);
-//         enumValues.addAll(codes);
-//       }
-//     }
-//   }
+  buffer.writeln("  String toJson() => toString().split('.').last;");
+  buffer.writeln('  static $enumName fromJson(String jsonString) => '
+      "$enumName.values.firstWhere(($enumName e) => e.toString().split('.').last == jsonString);");
+  buffer.writeln('  @override');
+  buffer.writeln("  String toString() => super.toString().split('.').last;");
+  buffer.writeln('  static $enumName fromString(String str) => fromJson(str);');
+  buffer.writeln('}\n');
 
-//   return enumValues;
-// }
+  return buffer.toString();
+}
 
-// // Try fetching codes, first with |version, then without, then modifying the URL to use 'ValueSet'
-// Future<List<String>> _tryFetchingCodeSystemWithFallback(
-//     String systemUrl) async {
-//   List<String> codes = <String>[];
-//   final String url = systemUrl;
+String _toEnumValue(String value) {
+  return value.replaceAll('-', '_').replaceAll(' ', '_').camelCase;
+}
 
-//   // Check if the URL already contains a version, otherwise try adding a version
-//   if (!url.contains('|')) {
-//     codes = await _fetchCodesFromSystem('$url|4.3.0');
-//     if (codes.isEmpty) {
-//       codes = await _fetchCodesFromSystem(url);
-//     }
-//   } else {
-//     codes = await _fetchCodesFromSystem(url);
-//   }
+Future<void> _writeEnumToFile(String enumName, String enumString) async {
+  final String enumFileName = '${enumName.snakeCase}.dart';
+  final String filePath = '../lib/src/fhir/enums/$enumFileName';
 
-//   // If still empty and it's a 'resource-types', attempt changing 'resource-types' to 'ValueSet'
-//   if (codes.isEmpty && url.contains('resource-types')) {
-//     final String updatedUrl = url.replaceAll('resource-types', 'ValueSet');
-//     codes = await _fetchCodesFromSystem(updatedUrl);
-//   }
+  final File enumFile = File(filePath);
+  if (!enumFile.existsSync()) {
+    enumFile.createSync(recursive: true);
+  }
 
-//   return codes;
-// }
-
-// // Fetch codes from the given system URL
-// Future<List<String>> _fetchCodesFromSystem(String systemUrl) async {
-//   final List<String> codes = <String>[];
-
-//   try {
-//     final Uri uri = Uri.parse(systemUrl);
-//     final http.Response response =
-//         await http.get(uri, headers: <String, String>{
-//       'Accept': 'application/json',
-//     });
-
-//     if (response.statusCode == 200) {
-//       final Map<String, dynamic> codeSystem =
-//           jsonDecode(response.body) as Map<String, dynamic>;
-
-//       if (codeSystem.containsKey('concept')) {
-//         final List<dynamic> concepts = codeSystem['concept'] as List<dynamic>;
-//         for (final dynamic concept in concepts) {
-//           codes.add((concept as Map<String, dynamic>)['code'] as String);
-//         }
-//       }
-//     } else {
-//       print(
-//           'Failed to fetch CodeSystem: ${response.statusCode} for $systemUrl');
-//     }
-//   } catch (e) {
-//     print('Error fetching CodeSystem: $e');
-//   }
-
-//   return codes;
-// }
-
-// String _buildEnumString(String enumName, List<String> enumValues) {
-//   final StringBuffer buffer = StringBuffer();
-//   enumName = enumName.camelCase.capitalize;
-//   buffer.writeln('enum $enumName {');
-
-//   for (final String value in enumValues) {
-//     buffer.writeln('  ${_toEnumValue(value)},');
-//   }
-
-//   buffer.writeln(';\n');
-
-//   buffer.writeln("  String toJson() => toString().split('.').last;");
-//   buffer.writeln('  static $enumName fromJson(String jsonString) => '
-//       "$enumName.values.firstWhere((e) => e.toString().split('.').last == jsonString);");
-//   buffer.writeln('  @override');
-//   buffer.writeln("  String toString() => super.toString().split('.').last;");
-//   buffer.writeln('  static $enumName fromString(String str) => fromJson(str);');
-//   buffer.writeln('}\n');
-
-//   return buffer.toString();
-// }
-
-// String _toEnumValue(String value) {
-//   return value.replaceAll('-', '_').replaceAll(' ', '_').camelCase;
-// }
-
-// Future<void> _writeEnumToFile(String enumName, String enumString) async {
-//   final String enumFileName = '${enumName.snakeCase}.dart';
-//   final String filePath = '../lib/src/fhir/enums/$enumFileName';
-
-//   final File enumFile = File(filePath);
-//   if (!enumFile.existsSync()) {
-//     enumFile.createSync(recursive: true);
-//   }
-
-//   await enumFile.writeAsString(enumString);
-// }
+  await enumFile.writeAsString(enumString);
+}
