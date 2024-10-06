@@ -387,7 +387,7 @@ extension FhirGenerate on String {
           ? '${this}_'
           : this;
 
-  bool isSuperField(String className, bool isBackboneElement) {
+  bool isSuperField(String className, bool isBackboneElement, bool isElement) {
     if (className.isResourceType) {
       // Super fields for DomainResource
       return <String>[
@@ -409,7 +409,7 @@ extension FhirGenerate on String {
         'extension',
         'modifierextension',
       ].contains(toLowerCase());
-    } else if (className.isDataType) {
+    } else if (className.isDataType || isElement) {
       // Super fields for DataType
       return <String>[
         'id',
