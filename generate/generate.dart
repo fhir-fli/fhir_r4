@@ -68,14 +68,19 @@ Future<void> _generateFromSd(Map<String, dynamic> sd) async {
     final String fieldName = pathParts.last;
     String fieldType = _getElementType(element).fhirToDartTypes;
     String? thisClass;
+    final bool isPolymorphic = fieldName.endsWith('[x]');
+    final bool isList = (element['max'] as String) == '*';
+
     if (fieldType == 'BackboneElement') {
-      fieldType = '${pathParts.first}${pathParts.last[0].toUpperCase()}'
-          '${pathParts.last.substring(1)}';
+      // Create a BackboneElement subclass
+      fieldType =
+          '${pathParts.first}${pathParts.last[0].toUpperCase()}${pathParts.last.substring(1)}';
       classes[path] ??= WritableClass()
         ..className = fieldType
         ..isBackboneElement = true;
       thisClass = className;
     } else {
+      // Find the class this field belongs to
       int length = 0;
       for (final String key in classes.keys) {
         if (path.startsWith(key) && key.length > length) {
@@ -84,13 +89,48 @@ Future<void> _generateFromSd(Map<String, dynamic> sd) async {
         }
       }
     }
+
     final bool isRequired = (element['min'] as int) > 0;
-    final bool isSuper = fieldName.isSuperField(className);
-    classes[thisClass]!.fields.add(Field()
-      ..name = fieldName
-      ..type = fieldType
-      ..isRequired = isRequired
-      ..isSuper = isSuper);
+    final bool isBackboneElement =
+        classes[thisClass]?.isBackboneElement ?? false;
+    final bool isSuper = fieldName.isSuperField(thisClass!, isBackboneElement);
+
+    if (isPolymorphic) {
+      // Handle polymorphic types
+      final List<dynamic> types = element['type'] as List<dynamic>;
+      for (final dynamic type in types) {
+        final String polymorphicFieldType =
+            ((type as Map<String, dynamic>)['code'] as String).fhirToDartTypes;
+        final String polymorphicFieldName =
+            '${fieldName.replaceAll("[x]", "")}${polymorphicFieldType.capitalize}';
+
+        // Add the polymorphic field
+        classes[thisClass]!.fields.add(Field()
+          ..name = polymorphicFieldName
+          ..type = polymorphicFieldType
+          ..isRequired = isRequired
+          ..isSuper = isSuper
+          ..isList = isList);
+
+        // If it's a primitive type, also add the corresponding Element field
+        if (polymorphicFieldName.isPrimitiveType) {
+          classes[thisClass]!.fields.add(Field()
+            ..name = '${polymorphicFieldName}Element'
+            ..type = 'Element'
+            ..isRequired = isRequired
+            ..isSuper = isSuper
+            ..isList = false); // Element is never a list
+        }
+      }
+    } else {
+      // Regular field processing
+      classes[thisClass]!.fields.add(Field()
+        ..name = fieldName
+        ..type = fieldType
+        ..isRequired = isRequired
+        ..isSuper = isSuper
+        ..isList = isList);
+    }
   }
 
   final StringBuffer buffer = StringBuffer();
@@ -119,9 +159,12 @@ Future<void> _generateFromSd(Map<String, dynamic> sd) async {
     buffer.writeln('class $writableName $extendsClause {');
 
     for (final Field field in writableClass.fields) {
+      final String fieldDeclaration = field.isList
+          ? 'List<${field.type}>${field.isRequired ? '' : '?'}'
+          : '${field.type}${field.isRequired ? '' : '?'}';
       if (field.name != writableName && !field.isSuper) {
         buffer.writeln(
-            '  final ${field.type}${field.isRequired ? '' : '?'} ${field.name.fhirFieldToDartName};');
+            '  final $fieldDeclaration ${field.name.fhirFieldToDartName};');
         if (field.name.isPrimitiveType && field.name != 'id') {
           buffer.writeln(
               '  final Element${field.isRequired ? '' : '?'} ${field.name}Element;');
@@ -158,9 +201,11 @@ Future<void> _generateFromSd(Map<String, dynamic> sd) async {
     print('Not writing: $className');
     return;
   }
-  writeFileName = writeFileName[0].toLowerCase() + writeFileName.substring(1);
+  writeFileName = writeFileName.properFileName;
   // Write class to file
-  final String filePath = '../lib/src/fhir/generated/$writeFileName.dart';
+  final String filePath = '../lib/src/fhir/'
+      '${className.isResourceType ? "resource_types" : "data_types"}/'
+      '$writeFileName.dart';
   File(filePath).writeAsStringSync(buffer.toString());
 }
 

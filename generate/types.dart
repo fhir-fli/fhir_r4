@@ -26,6 +26,8 @@ extension FhirGenerate on String {
       'domainresource',
       'backboneelement',
       'element',
+      'moneyquantity',
+      'simplequantity',
     ];
     return !excludedTypes.contains(toLowerCase());
   }
@@ -385,14 +387,37 @@ extension FhirGenerate on String {
           ? '${this}_'
           : this;
 
-  bool isSuperField(String className) =>
-      _fieldInQuantity(className) ||
-      _fieldInDataType(className) ||
-      _fieldInBackboneType(className) ||
-      _fieldInDomainResource(className);
-
-  bool _fieldInQuantity(String className) =>
-      <String>[
+  bool isSuperField(String className, bool isBackboneElement) {
+    if (className.isResourceType) {
+      // Super fields for DomainResource
+      return <String>[
+        'id',
+        'meta',
+        'implicitrules',
+        'implicitruleselement',
+        'language',
+        'languageelement',
+        'text',
+        'contained',
+        'extension',
+        'modifierextension',
+      ].contains(toLowerCase());
+    } else if (className.isBackboneType || isBackboneElement) {
+      // Super fields for BackboneType && BackboneElement
+      return <String>[
+        'id',
+        'extension',
+        'modifierextension',
+      ].contains(toLowerCase());
+    } else if (className.isDataType) {
+      // Super fields for DataType
+      return <String>[
+        'id',
+        'extension',
+      ].contains(toLowerCase());
+    } else if (className.isQuantity) {
+      // Super fields for Quantity
+      return <String>[
         'id',
         'extension',
         'value',
@@ -405,37 +430,23 @@ extension FhirGenerate on String {
         'systemelement',
         'code',
         'codeelement',
-      ].contains(toLowerCase()) &&
-      className.isQuantity;
+      ].contains(toLowerCase());
+    }
+    return false;
+  }
 
-  bool _fieldInDataType(String className) =>
-      <String>[
-        'id',
-        'extension',
-      ].contains(toLowerCase()) &&
-      className.isDataType;
+  String get properFileName {
+    final RegExp upperCase = RegExp(r'(?<!^)([A-Z])');
+    final String snakeCase = replaceAllMapped(upperCase, (Match match) {
+      return '_${match.group(1)!.toLowerCase()}';
+    });
+    return snakeCase.toLowerCase();
+  }
 
-  bool _fieldInBackboneType(String className) =>
-      <String>[
-        'id',
-        'extension',
-        'modifierextension',
-      ].contains(toLowerCase()) &&
-      className.isBackboneType;
-
-  bool _fieldInDomainResource(String className) =>
-      <String>[
-        'resourcetype',
-        'id',
-        'meta',
-        'implicitrules',
-        'implicitruleselement',
-        'language',
-        'languageelement',
-        'text',
-        'contained',
-        'extension',
-        'modifierextension',
-      ].contains(toLowerCase()) &&
-      className.isResourceType;
+  String get capitalize {
+    if (isEmpty) {
+      return this;
+    }
+    return this[0].toUpperCase() + substring(1);
+  }
 }

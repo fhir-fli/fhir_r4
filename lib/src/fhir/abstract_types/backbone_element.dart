@@ -7,40 +7,41 @@ abstract class BackboneElement extends DataType {
   /// Constructor for BackboneElement
   BackboneElement({
     super.id,
-    super.extension_ = const <FhirExtension>[],
-    this.modifierExtension = const <FhirExtension>[],
+    super.extension_,
+    this.modifierExtension,
     super.fhirType = 'BackboneElement',
   });
 
   /// List of modifier extensions for additional, non-core information
-  final List<FhirExtension> modifierExtension;
+  final List<FhirExtension>? modifierExtension;
 
   /// Method to check if there are any modifier extensions
-  bool hasModifierExtension() => modifierExtension.isNotEmpty;
+  bool hasModifierExtension() => modifierExtension?.isNotEmpty ?? false;
 
   /// Gets the first repetition of modifier extensions
   FhirExtension getModifierExtensionFirstRep() {
-    return modifierExtension.isEmpty
+    return modifierExtension?.isEmpty ?? true
         ? FhirExtension()
-        : modifierExtension.first;
+        : modifierExtension!.first;
   }
 
   /// Retrieves all modifier extensions by URL
   List<FhirExtension> getModifierExtensionsByUrl(String url) {
     return modifierExtension
-        .where((FhirExtension ext) => ext.url?.equals(url) ?? false)
-        .toList();
+            ?.where((FhirExtension ext) => ext.url?.equals(url) ?? false)
+            .toList() ??
+        <FhirExtension>[];
   }
 
   /// Adds a modifier extension
   void addModifierExtension(FhirExtension ext) {
-    modifierExtension.add(ext);
+    modifierExtension?.add(ext);
   }
 
   /// Removes modifier extensions by URL
   void removeModifierExtension(String url) {
     modifierExtension
-        .removeWhere((FhirExtension ext) => ext.url?.equals(url) ?? false);
+        ?.removeWhere((FhirExtension ext) => ext.url?.equals(url) ?? false);
   }
 
   @override
@@ -55,7 +56,7 @@ abstract class BackboneElement extends DataType {
 
   @override
   bool isEmpty() {
-    return super.isEmpty() && modifierExtension.isEmpty;
+    return super.isEmpty() && (modifierExtension?.isEmpty ?? true);
   }
 
   @override
@@ -68,9 +69,9 @@ abstract class BackboneElement extends DataType {
       json['_extension'] =
           extension_!.map((FhirExtension e) => e.toJson()).toList();
     }
-    if (modifierExtension.isNotEmpty) {
+    if (modifierExtension?.isNotEmpty ?? false) {
       json['modifierExtension'] =
-          modifierExtension.map((FhirExtension e) => e.toJson()).toList();
+          modifierExtension!.map((FhirExtension e) => e.toJson()).toList();
     }
     return json;
   }
