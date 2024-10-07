@@ -334,7 +334,7 @@ class ImplementationGuideManifest extends BackboneElement {
 
 @Data()
 @JsonCodable()
-class ImplementationGuideResource extends BackboneElement {
+class ImplementationGuideResource1 extends BackboneElement {
   final Reference reference;
   final FhirBoolean? exampleBoolean;
   final Element? exampleBooleanElement;
@@ -343,7 +343,7 @@ class ImplementationGuideResource extends BackboneElement {
   final FhirUrl? relativePath;
   final Element? relativePathElement;
 
-  ImplementationGuideResource({
+  ImplementationGuideResource1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -357,12 +357,12 @@ class ImplementationGuideResource extends BackboneElement {
   });
 
   @override
-  ImplementationGuideResource clone() => throw UnimplementedError();
+  ImplementationGuideResource1 clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
-class ImplementationGuidePage extends BackboneElement {
+class ImplementationGuidePage1 extends BackboneElement {
   final FhirString name;
   final Element? nameElement;
   final FhirString? title;
@@ -370,7 +370,7 @@ class ImplementationGuidePage extends BackboneElement {
   final List<FhirString>? anchor;
   final List<Element>? anchorElement;
 
-  ImplementationGuidePage({
+  ImplementationGuidePage1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -383,5 +383,5 @@ class ImplementationGuidePage extends BackboneElement {
   });
 
   @override
-  ImplementationGuidePage clone() => throw UnimplementedError();
+  ImplementationGuidePage1 clone() => throw UnimplementedError();
 }

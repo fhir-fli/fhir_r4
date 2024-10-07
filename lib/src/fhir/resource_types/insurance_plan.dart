@@ -212,11 +212,11 @@ class InsurancePlanSpecificCost extends BackboneElement {
 
 @Data()
 @JsonCodable()
-class InsurancePlanBenefit extends BackboneElement {
+class InsurancePlanBenefit1 extends BackboneElement {
   final CodeableConcept type;
   final List<InsurancePlanCost>? cost;
 
-  InsurancePlanBenefit({
+  InsurancePlanBenefit1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -225,7 +225,7 @@ class InsurancePlanBenefit extends BackboneElement {
   });
 
   @override
-  InsurancePlanBenefit clone() => throw UnimplementedError();
+  InsurancePlanBenefit1 clone() => throw UnimplementedError();
 }
 
 @Data()

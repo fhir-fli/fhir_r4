@@ -260,7 +260,7 @@ class ClaimResponseAddItem extends BackboneElement {
 
 @Data()
 @JsonCodable()
-class ClaimResponseDetail extends BackboneElement {
+class ClaimResponseDetail1 extends BackboneElement {
   final CodeableConcept productOrService;
   final List<CodeableConcept>? modifier;
   final Quantity? quantity;
@@ -273,7 +273,7 @@ class ClaimResponseDetail extends BackboneElement {
   final List<ClaimResponseAdjudication> adjudication;
   final List<ClaimResponseSubDetail>? subDetail;
 
-  ClaimResponseDetail({
+  ClaimResponseDetail1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -291,12 +291,12 @@ class ClaimResponseDetail extends BackboneElement {
   });
 
   @override
-  ClaimResponseDetail clone() => throw UnimplementedError();
+  ClaimResponseDetail1 clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
-class ClaimResponseSubDetail extends BackboneElement {
+class ClaimResponseSubDetail1 extends BackboneElement {
   final CodeableConcept productOrService;
   final List<CodeableConcept>? modifier;
   final Quantity? quantity;
@@ -308,7 +308,7 @@ class ClaimResponseSubDetail extends BackboneElement {
   final List<Element>? noteNumberElement;
   final List<ClaimResponseAdjudication> adjudication;
 
-  ClaimResponseSubDetail({
+  ClaimResponseSubDetail1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -325,7 +325,7 @@ class ClaimResponseSubDetail extends BackboneElement {
   });
 
   @override
-  ClaimResponseSubDetail clone() => throw UnimplementedError();
+  ClaimResponseSubDetail1 clone() => throw UnimplementedError();
 }
 
 @Data()

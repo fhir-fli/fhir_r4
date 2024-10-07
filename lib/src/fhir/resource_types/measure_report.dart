@@ -158,13 +158,13 @@ class MeasureReportComponent extends BackboneElement {
 
 @Data()
 @JsonCodable()
-class MeasureReportPopulation extends BackboneElement {
+class MeasureReportPopulation1 extends BackboneElement {
   final CodeableConcept? code;
   final FhirInteger? count;
   final Element? countElement;
   final Reference? subjectResults;
 
-  MeasureReportPopulation({
+  MeasureReportPopulation1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -175,5 +175,5 @@ class MeasureReportPopulation extends BackboneElement {
   });
 
   @override
-  MeasureReportPopulation clone() => throw UnimplementedError();
+  MeasureReportPopulation1 clone() => throw UnimplementedError();
 }

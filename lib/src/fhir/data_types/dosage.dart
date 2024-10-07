@@ -55,7 +55,7 @@ class Dosage extends BackboneType {
 
 @Data()
 @JsonCodable()
-class DosageDoseAndRate extends BackboneElement {
+class DosageDoseAndRate extends Element {
   final CodeableConcept? type;
   final Range? doseRange;
   final Quantity? doseQuantity;

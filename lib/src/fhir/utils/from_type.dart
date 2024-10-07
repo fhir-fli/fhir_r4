@@ -1243,9 +1243,7 @@ FhirBase? fromType(dynamic value, String type) {
     case 'List':
       return value is! Map<String, dynamic> ? null : FhirList.fromJson(value);
     case 'ListEntry':
-      return value is! Map<String, dynamic>
-          ? null
-          : FhirListEntry.fromJson(value);
+      return value is! Map<String, dynamic> ? null : ListEntry.fromJson(value);
     case 'Location':
       return value is! Map<String, dynamic> ? null : Location.fromJson(value);
     case 'LocationPosition':
@@ -2305,10 +2303,10 @@ FhirBase? fromType(dynamic value, String type) {
       return value is! Map<String, dynamic>
           ? null
           : NutritionProductIngredient.fromJson(value);
-    case 'NutritionProductCharacteristic':
+    case 'NutritionProductProductCharacteristic':
       return value is! Map<String, dynamic>
           ? null
-          : NutritionProductCharacteristic.fromJson(value);
+          : NutritionProductProductCharacteristic.fromJson(value);
     case 'NutritionProductInstance':
       return value is! Map<String, dynamic>
           ? null
@@ -2316,9 +2314,7 @@ FhirBase? fromType(dynamic value, String type) {
     case 'FhirList':
       return value is! Map<String, dynamic> ? null : FhirList.fromJson(value);
     case 'FhirListEntry':
-      return value is! Map<String, dynamic>
-          ? null
-          : FhirListEntry.fromJson(value);
+      return value is! Map<String, dynamic> ? null : ListEntry.fromJson(value);
     case 'AdministrableProductDefinitionRouteOfAdministration':
       return value is! Map<String, dynamic>
           ? null
@@ -2587,10 +2583,6 @@ FhirBase? fromType(dynamic value, String type) {
       return value is! Map<String, dynamic>
           ? null
           : EvidenceModelCharacteristic.fromJson(value);
-    case 'EvidenceVar':
-      return value is! Map<String, dynamic>
-          ? null
-          : EvidenceVar.fromJson(value);
     case 'EvidenceCertainty':
       return value is! Map<String, dynamic>
           ? null

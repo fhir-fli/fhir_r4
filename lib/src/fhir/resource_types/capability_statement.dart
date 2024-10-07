@@ -378,13 +378,13 @@ class CapabilityStatementOperation extends BackboneElement {
 
 @Data()
 @JsonCodable()
-class CapabilityStatementInteraction extends BackboneElement {
+class CapabilityStatementInteraction1 extends BackboneElement {
   final FhirCode code;
   final Element? codeElement;
   final FhirMarkdown? documentation;
   final Element? documentationElement;
 
-  CapabilityStatementInteraction({
+  CapabilityStatementInteraction1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -395,7 +395,7 @@ class CapabilityStatementInteraction extends BackboneElement {
   });
 
   @override
-  CapabilityStatementInteraction clone() => throw UnimplementedError();
+  CapabilityStatementInteraction1 clone() => throw UnimplementedError();
 }
 
 @Data()

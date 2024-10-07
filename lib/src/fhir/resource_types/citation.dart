@@ -264,13 +264,13 @@ class CitationVersion extends BackboneElement {
 
 @Data()
 @JsonCodable()
-class CitationStatusDate extends BackboneElement {
+class CitationStatusDate1 extends BackboneElement {
   final CodeableConcept activity;
   final FhirBoolean? actual;
   final Element? actualElement;
   final Period period;
 
-  CitationStatusDate({
+  CitationStatusDate1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -281,7 +281,7 @@ class CitationStatusDate extends BackboneElement {
   });
 
   @override
-  CitationStatusDate clone() => throw UnimplementedError();
+  CitationStatusDate1 clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -356,7 +356,7 @@ class CitationPart extends BackboneElement {
 
 @Data()
 @JsonCodable()
-class CitationRelatesTo extends BackboneElement {
+class CitationRelatesTo1 extends BackboneElement {
   final CodeableConcept relationshipType;
   final List<CodeableConcept>? targetClassifier;
   final FhirUri targetUri;
@@ -365,7 +365,7 @@ class CitationRelatesTo extends BackboneElement {
   final Reference targetReference;
   final Attachment targetAttachment;
 
-  CitationRelatesTo({
+  CitationRelatesTo1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -379,7 +379,7 @@ class CitationRelatesTo extends BackboneElement {
   });
 
   @override
-  CitationRelatesTo clone() => throw UnimplementedError();
+  CitationRelatesTo1 clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -548,12 +548,12 @@ class CitationWebLocation extends BackboneElement {
 
 @Data()
 @JsonCodable()
-class CitationClassification extends BackboneElement {
+class CitationClassification1 extends BackboneElement {
   final CodeableConcept? type;
   final List<CodeableConcept>? classifier;
   final CitationWhoClassified? whoClassified;
 
-  CitationClassification({
+  CitationClassification1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -563,7 +563,7 @@ class CitationClassification extends BackboneElement {
   });
 
   @override
-  CitationClassification clone() => throw UnimplementedError();
+  CitationClassification1 clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -708,14 +708,14 @@ class CitationContributionInstance extends BackboneElement {
 
 @Data()
 @JsonCodable()
-class CitationSummary extends BackboneElement {
+class CitationSummary1 extends BackboneElement {
   final CodeableConcept? type;
   final CodeableConcept? style;
   final CodeableConcept? source;
   final FhirMarkdown value;
   final Element? valueElement;
 
-  CitationSummary({
+  CitationSummary1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -727,5 +727,5 @@ class CitationSummary extends BackboneElement {
   });
 
   @override
-  CitationSummary clone() => throw UnimplementedError();
+  CitationSummary1 clone() => throw UnimplementedError();
 }

@@ -232,7 +232,7 @@ class CodeSystemDesignation extends BackboneElement {
 
 @Data()
 @JsonCodable()
-class CodeSystemProperty extends BackboneElement {
+class CodeSystemProperty1 extends BackboneElement {
   final FhirCode code;
   final Element? codeElement;
   final FhirCode valueCode;
@@ -249,7 +249,7 @@ class CodeSystemProperty extends BackboneElement {
   final FhirDecimal valueDecimal;
   final Element? valueDecimalElement;
 
-  CodeSystemProperty({
+  CodeSystemProperty1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -271,5 +271,5 @@ class CodeSystemProperty extends BackboneElement {
   });
 
   @override
-  CodeSystemProperty clone() => throw UnimplementedError();
+  CodeSystemProperty1 clone() => throw UnimplementedError();
 }

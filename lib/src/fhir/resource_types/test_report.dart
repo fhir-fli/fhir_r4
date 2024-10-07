@@ -198,11 +198,11 @@ class TestReportTest extends BackboneElement {
 
 @Data()
 @JsonCodable()
-class TestReportAction extends BackboneElement {
+class TestReportAction1 extends BackboneElement {
   final TestReportOperation? operation;
   final TestReportAssert? assert_;
 
-  TestReportAction({
+  TestReportAction1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -211,7 +211,7 @@ class TestReportAction extends BackboneElement {
   });
 
   @override
-  TestReportAction clone() => throw UnimplementedError();
+  TestReportAction1 clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -232,10 +232,10 @@ class TestReportTeardown extends BackboneElement {
 
 @Data()
 @JsonCodable()
-class TestReportAction extends BackboneElement {
+class TestReportAction2 extends BackboneElement {
   final TestReportOperation operation;
 
-  TestReportAction({
+  TestReportAction2({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -243,5 +243,5 @@ class TestReportAction extends BackboneElement {
   });
 
   @override
-  TestReportAction clone() => throw UnimplementedError();
+  TestReportAction2 clone() => throw UnimplementedError();
 }

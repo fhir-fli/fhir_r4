@@ -4,13 +4,16 @@ import 'dart:io';
 import 'fhir_generate_extension.dart';
 
 Future<void> writeEnums(
-    Set<String> valueSets, Map<String, Map<String, dynamic>> codesAndVS) async {
+    Set<String> valueSets,
+    Map<String, Map<String, dynamic>> codesAndVS,
+    Map<String, String> nameMap) async {
   for (final String valueSetUrl in valueSets) {
     if (!codesAndVS.containsKey(valueSetUrl)) {
       print('ValueSetUrl not Found: $valueSetUrl');
     } else {
       final Map<String, dynamic> valueSet = codesAndVS[valueSetUrl]!;
-      final String enumName = _getEnumNameFromValueSet(valueSetUrl, valueSet);
+      final String enumName =
+          _getEnumNameFromValueSet(valueSetUrl, valueSet, nameMap);
 
       final List<Map<String, String>> enumValuesWithComments =
           _extractEnumValuesWithComments(valueSet, codesAndVS);
@@ -25,15 +28,20 @@ Future<void> writeEnums(
   }
 }
 
-String _getEnumNameFromValueSet(
-    String valueSetUrl, Map<String, dynamic> valueSet) {
+String _getEnumNameFromValueSet(String valueSetUrl,
+    Map<String, dynamic> valueSet, Map<String, String> nameMap) {
   final String valueSetName = valueSet['name'] as String? ??
       valueSet['title'] as String? ??
       valueSetUrl.split('/').last.split('|').first;
 
   final String enumName = valueSetName.upperCamelCase;
-  if (enumName.isResourceType) {
+  if (enumName.isResourceType ||
+      nameMap.keys.contains(enumName.toLowerCase()) ||
+      nameMap.values.contains(enumName.toLowerCase())) {
     return '${enumName}Enum';
+  }
+  if (enumName.toLowerCase().contains('spec')) {
+    print(enumName);
   }
   return enumName;
 }

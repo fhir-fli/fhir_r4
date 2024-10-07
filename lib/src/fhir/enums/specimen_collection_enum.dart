@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
 /// Actions that can be taken for the collection of specimen from a subject.
-enum SpecimenCollection {
+enum SpecimenCollectionEnum {
   /// Display: Aspiration - action
   @JsonValue('129316008')
   value129316008,
@@ -70,34 +70,34 @@ enum SpecimenCollection {
   }
 
   String toJson() => toString();
-  SpecimenCollection fromString(String str) {
+  SpecimenCollectionEnum fromString(String str) {
     switch (str) {
       case '129316008':
-        return SpecimenCollection.value129316008;
+        return SpecimenCollectionEnum.value129316008;
       case '129314006':
-        return SpecimenCollection.value129314006;
+        return SpecimenCollectionEnum.value129314006;
       case '129300006':
-        return SpecimenCollection.value129300006;
+        return SpecimenCollectionEnum.value129300006;
       case '129304002':
-        return SpecimenCollection.value129304002;
+        return SpecimenCollectionEnum.value129304002;
       case '129323009':
-        return SpecimenCollection.value129323009;
+        return SpecimenCollectionEnum.value129323009;
       case '73416001':
-        return SpecimenCollection.value73416001;
+        return SpecimenCollectionEnum.value73416001;
       case '225113003':
-        return SpecimenCollection.value225113003;
+        return SpecimenCollectionEnum.value225113003;
       case '70777001':
-        return SpecimenCollection.value70777001;
+        return SpecimenCollectionEnum.value70777001;
       case '386089008':
-        return SpecimenCollection.value386089008;
+        return SpecimenCollectionEnum.value386089008;
       case '278450005':
-        return SpecimenCollection.value278450005;
+        return SpecimenCollectionEnum.value278450005;
       default:
         throw ArgumentError('Unknown enum value: $str');
     }
   }
 
-  SpecimenCollection fromJson(dynamic jsonValue) {
+  SpecimenCollectionEnum fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

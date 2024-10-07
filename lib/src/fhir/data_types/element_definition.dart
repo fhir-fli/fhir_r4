@@ -607,7 +607,7 @@ class ElementDefinition extends BackboneType {
 
 @Data()
 @JsonCodable()
-class ElementDefinitionSlicing extends BackboneElement {
+class ElementDefinitionSlicing extends Element {
   final List<Element>? discriminator;
   final FhirString? description;
   final Element? descriptionElement;
@@ -634,7 +634,7 @@ class ElementDefinitionSlicing extends BackboneElement {
 
 @Data()
 @JsonCodable()
-class ElementDefinitionDiscriminator extends BackboneElement {
+class ElementDefinitionDiscriminator extends Element {
   final FhirCode type;
   final Element? typeElement;
   final FhirString path;
@@ -655,7 +655,7 @@ class ElementDefinitionDiscriminator extends BackboneElement {
 
 @Data()
 @JsonCodable()
-class ElementDefinitionBase extends BackboneElement {
+class ElementDefinitionBase extends Element {
   final FhirString path;
   final Element? pathElement;
   final FhirUnsignedInt min;
@@ -680,7 +680,7 @@ class ElementDefinitionBase extends BackboneElement {
 
 @Data()
 @JsonCodable()
-class ElementDefinitionType extends BackboneElement {
+class ElementDefinitionType extends Element {
   final FhirUri code;
   final Element? codeElement;
   final List<FhirCanonical>? profile;
@@ -713,7 +713,7 @@ class ElementDefinitionType extends BackboneElement {
 
 @Data()
 @JsonCodable()
-class ElementDefinitionExample extends BackboneElement {
+class ElementDefinitionExample extends Element {
   final FhirString label;
   final Element? labelElement;
   final FhirBase64Binary valueBase64Binary;
@@ -870,7 +870,7 @@ class ElementDefinitionExample extends BackboneElement {
 
 @Data()
 @JsonCodable()
-class ElementDefinitionConstraint extends BackboneElement {
+class ElementDefinitionConstraint extends Element {
   final FhirId key;
   final Element? keyElement;
   final FhirString? requirements;
@@ -911,7 +911,7 @@ class ElementDefinitionConstraint extends BackboneElement {
 
 @Data()
 @JsonCodable()
-class ElementDefinitionBinding extends BackboneElement {
+class ElementDefinitionBinding extends Element {
   final FhirCode strength;
   final Element? strengthElement;
   final FhirString? description;
@@ -936,7 +936,7 @@ class ElementDefinitionBinding extends BackboneElement {
 
 @Data()
 @JsonCodable()
-class ElementDefinitionMapping extends BackboneElement {
+class ElementDefinitionMapping extends Element {
   final FhirId identity;
   final Element? identityElement;
   final FhirCode? language;

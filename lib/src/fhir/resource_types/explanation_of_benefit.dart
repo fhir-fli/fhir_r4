@@ -610,7 +610,7 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
 
 @Data()
 @JsonCodable()
-class ExplanationOfBenefitDetail extends BackboneElement {
+class ExplanationOfBenefitDetail1 extends BackboneElement {
   final CodeableConcept productOrService;
   final List<CodeableConcept>? modifier;
   final Quantity? quantity;
@@ -623,7 +623,7 @@ class ExplanationOfBenefitDetail extends BackboneElement {
   final List<ExplanationOfBenefitAdjudication>? adjudication;
   final List<ExplanationOfBenefitSubDetail>? subDetail;
 
-  ExplanationOfBenefitDetail({
+  ExplanationOfBenefitDetail1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -641,12 +641,12 @@ class ExplanationOfBenefitDetail extends BackboneElement {
   });
 
   @override
-  ExplanationOfBenefitDetail clone() => throw UnimplementedError();
+  ExplanationOfBenefitDetail1 clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
-class ExplanationOfBenefitSubDetail extends BackboneElement {
+class ExplanationOfBenefitSubDetail1 extends BackboneElement {
   final CodeableConcept productOrService;
   final List<CodeableConcept>? modifier;
   final Quantity? quantity;
@@ -658,7 +658,7 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
   final List<Element>? noteNumberElement;
   final List<ExplanationOfBenefitAdjudication>? adjudication;
 
-  ExplanationOfBenefitSubDetail({
+  ExplanationOfBenefitSubDetail1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -675,7 +675,7 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
   });
 
   @override
-  ExplanationOfBenefitSubDetail clone() => throw UnimplementedError();
+  ExplanationOfBenefitSubDetail1 clone() => throw UnimplementedError();
 }
 
 @Data()

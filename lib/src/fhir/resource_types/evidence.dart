@@ -254,7 +254,7 @@ class EvidenceModelCharacteristic extends BackboneElement {
 
 @Data()
 @JsonCodable()
-class EvidenceVariable extends BackboneElement {
+class Evidencevariable extends BackboneElement {
   final Reference variableDefinition;
   final FhirCode? handling;
   final Element? handlingElement;
@@ -262,7 +262,7 @@ class EvidenceVariable extends BackboneElement {
   final List<Quantity>? valueQuantity;
   final List<Range>? valueRange;
 
-  EvidenceVariable({
+  Evidencevariable({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -272,10 +272,10 @@ class EvidenceVariable extends BackboneElement {
     this.valueCategory,
     this.valueQuantity,
     this.valueRange,
-  }) : super(resourceType: R4ResourceType.EvidenceVariable);
+  });
 
   @override
-  EvidenceVariable clone() => throw UnimplementedError();
+  Evidencevariable clone() => throw UnimplementedError();
 }
 
 @Data()

@@ -26,7 +26,7 @@ Future<void> main() async {
   _nameMap.addAll(populateNameMap(fhirSchemaPath));
   await _classesFromStructureDefinitions();
   await exportFiles();
-  await writeEnums(_valueSets, _codesAndVS);
+  await writeEnums(_valueSets, _codesAndVS, _nameMap);
 }
 
 Future<void> _classesFromStructureDefinitions() async {
@@ -81,8 +81,23 @@ Future<Map<String, WritableClass>> _buildWritableClasses(
       (sd['snapshot'] as Map<String, dynamic>)['element'] as List<dynamic>;
 
   for (final dynamic elementDefinition in elements) {
-    final String path =
-        (elementDefinition as Map<String, dynamic>)['path'] as String;
+    final Map<String, dynamic> element =
+        elementDefinition as Map<String, dynamic>;
+
+    // Handle ValueSets if binding is present
+    if (element['binding'] != null &&
+        (element['binding'] as Map<String, dynamic>)['valueSet'] != null) {
+      final String fullUrl =
+          (element['binding'] as Map<String, dynamic>)['valueSet'] as String;
+      final String valueSetUrl = fullUrl.splitOffVersion;
+      if (_codesAndVS.keys.contains(valueSetUrl)) {
+        _valueSets.add(valueSetUrl);
+      } else {
+        print('Error: $valueSetUrl');
+      }
+    }
+
+    final String path = elementDefinition['path'] as String;
     final String classPath = path.findLongestMatch(classes.keys.toList());
 
     if (className.isResourceType &&
@@ -91,14 +106,31 @@ Future<Map<String, WritableClass>> _buildWritableClasses(
         ((elementDefinition['type'] as List<dynamic>).first
                 as Map<String, dynamic>)['code'] ==
             'BackboneElement') {
+      // Generate a base class name
+      final String baseClassName =
+          path.split('.').first + path.split('.').last.capitalize;
+
+      // Check for duplicate class names and add a number if necessary
+      String newClassName = baseClassName;
+      int classCount = 1;
+
+      // Keep checking for existing class names, including those with numbers
+      while (classes.values
+          .any((WritableClass c) => c.className == newClassName)) {
+        // Increment class name with a number to avoid duplication
+        newClassName = baseClassName + classCount.toString();
+        classCount++;
+      }
+
+      // Create the new class
       classes[path] = WritableClass(
-        className: path.split('.').first + path.split('.').last.capitalize,
+        className: newClassName == 'EvidenceVariable'
+            ? 'Evidencevariable'
+            : newClassName,
         classPath: path,
         isBackboneElement: true,
       );
-    }
-
-    if ((className.isDataType ||
+    } else if ((className.isDataType ||
             className.isBackboneType ||
             className.isQuantity) &&
         elementDefinition['type'] is List<dynamic> &&
@@ -106,10 +138,27 @@ Future<Map<String, WritableClass>> _buildWritableClasses(
         ((elementDefinition['type'] as List<dynamic>).first
                 as Map<String, dynamic>)['code'] ==
             'Element') {
+      // Generate a base class name
+      final String baseClassName =
+          path.split('.').first + path.split('.').last.capitalize;
+
+      // Check for duplicate class names and add a number if necessary
+      String newClassName = baseClassName;
+      int classCount = 1;
+
+      // Keep checking for existing class names, including those with numbers
+      while (classes.values
+          .any((WritableClass c) => c.className == newClassName)) {
+        // Increment class name with a number to avoid duplication
+        newClassName = baseClassName + classCount.toString();
+        classCount++;
+      }
+
+      // Create the new class for Element
       classes[path] = WritableClass(
-        className: path.split('.').first + path.split('.').last.capitalize,
+        className: newClassName,
         classPath: path,
-        isBackboneElement: true,
+        isElement: true,
       );
     }
 
@@ -119,6 +168,7 @@ Future<Map<String, WritableClass>> _buildWritableClasses(
         (int.tryParse(elementDefinition['min']?.toString() ?? '') ?? 0) >= 1 ||
             elementDefinition['min'] == '+';
     final bool isList = elementDefinition['max'] == '*';
+
     if (types == null) {
       if (elementDefinition['path'] != className) {
         String? referenceFieldType;
@@ -240,7 +290,7 @@ void _writeConstructor(StringBuffer buffer, WritableClass writableClass) {
 
 void _writeClassFooter(StringBuffer buffer, WritableClass writableClass) {
   final String writableName = writableClass.className;
-  if (writableName.isResourceType) {
+  if (writableName.isResourceType && writableClass.isResourceType) {
     buffer.writeln(
         '  }) : super(resourceType: R4ResourceType.${writableName.fhirToDartTypes});\n');
   } else {

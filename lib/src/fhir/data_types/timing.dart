@@ -27,7 +27,7 @@ class Timing extends BackboneType {
 
 @Data()
 @JsonCodable()
-class TimingRepeat extends BackboneElement {
+class TimingRepeat extends Element {
   final FhirDuration? boundsDuration;
   final Range? boundsRange;
   final Period? boundsPeriod;

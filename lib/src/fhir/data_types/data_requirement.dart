@@ -44,7 +44,7 @@ class DataRequirement extends DataType {
 
 @Data()
 @JsonCodable()
-class DataRequirementCodeFilter extends BackboneElement {
+class DataRequirementCodeFilter extends Element {
   final FhirString? path;
   final Element? pathElement;
   final FhirString? searchParam;
@@ -71,7 +71,7 @@ class DataRequirementCodeFilter extends BackboneElement {
 
 @Data()
 @JsonCodable()
-class DataRequirementDateFilter extends BackboneElement {
+class DataRequirementDateFilter extends Element {
   final FhirString? path;
   final Element? pathElement;
   final FhirString? searchParam;
@@ -100,7 +100,7 @@ class DataRequirementDateFilter extends BackboneElement {
 
 @Data()
 @JsonCodable()
-class DataRequirementSort extends BackboneElement {
+class DataRequirementSort extends Element {
   final FhirString path;
   final Element? pathElement;
   final FhirCode direction;
