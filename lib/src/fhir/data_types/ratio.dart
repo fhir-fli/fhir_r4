@@ -1,4 +1,4 @@
-import 'package:data_class/data_class.dart';
+import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';

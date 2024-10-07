@@ -244,7 +244,7 @@ Future<Map<String, WritableClass>> _buildWritableClasses(
 StringBuffer _generateClassBuffer(Map<String, WritableClass> classes) {
   final StringBuffer buffer = StringBuffer();
 
-  buffer.writeln("import 'package:data_class/data_class.dart';");
+  buffer.writeln("import 'package:dataclass/dataclass.dart';");
   buffer.writeln("import 'package:json/json.dart';");
   buffer.writeln("\nimport '../../../fhir_r4.dart';\n");
 
