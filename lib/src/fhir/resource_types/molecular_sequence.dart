@@ -3,9 +3,42 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class MolecularSequence extends DomainResource {
+  MolecularSequence({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.type,
+    this.typeElement,
+    required this.coordinateSystem,
+    this.coordinateSystemElement,
+    this.patient,
+    this.specimen,
+    this.device,
+    this.performer,
+    this.quantity,
+    this.referenceSeq,
+    this.variant,
+    this.observedSeq,
+    this.observedSeqElement,
+    this.quality,
+    this.readCoverage,
+    this.readCoverageElement,
+    this.repository,
+    this.pointer,
+    this.structureVariant,
+  }) : super(resourceType: R4ResourceType.MolecularSequence);
+
   final List<Identifier>? identifier;
   final FhirCode? type;
   final Element? typeElement;
@@ -26,47 +59,34 @@ class MolecularSequence extends DomainResource {
   final List<MolecularSequenceRepository>? repository;
   final List<Reference>? pointer;
   final List<MolecularSequenceStructureVariant>? structureVariant;
-
-  MolecularSequence({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.type,
-this.typeElement,
-    required this.coordinateSystem,
-this.coordinateSystemElement,
-    this.patient,
-    this.specimen,
-    this.device,
-    this.performer,
-    this.quantity,
-    this.referenceSeq,
-    this.variant,
-    this.observedSeq,
-this.observedSeqElement,
-    this.quality,
-    this.readCoverage,
-this.readCoverageElement,
-    this.repository,
-    this.pointer,
-    this.structureVariant,
-  }) : super(resourceType: R4ResourceType.MolecularSequence);
-
-@override
-MolecularSequence clone() => throw UnimplementedError();
+  @override
+  MolecularSequence clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class MolecularSequenceReferenceSeq extends BackboneElement {
+  MolecularSequenceReferenceSeq({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    this.chromosome,
+    this.genomeBuild,
+    this.genomeBuildElement,
+    this.orientation,
+    this.orientationElement,
+    this.referenceSeqId,
+    this.referenceSeqPointer,
+    this.referenceSeqString,
+    this.referenceSeqStringElement,
+    this.strand,
+    this.strandElement,
+    this.windowStart,
+    this.windowStartElement,
+    this.windowEnd,
+    this.windowEndElement,
+  });
+
   final CodeableConcept? chromosome;
   final FhirString? genomeBuild;
   final Element? genomeBuildElement;
@@ -82,35 +102,30 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
   final Element? windowStartElement;
   final FhirInteger? windowEnd;
   final Element? windowEndElement;
+  @override
+  MolecularSequenceReferenceSeq clone() => throw UnimplementedError();
+}
 
-  MolecularSequenceReferenceSeq({
+@JsonCodable()
+@Data()
+class MolecularSequenceVariant extends BackboneElement {
+  MolecularSequenceVariant({
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.chromosome,
-    this.genomeBuild,
-this.genomeBuildElement,
-    this.orientation,
-this.orientationElement,
-    this.referenceSeqId,
-    this.referenceSeqPointer,
-    this.referenceSeqString,
-this.referenceSeqStringElement,
-    this.strand,
-this.strandElement,
-    this.windowStart,
-this.windowStartElement,
-    this.windowEnd,
-this.windowEndElement,
+    this.start,
+    this.startElement,
+    this.end,
+    this.endElement,
+    this.observedAllele,
+    this.observedAlleleElement,
+    this.referenceAllele,
+    this.referenceAlleleElement,
+    this.cigar,
+    this.cigarElement,
+    this.variantPointer,
   });
 
-@override
-MolecularSequenceReferenceSeq clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class MolecularSequenceVariant extends BackboneElement {
   final FhirInteger? start;
   final Element? startElement;
   final FhirInteger? end;
@@ -122,31 +137,45 @@ class MolecularSequenceVariant extends BackboneElement {
   final FhirString? cigar;
   final Element? cigarElement;
   final Reference? variantPointer;
+  @override
+  MolecularSequenceVariant clone() => throw UnimplementedError();
+}
 
-  MolecularSequenceVariant({
+@JsonCodable()
+@Data()
+class MolecularSequenceQuality extends BackboneElement {
+  MolecularSequenceQuality({
     super.id,
     super.extension_,
     super.modifierExtension,
+    required this.type,
+    this.typeElement,
+    this.standardSequence,
     this.start,
-this.startElement,
+    this.startElement,
     this.end,
-this.endElement,
-    this.observedAllele,
-this.observedAlleleElement,
-    this.referenceAllele,
-this.referenceAlleleElement,
-    this.cigar,
-this.cigarElement,
-    this.variantPointer,
+    this.endElement,
+    this.score,
+    this.method,
+    this.truthTP,
+    this.truthTPElement,
+    this.queryTP,
+    this.queryTPElement,
+    this.truthFN,
+    this.truthFNElement,
+    this.queryFP,
+    this.queryFPElement,
+    this.gtFP,
+    this.gtFPElement,
+    this.precision,
+    this.precisionElement,
+    this.recall,
+    this.recallElement,
+    this.fScore,
+    this.fScoreElement,
+    this.roc,
   });
 
-@override
-MolecularSequenceVariant clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class MolecularSequenceQuality extends BackboneElement {
   final FhirCode type;
   final Element? typeElement;
   final CodeableConcept? standardSequence;
@@ -173,46 +202,33 @@ class MolecularSequenceQuality extends BackboneElement {
   final FhirDecimal? fScore;
   final Element? fScoreElement;
   final MolecularSequenceRoc? roc;
+  @override
+  MolecularSequenceQuality clone() => throw UnimplementedError();
+}
 
-  MolecularSequenceQuality({
+@JsonCodable()
+@Data()
+class MolecularSequenceRoc extends BackboneElement {
+  MolecularSequenceRoc({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.type,
-this.typeElement,
-    this.standardSequence,
-    this.start,
-this.startElement,
-    this.end,
-this.endElement,
     this.score,
-    this.method,
-    this.truthTP,
-this.truthTPElement,
-    this.queryTP,
-this.queryTPElement,
-    this.truthFN,
-this.truthFNElement,
-    this.queryFP,
-this.queryFPElement,
-    this.gtFP,
-this.gtFPElement,
+    this.scoreElement,
+    this.numTP,
+    this.numTPElement,
+    this.numFP,
+    this.numFPElement,
+    this.numFN,
+    this.numFNElement,
     this.precision,
-this.precisionElement,
-    this.recall,
-this.recallElement,
-    this.fScore,
-this.fScoreElement,
-    this.roc,
+    this.precisionElement,
+    this.sensitivity,
+    this.sensitivityElement,
+    this.fMeasure,
+    this.fMeasureElement,
   });
 
-@override
-MolecularSequenceQuality clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class MolecularSequenceRoc extends BackboneElement {
   final List<FhirInteger>? score;
   final List<Element>? scoreElement;
   final List<FhirInteger>? numTP;
@@ -227,34 +243,31 @@ class MolecularSequenceRoc extends BackboneElement {
   final List<Element>? sensitivityElement;
   final List<FhirDecimal>? fMeasure;
   final List<Element>? fMeasureElement;
+  @override
+  MolecularSequenceRoc clone() => throw UnimplementedError();
+}
 
-  MolecularSequenceRoc({
+@JsonCodable()
+@Data()
+class MolecularSequenceRepository extends BackboneElement {
+  MolecularSequenceRepository({
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.score,
-this.scoreElement,
-    this.numTP,
-this.numTPElement,
-    this.numFP,
-this.numFPElement,
-    this.numFN,
-this.numFNElement,
-    this.precision,
-this.precisionElement,
-    this.sensitivity,
-this.sensitivityElement,
-    this.fMeasure,
-this.fMeasureElement,
+    required this.type,
+    this.typeElement,
+    this.url,
+    this.urlElement,
+    this.name,
+    this.nameElement,
+    this.datasetId,
+    this.datasetIdElement,
+    this.variantsetId,
+    this.variantsetIdElement,
+    this.readsetId,
+    this.readsetIdElement,
   });
 
-@override
-MolecularSequenceRoc clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class MolecularSequenceRepository extends BackboneElement {
   final FhirCode type;
   final Element? typeElement;
   final FhirUri? url;
@@ -267,32 +280,26 @@ class MolecularSequenceRepository extends BackboneElement {
   final Element? variantsetIdElement;
   final FhirString? readsetId;
   final Element? readsetIdElement;
+  @override
+  MolecularSequenceRepository clone() => throw UnimplementedError();
+}
 
-  MolecularSequenceRepository({
+@JsonCodable()
+@Data()
+class MolecularSequenceStructureVariant extends BackboneElement {
+  MolecularSequenceStructureVariant({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.type,
-this.typeElement,
-    this.url,
-this.urlElement,
-    this.name,
-this.nameElement,
-    this.datasetId,
-this.datasetIdElement,
-    this.variantsetId,
-this.variantsetIdElement,
-    this.readsetId,
-this.readsetIdElement,
+    this.variantType,
+    this.exact,
+    this.exactElement,
+    this.length,
+    this.lengthElement,
+    this.outer,
+    this.inner,
   });
 
-@override
-MolecularSequenceRepository clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class MolecularSequenceStructureVariant extends BackboneElement {
   final CodeableConcept? variantType;
   final FhirBoolean? exact;
   final Element? exactElement;
@@ -300,65 +307,48 @@ class MolecularSequenceStructureVariant extends BackboneElement {
   final Element? lengthElement;
   final MolecularSequenceOuter? outer;
   final MolecularSequenceInner? inner;
-
-  MolecularSequenceStructureVariant({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    this.variantType,
-    this.exact,
-this.exactElement,
-    this.length,
-this.lengthElement,
-    this.outer,
-    this.inner,
-  });
-
-@override
-MolecularSequenceStructureVariant clone() => throw UnimplementedError();
+  @override
+  MolecularSequenceStructureVariant clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class MolecularSequenceOuter extends BackboneElement {
-  final FhirInteger? start;
-  final Element? startElement;
-  final FhirInteger? end;
-  final Element? endElement;
-
   MolecularSequenceOuter({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.start,
-this.startElement,
+    this.startElement,
     this.end,
-this.endElement,
+    this.endElement,
   });
 
-@override
-MolecularSequenceOuter clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class MolecularSequenceInner extends BackboneElement {
   final FhirInteger? start;
   final Element? startElement;
   final FhirInteger? end;
   final Element? endElement;
+  @override
+  MolecularSequenceOuter clone() => throw UnimplementedError();
+}
 
+@JsonCodable()
+@Data()
+class MolecularSequenceInner extends BackboneElement {
   MolecularSequenceInner({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.start,
-this.startElement,
+    this.startElement,
     this.end,
-this.endElement,
+    this.endElement,
   });
 
-@override
-MolecularSequenceInner clone() => throw UnimplementedError();
+  final FhirInteger? start;
+  final Element? startElement;
+  final FhirInteger? end;
+  final Element? endElement;
+  @override
+  MolecularSequenceInner clone() => throw UnimplementedError();
 }
-

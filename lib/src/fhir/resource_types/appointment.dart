@@ -3,9 +3,53 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Appointment extends DomainResource {
+  Appointment({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    required this.status,
+    this.statusElement,
+    this.cancelationReason,
+    this.serviceCategory,
+    this.serviceType,
+    this.specialty,
+    this.appointmentType,
+    this.reasonCode,
+    this.reasonReference,
+    this.priority,
+    this.priorityElement,
+    this.description,
+    this.descriptionElement,
+    this.supportingInformation,
+    this.start,
+    this.startElement,
+    this.end,
+    this.endElement,
+    this.minutesDuration,
+    this.minutesDurationElement,
+    this.slot,
+    this.created,
+    this.createdElement,
+    this.comment,
+    this.commentElement,
+    this.patientInstruction,
+    this.patientInstructionElement,
+    this.basedOn,
+    required this.participant,
+    this.requestedPeriod,
+  }) : super(resourceType: R4ResourceType.Appointment);
+
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -37,66 +81,13 @@ class Appointment extends DomainResource {
   final List<Reference>? basedOn;
   final List<AppointmentParticipant> participant;
   final List<Period>? requestedPeriod;
-
-  Appointment({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    required this.status,
-this.statusElement,
-    this.cancelationReason,
-    this.serviceCategory,
-    this.serviceType,
-    this.specialty,
-    this.appointmentType,
-    this.reasonCode,
-    this.reasonReference,
-    this.priority,
-this.priorityElement,
-    this.description,
-this.descriptionElement,
-    this.supportingInformation,
-    this.start,
-this.startElement,
-    this.end,
-this.endElement,
-    this.minutesDuration,
-this.minutesDurationElement,
-    this.slot,
-    this.created,
-this.createdElement,
-    this.comment,
-this.commentElement,
-    this.patientInstruction,
-this.patientInstructionElement,
-    this.basedOn,
-    required this.participant,
-    this.requestedPeriod,
-  }) : super(resourceType: R4ResourceType.Appointment);
-
-@override
-Appointment clone() => throw UnimplementedError();
+  @override
+  Appointment clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class AppointmentParticipant extends BackboneElement {
-  final List<CodeableConcept>? type;
-  final Reference? actor;
-  final FhirCode? required_;
-  final Element? requiredElement;
-  final FhirCode status;
-  final Element? statusElement;
-  final Period? period;
-
   AppointmentParticipant({
     super.id,
     super.extension_,
@@ -104,13 +95,19 @@ class AppointmentParticipant extends BackboneElement {
     this.type,
     this.actor,
     this.required_,
-this.requiredElement,
+    this.requiredElement,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.period,
   });
 
-@override
-AppointmentParticipant clone() => throw UnimplementedError();
+  final List<CodeableConcept>? type;
+  final Reference? actor;
+  final FhirCode? required_;
+  final Element? requiredElement;
+  final FhirCode status;
+  final Element? statusElement;
+  final Period? period;
+  @override
+  AppointmentParticipant clone() => throw UnimplementedError();
 }
-

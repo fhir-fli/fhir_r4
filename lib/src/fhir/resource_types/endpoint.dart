@@ -3,9 +3,38 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class FhirEndpoint extends DomainResource {
+  FhirEndpoint({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    required this.status,
+    this.statusElement,
+    required this.connectionType,
+    this.name,
+    this.nameElement,
+    this.managingOrganization,
+    this.contact,
+    this.period,
+    required this.payloadType,
+    this.payloadMimeType,
+    this.payloadMimeTypeElement,
+    required this.address,
+    this.addressElement,
+    this.header,
+    this.headerElement,
+  }) : super(resourceType: R4ResourceType.FhirEndpoint);
+
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -22,37 +51,6 @@ class FhirEndpoint extends DomainResource {
   final Element? addressElement;
   final List<FhirString>? header;
   final List<Element>? headerElement;
-
-  FhirEndpoint({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    required this.status,
-this.statusElement,
-    required this.connectionType,
-    this.name,
-this.nameElement,
-    this.managingOrganization,
-    this.contact,
-    this.period,
-    required this.payloadType,
-    this.payloadMimeType,
-this.payloadMimeTypeElement,
-    required this.address,
-this.addressElement,
-    this.header,
-this.headerElement,
-  }) : super(resourceType: R4ResourceType.FhirEndpoint);
-
-@override
-FhirEndpoint clone() => throw UnimplementedError();
+  @override
+  FhirEndpoint clone() => throw UnimplementedError();
 }
-

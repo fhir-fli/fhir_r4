@@ -3,9 +3,58 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class ChargeItem extends DomainResource {
+  ChargeItem({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.definitionUri,
+    this.definitionUriElement,
+    this.definitionCanonical,
+    this.definitionCanonicalElement,
+    required this.status,
+    this.statusElement,
+    this.partOf,
+    required this.code,
+    required this.subject,
+    this.context,
+    this.occurrenceDateTime,
+    this.occurrenceDateTimeElement,
+    this.occurrencePeriod,
+    this.occurrenceTiming,
+    this.performer,
+    this.performingOrganization,
+    this.requestingOrganization,
+    this.costCenter,
+    this.quantity,
+    this.bodysite,
+    this.factorOverride,
+    this.factorOverrideElement,
+    this.priceOverride,
+    this.overrideReason,
+    this.overrideReasonElement,
+    this.enterer,
+    this.enteredDate,
+    this.enteredDateElement,
+    this.reason,
+    this.service,
+    this.productReference,
+    this.productCodeableConcept,
+    this.account,
+    this.note,
+    this.supportingInformation,
+  }) : super(resourceType: R4ResourceType.ChargeItem);
+
   final List<Identifier>? identifier;
   final List<FhirUri>? definitionUri;
   final List<Element>? definitionUriElement;
@@ -42,66 +91,13 @@ class ChargeItem extends DomainResource {
   final List<Reference>? account;
   final List<Annotation>? note;
   final List<Reference>? supportingInformation;
-
-  ChargeItem({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.definitionUri,
-this.definitionUriElement,
-    this.definitionCanonical,
-this.definitionCanonicalElement,
-    required this.status,
-this.statusElement,
-    this.partOf,
-    required this.code,
-    required this.subject,
-    this.context,
-    this.occurrenceDateTime,
-this.occurrenceDateTimeElement,
-    this.occurrencePeriod,
-    this.occurrenceTiming,
-    this.performer,
-    this.performingOrganization,
-    this.requestingOrganization,
-    this.costCenter,
-    this.quantity,
-    this.bodysite,
-    this.factorOverride,
-this.factorOverrideElement,
-    this.priceOverride,
-    this.overrideReason,
-this.overrideReasonElement,
-    this.enterer,
-    this.enteredDate,
-this.enteredDateElement,
-    this.reason,
-    this.service,
-    this.productReference,
-    this.productCodeableConcept,
-    this.account,
-    this.note,
-    this.supportingInformation,
-  }) : super(resourceType: R4ResourceType.ChargeItem);
-
-@override
-ChargeItem clone() => throw UnimplementedError();
+  @override
+  ChargeItem clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ChargeItemPerformer extends BackboneElement {
-  final CodeableConcept? function_;
-  final Reference actor;
-
   ChargeItemPerformer({
     super.id,
     super.extension_,
@@ -110,7 +106,8 @@ class ChargeItemPerformer extends BackboneElement {
     required this.actor,
   });
 
-@override
-ChargeItemPerformer clone() => throw UnimplementedError();
+  final CodeableConcept? function_;
+  final Reference actor;
+  @override
+  ChargeItemPerformer clone() => throw UnimplementedError();
 }
-

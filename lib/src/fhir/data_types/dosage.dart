@@ -3,9 +3,33 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Dosage extends BackboneType {
+  Dosage({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    this.sequence,
+    this.sequenceElement,
+    this.text,
+    this.textElement,
+    this.additionalInstruction,
+    this.patientInstruction,
+    this.patientInstructionElement,
+    this.timing,
+    this.asNeededBoolean,
+    this.asNeededBooleanElement,
+    this.asNeededCodeableConcept,
+    this.site,
+    this.route,
+    this.method,
+    this.doseAndRate,
+    this.maxDosePerPeriod,
+    this.maxDosePerAdministration,
+    this.maxDosePerLifetime,
+  });
+
   final FhirInteger? sequence;
   final Element? sequenceElement;
   final FhirString? text;
@@ -24,45 +48,13 @@ class Dosage extends BackboneType {
   final Ratio? maxDosePerPeriod;
   final Quantity? maxDosePerAdministration;
   final Quantity? maxDosePerLifetime;
-
-  Dosage({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    this.sequence,
-this.sequenceElement,
-    this.text,
-this.textElement,
-    this.additionalInstruction,
-    this.patientInstruction,
-this.patientInstructionElement,
-    this.timing,
-    this.asNeededBoolean,
-this.asNeededBooleanElement,
-    this.asNeededCodeableConcept,
-    this.site,
-    this.route,
-    this.method,
-    this.doseAndRate,
-    this.maxDosePerPeriod,
-    this.maxDosePerAdministration,
-    this.maxDosePerLifetime,
-  });
-
-@override
-Dosage clone() => throw UnimplementedError();
+  @override
+  Dosage clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class DosageDoseAndRate extends Element {
-  final CodeableConcept? type;
-  final Range? doseRange;
-  final Quantity? doseQuantity;
-  final Ratio? rateRatio;
-  final Range? rateRange;
-  final Quantity? rateQuantity;
-
   DosageDoseAndRate({
     super.id,
     super.extension_,
@@ -74,7 +66,12 @@ class DosageDoseAndRate extends Element {
     this.rateQuantity,
   });
 
-@override
-DosageDoseAndRate clone() => throw UnimplementedError();
+  final CodeableConcept? type;
+  final Range? doseRange;
+  final Quantity? doseQuantity;
+  final Ratio? rateRatio;
+  final Range? rateRange;
+  final Quantity? rateQuantity;
+  @override
+  DosageDoseAndRate clone() => throw UnimplementedError();
 }
-

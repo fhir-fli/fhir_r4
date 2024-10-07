@@ -5,37 +5,47 @@ enum SourceMaterialPart {
   /// Display: animal
   @JsonValue('Animal')
   Animal,
+
   /// Display: plant
   @JsonValue('Plant')
   Plant,
+
   /// Display: mineral
   @JsonValue('Mineral')
   Mineral,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case Animal: return 'Animal';
-        case Plant: return 'Plant';
-        case Mineral: return 'Mineral';
-      }
-      }
-String toJson() => toString();
-  SourceMaterialPart fromString(String str) {
-    switch(str) {
-      case 'Animal': return SourceMaterialPart.Animal;
-      case 'Plant': return SourceMaterialPart.Plant;
-      case 'Mineral': return SourceMaterialPart.Mineral;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case Animal:
+        return 'Animal';
+      case Plant:
+        return 'Plant';
+      case Mineral:
+        return 'Mineral';
     }
-      }
- SourceMaterialPart fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  SourceMaterialPart fromString(String str) {
+    switch (str) {
+      case 'Animal':
+        return SourceMaterialPart.Animal;
+      case 'Plant':
+        return SourceMaterialPart.Plant;
+      case 'Mineral':
+        return SourceMaterialPart.Mineral;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  SourceMaterialPart fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

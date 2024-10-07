@@ -3,9 +3,27 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class HumanName extends DataType {
+  HumanName({
+    super.id,
+    super.extension_,
+    this.use,
+    this.useElement,
+    this.text,
+    this.textElement,
+    this.family,
+    this.familyElement,
+    this.given,
+    this.givenElement,
+    this.prefix,
+    this.prefixElement,
+    this.suffix,
+    this.suffixElement,
+    this.period,
+  });
+
   final FhirCode? use;
   final Element? useElement;
   final FhirString? text;
@@ -19,26 +37,6 @@ class HumanName extends DataType {
   final List<FhirString>? suffix;
   final List<Element>? suffixElement;
   final Period? period;
-
-  HumanName({
-    super.id,
-    super.extension_,
-    this.use,
-this.useElement,
-    this.text,
-this.textElement,
-    this.family,
-this.familyElement,
-    this.given,
-this.givenElement,
-    this.prefix,
-this.prefixElement,
-    this.suffix,
-this.suffixElement,
-    this.period,
-  });
-
-@override
-HumanName clone() => throw UnimplementedError();
+  @override
+  HumanName clone() => throw UnimplementedError();
 }
-

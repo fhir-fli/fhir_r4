@@ -3,9 +3,46 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class AdverseEvent extends DomainResource {
+  AdverseEvent({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    required this.actuality,
+    this.actualityElement,
+    this.category,
+    this.event,
+    required this.subject,
+    this.encounter,
+    this.date,
+    this.dateElement,
+    this.detected,
+    this.detectedElement,
+    this.recordedDate,
+    this.recordedDateElement,
+    this.resultingCondition,
+    this.location,
+    this.seriousness,
+    this.severity,
+    this.outcome,
+    this.recorder,
+    this.contributor,
+    this.suspectEntity,
+    this.subjectMedicalHistory,
+    this.referenceDocument,
+    this.study,
+  }) : super(resourceType: R4ResourceType.AdverseEvent);
+
   final Identifier? identifier;
   final FhirCode actuality;
   final Element? actualityElement;
@@ -30,54 +67,13 @@ class AdverseEvent extends DomainResource {
   final List<Reference>? subjectMedicalHistory;
   final List<Reference>? referenceDocument;
   final List<Reference>? study;
-
-  AdverseEvent({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    required this.actuality,
-this.actualityElement,
-    this.category,
-    this.event,
-    required this.subject,
-    this.encounter,
-    this.date,
-this.dateElement,
-    this.detected,
-this.detectedElement,
-    this.recordedDate,
-this.recordedDateElement,
-    this.resultingCondition,
-    this.location,
-    this.seriousness,
-    this.severity,
-    this.outcome,
-    this.recorder,
-    this.contributor,
-    this.suspectEntity,
-    this.subjectMedicalHistory,
-    this.referenceDocument,
-    this.study,
-  }) : super(resourceType: R4ResourceType.AdverseEvent);
-
-@override
-AdverseEvent clone() => throw UnimplementedError();
+  @override
+  AdverseEvent clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class AdverseEventSuspectEntity extends BackboneElement {
-  final Reference instance;
-  final List<AdverseEventCausality>? causality;
-
   AdverseEventSuspectEntity({
     super.id,
     super.extension_,
@@ -86,31 +82,31 @@ class AdverseEventSuspectEntity extends BackboneElement {
     this.causality,
   });
 
-@override
-AdverseEventSuspectEntity clone() => throw UnimplementedError();
+  final Reference instance;
+  final List<AdverseEventCausality>? causality;
+  @override
+  AdverseEventSuspectEntity clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class AdverseEventCausality extends BackboneElement {
-  final CodeableConcept? assessment;
-  final FhirString? productRelatedness;
-  final Element? productRelatednessElement;
-  final Reference? author;
-  final CodeableConcept? method;
-
   AdverseEventCausality({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.assessment,
     this.productRelatedness,
-this.productRelatednessElement,
+    this.productRelatednessElement,
     this.author,
     this.method,
   });
 
-@override
-AdverseEventCausality clone() => throw UnimplementedError();
+  final CodeableConcept? assessment;
+  final FhirString? productRelatedness;
+  final Element? productRelatednessElement;
+  final Reference? author;
+  final CodeableConcept? method;
+  @override
+  AdverseEventCausality clone() => throw UnimplementedError();
 }
-

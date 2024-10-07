@@ -3,9 +3,41 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class VerificationResult extends DomainResource {
+  VerificationResult({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.target,
+    this.targetLocation,
+    this.targetLocationElement,
+    this.need,
+    required this.status,
+    this.statusElement,
+    this.statusDate,
+    this.statusDateElement,
+    this.validationType,
+    this.validationProcess,
+    this.frequency,
+    this.lastPerformed,
+    this.lastPerformedElement,
+    this.nextScheduled,
+    this.nextScheduledElement,
+    this.failureAction,
+    this.primarySource,
+    this.attestation,
+    this.validator,
+  }) : super(resourceType: R4ResourceType.VerificationResult);
+
   final List<Reference>? target;
   final List<FhirString>? targetLocation;
   final List<Element>? targetLocationElement;
@@ -25,55 +57,13 @@ class VerificationResult extends DomainResource {
   final List<VerificationResultPrimarySource>? primarySource;
   final VerificationResultAttestation? attestation;
   final List<VerificationResultValidator>? validator;
-
-  VerificationResult({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.target,
-    this.targetLocation,
-this.targetLocationElement,
-    this.need,
-    required this.status,
-this.statusElement,
-    this.statusDate,
-this.statusDateElement,
-    this.validationType,
-    this.validationProcess,
-    this.frequency,
-    this.lastPerformed,
-this.lastPerformedElement,
-    this.nextScheduled,
-this.nextScheduledElement,
-    this.failureAction,
-    this.primarySource,
-    this.attestation,
-    this.validator,
-  }) : super(resourceType: R4ResourceType.VerificationResult);
-
-@override
-VerificationResult clone() => throw UnimplementedError();
+  @override
+  VerificationResult clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class VerificationResultPrimarySource extends BackboneElement {
-  final Reference? who;
-  final List<CodeableConcept>? type;
-  final List<CodeableConcept>? communicationMethod;
-  final CodeableConcept? validationStatus;
-  final FhirDateTime? validationDate;
-  final Element? validationDateElement;
-  final CodeableConcept? canPushUpdates;
-  final List<CodeableConcept>? pushTypeAvailable;
-
   VerificationResultPrimarySource({
     super.id,
     super.extension_,
@@ -83,18 +73,43 @@ class VerificationResultPrimarySource extends BackboneElement {
     this.communicationMethod,
     this.validationStatus,
     this.validationDate,
-this.validationDateElement,
+    this.validationDateElement,
     this.canPushUpdates,
     this.pushTypeAvailable,
   });
 
-@override
-VerificationResultPrimarySource clone() => throw UnimplementedError();
+  final Reference? who;
+  final List<CodeableConcept>? type;
+  final List<CodeableConcept>? communicationMethod;
+  final CodeableConcept? validationStatus;
+  final FhirDateTime? validationDate;
+  final Element? validationDateElement;
+  final CodeableConcept? canPushUpdates;
+  final List<CodeableConcept>? pushTypeAvailable;
+  @override
+  VerificationResultPrimarySource clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class VerificationResultAttestation extends BackboneElement {
+  VerificationResultAttestation({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    this.who,
+    this.onBehalfOf,
+    this.communicationMethod,
+    this.date,
+    this.dateElement,
+    this.sourceIdentityCertificate,
+    this.sourceIdentityCertificateElement,
+    this.proxyIdentityCertificate,
+    this.proxyIdentityCertificateElement,
+    this.proxySignature,
+    this.sourceSignature,
+  });
+
   final Reference? who;
   final Reference? onBehalfOf;
   final CodeableConcept? communicationMethod;
@@ -106,47 +121,27 @@ class VerificationResultAttestation extends BackboneElement {
   final Element? proxyIdentityCertificateElement;
   final Signature? proxySignature;
   final Signature? sourceSignature;
-
-  VerificationResultAttestation({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    this.who,
-    this.onBehalfOf,
-    this.communicationMethod,
-    this.date,
-this.dateElement,
-    this.sourceIdentityCertificate,
-this.sourceIdentityCertificateElement,
-    this.proxyIdentityCertificate,
-this.proxyIdentityCertificateElement,
-    this.proxySignature,
-    this.sourceSignature,
-  });
-
-@override
-VerificationResultAttestation clone() => throw UnimplementedError();
+  @override
+  VerificationResultAttestation clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class VerificationResultValidator extends BackboneElement {
-  final Reference organization;
-  final FhirString? identityCertificate;
-  final Element? identityCertificateElement;
-  final Signature? attestationSignature;
-
   VerificationResultValidator({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.organization,
     this.identityCertificate,
-this.identityCertificateElement,
+    this.identityCertificateElement,
     this.attestationSignature,
   });
 
-@override
-VerificationResultValidator clone() => throw UnimplementedError();
+  final Reference organization;
+  final FhirString? identityCertificate;
+  final Element? identityCertificateElement;
+  final Signature? attestationSignature;
+  @override
+  VerificationResultValidator clone() => throw UnimplementedError();
 }
-

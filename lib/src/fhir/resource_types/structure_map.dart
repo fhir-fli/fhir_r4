@@ -3,9 +3,52 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class StructureMap extends DomainResource {
+  StructureMap({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    required this.url,
+    this.urlElement,
+    this.identifier,
+    this.version,
+    this.versionElement,
+    required this.name,
+    this.nameElement,
+    this.title,
+    this.titleElement,
+    required this.status,
+    this.statusElement,
+    this.experimental,
+    this.experimentalElement,
+    this.date,
+    this.dateElement,
+    this.publisher,
+    this.publisherElement,
+    this.contact,
+    this.description,
+    this.descriptionElement,
+    this.useContext,
+    this.jurisdiction,
+    this.purpose,
+    this.purposeElement,
+    this.copyright,
+    this.copyrightElement,
+    this.structure,
+    this.import_,
+    this.importElement,
+    required this.group,
+  }) : super(resourceType: R4ResourceType.StructureMap);
+
   final FhirUri url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -36,57 +79,27 @@ class StructureMap extends DomainResource {
   final List<FhirCanonical>? import_;
   final List<Element>? importElement;
   final List<StructureMapGroup> group;
+  @override
+  StructureMap clone() => throw UnimplementedError();
+}
 
-  StructureMap({
+@JsonCodable()
+@Data()
+class StructureMapStructure extends BackboneElement {
+  StructureMapStructure({
     super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
     super.extension_,
     super.modifierExtension,
     required this.url,
-this.urlElement,
-    this.identifier,
-    this.version,
-this.versionElement,
-    required this.name,
-this.nameElement,
-    this.title,
-this.titleElement,
-    required this.status,
-this.statusElement,
-    this.experimental,
-this.experimentalElement,
-    this.date,
-this.dateElement,
-    this.publisher,
-this.publisherElement,
-    this.contact,
-    this.description,
-this.descriptionElement,
-    this.useContext,
-    this.jurisdiction,
-    this.purpose,
-this.purposeElement,
-    this.copyright,
-this.copyrightElement,
-    this.structure,
-    this.import_,
-this.importElement,
-    required this.group,
-  }) : super(resourceType: R4ResourceType.StructureMap);
+    this.urlElement,
+    required this.mode,
+    this.modeElement,
+    this.alias,
+    this.aliasElement,
+    this.documentation,
+    this.documentationElement,
+  });
 
-@override
-StructureMap clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class StructureMapStructure extends BackboneElement {
   final FhirCanonical url;
   final Element? urlElement;
   final FhirCode mode;
@@ -95,28 +108,29 @@ class StructureMapStructure extends BackboneElement {
   final Element? aliasElement;
   final FhirString? documentation;
   final Element? documentationElement;
+  @override
+  StructureMapStructure clone() => throw UnimplementedError();
+}
 
-  StructureMapStructure({
+@JsonCodable()
+@Data()
+class StructureMapGroup extends BackboneElement {
+  StructureMapGroup({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.url,
-this.urlElement,
-    required this.mode,
-this.modeElement,
-    this.alias,
-this.aliasElement,
+    required this.name,
+    this.nameElement,
+    this.extends_,
+    this.extendsElement,
+    required this.typeMode,
+    this.typeModeElement,
     this.documentation,
-this.documentationElement,
+    this.documentationElement,
+    required this.input,
+    required this.rule,
   });
 
-@override
-StructureMapStructure clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class StructureMapGroup extends BackboneElement {
   final FhirId name;
   final Element? nameElement;
   final FhirId? extends_;
@@ -127,30 +141,27 @@ class StructureMapGroup extends BackboneElement {
   final Element? documentationElement;
   final List<StructureMapInput> input;
   final List<StructureMapRule> rule;
+  @override
+  StructureMapGroup clone() => throw UnimplementedError();
+}
 
-  StructureMapGroup({
+@JsonCodable()
+@Data()
+class StructureMapInput extends BackboneElement {
+  StructureMapInput({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.name,
-this.nameElement,
-    this.extends_,
-this.extendsElement,
-    required this.typeMode,
-this.typeModeElement,
+    this.nameElement,
+    this.type,
+    this.typeElement,
+    required this.mode,
+    this.modeElement,
     this.documentation,
-this.documentationElement,
-    required this.input,
-    required this.rule,
+    this.documentationElement,
   });
 
-@override
-StructureMapGroup clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class StructureMapInput extends BackboneElement {
   final FhirId name;
   final Element? nameElement;
   final FhirString? type;
@@ -159,28 +170,27 @@ class StructureMapInput extends BackboneElement {
   final Element? modeElement;
   final FhirString? documentation;
   final Element? documentationElement;
+  @override
+  StructureMapInput clone() => throw UnimplementedError();
+}
 
-  StructureMapInput({
+@JsonCodable()
+@Data()
+class StructureMapRule extends BackboneElement {
+  StructureMapRule({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.name,
-this.nameElement,
-    this.type,
-this.typeElement,
-    required this.mode,
-this.modeElement,
+    this.nameElement,
+    required this.source,
+    this.target,
+    this.rule,
+    this.dependent,
     this.documentation,
-this.documentationElement,
+    this.documentationElement,
   });
 
-@override
-StructureMapInput clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class StructureMapRule extends BackboneElement {
   final FhirId name;
   final Element? nameElement;
   final List<StructureMapSource> source;
@@ -189,28 +199,108 @@ class StructureMapRule extends BackboneElement {
   final List<StructureMapDependent>? dependent;
   final FhirString? documentation;
   final Element? documentationElement;
+  @override
+  StructureMapRule clone() => throw UnimplementedError();
+}
 
-  StructureMapRule({
+@JsonCodable()
+@Data()
+class StructureMapSource extends BackboneElement {
+  StructureMapSource({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.name,
-this.nameElement,
-    required this.source,
-    this.target,
-    this.rule,
-    this.dependent,
-    this.documentation,
-this.documentationElement,
+    required this.context,
+    this.contextElement,
+    this.min,
+    this.minElement,
+    this.max,
+    this.maxElement,
+    this.type,
+    this.typeElement,
+    this.defaultValueBase64Binary,
+    this.defaultValueBase64BinaryElement,
+    this.defaultValueBoolean,
+    this.defaultValueBooleanElement,
+    this.defaultValueCanonical,
+    this.defaultValueCanonicalElement,
+    this.defaultValueCode,
+    this.defaultValueCodeElement,
+    this.defaultValueDate,
+    this.defaultValueDateElement,
+    this.defaultValueDateTime,
+    this.defaultValueDateTimeElement,
+    this.defaultValueDecimal,
+    this.defaultValueDecimalElement,
+    this.defaultValueId,
+    this.defaultValueIdElement,
+    this.defaultValueInstant,
+    this.defaultValueInstantElement,
+    this.defaultValueInteger,
+    this.defaultValueIntegerElement,
+    this.defaultValueMarkdown,
+    this.defaultValueMarkdownElement,
+    this.defaultValueOid,
+    this.defaultValueOidElement,
+    this.defaultValuePositiveInt,
+    this.defaultValuePositiveIntElement,
+    this.defaultValueString,
+    this.defaultValueStringElement,
+    this.defaultValueTime,
+    this.defaultValueTimeElement,
+    this.defaultValueUnsignedInt,
+    this.defaultValueUnsignedIntElement,
+    this.defaultValueUri,
+    this.defaultValueUriElement,
+    this.defaultValueUrl,
+    this.defaultValueUrlElement,
+    this.defaultValueUuid,
+    this.defaultValueUuidElement,
+    this.defaultValueAddress,
+    this.defaultValueAge,
+    this.defaultValueAnnotation,
+    this.defaultValueAttachment,
+    this.defaultValueCodeableConcept,
+    this.defaultValueCoding,
+    this.defaultValueContactPoint,
+    this.defaultValueCount,
+    this.defaultValueDistance,
+    this.defaultValueDuration,
+    this.defaultValueHumanName,
+    this.defaultValueIdentifier,
+    this.defaultValueMoney,
+    this.defaultValuePeriod,
+    this.defaultValueQuantity,
+    this.defaultValueRange,
+    this.defaultValueRatio,
+    this.defaultValueReference,
+    this.defaultValueSampledData,
+    this.defaultValueSignature,
+    this.defaultValueTiming,
+    this.defaultValueContactDetail,
+    this.defaultValueContributor,
+    this.defaultValueDataRequirement,
+    this.defaultValueExpression,
+    this.defaultValueParameterDefinition,
+    this.defaultValueRelatedArtifact,
+    this.defaultValueTriggerDefinition,
+    this.defaultValueUsageContext,
+    this.defaultValueDosage,
+    this.defaultValueMeta,
+    this.element,
+    this.elementElement,
+    this.listMode,
+    this.listModeElement,
+    this.variable,
+    this.variableElement,
+    this.condition,
+    this.conditionElement,
+    this.check,
+    this.checkElement,
+    this.logMessage,
+    this.logMessageElement,
   });
 
-@override
-StructureMapRule clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class StructureMapSource extends BackboneElement {
   final FhirId context;
   final Element? contextElement;
   final FhirInteger? min;
@@ -300,109 +390,34 @@ class StructureMapSource extends BackboneElement {
   final Element? checkElement;
   final FhirString? logMessage;
   final Element? logMessageElement;
+  @override
+  StructureMapSource clone() => throw UnimplementedError();
+}
 
-  StructureMapSource({
+@JsonCodable()
+@Data()
+class StructureMapTarget extends BackboneElement {
+  StructureMapTarget({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.context,
-this.contextElement,
-    this.min,
-this.minElement,
-    this.max,
-this.maxElement,
-    this.type,
-this.typeElement,
-    this.defaultValueBase64Binary,
-this.defaultValueBase64BinaryElement,
-    this.defaultValueBoolean,
-this.defaultValueBooleanElement,
-    this.defaultValueCanonical,
-this.defaultValueCanonicalElement,
-    this.defaultValueCode,
-this.defaultValueCodeElement,
-    this.defaultValueDate,
-this.defaultValueDateElement,
-    this.defaultValueDateTime,
-this.defaultValueDateTimeElement,
-    this.defaultValueDecimal,
-this.defaultValueDecimalElement,
-    this.defaultValueId,
-this.defaultValueIdElement,
-    this.defaultValueInstant,
-this.defaultValueInstantElement,
-    this.defaultValueInteger,
-this.defaultValueIntegerElement,
-    this.defaultValueMarkdown,
-this.defaultValueMarkdownElement,
-    this.defaultValueOid,
-this.defaultValueOidElement,
-    this.defaultValuePositiveInt,
-this.defaultValuePositiveIntElement,
-    this.defaultValueString,
-this.defaultValueStringElement,
-    this.defaultValueTime,
-this.defaultValueTimeElement,
-    this.defaultValueUnsignedInt,
-this.defaultValueUnsignedIntElement,
-    this.defaultValueUri,
-this.defaultValueUriElement,
-    this.defaultValueUrl,
-this.defaultValueUrlElement,
-    this.defaultValueUuid,
-this.defaultValueUuidElement,
-    this.defaultValueAddress,
-    this.defaultValueAge,
-    this.defaultValueAnnotation,
-    this.defaultValueAttachment,
-    this.defaultValueCodeableConcept,
-    this.defaultValueCoding,
-    this.defaultValueContactPoint,
-    this.defaultValueCount,
-    this.defaultValueDistance,
-    this.defaultValueDuration,
-    this.defaultValueHumanName,
-    this.defaultValueIdentifier,
-    this.defaultValueMoney,
-    this.defaultValuePeriod,
-    this.defaultValueQuantity,
-    this.defaultValueRange,
-    this.defaultValueRatio,
-    this.defaultValueReference,
-    this.defaultValueSampledData,
-    this.defaultValueSignature,
-    this.defaultValueTiming,
-    this.defaultValueContactDetail,
-    this.defaultValueContributor,
-    this.defaultValueDataRequirement,
-    this.defaultValueExpression,
-    this.defaultValueParameterDefinition,
-    this.defaultValueRelatedArtifact,
-    this.defaultValueTriggerDefinition,
-    this.defaultValueUsageContext,
-    this.defaultValueDosage,
-    this.defaultValueMeta,
+    this.context,
+    this.contextElement,
+    this.contextType,
+    this.contextTypeElement,
     this.element,
-this.elementElement,
-    this.listMode,
-this.listModeElement,
+    this.elementElement,
     this.variable,
-this.variableElement,
-    this.condition,
-this.conditionElement,
-    this.check,
-this.checkElement,
-    this.logMessage,
-this.logMessageElement,
+    this.variableElement,
+    this.listMode,
+    this.listModeElement,
+    this.listRuleId,
+    this.listRuleIdElement,
+    this.transform,
+    this.transformElement,
+    this.parameter,
   });
 
-@override
-StructureMapSource clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class StructureMapTarget extends BackboneElement {
   final FhirId? context;
   final Element? contextElement;
   final FhirCode? contextType;
@@ -418,35 +433,29 @@ class StructureMapTarget extends BackboneElement {
   final FhirCode? transform;
   final Element? transformElement;
   final List<StructureMapParameter>? parameter;
+  @override
+  StructureMapTarget clone() => throw UnimplementedError();
+}
 
-  StructureMapTarget({
+@JsonCodable()
+@Data()
+class StructureMapParameter extends BackboneElement {
+  StructureMapParameter({
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.context,
-this.contextElement,
-    this.contextType,
-this.contextTypeElement,
-    this.element,
-this.elementElement,
-    this.variable,
-this.variableElement,
-    this.listMode,
-this.listModeElement,
-    this.listRuleId,
-this.listRuleIdElement,
-    this.transform,
-this.transformElement,
-    this.parameter,
+    required this.valueId,
+    this.valueIdElement,
+    required this.valueString,
+    this.valueStringElement,
+    required this.valueBoolean,
+    this.valueBooleanElement,
+    required this.valueInteger,
+    this.valueIntegerElement,
+    required this.valueDecimal,
+    this.valueDecimalElement,
   });
 
-@override
-StructureMapTarget clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class StructureMapParameter extends BackboneElement {
   final FhirId valueId;
   final Element? valueIdElement;
   final FhirString valueString;
@@ -457,46 +466,27 @@ class StructureMapParameter extends BackboneElement {
   final Element? valueIntegerElement;
   final FhirDecimal valueDecimal;
   final Element? valueDecimalElement;
-
-  StructureMapParameter({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.valueId,
-this.valueIdElement,
-    required this.valueString,
-this.valueStringElement,
-    required this.valueBoolean,
-this.valueBooleanElement,
-    required this.valueInteger,
-this.valueIntegerElement,
-    required this.valueDecimal,
-this.valueDecimalElement,
-  });
-
-@override
-StructureMapParameter clone() => throw UnimplementedError();
+  @override
+  StructureMapParameter clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class StructureMapDependent extends BackboneElement {
-  final FhirId name;
-  final Element? nameElement;
-  final List<FhirString> variable;
-  final List<Element>? variableElement;
-
   StructureMapDependent({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.name,
-this.nameElement,
+    this.nameElement,
     required this.variable,
-this.variableElement,
+    this.variableElement,
   });
 
-@override
-StructureMapDependent clone() => throw UnimplementedError();
+  final FhirId name;
+  final Element? nameElement;
+  final List<FhirString> variable;
+  final List<Element>? variableElement;
+  @override
+  StructureMapDependent clone() => throw UnimplementedError();
 }
-

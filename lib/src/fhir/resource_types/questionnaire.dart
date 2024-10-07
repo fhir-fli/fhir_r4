@@ -3,9 +3,59 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Questionnaire extends DomainResource {
+  Questionnaire({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.url,
+    this.urlElement,
+    this.identifier,
+    this.version,
+    this.versionElement,
+    this.name,
+    this.nameElement,
+    this.title,
+    this.titleElement,
+    this.derivedFrom,
+    this.derivedFromElement,
+    required this.status,
+    this.statusElement,
+    this.experimental,
+    this.experimentalElement,
+    this.subjectType,
+    this.subjectTypeElement,
+    this.date,
+    this.dateElement,
+    this.publisher,
+    this.publisherElement,
+    this.contact,
+    this.description,
+    this.descriptionElement,
+    this.useContext,
+    this.jurisdiction,
+    this.purpose,
+    this.purposeElement,
+    this.copyright,
+    this.copyrightElement,
+    this.approvalDate,
+    this.approvalDateElement,
+    this.lastReviewDate,
+    this.lastReviewDateElement,
+    this.effectivePeriod,
+    this.code,
+    this.item,
+  }) : super(resourceType: R4ResourceType.Questionnaire);
+
   final FhirUri? url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -43,64 +93,46 @@ class Questionnaire extends DomainResource {
   final Period? effectivePeriod;
   final List<Coding>? code;
   final List<QuestionnaireItem>? item;
-
-  Questionnaire({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.url,
-this.urlElement,
-    this.identifier,
-    this.version,
-this.versionElement,
-    this.name,
-this.nameElement,
-    this.title,
-this.titleElement,
-    this.derivedFrom,
-this.derivedFromElement,
-    required this.status,
-this.statusElement,
-    this.experimental,
-this.experimentalElement,
-    this.subjectType,
-this.subjectTypeElement,
-    this.date,
-this.dateElement,
-    this.publisher,
-this.publisherElement,
-    this.contact,
-    this.description,
-this.descriptionElement,
-    this.useContext,
-    this.jurisdiction,
-    this.purpose,
-this.purposeElement,
-    this.copyright,
-this.copyrightElement,
-    this.approvalDate,
-this.approvalDateElement,
-    this.lastReviewDate,
-this.lastReviewDateElement,
-    this.effectivePeriod,
-    this.code,
-    this.item,
-  }) : super(resourceType: R4ResourceType.Questionnaire);
-
-@override
-Questionnaire clone() => throw UnimplementedError();
+  @override
+  Questionnaire clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class QuestionnaireItem extends BackboneElement {
+  QuestionnaireItem({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.linkId,
+    this.linkIdElement,
+    this.definition,
+    this.definitionElement,
+    this.code,
+    this.prefix,
+    this.prefixElement,
+    this.text,
+    this.textElement,
+    required this.type,
+    this.typeElement,
+    this.enableWhen,
+    this.enableBehavior,
+    this.enableBehaviorElement,
+    this.required_,
+    this.requiredElement,
+    this.repeats,
+    this.repeatsElement,
+    this.readOnly,
+    this.readOnlyElement,
+    this.maxLength,
+    this.maxLengthElement,
+    this.answerValueSet,
+    this.answerValueSetElement,
+    this.answerOption,
+    this.initial,
+    this.item,
+  });
+
   final FhirString linkId;
   final Element? linkIdElement;
   final FhirUri? definition;
@@ -128,47 +160,40 @@ class QuestionnaireItem extends BackboneElement {
   final List<QuestionnaireAnswerOption>? answerOption;
   final List<QuestionnaireInitial>? initial;
   final List<QuestionnaireItem>? item;
+  @override
+  QuestionnaireItem clone() => throw UnimplementedError();
+}
 
-  QuestionnaireItem({
+@JsonCodable()
+@Data()
+class QuestionnaireEnableWhen extends BackboneElement {
+  QuestionnaireEnableWhen({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.linkId,
-this.linkIdElement,
-    this.definition,
-this.definitionElement,
-    this.code,
-    this.prefix,
-this.prefixElement,
-    this.text,
-this.textElement,
-    required this.type,
-this.typeElement,
-    this.enableWhen,
-    this.enableBehavior,
-this.enableBehaviorElement,
-    this.required_,
-this.requiredElement,
-    this.repeats,
-this.repeatsElement,
-    this.readOnly,
-this.readOnlyElement,
-    this.maxLength,
-this.maxLengthElement,
-    this.answerValueSet,
-this.answerValueSetElement,
-    this.answerOption,
-    this.initial,
-    this.item,
+    required this.question,
+    this.questionElement,
+    required this.operator_,
+    this.operatorElement,
+    required this.answerBoolean,
+    this.answerBooleanElement,
+    required this.answerDecimal,
+    this.answerDecimalElement,
+    required this.answerInteger,
+    this.answerIntegerElement,
+    required this.answerDate,
+    this.answerDateElement,
+    required this.answerDateTime,
+    this.answerDateTimeElement,
+    required this.answerTime,
+    this.answerTimeElement,
+    required this.answerString,
+    this.answerStringElement,
+    required this.answerCoding,
+    required this.answerQuantity,
+    required this.answerReference,
   });
 
-@override
-QuestionnaireItem clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class QuestionnaireEnableWhen extends BackboneElement {
   final FhirString question;
   final Element? questionElement;
   final FhirCode operator_;
@@ -190,41 +215,31 @@ class QuestionnaireEnableWhen extends BackboneElement {
   final Coding answerCoding;
   final Quantity answerQuantity;
   final Reference answerReference;
+  @override
+  QuestionnaireEnableWhen clone() => throw UnimplementedError();
+}
 
-  QuestionnaireEnableWhen({
+@JsonCodable()
+@Data()
+class QuestionnaireAnswerOption extends BackboneElement {
+  QuestionnaireAnswerOption({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.question,
-this.questionElement,
-    required this.operator_,
-this.operatorElement,
-    required this.answerBoolean,
-this.answerBooleanElement,
-    required this.answerDecimal,
-this.answerDecimalElement,
-    required this.answerInteger,
-this.answerIntegerElement,
-    required this.answerDate,
-this.answerDateElement,
-    required this.answerDateTime,
-this.answerDateTimeElement,
-    required this.answerTime,
-this.answerTimeElement,
-    required this.answerString,
-this.answerStringElement,
-    required this.answerCoding,
-    required this.answerQuantity,
-    required this.answerReference,
+    required this.valueInteger,
+    this.valueIntegerElement,
+    required this.valueDate,
+    this.valueDateElement,
+    required this.valueTime,
+    this.valueTimeElement,
+    required this.valueString,
+    this.valueStringElement,
+    required this.valueCoding,
+    required this.valueReference,
+    this.initialSelected,
+    this.initialSelectedElement,
   });
 
-@override
-QuestionnaireEnableWhen clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class QuestionnaireAnswerOption extends BackboneElement {
   final FhirInteger valueInteger;
   final Element? valueIntegerElement;
   final FhirDate valueDate;
@@ -237,32 +252,39 @@ class QuestionnaireAnswerOption extends BackboneElement {
   final Reference valueReference;
   final FhirBoolean? initialSelected;
   final Element? initialSelectedElement;
+  @override
+  QuestionnaireAnswerOption clone() => throw UnimplementedError();
+}
 
-  QuestionnaireAnswerOption({
+@JsonCodable()
+@Data()
+class QuestionnaireInitial extends BackboneElement {
+  QuestionnaireInitial({
     super.id,
     super.extension_,
     super.modifierExtension,
+    required this.valueBoolean,
+    this.valueBooleanElement,
+    required this.valueDecimal,
+    this.valueDecimalElement,
     required this.valueInteger,
-this.valueIntegerElement,
+    this.valueIntegerElement,
     required this.valueDate,
-this.valueDateElement,
+    this.valueDateElement,
+    required this.valueDateTime,
+    this.valueDateTimeElement,
     required this.valueTime,
-this.valueTimeElement,
+    this.valueTimeElement,
     required this.valueString,
-this.valueStringElement,
+    this.valueStringElement,
+    required this.valueUri,
+    this.valueUriElement,
+    required this.valueAttachment,
     required this.valueCoding,
+    required this.valueQuantity,
     required this.valueReference,
-    this.initialSelected,
-this.initialSelectedElement,
   });
 
-@override
-QuestionnaireAnswerOption clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class QuestionnaireInitial extends BackboneElement {
   final FhirBoolean valueBoolean;
   final Element? valueBooleanElement;
   final FhirDecimal valueDecimal;
@@ -283,34 +305,6 @@ class QuestionnaireInitial extends BackboneElement {
   final Coding valueCoding;
   final Quantity valueQuantity;
   final Reference valueReference;
-
-  QuestionnaireInitial({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.valueBoolean,
-this.valueBooleanElement,
-    required this.valueDecimal,
-this.valueDecimalElement,
-    required this.valueInteger,
-this.valueIntegerElement,
-    required this.valueDate,
-this.valueDateElement,
-    required this.valueDateTime,
-this.valueDateTimeElement,
-    required this.valueTime,
-this.valueTimeElement,
-    required this.valueString,
-this.valueStringElement,
-    required this.valueUri,
-this.valueUriElement,
-    required this.valueAttachment,
-    required this.valueCoding,
-    required this.valueQuantity,
-    required this.valueReference,
-  });
-
-@override
-QuestionnaireInitial clone() => throw UnimplementedError();
+  @override
+  QuestionnaireInitial clone() => throw UnimplementedError();
 }
-

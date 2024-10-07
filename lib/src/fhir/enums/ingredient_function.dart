@@ -5,32 +5,39 @@ enum IngredientFunction {
   /// Display: Antioxidant
   @JsonValue('Antioxidant')
   Antioxidant,
+
   /// Display: Alkalizing Agent
   @JsonValue('AlkalizingAgent')
   AlkalizingAgent,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case Antioxidant: return 'Antioxidant';
-        case AlkalizingAgent: return 'AlkalizingAgent';
-      }
-      }
-String toJson() => toString();
-  IngredientFunction fromString(String str) {
-    switch(str) {
-      case 'Antioxidant': return IngredientFunction.Antioxidant;
-      case 'AlkalizingAgent': return IngredientFunction.AlkalizingAgent;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case Antioxidant:
+        return 'Antioxidant';
+      case AlkalizingAgent:
+        return 'AlkalizingAgent';
     }
-      }
- IngredientFunction fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  IngredientFunction fromString(String str) {
+    switch (str) {
+      case 'Antioxidant':
+        return IngredientFunction.Antioxidant;
+      case 'AlkalizingAgent':
+        return IngredientFunction.AlkalizingAgent;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  IngredientFunction fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

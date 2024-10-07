@@ -5,37 +5,47 @@ enum UndesirablEffectFrequency {
   /// Display: Common
   @JsonValue('Common')
   Common,
+
   /// Display: Uncommon
   @JsonValue('Uncommon')
   Uncommon,
+
   /// Display: Rare
   @JsonValue('Rare')
   Rare,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case Common: return 'Common';
-        case Uncommon: return 'Uncommon';
-        case Rare: return 'Rare';
-      }
-      }
-String toJson() => toString();
-  UndesirablEffectFrequency fromString(String str) {
-    switch(str) {
-      case 'Common': return UndesirablEffectFrequency.Common;
-      case 'Uncommon': return UndesirablEffectFrequency.Uncommon;
-      case 'Rare': return UndesirablEffectFrequency.Rare;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case Common:
+        return 'Common';
+      case Uncommon:
+        return 'Uncommon';
+      case Rare:
+        return 'Rare';
     }
-      }
- UndesirablEffectFrequency fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  UndesirablEffectFrequency fromString(String str) {
+    switch (str) {
+      case 'Common':
+        return UndesirablEffectFrequency.Common;
+      case 'Uncommon':
+        return UndesirablEffectFrequency.Uncommon;
+      case 'Rare':
+        return UndesirablEffectFrequency.Rare;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  UndesirablEffectFrequency fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

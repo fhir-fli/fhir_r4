@@ -3,18 +3,16 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class OperationOutcome extends DomainResource {
-  final List<OperationOutcomeIssue> issue;
-
   OperationOutcome({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -22,13 +20,31 @@ super.languageElement,
     required this.issue,
   }) : super(resourceType: R4ResourceType.OperationOutcome);
 
-@override
-OperationOutcome clone() => throw UnimplementedError();
+  final List<OperationOutcomeIssue> issue;
+  @override
+  OperationOutcome clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class OperationOutcomeIssue extends BackboneElement {
+  OperationOutcomeIssue({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.severity,
+    this.severityElement,
+    required this.code,
+    this.codeElement,
+    this.details,
+    this.diagnostics,
+    this.diagnosticsElement,
+    this.location,
+    this.locationElement,
+    this.expression,
+    this.expressionElement,
+  });
+
   final FhirCode severity;
   final Element? severityElement;
   final FhirCode code;
@@ -40,25 +56,6 @@ class OperationOutcomeIssue extends BackboneElement {
   final List<Element>? locationElement;
   final List<FhirString>? expression;
   final List<Element>? expressionElement;
-
-  OperationOutcomeIssue({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.severity,
-this.severityElement,
-    required this.code,
-this.codeElement,
-    this.details,
-    this.diagnostics,
-this.diagnosticsElement,
-    this.location,
-this.locationElement,
-    this.expression,
-this.expressionElement,
-  });
-
-@override
-OperationOutcomeIssue clone() => throw UnimplementedError();
+  @override
+  OperationOutcomeIssue clone() => throw UnimplementedError();
 }
-

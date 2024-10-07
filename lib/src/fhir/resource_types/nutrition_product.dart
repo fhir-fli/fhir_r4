@@ -3,34 +3,22 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class NutritionProduct extends DomainResource {
-  final FhirCode status;
-  final Element? statusElement;
-  final List<CodeableConcept>? category;
-  final CodeableConcept? code;
-  final List<Reference>? manufacturer;
-  final List<NutritionProductNutrient>? nutrient;
-  final List<NutritionProductIngredient>? ingredient;
-  final List<CodeableReference>? knownAllergen;
-  final List<NutritionProductProductCharacteristic>? productCharacteristic;
-  final NutritionProductInstance? instance;
-  final List<Annotation>? note;
-
   NutritionProduct({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.category,
     this.code,
     this.manufacturer,
@@ -42,16 +30,24 @@ this.statusElement,
     this.note,
   }) : super(resourceType: R4ResourceType.NutritionProduct);
 
-@override
-NutritionProduct clone() => throw UnimplementedError();
+  final FhirCode status;
+  final Element? statusElement;
+  final List<CodeableConcept>? category;
+  final CodeableConcept? code;
+  final List<Reference>? manufacturer;
+  final List<NutritionProductNutrient>? nutrient;
+  final List<NutritionProductIngredient>? ingredient;
+  final List<CodeableReference>? knownAllergen;
+  final List<NutritionProductProductCharacteristic>? productCharacteristic;
+  final NutritionProductInstance? instance;
+  final List<Annotation>? note;
+  @override
+  NutritionProduct clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class NutritionProductNutrient extends BackboneElement {
-  final CodeableReference? item;
-  final List<Ratio>? amount;
-
   NutritionProductNutrient({
     super.id,
     super.extension_,
@@ -60,16 +56,15 @@ class NutritionProductNutrient extends BackboneElement {
     this.amount,
   });
 
-@override
-NutritionProductNutrient clone() => throw UnimplementedError();
+  final CodeableReference? item;
+  final List<Ratio>? amount;
+  @override
+  NutritionProductNutrient clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class NutritionProductIngredient extends BackboneElement {
-  final CodeableReference item;
-  final List<Ratio>? amount;
-
   NutritionProductIngredient({
     super.id,
     super.extension_,
@@ -78,13 +73,31 @@ class NutritionProductIngredient extends BackboneElement {
     this.amount,
   });
 
-@override
-NutritionProductIngredient clone() => throw UnimplementedError();
+  final CodeableReference item;
+  final List<Ratio>? amount;
+  @override
+  NutritionProductIngredient clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class NutritionProductProductCharacteristic extends BackboneElement {
+  NutritionProductProductCharacteristic({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.type,
+    required this.valueCodeableConcept,
+    required this.valueString,
+    this.valueStringElement,
+    required this.valueQuantity,
+    required this.valueBase64Binary,
+    this.valueBase64BinaryElement,
+    required this.valueAttachment,
+    required this.valueBoolean,
+    this.valueBooleanElement,
+  });
+
   final CodeableConcept type;
   final CodeableConcept valueCodeableConcept;
   final FhirString valueString;
@@ -95,30 +108,27 @@ class NutritionProductProductCharacteristic extends BackboneElement {
   final Attachment valueAttachment;
   final FhirBoolean valueBoolean;
   final Element? valueBooleanElement;
+  @override
+  NutritionProductProductCharacteristic clone() => throw UnimplementedError();
+}
 
-  NutritionProductProductCharacteristic({
+@JsonCodable()
+@Data()
+class NutritionProductInstance extends BackboneElement {
+  NutritionProductInstance({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.type,
-    required this.valueCodeableConcept,
-    required this.valueString,
-this.valueStringElement,
-    required this.valueQuantity,
-    required this.valueBase64Binary,
-this.valueBase64BinaryElement,
-    required this.valueAttachment,
-    required this.valueBoolean,
-this.valueBooleanElement,
+    this.quantity,
+    this.identifier,
+    this.lotNumber,
+    this.lotNumberElement,
+    this.expiry,
+    this.expiryElement,
+    this.useBy,
+    this.useByElement,
   });
 
-@override
-NutritionProductProductCharacteristic clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class NutritionProductInstance extends BackboneElement {
   final Quantity? quantity;
   final List<Identifier>? identifier;
   final FhirString? lotNumber;
@@ -127,22 +137,6 @@ class NutritionProductInstance extends BackboneElement {
   final Element? expiryElement;
   final FhirDateTime? useBy;
   final Element? useByElement;
-
-  NutritionProductInstance({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    this.quantity,
-    this.identifier,
-    this.lotNumber,
-this.lotNumberElement,
-    this.expiry,
-this.expiryElement,
-    this.useBy,
-this.useByElement,
-  });
-
-@override
-NutritionProductInstance clone() => throw UnimplementedError();
+  @override
+  NutritionProductInstance clone() => throw UnimplementedError();
 }
-

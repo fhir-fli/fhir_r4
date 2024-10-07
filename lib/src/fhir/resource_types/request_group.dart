@@ -3,9 +3,46 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class RequestGroup extends DomainResource {
+  RequestGroup({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.instantiatesCanonical,
+    this.instantiatesCanonicalElement,
+    this.instantiatesUri,
+    this.instantiatesUriElement,
+    this.basedOn,
+    this.replaces,
+    this.groupIdentifier,
+    required this.status,
+    this.statusElement,
+    required this.intent,
+    this.intentElement,
+    this.priority,
+    this.priorityElement,
+    this.code,
+    this.subject,
+    this.encounter,
+    this.authoredOn,
+    this.authoredOnElement,
+    this.author,
+    this.reasonCode,
+    this.reasonReference,
+    this.note,
+    this.action,
+  }) : super(resourceType: R4ResourceType.RequestGroup);
+
   final List<Identifier>? identifier;
   final List<FhirCanonical>? instantiatesCanonical;
   final List<Element>? instantiatesCanonicalElement;
@@ -30,51 +67,54 @@ class RequestGroup extends DomainResource {
   final List<Reference>? reasonReference;
   final List<Annotation>? note;
   final List<RequestGroupAction>? action;
-
-  RequestGroup({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.instantiatesCanonical,
-this.instantiatesCanonicalElement,
-    this.instantiatesUri,
-this.instantiatesUriElement,
-    this.basedOn,
-    this.replaces,
-    this.groupIdentifier,
-    required this.status,
-this.statusElement,
-    required this.intent,
-this.intentElement,
-    this.priority,
-this.priorityElement,
-    this.code,
-    this.subject,
-    this.encounter,
-    this.authoredOn,
-this.authoredOnElement,
-    this.author,
-    this.reasonCode,
-    this.reasonReference,
-    this.note,
-    this.action,
-  }) : super(resourceType: R4ResourceType.RequestGroup);
-
-@override
-RequestGroup clone() => throw UnimplementedError();
+  @override
+  RequestGroup clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class RequestGroupAction extends BackboneElement {
+  RequestGroupAction({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    this.prefix,
+    this.prefixElement,
+    this.title,
+    this.titleElement,
+    this.description,
+    this.descriptionElement,
+    this.textEquivalent,
+    this.textEquivalentElement,
+    this.priority,
+    this.priorityElement,
+    this.code,
+    this.documentation,
+    this.condition,
+    this.relatedAction,
+    this.timingDateTime,
+    this.timingDateTimeElement,
+    this.timingAge,
+    this.timingPeriod,
+    this.timingDuration,
+    this.timingRange,
+    this.timingTiming,
+    this.participant,
+    this.type,
+    this.groupingBehavior,
+    this.groupingBehaviorElement,
+    this.selectionBehavior,
+    this.selectionBehaviorElement,
+    this.requiredBehavior,
+    this.requiredBehaviorElement,
+    this.precheckBehavior,
+    this.precheckBehaviorElement,
+    this.cardinalityBehavior,
+    this.cardinalityBehaviorElement,
+    this.resource,
+    this.action,
+  });
+
   final FhirString? prefix;
   final Element? prefixElement;
   final FhirString? title;
@@ -110,95 +150,50 @@ class RequestGroupAction extends BackboneElement {
   final Element? cardinalityBehaviorElement;
   final Reference? resource;
   final List<RequestGroupAction>? action;
-
-  RequestGroupAction({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    this.prefix,
-this.prefixElement,
-    this.title,
-this.titleElement,
-    this.description,
-this.descriptionElement,
-    this.textEquivalent,
-this.textEquivalentElement,
-    this.priority,
-this.priorityElement,
-    this.code,
-    this.documentation,
-    this.condition,
-    this.relatedAction,
-    this.timingDateTime,
-this.timingDateTimeElement,
-    this.timingAge,
-    this.timingPeriod,
-    this.timingDuration,
-    this.timingRange,
-    this.timingTiming,
-    this.participant,
-    this.type,
-    this.groupingBehavior,
-this.groupingBehaviorElement,
-    this.selectionBehavior,
-this.selectionBehaviorElement,
-    this.requiredBehavior,
-this.requiredBehaviorElement,
-    this.precheckBehavior,
-this.precheckBehaviorElement,
-    this.cardinalityBehavior,
-this.cardinalityBehaviorElement,
-    this.resource,
-    this.action,
-  });
-
-@override
-RequestGroupAction clone() => throw UnimplementedError();
+  @override
+  RequestGroupAction clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class RequestGroupCondition extends BackboneElement {
-  final FhirCode kind;
-  final Element? kindElement;
-  final FhirExpression? expression;
-
   RequestGroupCondition({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.kind,
-this.kindElement,
+    this.kindElement,
     this.expression,
   });
 
-@override
-RequestGroupCondition clone() => throw UnimplementedError();
+  final FhirCode kind;
+  final Element? kindElement;
+  final FhirExpression? expression;
+  @override
+  RequestGroupCondition clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class RequestGroupRelatedAction extends BackboneElement {
+  RequestGroupRelatedAction({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.actionId,
+    this.actionIdElement,
+    required this.relationship,
+    this.relationshipElement,
+    this.offsetDuration,
+    this.offsetRange,
+  });
+
   final FhirId actionId;
   final Element? actionIdElement;
   final FhirCode relationship;
   final Element? relationshipElement;
   final FhirDuration? offsetDuration;
   final Range? offsetRange;
-
-  RequestGroupRelatedAction({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.actionId,
-this.actionIdElement,
-    required this.relationship,
-this.relationshipElement,
-    this.offsetDuration,
-    this.offsetRange,
-  });
-
-@override
-RequestGroupRelatedAction clone() => throw UnimplementedError();
+  @override
+  RequestGroupRelatedAction clone() => throw UnimplementedError();
 }
-

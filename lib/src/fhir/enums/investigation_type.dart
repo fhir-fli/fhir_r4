@@ -5,32 +5,39 @@ enum InvestigationType {
   /// Display: Examination / signs
   @JsonValue('271336007')
   value271336007,
+
   /// Display: History/symptoms
   @JsonValue('160237006')
   value160237006,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case value271336007: return '271336007';
-        case value160237006: return '160237006';
-      }
-      }
-String toJson() => toString();
-  InvestigationType fromString(String str) {
-    switch(str) {
-      case '271336007': return InvestigationType.value271336007;
-      case '160237006': return InvestigationType.value160237006;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case value271336007:
+        return '271336007';
+      case value160237006:
+        return '160237006';
     }
-      }
- InvestigationType fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  InvestigationType fromString(String str) {
+    switch (str) {
+      case '271336007':
+        return InvestigationType.value271336007;
+      case '160237006':
+        return InvestigationType.value160237006;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  InvestigationType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

@@ -3,15 +3,9 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class UsageContext extends DataType {
-  final Coding code;
-  final CodeableConcept valueCodeableConcept;
-  final Quantity valueQuantity;
-  final Range valueRange;
-  final Reference valueReference;
-
   UsageContext({
     super.id,
     super.extension_,
@@ -22,7 +16,11 @@ class UsageContext extends DataType {
     required this.valueReference,
   });
 
-@override
-UsageContext clone() => throw UnimplementedError();
+  final Coding code;
+  final CodeableConcept valueCodeableConcept;
+  final Quantity valueQuantity;
+  final Range valueRange;
+  final Reference valueReference;
+  @override
+  UsageContext clone() => throw UnimplementedError();
 }
-

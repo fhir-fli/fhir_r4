@@ -3,9 +3,42 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class DocumentReference extends DomainResource {
+  DocumentReference({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.masterIdentifier,
+    this.identifier,
+    required this.status,
+    this.statusElement,
+    this.docStatus,
+    this.docStatusElement,
+    this.type,
+    this.category,
+    this.subject,
+    this.date,
+    this.dateElement,
+    this.author,
+    this.authenticator,
+    this.custodian,
+    this.relatesTo,
+    this.description,
+    this.descriptionElement,
+    this.securityLabel,
+    required this.content,
+    this.context,
+  }) : super(resourceType: R4ResourceType.DocumentReference);
+
   final Identifier? masterIdentifier;
   final List<Identifier>? identifier;
   final FhirCode status;
@@ -26,70 +59,32 @@ class DocumentReference extends DomainResource {
   final List<CodeableConcept>? securityLabel;
   final List<DocumentReferenceContent> content;
   final DocumentReferenceContext? context;
-
-  DocumentReference({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.masterIdentifier,
-    this.identifier,
-    required this.status,
-this.statusElement,
-    this.docStatus,
-this.docStatusElement,
-    this.type,
-    this.category,
-    this.subject,
-    this.date,
-this.dateElement,
-    this.author,
-    this.authenticator,
-    this.custodian,
-    this.relatesTo,
-    this.description,
-this.descriptionElement,
-    this.securityLabel,
-    required this.content,
-    this.context,
-  }) : super(resourceType: R4ResourceType.DocumentReference);
-
-@override
-DocumentReference clone() => throw UnimplementedError();
+  @override
+  DocumentReference clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class DocumentReferenceRelatesTo extends BackboneElement {
-  final FhirCode code;
-  final Element? codeElement;
-  final Reference target;
-
   DocumentReferenceRelatesTo({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.code,
-this.codeElement,
+    this.codeElement,
     required this.target,
   });
 
-@override
-DocumentReferenceRelatesTo clone() => throw UnimplementedError();
+  final FhirCode code;
+  final Element? codeElement;
+  final Reference target;
+  @override
+  DocumentReferenceRelatesTo clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class DocumentReferenceContent extends BackboneElement {
-  final Attachment attachment;
-  final Coding? format;
-
   DocumentReferenceContent({
     super.id,
     super.extension_,
@@ -98,21 +93,15 @@ class DocumentReferenceContent extends BackboneElement {
     this.format,
   });
 
-@override
-DocumentReferenceContent clone() => throw UnimplementedError();
+  final Attachment attachment;
+  final Coding? format;
+  @override
+  DocumentReferenceContent clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class DocumentReferenceContext extends BackboneElement {
-  final List<Reference>? encounter;
-  final List<CodeableConcept>? event;
-  final Period? period;
-  final CodeableConcept? facilityType;
-  final CodeableConcept? practiceSetting;
-  final Reference? sourcePatientInfo;
-  final List<Reference>? related;
-
   DocumentReferenceContext({
     super.id,
     super.extension_,
@@ -126,7 +115,13 @@ class DocumentReferenceContext extends BackboneElement {
     this.related,
   });
 
-@override
-DocumentReferenceContext clone() => throw UnimplementedError();
+  final List<Reference>? encounter;
+  final List<CodeableConcept>? event;
+  final Period? period;
+  final CodeableConcept? facilityType;
+  final CodeableConcept? practiceSetting;
+  final Reference? sourcePatientInfo;
+  final List<Reference>? related;
+  @override
+  DocumentReferenceContext clone() => throw UnimplementedError();
 }
-

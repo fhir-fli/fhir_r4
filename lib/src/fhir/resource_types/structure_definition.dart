@@ -3,9 +3,65 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class StructureDefinition extends DomainResource {
+  StructureDefinition({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    required this.url,
+    this.urlElement,
+    this.identifier,
+    this.version,
+    this.versionElement,
+    required this.name,
+    this.nameElement,
+    this.title,
+    this.titleElement,
+    required this.status,
+    this.statusElement,
+    this.experimental,
+    this.experimentalElement,
+    this.date,
+    this.dateElement,
+    this.publisher,
+    this.publisherElement,
+    this.contact,
+    this.description,
+    this.descriptionElement,
+    this.useContext,
+    this.jurisdiction,
+    this.purpose,
+    this.purposeElement,
+    this.copyright,
+    this.copyrightElement,
+    this.keyword,
+    this.fhirVersion,
+    this.fhirVersionElement,
+    this.mapping,
+    required this.kind,
+    this.kindElement,
+    required this.abstract_,
+    this.abstractElement,
+    this.context,
+    required this.type,
+    this.typeElement,
+    this.baseDefinition,
+    this.baseDefinitionElement,
+    this.derivation,
+    this.derivationElement,
+    this.snapshot,
+    this.differential,
+  }) : super(resourceType: R4ResourceType.StructureDefinition);
+
   final FhirUri url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -49,70 +105,27 @@ class StructureDefinition extends DomainResource {
   final Element? derivationElement;
   final StructureDefinitionSnapshot? snapshot;
   final StructureDefinitionDifferential? differential;
-
-  StructureDefinition({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    required this.url,
-this.urlElement,
-    this.identifier,
-    this.version,
-this.versionElement,
-    required this.name,
-this.nameElement,
-    this.title,
-this.titleElement,
-    required this.status,
-this.statusElement,
-    this.experimental,
-this.experimentalElement,
-    this.date,
-this.dateElement,
-    this.publisher,
-this.publisherElement,
-    this.contact,
-    this.description,
-this.descriptionElement,
-    this.useContext,
-    this.jurisdiction,
-    this.purpose,
-this.purposeElement,
-    this.copyright,
-this.copyrightElement,
-    this.keyword,
-    this.fhirVersion,
-this.fhirVersionElement,
-    this.mapping,
-    required this.kind,
-this.kindElement,
-    required this.abstract_,
-this.abstractElement,
-    this.context,
-    required this.type,
-this.typeElement,
-    this.baseDefinition,
-this.baseDefinitionElement,
-    this.derivation,
-this.derivationElement,
-    this.snapshot,
-    this.differential,
-  }) : super(resourceType: R4ResourceType.StructureDefinition);
-
-@override
-StructureDefinition clone() => throw UnimplementedError();
+  @override
+  StructureDefinition clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class StructureDefinitionMapping extends BackboneElement {
+  StructureDefinitionMapping({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.identity,
+    this.identityElement,
+    this.uri,
+    this.uriElement,
+    this.name,
+    this.nameElement,
+    this.comment,
+    this.commentElement,
+  });
+
   final FhirId identity;
   final Element? identityElement;
   final FhirUri? uri;
@@ -121,56 +134,38 @@ class StructureDefinitionMapping extends BackboneElement {
   final Element? nameElement;
   final FhirString? comment;
   final Element? commentElement;
+  @override
+  StructureDefinitionMapping clone() => throw UnimplementedError();
+}
 
-  StructureDefinitionMapping({
+@JsonCodable()
+@Data()
+class StructureDefinitionContext extends BackboneElement {
+  StructureDefinitionContext({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.identity,
-this.identityElement,
-    this.uri,
-this.uriElement,
-    this.name,
-this.nameElement,
-    this.comment,
-this.commentElement,
+    required this.type,
+    this.typeElement,
+    required this.expression,
+    this.expressionElement,
+    this.contextInvariant,
+    this.contextInvariantElement,
   });
 
-@override
-StructureDefinitionMapping clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class StructureDefinitionContext extends BackboneElement {
   final FhirCode type;
   final Element? typeElement;
   final FhirString expression;
   final Element? expressionElement;
   final List<FhirString>? contextInvariant;
   final List<Element>? contextInvariantElement;
-
-  StructureDefinitionContext({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.type,
-this.typeElement,
-    required this.expression,
-this.expressionElement,
-    this.contextInvariant,
-this.contextInvariantElement,
-  });
-
-@override
-StructureDefinitionContext clone() => throw UnimplementedError();
+  @override
+  StructureDefinitionContext clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class StructureDefinitionSnapshot extends BackboneElement {
-  final List<ElementDefinition> element;
-
   StructureDefinitionSnapshot({
     super.id,
     super.extension_,
@@ -178,15 +173,14 @@ class StructureDefinitionSnapshot extends BackboneElement {
     required this.element,
   });
 
-@override
-StructureDefinitionSnapshot clone() => throw UnimplementedError();
+  final List<ElementDefinition> element;
+  @override
+  StructureDefinitionSnapshot clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class StructureDefinitionDifferential extends BackboneElement {
-  final List<ElementDefinition> element;
-
   StructureDefinitionDifferential({
     super.id,
     super.extension_,
@@ -194,7 +188,7 @@ class StructureDefinitionDifferential extends BackboneElement {
     required this.element,
   });
 
-@override
-StructureDefinitionDifferential clone() => throw UnimplementedError();
+  final List<ElementDefinition> element;
+  @override
+  StructureDefinitionDifferential clone() => throw UnimplementedError();
 }
-

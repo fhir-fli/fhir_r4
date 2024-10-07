@@ -3,9 +3,45 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Location extends DomainResource {
+  Location({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.status,
+    this.statusElement,
+    this.operationalStatus,
+    this.name,
+    this.nameElement,
+    this.alias,
+    this.aliasElement,
+    this.description,
+    this.descriptionElement,
+    this.mode,
+    this.modeElement,
+    this.type,
+    this.telecom,
+    this.address,
+    this.physicalType,
+    this.position,
+    this.managingOrganization,
+    this.partOf,
+    this.hoursOfOperation,
+    this.availabilityExceptions,
+    this.availabilityExceptionsElement,
+    this.endpoint,
+  }) : super(resourceType: R4ResourceType.Location);
+
   final List<Identifier>? identifier;
   final FhirCode? status;
   final Element? statusElement;
@@ -29,76 +65,52 @@ class Location extends DomainResource {
   final FhirString? availabilityExceptions;
   final Element? availabilityExceptionsElement;
   final List<Reference>? endpoint;
-
-  Location({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.status,
-this.statusElement,
-    this.operationalStatus,
-    this.name,
-this.nameElement,
-    this.alias,
-this.aliasElement,
-    this.description,
-this.descriptionElement,
-    this.mode,
-this.modeElement,
-    this.type,
-    this.telecom,
-    this.address,
-    this.physicalType,
-    this.position,
-    this.managingOrganization,
-    this.partOf,
-    this.hoursOfOperation,
-    this.availabilityExceptions,
-this.availabilityExceptionsElement,
-    this.endpoint,
-  }) : super(resourceType: R4ResourceType.Location);
-
-@override
-Location clone() => throw UnimplementedError();
+  @override
+  Location clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class LocationPosition extends BackboneElement {
+  LocationPosition({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.longitude,
+    this.longitudeElement,
+    required this.latitude,
+    this.latitudeElement,
+    this.altitude,
+    this.altitudeElement,
+  });
+
   final FhirDecimal longitude;
   final Element? longitudeElement;
   final FhirDecimal latitude;
   final Element? latitudeElement;
   final FhirDecimal? altitude;
   final Element? altitudeElement;
+  @override
+  LocationPosition clone() => throw UnimplementedError();
+}
 
-  LocationPosition({
+@JsonCodable()
+@Data()
+class LocationHoursOfOperation extends BackboneElement {
+  LocationHoursOfOperation({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.longitude,
-this.longitudeElement,
-    required this.latitude,
-this.latitudeElement,
-    this.altitude,
-this.altitudeElement,
+    this.daysOfWeek,
+    this.daysOfWeekElement,
+    this.allDay,
+    this.allDayElement,
+    this.openingTime,
+    this.openingTimeElement,
+    this.closingTime,
+    this.closingTimeElement,
   });
 
-@override
-LocationPosition clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class LocationHoursOfOperation extends BackboneElement {
   final List<FhirCode>? daysOfWeek;
   final List<Element>? daysOfWeekElement;
   final FhirBoolean? allDay;
@@ -107,22 +119,6 @@ class LocationHoursOfOperation extends BackboneElement {
   final Element? openingTimeElement;
   final FhirTime? closingTime;
   final Element? closingTimeElement;
-
-  LocationHoursOfOperation({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    this.daysOfWeek,
-this.daysOfWeekElement,
-    this.allDay,
-this.allDayElement,
-    this.openingTime,
-this.openingTimeElement,
-    this.closingTime,
-this.closingTimeElement,
-  });
-
-@override
-LocationHoursOfOperation clone() => throw UnimplementedError();
+  @override
+  LocationHoursOfOperation clone() => throw UnimplementedError();
 }
-

@@ -3,9 +3,72 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class PlanDefinition extends DomainResource {
+  PlanDefinition({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.url,
+    this.urlElement,
+    this.identifier,
+    this.version,
+    this.versionElement,
+    this.name,
+    this.nameElement,
+    this.title,
+    this.titleElement,
+    this.subtitle,
+    this.subtitleElement,
+    this.type,
+    required this.status,
+    this.statusElement,
+    this.experimental,
+    this.experimentalElement,
+    this.subjectCodeableConcept,
+    this.subjectReference,
+    this.subjectCanonical,
+    this.subjectCanonicalElement,
+    this.date,
+    this.dateElement,
+    this.publisher,
+    this.publisherElement,
+    this.contact,
+    this.description,
+    this.descriptionElement,
+    this.useContext,
+    this.jurisdiction,
+    this.purpose,
+    this.purposeElement,
+    this.usage,
+    this.usageElement,
+    this.copyright,
+    this.copyrightElement,
+    this.approvalDate,
+    this.approvalDateElement,
+    this.lastReviewDate,
+    this.lastReviewDateElement,
+    this.effectivePeriod,
+    this.topic,
+    this.author,
+    this.editor,
+    this.reviewer,
+    this.endorser,
+    this.relatedArtifact,
+    this.library_,
+    this.libraryElement,
+    this.goal,
+    this.action,
+  }) : super(resourceType: R4ResourceType.PlanDefinition);
+
   final FhirUri? url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -56,85 +119,13 @@ class PlanDefinition extends DomainResource {
   final List<Element>? libraryElement;
   final List<PlanDefinitionGoal>? goal;
   final List<PlanDefinitionAction>? action;
-
-  PlanDefinition({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.url,
-this.urlElement,
-    this.identifier,
-    this.version,
-this.versionElement,
-    this.name,
-this.nameElement,
-    this.title,
-this.titleElement,
-    this.subtitle,
-this.subtitleElement,
-    this.type,
-    required this.status,
-this.statusElement,
-    this.experimental,
-this.experimentalElement,
-    this.subjectCodeableConcept,
-    this.subjectReference,
-    this.subjectCanonical,
-this.subjectCanonicalElement,
-    this.date,
-this.dateElement,
-    this.publisher,
-this.publisherElement,
-    this.contact,
-    this.description,
-this.descriptionElement,
-    this.useContext,
-    this.jurisdiction,
-    this.purpose,
-this.purposeElement,
-    this.usage,
-this.usageElement,
-    this.copyright,
-this.copyrightElement,
-    this.approvalDate,
-this.approvalDateElement,
-    this.lastReviewDate,
-this.lastReviewDateElement,
-    this.effectivePeriod,
-    this.topic,
-    this.author,
-    this.editor,
-    this.reviewer,
-    this.endorser,
-    this.relatedArtifact,
-    this.library_,
-this.libraryElement,
-    this.goal,
-    this.action,
-  }) : super(resourceType: R4ResourceType.PlanDefinition);
-
-@override
-PlanDefinition clone() => throw UnimplementedError();
+  @override
+  PlanDefinition clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class PlanDefinitionGoal extends BackboneElement {
-  final CodeableConcept? category;
-  final CodeableConcept description;
-  final CodeableConcept? priority;
-  final CodeableConcept? start;
-  final List<CodeableConcept>? addresses;
-  final List<RelatedArtifact>? documentation;
-  final List<PlanDefinitionTarget>? target;
-
   PlanDefinitionGoal({
     super.id,
     super.extension_,
@@ -148,19 +139,20 @@ class PlanDefinitionGoal extends BackboneElement {
     this.target,
   });
 
-@override
-PlanDefinitionGoal clone() => throw UnimplementedError();
+  final CodeableConcept? category;
+  final CodeableConcept description;
+  final CodeableConcept? priority;
+  final CodeableConcept? start;
+  final List<CodeableConcept>? addresses;
+  final List<RelatedArtifact>? documentation;
+  final List<PlanDefinitionTarget>? target;
+  @override
+  PlanDefinitionGoal clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class PlanDefinitionTarget extends BackboneElement {
-  final CodeableConcept? measure;
-  final Quantity? detailQuantity;
-  final Range? detailRange;
-  final CodeableConcept? detailCodeableConcept;
-  final FhirDuration? due;
-
   PlanDefinitionTarget({
     super.id,
     super.extension_,
@@ -172,13 +164,75 @@ class PlanDefinitionTarget extends BackboneElement {
     this.due,
   });
 
-@override
-PlanDefinitionTarget clone() => throw UnimplementedError();
+  final CodeableConcept? measure;
+  final Quantity? detailQuantity;
+  final Range? detailRange;
+  final CodeableConcept? detailCodeableConcept;
+  final FhirDuration? due;
+  @override
+  PlanDefinitionTarget clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class PlanDefinitionAction extends BackboneElement {
+  PlanDefinitionAction({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    this.prefix,
+    this.prefixElement,
+    this.title,
+    this.titleElement,
+    this.description,
+    this.descriptionElement,
+    this.textEquivalent,
+    this.textEquivalentElement,
+    this.priority,
+    this.priorityElement,
+    this.code,
+    this.reason,
+    this.documentation,
+    this.goalId,
+    this.goalIdElement,
+    this.subjectCodeableConcept,
+    this.subjectReference,
+    this.subjectCanonical,
+    this.subjectCanonicalElement,
+    this.trigger,
+    this.condition,
+    this.input,
+    this.output,
+    this.relatedAction,
+    this.timingDateTime,
+    this.timingDateTimeElement,
+    this.timingAge,
+    this.timingPeriod,
+    this.timingDuration,
+    this.timingRange,
+    this.timingTiming,
+    this.participant,
+    this.type,
+    this.groupingBehavior,
+    this.groupingBehaviorElement,
+    this.selectionBehavior,
+    this.selectionBehaviorElement,
+    this.requiredBehavior,
+    this.requiredBehaviorElement,
+    this.precheckBehavior,
+    this.precheckBehaviorElement,
+    this.cardinalityBehavior,
+    this.cardinalityBehaviorElement,
+    this.definitionCanonical,
+    this.definitionCanonicalElement,
+    this.definitionUri,
+    this.definitionUriElement,
+    this.transform,
+    this.transformElement,
+    this.dynamicValue,
+    this.action,
+  });
+
   final FhirString? prefix;
   final Element? prefixElement;
   final FhirString? title;
@@ -230,151 +284,88 @@ class PlanDefinitionAction extends BackboneElement {
   final Element? transformElement;
   final List<PlanDefinitionDynamicValue>? dynamicValue;
   final List<PlanDefinitionAction>? action;
-
-  PlanDefinitionAction({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    this.prefix,
-this.prefixElement,
-    this.title,
-this.titleElement,
-    this.description,
-this.descriptionElement,
-    this.textEquivalent,
-this.textEquivalentElement,
-    this.priority,
-this.priorityElement,
-    this.code,
-    this.reason,
-    this.documentation,
-    this.goalId,
-this.goalIdElement,
-    this.subjectCodeableConcept,
-    this.subjectReference,
-    this.subjectCanonical,
-this.subjectCanonicalElement,
-    this.trigger,
-    this.condition,
-    this.input,
-    this.output,
-    this.relatedAction,
-    this.timingDateTime,
-this.timingDateTimeElement,
-    this.timingAge,
-    this.timingPeriod,
-    this.timingDuration,
-    this.timingRange,
-    this.timingTiming,
-    this.participant,
-    this.type,
-    this.groupingBehavior,
-this.groupingBehaviorElement,
-    this.selectionBehavior,
-this.selectionBehaviorElement,
-    this.requiredBehavior,
-this.requiredBehaviorElement,
-    this.precheckBehavior,
-this.precheckBehaviorElement,
-    this.cardinalityBehavior,
-this.cardinalityBehaviorElement,
-    this.definitionCanonical,
-this.definitionCanonicalElement,
-    this.definitionUri,
-this.definitionUriElement,
-    this.transform,
-this.transformElement,
-    this.dynamicValue,
-    this.action,
-  });
-
-@override
-PlanDefinitionAction clone() => throw UnimplementedError();
+  @override
+  PlanDefinitionAction clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class PlanDefinitionCondition extends BackboneElement {
-  final FhirCode kind;
-  final Element? kindElement;
-  final FhirExpression? expression;
-
   PlanDefinitionCondition({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.kind,
-this.kindElement,
+    this.kindElement,
     this.expression,
   });
 
-@override
-PlanDefinitionCondition clone() => throw UnimplementedError();
+  final FhirCode kind;
+  final Element? kindElement;
+  final FhirExpression? expression;
+  @override
+  PlanDefinitionCondition clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class PlanDefinitionRelatedAction extends BackboneElement {
+  PlanDefinitionRelatedAction({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.actionId,
+    this.actionIdElement,
+    required this.relationship,
+    this.relationshipElement,
+    this.offsetDuration,
+    this.offsetRange,
+  });
+
   final FhirId actionId;
   final Element? actionIdElement;
   final FhirCode relationship;
   final Element? relationshipElement;
   final FhirDuration? offsetDuration;
   final Range? offsetRange;
-
-  PlanDefinitionRelatedAction({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.actionId,
-this.actionIdElement,
-    required this.relationship,
-this.relationshipElement,
-    this.offsetDuration,
-    this.offsetRange,
-  });
-
-@override
-PlanDefinitionRelatedAction clone() => throw UnimplementedError();
+  @override
+  PlanDefinitionRelatedAction clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class PlanDefinitionParticipant extends BackboneElement {
-  final FhirCode type;
-  final Element? typeElement;
-  final CodeableConcept? role;
-
   PlanDefinitionParticipant({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.type,
-this.typeElement,
+    this.typeElement,
     this.role,
   });
 
-@override
-PlanDefinitionParticipant clone() => throw UnimplementedError();
+  final FhirCode type;
+  final Element? typeElement;
+  final CodeableConcept? role;
+  @override
+  PlanDefinitionParticipant clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class PlanDefinitionDynamicValue extends BackboneElement {
-  final FhirString? path;
-  final Element? pathElement;
-  final FhirExpression? expression;
-
   PlanDefinitionDynamicValue({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.path,
-this.pathElement,
+    this.pathElement,
     this.expression,
   });
 
-@override
-PlanDefinitionDynamicValue clone() => throw UnimplementedError();
+  final FhirString? path;
+  final Element? pathElement;
+  final FhirExpression? expression;
+  @override
+  PlanDefinitionDynamicValue clone() => throw UnimplementedError();
 }
-

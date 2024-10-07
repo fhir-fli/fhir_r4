@@ -3,9 +3,49 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class ResearchStudy extends DomainResource {
+  ResearchStudy({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.title,
+    this.titleElement,
+    this.protocol,
+    this.partOf,
+    required this.status,
+    this.statusElement,
+    this.primaryPurposeType,
+    this.phase,
+    this.category,
+    this.focus,
+    this.condition,
+    this.contact,
+    this.relatedArtifact,
+    this.keyword,
+    this.location,
+    this.description,
+    this.descriptionElement,
+    this.enrollment,
+    this.period,
+    this.sponsor,
+    this.principalInvestigator,
+    this.site,
+    this.reasonStopped,
+    this.note,
+    this.arm,
+    this.objective,
+  }) : super(resourceType: R4ResourceType.ResearchStudy);
+
   final List<Identifier>? identifier;
   final FhirString? title;
   final Element? titleElement;
@@ -33,92 +73,48 @@ class ResearchStudy extends DomainResource {
   final List<Annotation>? note;
   final List<ResearchStudyArm>? arm;
   final List<ResearchStudyObjective>? objective;
-
-  ResearchStudy({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.title,
-this.titleElement,
-    this.protocol,
-    this.partOf,
-    required this.status,
-this.statusElement,
-    this.primaryPurposeType,
-    this.phase,
-    this.category,
-    this.focus,
-    this.condition,
-    this.contact,
-    this.relatedArtifact,
-    this.keyword,
-    this.location,
-    this.description,
-this.descriptionElement,
-    this.enrollment,
-    this.period,
-    this.sponsor,
-    this.principalInvestigator,
-    this.site,
-    this.reasonStopped,
-    this.note,
-    this.arm,
-    this.objective,
-  }) : super(resourceType: R4ResourceType.ResearchStudy);
-
-@override
-ResearchStudy clone() => throw UnimplementedError();
+  @override
+  ResearchStudy clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ResearchStudyArm extends BackboneElement {
-  final FhirString name;
-  final Element? nameElement;
-  final CodeableConcept? type;
-  final FhirString? description;
-  final Element? descriptionElement;
-
   ResearchStudyArm({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.name,
-this.nameElement,
+    this.nameElement,
     this.type,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
   });
 
-@override
-ResearchStudyArm clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class ResearchStudyObjective extends BackboneElement {
-  final FhirString? name;
+  final FhirString name;
   final Element? nameElement;
   final CodeableConcept? type;
+  final FhirString? description;
+  final Element? descriptionElement;
+  @override
+  ResearchStudyArm clone() => throw UnimplementedError();
+}
 
+@JsonCodable()
+@Data()
+class ResearchStudyObjective extends BackboneElement {
   ResearchStudyObjective({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.type,
   });
 
-@override
-ResearchStudyObjective clone() => throw UnimplementedError();
+  final FhirString? name;
+  final Element? nameElement;
+  final CodeableConcept? type;
+  @override
+  ResearchStudyObjective clone() => throw UnimplementedError();
 }
-

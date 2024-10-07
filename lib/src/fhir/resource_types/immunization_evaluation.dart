@@ -3,9 +3,45 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class ImmunizationEvaluation extends DomainResource {
+  ImmunizationEvaluation({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    required this.status,
+    this.statusElement,
+    required this.patient,
+    this.date,
+    this.dateElement,
+    this.authority,
+    required this.targetDisease,
+    required this.immunizationEvent,
+    required this.doseStatus,
+    this.doseStatusReason,
+    this.description,
+    this.descriptionElement,
+    this.series,
+    this.seriesElement,
+    this.doseNumberPositiveInt,
+    this.doseNumberPositiveIntElement,
+    this.doseNumberString,
+    this.doseNumberStringElement,
+    this.seriesDosesPositiveInt,
+    this.seriesDosesPositiveIntElement,
+    this.seriesDosesString,
+    this.seriesDosesStringElement,
+  }) : super(resourceType: R4ResourceType.ImmunizationEvaluation);
+
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -29,44 +65,6 @@ class ImmunizationEvaluation extends DomainResource {
   final Element? seriesDosesPositiveIntElement;
   final FhirString? seriesDosesString;
   final Element? seriesDosesStringElement;
-
-  ImmunizationEvaluation({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    required this.status,
-this.statusElement,
-    required this.patient,
-    this.date,
-this.dateElement,
-    this.authority,
-    required this.targetDisease,
-    required this.immunizationEvent,
-    required this.doseStatus,
-    this.doseStatusReason,
-    this.description,
-this.descriptionElement,
-    this.series,
-this.seriesElement,
-    this.doseNumberPositiveInt,
-this.doseNumberPositiveIntElement,
-    this.doseNumberString,
-this.doseNumberStringElement,
-    this.seriesDosesPositiveInt,
-this.seriesDosesPositiveIntElement,
-    this.seriesDosesString,
-this.seriesDosesStringElement,
-  }) : super(resourceType: R4ResourceType.ImmunizationEvaluation);
-
-@override
-ImmunizationEvaluation clone() => throw UnimplementedError();
+  @override
+  ImmunizationEvaluation clone() => throw UnimplementedError();
 }
-

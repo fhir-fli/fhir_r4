@@ -3,9 +3,67 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class CodeSystem extends DomainResource {
+  CodeSystem({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.url,
+    this.urlElement,
+    this.identifier,
+    this.version,
+    this.versionElement,
+    this.name,
+    this.nameElement,
+    this.title,
+    this.titleElement,
+    required this.status,
+    this.statusElement,
+    this.experimental,
+    this.experimentalElement,
+    this.date,
+    this.dateElement,
+    this.publisher,
+    this.publisherElement,
+    this.contact,
+    this.description,
+    this.descriptionElement,
+    this.useContext,
+    this.jurisdiction,
+    this.purpose,
+    this.purposeElement,
+    this.copyright,
+    this.copyrightElement,
+    this.caseSensitive,
+    this.caseSensitiveElement,
+    this.valueSet,
+    this.valueSetElement,
+    this.hierarchyMeaning,
+    this.hierarchyMeaningElement,
+    this.compositional,
+    this.compositionalElement,
+    this.versionNeeded,
+    this.versionNeededElement,
+    required this.content,
+    this.contentElement,
+    this.supplements,
+    this.supplementsElement,
+    this.count,
+    this.countElement,
+    this.filter,
+    this.property,
+    this.concept,
+  }) : super(resourceType: R4ResourceType.CodeSystem);
+
   final FhirUri? url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -51,72 +109,27 @@ class CodeSystem extends DomainResource {
   final List<CodeSystemFilter>? filter;
   final List<CodeSystemProperty>? property;
   final List<CodeSystemConcept>? concept;
-
-  CodeSystem({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.url,
-this.urlElement,
-    this.identifier,
-    this.version,
-this.versionElement,
-    this.name,
-this.nameElement,
-    this.title,
-this.titleElement,
-    required this.status,
-this.statusElement,
-    this.experimental,
-this.experimentalElement,
-    this.date,
-this.dateElement,
-    this.publisher,
-this.publisherElement,
-    this.contact,
-    this.description,
-this.descriptionElement,
-    this.useContext,
-    this.jurisdiction,
-    this.purpose,
-this.purposeElement,
-    this.copyright,
-this.copyrightElement,
-    this.caseSensitive,
-this.caseSensitiveElement,
-    this.valueSet,
-this.valueSetElement,
-    this.hierarchyMeaning,
-this.hierarchyMeaningElement,
-    this.compositional,
-this.compositionalElement,
-    this.versionNeeded,
-this.versionNeededElement,
-    required this.content,
-this.contentElement,
-    this.supplements,
-this.supplementsElement,
-    this.count,
-this.countElement,
-    this.filter,
-    this.property,
-    this.concept,
-  }) : super(resourceType: R4ResourceType.CodeSystem);
-
-@override
-CodeSystem clone() => throw UnimplementedError();
+  @override
+  CodeSystem clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class CodeSystemFilter extends BackboneElement {
+  CodeSystemFilter({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.code,
+    this.codeElement,
+    this.description,
+    this.descriptionElement,
+    required this.operator_,
+    this.operatorElement,
+    required this.value,
+    this.valueElement,
+  });
+
   final FhirCode code;
   final Element? codeElement;
   final FhirString? description;
@@ -125,28 +138,27 @@ class CodeSystemFilter extends BackboneElement {
   final List<Element>? operatorElement;
   final FhirString value;
   final Element? valueElement;
+  @override
+  CodeSystemFilter clone() => throw UnimplementedError();
+}
 
-  CodeSystemFilter({
+@JsonCodable()
+@Data()
+class CodeSystemProperty extends BackboneElement {
+  CodeSystemProperty({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.code,
-this.codeElement,
+    this.codeElement,
+    this.uri,
+    this.uriElement,
     this.description,
-this.descriptionElement,
-    required this.operator_,
-this.operatorElement,
-    required this.value,
-this.valueElement,
+    this.descriptionElement,
+    required this.type,
+    this.typeElement,
   });
 
-@override
-CodeSystemFilter clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class CodeSystemProperty extends BackboneElement {
   final FhirCode code;
   final Element? codeElement;
   final FhirUri? uri;
@@ -155,28 +167,28 @@ class CodeSystemProperty extends BackboneElement {
   final Element? descriptionElement;
   final FhirCode type;
   final Element? typeElement;
+  @override
+  CodeSystemProperty clone() => throw UnimplementedError();
+}
 
-  CodeSystemProperty({
+@JsonCodable()
+@Data()
+class CodeSystemConcept extends BackboneElement {
+  CodeSystemConcept({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.code,
-this.codeElement,
-    this.uri,
-this.uriElement,
-    this.description,
-this.descriptionElement,
-    required this.type,
-this.typeElement,
+    this.codeElement,
+    this.display,
+    this.displayElement,
+    this.definition,
+    this.definitionElement,
+    this.designation,
+    this.property,
+    this.concept,
   });
 
-@override
-CodeSystemProperty clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class CodeSystemConcept extends BackboneElement {
   final FhirCode code;
   final Element? codeElement;
   final FhirString? display;
@@ -186,53 +198,57 @@ class CodeSystemConcept extends BackboneElement {
   final List<CodeSystemDesignation>? designation;
   final List<CodeSystemProperty>? property;
   final List<CodeSystemConcept>? concept;
-
-  CodeSystemConcept({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.code,
-this.codeElement,
-    this.display,
-this.displayElement,
-    this.definition,
-this.definitionElement,
-    this.designation,
-    this.property,
-    this.concept,
-  });
-
-@override
-CodeSystemConcept clone() => throw UnimplementedError();
+  @override
+  CodeSystemConcept clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class CodeSystemDesignation extends BackboneElement {
-  final FhirCode? language;
-  final Element? languageElement;
-  final Coding? use;
-  final FhirString value;
-  final Element? valueElement;
-
   CodeSystemDesignation({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.language,
-this.languageElement,
+    this.languageElement,
     this.use,
     required this.value,
-this.valueElement,
+    this.valueElement,
   });
 
-@override
-CodeSystemDesignation clone() => throw UnimplementedError();
+  final FhirCode? language;
+  final Element? languageElement;
+  final Coding? use;
+  final FhirString value;
+  final Element? valueElement;
+  @override
+  CodeSystemDesignation clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class CodeSystemProperty1 extends BackboneElement {
+  CodeSystemProperty1({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.code,
+    this.codeElement,
+    required this.valueCode,
+    this.valueCodeElement,
+    required this.valueCoding,
+    required this.valueString,
+    this.valueStringElement,
+    required this.valueInteger,
+    this.valueIntegerElement,
+    required this.valueBoolean,
+    this.valueBooleanElement,
+    required this.valueDateTime,
+    this.valueDateTimeElement,
+    required this.valueDecimal,
+    this.valueDecimalElement,
+  });
+
   final FhirCode code;
   final Element? codeElement;
   final FhirCode valueCode;
@@ -248,29 +264,6 @@ class CodeSystemProperty1 extends BackboneElement {
   final Element? valueDateTimeElement;
   final FhirDecimal valueDecimal;
   final Element? valueDecimalElement;
-
-  CodeSystemProperty1({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.code,
-this.codeElement,
-    required this.valueCode,
-this.valueCodeElement,
-    required this.valueCoding,
-    required this.valueString,
-this.valueStringElement,
-    required this.valueInteger,
-this.valueIntegerElement,
-    required this.valueBoolean,
-this.valueBooleanElement,
-    required this.valueDateTime,
-this.valueDateTimeElement,
-    required this.valueDecimal,
-this.valueDecimalElement,
-  });
-
-@override
-CodeSystemProperty1 clone() => throw UnimplementedError();
+  @override
+  CodeSystemProperty1 clone() => throw UnimplementedError();
 }
-

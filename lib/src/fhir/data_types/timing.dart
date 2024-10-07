@@ -3,31 +3,66 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Timing extends BackboneType {
-  final List<FhirDateTime>? event;
-  final List<Element>? eventElement;
-  final Element? repeat;
-  final CodeableConcept? code;
-
   Timing({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.event,
-this.eventElement,
+    this.eventElement,
     this.repeat,
     this.code,
   });
 
-@override
-Timing clone() => throw UnimplementedError();
+  final List<FhirDateTime>? event;
+  final List<Element>? eventElement;
+  final Element? repeat;
+  final CodeableConcept? code;
+  @override
+  Timing clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TimingRepeat extends Element {
+  TimingRepeat({
+    super.id,
+    super.extension_,
+    this.boundsDuration,
+    this.boundsRange,
+    this.boundsPeriod,
+    this.count,
+    this.countElement,
+    this.countMax,
+    this.countMaxElement,
+    this.duration,
+    this.durationElement,
+    this.durationMax,
+    this.durationMaxElement,
+    this.durationUnit,
+    this.durationUnitElement,
+    this.frequency,
+    this.frequencyElement,
+    this.frequencyMax,
+    this.frequencyMaxElement,
+    this.period,
+    this.periodElement,
+    this.periodMax,
+    this.periodMaxElement,
+    this.periodUnit,
+    this.periodUnitElement,
+    this.dayOfWeek,
+    this.dayOfWeekElement,
+    this.timeOfDay,
+    this.timeOfDayElement,
+    this.when,
+    this.whenElement,
+    this.offset,
+    this.offsetElement,
+  });
+
   final FhirDuration? boundsDuration;
   final Range? boundsRange;
   final Period? boundsPeriod;
@@ -59,44 +94,6 @@ class TimingRepeat extends Element {
   final List<Element>? whenElement;
   final FhirUnsignedInt? offset;
   final Element? offsetElement;
-
-  TimingRepeat({
-    super.id,
-    super.extension_,
-    this.boundsDuration,
-    this.boundsRange,
-    this.boundsPeriod,
-    this.count,
-this.countElement,
-    this.countMax,
-this.countMaxElement,
-    this.duration,
-this.durationElement,
-    this.durationMax,
-this.durationMaxElement,
-    this.durationUnit,
-this.durationUnitElement,
-    this.frequency,
-this.frequencyElement,
-    this.frequencyMax,
-this.frequencyMaxElement,
-    this.period,
-this.periodElement,
-    this.periodMax,
-this.periodMaxElement,
-    this.periodUnit,
-this.periodUnitElement,
-    this.dayOfWeek,
-this.dayOfWeekElement,
-    this.timeOfDay,
-this.timeOfDayElement,
-    this.when,
-this.whenElement,
-    this.offset,
-this.offsetElement,
-  });
-
-@override
-TimingRepeat clone() => throw UnimplementedError();
+  @override
+  TimingRepeat clone() => throw UnimplementedError();
 }
-

@@ -3,9 +3,47 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Patient extends DomainResource {
+  Patient({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.active,
+    this.activeElement,
+    this.name,
+    this.telecom,
+    this.gender,
+    this.genderElement,
+    this.birthDate,
+    this.birthDateElement,
+    this.deceasedBoolean,
+    this.deceasedBooleanElement,
+    this.deceasedDateTime,
+    this.deceasedDateTimeElement,
+    this.address,
+    this.maritalStatus,
+    this.multipleBirthBoolean,
+    this.multipleBirthBooleanElement,
+    this.multipleBirthInteger,
+    this.multipleBirthIntegerElement,
+    this.photo,
+    this.contact,
+    this.communication,
+    this.generalPractitioner,
+    this.managingOrganization,
+    this.link,
+  }) : super(resourceType: R4ResourceType.Patient);
+
   final List<Identifier>? identifier;
   final FhirBoolean? active;
   final Element? activeElement;
@@ -31,61 +69,13 @@ class Patient extends DomainResource {
   final List<Reference>? generalPractitioner;
   final Reference? managingOrganization;
   final List<PatientLink>? link;
-
-  Patient({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.active,
-this.activeElement,
-    this.name,
-    this.telecom,
-    this.gender,
-this.genderElement,
-    this.birthDate,
-this.birthDateElement,
-    this.deceasedBoolean,
-this.deceasedBooleanElement,
-    this.deceasedDateTime,
-this.deceasedDateTimeElement,
-    this.address,
-    this.maritalStatus,
-    this.multipleBirthBoolean,
-this.multipleBirthBooleanElement,
-    this.multipleBirthInteger,
-this.multipleBirthIntegerElement,
-    this.photo,
-    this.contact,
-    this.communication,
-    this.generalPractitioner,
-    this.managingOrganization,
-    this.link,
-  }) : super(resourceType: R4ResourceType.Patient);
-
-@override
-Patient clone() => throw UnimplementedError();
+  @override
+  Patient clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class PatientContact extends BackboneElement {
-  final List<CodeableConcept>? relationship;
-  final HumanName? name;
-  final List<ContactPoint>? telecom;
-  final Address? address;
-  final FhirCode? gender;
-  final Element? genderElement;
-  final Reference? organization;
-  final Period? period;
-
   PatientContact({
     super.id,
     super.extension_,
@@ -95,52 +85,57 @@ class PatientContact extends BackboneElement {
     this.telecom,
     this.address,
     this.gender,
-this.genderElement,
+    this.genderElement,
     this.organization,
     this.period,
   });
 
-@override
-PatientContact clone() => throw UnimplementedError();
+  final List<CodeableConcept>? relationship;
+  final HumanName? name;
+  final List<ContactPoint>? telecom;
+  final Address? address;
+  final FhirCode? gender;
+  final Element? genderElement;
+  final Reference? organization;
+  final Period? period;
+  @override
+  PatientContact clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class PatientCommunication extends BackboneElement {
-  final CodeableConcept language;
-  final FhirBoolean? preferred;
-  final Element? preferredElement;
-
   PatientCommunication({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.language,
     this.preferred,
-this.preferredElement,
+    this.preferredElement,
   });
 
-@override
-PatientCommunication clone() => throw UnimplementedError();
+  final CodeableConcept language;
+  final FhirBoolean? preferred;
+  final Element? preferredElement;
+  @override
+  PatientCommunication clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class PatientLink extends BackboneElement {
-  final Reference other;
-  final FhirCode type;
-  final Element? typeElement;
-
   PatientLink({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.other,
     required this.type,
-this.typeElement,
+    this.typeElement,
   });
 
-@override
-PatientLink clone() => throw UnimplementedError();
+  final Reference other;
+  final FhirCode type;
+  final Element? typeElement;
+  @override
+  PatientLink clone() => throw UnimplementedError();
 }
-

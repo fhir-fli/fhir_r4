@@ -3,9 +3,66 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class EventDefinition extends DomainResource {
+  EventDefinition({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.url,
+    this.urlElement,
+    this.identifier,
+    this.version,
+    this.versionElement,
+    this.name,
+    this.nameElement,
+    this.title,
+    this.titleElement,
+    this.subtitle,
+    this.subtitleElement,
+    required this.status,
+    this.statusElement,
+    this.experimental,
+    this.experimentalElement,
+    this.subjectCodeableConcept,
+    this.subjectReference,
+    this.date,
+    this.dateElement,
+    this.publisher,
+    this.publisherElement,
+    this.contact,
+    this.description,
+    this.descriptionElement,
+    this.useContext,
+    this.jurisdiction,
+    this.purpose,
+    this.purposeElement,
+    this.usage,
+    this.usageElement,
+    this.copyright,
+    this.copyrightElement,
+    this.approvalDate,
+    this.approvalDateElement,
+    this.lastReviewDate,
+    this.lastReviewDateElement,
+    this.effectivePeriod,
+    this.topic,
+    this.author,
+    this.editor,
+    this.reviewer,
+    this.endorser,
+    this.relatedArtifact,
+    required this.trigger,
+  }) : super(resourceType: R4ResourceType.EventDefinition);
+
   final FhirUri? url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -50,65 +107,6 @@ class EventDefinition extends DomainResource {
   final List<ContactDetail>? endorser;
   final List<RelatedArtifact>? relatedArtifact;
   final List<TriggerDefinition> trigger;
-
-  EventDefinition({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.url,
-this.urlElement,
-    this.identifier,
-    this.version,
-this.versionElement,
-    this.name,
-this.nameElement,
-    this.title,
-this.titleElement,
-    this.subtitle,
-this.subtitleElement,
-    required this.status,
-this.statusElement,
-    this.experimental,
-this.experimentalElement,
-    this.subjectCodeableConcept,
-    this.subjectReference,
-    this.date,
-this.dateElement,
-    this.publisher,
-this.publisherElement,
-    this.contact,
-    this.description,
-this.descriptionElement,
-    this.useContext,
-    this.jurisdiction,
-    this.purpose,
-this.purposeElement,
-    this.usage,
-this.usageElement,
-    this.copyright,
-this.copyrightElement,
-    this.approvalDate,
-this.approvalDateElement,
-    this.lastReviewDate,
-this.lastReviewDateElement,
-    this.effectivePeriod,
-    this.topic,
-    this.author,
-    this.editor,
-    this.reviewer,
-    this.endorser,
-    this.relatedArtifact,
-    required this.trigger,
-  }) : super(resourceType: R4ResourceType.EventDefinition);
-
-@override
-EventDefinition clone() => throw UnimplementedError();
+  @override
+  EventDefinition clone() => throw UnimplementedError();
 }
-

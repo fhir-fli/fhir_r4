@@ -3,9 +3,61 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Task extends DomainResource {
+  Task({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.instantiatesCanonical,
+    this.instantiatesCanonicalElement,
+    this.instantiatesUri,
+    this.instantiatesUriElement,
+    this.basedOn,
+    this.groupIdentifier,
+    this.partOf,
+    required this.status,
+    this.statusElement,
+    this.statusReason,
+    this.businessStatus,
+    required this.intent,
+    this.intentElement,
+    this.priority,
+    this.priorityElement,
+    this.code,
+    this.description,
+    this.descriptionElement,
+    this.focus,
+    this.for_,
+    this.encounter,
+    this.executionPeriod,
+    this.authoredOn,
+    this.authoredOnElement,
+    this.lastModified,
+    this.lastModifiedElement,
+    this.requester,
+    this.performerType,
+    this.owner,
+    this.location,
+    this.reasonCode,
+    this.reasonReference,
+    this.insurance,
+    this.note,
+    this.relevantHistory,
+    this.restriction,
+    this.input,
+    this.output,
+  }) : super(resourceType: R4ResourceType.Task);
+
   final List<Identifier>? identifier;
   final FhirCanonical? instantiatesCanonical;
   final Element? instantiatesCanonicalElement;
@@ -45,202 +97,77 @@ class Task extends DomainResource {
   final TaskRestriction? restriction;
   final List<TaskInput>? input;
   final List<TaskOutput>? output;
-
-  Task({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.instantiatesCanonical,
-this.instantiatesCanonicalElement,
-    this.instantiatesUri,
-this.instantiatesUriElement,
-    this.basedOn,
-    this.groupIdentifier,
-    this.partOf,
-    required this.status,
-this.statusElement,
-    this.statusReason,
-    this.businessStatus,
-    required this.intent,
-this.intentElement,
-    this.priority,
-this.priorityElement,
-    this.code,
-    this.description,
-this.descriptionElement,
-    this.focus,
-    this.for_,
-    this.encounter,
-    this.executionPeriod,
-    this.authoredOn,
-this.authoredOnElement,
-    this.lastModified,
-this.lastModifiedElement,
-    this.requester,
-    this.performerType,
-    this.owner,
-    this.location,
-    this.reasonCode,
-    this.reasonReference,
-    this.insurance,
-    this.note,
-    this.relevantHistory,
-    this.restriction,
-    this.input,
-    this.output,
-  }) : super(resourceType: R4ResourceType.Task);
-
-@override
-Task clone() => throw UnimplementedError();
+  @override
+  Task clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TaskRestriction extends BackboneElement {
-  final FhirPositiveInt? repetitions;
-  final Element? repetitionsElement;
-  final Period? period;
-  final List<Reference>? recipient;
-
   TaskRestriction({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.repetitions,
-this.repetitionsElement,
+    this.repetitionsElement,
     this.period,
     this.recipient,
   });
 
-@override
-TaskRestriction clone() => throw UnimplementedError();
+  final FhirPositiveInt? repetitions;
+  final Element? repetitionsElement;
+  final Period? period;
+  final List<Reference>? recipient;
+  @override
+  TaskRestriction clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TaskInput extends BackboneElement {
-  final CodeableConcept type;
-  final FhirBase64Binary valueBase64Binary;
-  final Element? valueBase64BinaryElement;
-  final FhirBoolean valueBoolean;
-  final Element? valueBooleanElement;
-  final FhirCanonical valueCanonical;
-  final Element? valueCanonicalElement;
-  final FhirCode valueCode;
-  final Element? valueCodeElement;
-  final FhirDate valueDate;
-  final Element? valueDateElement;
-  final FhirDateTime valueDateTime;
-  final Element? valueDateTimeElement;
-  final FhirDecimal valueDecimal;
-  final Element? valueDecimalElement;
-  final FhirId valueId;
-  final Element? valueIdElement;
-  final FhirInstant valueInstant;
-  final Element? valueInstantElement;
-  final FhirInteger valueInteger;
-  final Element? valueIntegerElement;
-  final FhirMarkdown valueMarkdown;
-  final Element? valueMarkdownElement;
-  final FhirOid valueOid;
-  final Element? valueOidElement;
-  final FhirPositiveInt valuePositiveInt;
-  final Element? valuePositiveIntElement;
-  final FhirString valueString;
-  final Element? valueStringElement;
-  final FhirTime valueTime;
-  final Element? valueTimeElement;
-  final FhirUnsignedInt valueUnsignedInt;
-  final Element? valueUnsignedIntElement;
-  final FhirUri valueUri;
-  final Element? valueUriElement;
-  final FhirUrl valueUrl;
-  final Element? valueUrlElement;
-  final FhirUuid valueUuid;
-  final Element? valueUuidElement;
-  final Address valueAddress;
-  final Age valueAge;
-  final Annotation valueAnnotation;
-  final Attachment valueAttachment;
-  final CodeableConcept valueCodeableConcept;
-  final Coding valueCoding;
-  final ContactPoint valueContactPoint;
-  final Count valueCount;
-  final Distance valueDistance;
-  final FhirDuration valueDuration;
-  final HumanName valueHumanName;
-  final Identifier valueIdentifier;
-  final Money valueMoney;
-  final Period valuePeriod;
-  final Quantity valueQuantity;
-  final Range valueRange;
-  final Ratio valueRatio;
-  final Reference valueReference;
-  final SampledData valueSampledData;
-  final Signature valueSignature;
-  final Timing valueTiming;
-  final ContactDetail valueContactDetail;
-  final Contributor valueContributor;
-  final DataRequirement valueDataRequirement;
-  final FhirExpression valueExpression;
-  final ParameterDefinition valueParameterDefinition;
-  final RelatedArtifact valueRelatedArtifact;
-  final TriggerDefinition valueTriggerDefinition;
-  final UsageContext valueUsageContext;
-  final Dosage valueDosage;
-  final FhirMeta valueMeta;
-
   TaskInput({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.type,
     required this.valueBase64Binary,
-this.valueBase64BinaryElement,
+    this.valueBase64BinaryElement,
     required this.valueBoolean,
-this.valueBooleanElement,
+    this.valueBooleanElement,
     required this.valueCanonical,
-this.valueCanonicalElement,
+    this.valueCanonicalElement,
     required this.valueCode,
-this.valueCodeElement,
+    this.valueCodeElement,
     required this.valueDate,
-this.valueDateElement,
+    this.valueDateElement,
     required this.valueDateTime,
-this.valueDateTimeElement,
+    this.valueDateTimeElement,
     required this.valueDecimal,
-this.valueDecimalElement,
+    this.valueDecimalElement,
     required this.valueId,
-this.valueIdElement,
+    this.valueIdElement,
     required this.valueInstant,
-this.valueInstantElement,
+    this.valueInstantElement,
     required this.valueInteger,
-this.valueIntegerElement,
+    this.valueIntegerElement,
     required this.valueMarkdown,
-this.valueMarkdownElement,
+    this.valueMarkdownElement,
     required this.valueOid,
-this.valueOidElement,
+    this.valueOidElement,
     required this.valuePositiveInt,
-this.valuePositiveIntElement,
+    this.valuePositiveIntElement,
     required this.valueString,
-this.valueStringElement,
+    this.valueStringElement,
     required this.valueTime,
-this.valueTimeElement,
+    this.valueTimeElement,
     required this.valueUnsignedInt,
-this.valueUnsignedIntElement,
+    this.valueUnsignedIntElement,
     required this.valueUri,
-this.valueUriElement,
+    this.valueUriElement,
     required this.valueUrl,
-this.valueUrlElement,
+    this.valueUrlElement,
     required this.valueUuid,
-this.valueUuidElement,
+    this.valueUuidElement,
     required this.valueAddress,
     required this.valueAge,
     required this.valueAnnotation,
@@ -274,13 +201,6 @@ this.valueUuidElement,
     required this.valueMeta,
   });
 
-@override
-TaskInput clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class TaskOutput extends BackboneElement {
   final CodeableConcept type;
   final FhirBase64Binary valueBase64Binary;
   final Element? valueBase64BinaryElement;
@@ -351,50 +271,56 @@ class TaskOutput extends BackboneElement {
   final UsageContext valueUsageContext;
   final Dosage valueDosage;
   final FhirMeta valueMeta;
+  @override
+  TaskInput clone() => throw UnimplementedError();
+}
 
+@JsonCodable()
+@Data()
+class TaskOutput extends BackboneElement {
   TaskOutput({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.type,
     required this.valueBase64Binary,
-this.valueBase64BinaryElement,
+    this.valueBase64BinaryElement,
     required this.valueBoolean,
-this.valueBooleanElement,
+    this.valueBooleanElement,
     required this.valueCanonical,
-this.valueCanonicalElement,
+    this.valueCanonicalElement,
     required this.valueCode,
-this.valueCodeElement,
+    this.valueCodeElement,
     required this.valueDate,
-this.valueDateElement,
+    this.valueDateElement,
     required this.valueDateTime,
-this.valueDateTimeElement,
+    this.valueDateTimeElement,
     required this.valueDecimal,
-this.valueDecimalElement,
+    this.valueDecimalElement,
     required this.valueId,
-this.valueIdElement,
+    this.valueIdElement,
     required this.valueInstant,
-this.valueInstantElement,
+    this.valueInstantElement,
     required this.valueInteger,
-this.valueIntegerElement,
+    this.valueIntegerElement,
     required this.valueMarkdown,
-this.valueMarkdownElement,
+    this.valueMarkdownElement,
     required this.valueOid,
-this.valueOidElement,
+    this.valueOidElement,
     required this.valuePositiveInt,
-this.valuePositiveIntElement,
+    this.valuePositiveIntElement,
     required this.valueString,
-this.valueStringElement,
+    this.valueStringElement,
     required this.valueTime,
-this.valueTimeElement,
+    this.valueTimeElement,
     required this.valueUnsignedInt,
-this.valueUnsignedIntElement,
+    this.valueUnsignedIntElement,
     required this.valueUri,
-this.valueUriElement,
+    this.valueUriElement,
     required this.valueUrl,
-this.valueUrlElement,
+    this.valueUrlElement,
     required this.valueUuid,
-this.valueUuidElement,
+    this.valueUuidElement,
     required this.valueAddress,
     required this.valueAge,
     required this.valueAnnotation,
@@ -428,7 +354,76 @@ this.valueUuidElement,
     required this.valueMeta,
   });
 
-@override
-TaskOutput clone() => throw UnimplementedError();
+  final CodeableConcept type;
+  final FhirBase64Binary valueBase64Binary;
+  final Element? valueBase64BinaryElement;
+  final FhirBoolean valueBoolean;
+  final Element? valueBooleanElement;
+  final FhirCanonical valueCanonical;
+  final Element? valueCanonicalElement;
+  final FhirCode valueCode;
+  final Element? valueCodeElement;
+  final FhirDate valueDate;
+  final Element? valueDateElement;
+  final FhirDateTime valueDateTime;
+  final Element? valueDateTimeElement;
+  final FhirDecimal valueDecimal;
+  final Element? valueDecimalElement;
+  final FhirId valueId;
+  final Element? valueIdElement;
+  final FhirInstant valueInstant;
+  final Element? valueInstantElement;
+  final FhirInteger valueInteger;
+  final Element? valueIntegerElement;
+  final FhirMarkdown valueMarkdown;
+  final Element? valueMarkdownElement;
+  final FhirOid valueOid;
+  final Element? valueOidElement;
+  final FhirPositiveInt valuePositiveInt;
+  final Element? valuePositiveIntElement;
+  final FhirString valueString;
+  final Element? valueStringElement;
+  final FhirTime valueTime;
+  final Element? valueTimeElement;
+  final FhirUnsignedInt valueUnsignedInt;
+  final Element? valueUnsignedIntElement;
+  final FhirUri valueUri;
+  final Element? valueUriElement;
+  final FhirUrl valueUrl;
+  final Element? valueUrlElement;
+  final FhirUuid valueUuid;
+  final Element? valueUuidElement;
+  final Address valueAddress;
+  final Age valueAge;
+  final Annotation valueAnnotation;
+  final Attachment valueAttachment;
+  final CodeableConcept valueCodeableConcept;
+  final Coding valueCoding;
+  final ContactPoint valueContactPoint;
+  final Count valueCount;
+  final Distance valueDistance;
+  final FhirDuration valueDuration;
+  final HumanName valueHumanName;
+  final Identifier valueIdentifier;
+  final Money valueMoney;
+  final Period valuePeriod;
+  final Quantity valueQuantity;
+  final Range valueRange;
+  final Ratio valueRatio;
+  final Reference valueReference;
+  final SampledData valueSampledData;
+  final Signature valueSignature;
+  final Timing valueTiming;
+  final ContactDetail valueContactDetail;
+  final Contributor valueContributor;
+  final DataRequirement valueDataRequirement;
+  final FhirExpression valueExpression;
+  final ParameterDefinition valueParameterDefinition;
+  final RelatedArtifact valueRelatedArtifact;
+  final TriggerDefinition valueTriggerDefinition;
+  final UsageContext valueUsageContext;
+  final Dosage valueDosage;
+  final FhirMeta valueMeta;
+  @override
+  TaskOutput clone() => throw UnimplementedError();
 }
-

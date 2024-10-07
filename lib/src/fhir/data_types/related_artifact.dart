@@ -3,9 +3,27 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class RelatedArtifact extends DataType {
+  RelatedArtifact({
+    super.id,
+    super.extension_,
+    required this.type,
+    this.typeElement,
+    this.label,
+    this.labelElement,
+    this.display,
+    this.displayElement,
+    this.citation,
+    this.citationElement,
+    this.url,
+    this.urlElement,
+    this.document,
+    this.resource,
+    this.resourceElement,
+  });
+
   final FhirCode type;
   final Element? typeElement;
   final FhirString? label;
@@ -19,26 +37,6 @@ class RelatedArtifact extends DataType {
   final Attachment? document;
   final FhirCanonical? resource;
   final Element? resourceElement;
-
-  RelatedArtifact({
-    super.id,
-    super.extension_,
-    required this.type,
-this.typeElement,
-    this.label,
-this.labelElement,
-    this.display,
-this.displayElement,
-    this.citation,
-this.citationElement,
-    this.url,
-this.urlElement,
-    this.document,
-    this.resource,
-this.resourceElement,
-  });
-
-@override
-RelatedArtifact clone() => throw UnimplementedError();
+  @override
+  RelatedArtifact clone() => throw UnimplementedError();
 }
-

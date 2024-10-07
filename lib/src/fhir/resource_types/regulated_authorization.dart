@@ -3,9 +3,38 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class RegulatedAuthorization extends DomainResource {
+  RegulatedAuthorization({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.subject,
+    this.type,
+    this.description,
+    this.descriptionElement,
+    this.region,
+    this.status,
+    this.statusDate,
+    this.statusDateElement,
+    this.validityPeriod,
+    this.indication,
+    this.intendedUse,
+    this.basis,
+    this.holder,
+    this.regulator,
+    this.case_,
+  }) : super(resourceType: R4ResourceType.RegulatedAuthorization);
+
   final List<Identifier>? identifier;
   final List<Reference>? subject;
   final CodeableConcept? type;
@@ -22,51 +51,13 @@ class RegulatedAuthorization extends DomainResource {
   final Reference? holder;
   final Reference? regulator;
   final RegulatedAuthorizationCase? case_;
-
-  RegulatedAuthorization({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.subject,
-    this.type,
-    this.description,
-this.descriptionElement,
-    this.region,
-    this.status,
-    this.statusDate,
-this.statusDateElement,
-    this.validityPeriod,
-    this.indication,
-    this.intendedUse,
-    this.basis,
-    this.holder,
-    this.regulator,
-    this.case_,
-  }) : super(resourceType: R4ResourceType.RegulatedAuthorization);
-
-@override
-RegulatedAuthorization clone() => throw UnimplementedError();
+  @override
+  RegulatedAuthorization clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class RegulatedAuthorizationCase extends BackboneElement {
-  final Identifier? identifier;
-  final CodeableConcept? type;
-  final CodeableConcept? status;
-  final Period? datePeriod;
-  final FhirDateTime? dateDateTime;
-  final Element? dateDateTimeElement;
-  final List<RegulatedAuthorizationCase>? application;
-
   RegulatedAuthorizationCase({
     super.id,
     super.extension_,
@@ -76,11 +67,17 @@ class RegulatedAuthorizationCase extends BackboneElement {
     this.status,
     this.datePeriod,
     this.dateDateTime,
-this.dateDateTimeElement,
+    this.dateDateTimeElement,
     this.application,
   });
 
-@override
-RegulatedAuthorizationCase clone() => throw UnimplementedError();
+  final Identifier? identifier;
+  final CodeableConcept? type;
+  final CodeableConcept? status;
+  final Period? datePeriod;
+  final FhirDateTime? dateDateTime;
+  final Element? dateDateTimeElement;
+  final List<RegulatedAuthorizationCase>? application;
+  @override
+  RegulatedAuthorizationCase clone() => throw UnimplementedError();
 }
-

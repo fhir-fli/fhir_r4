@@ -3,9 +3,36 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class QuestionnaireResponse extends DomainResource {
+  QuestionnaireResponse({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.basedOn,
+    this.partOf,
+    this.questionnaire,
+    this.questionnaireElement,
+    required this.status,
+    this.statusElement,
+    this.subject,
+    this.encounter,
+    this.authored,
+    this.authoredElement,
+    this.author,
+    this.source,
+    this.item,
+  }) : super(resourceType: R4ResourceType.QuestionnaireResponse);
+
   final Identifier? identifier;
   final List<Reference>? basedOn;
   final List<Reference>? partOf;
@@ -20,41 +47,27 @@ class QuestionnaireResponse extends DomainResource {
   final Reference? author;
   final Reference? source;
   final List<QuestionnaireResponseItem>? item;
-
-  QuestionnaireResponse({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.basedOn,
-    this.partOf,
-    this.questionnaire,
-this.questionnaireElement,
-    required this.status,
-this.statusElement,
-    this.subject,
-    this.encounter,
-    this.authored,
-this.authoredElement,
-    this.author,
-    this.source,
-    this.item,
-  }) : super(resourceType: R4ResourceType.QuestionnaireResponse);
-
-@override
-QuestionnaireResponse clone() => throw UnimplementedError();
+  @override
+  QuestionnaireResponse clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class QuestionnaireResponseItem extends BackboneElement {
+  QuestionnaireResponseItem({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.linkId,
+    this.linkIdElement,
+    this.definition,
+    this.definitionElement,
+    this.text,
+    this.textElement,
+    this.answer,
+    this.item,
+  });
+
   final FhirString linkId;
   final Element? linkIdElement;
   final FhirUri? definition;
@@ -63,28 +76,40 @@ class QuestionnaireResponseItem extends BackboneElement {
   final Element? textElement;
   final List<QuestionnaireResponseAnswer>? answer;
   final List<QuestionnaireResponseItem>? item;
+  @override
+  QuestionnaireResponseItem clone() => throw UnimplementedError();
+}
 
-  QuestionnaireResponseItem({
+@JsonCodable()
+@Data()
+class QuestionnaireResponseAnswer extends BackboneElement {
+  QuestionnaireResponseAnswer({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.linkId,
-this.linkIdElement,
-    this.definition,
-this.definitionElement,
-    this.text,
-this.textElement,
-    this.answer,
+    this.valueBoolean,
+    this.valueBooleanElement,
+    this.valueDecimal,
+    this.valueDecimalElement,
+    this.valueInteger,
+    this.valueIntegerElement,
+    this.valueDate,
+    this.valueDateElement,
+    this.valueDateTime,
+    this.valueDateTimeElement,
+    this.valueTime,
+    this.valueTimeElement,
+    this.valueString,
+    this.valueStringElement,
+    this.valueUri,
+    this.valueUriElement,
+    this.valueAttachment,
+    this.valueCoding,
+    this.valueQuantity,
+    this.valueReference,
     this.item,
   });
 
-@override
-QuestionnaireResponseItem clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class QuestionnaireResponseAnswer extends BackboneElement {
   final FhirBoolean? valueBoolean;
   final Element? valueBooleanElement;
   final FhirDecimal? valueDecimal;
@@ -106,35 +131,6 @@ class QuestionnaireResponseAnswer extends BackboneElement {
   final Quantity? valueQuantity;
   final Reference? valueReference;
   final List<QuestionnaireResponseItem>? item;
-
-  QuestionnaireResponseAnswer({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    this.valueBoolean,
-this.valueBooleanElement,
-    this.valueDecimal,
-this.valueDecimalElement,
-    this.valueInteger,
-this.valueIntegerElement,
-    this.valueDate,
-this.valueDateElement,
-    this.valueDateTime,
-this.valueDateTimeElement,
-    this.valueTime,
-this.valueTimeElement,
-    this.valueString,
-this.valueStringElement,
-    this.valueUri,
-this.valueUriElement,
-    this.valueAttachment,
-    this.valueCoding,
-    this.valueQuantity,
-    this.valueReference,
-    this.item,
-  });
-
-@override
-QuestionnaireResponseAnswer clone() => throw UnimplementedError();
+  @override
+  QuestionnaireResponseAnswer clone() => throw UnimplementedError();
 }
-

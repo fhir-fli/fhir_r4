@@ -3,9 +3,51 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class MedicationDispense extends DomainResource {
+  MedicationDispense({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.partOf,
+    required this.status,
+    this.statusElement,
+    this.statusReasonCodeableConcept,
+    this.statusReasonReference,
+    this.category,
+    required this.medicationCodeableConcept,
+    required this.medicationReference,
+    this.subject,
+    this.context,
+    this.supportingInformation,
+    this.performer,
+    this.location,
+    this.authorizingPrescription,
+    this.type,
+    this.quantity,
+    this.daysSupply,
+    this.whenPrepared,
+    this.whenPreparedElement,
+    this.whenHandedOver,
+    this.whenHandedOverElement,
+    this.destination,
+    this.receiver,
+    this.note,
+    this.dosageInstruction,
+    this.substitution,
+    this.detectedIssue,
+    this.eventHistory,
+  }) : super(resourceType: R4ResourceType.MedicationDispense);
+
   final List<Identifier>? identifier;
   final List<Reference>? partOf;
   final FhirCode status;
@@ -35,59 +77,13 @@ class MedicationDispense extends DomainResource {
   final MedicationDispenseSubstitution? substitution;
   final List<Reference>? detectedIssue;
   final List<Reference>? eventHistory;
-
-  MedicationDispense({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.partOf,
-    required this.status,
-this.statusElement,
-    this.statusReasonCodeableConcept,
-    this.statusReasonReference,
-    this.category,
-    required this.medicationCodeableConcept,
-    required this.medicationReference,
-    this.subject,
-    this.context,
-    this.supportingInformation,
-    this.performer,
-    this.location,
-    this.authorizingPrescription,
-    this.type,
-    this.quantity,
-    this.daysSupply,
-    this.whenPrepared,
-this.whenPreparedElement,
-    this.whenHandedOver,
-this.whenHandedOverElement,
-    this.destination,
-    this.receiver,
-    this.note,
-    this.dosageInstruction,
-    this.substitution,
-    this.detectedIssue,
-    this.eventHistory,
-  }) : super(resourceType: R4ResourceType.MedicationDispense);
-
-@override
-MedicationDispense clone() => throw UnimplementedError();
+  @override
+  MedicationDispense clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class MedicationDispensePerformer extends BackboneElement {
-  final CodeableConcept? function_;
-  final Reference actor;
-
   MedicationDispensePerformer({
     super.id,
     super.extension_,
@@ -96,31 +92,31 @@ class MedicationDispensePerformer extends BackboneElement {
     required this.actor,
   });
 
-@override
-MedicationDispensePerformer clone() => throw UnimplementedError();
+  final CodeableConcept? function_;
+  final Reference actor;
+  @override
+  MedicationDispensePerformer clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class MedicationDispenseSubstitution extends BackboneElement {
-  final FhirBoolean wasSubstituted;
-  final Element? wasSubstitutedElement;
-  final CodeableConcept? type;
-  final List<CodeableConcept>? reason;
-  final List<Reference>? responsibleParty;
-
   MedicationDispenseSubstitution({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.wasSubstituted,
-this.wasSubstitutedElement,
+    this.wasSubstitutedElement,
     this.type,
     this.reason,
     this.responsibleParty,
   });
 
-@override
-MedicationDispenseSubstitution clone() => throw UnimplementedError();
+  final FhirBoolean wasSubstituted;
+  final Element? wasSubstitutedElement;
+  final CodeableConcept? type;
+  final List<CodeableConcept>? reason;
+  final List<Reference>? responsibleParty;
+  @override
+  MedicationDispenseSubstitution clone() => throw UnimplementedError();
 }
-

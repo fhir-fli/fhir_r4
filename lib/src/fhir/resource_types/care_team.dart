@@ -3,9 +3,37 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class CareTeam extends DomainResource {
+  CareTeam({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.status,
+    this.statusElement,
+    this.category,
+    this.name,
+    this.nameElement,
+    this.subject,
+    this.encounter,
+    this.period,
+    this.participant,
+    this.reasonCode,
+    this.reasonReference,
+    this.managingOrganization,
+    this.telecom,
+    this.note,
+  }) : super(resourceType: R4ResourceType.CareTeam);
+
   final List<Identifier>? identifier;
   final FhirCode? status;
   final Element? statusElement;
@@ -21,47 +49,13 @@ class CareTeam extends DomainResource {
   final List<Reference>? managingOrganization;
   final List<ContactPoint>? telecom;
   final List<Annotation>? note;
-
-  CareTeam({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.status,
-this.statusElement,
-    this.category,
-    this.name,
-this.nameElement,
-    this.subject,
-    this.encounter,
-    this.period,
-    this.participant,
-    this.reasonCode,
-    this.reasonReference,
-    this.managingOrganization,
-    this.telecom,
-    this.note,
-  }) : super(resourceType: R4ResourceType.CareTeam);
-
-@override
-CareTeam clone() => throw UnimplementedError();
+  @override
+  CareTeam clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class CareTeamParticipant extends BackboneElement {
-  final List<CodeableConcept>? role;
-  final Reference? member;
-  final Reference? onBehalfOf;
-  final Period? period;
-
   CareTeamParticipant({
     super.id,
     super.extension_,
@@ -72,7 +66,10 @@ class CareTeamParticipant extends BackboneElement {
     this.period,
   });
 
-@override
-CareTeamParticipant clone() => throw UnimplementedError();
+  final List<CodeableConcept>? role;
+  final Reference? member;
+  final Reference? onBehalfOf;
+  final Period? period;
+  @override
+  CareTeamParticipant clone() => throw UnimplementedError();
 }
-

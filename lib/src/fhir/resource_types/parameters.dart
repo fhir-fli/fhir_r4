@@ -3,28 +3,106 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Parameters extends DomainResource {
-  final List<ParametersParameter>? parameter;
-
   Parameters({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     this.parameter,
   }) : super(resourceType: R4ResourceType.Parameters);
 
-@override
-Parameters clone() => throw UnimplementedError();
+  final List<ParametersParameter>? parameter;
+  @override
+  Parameters clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ParametersParameter extends BackboneElement {
+  ParametersParameter({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.name,
+    this.nameElement,
+    this.valueBase64Binary,
+    this.valueBase64BinaryElement,
+    this.valueBoolean,
+    this.valueBooleanElement,
+    this.valueCanonical,
+    this.valueCanonicalElement,
+    this.valueCode,
+    this.valueCodeElement,
+    this.valueDate,
+    this.valueDateElement,
+    this.valueDateTime,
+    this.valueDateTimeElement,
+    this.valueDecimal,
+    this.valueDecimalElement,
+    this.valueId,
+    this.valueIdElement,
+    this.valueInstant,
+    this.valueInstantElement,
+    this.valueInteger,
+    this.valueIntegerElement,
+    this.valueMarkdown,
+    this.valueMarkdownElement,
+    this.valueOid,
+    this.valueOidElement,
+    this.valuePositiveInt,
+    this.valuePositiveIntElement,
+    this.valueString,
+    this.valueStringElement,
+    this.valueTime,
+    this.valueTimeElement,
+    this.valueUnsignedInt,
+    this.valueUnsignedIntElement,
+    this.valueUri,
+    this.valueUriElement,
+    this.valueUrl,
+    this.valueUrlElement,
+    this.valueUuid,
+    this.valueUuidElement,
+    this.valueAddress,
+    this.valueAge,
+    this.valueAnnotation,
+    this.valueAttachment,
+    this.valueCodeableConcept,
+    this.valueCoding,
+    this.valueContactPoint,
+    this.valueCount,
+    this.valueDistance,
+    this.valueDuration,
+    this.valueHumanName,
+    this.valueIdentifier,
+    this.valueMoney,
+    this.valuePeriod,
+    this.valueQuantity,
+    this.valueRange,
+    this.valueRatio,
+    this.valueReference,
+    this.valueSampledData,
+    this.valueSignature,
+    this.valueTiming,
+    this.valueContactDetail,
+    this.valueContributor,
+    this.valueDataRequirement,
+    this.valueExpression,
+    this.valueParameterDefinition,
+    this.valueRelatedArtifact,
+    this.valueTriggerDefinition,
+    this.valueUsageContext,
+    this.valueDosage,
+    this.valueMeta,
+    this.resource,
+    this.part_,
+  });
+
   final FhirString name;
   final Element? nameElement;
   final FhirBase64Binary? valueBase64Binary;
@@ -98,87 +176,6 @@ class ParametersParameter extends BackboneElement {
   final FhirMeta? valueMeta;
   final Resource? resource;
   final List<ParametersParameter>? part_;
-
-  ParametersParameter({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.name,
-this.nameElement,
-    this.valueBase64Binary,
-this.valueBase64BinaryElement,
-    this.valueBoolean,
-this.valueBooleanElement,
-    this.valueCanonical,
-this.valueCanonicalElement,
-    this.valueCode,
-this.valueCodeElement,
-    this.valueDate,
-this.valueDateElement,
-    this.valueDateTime,
-this.valueDateTimeElement,
-    this.valueDecimal,
-this.valueDecimalElement,
-    this.valueId,
-this.valueIdElement,
-    this.valueInstant,
-this.valueInstantElement,
-    this.valueInteger,
-this.valueIntegerElement,
-    this.valueMarkdown,
-this.valueMarkdownElement,
-    this.valueOid,
-this.valueOidElement,
-    this.valuePositiveInt,
-this.valuePositiveIntElement,
-    this.valueString,
-this.valueStringElement,
-    this.valueTime,
-this.valueTimeElement,
-    this.valueUnsignedInt,
-this.valueUnsignedIntElement,
-    this.valueUri,
-this.valueUriElement,
-    this.valueUrl,
-this.valueUrlElement,
-    this.valueUuid,
-this.valueUuidElement,
-    this.valueAddress,
-    this.valueAge,
-    this.valueAnnotation,
-    this.valueAttachment,
-    this.valueCodeableConcept,
-    this.valueCoding,
-    this.valueContactPoint,
-    this.valueCount,
-    this.valueDistance,
-    this.valueDuration,
-    this.valueHumanName,
-    this.valueIdentifier,
-    this.valueMoney,
-    this.valuePeriod,
-    this.valueQuantity,
-    this.valueRange,
-    this.valueRatio,
-    this.valueReference,
-    this.valueSampledData,
-    this.valueSignature,
-    this.valueTiming,
-    this.valueContactDetail,
-    this.valueContributor,
-    this.valueDataRequirement,
-    this.valueExpression,
-    this.valueParameterDefinition,
-    this.valueRelatedArtifact,
-    this.valueTriggerDefinition,
-    this.valueUsageContext,
-    this.valueDosage,
-    this.valueMeta,
-    this.resource,
-    this.part_,
-  });
-
-@override
-ParametersParameter clone() => throw UnimplementedError();
+  @override
+  ParametersParameter clone() => throw UnimplementedError();
 }
-

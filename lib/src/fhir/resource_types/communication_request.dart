@@ -3,9 +3,50 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class CommunicationRequest extends DomainResource {
+  CommunicationRequest({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.basedOn,
+    this.replaces,
+    this.groupIdentifier,
+    required this.status,
+    this.statusElement,
+    this.statusReason,
+    this.category,
+    this.priority,
+    this.priorityElement,
+    this.doNotPerform,
+    this.doNotPerformElement,
+    this.medium,
+    this.subject,
+    this.about,
+    this.encounter,
+    this.payload,
+    this.occurrenceDateTime,
+    this.occurrenceDateTimeElement,
+    this.occurrencePeriod,
+    this.authoredOn,
+    this.authoredOnElement,
+    this.requester,
+    this.recipient,
+    this.sender,
+    this.reasonCode,
+    this.reasonReference,
+    this.note,
+  }) : super(resourceType: R4ResourceType.CommunicationRequest);
+
   final List<Identifier>? identifier;
   final List<Reference>? basedOn;
   final List<Reference>? replaces;
@@ -34,71 +75,27 @@ class CommunicationRequest extends DomainResource {
   final List<CodeableConcept>? reasonCode;
   final List<Reference>? reasonReference;
   final List<Annotation>? note;
-
-  CommunicationRequest({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.basedOn,
-    this.replaces,
-    this.groupIdentifier,
-    required this.status,
-this.statusElement,
-    this.statusReason,
-    this.category,
-    this.priority,
-this.priorityElement,
-    this.doNotPerform,
-this.doNotPerformElement,
-    this.medium,
-    this.subject,
-    this.about,
-    this.encounter,
-    this.payload,
-    this.occurrenceDateTime,
-this.occurrenceDateTimeElement,
-    this.occurrencePeriod,
-    this.authoredOn,
-this.authoredOnElement,
-    this.requester,
-    this.recipient,
-    this.sender,
-    this.reasonCode,
-    this.reasonReference,
-    this.note,
-  }) : super(resourceType: R4ResourceType.CommunicationRequest);
-
-@override
-CommunicationRequest clone() => throw UnimplementedError();
+  @override
+  CommunicationRequest clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class CommunicationRequestPayload extends BackboneElement {
-  final FhirString contentString;
-  final Element? contentStringElement;
-  final Attachment contentAttachment;
-  final Reference contentReference;
-
   CommunicationRequestPayload({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.contentString,
-this.contentStringElement,
+    this.contentStringElement,
     required this.contentAttachment,
     required this.contentReference,
   });
 
-@override
-CommunicationRequestPayload clone() => throw UnimplementedError();
+  final FhirString contentString;
+  final Element? contentStringElement;
+  final Attachment contentAttachment;
+  final Reference contentReference;
+  @override
+  CommunicationRequestPayload clone() => throw UnimplementedError();
 }
-

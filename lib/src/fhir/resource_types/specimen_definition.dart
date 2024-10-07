@@ -3,24 +3,16 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class SpecimenDefinition extends DomainResource {
-  final Identifier? identifier;
-  final CodeableConcept? typeCollected;
-  final List<CodeableConcept>? patientPreparation;
-  final FhirString? timeAspect;
-  final Element? timeAspectElement;
-  final List<CodeableConcept>? collection;
-  final List<SpecimenDefinitionTypeTested>? typeTested;
-
   SpecimenDefinition({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -29,18 +21,42 @@ super.languageElement,
     this.typeCollected,
     this.patientPreparation,
     this.timeAspect,
-this.timeAspectElement,
+    this.timeAspectElement,
     this.collection,
     this.typeTested,
   }) : super(resourceType: R4ResourceType.SpecimenDefinition);
 
-@override
-SpecimenDefinition clone() => throw UnimplementedError();
+  final Identifier? identifier;
+  final CodeableConcept? typeCollected;
+  final List<CodeableConcept>? patientPreparation;
+  final FhirString? timeAspect;
+  final Element? timeAspectElement;
+  final List<CodeableConcept>? collection;
+  final List<SpecimenDefinitionTypeTested>? typeTested;
+  @override
+  SpecimenDefinition clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class SpecimenDefinitionTypeTested extends BackboneElement {
+  SpecimenDefinitionTypeTested({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    this.isDerived,
+    this.isDerivedElement,
+    this.type,
+    required this.preference,
+    this.preferenceElement,
+    this.container,
+    this.requirement,
+    this.requirementElement,
+    this.retentionTime,
+    this.rejectionCriterion,
+    this.handling,
+  });
+
   final FhirBoolean? isDerived;
   final Element? isDerivedElement;
   final CodeableConcept? type;
@@ -52,31 +68,31 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
   final FhirDuration? retentionTime;
   final List<CodeableConcept>? rejectionCriterion;
   final List<SpecimenDefinitionHandling>? handling;
+  @override
+  SpecimenDefinitionTypeTested clone() => throw UnimplementedError();
+}
 
-  SpecimenDefinitionTypeTested({
+@JsonCodable()
+@Data()
+class SpecimenDefinitionContainer extends BackboneElement {
+  SpecimenDefinitionContainer({
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.isDerived,
-this.isDerivedElement,
+    this.material,
     this.type,
-    required this.preference,
-this.preferenceElement,
-    this.container,
-    this.requirement,
-this.requirementElement,
-    this.retentionTime,
-    this.rejectionCriterion,
-    this.handling,
+    this.cap,
+    this.description,
+    this.descriptionElement,
+    this.capacity,
+    this.minimumVolumeQuantity,
+    this.minimumVolumeString,
+    this.minimumVolumeStringElement,
+    this.additive,
+    this.preparation,
+    this.preparationElement,
   });
 
-@override
-SpecimenDefinitionTypeTested clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class SpecimenDefinitionContainer extends BackboneElement {
   final CodeableConcept? material;
   final CodeableConcept? type;
   final CodeableConcept? cap;
@@ -89,35 +105,13 @@ class SpecimenDefinitionContainer extends BackboneElement {
   final List<SpecimenDefinitionAdditive>? additive;
   final FhirString? preparation;
   final Element? preparationElement;
-
-  SpecimenDefinitionContainer({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    this.material,
-    this.type,
-    this.cap,
-    this.description,
-this.descriptionElement,
-    this.capacity,
-    this.minimumVolumeQuantity,
-    this.minimumVolumeString,
-this.minimumVolumeStringElement,
-    this.additive,
-    this.preparation,
-this.preparationElement,
-  });
-
-@override
-SpecimenDefinitionContainer clone() => throw UnimplementedError();
+  @override
+  SpecimenDefinitionContainer clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class SpecimenDefinitionAdditive extends BackboneElement {
-  final CodeableConcept additiveCodeableConcept;
-  final Reference additiveReference;
-
   SpecimenDefinitionAdditive({
     super.id,
     super.extension_,
@@ -126,19 +120,15 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     required this.additiveReference,
   });
 
-@override
-SpecimenDefinitionAdditive clone() => throw UnimplementedError();
+  final CodeableConcept additiveCodeableConcept;
+  final Reference additiveReference;
+  @override
+  SpecimenDefinitionAdditive clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class SpecimenDefinitionHandling extends BackboneElement {
-  final CodeableConcept? temperatureQualifier;
-  final Range? temperatureRange;
-  final FhirDuration? maxDuration;
-  final FhirString? instruction;
-  final Element? instructionElement;
-
   SpecimenDefinitionHandling({
     super.id,
     super.extension_,
@@ -147,10 +137,14 @@ class SpecimenDefinitionHandling extends BackboneElement {
     this.temperatureRange,
     this.maxDuration,
     this.instruction,
-this.instructionElement,
+    this.instructionElement,
   });
 
-@override
-SpecimenDefinitionHandling clone() => throw UnimplementedError();
+  final CodeableConcept? temperatureQualifier;
+  final Range? temperatureRange;
+  final FhirDuration? maxDuration;
+  final FhirString? instruction;
+  final Element? instructionElement;
+  @override
+  SpecimenDefinitionHandling clone() => throw UnimplementedError();
 }
-

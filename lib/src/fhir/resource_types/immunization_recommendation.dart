@@ -3,23 +3,16 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class ImmunizationRecommendation extends DomainResource {
-  final List<Identifier>? identifier;
-  final Reference patient;
-  final FhirDateTime date;
-  final Element? dateElement;
-  final Reference? authority;
-  final List<ImmunizationRecommendationRecommendation> recommendation;
-
   ImmunizationRecommendation({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -27,18 +20,50 @@ super.languageElement,
     this.identifier,
     required this.patient,
     required this.date,
-this.dateElement,
+    this.dateElement,
     this.authority,
     required this.recommendation,
   }) : super(resourceType: R4ResourceType.ImmunizationRecommendation);
 
-@override
-ImmunizationRecommendation clone() => throw UnimplementedError();
+  final List<Identifier>? identifier;
+  final Reference patient;
+  final FhirDateTime date;
+  final Element? dateElement;
+  final Reference? authority;
+  final List<ImmunizationRecommendationRecommendation> recommendation;
+  @override
+  ImmunizationRecommendation clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ImmunizationRecommendationRecommendation extends BackboneElement {
+  ImmunizationRecommendationRecommendation({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    this.vaccineCode,
+    this.targetDisease,
+    this.contraindicatedVaccineCode,
+    required this.forecastStatus,
+    this.forecastReason,
+    this.dateCriterion,
+    this.description,
+    this.descriptionElement,
+    this.series,
+    this.seriesElement,
+    this.doseNumberPositiveInt,
+    this.doseNumberPositiveIntElement,
+    this.doseNumberString,
+    this.doseNumberStringElement,
+    this.seriesDosesPositiveInt,
+    this.seriesDosesPositiveIntElement,
+    this.seriesDosesString,
+    this.seriesDosesStringElement,
+    this.supportingImmunization,
+    this.supportingPatientInformation,
+  });
+
   final List<CodeableConcept>? vaccineCode;
   final CodeableConcept? targetDisease;
   final List<CodeableConcept>? contraindicatedVaccineCode;
@@ -59,54 +84,26 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
   final Element? seriesDosesStringElement;
   final List<Reference>? supportingImmunization;
   final List<Reference>? supportingPatientInformation;
-
-  ImmunizationRecommendationRecommendation({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    this.vaccineCode,
-    this.targetDisease,
-    this.contraindicatedVaccineCode,
-    required this.forecastStatus,
-    this.forecastReason,
-    this.dateCriterion,
-    this.description,
-this.descriptionElement,
-    this.series,
-this.seriesElement,
-    this.doseNumberPositiveInt,
-this.doseNumberPositiveIntElement,
-    this.doseNumberString,
-this.doseNumberStringElement,
-    this.seriesDosesPositiveInt,
-this.seriesDosesPositiveIntElement,
-    this.seriesDosesString,
-this.seriesDosesStringElement,
-    this.supportingImmunization,
-    this.supportingPatientInformation,
-  });
-
-@override
-ImmunizationRecommendationRecommendation clone() => throw UnimplementedError();
+  @override
+  ImmunizationRecommendationRecommendation clone() =>
+      throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ImmunizationRecommendationDateCriterion extends BackboneElement {
-  final CodeableConcept code;
-  final FhirDateTime value;
-  final Element? valueElement;
-
   ImmunizationRecommendationDateCriterion({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.code,
     required this.value,
-this.valueElement,
+    this.valueElement,
   });
 
-@override
-ImmunizationRecommendationDateCriterion clone() => throw UnimplementedError();
+  final CodeableConcept code;
+  final FhirDateTime value;
+  final Element? valueElement;
+  @override
+  ImmunizationRecommendationDateCriterion clone() => throw UnimplementedError();
 }
-

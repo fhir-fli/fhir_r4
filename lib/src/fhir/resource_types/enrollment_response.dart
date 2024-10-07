@@ -3,9 +3,34 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class EnrollmentResponse extends DomainResource {
+  EnrollmentResponse({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.status,
+    this.statusElement,
+    this.request,
+    this.outcome,
+    this.outcomeElement,
+    this.disposition,
+    this.dispositionElement,
+    this.created,
+    this.createdElement,
+    this.organization,
+    this.requestProvider,
+  }) : super(resourceType: R4ResourceType.EnrollmentResponse);
+
   final List<Identifier>? identifier;
   final FhirCode? status;
   final Element? statusElement;
@@ -18,33 +43,6 @@ class EnrollmentResponse extends DomainResource {
   final Element? createdElement;
   final Reference? organization;
   final Reference? requestProvider;
-
-  EnrollmentResponse({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.status,
-this.statusElement,
-    this.request,
-    this.outcome,
-this.outcomeElement,
-    this.disposition,
-this.dispositionElement,
-    this.created,
-this.createdElement,
-    this.organization,
-    this.requestProvider,
-  }) : super(resourceType: R4ResourceType.EnrollmentResponse);
-
-@override
-EnrollmentResponse clone() => throw UnimplementedError();
+  @override
+  EnrollmentResponse clone() => throw UnimplementedError();
 }
-

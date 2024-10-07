@@ -3,9 +3,23 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Identifier extends DataType {
+  Identifier({
+    super.id,
+    super.extension_,
+    this.use,
+    this.useElement,
+    this.type,
+    this.system,
+    this.systemElement,
+    this.value,
+    this.valueElement,
+    this.period,
+    this.assigner,
+  });
+
   final FhirCode? use;
   final Element? useElement;
   final CodeableConcept? type;
@@ -15,22 +29,6 @@ class Identifier extends DataType {
   final Element? valueElement;
   final Period? period;
   final Reference? assigner;
-
-  Identifier({
-    super.id,
-    super.extension_,
-    this.use,
-this.useElement,
-    this.type,
-    this.system,
-this.systemElement,
-    this.value,
-this.valueElement,
-    this.period,
-    this.assigner,
-  });
-
-@override
-Identifier clone() => throw UnimplementedError();
+  @override
+  Identifier clone() => throw UnimplementedError();
 }
-

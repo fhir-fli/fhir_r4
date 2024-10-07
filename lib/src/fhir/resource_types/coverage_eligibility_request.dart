@@ -3,9 +3,41 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class CoverageEligibilityRequest extends DomainResource {
+  CoverageEligibilityRequest({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    required this.status,
+    this.statusElement,
+    this.priority,
+    required this.purpose,
+    this.purposeElement,
+    required this.patient,
+    this.servicedDate,
+    this.servicedDateElement,
+    this.servicedPeriod,
+    required this.created,
+    this.createdElement,
+    this.enterer,
+    this.provider,
+    required this.insurer,
+    this.facility,
+    this.supportingInfo,
+    this.insurance,
+    this.item,
+  }) : super(resourceType: R4ResourceType.CoverageEligibilityRequest);
+
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -25,112 +57,66 @@ class CoverageEligibilityRequest extends DomainResource {
   final List<CoverageEligibilityRequestSupportingInfo>? supportingInfo;
   final List<CoverageEligibilityRequestInsurance>? insurance;
   final List<CoverageEligibilityRequestItem>? item;
-
-  CoverageEligibilityRequest({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    required this.status,
-this.statusElement,
-    this.priority,
-    required this.purpose,
-this.purposeElement,
-    required this.patient,
-    this.servicedDate,
-this.servicedDateElement,
-    this.servicedPeriod,
-    required this.created,
-this.createdElement,
-    this.enterer,
-    this.provider,
-    required this.insurer,
-    this.facility,
-    this.supportingInfo,
-    this.insurance,
-    this.item,
-  }) : super(resourceType: R4ResourceType.CoverageEligibilityRequest);
-
-@override
-CoverageEligibilityRequest clone() => throw UnimplementedError();
+  @override
+  CoverageEligibilityRequest clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
-  final FhirPositiveInt sequence;
-  final Element? sequenceElement;
-  final Reference information;
-  final FhirBoolean? appliesToAll;
-  final Element? appliesToAllElement;
-
   CoverageEligibilityRequestSupportingInfo({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.sequence,
-this.sequenceElement,
+    this.sequenceElement,
     required this.information,
     this.appliesToAll,
-this.appliesToAllElement,
+    this.appliesToAllElement,
   });
 
-@override
-CoverageEligibilityRequestSupportingInfo clone() => throw UnimplementedError();
+  final FhirPositiveInt sequence;
+  final Element? sequenceElement;
+  final Reference information;
+  final FhirBoolean? appliesToAll;
+  final Element? appliesToAllElement;
+  @override
+  CoverageEligibilityRequestSupportingInfo clone() =>
+      throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class CoverageEligibilityRequestInsurance extends BackboneElement {
-  final FhirBoolean? focal;
-  final Element? focalElement;
-  final Reference coverage;
-  final FhirString? businessArrangement;
-  final Element? businessArrangementElement;
-
   CoverageEligibilityRequestInsurance({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.focal,
-this.focalElement,
+    this.focalElement,
     required this.coverage,
     this.businessArrangement,
-this.businessArrangementElement,
+    this.businessArrangementElement,
   });
 
-@override
-CoverageEligibilityRequestInsurance clone() => throw UnimplementedError();
+  final FhirBoolean? focal;
+  final Element? focalElement;
+  final Reference coverage;
+  final FhirString? businessArrangement;
+  final Element? businessArrangementElement;
+  @override
+  CoverageEligibilityRequestInsurance clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class CoverageEligibilityRequestItem extends BackboneElement {
-  final List<FhirPositiveInt>? supportingInfoSequence;
-  final List<Element>? supportingInfoSequenceElement;
-  final CodeableConcept? category;
-  final CodeableConcept? productOrService;
-  final List<CodeableConcept>? modifier;
-  final Reference? provider;
-  final Quantity? quantity;
-  final Money? unitPrice;
-  final Reference? facility;
-  final List<CoverageEligibilityRequestDiagnosis>? diagnosis;
-  final List<Reference>? detail;
-
   CoverageEligibilityRequestItem({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.supportingInfoSequence,
-this.supportingInfoSequenceElement,
+    this.supportingInfoSequenceElement,
     this.category,
     this.productOrService,
     this.modifier,
@@ -142,16 +128,24 @@ this.supportingInfoSequenceElement,
     this.detail,
   });
 
-@override
-CoverageEligibilityRequestItem clone() => throw UnimplementedError();
+  final List<FhirPositiveInt>? supportingInfoSequence;
+  final List<Element>? supportingInfoSequenceElement;
+  final CodeableConcept? category;
+  final CodeableConcept? productOrService;
+  final List<CodeableConcept>? modifier;
+  final Reference? provider;
+  final Quantity? quantity;
+  final Money? unitPrice;
+  final Reference? facility;
+  final List<CoverageEligibilityRequestDiagnosis>? diagnosis;
+  final List<Reference>? detail;
+  @override
+  CoverageEligibilityRequestItem clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class CoverageEligibilityRequestDiagnosis extends BackboneElement {
-  final CodeableConcept? diagnosisCodeableConcept;
-  final Reference? diagnosisReference;
-
   CoverageEligibilityRequestDiagnosis({
     super.id,
     super.extension_,
@@ -160,7 +154,8 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
     this.diagnosisReference,
   });
 
-@override
-CoverageEligibilityRequestDiagnosis clone() => throw UnimplementedError();
+  final CodeableConcept? diagnosisCodeableConcept;
+  final Reference? diagnosisReference;
+  @override
+  CoverageEligibilityRequestDiagnosis clone() => throw UnimplementedError();
 }
-

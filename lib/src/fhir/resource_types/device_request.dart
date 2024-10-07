@@ -3,9 +3,56 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class DeviceRequest extends DomainResource {
+  DeviceRequest({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.instantiatesCanonical,
+    this.instantiatesCanonicalElement,
+    this.instantiatesUri,
+    this.instantiatesUriElement,
+    this.basedOn,
+    this.priorRequest,
+    this.groupIdentifier,
+    this.status,
+    this.statusElement,
+    required this.intent,
+    this.intentElement,
+    this.priority,
+    this.priorityElement,
+    required this.codeReference,
+    required this.codeCodeableConcept,
+    this.parameter,
+    required this.subject,
+    this.encounter,
+    this.occurrenceDateTime,
+    this.occurrenceDateTimeElement,
+    this.occurrencePeriod,
+    this.occurrenceTiming,
+    this.authoredOn,
+    this.authoredOnElement,
+    this.requester,
+    this.performerType,
+    this.performer,
+    this.reasonCode,
+    this.reasonReference,
+    this.insurance,
+    this.supportingInfo,
+    this.note,
+    this.relevantHistory,
+  }) : super(resourceType: R4ResourceType.DeviceRequest);
+
   final List<Identifier>? identifier;
   final List<FhirCanonical>? instantiatesCanonical;
   final List<Element>? instantiatesCanonicalElement;
@@ -40,68 +87,13 @@ class DeviceRequest extends DomainResource {
   final List<Reference>? supportingInfo;
   final List<Annotation>? note;
   final List<Reference>? relevantHistory;
-
-  DeviceRequest({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.instantiatesCanonical,
-this.instantiatesCanonicalElement,
-    this.instantiatesUri,
-this.instantiatesUriElement,
-    this.basedOn,
-    this.priorRequest,
-    this.groupIdentifier,
-    this.status,
-this.statusElement,
-    required this.intent,
-this.intentElement,
-    this.priority,
-this.priorityElement,
-    required this.codeReference,
-    required this.codeCodeableConcept,
-    this.parameter,
-    required this.subject,
-    this.encounter,
-    this.occurrenceDateTime,
-this.occurrenceDateTimeElement,
-    this.occurrencePeriod,
-    this.occurrenceTiming,
-    this.authoredOn,
-this.authoredOnElement,
-    this.requester,
-    this.performerType,
-    this.performer,
-    this.reasonCode,
-    this.reasonReference,
-    this.insurance,
-    this.supportingInfo,
-    this.note,
-    this.relevantHistory,
-  }) : super(resourceType: R4ResourceType.DeviceRequest);
-
-@override
-DeviceRequest clone() => throw UnimplementedError();
+  @override
+  DeviceRequest clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class DeviceRequestParameter extends BackboneElement {
-  final CodeableConcept? code;
-  final CodeableConcept? valueCodeableConcept;
-  final Quantity? valueQuantity;
-  final Range? valueRange;
-  final FhirBoolean? valueBoolean;
-  final Element? valueBooleanElement;
-
   DeviceRequestParameter({
     super.id,
     super.extension_,
@@ -111,10 +103,15 @@ class DeviceRequestParameter extends BackboneElement {
     this.valueQuantity,
     this.valueRange,
     this.valueBoolean,
-this.valueBooleanElement,
+    this.valueBooleanElement,
   });
 
-@override
-DeviceRequestParameter clone() => throw UnimplementedError();
+  final CodeableConcept? code;
+  final CodeableConcept? valueCodeableConcept;
+  final Quantity? valueQuantity;
+  final Range? valueRange;
+  final FhirBoolean? valueBoolean;
+  final Element? valueBooleanElement;
+  @override
+  DeviceRequestParameter clone() => throw UnimplementedError();
 }
-

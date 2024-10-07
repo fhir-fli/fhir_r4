@@ -3,9 +3,43 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class GuidanceResponse extends DomainResource {
+  GuidanceResponse({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.requestIdentifier,
+    this.identifier,
+    required this.moduleUri,
+    this.moduleUriElement,
+    required this.moduleCanonical,
+    this.moduleCanonicalElement,
+    required this.moduleCodeableConcept,
+    required this.status,
+    this.statusElement,
+    this.subject,
+    this.encounter,
+    this.occurrenceDateTime,
+    this.occurrenceDateTimeElement,
+    this.performer,
+    this.reasonCode,
+    this.reasonReference,
+    this.note,
+    this.evaluationMessage,
+    this.outputParameters,
+    this.result,
+    this.dataRequirement,
+  }) : super(resourceType: R4ResourceType.GuidanceResponse);
+
   final Identifier? requestIdentifier;
   final List<Identifier>? identifier;
   final FhirUri moduleUri;
@@ -27,42 +61,6 @@ class GuidanceResponse extends DomainResource {
   final Reference? outputParameters;
   final Reference? result;
   final List<DataRequirement>? dataRequirement;
-
-  GuidanceResponse({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.requestIdentifier,
-    this.identifier,
-    required this.moduleUri,
-this.moduleUriElement,
-    required this.moduleCanonical,
-this.moduleCanonicalElement,
-    required this.moduleCodeableConcept,
-    required this.status,
-this.statusElement,
-    this.subject,
-    this.encounter,
-    this.occurrenceDateTime,
-this.occurrenceDateTimeElement,
-    this.performer,
-    this.reasonCode,
-    this.reasonReference,
-    this.note,
-    this.evaluationMessage,
-    this.outputParameters,
-    this.result,
-    this.dataRequirement,
-  }) : super(resourceType: R4ResourceType.GuidanceResponse);
-
-@override
-GuidanceResponse clone() => throw UnimplementedError();
+  @override
+  GuidanceResponse clone() => throw UnimplementedError();
 }
-

@@ -3,9 +3,68 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Observation extends DomainResource {
+  Observation({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.basedOn,
+    this.partOf,
+    required this.status,
+    this.statusElement,
+    this.category,
+    required this.code,
+    this.subject,
+    this.focus,
+    this.encounter,
+    this.effectiveDateTime,
+    this.effectiveDateTimeElement,
+    this.effectivePeriod,
+    this.effectiveTiming,
+    this.effectiveInstant,
+    this.effectiveInstantElement,
+    this.issued,
+    this.issuedElement,
+    this.performer,
+    this.valueQuantity,
+    this.valueCodeableConcept,
+    this.valueString,
+    this.valueStringElement,
+    this.valueBoolean,
+    this.valueBooleanElement,
+    this.valueInteger,
+    this.valueIntegerElement,
+    this.valueRange,
+    this.valueRatio,
+    this.valueSampledData,
+    this.valueTime,
+    this.valueTimeElement,
+    this.valueDateTime,
+    this.valueDateTimeElement,
+    this.valuePeriod,
+    this.dataAbsentReason,
+    this.interpretation,
+    this.note,
+    this.bodySite,
+    this.method,
+    this.specimen,
+    this.device,
+    this.referenceRange,
+    this.hasMember,
+    this.derivedFrom,
+    this.component,
+  }) : super(resourceType: R4ResourceType.Observation);
+
   final List<Identifier>? identifier;
   final List<Reference>? basedOn;
   final List<Reference>? partOf;
@@ -52,81 +111,13 @@ class Observation extends DomainResource {
   final List<Reference>? hasMember;
   final List<Reference>? derivedFrom;
   final List<ObservationComponent>? component;
-
-  Observation({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.basedOn,
-    this.partOf,
-    required this.status,
-this.statusElement,
-    this.category,
-    required this.code,
-    this.subject,
-    this.focus,
-    this.encounter,
-    this.effectiveDateTime,
-this.effectiveDateTimeElement,
-    this.effectivePeriod,
-    this.effectiveTiming,
-    this.effectiveInstant,
-this.effectiveInstantElement,
-    this.issued,
-this.issuedElement,
-    this.performer,
-    this.valueQuantity,
-    this.valueCodeableConcept,
-    this.valueString,
-this.valueStringElement,
-    this.valueBoolean,
-this.valueBooleanElement,
-    this.valueInteger,
-this.valueIntegerElement,
-    this.valueRange,
-    this.valueRatio,
-    this.valueSampledData,
-    this.valueTime,
-this.valueTimeElement,
-    this.valueDateTime,
-this.valueDateTimeElement,
-    this.valuePeriod,
-    this.dataAbsentReason,
-    this.interpretation,
-    this.note,
-    this.bodySite,
-    this.method,
-    this.specimen,
-    this.device,
-    this.referenceRange,
-    this.hasMember,
-    this.derivedFrom,
-    this.component,
-  }) : super(resourceType: R4ResourceType.Observation);
-
-@override
-Observation clone() => throw UnimplementedError();
+  @override
+  Observation clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ObservationReferenceRange extends BackboneElement {
-  final Quantity? low;
-  final Quantity? high;
-  final CodeableConcept? type;
-  final List<CodeableConcept>? appliesTo;
-  final Range? age;
-  final FhirString? text;
-  final Element? textElement;
-
   ObservationReferenceRange({
     super.id,
     super.extension_,
@@ -137,16 +128,49 @@ class ObservationReferenceRange extends BackboneElement {
     this.appliesTo,
     this.age,
     this.text,
-this.textElement,
+    this.textElement,
   });
 
-@override
-ObservationReferenceRange clone() => throw UnimplementedError();
+  final Quantity? low;
+  final Quantity? high;
+  final CodeableConcept? type;
+  final List<CodeableConcept>? appliesTo;
+  final Range? age;
+  final FhirString? text;
+  final Element? textElement;
+  @override
+  ObservationReferenceRange clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ObservationComponent extends BackboneElement {
+  ObservationComponent({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.code,
+    this.valueQuantity,
+    this.valueCodeableConcept,
+    this.valueString,
+    this.valueStringElement,
+    this.valueBoolean,
+    this.valueBooleanElement,
+    this.valueInteger,
+    this.valueIntegerElement,
+    this.valueRange,
+    this.valueRatio,
+    this.valueSampledData,
+    this.valueTime,
+    this.valueTimeElement,
+    this.valueDateTime,
+    this.valueDateTimeElement,
+    this.valuePeriod,
+    this.dataAbsentReason,
+    this.interpretation,
+    this.referenceRange,
+  });
+
   final CodeableConcept code;
   final Quantity? valueQuantity;
   final CodeableConcept? valueCodeableConcept;
@@ -167,34 +191,6 @@ class ObservationComponent extends BackboneElement {
   final CodeableConcept? dataAbsentReason;
   final List<CodeableConcept>? interpretation;
   final List<ObservationReferenceRange>? referenceRange;
-
-  ObservationComponent({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.code,
-    this.valueQuantity,
-    this.valueCodeableConcept,
-    this.valueString,
-this.valueStringElement,
-    this.valueBoolean,
-this.valueBooleanElement,
-    this.valueInteger,
-this.valueIntegerElement,
-    this.valueRange,
-    this.valueRatio,
-    this.valueSampledData,
-    this.valueTime,
-this.valueTimeElement,
-    this.valueDateTime,
-this.valueDateTimeElement,
-    this.valuePeriod,
-    this.dataAbsentReason,
-    this.interpretation,
-    this.referenceRange,
-  });
-
-@override
-ObservationComponent clone() => throw UnimplementedError();
+  @override
+  ObservationComponent clone() => throw UnimplementedError();
 }
-

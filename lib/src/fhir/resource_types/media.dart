@@ -3,9 +3,53 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Media extends DomainResource {
+  Media({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.basedOn,
+    this.partOf,
+    required this.status,
+    this.statusElement,
+    this.type,
+    this.modality,
+    this.view,
+    this.subject,
+    this.encounter,
+    this.createdDateTime,
+    this.createdDateTimeElement,
+    this.createdPeriod,
+    this.issued,
+    this.issuedElement,
+    this.operator_,
+    this.reasonCode,
+    this.bodySite,
+    this.deviceName,
+    this.deviceNameElement,
+    this.device,
+    this.height,
+    this.heightElement,
+    this.width,
+    this.widthElement,
+    this.frames,
+    this.framesElement,
+    this.duration,
+    this.durationElement,
+    required this.content,
+    this.note,
+  }) : super(resourceType: R4ResourceType.Media);
+
   final List<Identifier>? identifier;
   final List<Reference>? basedOn;
   final List<Reference>? partOf;
@@ -37,52 +81,6 @@ class Media extends DomainResource {
   final Element? durationElement;
   final Attachment content;
   final List<Annotation>? note;
-
-  Media({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.basedOn,
-    this.partOf,
-    required this.status,
-this.statusElement,
-    this.type,
-    this.modality,
-    this.view,
-    this.subject,
-    this.encounter,
-    this.createdDateTime,
-this.createdDateTimeElement,
-    this.createdPeriod,
-    this.issued,
-this.issuedElement,
-    this.operator_,
-    this.reasonCode,
-    this.bodySite,
-    this.deviceName,
-this.deviceNameElement,
-    this.device,
-    this.height,
-this.heightElement,
-    this.width,
-this.widthElement,
-    this.frames,
-this.framesElement,
-    this.duration,
-this.durationElement,
-    required this.content,
-    this.note,
-  }) : super(resourceType: R4ResourceType.Media);
-
-@override
-Media clone() => throw UnimplementedError();
+  @override
+  Media clone() => throw UnimplementedError();
 }
-

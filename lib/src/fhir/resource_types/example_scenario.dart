@@ -3,9 +3,49 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class ExampleScenario extends DomainResource {
+  ExampleScenario({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.url,
+    this.urlElement,
+    this.identifier,
+    this.version,
+    this.versionElement,
+    this.name,
+    this.nameElement,
+    required this.status,
+    this.statusElement,
+    this.experimental,
+    this.experimentalElement,
+    this.date,
+    this.dateElement,
+    this.publisher,
+    this.publisherElement,
+    this.contact,
+    this.useContext,
+    this.jurisdiction,
+    this.copyright,
+    this.copyrightElement,
+    this.purpose,
+    this.purposeElement,
+    this.actor,
+    this.instance,
+    this.process,
+    this.workflow,
+    this.workflowElement,
+  }) : super(resourceType: R4ResourceType.ExampleScenario);
+
   final FhirUri? url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -33,54 +73,27 @@ class ExampleScenario extends DomainResource {
   final List<ExampleScenarioProcess>? process;
   final List<FhirCanonical>? workflow;
   final List<Element>? workflowElement;
-
-  ExampleScenario({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.url,
-this.urlElement,
-    this.identifier,
-    this.version,
-this.versionElement,
-    this.name,
-this.nameElement,
-    required this.status,
-this.statusElement,
-    this.experimental,
-this.experimentalElement,
-    this.date,
-this.dateElement,
-    this.publisher,
-this.publisherElement,
-    this.contact,
-    this.useContext,
-    this.jurisdiction,
-    this.copyright,
-this.copyrightElement,
-    this.purpose,
-this.purposeElement,
-    this.actor,
-    this.instance,
-    this.process,
-    this.workflow,
-this.workflowElement,
-  }) : super(resourceType: R4ResourceType.ExampleScenario);
-
-@override
-ExampleScenario clone() => throw UnimplementedError();
+  @override
+  ExampleScenario clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ExampleScenarioActor extends BackboneElement {
+  ExampleScenarioActor({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.actorId,
+    this.actorIdElement,
+    required this.type,
+    this.typeElement,
+    this.name,
+    this.nameElement,
+    this.description,
+    this.descriptionElement,
+  });
+
   final FhirString actorId;
   final Element? actorIdElement;
   final FhirCode type;
@@ -89,28 +102,29 @@ class ExampleScenarioActor extends BackboneElement {
   final Element? nameElement;
   final FhirMarkdown? description;
   final Element? descriptionElement;
+  @override
+  ExampleScenarioActor clone() => throw UnimplementedError();
+}
 
-  ExampleScenarioActor({
+@JsonCodable()
+@Data()
+class ExampleScenarioInstance extends BackboneElement {
+  ExampleScenarioInstance({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.actorId,
-this.actorIdElement,
-    required this.type,
-this.typeElement,
+    required this.resourceId,
+    this.resourceIdElement,
+    required this.resourceType,
+    this.resourceTypeElement,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
+    this.version,
+    this.containedInstance,
   });
 
-@override
-ExampleScenarioActor clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class ExampleScenarioInstance extends BackboneElement {
   final FhirString resourceId;
   final Element? resourceIdElement;
   final FhirCode resourceType;
@@ -121,74 +135,70 @@ class ExampleScenarioInstance extends BackboneElement {
   final Element? descriptionElement;
   final List<ExampleScenarioVersion>? version;
   final List<ExampleScenarioContainedInstance>? containedInstance;
-
-  ExampleScenarioInstance({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.resourceId,
-this.resourceIdElement,
-    required this.resourceType,
-this.resourceTypeElement,
-    this.name,
-this.nameElement,
-    this.description,
-this.descriptionElement,
-    this.version,
-    this.containedInstance,
-  });
-
-@override
-ExampleScenarioInstance clone() => throw UnimplementedError();
+  @override
+  ExampleScenarioInstance clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ExampleScenarioVersion extends BackboneElement {
-  final FhirString versionId;
-  final Element? versionIdElement;
-  final FhirMarkdown description;
-  final Element? descriptionElement;
-
   ExampleScenarioVersion({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.versionId,
-this.versionIdElement,
+    this.versionIdElement,
     required this.description,
-this.descriptionElement,
+    this.descriptionElement,
   });
 
-@override
-ExampleScenarioVersion clone() => throw UnimplementedError();
+  final FhirString versionId;
+  final Element? versionIdElement;
+  final FhirMarkdown description;
+  final Element? descriptionElement;
+  @override
+  ExampleScenarioVersion clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ExampleScenarioContainedInstance extends BackboneElement {
-  final FhirString resourceId;
-  final Element? resourceIdElement;
-  final FhirString? versionId;
-  final Element? versionIdElement;
-
   ExampleScenarioContainedInstance({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.resourceId,
-this.resourceIdElement,
+    this.resourceIdElement,
     this.versionId,
-this.versionIdElement,
+    this.versionIdElement,
   });
 
-@override
-ExampleScenarioContainedInstance clone() => throw UnimplementedError();
+  final FhirString resourceId;
+  final Element? resourceIdElement;
+  final FhirString? versionId;
+  final Element? versionIdElement;
+  @override
+  ExampleScenarioContainedInstance clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ExampleScenarioProcess extends BackboneElement {
+  ExampleScenarioProcess({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.title,
+    this.titleElement,
+    this.description,
+    this.descriptionElement,
+    this.preConditions,
+    this.preConditionsElement,
+    this.postConditions,
+    this.postConditionsElement,
+    this.step,
+  });
+
   final FhirString title;
   final Element? titleElement;
   final FhirMarkdown? description;
@@ -198,53 +208,60 @@ class ExampleScenarioProcess extends BackboneElement {
   final FhirMarkdown? postConditions;
   final Element? postConditionsElement;
   final List<ExampleScenarioStep>? step;
-
-  ExampleScenarioProcess({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.title,
-this.titleElement,
-    this.description,
-this.descriptionElement,
-    this.preConditions,
-this.preConditionsElement,
-    this.postConditions,
-this.postConditionsElement,
-    this.step,
-  });
-
-@override
-ExampleScenarioProcess clone() => throw UnimplementedError();
+  @override
+  ExampleScenarioProcess clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ExampleScenarioStep extends BackboneElement {
-  final List<ExampleScenarioProcess>? process;
-  final FhirBoolean? pause;
-  final Element? pauseElement;
-  final ExampleScenarioOperation? operation;
-  final List<ExampleScenarioAlternative>? alternative;
-
   ExampleScenarioStep({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.process,
     this.pause,
-this.pauseElement,
+    this.pauseElement,
     this.operation,
     this.alternative,
   });
 
-@override
-ExampleScenarioStep clone() => throw UnimplementedError();
+  final List<ExampleScenarioProcess>? process;
+  final FhirBoolean? pause;
+  final Element? pauseElement;
+  final ExampleScenarioOperation? operation;
+  final List<ExampleScenarioAlternative>? alternative;
+  @override
+  ExampleScenarioStep clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ExampleScenarioOperation extends BackboneElement {
+  ExampleScenarioOperation({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.number,
+    this.numberElement,
+    this.type,
+    this.typeElement,
+    this.name,
+    this.nameElement,
+    this.initiator,
+    this.initiatorElement,
+    this.receiver,
+    this.receiverElement,
+    this.description,
+    this.descriptionElement,
+    this.initiatorActive,
+    this.initiatorActiveElement,
+    this.receiverActive,
+    this.receiverActiveElement,
+    this.request,
+    this.response,
+  });
+
   final FhirString number;
   final Element? numberElement;
   final FhirString? type;
@@ -263,56 +280,29 @@ class ExampleScenarioOperation extends BackboneElement {
   final Element? receiverActiveElement;
   final ExampleScenarioContainedInstance? request;
   final ExampleScenarioContainedInstance? response;
-
-  ExampleScenarioOperation({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.number,
-this.numberElement,
-    this.type,
-this.typeElement,
-    this.name,
-this.nameElement,
-    this.initiator,
-this.initiatorElement,
-    this.receiver,
-this.receiverElement,
-    this.description,
-this.descriptionElement,
-    this.initiatorActive,
-this.initiatorActiveElement,
-    this.receiverActive,
-this.receiverActiveElement,
-    this.request,
-    this.response,
-  });
-
-@override
-ExampleScenarioOperation clone() => throw UnimplementedError();
+  @override
+  ExampleScenarioOperation clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ExampleScenarioAlternative extends BackboneElement {
-  final FhirString title;
-  final Element? titleElement;
-  final FhirMarkdown? description;
-  final Element? descriptionElement;
-  final List<ExampleScenarioStep>? step;
-
   ExampleScenarioAlternative({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.title,
-this.titleElement,
+    this.titleElement,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.step,
   });
 
-@override
-ExampleScenarioAlternative clone() => throw UnimplementedError();
+  final FhirString title;
+  final Element? titleElement;
+  final FhirMarkdown? description;
+  final Element? descriptionElement;
+  final List<ExampleScenarioStep>? step;
+  @override
+  ExampleScenarioAlternative clone() => throw UnimplementedError();
 }
-

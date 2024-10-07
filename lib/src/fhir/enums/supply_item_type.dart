@@ -6,33 +6,40 @@ enum SupplyItemType {
   /// Definition: Supply is a kind of medication.
   @JsonValue('medication')
   medication,
+
   /// Display: Device
   /// Definition: What is supplied (or requested) is a device.
   @JsonValue('device')
   device,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case medication: return 'medication';
-        case device: return 'device';
-      }
-      }
-String toJson() => toString();
-  SupplyItemType fromString(String str) {
-    switch(str) {
-      case 'medication': return SupplyItemType.medication;
-      case 'device': return SupplyItemType.device;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case medication:
+        return 'medication';
+      case device:
+        return 'device';
     }
-      }
- SupplyItemType fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  SupplyItemType fromString(String str) {
+    switch (str) {
+      case 'medication':
+        return SupplyItemType.medication;
+      case 'device':
+        return SupplyItemType.device;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  SupplyItemType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

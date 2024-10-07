@@ -5,202 +5,311 @@ enum EnteralFormulaTypeCodes {
   /// Display: Adult critical care formula
   @JsonValue('443031000124106')
   value443031000124106,
+
   /// Display: Adult diabetes specialty formula
   @JsonValue('443051000124104')
   value443051000124104,
+
   /// Display: Adult elemental formula
   @JsonValue('442911000124109')
   value442911000124109,
+
   /// Display: Adult hepatic specialty formula
   @JsonValue('443021000124108')
   value443021000124108,
+
   /// Display: Adult high energy formula
   @JsonValue('442971000124100')
   value442971000124100,
+
   /// Display: Adult hydrolyzed protein formula
   @JsonValue('442981000124102')
   value442981000124102,
+
   /// Display: Adult high protein formula
   @JsonValue('442991000124104')
   value442991000124104,
+
   /// Display: Adult high protein high fiber formula
   @JsonValue('443011000124100')
   value443011000124100,
+
   /// Display: Adult low carbohydrate formula
   @JsonValue('442961000124107')
   value442961000124107,
+
   /// Display: Adult pulmonary specialty formula
   @JsonValue('442951000124105')
   value442951000124105,
+
   /// Display: Adult renal specialty formula
   @JsonValue('442941000124108')
   value442941000124108,
+
   /// Display: Adult standard formula
   @JsonValue('442921000124101')
   value442921000124101,
+
   /// Display: Adult soy protein isolate formula
   @JsonValue('442931000124103')
   value442931000124103,
+
   /// Display: Pediatric Formula
   @JsonValue('443361000124100')
   value443361000124100,
+
   /// Display: Pediatric elemental formula
   @JsonValue('443401000124105')
   value443401000124105,
+
   /// Display: Pediatric high energy formula
   @JsonValue('443491000124103')
   value443491000124103,
+
   /// Display: Pediatric high energy formula with increased fiber
   @JsonValue('443501000124106')
   value443501000124106,
+
   /// Display: Pediatric hydrolyzed protein formula
   @JsonValue('443421000124100')
   value443421000124100,
+
   /// Display: Pediatric increased fiber formula
   @JsonValue('443471000124104')
   value443471000124104,
+
   /// Display: Pediatric reduced energy formula
   @JsonValue('444431000124104')
   value444431000124104,
+
   /// Display: Pediatric standard formula
   @JsonValue('443451000124109')
   value443451000124109,
+
   /// Display: Standard enteral formula with fiber
   @JsonValue('441561000124106')
   value441561000124106,
+
   /// Display: Standard Formula
   @JsonValue('443461000124106')
   value443461000124106,
+
   /// Display: Standard Enteral Formula
   @JsonValue('441531000124102')
   value441531000124102,
+
   /// Display: Soy based formula
   @JsonValue('443561000124107')
   value443561000124107,
+
   /// Display: Renal Formula
   @JsonValue('443481000124101')
   value443481000124101,
+
   /// Display: High energy enteral formula with fiber
   @JsonValue('441571000124104')
   value441571000124104,
+
   /// Display: Diabetic enteral formula with fiber
   @JsonValue('441591000124103')
   value441591000124103,
+
   /// Display: Diabetic high calorie high protein enteral formula with fiber
   @JsonValue('441601000124106')
   value441601000124106,
+
   /// Display: Increased fiber formula
   @JsonValue('443351000124102')
   value443351000124102,
+
   /// Display: Hydrolyzed protein formula
   @JsonValue('443771000124106')
   value443771000124106,
+
   /// Display: Hydrolyzed peptide-based high protein enteral formula
   @JsonValue('441671000124100')
   value441671000124100,
+
   /// Display: High protein formula
   @JsonValue('443111000124101')
   value443111000124101,
+
   /// Display: High Energy Formula
   @JsonValue('443431000124102')
   value443431000124102,
+
   /// Display: Elemental Formula
   @JsonValue('443411000124108')
   value443411000124108,
+
   /// Display: Adult formula
   @JsonValue('442651000124102')
   value442651000124102,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case value443031000124106: return '443031000124106';
-        case value443051000124104: return '443051000124104';
-        case value442911000124109: return '442911000124109';
-        case value443021000124108: return '443021000124108';
-        case value442971000124100: return '442971000124100';
-        case value442981000124102: return '442981000124102';
-        case value442991000124104: return '442991000124104';
-        case value443011000124100: return '443011000124100';
-        case value442961000124107: return '442961000124107';
-        case value442951000124105: return '442951000124105';
-        case value442941000124108: return '442941000124108';
-        case value442921000124101: return '442921000124101';
-        case value442931000124103: return '442931000124103';
-        case value443361000124100: return '443361000124100';
-        case value443401000124105: return '443401000124105';
-        case value443491000124103: return '443491000124103';
-        case value443501000124106: return '443501000124106';
-        case value443421000124100: return '443421000124100';
-        case value443471000124104: return '443471000124104';
-        case value444431000124104: return '444431000124104';
-        case value443451000124109: return '443451000124109';
-        case value441561000124106: return '441561000124106';
-        case value443461000124106: return '443461000124106';
-        case value441531000124102: return '441531000124102';
-        case value443561000124107: return '443561000124107';
-        case value443481000124101: return '443481000124101';
-        case value441571000124104: return '441571000124104';
-        case value441591000124103: return '441591000124103';
-        case value441601000124106: return '441601000124106';
-        case value443351000124102: return '443351000124102';
-        case value443771000124106: return '443771000124106';
-        case value441671000124100: return '441671000124100';
-        case value443111000124101: return '443111000124101';
-        case value443431000124102: return '443431000124102';
-        case value443411000124108: return '443411000124108';
-        case value442651000124102: return '442651000124102';
-      }
-      }
-String toJson() => toString();
-  EnteralFormulaTypeCodes fromString(String str) {
-    switch(str) {
-      case '443031000124106': return EnteralFormulaTypeCodes.value443031000124106;
-      case '443051000124104': return EnteralFormulaTypeCodes.value443051000124104;
-      case '442911000124109': return EnteralFormulaTypeCodes.value442911000124109;
-      case '443021000124108': return EnteralFormulaTypeCodes.value443021000124108;
-      case '442971000124100': return EnteralFormulaTypeCodes.value442971000124100;
-      case '442981000124102': return EnteralFormulaTypeCodes.value442981000124102;
-      case '442991000124104': return EnteralFormulaTypeCodes.value442991000124104;
-      case '443011000124100': return EnteralFormulaTypeCodes.value443011000124100;
-      case '442961000124107': return EnteralFormulaTypeCodes.value442961000124107;
-      case '442951000124105': return EnteralFormulaTypeCodes.value442951000124105;
-      case '442941000124108': return EnteralFormulaTypeCodes.value442941000124108;
-      case '442921000124101': return EnteralFormulaTypeCodes.value442921000124101;
-      case '442931000124103': return EnteralFormulaTypeCodes.value442931000124103;
-      case '443361000124100': return EnteralFormulaTypeCodes.value443361000124100;
-      case '443401000124105': return EnteralFormulaTypeCodes.value443401000124105;
-      case '443491000124103': return EnteralFormulaTypeCodes.value443491000124103;
-      case '443501000124106': return EnteralFormulaTypeCodes.value443501000124106;
-      case '443421000124100': return EnteralFormulaTypeCodes.value443421000124100;
-      case '443471000124104': return EnteralFormulaTypeCodes.value443471000124104;
-      case '444431000124104': return EnteralFormulaTypeCodes.value444431000124104;
-      case '443451000124109': return EnteralFormulaTypeCodes.value443451000124109;
-      case '441561000124106': return EnteralFormulaTypeCodes.value441561000124106;
-      case '443461000124106': return EnteralFormulaTypeCodes.value443461000124106;
-      case '441531000124102': return EnteralFormulaTypeCodes.value441531000124102;
-      case '443561000124107': return EnteralFormulaTypeCodes.value443561000124107;
-      case '443481000124101': return EnteralFormulaTypeCodes.value443481000124101;
-      case '441571000124104': return EnteralFormulaTypeCodes.value441571000124104;
-      case '441591000124103': return EnteralFormulaTypeCodes.value441591000124103;
-      case '441601000124106': return EnteralFormulaTypeCodes.value441601000124106;
-      case '443351000124102': return EnteralFormulaTypeCodes.value443351000124102;
-      case '443771000124106': return EnteralFormulaTypeCodes.value443771000124106;
-      case '441671000124100': return EnteralFormulaTypeCodes.value441671000124100;
-      case '443111000124101': return EnteralFormulaTypeCodes.value443111000124101;
-      case '443431000124102': return EnteralFormulaTypeCodes.value443431000124102;
-      case '443411000124108': return EnteralFormulaTypeCodes.value443411000124108;
-      case '442651000124102': return EnteralFormulaTypeCodes.value442651000124102;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case value443031000124106:
+        return '443031000124106';
+      case value443051000124104:
+        return '443051000124104';
+      case value442911000124109:
+        return '442911000124109';
+      case value443021000124108:
+        return '443021000124108';
+      case value442971000124100:
+        return '442971000124100';
+      case value442981000124102:
+        return '442981000124102';
+      case value442991000124104:
+        return '442991000124104';
+      case value443011000124100:
+        return '443011000124100';
+      case value442961000124107:
+        return '442961000124107';
+      case value442951000124105:
+        return '442951000124105';
+      case value442941000124108:
+        return '442941000124108';
+      case value442921000124101:
+        return '442921000124101';
+      case value442931000124103:
+        return '442931000124103';
+      case value443361000124100:
+        return '443361000124100';
+      case value443401000124105:
+        return '443401000124105';
+      case value443491000124103:
+        return '443491000124103';
+      case value443501000124106:
+        return '443501000124106';
+      case value443421000124100:
+        return '443421000124100';
+      case value443471000124104:
+        return '443471000124104';
+      case value444431000124104:
+        return '444431000124104';
+      case value443451000124109:
+        return '443451000124109';
+      case value441561000124106:
+        return '441561000124106';
+      case value443461000124106:
+        return '443461000124106';
+      case value441531000124102:
+        return '441531000124102';
+      case value443561000124107:
+        return '443561000124107';
+      case value443481000124101:
+        return '443481000124101';
+      case value441571000124104:
+        return '441571000124104';
+      case value441591000124103:
+        return '441591000124103';
+      case value441601000124106:
+        return '441601000124106';
+      case value443351000124102:
+        return '443351000124102';
+      case value443771000124106:
+        return '443771000124106';
+      case value441671000124100:
+        return '441671000124100';
+      case value443111000124101:
+        return '443111000124101';
+      case value443431000124102:
+        return '443431000124102';
+      case value443411000124108:
+        return '443411000124108';
+      case value442651000124102:
+        return '442651000124102';
     }
-      }
- EnteralFormulaTypeCodes fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  EnteralFormulaTypeCodes fromString(String str) {
+    switch (str) {
+      case '443031000124106':
+        return EnteralFormulaTypeCodes.value443031000124106;
+      case '443051000124104':
+        return EnteralFormulaTypeCodes.value443051000124104;
+      case '442911000124109':
+        return EnteralFormulaTypeCodes.value442911000124109;
+      case '443021000124108':
+        return EnteralFormulaTypeCodes.value443021000124108;
+      case '442971000124100':
+        return EnteralFormulaTypeCodes.value442971000124100;
+      case '442981000124102':
+        return EnteralFormulaTypeCodes.value442981000124102;
+      case '442991000124104':
+        return EnteralFormulaTypeCodes.value442991000124104;
+      case '443011000124100':
+        return EnteralFormulaTypeCodes.value443011000124100;
+      case '442961000124107':
+        return EnteralFormulaTypeCodes.value442961000124107;
+      case '442951000124105':
+        return EnteralFormulaTypeCodes.value442951000124105;
+      case '442941000124108':
+        return EnteralFormulaTypeCodes.value442941000124108;
+      case '442921000124101':
+        return EnteralFormulaTypeCodes.value442921000124101;
+      case '442931000124103':
+        return EnteralFormulaTypeCodes.value442931000124103;
+      case '443361000124100':
+        return EnteralFormulaTypeCodes.value443361000124100;
+      case '443401000124105':
+        return EnteralFormulaTypeCodes.value443401000124105;
+      case '443491000124103':
+        return EnteralFormulaTypeCodes.value443491000124103;
+      case '443501000124106':
+        return EnteralFormulaTypeCodes.value443501000124106;
+      case '443421000124100':
+        return EnteralFormulaTypeCodes.value443421000124100;
+      case '443471000124104':
+        return EnteralFormulaTypeCodes.value443471000124104;
+      case '444431000124104':
+        return EnteralFormulaTypeCodes.value444431000124104;
+      case '443451000124109':
+        return EnteralFormulaTypeCodes.value443451000124109;
+      case '441561000124106':
+        return EnteralFormulaTypeCodes.value441561000124106;
+      case '443461000124106':
+        return EnteralFormulaTypeCodes.value443461000124106;
+      case '441531000124102':
+        return EnteralFormulaTypeCodes.value441531000124102;
+      case '443561000124107':
+        return EnteralFormulaTypeCodes.value443561000124107;
+      case '443481000124101':
+        return EnteralFormulaTypeCodes.value443481000124101;
+      case '441571000124104':
+        return EnteralFormulaTypeCodes.value441571000124104;
+      case '441591000124103':
+        return EnteralFormulaTypeCodes.value441591000124103;
+      case '441601000124106':
+        return EnteralFormulaTypeCodes.value441601000124106;
+      case '443351000124102':
+        return EnteralFormulaTypeCodes.value443351000124102;
+      case '443771000124106':
+        return EnteralFormulaTypeCodes.value443771000124106;
+      case '441671000124100':
+        return EnteralFormulaTypeCodes.value441671000124100;
+      case '443111000124101':
+        return EnteralFormulaTypeCodes.value443111000124101;
+      case '443431000124102':
+        return EnteralFormulaTypeCodes.value443431000124102;
+      case '443411000124108':
+        return EnteralFormulaTypeCodes.value443411000124108;
+      case '442651000124102':
+        return EnteralFormulaTypeCodes.value442651000124102;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  EnteralFormulaTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

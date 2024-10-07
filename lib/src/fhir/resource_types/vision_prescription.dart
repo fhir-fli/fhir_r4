@@ -3,9 +3,33 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class VisionPrescription extends DomainResource {
+  VisionPrescription({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    required this.status,
+    this.statusElement,
+    required this.created,
+    this.createdElement,
+    required this.patient,
+    this.encounter,
+    required this.dateWritten,
+    this.dateWrittenElement,
+    required this.prescriber,
+    required this.lensSpecification,
+  }) : super(resourceType: R4ResourceType.VisionPrescription);
+
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -17,38 +41,43 @@ class VisionPrescription extends DomainResource {
   final Element? dateWrittenElement;
   final Reference prescriber;
   final List<VisionPrescriptionLensSpecification> lensSpecification;
-
-  VisionPrescription({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    required this.status,
-this.statusElement,
-    required this.created,
-this.createdElement,
-    required this.patient,
-    this.encounter,
-    required this.dateWritten,
-this.dateWrittenElement,
-    required this.prescriber,
-    required this.lensSpecification,
-  }) : super(resourceType: R4ResourceType.VisionPrescription);
-
-@override
-VisionPrescription clone() => throw UnimplementedError();
+  @override
+  VisionPrescription clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class VisionPrescriptionLensSpecification extends BackboneElement {
+  VisionPrescriptionLensSpecification({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.product,
+    required this.eye,
+    this.eyeElement,
+    this.sphere,
+    this.sphereElement,
+    this.cylinder,
+    this.cylinderElement,
+    this.axis,
+    this.axisElement,
+    this.prism,
+    this.add,
+    this.addElement,
+    this.power,
+    this.powerElement,
+    this.backCurve,
+    this.backCurveElement,
+    this.diameter,
+    this.diameterElement,
+    this.duration,
+    this.color,
+    this.colorElement,
+    this.brand,
+    this.brandElement,
+    this.note,
+  });
+
   final CodeableConcept product;
   final FhirCode eye;
   final Element? eyeElement;
@@ -73,60 +102,27 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   final FhirString? brand;
   final Element? brandElement;
   final List<Annotation>? note;
-
-  VisionPrescriptionLensSpecification({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.product,
-    required this.eye,
-this.eyeElement,
-    this.sphere,
-this.sphereElement,
-    this.cylinder,
-this.cylinderElement,
-    this.axis,
-this.axisElement,
-    this.prism,
-    this.add,
-this.addElement,
-    this.power,
-this.powerElement,
-    this.backCurve,
-this.backCurveElement,
-    this.diameter,
-this.diameterElement,
-    this.duration,
-    this.color,
-this.colorElement,
-    this.brand,
-this.brandElement,
-    this.note,
-  });
-
-@override
-VisionPrescriptionLensSpecification clone() => throw UnimplementedError();
+  @override
+  VisionPrescriptionLensSpecification clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class VisionPrescriptionPrism extends BackboneElement {
-  final FhirDecimal amount;
-  final Element? amountElement;
-  final FhirCode base;
-  final Element? baseElement;
-
   VisionPrescriptionPrism({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.amount,
-this.amountElement,
+    this.amountElement,
     required this.base,
-this.baseElement,
+    this.baseElement,
   });
 
-@override
-VisionPrescriptionPrism clone() => throw UnimplementedError();
+  final FhirDecimal amount;
+  final Element? amountElement;
+  final FhirCode base;
+  final Element? baseElement;
+  @override
+  VisionPrescriptionPrism clone() => throw UnimplementedError();
 }
-

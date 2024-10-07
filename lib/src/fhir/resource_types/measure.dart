@@ -3,9 +3,87 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Measure extends DomainResource {
+  Measure({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.url,
+    this.urlElement,
+    this.identifier,
+    this.version,
+    this.versionElement,
+    this.name,
+    this.nameElement,
+    this.title,
+    this.titleElement,
+    this.subtitle,
+    this.subtitleElement,
+    required this.status,
+    this.statusElement,
+    this.experimental,
+    this.experimentalElement,
+    this.subjectCodeableConcept,
+    this.subjectReference,
+    this.date,
+    this.dateElement,
+    this.publisher,
+    this.publisherElement,
+    this.contact,
+    this.description,
+    this.descriptionElement,
+    this.useContext,
+    this.jurisdiction,
+    this.purpose,
+    this.purposeElement,
+    this.usage,
+    this.usageElement,
+    this.copyright,
+    this.copyrightElement,
+    this.approvalDate,
+    this.approvalDateElement,
+    this.lastReviewDate,
+    this.lastReviewDateElement,
+    this.effectivePeriod,
+    this.topic,
+    this.author,
+    this.editor,
+    this.reviewer,
+    this.endorser,
+    this.relatedArtifact,
+    this.library_,
+    this.libraryElement,
+    this.disclaimer,
+    this.disclaimerElement,
+    this.scoring,
+    this.compositeScoring,
+    this.type,
+    this.riskAdjustment,
+    this.riskAdjustmentElement,
+    this.rateAggregation,
+    this.rateAggregationElement,
+    this.rationale,
+    this.rationaleElement,
+    this.clinicalRecommendationStatement,
+    this.clinicalRecommendationStatementElement,
+    this.improvementNotation,
+    this.definition,
+    this.definitionElement,
+    this.guidance,
+    this.guidanceElement,
+    this.group,
+    this.supplementalData,
+  }) : super(resourceType: R4ResourceType.Measure);
+
   final FhirUri? url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -71,190 +149,101 @@ class Measure extends DomainResource {
   final Element? guidanceElement;
   final List<MeasureGroup>? group;
   final List<MeasureSupplementalData>? supplementalData;
-
-  Measure({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.url,
-this.urlElement,
-    this.identifier,
-    this.version,
-this.versionElement,
-    this.name,
-this.nameElement,
-    this.title,
-this.titleElement,
-    this.subtitle,
-this.subtitleElement,
-    required this.status,
-this.statusElement,
-    this.experimental,
-this.experimentalElement,
-    this.subjectCodeableConcept,
-    this.subjectReference,
-    this.date,
-this.dateElement,
-    this.publisher,
-this.publisherElement,
-    this.contact,
-    this.description,
-this.descriptionElement,
-    this.useContext,
-    this.jurisdiction,
-    this.purpose,
-this.purposeElement,
-    this.usage,
-this.usageElement,
-    this.copyright,
-this.copyrightElement,
-    this.approvalDate,
-this.approvalDateElement,
-    this.lastReviewDate,
-this.lastReviewDateElement,
-    this.effectivePeriod,
-    this.topic,
-    this.author,
-    this.editor,
-    this.reviewer,
-    this.endorser,
-    this.relatedArtifact,
-    this.library_,
-this.libraryElement,
-    this.disclaimer,
-this.disclaimerElement,
-    this.scoring,
-    this.compositeScoring,
-    this.type,
-    this.riskAdjustment,
-this.riskAdjustmentElement,
-    this.rateAggregation,
-this.rateAggregationElement,
-    this.rationale,
-this.rationaleElement,
-    this.clinicalRecommendationStatement,
-this.clinicalRecommendationStatementElement,
-    this.improvementNotation,
-    this.definition,
-this.definitionElement,
-    this.guidance,
-this.guidanceElement,
-    this.group,
-    this.supplementalData,
-  }) : super(resourceType: R4ResourceType.Measure);
-
-@override
-Measure clone() => throw UnimplementedError();
+  @override
+  Measure clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class MeasureGroup extends BackboneElement {
-  final CodeableConcept? code;
-  final FhirString? description;
-  final Element? descriptionElement;
-  final List<MeasurePopulation>? population;
-  final List<MeasureStratifier>? stratifier;
-
   MeasureGroup({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.code,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.population,
     this.stratifier,
   });
 
-@override
-MeasureGroup clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class MeasurePopulation extends BackboneElement {
   final CodeableConcept? code;
   final FhirString? description;
   final Element? descriptionElement;
-  final FhirExpression criteria;
+  final List<MeasurePopulation>? population;
+  final List<MeasureStratifier>? stratifier;
+  @override
+  MeasureGroup clone() => throw UnimplementedError();
+}
 
+@JsonCodable()
+@Data()
+class MeasurePopulation extends BackboneElement {
   MeasurePopulation({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.code,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     required this.criteria,
   });
 
-@override
-MeasurePopulation clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class MeasureStratifier extends BackboneElement {
   final CodeableConcept? code;
   final FhirString? description;
   final Element? descriptionElement;
-  final FhirExpression? criteria;
-  final List<MeasureComponent>? component;
+  final FhirExpression criteria;
+  @override
+  MeasurePopulation clone() => throw UnimplementedError();
+}
 
+@JsonCodable()
+@Data()
+class MeasureStratifier extends BackboneElement {
   MeasureStratifier({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.code,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.criteria,
     this.component,
   });
 
-@override
-MeasureStratifier clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class MeasureComponent extends BackboneElement {
   final CodeableConcept? code;
   final FhirString? description;
   final Element? descriptionElement;
-  final FhirExpression criteria;
+  final FhirExpression? criteria;
+  final List<MeasureComponent>? component;
+  @override
+  MeasureStratifier clone() => throw UnimplementedError();
+}
 
+@JsonCodable()
+@Data()
+class MeasureComponent extends BackboneElement {
   MeasureComponent({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.code,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     required this.criteria,
   });
 
-@override
-MeasureComponent clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class MeasureSupplementalData extends BackboneElement {
   final CodeableConcept? code;
-  final List<CodeableConcept>? usage;
   final FhirString? description;
   final Element? descriptionElement;
   final FhirExpression criteria;
+  @override
+  MeasureComponent clone() => throw UnimplementedError();
+}
 
+@JsonCodable()
+@Data()
+class MeasureSupplementalData extends BackboneElement {
   MeasureSupplementalData({
     super.id,
     super.extension_,
@@ -262,11 +251,15 @@ class MeasureSupplementalData extends BackboneElement {
     this.code,
     this.usage,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     required this.criteria,
   });
 
-@override
-MeasureSupplementalData clone() => throw UnimplementedError();
+  final CodeableConcept? code;
+  final List<CodeableConcept>? usage;
+  final FhirString? description;
+  final Element? descriptionElement;
+  final FhirExpression criteria;
+  @override
+  MeasureSupplementalData clone() => throw UnimplementedError();
 }
-

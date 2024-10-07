@@ -3,26 +3,24 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Age extends Quantity {
-
   Age({
     super.id,
     super.extension_,
     super.value,
-super.valueElement,
+    super.valueElement,
     super.comparator,
-super.comparatorElement,
+    super.comparatorElement,
     super.unit,
-super.unitElement,
+    super.unitElement,
     super.system,
-super.systemElement,
+    super.systemElement,
     super.code,
-super.codeElement,
+    super.codeElement,
   });
 
-@override
-Age clone() => throw UnimplementedError();
+  @override
+  Age clone() => throw UnimplementedError();
 }
-

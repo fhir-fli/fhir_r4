@@ -3,9 +3,100 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class ActivityDefinition extends DomainResource {
+  ActivityDefinition({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.url,
+    this.urlElement,
+    this.identifier,
+    this.version,
+    this.versionElement,
+    this.name,
+    this.nameElement,
+    this.title,
+    this.titleElement,
+    this.subtitle,
+    this.subtitleElement,
+    required this.status,
+    this.statusElement,
+    this.experimental,
+    this.experimentalElement,
+    this.subjectCodeableConcept,
+    this.subjectReference,
+    this.subjectCanonical,
+    this.subjectCanonicalElement,
+    this.date,
+    this.dateElement,
+    this.publisher,
+    this.publisherElement,
+    this.contact,
+    this.description,
+    this.descriptionElement,
+    this.useContext,
+    this.jurisdiction,
+    this.purpose,
+    this.purposeElement,
+    this.usage,
+    this.usageElement,
+    this.copyright,
+    this.copyrightElement,
+    this.approvalDate,
+    this.approvalDateElement,
+    this.lastReviewDate,
+    this.lastReviewDateElement,
+    this.effectivePeriod,
+    this.topic,
+    this.author,
+    this.editor,
+    this.reviewer,
+    this.endorser,
+    this.relatedArtifact,
+    this.library_,
+    this.libraryElement,
+    this.kind,
+    this.kindElement,
+    this.profile,
+    this.profileElement,
+    this.code,
+    this.intent,
+    this.intentElement,
+    this.priority,
+    this.priorityElement,
+    this.doNotPerform,
+    this.doNotPerformElement,
+    this.timingTiming,
+    this.timingDateTime,
+    this.timingDateTimeElement,
+    this.timingAge,
+    this.timingPeriod,
+    this.timingRange,
+    this.timingDuration,
+    this.location,
+    this.participant,
+    this.productReference,
+    this.productCodeableConcept,
+    this.quantity,
+    this.dosage,
+    this.bodySite,
+    this.specimenRequirement,
+    this.observationRequirement,
+    this.observationResultRequirement,
+    this.transform,
+    this.transformElement,
+    this.dynamicValue,
+  }) : super(resourceType: R4ResourceType.ActivityDefinition);
+
   final FhirUri? url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -84,139 +175,44 @@ class ActivityDefinition extends DomainResource {
   final FhirCanonical? transform;
   final Element? transformElement;
   final List<ActivityDefinitionDynamicValue>? dynamicValue;
-
-  ActivityDefinition({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.url,
-this.urlElement,
-    this.identifier,
-    this.version,
-this.versionElement,
-    this.name,
-this.nameElement,
-    this.title,
-this.titleElement,
-    this.subtitle,
-this.subtitleElement,
-    required this.status,
-this.statusElement,
-    this.experimental,
-this.experimentalElement,
-    this.subjectCodeableConcept,
-    this.subjectReference,
-    this.subjectCanonical,
-this.subjectCanonicalElement,
-    this.date,
-this.dateElement,
-    this.publisher,
-this.publisherElement,
-    this.contact,
-    this.description,
-this.descriptionElement,
-    this.useContext,
-    this.jurisdiction,
-    this.purpose,
-this.purposeElement,
-    this.usage,
-this.usageElement,
-    this.copyright,
-this.copyrightElement,
-    this.approvalDate,
-this.approvalDateElement,
-    this.lastReviewDate,
-this.lastReviewDateElement,
-    this.effectivePeriod,
-    this.topic,
-    this.author,
-    this.editor,
-    this.reviewer,
-    this.endorser,
-    this.relatedArtifact,
-    this.library_,
-this.libraryElement,
-    this.kind,
-this.kindElement,
-    this.profile,
-this.profileElement,
-    this.code,
-    this.intent,
-this.intentElement,
-    this.priority,
-this.priorityElement,
-    this.doNotPerform,
-this.doNotPerformElement,
-    this.timingTiming,
-    this.timingDateTime,
-this.timingDateTimeElement,
-    this.timingAge,
-    this.timingPeriod,
-    this.timingRange,
-    this.timingDuration,
-    this.location,
-    this.participant,
-    this.productReference,
-    this.productCodeableConcept,
-    this.quantity,
-    this.dosage,
-    this.bodySite,
-    this.specimenRequirement,
-    this.observationRequirement,
-    this.observationResultRequirement,
-    this.transform,
-this.transformElement,
-    this.dynamicValue,
-  }) : super(resourceType: R4ResourceType.ActivityDefinition);
-
-@override
-ActivityDefinition clone() => throw UnimplementedError();
+  @override
+  ActivityDefinition clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ActivityDefinitionParticipant extends BackboneElement {
-  final FhirCode type;
-  final Element? typeElement;
-  final CodeableConcept? role;
-
   ActivityDefinitionParticipant({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.type,
-this.typeElement,
+    this.typeElement,
     this.role,
   });
 
-@override
-ActivityDefinitionParticipant clone() => throw UnimplementedError();
+  final FhirCode type;
+  final Element? typeElement;
+  final CodeableConcept? role;
+  @override
+  ActivityDefinitionParticipant clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ActivityDefinitionDynamicValue extends BackboneElement {
-  final FhirString path;
-  final Element? pathElement;
-  final FhirExpression expression;
-
   ActivityDefinitionDynamicValue({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.path,
-this.pathElement,
+    this.pathElement,
     required this.expression,
   });
 
-@override
-ActivityDefinitionDynamicValue clone() => throw UnimplementedError();
+  final FhirString path;
+  final Element? pathElement;
+  final FhirExpression expression;
+  @override
+  ActivityDefinitionDynamicValue clone() => throw UnimplementedError();
 }
-

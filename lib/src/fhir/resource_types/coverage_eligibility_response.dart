@@ -3,9 +3,45 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class CoverageEligibilityResponse extends DomainResource {
+  CoverageEligibilityResponse({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    required this.status,
+    this.statusElement,
+    required this.purpose,
+    this.purposeElement,
+    required this.patient,
+    this.servicedDate,
+    this.servicedDateElement,
+    this.servicedPeriod,
+    required this.created,
+    this.createdElement,
+    this.requestor,
+    required this.request,
+    required this.outcome,
+    this.outcomeElement,
+    this.disposition,
+    this.dispositionElement,
+    required this.insurer,
+    this.insurance,
+    this.preAuthRef,
+    this.preAuthRefElement,
+    this.form,
+    this.error,
+  }) : super(resourceType: R4ResourceType.CoverageEligibilityResponse);
+
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -29,74 +65,61 @@ class CoverageEligibilityResponse extends DomainResource {
   final Element? preAuthRefElement;
   final CodeableConcept? form;
   final List<CoverageEligibilityResponseError>? error;
-
-  CoverageEligibilityResponse({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    required this.status,
-this.statusElement,
-    required this.purpose,
-this.purposeElement,
-    required this.patient,
-    this.servicedDate,
-this.servicedDateElement,
-    this.servicedPeriod,
-    required this.created,
-this.createdElement,
-    this.requestor,
-    required this.request,
-    required this.outcome,
-this.outcomeElement,
-    this.disposition,
-this.dispositionElement,
-    required this.insurer,
-    this.insurance,
-    this.preAuthRef,
-this.preAuthRefElement,
-    this.form,
-    this.error,
-  }) : super(resourceType: R4ResourceType.CoverageEligibilityResponse);
-
-@override
-CoverageEligibilityResponse clone() => throw UnimplementedError();
+  @override
+  CoverageEligibilityResponse clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class CoverageEligibilityResponseInsurance extends BackboneElement {
-  final Reference coverage;
-  final FhirBoolean? inforce;
-  final Element? inforceElement;
-  final Period? benefitPeriod;
-  final List<CoverageEligibilityResponseItem>? item;
-
   CoverageEligibilityResponseInsurance({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.coverage,
     this.inforce,
-this.inforceElement,
+    this.inforceElement,
     this.benefitPeriod,
     this.item,
   });
 
-@override
-CoverageEligibilityResponseInsurance clone() => throw UnimplementedError();
+  final Reference coverage;
+  final FhirBoolean? inforce;
+  final Element? inforceElement;
+  final Period? benefitPeriod;
+  final List<CoverageEligibilityResponseItem>? item;
+  @override
+  CoverageEligibilityResponseInsurance clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class CoverageEligibilityResponseItem extends BackboneElement {
+  CoverageEligibilityResponseItem({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    this.category,
+    this.productOrService,
+    this.modifier,
+    this.provider,
+    this.excluded,
+    this.excludedElement,
+    this.name,
+    this.nameElement,
+    this.description,
+    this.descriptionElement,
+    this.network,
+    this.unit,
+    this.term,
+    this.benefit,
+    this.authorizationRequired,
+    this.authorizationRequiredElement,
+    this.authorizationSupporting,
+    this.authorizationUrl,
+    this.authorizationUrlElement,
+  });
+
   final CodeableConcept? category;
   final CodeableConcept? productOrService;
   final List<CodeableConcept>? modifier;
@@ -116,39 +139,30 @@ class CoverageEligibilityResponseItem extends BackboneElement {
   final List<CodeableConcept>? authorizationSupporting;
   final FhirUri? authorizationUrl;
   final Element? authorizationUrlElement;
+  @override
+  CoverageEligibilityResponseItem clone() => throw UnimplementedError();
+}
 
-  CoverageEligibilityResponseItem({
+@JsonCodable()
+@Data()
+class CoverageEligibilityResponseBenefit extends BackboneElement {
+  CoverageEligibilityResponseBenefit({
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.category,
-    this.productOrService,
-    this.modifier,
-    this.provider,
-    this.excluded,
-this.excludedElement,
-    this.name,
-this.nameElement,
-    this.description,
-this.descriptionElement,
-    this.network,
-    this.unit,
-    this.term,
-    this.benefit,
-    this.authorizationRequired,
-this.authorizationRequiredElement,
-    this.authorizationSupporting,
-    this.authorizationUrl,
-this.authorizationUrlElement,
+    required this.type,
+    this.allowedUnsignedInt,
+    this.allowedUnsignedIntElement,
+    this.allowedString,
+    this.allowedStringElement,
+    this.allowedMoney,
+    this.usedUnsignedInt,
+    this.usedUnsignedIntElement,
+    this.usedString,
+    this.usedStringElement,
+    this.usedMoney,
   });
 
-@override
-CoverageEligibilityResponseItem clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class CoverageEligibilityResponseBenefit extends BackboneElement {
   final CodeableConcept type;
   final FhirUnsignedInt? allowedUnsignedInt;
   final Element? allowedUnsignedIntElement;
@@ -160,33 +174,13 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
   final FhirString? usedString;
   final Element? usedStringElement;
   final Money? usedMoney;
-
-  CoverageEligibilityResponseBenefit({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.type,
-    this.allowedUnsignedInt,
-this.allowedUnsignedIntElement,
-    this.allowedString,
-this.allowedStringElement,
-    this.allowedMoney,
-    this.usedUnsignedInt,
-this.usedUnsignedIntElement,
-    this.usedString,
-this.usedStringElement,
-    this.usedMoney,
-  });
-
-@override
-CoverageEligibilityResponseBenefit clone() => throw UnimplementedError();
+  @override
+  CoverageEligibilityResponseBenefit clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class CoverageEligibilityResponseError extends BackboneElement {
-  final CodeableConcept code;
-
   CoverageEligibilityResponseError({
     super.id,
     super.extension_,
@@ -194,7 +188,7 @@ class CoverageEligibilityResponseError extends BackboneElement {
     required this.code,
   });
 
-@override
-CoverageEligibilityResponseError clone() => throw UnimplementedError();
+  final CodeableConcept code;
+  @override
+  CoverageEligibilityResponseError clone() => throw UnimplementedError();
 }
-

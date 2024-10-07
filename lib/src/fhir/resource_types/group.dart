@@ -3,9 +3,37 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class FhirGroup extends DomainResource {
+  FhirGroup({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.active,
+    this.activeElement,
+    required this.type,
+    this.typeElement,
+    required this.actual,
+    this.actualElement,
+    this.code,
+    this.name,
+    this.nameElement,
+    this.quantity,
+    this.quantityElement,
+    this.managingEntity,
+    this.characteristic,
+    this.member,
+  }) : super(resourceType: R4ResourceType.FhirGroup);
+
   final List<Identifier>? identifier;
   final FhirBoolean? active;
   final Element? activeElement;
@@ -21,42 +49,29 @@ class FhirGroup extends DomainResource {
   final Reference? managingEntity;
   final List<GroupCharacteristic>? characteristic;
   final List<GroupMember>? member;
-
-  FhirGroup({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.active,
-this.activeElement,
-    required this.type,
-this.typeElement,
-    required this.actual,
-this.actualElement,
-    this.code,
-    this.name,
-this.nameElement,
-    this.quantity,
-this.quantityElement,
-    this.managingEntity,
-    this.characteristic,
-    this.member,
-  }) : super(resourceType: R4ResourceType.FhirGroup);
-
-@override
-FhirGroup clone() => throw UnimplementedError();
+  @override
+  FhirGroup clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class GroupCharacteristic extends BackboneElement {
+  GroupCharacteristic({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.code,
+    required this.valueCodeableConcept,
+    required this.valueBoolean,
+    this.valueBooleanElement,
+    required this.valueQuantity,
+    required this.valueRange,
+    required this.valueReference,
+    required this.exclude,
+    this.excludeElement,
+    this.period,
+  });
+
   final CodeableConcept code;
   final CodeableConcept valueCodeableConcept;
   final FhirBoolean valueBoolean;
@@ -67,35 +82,13 @@ class GroupCharacteristic extends BackboneElement {
   final FhirBoolean exclude;
   final Element? excludeElement;
   final Period? period;
-
-  GroupCharacteristic({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.code,
-    required this.valueCodeableConcept,
-    required this.valueBoolean,
-this.valueBooleanElement,
-    required this.valueQuantity,
-    required this.valueRange,
-    required this.valueReference,
-    required this.exclude,
-this.excludeElement,
-    this.period,
-  });
-
-@override
-GroupCharacteristic clone() => throw UnimplementedError();
+  @override
+  GroupCharacteristic clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class GroupMember extends BackboneElement {
-  final Reference entity;
-  final Period? period;
-  final FhirBoolean? inactive;
-  final Element? inactiveElement;
-
   GroupMember({
     super.id,
     super.extension_,
@@ -103,10 +96,13 @@ class GroupMember extends BackboneElement {
     required this.entity,
     this.period,
     this.inactive,
-this.inactiveElement,
+    this.inactiveElement,
   });
 
-@override
-GroupMember clone() => throw UnimplementedError();
+  final Reference entity;
+  final Period? period;
+  final FhirBoolean? inactive;
+  final Element? inactiveElement;
+  @override
+  GroupMember clone() => throw UnimplementedError();
 }
-

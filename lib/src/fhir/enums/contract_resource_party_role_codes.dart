@@ -6,27 +6,31 @@ enum ContractResourcePartyRoleCodes {
   /// Definition: To be completed
   @JsonValue('flunky')
   flunky,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case flunky: return 'flunky';
-      }
-      }
-String toJson() => toString();
-  ContractResourcePartyRoleCodes fromString(String str) {
-    switch(str) {
-      case 'flunky': return ContractResourcePartyRoleCodes.flunky;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case flunky:
+        return 'flunky';
     }
-      }
- ContractResourcePartyRoleCodes fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  ContractResourcePartyRoleCodes fromString(String str) {
+    switch (str) {
+      case 'flunky':
+        return ContractResourcePartyRoleCodes.flunky;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  ContractResourcePartyRoleCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

@@ -6,33 +6,40 @@ enum ExampleVisionPrescriptionProductCodes {
   /// Definition: A lens to be fitted to a frame to comprise a pair of glasses.
   @JsonValue('lens')
   lens,
+
   /// Display: Contact Lens
   /// Definition: A lens to be fitted for wearing directly on an eye.
   @JsonValue('contact')
   contact,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case lens: return 'lens';
-        case contact: return 'contact';
-      }
-      }
-String toJson() => toString();
-  ExampleVisionPrescriptionProductCodes fromString(String str) {
-    switch(str) {
-      case 'lens': return ExampleVisionPrescriptionProductCodes.lens;
-      case 'contact': return ExampleVisionPrescriptionProductCodes.contact;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case lens:
+        return 'lens';
+      case contact:
+        return 'contact';
     }
-      }
- ExampleVisionPrescriptionProductCodes fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  ExampleVisionPrescriptionProductCodes fromString(String str) {
+    switch (str) {
+      case 'lens':
+        return ExampleVisionPrescriptionProductCodes.lens;
+      case 'contact':
+        return ExampleVisionPrescriptionProductCodes.contact;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  ExampleVisionPrescriptionProductCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

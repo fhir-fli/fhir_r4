@@ -3,9 +3,35 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Practitioner extends DomainResource {
+  Practitioner({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.active,
+    this.activeElement,
+    this.name,
+    this.telecom,
+    this.address,
+    this.gender,
+    this.genderElement,
+    this.birthDate,
+    this.birthDateElement,
+    this.photo,
+    this.qualification,
+    this.communication,
+  }) : super(resourceType: R4ResourceType.Practitioner);
+
   final List<Identifier>? identifier;
   final FhirBoolean? active;
   final Element? activeElement;
@@ -19,45 +45,13 @@ class Practitioner extends DomainResource {
   final List<Attachment>? photo;
   final List<PractitionerQualification>? qualification;
   final List<CodeableConcept>? communication;
-
-  Practitioner({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.active,
-this.activeElement,
-    this.name,
-    this.telecom,
-    this.address,
-    this.gender,
-this.genderElement,
-    this.birthDate,
-this.birthDateElement,
-    this.photo,
-    this.qualification,
-    this.communication,
-  }) : super(resourceType: R4ResourceType.Practitioner);
-
-@override
-Practitioner clone() => throw UnimplementedError();
+  @override
+  Practitioner clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class PractitionerQualification extends BackboneElement {
-  final List<Identifier>? identifier;
-  final CodeableConcept code;
-  final Period? period;
-  final Reference? issuer;
-
   PractitionerQualification({
     super.id,
     super.extension_,
@@ -68,7 +62,10 @@ class PractitionerQualification extends BackboneElement {
     this.issuer,
   });
 
-@override
-PractitionerQualification clone() => throw UnimplementedError();
+  final List<Identifier>? identifier;
+  final CodeableConcept code;
+  final Period? period;
+  final Reference? issuer;
+  @override
+  PractitionerQualification clone() => throw UnimplementedError();
 }
-

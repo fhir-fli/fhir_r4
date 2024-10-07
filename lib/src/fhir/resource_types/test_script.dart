@@ -3,9 +3,57 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class TestScript extends DomainResource {
+  TestScript({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    required this.url,
+    this.urlElement,
+    this.identifier,
+    this.version,
+    this.versionElement,
+    required this.name,
+    this.nameElement,
+    this.title,
+    this.titleElement,
+    required this.status,
+    this.statusElement,
+    this.experimental,
+    this.experimentalElement,
+    this.date,
+    this.dateElement,
+    this.publisher,
+    this.publisherElement,
+    this.contact,
+    this.description,
+    this.descriptionElement,
+    this.useContext,
+    this.jurisdiction,
+    this.purpose,
+    this.purposeElement,
+    this.copyright,
+    this.copyrightElement,
+    this.origin,
+    this.destination,
+    this.metadata,
+    this.fixture,
+    this.profile,
+    this.variable,
+    this.setup,
+    this.test,
+    this.teardown,
+  }) : super(resourceType: R4ResourceType.TestScript);
+
   final FhirUri url;
   final Element? urlElement;
   final Identifier? identifier;
@@ -41,105 +89,51 @@ class TestScript extends DomainResource {
   final TestScriptSetup? setup;
   final List<TestScriptTest>? test;
   final TestScriptTeardown? teardown;
-
-  TestScript({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    required this.url,
-this.urlElement,
-    this.identifier,
-    this.version,
-this.versionElement,
-    required this.name,
-this.nameElement,
-    this.title,
-this.titleElement,
-    required this.status,
-this.statusElement,
-    this.experimental,
-this.experimentalElement,
-    this.date,
-this.dateElement,
-    this.publisher,
-this.publisherElement,
-    this.contact,
-    this.description,
-this.descriptionElement,
-    this.useContext,
-    this.jurisdiction,
-    this.purpose,
-this.purposeElement,
-    this.copyright,
-this.copyrightElement,
-    this.origin,
-    this.destination,
-    this.metadata,
-    this.fixture,
-    this.profile,
-    this.variable,
-    this.setup,
-    this.test,
-    this.teardown,
-  }) : super(resourceType: R4ResourceType.TestScript);
-
-@override
-TestScript clone() => throw UnimplementedError();
+  @override
+  TestScript clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TestScriptOrigin extends BackboneElement {
-  final FhirInteger index;
-  final Element? indexElement;
-  final Coding profile;
-
   TestScriptOrigin({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.index,
-this.indexElement,
+    this.indexElement,
     required this.profile,
   });
 
-@override
-TestScriptOrigin clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class TestScriptDestination extends BackboneElement {
   final FhirInteger index;
   final Element? indexElement;
   final Coding profile;
+  @override
+  TestScriptOrigin clone() => throw UnimplementedError();
+}
 
+@JsonCodable()
+@Data()
+class TestScriptDestination extends BackboneElement {
   TestScriptDestination({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.index,
-this.indexElement,
+    this.indexElement,
     required this.profile,
   });
 
-@override
-TestScriptDestination clone() => throw UnimplementedError();
+  final FhirInteger index;
+  final Element? indexElement;
+  final Coding profile;
+  @override
+  TestScriptDestination clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TestScriptMetadata extends BackboneElement {
-  final List<TestScriptLink>? link;
-  final List<TestScriptCapability> capability;
-
   TestScriptMetadata({
     super.id,
     super.extension_,
@@ -148,35 +142,56 @@ class TestScriptMetadata extends BackboneElement {
     required this.capability,
   });
 
-@override
-TestScriptMetadata clone() => throw UnimplementedError();
+  final List<TestScriptLink>? link;
+  final List<TestScriptCapability> capability;
+  @override
+  TestScriptMetadata clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TestScriptLink extends BackboneElement {
-  final FhirUri url;
-  final Element? urlElement;
-  final FhirString? description;
-  final Element? descriptionElement;
-
   TestScriptLink({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.url,
-this.urlElement,
+    this.urlElement,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
   });
 
-@override
-TestScriptLink clone() => throw UnimplementedError();
+  final FhirUri url;
+  final Element? urlElement;
+  final FhirString? description;
+  final Element? descriptionElement;
+  @override
+  TestScriptLink clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TestScriptCapability extends BackboneElement {
+  TestScriptCapability({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.required_,
+    this.requiredElement,
+    required this.validated,
+    this.validatedElement,
+    this.description,
+    this.descriptionElement,
+    this.origin,
+    this.originElement,
+    this.destination,
+    this.destinationElement,
+    this.link,
+    this.linkElement,
+    required this.capabilities,
+    this.capabilitiesElement,
+  });
+
   final FhirBoolean required_;
   final Element? requiredElement;
   final FhirBoolean validated;
@@ -191,58 +206,58 @@ class TestScriptCapability extends BackboneElement {
   final List<Element>? linkElement;
   final FhirCanonical capabilities;
   final Element? capabilitiesElement;
-
-  TestScriptCapability({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.required_,
-this.requiredElement,
-    required this.validated,
-this.validatedElement,
-    this.description,
-this.descriptionElement,
-    this.origin,
-this.originElement,
-    this.destination,
-this.destinationElement,
-    this.link,
-this.linkElement,
-    required this.capabilities,
-this.capabilitiesElement,
-  });
-
-@override
-TestScriptCapability clone() => throw UnimplementedError();
+  @override
+  TestScriptCapability clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TestScriptFixture extends BackboneElement {
-  final FhirBoolean autocreate;
-  final Element? autocreateElement;
-  final FhirBoolean autodelete;
-  final Element? autodeleteElement;
-  final Reference? resource;
-
   TestScriptFixture({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.autocreate,
-this.autocreateElement,
+    this.autocreateElement,
     required this.autodelete,
-this.autodeleteElement,
+    this.autodeleteElement,
     this.resource,
   });
 
-@override
-TestScriptFixture clone() => throw UnimplementedError();
+  final FhirBoolean autocreate;
+  final Element? autocreateElement;
+  final FhirBoolean autodelete;
+  final Element? autodeleteElement;
+  final Reference? resource;
+  @override
+  TestScriptFixture clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TestScriptVariable extends BackboneElement {
+  TestScriptVariable({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.name,
+    this.nameElement,
+    this.defaultValue,
+    this.defaultValueElement,
+    this.description,
+    this.descriptionElement,
+    this.expression,
+    this.expressionElement,
+    this.headerField,
+    this.headerFieldElement,
+    this.hint,
+    this.hintElement,
+    this.path,
+    this.pathElement,
+    this.sourceId,
+    this.sourceIdElement,
+  });
+
   final FhirString name;
   final Element? nameElement;
   final FhirString? defaultValue;
@@ -259,38 +274,13 @@ class TestScriptVariable extends BackboneElement {
   final Element? pathElement;
   final FhirId? sourceId;
   final Element? sourceIdElement;
-
-  TestScriptVariable({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.name,
-this.nameElement,
-    this.defaultValue,
-this.defaultValueElement,
-    this.description,
-this.descriptionElement,
-    this.expression,
-this.expressionElement,
-    this.headerField,
-this.headerFieldElement,
-    this.hint,
-this.hintElement,
-    this.path,
-this.pathElement,
-    this.sourceId,
-this.sourceIdElement,
-  });
-
-@override
-TestScriptVariable clone() => throw UnimplementedError();
+  @override
+  TestScriptVariable clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TestScriptSetup extends BackboneElement {
-  final List<TestScriptAction> action;
-
   TestScriptSetup({
     super.id,
     super.extension_,
@@ -298,16 +288,14 @@ class TestScriptSetup extends BackboneElement {
     required this.action,
   });
 
-@override
-TestScriptSetup clone() => throw UnimplementedError();
+  final List<TestScriptAction> action;
+  @override
+  TestScriptSetup clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TestScriptAction extends BackboneElement {
-  final TestScriptOperation? operation;
-  final TestScriptAssert? assert_;
-
   TestScriptAction({
     super.id,
     super.extension_,
@@ -316,13 +304,53 @@ class TestScriptAction extends BackboneElement {
     this.assert_,
   });
 
-@override
-TestScriptAction clone() => throw UnimplementedError();
+  final TestScriptOperation? operation;
+  final TestScriptAssert? assert_;
+  @override
+  TestScriptAction clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TestScriptOperation extends BackboneElement {
+  TestScriptOperation({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    this.type,
+    this.resource,
+    this.resourceElement,
+    this.label,
+    this.labelElement,
+    this.description,
+    this.descriptionElement,
+    this.accept,
+    this.acceptElement,
+    this.contentType,
+    this.contentTypeElement,
+    this.destination,
+    this.destinationElement,
+    required this.encodeRequestUrl,
+    this.encodeRequestUrlElement,
+    this.method,
+    this.methodElement,
+    this.origin,
+    this.originElement,
+    this.params,
+    this.paramsElement,
+    this.requestHeader,
+    this.requestId,
+    this.requestIdElement,
+    this.responseId,
+    this.responseIdElement,
+    this.sourceId,
+    this.sourceIdElement,
+    this.targetId,
+    this.targetIdElement,
+    this.url,
+    this.urlElement,
+  });
+
   final Coding? type;
   final FhirCode? resource;
   final Element? resourceElement;
@@ -355,74 +383,84 @@ class TestScriptOperation extends BackboneElement {
   final Element? targetIdElement;
   final FhirString? url;
   final Element? urlElement;
-
-  TestScriptOperation({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    this.type,
-    this.resource,
-this.resourceElement,
-    this.label,
-this.labelElement,
-    this.description,
-this.descriptionElement,
-    this.accept,
-this.acceptElement,
-    this.contentType,
-this.contentTypeElement,
-    this.destination,
-this.destinationElement,
-    required this.encodeRequestUrl,
-this.encodeRequestUrlElement,
-    this.method,
-this.methodElement,
-    this.origin,
-this.originElement,
-    this.params,
-this.paramsElement,
-    this.requestHeader,
-    this.requestId,
-this.requestIdElement,
-    this.responseId,
-this.responseIdElement,
-    this.sourceId,
-this.sourceIdElement,
-    this.targetId,
-this.targetIdElement,
-    this.url,
-this.urlElement,
-  });
-
-@override
-TestScriptOperation clone() => throw UnimplementedError();
+  @override
+  TestScriptOperation clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TestScriptRequestHeader extends BackboneElement {
-  final FhirString field;
-  final Element? fieldElement;
-  final FhirString value;
-  final Element? valueElement;
-
   TestScriptRequestHeader({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.field,
-this.fieldElement,
+    this.fieldElement,
     required this.value,
-this.valueElement,
+    this.valueElement,
   });
 
-@override
-TestScriptRequestHeader clone() => throw UnimplementedError();
+  final FhirString field;
+  final Element? fieldElement;
+  final FhirString value;
+  final Element? valueElement;
+  @override
+  TestScriptRequestHeader clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TestScriptAssert extends BackboneElement {
+  TestScriptAssert({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    this.label,
+    this.labelElement,
+    this.description,
+    this.descriptionElement,
+    this.direction,
+    this.directionElement,
+    this.compareToSourceId,
+    this.compareToSourceIdElement,
+    this.compareToSourceExpression,
+    this.compareToSourceExpressionElement,
+    this.compareToSourcePath,
+    this.compareToSourcePathElement,
+    this.contentType,
+    this.contentTypeElement,
+    this.expression,
+    this.expressionElement,
+    this.headerField,
+    this.headerFieldElement,
+    this.minimumId,
+    this.minimumIdElement,
+    this.navigationLinks,
+    this.navigationLinksElement,
+    this.operator_,
+    this.operatorElement,
+    this.path,
+    this.pathElement,
+    this.requestMethod,
+    this.requestMethodElement,
+    this.requestURL,
+    this.requestURLElement,
+    this.resource,
+    this.resourceElement,
+    this.response,
+    this.responseElement,
+    this.responseCode,
+    this.responseCodeElement,
+    this.sourceId,
+    this.sourceIdElement,
+    this.validateProfileId,
+    this.validateProfileIdElement,
+    this.value,
+    this.valueElement,
+    required this.warningOnly,
+    this.warningOnlyElement,
+  });
+
   final FhirString? label;
   final Element? labelElement;
   final FhirString? description;
@@ -467,91 +505,36 @@ class TestScriptAssert extends BackboneElement {
   final Element? valueElement;
   final FhirBoolean warningOnly;
   final Element? warningOnlyElement;
-
-  TestScriptAssert({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    this.label,
-this.labelElement,
-    this.description,
-this.descriptionElement,
-    this.direction,
-this.directionElement,
-    this.compareToSourceId,
-this.compareToSourceIdElement,
-    this.compareToSourceExpression,
-this.compareToSourceExpressionElement,
-    this.compareToSourcePath,
-this.compareToSourcePathElement,
-    this.contentType,
-this.contentTypeElement,
-    this.expression,
-this.expressionElement,
-    this.headerField,
-this.headerFieldElement,
-    this.minimumId,
-this.minimumIdElement,
-    this.navigationLinks,
-this.navigationLinksElement,
-    this.operator_,
-this.operatorElement,
-    this.path,
-this.pathElement,
-    this.requestMethod,
-this.requestMethodElement,
-    this.requestURL,
-this.requestURLElement,
-    this.resource,
-this.resourceElement,
-    this.response,
-this.responseElement,
-    this.responseCode,
-this.responseCodeElement,
-    this.sourceId,
-this.sourceIdElement,
-    this.validateProfileId,
-this.validateProfileIdElement,
-    this.value,
-this.valueElement,
-    required this.warningOnly,
-this.warningOnlyElement,
-  });
-
-@override
-TestScriptAssert clone() => throw UnimplementedError();
+  @override
+  TestScriptAssert clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TestScriptTest extends BackboneElement {
-  final FhirString? name;
-  final Element? nameElement;
-  final FhirString? description;
-  final Element? descriptionElement;
-  final List<TestScriptAction> action;
-
   TestScriptTest({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     required this.action,
   });
 
-@override
-TestScriptTest clone() => throw UnimplementedError();
+  final FhirString? name;
+  final Element? nameElement;
+  final FhirString? description;
+  final Element? descriptionElement;
+  final List<TestScriptAction> action;
+  @override
+  TestScriptTest clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TestScriptAction1 extends BackboneElement {
-  final TestScriptOperation? operation;
-  final TestScriptAssert? assert_;
-
   TestScriptAction1({
     super.id,
     super.extension_,
@@ -560,15 +543,15 @@ class TestScriptAction1 extends BackboneElement {
     this.assert_,
   });
 
-@override
-TestScriptAction1 clone() => throw UnimplementedError();
+  final TestScriptOperation? operation;
+  final TestScriptAssert? assert_;
+  @override
+  TestScriptAction1 clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TestScriptTeardown extends BackboneElement {
-  final List<TestScriptAction> action;
-
   TestScriptTeardown({
     super.id,
     super.extension_,
@@ -576,15 +559,14 @@ class TestScriptTeardown extends BackboneElement {
     required this.action,
   });
 
-@override
-TestScriptTeardown clone() => throw UnimplementedError();
+  final List<TestScriptAction> action;
+  @override
+  TestScriptTeardown clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TestScriptAction2 extends BackboneElement {
-  final TestScriptOperation operation;
-
   TestScriptAction2({
     super.id,
     super.extension_,
@@ -592,7 +574,7 @@ class TestScriptAction2 extends BackboneElement {
     required this.operation,
   });
 
-@override
-TestScriptAction2 clone() => throw UnimplementedError();
+  final TestScriptOperation operation;
+  @override
+  TestScriptAction2 clone() => throw UnimplementedError();
 }
-

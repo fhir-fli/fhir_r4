@@ -10,33 +10,43 @@ enum ImmunizationStatusReasonCodes {
   OSTOCK,
   @JsonValue('PATOBJ')
   PATOBJ,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case IMMUNE: return 'IMMUNE';
-        case MEDPREC: return 'MEDPREC';
-        case OSTOCK: return 'OSTOCK';
-        case PATOBJ: return 'PATOBJ';
-      }
-      }
-String toJson() => toString();
-  ImmunizationStatusReasonCodes fromString(String str) {
-    switch(str) {
-      case 'IMMUNE': return ImmunizationStatusReasonCodes.IMMUNE;
-      case 'MEDPREC': return ImmunizationStatusReasonCodes.MEDPREC;
-      case 'OSTOCK': return ImmunizationStatusReasonCodes.OSTOCK;
-      case 'PATOBJ': return ImmunizationStatusReasonCodes.PATOBJ;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case IMMUNE:
+        return 'IMMUNE';
+      case MEDPREC:
+        return 'MEDPREC';
+      case OSTOCK:
+        return 'OSTOCK';
+      case PATOBJ:
+        return 'PATOBJ';
     }
-      }
- ImmunizationStatusReasonCodes fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  ImmunizationStatusReasonCodes fromString(String str) {
+    switch (str) {
+      case 'IMMUNE':
+        return ImmunizationStatusReasonCodes.IMMUNE;
+      case 'MEDPREC':
+        return ImmunizationStatusReasonCodes.MEDPREC;
+      case 'OSTOCK':
+        return ImmunizationStatusReasonCodes.OSTOCK;
+      case 'PATOBJ':
+        return ImmunizationStatusReasonCodes.PATOBJ;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  ImmunizationStatusReasonCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

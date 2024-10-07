@@ -3,12 +3,9 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class CodeableReference extends DataType {
-  final CodeableConcept? concept;
-  final Reference? reference;
-
   CodeableReference({
     super.id,
     super.extension_,
@@ -16,7 +13,8 @@ class CodeableReference extends DataType {
     this.reference,
   });
 
-@override
-CodeableReference clone() => throw UnimplementedError();
+  final CodeableConcept? concept;
+  final Reference? reference;
+  @override
+  CodeableReference clone() => throw UnimplementedError();
 }
-

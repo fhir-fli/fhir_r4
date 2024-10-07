@@ -3,9 +3,59 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class EvidenceVariable extends DomainResource {
+  EvidenceVariable({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.url,
+    this.urlElement,
+    this.identifier,
+    this.version,
+    this.versionElement,
+    this.name,
+    this.nameElement,
+    this.title,
+    this.titleElement,
+    this.shortTitle,
+    this.shortTitleElement,
+    this.subtitle,
+    this.subtitleElement,
+    required this.status,
+    this.statusElement,
+    this.date,
+    this.dateElement,
+    this.description,
+    this.descriptionElement,
+    this.note,
+    this.useContext,
+    this.publisher,
+    this.publisherElement,
+    this.contact,
+    this.author,
+    this.editor,
+    this.reviewer,
+    this.endorser,
+    this.relatedArtifact,
+    this.actual,
+    this.actualElement,
+    this.characteristicCombination,
+    this.characteristicCombinationElement,
+    this.characteristic,
+    this.handling,
+    this.handlingElement,
+    this.category,
+  }) : super(resourceType: R4ResourceType.EvidenceVariable);
+
   final FhirUri? url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -43,64 +93,33 @@ class EvidenceVariable extends DomainResource {
   final FhirCode? handling;
   final Element? handlingElement;
   final List<EvidenceVariableCategory>? category;
-
-  EvidenceVariable({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.url,
-this.urlElement,
-    this.identifier,
-    this.version,
-this.versionElement,
-    this.name,
-this.nameElement,
-    this.title,
-this.titleElement,
-    this.shortTitle,
-this.shortTitleElement,
-    this.subtitle,
-this.subtitleElement,
-    required this.status,
-this.statusElement,
-    this.date,
-this.dateElement,
-    this.description,
-this.descriptionElement,
-    this.note,
-    this.useContext,
-    this.publisher,
-this.publisherElement,
-    this.contact,
-    this.author,
-    this.editor,
-    this.reviewer,
-    this.endorser,
-    this.relatedArtifact,
-    this.actual,
-this.actualElement,
-    this.characteristicCombination,
-this.characteristicCombinationElement,
-    this.characteristic,
-    this.handling,
-this.handlingElement,
-    this.category,
-  }) : super(resourceType: R4ResourceType.EvidenceVariable);
-
-@override
-EvidenceVariable clone() => throw UnimplementedError();
+  @override
+  EvidenceVariable clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class EvidenceVariableCharacteristic extends BackboneElement {
+  EvidenceVariableCharacteristic({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    this.description,
+    this.descriptionElement,
+    required this.definitionReference,
+    required this.definitionCanonical,
+    this.definitionCanonicalElement,
+    required this.definitionCodeableConcept,
+    required this.definitionExpression,
+    this.method,
+    this.device,
+    this.exclude,
+    this.excludeElement,
+    this.timeFromStart,
+    this.groupMeasure,
+    this.groupMeasureElement,
+  });
+
   final FhirString? description;
   final Element? descriptionElement;
   final Reference definitionReference;
@@ -115,76 +134,52 @@ class EvidenceVariableCharacteristic extends BackboneElement {
   final EvidenceVariableTimeFromStart? timeFromStart;
   final FhirCode? groupMeasure;
   final Element? groupMeasureElement;
-
-  EvidenceVariableCharacteristic({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    this.description,
-this.descriptionElement,
-    required this.definitionReference,
-    required this.definitionCanonical,
-this.definitionCanonicalElement,
-    required this.definitionCodeableConcept,
-    required this.definitionExpression,
-    this.method,
-    this.device,
-    this.exclude,
-this.excludeElement,
-    this.timeFromStart,
-    this.groupMeasure,
-this.groupMeasureElement,
-  });
-
-@override
-EvidenceVariableCharacteristic clone() => throw UnimplementedError();
+  @override
+  EvidenceVariableCharacteristic clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class EvidenceVariableTimeFromStart extends BackboneElement {
-  final FhirString? description;
-  final Element? descriptionElement;
-  final Quantity? quantity;
-  final Range? range;
-  final List<Annotation>? note;
-
   EvidenceVariableTimeFromStart({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.quantity,
     this.range,
     this.note,
   });
 
-@override
-EvidenceVariableTimeFromStart clone() => throw UnimplementedError();
+  final FhirString? description;
+  final Element? descriptionElement;
+  final Quantity? quantity;
+  final Range? range;
+  final List<Annotation>? note;
+  @override
+  EvidenceVariableTimeFromStart clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class EvidenceVariableCategory extends BackboneElement {
-  final FhirString? name;
-  final Element? nameElement;
-  final CodeableConcept? valueCodeableConcept;
-  final Quantity? valueQuantity;
-  final Range? valueRange;
-
   EvidenceVariableCategory({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.valueCodeableConcept,
     this.valueQuantity,
     this.valueRange,
   });
 
-@override
-EvidenceVariableCategory clone() => throw UnimplementedError();
+  final FhirString? name;
+  final Element? nameElement;
+  final CodeableConcept? valueCodeableConcept;
+  final Quantity? valueQuantity;
+  final Range? valueRange;
+  @override
+  EvidenceVariableCategory clone() => throw UnimplementedError();
 }
-

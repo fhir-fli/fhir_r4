@@ -3,9 +3,40 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class DetectedIssue extends DomainResource {
+  DetectedIssue({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    required this.status,
+    this.statusElement,
+    this.code,
+    this.severity,
+    this.severityElement,
+    this.patient,
+    this.identifiedDateTime,
+    this.identifiedDateTimeElement,
+    this.identifiedPeriod,
+    this.author,
+    this.implicated,
+    this.evidence,
+    this.detail,
+    this.detailElement,
+    this.reference,
+    this.referenceElement,
+    this.mitigation,
+  }) : super(resourceType: R4ResourceType.DetectedIssue);
+
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -24,48 +55,13 @@ class DetectedIssue extends DomainResource {
   final FhirUri? reference;
   final Element? referenceElement;
   final List<DetectedIssueMitigation>? mitigation;
-
-  DetectedIssue({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    required this.status,
-this.statusElement,
-    this.code,
-    this.severity,
-this.severityElement,
-    this.patient,
-    this.identifiedDateTime,
-this.identifiedDateTimeElement,
-    this.identifiedPeriod,
-    this.author,
-    this.implicated,
-    this.evidence,
-    this.detail,
-this.detailElement,
-    this.reference,
-this.referenceElement,
-    this.mitigation,
-  }) : super(resourceType: R4ResourceType.DetectedIssue);
-
-@override
-DetectedIssue clone() => throw UnimplementedError();
+  @override
+  DetectedIssue clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class DetectedIssueEvidence extends BackboneElement {
-  final List<CodeableConcept>? code;
-  final List<Reference>? detail;
-
   DetectedIssueEvidence({
     super.id,
     super.extension_,
@@ -74,29 +70,29 @@ class DetectedIssueEvidence extends BackboneElement {
     this.detail,
   });
 
-@override
-DetectedIssueEvidence clone() => throw UnimplementedError();
+  final List<CodeableConcept>? code;
+  final List<Reference>? detail;
+  @override
+  DetectedIssueEvidence clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class DetectedIssueMitigation extends BackboneElement {
-  final CodeableConcept action;
-  final FhirDateTime? date;
-  final Element? dateElement;
-  final Reference? author;
-
   DetectedIssueMitigation({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.action,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.author,
   });
 
-@override
-DetectedIssueMitigation clone() => throw UnimplementedError();
+  final CodeableConcept action;
+  final FhirDateTime? date;
+  final Element? dateElement;
+  final Reference? author;
+  @override
+  DetectedIssueMitigation clone() => throw UnimplementedError();
 }
-

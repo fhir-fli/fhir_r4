@@ -3,23 +3,16 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Basic extends DomainResource {
-  final List<Identifier>? identifier;
-  final CodeableConcept code;
-  final Reference? subject;
-  final FhirDate? created;
-  final Element? createdElement;
-  final Reference? author;
-
   Basic({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -28,11 +21,16 @@ super.languageElement,
     required this.code,
     this.subject,
     this.created,
-this.createdElement,
+    this.createdElement,
     this.author,
   }) : super(resourceType: R4ResourceType.Basic);
 
-@override
-Basic clone() => throw UnimplementedError();
+  final List<Identifier>? identifier;
+  final CodeableConcept code;
+  final Reference? subject;
+  final FhirDate? created;
+  final Element? createdElement;
+  final Reference? author;
+  @override
+  Basic clone() => throw UnimplementedError();
 }
-

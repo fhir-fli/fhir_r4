@@ -6,33 +6,40 @@ enum BiologicallyDerivedProductStatus {
   /// Definition: Product is currently available for use.
   @JsonValue('available')
   available,
+
   /// Display: Unavailable
   /// Definition: Product is not currently available for use.
   @JsonValue('unavailable')
   unavailable,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case available: return 'available';
-        case unavailable: return 'unavailable';
-      }
-      }
-String toJson() => toString();
-  BiologicallyDerivedProductStatus fromString(String str) {
-    switch(str) {
-      case 'available': return BiologicallyDerivedProductStatus.available;
-      case 'unavailable': return BiologicallyDerivedProductStatus.unavailable;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case available:
+        return 'available';
+      case unavailable:
+        return 'unavailable';
     }
-      }
- BiologicallyDerivedProductStatus fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  BiologicallyDerivedProductStatus fromString(String str) {
+    switch (str) {
+      case 'available':
+        return BiologicallyDerivedProductStatus.available;
+      case 'unavailable':
+        return BiologicallyDerivedProductStatus.unavailable;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  BiologicallyDerivedProductStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

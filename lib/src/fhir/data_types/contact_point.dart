@@ -3,9 +3,23 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class ContactPoint extends DataType {
+  ContactPoint({
+    super.id,
+    super.extension_,
+    this.system,
+    this.systemElement,
+    this.value,
+    this.valueElement,
+    this.use,
+    this.useElement,
+    this.rank,
+    this.rankElement,
+    this.period,
+  });
+
   final FhirCode? system;
   final Element? systemElement;
   final FhirString? value;
@@ -15,22 +29,6 @@ class ContactPoint extends DataType {
   final FhirPositiveInt? rank;
   final Element? rankElement;
   final Period? period;
-
-  ContactPoint({
-    super.id,
-    super.extension_,
-    this.system,
-this.systemElement,
-    this.value,
-this.valueElement,
-    this.use,
-this.useElement,
-    this.rank,
-this.rankElement,
-    this.period,
-  });
-
-@override
-ContactPoint clone() => throw UnimplementedError();
+  @override
+  ContactPoint clone() => throw UnimplementedError();
 }
-

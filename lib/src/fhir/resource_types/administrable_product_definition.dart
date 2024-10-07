@@ -3,35 +3,23 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class AdministrableProductDefinition extends DomainResource {
-  final List<Identifier>? identifier;
-  final FhirCode status;
-  final Element? statusElement;
-  final List<Reference>? formOf;
-  final CodeableConcept? administrableDoseForm;
-  final CodeableConcept? unitOfPresentation;
-  final List<Reference>? producedFrom;
-  final List<CodeableConcept>? ingredient;
-  final Reference? device;
-  final List<AdministrableProductDefinitionProperty>? property;
-  final List<AdministrableProductDefinitionRouteOfAdministration> routeOfAdministration;
-
   AdministrableProductDefinition({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.formOf,
     this.administrableDoseForm,
     this.unitOfPresentation,
@@ -42,13 +30,40 @@ this.statusElement,
     required this.routeOfAdministration,
   }) : super(resourceType: R4ResourceType.AdministrableProductDefinition);
 
-@override
-AdministrableProductDefinition clone() => throw UnimplementedError();
+  final List<Identifier>? identifier;
+  final FhirCode status;
+  final Element? statusElement;
+  final List<Reference>? formOf;
+  final CodeableConcept? administrableDoseForm;
+  final CodeableConcept? unitOfPresentation;
+  final List<Reference>? producedFrom;
+  final List<CodeableConcept>? ingredient;
+  final Reference? device;
+  final List<AdministrableProductDefinitionProperty>? property;
+  final List<AdministrableProductDefinitionRouteOfAdministration>
+      routeOfAdministration;
+  @override
+  AdministrableProductDefinition clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class AdministrableProductDefinitionProperty extends BackboneElement {
+  AdministrableProductDefinitionProperty({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.type,
+    this.valueCodeableConcept,
+    this.valueQuantity,
+    this.valueDate,
+    this.valueDateElement,
+    this.valueBoolean,
+    this.valueBooleanElement,
+    this.valueAttachment,
+    this.status,
+  });
+
   final CodeableConcept type;
   final CodeableConcept? valueCodeableConcept;
   final Quantity? valueQuantity;
@@ -58,37 +73,14 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
   final Element? valueBooleanElement;
   final Attachment? valueAttachment;
   final CodeableConcept? status;
-
-  AdministrableProductDefinitionProperty({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.type,
-    this.valueCodeableConcept,
-    this.valueQuantity,
-    this.valueDate,
-this.valueDateElement,
-    this.valueBoolean,
-this.valueBooleanElement,
-    this.valueAttachment,
-    this.status,
-  });
-
-@override
-AdministrableProductDefinitionProperty clone() => throw UnimplementedError();
+  @override
+  AdministrableProductDefinitionProperty clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
-class AdministrableProductDefinitionRouteOfAdministration extends BackboneElement {
-  final CodeableConcept code;
-  final Quantity? firstDose;
-  final Quantity? maxSingleDose;
-  final Quantity? maxDosePerDay;
-  final Ratio? maxDosePerTreatmentPeriod;
-  final FhirDuration? maxTreatmentPeriod;
-  final List<AdministrableProductDefinitionTargetSpecies>? targetSpecies;
-
+@Data()
+class AdministrableProductDefinitionRouteOfAdministration
+    extends BackboneElement {
   AdministrableProductDefinitionRouteOfAdministration({
     super.id,
     super.extension_,
@@ -102,16 +94,21 @@ class AdministrableProductDefinitionRouteOfAdministration extends BackboneElemen
     this.targetSpecies,
   });
 
-@override
-AdministrableProductDefinitionRouteOfAdministration clone() => throw UnimplementedError();
+  final CodeableConcept code;
+  final Quantity? firstDose;
+  final Quantity? maxSingleDose;
+  final Quantity? maxDosePerDay;
+  final Ratio? maxDosePerTreatmentPeriod;
+  final FhirDuration? maxTreatmentPeriod;
+  final List<AdministrableProductDefinitionTargetSpecies>? targetSpecies;
+  @override
+  AdministrableProductDefinitionRouteOfAdministration clone() =>
+      throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
-  final CodeableConcept code;
-  final List<AdministrableProductDefinitionWithdrawalPeriod>? withdrawalPeriod;
-
   AdministrableProductDefinitionTargetSpecies({
     super.id,
     super.extension_,
@@ -120,18 +117,16 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
     this.withdrawalPeriod,
   });
 
-@override
-AdministrableProductDefinitionTargetSpecies clone() => throw UnimplementedError();
+  final CodeableConcept code;
+  final List<AdministrableProductDefinitionWithdrawalPeriod>? withdrawalPeriod;
+  @override
+  AdministrableProductDefinitionTargetSpecies clone() =>
+      throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
-  final CodeableConcept tissue;
-  final Quantity value;
-  final FhirString? supportingInformation;
-  final Element? supportingInformationElement;
-
   AdministrableProductDefinitionWithdrawalPeriod({
     super.id,
     super.extension_,
@@ -139,10 +134,14 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
     required this.tissue,
     required this.value,
     this.supportingInformation,
-this.supportingInformationElement,
+    this.supportingInformationElement,
   });
 
-@override
-AdministrableProductDefinitionWithdrawalPeriod clone() => throw UnimplementedError();
+  final CodeableConcept tissue;
+  final Quantity value;
+  final FhirString? supportingInformation;
+  final Element? supportingInformationElement;
+  @override
+  AdministrableProductDefinitionWithdrawalPeriod clone() =>
+      throw UnimplementedError();
 }
-

@@ -3,16 +3,9 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class MarketingStatus extends BackboneType {
-  final CodeableConcept? country;
-  final CodeableConcept? jurisdiction;
-  final CodeableConcept status;
-  final Period? dateRange;
-  final FhirDateTime? restoreDate;
-  final Element? restoreDateElement;
-
   MarketingStatus({
     super.id,
     super.extension_,
@@ -22,10 +15,15 @@ class MarketingStatus extends BackboneType {
     required this.status,
     this.dateRange,
     this.restoreDate,
-this.restoreDateElement,
+    this.restoreDateElement,
   });
 
-@override
-MarketingStatus clone() => throw UnimplementedError();
+  final CodeableConcept? country;
+  final CodeableConcept? jurisdiction;
+  final CodeableConcept status;
+  final Period? dateRange;
+  final FhirDateTime? restoreDate;
+  final Element? restoreDateElement;
+  @override
+  MarketingStatus clone() => throw UnimplementedError();
 }
-

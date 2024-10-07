@@ -3,9 +3,30 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Attachment extends DataType {
+  Attachment({
+    super.id,
+    super.extension_,
+    this.contentType,
+    this.contentTypeElement,
+    this.language,
+    this.languageElement,
+    this.data,
+    this.dataElement,
+    this.url,
+    this.urlElement,
+    this.size,
+    this.sizeElement,
+    this.hash,
+    this.hashElement,
+    this.title,
+    this.titleElement,
+    this.creation,
+    this.creationElement,
+  });
+
   final FhirCode? contentType;
   final Element? contentTypeElement;
   final FhirCode? language;
@@ -22,29 +43,6 @@ class Attachment extends DataType {
   final Element? titleElement;
   final FhirDateTime? creation;
   final Element? creationElement;
-
-  Attachment({
-    super.id,
-    super.extension_,
-    this.contentType,
-this.contentTypeElement,
-    this.language,
-this.languageElement,
-    this.data,
-this.dataElement,
-    this.url,
-this.urlElement,
-    this.size,
-this.sizeElement,
-    this.hash,
-this.hashElement,
-    this.title,
-this.titleElement,
-    this.creation,
-this.creationElement,
-  });
-
-@override
-Attachment clone() => throw UnimplementedError();
+  @override
+  Attachment clone() => throw UnimplementedError();
 }
-

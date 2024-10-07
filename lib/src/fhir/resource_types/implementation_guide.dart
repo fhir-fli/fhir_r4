@@ -3,9 +3,55 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class ImplementationGuide extends DomainResource {
+  ImplementationGuide({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    required this.url,
+    this.urlElement,
+    this.version,
+    this.versionElement,
+    required this.name,
+    this.nameElement,
+    this.title,
+    this.titleElement,
+    required this.status,
+    this.statusElement,
+    this.experimental,
+    this.experimentalElement,
+    this.date,
+    this.dateElement,
+    this.publisher,
+    this.publisherElement,
+    this.contact,
+    this.description,
+    this.descriptionElement,
+    this.useContext,
+    this.jurisdiction,
+    this.copyright,
+    this.copyrightElement,
+    required this.packageId,
+    this.packageIdElement,
+    this.license,
+    this.licenseElement,
+    required this.fhirVersion,
+    this.fhirVersionElement,
+    this.dependsOn,
+    this.global,
+    this.definition,
+    this.manifest,
+  }) : super(resourceType: R4ResourceType.ImplementationGuide);
+
   final FhirUri url;
   final Element? urlElement;
   final FhirString? version;
@@ -39,114 +85,59 @@ class ImplementationGuide extends DomainResource {
   final List<ImplementationGuideGlobal>? global;
   final ImplementationGuideDefinition? definition;
   final ImplementationGuideManifest? manifest;
-
-  ImplementationGuide({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    required this.url,
-this.urlElement,
-    this.version,
-this.versionElement,
-    required this.name,
-this.nameElement,
-    this.title,
-this.titleElement,
-    required this.status,
-this.statusElement,
-    this.experimental,
-this.experimentalElement,
-    this.date,
-this.dateElement,
-    this.publisher,
-this.publisherElement,
-    this.contact,
-    this.description,
-this.descriptionElement,
-    this.useContext,
-    this.jurisdiction,
-    this.copyright,
-this.copyrightElement,
-    required this.packageId,
-this.packageIdElement,
-    this.license,
-this.licenseElement,
-    required this.fhirVersion,
-this.fhirVersionElement,
-    this.dependsOn,
-    this.global,
-    this.definition,
-    this.manifest,
-  }) : super(resourceType: R4ResourceType.ImplementationGuide);
-
-@override
-ImplementationGuide clone() => throw UnimplementedError();
+  @override
+  ImplementationGuide clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ImplementationGuideDependsOn extends BackboneElement {
+  ImplementationGuideDependsOn({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.uri,
+    this.uriElement,
+    this.packageId,
+    this.packageIdElement,
+    this.version,
+    this.versionElement,
+  });
+
   final FhirCanonical uri;
   final Element? uriElement;
   final FhirId? packageId;
   final Element? packageIdElement;
   final FhirString? version;
   final Element? versionElement;
-
-  ImplementationGuideDependsOn({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.uri,
-this.uriElement,
-    this.packageId,
-this.packageIdElement,
-    this.version,
-this.versionElement,
-  });
-
-@override
-ImplementationGuideDependsOn clone() => throw UnimplementedError();
+  @override
+  ImplementationGuideDependsOn clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ImplementationGuideGlobal extends BackboneElement {
-  final FhirCode type;
-  final Element? typeElement;
-  final FhirCanonical profile;
-  final Element? profileElement;
-
   ImplementationGuideGlobal({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.type,
-this.typeElement,
+    this.typeElement,
     required this.profile,
-this.profileElement,
+    this.profileElement,
   });
 
-@override
-ImplementationGuideGlobal clone() => throw UnimplementedError();
+  final FhirCode type;
+  final Element? typeElement;
+  final FhirCanonical profile;
+  final Element? profileElement;
+  @override
+  ImplementationGuideGlobal clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ImplementationGuideDefinition extends BackboneElement {
-  final List<ImplementationGuideGrouping>? grouping;
-  final List<ImplementationGuideResource> resource;
-  final ImplementationGuidePage? page;
-  final List<ImplementationGuideParameter>? parameter;
-  final List<ImplementationGuideTemplate>? template;
-
   ImplementationGuideDefinition({
     super.id,
     super.extension_,
@@ -158,35 +149,58 @@ class ImplementationGuideDefinition extends BackboneElement {
     this.template,
   });
 
-@override
-ImplementationGuideDefinition clone() => throw UnimplementedError();
+  final List<ImplementationGuideGrouping>? grouping;
+  final List<ImplementationGuideResource> resource;
+  final ImplementationGuidePage? page;
+  final List<ImplementationGuideParameter>? parameter;
+  final List<ImplementationGuideTemplate>? template;
+  @override
+  ImplementationGuideDefinition clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ImplementationGuideGrouping extends BackboneElement {
-  final FhirString name;
-  final Element? nameElement;
-  final FhirString? description;
-  final Element? descriptionElement;
-
   ImplementationGuideGrouping({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.name,
-this.nameElement,
+    this.nameElement,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
   });
 
-@override
-ImplementationGuideGrouping clone() => throw UnimplementedError();
+  final FhirString name;
+  final Element? nameElement;
+  final FhirString? description;
+  final Element? descriptionElement;
+  @override
+  ImplementationGuideGrouping clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ImplementationGuideResource extends BackboneElement {
+  ImplementationGuideResource({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.reference,
+    this.fhirVersion,
+    this.fhirVersionElement,
+    this.name,
+    this.nameElement,
+    this.description,
+    this.descriptionElement,
+    this.exampleBoolean,
+    this.exampleBooleanElement,
+    this.exampleCanonical,
+    this.exampleCanonicalElement,
+    this.groupingId,
+    this.groupingIdElement,
+  });
+
   final Reference reference;
   final List<FhirCode>? fhirVersion;
   final List<Element>? fhirVersionElement;
@@ -200,33 +214,27 @@ class ImplementationGuideResource extends BackboneElement {
   final Element? exampleCanonicalElement;
   final FhirId? groupingId;
   final Element? groupingIdElement;
+  @override
+  ImplementationGuideResource clone() => throw UnimplementedError();
+}
 
-  ImplementationGuideResource({
+@JsonCodable()
+@Data()
+class ImplementationGuidePage extends BackboneElement {
+  ImplementationGuidePage({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.reference,
-    this.fhirVersion,
-this.fhirVersionElement,
-    this.name,
-this.nameElement,
-    this.description,
-this.descriptionElement,
-    this.exampleBoolean,
-this.exampleBooleanElement,
-    this.exampleCanonical,
-this.exampleCanonicalElement,
-    this.groupingId,
-this.groupingIdElement,
+    required this.nameUrl,
+    this.nameUrlElement,
+    required this.nameReference,
+    required this.title,
+    this.titleElement,
+    required this.generation,
+    this.generationElement,
+    this.page,
   });
 
-@override
-ImplementationGuideResource clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class ImplementationGuidePage extends BackboneElement {
   final FhirUrl nameUrl;
   final Element? nameUrlElement;
   final Reference nameReference;
@@ -235,76 +243,73 @@ class ImplementationGuidePage extends BackboneElement {
   final FhirCode generation;
   final Element? generationElement;
   final List<ImplementationGuidePage>? page;
-
-  ImplementationGuidePage({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.nameUrl,
-this.nameUrlElement,
-    required this.nameReference,
-    required this.title,
-this.titleElement,
-    required this.generation,
-this.generationElement,
-    this.page,
-  });
-
-@override
-ImplementationGuidePage clone() => throw UnimplementedError();
+  @override
+  ImplementationGuidePage clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ImplementationGuideParameter extends BackboneElement {
-  final FhirCode code;
-  final Element? codeElement;
-  final FhirString value;
-  final Element? valueElement;
-
   ImplementationGuideParameter({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.code,
-this.codeElement,
+    this.codeElement,
     required this.value,
-this.valueElement,
+    this.valueElement,
   });
 
-@override
-ImplementationGuideParameter clone() => throw UnimplementedError();
+  final FhirCode code;
+  final Element? codeElement;
+  final FhirString value;
+  final Element? valueElement;
+  @override
+  ImplementationGuideParameter clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ImplementationGuideTemplate extends BackboneElement {
+  ImplementationGuideTemplate({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.code,
+    this.codeElement,
+    required this.source,
+    this.sourceElement,
+    this.scope,
+    this.scopeElement,
+  });
+
   final FhirCode code;
   final Element? codeElement;
   final FhirString source;
   final Element? sourceElement;
   final FhirString? scope;
   final Element? scopeElement;
+  @override
+  ImplementationGuideTemplate clone() => throw UnimplementedError();
+}
 
-  ImplementationGuideTemplate({
+@JsonCodable()
+@Data()
+class ImplementationGuideManifest extends BackboneElement {
+  ImplementationGuideManifest({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.code,
-this.codeElement,
-    required this.source,
-this.sourceElement,
-    this.scope,
-this.scopeElement,
+    this.rendering,
+    this.renderingElement,
+    required this.resource,
+    this.page,
+    this.image,
+    this.imageElement,
+    this.other,
+    this.otherElement,
   });
 
-@override
-ImplementationGuideTemplate clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class ImplementationGuideManifest extends BackboneElement {
   final FhirUrl? rendering;
   final Element? renderingElement;
   final List<ImplementationGuideResource> resource;
@@ -313,28 +318,26 @@ class ImplementationGuideManifest extends BackboneElement {
   final List<Element>? imageElement;
   final List<FhirString>? other;
   final List<Element>? otherElement;
+  @override
+  ImplementationGuideManifest clone() => throw UnimplementedError();
+}
 
-  ImplementationGuideManifest({
+@JsonCodable()
+@Data()
+class ImplementationGuideResource1 extends BackboneElement {
+  ImplementationGuideResource1({
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.rendering,
-this.renderingElement,
-    required this.resource,
-    this.page,
-    this.image,
-this.imageElement,
-    this.other,
-this.otherElement,
+    required this.reference,
+    this.exampleBoolean,
+    this.exampleBooleanElement,
+    this.exampleCanonical,
+    this.exampleCanonicalElement,
+    this.relativePath,
+    this.relativePathElement,
   });
 
-@override
-ImplementationGuideManifest clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class ImplementationGuideResource1 extends BackboneElement {
   final Reference reference;
   final FhirBoolean? exampleBoolean;
   final Element? exampleBooleanElement;
@@ -342,47 +345,31 @@ class ImplementationGuideResource1 extends BackboneElement {
   final Element? exampleCanonicalElement;
   final FhirUrl? relativePath;
   final Element? relativePathElement;
+  @override
+  ImplementationGuideResource1 clone() => throw UnimplementedError();
+}
 
-  ImplementationGuideResource1({
+@JsonCodable()
+@Data()
+class ImplementationGuidePage1 extends BackboneElement {
+  ImplementationGuidePage1({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.reference,
-    this.exampleBoolean,
-this.exampleBooleanElement,
-    this.exampleCanonical,
-this.exampleCanonicalElement,
-    this.relativePath,
-this.relativePathElement,
+    required this.name,
+    this.nameElement,
+    this.title,
+    this.titleElement,
+    this.anchor,
+    this.anchorElement,
   });
 
-@override
-ImplementationGuideResource1 clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class ImplementationGuidePage1 extends BackboneElement {
   final FhirString name;
   final Element? nameElement;
   final FhirString? title;
   final Element? titleElement;
   final List<FhirString>? anchor;
   final List<Element>? anchorElement;
-
-  ImplementationGuidePage1({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.name,
-this.nameElement,
-    this.title,
-this.titleElement,
-    this.anchor,
-this.anchorElement,
-  });
-
-@override
-ImplementationGuidePage1 clone() => throw UnimplementedError();
+  @override
+  ImplementationGuidePage1 clone() => throw UnimplementedError();
 }
-

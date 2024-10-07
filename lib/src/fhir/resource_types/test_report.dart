@@ -3,9 +3,40 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class TestReport extends DomainResource {
+  TestReport({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.name,
+    this.nameElement,
+    required this.status,
+    this.statusElement,
+    required this.testScript,
+    required this.result,
+    this.resultElement,
+    this.score,
+    this.scoreElement,
+    this.tester,
+    this.testerElement,
+    this.issued,
+    this.issuedElement,
+    this.participant,
+    this.setup,
+    this.test,
+    this.teardown,
+  }) : super(resourceType: R4ResourceType.TestReport);
+
   final Identifier? identifier;
   final FhirString? name;
   final Element? nameElement;
@@ -24,73 +55,38 @@ class TestReport extends DomainResource {
   final TestReportSetup? setup;
   final List<TestReportTest>? test;
   final TestReportTeardown? teardown;
-
-  TestReport({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.name,
-this.nameElement,
-    required this.status,
-this.statusElement,
-    required this.testScript,
-    required this.result,
-this.resultElement,
-    this.score,
-this.scoreElement,
-    this.tester,
-this.testerElement,
-    this.issued,
-this.issuedElement,
-    this.participant,
-    this.setup,
-    this.test,
-    this.teardown,
-  }) : super(resourceType: R4ResourceType.TestReport);
-
-@override
-TestReport clone() => throw UnimplementedError();
+  @override
+  TestReport clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TestReportParticipant extends BackboneElement {
+  TestReportParticipant({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.type,
+    this.typeElement,
+    required this.uri,
+    this.uriElement,
+    this.display,
+    this.displayElement,
+  });
+
   final FhirCode type;
   final Element? typeElement;
   final FhirUri uri;
   final Element? uriElement;
   final FhirString? display;
   final Element? displayElement;
-
-  TestReportParticipant({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.type,
-this.typeElement,
-    required this.uri,
-this.uriElement,
-    this.display,
-this.displayElement,
-  });
-
-@override
-TestReportParticipant clone() => throw UnimplementedError();
+  @override
+  TestReportParticipant clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TestReportSetup extends BackboneElement {
-  final List<TestReportAction> action;
-
   TestReportSetup({
     super.id,
     super.extension_,
@@ -98,16 +94,14 @@ class TestReportSetup extends BackboneElement {
     required this.action,
   });
 
-@override
-TestReportSetup clone() => throw UnimplementedError();
+  final List<TestReportAction> action;
+  @override
+  TestReportSetup clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TestReportAction extends BackboneElement {
-  final TestReportOperation? operation;
-  final TestReportAssert? assert_;
-
   TestReportAction({
     super.id,
     super.extension_,
@@ -116,92 +110,88 @@ class TestReportAction extends BackboneElement {
     this.assert_,
   });
 
-@override
-TestReportAction clone() => throw UnimplementedError();
+  final TestReportOperation? operation;
+  final TestReportAssert? assert_;
+  @override
+  TestReportAction clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TestReportOperation extends BackboneElement {
+  TestReportOperation({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.result,
+    this.resultElement,
+    this.message,
+    this.messageElement,
+    this.detail,
+    this.detailElement,
+  });
+
   final FhirCode result;
   final Element? resultElement;
   final FhirMarkdown? message;
   final Element? messageElement;
   final FhirUri? detail;
   final Element? detailElement;
+  @override
+  TestReportOperation clone() => throw UnimplementedError();
+}
 
-  TestReportOperation({
+@JsonCodable()
+@Data()
+class TestReportAssert extends BackboneElement {
+  TestReportAssert({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.result,
-this.resultElement,
+    this.resultElement,
     this.message,
-this.messageElement,
+    this.messageElement,
     this.detail,
-this.detailElement,
+    this.detailElement,
   });
 
-@override
-TestReportOperation clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class TestReportAssert extends BackboneElement {
   final FhirCode result;
   final Element? resultElement;
   final FhirMarkdown? message;
   final Element? messageElement;
   final FhirString? detail;
   final Element? detailElement;
-
-  TestReportAssert({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.result,
-this.resultElement,
-    this.message,
-this.messageElement,
-    this.detail,
-this.detailElement,
-  });
-
-@override
-TestReportAssert clone() => throw UnimplementedError();
+  @override
+  TestReportAssert clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TestReportTest extends BackboneElement {
-  final FhirString? name;
-  final Element? nameElement;
-  final FhirString? description;
-  final Element? descriptionElement;
-  final List<TestReportAction> action;
-
   TestReportTest({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     required this.action,
   });
 
-@override
-TestReportTest clone() => throw UnimplementedError();
+  final FhirString? name;
+  final Element? nameElement;
+  final FhirString? description;
+  final Element? descriptionElement;
+  final List<TestReportAction> action;
+  @override
+  TestReportTest clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TestReportAction1 extends BackboneElement {
-  final TestReportOperation? operation;
-  final TestReportAssert? assert_;
-
   TestReportAction1({
     super.id,
     super.extension_,
@@ -210,15 +200,15 @@ class TestReportAction1 extends BackboneElement {
     this.assert_,
   });
 
-@override
-TestReportAction1 clone() => throw UnimplementedError();
+  final TestReportOperation? operation;
+  final TestReportAssert? assert_;
+  @override
+  TestReportAction1 clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TestReportTeardown extends BackboneElement {
-  final List<TestReportAction> action;
-
   TestReportTeardown({
     super.id,
     super.extension_,
@@ -226,15 +216,14 @@ class TestReportTeardown extends BackboneElement {
     required this.action,
   });
 
-@override
-TestReportTeardown clone() => throw UnimplementedError();
+  final List<TestReportAction> action;
+  @override
+  TestReportTeardown clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class TestReportAction2 extends BackboneElement {
-  final TestReportOperation operation;
-
   TestReportAction2({
     super.id,
     super.extension_,
@@ -242,7 +231,7 @@ class TestReportAction2 extends BackboneElement {
     required this.operation,
   });
 
-@override
-TestReportAction2 clone() => throw UnimplementedError();
+  final TestReportOperation operation;
+  @override
+  TestReportAction2 clone() => throw UnimplementedError();
 }
-

@@ -3,9 +3,38 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class PractitionerRole extends DomainResource {
+  PractitionerRole({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.active,
+    this.activeElement,
+    this.period,
+    this.practitioner,
+    this.organization,
+    this.code,
+    this.specialty,
+    this.location,
+    this.healthcareService,
+    this.telecom,
+    this.availableTime,
+    this.notAvailable,
+    this.availabilityExceptions,
+    this.availabilityExceptionsElement,
+    this.endpoint,
+  }) : super(resourceType: R4ResourceType.PractitionerRole);
+
   final List<Identifier>? identifier;
   final FhirBoolean? active;
   final Element? activeElement;
@@ -22,43 +51,27 @@ class PractitionerRole extends DomainResource {
   final FhirString? availabilityExceptions;
   final Element? availabilityExceptionsElement;
   final List<Reference>? endpoint;
-
-  PractitionerRole({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.active,
-this.activeElement,
-    this.period,
-    this.practitioner,
-    this.organization,
-    this.code,
-    this.specialty,
-    this.location,
-    this.healthcareService,
-    this.telecom,
-    this.availableTime,
-    this.notAvailable,
-    this.availabilityExceptions,
-this.availabilityExceptionsElement,
-    this.endpoint,
-  }) : super(resourceType: R4ResourceType.PractitionerRole);
-
-@override
-PractitionerRole clone() => throw UnimplementedError();
+  @override
+  PractitionerRole clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class PractitionerRoleAvailableTime extends BackboneElement {
+  PractitionerRoleAvailableTime({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    this.daysOfWeek,
+    this.daysOfWeekElement,
+    this.allDay,
+    this.allDayElement,
+    this.availableStartTime,
+    this.availableStartTimeElement,
+    this.availableEndTime,
+    this.availableEndTimeElement,
+  });
+
   final List<FhirCode>? daysOfWeek;
   final List<Element>? daysOfWeekElement;
   final FhirBoolean? allDay;
@@ -67,42 +80,25 @@ class PractitionerRoleAvailableTime extends BackboneElement {
   final Element? availableStartTimeElement;
   final FhirTime? availableEndTime;
   final Element? availableEndTimeElement;
-
-  PractitionerRoleAvailableTime({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    this.daysOfWeek,
-this.daysOfWeekElement,
-    this.allDay,
-this.allDayElement,
-    this.availableStartTime,
-this.availableStartTimeElement,
-    this.availableEndTime,
-this.availableEndTimeElement,
-  });
-
-@override
-PractitionerRoleAvailableTime clone() => throw UnimplementedError();
+  @override
+  PractitionerRoleAvailableTime clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class PractitionerRoleNotAvailable extends BackboneElement {
-  final FhirString description;
-  final Element? descriptionElement;
-  final Period? during;
-
   PractitionerRoleNotAvailable({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.during,
   });
 
-@override
-PractitionerRoleNotAvailable clone() => throw UnimplementedError();
+  final FhirString description;
+  final Element? descriptionElement;
+  final Period? during;
+  @override
+  PractitionerRoleNotAvailable clone() => throw UnimplementedError();
 }
-

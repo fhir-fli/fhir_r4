@@ -3,9 +3,24 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Quantity extends DataType {
+  Quantity({
+    super.id,
+    super.extension_,
+    this.value,
+    this.valueElement,
+    this.comparator,
+    this.comparatorElement,
+    this.unit,
+    this.unitElement,
+    this.system,
+    this.systemElement,
+    this.code,
+    this.codeElement,
+  });
+
   final FhirDecimal? value;
   final Element? valueElement;
   final FhirCode? comparator;
@@ -16,23 +31,6 @@ class Quantity extends DataType {
   final Element? systemElement;
   final FhirCode? code;
   final Element? codeElement;
-
-  Quantity({
-    super.id,
-    super.extension_,
-    this.value,
-this.valueElement,
-    this.comparator,
-this.comparatorElement,
-    this.unit,
-this.unitElement,
-    this.system,
-this.systemElement,
-    this.code,
-this.codeElement,
-  });
-
-@override
-Quantity clone() => throw UnimplementedError();
+  @override
+  Quantity clone() => throw UnimplementedError();
 }
-

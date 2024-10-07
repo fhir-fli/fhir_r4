@@ -3,9 +3,59 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Procedure extends DomainResource {
+  Procedure({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.instantiatesCanonical,
+    this.instantiatesCanonicalElement,
+    this.instantiatesUri,
+    this.instantiatesUriElement,
+    this.basedOn,
+    this.partOf,
+    required this.status,
+    this.statusElement,
+    this.statusReason,
+    this.category,
+    this.code,
+    required this.subject,
+    this.encounter,
+    this.performedDateTime,
+    this.performedDateTimeElement,
+    this.performedPeriod,
+    this.performedString,
+    this.performedStringElement,
+    this.performedAge,
+    this.performedRange,
+    this.recorder,
+    this.asserter,
+    this.performer,
+    this.location,
+    this.reasonCode,
+    this.reasonReference,
+    this.bodySite,
+    this.outcome,
+    this.report,
+    this.complication,
+    this.complicationDetail,
+    this.followUp,
+    this.note,
+    this.focalDevice,
+    this.usedReference,
+    this.usedCode,
+  }) : super(resourceType: R4ResourceType.Procedure);
+
   final List<Identifier>? identifier;
   final List<FhirCanonical>? instantiatesCanonical;
   final List<Element>? instantiatesCanonicalElement;
@@ -43,68 +93,13 @@ class Procedure extends DomainResource {
   final List<ProcedureFocalDevice>? focalDevice;
   final List<Reference>? usedReference;
   final List<CodeableConcept>? usedCode;
-
-  Procedure({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.instantiatesCanonical,
-this.instantiatesCanonicalElement,
-    this.instantiatesUri,
-this.instantiatesUriElement,
-    this.basedOn,
-    this.partOf,
-    required this.status,
-this.statusElement,
-    this.statusReason,
-    this.category,
-    this.code,
-    required this.subject,
-    this.encounter,
-    this.performedDateTime,
-this.performedDateTimeElement,
-    this.performedPeriod,
-    this.performedString,
-this.performedStringElement,
-    this.performedAge,
-    this.performedRange,
-    this.recorder,
-    this.asserter,
-    this.performer,
-    this.location,
-    this.reasonCode,
-    this.reasonReference,
-    this.bodySite,
-    this.outcome,
-    this.report,
-    this.complication,
-    this.complicationDetail,
-    this.followUp,
-    this.note,
-    this.focalDevice,
-    this.usedReference,
-    this.usedCode,
-  }) : super(resourceType: R4ResourceType.Procedure);
-
-@override
-Procedure clone() => throw UnimplementedError();
+  @override
+  Procedure clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ProcedurePerformer extends BackboneElement {
-  final CodeableConcept? function_;
-  final Reference actor;
-  final Reference? onBehalfOf;
-
   ProcedurePerformer({
     super.id,
     super.extension_,
@@ -114,16 +109,16 @@ class ProcedurePerformer extends BackboneElement {
     this.onBehalfOf,
   });
 
-@override
-ProcedurePerformer clone() => throw UnimplementedError();
+  final CodeableConcept? function_;
+  final Reference actor;
+  final Reference? onBehalfOf;
+  @override
+  ProcedurePerformer clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ProcedureFocalDevice extends BackboneElement {
-  final CodeableConcept? action;
-  final Reference manipulated;
-
   ProcedureFocalDevice({
     super.id,
     super.extension_,
@@ -132,7 +127,8 @@ class ProcedureFocalDevice extends BackboneElement {
     required this.manipulated,
   });
 
-@override
-ProcedureFocalDevice clone() => throw UnimplementedError();
+  final CodeableConcept? action;
+  final Reference manipulated;
+  @override
+  ProcedureFocalDevice clone() => throw UnimplementedError();
 }
-

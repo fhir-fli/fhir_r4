@@ -3,9 +3,49 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class AllergyIntolerance extends DomainResource {
+  AllergyIntolerance({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.clinicalStatus,
+    this.verificationStatus,
+    this.type,
+    this.typeElement,
+    this.category,
+    this.categoryElement,
+    this.criticality,
+    this.criticalityElement,
+    this.code,
+    required this.patient,
+    this.encounter,
+    this.onsetDateTime,
+    this.onsetDateTimeElement,
+    this.onsetAge,
+    this.onsetPeriod,
+    this.onsetRange,
+    this.onsetString,
+    this.onsetStringElement,
+    this.recordedDate,
+    this.recordedDateElement,
+    this.recorder,
+    this.asserter,
+    this.lastOccurrence,
+    this.lastOccurrenceElement,
+    this.note,
+    this.reaction,
+  }) : super(resourceType: R4ResourceType.AllergyIntolerance);
+
   final List<Identifier>? identifier;
   final CodeableConcept? clinicalStatus;
   final CodeableConcept? verificationStatus;
@@ -33,54 +73,29 @@ class AllergyIntolerance extends DomainResource {
   final Element? lastOccurrenceElement;
   final List<Annotation>? note;
   final List<AllergyIntoleranceReaction>? reaction;
-
-  AllergyIntolerance({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.clinicalStatus,
-    this.verificationStatus,
-    this.type,
-this.typeElement,
-    this.category,
-this.categoryElement,
-    this.criticality,
-this.criticalityElement,
-    this.code,
-    required this.patient,
-    this.encounter,
-    this.onsetDateTime,
-this.onsetDateTimeElement,
-    this.onsetAge,
-    this.onsetPeriod,
-    this.onsetRange,
-    this.onsetString,
-this.onsetStringElement,
-    this.recordedDate,
-this.recordedDateElement,
-    this.recorder,
-    this.asserter,
-    this.lastOccurrence,
-this.lastOccurrenceElement,
-    this.note,
-    this.reaction,
-  }) : super(resourceType: R4ResourceType.AllergyIntolerance);
-
-@override
-AllergyIntolerance clone() => throw UnimplementedError();
+  @override
+  AllergyIntolerance clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class AllergyIntoleranceReaction extends BackboneElement {
+  AllergyIntoleranceReaction({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    this.substance,
+    required this.manifestation,
+    this.description,
+    this.descriptionElement,
+    this.onset,
+    this.onsetElement,
+    this.severity,
+    this.severityElement,
+    this.exposureRoute,
+    this.note,
+  });
+
   final CodeableConcept? substance;
   final List<CodeableConcept> manifestation;
   final FhirString? description;
@@ -91,24 +106,6 @@ class AllergyIntoleranceReaction extends BackboneElement {
   final Element? severityElement;
   final CodeableConcept? exposureRoute;
   final List<Annotation>? note;
-
-  AllergyIntoleranceReaction({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    this.substance,
-    required this.manifestation,
-    this.description,
-this.descriptionElement,
-    this.onset,
-this.onsetElement,
-    this.severity,
-this.severityElement,
-    this.exposureRoute,
-    this.note,
-  });
-
-@override
-AllergyIntoleranceReaction clone() => throw UnimplementedError();
+  @override
+  AllergyIntoleranceReaction clone() => throw UnimplementedError();
 }
-

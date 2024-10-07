@@ -3,9 +3,34 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class AppointmentResponse extends DomainResource {
+  AppointmentResponse({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    required this.appointment,
+    this.start,
+    this.startElement,
+    this.end,
+    this.endElement,
+    this.participantType,
+    this.actor,
+    required this.participantStatus,
+    this.participantStatusElement,
+    this.comment,
+    this.commentElement,
+  }) : super(resourceType: R4ResourceType.AppointmentResponse);
+
   final List<Identifier>? identifier;
   final Reference appointment;
   final FhirInstant? start;
@@ -18,33 +43,6 @@ class AppointmentResponse extends DomainResource {
   final Element? participantStatusElement;
   final FhirString? comment;
   final Element? commentElement;
-
-  AppointmentResponse({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    required this.appointment,
-    this.start,
-this.startElement,
-    this.end,
-this.endElement,
-    this.participantType,
-    this.actor,
-    required this.participantStatus,
-this.participantStatusElement,
-    this.comment,
-this.commentElement,
-  }) : super(resourceType: R4ResourceType.AppointmentResponse);
-
-@override
-AppointmentResponse clone() => throw UnimplementedError();
+  @override
+  AppointmentResponse clone() => throw UnimplementedError();
 }
-

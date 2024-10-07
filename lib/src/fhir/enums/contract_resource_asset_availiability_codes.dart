@@ -6,27 +6,31 @@ enum ContractResourceAssetAvailiabilityCodes {
   /// Definition: To be completed
   @JsonValue('lease')
   lease,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case lease: return 'lease';
-      }
-      }
-String toJson() => toString();
-  ContractResourceAssetAvailiabilityCodes fromString(String str) {
-    switch(str) {
-      case 'lease': return ContractResourceAssetAvailiabilityCodes.lease;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case lease:
+        return 'lease';
     }
-      }
- ContractResourceAssetAvailiabilityCodes fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  ContractResourceAssetAvailiabilityCodes fromString(String str) {
+    switch (str) {
+      case 'lease':
+        return ContractResourceAssetAvailiabilityCodes.lease;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  ContractResourceAssetAvailiabilityCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

@@ -3,9 +3,37 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class RelatedPerson extends DomainResource {
+  RelatedPerson({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.active,
+    this.activeElement,
+    required this.patient,
+    this.relationship,
+    this.name,
+    this.telecom,
+    this.gender,
+    this.genderElement,
+    this.birthDate,
+    this.birthDateElement,
+    this.address,
+    this.photo,
+    this.period,
+    this.communication,
+  }) : super(resourceType: R4ResourceType.RelatedPerson);
+
   final List<Identifier>? identifier;
   final FhirBoolean? active;
   final Element? activeElement;
@@ -21,56 +49,25 @@ class RelatedPerson extends DomainResource {
   final List<Attachment>? photo;
   final Period? period;
   final List<RelatedPersonCommunication>? communication;
-
-  RelatedPerson({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.active,
-this.activeElement,
-    required this.patient,
-    this.relationship,
-    this.name,
-    this.telecom,
-    this.gender,
-this.genderElement,
-    this.birthDate,
-this.birthDateElement,
-    this.address,
-    this.photo,
-    this.period,
-    this.communication,
-  }) : super(resourceType: R4ResourceType.RelatedPerson);
-
-@override
-RelatedPerson clone() => throw UnimplementedError();
+  @override
+  RelatedPerson clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class RelatedPersonCommunication extends BackboneElement {
-  final CodeableConcept language;
-  final FhirBoolean? preferred;
-  final Element? preferredElement;
-
   RelatedPersonCommunication({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.language,
     this.preferred,
-this.preferredElement,
+    this.preferredElement,
   });
 
-@override
-RelatedPersonCommunication clone() => throw UnimplementedError();
+  final CodeableConcept language;
+  final FhirBoolean? preferred;
+  final Element? preferredElement;
+  @override
+  RelatedPersonCommunication clone() => throw UnimplementedError();
 }
-

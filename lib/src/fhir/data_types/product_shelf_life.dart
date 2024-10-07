@@ -3,14 +3,9 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class ProductShelfLife extends BackboneType {
-  final Identifier? identifier;
-  final CodeableConcept type;
-  final Quantity period;
-  final List<CodeableConcept>? specialPrecautionsForStorage;
-
   ProductShelfLife({
     super.id,
     super.extension_,
@@ -21,7 +16,10 @@ class ProductShelfLife extends BackboneType {
     this.specialPrecautionsForStorage,
   });
 
-@override
-ProductShelfLife clone() => throw UnimplementedError();
+  final Identifier? identifier;
+  final CodeableConcept type;
+  final Quantity period;
+  final List<CodeableConcept>? specialPrecautionsForStorage;
+  @override
+  ProductShelfLife clone() => throw UnimplementedError();
 }
-

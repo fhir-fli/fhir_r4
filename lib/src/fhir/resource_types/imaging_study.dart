@@ -3,9 +3,47 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class ImagingStudy extends DomainResource {
+  ImagingStudy({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    required this.status,
+    this.statusElement,
+    this.modality,
+    required this.subject,
+    this.encounter,
+    this.started,
+    this.startedElement,
+    this.basedOn,
+    this.referrer,
+    this.interpreter,
+    this.endpoint,
+    this.numberOfSeries,
+    this.numberOfSeriesElement,
+    this.numberOfInstances,
+    this.numberOfInstancesElement,
+    this.procedureReference,
+    this.procedureCode,
+    this.location,
+    this.reasonCode,
+    this.reasonReference,
+    this.note,
+    this.description,
+    this.descriptionElement,
+    this.series,
+  }) : super(resourceType: R4ResourceType.ImagingStudy);
+
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -31,52 +69,36 @@ class ImagingStudy extends DomainResource {
   final FhirString? description;
   final Element? descriptionElement;
   final List<ImagingStudySeries>? series;
-
-  ImagingStudy({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    required this.status,
-this.statusElement,
-    this.modality,
-    required this.subject,
-    this.encounter,
-    this.started,
-this.startedElement,
-    this.basedOn,
-    this.referrer,
-    this.interpreter,
-    this.endpoint,
-    this.numberOfSeries,
-this.numberOfSeriesElement,
-    this.numberOfInstances,
-this.numberOfInstancesElement,
-    this.procedureReference,
-    this.procedureCode,
-    this.location,
-    this.reasonCode,
-    this.reasonReference,
-    this.note,
-    this.description,
-this.descriptionElement,
-    this.series,
-  }) : super(resourceType: R4ResourceType.ImagingStudy);
-
-@override
-ImagingStudy clone() => throw UnimplementedError();
+  @override
+  ImagingStudy clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ImagingStudySeries extends BackboneElement {
+  ImagingStudySeries({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.uid,
+    this.uidElement,
+    this.number,
+    this.numberElement,
+    required this.modality,
+    this.description,
+    this.descriptionElement,
+    this.numberOfInstances,
+    this.numberOfInstancesElement,
+    this.endpoint,
+    this.bodySite,
+    this.laterality,
+    this.specimen,
+    this.started,
+    this.startedElement,
+    this.performer,
+    this.instance,
+  });
+
   final FhirId uid;
   final Element? uidElement;
   final FhirUnsignedInt? number;
@@ -94,40 +116,13 @@ class ImagingStudySeries extends BackboneElement {
   final Element? startedElement;
   final List<ImagingStudyPerformer>? performer;
   final List<ImagingStudyInstance>? instance;
-
-  ImagingStudySeries({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.uid,
-this.uidElement,
-    this.number,
-this.numberElement,
-    required this.modality,
-    this.description,
-this.descriptionElement,
-    this.numberOfInstances,
-this.numberOfInstancesElement,
-    this.endpoint,
-    this.bodySite,
-    this.laterality,
-    this.specimen,
-    this.started,
-this.startedElement,
-    this.performer,
-    this.instance,
-  });
-
-@override
-ImagingStudySeries clone() => throw UnimplementedError();
+  @override
+  ImagingStudySeries clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ImagingStudyPerformer extends BackboneElement {
-  final CodeableConcept? function_;
-  final Reference actor;
-
   ImagingStudyPerformer({
     super.id,
     super.extension_,
@@ -136,13 +131,28 @@ class ImagingStudyPerformer extends BackboneElement {
     required this.actor,
   });
 
-@override
-ImagingStudyPerformer clone() => throw UnimplementedError();
+  final CodeableConcept? function_;
+  final Reference actor;
+  @override
+  ImagingStudyPerformer clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ImagingStudyInstance extends BackboneElement {
+  ImagingStudyInstance({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.uid,
+    this.uidElement,
+    required this.sopClass,
+    this.number,
+    this.numberElement,
+    this.title,
+    this.titleElement,
+  });
+
   final FhirId uid;
   final Element? uidElement;
   final Coding sopClass;
@@ -150,21 +160,6 @@ class ImagingStudyInstance extends BackboneElement {
   final Element? numberElement;
   final FhirString? title;
   final Element? titleElement;
-
-  ImagingStudyInstance({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.uid,
-this.uidElement,
-    required this.sopClass,
-    this.number,
-this.numberElement,
-    this.title,
-this.titleElement,
-  });
-
-@override
-ImagingStudyInstance clone() => throw UnimplementedError();
+  @override
+  ImagingStudyInstance clone() => throw UnimplementedError();
 }
-

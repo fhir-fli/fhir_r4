@@ -250,8 +250,8 @@ StringBuffer _generateClassBuffer(Map<String, WritableClass> classes) {
 
   for (final WritableClass writableClass in classes.values) {
     _writeClassHeader(buffer, writableClass);
-    _writeFields(buffer, writableClass);
     _writeConstructor(buffer, writableClass);
+    _writeFields(buffer, writableClass);
     _writeClassFooter(buffer, writableClass);
   }
 
@@ -259,8 +259,8 @@ StringBuffer _generateClassBuffer(Map<String, WritableClass> classes) {
 }
 
 void _writeClassHeader(StringBuffer buffer, WritableClass writableClass) {
-  buffer.writeln('@Data()');
   buffer.writeln('@JsonCodable()');
+  buffer.writeln('@Data()');
   final String writableName = writableClass.className;
   final String extendsClause = writableClass.extendsClause;
   if (extendsClause.isEmpty) {
@@ -300,16 +300,16 @@ void _writeConstructor(StringBuffer buffer, WritableClass writableClass) {
       }
     }
   }
-}
-
-void _writeClassFooter(StringBuffer buffer, WritableClass writableClass) {
-  final String writableName = writableClass.className;
   if (writableName.isResourceType && writableClass.isResourceType) {
     buffer.writeln(
         '  }) : super(resourceType: R4ResourceType.${writableName.fhirToDartTypes});\n');
   } else {
     buffer.writeln('  });\n');
   }
+}
+
+void _writeClassFooter(StringBuffer buffer, WritableClass writableClass) {
+  final String writableName = writableClass.className;
   buffer.writeln('@override');
   buffer.writeln(
       '${writableName.fhirToDartTypes} clone() => throw UnimplementedError();');

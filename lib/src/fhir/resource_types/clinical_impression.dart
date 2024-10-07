@@ -3,9 +3,49 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class ClinicalImpression extends DomainResource {
+  ClinicalImpression({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    required this.status,
+    this.statusElement,
+    this.statusReason,
+    this.code,
+    this.description,
+    this.descriptionElement,
+    required this.subject,
+    this.encounter,
+    this.effectiveDateTime,
+    this.effectiveDateTimeElement,
+    this.effectivePeriod,
+    this.date,
+    this.dateElement,
+    this.assessor,
+    this.previous,
+    this.problem,
+    this.investigation,
+    this.protocol,
+    this.protocolElement,
+    this.summary,
+    this.summaryElement,
+    this.finding,
+    this.prognosisCodeableConcept,
+    this.prognosisReference,
+    this.supportingInfo,
+    this.note,
+  }) : super(resourceType: R4ResourceType.ClinicalImpression);
+
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -33,57 +73,13 @@ class ClinicalImpression extends DomainResource {
   final List<Reference>? prognosisReference;
   final List<Reference>? supportingInfo;
   final List<Annotation>? note;
-
-  ClinicalImpression({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    required this.status,
-this.statusElement,
-    this.statusReason,
-    this.code,
-    this.description,
-this.descriptionElement,
-    required this.subject,
-    this.encounter,
-    this.effectiveDateTime,
-this.effectiveDateTimeElement,
-    this.effectivePeriod,
-    this.date,
-this.dateElement,
-    this.assessor,
-    this.previous,
-    this.problem,
-    this.investigation,
-    this.protocol,
-this.protocolElement,
-    this.summary,
-this.summaryElement,
-    this.finding,
-    this.prognosisCodeableConcept,
-    this.prognosisReference,
-    this.supportingInfo,
-    this.note,
-  }) : super(resourceType: R4ResourceType.ClinicalImpression);
-
-@override
-ClinicalImpression clone() => throw UnimplementedError();
+  @override
+  ClinicalImpression clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ClinicalImpressionInvestigation extends BackboneElement {
-  final CodeableConcept code;
-  final List<Reference>? item;
-
   ClinicalImpressionInvestigation({
     super.id,
     super.extension_,
@@ -92,18 +88,15 @@ class ClinicalImpressionInvestigation extends BackboneElement {
     this.item,
   });
 
-@override
-ClinicalImpressionInvestigation clone() => throw UnimplementedError();
+  final CodeableConcept code;
+  final List<Reference>? item;
+  @override
+  ClinicalImpressionInvestigation clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ClinicalImpressionFinding extends BackboneElement {
-  final CodeableConcept? itemCodeableConcept;
-  final Reference? itemReference;
-  final FhirString? basis;
-  final Element? basisElement;
-
   ClinicalImpressionFinding({
     super.id,
     super.extension_,
@@ -111,10 +104,13 @@ class ClinicalImpressionFinding extends BackboneElement {
     this.itemCodeableConcept,
     this.itemReference,
     this.basis,
-this.basisElement,
+    this.basisElement,
   });
 
-@override
-ClinicalImpressionFinding clone() => throw UnimplementedError();
+  final CodeableConcept? itemCodeableConcept;
+  final Reference? itemReference;
+  final FhirString? basis;
+  final Element? basisElement;
+  @override
+  ClinicalImpressionFinding clone() => throw UnimplementedError();
 }
-

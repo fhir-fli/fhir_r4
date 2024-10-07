@@ -3,9 +3,48 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class GraphDefinition extends DomainResource {
+  GraphDefinition({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.url,
+    this.urlElement,
+    this.version,
+    this.versionElement,
+    required this.name,
+    this.nameElement,
+    required this.status,
+    this.statusElement,
+    this.experimental,
+    this.experimentalElement,
+    this.date,
+    this.dateElement,
+    this.publisher,
+    this.publisherElement,
+    this.contact,
+    this.description,
+    this.descriptionElement,
+    this.useContext,
+    this.jurisdiction,
+    this.purpose,
+    this.purposeElement,
+    required this.start,
+    this.startElement,
+    this.profile,
+    this.profileElement,
+    this.link,
+  }) : super(resourceType: R4ResourceType.GraphDefinition);
+
   final FhirUri? url;
   final Element? urlElement;
   final FhirString? version;
@@ -32,53 +71,30 @@ class GraphDefinition extends DomainResource {
   final FhirCanonical? profile;
   final Element? profileElement;
   final List<GraphDefinitionLink>? link;
-
-  GraphDefinition({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.url,
-this.urlElement,
-    this.version,
-this.versionElement,
-    required this.name,
-this.nameElement,
-    required this.status,
-this.statusElement,
-    this.experimental,
-this.experimentalElement,
-    this.date,
-this.dateElement,
-    this.publisher,
-this.publisherElement,
-    this.contact,
-    this.description,
-this.descriptionElement,
-    this.useContext,
-    this.jurisdiction,
-    this.purpose,
-this.purposeElement,
-    required this.start,
-this.startElement,
-    this.profile,
-this.profileElement,
-    this.link,
-  }) : super(resourceType: R4ResourceType.GraphDefinition);
-
-@override
-GraphDefinition clone() => throw UnimplementedError();
+  @override
+  GraphDefinition clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class GraphDefinitionLink extends BackboneElement {
+  GraphDefinitionLink({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    this.path,
+    this.pathElement,
+    this.sliceName,
+    this.sliceNameElement,
+    this.min,
+    this.minElement,
+    this.max,
+    this.maxElement,
+    this.description,
+    this.descriptionElement,
+    this.target,
+  });
+
   final FhirString? path;
   final Element? pathElement;
   final FhirString? sliceName;
@@ -90,31 +106,27 @@ class GraphDefinitionLink extends BackboneElement {
   final FhirString? description;
   final Element? descriptionElement;
   final List<GraphDefinitionTarget>? target;
+  @override
+  GraphDefinitionLink clone() => throw UnimplementedError();
+}
 
-  GraphDefinitionLink({
+@JsonCodable()
+@Data()
+class GraphDefinitionTarget extends BackboneElement {
+  GraphDefinitionTarget({
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.path,
-this.pathElement,
-    this.sliceName,
-this.sliceNameElement,
-    this.min,
-this.minElement,
-    this.max,
-this.maxElement,
-    this.description,
-this.descriptionElement,
-    this.target,
+    required this.type,
+    this.typeElement,
+    this.params,
+    this.paramsElement,
+    this.profile,
+    this.profileElement,
+    this.compartment,
+    this.link,
   });
 
-@override
-GraphDefinitionLink clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class GraphDefinitionTarget extends BackboneElement {
   final FhirCode type;
   final Element? typeElement;
   final FhirString? params;
@@ -123,28 +135,29 @@ class GraphDefinitionTarget extends BackboneElement {
   final Element? profileElement;
   final List<GraphDefinitionCompartment>? compartment;
   final List<GraphDefinitionLink>? link;
+  @override
+  GraphDefinitionTarget clone() => throw UnimplementedError();
+}
 
-  GraphDefinitionTarget({
+@JsonCodable()
+@Data()
+class GraphDefinitionCompartment extends BackboneElement {
+  GraphDefinitionCompartment({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.type,
-this.typeElement,
-    this.params,
-this.paramsElement,
-    this.profile,
-this.profileElement,
-    this.compartment,
-    this.link,
+    required this.use,
+    this.useElement,
+    required this.code,
+    this.codeElement,
+    required this.rule,
+    this.ruleElement,
+    this.expression,
+    this.expressionElement,
+    this.description,
+    this.descriptionElement,
   });
 
-@override
-GraphDefinitionTarget clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class GraphDefinitionCompartment extends BackboneElement {
   final FhirCode use;
   final Element? useElement;
   final FhirCode code;
@@ -155,24 +168,6 @@ class GraphDefinitionCompartment extends BackboneElement {
   final Element? expressionElement;
   final FhirString? description;
   final Element? descriptionElement;
-
-  GraphDefinitionCompartment({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.use,
-this.useElement,
-    required this.code,
-this.codeElement,
-    required this.rule,
-this.ruleElement,
-    this.expression,
-this.expressionElement,
-    this.description,
-this.descriptionElement,
-  });
-
-@override
-GraphDefinitionCompartment clone() => throw UnimplementedError();
+  @override
+  GraphDefinitionCompartment clone() => throw UnimplementedError();
 }
-

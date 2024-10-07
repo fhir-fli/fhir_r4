@@ -6,39 +6,49 @@ enum LocationStatus {
   /// Definition: The location is operational.
   @JsonValue('active')
   active,
+
   /// Display: Suspended
   /// Definition: The location is temporarily closed.
   @JsonValue('suspended')
   suspended,
+
   /// Display: Inactive
   /// Definition: The location is no longer used.
   @JsonValue('inactive')
   inactive,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case active: return 'active';
-        case suspended: return 'suspended';
-        case inactive: return 'inactive';
-      }
-      }
-String toJson() => toString();
-  LocationStatus fromString(String str) {
-    switch(str) {
-      case 'active': return LocationStatus.active;
-      case 'suspended': return LocationStatus.suspended;
-      case 'inactive': return LocationStatus.inactive;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case active:
+        return 'active';
+      case suspended:
+        return 'suspended';
+      case inactive:
+        return 'inactive';
     }
-      }
- LocationStatus fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  LocationStatus fromString(String str) {
+    switch (str) {
+      case 'active':
+        return LocationStatus.active;
+      case 'suspended':
+        return LocationStatus.suspended;
+      case 'inactive':
+        return LocationStatus.inactive;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  LocationStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

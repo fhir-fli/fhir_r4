@@ -3,9 +3,43 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class RiskAssessment extends DomainResource {
+  RiskAssessment({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.basedOn,
+    this.parent,
+    required this.status,
+    this.statusElement,
+    this.method,
+    this.code,
+    required this.subject,
+    this.encounter,
+    this.occurrenceDateTime,
+    this.occurrenceDateTimeElement,
+    this.occurrencePeriod,
+    this.condition,
+    this.performer,
+    this.reasonCode,
+    this.reasonReference,
+    this.basis,
+    this.prediction,
+    this.mitigation,
+    this.mitigationElement,
+    this.note,
+  }) : super(resourceType: R4ResourceType.RiskAssessment);
+
   final List<Identifier>? identifier;
   final Reference? basedOn;
   final Reference? parent;
@@ -27,48 +61,30 @@ class RiskAssessment extends DomainResource {
   final FhirString? mitigation;
   final Element? mitigationElement;
   final List<Annotation>? note;
-
-  RiskAssessment({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.basedOn,
-    this.parent,
-    required this.status,
-this.statusElement,
-    this.method,
-    this.code,
-    required this.subject,
-    this.encounter,
-    this.occurrenceDateTime,
-this.occurrenceDateTimeElement,
-    this.occurrencePeriod,
-    this.condition,
-    this.performer,
-    this.reasonCode,
-    this.reasonReference,
-    this.basis,
-    this.prediction,
-    this.mitigation,
-this.mitigationElement,
-    this.note,
-  }) : super(resourceType: R4ResourceType.RiskAssessment);
-
-@override
-RiskAssessment clone() => throw UnimplementedError();
+  @override
+  RiskAssessment clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class RiskAssessmentPrediction extends BackboneElement {
+  RiskAssessmentPrediction({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    this.outcome,
+    this.probabilityDecimal,
+    this.probabilityDecimalElement,
+    this.probabilityRange,
+    this.qualitativeRisk,
+    this.relativeRisk,
+    this.relativeRiskElement,
+    this.whenPeriod,
+    this.whenRange,
+    this.rationale,
+    this.rationaleElement,
+  });
+
   final CodeableConcept? outcome;
   final FhirDecimal? probabilityDecimal;
   final Element? probabilityDecimalElement;
@@ -80,25 +96,6 @@ class RiskAssessmentPrediction extends BackboneElement {
   final Range? whenRange;
   final FhirString? rationale;
   final Element? rationaleElement;
-
-  RiskAssessmentPrediction({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    this.outcome,
-    this.probabilityDecimal,
-this.probabilityDecimalElement,
-    this.probabilityRange,
-    this.qualitativeRisk,
-    this.relativeRisk,
-this.relativeRiskElement,
-    this.whenPeriod,
-    this.whenRange,
-    this.rationale,
-this.rationaleElement,
-  });
-
-@override
-RiskAssessmentPrediction clone() => throw UnimplementedError();
+  @override
+  RiskAssessmentPrediction clone() => throw UnimplementedError();
 }
-

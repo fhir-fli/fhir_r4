@@ -3,26 +3,24 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class FhirDuration extends Quantity {
-
   FhirDuration({
     super.id,
     super.extension_,
     super.value,
-super.valueElement,
+    super.valueElement,
     super.comparator,
-super.comparatorElement,
+    super.comparatorElement,
     super.unit,
-super.unitElement,
+    super.unitElement,
     super.system,
-super.systemElement,
+    super.systemElement,
     super.code,
-super.codeElement,
+    super.codeElement,
   });
 
-@override
-FhirDuration clone() => throw UnimplementedError();
+  @override
+  FhirDuration clone() => throw UnimplementedError();
 }
-

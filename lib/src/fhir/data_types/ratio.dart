@@ -3,12 +3,9 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Ratio extends DataType {
-  final Quantity? numerator;
-  final Quantity? denominator;
-
   Ratio({
     super.id,
     super.extension_,
@@ -16,7 +13,8 @@ class Ratio extends DataType {
     this.denominator,
   });
 
-@override
-Ratio clone() => throw UnimplementedError();
+  final Quantity? numerator;
+  final Quantity? denominator;
+  @override
+  Ratio clone() => throw UnimplementedError();
 }
-

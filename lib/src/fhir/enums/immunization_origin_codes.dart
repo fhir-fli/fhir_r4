@@ -5,42 +5,55 @@ enum ImmunizationOriginCodes {
   /// Display: Other Provider
   @JsonValue('provider')
   provider,
+
   /// Display: Written Record
   @JsonValue('record')
   record,
+
   /// Display: Parent/Guardian/Patient Recall
   @JsonValue('recall')
   recall,
+
   /// Display: School Record
   @JsonValue('school')
   school,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case provider: return 'provider';
-        case record: return 'record';
-        case recall: return 'recall';
-        case school: return 'school';
-      }
-      }
-String toJson() => toString();
-  ImmunizationOriginCodes fromString(String str) {
-    switch(str) {
-      case 'provider': return ImmunizationOriginCodes.provider;
-      case 'record': return ImmunizationOriginCodes.record;
-      case 'recall': return ImmunizationOriginCodes.recall;
-      case 'school': return ImmunizationOriginCodes.school;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case provider:
+        return 'provider';
+      case record:
+        return 'record';
+      case recall:
+        return 'recall';
+      case school:
+        return 'school';
     }
-      }
- ImmunizationOriginCodes fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  ImmunizationOriginCodes fromString(String str) {
+    switch (str) {
+      case 'provider':
+        return ImmunizationOriginCodes.provider;
+      case 'record':
+        return ImmunizationOriginCodes.record;
+      case 'recall':
+        return ImmunizationOriginCodes.recall;
+      case 'school':
+        return ImmunizationOriginCodes.school;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  ImmunizationOriginCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

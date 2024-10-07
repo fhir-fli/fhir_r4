@@ -3,9 +3,38 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class ObservationDefinition extends DomainResource {
+  ObservationDefinition({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.category,
+    required this.code,
+    this.identifier,
+    this.permittedDataType,
+    this.permittedDataTypeElement,
+    this.multipleResultsAllowed,
+    this.multipleResultsAllowedElement,
+    this.method,
+    this.preferredReportName,
+    this.preferredReportNameElement,
+    this.quantitativeDetails,
+    this.qualifiedInterval,
+    this.validCodedValueSet,
+    this.normalCodedValueSet,
+    this.abnormalCodedValueSet,
+    this.criticalCodedValueSet,
+  }) : super(resourceType: R4ResourceType.ObservationDefinition);
+
   final List<CodeableConcept>? category;
   final CodeableConcept code;
   final List<Identifier>? identifier;
@@ -22,50 +51,13 @@ class ObservationDefinition extends DomainResource {
   final Reference? normalCodedValueSet;
   final Reference? abnormalCodedValueSet;
   final Reference? criticalCodedValueSet;
-
-  ObservationDefinition({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.category,
-    required this.code,
-    this.identifier,
-    this.permittedDataType,
-this.permittedDataTypeElement,
-    this.multipleResultsAllowed,
-this.multipleResultsAllowedElement,
-    this.method,
-    this.preferredReportName,
-this.preferredReportNameElement,
-    this.quantitativeDetails,
-    this.qualifiedInterval,
-    this.validCodedValueSet,
-    this.normalCodedValueSet,
-    this.abnormalCodedValueSet,
-    this.criticalCodedValueSet,
-  }) : super(resourceType: R4ResourceType.ObservationDefinition);
-
-@override
-ObservationDefinition clone() => throw UnimplementedError();
+  @override
+  ObservationDefinition clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ObservationDefinitionQuantitativeDetails extends BackboneElement {
-  final CodeableConcept? customaryUnit;
-  final CodeableConcept? unit;
-  final FhirDecimal? conversionFactor;
-  final Element? conversionFactorElement;
-  final FhirInteger? decimalPrecision;
-  final Element? decimalPrecisionElement;
-
   ObservationDefinitionQuantitativeDetails({
     super.id,
     super.extension_,
@@ -73,18 +65,42 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
     this.customaryUnit,
     this.unit,
     this.conversionFactor,
-this.conversionFactorElement,
+    this.conversionFactorElement,
     this.decimalPrecision,
-this.decimalPrecisionElement,
+    this.decimalPrecisionElement,
   });
 
-@override
-ObservationDefinitionQuantitativeDetails clone() => throw UnimplementedError();
+  final CodeableConcept? customaryUnit;
+  final CodeableConcept? unit;
+  final FhirDecimal? conversionFactor;
+  final Element? conversionFactorElement;
+  final FhirInteger? decimalPrecision;
+  final Element? decimalPrecisionElement;
+  @override
+  ObservationDefinitionQuantitativeDetails clone() =>
+      throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class ObservationDefinitionQualifiedInterval extends BackboneElement {
+  ObservationDefinitionQualifiedInterval({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    this.category,
+    this.categoryElement,
+    this.range,
+    this.context,
+    this.appliesTo,
+    this.gender,
+    this.genderElement,
+    this.age,
+    this.gestationalAge,
+    this.condition,
+    this.conditionElement,
+  });
+
   final FhirCode? category;
   final Element? categoryElement;
   final Range? range;
@@ -96,25 +112,6 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
   final Range? gestationalAge;
   final FhirString? condition;
   final Element? conditionElement;
-
-  ObservationDefinitionQualifiedInterval({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    this.category,
-this.categoryElement,
-    this.range,
-    this.context,
-    this.appliesTo,
-    this.gender,
-this.genderElement,
-    this.age,
-    this.gestationalAge,
-    this.condition,
-this.conditionElement,
-  });
-
-@override
-ObservationDefinitionQualifiedInterval clone() => throw UnimplementedError();
+  @override
+  ObservationDefinitionQualifiedInterval clone() => throw UnimplementedError();
 }
-

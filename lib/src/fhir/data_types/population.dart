@@ -3,15 +3,9 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Population extends BackboneType {
-  final Range? ageRange;
-  final CodeableConcept? ageCodeableConcept;
-  final CodeableConcept? gender;
-  final CodeableConcept? race;
-  final CodeableConcept? physiologicalCondition;
-
   Population({
     super.id,
     super.extension_,
@@ -23,7 +17,11 @@ class Population extends BackboneType {
     this.physiologicalCondition,
   });
 
-@override
-Population clone() => throw UnimplementedError();
+  final Range? ageRange;
+  final CodeableConcept? ageCodeableConcept;
+  final CodeableConcept? gender;
+  final CodeableConcept? race;
+  final CodeableConcept? physiologicalCondition;
+  @override
+  Population clone() => throw UnimplementedError();
 }
-

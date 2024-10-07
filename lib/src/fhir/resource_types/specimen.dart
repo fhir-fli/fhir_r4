@@ -3,9 +3,37 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Specimen extends DomainResource {
+  Specimen({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.accessionIdentifier,
+    this.status,
+    this.statusElement,
+    this.type,
+    this.subject,
+    this.receivedTime,
+    this.receivedTimeElement,
+    this.parent,
+    this.request,
+    this.collection,
+    this.processing,
+    this.container,
+    this.condition,
+    this.note,
+  }) : super(resourceType: R4ResourceType.Specimen);
+
   final List<Identifier>? identifier;
   final Identifier? accessionIdentifier;
   final FhirCode? status;
@@ -21,42 +49,29 @@ class Specimen extends DomainResource {
   final List<SpecimenContainer>? container;
   final List<CodeableConcept>? condition;
   final List<Annotation>? note;
-
-  Specimen({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.accessionIdentifier,
-    this.status,
-this.statusElement,
-    this.type,
-    this.subject,
-    this.receivedTime,
-this.receivedTimeElement,
-    this.parent,
-    this.request,
-    this.collection,
-    this.processing,
-    this.container,
-    this.condition,
-    this.note,
-  }) : super(resourceType: R4ResourceType.Specimen);
-
-@override
-Specimen clone() => throw UnimplementedError();
+  @override
+  Specimen clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class SpecimenCollection extends BackboneElement {
+  SpecimenCollection({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    this.collector,
+    this.collectedDateTime,
+    this.collectedDateTimeElement,
+    this.collectedPeriod,
+    this.duration,
+    this.quantity,
+    this.method,
+    this.bodySite,
+    this.fastingStatusCodeableConcept,
+    this.fastingStatusDuration,
+  });
+
   final Reference? collector;
   final FhirDateTime? collectedDateTime;
   final Element? collectedDateTimeElement;
@@ -67,30 +82,26 @@ class SpecimenCollection extends BackboneElement {
   final CodeableConcept? bodySite;
   final CodeableConcept? fastingStatusCodeableConcept;
   final FhirDuration? fastingStatusDuration;
+  @override
+  SpecimenCollection clone() => throw UnimplementedError();
+}
 
-  SpecimenCollection({
+@JsonCodable()
+@Data()
+class SpecimenProcessing extends BackboneElement {
+  SpecimenProcessing({
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.collector,
-    this.collectedDateTime,
-this.collectedDateTimeElement,
-    this.collectedPeriod,
-    this.duration,
-    this.quantity,
-    this.method,
-    this.bodySite,
-    this.fastingStatusCodeableConcept,
-    this.fastingStatusDuration,
+    this.description,
+    this.descriptionElement,
+    this.procedure,
+    this.additive,
+    this.timeDateTime,
+    this.timeDateTimeElement,
+    this.timePeriod,
   });
 
-@override
-SpecimenCollection clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class SpecimenProcessing extends BackboneElement {
   final FhirString? description;
   final Element? descriptionElement;
   final CodeableConcept? procedure;
@@ -98,27 +109,27 @@ class SpecimenProcessing extends BackboneElement {
   final FhirDateTime? timeDateTime;
   final Element? timeDateTimeElement;
   final Period? timePeriod;
+  @override
+  SpecimenProcessing clone() => throw UnimplementedError();
+}
 
-  SpecimenProcessing({
+@JsonCodable()
+@Data()
+class SpecimenContainer extends BackboneElement {
+  SpecimenContainer({
     super.id,
     super.extension_,
     super.modifierExtension,
+    this.identifier,
     this.description,
-this.descriptionElement,
-    this.procedure,
-    this.additive,
-    this.timeDateTime,
-this.timeDateTimeElement,
-    this.timePeriod,
+    this.descriptionElement,
+    this.type,
+    this.capacity,
+    this.specimenQuantity,
+    this.additiveCodeableConcept,
+    this.additiveReference,
   });
 
-@override
-SpecimenProcessing clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class SpecimenContainer extends BackboneElement {
   final List<Identifier>? identifier;
   final FhirString? description;
   final Element? descriptionElement;
@@ -127,22 +138,6 @@ class SpecimenContainer extends BackboneElement {
   final Quantity? specimenQuantity;
   final CodeableConcept? additiveCodeableConcept;
   final Reference? additiveReference;
-
-  SpecimenContainer({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.description,
-this.descriptionElement,
-    this.type,
-    this.capacity,
-    this.specimenQuantity,
-    this.additiveCodeableConcept,
-    this.additiveReference,
-  });
-
-@override
-SpecimenContainer clone() => throw UnimplementedError();
+  @override
+  SpecimenContainer clone() => throw UnimplementedError();
 }
-

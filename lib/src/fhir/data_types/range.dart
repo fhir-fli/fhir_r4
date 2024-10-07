@@ -3,12 +3,9 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Range extends DataType {
-  final Quantity? low;
-  final Quantity? high;
-
   Range({
     super.id,
     super.extension_,
@@ -16,7 +13,8 @@ class Range extends DataType {
     this.high,
   });
 
-@override
-Range clone() => throw UnimplementedError();
+  final Quantity? low;
+  final Quantity? high;
+  @override
+  Range clone() => throw UnimplementedError();
 }
-

@@ -3,9 +3,36 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class BiologicallyDerivedProduct extends DomainResource {
+  BiologicallyDerivedProduct({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.productCategory,
+    this.productCategoryElement,
+    this.productCode,
+    this.status,
+    this.statusElement,
+    this.request,
+    this.quantity,
+    this.quantityElement,
+    this.parent,
+    this.collection,
+    this.processing,
+    this.manipulation,
+    this.storage,
+  }) : super(resourceType: R4ResourceType.BiologicallyDerivedProduct);
+
   final List<Identifier>? identifier;
   final FhirCode? productCategory;
   final Element? productCategoryElement;
@@ -20,47 +47,13 @@ class BiologicallyDerivedProduct extends DomainResource {
   final List<BiologicallyDerivedProductProcessing>? processing;
   final BiologicallyDerivedProductManipulation? manipulation;
   final List<BiologicallyDerivedProductStorage>? storage;
-
-  BiologicallyDerivedProduct({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.productCategory,
-this.productCategoryElement,
-    this.productCode,
-    this.status,
-this.statusElement,
-    this.request,
-    this.quantity,
-this.quantityElement,
-    this.parent,
-    this.collection,
-    this.processing,
-    this.manipulation,
-    this.storage,
-  }) : super(resourceType: R4ResourceType.BiologicallyDerivedProduct);
-
-@override
-BiologicallyDerivedProduct clone() => throw UnimplementedError();
+  @override
+  BiologicallyDerivedProduct clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class BiologicallyDerivedProductCollection extends BackboneElement {
-  final Reference? collector;
-  final Reference? source;
-  final FhirDateTime? collectedDateTime;
-  final Element? collectedDateTimeElement;
-  final Period? collectedPeriod;
-
   BiologicallyDerivedProductCollection({
     super.id,
     super.extension_,
@@ -68,17 +61,35 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     this.collector,
     this.source,
     this.collectedDateTime,
-this.collectedDateTimeElement,
+    this.collectedDateTimeElement,
     this.collectedPeriod,
   });
 
-@override
-BiologicallyDerivedProductCollection clone() => throw UnimplementedError();
+  final Reference? collector;
+  final Reference? source;
+  final FhirDateTime? collectedDateTime;
+  final Element? collectedDateTimeElement;
+  final Period? collectedPeriod;
+  @override
+  BiologicallyDerivedProductCollection clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class BiologicallyDerivedProductProcessing extends BackboneElement {
+  BiologicallyDerivedProductProcessing({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    this.description,
+    this.descriptionElement,
+    this.procedure,
+    this.additive,
+    this.timeDateTime,
+    this.timeDateTimeElement,
+    this.timePeriod,
+  });
+
   final FhirString? description;
   final Element? descriptionElement;
   final CodeableConcept? procedure;
@@ -86,51 +97,49 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
   final FhirDateTime? timeDateTime;
   final Element? timeDateTimeElement;
   final Period? timePeriod;
-
-  BiologicallyDerivedProductProcessing({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    this.description,
-this.descriptionElement,
-    this.procedure,
-    this.additive,
-    this.timeDateTime,
-this.timeDateTimeElement,
-    this.timePeriod,
-  });
-
-@override
-BiologicallyDerivedProductProcessing clone() => throw UnimplementedError();
+  @override
+  BiologicallyDerivedProductProcessing clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class BiologicallyDerivedProductManipulation extends BackboneElement {
-  final FhirString? description;
-  final Element? descriptionElement;
-  final FhirDateTime? timeDateTime;
-  final Element? timeDateTimeElement;
-  final Period? timePeriod;
-
   BiologicallyDerivedProductManipulation({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.timeDateTime,
-this.timeDateTimeElement,
+    this.timeDateTimeElement,
     this.timePeriod,
   });
 
-@override
-BiologicallyDerivedProductManipulation clone() => throw UnimplementedError();
+  final FhirString? description;
+  final Element? descriptionElement;
+  final FhirDateTime? timeDateTime;
+  final Element? timeDateTimeElement;
+  final Period? timePeriod;
+  @override
+  BiologicallyDerivedProductManipulation clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class BiologicallyDerivedProductStorage extends BackboneElement {
+  BiologicallyDerivedProductStorage({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    this.description,
+    this.descriptionElement,
+    this.temperature,
+    this.temperatureElement,
+    this.scale,
+    this.scaleElement,
+    this.duration,
+  });
+
   final FhirString? description;
   final Element? descriptionElement;
   final FhirDecimal? temperature;
@@ -138,21 +147,6 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
   final FhirCode? scale;
   final Element? scaleElement;
   final Period? duration;
-
-  BiologicallyDerivedProductStorage({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    this.description,
-this.descriptionElement,
-    this.temperature,
-this.temperatureElement,
-    this.scale,
-this.scaleElement,
-    this.duration,
-  });
-
-@override
-BiologicallyDerivedProductStorage clone() => throw UnimplementedError();
+  @override
+  BiologicallyDerivedProductStorage clone() => throw UnimplementedError();
 }
-

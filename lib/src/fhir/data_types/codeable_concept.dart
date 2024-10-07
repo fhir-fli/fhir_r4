@@ -3,22 +3,20 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class CodeableConcept extends DataType {
-  final List<Coding>? coding;
-  final FhirString? text;
-  final Element? textElement;
-
   CodeableConcept({
     super.id,
     super.extension_,
     this.coding,
     this.text,
-this.textElement,
+    this.textElement,
   });
 
-@override
-CodeableConcept clone() => throw UnimplementedError();
+  final List<Coding>? coding;
+  final FhirString? text;
+  final Element? textElement;
+  @override
+  CodeableConcept clone() => throw UnimplementedError();
 }
-

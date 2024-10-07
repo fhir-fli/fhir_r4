@@ -3,9 +3,21 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Reference extends DataType {
+  Reference({
+    super.id,
+    super.extension_,
+    this.reference,
+    this.referenceElement,
+    this.type,
+    this.typeElement,
+    this.identifier,
+    this.display,
+    this.displayElement,
+  });
+
   final FhirString? reference;
   final Element? referenceElement;
   final FhirUri? type;
@@ -13,20 +25,6 @@ class Reference extends DataType {
   final Identifier? identifier;
   final FhirString? display;
   final Element? displayElement;
-
-  Reference({
-    super.id,
-    super.extension_,
-    this.reference,
-this.referenceElement,
-    this.type,
-this.typeElement,
-    this.identifier,
-    this.display,
-this.displayElement,
-  });
-
-@override
-Reference clone() => throw UnimplementedError();
+  @override
+  Reference clone() => throw UnimplementedError();
 }
-

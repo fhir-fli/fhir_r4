@@ -3,9 +3,38 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Slot extends DomainResource {
+  Slot({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    this.serviceCategory,
+    this.serviceType,
+    this.specialty,
+    this.appointmentType,
+    required this.schedule,
+    required this.status,
+    this.statusElement,
+    required this.start,
+    this.startElement,
+    required this.end,
+    this.endElement,
+    this.overbooked,
+    this.overbookedElement,
+    this.comment,
+    this.commentElement,
+  }) : super(resourceType: R4ResourceType.Slot);
+
   final List<Identifier>? identifier;
   final List<CodeableConcept>? serviceCategory;
   final List<CodeableConcept>? serviceType;
@@ -22,37 +51,6 @@ class Slot extends DomainResource {
   final Element? overbookedElement;
   final FhirString? comment;
   final Element? commentElement;
-
-  Slot({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    this.serviceCategory,
-    this.serviceType,
-    this.specialty,
-    this.appointmentType,
-    required this.schedule,
-    required this.status,
-this.statusElement,
-    required this.start,
-this.startElement,
-    required this.end,
-this.endElement,
-    this.overbooked,
-this.overbookedElement,
-    this.comment,
-this.commentElement,
-  }) : super(resourceType: R4ResourceType.Slot);
-
-@override
-Slot clone() => throw UnimplementedError();
+  @override
+  Slot clone() => throw UnimplementedError();
 }
-

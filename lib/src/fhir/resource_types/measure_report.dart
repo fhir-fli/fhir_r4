@@ -3,9 +3,37 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class MeasureReport extends DomainResource {
+  MeasureReport({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    required this.status,
+    this.statusElement,
+    required this.type,
+    this.typeElement,
+    required this.measure,
+    this.measureElement,
+    this.subject,
+    this.date,
+    this.dateElement,
+    this.reporter,
+    required this.period,
+    this.improvementNotation,
+    this.group,
+    this.evaluatedResource,
+  }) : super(resourceType: R4ResourceType.MeasureReport);
+
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -21,47 +49,13 @@ class MeasureReport extends DomainResource {
   final CodeableConcept? improvementNotation;
   final List<MeasureReportGroup>? group;
   final List<Reference>? evaluatedResource;
-
-  MeasureReport({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    required this.status,
-this.statusElement,
-    required this.type,
-this.typeElement,
-    required this.measure,
-this.measureElement,
-    this.subject,
-    this.date,
-this.dateElement,
-    this.reporter,
-    required this.period,
-    this.improvementNotation,
-    this.group,
-    this.evaluatedResource,
-  }) : super(resourceType: R4ResourceType.MeasureReport);
-
-@override
-MeasureReport clone() => throw UnimplementedError();
+  @override
+  MeasureReport clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class MeasureReportGroup extends BackboneElement {
-  final CodeableConcept? code;
-  final List<MeasureReportPopulation>? population;
-  final Quantity? measureScore;
-  final List<MeasureReportStratifier>? stratifier;
-
   MeasureReportGroup({
     super.id,
     super.extension_,
@@ -72,38 +66,38 @@ class MeasureReportGroup extends BackboneElement {
     this.stratifier,
   });
 
-@override
-MeasureReportGroup clone() => throw UnimplementedError();
+  final CodeableConcept? code;
+  final List<MeasureReportPopulation>? population;
+  final Quantity? measureScore;
+  final List<MeasureReportStratifier>? stratifier;
+  @override
+  MeasureReportGroup clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class MeasureReportPopulation extends BackboneElement {
-  final CodeableConcept? code;
-  final FhirInteger? count;
-  final Element? countElement;
-  final Reference? subjectResults;
-
   MeasureReportPopulation({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.code,
     this.count,
-this.countElement,
+    this.countElement,
     this.subjectResults,
   });
 
-@override
-MeasureReportPopulation clone() => throw UnimplementedError();
+  final CodeableConcept? code;
+  final FhirInteger? count;
+  final Element? countElement;
+  final Reference? subjectResults;
+  @override
+  MeasureReportPopulation clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class MeasureReportStratifier extends BackboneElement {
-  final List<CodeableConcept>? code;
-  final List<MeasureReportStratum>? stratum;
-
   MeasureReportStratifier({
     super.id,
     super.extension_,
@@ -112,18 +106,15 @@ class MeasureReportStratifier extends BackboneElement {
     this.stratum,
   });
 
-@override
-MeasureReportStratifier clone() => throw UnimplementedError();
+  final List<CodeableConcept>? code;
+  final List<MeasureReportStratum>? stratum;
+  @override
+  MeasureReportStratifier clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class MeasureReportStratum extends BackboneElement {
-  final CodeableConcept? value;
-  final List<MeasureReportComponent>? component;
-  final List<MeasureReportPopulation>? population;
-  final Quantity? measureScore;
-
   MeasureReportStratum({
     super.id,
     super.extension_,
@@ -134,16 +125,17 @@ class MeasureReportStratum extends BackboneElement {
     this.measureScore,
   });
 
-@override
-MeasureReportStratum clone() => throw UnimplementedError();
+  final CodeableConcept? value;
+  final List<MeasureReportComponent>? component;
+  final List<MeasureReportPopulation>? population;
+  final Quantity? measureScore;
+  @override
+  MeasureReportStratum clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class MeasureReportComponent extends BackboneElement {
-  final CodeableConcept code;
-  final CodeableConcept value;
-
   MeasureReportComponent({
     super.id,
     super.extension_,
@@ -152,29 +144,29 @@ class MeasureReportComponent extends BackboneElement {
     required this.value,
   });
 
-@override
-MeasureReportComponent clone() => throw UnimplementedError();
+  final CodeableConcept code;
+  final CodeableConcept value;
+  @override
+  MeasureReportComponent clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class MeasureReportPopulation1 extends BackboneElement {
-  final CodeableConcept? code;
-  final FhirInteger? count;
-  final Element? countElement;
-  final Reference? subjectResults;
-
   MeasureReportPopulation1({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.code,
     this.count,
-this.countElement,
+    this.countElement,
     this.subjectResults,
   });
 
-@override
-MeasureReportPopulation1 clone() => throw UnimplementedError();
+  final CodeableConcept? code;
+  final FhirInteger? count;
+  final Element? countElement;
+  final Reference? subjectResults;
+  @override
+  MeasureReportPopulation1 clone() => throw UnimplementedError();
 }
-

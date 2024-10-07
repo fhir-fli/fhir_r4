@@ -3,9 +3,37 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class AuditEvent extends DomainResource {
+  AuditEvent({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    required this.type,
+    this.subtype,
+    this.action,
+    this.actionElement,
+    this.period,
+    required this.recorded,
+    this.recordedElement,
+    this.outcome,
+    this.outcomeElement,
+    this.outcomeDesc,
+    this.outcomeDescElement,
+    this.purposeOfEvent,
+    required this.agent,
+    required this.source,
+    this.entity,
+  }) : super(resourceType: R4ResourceType.AuditEvent);
+
   final Coding type;
   final List<Coding>? subtype;
   final FhirCode? action;
@@ -21,42 +49,34 @@ class AuditEvent extends DomainResource {
   final List<AuditEventAgent> agent;
   final AuditEventSource source;
   final List<AuditEventEntity>? entity;
-
-  AuditEvent({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    required this.type,
-    this.subtype,
-    this.action,
-this.actionElement,
-    this.period,
-    required this.recorded,
-this.recordedElement,
-    this.outcome,
-this.outcomeElement,
-    this.outcomeDesc,
-this.outcomeDescElement,
-    this.purposeOfEvent,
-    required this.agent,
-    required this.source,
-    this.entity,
-  }) : super(resourceType: R4ResourceType.AuditEvent);
-
-@override
-AuditEvent clone() => throw UnimplementedError();
+  @override
+  AuditEvent clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class AuditEventAgent extends BackboneElement {
+  AuditEventAgent({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    this.type,
+    this.role,
+    this.who,
+    this.altId,
+    this.altIdElement,
+    this.name,
+    this.nameElement,
+    required this.requestor,
+    this.requestorElement,
+    this.location,
+    this.policy,
+    this.policyElement,
+    this.media,
+    this.network,
+    this.purposeOfUse,
+  });
+
   final CodeableConcept? type;
   final List<CodeableConcept>? role;
   final Reference? who;
@@ -72,79 +92,73 @@ class AuditEventAgent extends BackboneElement {
   final Coding? media;
   final AuditEventNetwork? network;
   final List<CodeableConcept>? purposeOfUse;
-
-  AuditEventAgent({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    this.type,
-    this.role,
-    this.who,
-    this.altId,
-this.altIdElement,
-    this.name,
-this.nameElement,
-    required this.requestor,
-this.requestorElement,
-    this.location,
-    this.policy,
-this.policyElement,
-    this.media,
-    this.network,
-    this.purposeOfUse,
-  });
-
-@override
-AuditEventAgent clone() => throw UnimplementedError();
+  @override
+  AuditEventAgent clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class AuditEventNetwork extends BackboneElement {
-  final FhirString? address;
-  final Element? addressElement;
-  final FhirCode? type;
-  final Element? typeElement;
-
   AuditEventNetwork({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.address,
-this.addressElement,
+    this.addressElement,
     this.type,
-this.typeElement,
+    this.typeElement,
   });
 
-@override
-AuditEventNetwork clone() => throw UnimplementedError();
+  final FhirString? address;
+  final Element? addressElement;
+  final FhirCode? type;
+  final Element? typeElement;
+  @override
+  AuditEventNetwork clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class AuditEventSource extends BackboneElement {
-  final FhirString? site;
-  final Element? siteElement;
-  final Reference observer;
-  final List<Coding>? type;
-
   AuditEventSource({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.site,
-this.siteElement,
+    this.siteElement,
     required this.observer,
     this.type,
   });
 
-@override
-AuditEventSource clone() => throw UnimplementedError();
+  final FhirString? site;
+  final Element? siteElement;
+  final Reference observer;
+  final List<Coding>? type;
+  @override
+  AuditEventSource clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class AuditEventEntity extends BackboneElement {
+  AuditEventEntity({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    this.what,
+    this.type,
+    this.role,
+    this.lifecycle,
+    this.securityLabel,
+    this.name,
+    this.nameElement,
+    this.description,
+    this.descriptionElement,
+    this.query,
+    this.queryElement,
+    this.detail,
+  });
+
   final Reference? what;
   final Coding? type;
   final Coding? role;
@@ -157,52 +171,31 @@ class AuditEventEntity extends BackboneElement {
   final FhirBase64Binary? query;
   final Element? queryElement;
   final List<AuditEventDetail>? detail;
+  @override
+  AuditEventEntity clone() => throw UnimplementedError();
+}
 
-  AuditEventEntity({
+@JsonCodable()
+@Data()
+class AuditEventDetail extends BackboneElement {
+  AuditEventDetail({
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.what,
-    this.type,
-    this.role,
-    this.lifecycle,
-    this.securityLabel,
-    this.name,
-this.nameElement,
-    this.description,
-this.descriptionElement,
-    this.query,
-this.queryElement,
-    this.detail,
+    required this.type,
+    this.typeElement,
+    required this.valueString,
+    this.valueStringElement,
+    required this.valueBase64Binary,
+    this.valueBase64BinaryElement,
   });
 
-@override
-AuditEventEntity clone() => throw UnimplementedError();
-}
-
-@Data()
-@JsonCodable()
-class AuditEventDetail extends BackboneElement {
   final FhirString type;
   final Element? typeElement;
   final FhirString valueString;
   final Element? valueStringElement;
   final FhirBase64Binary valueBase64Binary;
   final Element? valueBase64BinaryElement;
-
-  AuditEventDetail({
-    super.id,
-    super.extension_,
-    super.modifierExtension,
-    required this.type,
-this.typeElement,
-    required this.valueString,
-this.valueStringElement,
-    required this.valueBase64Binary,
-this.valueBase64BinaryElement,
-  });
-
-@override
-AuditEventDetail clone() => throw UnimplementedError();
+  @override
+  AuditEventDetail clone() => throw UnimplementedError();
 }
-

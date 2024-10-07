@@ -3,24 +3,22 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Period extends DataType {
-  final FhirDateTime? start;
-  final Element? startElement;
-  final FhirDateTime? end;
-  final Element? endElement;
-
   Period({
     super.id,
     super.extension_,
     this.start,
-this.startElement,
+    this.startElement,
     this.end,
-this.endElement,
+    this.endElement,
   });
 
-@override
-Period clone() => throw UnimplementedError();
+  final FhirDateTime? start;
+  final Element? startElement;
+  final FhirDateTime? end;
+  final Element? endElement;
+  @override
+  Period clone() => throw UnimplementedError();
 }
-

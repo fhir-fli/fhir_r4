@@ -6,29 +6,35 @@ enum ImmunizationEvaluationStatusCodes {
   completed,
   @JsonValue('entered-in-error')
   entered_in_error,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case completed: return 'completed';
-        case entered_in_error: return 'entered-in-error';
-      }
-      }
-String toJson() => toString();
-  ImmunizationEvaluationStatusCodes fromString(String str) {
-    switch(str) {
-      case 'completed': return ImmunizationEvaluationStatusCodes.completed;
-      case 'entered-in-error': return ImmunizationEvaluationStatusCodes.entered_in_error;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case completed:
+        return 'completed';
+      case entered_in_error:
+        return 'entered-in-error';
     }
-      }
- ImmunizationEvaluationStatusCodes fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  ImmunizationEvaluationStatusCodes fromString(String str) {
+    switch (str) {
+      case 'completed':
+        return ImmunizationEvaluationStatusCodes.completed;
+      case 'entered-in-error':
+        return ImmunizationEvaluationStatusCodes.entered_in_error;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  ImmunizationEvaluationStatusCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

@@ -3,9 +3,24 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class Coding extends DataType {
+  Coding({
+    super.id,
+    super.extension_,
+    this.system,
+    this.systemElement,
+    this.version,
+    this.versionElement,
+    this.code,
+    this.codeElement,
+    this.display,
+    this.displayElement,
+    this.userSelected,
+    this.userSelectedElement,
+  });
+
   final FhirUri? system;
   final Element? systemElement;
   final FhirString? version;
@@ -16,23 +31,6 @@ class Coding extends DataType {
   final Element? displayElement;
   final FhirBoolean? userSelected;
   final Element? userSelectedElement;
-
-  Coding({
-    super.id,
-    super.extension_,
-    this.system,
-this.systemElement,
-    this.version,
-this.versionElement,
-    this.code,
-this.codeElement,
-    this.display,
-this.displayElement,
-    this.userSelected,
-this.userSelectedElement,
-  });
-
-@override
-Coding clone() => throw UnimplementedError();
+  @override
+  Coding clone() => throw UnimplementedError();
 }
-

@@ -3,22 +3,20 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class ContactDetail extends DataType {
-  final FhirString? name;
-  final Element? nameElement;
-  final List<ContactPoint>? telecom;
-
   ContactDetail({
     super.id,
     super.extension_,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.telecom,
   });
 
-@override
-ContactDetail clone() => throw UnimplementedError();
+  final FhirString? name;
+  final Element? nameElement;
+  final List<ContactPoint>? telecom;
+  @override
+  ContactDetail clone() => throw UnimplementedError();
 }
-

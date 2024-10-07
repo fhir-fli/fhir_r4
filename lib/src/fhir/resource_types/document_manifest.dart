@@ -3,9 +3,38 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class DocumentManifest extends DomainResource {
+  DocumentManifest({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.masterIdentifier,
+    this.identifier,
+    required this.status,
+    this.statusElement,
+    this.type,
+    this.subject,
+    this.created,
+    this.createdElement,
+    this.author,
+    this.recipient,
+    this.source,
+    this.sourceElement,
+    this.description,
+    this.descriptionElement,
+    required this.content,
+    this.related,
+  }) : super(resourceType: R4ResourceType.DocumentManifest);
+
   final Identifier? masterIdentifier;
   final List<Identifier>? identifier;
   final FhirCode status;
@@ -22,46 +51,13 @@ class DocumentManifest extends DomainResource {
   final Element? descriptionElement;
   final List<Reference> content;
   final List<DocumentManifestRelated>? related;
-
-  DocumentManifest({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.masterIdentifier,
-    this.identifier,
-    required this.status,
-this.statusElement,
-    this.type,
-    this.subject,
-    this.created,
-this.createdElement,
-    this.author,
-    this.recipient,
-    this.source,
-this.sourceElement,
-    this.description,
-this.descriptionElement,
-    required this.content,
-    this.related,
-  }) : super(resourceType: R4ResourceType.DocumentManifest);
-
-@override
-DocumentManifest clone() => throw UnimplementedError();
+  @override
+  DocumentManifest clone() => throw UnimplementedError();
 }
 
-@Data()
 @JsonCodable()
+@Data()
 class DocumentManifestRelated extends BackboneElement {
-  final Identifier? identifier;
-  final Reference? ref;
-
   DocumentManifestRelated({
     super.id,
     super.extension_,
@@ -70,7 +66,8 @@ class DocumentManifestRelated extends BackboneElement {
     this.ref,
   });
 
-@override
-DocumentManifestRelated clone() => throw UnimplementedError();
+  final Identifier? identifier;
+  final Reference? ref;
+  @override
+  DocumentManifestRelated clone() => throw UnimplementedError();
 }
-

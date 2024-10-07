@@ -3,9 +3,37 @@ import 'package:json/json.dart';
 
 import '../../../fhir_r4.dart';
 
-@Data()
 @JsonCodable()
+@Data()
 class PaymentNotice extends DomainResource {
+  PaymentNotice({
+    super.id,
+    super.meta,
+    super.implicitRules,
+    super.implicitRulesElement,
+    super.language,
+    super.languageElement,
+    super.text,
+    super.contained,
+    super.extension_,
+    super.modifierExtension,
+    this.identifier,
+    required this.status,
+    this.statusElement,
+    this.request,
+    this.response,
+    required this.created,
+    this.createdElement,
+    this.provider,
+    required this.payment,
+    this.paymentDate,
+    this.paymentDateElement,
+    this.payee,
+    required this.recipient,
+    required this.amount,
+    this.paymentStatus,
+  }) : super(resourceType: R4ResourceType.PaymentNotice);
+
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -21,36 +49,6 @@ class PaymentNotice extends DomainResource {
   final Reference recipient;
   final Money amount;
   final CodeableConcept? paymentStatus;
-
-  PaymentNotice({
-    super.id,
-    super.meta,
-    super.implicitRules,
-super.implicitRulesElement,
-    super.language,
-super.languageElement,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
-    this.identifier,
-    required this.status,
-this.statusElement,
-    this.request,
-    this.response,
-    required this.created,
-this.createdElement,
-    this.provider,
-    required this.payment,
-    this.paymentDate,
-this.paymentDateElement,
-    this.payee,
-    required this.recipient,
-    required this.amount,
-    this.paymentStatus,
-  }) : super(resourceType: R4ResourceType.PaymentNotice);
-
-@override
-PaymentNotice clone() => throw UnimplementedError();
+  @override
+  PaymentNotice clone() => throw UnimplementedError();
 }
-
