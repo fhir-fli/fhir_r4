@@ -33,9 +33,9 @@ class MedicationStatement extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -44,7 +44,7 @@ class MedicationStatement extends DomainResource {
     this.basedOn,
     this.partOf,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.statusReason,
     this.category,
     required this.medicationCodeableConcept,
@@ -52,10 +52,10 @@ class MedicationStatement extends DomainResource {
     required this.subject,
     this.context,
     this.effectiveDateTime,
-    this.effectiveDateTimeElement,
+this.effectiveDateTimeElement,
     this.effectivePeriod,
     this.dateAsserted,
-    this.dateAssertedElement,
+this.dateAssertedElement,
     this.informationSource,
     this.derivedFrom,
     this.reasonCode,
@@ -64,6 +64,7 @@ class MedicationStatement extends DomainResource {
     this.dosage,
   }) : super(resourceType: R4ResourceType.MedicationStatement);
 
-  @override
-  MedicationStatement clone() => throw UnimplementedError();
+@override
+MedicationStatement clone() => throw UnimplementedError();
 }
+

@@ -6,40 +6,33 @@ enum AssertionDirectionType {
   /// Definition: The assertion is evaluated on the response. This is the default value.
   @JsonValue('response')
   response,
-
   /// Display: request
   /// Definition: The assertion is evaluated on the request.
   @JsonValue('request')
   request,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case response:
-        return 'response';
-      case request:
-        return 'request';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case response: return 'response';
+        case request: return 'request';
+      }
+      }
+String toJson() => toString();
   AssertionDirectionType fromString(String str) {
-    switch (str) {
-      case 'response':
-        return AssertionDirectionType.response;
-      case 'request':
-        return AssertionDirectionType.request;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'response': return AssertionDirectionType.response;
+      case 'request': return AssertionDirectionType.request;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  AssertionDirectionType fromJson(dynamic jsonValue) {
+      }
+ AssertionDirectionType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

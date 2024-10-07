@@ -24,9 +24,9 @@ class DeviceMetric extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -37,17 +37,17 @@ class DeviceMetric extends DomainResource {
     this.source,
     this.parent,
     this.operationalStatus,
-    this.operationalStatusElement,
+this.operationalStatusElement,
     this.color,
-    this.colorElement,
+this.colorElement,
     required this.category,
-    this.categoryElement,
+this.categoryElement,
     this.measurementPeriod,
     this.calibration,
   }) : super(resourceType: R4ResourceType.DeviceMetric);
 
-  @override
-  DeviceMetric clone() => throw UnimplementedError();
+@override
+DeviceMetric clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -65,13 +65,14 @@ class DeviceMetricCalibration extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.type,
-    this.typeElement,
+this.typeElement,
     this.state,
-    this.stateElement,
+this.stateElement,
     this.time,
-    this.timeElement,
+this.timeElement,
   });
 
-  @override
-  DeviceMetricCalibration clone() => throw UnimplementedError();
+@override
+DeviceMetricCalibration clone() => throw UnimplementedError();
 }
+

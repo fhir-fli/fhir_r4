@@ -31,23 +31,23 @@ class Invoice extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.cancelledReason,
-    this.cancelledReasonElement,
+this.cancelledReasonElement,
     this.type,
     this.subject,
     this.recipient,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.participant,
     this.issuer,
     this.account,
@@ -56,12 +56,12 @@ class Invoice extends DomainResource {
     this.totalNet,
     this.totalGross,
     this.paymentTerms,
-    this.paymentTermsElement,
+this.paymentTermsElement,
     this.note,
   }) : super(resourceType: R4ResourceType.Invoice);
 
-  @override
-  Invoice clone() => throw UnimplementedError();
+@override
+Invoice clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -78,8 +78,8 @@ class InvoiceParticipant extends BackboneElement {
     required this.actor,
   });
 
-  @override
-  InvoiceParticipant clone() => throw UnimplementedError();
+@override
+InvoiceParticipant clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -96,14 +96,14 @@ class InvoiceLineItem extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.sequence,
-    this.sequenceElement,
+this.sequenceElement,
     required this.chargeItemReference,
     required this.chargeItemCodeableConcept,
     this.priceComponent,
   });
 
-  @override
-  InvoiceLineItem clone() => throw UnimplementedError();
+@override
+InvoiceLineItem clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -121,13 +121,14 @@ class InvoicePriceComponent extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    this.typeElement,
+this.typeElement,
     this.code,
     this.factor,
-    this.factorElement,
+this.factorElement,
     this.amount,
   });
 
-  @override
-  InvoicePriceComponent clone() => throw UnimplementedError();
+@override
+InvoicePriceComponent clone() => throw UnimplementedError();
 }
+

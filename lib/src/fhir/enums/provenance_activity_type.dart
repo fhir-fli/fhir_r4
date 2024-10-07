@@ -24,71 +24,47 @@ enum ProvenanceActivityType {
   APPEND,
   @JsonValue('NULLIFY')
   NULLIFY,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case LA:
-        return 'LA';
-      case ANONY:
-        return 'ANONY';
-      case DEID:
-        return 'DEID';
-      case MASK:
-        return 'MASK';
-      case LABEL:
-        return 'LABEL';
-      case PSEUD:
-        return 'PSEUD';
-      case CREATE:
-        return 'CREATE';
-      case DELETE:
-        return 'DELETE';
-      case UPDATE:
-        return 'UPDATE';
-      case APPEND:
-        return 'APPEND';
-      case NULLIFY:
-        return 'NULLIFY';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case LA: return 'LA';
+        case ANONY: return 'ANONY';
+        case DEID: return 'DEID';
+        case MASK: return 'MASK';
+        case LABEL: return 'LABEL';
+        case PSEUD: return 'PSEUD';
+        case CREATE: return 'CREATE';
+        case DELETE: return 'DELETE';
+        case UPDATE: return 'UPDATE';
+        case APPEND: return 'APPEND';
+        case NULLIFY: return 'NULLIFY';
+      }
+      }
+String toJson() => toString();
   ProvenanceActivityType fromString(String str) {
-    switch (str) {
-      case 'LA':
-        return ProvenanceActivityType.LA;
-      case 'ANONY':
-        return ProvenanceActivityType.ANONY;
-      case 'DEID':
-        return ProvenanceActivityType.DEID;
-      case 'MASK':
-        return ProvenanceActivityType.MASK;
-      case 'LABEL':
-        return ProvenanceActivityType.LABEL;
-      case 'PSEUD':
-        return ProvenanceActivityType.PSEUD;
-      case 'CREATE':
-        return ProvenanceActivityType.CREATE;
-      case 'DELETE':
-        return ProvenanceActivityType.DELETE;
-      case 'UPDATE':
-        return ProvenanceActivityType.UPDATE;
-      case 'APPEND':
-        return ProvenanceActivityType.APPEND;
-      case 'NULLIFY':
-        return ProvenanceActivityType.NULLIFY;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'LA': return ProvenanceActivityType.LA;
+      case 'ANONY': return ProvenanceActivityType.ANONY;
+      case 'DEID': return ProvenanceActivityType.DEID;
+      case 'MASK': return ProvenanceActivityType.MASK;
+      case 'LABEL': return ProvenanceActivityType.LABEL;
+      case 'PSEUD': return ProvenanceActivityType.PSEUD;
+      case 'CREATE': return ProvenanceActivityType.CREATE;
+      case 'DELETE': return ProvenanceActivityType.DELETE;
+      case 'UPDATE': return ProvenanceActivityType.UPDATE;
+      case 'APPEND': return ProvenanceActivityType.APPEND;
+      case 'NULLIFY': return ProvenanceActivityType.NULLIFY;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  ProvenanceActivityType fromJson(dynamic jsonValue) {
+      }
+ ProvenanceActivityType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

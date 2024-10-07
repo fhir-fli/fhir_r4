@@ -6,31 +6,27 @@ enum ContractResourceDefinitionSubtypeCodes {
   /// Definition: To be completed
   @JsonValue('temp')
   temp,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case temp:
-        return 'temp';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case temp: return 'temp';
+      }
+      }
+String toJson() => toString();
   ContractResourceDefinitionSubtypeCodes fromString(String str) {
-    switch (str) {
-      case 'temp':
-        return ContractResourceDefinitionSubtypeCodes.temp;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'temp': return ContractResourceDefinitionSubtypeCodes.temp;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  ContractResourceDefinitionSubtypeCodes fromJson(dynamic jsonValue) {
+      }
+ ContractResourceDefinitionSubtypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

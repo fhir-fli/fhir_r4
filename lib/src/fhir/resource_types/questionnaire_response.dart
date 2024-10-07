@@ -25,9 +25,9 @@ class QuestionnaireResponse extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -36,20 +36,20 @@ class QuestionnaireResponse extends DomainResource {
     this.basedOn,
     this.partOf,
     this.questionnaire,
-    this.questionnaireElement,
+this.questionnaireElement,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.subject,
     this.encounter,
     this.authored,
-    this.authoredElement,
+this.authoredElement,
     this.author,
     this.source,
     this.item,
   }) : super(resourceType: R4ResourceType.QuestionnaireResponse);
 
-  @override
-  QuestionnaireResponse clone() => throw UnimplementedError();
+@override
+QuestionnaireResponse clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -69,17 +69,17 @@ class QuestionnaireResponseItem extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.linkId,
-    this.linkIdElement,
+this.linkIdElement,
     this.definition,
-    this.definitionElement,
+this.definitionElement,
     this.text,
-    this.textElement,
+this.textElement,
     this.answer,
     this.item,
   });
 
-  @override
-  QuestionnaireResponseItem clone() => throw UnimplementedError();
+@override
+QuestionnaireResponseItem clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -112,21 +112,21 @@ class QuestionnaireResponseAnswer extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.valueBoolean,
-    this.valueBooleanElement,
+this.valueBooleanElement,
     this.valueDecimal,
-    this.valueDecimalElement,
+this.valueDecimalElement,
     this.valueInteger,
-    this.valueIntegerElement,
+this.valueIntegerElement,
     this.valueDate,
-    this.valueDateElement,
+this.valueDateElement,
     this.valueDateTime,
-    this.valueDateTimeElement,
+this.valueDateTimeElement,
     this.valueTime,
-    this.valueTimeElement,
+this.valueTimeElement,
     this.valueString,
-    this.valueStringElement,
+this.valueStringElement,
     this.valueUri,
-    this.valueUriElement,
+this.valueUriElement,
     this.valueAttachment,
     this.valueCoding,
     this.valueQuantity,
@@ -134,6 +134,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
     this.item,
   });
 
-  @override
-  QuestionnaireResponseAnswer clone() => throw UnimplementedError();
+@override
+QuestionnaireResponseAnswer clone() => throw UnimplementedError();
 }
+

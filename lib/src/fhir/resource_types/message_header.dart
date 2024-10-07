@@ -25,16 +25,16 @@ class MessageHeader extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     required this.eventCoding,
     required this.eventUri,
-    this.eventUriElement,
+this.eventUriElement,
     this.destination,
     this.sender,
     this.enterer,
@@ -45,11 +45,11 @@ class MessageHeader extends DomainResource {
     this.response,
     this.focus,
     this.definition,
-    this.definitionElement,
+this.definitionElement,
   }) : super(resourceType: R4ResourceType.MessageHeader);
 
-  @override
-  MessageHeader clone() => throw UnimplementedError();
+@override
+MessageHeader clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -67,15 +67,15 @@ class MessageHeaderDestination extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.target,
     required this.endpoint,
-    this.endpointElement,
+this.endpointElement,
     this.receiver,
   });
 
-  @override
-  MessageHeaderDestination clone() => throw UnimplementedError();
+@override
+MessageHeaderDestination clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -96,18 +96,18 @@ class MessageHeaderSource extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.software,
-    this.softwareElement,
+this.softwareElement,
     this.version,
-    this.versionElement,
+this.versionElement,
     this.contact,
     required this.endpoint,
-    this.endpointElement,
+this.endpointElement,
   });
 
-  @override
-  MessageHeaderSource clone() => throw UnimplementedError();
+@override
+MessageHeaderSource clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -124,12 +124,13 @@ class MessageHeaderResponse extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.identifier,
-    this.identifierElement,
+this.identifierElement,
     required this.code,
-    this.codeElement,
+this.codeElement,
     this.details,
   });
 
-  @override
-  MessageHeaderResponse clone() => throw UnimplementedError();
+@override
+MessageHeaderResponse clone() => throw UnimplementedError();
 }
+

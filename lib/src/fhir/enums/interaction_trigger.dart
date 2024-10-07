@@ -8,39 +8,31 @@ enum InteractionTrigger {
   update,
   @JsonValue('delete')
   delete,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case create:
-        return 'create';
-      case update:
-        return 'update';
-      case delete:
-        return 'delete';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case create: return 'create';
+        case update: return 'update';
+        case delete: return 'delete';
+      }
+      }
+String toJson() => toString();
   InteractionTrigger fromString(String str) {
-    switch (str) {
-      case 'create':
-        return InteractionTrigger.create;
-      case 'update':
-        return InteractionTrigger.update;
-      case 'delete':
-        return InteractionTrigger.delete;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'create': return InteractionTrigger.create;
+      case 'update': return InteractionTrigger.update;
+      case 'delete': return InteractionTrigger.delete;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  InteractionTrigger fromJson(dynamic jsonValue) {
+      }
+ InteractionTrigger fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

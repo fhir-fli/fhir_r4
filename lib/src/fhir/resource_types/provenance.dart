@@ -25,9 +25,9 @@ class Provenance extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -35,11 +35,11 @@ class Provenance extends DomainResource {
     required this.target,
     this.occurredPeriod,
     this.occurredDateTime,
-    this.occurredDateTimeElement,
+this.occurredDateTimeElement,
     required this.recorded,
-    this.recordedElement,
+this.recordedElement,
     this.policy,
-    this.policyElement,
+this.policyElement,
     this.location,
     this.reason,
     this.activity,
@@ -48,8 +48,8 @@ class Provenance extends DomainResource {
     this.signature,
   }) : super(resourceType: R4ResourceType.Provenance);
 
-  @override
-  Provenance clone() => throw UnimplementedError();
+@override
+Provenance clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -70,8 +70,8 @@ class ProvenanceAgent extends BackboneElement {
     this.onBehalfOf,
   });
 
-  @override
-  ProvenanceAgent clone() => throw UnimplementedError();
+@override
+ProvenanceAgent clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -87,11 +87,12 @@ class ProvenanceEntity extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.role,
-    this.roleElement,
+this.roleElement,
     required this.what,
     this.agent,
   });
 
-  @override
-  ProvenanceEntity clone() => throw UnimplementedError();
+@override
+ProvenanceEntity clone() => throw UnimplementedError();
 }
+

@@ -21,17 +21,18 @@ class FhirExpression extends DataType {
     super.id,
     super.extension_,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.name,
-    this.nameElement,
+this.nameElement,
     required this.language,
-    this.languageElement,
+this.languageElement,
     this.expression,
-    this.expressionElement,
+this.expressionElement,
     this.reference,
-    this.referenceElement,
+this.referenceElement,
   });
 
-  @override
-  FhirExpression clone() => throw UnimplementedError();
+@override
+FhirExpression clone() => throw UnimplementedError();
 }
+

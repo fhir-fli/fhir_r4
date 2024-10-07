@@ -44,50 +44,50 @@ class ImplementationGuide extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     required this.url,
-    this.urlElement,
+this.urlElement,
     this.version,
-    this.versionElement,
+this.versionElement,
     required this.name,
-    this.nameElement,
+this.nameElement,
     this.title,
-    this.titleElement,
+this.titleElement,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.experimental,
-    this.experimentalElement,
+this.experimentalElement,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.publisher,
-    this.publisherElement,
+this.publisherElement,
     this.contact,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.copyright,
-    this.copyrightElement,
+this.copyrightElement,
     required this.packageId,
-    this.packageIdElement,
+this.packageIdElement,
     this.license,
-    this.licenseElement,
+this.licenseElement,
     required this.fhirVersion,
-    this.fhirVersionElement,
+this.fhirVersionElement,
     this.dependsOn,
     this.global,
     this.definition,
     this.manifest,
   }) : super(resourceType: R4ResourceType.ImplementationGuide);
 
-  @override
-  ImplementationGuide clone() => throw UnimplementedError();
+@override
+ImplementationGuide clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -105,15 +105,15 @@ class ImplementationGuideDependsOn extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.uri,
-    this.uriElement,
+this.uriElement,
     this.packageId,
-    this.packageIdElement,
+this.packageIdElement,
     this.version,
-    this.versionElement,
+this.versionElement,
   });
 
-  @override
-  ImplementationGuideDependsOn clone() => throw UnimplementedError();
+@override
+ImplementationGuideDependsOn clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -129,13 +129,13 @@ class ImplementationGuideGlobal extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    this.typeElement,
+this.typeElement,
     required this.profile,
-    this.profileElement,
+this.profileElement,
   });
 
-  @override
-  ImplementationGuideGlobal clone() => throw UnimplementedError();
+@override
+ImplementationGuideGlobal clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -158,8 +158,8 @@ class ImplementationGuideDefinition extends BackboneElement {
     this.template,
   });
 
-  @override
-  ImplementationGuideDefinition clone() => throw UnimplementedError();
+@override
+ImplementationGuideDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -175,13 +175,13 @@ class ImplementationGuideGrouping extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-    this.nameElement,
+this.nameElement,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
   });
 
-  @override
-  ImplementationGuideGrouping clone() => throw UnimplementedError();
+@override
+ImplementationGuideGrouping clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -207,21 +207,21 @@ class ImplementationGuideResource extends BackboneElement {
     super.modifierExtension,
     required this.reference,
     this.fhirVersion,
-    this.fhirVersionElement,
+this.fhirVersionElement,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.exampleBoolean,
-    this.exampleBooleanElement,
+this.exampleBooleanElement,
     this.exampleCanonical,
-    this.exampleCanonicalElement,
+this.exampleCanonicalElement,
     this.groupingId,
-    this.groupingIdElement,
+this.groupingIdElement,
   });
 
-  @override
-  ImplementationGuideResource clone() => throw UnimplementedError();
+@override
+ImplementationGuideResource clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -241,17 +241,17 @@ class ImplementationGuidePage extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.nameUrl,
-    this.nameUrlElement,
+this.nameUrlElement,
     required this.nameReference,
     required this.title,
-    this.titleElement,
+this.titleElement,
     required this.generation,
-    this.generationElement,
+this.generationElement,
     this.page,
   });
 
-  @override
-  ImplementationGuidePage clone() => throw UnimplementedError();
+@override
+ImplementationGuidePage clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -267,13 +267,13 @@ class ImplementationGuideParameter extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    this.codeElement,
+this.codeElement,
     required this.value,
-    this.valueElement,
+this.valueElement,
   });
 
-  @override
-  ImplementationGuideParameter clone() => throw UnimplementedError();
+@override
+ImplementationGuideParameter clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -291,15 +291,15 @@ class ImplementationGuideTemplate extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    this.codeElement,
+this.codeElement,
     required this.source,
-    this.sourceElement,
+this.sourceElement,
     this.scope,
-    this.scopeElement,
+this.scopeElement,
   });
 
-  @override
-  ImplementationGuideTemplate clone() => throw UnimplementedError();
+@override
+ImplementationGuideTemplate clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -319,17 +319,17 @@ class ImplementationGuideManifest extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.rendering,
-    this.renderingElement,
+this.renderingElement,
     required this.resource,
     this.page,
     this.image,
-    this.imageElement,
+this.imageElement,
     this.other,
-    this.otherElement,
+this.otherElement,
   });
 
-  @override
-  ImplementationGuideManifest clone() => throw UnimplementedError();
+@override
+ImplementationGuideManifest clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -349,15 +349,15 @@ class ImplementationGuideResource1 extends BackboneElement {
     super.modifierExtension,
     required this.reference,
     this.exampleBoolean,
-    this.exampleBooleanElement,
+this.exampleBooleanElement,
     this.exampleCanonical,
-    this.exampleCanonicalElement,
+this.exampleCanonicalElement,
     this.relativePath,
-    this.relativePathElement,
+this.relativePathElement,
   });
 
-  @override
-  ImplementationGuideResource1 clone() => throw UnimplementedError();
+@override
+ImplementationGuideResource1 clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -375,13 +375,14 @@ class ImplementationGuidePage1 extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-    this.nameElement,
+this.nameElement,
     this.title,
-    this.titleElement,
+this.titleElement,
     this.anchor,
-    this.anchorElement,
+this.anchorElement,
   });
 
-  @override
-  ImplementationGuidePage1 clone() => throw UnimplementedError();
+@override
+ImplementationGuidePage1 clone() => throw UnimplementedError();
 }
+

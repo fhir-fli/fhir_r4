@@ -19,16 +19,16 @@ class ManufacturedItemDefinition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-    this.statusElement,
+this.statusElement,
     required this.manufacturedDoseForm,
     this.unitOfPresentation,
     this.manufacturer,
@@ -36,8 +36,8 @@ class ManufacturedItemDefinition extends DomainResource {
     this.property,
   }) : super(resourceType: R4ResourceType.ManufacturedItemDefinition);
 
-  @override
-  ManufacturedItemDefinition clone() => throw UnimplementedError();
+@override
+ManufacturedItemDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -60,12 +60,13 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
     this.valueCodeableConcept,
     this.valueQuantity,
     this.valueDate,
-    this.valueDateElement,
+this.valueDateElement,
     this.valueBoolean,
-    this.valueBooleanElement,
+this.valueBooleanElement,
     this.valueAttachment,
   });
 
-  @override
-  ManufacturedItemDefinitionProperty clone() => throw UnimplementedError();
+@override
+ManufacturedItemDefinitionProperty clone() => throw UnimplementedError();
 }
+

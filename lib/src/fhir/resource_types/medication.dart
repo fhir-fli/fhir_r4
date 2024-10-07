@@ -20,9 +20,9 @@ class Medication extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -30,7 +30,7 @@ class Medication extends DomainResource {
     this.identifier,
     this.code,
     this.status,
-    this.statusElement,
+this.statusElement,
     this.manufacturer,
     this.form,
     this.amount,
@@ -38,8 +38,8 @@ class Medication extends DomainResource {
     this.batch,
   }) : super(resourceType: R4ResourceType.Medication);
 
-  @override
-  Medication clone() => throw UnimplementedError();
+@override
+Medication clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -58,12 +58,12 @@ class MedicationIngredient extends BackboneElement {
     required this.itemCodeableConcept,
     required this.itemReference,
     this.isActive,
-    this.isActiveElement,
+this.isActiveElement,
     this.strength,
   });
 
-  @override
-  MedicationIngredient clone() => throw UnimplementedError();
+@override
+MedicationIngredient clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -79,11 +79,12 @@ class MedicationBatch extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.lotNumber,
-    this.lotNumberElement,
+this.lotNumberElement,
     this.expirationDate,
-    this.expirationDateElement,
+this.expirationDateElement,
   });
 
-  @override
-  MedicationBatch clone() => throw UnimplementedError();
+@override
+MedicationBatch clone() => throw UnimplementedError();
 }
+

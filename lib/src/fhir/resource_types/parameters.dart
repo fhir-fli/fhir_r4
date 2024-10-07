@@ -12,14 +12,14 @@ class Parameters extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     this.parameter,
   }) : super(resourceType: R4ResourceType.Parameters);
 
-  @override
-  Parameters clone() => throw UnimplementedError();
+@override
+Parameters clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -104,45 +104,45 @@ class ParametersParameter extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-    this.nameElement,
+this.nameElement,
     this.valueBase64Binary,
-    this.valueBase64BinaryElement,
+this.valueBase64BinaryElement,
     this.valueBoolean,
-    this.valueBooleanElement,
+this.valueBooleanElement,
     this.valueCanonical,
-    this.valueCanonicalElement,
+this.valueCanonicalElement,
     this.valueCode,
-    this.valueCodeElement,
+this.valueCodeElement,
     this.valueDate,
-    this.valueDateElement,
+this.valueDateElement,
     this.valueDateTime,
-    this.valueDateTimeElement,
+this.valueDateTimeElement,
     this.valueDecimal,
-    this.valueDecimalElement,
+this.valueDecimalElement,
     this.valueId,
-    this.valueIdElement,
+this.valueIdElement,
     this.valueInstant,
-    this.valueInstantElement,
+this.valueInstantElement,
     this.valueInteger,
-    this.valueIntegerElement,
+this.valueIntegerElement,
     this.valueMarkdown,
-    this.valueMarkdownElement,
+this.valueMarkdownElement,
     this.valueOid,
-    this.valueOidElement,
+this.valueOidElement,
     this.valuePositiveInt,
-    this.valuePositiveIntElement,
+this.valuePositiveIntElement,
     this.valueString,
-    this.valueStringElement,
+this.valueStringElement,
     this.valueTime,
-    this.valueTimeElement,
+this.valueTimeElement,
     this.valueUnsignedInt,
-    this.valueUnsignedIntElement,
+this.valueUnsignedIntElement,
     this.valueUri,
-    this.valueUriElement,
+this.valueUriElement,
     this.valueUrl,
-    this.valueUrlElement,
+this.valueUrlElement,
     this.valueUuid,
-    this.valueUuidElement,
+this.valueUuidElement,
     this.valueAddress,
     this.valueAge,
     this.valueAnnotation,
@@ -178,6 +178,7 @@ class ParametersParameter extends BackboneElement {
     this.part_,
   });
 
-  @override
-  ParametersParameter clone() => throw UnimplementedError();
+@override
+ParametersParameter clone() => throw UnimplementedError();
 }
+

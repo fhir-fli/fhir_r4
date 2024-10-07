@@ -18,59 +18,41 @@ enum CarePlanActivityKind {
   ServiceRequest,
   @JsonValue('VisionPrescription')
   VisionPrescription,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case Appointment:
-        return 'Appointment';
-      case CommunicationRequest:
-        return 'CommunicationRequest';
-      case DeviceRequest:
-        return 'DeviceRequest';
-      case MedicationRequest:
-        return 'MedicationRequest';
-      case NutritionOrder:
-        return 'NutritionOrder';
-      case Task:
-        return 'Task';
-      case ServiceRequest:
-        return 'ServiceRequest';
-      case VisionPrescription:
-        return 'VisionPrescription';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case Appointment: return 'Appointment';
+        case CommunicationRequest: return 'CommunicationRequest';
+        case DeviceRequest: return 'DeviceRequest';
+        case MedicationRequest: return 'MedicationRequest';
+        case NutritionOrder: return 'NutritionOrder';
+        case Task: return 'Task';
+        case ServiceRequest: return 'ServiceRequest';
+        case VisionPrescription: return 'VisionPrescription';
+      }
+      }
+String toJson() => toString();
   CarePlanActivityKind fromString(String str) {
-    switch (str) {
-      case 'Appointment':
-        return CarePlanActivityKind.Appointment;
-      case 'CommunicationRequest':
-        return CarePlanActivityKind.CommunicationRequest;
-      case 'DeviceRequest':
-        return CarePlanActivityKind.DeviceRequest;
-      case 'MedicationRequest':
-        return CarePlanActivityKind.MedicationRequest;
-      case 'NutritionOrder':
-        return CarePlanActivityKind.NutritionOrder;
-      case 'Task':
-        return CarePlanActivityKind.Task;
-      case 'ServiceRequest':
-        return CarePlanActivityKind.ServiceRequest;
-      case 'VisionPrescription':
-        return CarePlanActivityKind.VisionPrescription;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'Appointment': return CarePlanActivityKind.Appointment;
+      case 'CommunicationRequest': return CarePlanActivityKind.CommunicationRequest;
+      case 'DeviceRequest': return CarePlanActivityKind.DeviceRequest;
+      case 'MedicationRequest': return CarePlanActivityKind.MedicationRequest;
+      case 'NutritionOrder': return CarePlanActivityKind.NutritionOrder;
+      case 'Task': return CarePlanActivityKind.Task;
+      case 'ServiceRequest': return CarePlanActivityKind.ServiceRequest;
+      case 'VisionPrescription': return CarePlanActivityKind.VisionPrescription;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  CarePlanActivityKind fromJson(dynamic jsonValue) {
+      }
+ CarePlanActivityKind fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

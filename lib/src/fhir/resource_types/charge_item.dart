@@ -47,26 +47,26 @@ class ChargeItem extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.definitionUri,
-    this.definitionUriElement,
+this.definitionUriElement,
     this.definitionCanonical,
-    this.definitionCanonicalElement,
+this.definitionCanonicalElement,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.partOf,
     required this.code,
     required this.subject,
     this.context,
     this.occurrenceDateTime,
-    this.occurrenceDateTimeElement,
+this.occurrenceDateTimeElement,
     this.occurrencePeriod,
     this.occurrenceTiming,
     this.performer,
@@ -76,13 +76,13 @@ class ChargeItem extends DomainResource {
     this.quantity,
     this.bodysite,
     this.factorOverride,
-    this.factorOverrideElement,
+this.factorOverrideElement,
     this.priceOverride,
     this.overrideReason,
-    this.overrideReasonElement,
+this.overrideReasonElement,
     this.enterer,
     this.enteredDate,
-    this.enteredDateElement,
+this.enteredDateElement,
     this.reason,
     this.service,
     this.productReference,
@@ -92,8 +92,8 @@ class ChargeItem extends DomainResource {
     this.supportingInformation,
   }) : super(resourceType: R4ResourceType.ChargeItem);
 
-  @override
-  ChargeItem clone() => throw UnimplementedError();
+@override
+ChargeItem clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -110,6 +110,7 @@ class ChargeItemPerformer extends BackboneElement {
     required this.actor,
   });
 
-  @override
-  ChargeItemPerformer clone() => throw UnimplementedError();
+@override
+ChargeItemPerformer clone() => throw UnimplementedError();
 }
+

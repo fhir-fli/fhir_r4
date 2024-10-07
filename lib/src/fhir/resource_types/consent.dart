@@ -26,21 +26,21 @@ class Consent extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-    this.statusElement,
+this.statusElement,
     required this.scope,
     required this.category,
     this.patient,
     this.dateTime,
-    this.dateTimeElement,
+this.dateTimeElement,
     this.performer,
     this.organization,
     this.sourceAttachment,
@@ -50,8 +50,8 @@ class Consent extends DomainResource {
     this.provision,
   }) : super(resourceType: R4ResourceType.Consent);
 
-  @override
-  Consent clone() => throw UnimplementedError();
+@override
+Consent clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -68,14 +68,14 @@ class ConsentPolicy extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.authority,
-    this.authorityElement,
+this.authorityElement,
     this.uri,
-    this.uriElement,
+this.uriElement,
     this.policyRule,
   });
 
-  @override
-  ConsentPolicy clone() => throw UnimplementedError();
+@override
+ConsentPolicy clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -92,14 +92,14 @@ class ConsentVerification extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.verified,
-    this.verifiedElement,
+this.verifiedElement,
     this.verifiedWith,
     this.verificationDate,
-    this.verificationDateElement,
+this.verificationDateElement,
   });
 
-  @override
-  ConsentVerification clone() => throw UnimplementedError();
+@override
+ConsentVerification clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -123,7 +123,7 @@ class ConsentProvision extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.type,
-    this.typeElement,
+this.typeElement,
     this.period,
     this.actor,
     this.action,
@@ -136,8 +136,8 @@ class ConsentProvision extends BackboneElement {
     this.provision,
   });
 
-  @override
-  ConsentProvision clone() => throw UnimplementedError();
+@override
+ConsentProvision clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -154,8 +154,8 @@ class ConsentActor extends BackboneElement {
     required this.reference,
   });
 
-  @override
-  ConsentActor clone() => throw UnimplementedError();
+@override
+ConsentActor clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -170,10 +170,11 @@ class ConsentData extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.meaning,
-    this.meaningElement,
+this.meaningElement,
     required this.reference,
   });
 
-  @override
-  ConsentData clone() => throw UnimplementedError();
+@override
+ConsentData clone() => throw UnimplementedError();
 }
+

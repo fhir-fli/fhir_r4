@@ -25,22 +25,22 @@ class BiologicallyDerivedProduct extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.productCategory,
-    this.productCategoryElement,
+this.productCategoryElement,
     this.productCode,
     this.status,
-    this.statusElement,
+this.statusElement,
     this.request,
     this.quantity,
-    this.quantityElement,
+this.quantityElement,
     this.parent,
     this.collection,
     this.processing,
@@ -48,8 +48,8 @@ class BiologicallyDerivedProduct extends DomainResource {
     this.storage,
   }) : super(resourceType: R4ResourceType.BiologicallyDerivedProduct);
 
-  @override
-  BiologicallyDerivedProduct clone() => throw UnimplementedError();
+@override
+BiologicallyDerivedProduct clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -68,12 +68,12 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     this.collector,
     this.source,
     this.collectedDateTime,
-    this.collectedDateTimeElement,
+this.collectedDateTimeElement,
     this.collectedPeriod,
   });
 
-  @override
-  BiologicallyDerivedProductCollection clone() => throw UnimplementedError();
+@override
+BiologicallyDerivedProductCollection clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -92,16 +92,16 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.procedure,
     this.additive,
     this.timeDateTime,
-    this.timeDateTimeElement,
+this.timeDateTimeElement,
     this.timePeriod,
   });
 
-  @override
-  BiologicallyDerivedProductProcessing clone() => throw UnimplementedError();
+@override
+BiologicallyDerivedProductProcessing clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -118,14 +118,14 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.timeDateTime,
-    this.timeDateTimeElement,
+this.timeDateTimeElement,
     this.timePeriod,
   });
 
-  @override
-  BiologicallyDerivedProductManipulation clone() => throw UnimplementedError();
+@override
+BiologicallyDerivedProductManipulation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -144,14 +144,15 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.temperature,
-    this.temperatureElement,
+this.temperatureElement,
     this.scale,
-    this.scaleElement,
+this.scaleElement,
     this.duration,
   });
 
-  @override
-  BiologicallyDerivedProductStorage clone() => throw UnimplementedError();
+@override
+BiologicallyDerivedProductStorage clone() => throw UnimplementedError();
 }
+

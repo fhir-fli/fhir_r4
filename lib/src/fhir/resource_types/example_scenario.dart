@@ -38,44 +38,44 @@ class ExampleScenario extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-    this.urlElement,
+this.urlElement,
     this.identifier,
     this.version,
-    this.versionElement,
+this.versionElement,
     this.name,
-    this.nameElement,
+this.nameElement,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.experimental,
-    this.experimentalElement,
+this.experimentalElement,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.publisher,
-    this.publisherElement,
+this.publisherElement,
     this.contact,
     this.useContext,
     this.jurisdiction,
     this.copyright,
-    this.copyrightElement,
+this.copyrightElement,
     this.purpose,
-    this.purposeElement,
+this.purposeElement,
     this.actor,
     this.instance,
     this.process,
     this.workflow,
-    this.workflowElement,
+this.workflowElement,
   }) : super(resourceType: R4ResourceType.ExampleScenario);
 
-  @override
-  ExampleScenario clone() => throw UnimplementedError();
+@override
+ExampleScenario clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -95,17 +95,17 @@ class ExampleScenarioActor extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.actorId,
-    this.actorIdElement,
+this.actorIdElement,
     required this.type,
-    this.typeElement,
+this.typeElement,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
   });
 
-  @override
-  ExampleScenarioActor clone() => throw UnimplementedError();
+@override
+ExampleScenarioActor clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -127,19 +127,19 @@ class ExampleScenarioInstance extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.resourceId,
-    this.resourceIdElement,
+this.resourceIdElement,
     required this.resourceType,
-    this.resourceTypeElement,
+this.resourceTypeElement,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.version,
     this.containedInstance,
   });
 
-  @override
-  ExampleScenarioInstance clone() => throw UnimplementedError();
+@override
+ExampleScenarioInstance clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -155,13 +155,13 @@ class ExampleScenarioVersion extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.versionId,
-    this.versionIdElement,
+this.versionIdElement,
     required this.description,
-    this.descriptionElement,
+this.descriptionElement,
   });
 
-  @override
-  ExampleScenarioVersion clone() => throw UnimplementedError();
+@override
+ExampleScenarioVersion clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -177,13 +177,13 @@ class ExampleScenarioContainedInstance extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.resourceId,
-    this.resourceIdElement,
+this.resourceIdElement,
     this.versionId,
-    this.versionIdElement,
+this.versionIdElement,
   });
 
-  @override
-  ExampleScenarioContainedInstance clone() => throw UnimplementedError();
+@override
+ExampleScenarioContainedInstance clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -204,18 +204,18 @@ class ExampleScenarioProcess extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.title,
-    this.titleElement,
+this.titleElement,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.preConditions,
-    this.preConditionsElement,
+this.preConditionsElement,
     this.postConditions,
-    this.postConditionsElement,
+this.postConditionsElement,
     this.step,
   });
 
-  @override
-  ExampleScenarioProcess clone() => throw UnimplementedError();
+@override
+ExampleScenarioProcess clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -233,13 +233,13 @@ class ExampleScenarioStep extends BackboneElement {
     super.modifierExtension,
     this.process,
     this.pause,
-    this.pauseElement,
+this.pauseElement,
     this.operation,
     this.alternative,
   });
 
-  @override
-  ExampleScenarioStep clone() => throw UnimplementedError();
+@override
+ExampleScenarioStep clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -269,27 +269,27 @@ class ExampleScenarioOperation extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.number,
-    this.numberElement,
+this.numberElement,
     this.type,
-    this.typeElement,
+this.typeElement,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.initiator,
-    this.initiatorElement,
+this.initiatorElement,
     this.receiver,
-    this.receiverElement,
+this.receiverElement,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.initiatorActive,
-    this.initiatorActiveElement,
+this.initiatorActiveElement,
     this.receiverActive,
-    this.receiverActiveElement,
+this.receiverActiveElement,
     this.request,
     this.response,
   });
 
-  @override
-  ExampleScenarioOperation clone() => throw UnimplementedError();
+@override
+ExampleScenarioOperation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -306,12 +306,13 @@ class ExampleScenarioAlternative extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.title,
-    this.titleElement,
+this.titleElement,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.step,
   });
 
-  @override
-  ExampleScenarioAlternative clone() => throw UnimplementedError();
+@override
+ExampleScenarioAlternative clone() => throw UnimplementedError();
 }
+

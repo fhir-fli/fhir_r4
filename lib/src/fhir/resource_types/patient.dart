@@ -36,32 +36,32 @@ class Patient extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
-    this.activeElement,
+this.activeElement,
     this.name,
     this.telecom,
     this.gender,
-    this.genderElement,
+this.genderElement,
     this.birthDate,
-    this.birthDateElement,
+this.birthDateElement,
     this.deceasedBoolean,
-    this.deceasedBooleanElement,
+this.deceasedBooleanElement,
     this.deceasedDateTime,
-    this.deceasedDateTimeElement,
+this.deceasedDateTimeElement,
     this.address,
     this.maritalStatus,
     this.multipleBirthBoolean,
-    this.multipleBirthBooleanElement,
+this.multipleBirthBooleanElement,
     this.multipleBirthInteger,
-    this.multipleBirthIntegerElement,
+this.multipleBirthIntegerElement,
     this.photo,
     this.contact,
     this.communication,
@@ -70,8 +70,8 @@ class Patient extends DomainResource {
     this.link,
   }) : super(resourceType: R4ResourceType.Patient);
 
-  @override
-  Patient clone() => throw UnimplementedError();
+@override
+Patient clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -95,13 +95,13 @@ class PatientContact extends BackboneElement {
     this.telecom,
     this.address,
     this.gender,
-    this.genderElement,
+this.genderElement,
     this.organization,
     this.period,
   });
 
-  @override
-  PatientContact clone() => throw UnimplementedError();
+@override
+PatientContact clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -117,11 +117,11 @@ class PatientCommunication extends BackboneElement {
     super.modifierExtension,
     required this.language,
     this.preferred,
-    this.preferredElement,
+this.preferredElement,
   });
 
-  @override
-  PatientCommunication clone() => throw UnimplementedError();
+@override
+PatientCommunication clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -137,9 +137,10 @@ class PatientLink extends BackboneElement {
     super.modifierExtension,
     required this.other,
     required this.type,
-    this.typeElement,
+this.typeElement,
   });
 
-  @override
-  PatientLink clone() => throw UnimplementedError();
+@override
+PatientLink clone() => throw UnimplementedError();
 }
+

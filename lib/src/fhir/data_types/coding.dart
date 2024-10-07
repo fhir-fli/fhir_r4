@@ -21,17 +21,18 @@ class Coding extends DataType {
     super.id,
     super.extension_,
     this.system,
-    this.systemElement,
+this.systemElement,
     this.version,
-    this.versionElement,
+this.versionElement,
     this.code,
-    this.codeElement,
+this.codeElement,
     this.display,
-    this.displayElement,
+this.displayElement,
     this.userSelected,
-    this.userSelectedElement,
+this.userSelectedElement,
   });
 
-  @override
-  Coding clone() => throw UnimplementedError();
+@override
+Coding clone() => throw UnimplementedError();
 }
+

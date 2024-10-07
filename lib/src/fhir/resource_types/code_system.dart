@@ -56,62 +56,62 @@ class CodeSystem extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-    this.urlElement,
+this.urlElement,
     this.identifier,
     this.version,
-    this.versionElement,
+this.versionElement,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.title,
-    this.titleElement,
+this.titleElement,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.experimental,
-    this.experimentalElement,
+this.experimentalElement,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.publisher,
-    this.publisherElement,
+this.publisherElement,
     this.contact,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-    this.purposeElement,
+this.purposeElement,
     this.copyright,
-    this.copyrightElement,
+this.copyrightElement,
     this.caseSensitive,
-    this.caseSensitiveElement,
+this.caseSensitiveElement,
     this.valueSet,
-    this.valueSetElement,
+this.valueSetElement,
     this.hierarchyMeaning,
-    this.hierarchyMeaningElement,
+this.hierarchyMeaningElement,
     this.compositional,
-    this.compositionalElement,
+this.compositionalElement,
     this.versionNeeded,
-    this.versionNeededElement,
+this.versionNeededElement,
     required this.content,
-    this.contentElement,
+this.contentElement,
     this.supplements,
-    this.supplementsElement,
+this.supplementsElement,
     this.count,
-    this.countElement,
+this.countElement,
     this.filter,
     this.property,
     this.concept,
   }) : super(resourceType: R4ResourceType.CodeSystem);
 
-  @override
-  CodeSystem clone() => throw UnimplementedError();
+@override
+CodeSystem clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -131,17 +131,17 @@ class CodeSystemFilter extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    this.codeElement,
+this.codeElement,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     required this.operator_,
-    this.operatorElement,
+this.operatorElement,
     required this.value,
-    this.valueElement,
+this.valueElement,
   });
 
-  @override
-  CodeSystemFilter clone() => throw UnimplementedError();
+@override
+CodeSystemFilter clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -161,17 +161,17 @@ class CodeSystemProperty extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    this.codeElement,
+this.codeElement,
     this.uri,
-    this.uriElement,
+this.uriElement,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     required this.type,
-    this.typeElement,
+this.typeElement,
   });
 
-  @override
-  CodeSystemProperty clone() => throw UnimplementedError();
+@override
+CodeSystemProperty clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -192,18 +192,18 @@ class CodeSystemConcept extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    this.codeElement,
+this.codeElement,
     this.display,
-    this.displayElement,
+this.displayElement,
     this.definition,
-    this.definitionElement,
+this.definitionElement,
     this.designation,
     this.property,
     this.concept,
   });
 
-  @override
-  CodeSystemConcept clone() => throw UnimplementedError();
+@override
+CodeSystemConcept clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -220,14 +220,14 @@ class CodeSystemDesignation extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.language,
-    this.languageElement,
+this.languageElement,
     this.use,
     required this.value,
-    this.valueElement,
+this.valueElement,
   });
 
-  @override
-  CodeSystemDesignation clone() => throw UnimplementedError();
+@override
+CodeSystemDesignation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -254,22 +254,23 @@ class CodeSystemProperty1 extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    this.codeElement,
+this.codeElement,
     required this.valueCode,
-    this.valueCodeElement,
+this.valueCodeElement,
     required this.valueCoding,
     required this.valueString,
-    this.valueStringElement,
+this.valueStringElement,
     required this.valueInteger,
-    this.valueIntegerElement,
+this.valueIntegerElement,
     required this.valueBoolean,
-    this.valueBooleanElement,
+this.valueBooleanElement,
     required this.valueDateTime,
-    this.valueDateTimeElement,
+this.valueDateTimeElement,
     required this.valueDecimal,
-    this.valueDecimalElement,
+this.valueDecimalElement,
   });
 
-  @override
-  CodeSystemProperty1 clone() => throw UnimplementedError();
+@override
+CodeSystemProperty1 clone() => throw UnimplementedError();
 }
+

@@ -32,29 +32,29 @@ class Goal extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.lifecycleStatus,
-    this.lifecycleStatusElement,
+this.lifecycleStatusElement,
     this.achievementStatus,
     this.category,
     this.priority,
     required this.description,
     required this.subject,
     this.startDate,
-    this.startDateElement,
+this.startDateElement,
     this.startCodeableConcept,
     this.target,
     this.statusDate,
-    this.statusDateElement,
+this.statusDateElement,
     this.statusReason,
-    this.statusReasonElement,
+this.statusReasonElement,
     this.expressedBy,
     this.addresses,
     this.note,
@@ -62,8 +62,8 @@ class Goal extends DomainResource {
     this.outcomeReference,
   }) : super(resourceType: R4ResourceType.Goal);
 
-  @override
-  Goal clone() => throw UnimplementedError();
+@override
+Goal clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -93,17 +93,18 @@ class GoalTarget extends BackboneElement {
     this.detailRange,
     this.detailCodeableConcept,
     this.detailString,
-    this.detailStringElement,
+this.detailStringElement,
     this.detailBoolean,
-    this.detailBooleanElement,
+this.detailBooleanElement,
     this.detailInteger,
-    this.detailIntegerElement,
+this.detailIntegerElement,
     this.detailRatio,
     this.dueDate,
-    this.dueDateElement,
+this.dueDateElement,
     this.dueDuration,
   });
 
-  @override
-  GoalTarget clone() => throw UnimplementedError();
+@override
+GoalTarget clone() => throw UnimplementedError();
 }
+

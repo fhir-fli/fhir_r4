@@ -15,11 +15,12 @@ class Period extends DataType {
     super.id,
     super.extension_,
     this.start,
-    this.startElement,
+this.startElement,
     this.end,
-    this.endElement,
+this.endElement,
   });
 
-  @override
-  Period clone() => throw UnimplementedError();
+@override
+Period clone() => throw UnimplementedError();
 }
+

@@ -48,34 +48,34 @@ class Evidence extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-    this.urlElement,
+this.urlElement,
     this.identifier,
     this.version,
-    this.versionElement,
+this.versionElement,
     this.title,
-    this.titleElement,
+this.titleElement,
     this.citeAsReference,
     this.citeAsMarkdown,
-    this.citeAsMarkdownElement,
+this.citeAsMarkdownElement,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.useContext,
     this.approvalDate,
-    this.approvalDateElement,
+this.approvalDateElement,
     this.lastReviewDate,
-    this.lastReviewDateElement,
+this.lastReviewDateElement,
     this.publisher,
-    this.publisherElement,
+this.publisherElement,
     this.contact,
     this.author,
     this.editor,
@@ -83,9 +83,9 @@ class Evidence extends DomainResource {
     this.endorser,
     this.relatedArtifact,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.assertion,
-    this.assertionElement,
+this.assertionElement,
     this.note,
     required this.variableDefinition,
     this.synthesisType,
@@ -94,8 +94,8 @@ class Evidence extends DomainResource {
     this.certainty,
   }) : super(resourceType: R4ResourceType.Evidence);
 
-  @override
-  Evidence clone() => throw UnimplementedError();
+@override
+Evidence clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -114,7 +114,7 @@ class EvidenceVariableDefinition extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.note,
     required this.variableRole,
     this.observed,
@@ -122,8 +122,8 @@ class EvidenceVariableDefinition extends BackboneElement {
     this.directnessMatch,
   });
 
-  @override
-  EvidenceVariableDefinition clone() => throw UnimplementedError();
+@override
+EvidenceVariableDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -148,22 +148,22 @@ class EvidenceStatistic extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.note,
     this.statisticType,
     this.category,
     this.quantity,
     this.numberOfEvents,
-    this.numberOfEventsElement,
+this.numberOfEventsElement,
     this.numberAffected,
-    this.numberAffectedElement,
+this.numberAffectedElement,
     this.sampleSize,
     this.attributeEstimate,
     this.modelCharacteristic,
   });
 
-  @override
-  EvidenceStatistic clone() => throw UnimplementedError();
+@override
+EvidenceStatistic clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -184,18 +184,18 @@ class EvidenceSampleSize extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.note,
     this.numberOfStudies,
-    this.numberOfStudiesElement,
+this.numberOfStudiesElement,
     this.numberOfParticipants,
-    this.numberOfParticipantsElement,
+this.numberOfParticipantsElement,
     this.knownDataCount,
-    this.knownDataCountElement,
+this.knownDataCountElement,
   });
 
-  @override
-  EvidenceSampleSize clone() => throw UnimplementedError();
+@override
+EvidenceSampleSize clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -216,18 +216,18 @@ class EvidenceAttributeEstimate extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.note,
     this.type,
     this.quantity,
     this.level,
-    this.levelElement,
+this.levelElement,
     this.range,
     this.attributeEstimate,
   });
 
-  @override
-  EvidenceAttributeEstimate clone() => throw UnimplementedError();
+@override
+EvidenceAttributeEstimate clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -248,8 +248,8 @@ class EvidenceModelCharacteristic extends BackboneElement {
     this.attributeEstimate,
   });
 
-  @override
-  EvidenceModelCharacteristic clone() => throw UnimplementedError();
+@override
+EvidenceModelCharacteristic clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -268,14 +268,14 @@ class Evidencevariable extends BackboneElement {
     super.modifierExtension,
     required this.variableDefinition,
     this.handling,
-    this.handlingElement,
+this.handlingElement,
     this.valueCategory,
     this.valueQuantity,
     this.valueRange,
   });
 
-  @override
-  Evidencevariable clone() => throw UnimplementedError();
+@override
+Evidencevariable clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -295,15 +295,16 @@ class EvidenceCertainty extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.note,
     this.type,
     this.rating,
     this.rater,
-    this.raterElement,
+this.raterElement,
     this.subcomponent,
   });
 
-  @override
-  EvidenceCertainty clone() => throw UnimplementedError();
+@override
+EvidenceCertainty clone() => throw UnimplementedError();
 }
+

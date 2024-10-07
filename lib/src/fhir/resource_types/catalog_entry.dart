@@ -28,9 +28,9 @@ class CatalogEntry extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -38,24 +38,24 @@ class CatalogEntry extends DomainResource {
     this.identifier,
     this.type,
     required this.orderable,
-    this.orderableElement,
+this.orderableElement,
     required this.referencedItem,
     this.additionalIdentifier,
     this.classification,
     this.status,
-    this.statusElement,
+this.statusElement,
     this.validityPeriod,
     this.validTo,
-    this.validToElement,
+this.validToElement,
     this.lastUpdated,
-    this.lastUpdatedElement,
+this.lastUpdatedElement,
     this.additionalCharacteristic,
     this.additionalClassification,
     this.relatedEntry,
   }) : super(resourceType: R4ResourceType.CatalogEntry);
 
-  @override
-  CatalogEntry clone() => throw UnimplementedError();
+@override
+CatalogEntry clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -70,10 +70,11 @@ class CatalogEntryRelatedEntry extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.relationtype,
-    this.relationtypeElement,
+this.relationtypeElement,
     required this.item,
   });
 
-  @override
-  CatalogEntryRelatedEntry clone() => throw UnimplementedError();
+@override
+CatalogEntryRelatedEntry clone() => throw UnimplementedError();
 }
+

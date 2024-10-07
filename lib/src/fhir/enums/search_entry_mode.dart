@@ -6,49 +6,39 @@ enum SearchEntryMode {
   /// Definition: This resource matched the search specification.
   @JsonValue('match')
   match,
-
   /// Display: Include
   /// Definition: This resource is returned because it is referred to from another resource in the search set.
   @JsonValue('include')
   include,
-
   /// Display: Outcome
   /// Definition: An OperationOutcome that provides additional information about the processing of a search.
   @JsonValue('outcome')
   outcome,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case match:
-        return 'match';
-      case include:
-        return 'include';
-      case outcome:
-        return 'outcome';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case match: return 'match';
+        case include: return 'include';
+        case outcome: return 'outcome';
+      }
+      }
+String toJson() => toString();
   SearchEntryMode fromString(String str) {
-    switch (str) {
-      case 'match':
-        return SearchEntryMode.match;
-      case 'include':
-        return SearchEntryMode.include;
-      case 'outcome':
-        return SearchEntryMode.outcome;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'match': return SearchEntryMode.match;
+      case 'include': return SearchEntryMode.include;
+      case 'outcome': return SearchEntryMode.outcome;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  SearchEntryMode fromJson(dynamic jsonValue) {
+      }
+ SearchEntryMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

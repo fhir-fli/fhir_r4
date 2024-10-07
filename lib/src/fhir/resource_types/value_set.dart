@@ -41,47 +41,47 @@ class ValueSet extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-    this.urlElement,
+this.urlElement,
     this.identifier,
     this.version,
-    this.versionElement,
+this.versionElement,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.title,
-    this.titleElement,
+this.titleElement,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.experimental,
-    this.experimentalElement,
+this.experimentalElement,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.publisher,
-    this.publisherElement,
+this.publisherElement,
     this.contact,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.immutable,
-    this.immutableElement,
+this.immutableElement,
     this.purpose,
-    this.purposeElement,
+this.purposeElement,
     this.copyright,
-    this.copyrightElement,
+this.copyrightElement,
     this.compose,
     this.expansion,
   }) : super(resourceType: R4ResourceType.ValueSet);
 
-  @override
-  ValueSet clone() => throw UnimplementedError();
+@override
+ValueSet clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -99,15 +99,15 @@ class ValueSetCompose extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.lockedDate,
-    this.lockedDateElement,
+this.lockedDateElement,
     this.inactive,
-    this.inactiveElement,
+this.inactiveElement,
     required this.include,
     this.exclude,
   });
 
-  @override
-  ValueSetCompose clone() => throw UnimplementedError();
+@override
+ValueSetCompose clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -127,17 +127,17 @@ class ValueSetInclude extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.system,
-    this.systemElement,
+this.systemElement,
     this.version,
-    this.versionElement,
+this.versionElement,
     this.concept,
     this.filter,
     this.valueSet,
-    this.valueSetElement,
+this.valueSetElement,
   });
 
-  @override
-  ValueSetInclude clone() => throw UnimplementedError();
+@override
+ValueSetInclude clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -154,14 +154,14 @@ class ValueSetConcept extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    this.codeElement,
+this.codeElement,
     this.display,
-    this.displayElement,
+this.displayElement,
     this.designation,
   });
 
-  @override
-  ValueSetConcept clone() => throw UnimplementedError();
+@override
+ValueSetConcept clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -178,14 +178,14 @@ class ValueSetDesignation extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.language,
-    this.languageElement,
+this.languageElement,
     this.use,
     required this.value,
-    this.valueElement,
+this.valueElement,
   });
 
-  @override
-  ValueSetDesignation clone() => throw UnimplementedError();
+@override
+ValueSetDesignation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -203,15 +203,15 @@ class ValueSetFilter extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.property,
-    this.propertyElement,
+this.propertyElement,
     required this.op,
-    this.opElement,
+this.opElement,
     required this.value,
-    this.valueElement,
+this.valueElement,
   });
 
-  @override
-  ValueSetFilter clone() => throw UnimplementedError();
+@override
+ValueSetFilter clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -233,19 +233,19 @@ class ValueSetExpansion extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    this.identifierElement,
+this.identifierElement,
     required this.timestamp,
-    this.timestampElement,
+this.timestampElement,
     this.total,
-    this.totalElement,
+this.totalElement,
     this.offset,
-    this.offsetElement,
+this.offsetElement,
     this.parameter,
     this.contains,
   });
 
-  @override
-  ValueSetExpansion clone() => throw UnimplementedError();
+@override
+ValueSetExpansion clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -273,25 +273,25 @@ class ValueSetParameter extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-    this.nameElement,
+this.nameElement,
     this.valueString,
-    this.valueStringElement,
+this.valueStringElement,
     this.valueBoolean,
-    this.valueBooleanElement,
+this.valueBooleanElement,
     this.valueInteger,
-    this.valueIntegerElement,
+this.valueIntegerElement,
     this.valueDecimal,
-    this.valueDecimalElement,
+this.valueDecimalElement,
     this.valueUri,
-    this.valueUriElement,
+this.valueUriElement,
     this.valueCode,
-    this.valueCodeElement,
+this.valueCodeElement,
     this.valueDateTime,
-    this.valueDateTimeElement,
+this.valueDateTimeElement,
   });
 
-  @override
-  ValueSetParameter clone() => throw UnimplementedError();
+@override
+ValueSetParameter clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -317,21 +317,22 @@ class ValueSetContains extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.system,
-    this.systemElement,
+this.systemElement,
     this.abstract_,
-    this.abstractElement,
+this.abstractElement,
     this.inactive,
-    this.inactiveElement,
+this.inactiveElement,
     this.version,
-    this.versionElement,
+this.versionElement,
     this.code,
-    this.codeElement,
+this.codeElement,
     this.display,
-    this.displayElement,
+this.displayElement,
     this.designation,
     this.contains,
   });
 
-  @override
-  ValueSetContains clone() => throw UnimplementedError();
+@override
+ValueSetContains clone() => throw UnimplementedError();
 }
+

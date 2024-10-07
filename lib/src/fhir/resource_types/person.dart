@@ -24,9 +24,9 @@ class Person extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -35,19 +35,19 @@ class Person extends DomainResource {
     this.name,
     this.telecom,
     this.gender,
-    this.genderElement,
+this.genderElement,
     this.birthDate,
-    this.birthDateElement,
+this.birthDateElement,
     this.address,
     this.photo,
     this.managingOrganization,
     this.active,
-    this.activeElement,
+this.activeElement,
     this.link,
   }) : super(resourceType: R4ResourceType.Person);
 
-  @override
-  Person clone() => throw UnimplementedError();
+@override
+Person clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -63,9 +63,10 @@ class PersonLink extends BackboneElement {
     super.modifierExtension,
     required this.target,
     this.assurance,
-    this.assuranceElement,
+this.assuranceElement,
   });
 
-  @override
-  PersonLink clone() => throw UnimplementedError();
+@override
+PersonLink clone() => throw UnimplementedError();
 }
+

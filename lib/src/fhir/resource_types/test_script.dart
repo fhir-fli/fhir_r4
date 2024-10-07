@@ -46,39 +46,39 @@ class TestScript extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     required this.url,
-    this.urlElement,
+this.urlElement,
     this.identifier,
     this.version,
-    this.versionElement,
+this.versionElement,
     required this.name,
-    this.nameElement,
+this.nameElement,
     this.title,
-    this.titleElement,
+this.titleElement,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.experimental,
-    this.experimentalElement,
+this.experimentalElement,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.publisher,
-    this.publisherElement,
+this.publisherElement,
     this.contact,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-    this.purposeElement,
+this.purposeElement,
     this.copyright,
-    this.copyrightElement,
+this.copyrightElement,
     this.origin,
     this.destination,
     this.metadata,
@@ -90,8 +90,8 @@ class TestScript extends DomainResource {
     this.teardown,
   }) : super(resourceType: R4ResourceType.TestScript);
 
-  @override
-  TestScript clone() => throw UnimplementedError();
+@override
+TestScript clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -106,12 +106,12 @@ class TestScriptOrigin extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.index,
-    this.indexElement,
+this.indexElement,
     required this.profile,
   });
 
-  @override
-  TestScriptOrigin clone() => throw UnimplementedError();
+@override
+TestScriptOrigin clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -126,12 +126,12 @@ class TestScriptDestination extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.index,
-    this.indexElement,
+this.indexElement,
     required this.profile,
   });
 
-  @override
-  TestScriptDestination clone() => throw UnimplementedError();
+@override
+TestScriptDestination clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -148,8 +148,8 @@ class TestScriptMetadata extends BackboneElement {
     required this.capability,
   });
 
-  @override
-  TestScriptMetadata clone() => throw UnimplementedError();
+@override
+TestScriptMetadata clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -165,13 +165,13 @@ class TestScriptLink extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.url,
-    this.urlElement,
+this.urlElement,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
   });
 
-  @override
-  TestScriptLink clone() => throw UnimplementedError();
+@override
+TestScriptLink clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -197,23 +197,23 @@ class TestScriptCapability extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.required_,
-    this.requiredElement,
+this.requiredElement,
     required this.validated,
-    this.validatedElement,
+this.validatedElement,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.origin,
-    this.originElement,
+this.originElement,
     this.destination,
-    this.destinationElement,
+this.destinationElement,
     this.link,
-    this.linkElement,
+this.linkElement,
     required this.capabilities,
-    this.capabilitiesElement,
+this.capabilitiesElement,
   });
 
-  @override
-  TestScriptCapability clone() => throw UnimplementedError();
+@override
+TestScriptCapability clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -230,14 +230,14 @@ class TestScriptFixture extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.autocreate,
-    this.autocreateElement,
+this.autocreateElement,
     required this.autodelete,
-    this.autodeleteElement,
+this.autodeleteElement,
     this.resource,
   });
 
-  @override
-  TestScriptFixture clone() => throw UnimplementedError();
+@override
+TestScriptFixture clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -265,25 +265,25 @@ class TestScriptVariable extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-    this.nameElement,
+this.nameElement,
     this.defaultValue,
-    this.defaultValueElement,
+this.defaultValueElement,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.expression,
-    this.expressionElement,
+this.expressionElement,
     this.headerField,
-    this.headerFieldElement,
+this.headerFieldElement,
     this.hint,
-    this.hintElement,
+this.hintElement,
     this.path,
-    this.pathElement,
+this.pathElement,
     this.sourceId,
-    this.sourceIdElement,
+this.sourceIdElement,
   });
 
-  @override
-  TestScriptVariable clone() => throw UnimplementedError();
+@override
+TestScriptVariable clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -298,8 +298,8 @@ class TestScriptSetup extends BackboneElement {
     required this.action,
   });
 
-  @override
-  TestScriptSetup clone() => throw UnimplementedError();
+@override
+TestScriptSetup clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -316,8 +316,8 @@ class TestScriptAction extends BackboneElement {
     this.assert_,
   });
 
-  @override
-  TestScriptAction clone() => throw UnimplementedError();
+@override
+TestScriptAction clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -362,40 +362,40 @@ class TestScriptOperation extends BackboneElement {
     super.modifierExtension,
     this.type,
     this.resource,
-    this.resourceElement,
+this.resourceElement,
     this.label,
-    this.labelElement,
+this.labelElement,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.accept,
-    this.acceptElement,
+this.acceptElement,
     this.contentType,
-    this.contentTypeElement,
+this.contentTypeElement,
     this.destination,
-    this.destinationElement,
+this.destinationElement,
     required this.encodeRequestUrl,
-    this.encodeRequestUrlElement,
+this.encodeRequestUrlElement,
     this.method,
-    this.methodElement,
+this.methodElement,
     this.origin,
-    this.originElement,
+this.originElement,
     this.params,
-    this.paramsElement,
+this.paramsElement,
     this.requestHeader,
     this.requestId,
-    this.requestIdElement,
+this.requestIdElement,
     this.responseId,
-    this.responseIdElement,
+this.responseIdElement,
     this.sourceId,
-    this.sourceIdElement,
+this.sourceIdElement,
     this.targetId,
-    this.targetIdElement,
+this.targetIdElement,
     this.url,
-    this.urlElement,
+this.urlElement,
   });
 
-  @override
-  TestScriptOperation clone() => throw UnimplementedError();
+@override
+TestScriptOperation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -411,13 +411,13 @@ class TestScriptRequestHeader extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.field,
-    this.fieldElement,
+this.fieldElement,
     required this.value,
-    this.valueElement,
+this.valueElement,
   });
 
-  @override
-  TestScriptRequestHeader clone() => throw UnimplementedError();
+@override
+TestScriptRequestHeader clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -473,53 +473,53 @@ class TestScriptAssert extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.label,
-    this.labelElement,
+this.labelElement,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.direction,
-    this.directionElement,
+this.directionElement,
     this.compareToSourceId,
-    this.compareToSourceIdElement,
+this.compareToSourceIdElement,
     this.compareToSourceExpression,
-    this.compareToSourceExpressionElement,
+this.compareToSourceExpressionElement,
     this.compareToSourcePath,
-    this.compareToSourcePathElement,
+this.compareToSourcePathElement,
     this.contentType,
-    this.contentTypeElement,
+this.contentTypeElement,
     this.expression,
-    this.expressionElement,
+this.expressionElement,
     this.headerField,
-    this.headerFieldElement,
+this.headerFieldElement,
     this.minimumId,
-    this.minimumIdElement,
+this.minimumIdElement,
     this.navigationLinks,
-    this.navigationLinksElement,
+this.navigationLinksElement,
     this.operator_,
-    this.operatorElement,
+this.operatorElement,
     this.path,
-    this.pathElement,
+this.pathElement,
     this.requestMethod,
-    this.requestMethodElement,
+this.requestMethodElement,
     this.requestURL,
-    this.requestURLElement,
+this.requestURLElement,
     this.resource,
-    this.resourceElement,
+this.resourceElement,
     this.response,
-    this.responseElement,
+this.responseElement,
     this.responseCode,
-    this.responseCodeElement,
+this.responseCodeElement,
     this.sourceId,
-    this.sourceIdElement,
+this.sourceIdElement,
     this.validateProfileId,
-    this.validateProfileIdElement,
+this.validateProfileIdElement,
     this.value,
-    this.valueElement,
+this.valueElement,
     required this.warningOnly,
-    this.warningOnlyElement,
+this.warningOnlyElement,
   });
 
-  @override
-  TestScriptAssert clone() => throw UnimplementedError();
+@override
+TestScriptAssert clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -536,14 +536,14 @@ class TestScriptTest extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     required this.action,
   });
 
-  @override
-  TestScriptTest clone() => throw UnimplementedError();
+@override
+TestScriptTest clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -560,8 +560,8 @@ class TestScriptAction1 extends BackboneElement {
     this.assert_,
   });
 
-  @override
-  TestScriptAction1 clone() => throw UnimplementedError();
+@override
+TestScriptAction1 clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -576,8 +576,8 @@ class TestScriptTeardown extends BackboneElement {
     required this.action,
   });
 
-  @override
-  TestScriptTeardown clone() => throw UnimplementedError();
+@override
+TestScriptTeardown clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -592,6 +592,7 @@ class TestScriptAction2 extends BackboneElement {
     required this.operation,
   });
 
-  @override
-  TestScriptAction2 clone() => throw UnimplementedError();
+@override
+TestScriptAction2 clone() => throw UnimplementedError();
 }
+

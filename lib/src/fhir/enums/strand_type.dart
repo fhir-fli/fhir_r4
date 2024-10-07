@@ -6,40 +6,33 @@ enum StrandType {
   /// Definition: Watson strand of reference sequence.
   @JsonValue('watson')
   watson,
-
   /// Display: Crick strand of referenceSeq
   /// Definition: Crick strand of reference sequence.
   @JsonValue('crick')
   crick,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case watson:
-        return 'watson';
-      case crick:
-        return 'crick';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case watson: return 'watson';
+        case crick: return 'crick';
+      }
+      }
+String toJson() => toString();
   StrandType fromString(String str) {
-    switch (str) {
-      case 'watson':
-        return StrandType.watson;
-      case 'crick':
-        return StrandType.crick;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'watson': return StrandType.watson;
+      case 'crick': return StrandType.crick;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  StrandType fromJson(dynamic jsonValue) {
+      }
+ StrandType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

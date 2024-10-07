@@ -40,36 +40,36 @@ class Communication extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
-    this.instantiatesCanonicalElement,
+this.instantiatesCanonicalElement,
     this.instantiatesUri,
-    this.instantiatesUriElement,
+this.instantiatesUriElement,
     this.basedOn,
     this.partOf,
     this.inResponseTo,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.statusReason,
     this.category,
     this.priority,
-    this.priorityElement,
+this.priorityElement,
     this.medium,
     this.subject,
     this.topic,
     this.about,
     this.encounter,
     this.sent,
-    this.sentElement,
+this.sentElement,
     this.received,
-    this.receivedElement,
+this.receivedElement,
     this.recipient,
     this.sender,
     this.reasonCode,
@@ -78,8 +78,8 @@ class Communication extends DomainResource {
     this.note,
   }) : super(resourceType: R4ResourceType.Communication);
 
-  @override
-  Communication clone() => throw UnimplementedError();
+@override
+Communication clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -95,11 +95,12 @@ class CommunicationPayload extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.contentString,
-    this.contentStringElement,
+this.contentStringElement,
     required this.contentAttachment,
     required this.contentReference,
   });
 
-  @override
-  CommunicationPayload clone() => throw UnimplementedError();
+@override
+CommunicationPayload clone() => throw UnimplementedError();
 }
+

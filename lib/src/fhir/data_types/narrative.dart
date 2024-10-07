@@ -14,10 +14,11 @@ class Narrative extends DataType {
     super.id,
     super.extension_,
     required this.status,
-    this.statusElement,
+this.statusElement,
     required this.div,
   });
 
-  @override
-  Narrative clone() => throw UnimplementedError();
+@override
+Narrative clone() => throw UnimplementedError();
 }
+

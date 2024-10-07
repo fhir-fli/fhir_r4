@@ -26,9 +26,9 @@ class SupplyDelivery extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -37,12 +37,12 @@ class SupplyDelivery extends DomainResource {
     this.basedOn,
     this.partOf,
     this.status,
-    this.statusElement,
+this.statusElement,
     this.patient,
     this.type,
     this.suppliedItem,
     this.occurrenceDateTime,
-    this.occurrenceDateTimeElement,
+this.occurrenceDateTimeElement,
     this.occurrencePeriod,
     this.occurrenceTiming,
     this.supplier,
@@ -50,8 +50,8 @@ class SupplyDelivery extends DomainResource {
     this.receiver,
   }) : super(resourceType: R4ResourceType.SupplyDelivery);
 
-  @override
-  SupplyDelivery clone() => throw UnimplementedError();
+@override
+SupplyDelivery clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -70,6 +70,7 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
     this.itemReference,
   });
 
-  @override
-  SupplyDeliverySuppliedItem clone() => throw UnimplementedError();
+@override
+SupplyDeliverySuppliedItem clone() => throw UnimplementedError();
 }
+

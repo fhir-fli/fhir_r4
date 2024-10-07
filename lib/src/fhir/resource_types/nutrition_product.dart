@@ -22,15 +22,15 @@ class NutritionProduct extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.category,
     this.code,
     this.manufacturer,
@@ -42,8 +42,8 @@ class NutritionProduct extends DomainResource {
     this.note,
   }) : super(resourceType: R4ResourceType.NutritionProduct);
 
-  @override
-  NutritionProduct clone() => throw UnimplementedError();
+@override
+NutritionProduct clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -60,8 +60,8 @@ class NutritionProductNutrient extends BackboneElement {
     this.amount,
   });
 
-  @override
-  NutritionProductNutrient clone() => throw UnimplementedError();
+@override
+NutritionProductNutrient clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -78,8 +78,8 @@ class NutritionProductIngredient extends BackboneElement {
     this.amount,
   });
 
-  @override
-  NutritionProductIngredient clone() => throw UnimplementedError();
+@override
+NutritionProductIngredient clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -103,17 +103,17 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     required this.type,
     required this.valueCodeableConcept,
     required this.valueString,
-    this.valueStringElement,
+this.valueStringElement,
     required this.valueQuantity,
     required this.valueBase64Binary,
-    this.valueBase64BinaryElement,
+this.valueBase64BinaryElement,
     required this.valueAttachment,
     required this.valueBoolean,
-    this.valueBooleanElement,
+this.valueBooleanElement,
   });
 
-  @override
-  NutritionProductProductCharacteristic clone() => throw UnimplementedError();
+@override
+NutritionProductProductCharacteristic clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -135,13 +135,14 @@ class NutritionProductInstance extends BackboneElement {
     this.quantity,
     this.identifier,
     this.lotNumber,
-    this.lotNumberElement,
+this.lotNumberElement,
     this.expiry,
-    this.expiryElement,
+this.expiryElement,
     this.useBy,
-    this.useByElement,
+this.useByElement,
   });
 
-  @override
-  NutritionProductInstance clone() => throw UnimplementedError();
+@override
+NutritionProductInstance clone() => throw UnimplementedError();
 }
+

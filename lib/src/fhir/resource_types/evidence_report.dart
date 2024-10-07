@@ -34,29 +34,29 @@ class EvidenceReport extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-    this.urlElement,
+this.urlElement,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.useContext,
     this.identifier,
     this.relatedIdentifier,
     this.citeAsReference,
     this.citeAsMarkdown,
-    this.citeAsMarkdownElement,
+this.citeAsMarkdownElement,
     this.type,
     this.note,
     this.relatedArtifact,
     required this.subject,
     this.publisher,
-    this.publisherElement,
+this.publisherElement,
     this.contact,
     this.author,
     this.editor,
@@ -66,8 +66,8 @@ class EvidenceReport extends DomainResource {
     this.section,
   }) : super(resourceType: R4ResourceType.EvidenceReport);
 
-  @override
-  EvidenceReport clone() => throw UnimplementedError();
+@override
+EvidenceReport clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -84,8 +84,8 @@ class EvidenceReportSubject extends BackboneElement {
     this.note,
   });
 
-  @override
-  EvidenceReportSubject clone() => throw UnimplementedError();
+@override
+EvidenceReportSubject clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -110,16 +110,16 @@ class EvidenceReportCharacteristic extends BackboneElement {
     required this.valueReference,
     required this.valueCodeableConcept,
     required this.valueBoolean,
-    this.valueBooleanElement,
+this.valueBooleanElement,
     required this.valueQuantity,
     required this.valueRange,
     this.exclude,
-    this.excludeElement,
+this.excludeElement,
     this.period,
   });
 
-  @override
-  EvidenceReportCharacteristic clone() => throw UnimplementedError();
+@override
+EvidenceReportCharacteristic clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -135,13 +135,13 @@ class EvidenceReportRelatesTo extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    this.codeElement,
+this.codeElement,
     required this.targetIdentifier,
     required this.targetReference,
   });
 
-  @override
-  EvidenceReportRelatesTo clone() => throw UnimplementedError();
+@override
+EvidenceReportRelatesTo clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -167,13 +167,13 @@ class EvidenceReportSection extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.title,
-    this.titleElement,
+this.titleElement,
     this.focus,
     this.focusReference,
     this.author,
     this.text,
     this.mode,
-    this.modeElement,
+this.modeElement,
     this.orderedBy,
     this.entryClassifier,
     this.entryReference,
@@ -182,6 +182,7 @@ class EvidenceReportSection extends BackboneElement {
     this.section,
   });
 
-  @override
-  EvidenceReportSection clone() => throw UnimplementedError();
+@override
+EvidenceReportSection clone() => throw UnimplementedError();
 }
+

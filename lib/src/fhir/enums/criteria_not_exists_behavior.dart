@@ -6,40 +6,33 @@ enum CriteriaNotExistsBehavior {
   /// Definition: The requested conditional statement will pass if a matching state does not exist (e.g., previous state during create).
   @JsonValue('test-passes')
   test_passes,
-
   /// Display: test fails
   /// Definition: The requested conditional statement will fail if a matching state does not exist (e.g., previous state during create).
   @JsonValue('test-fails')
   test_fails,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case test_passes:
-        return 'test-passes';
-      case test_fails:
-        return 'test-fails';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case test_passes: return 'test-passes';
+        case test_fails: return 'test-fails';
+      }
+      }
+String toJson() => toString();
   CriteriaNotExistsBehavior fromString(String str) {
-    switch (str) {
-      case 'test-passes':
-        return CriteriaNotExistsBehavior.test_passes;
-      case 'test-fails':
-        return CriteriaNotExistsBehavior.test_fails;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'test-passes': return CriteriaNotExistsBehavior.test_passes;
+      case 'test-fails': return CriteriaNotExistsBehavior.test_fails;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  CriteriaNotExistsBehavior fromJson(dynamic jsonValue) {
+      }
+ CriteriaNotExistsBehavior fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

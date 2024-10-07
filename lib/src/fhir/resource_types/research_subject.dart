@@ -22,26 +22,27 @@ class ResearchSubject extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.period,
     required this.study,
     required this.individual,
     this.assignedArm,
-    this.assignedArmElement,
+this.assignedArmElement,
     this.actualArm,
-    this.actualArmElement,
+this.actualArmElement,
     this.consent,
   }) : super(resourceType: R4ResourceType.ResearchSubject);
 
-  @override
-  ResearchSubject clone() => throw UnimplementedError();
+@override
+ResearchSubject clone() => throw UnimplementedError();
 }
+

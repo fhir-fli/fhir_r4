@@ -27,6 +27,20 @@ Future<void> main() async {
   await _classesFromStructureDefinitions();
   await exportFiles();
   await writeEnums(_valueSets, _codesAndVS, _nameMap);
+  await _deleteDirectories();
+}
+
+Future<void> _deleteDirectories() async {
+  final List<String> directories = <String>[
+    '__MACOSX',
+    'definitions.json',
+    'examples-json',
+    'examples-ndjson',
+  ];
+  for (final String dir in directories) {
+    final Directory directory = Directory('./$dir');
+    directory.deleteSync(recursive: true);
+  }
 }
 
 Future<void> _classesFromStructureDefinitions() async {

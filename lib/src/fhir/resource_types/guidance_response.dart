@@ -32,9 +32,9 @@ class GuidanceResponse extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -42,16 +42,16 @@ class GuidanceResponse extends DomainResource {
     this.requestIdentifier,
     this.identifier,
     required this.moduleUri,
-    this.moduleUriElement,
+this.moduleUriElement,
     required this.moduleCanonical,
-    this.moduleCanonicalElement,
+this.moduleCanonicalElement,
     required this.moduleCodeableConcept,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.subject,
     this.encounter,
     this.occurrenceDateTime,
-    this.occurrenceDateTimeElement,
+this.occurrenceDateTimeElement,
     this.performer,
     this.reasonCode,
     this.reasonReference,
@@ -62,6 +62,7 @@ class GuidanceResponse extends DomainResource {
     this.dataRequirement,
   }) : super(resourceType: R4ResourceType.GuidanceResponse);
 
-  @override
-  GuidanceResponse clone() => throw UnimplementedError();
+@override
+GuidanceResponse clone() => throw UnimplementedError();
 }
+

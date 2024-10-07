@@ -48,32 +48,32 @@ class Procedure extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
-    this.instantiatesCanonicalElement,
+this.instantiatesCanonicalElement,
     this.instantiatesUri,
-    this.instantiatesUriElement,
+this.instantiatesUriElement,
     this.basedOn,
     this.partOf,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.statusReason,
     this.category,
     this.code,
     required this.subject,
     this.encounter,
     this.performedDateTime,
-    this.performedDateTimeElement,
+this.performedDateTimeElement,
     this.performedPeriod,
     this.performedString,
-    this.performedStringElement,
+this.performedStringElement,
     this.performedAge,
     this.performedRange,
     this.recorder,
@@ -94,8 +94,8 @@ class Procedure extends DomainResource {
     this.usedCode,
   }) : super(resourceType: R4ResourceType.Procedure);
 
-  @override
-  Procedure clone() => throw UnimplementedError();
+@override
+Procedure clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -114,8 +114,8 @@ class ProcedurePerformer extends BackboneElement {
     this.onBehalfOf,
   });
 
-  @override
-  ProcedurePerformer clone() => throw UnimplementedError();
+@override
+ProcedurePerformer clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -132,6 +132,7 @@ class ProcedureFocalDevice extends BackboneElement {
     required this.manipulated,
   });
 
-  @override
-  ProcedureFocalDevice clone() => throw UnimplementedError();
+@override
+ProcedureFocalDevice clone() => throw UnimplementedError();
 }
+

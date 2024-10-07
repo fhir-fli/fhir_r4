@@ -35,26 +35,26 @@ class AdverseEvent extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.actuality,
-    this.actualityElement,
+this.actualityElement,
     this.category,
     this.event,
     required this.subject,
     this.encounter,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.detected,
-    this.detectedElement,
+this.detectedElement,
     this.recordedDate,
-    this.recordedDateElement,
+this.recordedDateElement,
     this.resultingCondition,
     this.location,
     this.seriousness,
@@ -68,8 +68,8 @@ class AdverseEvent extends DomainResource {
     this.study,
   }) : super(resourceType: R4ResourceType.AdverseEvent);
 
-  @override
-  AdverseEvent clone() => throw UnimplementedError();
+@override
+AdverseEvent clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -86,8 +86,8 @@ class AdverseEventSuspectEntity extends BackboneElement {
     this.causality,
   });
 
-  @override
-  AdverseEventSuspectEntity clone() => throw UnimplementedError();
+@override
+AdverseEventSuspectEntity clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -105,11 +105,12 @@ class AdverseEventCausality extends BackboneElement {
     super.modifierExtension,
     this.assessment,
     this.productRelatedness,
-    this.productRelatednessElement,
+this.productRelatednessElement,
     this.author,
     this.method,
   });
 
-  @override
-  AdverseEventCausality clone() => throw UnimplementedError();
+@override
+AdverseEventCausality clone() => throw UnimplementedError();
 }
+

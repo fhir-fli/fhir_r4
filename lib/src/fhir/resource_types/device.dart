@@ -47,9 +47,9 @@ class Device extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -58,25 +58,25 @@ class Device extends DomainResource {
     this.definition,
     this.udiCarrier,
     this.status,
-    this.statusElement,
+this.statusElement,
     this.statusReason,
     this.distinctIdentifier,
-    this.distinctIdentifierElement,
+this.distinctIdentifierElement,
     this.manufacturer,
-    this.manufacturerElement,
+this.manufacturerElement,
     this.manufactureDate,
-    this.manufactureDateElement,
+this.manufactureDateElement,
     this.expirationDate,
-    this.expirationDateElement,
+this.expirationDateElement,
     this.lotNumber,
-    this.lotNumberElement,
+this.lotNumberElement,
     this.serialNumber,
-    this.serialNumberElement,
+this.serialNumberElement,
     this.deviceName,
     this.modelNumber,
-    this.modelNumberElement,
+this.modelNumberElement,
     this.partNumber,
-    this.partNumberElement,
+this.partNumberElement,
     this.type,
     this.specialization,
     this.version,
@@ -86,14 +86,14 @@ class Device extends DomainResource {
     this.contact,
     this.location,
     this.url,
-    this.urlElement,
+this.urlElement,
     this.note,
     this.safety,
     this.parent,
   }) : super(resourceType: R4ResourceType.Device);
 
-  @override
-  Device clone() => throw UnimplementedError();
+@override
+Device clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -117,21 +117,21 @@ class DeviceUdiCarrier extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.deviceIdentifier,
-    this.deviceIdentifierElement,
+this.deviceIdentifierElement,
     this.issuer,
-    this.issuerElement,
+this.issuerElement,
     this.jurisdiction,
-    this.jurisdictionElement,
+this.jurisdictionElement,
     this.carrierAIDC,
-    this.carrierAIDCElement,
+this.carrierAIDCElement,
     this.carrierHRF,
-    this.carrierHRFElement,
+this.carrierHRFElement,
     this.entryType,
-    this.entryTypeElement,
+this.entryTypeElement,
   });
 
-  @override
-  DeviceUdiCarrier clone() => throw UnimplementedError();
+@override
+DeviceUdiCarrier clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -147,13 +147,13 @@ class DeviceDeviceName extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-    this.nameElement,
+this.nameElement,
     required this.type,
-    this.typeElement,
+this.typeElement,
   });
 
-  @override
-  DeviceDeviceName clone() => throw UnimplementedError();
+@override
+DeviceDeviceName clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -169,11 +169,11 @@ class DeviceSpecialization extends BackboneElement {
     super.modifierExtension,
     required this.systemType,
     this.version,
-    this.versionElement,
+this.versionElement,
   });
 
-  @override
-  DeviceSpecialization clone() => throw UnimplementedError();
+@override
+DeviceSpecialization clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -191,11 +191,11 @@ class DeviceVersion extends BackboneElement {
     this.type,
     this.component,
     required this.value,
-    this.valueElement,
+this.valueElement,
   });
 
-  @override
-  DeviceVersion clone() => throw UnimplementedError();
+@override
+DeviceVersion clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -214,6 +214,7 @@ class DeviceProperty extends BackboneElement {
     this.valueCode,
   });
 
-  @override
-  DeviceProperty clone() => throw UnimplementedError();
+@override
+DeviceProperty clone() => throw UnimplementedError();
 }
+

@@ -16,6 +16,7 @@ class Ratio extends DataType {
     this.denominator,
   });
 
-  @override
-  Ratio clone() => throw UnimplementedError();
+@override
+Ratio clone() => throw UnimplementedError();
 }
+

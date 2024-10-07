@@ -6,31 +6,27 @@ enum ContractResourceExpirationTypeCodes {
   /// Definition: To be completed
   @JsonValue('breach')
   breach,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case breach:
-        return 'breach';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case breach: return 'breach';
+      }
+      }
+String toJson() => toString();
   ContractResourceExpirationTypeCodes fromString(String str) {
-    switch (str) {
-      case 'breach':
-        return ContractResourceExpirationTypeCodes.breach;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'breach': return ContractResourceExpirationTypeCodes.breach;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  ContractResourceExpirationTypeCodes fromJson(dynamic jsonValue) {
+      }
+ ContractResourceExpirationTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

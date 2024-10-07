@@ -33,29 +33,29 @@ class SupplyRequest extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.status,
-    this.statusElement,
+this.statusElement,
     this.category,
     this.priority,
-    this.priorityElement,
+this.priorityElement,
     required this.itemCodeableConcept,
     required this.itemReference,
     required this.quantity,
     this.parameter,
     this.occurrenceDateTime,
-    this.occurrenceDateTimeElement,
+this.occurrenceDateTimeElement,
     this.occurrencePeriod,
     this.occurrenceTiming,
     this.authoredOn,
-    this.authoredOnElement,
+this.authoredOnElement,
     this.requester,
     this.supplier,
     this.reasonCode,
@@ -64,8 +64,8 @@ class SupplyRequest extends DomainResource {
     this.deliverTo,
   }) : super(resourceType: R4ResourceType.SupplyRequest);
 
-  @override
-  SupplyRequest clone() => throw UnimplementedError();
+@override
+SupplyRequest clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -87,9 +87,10 @@ class SupplyRequestParameter extends BackboneElement {
     this.valueQuantity,
     this.valueRange,
     this.valueBoolean,
-    this.valueBooleanElement,
+this.valueBooleanElement,
   });
 
-  @override
-  SupplyRequestParameter clone() => throw UnimplementedError();
+@override
+SupplyRequestParameter clone() => throw UnimplementedError();
 }
+

@@ -48,45 +48,45 @@ class ChargeItemDefinition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     required this.url,
-    this.urlElement,
+this.urlElement,
     this.identifier,
     this.version,
-    this.versionElement,
+this.versionElement,
     this.title,
-    this.titleElement,
+this.titleElement,
     this.derivedFromUri,
-    this.derivedFromUriElement,
+this.derivedFromUriElement,
     this.partOf,
-    this.partOfElement,
+this.partOfElement,
     this.replaces,
-    this.replacesElement,
+this.replacesElement,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.experimental,
-    this.experimentalElement,
+this.experimentalElement,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.publisher,
-    this.publisherElement,
+this.publisherElement,
     this.contact,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.copyright,
-    this.copyrightElement,
+this.copyrightElement,
     this.approvalDate,
-    this.approvalDateElement,
+this.approvalDateElement,
     this.lastReviewDate,
-    this.lastReviewDateElement,
+this.lastReviewDateElement,
     this.effectivePeriod,
     this.code,
     this.instance,
@@ -94,8 +94,8 @@ class ChargeItemDefinition extends DomainResource {
     this.propertyGroup,
   }) : super(resourceType: R4ResourceType.ChargeItemDefinition);
 
-  @override
-  ChargeItemDefinition clone() => throw UnimplementedError();
+@override
+ChargeItemDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -113,15 +113,15 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.language,
-    this.languageElement,
+this.languageElement,
     this.expression,
-    this.expressionElement,
+this.expressionElement,
   });
 
-  @override
-  ChargeItemDefinitionApplicability clone() => throw UnimplementedError();
+@override
+ChargeItemDefinitionApplicability clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -138,8 +138,8 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
     this.priceComponent,
   });
 
-  @override
-  ChargeItemDefinitionPropertyGroup clone() => throw UnimplementedError();
+@override
+ChargeItemDefinitionPropertyGroup clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -157,13 +157,14 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    this.typeElement,
+this.typeElement,
     this.code,
     this.factor,
-    this.factorElement,
+this.factorElement,
     this.amount,
   });
 
-  @override
-  ChargeItemDefinitionPriceComponent clone() => throw UnimplementedError();
+@override
+ChargeItemDefinitionPriceComponent clone() => throw UnimplementedError();
 }
+

@@ -24,21 +24,21 @@ class Organization extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
-    this.activeElement,
+this.activeElement,
     this.type,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.alias,
-    this.aliasElement,
+this.aliasElement,
     this.telecom,
     this.address,
     this.partOf,
@@ -46,8 +46,8 @@ class Organization extends DomainResource {
     this.endpoint,
   }) : super(resourceType: R4ResourceType.Organization);
 
-  @override
-  Organization clone() => throw UnimplementedError();
+@override
+Organization clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -68,6 +68,7 @@ class OrganizationContact extends BackboneElement {
     this.address,
   });
 
-  @override
-  OrganizationContact clone() => throw UnimplementedError();
+@override
+OrganizationContact clone() => throw UnimplementedError();
 }
+

@@ -6,76 +6,57 @@ enum ActionSelectionBehavior {
   /// Definition: Any number of the actions in the group may be chosen, from zero to all.
   @JsonValue('any')
   any,
-
   /// Display: All
   /// Definition: All the actions in the group must be selected as a single unit.
   @JsonValue('all')
   all,
-
   /// Display: All Or None
   /// Definition: All the actions in the group are meant to be chosen as a single unit: either all must be selected by the end user, or none may be selected.
   @JsonValue('all-or-none')
   all_or_none,
-
   /// Display: Exactly One
   /// Definition: The end user must choose one and only one of the selectable actions in the group. The user SHALL NOT choose none of the actions in the group.
   @JsonValue('exactly-one')
   exactly_one,
-
   /// Display: At Most One
   /// Definition: The end user may choose zero or at most one of the actions in the group.
   @JsonValue('at-most-one')
   at_most_one,
-
   /// Display: One Or More
   /// Definition: The end user must choose a minimum of one, and as many additional as desired.
   @JsonValue('one-or-more')
   one_or_more,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case any:
-        return 'any';
-      case all:
-        return 'all';
-      case all_or_none:
-        return 'all-or-none';
-      case exactly_one:
-        return 'exactly-one';
-      case at_most_one:
-        return 'at-most-one';
-      case one_or_more:
-        return 'one-or-more';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case any: return 'any';
+        case all: return 'all';
+        case all_or_none: return 'all-or-none';
+        case exactly_one: return 'exactly-one';
+        case at_most_one: return 'at-most-one';
+        case one_or_more: return 'one-or-more';
+      }
+      }
+String toJson() => toString();
   ActionSelectionBehavior fromString(String str) {
-    switch (str) {
-      case 'any':
-        return ActionSelectionBehavior.any;
-      case 'all':
-        return ActionSelectionBehavior.all;
-      case 'all-or-none':
-        return ActionSelectionBehavior.all_or_none;
-      case 'exactly-one':
-        return ActionSelectionBehavior.exactly_one;
-      case 'at-most-one':
-        return ActionSelectionBehavior.at_most_one;
-      case 'one-or-more':
-        return ActionSelectionBehavior.one_or_more;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'any': return ActionSelectionBehavior.any;
+      case 'all': return ActionSelectionBehavior.all;
+      case 'all-or-none': return ActionSelectionBehavior.all_or_none;
+      case 'exactly-one': return ActionSelectionBehavior.exactly_one;
+      case 'at-most-one': return ActionSelectionBehavior.at_most_one;
+      case 'one-or-more': return ActionSelectionBehavior.one_or_more;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  ActionSelectionBehavior fromJson(dynamic jsonValue) {
+      }
+ ActionSelectionBehavior fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

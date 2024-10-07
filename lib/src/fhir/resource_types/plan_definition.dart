@@ -61,52 +61,52 @@ class PlanDefinition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-    this.urlElement,
+this.urlElement,
     this.identifier,
     this.version,
-    this.versionElement,
+this.versionElement,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.title,
-    this.titleElement,
+this.titleElement,
     this.subtitle,
-    this.subtitleElement,
+this.subtitleElement,
     this.type,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.experimental,
-    this.experimentalElement,
+this.experimentalElement,
     this.subjectCodeableConcept,
     this.subjectReference,
     this.subjectCanonical,
-    this.subjectCanonicalElement,
+this.subjectCanonicalElement,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.publisher,
-    this.publisherElement,
+this.publisherElement,
     this.contact,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-    this.purposeElement,
+this.purposeElement,
     this.usage,
-    this.usageElement,
+this.usageElement,
     this.copyright,
-    this.copyrightElement,
+this.copyrightElement,
     this.approvalDate,
-    this.approvalDateElement,
+this.approvalDateElement,
     this.lastReviewDate,
-    this.lastReviewDateElement,
+this.lastReviewDateElement,
     this.effectivePeriod,
     this.topic,
     this.author,
@@ -115,13 +115,13 @@ class PlanDefinition extends DomainResource {
     this.endorser,
     this.relatedArtifact,
     this.library_,
-    this.libraryElement,
+this.libraryElement,
     this.goal,
     this.action,
   }) : super(resourceType: R4ResourceType.PlanDefinition);
 
-  @override
-  PlanDefinition clone() => throw UnimplementedError();
+@override
+PlanDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -148,8 +148,8 @@ class PlanDefinitionGoal extends BackboneElement {
     this.target,
   });
 
-  @override
-  PlanDefinitionGoal clone() => throw UnimplementedError();
+@override
+PlanDefinitionGoal clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -172,8 +172,8 @@ class PlanDefinitionTarget extends BackboneElement {
     this.due,
   });
 
-  @override
-  PlanDefinitionTarget clone() => throw UnimplementedError();
+@override
+PlanDefinitionTarget clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -236,31 +236,31 @@ class PlanDefinitionAction extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.prefix,
-    this.prefixElement,
+this.prefixElement,
     this.title,
-    this.titleElement,
+this.titleElement,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.textEquivalent,
-    this.textEquivalentElement,
+this.textEquivalentElement,
     this.priority,
-    this.priorityElement,
+this.priorityElement,
     this.code,
     this.reason,
     this.documentation,
     this.goalId,
-    this.goalIdElement,
+this.goalIdElement,
     this.subjectCodeableConcept,
     this.subjectReference,
     this.subjectCanonical,
-    this.subjectCanonicalElement,
+this.subjectCanonicalElement,
     this.trigger,
     this.condition,
     this.input,
     this.output,
     this.relatedAction,
     this.timingDateTime,
-    this.timingDateTimeElement,
+this.timingDateTimeElement,
     this.timingAge,
     this.timingPeriod,
     this.timingDuration,
@@ -269,27 +269,27 @@ class PlanDefinitionAction extends BackboneElement {
     this.participant,
     this.type,
     this.groupingBehavior,
-    this.groupingBehaviorElement,
+this.groupingBehaviorElement,
     this.selectionBehavior,
-    this.selectionBehaviorElement,
+this.selectionBehaviorElement,
     this.requiredBehavior,
-    this.requiredBehaviorElement,
+this.requiredBehaviorElement,
     this.precheckBehavior,
-    this.precheckBehaviorElement,
+this.precheckBehaviorElement,
     this.cardinalityBehavior,
-    this.cardinalityBehaviorElement,
+this.cardinalityBehaviorElement,
     this.definitionCanonical,
-    this.definitionCanonicalElement,
+this.definitionCanonicalElement,
     this.definitionUri,
-    this.definitionUriElement,
+this.definitionUriElement,
     this.transform,
-    this.transformElement,
+this.transformElement,
     this.dynamicValue,
     this.action,
   });
 
-  @override
-  PlanDefinitionAction clone() => throw UnimplementedError();
+@override
+PlanDefinitionAction clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -304,12 +304,12 @@ class PlanDefinitionCondition extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.kind,
-    this.kindElement,
+this.kindElement,
     this.expression,
   });
 
-  @override
-  PlanDefinitionCondition clone() => throw UnimplementedError();
+@override
+PlanDefinitionCondition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -327,15 +327,15 @@ class PlanDefinitionRelatedAction extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.actionId,
-    this.actionIdElement,
+this.actionIdElement,
     required this.relationship,
-    this.relationshipElement,
+this.relationshipElement,
     this.offsetDuration,
     this.offsetRange,
   });
 
-  @override
-  PlanDefinitionRelatedAction clone() => throw UnimplementedError();
+@override
+PlanDefinitionRelatedAction clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -350,12 +350,12 @@ class PlanDefinitionParticipant extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    this.typeElement,
+this.typeElement,
     this.role,
   });
 
-  @override
-  PlanDefinitionParticipant clone() => throw UnimplementedError();
+@override
+PlanDefinitionParticipant clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -370,10 +370,11 @@ class PlanDefinitionDynamicValue extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.path,
-    this.pathElement,
+this.pathElement,
     this.expression,
   });
 
-  @override
-  PlanDefinitionDynamicValue clone() => throw UnimplementedError();
+@override
+PlanDefinitionDynamicValue clone() => throw UnimplementedError();
 }
+

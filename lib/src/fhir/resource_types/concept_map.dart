@@ -46,52 +46,52 @@ class ConceptMap extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-    this.urlElement,
+this.urlElement,
     this.identifier,
     this.version,
-    this.versionElement,
+this.versionElement,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.title,
-    this.titleElement,
+this.titleElement,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.experimental,
-    this.experimentalElement,
+this.experimentalElement,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.publisher,
-    this.publisherElement,
+this.publisherElement,
     this.contact,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-    this.purposeElement,
+this.purposeElement,
     this.copyright,
-    this.copyrightElement,
+this.copyrightElement,
     this.sourceUri,
-    this.sourceUriElement,
+this.sourceUriElement,
     this.sourceCanonical,
-    this.sourceCanonicalElement,
+this.sourceCanonicalElement,
     this.targetUri,
-    this.targetUriElement,
+this.targetUriElement,
     this.targetCanonical,
-    this.targetCanonicalElement,
+this.targetCanonicalElement,
     this.group,
   }) : super(resourceType: R4ResourceType.ConceptMap);
 
-  @override
-  ConceptMap clone() => throw UnimplementedError();
+@override
+ConceptMap clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -113,19 +113,19 @@ class ConceptMapGroup extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.source,
-    this.sourceElement,
+this.sourceElement,
     this.sourceVersion,
-    this.sourceVersionElement,
+this.sourceVersionElement,
     this.target,
-    this.targetElement,
+this.targetElement,
     this.targetVersion,
-    this.targetVersionElement,
+this.targetVersionElement,
     required this.element,
     this.unmapped,
   });
 
-  @override
-  ConceptMapGroup clone() => throw UnimplementedError();
+@override
+ConceptMapGroup clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -142,14 +142,14 @@ class ConceptMapElement extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.code,
-    this.codeElement,
+this.codeElement,
     this.display,
-    this.displayElement,
+this.displayElement,
     this.target,
   });
 
-  @override
-  ConceptMapElement clone() => throw UnimplementedError();
+@override
+ConceptMapElement clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -171,19 +171,19 @@ class ConceptMapTarget extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.code,
-    this.codeElement,
+this.codeElement,
     this.display,
-    this.displayElement,
+this.displayElement,
     required this.equivalence,
-    this.equivalenceElement,
+this.equivalenceElement,
     this.comment,
-    this.commentElement,
+this.commentElement,
     this.dependsOn,
     this.product,
   });
 
-  @override
-  ConceptMapTarget clone() => throw UnimplementedError();
+@override
+ConceptMapTarget clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -203,17 +203,17 @@ class ConceptMapDependsOn extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.property,
-    this.propertyElement,
+this.propertyElement,
     this.system,
-    this.systemElement,
+this.systemElement,
     required this.value,
-    this.valueElement,
+this.valueElement,
     this.display,
-    this.displayElement,
+this.displayElement,
   });
 
-  @override
-  ConceptMapDependsOn clone() => throw UnimplementedError();
+@override
+ConceptMapDependsOn clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -233,15 +233,16 @@ class ConceptMapUnmapped extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.mode,
-    this.modeElement,
+this.modeElement,
     this.code,
-    this.codeElement,
+this.codeElement,
     this.display,
-    this.displayElement,
+this.displayElement,
     this.url,
-    this.urlElement,
+this.urlElement,
   });
 
-  @override
-  ConceptMapUnmapped clone() => throw UnimplementedError();
+@override
+ConceptMapUnmapped clone() => throw UnimplementedError();
 }
+

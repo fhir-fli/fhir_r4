@@ -6,31 +6,27 @@ enum AdditionalMonitoring {
   /// Definition: Requirement for Black Triangle Monitoring
   @JsonValue('BlackTriangleMonitoring')
   BlackTriangleMonitoring,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case BlackTriangleMonitoring:
-        return 'BlackTriangleMonitoring';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case BlackTriangleMonitoring: return 'BlackTriangleMonitoring';
+      }
+      }
+String toJson() => toString();
   AdditionalMonitoring fromString(String str) {
-    switch (str) {
-      case 'BlackTriangleMonitoring':
-        return AdditionalMonitoring.BlackTriangleMonitoring;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'BlackTriangleMonitoring': return AdditionalMonitoring.BlackTriangleMonitoring;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  AdditionalMonitoring fromJson(dynamic jsonValue) {
+      }
+ AdditionalMonitoring fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

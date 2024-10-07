@@ -57,9 +57,9 @@ class Observation extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -68,36 +68,36 @@ class Observation extends DomainResource {
     this.basedOn,
     this.partOf,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.category,
     required this.code,
     this.subject,
     this.focus,
     this.encounter,
     this.effectiveDateTime,
-    this.effectiveDateTimeElement,
+this.effectiveDateTimeElement,
     this.effectivePeriod,
     this.effectiveTiming,
     this.effectiveInstant,
-    this.effectiveInstantElement,
+this.effectiveInstantElement,
     this.issued,
-    this.issuedElement,
+this.issuedElement,
     this.performer,
     this.valueQuantity,
     this.valueCodeableConcept,
     this.valueString,
-    this.valueStringElement,
+this.valueStringElement,
     this.valueBoolean,
-    this.valueBooleanElement,
+this.valueBooleanElement,
     this.valueInteger,
-    this.valueIntegerElement,
+this.valueIntegerElement,
     this.valueRange,
     this.valueRatio,
     this.valueSampledData,
     this.valueTime,
-    this.valueTimeElement,
+this.valueTimeElement,
     this.valueDateTime,
-    this.valueDateTimeElement,
+this.valueDateTimeElement,
     this.valuePeriod,
     this.dataAbsentReason,
     this.interpretation,
@@ -112,8 +112,8 @@ class Observation extends DomainResource {
     this.component,
   }) : super(resourceType: R4ResourceType.Observation);
 
-  @override
-  Observation clone() => throw UnimplementedError();
+@override
+Observation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -137,11 +137,11 @@ class ObservationReferenceRange extends BackboneElement {
     this.appliesTo,
     this.age,
     this.text,
-    this.textElement,
+this.textElement,
   });
 
-  @override
-  ObservationReferenceRange clone() => throw UnimplementedError();
+@override
+ObservationReferenceRange clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -176,24 +176,25 @@ class ObservationComponent extends BackboneElement {
     this.valueQuantity,
     this.valueCodeableConcept,
     this.valueString,
-    this.valueStringElement,
+this.valueStringElement,
     this.valueBoolean,
-    this.valueBooleanElement,
+this.valueBooleanElement,
     this.valueInteger,
-    this.valueIntegerElement,
+this.valueIntegerElement,
     this.valueRange,
     this.valueRatio,
     this.valueSampledData,
     this.valueTime,
-    this.valueTimeElement,
+this.valueTimeElement,
     this.valueDateTime,
-    this.valueDateTimeElement,
+this.valueDateTimeElement,
     this.valuePeriod,
     this.dataAbsentReason,
     this.interpretation,
     this.referenceRange,
   });
 
-  @override
-  ObservationComponent clone() => throw UnimplementedError();
+@override
+ObservationComponent clone() => throw UnimplementedError();
 }
+

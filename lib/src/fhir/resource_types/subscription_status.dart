@@ -22,28 +22,28 @@ class SubscriptionStatus extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.status,
-    this.statusElement,
+this.statusElement,
     required this.type,
-    this.typeElement,
+this.typeElement,
     this.eventsSinceSubscriptionStart,
-    this.eventsSinceSubscriptionStartElement,
+this.eventsSinceSubscriptionStartElement,
     this.notificationEvent,
     required this.subscription,
     this.topic,
-    this.topicElement,
+this.topicElement,
     this.error,
   }) : super(resourceType: R4ResourceType.SubscriptionStatus);
 
-  @override
-  SubscriptionStatus clone() => throw UnimplementedError();
+@override
+SubscriptionStatus clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -61,13 +61,14 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.eventNumber,
-    this.eventNumberElement,
+this.eventNumberElement,
     this.timestamp,
-    this.timestampElement,
+this.timestampElement,
     this.focus,
     this.additionalContext,
   });
 
-  @override
-  SubscriptionStatusNotificationEvent clone() => throw UnimplementedError();
+@override
+SubscriptionStatusNotificationEvent clone() => throw UnimplementedError();
 }
+

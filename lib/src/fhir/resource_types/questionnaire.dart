@@ -48,54 +48,54 @@ class Questionnaire extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-    this.urlElement,
+this.urlElement,
     this.identifier,
     this.version,
-    this.versionElement,
+this.versionElement,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.title,
-    this.titleElement,
+this.titleElement,
     this.derivedFrom,
-    this.derivedFromElement,
+this.derivedFromElement,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.experimental,
-    this.experimentalElement,
+this.experimentalElement,
     this.subjectType,
-    this.subjectTypeElement,
+this.subjectTypeElement,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.publisher,
-    this.publisherElement,
+this.publisherElement,
     this.contact,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-    this.purposeElement,
+this.purposeElement,
     this.copyright,
-    this.copyrightElement,
+this.copyrightElement,
     this.approvalDate,
-    this.approvalDateElement,
+this.approvalDateElement,
     this.lastReviewDate,
-    this.lastReviewDateElement,
+this.lastReviewDateElement,
     this.effectivePeriod,
     this.code,
     this.item,
   }) : super(resourceType: R4ResourceType.Questionnaire);
 
-  @override
-  Questionnaire clone() => throw UnimplementedError();
+@override
+Questionnaire clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -134,36 +134,36 @@ class QuestionnaireItem extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.linkId,
-    this.linkIdElement,
+this.linkIdElement,
     this.definition,
-    this.definitionElement,
+this.definitionElement,
     this.code,
     this.prefix,
-    this.prefixElement,
+this.prefixElement,
     this.text,
-    this.textElement,
+this.textElement,
     required this.type,
-    this.typeElement,
+this.typeElement,
     this.enableWhen,
     this.enableBehavior,
-    this.enableBehaviorElement,
+this.enableBehaviorElement,
     this.required_,
-    this.requiredElement,
+this.requiredElement,
     this.repeats,
-    this.repeatsElement,
+this.repeatsElement,
     this.readOnly,
-    this.readOnlyElement,
+this.readOnlyElement,
     this.maxLength,
-    this.maxLengthElement,
+this.maxLengthElement,
     this.answerValueSet,
-    this.answerValueSetElement,
+this.answerValueSetElement,
     this.answerOption,
     this.initial,
     this.item,
   });
 
-  @override
-  QuestionnaireItem clone() => throw UnimplementedError();
+@override
+QuestionnaireItem clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -196,30 +196,30 @@ class QuestionnaireEnableWhen extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.question,
-    this.questionElement,
+this.questionElement,
     required this.operator_,
-    this.operatorElement,
+this.operatorElement,
     required this.answerBoolean,
-    this.answerBooleanElement,
+this.answerBooleanElement,
     required this.answerDecimal,
-    this.answerDecimalElement,
+this.answerDecimalElement,
     required this.answerInteger,
-    this.answerIntegerElement,
+this.answerIntegerElement,
     required this.answerDate,
-    this.answerDateElement,
+this.answerDateElement,
     required this.answerDateTime,
-    this.answerDateTimeElement,
+this.answerDateTimeElement,
     required this.answerTime,
-    this.answerTimeElement,
+this.answerTimeElement,
     required this.answerString,
-    this.answerStringElement,
+this.answerStringElement,
     required this.answerCoding,
     required this.answerQuantity,
     required this.answerReference,
   });
 
-  @override
-  QuestionnaireEnableWhen clone() => throw UnimplementedError();
+@override
+QuestionnaireEnableWhen clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -243,21 +243,21 @@ class QuestionnaireAnswerOption extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.valueInteger,
-    this.valueIntegerElement,
+this.valueIntegerElement,
     required this.valueDate,
-    this.valueDateElement,
+this.valueDateElement,
     required this.valueTime,
-    this.valueTimeElement,
+this.valueTimeElement,
     required this.valueString,
-    this.valueStringElement,
+this.valueStringElement,
     required this.valueCoding,
     required this.valueReference,
     this.initialSelected,
-    this.initialSelectedElement,
+this.initialSelectedElement,
   });
 
-  @override
-  QuestionnaireAnswerOption clone() => throw UnimplementedError();
+@override
+QuestionnaireAnswerOption clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -289,27 +289,28 @@ class QuestionnaireInitial extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.valueBoolean,
-    this.valueBooleanElement,
+this.valueBooleanElement,
     required this.valueDecimal,
-    this.valueDecimalElement,
+this.valueDecimalElement,
     required this.valueInteger,
-    this.valueIntegerElement,
+this.valueIntegerElement,
     required this.valueDate,
-    this.valueDateElement,
+this.valueDateElement,
     required this.valueDateTime,
-    this.valueDateTimeElement,
+this.valueDateTimeElement,
     required this.valueTime,
-    this.valueTimeElement,
+this.valueTimeElement,
     required this.valueString,
-    this.valueStringElement,
+this.valueStringElement,
     required this.valueUri,
-    this.valueUriElement,
+this.valueUriElement,
     required this.valueAttachment,
     required this.valueCoding,
     required this.valueQuantity,
     required this.valueReference,
   });
 
-  @override
-  QuestionnaireInitial clone() => throw UnimplementedError();
+@override
+QuestionnaireInitial clone() => throw UnimplementedError();
 }
+

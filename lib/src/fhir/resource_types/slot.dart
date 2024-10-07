@@ -27,9 +27,9 @@ class Slot extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -41,17 +41,18 @@ class Slot extends DomainResource {
     this.appointmentType,
     required this.schedule,
     required this.status,
-    this.statusElement,
+this.statusElement,
     required this.start,
-    this.startElement,
+this.startElement,
     required this.end,
-    this.endElement,
+this.endElement,
     this.overbooked,
-    this.overbookedElement,
+this.overbookedElement,
     this.comment,
-    this.commentElement,
+this.commentElement,
   }) : super(resourceType: R4ResourceType.Slot);
 
-  @override
-  Slot clone() => throw UnimplementedError();
+@override
+Slot clone() => throw UnimplementedError();
 }
+

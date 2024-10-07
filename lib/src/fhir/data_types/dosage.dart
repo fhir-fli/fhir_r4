@@ -30,15 +30,15 @@ class Dosage extends BackboneType {
     super.extension_,
     super.modifierExtension,
     this.sequence,
-    this.sequenceElement,
+this.sequenceElement,
     this.text,
-    this.textElement,
+this.textElement,
     this.additionalInstruction,
     this.patientInstruction,
-    this.patientInstructionElement,
+this.patientInstructionElement,
     this.timing,
     this.asNeededBoolean,
-    this.asNeededBooleanElement,
+this.asNeededBooleanElement,
     this.asNeededCodeableConcept,
     this.site,
     this.route,
@@ -49,8 +49,8 @@ class Dosage extends BackboneType {
     this.maxDosePerLifetime,
   });
 
-  @override
-  Dosage clone() => throw UnimplementedError();
+@override
+Dosage clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -74,6 +74,7 @@ class DosageDoseAndRate extends Element {
     this.rateQuantity,
   });
 
-  @override
-  DosageDoseAndRate clone() => throw UnimplementedError();
+@override
+DosageDoseAndRate clone() => throw UnimplementedError();
 }
+

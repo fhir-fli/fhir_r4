@@ -6,35 +6,29 @@ enum ImmunizationFunctionCodes {
   OP,
   @JsonValue('AP')
   AP,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case OP:
-        return 'OP';
-      case AP:
-        return 'AP';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case OP: return 'OP';
+        case AP: return 'AP';
+      }
+      }
+String toJson() => toString();
   ImmunizationFunctionCodes fromString(String str) {
-    switch (str) {
-      case 'OP':
-        return ImmunizationFunctionCodes.OP;
-      case 'AP':
-        return ImmunizationFunctionCodes.AP;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'OP': return ImmunizationFunctionCodes.OP;
+      case 'AP': return ImmunizationFunctionCodes.AP;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  ImmunizationFunctionCodes fromJson(dynamic jsonValue) {
+      }
+ ImmunizationFunctionCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

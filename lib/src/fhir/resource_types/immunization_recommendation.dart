@@ -17,9 +17,9 @@ class ImmunizationRecommendation extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -27,13 +27,13 @@ class ImmunizationRecommendation extends DomainResource {
     this.identifier,
     required this.patient,
     required this.date,
-    this.dateElement,
+this.dateElement,
     this.authority,
     required this.recommendation,
   }) : super(resourceType: R4ResourceType.ImmunizationRecommendation);
 
-  @override
-  ImmunizationRecommendation clone() => throw UnimplementedError();
+@override
+ImmunizationRecommendation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -71,24 +71,23 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
     this.forecastReason,
     this.dateCriterion,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.series,
-    this.seriesElement,
+this.seriesElement,
     this.doseNumberPositiveInt,
-    this.doseNumberPositiveIntElement,
+this.doseNumberPositiveIntElement,
     this.doseNumberString,
-    this.doseNumberStringElement,
+this.doseNumberStringElement,
     this.seriesDosesPositiveInt,
-    this.seriesDosesPositiveIntElement,
+this.seriesDosesPositiveIntElement,
     this.seriesDosesString,
-    this.seriesDosesStringElement,
+this.seriesDosesStringElement,
     this.supportingImmunization,
     this.supportingPatientInformation,
   });
 
-  @override
-  ImmunizationRecommendationRecommendation clone() =>
-      throw UnimplementedError();
+@override
+ImmunizationRecommendationRecommendation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -104,9 +103,10 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
     super.modifierExtension,
     required this.code,
     required this.value,
-    this.valueElement,
+this.valueElement,
   });
 
-  @override
-  ImmunizationRecommendationDateCriterion clone() => throw UnimplementedError();
+@override
+ImmunizationRecommendationDateCriterion clone() => throw UnimplementedError();
 }
+

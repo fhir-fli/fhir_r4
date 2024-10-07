@@ -15,9 +15,10 @@ class CodeableConcept extends DataType {
     super.extension_,
     this.coding,
     this.text,
-    this.textElement,
+this.textElement,
   });
 
-  @override
-  CodeableConcept clone() => throw UnimplementedError();
+@override
+CodeableConcept clone() => throw UnimplementedError();
 }
+

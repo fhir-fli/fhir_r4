@@ -16,16 +16,17 @@ class Binary extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     required this.contentType,
-    this.contentTypeElement,
+this.contentTypeElement,
     this.securityContext,
     this.data,
-    this.dataElement,
+this.dataElement,
   }) : super(resourceType: R4ResourceType.Binary);
 
-  @override
-  Binary clone() => throw UnimplementedError();
+@override
+Binary clone() => throw UnimplementedError();
 }
+

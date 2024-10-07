@@ -6,40 +6,33 @@ enum OperationParameterUse {
   /// Definition: This is an input parameter.
   @JsonValue('in')
   in_,
-
   /// Display: Out
   /// Definition: This is an output parameter.
   @JsonValue('out')
   out,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case in_:
-        return 'in';
-      case out:
-        return 'out';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case in_: return 'in';
+        case out: return 'out';
+      }
+      }
+String toJson() => toString();
   OperationParameterUse fromString(String str) {
-    switch (str) {
-      case 'in':
-        return OperationParameterUse.in_;
-      case 'out':
-        return OperationParameterUse.out;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'in': return OperationParameterUse.in_;
+      case 'out': return OperationParameterUse.out;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  OperationParameterUse fromJson(dynamic jsonValue) {
+      }
+ OperationParameterUse fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

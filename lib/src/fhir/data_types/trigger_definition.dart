@@ -23,19 +23,20 @@ class TriggerDefinition extends DataType {
     super.id,
     super.extension_,
     required this.type,
-    this.typeElement,
+this.typeElement,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.timingTiming,
     this.timingReference,
     this.timingDate,
-    this.timingDateElement,
+this.timingDateElement,
     this.timingDateTime,
-    this.timingDateTimeElement,
+this.timingDateTimeElement,
     this.data,
     this.condition,
   });
 
-  @override
-  TriggerDefinition clone() => throw UnimplementedError();
+@override
+TriggerDefinition clone() => throw UnimplementedError();
 }
+

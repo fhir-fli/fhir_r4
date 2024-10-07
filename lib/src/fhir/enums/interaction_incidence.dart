@@ -5,39 +5,32 @@ enum InteractionIncidence {
   /// Display: Theoretical
   @JsonValue('Theoretical')
   Theoretical,
-
   /// Display: Observed
   @JsonValue('Observed')
   Observed,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case Theoretical:
-        return 'Theoretical';
-      case Observed:
-        return 'Observed';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case Theoretical: return 'Theoretical';
+        case Observed: return 'Observed';
+      }
+      }
+String toJson() => toString();
   InteractionIncidence fromString(String str) {
-    switch (str) {
-      case 'Theoretical':
-        return InteractionIncidence.Theoretical;
-      case 'Observed':
-        return InteractionIncidence.Observed;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'Theoretical': return InteractionIncidence.Theoretical;
+      case 'Observed': return InteractionIncidence.Observed;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  InteractionIncidence fromJson(dynamic jsonValue) {
+      }
+ InteractionIncidence fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

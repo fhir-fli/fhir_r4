@@ -53,59 +53,59 @@ class CapabilityStatement extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-    this.urlElement,
+this.urlElement,
     this.version,
-    this.versionElement,
+this.versionElement,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.title,
-    this.titleElement,
+this.titleElement,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.experimental,
-    this.experimentalElement,
+this.experimentalElement,
     required this.date,
-    this.dateElement,
+this.dateElement,
     this.publisher,
-    this.publisherElement,
+this.publisherElement,
     this.contact,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-    this.purposeElement,
+this.purposeElement,
     this.copyright,
-    this.copyrightElement,
+this.copyrightElement,
     required this.kind,
-    this.kindElement,
+this.kindElement,
     this.instantiates,
-    this.instantiatesElement,
+this.instantiatesElement,
     this.imports,
-    this.importsElement,
+this.importsElement,
     this.software,
     this.implementation,
     required this.fhirVersion,
-    this.fhirVersionElement,
+this.fhirVersionElement,
     required this.format,
-    this.formatElement,
+this.formatElement,
     this.patchFormat,
-    this.patchFormatElement,
+this.patchFormatElement,
     this.rest,
     this.messaging,
     this.document,
   }) : super(resourceType: R4ResourceType.CapabilityStatement);
 
-  @override
-  CapabilityStatement clone() => throw UnimplementedError();
+@override
+CapabilityStatement clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -123,15 +123,15 @@ class CapabilityStatementSoftware extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-    this.nameElement,
+this.nameElement,
     this.version,
-    this.versionElement,
+this.versionElement,
     this.releaseDate,
-    this.releaseDateElement,
+this.releaseDateElement,
   });
 
-  @override
-  CapabilityStatementSoftware clone() => throw UnimplementedError();
+@override
+CapabilityStatementSoftware clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -150,16 +150,16 @@ class CapabilityStatementImplementation extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.url,
-    this.urlElement,
+this.urlElement,
     this.custodian,
     this.implementationGuide,
-    this.implementationGuideElement,
+this.implementationGuideElement,
   });
 
-  @override
-  CapabilityStatementImplementation clone() => throw UnimplementedError();
+@override
+CapabilityStatementImplementation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -182,20 +182,20 @@ class CapabilityStatementRest extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.mode,
-    this.modeElement,
+this.modeElement,
     this.documentation,
-    this.documentationElement,
+this.documentationElement,
     this.security,
     this.resource,
     this.interaction,
     this.searchParam,
     this.operation,
     this.compartment,
-    this.compartmentElement,
+this.compartmentElement,
   });
 
-  @override
-  CapabilityStatementRest clone() => throw UnimplementedError();
+@override
+CapabilityStatementRest clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -212,14 +212,14 @@ class CapabilityStatementSecurity extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.cors,
-    this.corsElement,
+this.corsElement,
     this.service,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
   });
 
-  @override
-  CapabilityStatementSecurity clone() => throw UnimplementedError();
+@override
+CapabilityStatementSecurity clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -262,40 +262,40 @@ class CapabilityStatementResource extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    this.typeElement,
+this.typeElement,
     this.profile,
-    this.profileElement,
+this.profileElement,
     this.supportedProfile,
-    this.supportedProfileElement,
+this.supportedProfileElement,
     this.documentation,
-    this.documentationElement,
+this.documentationElement,
     this.interaction,
     this.versioning,
-    this.versioningElement,
+this.versioningElement,
     this.readHistory,
-    this.readHistoryElement,
+this.readHistoryElement,
     this.updateCreate,
-    this.updateCreateElement,
+this.updateCreateElement,
     this.conditionalCreate,
-    this.conditionalCreateElement,
+this.conditionalCreateElement,
     this.conditionalRead,
-    this.conditionalReadElement,
+this.conditionalReadElement,
     this.conditionalUpdate,
-    this.conditionalUpdateElement,
+this.conditionalUpdateElement,
     this.conditionalDelete,
-    this.conditionalDeleteElement,
+this.conditionalDeleteElement,
     this.referencePolicy,
-    this.referencePolicyElement,
+this.referencePolicyElement,
     this.searchInclude,
-    this.searchIncludeElement,
+this.searchIncludeElement,
     this.searchRevInclude,
-    this.searchRevIncludeElement,
+this.searchRevIncludeElement,
     this.searchParam,
     this.operation,
   });
 
-  @override
-  CapabilityStatementResource clone() => throw UnimplementedError();
+@override
+CapabilityStatementResource clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -311,13 +311,13 @@ class CapabilityStatementInteraction extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    this.codeElement,
+this.codeElement,
     this.documentation,
-    this.documentationElement,
+this.documentationElement,
   });
 
-  @override
-  CapabilityStatementInteraction clone() => throw UnimplementedError();
+@override
+CapabilityStatementInteraction clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -337,17 +337,17 @@ class CapabilityStatementSearchParam extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-    this.nameElement,
+this.nameElement,
     this.definition,
-    this.definitionElement,
+this.definitionElement,
     required this.type,
-    this.typeElement,
+this.typeElement,
     this.documentation,
-    this.documentationElement,
+this.documentationElement,
   });
 
-  @override
-  CapabilityStatementSearchParam clone() => throw UnimplementedError();
+@override
+CapabilityStatementSearchParam clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -365,15 +365,15 @@ class CapabilityStatementOperation extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-    this.nameElement,
+this.nameElement,
     required this.definition,
-    this.definitionElement,
+this.definitionElement,
     this.documentation,
-    this.documentationElement,
+this.documentationElement,
   });
 
-  @override
-  CapabilityStatementOperation clone() => throw UnimplementedError();
+@override
+CapabilityStatementOperation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -389,13 +389,13 @@ class CapabilityStatementInteraction1 extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    this.codeElement,
+this.codeElement,
     this.documentation,
-    this.documentationElement,
+this.documentationElement,
   });
 
-  @override
-  CapabilityStatementInteraction1 clone() => throw UnimplementedError();
+@override
+CapabilityStatementInteraction1 clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -414,14 +414,14 @@ class CapabilityStatementMessaging extends BackboneElement {
     super.modifierExtension,
     this.endpoint,
     this.reliableCache,
-    this.reliableCacheElement,
+this.reliableCacheElement,
     this.documentation,
-    this.documentationElement,
+this.documentationElement,
     this.supportedMessage,
   });
 
-  @override
-  CapabilityStatementMessaging clone() => throw UnimplementedError();
+@override
+CapabilityStatementMessaging clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -437,11 +437,11 @@ class CapabilityStatementEndpoint extends BackboneElement {
     super.modifierExtension,
     required this.protocol,
     required this.address,
-    this.addressElement,
+this.addressElement,
   });
 
-  @override
-  CapabilityStatementEndpoint clone() => throw UnimplementedError();
+@override
+CapabilityStatementEndpoint clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -457,13 +457,13 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.mode,
-    this.modeElement,
+this.modeElement,
     required this.definition,
-    this.definitionElement,
+this.definitionElement,
   });
 
-  @override
-  CapabilityStatementSupportedMessage clone() => throw UnimplementedError();
+@override
+CapabilityStatementSupportedMessage clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -481,13 +481,14 @@ class CapabilityStatementDocument extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.mode,
-    this.modeElement,
+this.modeElement,
     this.documentation,
-    this.documentationElement,
+this.documentationElement,
     required this.profile,
-    this.profileElement,
+this.profileElement,
   });
 
-  @override
-  CapabilityStatementDocument clone() => throw UnimplementedError();
+@override
+CapabilityStatementDocument clone() => throw UnimplementedError();
 }
+

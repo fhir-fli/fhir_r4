@@ -6,31 +6,27 @@ enum SpecialMeasures {
   /// Definition: Requirement to conduct post-authorisation studies
   @JsonValue('Post-authorisationStudies')
   Post_authorisationStudies,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case Post_authorisationStudies:
-        return 'Post-authorisationStudies';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case Post_authorisationStudies: return 'Post-authorisationStudies';
+      }
+      }
+String toJson() => toString();
   SpecialMeasures fromString(String str) {
-    switch (str) {
-      case 'Post-authorisationStudies':
-        return SpecialMeasures.Post_authorisationStudies;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'Post-authorisationStudies': return SpecialMeasures.Post_authorisationStudies;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  SpecialMeasures fromJson(dynamic jsonValue) {
+      }
+ SpecialMeasures fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

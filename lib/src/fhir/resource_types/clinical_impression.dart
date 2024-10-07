@@ -38,35 +38,35 @@ class ClinicalImpression extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.statusReason,
     this.code,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     required this.subject,
     this.encounter,
     this.effectiveDateTime,
-    this.effectiveDateTimeElement,
+this.effectiveDateTimeElement,
     this.effectivePeriod,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.assessor,
     this.previous,
     this.problem,
     this.investigation,
     this.protocol,
-    this.protocolElement,
+this.protocolElement,
     this.summary,
-    this.summaryElement,
+this.summaryElement,
     this.finding,
     this.prognosisCodeableConcept,
     this.prognosisReference,
@@ -74,8 +74,8 @@ class ClinicalImpression extends DomainResource {
     this.note,
   }) : super(resourceType: R4ResourceType.ClinicalImpression);
 
-  @override
-  ClinicalImpression clone() => throw UnimplementedError();
+@override
+ClinicalImpression clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -92,8 +92,8 @@ class ClinicalImpressionInvestigation extends BackboneElement {
     this.item,
   });
 
-  @override
-  ClinicalImpressionInvestigation clone() => throw UnimplementedError();
+@override
+ClinicalImpressionInvestigation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -111,9 +111,10 @@ class ClinicalImpressionFinding extends BackboneElement {
     this.itemCodeableConcept,
     this.itemReference,
     this.basis,
-    this.basisElement,
+this.basisElement,
   });
 
-  @override
-  ClinicalImpressionFinding clone() => throw UnimplementedError();
+@override
+ClinicalImpressionFinding clone() => throw UnimplementedError();
 }
+

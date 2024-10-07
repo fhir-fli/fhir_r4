@@ -49,55 +49,55 @@ class FamilyMemberHistory extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
-    this.instantiatesCanonicalElement,
+this.instantiatesCanonicalElement,
     this.instantiatesUri,
-    this.instantiatesUriElement,
+this.instantiatesUriElement,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.dataAbsentReason,
     required this.patient,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.name,
-    this.nameElement,
+this.nameElement,
     required this.relationship,
     this.sex,
     this.bornPeriod,
     this.bornDate,
-    this.bornDateElement,
+this.bornDateElement,
     this.bornString,
-    this.bornStringElement,
+this.bornStringElement,
     this.ageAge,
     this.ageRange,
     this.ageString,
-    this.ageStringElement,
+this.ageStringElement,
     this.estimatedAge,
-    this.estimatedAgeElement,
+this.estimatedAgeElement,
     this.deceasedBoolean,
-    this.deceasedBooleanElement,
+this.deceasedBooleanElement,
     this.deceasedAge,
     this.deceasedRange,
     this.deceasedDate,
-    this.deceasedDateElement,
+this.deceasedDateElement,
     this.deceasedString,
-    this.deceasedStringElement,
+this.deceasedStringElement,
     this.reasonCode,
     this.reasonReference,
     this.note,
     this.condition,
   }) : super(resourceType: R4ResourceType.FamilyMemberHistory);
 
-  @override
-  FamilyMemberHistory clone() => throw UnimplementedError();
+@override
+FamilyMemberHistory clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -121,15 +121,16 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     required this.code,
     this.outcome,
     this.contributedToDeath,
-    this.contributedToDeathElement,
+this.contributedToDeathElement,
     this.onsetAge,
     this.onsetRange,
     this.onsetPeriod,
     this.onsetString,
-    this.onsetStringElement,
+this.onsetStringElement,
     this.note,
   });
 
-  @override
-  FamilyMemberHistoryCondition clone() => throw UnimplementedError();
+@override
+FamilyMemberHistoryCondition clone() => throw UnimplementedError();
 }
+

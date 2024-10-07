@@ -30,27 +30,27 @@ class Composition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-    this.statusElement,
+this.statusElement,
     required this.type,
     this.category,
     this.subject,
     this.encounter,
     required this.date,
-    this.dateElement,
+this.dateElement,
     required this.author,
     required this.title,
-    this.titleElement,
+this.titleElement,
     this.confidentiality,
-    this.confidentialityElement,
+this.confidentialityElement,
     this.attester,
     this.custodian,
     this.relatesTo,
@@ -58,8 +58,8 @@ class Composition extends DomainResource {
     this.section,
   }) : super(resourceType: R4ResourceType.Composition);
 
-  @override
-  Composition clone() => throw UnimplementedError();
+@override
+Composition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -76,14 +76,14 @@ class CompositionAttester extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.mode,
-    this.modeElement,
+this.modeElement,
     this.time,
-    this.timeElement,
+this.timeElement,
     this.party,
   });
 
-  @override
-  CompositionAttester clone() => throw UnimplementedError();
+@override
+CompositionAttester clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -99,13 +99,13 @@ class CompositionRelatesTo extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    this.codeElement,
+this.codeElement,
     required this.targetIdentifier,
     required this.targetReference,
   });
 
-  @override
-  CompositionRelatesTo clone() => throw UnimplementedError();
+@override
+CompositionRelatesTo clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -124,8 +124,8 @@ class CompositionEvent extends BackboneElement {
     this.detail,
   });
 
-  @override
-  CompositionEvent clone() => throw UnimplementedError();
+@override
+CompositionEvent clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -149,19 +149,20 @@ class CompositionSection extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.title,
-    this.titleElement,
+this.titleElement,
     this.code,
     this.author,
     this.focus,
     this.text,
     this.mode,
-    this.modeElement,
+this.modeElement,
     this.orderedBy,
     this.entry,
     this.emptyReason,
     this.section,
   });
 
-  @override
-  CompositionSection clone() => throw UnimplementedError();
+@override
+CompositionSection clone() => throw UnimplementedError();
 }
+

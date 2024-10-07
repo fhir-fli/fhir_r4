@@ -31,9 +31,9 @@ class DocumentReference extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -41,27 +41,27 @@ class DocumentReference extends DomainResource {
     this.masterIdentifier,
     this.identifier,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.docStatus,
-    this.docStatusElement,
+this.docStatusElement,
     this.type,
     this.category,
     this.subject,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.author,
     this.authenticator,
     this.custodian,
     this.relatesTo,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.securityLabel,
     required this.content,
     this.context,
   }) : super(resourceType: R4ResourceType.DocumentReference);
 
-  @override
-  DocumentReference clone() => throw UnimplementedError();
+@override
+DocumentReference clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -76,12 +76,12 @@ class DocumentReferenceRelatesTo extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    this.codeElement,
+this.codeElement,
     required this.target,
   });
 
-  @override
-  DocumentReferenceRelatesTo clone() => throw UnimplementedError();
+@override
+DocumentReferenceRelatesTo clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -98,8 +98,8 @@ class DocumentReferenceContent extends BackboneElement {
     this.format,
   });
 
-  @override
-  DocumentReferenceContent clone() => throw UnimplementedError();
+@override
+DocumentReferenceContent clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -126,6 +126,7 @@ class DocumentReferenceContext extends BackboneElement {
     this.related,
   });
 
-  @override
-  DocumentReferenceContext clone() => throw UnimplementedError();
+@override
+DocumentReferenceContext clone() => throw UnimplementedError();
 }
+

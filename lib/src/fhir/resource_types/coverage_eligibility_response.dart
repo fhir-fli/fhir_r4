@@ -34,40 +34,40 @@ class CoverageEligibilityResponse extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-    this.statusElement,
+this.statusElement,
     required this.purpose,
-    this.purposeElement,
+this.purposeElement,
     required this.patient,
     this.servicedDate,
-    this.servicedDateElement,
+this.servicedDateElement,
     this.servicedPeriod,
     required this.created,
-    this.createdElement,
+this.createdElement,
     this.requestor,
     required this.request,
     required this.outcome,
-    this.outcomeElement,
+this.outcomeElement,
     this.disposition,
-    this.dispositionElement,
+this.dispositionElement,
     required this.insurer,
     this.insurance,
     this.preAuthRef,
-    this.preAuthRefElement,
+this.preAuthRefElement,
     this.form,
     this.error,
   }) : super(resourceType: R4ResourceType.CoverageEligibilityResponse);
 
-  @override
-  CoverageEligibilityResponse clone() => throw UnimplementedError();
+@override
+CoverageEligibilityResponse clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -85,13 +85,13 @@ class CoverageEligibilityResponseInsurance extends BackboneElement {
     super.modifierExtension,
     required this.coverage,
     this.inforce,
-    this.inforceElement,
+this.inforceElement,
     this.benefitPeriod,
     this.item,
   });
 
-  @override
-  CoverageEligibilityResponseInsurance clone() => throw UnimplementedError();
+@override
+CoverageEligibilityResponseInsurance clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -126,24 +126,24 @@ class CoverageEligibilityResponseItem extends BackboneElement {
     this.modifier,
     this.provider,
     this.excluded,
-    this.excludedElement,
+this.excludedElement,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.network,
     this.unit,
     this.term,
     this.benefit,
     this.authorizationRequired,
-    this.authorizationRequiredElement,
+this.authorizationRequiredElement,
     this.authorizationSupporting,
     this.authorizationUrl,
-    this.authorizationUrlElement,
+this.authorizationUrlElement,
   });
 
-  @override
-  CoverageEligibilityResponseItem clone() => throw UnimplementedError();
+@override
+CoverageEligibilityResponseItem clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -167,19 +167,19 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
     super.modifierExtension,
     required this.type,
     this.allowedUnsignedInt,
-    this.allowedUnsignedIntElement,
+this.allowedUnsignedIntElement,
     this.allowedString,
-    this.allowedStringElement,
+this.allowedStringElement,
     this.allowedMoney,
     this.usedUnsignedInt,
-    this.usedUnsignedIntElement,
+this.usedUnsignedIntElement,
     this.usedString,
-    this.usedStringElement,
+this.usedStringElement,
     this.usedMoney,
   });
 
-  @override
-  CoverageEligibilityResponseBenefit clone() => throw UnimplementedError();
+@override
+CoverageEligibilityResponseBenefit clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -194,6 +194,7 @@ class CoverageEligibilityResponseError extends BackboneElement {
     required this.code,
   });
 
-  @override
-  CoverageEligibilityResponseError clone() => throw UnimplementedError();
+@override
+CoverageEligibilityResponseError clone() => throw UnimplementedError();
 }
+

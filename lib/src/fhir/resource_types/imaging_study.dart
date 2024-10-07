@@ -36,29 +36,29 @@ class ImagingStudy extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.modality,
     required this.subject,
     this.encounter,
     this.started,
-    this.startedElement,
+this.startedElement,
     this.basedOn,
     this.referrer,
     this.interpreter,
     this.endpoint,
     this.numberOfSeries,
-    this.numberOfSeriesElement,
+this.numberOfSeriesElement,
     this.numberOfInstances,
-    this.numberOfInstancesElement,
+this.numberOfInstancesElement,
     this.procedureReference,
     this.procedureCode,
     this.location,
@@ -66,12 +66,12 @@ class ImagingStudy extends DomainResource {
     this.reasonReference,
     this.note,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.series,
   }) : super(resourceType: R4ResourceType.ImagingStudy);
 
-  @override
-  ImagingStudy clone() => throw UnimplementedError();
+@override
+ImagingStudy clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -100,26 +100,26 @@ class ImagingStudySeries extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.uid,
-    this.uidElement,
+this.uidElement,
     this.number,
-    this.numberElement,
+this.numberElement,
     required this.modality,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.numberOfInstances,
-    this.numberOfInstancesElement,
+this.numberOfInstancesElement,
     this.endpoint,
     this.bodySite,
     this.laterality,
     this.specimen,
     this.started,
-    this.startedElement,
+this.startedElement,
     this.performer,
     this.instance,
   });
 
-  @override
-  ImagingStudySeries clone() => throw UnimplementedError();
+@override
+ImagingStudySeries clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -136,8 +136,8 @@ class ImagingStudyPerformer extends BackboneElement {
     required this.actor,
   });
 
-  @override
-  ImagingStudyPerformer clone() => throw UnimplementedError();
+@override
+ImagingStudyPerformer clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -156,14 +156,15 @@ class ImagingStudyInstance extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.uid,
-    this.uidElement,
+this.uidElement,
     required this.sopClass,
     this.number,
-    this.numberElement,
+this.numberElement,
     this.title,
-    this.titleElement,
+this.titleElement,
   });
 
-  @override
-  ImagingStudyInstance clone() => throw UnimplementedError();
+@override
+ImagingStudyInstance clone() => throw UnimplementedError();
 }
+

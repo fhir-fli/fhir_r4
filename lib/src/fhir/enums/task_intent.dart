@@ -22,63 +22,43 @@ enum TaskIntent {
   instance_order,
   @JsonValue('option')
   option,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case unknown:
-        return 'unknown';
-      case proposal:
-        return 'proposal';
-      case plan:
-        return 'plan';
-      case order:
-        return 'order';
-      case original_order:
-        return 'original-order';
-      case reflex_order:
-        return 'reflex-order';
-      case filler_order:
-        return 'filler-order';
-      case instance_order:
-        return 'instance-order';
-      case option:
-        return 'option';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case unknown: return 'unknown';
+        case proposal: return 'proposal';
+        case plan: return 'plan';
+        case order: return 'order';
+        case original_order: return 'original-order';
+        case reflex_order: return 'reflex-order';
+        case filler_order: return 'filler-order';
+        case instance_order: return 'instance-order';
+        case option: return 'option';
+      }
+      }
+String toJson() => toString();
   TaskIntent fromString(String str) {
-    switch (str) {
-      case 'unknown':
-        return TaskIntent.unknown;
-      case 'proposal':
-        return TaskIntent.proposal;
-      case 'plan':
-        return TaskIntent.plan;
-      case 'order':
-        return TaskIntent.order;
-      case 'original-order':
-        return TaskIntent.original_order;
-      case 'reflex-order':
-        return TaskIntent.reflex_order;
-      case 'filler-order':
-        return TaskIntent.filler_order;
-      case 'instance-order':
-        return TaskIntent.instance_order;
-      case 'option':
-        return TaskIntent.option;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'unknown': return TaskIntent.unknown;
+      case 'proposal': return TaskIntent.proposal;
+      case 'plan': return TaskIntent.plan;
+      case 'order': return TaskIntent.order;
+      case 'original-order': return TaskIntent.original_order;
+      case 'reflex-order': return TaskIntent.reflex_order;
+      case 'filler-order': return TaskIntent.filler_order;
+      case 'instance-order': return TaskIntent.instance_order;
+      case 'option': return TaskIntent.option;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  TaskIntent fromJson(dynamic jsonValue) {
+      }
+ TaskIntent fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

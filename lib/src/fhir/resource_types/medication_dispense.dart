@@ -40,9 +40,9 @@ class MedicationDispense extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -50,7 +50,7 @@ class MedicationDispense extends DomainResource {
     this.identifier,
     this.partOf,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.statusReasonCodeableConcept,
     this.statusReasonReference,
     this.category,
@@ -66,9 +66,9 @@ class MedicationDispense extends DomainResource {
     this.quantity,
     this.daysSupply,
     this.whenPrepared,
-    this.whenPreparedElement,
+this.whenPreparedElement,
     this.whenHandedOver,
-    this.whenHandedOverElement,
+this.whenHandedOverElement,
     this.destination,
     this.receiver,
     this.note,
@@ -78,8 +78,8 @@ class MedicationDispense extends DomainResource {
     this.eventHistory,
   }) : super(resourceType: R4ResourceType.MedicationDispense);
 
-  @override
-  MedicationDispense clone() => throw UnimplementedError();
+@override
+MedicationDispense clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -96,8 +96,8 @@ class MedicationDispensePerformer extends BackboneElement {
     required this.actor,
   });
 
-  @override
-  MedicationDispensePerformer clone() => throw UnimplementedError();
+@override
+MedicationDispensePerformer clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -114,12 +114,13 @@ class MedicationDispenseSubstitution extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.wasSubstituted,
-    this.wasSubstitutedElement,
+this.wasSubstitutedElement,
     this.type,
     this.reason,
     this.responsibleParty,
   });
 
-  @override
-  MedicationDispenseSubstitution clone() => throw UnimplementedError();
+@override
+MedicationDispenseSubstitution clone() => throw UnimplementedError();
 }
+

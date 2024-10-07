@@ -5,39 +5,32 @@ enum CodesForImmunizationSiteOfAdministration {
   /// Display: Left arm
   @JsonValue('LA')
   LA,
-
   /// Display: Right arm
   @JsonValue('RA')
   RA,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case LA:
-        return 'LA';
-      case RA:
-        return 'RA';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case LA: return 'LA';
+        case RA: return 'RA';
+      }
+      }
+String toJson() => toString();
   CodesForImmunizationSiteOfAdministration fromString(String str) {
-    switch (str) {
-      case 'LA':
-        return CodesForImmunizationSiteOfAdministration.LA;
-      case 'RA':
-        return CodesForImmunizationSiteOfAdministration.RA;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'LA': return CodesForImmunizationSiteOfAdministration.LA;
+      case 'RA': return CodesForImmunizationSiteOfAdministration.RA;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  CodesForImmunizationSiteOfAdministration fromJson(dynamic jsonValue) {
+      }
+ CodesForImmunizationSiteOfAdministration fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

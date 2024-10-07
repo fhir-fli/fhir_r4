@@ -27,9 +27,9 @@ class RegulatedAuthorization extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -38,11 +38,11 @@ class RegulatedAuthorization extends DomainResource {
     this.subject,
     this.type,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.region,
     this.status,
     this.statusDate,
-    this.statusDateElement,
+this.statusDateElement,
     this.validityPeriod,
     this.indication,
     this.intendedUse,
@@ -52,8 +52,8 @@ class RegulatedAuthorization extends DomainResource {
     this.case_,
   }) : super(resourceType: R4ResourceType.RegulatedAuthorization);
 
-  @override
-  RegulatedAuthorization clone() => throw UnimplementedError();
+@override
+RegulatedAuthorization clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -76,10 +76,11 @@ class RegulatedAuthorizationCase extends BackboneElement {
     this.status,
     this.datePeriod,
     this.dateDateTime,
-    this.dateDateTimeElement,
+this.dateDateTimeElement,
     this.application,
   });
 
-  @override
-  RegulatedAuthorizationCase clone() => throw UnimplementedError();
+@override
+RegulatedAuthorizationCase clone() => throw UnimplementedError();
 }
+

@@ -12,9 +12,9 @@ class OperationOutcome extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -22,8 +22,8 @@ class OperationOutcome extends DomainResource {
     required this.issue,
   }) : super(resourceType: R4ResourceType.OperationOutcome);
 
-  @override
-  OperationOutcome clone() => throw UnimplementedError();
+@override
+OperationOutcome clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -46,18 +46,19 @@ class OperationOutcomeIssue extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.severity,
-    this.severityElement,
+this.severityElement,
     required this.code,
-    this.codeElement,
+this.codeElement,
     this.details,
     this.diagnostics,
-    this.diagnosticsElement,
+this.diagnosticsElement,
     this.location,
-    this.locationElement,
+this.locationElement,
     this.expression,
-    this.expressionElement,
+this.expressionElement,
   });
 
-  @override
-  OperationOutcomeIssue clone() => throw UnimplementedError();
+@override
+OperationOutcomeIssue clone() => throw UnimplementedError();
 }
+

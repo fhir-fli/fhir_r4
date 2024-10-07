@@ -23,17 +23,18 @@ class Signature extends DataType {
     super.extension_,
     required this.type,
     required this.when,
-    this.whenElement,
+this.whenElement,
     required this.who,
     this.onBehalfOf,
     this.targetFormat,
-    this.targetFormatElement,
+this.targetFormatElement,
     this.sigFormat,
-    this.sigFormatElement,
+this.sigFormatElement,
     this.data,
-    this.dataElement,
+this.dataElement,
   });
 
-  @override
-  Signature clone() => throw UnimplementedError();
+@override
+Signature clone() => throw UnimplementedError();
 }
+

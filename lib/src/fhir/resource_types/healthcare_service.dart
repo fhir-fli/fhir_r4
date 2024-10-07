@@ -41,27 +41,27 @@ class HealthcareService extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
-    this.activeElement,
+this.activeElement,
     this.providedBy,
     this.category,
     this.type,
     this.specialty,
     this.location,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.comment,
-    this.commentElement,
+this.commentElement,
     this.extraDetails,
-    this.extraDetailsElement,
+this.extraDetailsElement,
     this.photo,
     this.telecom,
     this.coverageArea,
@@ -72,16 +72,16 @@ class HealthcareService extends DomainResource {
     this.communication,
     this.referralMethod,
     this.appointmentRequired,
-    this.appointmentRequiredElement,
+this.appointmentRequiredElement,
     this.availableTime,
     this.notAvailable,
     this.availabilityExceptions,
-    this.availabilityExceptionsElement,
+this.availabilityExceptionsElement,
     this.endpoint,
   }) : super(resourceType: R4ResourceType.HealthcareService);
 
-  @override
-  HealthcareService clone() => throw UnimplementedError();
+@override
+HealthcareService clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -97,11 +97,11 @@ class HealthcareServiceEligibility extends BackboneElement {
     super.modifierExtension,
     this.code,
     this.comment,
-    this.commentElement,
+this.commentElement,
   });
 
-  @override
-  HealthcareServiceEligibility clone() => throw UnimplementedError();
+@override
+HealthcareServiceEligibility clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -121,17 +121,17 @@ class HealthcareServiceAvailableTime extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.daysOfWeek,
-    this.daysOfWeekElement,
+this.daysOfWeekElement,
     this.allDay,
-    this.allDayElement,
+this.allDayElement,
     this.availableStartTime,
-    this.availableStartTimeElement,
+this.availableStartTimeElement,
     this.availableEndTime,
-    this.availableEndTimeElement,
+this.availableEndTimeElement,
   });
 
-  @override
-  HealthcareServiceAvailableTime clone() => throw UnimplementedError();
+@override
+HealthcareServiceAvailableTime clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -146,10 +146,11 @@ class HealthcareServiceNotAvailable extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.during,
   });
 
-  @override
-  HealthcareServiceNotAvailable clone() => throw UnimplementedError();
+@override
+HealthcareServiceNotAvailable clone() => throw UnimplementedError();
 }
+

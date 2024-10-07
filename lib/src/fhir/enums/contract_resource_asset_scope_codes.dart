@@ -6,31 +6,27 @@ enum ContractResourceAssetScopeCodes {
   /// Definition: To be completed
   @JsonValue('thing')
   thing,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case thing:
-        return 'thing';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case thing: return 'thing';
+      }
+      }
+String toJson() => toString();
   ContractResourceAssetScopeCodes fromString(String str) {
-    switch (str) {
-      case 'thing':
-        return ContractResourceAssetScopeCodes.thing;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'thing': return ContractResourceAssetScopeCodes.thing;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  ContractResourceAssetScopeCodes fromJson(dynamic jsonValue) {
+      }
+ ContractResourceAssetScopeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

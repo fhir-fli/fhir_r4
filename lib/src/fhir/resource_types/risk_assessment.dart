@@ -32,9 +32,9 @@ class RiskAssessment extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -43,13 +43,13 @@ class RiskAssessment extends DomainResource {
     this.basedOn,
     this.parent,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.method,
     this.code,
     required this.subject,
     this.encounter,
     this.occurrenceDateTime,
-    this.occurrenceDateTimeElement,
+this.occurrenceDateTimeElement,
     this.occurrencePeriod,
     this.condition,
     this.performer,
@@ -58,12 +58,12 @@ class RiskAssessment extends DomainResource {
     this.basis,
     this.prediction,
     this.mitigation,
-    this.mitigationElement,
+this.mitigationElement,
     this.note,
   }) : super(resourceType: R4ResourceType.RiskAssessment);
 
-  @override
-  RiskAssessment clone() => throw UnimplementedError();
+@override
+RiskAssessment clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -87,17 +87,18 @@ class RiskAssessmentPrediction extends BackboneElement {
     super.modifierExtension,
     this.outcome,
     this.probabilityDecimal,
-    this.probabilityDecimalElement,
+this.probabilityDecimalElement,
     this.probabilityRange,
     this.qualitativeRisk,
     this.relativeRisk,
-    this.relativeRiskElement,
+this.relativeRiskElement,
     this.whenPeriod,
     this.whenRange,
     this.rationale,
-    this.rationaleElement,
+this.rationaleElement,
   });
 
-  @override
-  RiskAssessmentPrediction clone() => throw UnimplementedError();
+@override
+RiskAssessmentPrediction clone() => throw UnimplementedError();
 }
+

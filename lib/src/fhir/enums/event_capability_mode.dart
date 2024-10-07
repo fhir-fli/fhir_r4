@@ -6,40 +6,33 @@ enum EventCapabilityMode {
   /// Definition: The application sends requests and receives responses.
   @JsonValue('sender')
   sender,
-
   /// Display: Receiver
   /// Definition: The application receives requests and sends responses.
   @JsonValue('receiver')
   receiver,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case sender:
-        return 'sender';
-      case receiver:
-        return 'receiver';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case sender: return 'sender';
+        case receiver: return 'receiver';
+      }
+      }
+String toJson() => toString();
   EventCapabilityMode fromString(String str) {
-    switch (str) {
-      case 'sender':
-        return EventCapabilityMode.sender;
-      case 'receiver':
-        return EventCapabilityMode.receiver;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'sender': return EventCapabilityMode.sender;
+      case 'receiver': return EventCapabilityMode.receiver;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  EventCapabilityMode fromJson(dynamic jsonValue) {
+      }
+ EventCapabilityMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

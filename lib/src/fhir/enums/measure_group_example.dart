@@ -6,40 +6,33 @@ enum MeasureGroupExample {
   /// Definition: Primary Measure Group.
   @JsonValue('primary-rate')
   primary_rate,
-
   /// Display: Secondary Rate
   /// Definition: Secondary Measure Group
   @JsonValue('secondary-rate')
   secondary_rate,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case primary_rate:
-        return 'primary-rate';
-      case secondary_rate:
-        return 'secondary-rate';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case primary_rate: return 'primary-rate';
+        case secondary_rate: return 'secondary-rate';
+      }
+      }
+String toJson() => toString();
   MeasureGroupExample fromString(String str) {
-    switch (str) {
-      case 'primary-rate':
-        return MeasureGroupExample.primary_rate;
-      case 'secondary-rate':
-        return MeasureGroupExample.secondary_rate;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'primary-rate': return MeasureGroupExample.primary_rate;
+      case 'secondary-rate': return MeasureGroupExample.secondary_rate;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  MeasureGroupExample fromJson(dynamic jsonValue) {
+      }
+ MeasureGroupExample fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

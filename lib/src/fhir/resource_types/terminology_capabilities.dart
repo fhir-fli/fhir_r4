@@ -49,55 +49,55 @@ class TerminologyCapabilities extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-    this.urlElement,
+this.urlElement,
     this.version,
-    this.versionElement,
+this.versionElement,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.title,
-    this.titleElement,
+this.titleElement,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.experimental,
-    this.experimentalElement,
+this.experimentalElement,
     required this.date,
-    this.dateElement,
+this.dateElement,
     this.publisher,
-    this.publisherElement,
+this.publisherElement,
     this.contact,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-    this.purposeElement,
+this.purposeElement,
     this.copyright,
-    this.copyrightElement,
+this.copyrightElement,
     required this.kind,
-    this.kindElement,
+this.kindElement,
     this.software,
     this.implementation,
     this.lockedDate,
-    this.lockedDateElement,
+this.lockedDateElement,
     this.codeSystem,
     this.expansion,
     this.codeSearch,
-    this.codeSearchElement,
+this.codeSearchElement,
     this.validateCode,
     this.translation,
     this.closure,
   }) : super(resourceType: R4ResourceType.TerminologyCapabilities);
 
-  @override
-  TerminologyCapabilities clone() => throw UnimplementedError();
+@override
+TerminologyCapabilities clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -113,13 +113,13 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-    this.nameElement,
+this.nameElement,
     this.version,
-    this.versionElement,
+this.versionElement,
   });
 
-  @override
-  TerminologyCapabilitiesSoftware clone() => throw UnimplementedError();
+@override
+TerminologyCapabilitiesSoftware clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -135,13 +135,13 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.url,
-    this.urlElement,
+this.urlElement,
   });
 
-  @override
-  TerminologyCapabilitiesImplementation clone() => throw UnimplementedError();
+@override
+TerminologyCapabilitiesImplementation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -158,14 +158,14 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.uri,
-    this.uriElement,
+this.uriElement,
     this.version,
     this.subsumption,
-    this.subsumptionElement,
+this.subsumptionElement,
   });
 
-  @override
-  TerminologyCapabilitiesCodeSystem clone() => throw UnimplementedError();
+@override
+TerminologyCapabilitiesCodeSystem clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -188,20 +188,20 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.code,
-    this.codeElement,
+this.codeElement,
     this.isDefault,
-    this.isDefaultElement,
+this.isDefaultElement,
     this.compositional,
-    this.compositionalElement,
+this.compositionalElement,
     this.language,
-    this.languageElement,
+this.languageElement,
     this.filter,
     this.property,
-    this.propertyElement,
+this.propertyElement,
   });
 
-  @override
-  TerminologyCapabilitiesVersion clone() => throw UnimplementedError();
+@override
+TerminologyCapabilitiesVersion clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -217,13 +217,13 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    this.codeElement,
+this.codeElement,
     required this.op,
-    this.opElement,
+this.opElement,
   });
 
-  @override
-  TerminologyCapabilitiesFilter clone() => throw UnimplementedError();
+@override
+TerminologyCapabilitiesFilter clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -244,18 +244,18 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.hierarchical,
-    this.hierarchicalElement,
+this.hierarchicalElement,
     this.paging,
-    this.pagingElement,
+this.pagingElement,
     this.incomplete,
-    this.incompleteElement,
+this.incompleteElement,
     this.parameter,
     this.textFilter,
-    this.textFilterElement,
+this.textFilterElement,
   });
 
-  @override
-  TerminologyCapabilitiesExpansion clone() => throw UnimplementedError();
+@override
+TerminologyCapabilitiesExpansion clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -271,13 +271,13 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-    this.nameElement,
+this.nameElement,
     this.documentation,
-    this.documentationElement,
+this.documentationElement,
   });
 
-  @override
-  TerminologyCapabilitiesParameter clone() => throw UnimplementedError();
+@override
+TerminologyCapabilitiesParameter clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -291,11 +291,11 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.translations,
-    this.translationsElement,
+this.translationsElement,
   });
 
-  @override
-  TerminologyCapabilitiesValidateCode clone() => throw UnimplementedError();
+@override
+TerminologyCapabilitiesValidateCode clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -309,11 +309,11 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.needsMap,
-    this.needsMapElement,
+this.needsMapElement,
   });
 
-  @override
-  TerminologyCapabilitiesTranslation clone() => throw UnimplementedError();
+@override
+TerminologyCapabilitiesTranslation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -327,9 +327,10 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.translation,
-    this.translationElement,
+this.translationElement,
   });
 
-  @override
-  TerminologyCapabilitiesClosure clone() => throw UnimplementedError();
+@override
+TerminologyCapabilitiesClosure clone() => throw UnimplementedError();
 }
+

@@ -26,9 +26,9 @@ class Specimen extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -36,11 +36,11 @@ class Specimen extends DomainResource {
     this.identifier,
     this.accessionIdentifier,
     this.status,
-    this.statusElement,
+this.statusElement,
     this.type,
     this.subject,
     this.receivedTime,
-    this.receivedTimeElement,
+this.receivedTimeElement,
     this.parent,
     this.request,
     this.collection,
@@ -50,8 +50,8 @@ class Specimen extends DomainResource {
     this.note,
   }) : super(resourceType: R4ResourceType.Specimen);
 
-  @override
-  Specimen clone() => throw UnimplementedError();
+@override
+Specimen clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -74,7 +74,7 @@ class SpecimenCollection extends BackboneElement {
     super.modifierExtension,
     this.collector,
     this.collectedDateTime,
-    this.collectedDateTimeElement,
+this.collectedDateTimeElement,
     this.collectedPeriod,
     this.duration,
     this.quantity,
@@ -84,8 +84,8 @@ class SpecimenCollection extends BackboneElement {
     this.fastingStatusDuration,
   });
 
-  @override
-  SpecimenCollection clone() => throw UnimplementedError();
+@override
+SpecimenCollection clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -104,16 +104,16 @@ class SpecimenProcessing extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.procedure,
     this.additive,
     this.timeDateTime,
-    this.timeDateTimeElement,
+this.timeDateTimeElement,
     this.timePeriod,
   });
 
-  @override
-  SpecimenProcessing clone() => throw UnimplementedError();
+@override
+SpecimenProcessing clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -134,7 +134,7 @@ class SpecimenContainer extends BackboneElement {
     super.modifierExtension,
     this.identifier,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.type,
     this.capacity,
     this.specimenQuantity,
@@ -142,6 +142,7 @@ class SpecimenContainer extends BackboneElement {
     this.additiveReference,
   });
 
-  @override
-  SpecimenContainer clone() => throw UnimplementedError();
+@override
+SpecimenContainer clone() => throw UnimplementedError();
 }
+

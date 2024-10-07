@@ -41,9 +41,9 @@ class Condition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -58,21 +58,21 @@ class Condition extends DomainResource {
     required this.subject,
     this.encounter,
     this.onsetDateTime,
-    this.onsetDateTimeElement,
+this.onsetDateTimeElement,
     this.onsetAge,
     this.onsetPeriod,
     this.onsetRange,
     this.onsetString,
-    this.onsetStringElement,
+this.onsetStringElement,
     this.abatementDateTime,
-    this.abatementDateTimeElement,
+this.abatementDateTimeElement,
     this.abatementAge,
     this.abatementPeriod,
     this.abatementRange,
     this.abatementString,
-    this.abatementStringElement,
+this.abatementStringElement,
     this.recordedDate,
-    this.recordedDateElement,
+this.recordedDateElement,
     this.recorder,
     this.asserter,
     this.stage,
@@ -80,8 +80,8 @@ class Condition extends DomainResource {
     this.note,
   }) : super(resourceType: R4ResourceType.Condition);
 
-  @override
-  Condition clone() => throw UnimplementedError();
+@override
+Condition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -100,8 +100,8 @@ class ConditionStage extends BackboneElement {
     this.type,
   });
 
-  @override
-  ConditionStage clone() => throw UnimplementedError();
+@override
+ConditionStage clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -118,6 +118,7 @@ class ConditionEvidence extends BackboneElement {
     this.detail,
   });
 
-  @override
-  ConditionEvidence clone() => throw UnimplementedError();
+@override
+ConditionEvidence clone() => throw UnimplementedError();
 }
+

@@ -34,25 +34,25 @@ class Location extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.status,
-    this.statusElement,
+this.statusElement,
     this.operationalStatus,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.alias,
-    this.aliasElement,
+this.aliasElement,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.mode,
-    this.modeElement,
+this.modeElement,
     this.type,
     this.telecom,
     this.address,
@@ -62,12 +62,12 @@ class Location extends DomainResource {
     this.partOf,
     this.hoursOfOperation,
     this.availabilityExceptions,
-    this.availabilityExceptionsElement,
+this.availabilityExceptionsElement,
     this.endpoint,
   }) : super(resourceType: R4ResourceType.Location);
 
-  @override
-  Location clone() => throw UnimplementedError();
+@override
+Location clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -85,15 +85,15 @@ class LocationPosition extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.longitude,
-    this.longitudeElement,
+this.longitudeElement,
     required this.latitude,
-    this.latitudeElement,
+this.latitudeElement,
     this.altitude,
-    this.altitudeElement,
+this.altitudeElement,
   });
 
-  @override
-  LocationPosition clone() => throw UnimplementedError();
+@override
+LocationPosition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -113,15 +113,16 @@ class LocationHoursOfOperation extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.daysOfWeek,
-    this.daysOfWeekElement,
+this.daysOfWeekElement,
     this.allDay,
-    this.allDayElement,
+this.allDayElement,
     this.openingTime,
-    this.openingTimeElement,
+this.openingTimeElement,
     this.closingTime,
-    this.closingTimeElement,
+this.closingTimeElement,
   });
 
-  @override
-  LocationHoursOfOperation clone() => throw UnimplementedError();
+@override
+LocationHoursOfOperation clone() => throw UnimplementedError();
 }
+

@@ -16,23 +16,22 @@ class AdministrableProductDefinition extends DomainResource {
   final List<CodeableConcept>? ingredient;
   final Reference? device;
   final List<AdministrableProductDefinitionProperty>? property;
-  final List<AdministrableProductDefinitionRouteOfAdministration>
-      routeOfAdministration;
+  final List<AdministrableProductDefinitionRouteOfAdministration> routeOfAdministration;
 
   AdministrableProductDefinition({
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.formOf,
     this.administrableDoseForm,
     this.unitOfPresentation,
@@ -43,8 +42,8 @@ class AdministrableProductDefinition extends DomainResource {
     required this.routeOfAdministration,
   }) : super(resourceType: R4ResourceType.AdministrableProductDefinition);
 
-  @override
-  AdministrableProductDefinition clone() => throw UnimplementedError();
+@override
+AdministrableProductDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -68,21 +67,20 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
     this.valueCodeableConcept,
     this.valueQuantity,
     this.valueDate,
-    this.valueDateElement,
+this.valueDateElement,
     this.valueBoolean,
-    this.valueBooleanElement,
+this.valueBooleanElement,
     this.valueAttachment,
     this.status,
   });
 
-  @override
-  AdministrableProductDefinitionProperty clone() => throw UnimplementedError();
+@override
+AdministrableProductDefinitionProperty clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
-class AdministrableProductDefinitionRouteOfAdministration
-    extends BackboneElement {
+class AdministrableProductDefinitionRouteOfAdministration extends BackboneElement {
   final CodeableConcept code;
   final Quantity? firstDose;
   final Quantity? maxSingleDose;
@@ -104,9 +102,8 @@ class AdministrableProductDefinitionRouteOfAdministration
     this.targetSpecies,
   });
 
-  @override
-  AdministrableProductDefinitionRouteOfAdministration clone() =>
-      throw UnimplementedError();
+@override
+AdministrableProductDefinitionRouteOfAdministration clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -123,9 +120,8 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
     this.withdrawalPeriod,
   });
 
-  @override
-  AdministrableProductDefinitionTargetSpecies clone() =>
-      throw UnimplementedError();
+@override
+AdministrableProductDefinitionTargetSpecies clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -143,10 +139,10 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
     required this.tissue,
     required this.value,
     this.supportingInformation,
-    this.supportingInformationElement,
+this.supportingInformationElement,
   });
 
-  @override
-  AdministrableProductDefinitionWithdrawalPeriod clone() =>
-      throw UnimplementedError();
+@override
+AdministrableProductDefinitionWithdrawalPeriod clone() => throw UnimplementedError();
 }
+

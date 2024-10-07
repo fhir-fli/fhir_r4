@@ -29,35 +29,35 @@ class PackagedProductDefinition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.type,
     this.packageFor,
     this.status,
     this.statusDate,
-    this.statusDateElement,
+this.statusDateElement,
     this.containedItemQuantity,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.legalStatusOfSupply,
     this.marketingStatus,
     this.characteristic,
     this.copackagedIndicator,
-    this.copackagedIndicatorElement,
+this.copackagedIndicatorElement,
     this.manufacturer,
     this.package,
   }) : super(resourceType: R4ResourceType.PackagedProductDefinition);
 
-  @override
-  PackagedProductDefinition clone() => throw UnimplementedError();
+@override
+PackagedProductDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -74,9 +74,8 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
     this.jurisdiction,
   });
 
-  @override
-  PackagedProductDefinitionLegalStatusOfSupply clone() =>
-      throw UnimplementedError();
+@override
+PackagedProductDefinitionLegalStatusOfSupply clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -101,7 +100,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     this.identifier,
     this.type,
     this.quantity,
-    this.quantityElement,
+this.quantityElement,
     this.material,
     this.alternateMaterial,
     this.shelfLifeStorage,
@@ -111,8 +110,8 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     this.package,
   });
 
-  @override
-  PackagedProductDefinitionPackage clone() => throw UnimplementedError();
+@override
+PackagedProductDefinitionPackage clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -131,13 +130,12 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     this.type,
     this.periodDuration,
     this.periodString,
-    this.periodStringElement,
+this.periodStringElement,
     this.specialPrecautionsForStorage,
   });
 
-  @override
-  PackagedProductDefinitionShelfLifeStorage clone() =>
-      throw UnimplementedError();
+@override
+PackagedProductDefinitionShelfLifeStorage clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -160,14 +158,14 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     this.valueCodeableConcept,
     this.valueQuantity,
     this.valueDate,
-    this.valueDateElement,
+this.valueDateElement,
     this.valueBoolean,
-    this.valueBooleanElement,
+this.valueBooleanElement,
     this.valueAttachment,
   });
 
-  @override
-  PackagedProductDefinitionProperty clone() => throw UnimplementedError();
+@override
+PackagedProductDefinitionProperty clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -184,6 +182,7 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
     this.amount,
   });
 
-  @override
-  PackagedProductDefinitionContainedItem clone() => throw UnimplementedError();
+@override
+PackagedProductDefinitionContainedItem clone() => throw UnimplementedError();
 }
+

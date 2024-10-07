@@ -46,43 +46,43 @@ class SubscriptionTopic extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     required this.url,
-    this.urlElement,
+this.urlElement,
     this.identifier,
     this.version,
-    this.versionElement,
+this.versionElement,
     this.title,
-    this.titleElement,
+this.titleElement,
     this.derivedFrom,
-    this.derivedFromElement,
+this.derivedFromElement,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.experimental,
-    this.experimentalElement,
+this.experimentalElement,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.publisher,
-    this.publisherElement,
+this.publisherElement,
     this.contact,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-    this.purposeElement,
+this.purposeElement,
     this.copyright,
-    this.copyrightElement,
+this.copyrightElement,
     this.approvalDate,
-    this.approvalDateElement,
+this.approvalDateElement,
     this.lastReviewDate,
-    this.lastReviewDateElement,
+this.lastReviewDateElement,
     this.effectivePeriod,
     this.resourceTrigger,
     this.eventTrigger,
@@ -90,8 +90,8 @@ class SubscriptionTopic extends DomainResource {
     this.notificationShape,
   }) : super(resourceType: R4ResourceType.SubscriptionTopic);
 
-  @override
-  SubscriptionTopic clone() => throw UnimplementedError();
+@override
+SubscriptionTopic clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -112,18 +112,18 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     required this.resource,
-    this.resourceElement,
+this.resourceElement,
     this.supportedInteraction,
-    this.supportedInteractionElement,
+this.supportedInteractionElement,
     this.queryCriteria,
     this.fhirPathCriteria,
-    this.fhirPathCriteriaElement,
+this.fhirPathCriteriaElement,
   });
 
-  @override
-  SubscriptionTopicResourceTrigger clone() => throw UnimplementedError();
+@override
+SubscriptionTopicResourceTrigger clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -145,19 +145,19 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.previous,
-    this.previousElement,
+this.previousElement,
     this.resultForCreate,
-    this.resultForCreateElement,
+this.resultForCreateElement,
     this.current,
-    this.currentElement,
+this.currentElement,
     this.resultForDelete,
-    this.resultForDeleteElement,
+this.resultForDeleteElement,
     this.requireBoth,
-    this.requireBothElement,
+this.requireBothElement,
   });
 
-  @override
-  SubscriptionTopicQueryCriteria clone() => throw UnimplementedError();
+@override
+SubscriptionTopicQueryCriteria clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -174,14 +174,14 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     required this.event,
     required this.resource,
-    this.resourceElement,
+this.resourceElement,
   });
 
-  @override
-  SubscriptionTopicEventTrigger clone() => throw UnimplementedError();
+@override
+SubscriptionTopicEventTrigger clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -203,19 +203,19 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.resource,
-    this.resourceElement,
+this.resourceElement,
     required this.filterParameter,
-    this.filterParameterElement,
+this.filterParameterElement,
     this.filterDefinition,
-    this.filterDefinitionElement,
+this.filterDefinitionElement,
     this.modifier,
-    this.modifierElement,
+this.modifierElement,
   });
 
-  @override
-  SubscriptionTopicCanFilterBy clone() => throw UnimplementedError();
+@override
+SubscriptionTopicCanFilterBy clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -233,13 +233,14 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.resource,
-    this.resourceElement,
+this.resourceElement,
     this.include,
-    this.includeElement,
+this.includeElement,
     this.revInclude,
-    this.revIncludeElement,
+this.revIncludeElement,
   });
 
-  @override
-  SubscriptionTopicNotificationShape clone() => throw UnimplementedError();
+@override
+SubscriptionTopicNotificationShape clone() => throw UnimplementedError();
 }
+

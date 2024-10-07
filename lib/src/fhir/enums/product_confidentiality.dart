@@ -6,40 +6,33 @@ enum ProductConfidentiality {
   /// Definition: Commercially Sensitive
   @JsonValue('CommerciallySensitive')
   CommerciallySensitive,
-
   /// Display: Not Commercially Sensitive
   /// Definition: Not Commercially Sensitive
   @JsonValue('NotCommerciallySensitive')
   NotCommerciallySensitive,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case CommerciallySensitive:
-        return 'CommerciallySensitive';
-      case NotCommerciallySensitive:
-        return 'NotCommerciallySensitive';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case CommerciallySensitive: return 'CommerciallySensitive';
+        case NotCommerciallySensitive: return 'NotCommerciallySensitive';
+      }
+      }
+String toJson() => toString();
   ProductConfidentiality fromString(String str) {
-    switch (str) {
-      case 'CommerciallySensitive':
-        return ProductConfidentiality.CommerciallySensitive;
-      case 'NotCommerciallySensitive':
-        return ProductConfidentiality.NotCommerciallySensitive;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'CommerciallySensitive': return ProductConfidentiality.CommerciallySensitive;
+      case 'NotCommerciallySensitive': return ProductConfidentiality.NotCommerciallySensitive;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  ProductConfidentiality fromJson(dynamic jsonValue) {
+      }
+ ProductConfidentiality fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

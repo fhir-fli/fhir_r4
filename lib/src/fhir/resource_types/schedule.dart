@@ -21,25 +21,26 @@ class Schedule extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
-    this.activeElement,
+this.activeElement,
     this.serviceCategory,
     this.serviceType,
     this.specialty,
     required this.actor,
     this.planningHorizon,
     this.comment,
-    this.commentElement,
+this.commentElement,
   }) : super(resourceType: R4ResourceType.Schedule);
 
-  @override
-  Schedule clone() => throw UnimplementedError();
+@override
+Schedule clone() => throw UnimplementedError();
 }
+

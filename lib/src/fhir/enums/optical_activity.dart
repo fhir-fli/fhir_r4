@@ -5,39 +5,32 @@ enum OpticalActivity {
   /// Display: dextrorotary
   @JsonValue('+')
   plus,
-
   /// Display: levorotary
   @JsonValue('-')
   minus,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case plus:
-        return '+';
-      case minus:
-        return '-';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case plus: return '+';
+        case minus: return '-';
+      }
+      }
+String toJson() => toString();
   OpticalActivity fromString(String str) {
-    switch (str) {
-      case '+':
-        return OpticalActivity.plus;
-      case '-':
-        return OpticalActivity.minus;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case '+': return OpticalActivity.plus;
+      case '-': return OpticalActivity.minus;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  OpticalActivity fromJson(dynamic jsonValue) {
+      }
+ OpticalActivity fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

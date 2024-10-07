@@ -16,6 +16,7 @@ class CodeableReference extends DataType {
     this.reference,
   });
 
-  @override
-  CodeableReference clone() => throw UnimplementedError();
+@override
+CodeableReference clone() => throw UnimplementedError();
 }
+

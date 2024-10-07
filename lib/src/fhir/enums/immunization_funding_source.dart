@@ -6,40 +6,33 @@ enum ImmunizationFundingSource {
   /// Definition: The vaccine was purchased with private funds.
   @JsonValue('private')
   private,
-
   /// Display: Public
   /// Definition: The vaccine was purchased with public funds.
   @JsonValue('public')
   public,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case private:
-        return 'private';
-      case public:
-        return 'public';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case private: return 'private';
+        case public: return 'public';
+      }
+      }
+String toJson() => toString();
   ImmunizationFundingSource fromString(String str) {
-    switch (str) {
-      case 'private':
-        return ImmunizationFundingSource.private;
-      case 'public':
-        return ImmunizationFundingSource.public;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'private': return ImmunizationFundingSource.private;
+      case 'public': return ImmunizationFundingSource.public;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  ImmunizationFundingSource fromJson(dynamic jsonValue) {
+      }
+ ImmunizationFundingSource fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

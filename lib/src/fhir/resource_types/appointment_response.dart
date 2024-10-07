@@ -23,9 +23,9 @@ class AppointmentResponse extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -33,17 +33,18 @@ class AppointmentResponse extends DomainResource {
     this.identifier,
     required this.appointment,
     this.start,
-    this.startElement,
+this.startElement,
     this.end,
-    this.endElement,
+this.endElement,
     this.participantType,
     this.actor,
     required this.participantStatus,
-    this.participantStatusElement,
+this.participantStatusElement,
     this.comment,
-    this.commentElement,
+this.commentElement,
   }) : super(resourceType: R4ResourceType.AppointmentResponse);
 
-  @override
-  AppointmentResponse clone() => throw UnimplementedError();
+@override
+AppointmentResponse clone() => throw UnimplementedError();
 }
+

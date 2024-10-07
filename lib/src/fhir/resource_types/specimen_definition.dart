@@ -18,9 +18,9 @@ class SpecimenDefinition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -29,13 +29,13 @@ class SpecimenDefinition extends DomainResource {
     this.typeCollected,
     this.patientPreparation,
     this.timeAspect,
-    this.timeAspectElement,
+this.timeAspectElement,
     this.collection,
     this.typeTested,
   }) : super(resourceType: R4ResourceType.SpecimenDefinition);
 
-  @override
-  SpecimenDefinition clone() => throw UnimplementedError();
+@override
+SpecimenDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -58,20 +58,20 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.isDerived,
-    this.isDerivedElement,
+this.isDerivedElement,
     this.type,
     required this.preference,
-    this.preferenceElement,
+this.preferenceElement,
     this.container,
     this.requirement,
-    this.requirementElement,
+this.requirementElement,
     this.retentionTime,
     this.rejectionCriterion,
     this.handling,
   });
 
-  @override
-  SpecimenDefinitionTypeTested clone() => throw UnimplementedError();
+@override
+SpecimenDefinitionTypeTested clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -98,18 +98,18 @@ class SpecimenDefinitionContainer extends BackboneElement {
     this.type,
     this.cap,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.capacity,
     this.minimumVolumeQuantity,
     this.minimumVolumeString,
-    this.minimumVolumeStringElement,
+this.minimumVolumeStringElement,
     this.additive,
     this.preparation,
-    this.preparationElement,
+this.preparationElement,
   });
 
-  @override
-  SpecimenDefinitionContainer clone() => throw UnimplementedError();
+@override
+SpecimenDefinitionContainer clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -126,8 +126,8 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     required this.additiveReference,
   });
 
-  @override
-  SpecimenDefinitionAdditive clone() => throw UnimplementedError();
+@override
+SpecimenDefinitionAdditive clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -147,9 +147,10 @@ class SpecimenDefinitionHandling extends BackboneElement {
     this.temperatureRange,
     this.maxDuration,
     this.instruction,
-    this.instructionElement,
+this.instructionElement,
   });
 
-  @override
-  SpecimenDefinitionHandling clone() => throw UnimplementedError();
+@override
+SpecimenDefinitionHandling clone() => throw UnimplementedError();
 }
+

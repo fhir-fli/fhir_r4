@@ -6,31 +6,27 @@ enum ContractResourceAssetSubTypeCodes {
   /// Definition: To be completed
   @JsonValue('participation')
   participation,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case participation:
-        return 'participation';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case participation: return 'participation';
+      }
+      }
+String toJson() => toString();
   ContractResourceAssetSubTypeCodes fromString(String str) {
-    switch (str) {
-      case 'participation':
-        return ContractResourceAssetSubTypeCodes.participation;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'participation': return ContractResourceAssetSubTypeCodes.participation;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  ContractResourceAssetSubTypeCodes fromJson(dynamic jsonValue) {
+      }
+ ContractResourceAssetSubTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

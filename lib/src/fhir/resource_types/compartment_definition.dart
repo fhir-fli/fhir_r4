@@ -36,42 +36,42 @@ class CompartmentDefinition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     required this.url,
-    this.urlElement,
+this.urlElement,
     this.version,
-    this.versionElement,
+this.versionElement,
     required this.name,
-    this.nameElement,
+this.nameElement,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.experimental,
-    this.experimentalElement,
+this.experimentalElement,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.publisher,
-    this.publisherElement,
+this.publisherElement,
     this.contact,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.useContext,
     this.purpose,
-    this.purposeElement,
+this.purposeElement,
     required this.code,
-    this.codeElement,
+this.codeElement,
     required this.search,
-    this.searchElement,
+this.searchElement,
     this.resource,
   }) : super(resourceType: R4ResourceType.CompartmentDefinition);
 
-  @override
-  CompartmentDefinition clone() => throw UnimplementedError();
+@override
+CompartmentDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -89,13 +89,14 @@ class CompartmentDefinitionResource extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    this.codeElement,
+this.codeElement,
     this.param,
-    this.paramElement,
+this.paramElement,
     this.documentation,
-    this.documentationElement,
+this.documentationElement,
   });
 
-  @override
-  CompartmentDefinitionResource clone() => throw UnimplementedError();
+@override
+CompartmentDefinitionResource clone() => throw UnimplementedError();
 }
+

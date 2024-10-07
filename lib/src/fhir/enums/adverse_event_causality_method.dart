@@ -5,47 +5,37 @@ enum AdverseEventCausalityMethod {
   /// Display: Probability Scale
   @JsonValue('ProbabilityScale')
   ProbabilityScale,
-
   /// Display: Bayesian
   @JsonValue('Bayesian')
   Bayesian,
-
   /// Display: Checklist
   @JsonValue('Checklist')
   Checklist,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case ProbabilityScale:
-        return 'ProbabilityScale';
-      case Bayesian:
-        return 'Bayesian';
-      case Checklist:
-        return 'Checklist';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case ProbabilityScale: return 'ProbabilityScale';
+        case Bayesian: return 'Bayesian';
+        case Checklist: return 'Checklist';
+      }
+      }
+String toJson() => toString();
   AdverseEventCausalityMethod fromString(String str) {
-    switch (str) {
-      case 'ProbabilityScale':
-        return AdverseEventCausalityMethod.ProbabilityScale;
-      case 'Bayesian':
-        return AdverseEventCausalityMethod.Bayesian;
-      case 'Checklist':
-        return AdverseEventCausalityMethod.Checklist;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'ProbabilityScale': return AdverseEventCausalityMethod.ProbabilityScale;
+      case 'Bayesian': return AdverseEventCausalityMethod.Bayesian;
+      case 'Checklist': return AdverseEventCausalityMethod.Checklist;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  AdverseEventCausalityMethod fromJson(dynamic jsonValue) {
+      }
+ AdverseEventCausalityMethod fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

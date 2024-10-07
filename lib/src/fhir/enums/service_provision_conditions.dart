@@ -6,49 +6,39 @@ enum ServiceProvisionConditions {
   /// Definition: This service is available for no patient cost.
   @JsonValue('free')
   free,
-
   /// Display: Discounts Available
   /// Definition: There are discounts available on this service for qualifying patients.
   @JsonValue('disc')
   disc,
-
   /// Display: Fees apply
   /// Definition: Fees apply for this service.
   @JsonValue('cost')
   cost,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case free:
-        return 'free';
-      case disc:
-        return 'disc';
-      case cost:
-        return 'cost';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case free: return 'free';
+        case disc: return 'disc';
+        case cost: return 'cost';
+      }
+      }
+String toJson() => toString();
   ServiceProvisionConditions fromString(String str) {
-    switch (str) {
-      case 'free':
-        return ServiceProvisionConditions.free;
-      case 'disc':
-        return ServiceProvisionConditions.disc;
-      case 'cost':
-        return ServiceProvisionConditions.cost;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'free': return ServiceProvisionConditions.free;
+      case 'disc': return ServiceProvisionConditions.disc;
+      case 'cost': return ServiceProvisionConditions.cost;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  ServiceProvisionConditions fromJson(dynamic jsonValue) {
+      }
+ ServiceProvisionConditions fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

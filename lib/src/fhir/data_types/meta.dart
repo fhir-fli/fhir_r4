@@ -21,17 +21,18 @@ class FhirMeta extends DataType {
     super.id,
     super.extension_,
     this.versionId,
-    this.versionIdElement,
+this.versionIdElement,
     this.lastUpdated,
-    this.lastUpdatedElement,
+this.lastUpdatedElement,
     this.source,
-    this.sourceElement,
+this.sourceElement,
     this.profile,
-    this.profileElement,
+this.profileElement,
     this.security,
     this.tag,
   });
 
-  @override
-  FhirMeta clone() => throw UnimplementedError();
+@override
+FhirMeta clone() => throw UnimplementedError();
 }
+

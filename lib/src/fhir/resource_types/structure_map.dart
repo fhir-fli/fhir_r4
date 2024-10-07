@@ -41,47 +41,47 @@ class StructureMap extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     required this.url,
-    this.urlElement,
+this.urlElement,
     this.identifier,
     this.version,
-    this.versionElement,
+this.versionElement,
     required this.name,
-    this.nameElement,
+this.nameElement,
     this.title,
-    this.titleElement,
+this.titleElement,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.experimental,
-    this.experimentalElement,
+this.experimentalElement,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.publisher,
-    this.publisherElement,
+this.publisherElement,
     this.contact,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-    this.purposeElement,
+this.purposeElement,
     this.copyright,
-    this.copyrightElement,
+this.copyrightElement,
     this.structure,
     this.import_,
-    this.importElement,
+this.importElement,
     required this.group,
   }) : super(resourceType: R4ResourceType.StructureMap);
 
-  @override
-  StructureMap clone() => throw UnimplementedError();
+@override
+StructureMap clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -101,17 +101,17 @@ class StructureMapStructure extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.url,
-    this.urlElement,
+this.urlElement,
     required this.mode,
-    this.modeElement,
+this.modeElement,
     this.alias,
-    this.aliasElement,
+this.aliasElement,
     this.documentation,
-    this.documentationElement,
+this.documentationElement,
   });
 
-  @override
-  StructureMapStructure clone() => throw UnimplementedError();
+@override
+StructureMapStructure clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -133,19 +133,19 @@ class StructureMapGroup extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-    this.nameElement,
+this.nameElement,
     this.extends_,
-    this.extendsElement,
+this.extendsElement,
     required this.typeMode,
-    this.typeModeElement,
+this.typeModeElement,
     this.documentation,
-    this.documentationElement,
+this.documentationElement,
     required this.input,
     required this.rule,
   });
 
-  @override
-  StructureMapGroup clone() => throw UnimplementedError();
+@override
+StructureMapGroup clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -165,17 +165,17 @@ class StructureMapInput extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-    this.nameElement,
+this.nameElement,
     this.type,
-    this.typeElement,
+this.typeElement,
     required this.mode,
-    this.modeElement,
+this.modeElement,
     this.documentation,
-    this.documentationElement,
+this.documentationElement,
   });
 
-  @override
-  StructureMapInput clone() => throw UnimplementedError();
+@override
+StructureMapInput clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -195,17 +195,17 @@ class StructureMapRule extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-    this.nameElement,
+this.nameElement,
     required this.source,
     this.target,
     this.rule,
     this.dependent,
     this.documentation,
-    this.documentationElement,
+this.documentationElement,
   });
 
-  @override
-  StructureMapRule clone() => throw UnimplementedError();
+@override
+StructureMapRule clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -306,51 +306,51 @@ class StructureMapSource extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.context,
-    this.contextElement,
+this.contextElement,
     this.min,
-    this.minElement,
+this.minElement,
     this.max,
-    this.maxElement,
+this.maxElement,
     this.type,
-    this.typeElement,
+this.typeElement,
     this.defaultValueBase64Binary,
-    this.defaultValueBase64BinaryElement,
+this.defaultValueBase64BinaryElement,
     this.defaultValueBoolean,
-    this.defaultValueBooleanElement,
+this.defaultValueBooleanElement,
     this.defaultValueCanonical,
-    this.defaultValueCanonicalElement,
+this.defaultValueCanonicalElement,
     this.defaultValueCode,
-    this.defaultValueCodeElement,
+this.defaultValueCodeElement,
     this.defaultValueDate,
-    this.defaultValueDateElement,
+this.defaultValueDateElement,
     this.defaultValueDateTime,
-    this.defaultValueDateTimeElement,
+this.defaultValueDateTimeElement,
     this.defaultValueDecimal,
-    this.defaultValueDecimalElement,
+this.defaultValueDecimalElement,
     this.defaultValueId,
-    this.defaultValueIdElement,
+this.defaultValueIdElement,
     this.defaultValueInstant,
-    this.defaultValueInstantElement,
+this.defaultValueInstantElement,
     this.defaultValueInteger,
-    this.defaultValueIntegerElement,
+this.defaultValueIntegerElement,
     this.defaultValueMarkdown,
-    this.defaultValueMarkdownElement,
+this.defaultValueMarkdownElement,
     this.defaultValueOid,
-    this.defaultValueOidElement,
+this.defaultValueOidElement,
     this.defaultValuePositiveInt,
-    this.defaultValuePositiveIntElement,
+this.defaultValuePositiveIntElement,
     this.defaultValueString,
-    this.defaultValueStringElement,
+this.defaultValueStringElement,
     this.defaultValueTime,
-    this.defaultValueTimeElement,
+this.defaultValueTimeElement,
     this.defaultValueUnsignedInt,
-    this.defaultValueUnsignedIntElement,
+this.defaultValueUnsignedIntElement,
     this.defaultValueUri,
-    this.defaultValueUriElement,
+this.defaultValueUriElement,
     this.defaultValueUrl,
-    this.defaultValueUrlElement,
+this.defaultValueUrlElement,
     this.defaultValueUuid,
-    this.defaultValueUuidElement,
+this.defaultValueUuidElement,
     this.defaultValueAddress,
     this.defaultValueAge,
     this.defaultValueAnnotation,
@@ -383,21 +383,21 @@ class StructureMapSource extends BackboneElement {
     this.defaultValueDosage,
     this.defaultValueMeta,
     this.element,
-    this.elementElement,
+this.elementElement,
     this.listMode,
-    this.listModeElement,
+this.listModeElement,
     this.variable,
-    this.variableElement,
+this.variableElement,
     this.condition,
-    this.conditionElement,
+this.conditionElement,
     this.check,
-    this.checkElement,
+this.checkElement,
     this.logMessage,
-    this.logMessageElement,
+this.logMessageElement,
   });
 
-  @override
-  StructureMapSource clone() => throw UnimplementedError();
+@override
+StructureMapSource clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -424,24 +424,24 @@ class StructureMapTarget extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.context,
-    this.contextElement,
+this.contextElement,
     this.contextType,
-    this.contextTypeElement,
+this.contextTypeElement,
     this.element,
-    this.elementElement,
+this.elementElement,
     this.variable,
-    this.variableElement,
+this.variableElement,
     this.listMode,
-    this.listModeElement,
+this.listModeElement,
     this.listRuleId,
-    this.listRuleIdElement,
+this.listRuleIdElement,
     this.transform,
-    this.transformElement,
+this.transformElement,
     this.parameter,
   });
 
-  @override
-  StructureMapTarget clone() => throw UnimplementedError();
+@override
+StructureMapTarget clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -463,19 +463,19 @@ class StructureMapParameter extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.valueId,
-    this.valueIdElement,
+this.valueIdElement,
     required this.valueString,
-    this.valueStringElement,
+this.valueStringElement,
     required this.valueBoolean,
-    this.valueBooleanElement,
+this.valueBooleanElement,
     required this.valueInteger,
-    this.valueIntegerElement,
+this.valueIntegerElement,
     required this.valueDecimal,
-    this.valueDecimalElement,
+this.valueDecimalElement,
   });
 
-  @override
-  StructureMapParameter clone() => throw UnimplementedError();
+@override
+StructureMapParameter clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -491,11 +491,12 @@ class StructureMapDependent extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-    this.nameElement,
+this.nameElement,
     required this.variable,
-    this.variableElement,
+this.variableElement,
   });
 
-  @override
-  StructureMapDependent clone() => throw UnimplementedError();
+@override
+StructureMapDependent clone() => throw UnimplementedError();
 }
+

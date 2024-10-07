@@ -6,49 +6,39 @@ enum ReasonMedicationGivenCodes {
   /// Definition: No reason known.
   @JsonValue('a')
   a,
-
   /// Display: Given as Ordered
   /// Definition: The administration was following an ordered protocol.
   @JsonValue('b')
   b,
-
   /// Display: Emergency
   /// Definition: The administration was needed to treat an emergency.
   @JsonValue('c')
   c,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case a:
-        return 'a';
-      case b:
-        return 'b';
-      case c:
-        return 'c';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case a: return 'a';
+        case b: return 'b';
+        case c: return 'c';
+      }
+      }
+String toJson() => toString();
   ReasonMedicationGivenCodes fromString(String str) {
-    switch (str) {
-      case 'a':
-        return ReasonMedicationGivenCodes.a;
-      case 'b':
-        return ReasonMedicationGivenCodes.b;
-      case 'c':
-        return ReasonMedicationGivenCodes.c;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'a': return ReasonMedicationGivenCodes.a;
+      case 'b': return ReasonMedicationGivenCodes.b;
+      case 'c': return ReasonMedicationGivenCodes.c;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  ReasonMedicationGivenCodes fromJson(dynamic jsonValue) {
+      }
+ ReasonMedicationGivenCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

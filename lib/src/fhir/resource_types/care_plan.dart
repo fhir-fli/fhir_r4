@@ -41,35 +41,35 @@ class CarePlan extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
-    this.instantiatesCanonicalElement,
+this.instantiatesCanonicalElement,
     this.instantiatesUri,
-    this.instantiatesUriElement,
+this.instantiatesUriElement,
     this.basedOn,
     this.replaces,
     this.partOf,
     required this.status,
-    this.statusElement,
+this.statusElement,
     required this.intent,
-    this.intentElement,
+this.intentElement,
     this.category,
     this.title,
-    this.titleElement,
+this.titleElement,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     required this.subject,
     this.encounter,
     this.period,
     this.created,
-    this.createdElement,
+this.createdElement,
     this.author,
     this.contributor,
     this.careTeam,
@@ -80,8 +80,8 @@ class CarePlan extends DomainResource {
     this.note,
   }) : super(resourceType: R4ResourceType.CarePlan);
 
-  @override
-  CarePlan clone() => throw UnimplementedError();
+@override
+CarePlan clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -104,8 +104,8 @@ class CarePlanActivity extends BackboneElement {
     this.detail,
   });
 
-  @override
-  CarePlanActivity clone() => throw UnimplementedError();
+@override
+CarePlanActivity clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -144,24 +144,24 @@ class CarePlanDetail extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.kind,
-    this.kindElement,
+this.kindElement,
     this.instantiatesCanonical,
-    this.instantiatesCanonicalElement,
+this.instantiatesCanonicalElement,
     this.instantiatesUri,
-    this.instantiatesUriElement,
+this.instantiatesUriElement,
     this.code,
     this.reasonCode,
     this.reasonReference,
     this.goal,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.statusReason,
     this.doNotPerform,
-    this.doNotPerformElement,
+this.doNotPerformElement,
     this.scheduledTiming,
     this.scheduledPeriod,
     this.scheduledString,
-    this.scheduledStringElement,
+this.scheduledStringElement,
     this.location,
     this.performer,
     this.productCodeableConcept,
@@ -169,9 +169,10 @@ class CarePlanDetail extends BackboneElement {
     this.dailyAmount,
     this.quantity,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
   });
 
-  @override
-  CarePlanDetail clone() => throw UnimplementedError();
+@override
+CarePlanDetail clone() => throw UnimplementedError();
 }
+

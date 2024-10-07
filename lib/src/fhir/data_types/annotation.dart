@@ -19,13 +19,14 @@ class Annotation extends DataType {
     super.extension_,
     this.authorReference,
     this.authorString,
-    this.authorStringElement,
+this.authorStringElement,
     this.time,
-    this.timeElement,
+this.timeElement,
     required this.text,
-    this.textElement,
+this.textElement,
   });
 
-  @override
-  Annotation clone() => throw UnimplementedError();
+@override
+Annotation clone() => throw UnimplementedError();
 }
+

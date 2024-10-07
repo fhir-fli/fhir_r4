@@ -24,22 +24,22 @@ class DataRequirement extends DataType {
     super.id,
     super.extension_,
     required this.type,
-    this.typeElement,
+this.typeElement,
     this.profile,
-    this.profileElement,
+this.profileElement,
     this.subjectCodeableConcept,
     this.subjectReference,
     this.mustSupport,
-    this.mustSupportElement,
+this.mustSupportElement,
     this.codeFilter,
     this.dateFilter,
     this.limit,
-    this.limitElement,
+this.limitElement,
     this.sort,
   });
 
-  @override
-  DataRequirement clone() => throw UnimplementedError();
+@override
+DataRequirement clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -57,16 +57,16 @@ class DataRequirementCodeFilter extends Element {
     super.id,
     super.extension_,
     this.path,
-    this.pathElement,
+this.pathElement,
     this.searchParam,
-    this.searchParamElement,
+this.searchParamElement,
     this.valueSet,
-    this.valueSetElement,
+this.valueSetElement,
     this.code,
   });
 
-  @override
-  DataRequirementCodeFilter clone() => throw UnimplementedError();
+@override
+DataRequirementCodeFilter clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -85,17 +85,17 @@ class DataRequirementDateFilter extends Element {
     super.id,
     super.extension_,
     this.path,
-    this.pathElement,
+this.pathElement,
     this.searchParam,
-    this.searchParamElement,
+this.searchParamElement,
     this.valueDateTime,
-    this.valueDateTimeElement,
+this.valueDateTimeElement,
     this.valuePeriod,
     this.valueDuration,
   });
 
-  @override
-  DataRequirementDateFilter clone() => throw UnimplementedError();
+@override
+DataRequirementDateFilter clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -110,11 +110,12 @@ class DataRequirementSort extends Element {
     super.id,
     super.extension_,
     required this.path,
-    this.pathElement,
+this.pathElement,
     required this.direction,
-    this.directionElement,
+this.directionElement,
   });
 
-  @override
-  DataRequirementSort clone() => throw UnimplementedError();
+@override
+DataRequirementSort clone() => throw UnimplementedError();
 }
+

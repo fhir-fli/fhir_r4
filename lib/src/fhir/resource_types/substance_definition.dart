@@ -32,22 +32,22 @@ class SubstanceDefinition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.version,
-    this.versionElement,
+this.versionElement,
     this.status,
     this.classification,
     this.domain,
     this.grade,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.informationSource,
     this.note,
     this.manufacturer,
@@ -62,8 +62,8 @@ class SubstanceDefinition extends DomainResource {
     this.sourceMaterial,
   }) : super(resourceType: R4ResourceType.SubstanceDefinition);
 
-  @override
-  SubstanceDefinition clone() => throw UnimplementedError();
+@override
+SubstanceDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -89,19 +89,19 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     this.role,
     this.identifier,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.stereochemistry,
     this.opticalActivity,
     this.molecularFormula,
-    this.molecularFormulaElement,
+this.molecularFormulaElement,
     this.amountQuantity,
     this.amountString,
-    this.amountStringElement,
+this.amountStringElement,
     this.measurementType,
   });
 
-  @override
-  SubstanceDefinitionMoiety clone() => throw UnimplementedError();
+@override
+SubstanceDefinitionMoiety clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -124,14 +124,14 @@ class SubstanceDefinitionProperty extends BackboneElement {
     this.valueCodeableConcept,
     this.valueQuantity,
     this.valueDate,
-    this.valueDateElement,
+this.valueDateElement,
     this.valueBoolean,
-    this.valueBooleanElement,
+this.valueBooleanElement,
     this.valueAttachment,
   });
 
-  @override
-  SubstanceDefinitionProperty clone() => throw UnimplementedError();
+@override
+SubstanceDefinitionProperty clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -150,8 +150,8 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
     required this.amount,
   });
 
-  @override
-  SubstanceDefinitionMolecularWeight clone() => throw UnimplementedError();
+@override
+SubstanceDefinitionMolecularWeight clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -175,17 +175,17 @@ class SubstanceDefinitionStructure extends BackboneElement {
     this.stereochemistry,
     this.opticalActivity,
     this.molecularFormula,
-    this.molecularFormulaElement,
+this.molecularFormulaElement,
     this.molecularFormulaByMoiety,
-    this.molecularFormulaByMoietyElement,
+this.molecularFormulaByMoietyElement,
     this.molecularWeight,
     this.technique,
     this.sourceDocument,
     this.representation,
   });
 
-  @override
-  SubstanceDefinitionStructure clone() => throw UnimplementedError();
+@override
+SubstanceDefinitionStructure clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -203,13 +203,13 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     super.modifierExtension,
     this.type,
     this.representation,
-    this.representationElement,
+this.representationElement,
     this.format,
     this.document,
   });
 
-  @override
-  SubstanceDefinitionRepresentation clone() => throw UnimplementedError();
+@override
+SubstanceDefinitionRepresentation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -229,13 +229,13 @@ class SubstanceDefinitionCode extends BackboneElement {
     this.code,
     this.status,
     this.statusDate,
-    this.statusDateElement,
+this.statusDateElement,
     this.note,
     this.source,
   });
 
-  @override
-  SubstanceDefinitionCode clone() => throw UnimplementedError();
+@override
+SubstanceDefinitionCode clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -260,11 +260,11 @@ class SubstanceDefinitionName extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-    this.nameElement,
+this.nameElement,
     this.type,
     this.status,
     this.preferred,
-    this.preferredElement,
+this.preferredElement,
     this.language,
     this.domain,
     this.jurisdiction,
@@ -274,8 +274,8 @@ class SubstanceDefinitionName extends BackboneElement {
     this.source,
   });
 
-  @override
-  SubstanceDefinitionName clone() => throw UnimplementedError();
+@override
+SubstanceDefinitionName clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -293,11 +293,11 @@ class SubstanceDefinitionOfficial extends BackboneElement {
     this.authority,
     this.status,
     this.date,
-    this.dateElement,
+this.dateElement,
   });
 
-  @override
-  SubstanceDefinitionOfficial clone() => throw UnimplementedError();
+@override
+SubstanceDefinitionOfficial clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -324,18 +324,18 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     this.substanceDefinitionCodeableConcept,
     required this.type,
     this.isDefining,
-    this.isDefiningElement,
+this.isDefiningElement,
     this.amountQuantity,
     this.amountRatio,
     this.amountString,
-    this.amountStringElement,
+this.amountStringElement,
     this.ratioHighLimitAmount,
     this.comparator,
     this.source,
   });
 
-  @override
-  SubstanceDefinitionRelationship clone() => throw UnimplementedError();
+@override
+SubstanceDefinitionRelationship clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -358,6 +358,7 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
     this.countryOfOrigin,
   });
 
-  @override
-  SubstanceDefinitionSourceMaterial clone() => throw UnimplementedError();
+@override
+SubstanceDefinitionSourceMaterial clone() => throw UnimplementedError();
 }
+

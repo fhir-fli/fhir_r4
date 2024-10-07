@@ -20,26 +20,26 @@ class Substance extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.status,
-    this.statusElement,
+this.statusElement,
     this.category,
     required this.code,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.instance,
     this.ingredient,
   }) : super(resourceType: R4ResourceType.Substance);
 
-  @override
-  Substance clone() => throw UnimplementedError();
+@override
+Substance clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -56,12 +56,12 @@ class SubstanceInstance extends BackboneElement {
     super.modifierExtension,
     this.identifier,
     this.expiry,
-    this.expiryElement,
+this.expiryElement,
     this.quantity,
   });
 
-  @override
-  SubstanceInstance clone() => throw UnimplementedError();
+@override
+SubstanceInstance clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -80,6 +80,7 @@ class SubstanceIngredient extends BackboneElement {
     required this.substanceReference,
   });
 
-  @override
-  SubstanceIngredient clone() => throw UnimplementedError();
+@override
+SubstanceIngredient clone() => throw UnimplementedError();
 }
+

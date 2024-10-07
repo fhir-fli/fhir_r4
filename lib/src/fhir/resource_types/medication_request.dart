@@ -53,26 +53,26 @@ class MedicationRequest extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.statusReason,
     required this.intent,
-    this.intentElement,
+this.intentElement,
     this.category,
     this.priority,
-    this.priorityElement,
+this.priorityElement,
     this.doNotPerform,
-    this.doNotPerformElement,
+this.doNotPerformElement,
     this.reportedBoolean,
-    this.reportedBooleanElement,
+this.reportedBooleanElement,
     this.reportedReference,
     required this.medicationCodeableConcept,
     required this.medicationReference,
@@ -80,7 +80,7 @@ class MedicationRequest extends DomainResource {
     this.encounter,
     this.supportingInformation,
     this.authoredOn,
-    this.authoredOnElement,
+this.authoredOnElement,
     this.requester,
     this.performer,
     this.performerType,
@@ -88,9 +88,9 @@ class MedicationRequest extends DomainResource {
     this.reasonCode,
     this.reasonReference,
     this.instantiatesCanonical,
-    this.instantiatesCanonicalElement,
+this.instantiatesCanonicalElement,
     this.instantiatesUri,
-    this.instantiatesUriElement,
+this.instantiatesUriElement,
     this.basedOn,
     this.groupIdentifier,
     this.courseOfTherapyType,
@@ -104,8 +104,8 @@ class MedicationRequest extends DomainResource {
     this.eventHistory,
   }) : super(resourceType: R4ResourceType.MedicationRequest);
 
-  @override
-  MedicationRequest clone() => throw UnimplementedError();
+@override
+MedicationRequest clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -128,14 +128,14 @@ class MedicationRequestDispenseRequest extends BackboneElement {
     this.dispenseInterval,
     this.validityPeriod,
     this.numberOfRepeatsAllowed,
-    this.numberOfRepeatsAllowedElement,
+this.numberOfRepeatsAllowedElement,
     this.quantity,
     this.expectedSupplyDuration,
     this.performer,
   });
 
-  @override
-  MedicationRequestDispenseRequest clone() => throw UnimplementedError();
+@override
+MedicationRequestDispenseRequest clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -152,8 +152,8 @@ class MedicationRequestInitialFill extends BackboneElement {
     this.duration,
   });
 
-  @override
-  MedicationRequestInitialFill clone() => throw UnimplementedError();
+@override
+MedicationRequestInitialFill clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -169,11 +169,12 @@ class MedicationRequestSubstitution extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.allowedBoolean,
-    this.allowedBooleanElement,
+this.allowedBooleanElement,
     required this.allowedCodeableConcept,
     this.reason,
   });
 
-  @override
-  MedicationRequestSubstitution clone() => throw UnimplementedError();
+@override
+MedicationRequestSubstitution clone() => throw UnimplementedError();
 }
+

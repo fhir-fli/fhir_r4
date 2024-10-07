@@ -42,16 +42,16 @@ class Appointment extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.cancelationReason,
     this.serviceCategory,
     this.serviceType,
@@ -60,30 +60,30 @@ class Appointment extends DomainResource {
     this.reasonCode,
     this.reasonReference,
     this.priority,
-    this.priorityElement,
+this.priorityElement,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.supportingInformation,
     this.start,
-    this.startElement,
+this.startElement,
     this.end,
-    this.endElement,
+this.endElement,
     this.minutesDuration,
-    this.minutesDurationElement,
+this.minutesDurationElement,
     this.slot,
     this.created,
-    this.createdElement,
+this.createdElement,
     this.comment,
-    this.commentElement,
+this.commentElement,
     this.patientInstruction,
-    this.patientInstructionElement,
+this.patientInstructionElement,
     this.basedOn,
     required this.participant,
     this.requestedPeriod,
   }) : super(resourceType: R4ResourceType.Appointment);
 
-  @override
-  Appointment clone() => throw UnimplementedError();
+@override
+Appointment clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -104,12 +104,13 @@ class AppointmentParticipant extends BackboneElement {
     this.type,
     this.actor,
     this.required_,
-    this.requiredElement,
+this.requiredElement,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.period,
   });
 
-  @override
-  AppointmentParticipant clone() => throw UnimplementedError();
+@override
+AppointmentParticipant clone() => throw UnimplementedError();
 }
+

@@ -22,6 +22,7 @@ class UsageContext extends DataType {
     required this.valueReference,
   });
 
-  @override
-  UsageContext clone() => throw UnimplementedError();
+@override
+UsageContext clone() => throw UnimplementedError();
 }
+

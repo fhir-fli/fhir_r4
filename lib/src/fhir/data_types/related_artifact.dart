@@ -24,20 +24,21 @@ class RelatedArtifact extends DataType {
     super.id,
     super.extension_,
     required this.type,
-    this.typeElement,
+this.typeElement,
     this.label,
-    this.labelElement,
+this.labelElement,
     this.display,
-    this.displayElement,
+this.displayElement,
     this.citation,
-    this.citationElement,
+this.citationElement,
     this.url,
-    this.urlElement,
+this.urlElement,
     this.document,
     this.resource,
-    this.resourceElement,
+this.resourceElement,
   });
 
-  @override
-  RelatedArtifact clone() => throw UnimplementedError();
+@override
+RelatedArtifact clone() => throw UnimplementedError();
 }
+

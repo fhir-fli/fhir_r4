@@ -17,9 +17,9 @@ class Basic extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -28,10 +28,11 @@ class Basic extends DomainResource {
     required this.code,
     this.subject,
     this.created,
-    this.createdElement,
+this.createdElement,
     this.author,
   }) : super(resourceType: R4ResourceType.Basic);
 
-  @override
-  Basic clone() => throw UnimplementedError();
+@override
+Basic clone() => throw UnimplementedError();
 }
+

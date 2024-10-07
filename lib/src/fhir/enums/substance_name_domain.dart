@@ -5,39 +5,32 @@ enum SubstanceNameDomain {
   /// Display: Active Ingredient
   @JsonValue('ActiveIngredient')
   ActiveIngredient,
-
   /// Display: Food Color Additive
   @JsonValue('FoodColorAdditive')
   FoodColorAdditive,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case ActiveIngredient:
-        return 'ActiveIngredient';
-      case FoodColorAdditive:
-        return 'FoodColorAdditive';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case ActiveIngredient: return 'ActiveIngredient';
+        case FoodColorAdditive: return 'FoodColorAdditive';
+      }
+      }
+String toJson() => toString();
   SubstanceNameDomain fromString(String str) {
-    switch (str) {
-      case 'ActiveIngredient':
-        return SubstanceNameDomain.ActiveIngredient;
-      case 'FoodColorAdditive':
-        return SubstanceNameDomain.FoodColorAdditive;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'ActiveIngredient': return SubstanceNameDomain.ActiveIngredient;
+      case 'FoodColorAdditive': return SubstanceNameDomain.FoodColorAdditive;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  SubstanceNameDomain fromJson(dynamic jsonValue) {
+      }
+ SubstanceNameDomain fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

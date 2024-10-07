@@ -34,9 +34,9 @@ class DiagnosticReport extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -44,16 +44,16 @@ class DiagnosticReport extends DomainResource {
     this.identifier,
     this.basedOn,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.category,
     required this.code,
     this.subject,
     this.encounter,
     this.effectiveDateTime,
-    this.effectiveDateTimeElement,
+this.effectiveDateTimeElement,
     this.effectivePeriod,
     this.issued,
-    this.issuedElement,
+this.issuedElement,
     this.performer,
     this.resultsInterpreter,
     this.specimen,
@@ -61,13 +61,13 @@ class DiagnosticReport extends DomainResource {
     this.imagingStudy,
     this.media,
     this.conclusion,
-    this.conclusionElement,
+this.conclusionElement,
     this.conclusionCode,
     this.presentedForm,
   }) : super(resourceType: R4ResourceType.DiagnosticReport);
 
-  @override
-  DiagnosticReport clone() => throw UnimplementedError();
+@override
+DiagnosticReport clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -82,10 +82,11 @@ class DiagnosticReportMedia extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.comment,
-    this.commentElement,
+this.commentElement,
     required this.link,
   });
 
-  @override
-  DiagnosticReportMedia clone() => throw UnimplementedError();
+@override
+DiagnosticReportMedia clone() => throw UnimplementedError();
 }
+

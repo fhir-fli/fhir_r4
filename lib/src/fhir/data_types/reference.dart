@@ -18,14 +18,15 @@ class Reference extends DataType {
     super.id,
     super.extension_,
     this.reference,
-    this.referenceElement,
+this.referenceElement,
     this.type,
-    this.typeElement,
+this.typeElement,
     this.identifier,
     this.display,
-    this.displayElement,
+this.displayElement,
   });
 
-  @override
-  Reference clone() => throw UnimplementedError();
+@override
+Reference clone() => throw UnimplementedError();
 }
+

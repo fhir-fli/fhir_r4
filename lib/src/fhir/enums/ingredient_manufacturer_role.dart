@@ -5,47 +5,37 @@ enum IngredientManufacturerRole {
   /// Display: Manufacturer is specifically allowed for this ingredient
   @JsonValue('allowed')
   allowed,
-
   /// Display: Manufacturer is known to make this ingredient in general
   @JsonValue('possible')
   possible,
-
   /// Display: Manufacturer actually makes this particular ingredient
   @JsonValue('actual')
   actual,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case allowed:
-        return 'allowed';
-      case possible:
-        return 'possible';
-      case actual:
-        return 'actual';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case allowed: return 'allowed';
+        case possible: return 'possible';
+        case actual: return 'actual';
+      }
+      }
+String toJson() => toString();
   IngredientManufacturerRole fromString(String str) {
-    switch (str) {
-      case 'allowed':
-        return IngredientManufacturerRole.allowed;
-      case 'possible':
-        return IngredientManufacturerRole.possible;
-      case 'actual':
-        return IngredientManufacturerRole.actual;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'allowed': return IngredientManufacturerRole.allowed;
+      case 'possible': return IngredientManufacturerRole.possible;
+      case 'actual': return IngredientManufacturerRole.actual;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  IngredientManufacturerRole fromJson(dynamic jsonValue) {
+      }
+ IngredientManufacturerRole fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

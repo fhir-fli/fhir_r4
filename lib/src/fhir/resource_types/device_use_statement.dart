@@ -29,9 +29,9 @@ class DeviceUseStatement extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -39,15 +39,15 @@ class DeviceUseStatement extends DomainResource {
     this.identifier,
     this.basedOn,
     required this.status,
-    this.statusElement,
+this.statusElement,
     required this.subject,
     this.derivedFrom,
     this.timingTiming,
     this.timingPeriod,
     this.timingDateTime,
-    this.timingDateTimeElement,
+this.timingDateTimeElement,
     this.recordedOn,
-    this.recordedOnElement,
+this.recordedOnElement,
     this.source,
     required this.device,
     this.reasonCode,
@@ -56,6 +56,7 @@ class DeviceUseStatement extends DomainResource {
     this.note,
   }) : super(resourceType: R4ResourceType.DeviceUseStatement);
 
-  @override
-  DeviceUseStatement clone() => throw UnimplementedError();
+@override
+DeviceUseStatement clone() => throw UnimplementedError();
 }
+

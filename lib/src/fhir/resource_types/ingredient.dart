@@ -21,27 +21,27 @@ class Ingredient extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.for_,
     required this.role,
     this.function_,
     this.allergenicIndicator,
-    this.allergenicIndicatorElement,
+this.allergenicIndicatorElement,
     this.manufacturer,
     required this.substance,
   }) : super(resourceType: R4ResourceType.Ingredient);
 
-  @override
-  Ingredient clone() => throw UnimplementedError();
+@override
+Ingredient clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -56,12 +56,12 @@ class IngredientManufacturer extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.role,
-    this.roleElement,
+this.roleElement,
     required this.manufacturer,
   });
 
-  @override
-  IngredientManufacturer clone() => throw UnimplementedError();
+@override
+IngredientManufacturer clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -78,8 +78,8 @@ class IngredientSubstance extends BackboneElement {
     this.strength,
   });
 
-  @override
-  IngredientSubstance clone() => throw UnimplementedError();
+@override
+IngredientSubstance clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -105,19 +105,19 @@ class IngredientStrength extends BackboneElement {
     this.presentationRatio,
     this.presentationRatioRange,
     this.textPresentation,
-    this.textPresentationElement,
+this.textPresentationElement,
     this.concentrationRatio,
     this.concentrationRatioRange,
     this.textConcentration,
-    this.textConcentrationElement,
+this.textConcentrationElement,
     this.measurementPoint,
-    this.measurementPointElement,
+this.measurementPointElement,
     this.country,
     this.referenceStrength,
   });
 
-  @override
-  IngredientStrength clone() => throw UnimplementedError();
+@override
+IngredientStrength clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -138,10 +138,11 @@ class IngredientReferenceStrength extends BackboneElement {
     required this.strengthRatio,
     required this.strengthRatioRange,
     this.measurementPoint,
-    this.measurementPointElement,
+this.measurementPointElement,
     this.country,
   });
 
-  @override
-  IngredientReferenceStrength clone() => throw UnimplementedError();
+@override
+IngredientReferenceStrength clone() => throw UnimplementedError();
 }
+

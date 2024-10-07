@@ -23,6 +23,7 @@ class Population extends BackboneType {
     this.physiologicalCondition,
   });
 
-  @override
-  Population clone() => throw UnimplementedError();
+@override
+Population clone() => throw UnimplementedError();
 }
+

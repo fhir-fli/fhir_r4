@@ -20,16 +20,17 @@ class Identifier extends DataType {
     super.id,
     super.extension_,
     this.use,
-    this.useElement,
+this.useElement,
     this.type,
     this.system,
-    this.systemElement,
+this.systemElement,
     this.value,
-    this.valueElement,
+this.valueElement,
     this.period,
     this.assigner,
   });
 
-  @override
-  Identifier clone() => throw UnimplementedError();
+@override
+Identifier clone() => throw UnimplementedError();
 }
+

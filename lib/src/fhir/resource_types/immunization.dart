@@ -48,35 +48,35 @@ class Immunization extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.statusReason,
     required this.vaccineCode,
     required this.patient,
     this.encounter,
     required this.occurrenceDateTime,
-    this.occurrenceDateTimeElement,
+this.occurrenceDateTimeElement,
     required this.occurrenceString,
-    this.occurrenceStringElement,
+this.occurrenceStringElement,
     this.recorded,
-    this.recordedElement,
+this.recordedElement,
     this.primarySource,
-    this.primarySourceElement,
+this.primarySourceElement,
     this.reportOrigin,
     this.location,
     this.manufacturer,
     this.lotNumber,
-    this.lotNumberElement,
+this.lotNumberElement,
     this.expirationDate,
-    this.expirationDateElement,
+this.expirationDateElement,
     this.site,
     this.route,
     this.doseQuantity,
@@ -85,7 +85,7 @@ class Immunization extends DomainResource {
     this.reasonCode,
     this.reasonReference,
     this.isSubpotent,
-    this.isSubpotentElement,
+this.isSubpotentElement,
     this.subpotentReason,
     this.education,
     this.programEligibility,
@@ -94,8 +94,8 @@ class Immunization extends DomainResource {
     this.protocolApplied,
   }) : super(resourceType: R4ResourceType.Immunization);
 
-  @override
-  Immunization clone() => throw UnimplementedError();
+@override
+Immunization clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -112,8 +112,8 @@ class ImmunizationPerformer extends BackboneElement {
     required this.actor,
   });
 
-  @override
-  ImmunizationPerformer clone() => throw UnimplementedError();
+@override
+ImmunizationPerformer clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -133,17 +133,17 @@ class ImmunizationEducation extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.documentType,
-    this.documentTypeElement,
+this.documentTypeElement,
     this.reference,
-    this.referenceElement,
+this.referenceElement,
     this.publicationDate,
-    this.publicationDateElement,
+this.publicationDateElement,
     this.presentationDate,
-    this.presentationDateElement,
+this.presentationDateElement,
   });
 
-  @override
-  ImmunizationEducation clone() => throw UnimplementedError();
+@override
+ImmunizationEducation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -160,14 +160,14 @@ class ImmunizationReaction extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.detail,
     this.reported,
-    this.reportedElement,
+this.reportedElement,
   });
 
-  @override
-  ImmunizationReaction clone() => throw UnimplementedError();
+@override
+ImmunizationReaction clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -191,19 +191,20 @@ class ImmunizationProtocolApplied extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.series,
-    this.seriesElement,
+this.seriesElement,
     this.authority,
     this.targetDisease,
     required this.doseNumberPositiveInt,
-    this.doseNumberPositiveIntElement,
+this.doseNumberPositiveIntElement,
     required this.doseNumberString,
-    this.doseNumberStringElement,
+this.doseNumberStringElement,
     this.seriesDosesPositiveInt,
-    this.seriesDosesPositiveIntElement,
+this.seriesDosesPositiveIntElement,
     this.seriesDosesString,
-    this.seriesDosesStringElement,
+this.seriesDosesStringElement,
   });
 
-  @override
-  ImmunizationProtocolApplied clone() => throw UnimplementedError();
+@override
+ImmunizationProtocolApplied clone() => throw UnimplementedError();
 }
+

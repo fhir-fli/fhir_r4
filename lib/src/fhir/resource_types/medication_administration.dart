@@ -35,19 +35,19 @@ class MedicationAdministration extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiates,
-    this.instantiatesElement,
+this.instantiatesElement,
     this.partOf,
     required this.status,
-    this.statusElement,
+this.statusElement,
     this.statusReason,
     this.category,
     required this.medicationCodeableConcept,
@@ -56,7 +56,7 @@ class MedicationAdministration extends DomainResource {
     this.context,
     this.supportingInformation,
     required this.effectiveDateTime,
-    this.effectiveDateTimeElement,
+this.effectiveDateTimeElement,
     required this.effectivePeriod,
     this.performer,
     this.reasonCode,
@@ -68,8 +68,8 @@ class MedicationAdministration extends DomainResource {
     this.eventHistory,
   }) : super(resourceType: R4ResourceType.MedicationAdministration);
 
-  @override
-  MedicationAdministration clone() => throw UnimplementedError();
+@override
+MedicationAdministration clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -86,8 +86,8 @@ class MedicationAdministrationPerformer extends BackboneElement {
     required this.actor,
   });
 
-  @override
-  MedicationAdministrationPerformer clone() => throw UnimplementedError();
+@override
+MedicationAdministrationPerformer clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -107,7 +107,7 @@ class MedicationAdministrationDosage extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.text,
-    this.textElement,
+this.textElement,
     this.site,
     this.route,
     this.method,
@@ -116,6 +116,7 @@ class MedicationAdministrationDosage extends BackboneElement {
     this.rateQuantity,
   });
 
-  @override
-  MedicationAdministrationDosage clone() => throw UnimplementedError();
+@override
+MedicationAdministrationDosage clone() => throw UnimplementedError();
 }
+

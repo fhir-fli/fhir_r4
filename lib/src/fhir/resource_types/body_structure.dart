@@ -21,25 +21,26 @@ class BodyStructure extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
-    this.activeElement,
+this.activeElement,
     this.morphology,
     this.location,
     this.locationQualifier,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.image,
     required this.patient,
   }) : super(resourceType: R4ResourceType.BodyStructure);
 
-  @override
-  BodyStructure clone() => throw UnimplementedError();
+@override
+BodyStructure clone() => throw UnimplementedError();
 }
+

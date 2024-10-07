@@ -14,8 +14,7 @@ class MedicationKnowledge extends DomainResource {
   final Quantity? amount;
   final List<FhirString>? synonym;
   final List<Element>? synonymElement;
-  final List<MedicationKnowledgeRelatedMedicationKnowledge>?
-      relatedMedicationKnowledge;
+  final List<MedicationKnowledgeRelatedMedicationKnowledge>? relatedMedicationKnowledge;
   final List<Reference>? associatedMedication;
   final List<CodeableConcept>? productType;
   final List<MedicationKnowledgeMonograph>? monograph;
@@ -25,8 +24,7 @@ class MedicationKnowledge extends DomainResource {
   final List<CodeableConcept>? intendedRoute;
   final List<MedicationKnowledgeCost>? cost;
   final List<MedicationKnowledgeMonitoringProgram>? monitoringProgram;
-  final List<MedicationKnowledgeAdministrationGuidelines>?
-      administrationGuidelines;
+  final List<MedicationKnowledgeAdministrationGuidelines>? administrationGuidelines;
   final List<MedicationKnowledgeMedicineClassification>? medicineClassification;
   final MedicationKnowledgePackaging? packaging;
   final List<MedicationKnowledgeDrugCharacteristic>? drugCharacteristic;
@@ -38,28 +36,28 @@ class MedicationKnowledge extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.code,
     this.status,
-    this.statusElement,
+this.statusElement,
     this.manufacturer,
     this.doseForm,
     this.amount,
     this.synonym,
-    this.synonymElement,
+this.synonymElement,
     this.relatedMedicationKnowledge,
     this.associatedMedication,
     this.productType,
     this.monograph,
     this.ingredient,
     this.preparationInstruction,
-    this.preparationInstructionElement,
+this.preparationInstructionElement,
     this.intendedRoute,
     this.cost,
     this.monitoringProgram,
@@ -72,8 +70,8 @@ class MedicationKnowledge extends DomainResource {
     this.kinetics,
   }) : super(resourceType: R4ResourceType.MedicationKnowledge);
 
-  @override
-  MedicationKnowledge clone() => throw UnimplementedError();
+@override
+MedicationKnowledge clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -90,9 +88,8 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
     required this.reference,
   });
 
-  @override
-  MedicationKnowledgeRelatedMedicationKnowledge clone() =>
-      throw UnimplementedError();
+@override
+MedicationKnowledgeRelatedMedicationKnowledge clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -109,8 +106,8 @@ class MedicationKnowledgeMonograph extends BackboneElement {
     this.source,
   });
 
-  @override
-  MedicationKnowledgeMonograph clone() => throw UnimplementedError();
+@override
+MedicationKnowledgeMonograph clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -129,12 +126,12 @@ class MedicationKnowledgeIngredient extends BackboneElement {
     required this.itemCodeableConcept,
     required this.itemReference,
     this.isActive,
-    this.isActiveElement,
+this.isActiveElement,
     this.strength,
   });
 
-  @override
-  MedicationKnowledgeIngredient clone() => throw UnimplementedError();
+@override
+MedicationKnowledgeIngredient clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -151,12 +148,12 @@ class MedicationKnowledgeCost extends BackboneElement {
     super.modifierExtension,
     required this.type,
     this.source,
-    this.sourceElement,
+this.sourceElement,
     required this.cost,
   });
 
-  @override
-  MedicationKnowledgeCost clone() => throw UnimplementedError();
+@override
+MedicationKnowledgeCost clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -172,11 +169,11 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
     super.modifierExtension,
     this.type,
     this.name,
-    this.nameElement,
+this.nameElement,
   });
 
-  @override
-  MedicationKnowledgeMonitoringProgram clone() => throw UnimplementedError();
+@override
+MedicationKnowledgeMonitoringProgram clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -197,9 +194,8 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
     this.patientCharacteristics,
   });
 
-  @override
-  MedicationKnowledgeAdministrationGuidelines clone() =>
-      throw UnimplementedError();
+@override
+MedicationKnowledgeAdministrationGuidelines clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -216,8 +212,8 @@ class MedicationKnowledgeDosage extends BackboneElement {
     required this.dosage,
   });
 
-  @override
-  MedicationKnowledgeDosage clone() => throw UnimplementedError();
+@override
+MedicationKnowledgeDosage clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -235,12 +231,11 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     required this.characteristicCodeableConcept,
     required this.characteristicQuantity,
     this.value,
-    this.valueElement,
+this.valueElement,
   });
 
-  @override
-  MedicationKnowledgePatientCharacteristics clone() =>
-      throw UnimplementedError();
+@override
+MedicationKnowledgePatientCharacteristics clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -257,9 +252,8 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
     this.classification,
   });
 
-  @override
-  MedicationKnowledgeMedicineClassification clone() =>
-      throw UnimplementedError();
+@override
+MedicationKnowledgeMedicineClassification clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -276,8 +270,8 @@ class MedicationKnowledgePackaging extends BackboneElement {
     this.quantity,
   });
 
-  @override
-  MedicationKnowledgePackaging clone() => throw UnimplementedError();
+@override
+MedicationKnowledgePackaging clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -298,14 +292,14 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
     this.type,
     this.valueCodeableConcept,
     this.valueString,
-    this.valueStringElement,
+this.valueStringElement,
     this.valueQuantity,
     this.valueBase64Binary,
-    this.valueBase64BinaryElement,
+this.valueBase64BinaryElement,
   });
 
-  @override
-  MedicationKnowledgeDrugCharacteristic clone() => throw UnimplementedError();
+@override
+MedicationKnowledgeDrugCharacteristic clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -326,8 +320,8 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
     this.maxDispense,
   });
 
-  @override
-  MedicationKnowledgeRegulatory clone() => throw UnimplementedError();
+@override
+MedicationKnowledgeRegulatory clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -343,11 +337,11 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
     super.modifierExtension,
     required this.type,
     required this.allowed,
-    this.allowedElement,
+this.allowedElement,
   });
 
-  @override
-  MedicationKnowledgeSubstitution clone() => throw UnimplementedError();
+@override
+MedicationKnowledgeSubstitution clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -362,8 +356,8 @@ class MedicationKnowledgeSchedule extends BackboneElement {
     required this.schedule,
   });
 
-  @override
-  MedicationKnowledgeSchedule clone() => throw UnimplementedError();
+@override
+MedicationKnowledgeSchedule clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -380,8 +374,8 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
     this.period,
   });
 
-  @override
-  MedicationKnowledgeMaxDispense clone() => throw UnimplementedError();
+@override
+MedicationKnowledgeMaxDispense clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -400,6 +394,7 @@ class MedicationKnowledgeKinetics extends BackboneElement {
     this.halfLifePeriod,
   });
 
-  @override
-  MedicationKnowledgeKinetics clone() => throw UnimplementedError();
+@override
+MedicationKnowledgeKinetics clone() => throw UnimplementedError();
 }
+

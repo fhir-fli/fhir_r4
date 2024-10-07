@@ -43,9 +43,9 @@ class MedicinalProductDefinition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -54,16 +54,16 @@ class MedicinalProductDefinition extends DomainResource {
     this.type,
     this.domain,
     this.version,
-    this.versionElement,
+this.versionElement,
     this.status,
     this.statusDate,
-    this.statusDateElement,
+this.statusDateElement,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.combinedPharmaceuticalDoseForm,
     this.route,
     this.indication,
-    this.indicationElement,
+this.indicationElement,
     this.legalStatusOfSupply,
     this.additionalMonitoringIndicator,
     this.specialMeasures,
@@ -84,8 +84,8 @@ class MedicinalProductDefinition extends DomainResource {
     this.characteristic,
   }) : super(resourceType: R4ResourceType.MedicinalProductDefinition);
 
-  @override
-  MedicinalProductDefinition clone() => throw UnimplementedError();
+@override
+MedicinalProductDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -102,8 +102,8 @@ class MedicinalProductDefinitionContact extends BackboneElement {
     required this.contact,
   });
 
-  @override
-  MedicinalProductDefinitionContact clone() => throw UnimplementedError();
+@override
+MedicinalProductDefinitionContact clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -120,14 +120,14 @@ class MedicinalProductDefinitionName extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.productName,
-    this.productNameElement,
+this.productNameElement,
     this.type,
     this.namePart,
     this.countryLanguage,
   });
 
-  @override
-  MedicinalProductDefinitionName clone() => throw UnimplementedError();
+@override
+MedicinalProductDefinitionName clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -142,12 +142,12 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.part_,
-    this.partElement,
+this.partElement,
     required this.type,
   });
 
-  @override
-  MedicinalProductDefinitionNamePart clone() => throw UnimplementedError();
+@override
+MedicinalProductDefinitionNamePart clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -166,9 +166,8 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
     required this.language,
   });
 
-  @override
-  MedicinalProductDefinitionCountryLanguage clone() =>
-      throw UnimplementedError();
+@override
+MedicinalProductDefinitionCountryLanguage clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -185,9 +184,8 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
     this.type,
   });
 
-  @override
-  MedicinalProductDefinitionCrossReference clone() =>
-      throw UnimplementedError();
+@override
+MedicinalProductDefinitionCrossReference clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -208,8 +206,8 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
     this.confidentialityIndicator,
   });
 
-  @override
-  MedicinalProductDefinitionOperation clone() => throw UnimplementedError();
+@override
+MedicinalProductDefinitionOperation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -232,13 +230,13 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
     this.valueCodeableConcept,
     this.valueQuantity,
     this.valueDate,
-    this.valueDateElement,
+this.valueDateElement,
     this.valueBoolean,
-    this.valueBooleanElement,
+this.valueBooleanElement,
     this.valueAttachment,
   });
 
-  @override
-  MedicinalProductDefinitionCharacteristic clone() =>
-      throw UnimplementedError();
+@override
+MedicinalProductDefinitionCharacteristic clone() => throw UnimplementedError();
 }
+

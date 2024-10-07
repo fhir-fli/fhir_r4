@@ -35,32 +35,32 @@ class RequestGroup extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
-    this.instantiatesCanonicalElement,
+this.instantiatesCanonicalElement,
     this.instantiatesUri,
-    this.instantiatesUriElement,
+this.instantiatesUriElement,
     this.basedOn,
     this.replaces,
     this.groupIdentifier,
     required this.status,
-    this.statusElement,
+this.statusElement,
     required this.intent,
-    this.intentElement,
+this.intentElement,
     this.priority,
-    this.priorityElement,
+this.priorityElement,
     this.code,
     this.subject,
     this.encounter,
     this.authoredOn,
-    this.authoredOnElement,
+this.authoredOnElement,
     this.author,
     this.reasonCode,
     this.reasonReference,
@@ -68,8 +68,8 @@ class RequestGroup extends DomainResource {
     this.action,
   }) : super(resourceType: R4ResourceType.RequestGroup);
 
-  @override
-  RequestGroup clone() => throw UnimplementedError();
+@override
+RequestGroup clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -116,21 +116,21 @@ class RequestGroupAction extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.prefix,
-    this.prefixElement,
+this.prefixElement,
     this.title,
-    this.titleElement,
+this.titleElement,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.textEquivalent,
-    this.textEquivalentElement,
+this.textEquivalentElement,
     this.priority,
-    this.priorityElement,
+this.priorityElement,
     this.code,
     this.documentation,
     this.condition,
     this.relatedAction,
     this.timingDateTime,
-    this.timingDateTimeElement,
+this.timingDateTimeElement,
     this.timingAge,
     this.timingPeriod,
     this.timingDuration,
@@ -139,21 +139,21 @@ class RequestGroupAction extends BackboneElement {
     this.participant,
     this.type,
     this.groupingBehavior,
-    this.groupingBehaviorElement,
+this.groupingBehaviorElement,
     this.selectionBehavior,
-    this.selectionBehaviorElement,
+this.selectionBehaviorElement,
     this.requiredBehavior,
-    this.requiredBehaviorElement,
+this.requiredBehaviorElement,
     this.precheckBehavior,
-    this.precheckBehaviorElement,
+this.precheckBehaviorElement,
     this.cardinalityBehavior,
-    this.cardinalityBehaviorElement,
+this.cardinalityBehaviorElement,
     this.resource,
     this.action,
   });
 
-  @override
-  RequestGroupAction clone() => throw UnimplementedError();
+@override
+RequestGroupAction clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -168,12 +168,12 @@ class RequestGroupCondition extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.kind,
-    this.kindElement,
+this.kindElement,
     this.expression,
   });
 
-  @override
-  RequestGroupCondition clone() => throw UnimplementedError();
+@override
+RequestGroupCondition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -191,13 +191,14 @@ class RequestGroupRelatedAction extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.actionId,
-    this.actionIdElement,
+this.actionIdElement,
     required this.relationship,
-    this.relationshipElement,
+this.relationshipElement,
     this.offsetDuration,
     this.offsetRange,
   });
 
-  @override
-  RequestGroupRelatedAction clone() => throw UnimplementedError();
+@override
+RequestGroupRelatedAction clone() => throw UnimplementedError();
 }
+

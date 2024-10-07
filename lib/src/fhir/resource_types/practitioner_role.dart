@@ -27,16 +27,16 @@ class PractitionerRole extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
-    this.activeElement,
+this.activeElement,
     this.period,
     this.practitioner,
     this.organization,
@@ -48,12 +48,12 @@ class PractitionerRole extends DomainResource {
     this.availableTime,
     this.notAvailable,
     this.availabilityExceptions,
-    this.availabilityExceptionsElement,
+this.availabilityExceptionsElement,
     this.endpoint,
   }) : super(resourceType: R4ResourceType.PractitionerRole);
 
-  @override
-  PractitionerRole clone() => throw UnimplementedError();
+@override
+PractitionerRole clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -73,17 +73,17 @@ class PractitionerRoleAvailableTime extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.daysOfWeek,
-    this.daysOfWeekElement,
+this.daysOfWeekElement,
     this.allDay,
-    this.allDayElement,
+this.allDayElement,
     this.availableStartTime,
-    this.availableStartTimeElement,
+this.availableStartTimeElement,
     this.availableEndTime,
-    this.availableEndTimeElement,
+this.availableEndTimeElement,
   });
 
-  @override
-  PractitionerRoleAvailableTime clone() => throw UnimplementedError();
+@override
+PractitionerRoleAvailableTime clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -98,10 +98,11 @@ class PractitionerRoleNotAvailable extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.during,
   });
 
-  @override
-  PractitionerRoleNotAvailable clone() => throw UnimplementedError();
+@override
+PractitionerRoleNotAvailable clone() => throw UnimplementedError();
 }
+

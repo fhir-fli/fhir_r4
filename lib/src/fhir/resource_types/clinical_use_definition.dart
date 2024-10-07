@@ -23,16 +23,16 @@ class ClinicalUseDefinition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.type,
-    this.typeElement,
+this.typeElement,
     this.category,
     this.subject,
     this.status,
@@ -44,8 +44,8 @@ class ClinicalUseDefinition extends DomainResource {
     this.warning,
   }) : super(resourceType: R4ResourceType.ClinicalUseDefinition);
 
-  @override
-  ClinicalUseDefinition clone() => throw UnimplementedError();
+@override
+ClinicalUseDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -68,8 +68,8 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
     this.otherTherapy,
   });
 
-  @override
-  ClinicalUseDefinitionContraindication clone() => throw UnimplementedError();
+@override
+ClinicalUseDefinitionContraindication clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -86,8 +86,8 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
     required this.therapy,
   });
 
-  @override
-  ClinicalUseDefinitionOtherTherapy clone() => throw UnimplementedError();
+@override
+ClinicalUseDefinitionOtherTherapy clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -113,13 +113,13 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     this.intendedEffect,
     this.durationRange,
     this.durationString,
-    this.durationStringElement,
+this.durationStringElement,
     this.undesirableEffect,
     this.otherTherapy,
   });
 
-  @override
-  ClinicalUseDefinitionIndication clone() => throw UnimplementedError();
+@override
+ClinicalUseDefinitionIndication clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -142,8 +142,8 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
     this.management,
   });
 
-  @override
-  ClinicalUseDefinitionInteraction clone() => throw UnimplementedError();
+@override
+ClinicalUseDefinitionInteraction clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -160,8 +160,8 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
     required this.itemCodeableConcept,
   });
 
-  @override
-  ClinicalUseDefinitionInteractant clone() => throw UnimplementedError();
+@override
+ClinicalUseDefinitionInteractant clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -180,8 +180,8 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
     this.frequencyOfOccurrence,
   });
 
-  @override
-  ClinicalUseDefinitionUndesirableEffect clone() => throw UnimplementedError();
+@override
+ClinicalUseDefinitionUndesirableEffect clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -196,10 +196,11 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.code,
   });
 
-  @override
-  ClinicalUseDefinitionWarning clone() => throw UnimplementedError();
+@override
+ClinicalUseDefinitionWarning clone() => throw UnimplementedError();
 }
+

@@ -6,40 +6,33 @@ enum ExampleClaimSubTypeCodes {
   /// Definition: A claim for Orthodontic Services.
   @JsonValue('ortho')
   ortho,
-
   /// Display: Emergency Claim
   /// Definition: A claim for emergency services.
   @JsonValue('emergency')
   emergency,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case ortho:
-        return 'ortho';
-      case emergency:
-        return 'emergency';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case ortho: return 'ortho';
+        case emergency: return 'emergency';
+      }
+      }
+String toJson() => toString();
   ExampleClaimSubTypeCodes fromString(String str) {
-    switch (str) {
-      case 'ortho':
-        return ExampleClaimSubTypeCodes.ortho;
-      case 'emergency':
-        return ExampleClaimSubTypeCodes.emergency;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'ortho': return ExampleClaimSubTypeCodes.ortho;
+      case 'emergency': return ExampleClaimSubTypeCodes.emergency;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  ExampleClaimSubTypeCodes fromJson(dynamic jsonValue) {
+      }
+ ExampleClaimSubTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+

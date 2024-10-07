@@ -5,47 +5,37 @@ enum SourceMaterialGenus {
   /// Display: Mycobacterium
   @JsonValue('Mycobacterium')
   Mycobacterium,
-
   /// Display: Influenza A virus
   @JsonValue('InfluenzavirusA')
   InfluenzavirusA,
-
   /// Display: Ginkgo
   @JsonValue('Ginkgo')
   Ginkgo,
-  ;
+;
 
-  @override
+@override
   String toString() {
-    switch (this) {
-      case Mycobacterium:
-        return 'Mycobacterium';
-      case InfluenzavirusA:
-        return 'InfluenzavirusA';
-      case Ginkgo:
-        return 'Ginkgo';
-    }
-  }
-
-  String toJson() => toString();
+      switch(this) {
+        case Mycobacterium: return 'Mycobacterium';
+        case InfluenzavirusA: return 'InfluenzavirusA';
+        case Ginkgo: return 'Ginkgo';
+      }
+      }
+String toJson() => toString();
   SourceMaterialGenus fromString(String str) {
-    switch (str) {
-      case 'Mycobacterium':
-        return SourceMaterialGenus.Mycobacterium;
-      case 'InfluenzavirusA':
-        return SourceMaterialGenus.InfluenzavirusA;
-      case 'Ginkgo':
-        return SourceMaterialGenus.Ginkgo;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
+    switch(str) {
+      case 'Mycobacterium': return SourceMaterialGenus.Mycobacterium;
+      case 'InfluenzavirusA': return SourceMaterialGenus.InfluenzavirusA;
+      case 'Ginkgo': return SourceMaterialGenus.Ginkgo;
+    default: throw ArgumentError('Unknown enum value: $str');
     }
-  }
-
-  SourceMaterialGenus fromJson(dynamic jsonValue) {
+      }
+ SourceMaterialGenus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
-  }
+ throw ArgumentError('Unknown enum value: $jsonValue');
 }
+}
+}
+
