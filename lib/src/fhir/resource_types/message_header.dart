@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class MessageHeader extends DomainResource {
   MessageHeader({
     super.id,
@@ -33,6 +36,9 @@ class MessageHeader extends DomainResource {
     this.definitionElement,
   }) : super(resourceType: R4ResourceType.MessageHeader);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Coding eventCoding;
   final FhirUri eventUri;
   final Element? eventUriElement;
@@ -53,6 +59,7 @@ class MessageHeader extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MessageHeaderDestination extends BackboneElement {
   MessageHeaderDestination({
     super.id,
@@ -66,6 +73,9 @@ class MessageHeaderDestination extends BackboneElement {
     this.receiver,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? name;
   final Element? nameElement;
   final Reference? target;
@@ -78,6 +88,7 @@ class MessageHeaderDestination extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MessageHeaderSource extends BackboneElement {
   MessageHeaderSource({
     super.id,
@@ -94,6 +105,9 @@ class MessageHeaderSource extends BackboneElement {
     this.endpointElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? name;
   final Element? nameElement;
   final FhirString? software;
@@ -109,6 +123,7 @@ class MessageHeaderSource extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MessageHeaderResponse extends BackboneElement {
   MessageHeaderResponse({
     super.id,
@@ -121,6 +136,9 @@ class MessageHeaderResponse extends BackboneElement {
     this.details,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirId identifier;
   final Element? identifierElement;
   final FhirCode code;

@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class ChargeItem extends DomainResource {
   ChargeItem({
     super.id,
@@ -55,6 +58,9 @@ class ChargeItem extends DomainResource {
     this.supportingInformation,
   }) : super(resourceType: R4ResourceType.ChargeItem);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final List<FhirUri>? definitionUri;
   final List<Element>? definitionUriElement;
@@ -97,6 +103,7 @@ class ChargeItem extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ChargeItemPerformer extends BackboneElement {
   ChargeItemPerformer({
     super.id,
@@ -106,6 +113,9 @@ class ChargeItemPerformer extends BackboneElement {
     required this.actor,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? function_;
   final Reference actor;
   @override

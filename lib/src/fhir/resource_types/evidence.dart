@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Evidence extends DomainResource {
   Evidence({
     super.id,
@@ -56,6 +59,9 @@ class Evidence extends DomainResource {
     this.certainty,
   }) : super(resourceType: R4ResourceType.Evidence);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri? url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -99,6 +105,7 @@ class Evidence extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class EvidenceVariableDefinition extends BackboneElement {
   EvidenceVariableDefinition({
     super.id,
@@ -113,6 +120,9 @@ class EvidenceVariableDefinition extends BackboneElement {
     this.directnessMatch,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirMarkdown? description;
   final Element? descriptionElement;
   final List<Annotation>? note;
@@ -126,6 +136,7 @@ class EvidenceVariableDefinition extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class EvidenceStatistic extends BackboneElement {
   EvidenceStatistic({
     super.id,
@@ -146,6 +157,9 @@ class EvidenceStatistic extends BackboneElement {
     this.modelCharacteristic,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? description;
   final Element? descriptionElement;
   final List<Annotation>? note;
@@ -165,6 +179,7 @@ class EvidenceStatistic extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class EvidenceSampleSize extends BackboneElement {
   EvidenceSampleSize({
     super.id,
@@ -181,6 +196,9 @@ class EvidenceSampleSize extends BackboneElement {
     this.knownDataCountElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? description;
   final Element? descriptionElement;
   final List<Annotation>? note;
@@ -196,6 +214,7 @@ class EvidenceSampleSize extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class EvidenceAttributeEstimate extends BackboneElement {
   EvidenceAttributeEstimate({
     super.id,
@@ -212,6 +231,9 @@ class EvidenceAttributeEstimate extends BackboneElement {
     this.attributeEstimate,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? description;
   final Element? descriptionElement;
   final List<Annotation>? note;
@@ -227,6 +249,7 @@ class EvidenceAttributeEstimate extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class EvidenceModelCharacteristic extends BackboneElement {
   EvidenceModelCharacteristic({
     super.id,
@@ -238,6 +261,9 @@ class EvidenceModelCharacteristic extends BackboneElement {
     this.attributeEstimate,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept code;
   final Quantity? value;
   final List<EvidenceVariable>? variable;
@@ -248,6 +274,7 @@ class EvidenceModelCharacteristic extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class Evidencevariable extends BackboneElement {
   Evidencevariable({
     super.id,
@@ -261,6 +288,9 @@ class Evidencevariable extends BackboneElement {
     this.valueRange,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference variableDefinition;
   final FhirCode? handling;
   final Element? handlingElement;
@@ -273,6 +303,7 @@ class Evidencevariable extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class EvidenceCertainty extends BackboneElement {
   EvidenceCertainty({
     super.id,
@@ -288,6 +319,9 @@ class EvidenceCertainty extends BackboneElement {
     this.subcomponent,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? description;
   final Element? descriptionElement;
   final List<Annotation>? note;

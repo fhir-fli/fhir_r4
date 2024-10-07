@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Dosage extends BackboneType {
   Dosage({
     super.id,
@@ -30,6 +33,9 @@ class Dosage extends BackboneType {
     this.maxDosePerLifetime,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirInteger? sequence;
   final Element? sequenceElement;
   final FhirString? text;
@@ -54,6 +60,7 @@ class Dosage extends BackboneType {
 
 @JsonCodable()
 @Data()
+@Entity()
 class DosageDoseAndRate extends Element {
   DosageDoseAndRate({
     super.id,
@@ -66,6 +73,9 @@ class DosageDoseAndRate extends Element {
     this.rateQuantity,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? type;
   final Range? doseRange;
   final Quantity? doseQuantity;

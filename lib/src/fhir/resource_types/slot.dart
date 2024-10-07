@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Slot extends DomainResource {
   Slot({
     super.id,
@@ -35,6 +38,9 @@ class Slot extends DomainResource {
     this.commentElement,
   }) : super(resourceType: R4ResourceType.Slot);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final List<CodeableConcept>? serviceCategory;
   final List<CodeableConcept>? serviceType;

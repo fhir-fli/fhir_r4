@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class TerminologyCapabilities extends DomainResource {
   TerminologyCapabilities({
     super.id,
@@ -57,6 +60,9 @@ class TerminologyCapabilities extends DomainResource {
     this.closure,
   }) : super(resourceType: R4ResourceType.TerminologyCapabilities);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri? url;
   final Element? urlElement;
   final FhirString? version;
@@ -101,6 +107,7 @@ class TerminologyCapabilities extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TerminologyCapabilitiesSoftware extends BackboneElement {
   TerminologyCapabilitiesSoftware({
     super.id,
@@ -112,6 +119,9 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
     this.versionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString name;
   final Element? nameElement;
   final FhirString? version;
@@ -122,6 +132,7 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TerminologyCapabilitiesImplementation extends BackboneElement {
   TerminologyCapabilitiesImplementation({
     super.id,
@@ -133,6 +144,9 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
     this.urlElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString description;
   final Element? descriptionElement;
   final FhirUrl? url;
@@ -143,6 +157,7 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TerminologyCapabilitiesCodeSystem extends BackboneElement {
   TerminologyCapabilitiesCodeSystem({
     super.id,
@@ -155,6 +170,9 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
     this.subsumptionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCanonical? uri;
   final Element? uriElement;
   final List<TerminologyCapabilitiesVersion>? version;
@@ -166,6 +184,7 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TerminologyCapabilitiesVersion extends BackboneElement {
   TerminologyCapabilitiesVersion({
     super.id,
@@ -184,6 +203,9 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
     this.propertyElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? code;
   final Element? codeElement;
   final FhirBoolean? isDefault;
@@ -201,6 +223,7 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TerminologyCapabilitiesFilter extends BackboneElement {
   TerminologyCapabilitiesFilter({
     super.id,
@@ -212,6 +235,9 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
     this.opElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode code;
   final Element? codeElement;
   final List<FhirCode> op;
@@ -222,6 +248,7 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TerminologyCapabilitiesExpansion extends BackboneElement {
   TerminologyCapabilitiesExpansion({
     super.id,
@@ -238,6 +265,9 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
     this.textFilterElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirBoolean? hierarchical;
   final Element? hierarchicalElement;
   final FhirBoolean? paging;
@@ -253,6 +283,7 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TerminologyCapabilitiesParameter extends BackboneElement {
   TerminologyCapabilitiesParameter({
     super.id,
@@ -264,6 +295,9 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
     this.documentationElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode name;
   final Element? nameElement;
   final FhirString? documentation;
@@ -274,6 +308,7 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TerminologyCapabilitiesValidateCode extends BackboneElement {
   TerminologyCapabilitiesValidateCode({
     super.id,
@@ -283,6 +318,9 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
     this.translationsElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirBoolean translations;
   final Element? translationsElement;
   @override
@@ -291,6 +329,7 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TerminologyCapabilitiesTranslation extends BackboneElement {
   TerminologyCapabilitiesTranslation({
     super.id,
@@ -300,6 +339,9 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
     this.needsMapElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirBoolean needsMap;
   final Element? needsMapElement;
   @override
@@ -308,6 +350,7 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TerminologyCapabilitiesClosure extends BackboneElement {
   TerminologyCapabilitiesClosure({
     super.id,
@@ -317,6 +360,9 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
     this.translationElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirBoolean? translation;
   final Element? translationElement;
   @override

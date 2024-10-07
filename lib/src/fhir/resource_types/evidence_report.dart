@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class EvidenceReport extends DomainResource {
   EvidenceReport({
     super.id,
@@ -42,6 +45,9 @@ class EvidenceReport extends DomainResource {
     this.section,
   }) : super(resourceType: R4ResourceType.EvidenceReport);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri? url;
   final Element? urlElement;
   final FhirCode status;
@@ -71,6 +77,7 @@ class EvidenceReport extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class EvidenceReportSubject extends BackboneElement {
   EvidenceReportSubject({
     super.id,
@@ -80,6 +87,9 @@ class EvidenceReportSubject extends BackboneElement {
     this.note,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<EvidenceReportCharacteristic>? characteristic;
   final List<Annotation>? note;
   @override
@@ -88,6 +98,7 @@ class EvidenceReportSubject extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class EvidenceReportCharacteristic extends BackboneElement {
   EvidenceReportCharacteristic({
     super.id,
@@ -105,6 +116,9 @@ class EvidenceReportCharacteristic extends BackboneElement {
     this.period,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept code;
   final Reference valueReference;
   final CodeableConcept valueCodeableConcept;
@@ -121,6 +135,7 @@ class EvidenceReportCharacteristic extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class EvidenceReportRelatesTo extends BackboneElement {
   EvidenceReportRelatesTo({
     super.id,
@@ -132,6 +147,9 @@ class EvidenceReportRelatesTo extends BackboneElement {
     required this.targetReference,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode code;
   final Element? codeElement;
   final Identifier targetIdentifier;
@@ -142,6 +160,7 @@ class EvidenceReportRelatesTo extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class EvidenceReportSection extends BackboneElement {
   EvidenceReportSection({
     super.id,
@@ -163,6 +182,9 @@ class EvidenceReportSection extends BackboneElement {
     this.section,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? title;
   final Element? titleElement;
   final CodeableConcept? focus;

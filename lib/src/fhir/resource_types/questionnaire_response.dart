@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class QuestionnaireResponse extends DomainResource {
   QuestionnaireResponse({
     super.id,
@@ -33,6 +36,9 @@ class QuestionnaireResponse extends DomainResource {
     this.item,
   }) : super(resourceType: R4ResourceType.QuestionnaireResponse);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Identifier? identifier;
   final List<Reference>? basedOn;
   final List<Reference>? partOf;
@@ -53,6 +59,7 @@ class QuestionnaireResponse extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class QuestionnaireResponseItem extends BackboneElement {
   QuestionnaireResponseItem({
     super.id,
@@ -68,6 +75,9 @@ class QuestionnaireResponseItem extends BackboneElement {
     this.item,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString linkId;
   final Element? linkIdElement;
   final FhirUri? definition;
@@ -82,6 +92,7 @@ class QuestionnaireResponseItem extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class QuestionnaireResponseAnswer extends BackboneElement {
   QuestionnaireResponseAnswer({
     super.id,
@@ -110,6 +121,9 @@ class QuestionnaireResponseAnswer extends BackboneElement {
     this.item,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirBoolean? valueBoolean;
   final Element? valueBooleanElement;
   final FhirDecimal? valueDecimal;

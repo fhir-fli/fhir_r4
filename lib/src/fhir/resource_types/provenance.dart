@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Provenance extends DomainResource {
   Provenance({
     super.id,
@@ -33,6 +36,9 @@ class Provenance extends DomainResource {
     this.signature,
   }) : super(resourceType: R4ResourceType.Provenance);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Reference> target;
   final Period? occurredPeriod;
   final FhirDateTime? occurredDateTime;
@@ -53,6 +59,7 @@ class Provenance extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ProvenanceAgent extends BackboneElement {
   ProvenanceAgent({
     super.id,
@@ -64,6 +71,9 @@ class ProvenanceAgent extends BackboneElement {
     this.onBehalfOf,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? type;
   final List<CodeableConcept>? role;
   final Reference who;
@@ -74,6 +84,7 @@ class ProvenanceAgent extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ProvenanceEntity extends BackboneElement {
   ProvenanceEntity({
     super.id,
@@ -85,6 +96,9 @@ class ProvenanceEntity extends BackboneElement {
     this.agent,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode role;
   final Element? roleElement;
   final Reference what;

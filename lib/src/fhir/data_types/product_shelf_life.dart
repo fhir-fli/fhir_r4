@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class ProductShelfLife extends BackboneType {
   ProductShelfLife({
     super.id,
@@ -16,6 +19,9 @@ class ProductShelfLife extends BackboneType {
     this.specialPrecautionsForStorage,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Identifier? identifier;
   final CodeableConcept type;
   final Quantity period;

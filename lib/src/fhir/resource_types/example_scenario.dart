@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExampleScenario extends DomainResource {
   ExampleScenario({
     super.id,
@@ -46,6 +49,9 @@ class ExampleScenario extends DomainResource {
     this.workflowElement,
   }) : super(resourceType: R4ResourceType.ExampleScenario);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri? url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -79,6 +85,7 @@ class ExampleScenario extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExampleScenarioActor extends BackboneElement {
   ExampleScenarioActor({
     super.id,
@@ -94,6 +101,9 @@ class ExampleScenarioActor extends BackboneElement {
     this.descriptionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString actorId;
   final Element? actorIdElement;
   final FhirCode type;
@@ -108,6 +118,7 @@ class ExampleScenarioActor extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExampleScenarioInstance extends BackboneElement {
   ExampleScenarioInstance({
     super.id,
@@ -125,6 +136,9 @@ class ExampleScenarioInstance extends BackboneElement {
     this.containedInstance,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString resourceId;
   final Element? resourceIdElement;
   final FhirCode resourceType;
@@ -141,6 +155,7 @@ class ExampleScenarioInstance extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExampleScenarioVersion extends BackboneElement {
   ExampleScenarioVersion({
     super.id,
@@ -152,6 +167,9 @@ class ExampleScenarioVersion extends BackboneElement {
     this.descriptionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString versionId;
   final Element? versionIdElement;
   final FhirMarkdown description;
@@ -162,6 +180,7 @@ class ExampleScenarioVersion extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExampleScenarioContainedInstance extends BackboneElement {
   ExampleScenarioContainedInstance({
     super.id,
@@ -173,6 +192,9 @@ class ExampleScenarioContainedInstance extends BackboneElement {
     this.versionIdElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString resourceId;
   final Element? resourceIdElement;
   final FhirString? versionId;
@@ -183,6 +205,7 @@ class ExampleScenarioContainedInstance extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExampleScenarioProcess extends BackboneElement {
   ExampleScenarioProcess({
     super.id,
@@ -199,6 +222,9 @@ class ExampleScenarioProcess extends BackboneElement {
     this.step,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString title;
   final Element? titleElement;
   final FhirMarkdown? description;
@@ -214,6 +240,7 @@ class ExampleScenarioProcess extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExampleScenarioStep extends BackboneElement {
   ExampleScenarioStep({
     super.id,
@@ -226,6 +253,9 @@ class ExampleScenarioStep extends BackboneElement {
     this.alternative,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<ExampleScenarioProcess>? process;
   final FhirBoolean? pause;
   final Element? pauseElement;
@@ -237,6 +267,7 @@ class ExampleScenarioStep extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExampleScenarioOperation extends BackboneElement {
   ExampleScenarioOperation({
     super.id,
@@ -262,6 +293,9 @@ class ExampleScenarioOperation extends BackboneElement {
     this.response,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString number;
   final Element? numberElement;
   final FhirString? type;
@@ -286,6 +320,7 @@ class ExampleScenarioOperation extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExampleScenarioAlternative extends BackboneElement {
   ExampleScenarioAlternative({
     super.id,
@@ -298,6 +333,9 @@ class ExampleScenarioAlternative extends BackboneElement {
     this.step,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString title;
   final Element? titleElement;
   final FhirMarkdown? description;

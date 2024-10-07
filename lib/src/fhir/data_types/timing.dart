@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Timing extends BackboneType {
   Timing({
     super.id,
@@ -16,6 +19,9 @@ class Timing extends BackboneType {
     this.code,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<FhirDateTime>? event;
   final List<Element>? eventElement;
   final Element? repeat;
@@ -26,6 +32,7 @@ class Timing extends BackboneType {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TimingRepeat extends Element {
   TimingRepeat({
     super.id,
@@ -63,6 +70,9 @@ class TimingRepeat extends Element {
     this.offsetElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirDuration? boundsDuration;
   final Range? boundsRange;
   final Period? boundsPeriod;

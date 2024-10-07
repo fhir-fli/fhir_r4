@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Library extends DomainResource {
   Library({
     super.id,
@@ -66,6 +69,9 @@ class Library extends DomainResource {
     this.content,
   }) : super(resourceType: R4ResourceType.Library);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri? url;
   final Element? urlElement;
   final List<Identifier>? identifier;

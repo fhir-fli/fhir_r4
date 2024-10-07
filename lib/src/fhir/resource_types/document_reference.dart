@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class DocumentReference extends DomainResource {
   DocumentReference({
     super.id,
@@ -39,6 +42,9 @@ class DocumentReference extends DomainResource {
     this.context,
   }) : super(resourceType: R4ResourceType.DocumentReference);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Identifier? masterIdentifier;
   final List<Identifier>? identifier;
   final FhirCode status;
@@ -65,6 +71,7 @@ class DocumentReference extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class DocumentReferenceRelatesTo extends BackboneElement {
   DocumentReferenceRelatesTo({
     super.id,
@@ -75,6 +82,9 @@ class DocumentReferenceRelatesTo extends BackboneElement {
     required this.target,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode code;
   final Element? codeElement;
   final Reference target;
@@ -84,6 +94,7 @@ class DocumentReferenceRelatesTo extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class DocumentReferenceContent extends BackboneElement {
   DocumentReferenceContent({
     super.id,
@@ -93,6 +104,9 @@ class DocumentReferenceContent extends BackboneElement {
     this.format,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Attachment attachment;
   final Coding? format;
   @override
@@ -101,6 +115,7 @@ class DocumentReferenceContent extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class DocumentReferenceContext extends BackboneElement {
   DocumentReferenceContext({
     super.id,
@@ -115,6 +130,9 @@ class DocumentReferenceContext extends BackboneElement {
     this.related,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Reference>? encounter;
   final List<CodeableConcept>? event;
   final Period? period;

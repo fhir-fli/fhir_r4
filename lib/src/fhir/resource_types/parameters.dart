@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Parameters extends DomainResource {
   Parameters({
     super.id,
@@ -16,6 +19,9 @@ class Parameters extends DomainResource {
     this.parameter,
   }) : super(resourceType: R4ResourceType.Parameters);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<ParametersParameter>? parameter;
   @override
   Parameters clone() => throw UnimplementedError();
@@ -23,6 +29,7 @@ class Parameters extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ParametersParameter extends BackboneElement {
   ParametersParameter({
     super.id,
@@ -103,6 +110,9 @@ class ParametersParameter extends BackboneElement {
     this.part_,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString name;
   final Element? nameElement;
   final FhirBase64Binary? valueBase64Binary;

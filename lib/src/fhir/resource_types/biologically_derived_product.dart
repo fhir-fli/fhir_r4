@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class BiologicallyDerivedProduct extends DomainResource {
   BiologicallyDerivedProduct({
     super.id,
@@ -33,6 +36,9 @@ class BiologicallyDerivedProduct extends DomainResource {
     this.storage,
   }) : super(resourceType: R4ResourceType.BiologicallyDerivedProduct);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode? productCategory;
   final Element? productCategoryElement;
@@ -53,6 +59,7 @@ class BiologicallyDerivedProduct extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class BiologicallyDerivedProductCollection extends BackboneElement {
   BiologicallyDerivedProductCollection({
     super.id,
@@ -65,6 +72,9 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     this.collectedPeriod,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference? collector;
   final Reference? source;
   final FhirDateTime? collectedDateTime;
@@ -76,6 +86,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class BiologicallyDerivedProductProcessing extends BackboneElement {
   BiologicallyDerivedProductProcessing({
     super.id,
@@ -90,6 +101,9 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     this.timePeriod,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? description;
   final Element? descriptionElement;
   final CodeableConcept? procedure;
@@ -103,6 +117,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class BiologicallyDerivedProductManipulation extends BackboneElement {
   BiologicallyDerivedProductManipulation({
     super.id,
@@ -115,6 +130,9 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     this.timePeriod,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? description;
   final Element? descriptionElement;
   final FhirDateTime? timeDateTime;
@@ -126,6 +144,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class BiologicallyDerivedProductStorage extends BackboneElement {
   BiologicallyDerivedProductStorage({
     super.id,
@@ -140,6 +159,9 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
     this.duration,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? description;
   final Element? descriptionElement;
   final FhirDecimal? temperature;

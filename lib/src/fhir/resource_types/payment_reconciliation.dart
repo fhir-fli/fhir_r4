@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class PaymentReconciliation extends DomainResource {
   PaymentReconciliation({
     super.id,
@@ -39,6 +42,9 @@ class PaymentReconciliation extends DomainResource {
     this.processNote,
   }) : super(resourceType: R4ResourceType.PaymentReconciliation);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -65,6 +71,7 @@ class PaymentReconciliation extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class PaymentReconciliationDetail extends BackboneElement {
   PaymentReconciliationDetail({
     super.id,
@@ -83,6 +90,9 @@ class PaymentReconciliationDetail extends BackboneElement {
     this.amount,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Identifier? identifier;
   final Identifier? predecessor;
   final CodeableConcept type;
@@ -100,6 +110,7 @@ class PaymentReconciliationDetail extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class PaymentReconciliationProcessNote extends BackboneElement {
   PaymentReconciliationProcessNote({
     super.id,
@@ -111,6 +122,9 @@ class PaymentReconciliationProcessNote extends BackboneElement {
     this.textElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode? type;
   final Element? typeElement;
   final FhirString? text;

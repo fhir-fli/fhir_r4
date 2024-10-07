@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class PackagedProductDefinition extends DomainResource {
   PackagedProductDefinition({
     super.id,
@@ -37,6 +40,9 @@ class PackagedProductDefinition extends DomainResource {
     this.package,
   }) : super(resourceType: R4ResourceType.PackagedProductDefinition);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirString? name;
   final Element? nameElement;
@@ -61,6 +67,7 @@ class PackagedProductDefinition extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
   PackagedProductDefinitionLegalStatusOfSupply({
     super.id,
@@ -70,6 +77,9 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
     this.jurisdiction,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? code;
   final CodeableConcept? jurisdiction;
   @override
@@ -79,6 +89,7 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class PackagedProductDefinitionPackage extends BackboneElement {
   PackagedProductDefinitionPackage({
     super.id,
@@ -97,6 +108,9 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     this.package,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final CodeableConcept? type;
   final FhirInteger? quantity;
@@ -114,6 +128,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   PackagedProductDefinitionShelfLifeStorage({
     super.id,
@@ -126,6 +141,9 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     this.specialPrecautionsForStorage,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? type;
   final FhirDuration? periodDuration;
   final FhirString? periodString;
@@ -138,6 +156,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class PackagedProductDefinitionProperty extends BackboneElement {
   PackagedProductDefinitionProperty({
     super.id,
@@ -153,6 +172,9 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     this.valueAttachment,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final CodeableConcept? valueCodeableConcept;
   final Quantity? valueQuantity;
@@ -167,6 +189,7 @@ class PackagedProductDefinitionProperty extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class PackagedProductDefinitionContainedItem extends BackboneElement {
   PackagedProductDefinitionContainedItem({
     super.id,
@@ -176,6 +199,9 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
     this.amount,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableReference item;
   final Quantity? amount;
   @override

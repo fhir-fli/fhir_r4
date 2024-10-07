@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class CodeSystem extends DomainResource {
   CodeSystem({
     super.id,
@@ -64,6 +67,9 @@ class CodeSystem extends DomainResource {
     this.concept,
   }) : super(resourceType: R4ResourceType.CodeSystem);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri? url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -115,6 +121,7 @@ class CodeSystem extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CodeSystemFilter extends BackboneElement {
   CodeSystemFilter({
     super.id,
@@ -130,6 +137,9 @@ class CodeSystemFilter extends BackboneElement {
     this.valueElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode code;
   final Element? codeElement;
   final FhirString? description;
@@ -144,6 +154,7 @@ class CodeSystemFilter extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CodeSystemProperty extends BackboneElement {
   CodeSystemProperty({
     super.id,
@@ -159,6 +170,9 @@ class CodeSystemProperty extends BackboneElement {
     this.typeElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode code;
   final Element? codeElement;
   final FhirUri? uri;
@@ -173,6 +187,7 @@ class CodeSystemProperty extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CodeSystemConcept extends BackboneElement {
   CodeSystemConcept({
     super.id,
@@ -189,6 +204,9 @@ class CodeSystemConcept extends BackboneElement {
     this.concept,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode code;
   final Element? codeElement;
   final FhirString? display;
@@ -204,6 +222,7 @@ class CodeSystemConcept extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CodeSystemDesignation extends BackboneElement {
   CodeSystemDesignation({
     super.id,
@@ -216,6 +235,9 @@ class CodeSystemDesignation extends BackboneElement {
     this.valueElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode? language;
   final Element? languageElement;
   final Coding? use;
@@ -227,6 +249,7 @@ class CodeSystemDesignation extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CodeSystemProperty1 extends BackboneElement {
   CodeSystemProperty1({
     super.id,
@@ -249,6 +272,9 @@ class CodeSystemProperty1 extends BackboneElement {
     this.valueDecimalElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode code;
   final Element? codeElement;
   final FhirCode valueCode;

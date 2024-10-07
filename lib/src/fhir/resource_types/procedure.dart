@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Procedure extends DomainResource {
   Procedure({
     super.id,
@@ -56,6 +59,9 @@ class Procedure extends DomainResource {
     this.usedCode,
   }) : super(resourceType: R4ResourceType.Procedure);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final List<FhirCanonical>? instantiatesCanonical;
   final List<Element>? instantiatesCanonicalElement;
@@ -99,6 +105,7 @@ class Procedure extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ProcedurePerformer extends BackboneElement {
   ProcedurePerformer({
     super.id,
@@ -109,6 +116,9 @@ class ProcedurePerformer extends BackboneElement {
     this.onBehalfOf,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? function_;
   final Reference actor;
   final Reference? onBehalfOf;
@@ -118,6 +128,7 @@ class ProcedurePerformer extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ProcedureFocalDevice extends BackboneElement {
   ProcedureFocalDevice({
     super.id,
@@ -127,6 +138,9 @@ class ProcedureFocalDevice extends BackboneElement {
     required this.manipulated,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? action;
   final Reference manipulated;
   @override

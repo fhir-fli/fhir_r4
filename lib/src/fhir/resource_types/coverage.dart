@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Coverage extends DomainResource {
   Coverage({
     super.id,
@@ -42,6 +45,9 @@ class Coverage extends DomainResource {
     this.contract,
   }) : super(resourceType: R4ResourceType.Coverage);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -71,6 +77,7 @@ class Coverage extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CoverageClass extends BackboneElement {
   CoverageClass({
     super.id,
@@ -83,6 +90,9 @@ class CoverageClass extends BackboneElement {
     this.nameElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final FhirString value;
   final Element? valueElement;
@@ -94,6 +104,7 @@ class CoverageClass extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CoverageCostToBeneficiary extends BackboneElement {
   CoverageCostToBeneficiary({
     super.id,
@@ -105,6 +116,9 @@ class CoverageCostToBeneficiary extends BackboneElement {
     this.exception,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? type;
   final Quantity valueQuantity;
   final Money valueMoney;
@@ -115,6 +129,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CoverageException extends BackboneElement {
   CoverageException({
     super.id,
@@ -124,6 +139,9 @@ class CoverageException extends BackboneElement {
     this.period,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final Period? period;
   @override

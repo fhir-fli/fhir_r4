@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class FamilyMemberHistory extends DomainResource {
   FamilyMemberHistory({
     super.id,
@@ -57,6 +60,9 @@ class FamilyMemberHistory extends DomainResource {
     this.condition,
   }) : super(resourceType: R4ResourceType.FamilyMemberHistory);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final List<FhirCanonical>? instantiatesCanonical;
   final List<Element>? instantiatesCanonicalElement;
@@ -101,6 +107,7 @@ class FamilyMemberHistory extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class FamilyMemberHistoryCondition extends BackboneElement {
   FamilyMemberHistoryCondition({
     super.id,
@@ -118,6 +125,9 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     this.note,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept code;
   final CodeableConcept? outcome;
   final FhirBoolean? contributedToDeath;

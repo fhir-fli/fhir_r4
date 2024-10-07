@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Substance extends DomainResource {
   Substance({
     super.id,
@@ -28,6 +31,9 @@ class Substance extends DomainResource {
     this.ingredient,
   }) : super(resourceType: R4ResourceType.Substance);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode? status;
   final Element? statusElement;
@@ -43,6 +49,7 @@ class Substance extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SubstanceInstance extends BackboneElement {
   SubstanceInstance({
     super.id,
@@ -54,6 +61,9 @@ class SubstanceInstance extends BackboneElement {
     this.quantity,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Identifier? identifier;
   final FhirDateTime? expiry;
   final Element? expiryElement;
@@ -64,6 +74,7 @@ class SubstanceInstance extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SubstanceIngredient extends BackboneElement {
   SubstanceIngredient({
     super.id,
@@ -74,6 +85,9 @@ class SubstanceIngredient extends BackboneElement {
     required this.substanceReference,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Ratio? quantity;
   final CodeableConcept substanceCodeableConcept;
   final Reference substanceReference;

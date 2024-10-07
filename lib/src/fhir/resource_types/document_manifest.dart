@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class DocumentManifest extends DomainResource {
   DocumentManifest({
     super.id,
@@ -35,6 +38,9 @@ class DocumentManifest extends DomainResource {
     this.related,
   }) : super(resourceType: R4ResourceType.DocumentManifest);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Identifier? masterIdentifier;
   final List<Identifier>? identifier;
   final FhirCode status;
@@ -57,6 +63,7 @@ class DocumentManifest extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class DocumentManifestRelated extends BackboneElement {
   DocumentManifestRelated({
     super.id,
@@ -66,6 +73,9 @@ class DocumentManifestRelated extends BackboneElement {
     this.ref,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Identifier? identifier;
   final Reference? ref;
   @override

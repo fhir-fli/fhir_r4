@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class HealthcareService extends DomainResource {
   HealthcareService({
     super.id,
@@ -49,6 +52,9 @@ class HealthcareService extends DomainResource {
     this.endpoint,
   }) : super(resourceType: R4ResourceType.HealthcareService);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirBoolean? active;
   final Element? activeElement;
@@ -85,6 +91,7 @@ class HealthcareService extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class HealthcareServiceEligibility extends BackboneElement {
   HealthcareServiceEligibility({
     super.id,
@@ -95,6 +102,9 @@ class HealthcareServiceEligibility extends BackboneElement {
     this.commentElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? code;
   final FhirMarkdown? comment;
   final Element? commentElement;
@@ -104,6 +114,7 @@ class HealthcareServiceEligibility extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class HealthcareServiceAvailableTime extends BackboneElement {
   HealthcareServiceAvailableTime({
     super.id,
@@ -119,6 +130,9 @@ class HealthcareServiceAvailableTime extends BackboneElement {
     this.availableEndTimeElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<FhirCode>? daysOfWeek;
   final List<Element>? daysOfWeekElement;
   final FhirBoolean? allDay;
@@ -133,6 +147,7 @@ class HealthcareServiceAvailableTime extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class HealthcareServiceNotAvailable extends BackboneElement {
   HealthcareServiceNotAvailable({
     super.id,
@@ -143,6 +158,9 @@ class HealthcareServiceNotAvailable extends BackboneElement {
     this.during,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString description;
   final Element? descriptionElement;
   final Period? during;

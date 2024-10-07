@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Patient extends DomainResource {
   Patient({
     super.id,
@@ -44,6 +47,9 @@ class Patient extends DomainResource {
     this.link,
   }) : super(resourceType: R4ResourceType.Patient);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirBoolean? active;
   final Element? activeElement;
@@ -75,6 +81,7 @@ class Patient extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class PatientContact extends BackboneElement {
   PatientContact({
     super.id,
@@ -90,6 +97,9 @@ class PatientContact extends BackboneElement {
     this.period,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<CodeableConcept>? relationship;
   final HumanName? name;
   final List<ContactPoint>? telecom;
@@ -104,6 +114,7 @@ class PatientContact extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class PatientCommunication extends BackboneElement {
   PatientCommunication({
     super.id,
@@ -114,6 +125,9 @@ class PatientCommunication extends BackboneElement {
     this.preferredElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept language;
   final FhirBoolean? preferred;
   final Element? preferredElement;
@@ -123,6 +137,7 @@ class PatientCommunication extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class PatientLink extends BackboneElement {
   PatientLink({
     super.id,
@@ -133,6 +148,9 @@ class PatientLink extends BackboneElement {
     this.typeElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference other;
   final FhirCode type;
   final Element? typeElement;

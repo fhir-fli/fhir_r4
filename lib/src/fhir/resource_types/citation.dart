@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Citation extends DomainResource {
   Citation({
     super.id,
@@ -61,6 +64,9 @@ class Citation extends DomainResource {
     this.citedArtifact,
   }) : super(resourceType: R4ResourceType.Citation);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri? url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -109,6 +115,7 @@ class Citation extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CitationSummary extends BackboneElement {
   CitationSummary({
     super.id,
@@ -119,6 +126,9 @@ class CitationSummary extends BackboneElement {
     this.textElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? style;
   final FhirMarkdown text;
   final Element? textElement;
@@ -128,6 +138,7 @@ class CitationSummary extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CitationClassification extends BackboneElement {
   CitationClassification({
     super.id,
@@ -137,6 +148,9 @@ class CitationClassification extends BackboneElement {
     this.classifier,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? type;
   final List<CodeableConcept>? classifier;
   @override
@@ -145,6 +159,7 @@ class CitationClassification extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CitationStatusDate extends BackboneElement {
   CitationStatusDate({
     super.id,
@@ -156,6 +171,9 @@ class CitationStatusDate extends BackboneElement {
     required this.period,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept activity;
   final FhirBoolean? actual;
   final Element? actualElement;
@@ -166,6 +184,7 @@ class CitationStatusDate extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CitationRelatesTo extends BackboneElement {
   CitationRelatesTo({
     super.id,
@@ -180,6 +199,9 @@ class CitationRelatesTo extends BackboneElement {
     required this.targetAttachment,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept relationshipType;
   final List<CodeableConcept>? targetClassifier;
   final FhirUri targetUri;
@@ -193,6 +215,7 @@ class CitationRelatesTo extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CitationCitedArtifact extends BackboneElement {
   CitationCitedArtifact({
     super.id,
@@ -216,6 +239,9 @@ class CitationCitedArtifact extends BackboneElement {
     this.note,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final List<Identifier>? relatedIdentifier;
   final FhirDateTime? dateAccessed;
@@ -238,6 +264,7 @@ class CitationCitedArtifact extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CitationVersion extends BackboneElement {
   CitationVersion({
     super.id,
@@ -248,6 +275,9 @@ class CitationVersion extends BackboneElement {
     this.baseCitation,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString value;
   final Element? valueElement;
   final Reference? baseCitation;
@@ -257,6 +287,7 @@ class CitationVersion extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CitationStatusDate1 extends BackboneElement {
   CitationStatusDate1({
     super.id,
@@ -268,6 +299,9 @@ class CitationStatusDate1 extends BackboneElement {
     required this.period,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept activity;
   final FhirBoolean? actual;
   final Element? actualElement;
@@ -278,6 +312,7 @@ class CitationStatusDate1 extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CitationTitle extends BackboneElement {
   CitationTitle({
     super.id,
@@ -289,6 +324,9 @@ class CitationTitle extends BackboneElement {
     this.textElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<CodeableConcept>? type;
   final CodeableConcept? language;
   final FhirMarkdown text;
@@ -299,6 +337,7 @@ class CitationTitle extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CitationAbstract extends BackboneElement {
   CitationAbstract({
     super.id,
@@ -312,6 +351,9 @@ class CitationAbstract extends BackboneElement {
     this.copyrightElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? type;
   final CodeableConcept? language;
   final FhirMarkdown text;
@@ -324,6 +366,7 @@ class CitationAbstract extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CitationPart extends BackboneElement {
   CitationPart({
     super.id,
@@ -335,6 +378,9 @@ class CitationPart extends BackboneElement {
     this.baseCitation,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? type;
   final FhirString? value;
   final Element? valueElement;
@@ -345,6 +391,7 @@ class CitationPart extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CitationRelatesTo1 extends BackboneElement {
   CitationRelatesTo1({
     super.id,
@@ -359,6 +406,9 @@ class CitationRelatesTo1 extends BackboneElement {
     required this.targetAttachment,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept relationshipType;
   final List<CodeableConcept>? targetClassifier;
   final FhirUri targetUri;
@@ -372,6 +422,7 @@ class CitationRelatesTo1 extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CitationPublicationForm extends BackboneElement {
   CitationPublicationForm({
     super.id,
@@ -398,6 +449,9 @@ class CitationPublicationForm extends BackboneElement {
     this.copyrightElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CitationPublishedIn? publishedIn;
   final CitationPeriodicRelease? periodicRelease;
   final FhirDateTime? articleDate;
@@ -423,6 +477,7 @@ class CitationPublicationForm extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CitationPublishedIn extends BackboneElement {
   CitationPublishedIn({
     super.id,
@@ -437,6 +492,9 @@ class CitationPublishedIn extends BackboneElement {
     this.publisherLocationElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? type;
   final List<Identifier>? identifier;
   final FhirString? title;
@@ -450,6 +508,7 @@ class CitationPublishedIn extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CitationPeriodicRelease extends BackboneElement {
   CitationPeriodicRelease({
     super.id,
@@ -463,6 +522,9 @@ class CitationPeriodicRelease extends BackboneElement {
     this.dateOfPublication,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? citedMedium;
   final FhirString? volume;
   final Element? volumeElement;
@@ -475,6 +537,7 @@ class CitationPeriodicRelease extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CitationDateOfPublication extends BackboneElement {
   CitationDateOfPublication({
     super.id,
@@ -494,6 +557,9 @@ class CitationDateOfPublication extends BackboneElement {
     this.textElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirDate? date;
   final Element? dateElement;
   final FhirString? year;
@@ -512,6 +578,7 @@ class CitationDateOfPublication extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CitationWebLocation extends BackboneElement {
   CitationWebLocation({
     super.id,
@@ -522,6 +589,9 @@ class CitationWebLocation extends BackboneElement {
     this.urlElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? type;
   final FhirUri? url;
   final Element? urlElement;
@@ -531,6 +601,7 @@ class CitationWebLocation extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CitationClassification1 extends BackboneElement {
   CitationClassification1({
     super.id,
@@ -541,6 +612,9 @@ class CitationClassification1 extends BackboneElement {
     this.whoClassified,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? type;
   final List<CodeableConcept>? classifier;
   final CitationWhoClassified? whoClassified;
@@ -550,6 +624,7 @@ class CitationClassification1 extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CitationWhoClassified extends BackboneElement {
   CitationWhoClassified({
     super.id,
@@ -564,6 +639,9 @@ class CitationWhoClassified extends BackboneElement {
     this.freeToShareElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference? person;
   final Reference? organization;
   final Reference? publisher;
@@ -577,6 +655,7 @@ class CitationWhoClassified extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CitationContributorship extends BackboneElement {
   CitationContributorship({
     super.id,
@@ -588,6 +667,9 @@ class CitationContributorship extends BackboneElement {
     this.summary,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirBoolean? complete;
   final Element? completeElement;
   final List<CitationEntry>? entry;
@@ -598,6 +680,7 @@ class CitationContributorship extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CitationEntry extends BackboneElement {
   CitationEntry({
     super.id,
@@ -621,6 +704,9 @@ class CitationEntry extends BackboneElement {
     this.listOrderElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final HumanName? name;
   final FhirString? initials;
   final Element? initialsElement;
@@ -643,6 +729,7 @@ class CitationEntry extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CitationAffiliationInfo extends BackboneElement {
   CitationAffiliationInfo({
     super.id,
@@ -655,6 +742,9 @@ class CitationAffiliationInfo extends BackboneElement {
     this.identifier,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? affiliation;
   final Element? affiliationElement;
   final FhirString? role;
@@ -666,6 +756,7 @@ class CitationAffiliationInfo extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CitationContributionInstance extends BackboneElement {
   CitationContributionInstance({
     super.id,
@@ -676,6 +767,9 @@ class CitationContributionInstance extends BackboneElement {
     this.timeElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final FhirDateTime? time;
   final Element? timeElement;
@@ -685,6 +779,7 @@ class CitationContributionInstance extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CitationSummary1 extends BackboneElement {
   CitationSummary1({
     super.id,
@@ -697,6 +792,9 @@ class CitationSummary1 extends BackboneElement {
     this.valueElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? type;
   final CodeableConcept? style;
   final CodeableConcept? source;

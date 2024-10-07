@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClinicalImpression extends DomainResource {
   ClinicalImpression({
     super.id,
@@ -46,6 +49,9 @@ class ClinicalImpression extends DomainResource {
     this.note,
   }) : super(resourceType: R4ResourceType.ClinicalImpression);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -79,6 +85,7 @@ class ClinicalImpression extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClinicalImpressionInvestigation extends BackboneElement {
   ClinicalImpressionInvestigation({
     super.id,
@@ -88,6 +95,9 @@ class ClinicalImpressionInvestigation extends BackboneElement {
     this.item,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept code;
   final List<Reference>? item;
   @override
@@ -96,6 +106,7 @@ class ClinicalImpressionInvestigation extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClinicalImpressionFinding extends BackboneElement {
   ClinicalImpressionFinding({
     super.id,
@@ -107,6 +118,9 @@ class ClinicalImpressionFinding extends BackboneElement {
     this.basisElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? itemCodeableConcept;
   final Reference? itemReference;
   final FhirString? basis;

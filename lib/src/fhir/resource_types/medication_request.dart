@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationRequest extends DomainResource {
   MedicationRequest({
     super.id,
@@ -61,6 +64,9 @@ class MedicationRequest extends DomainResource {
     this.eventHistory,
   }) : super(resourceType: R4ResourceType.MedicationRequest);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -109,6 +115,7 @@ class MedicationRequest extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationRequestDispenseRequest extends BackboneElement {
   MedicationRequestDispenseRequest({
     super.id,
@@ -124,6 +131,9 @@ class MedicationRequestDispenseRequest extends BackboneElement {
     this.performer,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final MedicationRequestInitialFill? initialFill;
   final FhirDuration? dispenseInterval;
   final Period? validityPeriod;
@@ -138,6 +148,7 @@ class MedicationRequestDispenseRequest extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationRequestInitialFill extends BackboneElement {
   MedicationRequestInitialFill({
     super.id,
@@ -147,6 +158,9 @@ class MedicationRequestInitialFill extends BackboneElement {
     this.duration,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Quantity? quantity;
   final FhirDuration? duration;
   @override
@@ -155,6 +169,7 @@ class MedicationRequestInitialFill extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationRequestSubstitution extends BackboneElement {
   MedicationRequestSubstitution({
     super.id,
@@ -166,6 +181,9 @@ class MedicationRequestSubstitution extends BackboneElement {
     this.reason,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirBoolean allowedBoolean;
   final Element? allowedBooleanElement;
   final CodeableConcept allowedCodeableConcept;

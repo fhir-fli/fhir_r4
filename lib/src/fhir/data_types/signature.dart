@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Signature extends DataType {
   Signature({
     super.id,
@@ -22,6 +25,9 @@ class Signature extends DataType {
     this.dataElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Coding> type;
   final FhirInstant when;
   final Element? whenElement;

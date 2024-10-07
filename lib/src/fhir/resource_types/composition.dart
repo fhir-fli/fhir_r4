@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Composition extends DomainResource {
   Composition({
     super.id,
@@ -38,6 +41,9 @@ class Composition extends DomainResource {
     this.section,
   }) : super(resourceType: R4ResourceType.Composition);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Identifier? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -63,6 +69,7 @@ class Composition extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CompositionAttester extends BackboneElement {
   CompositionAttester({
     super.id,
@@ -75,6 +82,9 @@ class CompositionAttester extends BackboneElement {
     this.party,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode mode;
   final Element? modeElement;
   final FhirDateTime? time;
@@ -86,6 +96,7 @@ class CompositionAttester extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CompositionRelatesTo extends BackboneElement {
   CompositionRelatesTo({
     super.id,
@@ -97,6 +108,9 @@ class CompositionRelatesTo extends BackboneElement {
     required this.targetReference,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode code;
   final Element? codeElement;
   final Identifier targetIdentifier;
@@ -107,6 +121,7 @@ class CompositionRelatesTo extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CompositionEvent extends BackboneElement {
   CompositionEvent({
     super.id,
@@ -117,6 +132,9 @@ class CompositionEvent extends BackboneElement {
     this.detail,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<CodeableConcept>? code;
   final Period? period;
   final List<Reference>? detail;
@@ -126,6 +144,7 @@ class CompositionEvent extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CompositionSection extends BackboneElement {
   CompositionSection({
     super.id,
@@ -145,6 +164,9 @@ class CompositionSection extends BackboneElement {
     this.section,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? title;
   final Element? titleElement;
   final CodeableConcept? code;

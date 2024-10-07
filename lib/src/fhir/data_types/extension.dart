@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class FhirExtension extends DataType {
   FhirExtension({
     super.id,
@@ -82,6 +85,9 @@ class FhirExtension extends DataType {
     this.valueDosage,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString url;
   final FhirBase64Binary? valueBase64Binary;
   final Element? valueBase64BinaryElement;

@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class NamingSystem extends DomainResource {
   NamingSystem({
     super.id,
@@ -40,6 +43,9 @@ class NamingSystem extends DomainResource {
     required this.uniqueId,
   }) : super(resourceType: R4ResourceType.NamingSystem);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString name;
   final Element? nameElement;
   final FhirCode status;
@@ -67,6 +73,7 @@ class NamingSystem extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class NamingSystemUniqueId extends BackboneElement {
   NamingSystemUniqueId({
     super.id,
@@ -83,6 +90,9 @@ class NamingSystemUniqueId extends BackboneElement {
     this.period,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode type;
   final Element? typeElement;
   final FhirString value;

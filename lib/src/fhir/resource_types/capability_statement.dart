@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class CapabilityStatement extends DomainResource {
   CapabilityStatement({
     super.id,
@@ -61,6 +64,9 @@ class CapabilityStatement extends DomainResource {
     this.document,
   }) : super(resourceType: R4ResourceType.CapabilityStatement);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri? url;
   final Element? urlElement;
   final FhirString? version;
@@ -109,6 +115,7 @@ class CapabilityStatement extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CapabilityStatementSoftware extends BackboneElement {
   CapabilityStatementSoftware({
     super.id,
@@ -122,6 +129,9 @@ class CapabilityStatementSoftware extends BackboneElement {
     this.releaseDateElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString name;
   final Element? nameElement;
   final FhirString? version;
@@ -134,6 +144,7 @@ class CapabilityStatementSoftware extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CapabilityStatementImplementation extends BackboneElement {
   CapabilityStatementImplementation({
     super.id,
@@ -148,6 +159,9 @@ class CapabilityStatementImplementation extends BackboneElement {
     this.implementationGuideElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString description;
   final Element? descriptionElement;
   final FhirUrl? url;
@@ -161,6 +175,7 @@ class CapabilityStatementImplementation extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CapabilityStatementRest extends BackboneElement {
   CapabilityStatementRest({
     super.id,
@@ -179,6 +194,9 @@ class CapabilityStatementRest extends BackboneElement {
     this.compartmentElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode mode;
   final Element? modeElement;
   final FhirMarkdown? documentation;
@@ -196,6 +214,7 @@ class CapabilityStatementRest extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CapabilityStatementSecurity extends BackboneElement {
   CapabilityStatementSecurity({
     super.id,
@@ -208,6 +227,9 @@ class CapabilityStatementSecurity extends BackboneElement {
     this.descriptionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirBoolean? cors;
   final Element? corsElement;
   final List<CodeableConcept>? service;
@@ -219,6 +241,7 @@ class CapabilityStatementSecurity extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CapabilityStatementResource extends BackboneElement {
   CapabilityStatementResource({
     super.id,
@@ -257,6 +280,9 @@ class CapabilityStatementResource extends BackboneElement {
     this.operation,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode type;
   final Element? typeElement;
   final FhirCanonical? profile;
@@ -294,6 +320,7 @@ class CapabilityStatementResource extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CapabilityStatementInteraction extends BackboneElement {
   CapabilityStatementInteraction({
     super.id,
@@ -305,6 +332,9 @@ class CapabilityStatementInteraction extends BackboneElement {
     this.documentationElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode code;
   final Element? codeElement;
   final FhirMarkdown? documentation;
@@ -315,6 +345,7 @@ class CapabilityStatementInteraction extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CapabilityStatementSearchParam extends BackboneElement {
   CapabilityStatementSearchParam({
     super.id,
@@ -330,6 +361,9 @@ class CapabilityStatementSearchParam extends BackboneElement {
     this.documentationElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString name;
   final Element? nameElement;
   final FhirCanonical? definition;
@@ -344,6 +378,7 @@ class CapabilityStatementSearchParam extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CapabilityStatementOperation extends BackboneElement {
   CapabilityStatementOperation({
     super.id,
@@ -357,6 +392,9 @@ class CapabilityStatementOperation extends BackboneElement {
     this.documentationElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString name;
   final Element? nameElement;
   final FhirCanonical definition;
@@ -369,6 +407,7 @@ class CapabilityStatementOperation extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CapabilityStatementInteraction1 extends BackboneElement {
   CapabilityStatementInteraction1({
     super.id,
@@ -380,6 +419,9 @@ class CapabilityStatementInteraction1 extends BackboneElement {
     this.documentationElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode code;
   final Element? codeElement;
   final FhirMarkdown? documentation;
@@ -390,6 +432,7 @@ class CapabilityStatementInteraction1 extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CapabilityStatementMessaging extends BackboneElement {
   CapabilityStatementMessaging({
     super.id,
@@ -403,6 +446,9 @@ class CapabilityStatementMessaging extends BackboneElement {
     this.supportedMessage,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<CapabilityStatementEndpoint>? endpoint;
   final FhirUnsignedInt? reliableCache;
   final Element? reliableCacheElement;
@@ -415,6 +461,7 @@ class CapabilityStatementMessaging extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CapabilityStatementEndpoint extends BackboneElement {
   CapabilityStatementEndpoint({
     super.id,
@@ -425,6 +472,9 @@ class CapabilityStatementEndpoint extends BackboneElement {
     this.addressElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Coding protocol;
   final FhirUrl address;
   final Element? addressElement;
@@ -434,6 +484,7 @@ class CapabilityStatementEndpoint extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CapabilityStatementSupportedMessage extends BackboneElement {
   CapabilityStatementSupportedMessage({
     super.id,
@@ -445,6 +496,9 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
     this.definitionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode mode;
   final Element? modeElement;
   final FhirCanonical definition;
@@ -455,6 +509,7 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CapabilityStatementDocument extends BackboneElement {
   CapabilityStatementDocument({
     super.id,
@@ -468,6 +523,9 @@ class CapabilityStatementDocument extends BackboneElement {
     this.profileElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode mode;
   final Element? modeElement;
   final FhirMarkdown? documentation;

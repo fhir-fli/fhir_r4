@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class ValueSet extends DomainResource {
   ValueSet({
     super.id,
@@ -49,6 +52,9 @@ class ValueSet extends DomainResource {
     this.expansion,
   }) : super(resourceType: R4ResourceType.ValueSet);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri? url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -85,6 +91,7 @@ class ValueSet extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ValueSetCompose extends BackboneElement {
   ValueSetCompose({
     super.id,
@@ -98,6 +105,9 @@ class ValueSetCompose extends BackboneElement {
     this.exclude,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirDate? lockedDate;
   final Element? lockedDateElement;
   final FhirBoolean? inactive;
@@ -110,6 +120,7 @@ class ValueSetCompose extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ValueSetInclude extends BackboneElement {
   ValueSetInclude({
     super.id,
@@ -125,6 +136,9 @@ class ValueSetInclude extends BackboneElement {
     this.valueSetElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri? system;
   final Element? systemElement;
   final FhirString? version;
@@ -139,6 +153,7 @@ class ValueSetInclude extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ValueSetConcept extends BackboneElement {
   ValueSetConcept({
     super.id,
@@ -151,6 +166,9 @@ class ValueSetConcept extends BackboneElement {
     this.designation,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode code;
   final Element? codeElement;
   final FhirString? display;
@@ -162,6 +180,7 @@ class ValueSetConcept extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ValueSetDesignation extends BackboneElement {
   ValueSetDesignation({
     super.id,
@@ -174,6 +193,9 @@ class ValueSetDesignation extends BackboneElement {
     this.valueElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode? language;
   final Element? languageElement;
   final Coding? use;
@@ -185,6 +207,7 @@ class ValueSetDesignation extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ValueSetFilter extends BackboneElement {
   ValueSetFilter({
     super.id,
@@ -198,6 +221,9 @@ class ValueSetFilter extends BackboneElement {
     this.valueElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode property;
   final Element? propertyElement;
   final FhirCode op;
@@ -210,6 +236,7 @@ class ValueSetFilter extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ValueSetExpansion extends BackboneElement {
   ValueSetExpansion({
     super.id,
@@ -227,6 +254,9 @@ class ValueSetExpansion extends BackboneElement {
     this.contains,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri? identifier;
   final Element? identifierElement;
   final FhirDateTime timestamp;
@@ -243,6 +273,7 @@ class ValueSetExpansion extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ValueSetParameter extends BackboneElement {
   ValueSetParameter({
     super.id,
@@ -266,6 +297,9 @@ class ValueSetParameter extends BackboneElement {
     this.valueDateTimeElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString name;
   final Element? nameElement;
   final FhirString? valueString;
@@ -288,6 +322,7 @@ class ValueSetParameter extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ValueSetContains extends BackboneElement {
   ValueSetContains({
     super.id,
@@ -309,6 +344,9 @@ class ValueSetContains extends BackboneElement {
     this.contains,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri? system;
   final Element? systemElement;
   final FhirBoolean? abstract_;

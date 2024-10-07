@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class NutritionProduct extends DomainResource {
   NutritionProduct({
     super.id,
@@ -30,6 +33,9 @@ class NutritionProduct extends DomainResource {
     this.note,
   }) : super(resourceType: R4ResourceType.NutritionProduct);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode status;
   final Element? statusElement;
   final List<CodeableConcept>? category;
@@ -47,6 +53,7 @@ class NutritionProduct extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class NutritionProductNutrient extends BackboneElement {
   NutritionProductNutrient({
     super.id,
@@ -56,6 +63,9 @@ class NutritionProductNutrient extends BackboneElement {
     this.amount,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableReference? item;
   final List<Ratio>? amount;
   @override
@@ -64,6 +74,7 @@ class NutritionProductNutrient extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class NutritionProductIngredient extends BackboneElement {
   NutritionProductIngredient({
     super.id,
@@ -73,6 +84,9 @@ class NutritionProductIngredient extends BackboneElement {
     this.amount,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableReference item;
   final List<Ratio>? amount;
   @override
@@ -81,6 +95,7 @@ class NutritionProductIngredient extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class NutritionProductProductCharacteristic extends BackboneElement {
   NutritionProductProductCharacteristic({
     super.id,
@@ -98,6 +113,9 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     this.valueBooleanElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final CodeableConcept valueCodeableConcept;
   final FhirString valueString;
@@ -114,6 +132,7 @@ class NutritionProductProductCharacteristic extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class NutritionProductInstance extends BackboneElement {
   NutritionProductInstance({
     super.id,
@@ -129,6 +148,9 @@ class NutritionProductInstance extends BackboneElement {
     this.useByElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Quantity? quantity;
   final List<Identifier>? identifier;
   final FhirString? lotNumber;

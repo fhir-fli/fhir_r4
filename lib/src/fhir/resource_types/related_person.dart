@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class RelatedPerson extends DomainResource {
   RelatedPerson({
     super.id,
@@ -34,6 +37,9 @@ class RelatedPerson extends DomainResource {
     this.communication,
   }) : super(resourceType: R4ResourceType.RelatedPerson);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirBoolean? active;
   final Element? activeElement;
@@ -55,6 +61,7 @@ class RelatedPerson extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class RelatedPersonCommunication extends BackboneElement {
   RelatedPersonCommunication({
     super.id,
@@ -65,6 +72,9 @@ class RelatedPersonCommunication extends BackboneElement {
     this.preferredElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept language;
   final FhirBoolean? preferred;
   final Element? preferredElement;

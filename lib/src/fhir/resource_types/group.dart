@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class FhirGroup extends DomainResource {
   FhirGroup({
     super.id,
@@ -34,6 +37,9 @@ class FhirGroup extends DomainResource {
     this.member,
   }) : super(resourceType: R4ResourceType.FhirGroup);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirBoolean? active;
   final Element? activeElement;
@@ -55,6 +61,7 @@ class FhirGroup extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class GroupCharacteristic extends BackboneElement {
   GroupCharacteristic({
     super.id,
@@ -72,6 +79,9 @@ class GroupCharacteristic extends BackboneElement {
     this.period,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept code;
   final CodeableConcept valueCodeableConcept;
   final FhirBoolean valueBoolean;
@@ -88,6 +98,7 @@ class GroupCharacteristic extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class GroupMember extends BackboneElement {
   GroupMember({
     super.id,
@@ -99,6 +110,9 @@ class GroupMember extends BackboneElement {
     this.inactiveElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference entity;
   final Period? period;
   final FhirBoolean? inactive;

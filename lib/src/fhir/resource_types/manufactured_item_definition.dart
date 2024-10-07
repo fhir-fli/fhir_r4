@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class ManufacturedItemDefinition extends DomainResource {
   ManufacturedItemDefinition({
     super.id,
@@ -27,6 +30,9 @@ class ManufacturedItemDefinition extends DomainResource {
     this.property,
   }) : super(resourceType: R4ResourceType.ManufacturedItemDefinition);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -41,6 +47,7 @@ class ManufacturedItemDefinition extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ManufacturedItemDefinitionProperty extends BackboneElement {
   ManufacturedItemDefinitionProperty({
     super.id,
@@ -56,6 +63,9 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
     this.valueAttachment,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final CodeableConcept? valueCodeableConcept;
   final Quantity? valueQuantity;

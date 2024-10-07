@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class ImmunizationRecommendation extends DomainResource {
   ImmunizationRecommendation({
     super.id,
@@ -25,6 +28,9 @@ class ImmunizationRecommendation extends DomainResource {
     required this.recommendation,
   }) : super(resourceType: R4ResourceType.ImmunizationRecommendation);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final Reference patient;
   final FhirDateTime date;
@@ -37,6 +43,7 @@ class ImmunizationRecommendation extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ImmunizationRecommendationRecommendation extends BackboneElement {
   ImmunizationRecommendationRecommendation({
     super.id,
@@ -64,6 +71,9 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
     this.supportingPatientInformation,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<CodeableConcept>? vaccineCode;
   final CodeableConcept? targetDisease;
   final List<CodeableConcept>? contraindicatedVaccineCode;
@@ -91,6 +101,7 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ImmunizationRecommendationDateCriterion extends BackboneElement {
   ImmunizationRecommendationDateCriterion({
     super.id,
@@ -101,6 +112,9 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
     this.valueElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept code;
   final FhirDateTime value;
   final Element? valueElement;

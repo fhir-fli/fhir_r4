@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class StructureMap extends DomainResource {
   StructureMap({
     super.id,
@@ -49,6 +52,9 @@ class StructureMap extends DomainResource {
     required this.group,
   }) : super(resourceType: R4ResourceType.StructureMap);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -85,6 +91,7 @@ class StructureMap extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class StructureMapStructure extends BackboneElement {
   StructureMapStructure({
     super.id,
@@ -100,6 +107,9 @@ class StructureMapStructure extends BackboneElement {
     this.documentationElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCanonical url;
   final Element? urlElement;
   final FhirCode mode;
@@ -114,6 +124,7 @@ class StructureMapStructure extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class StructureMapGroup extends BackboneElement {
   StructureMapGroup({
     super.id,
@@ -131,6 +142,9 @@ class StructureMapGroup extends BackboneElement {
     required this.rule,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirId name;
   final Element? nameElement;
   final FhirId? extends_;
@@ -147,6 +161,7 @@ class StructureMapGroup extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class StructureMapInput extends BackboneElement {
   StructureMapInput({
     super.id,
@@ -162,6 +177,9 @@ class StructureMapInput extends BackboneElement {
     this.documentationElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirId name;
   final Element? nameElement;
   final FhirString? type;
@@ -176,6 +194,7 @@ class StructureMapInput extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class StructureMapRule extends BackboneElement {
   StructureMapRule({
     super.id,
@@ -191,6 +210,9 @@ class StructureMapRule extends BackboneElement {
     this.documentationElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirId name;
   final Element? nameElement;
   final List<StructureMapSource> source;
@@ -205,6 +227,7 @@ class StructureMapRule extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class StructureMapSource extends BackboneElement {
   StructureMapSource({
     super.id,
@@ -301,6 +324,9 @@ class StructureMapSource extends BackboneElement {
     this.logMessageElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirId context;
   final Element? contextElement;
   final FhirInteger? min;
@@ -396,6 +422,7 @@ class StructureMapSource extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class StructureMapTarget extends BackboneElement {
   StructureMapTarget({
     super.id,
@@ -418,6 +445,9 @@ class StructureMapTarget extends BackboneElement {
     this.parameter,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirId? context;
   final Element? contextElement;
   final FhirCode? contextType;
@@ -439,6 +469,7 @@ class StructureMapTarget extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class StructureMapParameter extends BackboneElement {
   StructureMapParameter({
     super.id,
@@ -456,6 +487,9 @@ class StructureMapParameter extends BackboneElement {
     this.valueDecimalElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirId valueId;
   final Element? valueIdElement;
   final FhirString valueString;
@@ -472,6 +506,7 @@ class StructureMapParameter extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class StructureMapDependent extends BackboneElement {
   StructureMapDependent({
     super.id,
@@ -483,6 +518,9 @@ class StructureMapDependent extends BackboneElement {
     this.variableElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirId name;
   final Element? nameElement;
   final List<FhirString> variable;

@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class EnrollmentResponse extends DomainResource {
   EnrollmentResponse({
     super.id,
@@ -31,6 +34,9 @@ class EnrollmentResponse extends DomainResource {
     this.requestProvider,
   }) : super(resourceType: R4ResourceType.EnrollmentResponse);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode? status;
   final Element? statusElement;

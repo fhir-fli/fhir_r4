@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class GraphDefinition extends DomainResource {
   GraphDefinition({
     super.id,
@@ -45,6 +48,9 @@ class GraphDefinition extends DomainResource {
     this.link,
   }) : super(resourceType: R4ResourceType.GraphDefinition);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri? url;
   final Element? urlElement;
   final FhirString? version;
@@ -77,6 +83,7 @@ class GraphDefinition extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class GraphDefinitionLink extends BackboneElement {
   GraphDefinitionLink({
     super.id,
@@ -95,6 +102,9 @@ class GraphDefinitionLink extends BackboneElement {
     this.target,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? path;
   final Element? pathElement;
   final FhirString? sliceName;
@@ -112,6 +122,7 @@ class GraphDefinitionLink extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class GraphDefinitionTarget extends BackboneElement {
   GraphDefinitionTarget({
     super.id,
@@ -127,6 +138,9 @@ class GraphDefinitionTarget extends BackboneElement {
     this.link,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode type;
   final Element? typeElement;
   final FhirString? params;
@@ -141,6 +155,7 @@ class GraphDefinitionTarget extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class GraphDefinitionCompartment extends BackboneElement {
   GraphDefinitionCompartment({
     super.id,
@@ -158,6 +173,9 @@ class GraphDefinitionCompartment extends BackboneElement {
     this.descriptionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode use;
   final Element? useElement;
   final FhirCode code;

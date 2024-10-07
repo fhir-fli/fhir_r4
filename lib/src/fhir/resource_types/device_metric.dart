@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class DeviceMetric extends DomainResource {
   DeviceMetric({
     super.id,
@@ -32,6 +35,9 @@ class DeviceMetric extends DomainResource {
     this.calibration,
   }) : super(resourceType: R4ResourceType.DeviceMetric);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final CodeableConcept type;
   final CodeableConcept? unit;
@@ -51,6 +57,7 @@ class DeviceMetric extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class DeviceMetricCalibration extends BackboneElement {
   DeviceMetricCalibration({
     super.id,
@@ -64,6 +71,9 @@ class DeviceMetricCalibration extends BackboneElement {
     this.timeElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode? type;
   final Element? typeElement;
   final FhirCode? state;

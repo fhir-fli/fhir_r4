@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class AllergyIntolerance extends DomainResource {
   AllergyIntolerance({
     super.id,
@@ -46,6 +49,9 @@ class AllergyIntolerance extends DomainResource {
     this.reaction,
   }) : super(resourceType: R4ResourceType.AllergyIntolerance);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final CodeableConcept? clinicalStatus;
   final CodeableConcept? verificationStatus;
@@ -79,6 +85,7 @@ class AllergyIntolerance extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class AllergyIntoleranceReaction extends BackboneElement {
   AllergyIntoleranceReaction({
     super.id,
@@ -96,6 +103,9 @@ class AllergyIntoleranceReaction extends BackboneElement {
     this.note,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? substance;
   final List<CodeableConcept> manifestation;
   final FhirString? description;

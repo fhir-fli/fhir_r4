@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class ImagingStudy extends DomainResource {
   ImagingStudy({
     super.id,
@@ -44,6 +47,9 @@ class ImagingStudy extends DomainResource {
     this.series,
   }) : super(resourceType: R4ResourceType.ImagingStudy);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -75,6 +81,7 @@ class ImagingStudy extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ImagingStudySeries extends BackboneElement {
   ImagingStudySeries({
     super.id,
@@ -99,6 +106,9 @@ class ImagingStudySeries extends BackboneElement {
     this.instance,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirId uid;
   final Element? uidElement;
   final FhirUnsignedInt? number;
@@ -122,6 +132,7 @@ class ImagingStudySeries extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ImagingStudyPerformer extends BackboneElement {
   ImagingStudyPerformer({
     super.id,
@@ -131,6 +142,9 @@ class ImagingStudyPerformer extends BackboneElement {
     required this.actor,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? function_;
   final Reference actor;
   @override
@@ -139,6 +153,7 @@ class ImagingStudyPerformer extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ImagingStudyInstance extends BackboneElement {
   ImagingStudyInstance({
     super.id,
@@ -153,6 +168,9 @@ class ImagingStudyInstance extends BackboneElement {
     this.titleElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirId uid;
   final Element? uidElement;
   final Coding sopClass;

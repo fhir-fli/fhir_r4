@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class OperationOutcome extends DomainResource {
   OperationOutcome({
     super.id,
@@ -20,6 +23,9 @@ class OperationOutcome extends DomainResource {
     required this.issue,
   }) : super(resourceType: R4ResourceType.OperationOutcome);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<OperationOutcomeIssue> issue;
   @override
   OperationOutcome clone() => throw UnimplementedError();
@@ -27,6 +33,7 @@ class OperationOutcome extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class OperationOutcomeIssue extends BackboneElement {
   OperationOutcomeIssue({
     super.id,
@@ -45,6 +52,9 @@ class OperationOutcomeIssue extends BackboneElement {
     this.expressionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode severity;
   final Element? severityElement;
   final FhirCode code;

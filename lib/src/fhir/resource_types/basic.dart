@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Basic extends DomainResource {
   Basic({
     super.id,
@@ -25,6 +28,9 @@ class Basic extends DomainResource {
     this.author,
   }) : super(resourceType: R4ResourceType.Basic);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final CodeableConcept code;
   final Reference? subject;

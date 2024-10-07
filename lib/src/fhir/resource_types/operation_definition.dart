@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class OperationDefinition extends DomainResource {
   OperationDefinition({
     super.id,
@@ -66,6 +69,9 @@ class OperationDefinition extends DomainResource {
     this.overload,
   }) : super(resourceType: R4ResourceType.OperationDefinition);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri? url;
   final Element? urlElement;
   final FhirString? version;
@@ -119,6 +125,7 @@ class OperationDefinition extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class OperationDefinitionParameter extends BackboneElement {
   OperationDefinitionParameter({
     super.id,
@@ -145,6 +152,9 @@ class OperationDefinitionParameter extends BackboneElement {
     this.part_,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode name;
   final Element? nameElement;
   final FhirCode use;
@@ -170,6 +180,7 @@ class OperationDefinitionParameter extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class OperationDefinitionBinding extends BackboneElement {
   OperationDefinitionBinding({
     super.id,
@@ -181,6 +192,9 @@ class OperationDefinitionBinding extends BackboneElement {
     this.valueSetElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode strength;
   final Element? strengthElement;
   final FhirCanonical valueSet;
@@ -191,6 +205,7 @@ class OperationDefinitionBinding extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class OperationDefinitionReferencedFrom extends BackboneElement {
   OperationDefinitionReferencedFrom({
     super.id,
@@ -202,6 +217,9 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
     this.sourceIdElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString source;
   final Element? sourceElement;
   final FhirString? sourceId;
@@ -212,6 +230,7 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class OperationDefinitionOverload extends BackboneElement {
   OperationDefinitionOverload({
     super.id,
@@ -223,6 +242,9 @@ class OperationDefinitionOverload extends BackboneElement {
     this.commentElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<FhirString>? parameterName;
   final List<Element>? parameterNameElement;
   final FhirString? comment;

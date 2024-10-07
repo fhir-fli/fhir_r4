@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class ObservationDefinition extends DomainResource {
   ObservationDefinition({
     super.id,
@@ -35,6 +38,9 @@ class ObservationDefinition extends DomainResource {
     this.criticalCodedValueSet,
   }) : super(resourceType: R4ResourceType.ObservationDefinition);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<CodeableConcept>? category;
   final CodeableConcept code;
   final List<Identifier>? identifier;
@@ -57,6 +63,7 @@ class ObservationDefinition extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ObservationDefinitionQuantitativeDetails extends BackboneElement {
   ObservationDefinitionQuantitativeDetails({
     super.id,
@@ -70,6 +77,9 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
     this.decimalPrecisionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? customaryUnit;
   final CodeableConcept? unit;
   final FhirDecimal? conversionFactor;
@@ -83,6 +93,7 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ObservationDefinitionQualifiedInterval extends BackboneElement {
   ObservationDefinitionQualifiedInterval({
     super.id,
@@ -101,6 +112,9 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
     this.conditionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode? category;
   final Element? categoryElement;
   final Range? range;

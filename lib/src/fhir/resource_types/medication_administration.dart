@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationAdministration extends DomainResource {
   MedicationAdministration({
     super.id,
@@ -43,6 +46,9 @@ class MedicationAdministration extends DomainResource {
     this.eventHistory,
   }) : super(resourceType: R4ResourceType.MedicationAdministration);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final List<FhirUri>? instantiates;
   final List<Element>? instantiatesElement;
@@ -73,6 +79,7 @@ class MedicationAdministration extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationAdministrationPerformer extends BackboneElement {
   MedicationAdministrationPerformer({
     super.id,
@@ -82,6 +89,9 @@ class MedicationAdministrationPerformer extends BackboneElement {
     required this.actor,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? function_;
   final Reference actor;
   @override
@@ -90,6 +100,7 @@ class MedicationAdministrationPerformer extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationAdministrationDosage extends BackboneElement {
   MedicationAdministrationDosage({
     super.id,
@@ -105,6 +116,9 @@ class MedicationAdministrationDosage extends BackboneElement {
     this.rateQuantity,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? text;
   final Element? textElement;
   final CodeableConcept? site;

@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Contract extends DomainResource {
   Contract({
     super.id,
@@ -61,6 +64,9 @@ class Contract extends DomainResource {
     this.rule,
   }) : super(resourceType: R4ResourceType.Contract);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirUri? url;
   final Element? urlElement;
@@ -109,6 +115,7 @@ class Contract extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ContractContentDefinition extends BackboneElement {
   ContractContentDefinition({
     super.id,
@@ -125,6 +132,9 @@ class ContractContentDefinition extends BackboneElement {
     this.copyrightElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final CodeableConcept? subType;
   final Reference? publisher;
@@ -140,6 +150,7 @@ class ContractContentDefinition extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ContractTerm extends BackboneElement {
   ContractTerm({
     super.id,
@@ -162,6 +173,9 @@ class ContractTerm extends BackboneElement {
     this.group,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Identifier? identifier;
   final FhirDateTime? issued;
   final Element? issuedElement;
@@ -183,6 +197,7 @@ class ContractTerm extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ContractSecurityLabel extends BackboneElement {
   ContractSecurityLabel({
     super.id,
@@ -195,6 +210,9 @@ class ContractSecurityLabel extends BackboneElement {
     this.control,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<FhirUnsignedInt>? number;
   final List<Element>? numberElement;
   final Coding classification;
@@ -206,6 +224,7 @@ class ContractSecurityLabel extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ContractOffer extends BackboneElement {
   ContractOffer({
     super.id,
@@ -226,6 +245,9 @@ class ContractOffer extends BackboneElement {
     this.securityLabelNumberElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final List<ContractParty>? party;
   final Reference? topic;
@@ -245,6 +267,7 @@ class ContractOffer extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ContractParty extends BackboneElement {
   ContractParty({
     super.id,
@@ -254,6 +277,9 @@ class ContractParty extends BackboneElement {
     required this.role,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Reference> reference;
   final CodeableConcept role;
   @override
@@ -262,6 +288,7 @@ class ContractParty extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ContractAnswer extends BackboneElement {
   ContractAnswer({
     super.id,
@@ -289,6 +316,9 @@ class ContractAnswer extends BackboneElement {
     required this.valueReference,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirBoolean valueBoolean;
   final Element? valueBooleanElement;
   final FhirDecimal valueDecimal;
@@ -315,6 +345,7 @@ class ContractAnswer extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ContractAsset extends BackboneElement {
   ContractAsset({
     super.id,
@@ -341,6 +372,9 @@ class ContractAsset extends BackboneElement {
     this.valuedItem,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? scope;
   final List<CodeableConcept>? type;
   final List<Reference>? typeReference;
@@ -366,6 +400,7 @@ class ContractAsset extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ContractContext extends BackboneElement {
   ContractContext({
     super.id,
@@ -377,6 +412,9 @@ class ContractContext extends BackboneElement {
     this.textElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference? reference;
   final List<CodeableConcept>? code;
   final FhirString? text;
@@ -387,6 +425,7 @@ class ContractContext extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ContractValuedItem extends BackboneElement {
   ContractValuedItem({
     super.id,
@@ -416,6 +455,9 @@ class ContractValuedItem extends BackboneElement {
     this.securityLabelNumberElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? entityCodeableConcept;
   final Reference? entityReference;
   final Identifier? identifier;
@@ -444,6 +486,7 @@ class ContractValuedItem extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ContractAction extends BackboneElement {
   ContractAction({
     super.id,
@@ -483,6 +526,9 @@ class ContractAction extends BackboneElement {
     this.securityLabelNumberElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirBoolean? doNotPerform;
   final Element? doNotPerformElement;
   final CodeableConcept type;
@@ -521,6 +567,7 @@ class ContractAction extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ContractSubject extends BackboneElement {
   ContractSubject({
     super.id,
@@ -530,6 +577,9 @@ class ContractSubject extends BackboneElement {
     this.role,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Reference> reference;
   final CodeableConcept? role;
   @override
@@ -538,6 +588,7 @@ class ContractSubject extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ContractSigner extends BackboneElement {
   ContractSigner({
     super.id,
@@ -548,6 +599,9 @@ class ContractSigner extends BackboneElement {
     required this.signature,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Coding type;
   final Reference party;
   final List<Signature> signature;
@@ -557,6 +611,7 @@ class ContractSigner extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ContractFriendly extends BackboneElement {
   ContractFriendly({
     super.id,
@@ -566,6 +621,9 @@ class ContractFriendly extends BackboneElement {
     required this.contentReference,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Attachment contentAttachment;
   final Reference contentReference;
   @override
@@ -574,6 +632,7 @@ class ContractFriendly extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ContractLegal extends BackboneElement {
   ContractLegal({
     super.id,
@@ -585,6 +644,9 @@ class ContractLegal extends BackboneElement {
     this.legallyBindingReference,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Attachment contentAttachment;
   final Reference contentReference;
   final Attachment? legallyBindingAttachment;
@@ -595,6 +657,7 @@ class ContractLegal extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ContractRule extends BackboneElement {
   ContractRule({
     super.id,
@@ -604,6 +667,9 @@ class ContractRule extends BackboneElement {
     required this.contentReference,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Attachment contentAttachment;
   final Reference contentReference;
   @override

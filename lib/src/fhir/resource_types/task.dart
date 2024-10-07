@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Task extends DomainResource {
   Task({
     super.id,
@@ -58,6 +61,9 @@ class Task extends DomainResource {
     this.output,
   }) : super(resourceType: R4ResourceType.Task);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCanonical? instantiatesCanonical;
   final Element? instantiatesCanonicalElement;
@@ -103,6 +109,7 @@ class Task extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TaskRestriction extends BackboneElement {
   TaskRestriction({
     super.id,
@@ -114,6 +121,9 @@ class TaskRestriction extends BackboneElement {
     this.recipient,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt? repetitions;
   final Element? repetitionsElement;
   final Period? period;
@@ -124,6 +134,7 @@ class TaskRestriction extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TaskInput extends BackboneElement {
   TaskInput({
     super.id,
@@ -201,6 +212,9 @@ class TaskInput extends BackboneElement {
     required this.valueMeta,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final FhirBase64Binary valueBase64Binary;
   final Element? valueBase64BinaryElement;
@@ -277,6 +291,7 @@ class TaskInput extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TaskOutput extends BackboneElement {
   TaskOutput({
     super.id,
@@ -354,6 +369,9 @@ class TaskOutput extends BackboneElement {
     required this.valueMeta,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final FhirBase64Binary valueBase64Binary;
   final Element? valueBase64BinaryElement;

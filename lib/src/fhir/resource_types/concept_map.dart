@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class ConceptMap extends DomainResource {
   ConceptMap({
     super.id,
@@ -54,6 +57,9 @@ class ConceptMap extends DomainResource {
     this.group,
   }) : super(resourceType: R4ResourceType.ConceptMap);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri? url;
   final Element? urlElement;
   final Identifier? identifier;
@@ -95,6 +101,7 @@ class ConceptMap extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ConceptMapGroup extends BackboneElement {
   ConceptMapGroup({
     super.id,
@@ -112,6 +119,9 @@ class ConceptMapGroup extends BackboneElement {
     this.unmapped,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri? source;
   final Element? sourceElement;
   final FhirString? sourceVersion;
@@ -128,6 +138,7 @@ class ConceptMapGroup extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ConceptMapElement extends BackboneElement {
   ConceptMapElement({
     super.id,
@@ -140,6 +151,9 @@ class ConceptMapElement extends BackboneElement {
     this.target,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode? code;
   final Element? codeElement;
   final FhirString? display;
@@ -151,6 +165,7 @@ class ConceptMapElement extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ConceptMapTarget extends BackboneElement {
   ConceptMapTarget({
     super.id,
@@ -168,6 +183,9 @@ class ConceptMapTarget extends BackboneElement {
     this.product,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode? code;
   final Element? codeElement;
   final FhirString? display;
@@ -184,6 +202,7 @@ class ConceptMapTarget extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ConceptMapDependsOn extends BackboneElement {
   ConceptMapDependsOn({
     super.id,
@@ -199,6 +218,9 @@ class ConceptMapDependsOn extends BackboneElement {
     this.displayElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri property;
   final Element? propertyElement;
   final FhirCanonical? system;
@@ -213,6 +235,7 @@ class ConceptMapDependsOn extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ConceptMapUnmapped extends BackboneElement {
   ConceptMapUnmapped({
     super.id,
@@ -228,6 +251,9 @@ class ConceptMapUnmapped extends BackboneElement {
     this.urlElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode mode;
   final Element? modeElement;
   final FhirCode? code;

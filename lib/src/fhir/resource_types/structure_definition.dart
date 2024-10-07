@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class StructureDefinition extends DomainResource {
   StructureDefinition({
     super.id,
@@ -62,6 +65,9 @@ class StructureDefinition extends DomainResource {
     this.differential,
   }) : super(resourceType: R4ResourceType.StructureDefinition);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -111,6 +117,7 @@ class StructureDefinition extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class StructureDefinitionMapping extends BackboneElement {
   StructureDefinitionMapping({
     super.id,
@@ -126,6 +133,9 @@ class StructureDefinitionMapping extends BackboneElement {
     this.commentElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirId identity;
   final Element? identityElement;
   final FhirUri? uri;
@@ -140,6 +150,7 @@ class StructureDefinitionMapping extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class StructureDefinitionContext extends BackboneElement {
   StructureDefinitionContext({
     super.id,
@@ -153,6 +164,9 @@ class StructureDefinitionContext extends BackboneElement {
     this.contextInvariantElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode type;
   final Element? typeElement;
   final FhirString expression;
@@ -165,6 +179,7 @@ class StructureDefinitionContext extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class StructureDefinitionSnapshot extends BackboneElement {
   StructureDefinitionSnapshot({
     super.id,
@@ -173,6 +188,9 @@ class StructureDefinitionSnapshot extends BackboneElement {
     required this.element,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<ElementDefinition> element;
   @override
   StructureDefinitionSnapshot clone() => throw UnimplementedError();
@@ -180,6 +198,7 @@ class StructureDefinitionSnapshot extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class StructureDefinitionDifferential extends BackboneElement {
   StructureDefinitionDifferential({
     super.id,
@@ -188,6 +207,9 @@ class StructureDefinitionDifferential extends BackboneElement {
     required this.element,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<ElementDefinition> element;
   @override
   StructureDefinitionDifferential clone() => throw UnimplementedError();

@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Measure extends DomainResource {
   Measure({
     super.id,
@@ -84,6 +87,9 @@ class Measure extends DomainResource {
     this.supplementalData,
   }) : super(resourceType: R4ResourceType.Measure);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri? url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -155,6 +161,7 @@ class Measure extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MeasureGroup extends BackboneElement {
   MeasureGroup({
     super.id,
@@ -167,6 +174,9 @@ class MeasureGroup extends BackboneElement {
     this.stratifier,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? code;
   final FhirString? description;
   final Element? descriptionElement;
@@ -178,6 +188,7 @@ class MeasureGroup extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MeasurePopulation extends BackboneElement {
   MeasurePopulation({
     super.id,
@@ -189,6 +200,9 @@ class MeasurePopulation extends BackboneElement {
     required this.criteria,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? code;
   final FhirString? description;
   final Element? descriptionElement;
@@ -199,6 +213,7 @@ class MeasurePopulation extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MeasureStratifier extends BackboneElement {
   MeasureStratifier({
     super.id,
@@ -211,6 +226,9 @@ class MeasureStratifier extends BackboneElement {
     this.component,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? code;
   final FhirString? description;
   final Element? descriptionElement;
@@ -222,6 +240,7 @@ class MeasureStratifier extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MeasureComponent extends BackboneElement {
   MeasureComponent({
     super.id,
@@ -233,6 +252,9 @@ class MeasureComponent extends BackboneElement {
     required this.criteria,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? code;
   final FhirString? description;
   final Element? descriptionElement;
@@ -243,6 +265,7 @@ class MeasureComponent extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MeasureSupplementalData extends BackboneElement {
   MeasureSupplementalData({
     super.id,
@@ -255,6 +278,9 @@ class MeasureSupplementalData extends BackboneElement {
     required this.criteria,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? code;
   final List<CodeableConcept>? usage;
   final FhirString? description;

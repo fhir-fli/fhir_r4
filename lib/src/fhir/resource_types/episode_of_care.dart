@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class EpisodeOfCare extends DomainResource {
   EpisodeOfCare({
     super.id,
@@ -32,6 +35,9 @@ class EpisodeOfCare extends DomainResource {
     this.account,
   }) : super(resourceType: R4ResourceType.EpisodeOfCare);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -51,6 +57,7 @@ class EpisodeOfCare extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class EpisodeOfCareStatusHistory extends BackboneElement {
   EpisodeOfCareStatusHistory({
     super.id,
@@ -61,6 +68,9 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
     required this.period,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode status;
   final Element? statusElement;
   final Period period;
@@ -70,6 +80,7 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class EpisodeOfCareDiagnosis extends BackboneElement {
   EpisodeOfCareDiagnosis({
     super.id,
@@ -81,6 +92,9 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
     this.rankElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference condition;
   final CodeableConcept? role;
   final FhirPositiveInt? rank;

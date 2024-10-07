@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Invoice extends DomainResource {
   Invoice({
     super.id,
@@ -39,6 +42,9 @@ class Invoice extends DomainResource {
     this.note,
   }) : super(resourceType: R4ResourceType.Invoice);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -65,6 +71,7 @@ class Invoice extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class InvoiceParticipant extends BackboneElement {
   InvoiceParticipant({
     super.id,
@@ -74,6 +81,9 @@ class InvoiceParticipant extends BackboneElement {
     required this.actor,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? role;
   final Reference actor;
   @override
@@ -82,6 +92,7 @@ class InvoiceParticipant extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class InvoiceLineItem extends BackboneElement {
   InvoiceLineItem({
     super.id,
@@ -94,6 +105,9 @@ class InvoiceLineItem extends BackboneElement {
     this.priceComponent,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt? sequence;
   final Element? sequenceElement;
   final Reference chargeItemReference;
@@ -105,6 +119,7 @@ class InvoiceLineItem extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class InvoicePriceComponent extends BackboneElement {
   InvoicePriceComponent({
     super.id,
@@ -118,6 +133,9 @@ class InvoicePriceComponent extends BackboneElement {
     this.amount,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode type;
   final Element? typeElement;
   final CodeableConcept? code;

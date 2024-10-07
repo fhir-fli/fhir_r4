@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Bundle extends DomainResource {
   Bundle({
     super.id,
@@ -25,6 +28,9 @@ class Bundle extends DomainResource {
     this.signature,
   }) : super(resourceType: R4ResourceType.Bundle);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Identifier? identifier;
   final FhirCode type;
   final Element? typeElement;
@@ -41,6 +47,7 @@ class Bundle extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class BundleLink extends BackboneElement {
   BundleLink({
     super.id,
@@ -52,6 +59,9 @@ class BundleLink extends BackboneElement {
     this.urlElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString relation;
   final Element? relationElement;
   final FhirUri url;
@@ -62,6 +72,7 @@ class BundleLink extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class BundleEntry extends BackboneElement {
   BundleEntry({
     super.id,
@@ -76,6 +87,9 @@ class BundleEntry extends BackboneElement {
     this.response,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<BundleLink>? link;
   final FhirUri? fullUrl;
   final Element? fullUrlElement;
@@ -89,6 +103,7 @@ class BundleEntry extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class BundleSearch extends BackboneElement {
   BundleSearch({
     super.id,
@@ -100,6 +115,9 @@ class BundleSearch extends BackboneElement {
     this.scoreElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode? mode;
   final Element? modeElement;
   final FhirDecimal? score;
@@ -110,6 +128,7 @@ class BundleSearch extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class BundleRequest extends BackboneElement {
   BundleRequest({
     super.id,
@@ -129,6 +148,9 @@ class BundleRequest extends BackboneElement {
     this.ifNoneExistElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode method;
   final Element? methodElement;
   final FhirUri url;
@@ -147,6 +169,7 @@ class BundleRequest extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class BundleResponse extends BackboneElement {
   BundleResponse({
     super.id,
@@ -163,6 +186,9 @@ class BundleResponse extends BackboneElement {
     this.outcome,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString status;
   final Element? statusElement;
   final FhirUri? location;

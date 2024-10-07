@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class CompartmentDefinition extends DomainResource {
   CompartmentDefinition({
     super.id,
@@ -44,6 +47,9 @@ class CompartmentDefinition extends DomainResource {
     this.resource,
   }) : super(resourceType: R4ResourceType.CompartmentDefinition);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri url;
   final Element? urlElement;
   final FhirString? version;
@@ -75,6 +81,7 @@ class CompartmentDefinition extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CompartmentDefinitionResource extends BackboneElement {
   CompartmentDefinitionResource({
     super.id,
@@ -88,6 +95,9 @@ class CompartmentDefinitionResource extends BackboneElement {
     this.documentationElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode code;
   final Element? codeElement;
   final List<FhirString>? param;

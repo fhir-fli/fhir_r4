@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class EvidenceVariable extends DomainResource {
   EvidenceVariable({
     super.id,
@@ -56,6 +59,9 @@ class EvidenceVariable extends DomainResource {
     this.category,
   }) : super(resourceType: R4ResourceType.EvidenceVariable);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri? url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -99,6 +105,7 @@ class EvidenceVariable extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class EvidenceVariableCharacteristic extends BackboneElement {
   EvidenceVariableCharacteristic({
     super.id,
@@ -120,6 +127,9 @@ class EvidenceVariableCharacteristic extends BackboneElement {
     this.groupMeasureElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? description;
   final Element? descriptionElement;
   final Reference definitionReference;
@@ -140,6 +150,7 @@ class EvidenceVariableCharacteristic extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class EvidenceVariableTimeFromStart extends BackboneElement {
   EvidenceVariableTimeFromStart({
     super.id,
@@ -152,6 +163,9 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
     this.note,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? description;
   final Element? descriptionElement;
   final Quantity? quantity;
@@ -163,6 +177,7 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class EvidenceVariableCategory extends BackboneElement {
   EvidenceVariableCategory({
     super.id,
@@ -175,6 +190,9 @@ class EvidenceVariableCategory extends BackboneElement {
     this.valueRange,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? name;
   final Element? nameElement;
   final CodeableConcept? valueCodeableConcept;

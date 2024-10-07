@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicinalProductDefinition extends DomainResource {
   MedicinalProductDefinition({
     super.id,
@@ -51,6 +54,9 @@ class MedicinalProductDefinition extends DomainResource {
     this.characteristic,
   }) : super(resourceType: R4ResourceType.MedicinalProductDefinition);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final CodeableConcept? type;
   final CodeableConcept? domain;
@@ -89,6 +95,7 @@ class MedicinalProductDefinition extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicinalProductDefinitionContact extends BackboneElement {
   MedicinalProductDefinitionContact({
     super.id,
@@ -98,6 +105,9 @@ class MedicinalProductDefinitionContact extends BackboneElement {
     required this.contact,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? type;
   final Reference contact;
   @override
@@ -106,6 +116,7 @@ class MedicinalProductDefinitionContact extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicinalProductDefinitionName extends BackboneElement {
   MedicinalProductDefinitionName({
     super.id,
@@ -118,6 +129,9 @@ class MedicinalProductDefinitionName extends BackboneElement {
     this.countryLanguage,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString productName;
   final Element? productNameElement;
   final CodeableConcept? type;
@@ -129,6 +143,7 @@ class MedicinalProductDefinitionName extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicinalProductDefinitionNamePart extends BackboneElement {
   MedicinalProductDefinitionNamePart({
     super.id,
@@ -139,6 +154,9 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
     required this.type,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString part_;
   final Element? partElement;
   final CodeableConcept type;
@@ -148,6 +166,7 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
   MedicinalProductDefinitionCountryLanguage({
     super.id,
@@ -158,6 +177,9 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
     required this.language,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept country;
   final CodeableConcept? jurisdiction;
   final CodeableConcept language;
@@ -168,6 +190,7 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicinalProductDefinitionCrossReference extends BackboneElement {
   MedicinalProductDefinitionCrossReference({
     super.id,
@@ -177,6 +200,9 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
     this.type,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableReference product;
   final CodeableConcept? type;
   @override
@@ -186,6 +212,7 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicinalProductDefinitionOperation extends BackboneElement {
   MedicinalProductDefinitionOperation({
     super.id,
@@ -197,6 +224,9 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
     this.confidentialityIndicator,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableReference? type;
   final Period? effectiveDate;
   final List<Reference>? organization;
@@ -207,6 +237,7 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicinalProductDefinitionCharacteristic extends BackboneElement {
   MedicinalProductDefinitionCharacteristic({
     super.id,
@@ -222,6 +253,9 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
     this.valueAttachment,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final CodeableConcept? valueCodeableConcept;
   final Quantity? valueQuantity;

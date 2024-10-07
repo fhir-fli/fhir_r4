@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class SupplyRequest extends DomainResource {
   SupplyRequest({
     super.id,
@@ -41,6 +44,9 @@ class SupplyRequest extends DomainResource {
     this.deliverTo,
   }) : super(resourceType: R4ResourceType.SupplyRequest);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode? status;
   final Element? statusElement;
@@ -69,6 +75,7 @@ class SupplyRequest extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SupplyRequestParameter extends BackboneElement {
   SupplyRequestParameter({
     super.id,
@@ -82,6 +89,9 @@ class SupplyRequestParameter extends BackboneElement {
     this.valueBooleanElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? code;
   final CodeableConcept? valueCodeableConcept;
   final Quantity? valueQuantity;

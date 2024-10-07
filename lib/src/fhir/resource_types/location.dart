@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Location extends DomainResource {
   Location({
     super.id,
@@ -42,6 +45,9 @@ class Location extends DomainResource {
     this.endpoint,
   }) : super(resourceType: R4ResourceType.Location);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode? status;
   final Element? statusElement;
@@ -71,6 +77,7 @@ class Location extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class LocationPosition extends BackboneElement {
   LocationPosition({
     super.id,
@@ -84,6 +91,9 @@ class LocationPosition extends BackboneElement {
     this.altitudeElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirDecimal longitude;
   final Element? longitudeElement;
   final FhirDecimal latitude;
@@ -96,6 +106,7 @@ class LocationPosition extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class LocationHoursOfOperation extends BackboneElement {
   LocationHoursOfOperation({
     super.id,
@@ -111,6 +122,9 @@ class LocationHoursOfOperation extends BackboneElement {
     this.closingTimeElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<FhirCode>? daysOfWeek;
   final List<Element>? daysOfWeekElement;
   final FhirBoolean? allDay;

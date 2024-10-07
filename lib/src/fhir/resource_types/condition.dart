@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Condition extends DomainResource {
   Condition({
     super.id,
@@ -49,6 +52,9 @@ class Condition extends DomainResource {
     this.note,
   }) : super(resourceType: R4ResourceType.Condition);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final CodeableConcept? clinicalStatus;
   final CodeableConcept? verificationStatus;
@@ -85,6 +91,7 @@ class Condition extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ConditionStage extends BackboneElement {
   ConditionStage({
     super.id,
@@ -95,6 +102,9 @@ class ConditionStage extends BackboneElement {
     this.type,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? summary;
   final List<Reference>? assessment;
   final CodeableConcept? type;
@@ -104,6 +114,7 @@ class ConditionStage extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ConditionEvidence extends BackboneElement {
   ConditionEvidence({
     super.id,
@@ -113,6 +124,9 @@ class ConditionEvidence extends BackboneElement {
     this.detail,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<CodeableConcept>? code;
   final List<Reference>? detail;
   @override

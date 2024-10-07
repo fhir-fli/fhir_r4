@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class AdministrableProductDefinition extends DomainResource {
   AdministrableProductDefinition({
     super.id,
@@ -30,6 +33,9 @@ class AdministrableProductDefinition extends DomainResource {
     required this.routeOfAdministration,
   }) : super(resourceType: R4ResourceType.AdministrableProductDefinition);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -48,6 +54,7 @@ class AdministrableProductDefinition extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class AdministrableProductDefinitionProperty extends BackboneElement {
   AdministrableProductDefinitionProperty({
     super.id,
@@ -64,6 +71,9 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
     this.status,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final CodeableConcept? valueCodeableConcept;
   final Quantity? valueQuantity;
@@ -79,6 +89,7 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class AdministrableProductDefinitionRouteOfAdministration
     extends BackboneElement {
   AdministrableProductDefinitionRouteOfAdministration({
@@ -94,6 +105,9 @@ class AdministrableProductDefinitionRouteOfAdministration
     this.targetSpecies,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept code;
   final Quantity? firstDose;
   final Quantity? maxSingleDose;
@@ -108,6 +122,7 @@ class AdministrableProductDefinitionRouteOfAdministration
 
 @JsonCodable()
 @Data()
+@Entity()
 class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
   AdministrableProductDefinitionTargetSpecies({
     super.id,
@@ -117,6 +132,9 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
     this.withdrawalPeriod,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept code;
   final List<AdministrableProductDefinitionWithdrawalPeriod>? withdrawalPeriod;
   @override
@@ -126,6 +144,7 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
   AdministrableProductDefinitionWithdrawalPeriod({
     super.id,
@@ -137,6 +156,9 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
     this.supportingInformationElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept tissue;
   final Quantity value;
   final FhirString? supportingInformation;

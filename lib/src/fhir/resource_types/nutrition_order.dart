@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class NutritionOrder extends DomainResource {
   NutritionOrder({
     super.id,
@@ -42,6 +45,9 @@ class NutritionOrder extends DomainResource {
     this.note,
   }) : super(resourceType: R4ResourceType.NutritionOrder);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final List<FhirCanonical>? instantiatesCanonical;
   final List<Element>? instantiatesCanonicalElement;
@@ -71,6 +77,7 @@ class NutritionOrder extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class NutritionOrderOralDiet extends BackboneElement {
   NutritionOrderOralDiet({
     super.id,
@@ -85,6 +92,9 @@ class NutritionOrderOralDiet extends BackboneElement {
     this.instructionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<CodeableConcept>? type;
   final List<Timing>? schedule;
   final List<NutritionOrderNutrient>? nutrient;
@@ -98,6 +108,7 @@ class NutritionOrderOralDiet extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class NutritionOrderNutrient extends BackboneElement {
   NutritionOrderNutrient({
     super.id,
@@ -107,6 +118,9 @@ class NutritionOrderNutrient extends BackboneElement {
     this.amount,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? modifier;
   final Quantity? amount;
   @override
@@ -115,6 +129,7 @@ class NutritionOrderNutrient extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class NutritionOrderTexture extends BackboneElement {
   NutritionOrderTexture({
     super.id,
@@ -124,6 +139,9 @@ class NutritionOrderTexture extends BackboneElement {
     this.foodType,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? modifier;
   final CodeableConcept? foodType;
   @override
@@ -132,6 +150,7 @@ class NutritionOrderTexture extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class NutritionOrderSupplement extends BackboneElement {
   NutritionOrderSupplement({
     super.id,
@@ -146,6 +165,9 @@ class NutritionOrderSupplement extends BackboneElement {
     this.instructionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? type;
   final FhirString? productName;
   final Element? productNameElement;
@@ -159,6 +181,7 @@ class NutritionOrderSupplement extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class NutritionOrderEnteralFormula extends BackboneElement {
   NutritionOrderEnteralFormula({
     super.id,
@@ -176,6 +199,9 @@ class NutritionOrderEnteralFormula extends BackboneElement {
     this.maxVolumeToDeliver,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? baseFormulaType;
   final FhirString? baseFormulaProductName;
   final Element? baseFormulaProductNameElement;
@@ -192,6 +218,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class NutritionOrderAdministration extends BackboneElement {
   NutritionOrderAdministration({
     super.id,
@@ -205,6 +232,9 @@ class NutritionOrderAdministration extends BackboneElement {
     this.administrationInstructionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Timing? schedule;
   final Quantity? quantity;
   final Quantity? rateQuantity;

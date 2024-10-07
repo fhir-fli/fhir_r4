@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Account extends DomainResource {
   Account({
     super.id,
@@ -33,6 +36,9 @@ class Account extends DomainResource {
     this.partOf,
   }) : super(resourceType: R4ResourceType.Account);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -53,6 +59,7 @@ class Account extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class AccountCoverage extends BackboneElement {
   AccountCoverage({
     super.id,
@@ -63,6 +70,9 @@ class AccountCoverage extends BackboneElement {
     this.priorityElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference coverage;
   final FhirPositiveInt? priority;
   final Element? priorityElement;
@@ -72,6 +82,7 @@ class AccountCoverage extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class AccountGuarantor extends BackboneElement {
   AccountGuarantor({
     super.id,
@@ -83,6 +94,9 @@ class AccountGuarantor extends BackboneElement {
     this.period,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference party;
   final FhirBoolean? onHold;
   final Element? onHoldElement;

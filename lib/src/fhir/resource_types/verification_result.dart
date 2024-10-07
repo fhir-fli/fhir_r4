@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class VerificationResult extends DomainResource {
   VerificationResult({
     super.id,
@@ -38,6 +41,9 @@ class VerificationResult extends DomainResource {
     this.validator,
   }) : super(resourceType: R4ResourceType.VerificationResult);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Reference>? target;
   final List<FhirString>? targetLocation;
   final List<Element>? targetLocationElement;
@@ -63,6 +69,7 @@ class VerificationResult extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class VerificationResultPrimarySource extends BackboneElement {
   VerificationResultPrimarySource({
     super.id,
@@ -78,6 +85,9 @@ class VerificationResultPrimarySource extends BackboneElement {
     this.pushTypeAvailable,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference? who;
   final List<CodeableConcept>? type;
   final List<CodeableConcept>? communicationMethod;
@@ -92,6 +102,7 @@ class VerificationResultPrimarySource extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class VerificationResultAttestation extends BackboneElement {
   VerificationResultAttestation({
     super.id,
@@ -110,6 +121,9 @@ class VerificationResultAttestation extends BackboneElement {
     this.sourceSignature,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference? who;
   final Reference? onBehalfOf;
   final CodeableConcept? communicationMethod;
@@ -127,6 +141,7 @@ class VerificationResultAttestation extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class VerificationResultValidator extends BackboneElement {
   VerificationResultValidator({
     super.id,
@@ -138,6 +153,9 @@ class VerificationResultValidator extends BackboneElement {
     this.attestationSignature,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference organization;
   final FhirString? identityCertificate;
   final Element? identityCertificateElement;

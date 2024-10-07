@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExplanationOfBenefit extends DomainResource {
   ExplanationOfBenefit({
     super.id,
@@ -69,6 +72,9 @@ class ExplanationOfBenefit extends DomainResource {
     this.benefitBalance,
   }) : super(resourceType: R4ResourceType.ExplanationOfBenefit);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -125,6 +131,7 @@ class ExplanationOfBenefit extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExplanationOfBenefitRelated extends BackboneElement {
   ExplanationOfBenefitRelated({
     super.id,
@@ -135,6 +142,9 @@ class ExplanationOfBenefitRelated extends BackboneElement {
     this.reference,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference? claim;
   final CodeableConcept? relationship;
   final Identifier? reference;
@@ -144,6 +154,7 @@ class ExplanationOfBenefitRelated extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExplanationOfBenefitPayee extends BackboneElement {
   ExplanationOfBenefitPayee({
     super.id,
@@ -153,6 +164,9 @@ class ExplanationOfBenefitPayee extends BackboneElement {
     this.party,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? type;
   final Reference? party;
   @override
@@ -161,6 +175,7 @@ class ExplanationOfBenefitPayee extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExplanationOfBenefitCareTeam extends BackboneElement {
   ExplanationOfBenefitCareTeam({
     super.id,
@@ -175,6 +190,9 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
     this.qualification,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt sequence;
   final Element? sequenceElement;
   final Reference provider;
@@ -188,6 +206,7 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExplanationOfBenefitSupportingInfo extends BackboneElement {
   ExplanationOfBenefitSupportingInfo({
     super.id,
@@ -210,6 +229,9 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
     this.reason,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt sequence;
   final Element? sequenceElement;
   final CodeableConcept category;
@@ -231,6 +253,7 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExplanationOfBenefitDiagnosis extends BackboneElement {
   ExplanationOfBenefitDiagnosis({
     super.id,
@@ -245,6 +268,9 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
     this.packageCode,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt sequence;
   final Element? sequenceElement;
   final CodeableConcept diagnosisCodeableConcept;
@@ -258,6 +284,7 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExplanationOfBenefitProcedure extends BackboneElement {
   ExplanationOfBenefitProcedure({
     super.id,
@@ -273,6 +300,9 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
     this.udi,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt sequence;
   final Element? sequenceElement;
   final List<CodeableConcept>? type;
@@ -287,6 +317,7 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExplanationOfBenefitInsurance extends BackboneElement {
   ExplanationOfBenefitInsurance({
     super.id,
@@ -299,6 +330,9 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
     this.preAuthRefElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirBoolean focal;
   final Element? focalElement;
   final Reference coverage;
@@ -310,6 +344,7 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExplanationOfBenefitAccident extends BackboneElement {
   ExplanationOfBenefitAccident({
     super.id,
@@ -322,6 +357,9 @@ class ExplanationOfBenefitAccident extends BackboneElement {
     this.locationReference,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirDate? date;
   final Element? dateElement;
   final CodeableConcept? type;
@@ -333,6 +371,7 @@ class ExplanationOfBenefitAccident extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExplanationOfBenefitItem extends BackboneElement {
   ExplanationOfBenefitItem({
     super.id,
@@ -374,6 +413,9 @@ class ExplanationOfBenefitItem extends BackboneElement {
     this.detail,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt sequence;
   final Element? sequenceElement;
   final List<FhirPositiveInt>? careTeamSequence;
@@ -414,6 +456,7 @@ class ExplanationOfBenefitItem extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExplanationOfBenefitAdjudication extends BackboneElement {
   ExplanationOfBenefitAdjudication({
     super.id,
@@ -426,6 +469,9 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
     this.valueElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept category;
   final CodeableConcept? reason;
   final Money? amount;
@@ -437,6 +483,7 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExplanationOfBenefitDetail extends BackboneElement {
   ExplanationOfBenefitDetail({
     super.id,
@@ -461,6 +508,9 @@ class ExplanationOfBenefitDetail extends BackboneElement {
     this.subDetail,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt sequence;
   final Element? sequenceElement;
   final CodeableConcept? revenue;
@@ -484,6 +534,7 @@ class ExplanationOfBenefitDetail extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExplanationOfBenefitSubDetail extends BackboneElement {
   ExplanationOfBenefitSubDetail({
     super.id,
@@ -507,6 +558,9 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
     this.adjudication,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt sequence;
   final Element? sequenceElement;
   final CodeableConcept? revenue;
@@ -529,6 +583,7 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExplanationOfBenefitAddItem extends BackboneElement {
   ExplanationOfBenefitAddItem({
     super.id,
@@ -563,6 +618,9 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
     this.detail,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<FhirPositiveInt>? itemSequence;
   final List<Element>? itemSequenceElement;
   final List<FhirPositiveInt>? detailSequence;
@@ -596,6 +654,7 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExplanationOfBenefitDetail1 extends BackboneElement {
   ExplanationOfBenefitDetail1({
     super.id,
@@ -614,6 +673,9 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
     this.subDetail,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept productOrService;
   final List<CodeableConcept>? modifier;
   final Quantity? quantity;
@@ -631,6 +693,7 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExplanationOfBenefitSubDetail1 extends BackboneElement {
   ExplanationOfBenefitSubDetail1({
     super.id,
@@ -648,6 +711,9 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
     this.adjudication,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept productOrService;
   final List<CodeableConcept>? modifier;
   final Quantity? quantity;
@@ -664,6 +730,7 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExplanationOfBenefitTotal extends BackboneElement {
   ExplanationOfBenefitTotal({
     super.id,
@@ -673,6 +740,9 @@ class ExplanationOfBenefitTotal extends BackboneElement {
     required this.amount,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept category;
   final Money amount;
   @override
@@ -681,6 +751,7 @@ class ExplanationOfBenefitTotal extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExplanationOfBenefitPayment extends BackboneElement {
   ExplanationOfBenefitPayment({
     super.id,
@@ -695,6 +766,9 @@ class ExplanationOfBenefitPayment extends BackboneElement {
     this.identifier,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? type;
   final Money? adjustment;
   final CodeableConcept? adjustmentReason;
@@ -708,6 +782,7 @@ class ExplanationOfBenefitPayment extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExplanationOfBenefitProcessNote extends BackboneElement {
   ExplanationOfBenefitProcessNote({
     super.id,
@@ -722,6 +797,9 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
     this.language,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt? number;
   final Element? numberElement;
   final FhirCode? type;
@@ -735,6 +813,7 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExplanationOfBenefitBenefitBalance extends BackboneElement {
   ExplanationOfBenefitBenefitBalance({
     super.id,
@@ -753,6 +832,9 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
     this.financial,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept category;
   final FhirBoolean? excluded;
   final Element? excludedElement;
@@ -770,6 +852,7 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ExplanationOfBenefitFinancial extends BackboneElement {
   ExplanationOfBenefitFinancial({
     super.id,
@@ -786,6 +869,9 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
     this.usedMoney,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final FhirUnsignedInt? allowedUnsignedInt;
   final Element? allowedUnsignedIntElement;

@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class ChargeItemDefinition extends DomainResource {
   ChargeItemDefinition({
     super.id,
@@ -56,6 +59,9 @@ class ChargeItemDefinition extends DomainResource {
     this.propertyGroup,
   }) : super(resourceType: R4ResourceType.ChargeItemDefinition);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -99,6 +105,7 @@ class ChargeItemDefinition extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ChargeItemDefinitionApplicability extends BackboneElement {
   ChargeItemDefinitionApplicability({
     super.id,
@@ -112,6 +119,9 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
     this.expressionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? description;
   final Element? descriptionElement;
   final FhirString? language;
@@ -124,6 +134,7 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ChargeItemDefinitionPropertyGroup extends BackboneElement {
   ChargeItemDefinitionPropertyGroup({
     super.id,
@@ -133,6 +144,9 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
     this.priceComponent,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<ChargeItemDefinitionApplicability>? applicability;
   final List<ChargeItemDefinitionPriceComponent>? priceComponent;
   @override
@@ -141,6 +155,7 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ChargeItemDefinitionPriceComponent extends BackboneElement {
   ChargeItemDefinitionPriceComponent({
     super.id,
@@ -154,6 +169,9 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
     this.amount,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode type;
   final Element? typeElement;
   final CodeableConcept? code;

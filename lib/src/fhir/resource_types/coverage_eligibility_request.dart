@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class CoverageEligibilityRequest extends DomainResource {
   CoverageEligibilityRequest({
     super.id,
@@ -38,6 +41,9 @@ class CoverageEligibilityRequest extends DomainResource {
     this.item,
   }) : super(resourceType: R4ResourceType.CoverageEligibilityRequest);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -63,6 +69,7 @@ class CoverageEligibilityRequest extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
   CoverageEligibilityRequestSupportingInfo({
     super.id,
@@ -75,6 +82,9 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
     this.appliesToAllElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt sequence;
   final Element? sequenceElement;
   final Reference information;
@@ -87,6 +97,7 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CoverageEligibilityRequestInsurance extends BackboneElement {
   CoverageEligibilityRequestInsurance({
     super.id,
@@ -99,6 +110,9 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
     this.businessArrangementElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirBoolean? focal;
   final Element? focalElement;
   final Reference coverage;
@@ -110,6 +124,7 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CoverageEligibilityRequestItem extends BackboneElement {
   CoverageEligibilityRequestItem({
     super.id,
@@ -128,6 +143,9 @@ class CoverageEligibilityRequestItem extends BackboneElement {
     this.detail,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<FhirPositiveInt>? supportingInfoSequence;
   final List<Element>? supportingInfoSequenceElement;
   final CodeableConcept? category;
@@ -145,6 +163,7 @@ class CoverageEligibilityRequestItem extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CoverageEligibilityRequestDiagnosis extends BackboneElement {
   CoverageEligibilityRequestDiagnosis({
     super.id,
@@ -154,6 +173,9 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
     this.diagnosisReference,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? diagnosisCodeableConcept;
   final Reference? diagnosisReference;
   @override

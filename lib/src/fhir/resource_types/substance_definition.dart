@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class SubstanceDefinition extends DomainResource {
   SubstanceDefinition({
     super.id,
@@ -40,6 +43,9 @@ class SubstanceDefinition extends DomainResource {
     this.sourceMaterial,
   }) : super(resourceType: R4ResourceType.SubstanceDefinition);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirString? version;
   final Element? versionElement;
@@ -67,6 +73,7 @@ class SubstanceDefinition extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SubstanceDefinitionMoiety extends BackboneElement {
   SubstanceDefinitionMoiety({
     super.id,
@@ -86,6 +93,9 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     this.measurementType,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? role;
   final Identifier? identifier;
   final FhirString? name;
@@ -104,6 +114,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SubstanceDefinitionProperty extends BackboneElement {
   SubstanceDefinitionProperty({
     super.id,
@@ -119,6 +130,9 @@ class SubstanceDefinitionProperty extends BackboneElement {
     this.valueAttachment,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final CodeableConcept? valueCodeableConcept;
   final Quantity? valueQuantity;
@@ -133,6 +147,7 @@ class SubstanceDefinitionProperty extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SubstanceDefinitionMolecularWeight extends BackboneElement {
   SubstanceDefinitionMolecularWeight({
     super.id,
@@ -143,6 +158,9 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
     required this.amount,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? method;
   final CodeableConcept? type;
   final Quantity amount;
@@ -152,6 +170,7 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SubstanceDefinitionStructure extends BackboneElement {
   SubstanceDefinitionStructure({
     super.id,
@@ -169,6 +188,9 @@ class SubstanceDefinitionStructure extends BackboneElement {
     this.representation,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? stereochemistry;
   final CodeableConcept? opticalActivity;
   final FhirString? molecularFormula;
@@ -185,6 +207,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SubstanceDefinitionRepresentation extends BackboneElement {
   SubstanceDefinitionRepresentation({
     super.id,
@@ -197,6 +220,9 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     this.document,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? type;
   final FhirString? representation;
   final Element? representationElement;
@@ -208,6 +234,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SubstanceDefinitionCode extends BackboneElement {
   SubstanceDefinitionCode({
     super.id,
@@ -221,6 +248,9 @@ class SubstanceDefinitionCode extends BackboneElement {
     this.source,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? code;
   final CodeableConcept? status;
   final FhirDateTime? statusDate;
@@ -233,6 +263,7 @@ class SubstanceDefinitionCode extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SubstanceDefinitionName extends BackboneElement {
   SubstanceDefinitionName({
     super.id,
@@ -253,6 +284,9 @@ class SubstanceDefinitionName extends BackboneElement {
     this.source,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString name;
   final Element? nameElement;
   final CodeableConcept? type;
@@ -272,6 +306,7 @@ class SubstanceDefinitionName extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SubstanceDefinitionOfficial extends BackboneElement {
   SubstanceDefinitionOfficial({
     super.id,
@@ -283,6 +318,9 @@ class SubstanceDefinitionOfficial extends BackboneElement {
     this.dateElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? authority;
   final CodeableConcept? status;
   final FhirDateTime? date;
@@ -293,6 +331,7 @@ class SubstanceDefinitionOfficial extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SubstanceDefinitionRelationship extends BackboneElement {
   SubstanceDefinitionRelationship({
     super.id,
@@ -312,6 +351,9 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     this.source,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference? substanceDefinitionReference;
   final CodeableConcept? substanceDefinitionCodeableConcept;
   final CodeableConcept type;
@@ -330,6 +372,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SubstanceDefinitionSourceMaterial extends BackboneElement {
   SubstanceDefinitionSourceMaterial({
     super.id,
@@ -342,6 +385,9 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
     this.countryOfOrigin,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? type;
   final CodeableConcept? genus;
   final CodeableConcept? species;

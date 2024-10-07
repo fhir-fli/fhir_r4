@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class CatalogEntry extends DomainResource {
   CatalogEntry({
     super.id,
@@ -36,6 +39,9 @@ class CatalogEntry extends DomainResource {
     this.relatedEntry,
   }) : super(resourceType: R4ResourceType.CatalogEntry);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final CodeableConcept? type;
   final FhirBoolean orderable;
@@ -59,6 +65,7 @@ class CatalogEntry extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CatalogEntryRelatedEntry extends BackboneElement {
   CatalogEntryRelatedEntry({
     super.id,
@@ -69,6 +76,9 @@ class CatalogEntryRelatedEntry extends BackboneElement {
     required this.item,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode relationtype;
   final Element? relationtypeElement;
   final Reference item;

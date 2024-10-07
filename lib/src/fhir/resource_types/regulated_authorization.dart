@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class RegulatedAuthorization extends DomainResource {
   RegulatedAuthorization({
     super.id,
@@ -35,6 +38,9 @@ class RegulatedAuthorization extends DomainResource {
     this.case_,
   }) : super(resourceType: R4ResourceType.RegulatedAuthorization);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final List<Reference>? subject;
   final CodeableConcept? type;
@@ -57,6 +63,7 @@ class RegulatedAuthorization extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class RegulatedAuthorizationCase extends BackboneElement {
   RegulatedAuthorizationCase({
     super.id,
@@ -71,6 +78,9 @@ class RegulatedAuthorizationCase extends BackboneElement {
     this.application,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Identifier? identifier;
   final CodeableConcept? type;
   final CodeableConcept? status;

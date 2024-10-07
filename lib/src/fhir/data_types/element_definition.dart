@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class ElementDefinition extends BackboneType {
   ElementDefinition({
     super.id,
@@ -306,6 +309,9 @@ class ElementDefinition extends BackboneType {
     this.mapping,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString path;
   final Element? pathElement;
   final List<FhirCode>? representation;
@@ -606,6 +612,7 @@ class ElementDefinition extends BackboneType {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ElementDefinitionSlicing extends Element {
   ElementDefinitionSlicing({
     super.id,
@@ -619,6 +626,9 @@ class ElementDefinitionSlicing extends Element {
     this.rulesElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Element>? discriminator;
   final FhirString? description;
   final Element? descriptionElement;
@@ -632,6 +642,7 @@ class ElementDefinitionSlicing extends Element {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ElementDefinitionDiscriminator extends Element {
   ElementDefinitionDiscriminator({
     super.id,
@@ -642,6 +653,9 @@ class ElementDefinitionDiscriminator extends Element {
     this.pathElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode type;
   final Element? typeElement;
   final FhirString path;
@@ -652,6 +666,7 @@ class ElementDefinitionDiscriminator extends Element {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ElementDefinitionBase extends Element {
   ElementDefinitionBase({
     super.id,
@@ -664,6 +679,9 @@ class ElementDefinitionBase extends Element {
     this.maxElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString path;
   final Element? pathElement;
   final FhirUnsignedInt min;
@@ -676,6 +694,7 @@ class ElementDefinitionBase extends Element {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ElementDefinitionType extends Element {
   ElementDefinitionType({
     super.id,
@@ -692,6 +711,9 @@ class ElementDefinitionType extends Element {
     this.versioningElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri code;
   final Element? codeElement;
   final List<FhirCanonical>? profile;
@@ -708,6 +730,7 @@ class ElementDefinitionType extends Element {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ElementDefinitionExample extends Element {
   ElementDefinitionExample({
     super.id,
@@ -786,6 +809,9 @@ class ElementDefinitionExample extends Element {
     required this.valueDosage,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString label;
   final Element? labelElement;
   final FhirBase64Binary valueBase64Binary;
@@ -864,6 +890,7 @@ class ElementDefinitionExample extends Element {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ElementDefinitionConstraint extends Element {
   ElementDefinitionConstraint({
     super.id,
@@ -884,6 +911,9 @@ class ElementDefinitionConstraint extends Element {
     this.sourceElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirId key;
   final Element? keyElement;
   final FhirString? requirements;
@@ -904,6 +934,7 @@ class ElementDefinitionConstraint extends Element {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ElementDefinitionBinding extends Element {
   ElementDefinitionBinding({
     super.id,
@@ -916,6 +947,9 @@ class ElementDefinitionBinding extends Element {
     this.valueSetElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode strength;
   final Element? strengthElement;
   final FhirString? description;
@@ -928,6 +962,7 @@ class ElementDefinitionBinding extends Element {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ElementDefinitionMapping extends Element {
   ElementDefinitionMapping({
     super.id,
@@ -942,6 +977,9 @@ class ElementDefinitionMapping extends Element {
     this.commentElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirId identity;
   final Element? identityElement;
   final FhirCode? language;

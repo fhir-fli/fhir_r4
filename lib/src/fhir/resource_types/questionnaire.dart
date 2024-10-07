@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Questionnaire extends DomainResource {
   Questionnaire({
     super.id,
@@ -56,6 +59,9 @@ class Questionnaire extends DomainResource {
     this.item,
   }) : super(resourceType: R4ResourceType.Questionnaire);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri? url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -99,6 +105,7 @@ class Questionnaire extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class QuestionnaireItem extends BackboneElement {
   QuestionnaireItem({
     super.id,
@@ -133,6 +140,9 @@ class QuestionnaireItem extends BackboneElement {
     this.item,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString linkId;
   final Element? linkIdElement;
   final FhirUri? definition;
@@ -166,6 +176,7 @@ class QuestionnaireItem extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class QuestionnaireEnableWhen extends BackboneElement {
   QuestionnaireEnableWhen({
     super.id,
@@ -194,6 +205,9 @@ class QuestionnaireEnableWhen extends BackboneElement {
     required this.answerReference,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString question;
   final Element? questionElement;
   final FhirCode operator_;
@@ -221,6 +235,7 @@ class QuestionnaireEnableWhen extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class QuestionnaireAnswerOption extends BackboneElement {
   QuestionnaireAnswerOption({
     super.id,
@@ -240,6 +255,9 @@ class QuestionnaireAnswerOption extends BackboneElement {
     this.initialSelectedElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirInteger valueInteger;
   final Element? valueIntegerElement;
   final FhirDate valueDate;
@@ -258,6 +276,7 @@ class QuestionnaireAnswerOption extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class QuestionnaireInitial extends BackboneElement {
   QuestionnaireInitial({
     super.id,
@@ -285,6 +304,9 @@ class QuestionnaireInitial extends BackboneElement {
     required this.valueReference,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirBoolean valueBoolean;
   final Element? valueBooleanElement;
   final FhirDecimal valueDecimal;

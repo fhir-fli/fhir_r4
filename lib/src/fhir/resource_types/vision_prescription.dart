@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class VisionPrescription extends DomainResource {
   VisionPrescription({
     super.id,
@@ -30,6 +33,9 @@ class VisionPrescription extends DomainResource {
     required this.lensSpecification,
   }) : super(resourceType: R4ResourceType.VisionPrescription);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -47,6 +53,7 @@ class VisionPrescription extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class VisionPrescriptionLensSpecification extends BackboneElement {
   VisionPrescriptionLensSpecification({
     super.id,
@@ -78,6 +85,9 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     this.note,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept product;
   final FhirCode eye;
   final Element? eyeElement;
@@ -108,6 +118,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class VisionPrescriptionPrism extends BackboneElement {
   VisionPrescriptionPrism({
     super.id,
@@ -119,6 +130,9 @@ class VisionPrescriptionPrism extends BackboneElement {
     this.baseElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirDecimal amount;
   final Element? amountElement;
   final FhirCode base;

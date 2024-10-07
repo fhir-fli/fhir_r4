@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class ProdCharacteristic extends BackboneType {
   ProdCharacteristic({
     super.id,
@@ -26,6 +29,9 @@ class ProdCharacteristic extends BackboneType {
     this.scoring,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Quantity? height;
   final Quantity? width;
   final Quantity? depth;

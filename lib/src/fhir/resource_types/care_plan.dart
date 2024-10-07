@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class CarePlan extends DomainResource {
   CarePlan({
     super.id,
@@ -49,6 +52,9 @@ class CarePlan extends DomainResource {
     this.note,
   }) : super(resourceType: R4ResourceType.CarePlan);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final List<FhirCanonical>? instantiatesCanonical;
   final List<Element>? instantiatesCanonicalElement;
@@ -85,6 +91,7 @@ class CarePlan extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CarePlanActivity extends BackboneElement {
   CarePlanActivity({
     super.id,
@@ -97,6 +104,9 @@ class CarePlanActivity extends BackboneElement {
     this.detail,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<CodeableConcept>? outcomeCodeableConcept;
   final List<Reference>? outcomeReference;
   final List<Annotation>? progress;
@@ -108,6 +118,7 @@ class CarePlanActivity extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CarePlanDetail extends BackboneElement {
   CarePlanDetail({
     super.id,
@@ -142,6 +153,9 @@ class CarePlanDetail extends BackboneElement {
     this.descriptionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode? kind;
   final Element? kindElement;
   final List<FhirCanonical>? instantiatesCanonical;

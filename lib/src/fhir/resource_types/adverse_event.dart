@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class AdverseEvent extends DomainResource {
   AdverseEvent({
     super.id,
@@ -43,6 +46,9 @@ class AdverseEvent extends DomainResource {
     this.study,
   }) : super(resourceType: R4ResourceType.AdverseEvent);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Identifier? identifier;
   final FhirCode actuality;
   final Element? actualityElement;
@@ -73,6 +79,7 @@ class AdverseEvent extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class AdverseEventSuspectEntity extends BackboneElement {
   AdverseEventSuspectEntity({
     super.id,
@@ -82,6 +89,9 @@ class AdverseEventSuspectEntity extends BackboneElement {
     this.causality,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference instance;
   final List<AdverseEventCausality>? causality;
   @override
@@ -90,6 +100,7 @@ class AdverseEventSuspectEntity extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class AdverseEventCausality extends BackboneElement {
   AdverseEventCausality({
     super.id,
@@ -102,6 +113,9 @@ class AdverseEventCausality extends BackboneElement {
     this.method,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? assessment;
   final FhirString? productRelatedness;
   final Element? productRelatednessElement;

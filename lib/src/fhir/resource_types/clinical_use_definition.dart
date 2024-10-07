@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClinicalUseDefinition extends DomainResource {
   ClinicalUseDefinition({
     super.id,
@@ -31,6 +34,9 @@ class ClinicalUseDefinition extends DomainResource {
     this.warning,
   }) : super(resourceType: R4ResourceType.ClinicalUseDefinition);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode type;
   final Element? typeElement;
@@ -49,6 +55,7 @@ class ClinicalUseDefinition extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClinicalUseDefinitionContraindication extends BackboneElement {
   ClinicalUseDefinitionContraindication({
     super.id,
@@ -61,6 +68,9 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
     this.otherTherapy,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableReference? diseaseSymptomProcedure;
   final CodeableReference? diseaseStatus;
   final List<CodeableReference>? comorbidity;
@@ -72,6 +82,7 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
   ClinicalUseDefinitionOtherTherapy({
     super.id,
@@ -81,6 +92,9 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
     required this.therapy,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept relationshipType;
   final CodeableReference therapy;
   @override
@@ -89,6 +103,7 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClinicalUseDefinitionIndication extends BackboneElement {
   ClinicalUseDefinitionIndication({
     super.id,
@@ -105,6 +120,9 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     this.otherTherapy,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableReference? diseaseSymptomProcedure;
   final CodeableReference? diseaseStatus;
   final List<CodeableReference>? comorbidity;
@@ -120,6 +138,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClinicalUseDefinitionInteraction extends BackboneElement {
   ClinicalUseDefinitionInteraction({
     super.id,
@@ -132,6 +151,9 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
     this.management,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<ClinicalUseDefinitionInteractant>? interactant;
   final CodeableConcept? type;
   final CodeableReference? effect;
@@ -143,6 +165,7 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClinicalUseDefinitionInteractant extends BackboneElement {
   ClinicalUseDefinitionInteractant({
     super.id,
@@ -152,6 +175,9 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
     required this.itemCodeableConcept,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference itemReference;
   final CodeableConcept itemCodeableConcept;
   @override
@@ -160,6 +186,7 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
   ClinicalUseDefinitionUndesirableEffect({
     super.id,
@@ -170,6 +197,9 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
     this.frequencyOfOccurrence,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableReference? symptomConditionEffect;
   final CodeableConcept? classification;
   final CodeableConcept? frequencyOfOccurrence;
@@ -179,6 +209,7 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClinicalUseDefinitionWarning extends BackboneElement {
   ClinicalUseDefinitionWarning({
     super.id,
@@ -189,6 +220,9 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
     this.code,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirMarkdown? description;
   final Element? descriptionElement;
   final CodeableConcept? code;

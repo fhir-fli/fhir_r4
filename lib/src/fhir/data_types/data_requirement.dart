@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class DataRequirement extends DataType {
   DataRequirement({
     super.id,
@@ -24,6 +27,9 @@ class DataRequirement extends DataType {
     this.sort,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode type;
   final Element? typeElement;
   final List<FhirCanonical>? profile;
@@ -43,6 +49,7 @@ class DataRequirement extends DataType {
 
 @JsonCodable()
 @Data()
+@Entity()
 class DataRequirementCodeFilter extends Element {
   DataRequirementCodeFilter({
     super.id,
@@ -56,6 +63,9 @@ class DataRequirementCodeFilter extends Element {
     this.code,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? path;
   final Element? pathElement;
   final FhirString? searchParam;
@@ -69,6 +79,7 @@ class DataRequirementCodeFilter extends Element {
 
 @JsonCodable()
 @Data()
+@Entity()
 class DataRequirementDateFilter extends Element {
   DataRequirementDateFilter({
     super.id,
@@ -83,6 +94,9 @@ class DataRequirementDateFilter extends Element {
     this.valueDuration,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? path;
   final Element? pathElement;
   final FhirString? searchParam;
@@ -97,6 +111,7 @@ class DataRequirementDateFilter extends Element {
 
 @JsonCodable()
 @Data()
+@Entity()
 class DataRequirementSort extends Element {
   DataRequirementSort({
     super.id,
@@ -107,6 +122,9 @@ class DataRequirementSort extends Element {
     this.directionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString path;
   final Element? pathElement;
   final FhirCode direction;

@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Communication extends DomainResource {
   Communication({
     super.id,
@@ -48,6 +51,9 @@ class Communication extends DomainResource {
     this.note,
   }) : super(resourceType: R4ResourceType.Communication);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final List<FhirCanonical>? instantiatesCanonical;
   final List<Element>? instantiatesCanonicalElement;
@@ -83,6 +89,7 @@ class Communication extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CommunicationPayload extends BackboneElement {
   CommunicationPayload({
     super.id,
@@ -94,6 +101,9 @@ class CommunicationPayload extends BackboneElement {
     required this.contentReference,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString contentString;
   final Element? contentStringElement;
   final Attachment contentAttachment;

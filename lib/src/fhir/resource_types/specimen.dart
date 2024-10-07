@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Specimen extends DomainResource {
   Specimen({
     super.id,
@@ -34,6 +37,9 @@ class Specimen extends DomainResource {
     this.note,
   }) : super(resourceType: R4ResourceType.Specimen);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final Identifier? accessionIdentifier;
   final FhirCode? status;
@@ -55,6 +61,7 @@ class Specimen extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SpecimenCollection extends BackboneElement {
   SpecimenCollection({
     super.id,
@@ -72,6 +79,9 @@ class SpecimenCollection extends BackboneElement {
     this.fastingStatusDuration,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference? collector;
   final FhirDateTime? collectedDateTime;
   final Element? collectedDateTimeElement;
@@ -88,6 +98,7 @@ class SpecimenCollection extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SpecimenProcessing extends BackboneElement {
   SpecimenProcessing({
     super.id,
@@ -102,6 +113,9 @@ class SpecimenProcessing extends BackboneElement {
     this.timePeriod,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? description;
   final Element? descriptionElement;
   final CodeableConcept? procedure;
@@ -115,6 +129,7 @@ class SpecimenProcessing extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SpecimenContainer extends BackboneElement {
   SpecimenContainer({
     super.id,
@@ -130,6 +145,9 @@ class SpecimenContainer extends BackboneElement {
     this.additiveReference,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirString? description;
   final Element? descriptionElement;

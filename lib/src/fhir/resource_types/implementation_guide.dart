@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class ImplementationGuide extends DomainResource {
   ImplementationGuide({
     super.id,
@@ -52,6 +55,9 @@ class ImplementationGuide extends DomainResource {
     this.manifest,
   }) : super(resourceType: R4ResourceType.ImplementationGuide);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri url;
   final Element? urlElement;
   final FhirString? version;
@@ -91,6 +97,7 @@ class ImplementationGuide extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ImplementationGuideDependsOn extends BackboneElement {
   ImplementationGuideDependsOn({
     super.id,
@@ -104,6 +111,9 @@ class ImplementationGuideDependsOn extends BackboneElement {
     this.versionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCanonical uri;
   final Element? uriElement;
   final FhirId? packageId;
@@ -116,6 +126,7 @@ class ImplementationGuideDependsOn extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ImplementationGuideGlobal extends BackboneElement {
   ImplementationGuideGlobal({
     super.id,
@@ -127,6 +138,9 @@ class ImplementationGuideGlobal extends BackboneElement {
     this.profileElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode type;
   final Element? typeElement;
   final FhirCanonical profile;
@@ -137,6 +151,7 @@ class ImplementationGuideGlobal extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ImplementationGuideDefinition extends BackboneElement {
   ImplementationGuideDefinition({
     super.id,
@@ -149,6 +164,9 @@ class ImplementationGuideDefinition extends BackboneElement {
     this.template,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<ImplementationGuideGrouping>? grouping;
   final List<ImplementationGuideResource> resource;
   final ImplementationGuidePage? page;
@@ -160,6 +178,7 @@ class ImplementationGuideDefinition extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ImplementationGuideGrouping extends BackboneElement {
   ImplementationGuideGrouping({
     super.id,
@@ -171,6 +190,9 @@ class ImplementationGuideGrouping extends BackboneElement {
     this.descriptionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString name;
   final Element? nameElement;
   final FhirString? description;
@@ -181,6 +203,7 @@ class ImplementationGuideGrouping extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ImplementationGuideResource extends BackboneElement {
   ImplementationGuideResource({
     super.id,
@@ -201,6 +224,9 @@ class ImplementationGuideResource extends BackboneElement {
     this.groupingIdElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference reference;
   final List<FhirCode>? fhirVersion;
   final List<Element>? fhirVersionElement;
@@ -220,6 +246,7 @@ class ImplementationGuideResource extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ImplementationGuidePage extends BackboneElement {
   ImplementationGuidePage({
     super.id,
@@ -235,6 +262,9 @@ class ImplementationGuidePage extends BackboneElement {
     this.page,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUrl nameUrl;
   final Element? nameUrlElement;
   final Reference nameReference;
@@ -249,6 +279,7 @@ class ImplementationGuidePage extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ImplementationGuideParameter extends BackboneElement {
   ImplementationGuideParameter({
     super.id,
@@ -260,6 +291,9 @@ class ImplementationGuideParameter extends BackboneElement {
     this.valueElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode code;
   final Element? codeElement;
   final FhirString value;
@@ -270,6 +304,7 @@ class ImplementationGuideParameter extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ImplementationGuideTemplate extends BackboneElement {
   ImplementationGuideTemplate({
     super.id,
@@ -283,6 +318,9 @@ class ImplementationGuideTemplate extends BackboneElement {
     this.scopeElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode code;
   final Element? codeElement;
   final FhirString source;
@@ -295,6 +333,7 @@ class ImplementationGuideTemplate extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ImplementationGuideManifest extends BackboneElement {
   ImplementationGuideManifest({
     super.id,
@@ -310,6 +349,9 @@ class ImplementationGuideManifest extends BackboneElement {
     this.otherElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUrl? rendering;
   final Element? renderingElement;
   final List<ImplementationGuideResource> resource;
@@ -324,6 +366,7 @@ class ImplementationGuideManifest extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ImplementationGuideResource1 extends BackboneElement {
   ImplementationGuideResource1({
     super.id,
@@ -338,6 +381,9 @@ class ImplementationGuideResource1 extends BackboneElement {
     this.relativePathElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference reference;
   final FhirBoolean? exampleBoolean;
   final Element? exampleBooleanElement;
@@ -351,6 +397,7 @@ class ImplementationGuideResource1 extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ImplementationGuidePage1 extends BackboneElement {
   ImplementationGuidePage1({
     super.id,
@@ -364,6 +411,9 @@ class ImplementationGuidePage1 extends BackboneElement {
     this.anchorElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString name;
   final Element? nameElement;
   final FhirString? title;

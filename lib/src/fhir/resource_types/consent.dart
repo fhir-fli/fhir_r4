@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Consent extends DomainResource {
   Consent({
     super.id,
@@ -34,6 +37,9 @@ class Consent extends DomainResource {
     this.provision,
   }) : super(resourceType: R4ResourceType.Consent);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -55,6 +61,7 @@ class Consent extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ConsentPolicy extends BackboneElement {
   ConsentPolicy({
     super.id,
@@ -67,6 +74,9 @@ class ConsentPolicy extends BackboneElement {
     this.policyRule,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri? authority;
   final Element? authorityElement;
   final FhirUri? uri;
@@ -78,6 +88,7 @@ class ConsentPolicy extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ConsentVerification extends BackboneElement {
   ConsentVerification({
     super.id,
@@ -90,6 +101,9 @@ class ConsentVerification extends BackboneElement {
     this.verificationDateElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirBoolean verified;
   final Element? verifiedElement;
   final Reference? verifiedWith;
@@ -101,6 +115,7 @@ class ConsentVerification extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ConsentProvision extends BackboneElement {
   ConsentProvision({
     super.id,
@@ -120,6 +135,9 @@ class ConsentProvision extends BackboneElement {
     this.provision,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode? type;
   final Element? typeElement;
   final Period? period;
@@ -138,6 +156,7 @@ class ConsentProvision extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ConsentActor extends BackboneElement {
   ConsentActor({
     super.id,
@@ -147,6 +166,9 @@ class ConsentActor extends BackboneElement {
     required this.reference,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept role;
   final Reference reference;
   @override
@@ -155,6 +177,7 @@ class ConsentActor extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ConsentData extends BackboneElement {
   ConsentData({
     super.id,
@@ -165,6 +188,9 @@ class ConsentData extends BackboneElement {
     required this.reference,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode meaning;
   final Element? meaningElement;
   final Reference reference;

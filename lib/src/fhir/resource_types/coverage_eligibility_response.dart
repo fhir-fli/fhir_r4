@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class CoverageEligibilityResponse extends DomainResource {
   CoverageEligibilityResponse({
     super.id,
@@ -42,6 +45,9 @@ class CoverageEligibilityResponse extends DomainResource {
     this.error,
   }) : super(resourceType: R4ResourceType.CoverageEligibilityResponse);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -71,6 +77,7 @@ class CoverageEligibilityResponse extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CoverageEligibilityResponseInsurance extends BackboneElement {
   CoverageEligibilityResponseInsurance({
     super.id,
@@ -83,6 +90,9 @@ class CoverageEligibilityResponseInsurance extends BackboneElement {
     this.item,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference coverage;
   final FhirBoolean? inforce;
   final Element? inforceElement;
@@ -94,6 +104,7 @@ class CoverageEligibilityResponseInsurance extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CoverageEligibilityResponseItem extends BackboneElement {
   CoverageEligibilityResponseItem({
     super.id,
@@ -120,6 +131,9 @@ class CoverageEligibilityResponseItem extends BackboneElement {
     this.authorizationUrlElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? category;
   final CodeableConcept? productOrService;
   final List<CodeableConcept>? modifier;
@@ -145,6 +159,7 @@ class CoverageEligibilityResponseItem extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CoverageEligibilityResponseBenefit extends BackboneElement {
   CoverageEligibilityResponseBenefit({
     super.id,
@@ -163,6 +178,9 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
     this.usedMoney,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final FhirUnsignedInt? allowedUnsignedInt;
   final Element? allowedUnsignedIntElement;
@@ -180,6 +198,7 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CoverageEligibilityResponseError extends BackboneElement {
   CoverageEligibilityResponseError({
     super.id,
@@ -188,6 +207,9 @@ class CoverageEligibilityResponseError extends BackboneElement {
     required this.code,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept code;
   @override
   CoverageEligibilityResponseError clone() => throw UnimplementedError();

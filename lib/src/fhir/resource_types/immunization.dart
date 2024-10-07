@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Immunization extends DomainResource {
   Immunization({
     super.id,
@@ -56,6 +59,9 @@ class Immunization extends DomainResource {
     this.protocolApplied,
   }) : super(resourceType: R4ResourceType.Immunization);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -99,6 +105,7 @@ class Immunization extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ImmunizationPerformer extends BackboneElement {
   ImmunizationPerformer({
     super.id,
@@ -108,6 +115,9 @@ class ImmunizationPerformer extends BackboneElement {
     required this.actor,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? function_;
   final Reference actor;
   @override
@@ -116,6 +126,7 @@ class ImmunizationPerformer extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ImmunizationEducation extends BackboneElement {
   ImmunizationEducation({
     super.id,
@@ -131,6 +142,9 @@ class ImmunizationEducation extends BackboneElement {
     this.presentationDateElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? documentType;
   final Element? documentTypeElement;
   final FhirUri? reference;
@@ -145,6 +159,7 @@ class ImmunizationEducation extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ImmunizationReaction extends BackboneElement {
   ImmunizationReaction({
     super.id,
@@ -157,6 +172,9 @@ class ImmunizationReaction extends BackboneElement {
     this.reportedElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirDateTime? date;
   final Element? dateElement;
   final Reference? detail;
@@ -168,6 +186,7 @@ class ImmunizationReaction extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ImmunizationProtocolApplied extends BackboneElement {
   ImmunizationProtocolApplied({
     super.id,
@@ -187,6 +206,9 @@ class ImmunizationProtocolApplied extends BackboneElement {
     this.seriesDosesStringElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? series;
   final Element? seriesElement;
   final Reference? authority;

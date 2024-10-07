@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Ingredient extends DomainResource {
   Ingredient({
     super.id,
@@ -29,6 +32,9 @@ class Ingredient extends DomainResource {
     required this.substance,
   }) : super(resourceType: R4ResourceType.Ingredient);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Identifier? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -45,6 +51,7 @@ class Ingredient extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class IngredientManufacturer extends BackboneElement {
   IngredientManufacturer({
     super.id,
@@ -55,6 +62,9 @@ class IngredientManufacturer extends BackboneElement {
     required this.manufacturer,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode? role;
   final Element? roleElement;
   final Reference manufacturer;
@@ -64,6 +74,7 @@ class IngredientManufacturer extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class IngredientSubstance extends BackboneElement {
   IngredientSubstance({
     super.id,
@@ -73,6 +84,9 @@ class IngredientSubstance extends BackboneElement {
     this.strength,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableReference code;
   final List<IngredientStrength>? strength;
   @override
@@ -81,6 +95,7 @@ class IngredientSubstance extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class IngredientStrength extends BackboneElement {
   IngredientStrength({
     super.id,
@@ -100,6 +115,9 @@ class IngredientStrength extends BackboneElement {
     this.referenceStrength,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Ratio? presentationRatio;
   final RatioRange? presentationRatioRange;
   final FhirString? textPresentation;
@@ -118,6 +136,7 @@ class IngredientStrength extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class IngredientReferenceStrength extends BackboneElement {
   IngredientReferenceStrength({
     super.id,
@@ -131,6 +150,9 @@ class IngredientReferenceStrength extends BackboneElement {
     this.country,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableReference? substance;
   final Ratio strengthRatio;
   final RatioRange strengthRatioRange;

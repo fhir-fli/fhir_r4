@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class MeasureReport extends DomainResource {
   MeasureReport({
     super.id,
@@ -34,6 +37,9 @@ class MeasureReport extends DomainResource {
     this.evaluatedResource,
   }) : super(resourceType: R4ResourceType.MeasureReport);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -55,6 +61,7 @@ class MeasureReport extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MeasureReportGroup extends BackboneElement {
   MeasureReportGroup({
     super.id,
@@ -66,6 +73,9 @@ class MeasureReportGroup extends BackboneElement {
     this.stratifier,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? code;
   final List<MeasureReportPopulation>? population;
   final Quantity? measureScore;
@@ -76,6 +86,7 @@ class MeasureReportGroup extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MeasureReportPopulation extends BackboneElement {
   MeasureReportPopulation({
     super.id,
@@ -87,6 +98,9 @@ class MeasureReportPopulation extends BackboneElement {
     this.subjectResults,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? code;
   final FhirInteger? count;
   final Element? countElement;
@@ -97,6 +111,7 @@ class MeasureReportPopulation extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MeasureReportStratifier extends BackboneElement {
   MeasureReportStratifier({
     super.id,
@@ -106,6 +121,9 @@ class MeasureReportStratifier extends BackboneElement {
     this.stratum,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<CodeableConcept>? code;
   final List<MeasureReportStratum>? stratum;
   @override
@@ -114,6 +132,7 @@ class MeasureReportStratifier extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MeasureReportStratum extends BackboneElement {
   MeasureReportStratum({
     super.id,
@@ -125,6 +144,9 @@ class MeasureReportStratum extends BackboneElement {
     this.measureScore,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? value;
   final List<MeasureReportComponent>? component;
   final List<MeasureReportPopulation>? population;
@@ -135,6 +157,7 @@ class MeasureReportStratum extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MeasureReportComponent extends BackboneElement {
   MeasureReportComponent({
     super.id,
@@ -144,6 +167,9 @@ class MeasureReportComponent extends BackboneElement {
     required this.value,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept code;
   final CodeableConcept value;
   @override
@@ -152,6 +178,7 @@ class MeasureReportComponent extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MeasureReportPopulation1 extends BackboneElement {
   MeasureReportPopulation1({
     super.id,
@@ -163,6 +190,9 @@ class MeasureReportPopulation1 extends BackboneElement {
     this.subjectResults,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? code;
   final FhirInteger? count;
   final Element? countElement;

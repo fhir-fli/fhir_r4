@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestReport extends DomainResource {
   TestReport({
     super.id,
@@ -37,6 +40,9 @@ class TestReport extends DomainResource {
     this.teardown,
   }) : super(resourceType: R4ResourceType.TestReport);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Identifier? identifier;
   final FhirString? name;
   final Element? nameElement;
@@ -61,6 +67,7 @@ class TestReport extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestReportParticipant extends BackboneElement {
   TestReportParticipant({
     super.id,
@@ -74,6 +81,9 @@ class TestReportParticipant extends BackboneElement {
     this.displayElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode type;
   final Element? typeElement;
   final FhirUri uri;
@@ -86,6 +96,7 @@ class TestReportParticipant extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestReportSetup extends BackboneElement {
   TestReportSetup({
     super.id,
@@ -94,6 +105,9 @@ class TestReportSetup extends BackboneElement {
     required this.action,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<TestReportAction> action;
   @override
   TestReportSetup clone() => throw UnimplementedError();
@@ -101,6 +115,7 @@ class TestReportSetup extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestReportAction extends BackboneElement {
   TestReportAction({
     super.id,
@@ -110,6 +125,9 @@ class TestReportAction extends BackboneElement {
     this.assert_,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final TestReportOperation? operation;
   final TestReportAssert? assert_;
   @override
@@ -118,6 +136,7 @@ class TestReportAction extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestReportOperation extends BackboneElement {
   TestReportOperation({
     super.id,
@@ -131,6 +150,9 @@ class TestReportOperation extends BackboneElement {
     this.detailElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode result;
   final Element? resultElement;
   final FhirMarkdown? message;
@@ -143,6 +165,7 @@ class TestReportOperation extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestReportAssert extends BackboneElement {
   TestReportAssert({
     super.id,
@@ -156,6 +179,9 @@ class TestReportAssert extends BackboneElement {
     this.detailElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode result;
   final Element? resultElement;
   final FhirMarkdown? message;
@@ -168,6 +194,7 @@ class TestReportAssert extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestReportTest extends BackboneElement {
   TestReportTest({
     super.id,
@@ -180,6 +207,9 @@ class TestReportTest extends BackboneElement {
     required this.action,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? name;
   final Element? nameElement;
   final FhirString? description;
@@ -191,6 +221,7 @@ class TestReportTest extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestReportAction1 extends BackboneElement {
   TestReportAction1({
     super.id,
@@ -200,6 +231,9 @@ class TestReportAction1 extends BackboneElement {
     this.assert_,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final TestReportOperation? operation;
   final TestReportAssert? assert_;
   @override
@@ -208,6 +242,7 @@ class TestReportAction1 extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestReportTeardown extends BackboneElement {
   TestReportTeardown({
     super.id,
@@ -216,6 +251,9 @@ class TestReportTeardown extends BackboneElement {
     required this.action,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<TestReportAction> action;
   @override
   TestReportTeardown clone() => throw UnimplementedError();
@@ -223,6 +261,7 @@ class TestReportTeardown extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestReportAction2 extends BackboneElement {
   TestReportAction2({
     super.id,
@@ -231,6 +270,9 @@ class TestReportAction2 extends BackboneElement {
     required this.operation,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final TestReportOperation operation;
   @override
   TestReportAction2 clone() => throw UnimplementedError();

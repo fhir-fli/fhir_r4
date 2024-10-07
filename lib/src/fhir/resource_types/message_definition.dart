@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class MessageDefinition extends DomainResource {
   MessageDefinition({
     super.id,
@@ -62,6 +65,9 @@ class MessageDefinition extends DomainResource {
     this.graphElement,
   }) : super(resourceType: R4ResourceType.MessageDefinition);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri? url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -111,6 +117,7 @@ class MessageDefinition extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MessageDefinitionFocus extends BackboneElement {
   MessageDefinitionFocus({
     super.id,
@@ -126,6 +133,9 @@ class MessageDefinitionFocus extends BackboneElement {
     this.maxElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode code;
   final Element? codeElement;
   final FhirCanonical? profile;
@@ -140,6 +150,7 @@ class MessageDefinitionFocus extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MessageDefinitionAllowedResponse extends BackboneElement {
   MessageDefinitionAllowedResponse({
     super.id,
@@ -151,6 +162,9 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
     this.situationElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCanonical message;
   final Element? messageElement;
   final FhirMarkdown? situation;

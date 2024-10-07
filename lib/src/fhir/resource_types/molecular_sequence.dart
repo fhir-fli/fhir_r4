@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class MolecularSequence extends DomainResource {
   MolecularSequence({
     super.id,
@@ -39,6 +42,9 @@ class MolecularSequence extends DomainResource {
     this.structureVariant,
   }) : super(resourceType: R4ResourceType.MolecularSequence);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode? type;
   final Element? typeElement;
@@ -65,6 +71,7 @@ class MolecularSequence extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MolecularSequenceReferenceSeq extends BackboneElement {
   MolecularSequenceReferenceSeq({
     super.id,
@@ -87,6 +94,9 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     this.windowEndElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? chromosome;
   final FhirString? genomeBuild;
   final Element? genomeBuildElement;
@@ -108,6 +118,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MolecularSequenceVariant extends BackboneElement {
   MolecularSequenceVariant({
     super.id,
@@ -126,6 +137,9 @@ class MolecularSequenceVariant extends BackboneElement {
     this.variantPointer,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirInteger? start;
   final Element? startElement;
   final FhirInteger? end;
@@ -143,6 +157,7 @@ class MolecularSequenceVariant extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MolecularSequenceQuality extends BackboneElement {
   MolecularSequenceQuality({
     super.id,
@@ -176,6 +191,9 @@ class MolecularSequenceQuality extends BackboneElement {
     this.roc,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode type;
   final Element? typeElement;
   final CodeableConcept? standardSequence;
@@ -208,6 +226,7 @@ class MolecularSequenceQuality extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MolecularSequenceRoc extends BackboneElement {
   MolecularSequenceRoc({
     super.id,
@@ -229,6 +248,9 @@ class MolecularSequenceRoc extends BackboneElement {
     this.fMeasureElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<FhirInteger>? score;
   final List<Element>? scoreElement;
   final List<FhirInteger>? numTP;
@@ -249,6 +271,7 @@ class MolecularSequenceRoc extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MolecularSequenceRepository extends BackboneElement {
   MolecularSequenceRepository({
     super.id,
@@ -268,6 +291,9 @@ class MolecularSequenceRepository extends BackboneElement {
     this.readsetIdElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode type;
   final Element? typeElement;
   final FhirUri? url;
@@ -286,6 +312,7 @@ class MolecularSequenceRepository extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MolecularSequenceStructureVariant extends BackboneElement {
   MolecularSequenceStructureVariant({
     super.id,
@@ -300,6 +327,9 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     this.inner,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? variantType;
   final FhirBoolean? exact;
   final Element? exactElement;
@@ -313,6 +343,7 @@ class MolecularSequenceStructureVariant extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MolecularSequenceOuter extends BackboneElement {
   MolecularSequenceOuter({
     super.id,
@@ -324,6 +355,9 @@ class MolecularSequenceOuter extends BackboneElement {
     this.endElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirInteger? start;
   final Element? startElement;
   final FhirInteger? end;
@@ -334,6 +368,7 @@ class MolecularSequenceOuter extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MolecularSequenceInner extends BackboneElement {
   MolecularSequenceInner({
     super.id,
@@ -345,6 +380,9 @@ class MolecularSequenceInner extends BackboneElement {
     this.endElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirInteger? start;
   final Element? startElement;
   final FhirInteger? end;

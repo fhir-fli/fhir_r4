@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class PractitionerRole extends DomainResource {
   PractitionerRole({
     super.id,
@@ -35,6 +38,9 @@ class PractitionerRole extends DomainResource {
     this.endpoint,
   }) : super(resourceType: R4ResourceType.PractitionerRole);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirBoolean? active;
   final Element? activeElement;
@@ -57,6 +63,7 @@ class PractitionerRole extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class PractitionerRoleAvailableTime extends BackboneElement {
   PractitionerRoleAvailableTime({
     super.id,
@@ -72,6 +79,9 @@ class PractitionerRoleAvailableTime extends BackboneElement {
     this.availableEndTimeElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<FhirCode>? daysOfWeek;
   final List<Element>? daysOfWeekElement;
   final FhirBoolean? allDay;
@@ -86,6 +96,7 @@ class PractitionerRoleAvailableTime extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class PractitionerRoleNotAvailable extends BackboneElement {
   PractitionerRoleNotAvailable({
     super.id,
@@ -96,6 +107,9 @@ class PractitionerRoleNotAvailable extends BackboneElement {
     this.during,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString description;
   final Element? descriptionElement;
   final Period? during;

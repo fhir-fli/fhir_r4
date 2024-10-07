@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class RiskAssessment extends DomainResource {
   RiskAssessment({
     super.id,
@@ -40,6 +43,9 @@ class RiskAssessment extends DomainResource {
     this.note,
   }) : super(resourceType: R4ResourceType.RiskAssessment);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final Reference? basedOn;
   final Reference? parent;
@@ -67,6 +73,7 @@ class RiskAssessment extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class RiskAssessmentPrediction extends BackboneElement {
   RiskAssessmentPrediction({
     super.id,
@@ -85,6 +92,9 @@ class RiskAssessmentPrediction extends BackboneElement {
     this.rationaleElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? outcome;
   final FhirDecimal? probabilityDecimal;
   final Element? probabilityDecimalElement;

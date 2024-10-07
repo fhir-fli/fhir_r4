@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Claim extends DomainResource {
   Claim({
     super.id,
@@ -49,6 +52,9 @@ class Claim extends DomainResource {
     this.total,
   }) : super(resourceType: R4ResourceType.Claim);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -85,6 +91,7 @@ class Claim extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimRelated extends BackboneElement {
   ClaimRelated({
     super.id,
@@ -95,6 +102,9 @@ class ClaimRelated extends BackboneElement {
     this.reference,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference? claim;
   final CodeableConcept? relationship;
   final Identifier? reference;
@@ -104,6 +114,7 @@ class ClaimRelated extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimPayee extends BackboneElement {
   ClaimPayee({
     super.id,
@@ -113,6 +124,9 @@ class ClaimPayee extends BackboneElement {
     this.party,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final Reference? party;
   @override
@@ -121,6 +135,7 @@ class ClaimPayee extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimCareTeam extends BackboneElement {
   ClaimCareTeam({
     super.id,
@@ -135,6 +150,9 @@ class ClaimCareTeam extends BackboneElement {
     this.qualification,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt sequence;
   final Element? sequenceElement;
   final Reference provider;
@@ -148,6 +166,7 @@ class ClaimCareTeam extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimSupportingInfo extends BackboneElement {
   ClaimSupportingInfo({
     super.id,
@@ -170,6 +189,9 @@ class ClaimSupportingInfo extends BackboneElement {
     this.reason,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt sequence;
   final Element? sequenceElement;
   final CodeableConcept category;
@@ -191,6 +213,7 @@ class ClaimSupportingInfo extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimDiagnosis extends BackboneElement {
   ClaimDiagnosis({
     super.id,
@@ -205,6 +228,9 @@ class ClaimDiagnosis extends BackboneElement {
     this.packageCode,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt sequence;
   final Element? sequenceElement;
   final CodeableConcept diagnosisCodeableConcept;
@@ -218,6 +244,7 @@ class ClaimDiagnosis extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimProcedure extends BackboneElement {
   ClaimProcedure({
     super.id,
@@ -233,6 +260,9 @@ class ClaimProcedure extends BackboneElement {
     this.udi,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt sequence;
   final Element? sequenceElement;
   final List<CodeableConcept>? type;
@@ -247,6 +277,7 @@ class ClaimProcedure extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimInsurance extends BackboneElement {
   ClaimInsurance({
     super.id,
@@ -265,6 +296,9 @@ class ClaimInsurance extends BackboneElement {
     this.claimResponse,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt sequence;
   final Element? sequenceElement;
   final FhirBoolean focal;
@@ -282,6 +316,7 @@ class ClaimInsurance extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimAccident extends BackboneElement {
   ClaimAccident({
     super.id,
@@ -294,6 +329,9 @@ class ClaimAccident extends BackboneElement {
     this.locationReference,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirDate date;
   final Element? dateElement;
   final CodeableConcept? type;
@@ -305,6 +343,7 @@ class ClaimAccident extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimItem extends BackboneElement {
   ClaimItem({
     super.id,
@@ -343,6 +382,9 @@ class ClaimItem extends BackboneElement {
     this.detail,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt sequence;
   final Element? sequenceElement;
   final List<FhirPositiveInt>? careTeamSequence;
@@ -380,6 +422,7 @@ class ClaimItem extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimDetail extends BackboneElement {
   ClaimDetail({
     super.id,
@@ -401,6 +444,9 @@ class ClaimDetail extends BackboneElement {
     this.subDetail,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt sequence;
   final Element? sequenceElement;
   final CodeableConcept? revenue;
@@ -421,6 +467,7 @@ class ClaimDetail extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimSubDetail extends BackboneElement {
   ClaimSubDetail({
     super.id,
@@ -441,6 +488,9 @@ class ClaimSubDetail extends BackboneElement {
     this.udi,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt sequence;
   final Element? sequenceElement;
   final CodeableConcept? revenue;

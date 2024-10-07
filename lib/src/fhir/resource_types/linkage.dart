@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Linkage extends DomainResource {
   Linkage({
     super.id,
@@ -23,6 +26,9 @@ class Linkage extends DomainResource {
     required this.item,
   }) : super(resourceType: R4ResourceType.Linkage);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirBoolean? active;
   final Element? activeElement;
   final Reference? author;
@@ -33,6 +39,7 @@ class Linkage extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class LinkageItem extends BackboneElement {
   LinkageItem({
     super.id,
@@ -43,6 +50,9 @@ class LinkageItem extends BackboneElement {
     required this.resource,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode type;
   final Element? typeElement;
   final Reference resource;

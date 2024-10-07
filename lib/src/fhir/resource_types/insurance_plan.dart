@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class InsurancePlan extends DomainResource {
   InsurancePlan({
     super.id,
@@ -36,6 +39,9 @@ class InsurancePlan extends DomainResource {
     this.plan,
   }) : super(resourceType: R4ResourceType.InsurancePlan);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode? status;
   final Element? statusElement;
@@ -59,6 +65,7 @@ class InsurancePlan extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class InsurancePlanContact extends BackboneElement {
   InsurancePlanContact({
     super.id,
@@ -70,6 +77,9 @@ class InsurancePlanContact extends BackboneElement {
     this.address,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? purpose;
   final HumanName? name;
   final List<ContactPoint>? telecom;
@@ -80,6 +90,7 @@ class InsurancePlanContact extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class InsurancePlanCoverage extends BackboneElement {
   InsurancePlanCoverage({
     super.id,
@@ -90,6 +101,9 @@ class InsurancePlanCoverage extends BackboneElement {
     required this.benefit,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final List<Reference>? network;
   final List<InsurancePlanBenefit> benefit;
@@ -99,6 +113,7 @@ class InsurancePlanCoverage extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class InsurancePlanBenefit extends BackboneElement {
   InsurancePlanBenefit({
     super.id,
@@ -110,6 +125,9 @@ class InsurancePlanBenefit extends BackboneElement {
     this.limit,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final FhirString? requirement;
   final Element? requirementElement;
@@ -120,6 +138,7 @@ class InsurancePlanBenefit extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class InsurancePlanLimit extends BackboneElement {
   InsurancePlanLimit({
     super.id,
@@ -129,6 +148,9 @@ class InsurancePlanLimit extends BackboneElement {
     this.code,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Quantity? value;
   final CodeableConcept? code;
   @override
@@ -137,6 +159,7 @@ class InsurancePlanLimit extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class InsurancePlanPlan extends BackboneElement {
   InsurancePlanPlan({
     super.id,
@@ -150,6 +173,9 @@ class InsurancePlanPlan extends BackboneElement {
     this.specificCost,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final CodeableConcept? type;
   final List<Reference>? coverageArea;
@@ -162,6 +188,7 @@ class InsurancePlanPlan extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class InsurancePlanGeneralCost extends BackboneElement {
   InsurancePlanGeneralCost({
     super.id,
@@ -175,6 +202,9 @@ class InsurancePlanGeneralCost extends BackboneElement {
     this.commentElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? type;
   final FhirPositiveInt? groupSize;
   final Element? groupSizeElement;
@@ -187,6 +217,7 @@ class InsurancePlanGeneralCost extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class InsurancePlanSpecificCost extends BackboneElement {
   InsurancePlanSpecificCost({
     super.id,
@@ -196,6 +227,9 @@ class InsurancePlanSpecificCost extends BackboneElement {
     this.benefit,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept category;
   final List<InsurancePlanBenefit>? benefit;
   @override
@@ -204,6 +238,7 @@ class InsurancePlanSpecificCost extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class InsurancePlanBenefit1 extends BackboneElement {
   InsurancePlanBenefit1({
     super.id,
@@ -213,6 +248,9 @@ class InsurancePlanBenefit1 extends BackboneElement {
     this.cost,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final List<InsurancePlanCost>? cost;
   @override
@@ -221,6 +259,7 @@ class InsurancePlanBenefit1 extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class InsurancePlanCost extends BackboneElement {
   InsurancePlanCost({
     super.id,
@@ -232,6 +271,9 @@ class InsurancePlanCost extends BackboneElement {
     this.value,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final CodeableConcept? applicability;
   final List<CodeableConcept>? qualifiers;

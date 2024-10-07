@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class RequestGroup extends DomainResource {
   RequestGroup({
     super.id,
@@ -43,6 +46,9 @@ class RequestGroup extends DomainResource {
     this.action,
   }) : super(resourceType: R4ResourceType.RequestGroup);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final List<FhirCanonical>? instantiatesCanonical;
   final List<Element>? instantiatesCanonicalElement;
@@ -73,6 +79,7 @@ class RequestGroup extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class RequestGroupAction extends BackboneElement {
   RequestGroupAction({
     super.id,
@@ -115,6 +122,9 @@ class RequestGroupAction extends BackboneElement {
     this.action,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? prefix;
   final Element? prefixElement;
   final FhirString? title;
@@ -156,6 +166,7 @@ class RequestGroupAction extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class RequestGroupCondition extends BackboneElement {
   RequestGroupCondition({
     super.id,
@@ -166,6 +177,9 @@ class RequestGroupCondition extends BackboneElement {
     this.expression,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode kind;
   final Element? kindElement;
   final FhirExpression? expression;
@@ -175,6 +189,7 @@ class RequestGroupCondition extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class RequestGroupRelatedAction extends BackboneElement {
   RequestGroupRelatedAction({
     super.id,
@@ -188,6 +203,9 @@ class RequestGroupRelatedAction extends BackboneElement {
     this.offsetRange,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirId actionId;
   final Element? actionIdElement;
   final FhirCode relationship;

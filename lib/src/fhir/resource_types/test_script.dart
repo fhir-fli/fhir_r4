@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestScript extends DomainResource {
   TestScript({
     super.id,
@@ -54,6 +57,9 @@ class TestScript extends DomainResource {
     this.teardown,
   }) : super(resourceType: R4ResourceType.TestScript);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri url;
   final Element? urlElement;
   final Identifier? identifier;
@@ -95,6 +101,7 @@ class TestScript extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestScriptOrigin extends BackboneElement {
   TestScriptOrigin({
     super.id,
@@ -105,6 +112,9 @@ class TestScriptOrigin extends BackboneElement {
     required this.profile,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirInteger index;
   final Element? indexElement;
   final Coding profile;
@@ -114,6 +124,7 @@ class TestScriptOrigin extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestScriptDestination extends BackboneElement {
   TestScriptDestination({
     super.id,
@@ -124,6 +135,9 @@ class TestScriptDestination extends BackboneElement {
     required this.profile,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirInteger index;
   final Element? indexElement;
   final Coding profile;
@@ -133,6 +147,7 @@ class TestScriptDestination extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestScriptMetadata extends BackboneElement {
   TestScriptMetadata({
     super.id,
@@ -142,6 +157,9 @@ class TestScriptMetadata extends BackboneElement {
     required this.capability,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<TestScriptLink>? link;
   final List<TestScriptCapability> capability;
   @override
@@ -150,6 +168,7 @@ class TestScriptMetadata extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestScriptLink extends BackboneElement {
   TestScriptLink({
     super.id,
@@ -161,6 +180,9 @@ class TestScriptLink extends BackboneElement {
     this.descriptionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri url;
   final Element? urlElement;
   final FhirString? description;
@@ -171,6 +193,7 @@ class TestScriptLink extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestScriptCapability extends BackboneElement {
   TestScriptCapability({
     super.id,
@@ -192,6 +215,9 @@ class TestScriptCapability extends BackboneElement {
     this.capabilitiesElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirBoolean required_;
   final Element? requiredElement;
   final FhirBoolean validated;
@@ -212,6 +238,7 @@ class TestScriptCapability extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestScriptFixture extends BackboneElement {
   TestScriptFixture({
     super.id,
@@ -224,6 +251,9 @@ class TestScriptFixture extends BackboneElement {
     this.resource,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirBoolean autocreate;
   final Element? autocreateElement;
   final FhirBoolean autodelete;
@@ -235,6 +265,7 @@ class TestScriptFixture extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestScriptVariable extends BackboneElement {
   TestScriptVariable({
     super.id,
@@ -258,6 +289,9 @@ class TestScriptVariable extends BackboneElement {
     this.sourceIdElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString name;
   final Element? nameElement;
   final FhirString? defaultValue;
@@ -280,6 +314,7 @@ class TestScriptVariable extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestScriptSetup extends BackboneElement {
   TestScriptSetup({
     super.id,
@@ -288,6 +323,9 @@ class TestScriptSetup extends BackboneElement {
     required this.action,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<TestScriptAction> action;
   @override
   TestScriptSetup clone() => throw UnimplementedError();
@@ -295,6 +333,7 @@ class TestScriptSetup extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestScriptAction extends BackboneElement {
   TestScriptAction({
     super.id,
@@ -304,6 +343,9 @@ class TestScriptAction extends BackboneElement {
     this.assert_,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final TestScriptOperation? operation;
   final TestScriptAssert? assert_;
   @override
@@ -312,6 +354,7 @@ class TestScriptAction extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestScriptOperation extends BackboneElement {
   TestScriptOperation({
     super.id,
@@ -351,6 +394,9 @@ class TestScriptOperation extends BackboneElement {
     this.urlElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Coding? type;
   final FhirCode? resource;
   final Element? resourceElement;
@@ -389,6 +435,7 @@ class TestScriptOperation extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestScriptRequestHeader extends BackboneElement {
   TestScriptRequestHeader({
     super.id,
@@ -400,6 +447,9 @@ class TestScriptRequestHeader extends BackboneElement {
     this.valueElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString field;
   final Element? fieldElement;
   final FhirString value;
@@ -410,6 +460,7 @@ class TestScriptRequestHeader extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestScriptAssert extends BackboneElement {
   TestScriptAssert({
     super.id,
@@ -461,6 +512,9 @@ class TestScriptAssert extends BackboneElement {
     this.warningOnlyElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? label;
   final Element? labelElement;
   final FhirString? description;
@@ -511,6 +565,7 @@ class TestScriptAssert extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestScriptTest extends BackboneElement {
   TestScriptTest({
     super.id,
@@ -523,6 +578,9 @@ class TestScriptTest extends BackboneElement {
     required this.action,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? name;
   final Element? nameElement;
   final FhirString? description;
@@ -534,6 +592,7 @@ class TestScriptTest extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestScriptAction1 extends BackboneElement {
   TestScriptAction1({
     super.id,
@@ -543,6 +602,9 @@ class TestScriptAction1 extends BackboneElement {
     this.assert_,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final TestScriptOperation? operation;
   final TestScriptAssert? assert_;
   @override
@@ -551,6 +613,7 @@ class TestScriptAction1 extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestScriptTeardown extends BackboneElement {
   TestScriptTeardown({
     super.id,
@@ -559,6 +622,9 @@ class TestScriptTeardown extends BackboneElement {
     required this.action,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<TestScriptAction> action;
   @override
   TestScriptTeardown clone() => throw UnimplementedError();
@@ -566,6 +632,7 @@ class TestScriptTeardown extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class TestScriptAction2 extends BackboneElement {
   TestScriptAction2({
     super.id,
@@ -574,6 +641,9 @@ class TestScriptAction2 extends BackboneElement {
     required this.operation,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final TestScriptOperation operation;
   @override
   TestScriptAction2 clone() => throw UnimplementedError();

@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Encounter extends DomainResource {
   Encounter({
     super.id,
@@ -43,6 +46,9 @@ class Encounter extends DomainResource {
     this.partOf,
   }) : super(resourceType: R4ResourceType.Encounter);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -73,6 +79,7 @@ class Encounter extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class EncounterStatusHistory extends BackboneElement {
   EncounterStatusHistory({
     super.id,
@@ -83,6 +90,9 @@ class EncounterStatusHistory extends BackboneElement {
     required this.period,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode status;
   final Element? statusElement;
   final Period period;
@@ -92,6 +102,7 @@ class EncounterStatusHistory extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class EncounterClassHistory extends BackboneElement {
   EncounterClassHistory({
     super.id,
@@ -101,6 +112,9 @@ class EncounterClassHistory extends BackboneElement {
     required this.period,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Coding class_;
   final Period period;
   @override
@@ -109,6 +123,7 @@ class EncounterClassHistory extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class EncounterParticipant extends BackboneElement {
   EncounterParticipant({
     super.id,
@@ -119,6 +134,9 @@ class EncounterParticipant extends BackboneElement {
     this.individual,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<CodeableConcept>? type;
   final Period? period;
   final Reference? individual;
@@ -128,6 +146,7 @@ class EncounterParticipant extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class EncounterDiagnosis extends BackboneElement {
   EncounterDiagnosis({
     super.id,
@@ -139,6 +158,9 @@ class EncounterDiagnosis extends BackboneElement {
     this.rankElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference condition;
   final CodeableConcept? use;
   final FhirPositiveInt? rank;
@@ -149,6 +171,7 @@ class EncounterDiagnosis extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class EncounterHospitalization extends BackboneElement {
   EncounterHospitalization({
     super.id,
@@ -165,6 +188,9 @@ class EncounterHospitalization extends BackboneElement {
     this.dischargeDisposition,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Identifier? preAdmissionIdentifier;
   final Reference? origin;
   final CodeableConcept? admitSource;
@@ -180,6 +206,7 @@ class EncounterHospitalization extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class EncounterLocation extends BackboneElement {
   EncounterLocation({
     super.id,
@@ -192,6 +219,9 @@ class EncounterLocation extends BackboneElement {
     this.period,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference location;
   final FhirCode? status;
   final Element? statusElement;

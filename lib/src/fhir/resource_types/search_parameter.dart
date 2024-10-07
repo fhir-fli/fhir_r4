@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class SearchParameter extends DomainResource {
   SearchParameter({
     super.id,
@@ -67,6 +70,9 @@ class SearchParameter extends DomainResource {
     this.component,
   }) : super(resourceType: R4ResourceType.SearchParameter);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri url;
   final Element? urlElement;
   final FhirString? version;
@@ -121,6 +127,7 @@ class SearchParameter extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SearchParameterComponent extends BackboneElement {
   SearchParameterComponent({
     super.id,
@@ -132,6 +139,9 @@ class SearchParameterComponent extends BackboneElement {
     this.expressionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCanonical definition;
   final Element? definitionElement;
   final FhirString expression;

@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Practitioner extends DomainResource {
   Practitioner({
     super.id,
@@ -32,6 +35,9 @@ class Practitioner extends DomainResource {
     this.communication,
   }) : super(resourceType: R4ResourceType.Practitioner);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirBoolean? active;
   final Element? activeElement;
@@ -51,6 +57,7 @@ class Practitioner extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class PractitionerQualification extends BackboneElement {
   PractitionerQualification({
     super.id,
@@ -62,6 +69,9 @@ class PractitionerQualification extends BackboneElement {
     this.issuer,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final CodeableConcept code;
   final Period? period;

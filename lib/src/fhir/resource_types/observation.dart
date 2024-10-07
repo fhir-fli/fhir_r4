@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class Observation extends DomainResource {
   Observation({
     super.id,
@@ -65,6 +68,9 @@ class Observation extends DomainResource {
     this.component,
   }) : super(resourceType: R4ResourceType.Observation);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final List<Reference>? basedOn;
   final List<Reference>? partOf;
@@ -117,6 +123,7 @@ class Observation extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ObservationReferenceRange extends BackboneElement {
   ObservationReferenceRange({
     super.id,
@@ -131,6 +138,9 @@ class ObservationReferenceRange extends BackboneElement {
     this.textElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Quantity? low;
   final Quantity? high;
   final CodeableConcept? type;
@@ -144,6 +154,7 @@ class ObservationReferenceRange extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ObservationComponent extends BackboneElement {
   ObservationComponent({
     super.id,
@@ -171,6 +182,9 @@ class ObservationComponent extends BackboneElement {
     this.referenceRange,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept code;
   final Quantity? valueQuantity;
   final CodeableConcept? valueCodeableConcept;

@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationKnowledge extends DomainResource {
   MedicationKnowledge({
     super.id,
@@ -44,6 +47,9 @@ class MedicationKnowledge extends DomainResource {
     this.kinetics,
   }) : super(resourceType: R4ResourceType.MedicationKnowledge);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? code;
   final FhirCode? status;
   final Element? statusElement;
@@ -77,6 +83,7 @@ class MedicationKnowledge extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
   MedicationKnowledgeRelatedMedicationKnowledge({
     super.id,
@@ -86,6 +93,9 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
     required this.reference,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final List<Reference> reference;
   @override
@@ -95,6 +105,7 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationKnowledgeMonograph extends BackboneElement {
   MedicationKnowledgeMonograph({
     super.id,
@@ -104,6 +115,9 @@ class MedicationKnowledgeMonograph extends BackboneElement {
     this.source,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? type;
   final Reference? source;
   @override
@@ -112,6 +126,7 @@ class MedicationKnowledgeMonograph extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationKnowledgeIngredient extends BackboneElement {
   MedicationKnowledgeIngredient({
     super.id,
@@ -124,6 +139,9 @@ class MedicationKnowledgeIngredient extends BackboneElement {
     this.strength,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept itemCodeableConcept;
   final Reference itemReference;
   final FhirBoolean? isActive;
@@ -135,6 +153,7 @@ class MedicationKnowledgeIngredient extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationKnowledgeCost extends BackboneElement {
   MedicationKnowledgeCost({
     super.id,
@@ -146,6 +165,9 @@ class MedicationKnowledgeCost extends BackboneElement {
     required this.cost,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final FhirString? source;
   final Element? sourceElement;
@@ -156,6 +178,7 @@ class MedicationKnowledgeCost extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationKnowledgeMonitoringProgram extends BackboneElement {
   MedicationKnowledgeMonitoringProgram({
     super.id,
@@ -166,6 +189,9 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
     this.nameElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? type;
   final FhirString? name;
   final Element? nameElement;
@@ -175,6 +201,7 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
   MedicationKnowledgeAdministrationGuidelines({
     super.id,
@@ -186,6 +213,9 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
     this.patientCharacteristics,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<MedicationKnowledgeDosage>? dosage;
   final CodeableConcept? indicationCodeableConcept;
   final Reference? indicationReference;
@@ -197,6 +227,7 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationKnowledgeDosage extends BackboneElement {
   MedicationKnowledgeDosage({
     super.id,
@@ -206,6 +237,9 @@ class MedicationKnowledgeDosage extends BackboneElement {
     required this.dosage,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final List<Dosage> dosage;
   @override
@@ -214,6 +248,7 @@ class MedicationKnowledgeDosage extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationKnowledgePatientCharacteristics extends BackboneElement {
   MedicationKnowledgePatientCharacteristics({
     super.id,
@@ -225,6 +260,9 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     this.valueElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept characteristicCodeableConcept;
   final Quantity characteristicQuantity;
   final List<FhirString>? value;
@@ -236,6 +274,7 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationKnowledgeMedicineClassification extends BackboneElement {
   MedicationKnowledgeMedicineClassification({
     super.id,
@@ -245,6 +284,9 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
     this.classification,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final List<CodeableConcept>? classification;
   @override
@@ -254,6 +296,7 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationKnowledgePackaging extends BackboneElement {
   MedicationKnowledgePackaging({
     super.id,
@@ -263,6 +306,9 @@ class MedicationKnowledgePackaging extends BackboneElement {
     this.quantity,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? type;
   final Quantity? quantity;
   @override
@@ -271,6 +317,7 @@ class MedicationKnowledgePackaging extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
   MedicationKnowledgeDrugCharacteristic({
     super.id,
@@ -285,6 +332,9 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
     this.valueBase64BinaryElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? type;
   final CodeableConcept? valueCodeableConcept;
   final FhirString? valueString;
@@ -298,6 +348,7 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationKnowledgeRegulatory extends BackboneElement {
   MedicationKnowledgeRegulatory({
     super.id,
@@ -309,6 +360,9 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
     this.maxDispense,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference regulatoryAuthority;
   final List<MedicationKnowledgeSubstitution>? substitution;
   final List<MedicationKnowledgeSchedule>? schedule;
@@ -319,6 +373,7 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationKnowledgeSubstitution extends BackboneElement {
   MedicationKnowledgeSubstitution({
     super.id,
@@ -329,6 +384,9 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
     this.allowedElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final FhirBoolean allowed;
   final Element? allowedElement;
@@ -338,6 +396,7 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationKnowledgeSchedule extends BackboneElement {
   MedicationKnowledgeSchedule({
     super.id,
@@ -346,6 +405,9 @@ class MedicationKnowledgeSchedule extends BackboneElement {
     required this.schedule,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept schedule;
   @override
   MedicationKnowledgeSchedule clone() => throw UnimplementedError();
@@ -353,6 +415,7 @@ class MedicationKnowledgeSchedule extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationKnowledgeMaxDispense extends BackboneElement {
   MedicationKnowledgeMaxDispense({
     super.id,
@@ -362,6 +425,9 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
     this.period,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Quantity quantity;
   final FhirDuration? period;
   @override
@@ -370,6 +436,7 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationKnowledgeKinetics extends BackboneElement {
   MedicationKnowledgeKinetics({
     super.id,
@@ -380,6 +447,9 @@ class MedicationKnowledgeKinetics extends BackboneElement {
     this.halfLifePeriod,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Quantity>? areaUnderCurve;
   final List<Quantity>? lethalDose50;
   final FhirDuration? halfLifePeriod;

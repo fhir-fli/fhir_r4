@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimResponse extends DomainResource {
   ClaimResponse({
     super.id,
@@ -52,6 +55,9 @@ class ClaimResponse extends DomainResource {
     this.error,
   }) : super(resourceType: R4ResourceType.ClaimResponse);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -91,6 +97,7 @@ class ClaimResponse extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimResponseItem extends BackboneElement {
   ClaimResponseItem({
     super.id,
@@ -104,6 +111,9 @@ class ClaimResponseItem extends BackboneElement {
     this.detail,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt itemSequence;
   final Element? itemSequenceElement;
   final List<FhirPositiveInt>? noteNumber;
@@ -116,6 +126,7 @@ class ClaimResponseItem extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimResponseAdjudication extends BackboneElement {
   ClaimResponseAdjudication({
     super.id,
@@ -128,6 +139,9 @@ class ClaimResponseAdjudication extends BackboneElement {
     this.valueElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept category;
   final CodeableConcept? reason;
   final Money? amount;
@@ -139,6 +153,7 @@ class ClaimResponseAdjudication extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimResponseDetail extends BackboneElement {
   ClaimResponseDetail({
     super.id,
@@ -152,6 +167,9 @@ class ClaimResponseDetail extends BackboneElement {
     this.subDetail,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt detailSequence;
   final Element? detailSequenceElement;
   final List<FhirPositiveInt>? noteNumber;
@@ -164,6 +182,7 @@ class ClaimResponseDetail extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimResponseSubDetail extends BackboneElement {
   ClaimResponseSubDetail({
     super.id,
@@ -176,6 +195,9 @@ class ClaimResponseSubDetail extends BackboneElement {
     this.adjudication,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt subDetailSequence;
   final Element? subDetailSequenceElement;
   final List<FhirPositiveInt>? noteNumber;
@@ -187,6 +209,7 @@ class ClaimResponseSubDetail extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimResponseAddItem extends BackboneElement {
   ClaimResponseAddItem({
     super.id,
@@ -221,6 +244,9 @@ class ClaimResponseAddItem extends BackboneElement {
     this.detail,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<FhirPositiveInt>? itemSequence;
   final List<Element>? itemSequenceElement;
   final List<FhirPositiveInt>? detailSequence;
@@ -254,6 +280,7 @@ class ClaimResponseAddItem extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimResponseDetail1 extends BackboneElement {
   ClaimResponseDetail1({
     super.id,
@@ -272,6 +299,9 @@ class ClaimResponseDetail1 extends BackboneElement {
     this.subDetail,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept productOrService;
   final List<CodeableConcept>? modifier;
   final Quantity? quantity;
@@ -289,6 +319,7 @@ class ClaimResponseDetail1 extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimResponseSubDetail1 extends BackboneElement {
   ClaimResponseSubDetail1({
     super.id,
@@ -306,6 +337,9 @@ class ClaimResponseSubDetail1 extends BackboneElement {
     required this.adjudication,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept productOrService;
   final List<CodeableConcept>? modifier;
   final Quantity? quantity;
@@ -322,6 +356,7 @@ class ClaimResponseSubDetail1 extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimResponseTotal extends BackboneElement {
   ClaimResponseTotal({
     super.id,
@@ -331,6 +366,9 @@ class ClaimResponseTotal extends BackboneElement {
     required this.amount,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept category;
   final Money amount;
   @override
@@ -339,6 +377,7 @@ class ClaimResponseTotal extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimResponsePayment extends BackboneElement {
   ClaimResponsePayment({
     super.id,
@@ -353,6 +392,9 @@ class ClaimResponsePayment extends BackboneElement {
     this.identifier,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final Money? adjustment;
   final CodeableConcept? adjustmentReason;
@@ -366,6 +408,7 @@ class ClaimResponsePayment extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimResponseProcessNote extends BackboneElement {
   ClaimResponseProcessNote({
     super.id,
@@ -380,6 +423,9 @@ class ClaimResponseProcessNote extends BackboneElement {
     this.language,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt? number;
   final Element? numberElement;
   final FhirCode? type;
@@ -393,6 +439,7 @@ class ClaimResponseProcessNote extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimResponseInsurance extends BackboneElement {
   ClaimResponseInsurance({
     super.id,
@@ -408,6 +455,9 @@ class ClaimResponseInsurance extends BackboneElement {
     this.claimResponse,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt sequence;
   final Element? sequenceElement;
   final FhirBoolean focal;
@@ -422,6 +472,7 @@ class ClaimResponseInsurance extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ClaimResponseError extends BackboneElement {
   ClaimResponseError({
     super.id,
@@ -436,6 +487,9 @@ class ClaimResponseError extends BackboneElement {
     required this.code,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirPositiveInt? itemSequence;
   final Element? itemSequenceElement;
   final FhirPositiveInt? detailSequence;

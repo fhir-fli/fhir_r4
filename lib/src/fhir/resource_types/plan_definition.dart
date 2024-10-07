@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class PlanDefinition extends DomainResource {
   PlanDefinition({
     super.id,
@@ -69,6 +72,9 @@ class PlanDefinition extends DomainResource {
     this.action,
   }) : super(resourceType: R4ResourceType.PlanDefinition);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri? url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -125,6 +131,7 @@ class PlanDefinition extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class PlanDefinitionGoal extends BackboneElement {
   PlanDefinitionGoal({
     super.id,
@@ -139,6 +146,9 @@ class PlanDefinitionGoal extends BackboneElement {
     this.target,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? category;
   final CodeableConcept description;
   final CodeableConcept? priority;
@@ -152,6 +162,7 @@ class PlanDefinitionGoal extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class PlanDefinitionTarget extends BackboneElement {
   PlanDefinitionTarget({
     super.id,
@@ -164,6 +175,9 @@ class PlanDefinitionTarget extends BackboneElement {
     this.due,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? measure;
   final Quantity? detailQuantity;
   final Range? detailRange;
@@ -175,6 +189,7 @@ class PlanDefinitionTarget extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class PlanDefinitionAction extends BackboneElement {
   PlanDefinitionAction({
     super.id,
@@ -233,6 +248,9 @@ class PlanDefinitionAction extends BackboneElement {
     this.action,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? prefix;
   final Element? prefixElement;
   final FhirString? title;
@@ -290,6 +308,7 @@ class PlanDefinitionAction extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class PlanDefinitionCondition extends BackboneElement {
   PlanDefinitionCondition({
     super.id,
@@ -300,6 +319,9 @@ class PlanDefinitionCondition extends BackboneElement {
     this.expression,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode kind;
   final Element? kindElement;
   final FhirExpression? expression;
@@ -309,6 +331,7 @@ class PlanDefinitionCondition extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class PlanDefinitionRelatedAction extends BackboneElement {
   PlanDefinitionRelatedAction({
     super.id,
@@ -322,6 +345,9 @@ class PlanDefinitionRelatedAction extends BackboneElement {
     this.offsetRange,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirId actionId;
   final Element? actionIdElement;
   final FhirCode relationship;
@@ -334,6 +360,7 @@ class PlanDefinitionRelatedAction extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class PlanDefinitionParticipant extends BackboneElement {
   PlanDefinitionParticipant({
     super.id,
@@ -344,6 +371,9 @@ class PlanDefinitionParticipant extends BackboneElement {
     this.role,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode type;
   final Element? typeElement;
   final CodeableConcept? role;
@@ -353,6 +383,7 @@ class PlanDefinitionParticipant extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class PlanDefinitionDynamicValue extends BackboneElement {
   PlanDefinitionDynamicValue({
     super.id,
@@ -363,6 +394,9 @@ class PlanDefinitionDynamicValue extends BackboneElement {
     this.expression,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? path;
   final Element? pathElement;
   final FhirExpression? expression;

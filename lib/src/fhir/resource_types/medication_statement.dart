@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class MedicationStatement extends DomainResource {
   MedicationStatement({
     super.id,
@@ -41,6 +44,9 @@ class MedicationStatement extends DomainResource {
     this.dosage,
   }) : super(resourceType: R4ResourceType.MedicationStatement);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final List<Reference>? basedOn;
   final List<Reference>? partOf;

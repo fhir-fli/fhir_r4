@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class ResearchStudy extends DomainResource {
   ResearchStudy({
     super.id,
@@ -46,6 +49,9 @@ class ResearchStudy extends DomainResource {
     this.objective,
   }) : super(resourceType: R4ResourceType.ResearchStudy);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirString? title;
   final Element? titleElement;
@@ -79,6 +85,7 @@ class ResearchStudy extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ResearchStudyArm extends BackboneElement {
   ResearchStudyArm({
     super.id,
@@ -91,6 +98,9 @@ class ResearchStudyArm extends BackboneElement {
     this.descriptionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString name;
   final Element? nameElement;
   final CodeableConcept? type;
@@ -102,6 +112,7 @@ class ResearchStudyArm extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class ResearchStudyObjective extends BackboneElement {
   ResearchStudyObjective({
     super.id,
@@ -112,6 +123,9 @@ class ResearchStudyObjective extends BackboneElement {
     this.type,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? name;
   final Element? nameElement;
   final CodeableConcept? type;

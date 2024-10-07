@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class DetectedIssue extends DomainResource {
   DetectedIssue({
     super.id,
@@ -37,6 +40,9 @@ class DetectedIssue extends DomainResource {
     this.mitigation,
   }) : super(resourceType: R4ResourceType.DetectedIssue);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
@@ -61,6 +67,7 @@ class DetectedIssue extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class DetectedIssueEvidence extends BackboneElement {
   DetectedIssueEvidence({
     super.id,
@@ -70,6 +77,9 @@ class DetectedIssueEvidence extends BackboneElement {
     this.detail,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<CodeableConcept>? code;
   final List<Reference>? detail;
   @override
@@ -78,6 +88,7 @@ class DetectedIssueEvidence extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class DetectedIssueMitigation extends BackboneElement {
   DetectedIssueMitigation({
     super.id,
@@ -89,6 +100,9 @@ class DetectedIssueMitigation extends BackboneElement {
     this.author,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept action;
   final FhirDateTime? date;
   final Element? dateElement;

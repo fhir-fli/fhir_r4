@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class CareTeam extends DomainResource {
   CareTeam({
     super.id,
@@ -34,6 +37,9 @@ class CareTeam extends DomainResource {
     this.note,
   }) : super(resourceType: R4ResourceType.CareTeam);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final FhirCode? status;
   final Element? statusElement;
@@ -55,6 +61,7 @@ class CareTeam extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class CareTeamParticipant extends BackboneElement {
   CareTeamParticipant({
     super.id,
@@ -66,6 +73,9 @@ class CareTeamParticipant extends BackboneElement {
     this.period,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<CodeableConcept>? role;
   final Reference? member;
   final Reference? onBehalfOf;

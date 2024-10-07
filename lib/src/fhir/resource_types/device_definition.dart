@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class DeviceDefinition extends DomainResource {
   DeviceDefinition({
     super.id,
@@ -47,6 +50,9 @@ class DeviceDefinition extends DomainResource {
     this.material,
   }) : super(resourceType: R4ResourceType.DeviceDefinition);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final List<Identifier>? identifier;
   final List<DeviceDefinitionUdiDeviceIdentifier>? udiDeviceIdentifier;
   final FhirString? manufacturerString;
@@ -81,6 +87,7 @@ class DeviceDefinition extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
   DeviceDefinitionUdiDeviceIdentifier({
     super.id,
@@ -94,6 +101,9 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
     this.jurisdictionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString deviceIdentifier;
   final Element? deviceIdentifierElement;
   final FhirUri issuer;
@@ -106,6 +116,7 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class DeviceDefinitionDeviceName extends BackboneElement {
   DeviceDefinitionDeviceName({
     super.id,
@@ -117,6 +128,9 @@ class DeviceDefinitionDeviceName extends BackboneElement {
     this.typeElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString name;
   final Element? nameElement;
   final FhirCode type;
@@ -127,6 +141,7 @@ class DeviceDefinitionDeviceName extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class DeviceDefinitionSpecialization extends BackboneElement {
   DeviceDefinitionSpecialization({
     super.id,
@@ -138,6 +153,9 @@ class DeviceDefinitionSpecialization extends BackboneElement {
     this.versionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString systemType;
   final Element? systemTypeElement;
   final FhirString? version;
@@ -148,6 +166,7 @@ class DeviceDefinitionSpecialization extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class DeviceDefinitionCapability extends BackboneElement {
   DeviceDefinitionCapability({
     super.id,
@@ -157,6 +176,9 @@ class DeviceDefinitionCapability extends BackboneElement {
     this.description,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final List<CodeableConcept>? description;
   @override
@@ -165,6 +187,7 @@ class DeviceDefinitionCapability extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class DeviceDefinitionProperty extends BackboneElement {
   DeviceDefinitionProperty({
     super.id,
@@ -175,6 +198,9 @@ class DeviceDefinitionProperty extends BackboneElement {
     this.valueCode,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept type;
   final List<Quantity>? valueQuantity;
   final List<CodeableConcept>? valueCode;
@@ -184,6 +210,7 @@ class DeviceDefinitionProperty extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class DeviceDefinitionMaterial extends BackboneElement {
   DeviceDefinitionMaterial({
     super.id,
@@ -196,6 +223,9 @@ class DeviceDefinitionMaterial extends BackboneElement {
     this.allergenicIndicatorElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept substance;
   final FhirBoolean? alternate;
   final Element? alternateElement;

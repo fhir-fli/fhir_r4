@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class AuditEvent extends DomainResource {
   AuditEvent({
     super.id,
@@ -34,6 +37,9 @@ class AuditEvent extends DomainResource {
     this.entity,
   }) : super(resourceType: R4ResourceType.AuditEvent);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Coding type;
   final List<Coding>? subtype;
   final FhirCode? action;
@@ -55,6 +61,7 @@ class AuditEvent extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class AuditEventAgent extends BackboneElement {
   AuditEventAgent({
     super.id,
@@ -77,6 +84,9 @@ class AuditEventAgent extends BackboneElement {
     this.purposeOfUse,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? type;
   final List<CodeableConcept>? role;
   final Reference? who;
@@ -98,6 +108,7 @@ class AuditEventAgent extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class AuditEventNetwork extends BackboneElement {
   AuditEventNetwork({
     super.id,
@@ -109,6 +120,9 @@ class AuditEventNetwork extends BackboneElement {
     this.typeElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? address;
   final Element? addressElement;
   final FhirCode? type;
@@ -119,6 +133,7 @@ class AuditEventNetwork extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class AuditEventSource extends BackboneElement {
   AuditEventSource({
     super.id,
@@ -130,6 +145,9 @@ class AuditEventSource extends BackboneElement {
     this.type,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? site;
   final Element? siteElement;
   final Reference observer;
@@ -140,6 +158,7 @@ class AuditEventSource extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class AuditEventEntity extends BackboneElement {
   AuditEventEntity({
     super.id,
@@ -159,6 +178,9 @@ class AuditEventEntity extends BackboneElement {
     this.detail,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Reference? what;
   final Coding? type;
   final Coding? role;
@@ -177,6 +199,7 @@ class AuditEventEntity extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class AuditEventDetail extends BackboneElement {
   AuditEventDetail({
     super.id,
@@ -190,6 +213,9 @@ class AuditEventDetail extends BackboneElement {
     this.valueBase64BinaryElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString type;
   final Element? typeElement;
   final FhirString valueString;

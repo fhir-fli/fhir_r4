@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class SpecimenDefinition extends DomainResource {
   SpecimenDefinition({
     super.id,
@@ -26,6 +29,9 @@ class SpecimenDefinition extends DomainResource {
     this.typeTested,
   }) : super(resourceType: R4ResourceType.SpecimenDefinition);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final Identifier? identifier;
   final CodeableConcept? typeCollected;
   final List<CodeableConcept>? patientPreparation;
@@ -39,6 +45,7 @@ class SpecimenDefinition extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SpecimenDefinitionTypeTested extends BackboneElement {
   SpecimenDefinitionTypeTested({
     super.id,
@@ -57,6 +64,9 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     this.handling,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirBoolean? isDerived;
   final Element? isDerivedElement;
   final CodeableConcept? type;
@@ -74,6 +84,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SpecimenDefinitionContainer extends BackboneElement {
   SpecimenDefinitionContainer({
     super.id,
@@ -93,6 +104,9 @@ class SpecimenDefinitionContainer extends BackboneElement {
     this.preparationElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? material;
   final CodeableConcept? type;
   final CodeableConcept? cap;
@@ -111,6 +125,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SpecimenDefinitionAdditive extends BackboneElement {
   SpecimenDefinitionAdditive({
     super.id,
@@ -120,6 +135,9 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     required this.additiveReference,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept additiveCodeableConcept;
   final Reference additiveReference;
   @override
@@ -128,6 +146,7 @@ class SpecimenDefinitionAdditive extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SpecimenDefinitionHandling extends BackboneElement {
   SpecimenDefinitionHandling({
     super.id,
@@ -140,6 +159,9 @@ class SpecimenDefinitionHandling extends BackboneElement {
     this.instructionElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final CodeableConcept? temperatureQualifier;
   final Range? temperatureRange;
   final FhirDuration? maxDuration;

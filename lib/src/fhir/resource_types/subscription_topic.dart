@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class SubscriptionTopic extends DomainResource {
   SubscriptionTopic({
     super.id,
@@ -54,6 +57,9 @@ class SubscriptionTopic extends DomainResource {
     this.notificationShape,
   }) : super(resourceType: R4ResourceType.SubscriptionTopic);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri url;
   final Element? urlElement;
   final List<Identifier>? identifier;
@@ -95,6 +101,7 @@ class SubscriptionTopic extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SubscriptionTopicResourceTrigger extends BackboneElement {
   SubscriptionTopicResourceTrigger({
     super.id,
@@ -111,6 +118,9 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
     this.fhirPathCriteriaElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirMarkdown? description;
   final Element? descriptionElement;
   final FhirUri resource;
@@ -126,6 +136,7 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SubscriptionTopicQueryCriteria extends BackboneElement {
   SubscriptionTopicQueryCriteria({
     super.id,
@@ -143,6 +154,9 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
     this.requireBothElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString? previous;
   final Element? previousElement;
   final FhirCode? resultForCreate;
@@ -159,6 +173,7 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SubscriptionTopicEventTrigger extends BackboneElement {
   SubscriptionTopicEventTrigger({
     super.id,
@@ -171,6 +186,9 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
     this.resourceElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirMarkdown? description;
   final Element? descriptionElement;
   final CodeableConcept event;
@@ -182,6 +200,7 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SubscriptionTopicCanFilterBy extends BackboneElement {
   SubscriptionTopicCanFilterBy({
     super.id,
@@ -199,6 +218,9 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
     this.modifierElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirMarkdown? description;
   final Element? descriptionElement;
   final FhirUri? resource;
@@ -215,6 +237,7 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SubscriptionTopicNotificationShape extends BackboneElement {
   SubscriptionTopicNotificationShape({
     super.id,
@@ -228,6 +251,9 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
     this.revIncludeElement,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirUri resource;
   final Element? resourceElement;
   final List<FhirString>? include;

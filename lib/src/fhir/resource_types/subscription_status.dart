@@ -1,10 +1,13 @@
 import 'package:dataclass/dataclass.dart';
 import 'package:json/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
 @JsonCodable()
 @Data()
+@Entity()
 class SubscriptionStatus extends DomainResource {
   SubscriptionStatus({
     super.id,
@@ -30,6 +33,9 @@ class SubscriptionStatus extends DomainResource {
     this.error,
   }) : super(resourceType: R4ResourceType.SubscriptionStatus);
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirCode? status;
   final Element? statusElement;
   final FhirCode type;
@@ -47,6 +53,7 @@ class SubscriptionStatus extends DomainResource {
 
 @JsonCodable()
 @Data()
+@Entity()
 class SubscriptionStatusNotificationEvent extends BackboneElement {
   SubscriptionStatusNotificationEvent({
     super.id,
@@ -60,6 +67,9 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
     this.additionalContext,
   });
 
+  @Id()
+  @JsonKey(ignore: true)
+  int dbId = 0;
   final FhirString eventNumber;
   final Element? eventNumberElement;
   final FhirInstant? timestamp;
