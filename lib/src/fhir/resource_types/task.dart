@@ -8,16 +8,17 @@ import '../../../fhir_r4.dart';
 class Task extends DomainResource {
   final List<Identifier>? identifier;
   final FhirCanonical? instantiatesCanonical;
+  final Element? instantiatesCanonicalElement;
   final FhirUri? instantiatesUri;
   final Element? instantiatesUriElement;
   final List<Reference>? basedOn;
   final Identifier? groupIdentifier;
   final List<Reference>? partOf;
-  final FhirCode? status;
+  final FhirCode status;
   final Element? statusElement;
   final CodeableConcept? statusReason;
   final CodeableConcept? businessStatus;
-  final FhirCode? intent;
+  final FhirCode intent;
   final Element? intentElement;
   final FhirCode? priority;
   final Element? priorityElement;
@@ -41,47 +42,48 @@ class Task extends DomainResource {
   final List<Reference>? insurance;
   final List<Annotation>? note;
   final List<Reference>? relevantHistory;
-  final TaskRestriction? restriction;
-  final List<TaskInput>? input;
-  final List<TaskOutput>? output;
+  final BackboneElement? restriction;
+  final List<BackboneElement>? input;
+  final List<BackboneElement>? output;
 
   Task({
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
+this.instantiatesCanonicalElement,
     this.instantiatesUri,
-    this.instantiatesUriElement,
+this.instantiatesUriElement,
     this.basedOn,
     this.groupIdentifier,
     this.partOf,
-    this.status,
-    this.statusElement,
+    required this.status,
+this.statusElement,
     this.statusReason,
     this.businessStatus,
-    this.intent,
-    this.intentElement,
+    required this.intent,
+this.intentElement,
     this.priority,
-    this.priorityElement,
+this.priorityElement,
     this.code,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.focus,
     this.for_,
     this.encounter,
     this.executionPeriod,
     this.authoredOn,
-    this.authoredOnElement,
+this.authoredOnElement,
     this.lastModified,
-    this.lastModifiedElement,
+this.lastModifiedElement,
     this.requester,
     this.performerType,
     this.owner,
@@ -94,348 +96,339 @@ class Task extends DomainResource {
     this.restriction,
     this.input,
     this.output,
-  }): super(resourceType: R4ResourceType.Task);
+  }) : super(resourceType: R4ResourceType.Task);
 
 @override
-Task clone() => this;
-
+Task clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class TaskRestriction {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class TaskRestriction extends BackboneElement {
   final FhirPositiveInt? repetitions;
   final Element? repetitionsElement;
   final Period? period;
   final List<Reference>? recipient;
 
   TaskRestriction({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.repetitions,
-    this.repetitionsElement,
+this.repetitionsElement,
     this.period,
     this.recipient,
   });
 
+@override
+TaskRestriction clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class TaskInput {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class TaskInput extends BackboneElement {
   final CodeableConcept type;
-  final FhirString? valueBase64Binary;
-  final Element? valueBase64BinaryElement;
-  final bool? valueBoolean;
-  final Element? valueBooleanElement;
-  final FhirString? valueCanonical;
-  final Element? valueCanonicalElement;
-  final FhirString? valueCode;
-  final Element? valueCodeElement;
-  final FhirString? valueDate;
-  final Element? valueDateElement;
-  final FhirString? valueDateTime;
-  final Element? valueDateTimeElement;
-  final double? valueDecimal;
-  final Element? valueDecimalElement;
-  final FhirString? valueId;
-  final Element? valueIdElement;
-  final FhirString? valueInstant;
-  final Element? valueInstantElement;
-  final double? valueInteger;
-  final Element? valueIntegerElement;
-  final FhirString? valueMarkdown;
-  final Element? valueMarkdownElement;
-  final FhirString? valueOid;
-  final Element? valueOidElement;
-  final double? valuePositiveInt;
-  final Element? valuePositiveIntElement;
-  final FhirString? valueString;
-  final Element? valueStringElement;
-  final FhirString? valueTime;
-  final Element? valueTimeElement;
-  final double? valueUnsignedInt;
-  final Element? valueUnsignedIntElement;
-  final FhirString? valueUri;
-  final Element? valueUriElement;
-  final FhirString? valueUrl;
-  final Element? valueUrlElement;
-  final FhirString? valueUuid;
-  final Element? valueUuidElement;
-  final Address? valueAddress;
-  final Age? valueAge;
-  final Annotation? valueAnnotation;
-  final Attachment? valueAttachment;
-  final CodeableConcept? valueCodeableConcept;
-  final Coding? valueCoding;
-  final ContactPoint? valueContactPoint;
-  final Count? valueCount;
-  final Distance? valueDistance;
-  final FhirDuration? valueDuration;
-  final HumanName? valueHumanName;
-  final Identifier? valueIdentifier;
-  final Money? valueMoney;
-  final Period? valuePeriod;
-  final Quantity? valueQuantity;
-  final Range? valueRange;
-  final Ratio? valueRatio;
-  final Reference? valueReference;
-  final SampledData? valueSampledData;
-  final Signature? valueSignature;
-  final Timing? valueTiming;
-  final ContactDetail? valueContactDetail;
-  final Contributor? valueContributor;
-  final DataRequirement? valueDataRequirement;
-  final FhirExpression? valueExpression;
-  final ParameterDefinition? valueParameterDefinition;
-  final RelatedArtifact? valueRelatedArtifact;
-  final TriggerDefinition? valueTriggerDefinition;
-  final UsageContext? valueUsageContext;
-  final Dosage? valueDosage;
-  final FhirMeta? valueMeta;
+  final FhirBase64Binary valueFhirBase64Binary;
+  final Element? valueFhirBase64BinaryElement;
+  final FhirBoolean valueFhirBoolean;
+  final Element? valueFhirBooleanElement;
+  final FhirCanonical valueFhirCanonical;
+  final Element? valueFhirCanonicalElement;
+  final FhirCode valueFhirCode;
+  final Element? valueFhirCodeElement;
+  final FhirDate valueFhirDate;
+  final Element? valueFhirDateElement;
+  final FhirDateTime valueFhirDateTime;
+  final Element? valueFhirDateTimeElement;
+  final FhirDecimal valueFhirDecimal;
+  final Element? valueFhirDecimalElement;
+  final FhirId valueFhirId;
+  final Element? valueFhirIdElement;
+  final FhirInstant valueFhirInstant;
+  final Element? valueFhirInstantElement;
+  final FhirInteger valueFhirInteger;
+  final Element? valueFhirIntegerElement;
+  final FhirMarkdown valueFhirMarkdown;
+  final Element? valueFhirMarkdownElement;
+  final FhirOid valueFhirOid;
+  final Element? valueFhirOidElement;
+  final FhirPositiveInt valueFhirPositiveInt;
+  final Element? valueFhirPositiveIntElement;
+  final FhirString valueFhirString;
+  final Element? valueFhirStringElement;
+  final FhirTime valueFhirTime;
+  final Element? valueFhirTimeElement;
+  final FhirUnsignedInt valueFhirUnsignedInt;
+  final Element? valueFhirUnsignedIntElement;
+  final FhirUri valueFhirUri;
+  final Element? valueFhirUriElement;
+  final FhirUrl valueFhirUrl;
+  final Element? valueFhirUrlElement;
+  final FhirUuid valueFhirUuid;
+  final Element? valueFhirUuidElement;
+  final Address valueAddress;
+  final Age valueAge;
+  final Annotation valueAnnotation;
+  final Attachment valueAttachment;
+  final CodeableConcept valueCodeableConcept;
+  final Coding valueCoding;
+  final ContactPoint valueContactPoint;
+  final Count valueCount;
+  final Distance valueDistance;
+  final FhirDuration valueFhirDuration;
+  final HumanName valueHumanName;
+  final Identifier valueIdentifier;
+  final Money valueMoney;
+  final Period valuePeriod;
+  final Quantity valueQuantity;
+  final Range valueRange;
+  final Ratio valueRatio;
+  final Reference valueReference;
+  final SampledData valueSampledData;
+  final Signature valueSignature;
+  final Timing valueTiming;
+  final ContactDetail valueContactDetail;
+  final Contributor valueContributor;
+  final DataRequirement valueDataRequirement;
+  final FhirExpression valueFhirExpression;
+  final ParameterDefinition valueParameterDefinition;
+  final RelatedArtifact valueRelatedArtifact;
+  final TriggerDefinition valueTriggerDefinition;
+  final UsageContext valueUsageContext;
+  final Dosage valueDosage;
+  final FhirMeta valueFhirMeta;
 
   TaskInput({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     required this.type,
-    this.valueBase64Binary,
-    this.valueBase64BinaryElement,
-    this.valueBoolean,
-    this.valueBooleanElement,
-    this.valueCanonical,
-    this.valueCanonicalElement,
-    this.valueCode,
-    this.valueCodeElement,
-    this.valueDate,
-    this.valueDateElement,
-    this.valueDateTime,
-    this.valueDateTimeElement,
-    this.valueDecimal,
-    this.valueDecimalElement,
-    this.valueId,
-    this.valueIdElement,
-    this.valueInstant,
-    this.valueInstantElement,
-    this.valueInteger,
-    this.valueIntegerElement,
-    this.valueMarkdown,
-    this.valueMarkdownElement,
-    this.valueOid,
-    this.valueOidElement,
-    this.valuePositiveInt,
-    this.valuePositiveIntElement,
-    this.valueString,
-    this.valueStringElement,
-    this.valueTime,
-    this.valueTimeElement,
-    this.valueUnsignedInt,
-    this.valueUnsignedIntElement,
-    this.valueUri,
-    this.valueUriElement,
-    this.valueUrl,
-    this.valueUrlElement,
-    this.valueUuid,
-    this.valueUuidElement,
-    this.valueAddress,
-    this.valueAge,
-    this.valueAnnotation,
-    this.valueAttachment,
-    this.valueCodeableConcept,
-    this.valueCoding,
-    this.valueContactPoint,
-    this.valueCount,
-    this.valueDistance,
-    this.valueDuration,
-    this.valueHumanName,
-    this.valueIdentifier,
-    this.valueMoney,
-    this.valuePeriod,
-    this.valueQuantity,
-    this.valueRange,
-    this.valueRatio,
-    this.valueReference,
-    this.valueSampledData,
-    this.valueSignature,
-    this.valueTiming,
-    this.valueContactDetail,
-    this.valueContributor,
-    this.valueDataRequirement,
-    this.valueExpression,
-    this.valueParameterDefinition,
-    this.valueRelatedArtifact,
-    this.valueTriggerDefinition,
-    this.valueUsageContext,
-    this.valueDosage,
-    this.valueMeta,
+    required this.valueFhirBase64Binary,
+this.valueFhirBase64BinaryElement,
+    required this.valueFhirBoolean,
+this.valueFhirBooleanElement,
+    required this.valueFhirCanonical,
+this.valueFhirCanonicalElement,
+    required this.valueFhirCode,
+this.valueFhirCodeElement,
+    required this.valueFhirDate,
+this.valueFhirDateElement,
+    required this.valueFhirDateTime,
+this.valueFhirDateTimeElement,
+    required this.valueFhirDecimal,
+this.valueFhirDecimalElement,
+    required this.valueFhirId,
+this.valueFhirIdElement,
+    required this.valueFhirInstant,
+this.valueFhirInstantElement,
+    required this.valueFhirInteger,
+this.valueFhirIntegerElement,
+    required this.valueFhirMarkdown,
+this.valueFhirMarkdownElement,
+    required this.valueFhirOid,
+this.valueFhirOidElement,
+    required this.valueFhirPositiveInt,
+this.valueFhirPositiveIntElement,
+    required this.valueFhirString,
+this.valueFhirStringElement,
+    required this.valueFhirTime,
+this.valueFhirTimeElement,
+    required this.valueFhirUnsignedInt,
+this.valueFhirUnsignedIntElement,
+    required this.valueFhirUri,
+this.valueFhirUriElement,
+    required this.valueFhirUrl,
+this.valueFhirUrlElement,
+    required this.valueFhirUuid,
+this.valueFhirUuidElement,
+    required this.valueAddress,
+    required this.valueAge,
+    required this.valueAnnotation,
+    required this.valueAttachment,
+    required this.valueCodeableConcept,
+    required this.valueCoding,
+    required this.valueContactPoint,
+    required this.valueCount,
+    required this.valueDistance,
+    required this.valueFhirDuration,
+    required this.valueHumanName,
+    required this.valueIdentifier,
+    required this.valueMoney,
+    required this.valuePeriod,
+    required this.valueQuantity,
+    required this.valueRange,
+    required this.valueRatio,
+    required this.valueReference,
+    required this.valueSampledData,
+    required this.valueSignature,
+    required this.valueTiming,
+    required this.valueContactDetail,
+    required this.valueContributor,
+    required this.valueDataRequirement,
+    required this.valueFhirExpression,
+    required this.valueParameterDefinition,
+    required this.valueRelatedArtifact,
+    required this.valueTriggerDefinition,
+    required this.valueUsageContext,
+    required this.valueDosage,
+    required this.valueFhirMeta,
   });
 
+@override
+TaskInput clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class TaskOutput {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class TaskOutput extends BackboneElement {
   final CodeableConcept type;
-  final FhirString? valueBase64Binary;
-  final Element? valueBase64BinaryElement;
-  final bool? valueBoolean;
-  final Element? valueBooleanElement;
-  final FhirString? valueCanonical;
-  final Element? valueCanonicalElement;
-  final FhirString? valueCode;
-  final Element? valueCodeElement;
-  final FhirString? valueDate;
-  final Element? valueDateElement;
-  final FhirString? valueDateTime;
-  final Element? valueDateTimeElement;
-  final double? valueDecimal;
-  final Element? valueDecimalElement;
-  final FhirString? valueId;
-  final Element? valueIdElement;
-  final FhirString? valueInstant;
-  final Element? valueInstantElement;
-  final double? valueInteger;
-  final Element? valueIntegerElement;
-  final FhirString? valueMarkdown;
-  final Element? valueMarkdownElement;
-  final FhirString? valueOid;
-  final Element? valueOidElement;
-  final double? valuePositiveInt;
-  final Element? valuePositiveIntElement;
-  final FhirString? valueString;
-  final Element? valueStringElement;
-  final FhirString? valueTime;
-  final Element? valueTimeElement;
-  final double? valueUnsignedInt;
-  final Element? valueUnsignedIntElement;
-  final FhirString? valueUri;
-  final Element? valueUriElement;
-  final FhirString? valueUrl;
-  final Element? valueUrlElement;
-  final FhirString? valueUuid;
-  final Element? valueUuidElement;
-  final Address? valueAddress;
-  final Age? valueAge;
-  final Annotation? valueAnnotation;
-  final Attachment? valueAttachment;
-  final CodeableConcept? valueCodeableConcept;
-  final Coding? valueCoding;
-  final ContactPoint? valueContactPoint;
-  final Count? valueCount;
-  final Distance? valueDistance;
-  final FhirDuration? valueDuration;
-  final HumanName? valueHumanName;
-  final Identifier? valueIdentifier;
-  final Money? valueMoney;
-  final Period? valuePeriod;
-  final Quantity? valueQuantity;
-  final Range? valueRange;
-  final Ratio? valueRatio;
-  final Reference? valueReference;
-  final SampledData? valueSampledData;
-  final Signature? valueSignature;
-  final Timing? valueTiming;
-  final ContactDetail? valueContactDetail;
-  final Contributor? valueContributor;
-  final DataRequirement? valueDataRequirement;
-  final FhirExpression? valueExpression;
-  final ParameterDefinition? valueParameterDefinition;
-  final RelatedArtifact? valueRelatedArtifact;
-  final TriggerDefinition? valueTriggerDefinition;
-  final UsageContext? valueUsageContext;
-  final Dosage? valueDosage;
-  final FhirMeta? valueMeta;
+  final FhirBase64Binary valueFhirBase64Binary;
+  final Element? valueFhirBase64BinaryElement;
+  final FhirBoolean valueFhirBoolean;
+  final Element? valueFhirBooleanElement;
+  final FhirCanonical valueFhirCanonical;
+  final Element? valueFhirCanonicalElement;
+  final FhirCode valueFhirCode;
+  final Element? valueFhirCodeElement;
+  final FhirDate valueFhirDate;
+  final Element? valueFhirDateElement;
+  final FhirDateTime valueFhirDateTime;
+  final Element? valueFhirDateTimeElement;
+  final FhirDecimal valueFhirDecimal;
+  final Element? valueFhirDecimalElement;
+  final FhirId valueFhirId;
+  final Element? valueFhirIdElement;
+  final FhirInstant valueFhirInstant;
+  final Element? valueFhirInstantElement;
+  final FhirInteger valueFhirInteger;
+  final Element? valueFhirIntegerElement;
+  final FhirMarkdown valueFhirMarkdown;
+  final Element? valueFhirMarkdownElement;
+  final FhirOid valueFhirOid;
+  final Element? valueFhirOidElement;
+  final FhirPositiveInt valueFhirPositiveInt;
+  final Element? valueFhirPositiveIntElement;
+  final FhirString valueFhirString;
+  final Element? valueFhirStringElement;
+  final FhirTime valueFhirTime;
+  final Element? valueFhirTimeElement;
+  final FhirUnsignedInt valueFhirUnsignedInt;
+  final Element? valueFhirUnsignedIntElement;
+  final FhirUri valueFhirUri;
+  final Element? valueFhirUriElement;
+  final FhirUrl valueFhirUrl;
+  final Element? valueFhirUrlElement;
+  final FhirUuid valueFhirUuid;
+  final Element? valueFhirUuidElement;
+  final Address valueAddress;
+  final Age valueAge;
+  final Annotation valueAnnotation;
+  final Attachment valueAttachment;
+  final CodeableConcept valueCodeableConcept;
+  final Coding valueCoding;
+  final ContactPoint valueContactPoint;
+  final Count valueCount;
+  final Distance valueDistance;
+  final FhirDuration valueFhirDuration;
+  final HumanName valueHumanName;
+  final Identifier valueIdentifier;
+  final Money valueMoney;
+  final Period valuePeriod;
+  final Quantity valueQuantity;
+  final Range valueRange;
+  final Ratio valueRatio;
+  final Reference valueReference;
+  final SampledData valueSampledData;
+  final Signature valueSignature;
+  final Timing valueTiming;
+  final ContactDetail valueContactDetail;
+  final Contributor valueContributor;
+  final DataRequirement valueDataRequirement;
+  final FhirExpression valueFhirExpression;
+  final ParameterDefinition valueParameterDefinition;
+  final RelatedArtifact valueRelatedArtifact;
+  final TriggerDefinition valueTriggerDefinition;
+  final UsageContext valueUsageContext;
+  final Dosage valueDosage;
+  final FhirMeta valueFhirMeta;
 
   TaskOutput({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     required this.type,
-    this.valueBase64Binary,
-    this.valueBase64BinaryElement,
-    this.valueBoolean,
-    this.valueBooleanElement,
-    this.valueCanonical,
-    this.valueCanonicalElement,
-    this.valueCode,
-    this.valueCodeElement,
-    this.valueDate,
-    this.valueDateElement,
-    this.valueDateTime,
-    this.valueDateTimeElement,
-    this.valueDecimal,
-    this.valueDecimalElement,
-    this.valueId,
-    this.valueIdElement,
-    this.valueInstant,
-    this.valueInstantElement,
-    this.valueInteger,
-    this.valueIntegerElement,
-    this.valueMarkdown,
-    this.valueMarkdownElement,
-    this.valueOid,
-    this.valueOidElement,
-    this.valuePositiveInt,
-    this.valuePositiveIntElement,
-    this.valueString,
-    this.valueStringElement,
-    this.valueTime,
-    this.valueTimeElement,
-    this.valueUnsignedInt,
-    this.valueUnsignedIntElement,
-    this.valueUri,
-    this.valueUriElement,
-    this.valueUrl,
-    this.valueUrlElement,
-    this.valueUuid,
-    this.valueUuidElement,
-    this.valueAddress,
-    this.valueAge,
-    this.valueAnnotation,
-    this.valueAttachment,
-    this.valueCodeableConcept,
-    this.valueCoding,
-    this.valueContactPoint,
-    this.valueCount,
-    this.valueDistance,
-    this.valueDuration,
-    this.valueHumanName,
-    this.valueIdentifier,
-    this.valueMoney,
-    this.valuePeriod,
-    this.valueQuantity,
-    this.valueRange,
-    this.valueRatio,
-    this.valueReference,
-    this.valueSampledData,
-    this.valueSignature,
-    this.valueTiming,
-    this.valueContactDetail,
-    this.valueContributor,
-    this.valueDataRequirement,
-    this.valueExpression,
-    this.valueParameterDefinition,
-    this.valueRelatedArtifact,
-    this.valueTriggerDefinition,
-    this.valueUsageContext,
-    this.valueDosage,
-    this.valueMeta,
+    required this.valueFhirBase64Binary,
+this.valueFhirBase64BinaryElement,
+    required this.valueFhirBoolean,
+this.valueFhirBooleanElement,
+    required this.valueFhirCanonical,
+this.valueFhirCanonicalElement,
+    required this.valueFhirCode,
+this.valueFhirCodeElement,
+    required this.valueFhirDate,
+this.valueFhirDateElement,
+    required this.valueFhirDateTime,
+this.valueFhirDateTimeElement,
+    required this.valueFhirDecimal,
+this.valueFhirDecimalElement,
+    required this.valueFhirId,
+this.valueFhirIdElement,
+    required this.valueFhirInstant,
+this.valueFhirInstantElement,
+    required this.valueFhirInteger,
+this.valueFhirIntegerElement,
+    required this.valueFhirMarkdown,
+this.valueFhirMarkdownElement,
+    required this.valueFhirOid,
+this.valueFhirOidElement,
+    required this.valueFhirPositiveInt,
+this.valueFhirPositiveIntElement,
+    required this.valueFhirString,
+this.valueFhirStringElement,
+    required this.valueFhirTime,
+this.valueFhirTimeElement,
+    required this.valueFhirUnsignedInt,
+this.valueFhirUnsignedIntElement,
+    required this.valueFhirUri,
+this.valueFhirUriElement,
+    required this.valueFhirUrl,
+this.valueFhirUrlElement,
+    required this.valueFhirUuid,
+this.valueFhirUuidElement,
+    required this.valueAddress,
+    required this.valueAge,
+    required this.valueAnnotation,
+    required this.valueAttachment,
+    required this.valueCodeableConcept,
+    required this.valueCoding,
+    required this.valueContactPoint,
+    required this.valueCount,
+    required this.valueDistance,
+    required this.valueFhirDuration,
+    required this.valueHumanName,
+    required this.valueIdentifier,
+    required this.valueMoney,
+    required this.valuePeriod,
+    required this.valueQuantity,
+    required this.valueRange,
+    required this.valueRatio,
+    required this.valueReference,
+    required this.valueSampledData,
+    required this.valueSignature,
+    required this.valueTiming,
+    required this.valueContactDetail,
+    required this.valueContributor,
+    required this.valueDataRequirement,
+    required this.valueFhirExpression,
+    required this.valueParameterDefinition,
+    required this.valueRelatedArtifact,
+    required this.valueTriggerDefinition,
+    required this.valueUsageContext,
+    required this.valueDosage,
+    required this.valueFhirMeta,
   });
 
+@override
+TaskOutput clone() => throw UnimplementedError();
 }
-
-
 

@@ -8,7 +8,7 @@ import '../../../fhir_r4.dart';
 class Timing extends BackboneType {
   final List<FhirDateTime>? event;
   final List<Element>? eventElement;
-  final TimingRepeat? repeat;
+  final Element? repeat;
   final CodeableConcept? code;
 
   Timing({
@@ -16,21 +16,19 @@ class Timing extends BackboneType {
     super.extension_,
     super.modifierExtension,
     this.event,
-    this.eventElement,
+this.eventElement,
     this.repeat,
     this.code,
   });
 
+@override
+Timing clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class TimingRepeat {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final FhirDuration? boundsDuration;
+class TimingRepeat extends Element {
+  final FhirDuration? boundsFhirDuration;
   final Range? boundsRange;
   final Period? boundsPeriod;
   final FhirPositiveInt? count;
@@ -41,7 +39,7 @@ class TimingRepeat {
   final Element? durationElement;
   final FhirDecimal? durationMax;
   final Element? durationMaxElement;
-  final dynamic? durationUnit;
+  final FhirCode? durationUnit;
   final Element? durationUnitElement;
   final FhirPositiveInt? frequency;
   final Element? frequencyElement;
@@ -51,55 +49,54 @@ class TimingRepeat {
   final Element? periodElement;
   final FhirDecimal? periodMax;
   final Element? periodMaxElement;
-  final dynamic? periodUnit;
+  final FhirCode? periodUnit;
   final Element? periodUnitElement;
   final List<FhirCode>? dayOfWeek;
   final List<Element>? dayOfWeekElement;
   final List<FhirTime>? timeOfDay;
   final List<Element>? timeOfDayElement;
-  final List<dynamic>? when;
+  final List<FhirCode>? when;
   final List<Element>? whenElement;
   final FhirUnsignedInt? offset;
   final Element? offsetElement;
 
   TimingRepeat({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.boundsDuration,
+    super.id,
+    super.extension_,
+    this.boundsFhirDuration,
     this.boundsRange,
     this.boundsPeriod,
     this.count,
-    this.countElement,
+this.countElement,
     this.countMax,
-    this.countMaxElement,
+this.countMaxElement,
     this.duration,
-    this.durationElement,
+this.durationElement,
     this.durationMax,
-    this.durationMaxElement,
+this.durationMaxElement,
     this.durationUnit,
-    this.durationUnitElement,
+this.durationUnitElement,
     this.frequency,
-    this.frequencyElement,
+this.frequencyElement,
     this.frequencyMax,
-    this.frequencyMaxElement,
+this.frequencyMaxElement,
     this.period,
-    this.periodElement,
+this.periodElement,
     this.periodMax,
-    this.periodMaxElement,
+this.periodMaxElement,
     this.periodUnit,
-    this.periodUnitElement,
+this.periodUnitElement,
     this.dayOfWeek,
-    this.dayOfWeekElement,
+this.dayOfWeekElement,
     this.timeOfDay,
-    this.timeOfDayElement,
+this.timeOfDayElement,
     this.when,
-    this.whenElement,
+this.whenElement,
     this.offset,
-    this.offsetElement,
+this.offsetElement,
   });
 
+@override
+TimingRepeat clone() => throw UnimplementedError();
 }
-
-
 

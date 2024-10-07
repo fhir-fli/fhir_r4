@@ -17,7 +17,7 @@ class Measure extends DomainResource {
   final Element? titleElement;
   final FhirString? subtitle;
   final Element? subtitleElement;
-  final FhirCode? status;
+  final FhirCode status;
   final Element? statusElement;
   final FhirBoolean? experimental;
   final Element? experimentalElement;
@@ -50,6 +50,7 @@ class Measure extends DomainResource {
   final List<ContactDetail>? endorser;
   final List<RelatedArtifact>? relatedArtifact;
   final List<FhirCanonical>? library_;
+  final List<Element>? libraryElement;
   final FhirMarkdown? disclaimer;
   final Element? disclaimerElement;
   final CodeableConcept? scoring;
@@ -68,56 +69,59 @@ class Measure extends DomainResource {
   final List<Element>? definitionElement;
   final FhirMarkdown? guidance;
   final Element? guidanceElement;
-  final List<MeasureGroup>? group;
-  final List<MeasureSupplementalData>? supplementalData;
+  final List<BackboneElement>? group;
+  final List<BackboneElement>? population;
+  final List<BackboneElement>? stratifier;
+  final List<BackboneElement>? component;
+  final List<BackboneElement>? supplementalData;
 
   Measure({
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-    this.urlElement,
+this.urlElement,
     this.identifier,
     this.version,
-    this.versionElement,
+this.versionElement,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.title,
-    this.titleElement,
+this.titleElement,
     this.subtitle,
-    this.subtitleElement,
-    this.status,
-    this.statusElement,
+this.subtitleElement,
+    required this.status,
+this.statusElement,
     this.experimental,
-    this.experimentalElement,
+this.experimentalElement,
     this.subjectCodeableConcept,
     this.subjectReference,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.publisher,
-    this.publisherElement,
+this.publisherElement,
     this.contact,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-    this.purposeElement,
+this.purposeElement,
     this.usage,
-    this.usageElement,
+this.usageElement,
     this.copyright,
-    this.copyrightElement,
+this.copyrightElement,
     this.approvalDate,
-    this.approvalDateElement,
+this.approvalDateElement,
     this.lastReviewDate,
-    this.lastReviewDateElement,
+this.lastReviewDateElement,
     this.effectivePeriod,
     this.topic,
     this.author,
@@ -126,140 +130,125 @@ class Measure extends DomainResource {
     this.endorser,
     this.relatedArtifact,
     this.library_,
+this.libraryElement,
     this.disclaimer,
-    this.disclaimerElement,
+this.disclaimerElement,
     this.scoring,
     this.compositeScoring,
     this.type,
     this.riskAdjustment,
-    this.riskAdjustmentElement,
+this.riskAdjustmentElement,
     this.rateAggregation,
-    this.rateAggregationElement,
+this.rateAggregationElement,
     this.rationale,
-    this.rationaleElement,
+this.rationaleElement,
     this.clinicalRecommendationStatement,
-    this.clinicalRecommendationStatementElement,
+this.clinicalRecommendationStatementElement,
     this.improvementNotation,
     this.definition,
-    this.definitionElement,
+this.definitionElement,
     this.guidance,
-    this.guidanceElement,
+this.guidanceElement,
     this.group,
+    this.population,
+    this.stratifier,
+    this.component,
     this.supplementalData,
-  }): super(resourceType: R4ResourceType.Measure);
+  }) : super(resourceType: R4ResourceType.Measure);
 
 @override
-Measure clone() => this;
-
+Measure clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class MeasureGroup {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class MeasureGroup extends BackboneElement {
   final CodeableConcept? code;
   final FhirString? description;
   final Element? descriptionElement;
-  final List<MeasurePopulation>? population;
-  final List<MeasureStratifier>? stratifier;
 
   MeasureGroup({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.code,
     this.description,
-    this.descriptionElement,
-    this.population,
-    this.stratifier,
+this.descriptionElement,
   });
 
+@override
+MeasureGroup clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class MeasurePopulation {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class MeasurePopulation extends BackboneElement {
   final CodeableConcept? code;
   final FhirString? description;
   final Element? descriptionElement;
   final FhirExpression criteria;
 
   MeasurePopulation({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.code,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     required this.criteria,
   });
 
+@override
+MeasurePopulation clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class MeasureStratifier {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class MeasureStratifier extends BackboneElement {
   final CodeableConcept? code;
   final FhirString? description;
   final Element? descriptionElement;
   final FhirExpression? criteria;
-  final List<MeasureComponent>? component;
 
   MeasureStratifier({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.code,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.criteria,
-    this.component,
   });
 
+@override
+MeasureStratifier clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class MeasureComponent {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class MeasureComponent extends BackboneElement {
   final CodeableConcept? code;
   final FhirString? description;
   final Element? descriptionElement;
   final FhirExpression criteria;
 
   MeasureComponent({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.code,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     required this.criteria,
   });
 
+@override
+MeasureComponent clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class MeasureSupplementalData {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class MeasureSupplementalData extends BackboneElement {
   final CodeableConcept? code;
   final List<CodeableConcept>? usage;
   final FhirString? description;
@@ -267,17 +256,17 @@ class MeasureSupplementalData {
   final FhirExpression criteria;
 
   MeasureSupplementalData({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.code,
     this.usage,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     required this.criteria,
   });
 
+@override
+MeasureSupplementalData clone() => throw UnimplementedError();
 }
-
-
 

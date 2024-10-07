@@ -13,81 +13,74 @@ class Substance extends DomainResource {
   final CodeableConcept code;
   final FhirString? description;
   final Element? descriptionElement;
-  final List<SubstanceInstance>? instance;
-  final List<SubstanceIngredient>? ingredient;
+  final List<BackboneElement>? instance;
+  final List<BackboneElement>? ingredient;
 
   Substance({
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.status,
-    this.statusElement,
+this.statusElement,
     this.category,
     required this.code,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.instance,
     this.ingredient,
-  }): super(resourceType: R4ResourceType.Substance);
+  }) : super(resourceType: R4ResourceType.Substance);
 
 @override
-Substance clone() => this;
-
+Substance clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class SubstanceInstance {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class SubstanceInstance extends BackboneElement {
   final Identifier? identifier;
   final FhirDateTime? expiry;
   final Element? expiryElement;
   final Quantity? quantity;
 
   SubstanceInstance({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.identifier,
     this.expiry,
-    this.expiryElement,
+this.expiryElement,
     this.quantity,
   });
 
+@override
+SubstanceInstance clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class SubstanceIngredient {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class SubstanceIngredient extends BackboneElement {
   final Ratio? quantity;
-  final CodeableConcept? substanceCodeableConcept;
-  final Reference? substanceReference;
+  final CodeableConcept substanceCodeableConcept;
+  final Reference substanceReference;
 
   SubstanceIngredient({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.quantity,
-    this.substanceCodeableConcept,
-    this.substanceReference,
+    required this.substanceCodeableConcept,
+    required this.substanceReference,
   });
 
+@override
+SubstanceIngredient clone() => throw UnimplementedError();
 }
-
-
 

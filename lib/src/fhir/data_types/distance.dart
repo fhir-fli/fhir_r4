@@ -11,18 +11,18 @@ class Distance extends Quantity {
     super.id,
     super.extension_,
     super.value,
-    super.valueElement,
+super.valueElement,
     super.comparator,
-    super.comparatorElement,
+super.comparatorElement,
     super.unit,
-    super.unitElement,
+super.unitElement,
     super.system,
-    super.systemElement,
+super.systemElement,
     super.code,
-    super.codeElement,
+super.codeElement,
   });
 
+@override
+Distance clone() => throw UnimplementedError();
 }
-
-
 

@@ -17,63 +17,58 @@ class Practitioner extends DomainResource {
   final FhirDate? birthDate;
   final Element? birthDateElement;
   final List<Attachment>? photo;
-  final List<PractitionerQualification>? qualification;
+  final List<BackboneElement>? qualification;
   final List<CodeableConcept>? communication;
 
   Practitioner({
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
-    this.activeElement,
+this.activeElement,
     this.name,
     this.telecom,
     this.address,
     this.gender,
-    this.genderElement,
+this.genderElement,
     this.birthDate,
-    this.birthDateElement,
+this.birthDateElement,
     this.photo,
     this.qualification,
     this.communication,
-  }): super(resourceType: R4ResourceType.Practitioner);
+  }) : super(resourceType: R4ResourceType.Practitioner);
 
 @override
-Practitioner clone() => this;
-
+Practitioner clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class PractitionerQualification {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class PractitionerQualification extends BackboneElement {
   final List<Identifier>? identifier;
   final CodeableConcept code;
   final Period? period;
   final Reference? issuer;
 
   PractitionerQualification({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.identifier,
     required this.code,
     this.period,
     this.issuer,
   });
 
+@override
+PractitionerQualification clone() => throw UnimplementedError();
 }
-
-
 

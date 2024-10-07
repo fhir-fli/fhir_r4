@@ -7,128 +7,117 @@ import '../../../fhir_r4.dart';
 @JsonCodable()
 class Bundle extends DomainResource {
   final Identifier? identifier;
-  final FhirCode? type;
+  final FhirCode type;
   final Element? typeElement;
   final FhirInstant? timestamp;
   final Element? timestampElement;
   final FhirUnsignedInt? total;
   final Element? totalElement;
-  final List<BundleLink>? link;
-  final List<BundleEntry>? entry;
+  final List<BackboneElement>? link;
+  final List<BackboneElement>? entry;
+  final BackboneElement? search;
+  final BackboneElement? request;
+  final BackboneElement? response;
   final Signature? signature;
 
   Bundle({
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     this.identifier,
-    this.type,
-    this.typeElement,
+    required this.type,
+this.typeElement,
     this.timestamp,
-    this.timestampElement,
+this.timestampElement,
     this.total,
-    this.totalElement,
+this.totalElement,
     this.link,
     this.entry,
-    this.signature,
-  }): super(resourceType: R4ResourceType.Bundle);
-
-@override
-Bundle clone() => this;
-
-}
-
-
-@Data()
-@JsonCodable()
-class BundleLink {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final FhirString? relation;
-  final Element? relationElement;
-  final FhirUri? url;
-  final Element? urlElement;
-
-  BundleLink({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.relation,
-    this.relationElement,
-    this.url,
-    this.urlElement,
-  });
-
-}
-
-
-@Data()
-@JsonCodable()
-class BundleEntry {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final List<BundleLink>? link;
-  final FhirUri? fullUrl;
-  final Element? fullUrlElement;
-  final Resource? resource;
-  final BundleSearch? search;
-  final BundleRequest? request;
-  final BundleResponse? response;
-
-  BundleEntry({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.link,
-    this.fullUrl,
-    this.fullUrlElement,
-    this.resource,
     this.search,
     this.request,
     this.response,
-  });
+    this.signature,
+  }) : super(resourceType: R4ResourceType.Bundle);
 
+@override
+Bundle clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class BundleSearch {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class BundleLink extends BackboneElement {
+  final FhirString relation;
+  final Element? relationElement;
+  final FhirUri url;
+  final Element? urlElement;
+
+  BundleLink({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.relation,
+this.relationElement,
+    required this.url,
+this.urlElement,
+  });
+
+@override
+BundleLink clone() => throw UnimplementedError();
+}
+
+@Data()
+@JsonCodable()
+class BundleEntry extends BackboneElement {
+  final List<dynamic>? link;
+  final FhirUri? fullUrl;
+  final Element? fullUrlElement;
+  final Resource? resource;
+
+  BundleEntry({
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    this.link,
+    this.fullUrl,
+this.fullUrlElement,
+    this.resource,
+  });
+
+@override
+BundleEntry clone() => throw UnimplementedError();
+}
+
+@Data()
+@JsonCodable()
+class BundleSearch extends BackboneElement {
   final FhirCode? mode;
   final Element? modeElement;
   final FhirDecimal? score;
   final Element? scoreElement;
 
   BundleSearch({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.mode,
-    this.modeElement,
+this.modeElement,
     this.score,
-    this.scoreElement,
+this.scoreElement,
   });
 
+@override
+BundleSearch clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class BundleRequest {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final FhirCode? method;
+class BundleRequest extends BackboneElement {
+  final FhirCode method;
   final Element? methodElement;
-  final FhirUri? url;
+  final FhirUri url;
   final Element? urlElement;
   final FhirString? ifNoneMatch;
   final Element? ifNoneMatchElement;
@@ -140,33 +129,31 @@ class BundleRequest {
   final Element? ifNoneExistElement;
 
   BundleRequest({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.method,
-    this.methodElement,
-    this.url,
-    this.urlElement,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.method,
+this.methodElement,
+    required this.url,
+this.urlElement,
     this.ifNoneMatch,
-    this.ifNoneMatchElement,
+this.ifNoneMatchElement,
     this.ifModifiedSince,
-    this.ifModifiedSinceElement,
+this.ifModifiedSinceElement,
     this.ifMatch,
-    this.ifMatchElement,
+this.ifMatchElement,
     this.ifNoneExist,
-    this.ifNoneExistElement,
+this.ifNoneExistElement,
   });
 
+@override
+BundleRequest clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class BundleResponse {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final FhirString? status;
+class BundleResponse extends BackboneElement {
+  final FhirString status;
   final Element? statusElement;
   final FhirUri? location;
   final Element? locationElement;
@@ -177,21 +164,21 @@ class BundleResponse {
   final Resource? outcome;
 
   BundleResponse({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.status,
-    this.statusElement,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.status,
+this.statusElement,
     this.location,
-    this.locationElement,
+this.locationElement,
     this.etag,
-    this.etagElement,
+this.etagElement,
     this.lastModified,
-    this.lastModifiedElement,
+this.lastModifiedElement,
     this.outcome,
   });
 
+@override
+BundleResponse clone() => throw UnimplementedError();
 }
-
-
 

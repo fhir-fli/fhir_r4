@@ -7,93 +7,86 @@ import '../../../fhir_r4.dart';
 @JsonCodable()
 class Ingredient extends DomainResource {
   final Identifier? identifier;
-  final FhirCode? status;
+  final FhirCode status;
   final Element? statusElement;
   final List<Reference>? for_;
   final CodeableConcept role;
   final List<CodeableConcept>? function_;
   final FhirBoolean? allergenicIndicator;
   final Element? allergenicIndicatorElement;
-  final List<IngredientManufacturer>? manufacturer;
-  final IngredientSubstance substance;
+  final List<BackboneElement>? manufacturer;
+  final BackboneElement substance;
+  final List<BackboneElement>? strength;
+  final List<BackboneElement>? referenceStrength;
 
   Ingredient({
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    this.status,
-    this.statusElement,
+    required this.status,
+this.statusElement,
     this.for_,
     required this.role,
     this.function_,
     this.allergenicIndicator,
-    this.allergenicIndicatorElement,
+this.allergenicIndicatorElement,
     this.manufacturer,
     required this.substance,
-  }): super(resourceType: R4ResourceType.Ingredient);
+    this.strength,
+    this.referenceStrength,
+  }) : super(resourceType: R4ResourceType.Ingredient);
 
 @override
-Ingredient clone() => this;
-
+Ingredient clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class IngredientManufacturer {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class IngredientManufacturer extends BackboneElement {
   final FhirCode? role;
   final Element? roleElement;
   final Reference manufacturer;
 
   IngredientManufacturer({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.role,
-    this.roleElement,
+this.roleElement,
     required this.manufacturer,
   });
 
+@override
+IngredientManufacturer clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class IngredientSubstance {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class IngredientSubstance extends BackboneElement {
   final CodeableReference code;
-  final List<IngredientStrength>? strength;
 
   IngredientSubstance({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     required this.code,
-    this.strength,
   });
 
+@override
+IngredientSubstance clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class IngredientStrength {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class IngredientStrength extends BackboneElement {
   final Ratio? presentationRatio;
   final RatioRange? presentationRatioRange;
   final FhirString? textPresentation;
@@ -105,55 +98,51 @@ class IngredientStrength {
   final FhirString? measurementPoint;
   final Element? measurementPointElement;
   final List<CodeableConcept>? country;
-  final List<IngredientReferenceStrength>? referenceStrength;
 
   IngredientStrength({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.presentationRatio,
     this.presentationRatioRange,
     this.textPresentation,
-    this.textPresentationElement,
+this.textPresentationElement,
     this.concentrationRatio,
     this.concentrationRatioRange,
     this.textConcentration,
-    this.textConcentrationElement,
+this.textConcentrationElement,
     this.measurementPoint,
-    this.measurementPointElement,
+this.measurementPointElement,
     this.country,
-    this.referenceStrength,
   });
 
+@override
+IngredientStrength clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class IngredientReferenceStrength {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class IngredientReferenceStrength extends BackboneElement {
   final CodeableReference? substance;
-  final Ratio? strengthRatio;
-  final RatioRange? strengthRatioRange;
+  final Ratio strengthRatio;
+  final RatioRange strengthRatioRange;
   final FhirString? measurementPoint;
   final Element? measurementPointElement;
   final List<CodeableConcept>? country;
 
   IngredientReferenceStrength({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.substance,
-    this.strengthRatio,
-    this.strengthRatioRange,
+    required this.strengthRatio,
+    required this.strengthRatioRange,
     this.measurementPoint,
-    this.measurementPointElement,
+this.measurementPointElement,
     this.country,
   });
 
+@override
+IngredientReferenceStrength clone() => throw UnimplementedError();
 }
-
-
 

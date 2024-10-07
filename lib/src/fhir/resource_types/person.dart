@@ -18,15 +18,15 @@ class Person extends DomainResource {
   final Reference? managingOrganization;
   final FhirBoolean? active;
   final Element? activeElement;
-  final List<PersonLink>? link;
+  final List<BackboneElement>? link;
 
   Person({
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -35,43 +35,38 @@ class Person extends DomainResource {
     this.name,
     this.telecom,
     this.gender,
-    this.genderElement,
+this.genderElement,
     this.birthDate,
-    this.birthDateElement,
+this.birthDateElement,
     this.address,
     this.photo,
     this.managingOrganization,
     this.active,
-    this.activeElement,
+this.activeElement,
     this.link,
-  }): super(resourceType: R4ResourceType.Person);
+  }) : super(resourceType: R4ResourceType.Person);
 
 @override
-Person clone() => this;
-
+Person clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class PersonLink {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class PersonLink extends BackboneElement {
   final Reference target;
   final FhirCode? assurance;
   final Element? assuranceElement;
 
   PersonLink({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     required this.target,
     this.assurance,
-    this.assuranceElement,
+this.assuranceElement,
   });
 
+@override
+PersonLink clone() => throw UnimplementedError();
 }
-
-
 

@@ -7,141 +7,130 @@ import '../../../fhir_r4.dart';
 @JsonCodable()
 class Composition extends DomainResource {
   final Identifier? identifier;
-  final FhirCode? status;
+  final FhirCode status;
   final Element? statusElement;
   final CodeableConcept type;
   final List<CodeableConcept>? category;
   final Reference? subject;
   final Reference? encounter;
-  final FhirDateTime? date;
+  final FhirDateTime date;
   final Element? dateElement;
   final List<Reference> author;
-  final FhirString? title;
+  final FhirString title;
   final Element? titleElement;
   final FhirCode? confidentiality;
   final Element? confidentialityElement;
-  final List<CompositionAttester>? attester;
+  final List<BackboneElement>? attester;
   final Reference? custodian;
-  final List<CompositionRelatesTo>? relatesTo;
-  final List<CompositionEvent>? event;
-  final List<CompositionSection>? section;
+  final List<BackboneElement>? relatesTo;
+  final List<BackboneElement>? event;
+  final List<BackboneElement>? section;
 
   Composition({
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    this.status,
-    this.statusElement,
+    required this.status,
+this.statusElement,
     required this.type,
     this.category,
     this.subject,
     this.encounter,
-    this.date,
-    this.dateElement,
+    required this.date,
+this.dateElement,
     required this.author,
-    this.title,
-    this.titleElement,
+    required this.title,
+this.titleElement,
     this.confidentiality,
-    this.confidentialityElement,
+this.confidentialityElement,
     this.attester,
     this.custodian,
     this.relatesTo,
     this.event,
     this.section,
-  }): super(resourceType: R4ResourceType.Composition);
+  }) : super(resourceType: R4ResourceType.Composition);
 
 @override
-Composition clone() => this;
-
+Composition clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class CompositionAttester {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final FhirCode? mode;
+class CompositionAttester extends BackboneElement {
+  final FhirCode mode;
   final Element? modeElement;
   final FhirDateTime? time;
   final Element? timeElement;
   final Reference? party;
 
   CompositionAttester({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.mode,
-    this.modeElement,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.mode,
+this.modeElement,
     this.time,
-    this.timeElement,
+this.timeElement,
     this.party,
   });
 
+@override
+CompositionAttester clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class CompositionRelatesTo {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final FhirCode? code;
+class CompositionRelatesTo extends BackboneElement {
+  final FhirCode code;
   final Element? codeElement;
-  final Identifier? targetIdentifier;
-  final Reference? targetReference;
+  final Identifier targetIdentifier;
+  final Reference targetReference;
 
   CompositionRelatesTo({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.code,
-    this.codeElement,
-    this.targetIdentifier,
-    this.targetReference,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.code,
+this.codeElement,
+    required this.targetIdentifier,
+    required this.targetReference,
   });
 
+@override
+CompositionRelatesTo clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class CompositionEvent {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class CompositionEvent extends BackboneElement {
   final List<CodeableConcept>? code;
   final Period? period;
   final List<Reference>? detail;
 
   CompositionEvent({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.code,
     this.period,
     this.detail,
   });
 
+@override
+CompositionEvent clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class CompositionSection {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class CompositionSection extends BackboneElement {
   final FhirString? title;
   final Element? titleElement;
   final CodeableConcept? code;
@@ -153,27 +142,27 @@ class CompositionSection {
   final CodeableConcept? orderedBy;
   final List<Reference>? entry;
   final CodeableConcept? emptyReason;
-  final List<CompositionSection>? section;
+  final List<dynamic>? section;
 
   CompositionSection({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.title,
-    this.titleElement,
+this.titleElement,
     this.code,
     this.author,
     this.focus,
     this.text,
     this.mode,
-    this.modeElement,
+this.modeElement,
     this.orderedBy,
     this.entry,
     this.emptyReason,
     this.section,
   });
 
+@override
+CompositionSection clone() => throw UnimplementedError();
 }
-
-
 

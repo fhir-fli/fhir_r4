@@ -7,7 +7,7 @@ import '../../../fhir_r4.dart';
 @JsonCodable()
 class Signature extends DataType {
   final List<Coding> type;
-  final FhirInstant? when;
+  final FhirInstant when;
   final Element? whenElement;
   final Reference who;
   final Reference? onBehalfOf;
@@ -22,19 +22,19 @@ class Signature extends DataType {
     super.id,
     super.extension_,
     required this.type,
-    this.when,
-    this.whenElement,
+    required this.when,
+this.whenElement,
     required this.who,
     this.onBehalfOf,
     this.targetFormat,
-    this.targetFormatElement,
+this.targetFormatElement,
     this.sigFormat,
-    this.sigFormatElement,
+this.sigFormatElement,
     this.data,
-    this.dataElement,
+this.dataElement,
   });
 
+@override
+Signature clone() => throw UnimplementedError();
 }
-
-
 

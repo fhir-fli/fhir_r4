@@ -16,7 +16,7 @@ class Range extends DataType {
     this.high,
   });
 
+@override
+Range clone() => throw UnimplementedError();
 }
-
-
 

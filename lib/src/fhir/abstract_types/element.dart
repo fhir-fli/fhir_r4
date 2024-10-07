@@ -36,20 +36,20 @@ class Element extends FhirBase {
   bool hasExtension() => extension_?.isNotEmpty ?? false;
 
   FhirExtension getExtensionFirstRep() {
-    return (extension_?.isEmpty ?? false) ? FhirExtension() : extension_!.first;
+    return (extension_?.isEmpty ?? false)
+        ? FhirExtension(url: FhirString('fhirfli.dev'))
+        : extension_!.first;
   }
 
   List<FhirExtension> getExtensionsByUrl(String url) {
     return extension_
-            ?.where((FhirExtension ext) => ext.url?.equals(url) ?? false)
+            ?.where((FhirExtension ext) => ext.url.equals(url))
             .toList() ??
         <FhirExtension>[];
   }
 
   bool hasExtensionByUrl(String url) {
-    return extension_
-            ?.any((FhirExtension ext) => ext.url?.equals(url) ?? false) ??
-        false;
+    return extension_?.any((FhirExtension ext) => ext.url.equals(url)) ?? false;
   }
 
   void addExtension(FhirExtension ext) {
@@ -57,8 +57,7 @@ class Element extends FhirBase {
   }
 
   void removeExtension(String url) {
-    extension_
-        ?.removeWhere((FhirExtension ext) => ext.url?.equals(url) ?? false);
+    extension_?.removeWhere((FhirExtension ext) => ext.url.equals(url));
   }
 
   // Implementing the getProperty method

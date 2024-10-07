@@ -7,17 +7,17 @@ import '../../../fhir_r4.dart';
 @JsonCodable()
 class Goal extends DomainResource {
   final List<Identifier>? identifier;
-  final FhirCode? lifecycleStatus;
+  final FhirCode lifecycleStatus;
   final Element? lifecycleStatusElement;
   final CodeableConcept? achievementStatus;
   final List<CodeableConcept>? category;
   final CodeableConcept? priority;
   final CodeableConcept description;
   final Reference subject;
-  final FhirString? startDate;
-  final Element? startDateElement;
+  final FhirDate? startFhirDate;
+  final Element? startFhirDateElement;
   final CodeableConcept? startCodeableConcept;
-  final List<GoalTarget>? target;
+  final List<BackboneElement>? target;
   final FhirDate? statusDate;
   final Element? statusDateElement;
   final FhirString? statusReason;
@@ -32,84 +32,79 @@ class Goal extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    this.lifecycleStatus,
-    this.lifecycleStatusElement,
+    required this.lifecycleStatus,
+this.lifecycleStatusElement,
     this.achievementStatus,
     this.category,
     this.priority,
     required this.description,
     required this.subject,
-    this.startDate,
-    this.startDateElement,
+    this.startFhirDate,
+this.startFhirDateElement,
     this.startCodeableConcept,
     this.target,
     this.statusDate,
-    this.statusDateElement,
+this.statusDateElement,
     this.statusReason,
-    this.statusReasonElement,
+this.statusReasonElement,
     this.expressedBy,
     this.addresses,
     this.note,
     this.outcomeCode,
     this.outcomeReference,
-  }): super(resourceType: R4ResourceType.Goal);
+  }) : super(resourceType: R4ResourceType.Goal);
 
 @override
-Goal clone() => this;
-
+Goal clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class GoalTarget {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class GoalTarget extends BackboneElement {
   final CodeableConcept? measure;
   final Quantity? detailQuantity;
   final Range? detailRange;
   final CodeableConcept? detailCodeableConcept;
-  final FhirString? detailString;
-  final Element? detailStringElement;
-  final bool? detailBoolean;
-  final Element? detailBooleanElement;
-  final double? detailInteger;
-  final Element? detailIntegerElement;
+  final FhirString? detailFhirString;
+  final Element? detailFhirStringElement;
+  final FhirBoolean? detailFhirBoolean;
+  final Element? detailFhirBooleanElement;
+  final FhirInteger? detailFhirInteger;
+  final Element? detailFhirIntegerElement;
   final Ratio? detailRatio;
-  final FhirString? dueDate;
-  final Element? dueDateElement;
-  final FhirDuration? dueDuration;
+  final FhirDate? dueFhirDate;
+  final Element? dueFhirDateElement;
+  final FhirDuration? dueFhirDuration;
 
   GoalTarget({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.measure,
     this.detailQuantity,
     this.detailRange,
     this.detailCodeableConcept,
-    this.detailString,
-    this.detailStringElement,
-    this.detailBoolean,
-    this.detailBooleanElement,
-    this.detailInteger,
-    this.detailIntegerElement,
+    this.detailFhirString,
+this.detailFhirStringElement,
+    this.detailFhirBoolean,
+this.detailFhirBooleanElement,
+    this.detailFhirInteger,
+this.detailFhirIntegerElement,
     this.detailRatio,
-    this.dueDate,
-    this.dueDateElement,
-    this.dueDuration,
+    this.dueFhirDate,
+this.dueFhirDateElement,
+    this.dueFhirDuration,
   });
 
+@override
+GoalTarget clone() => throw UnimplementedError();
 }
-
-
 

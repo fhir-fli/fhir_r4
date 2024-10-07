@@ -7,7 +7,7 @@ import '../../../fhir_r4.dart';
 @JsonCodable()
 class Invoice extends DomainResource {
   final List<Identifier>? identifier;
-  final FhirCode? status;
+  final FhirCode status;
   final Element? statusElement;
   final FhirString? cancelledReason;
   final Element? cancelledReasonElement;
@@ -16,11 +16,12 @@ class Invoice extends DomainResource {
   final Reference? recipient;
   final FhirDateTime? date;
   final Element? dateElement;
-  final List<InvoiceParticipant>? participant;
+  final List<BackboneElement>? participant;
   final Reference? issuer;
   final Reference? account;
-  final List<InvoiceLineItem>? lineItem;
-  final List<InvoicePriceComponent>? totalPriceComponent;
+  final List<BackboneElement>? lineItem;
+  final List<BackboneElement>? priceComponent;
+  final List<dynamic>? totalPriceComponent;
   final Money? totalNet;
   final Money? totalGross;
   final FhirMarkdown? paymentTerms;
@@ -31,94 +32,84 @@ class Invoice extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    this.status,
-    this.statusElement,
+    required this.status,
+this.statusElement,
     this.cancelledReason,
-    this.cancelledReasonElement,
+this.cancelledReasonElement,
     this.type,
     this.subject,
     this.recipient,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.participant,
     this.issuer,
     this.account,
     this.lineItem,
+    this.priceComponent,
     this.totalPriceComponent,
     this.totalNet,
     this.totalGross,
     this.paymentTerms,
-    this.paymentTermsElement,
+this.paymentTermsElement,
     this.note,
-  }): super(resourceType: R4ResourceType.Invoice);
+  }) : super(resourceType: R4ResourceType.Invoice);
 
 @override
-Invoice clone() => this;
-
+Invoice clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class InvoiceParticipant {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class InvoiceParticipant extends BackboneElement {
   final CodeableConcept? role;
   final Reference actor;
 
   InvoiceParticipant({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.role,
     required this.actor,
   });
 
+@override
+InvoiceParticipant clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class InvoiceLineItem {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class InvoiceLineItem extends BackboneElement {
   final FhirPositiveInt? sequence;
   final Element? sequenceElement;
-  final Reference? chargeItemReference;
-  final CodeableConcept? chargeItemCodeableConcept;
-  final List<InvoicePriceComponent>? priceComponent;
+  final Reference chargeItemReference;
+  final CodeableConcept chargeItemCodeableConcept;
 
   InvoiceLineItem({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.sequence,
-    this.sequenceElement,
-    this.chargeItemReference,
-    this.chargeItemCodeableConcept,
-    this.priceComponent,
+this.sequenceElement,
+    required this.chargeItemReference,
+    required this.chargeItemCodeableConcept,
   });
 
+@override
+InvoiceLineItem clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class InvoicePriceComponent {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final FhirCode? type;
+class InvoicePriceComponent extends BackboneElement {
+  final FhirCode type;
   final Element? typeElement;
   final CodeableConcept? code;
   final FhirDecimal? factor;
@@ -126,18 +117,18 @@ class InvoicePriceComponent {
   final Money? amount;
 
   InvoicePriceComponent({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.type,
-    this.typeElement,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.type,
+this.typeElement,
     this.code,
     this.factor,
-    this.factorElement,
+this.factorElement,
     this.amount,
   });
 
+@override
+InvoicePriceComponent clone() => throw UnimplementedError();
 }
-
-
 

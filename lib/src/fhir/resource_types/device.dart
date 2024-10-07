@@ -8,7 +8,7 @@ import '../../../fhir_r4.dart';
 class Device extends DomainResource {
   final List<Identifier>? identifier;
   final Reference? definition;
-  final List<DeviceUdiCarrier>? udiCarrier;
+  final List<BackboneElement>? udiCarrier;
   final FhirCode? status;
   final Element? statusElement;
   final List<CodeableConcept>? statusReason;
@@ -24,15 +24,15 @@ class Device extends DomainResource {
   final Element? lotNumberElement;
   final FhirString? serialNumber;
   final Element? serialNumberElement;
-  final List<DeviceDeviceName>? deviceName;
+  final List<BackboneElement>? deviceName;
   final FhirString? modelNumber;
   final Element? modelNumberElement;
   final FhirString? partNumber;
   final Element? partNumberElement;
   final CodeableConcept? type;
-  final List<DeviceSpecialization>? specialization;
-  final List<DeviceVersion>? version;
-  final List<DeviceProperty>? property;
+  final List<BackboneElement>? specialization;
+  final List<BackboneElement>? version;
+  final List<BackboneElement>? property;
   final Reference? patient;
   final Reference? owner;
   final List<ContactPoint>? contact;
@@ -47,9 +47,9 @@ class Device extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -58,25 +58,25 @@ class Device extends DomainResource {
     this.definition,
     this.udiCarrier,
     this.status,
-    this.statusElement,
+this.statusElement,
     this.statusReason,
     this.distinctIdentifier,
-    this.distinctIdentifierElement,
+this.distinctIdentifierElement,
     this.manufacturer,
-    this.manufacturerElement,
+this.manufacturerElement,
     this.manufactureDate,
-    this.manufactureDateElement,
+this.manufactureDateElement,
     this.expirationDate,
-    this.expirationDateElement,
+this.expirationDateElement,
     this.lotNumber,
-    this.lotNumberElement,
+this.lotNumberElement,
     this.serialNumber,
-    this.serialNumberElement,
+this.serialNumberElement,
     this.deviceName,
     this.modelNumber,
-    this.modelNumberElement,
+this.modelNumberElement,
     this.partNumber,
-    this.partNumberElement,
+this.partNumberElement,
     this.type,
     this.specialization,
     this.version,
@@ -86,24 +86,19 @@ class Device extends DomainResource {
     this.contact,
     this.location,
     this.url,
-    this.urlElement,
+this.urlElement,
     this.note,
     this.safety,
     this.parent,
-  }): super(resourceType: R4ResourceType.Device);
+  }) : super(resourceType: R4ResourceType.Device);
 
 @override
-Device clone() => this;
-
+Device clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class DeviceUdiCarrier {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class DeviceUdiCarrier extends BackboneElement {
   final FhirString? deviceIdentifier;
   final Element? deviceIdentifierElement;
   final FhirUri? issuer;
@@ -118,116 +113,108 @@ class DeviceUdiCarrier {
   final Element? entryTypeElement;
 
   DeviceUdiCarrier({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.deviceIdentifier,
-    this.deviceIdentifierElement,
+this.deviceIdentifierElement,
     this.issuer,
-    this.issuerElement,
+this.issuerElement,
     this.jurisdiction,
-    this.jurisdictionElement,
+this.jurisdictionElement,
     this.carrierAIDC,
-    this.carrierAIDCElement,
+this.carrierAIDCElement,
     this.carrierHRF,
-    this.carrierHRFElement,
+this.carrierHRFElement,
     this.entryType,
-    this.entryTypeElement,
+this.entryTypeElement,
   });
 
+@override
+DeviceUdiCarrier clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class DeviceDeviceName {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final FhirString? name;
+class DeviceDeviceName extends BackboneElement {
+  final FhirString name;
   final Element? nameElement;
-  final FhirCode? type;
+  final FhirCode type;
   final Element? typeElement;
 
   DeviceDeviceName({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.name,
-    this.nameElement,
-    this.type,
-    this.typeElement,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.name,
+this.nameElement,
+    required this.type,
+this.typeElement,
   });
 
+@override
+DeviceDeviceName clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class DeviceSpecialization {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class DeviceSpecialization extends BackboneElement {
   final CodeableConcept systemType;
   final FhirString? version;
   final Element? versionElement;
 
   DeviceSpecialization({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     required this.systemType,
     this.version,
-    this.versionElement,
+this.versionElement,
   });
 
+@override
+DeviceSpecialization clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class DeviceVersion {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class DeviceVersion extends BackboneElement {
   final CodeableConcept? type;
   final Identifier? component;
-  final FhirString? value;
+  final FhirString value;
   final Element? valueElement;
 
   DeviceVersion({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.type,
     this.component,
-    this.value,
-    this.valueElement,
+    required this.value,
+this.valueElement,
   });
 
+@override
+DeviceVersion clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class DeviceProperty {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class DeviceProperty extends BackboneElement {
   final CodeableConcept type;
   final List<Quantity>? valueQuantity;
   final List<CodeableConcept>? valueCode;
 
   DeviceProperty({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     required this.type,
     this.valueQuantity,
     this.valueCode,
   });
 
+@override
+DeviceProperty clone() => throw UnimplementedError();
 }
-
-
 

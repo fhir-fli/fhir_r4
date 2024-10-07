@@ -7,27 +7,27 @@ import '../../../fhir_r4.dart';
 @JsonCodable()
 class Encounter extends DomainResource {
   final List<Identifier>? identifier;
-  final FhirCode? status;
+  final FhirCode status;
   final Element? statusElement;
-  final List<EncounterStatusHistory>? statusHistory;
+  final List<BackboneElement>? statusHistory;
   final Coding class_;
-  final List<EncounterClassHistory>? classHistory;
+  final List<BackboneElement>? classHistory;
   final List<CodeableConcept>? type;
   final CodeableConcept? serviceType;
   final CodeableConcept? priority;
   final Reference? subject;
   final List<Reference>? episodeOfCare;
   final List<Reference>? basedOn;
-  final List<EncounterParticipant>? participant;
+  final List<BackboneElement>? participant;
   final List<Reference>? appointment;
   final Period? period;
   final FhirDuration? length;
   final List<CodeableConcept>? reasonCode;
   final List<Reference>? reasonReference;
-  final List<EncounterDiagnosis>? diagnosis;
+  final List<BackboneElement>? diagnosis;
   final List<Reference>? account;
-  final EncounterHospitalization? hospitalization;
-  final List<EncounterLocation>? location;
+  final BackboneElement? hospitalization;
+  final List<BackboneElement>? location;
   final Reference? serviceProvider;
   final Reference? partOf;
 
@@ -35,16 +35,16 @@ class Encounter extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    this.status,
-    this.statusElement,
+    required this.status,
+this.statusElement,
     this.statusHistory,
     required this.class_,
     this.classHistory,
@@ -66,108 +66,95 @@ class Encounter extends DomainResource {
     this.location,
     this.serviceProvider,
     this.partOf,
-  }): super(resourceType: R4ResourceType.Encounter);
+  }) : super(resourceType: R4ResourceType.Encounter);
 
 @override
-Encounter clone() => this;
-
+Encounter clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class EncounterStatusHistory {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final FhirCode? status;
+class EncounterStatusHistory extends BackboneElement {
+  final FhirCode status;
   final Element? statusElement;
   final Period period;
 
   EncounterStatusHistory({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.status,
-    this.statusElement,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.status,
+this.statusElement,
     required this.period,
   });
 
+@override
+EncounterStatusHistory clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class EncounterClassHistory {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class EncounterClassHistory extends BackboneElement {
   final Coding class_;
   final Period period;
 
   EncounterClassHistory({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     required this.class_,
     required this.period,
   });
 
+@override
+EncounterClassHistory clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class EncounterParticipant {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class EncounterParticipant extends BackboneElement {
   final List<CodeableConcept>? type;
   final Period? period;
   final Reference? individual;
 
   EncounterParticipant({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.type,
     this.period,
     this.individual,
   });
 
+@override
+EncounterParticipant clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class EncounterDiagnosis {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class EncounterDiagnosis extends BackboneElement {
   final Reference condition;
   final CodeableConcept? use;
   final FhirPositiveInt? rank;
   final Element? rankElement;
 
   EncounterDiagnosis({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     required this.condition,
     this.use,
     this.rank,
-    this.rankElement,
+this.rankElement,
   });
 
+@override
+EncounterDiagnosis clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class EncounterHospitalization {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class EncounterHospitalization extends BackboneElement {
   final Identifier? preAdmissionIdentifier;
   final Reference? origin;
   final CodeableConcept? admitSource;
@@ -179,9 +166,9 @@ class EncounterHospitalization {
   final CodeableConcept? dischargeDisposition;
 
   EncounterHospitalization({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.preAdmissionIdentifier,
     this.origin,
     this.admitSource,
@@ -193,15 +180,13 @@ class EncounterHospitalization {
     this.dischargeDisposition,
   });
 
+@override
+EncounterHospitalization clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class EncounterLocation {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class EncounterLocation extends BackboneElement {
   final Reference location;
   final FhirCode? status;
   final Element? statusElement;
@@ -209,17 +194,17 @@ class EncounterLocation {
   final Period? period;
 
   EncounterLocation({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     required this.location,
     this.status,
-    this.statusElement,
+this.statusElement,
     this.physicalType,
     this.period,
   });
 
+@override
+EncounterLocation clone() => throw UnimplementedError();
 }
-
-
 

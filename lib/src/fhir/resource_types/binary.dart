@@ -6,7 +6,7 @@ import '../../../fhir_r4.dart';
 @Data()
 @JsonCodable()
 class Binary extends DomainResource {
-  final FhirCode? contentType;
+  final FhirCode contentType;
   final Element? contentTypeElement;
   final Reference? securityContext;
   final FhirBase64Binary? data;
@@ -16,20 +16,17 @@ class Binary extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
-    this.contentType,
-    this.contentTypeElement,
+super.languageElement,
+    required this.contentType,
+this.contentTypeElement,
     this.securityContext,
     this.data,
-    this.dataElement,
-  }): super(resourceType: R4ResourceType.Binary);
+this.dataElement,
+  }) : super(resourceType: R4ResourceType.Binary);
 
 @override
-Binary clone() => this;
-
+Binary clone() => throw UnimplementedError();
 }
-
-
 

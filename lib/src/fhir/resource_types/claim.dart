@@ -7,58 +7,60 @@ import '../../../fhir_r4.dart';
 @JsonCodable()
 class Claim extends DomainResource {
   final List<Identifier>? identifier;
-  final FhirCode? status;
+  final FhirCode status;
   final Element? statusElement;
   final CodeableConcept type;
   final CodeableConcept? subType;
-  final FhirCode? use;
+  final FhirCode use;
   final Element? useElement;
   final Reference patient;
   final Period? billablePeriod;
-  final FhirDateTime? created;
+  final FhirDateTime created;
   final Element? createdElement;
   final Reference? enterer;
   final Reference? insurer;
   final Reference provider;
   final CodeableConcept priority;
   final CodeableConcept? fundsReserve;
-  final List<ClaimRelated>? related;
+  final List<BackboneElement>? related;
   final Reference? prescription;
   final Reference? originalPrescription;
-  final ClaimPayee? payee;
+  final BackboneElement? payee;
   final Reference? referral;
   final Reference? facility;
-  final List<ClaimCareTeam>? careTeam;
-  final List<ClaimSupportingInfo>? supportingInfo;
-  final List<ClaimDiagnosis>? diagnosis;
-  final List<ClaimProcedure>? procedure;
-  final List<ClaimInsurance> insurance;
-  final ClaimAccident? accident;
-  final List<ClaimItem>? item;
+  final List<BackboneElement>? careTeam;
+  final List<BackboneElement>? supportingInfo;
+  final List<BackboneElement>? diagnosis;
+  final List<BackboneElement>? procedure;
+  final List<BackboneElement> insurance;
+  final BackboneElement? accident;
+  final List<BackboneElement>? item;
+  final List<BackboneElement>? detail;
+  final List<BackboneElement>? subDetail;
   final Money? total;
 
   Claim({
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    this.status,
-    this.statusElement,
+    required this.status,
+this.statusElement,
     required this.type,
     this.subType,
-    this.use,
-    this.useElement,
+    required this.use,
+this.useElement,
     required this.patient,
     this.billablePeriod,
-    this.created,
-    this.createdElement,
+    required this.created,
+this.createdElement,
     this.enterer,
     this.insurer,
     required this.provider,
@@ -77,64 +79,57 @@ class Claim extends DomainResource {
     required this.insurance,
     this.accident,
     this.item,
+    this.detail,
+    this.subDetail,
     this.total,
-  }): super(resourceType: R4ResourceType.Claim);
+  }) : super(resourceType: R4ResourceType.Claim);
 
 @override
-Claim clone() => this;
-
+Claim clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ClaimRelated {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ClaimRelated extends BackboneElement {
   final Reference? claim;
   final CodeableConcept? relationship;
   final Identifier? reference;
 
   ClaimRelated({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.claim,
     this.relationship,
     this.reference,
   });
 
+@override
+ClaimRelated clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ClaimPayee {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ClaimPayee extends BackboneElement {
   final CodeableConcept type;
   final Reference? party;
 
   ClaimPayee({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     required this.type,
     this.party,
   });
 
+@override
+ClaimPayee clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ClaimCareTeam {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final FhirPositiveInt? sequence;
+class ClaimCareTeam extends BackboneElement {
+  final FhirPositiveInt sequence;
   final Element? sequenceElement;
   final Reference provider;
   final FhirBoolean? responsible;
@@ -143,138 +138,130 @@ class ClaimCareTeam {
   final CodeableConcept? qualification;
 
   ClaimCareTeam({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.sequence,
-    this.sequenceElement,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.sequence,
+this.sequenceElement,
     required this.provider,
     this.responsible,
-    this.responsibleElement,
+this.responsibleElement,
     this.role,
     this.qualification,
   });
 
+@override
+ClaimCareTeam clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ClaimSupportingInfo {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final FhirPositiveInt? sequence;
+class ClaimSupportingInfo extends BackboneElement {
+  final FhirPositiveInt sequence;
   final Element? sequenceElement;
   final CodeableConcept category;
   final CodeableConcept? code;
-  final FhirString? timingDate;
-  final Element? timingDateElement;
+  final FhirDate? timingFhirDate;
+  final Element? timingFhirDateElement;
   final Period? timingPeriod;
-  final bool? valueBoolean;
-  final Element? valueBooleanElement;
-  final FhirString? valueString;
-  final Element? valueStringElement;
+  final FhirBoolean? valueFhirBoolean;
+  final Element? valueFhirBooleanElement;
+  final FhirString? valueFhirString;
+  final Element? valueFhirStringElement;
   final Quantity? valueQuantity;
   final Attachment? valueAttachment;
   final Reference? valueReference;
   final CodeableConcept? reason;
 
   ClaimSupportingInfo({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.sequence,
-    this.sequenceElement,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.sequence,
+this.sequenceElement,
     required this.category,
     this.code,
-    this.timingDate,
-    this.timingDateElement,
+    this.timingFhirDate,
+this.timingFhirDateElement,
     this.timingPeriod,
-    this.valueBoolean,
-    this.valueBooleanElement,
-    this.valueString,
-    this.valueStringElement,
+    this.valueFhirBoolean,
+this.valueFhirBooleanElement,
+    this.valueFhirString,
+this.valueFhirStringElement,
     this.valueQuantity,
     this.valueAttachment,
     this.valueReference,
     this.reason,
   });
 
+@override
+ClaimSupportingInfo clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ClaimDiagnosis {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final FhirPositiveInt? sequence;
+class ClaimDiagnosis extends BackboneElement {
+  final FhirPositiveInt sequence;
   final Element? sequenceElement;
-  final CodeableConcept? diagnosisCodeableConcept;
-  final Reference? diagnosisReference;
+  final CodeableConcept diagnosisCodeableConcept;
+  final Reference diagnosisReference;
   final List<CodeableConcept>? type;
   final CodeableConcept? onAdmission;
   final CodeableConcept? packageCode;
 
   ClaimDiagnosis({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.sequence,
-    this.sequenceElement,
-    this.diagnosisCodeableConcept,
-    this.diagnosisReference,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.sequence,
+this.sequenceElement,
+    required this.diagnosisCodeableConcept,
+    required this.diagnosisReference,
     this.type,
     this.onAdmission,
     this.packageCode,
   });
 
+@override
+ClaimDiagnosis clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ClaimProcedure {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final FhirPositiveInt? sequence;
+class ClaimProcedure extends BackboneElement {
+  final FhirPositiveInt sequence;
   final Element? sequenceElement;
   final List<CodeableConcept>? type;
   final FhirDateTime? date;
   final Element? dateElement;
-  final CodeableConcept? procedureCodeableConcept;
-  final Reference? procedureReference;
+  final CodeableConcept procedureCodeableConcept;
+  final Reference procedureReference;
   final List<Reference>? udi;
 
   ClaimProcedure({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.sequence,
-    this.sequenceElement,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.sequence,
+this.sequenceElement,
     this.type,
     this.date,
-    this.dateElement,
-    this.procedureCodeableConcept,
-    this.procedureReference,
+this.dateElement,
+    required this.procedureCodeableConcept,
+    required this.procedureReference,
     this.udi,
   });
 
+@override
+ClaimProcedure clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ClaimInsurance {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final FhirPositiveInt? sequence;
+class ClaimInsurance extends BackboneElement {
+  final FhirPositiveInt sequence;
   final Element? sequenceElement;
-  final FhirBoolean? focal;
+  final FhirBoolean focal;
   final Element? focalElement;
   final Identifier? identifier;
   final Reference coverage;
@@ -285,58 +272,54 @@ class ClaimInsurance {
   final Reference? claimResponse;
 
   ClaimInsurance({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.sequence,
-    this.sequenceElement,
-    this.focal,
-    this.focalElement,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.sequence,
+this.sequenceElement,
+    required this.focal,
+this.focalElement,
     this.identifier,
     required this.coverage,
     this.businessArrangement,
-    this.businessArrangementElement,
+this.businessArrangementElement,
     this.preAuthRef,
-    this.preAuthRefElement,
+this.preAuthRefElement,
     this.claimResponse,
   });
 
+@override
+ClaimInsurance clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ClaimAccident {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final FhirDate? date;
+class ClaimAccident extends BackboneElement {
+  final FhirDate date;
   final Element? dateElement;
   final CodeableConcept? type;
   final Address? locationAddress;
   final Reference? locationReference;
 
   ClaimAccident({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.date,
-    this.dateElement,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.date,
+this.dateElement,
     this.type,
     this.locationAddress,
     this.locationReference,
   });
 
+@override
+ClaimAccident clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ClaimItem {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final FhirPositiveInt? sequence;
+class ClaimItem extends BackboneElement {
+  final FhirPositiveInt sequence;
   final Element? sequenceElement;
   final List<FhirPositiveInt>? careTeamSequence;
   final List<Element>? careTeamSequenceElement;
@@ -351,8 +334,8 @@ class ClaimItem {
   final CodeableConcept productOrService;
   final List<CodeableConcept>? modifier;
   final List<CodeableConcept>? programCode;
-  final FhirString? servicedDate;
-  final Element? servicedDateElement;
+  final FhirDate? servicedFhirDate;
+  final Element? servicedFhirDateElement;
   final Period? servicedPeriod;
   final CodeableConcept? locationCodeableConcept;
   final Address? locationAddress;
@@ -366,29 +349,28 @@ class ClaimItem {
   final CodeableConcept? bodySite;
   final List<CodeableConcept>? subSite;
   final List<Reference>? encounter;
-  final List<ClaimDetail>? detail;
 
   ClaimItem({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.sequence,
-    this.sequenceElement,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.sequence,
+this.sequenceElement,
     this.careTeamSequence,
-    this.careTeamSequenceElement,
+this.careTeamSequenceElement,
     this.diagnosisSequence,
-    this.diagnosisSequenceElement,
+this.diagnosisSequenceElement,
     this.procedureSequence,
-    this.procedureSequenceElement,
+this.procedureSequenceElement,
     this.informationSequence,
-    this.informationSequenceElement,
+this.informationSequenceElement,
     this.revenue,
     this.category,
     required this.productOrService,
     this.modifier,
     this.programCode,
-    this.servicedDate,
-    this.servicedDateElement,
+    this.servicedFhirDate,
+this.servicedFhirDateElement,
     this.servicedPeriod,
     this.locationCodeableConcept,
     this.locationAddress,
@@ -396,25 +378,22 @@ class ClaimItem {
     this.quantity,
     this.unitPrice,
     this.factor,
-    this.factorElement,
+this.factorElement,
     this.net,
     this.udi,
     this.bodySite,
     this.subSite,
     this.encounter,
-    this.detail,
   });
 
+@override
+ClaimItem clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ClaimDetail {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final FhirPositiveInt? sequence;
+class ClaimDetail extends BackboneElement {
+  final FhirPositiveInt sequence;
   final Element? sequenceElement;
   final CodeableConcept? revenue;
   final CodeableConcept? category;
@@ -427,14 +406,13 @@ class ClaimDetail {
   final Element? factorElement;
   final Money? net;
   final List<Reference>? udi;
-  final List<ClaimSubDetail>? subDetail;
 
   ClaimDetail({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.sequence,
-    this.sequenceElement,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.sequence,
+this.sequenceElement,
     this.revenue,
     this.category,
     required this.productOrService,
@@ -443,22 +421,19 @@ class ClaimDetail {
     this.quantity,
     this.unitPrice,
     this.factor,
-    this.factorElement,
+this.factorElement,
     this.net,
     this.udi,
-    this.subDetail,
   });
 
+@override
+ClaimDetail clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ClaimSubDetail {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final FhirPositiveInt? sequence;
+class ClaimSubDetail extends BackboneElement {
+  final FhirPositiveInt sequence;
   final Element? sequenceElement;
   final CodeableConcept? revenue;
   final CodeableConcept? category;
@@ -473,11 +448,11 @@ class ClaimSubDetail {
   final List<Reference>? udi;
 
   ClaimSubDetail({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.sequence,
-    this.sequenceElement,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.sequence,
+this.sequenceElement,
     this.revenue,
     this.category,
     required this.productOrService,
@@ -486,12 +461,12 @@ class ClaimSubDetail {
     this.quantity,
     this.unitPrice,
     this.factor,
-    this.factorElement,
+this.factorElement,
     this.net,
     this.udi,
   });
 
+@override
+ClaimSubDetail clone() => throw UnimplementedError();
 }
-
-
 

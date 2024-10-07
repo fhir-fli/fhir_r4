@@ -21,14 +21,14 @@ abstract class BackboneType extends DataType {
   /// Gets the first repetition of modifier extensions
   FhirExtension getModifierExtensionFirstRep() {
     return modifierExtension?.isEmpty ?? true
-        ? FhirExtension()
+        ? FhirExtension(url: FhirString('fhirfli.dev'))
         : modifierExtension!.first;
   }
 
   /// Retrieves all modifier extensions by URL
   List<FhirExtension> getModifierExtensionsByUrl(String url) {
     return modifierExtension
-            ?.where((FhirExtension ext) => ext.url?.equals(url) ?? false)
+            ?.where((FhirExtension ext) => ext.url.equals(url))
             .toList() ??
         <FhirExtension>[];
   }
@@ -40,8 +40,7 @@ abstract class BackboneType extends DataType {
 
   /// Removes modifier extensions by URL
   void removeModifierExtension(String url) {
-    modifierExtension
-        ?.removeWhere((FhirExtension ext) => ext.url?.equals(url) ?? false);
+    modifierExtension?.removeWhere((FhirExtension ext) => ext.url.equals(url));
   }
 
   @override
@@ -89,7 +88,7 @@ abstract class BackboneType extends DataType {
               ' it is neither a yaml string nor a yaml map.');
 
   factory BackboneType.fromJson(Map<String, Object?> json) {
-    throw UnimplementedError('BackboneType.fromJson');
+    throw UnimplementedError('BackboneType.fromJson $json');
   }
 
   static BackboneType fromJsonString(String source) {

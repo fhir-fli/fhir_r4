@@ -15,73 +15,68 @@ class Patient extends DomainResource {
   final Element? genderElement;
   final FhirDate? birthDate;
   final Element? birthDateElement;
-  final bool? deceasedBoolean;
-  final Element? deceasedBooleanElement;
-  final FhirString? deceasedDateTime;
-  final Element? deceasedDateTimeElement;
+  final FhirBoolean? deceasedFhirBoolean;
+  final Element? deceasedFhirBooleanElement;
+  final FhirDateTime? deceasedFhirDateTime;
+  final Element? deceasedFhirDateTimeElement;
   final List<Address>? address;
   final CodeableConcept? maritalStatus;
-  final bool? multipleBirthBoolean;
-  final Element? multipleBirthBooleanElement;
-  final double? multipleBirthInteger;
-  final Element? multipleBirthIntegerElement;
+  final FhirBoolean? multipleBirthFhirBoolean;
+  final Element? multipleBirthFhirBooleanElement;
+  final FhirInteger? multipleBirthFhirInteger;
+  final Element? multipleBirthFhirIntegerElement;
   final List<Attachment>? photo;
-  final List<PatientContact>? contact;
-  final List<PatientCommunication>? communication;
+  final List<BackboneElement>? contact;
+  final List<BackboneElement>? communication;
   final List<Reference>? generalPractitioner;
   final Reference? managingOrganization;
-  final List<PatientLink>? link;
+  final List<BackboneElement>? link;
 
   Patient({
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
-    this.activeElement,
+this.activeElement,
     this.name,
     this.telecom,
     this.gender,
-    this.genderElement,
+this.genderElement,
     this.birthDate,
-    this.birthDateElement,
-    this.deceasedBoolean,
-    this.deceasedBooleanElement,
-    this.deceasedDateTime,
-    this.deceasedDateTimeElement,
+this.birthDateElement,
+    this.deceasedFhirBoolean,
+this.deceasedFhirBooleanElement,
+    this.deceasedFhirDateTime,
+this.deceasedFhirDateTimeElement,
     this.address,
     this.maritalStatus,
-    this.multipleBirthBoolean,
-    this.multipleBirthBooleanElement,
-    this.multipleBirthInteger,
-    this.multipleBirthIntegerElement,
+    this.multipleBirthFhirBoolean,
+this.multipleBirthFhirBooleanElement,
+    this.multipleBirthFhirInteger,
+this.multipleBirthFhirIntegerElement,
     this.photo,
     this.contact,
     this.communication,
     this.generalPractitioner,
     this.managingOrganization,
     this.link,
-  }): super(resourceType: R4ResourceType.Patient);
+  }) : super(resourceType: R4ResourceType.Patient);
 
 @override
-Patient clone() => this;
-
+Patient clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class PatientContact {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class PatientContact extends BackboneElement {
   final List<CodeableConcept>? relationship;
   final HumanName? name;
   final List<ContactPoint>? telecom;
@@ -92,64 +87,60 @@ class PatientContact {
   final Period? period;
 
   PatientContact({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.relationship,
     this.name,
     this.telecom,
     this.address,
     this.gender,
-    this.genderElement,
+this.genderElement,
     this.organization,
     this.period,
   });
 
+@override
+PatientContact clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class PatientCommunication {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class PatientCommunication extends BackboneElement {
   final CodeableConcept language;
   final FhirBoolean? preferred;
   final Element? preferredElement;
 
   PatientCommunication({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     required this.language,
     this.preferred,
-    this.preferredElement,
+this.preferredElement,
   });
 
+@override
+PatientCommunication clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class PatientLink {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class PatientLink extends BackboneElement {
   final Reference other;
-  final FhirCode? type;
+  final FhirCode type;
   final Element? typeElement;
 
   PatientLink({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     required this.other,
-    this.type,
-    this.typeElement,
+    required this.type,
+this.typeElement,
   });
 
+@override
+PatientLink clone() => throw UnimplementedError();
 }
-
-
 

@@ -9,15 +9,15 @@ class Media extends DomainResource {
   final List<Identifier>? identifier;
   final List<Reference>? basedOn;
   final List<Reference>? partOf;
-  final FhirCode? status;
+  final FhirCode status;
   final Element? statusElement;
   final CodeableConcept? type;
   final CodeableConcept? modality;
   final CodeableConcept? view;
   final Reference? subject;
   final Reference? encounter;
-  final FhirString? createdDateTime;
-  final Element? createdDateTimeElement;
+  final FhirDateTime? createdFhirDateTime;
+  final Element? createdFhirDateTimeElement;
   final Period? createdPeriod;
   final FhirInstant? issued;
   final Element? issuedElement;
@@ -42,9 +42,9 @@ class Media extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -52,40 +52,37 @@ class Media extends DomainResource {
     this.identifier,
     this.basedOn,
     this.partOf,
-    this.status,
-    this.statusElement,
+    required this.status,
+this.statusElement,
     this.type,
     this.modality,
     this.view,
     this.subject,
     this.encounter,
-    this.createdDateTime,
-    this.createdDateTimeElement,
+    this.createdFhirDateTime,
+this.createdFhirDateTimeElement,
     this.createdPeriod,
     this.issued,
-    this.issuedElement,
+this.issuedElement,
     this.operator_,
     this.reasonCode,
     this.bodySite,
     this.deviceName,
-    this.deviceNameElement,
+this.deviceNameElement,
     this.device,
     this.height,
-    this.heightElement,
+this.heightElement,
     this.width,
-    this.widthElement,
+this.widthElement,
     this.frames,
-    this.framesElement,
+this.framesElement,
     this.duration,
-    this.durationElement,
+this.durationElement,
     required this.content,
     this.note,
-  }): super(resourceType: R4ResourceType.Media);
+  }) : super(resourceType: R4ResourceType.Media);
 
 @override
-Media clone() => this;
-
+Media clone() => throw UnimplementedError();
 }
-
-
 

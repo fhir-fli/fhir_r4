@@ -8,98 +8,91 @@ import '../../../fhir_r4.dart';
 class Provenance extends DomainResource {
   final List<Reference> target;
   final Period? occurredPeriod;
-  final FhirString? occurredDateTime;
-  final Element? occurredDateTimeElement;
-  final FhirInstant? recorded;
+  final FhirDateTime? occurredFhirDateTime;
+  final Element? occurredFhirDateTimeElement;
+  final FhirInstant recorded;
   final Element? recordedElement;
   final List<FhirUri>? policy;
   final List<Element>? policyElement;
   final Reference? location;
   final List<CodeableConcept>? reason;
   final CodeableConcept? activity;
-  final List<ProvenanceAgent> agent;
-  final List<ProvenanceEntity>? entity;
+  final List<BackboneElement> agent;
+  final List<BackboneElement>? entity;
   final List<Signature>? signature;
 
   Provenance({
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     required this.target,
     this.occurredPeriod,
-    this.occurredDateTime,
-    this.occurredDateTimeElement,
-    this.recorded,
-    this.recordedElement,
+    this.occurredFhirDateTime,
+this.occurredFhirDateTimeElement,
+    required this.recorded,
+this.recordedElement,
     this.policy,
-    this.policyElement,
+this.policyElement,
     this.location,
     this.reason,
     this.activity,
     required this.agent,
     this.entity,
     this.signature,
-  }): super(resourceType: R4ResourceType.Provenance);
+  }) : super(resourceType: R4ResourceType.Provenance);
 
 @override
-Provenance clone() => this;
-
+Provenance clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ProvenanceAgent {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ProvenanceAgent extends BackboneElement {
   final CodeableConcept? type;
   final List<CodeableConcept>? role;
   final Reference who;
   final Reference? onBehalfOf;
 
   ProvenanceAgent({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.type,
     this.role,
     required this.who,
     this.onBehalfOf,
   });
 
+@override
+ProvenanceAgent clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ProvenanceEntity {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final FhirCode? role;
+class ProvenanceEntity extends BackboneElement {
+  final FhirCode role;
   final Element? roleElement;
   final Reference what;
-  final List<ProvenanceAgent>? agent;
+  final List<dynamic>? agent;
 
   ProvenanceEntity({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.role,
-    this.roleElement,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.role,
+this.roleElement,
     required this.what,
     this.agent,
   });
 
+@override
+ProvenanceEntity clone() => throw UnimplementedError();
 }
-
-
 

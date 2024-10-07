@@ -7,7 +7,7 @@ import '../../../fhir_r4.dart';
 @JsonCodable()
 class Consent extends DomainResource {
   final List<Identifier>? identifier;
-  final FhirCode? status;
+  final FhirCode status;
   final Element? statusElement;
   final CodeableConcept scope;
   final List<CodeableConcept> category;
@@ -18,176 +18,163 @@ class Consent extends DomainResource {
   final List<Reference>? organization;
   final Attachment? sourceAttachment;
   final Reference? sourceReference;
-  final List<ConsentPolicy>? policy;
-  final CodeableConcept? policyRule;
-  final List<ConsentVerification>? verification;
-  final ConsentProvision? provision;
+  final List<BackboneElement>? policy;
+  final List<BackboneElement>? verification;
+  final BackboneElement? provision;
+  final List<BackboneElement>? actor;
+  final List<BackboneElement>? data;
 
   Consent({
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    this.status,
-    this.statusElement,
+    required this.status,
+this.statusElement,
     required this.scope,
     required this.category,
     this.patient,
     this.dateTime,
-    this.dateTimeElement,
+this.dateTimeElement,
     this.performer,
     this.organization,
     this.sourceAttachment,
     this.sourceReference,
     this.policy,
-    this.policyRule,
     this.verification,
     this.provision,
-  }): super(resourceType: R4ResourceType.Consent);
+    this.actor,
+    this.data,
+  }) : super(resourceType: R4ResourceType.Consent);
 
 @override
-Consent clone() => this;
-
+Consent clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ConsentPolicy {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ConsentPolicy extends BackboneElement {
   final FhirUri? authority;
   final Element? authorityElement;
   final FhirUri? uri;
   final Element? uriElement;
+  final CodeableConcept? policyRule;
 
   ConsentPolicy({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.authority,
-    this.authorityElement,
+this.authorityElement,
     this.uri,
-    this.uriElement,
+this.uriElement,
+    this.policyRule,
   });
 
+@override
+ConsentPolicy clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ConsentVerification {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final FhirBoolean? verified;
+class ConsentVerification extends BackboneElement {
+  final FhirBoolean verified;
   final Element? verifiedElement;
   final Reference? verifiedWith;
   final FhirDateTime? verificationDate;
   final Element? verificationDateElement;
 
   ConsentVerification({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.verified,
-    this.verifiedElement,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.verified,
+this.verifiedElement,
     this.verifiedWith,
     this.verificationDate,
-    this.verificationDateElement,
+this.verificationDateElement,
   });
 
+@override
+ConsentVerification clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ConsentProvision {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ConsentProvision extends BackboneElement {
   final FhirCode? type;
   final Element? typeElement;
   final Period? period;
-  final List<ConsentActor>? actor;
   final List<CodeableConcept>? action;
   final List<Coding>? securityLabel;
   final List<Coding>? purpose;
   final List<Coding>? class_;
   final List<CodeableConcept>? code;
   final Period? dataPeriod;
-  final List<ConsentData>? data;
-  final List<ConsentProvision>? provision;
+  final List<dynamic>? provision;
 
   ConsentProvision({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.type,
-    this.typeElement,
+this.typeElement,
     this.period,
-    this.actor,
     this.action,
     this.securityLabel,
     this.purpose,
     this.class_,
     this.code,
     this.dataPeriod,
-    this.data,
     this.provision,
   });
 
+@override
+ConsentProvision clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ConsentActor {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ConsentActor extends BackboneElement {
   final CodeableConcept role;
   final Reference reference;
 
   ConsentActor({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     required this.role,
     required this.reference,
   });
 
+@override
+ConsentActor clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ConsentData {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final FhirCode? meaning;
+class ConsentData extends BackboneElement {
+  final FhirCode meaning;
   final Element? meaningElement;
   final Reference reference;
 
   ConsentData({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.meaning,
-    this.meaningElement,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.meaning,
+this.meaningElement,
     required this.reference,
   });
 
+@override
+ConsentData clone() => throw UnimplementedError();
 }
-
-
 

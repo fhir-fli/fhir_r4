@@ -14,9 +14,9 @@ class Evidence extends DomainResource {
   final FhirString? title;
   final Element? titleElement;
   final Reference? citeAsReference;
-  final FhirString? citeAsMarkdown;
-  final Element? citeAsMarkdownElement;
-  final FhirCode? status;
+  final FhirMarkdown? citeAsFhirMarkdown;
+  final Element? citeAsFhirMarkdownElement;
+  final FhirCode status;
   final Element? statusElement;
   final FhirDateTime? date;
   final Element? dateElement;
@@ -38,44 +38,48 @@ class Evidence extends DomainResource {
   final FhirMarkdown? assertion;
   final Element? assertionElement;
   final List<Annotation>? note;
-  final List<EvidenceVariableDefinition> variableDefinition;
+  final List<BackboneElement> variableDefinition;
   final CodeableConcept? synthesisType;
   final CodeableConcept? studyType;
-  final List<EvidenceStatistic>? statistic;
-  final List<EvidenceCertainty>? certainty;
+  final List<BackboneElement>? statistic;
+  final BackboneElement? sampleSize;
+  final List<BackboneElement>? attributeEstimate;
+  final List<BackboneElement>? modelCharacteristic;
+  final List<BackboneElement>? variable;
+  final List<BackboneElement>? certainty;
 
   Evidence({
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-    this.urlElement,
+this.urlElement,
     this.identifier,
     this.version,
-    this.versionElement,
+this.versionElement,
     this.title,
-    this.titleElement,
+this.titleElement,
     this.citeAsReference,
-    this.citeAsMarkdown,
-    this.citeAsMarkdownElement,
-    this.status,
-    this.statusElement,
+    this.citeAsFhirMarkdown,
+this.citeAsFhirMarkdownElement,
+    required this.status,
+this.statusElement,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.useContext,
     this.approvalDate,
-    this.approvalDateElement,
+this.approvalDateElement,
     this.lastReviewDate,
-    this.lastReviewDateElement,
+this.lastReviewDateElement,
     this.publisher,
-    this.publisherElement,
+this.publisherElement,
     this.contact,
     this.author,
     this.editor,
@@ -83,29 +87,28 @@ class Evidence extends DomainResource {
     this.endorser,
     this.relatedArtifact,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.assertion,
-    this.assertionElement,
+this.assertionElement,
     this.note,
     required this.variableDefinition,
     this.synthesisType,
     this.studyType,
     this.statistic,
+    this.sampleSize,
+    this.attributeEstimate,
+    this.modelCharacteristic,
+    this.variable,
     this.certainty,
-  }): super(resourceType: R4ResourceType.Evidence);
+  }) : super(resourceType: R4ResourceType.Evidence);
 
 @override
-Evidence clone() => this;
-
+Evidence clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class EvidenceVariableDefinition {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class EvidenceVariableDefinition extends BackboneElement {
   final FhirMarkdown? description;
   final Element? descriptionElement;
   final List<Annotation>? note;
@@ -115,11 +118,11 @@ class EvidenceVariableDefinition {
   final CodeableConcept? directnessMatch;
 
   EvidenceVariableDefinition({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.note,
     required this.variableRole,
     this.observed,
@@ -127,15 +130,13 @@ class EvidenceVariableDefinition {
     this.directnessMatch,
   });
 
+@override
+EvidenceVariableDefinition clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class EvidenceStatistic {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class EvidenceStatistic extends BackboneElement {
   final FhirString? description;
   final Element? descriptionElement;
   final List<Annotation>? note;
@@ -146,38 +147,30 @@ class EvidenceStatistic {
   final Element? numberOfEventsElement;
   final FhirUnsignedInt? numberAffected;
   final Element? numberAffectedElement;
-  final EvidenceSampleSize? sampleSize;
-  final List<EvidenceAttributeEstimate>? attributeEstimate;
-  final List<EvidenceModelCharacteristic>? modelCharacteristic;
 
   EvidenceStatistic({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.note,
     this.statisticType,
     this.category,
     this.quantity,
     this.numberOfEvents,
-    this.numberOfEventsElement,
+this.numberOfEventsElement,
     this.numberAffected,
-    this.numberAffectedElement,
-    this.sampleSize,
-    this.attributeEstimate,
-    this.modelCharacteristic,
+this.numberAffectedElement,
   });
 
+@override
+EvidenceStatistic clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class EvidenceSampleSize {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class EvidenceSampleSize extends BackboneElement {
   final FhirString? description;
   final Element? descriptionElement;
   final List<Annotation>? note;
@@ -189,29 +182,27 @@ class EvidenceSampleSize {
   final Element? knownDataCountElement;
 
   EvidenceSampleSize({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.note,
     this.numberOfStudies,
-    this.numberOfStudiesElement,
+this.numberOfStudiesElement,
     this.numberOfParticipants,
-    this.numberOfParticipantsElement,
+this.numberOfParticipantsElement,
     this.knownDataCount,
-    this.knownDataCountElement,
+this.knownDataCountElement,
   });
 
+@override
+EvidenceSampleSize clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class EvidenceAttributeEstimate {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class EvidenceAttributeEstimate extends BackboneElement {
   final FhirString? description;
   final Element? descriptionElement;
   final List<Annotation>? note;
@@ -220,53 +211,50 @@ class EvidenceAttributeEstimate {
   final FhirDecimal? level;
   final Element? levelElement;
   final Range? range;
-  final List<EvidenceAttributeEstimate>? attributeEstimate;
+  final List<dynamic>? attributeEstimate;
 
   EvidenceAttributeEstimate({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.note,
     this.type,
     this.quantity,
     this.level,
-    this.levelElement,
+this.levelElement,
     this.range,
     this.attributeEstimate,
   });
 
+@override
+EvidenceAttributeEstimate clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class EvidenceModelCharacteristic {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class EvidenceModelCharacteristic extends BackboneElement {
   final CodeableConcept code;
   final Quantity? value;
-  final List<EvidenceVariable>? variable;
-  final List<EvidenceAttributeEstimate>? attributeEstimate;
+  final List<dynamic>? attributeEstimate;
 
   EvidenceModelCharacteristic({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     required this.code,
     this.value,
-    this.variable,
     this.attributeEstimate,
   });
 
+@override
+EvidenceModelCharacteristic clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class EvidenceVariable extends DomainResource {
+class EvidenceVariable extends BackboneElement {
   final Reference variableDefinition;
   final FhirCode? handling;
   final Element? handlingElement;
@@ -280,24 +268,19 @@ class EvidenceVariable extends DomainResource {
     super.modifierExtension,
     required this.variableDefinition,
     this.handling,
-    this.handlingElement,
+this.handlingElement,
     this.valueCategory,
     this.valueQuantity,
     this.valueRange,
-  }): super(resourceType: R4ResourceType.EvidenceVariable);
+  }) : super(resourceType: R4ResourceType.EvidenceVariable);
 
 @override
-EvidenceVariable clone() => this;
-
+EvidenceVariable clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class EvidenceCertainty {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class EvidenceCertainty extends BackboneElement {
   final FhirString? description;
   final Element? descriptionElement;
   final List<Annotation>? note;
@@ -305,23 +288,23 @@ class EvidenceCertainty {
   final CodeableConcept? rating;
   final FhirString? rater;
   final Element? raterElement;
-  final List<EvidenceCertainty>? subcomponent;
+  final List<dynamic>? subcomponent;
 
   EvidenceCertainty({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.note,
     this.type,
     this.rating,
     this.rater,
-    this.raterElement,
+this.raterElement,
     this.subcomponent,
   });
 
+@override
+EvidenceCertainty clone() => throw UnimplementedError();
 }
-
-
 

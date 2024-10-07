@@ -6,9 +6,9 @@ import '../../../fhir_r4.dart';
 @Data()
 @JsonCodable()
 class Address extends DataType {
-  final dynamic? use;
+  final FhirCode? use;
   final Element? useElement;
-  final dynamic? type;
+  final FhirCode? type;
   final Element? typeElement;
   final FhirString? text;
   final Element? textElement;
@@ -30,27 +30,27 @@ class Address extends DataType {
     super.id,
     super.extension_,
     this.use,
-    this.useElement,
+this.useElement,
     this.type,
-    this.typeElement,
+this.typeElement,
     this.text,
-    this.textElement,
+this.textElement,
     this.line,
-    this.lineElement,
+this.lineElement,
     this.city,
-    this.cityElement,
+this.cityElement,
     this.district,
-    this.districtElement,
+this.districtElement,
     this.state,
-    this.stateElement,
+this.stateElement,
     this.postalCode,
-    this.postalCodeElement,
+this.postalCodeElement,
     this.country,
-    this.countryElement,
+this.countryElement,
     this.period,
   });
 
+@override
+Address clone() => throw UnimplementedError();
 }
-
-
 

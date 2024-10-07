@@ -9,51 +9,46 @@ class Linkage extends DomainResource {
   final FhirBoolean? active;
   final Element? activeElement;
   final Reference? author;
-  final List<LinkageItem> item;
+  final List<BackboneElement> item;
 
   Linkage({
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.active,
-    this.activeElement,
+this.activeElement,
     this.author,
     required this.item,
-  }): super(resourceType: R4ResourceType.Linkage);
+  }) : super(resourceType: R4ResourceType.Linkage);
 
 @override
-Linkage clone() => this;
-
+Linkage clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class LinkageItem {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final FhirCode? type;
+class LinkageItem extends BackboneElement {
+  final FhirCode type;
   final Element? typeElement;
   final Reference resource;
 
   LinkageItem({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.type,
-    this.typeElement,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.type,
+this.typeElement,
     required this.resource,
   });
 
+@override
+LinkageItem clone() => throw UnimplementedError();
 }
-
-
 

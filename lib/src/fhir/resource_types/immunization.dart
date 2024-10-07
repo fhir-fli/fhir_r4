@@ -7,16 +7,16 @@ import '../../../fhir_r4.dart';
 @JsonCodable()
 class Immunization extends DomainResource {
   final List<Identifier>? identifier;
-  final FhirCode? status;
+  final FhirCode status;
   final Element? statusElement;
   final CodeableConcept? statusReason;
   final CodeableConcept vaccineCode;
   final Reference patient;
   final Reference? encounter;
-  final FhirString? occurrenceDateTime;
-  final Element? occurrenceDateTimeElement;
-  final FhirString? occurrenceString;
-  final Element? occurrenceStringElement;
+  final FhirDateTime occurrenceFhirDateTime;
+  final Element? occurrenceFhirDateTimeElement;
+  final FhirString occurrenceFhirString;
+  final Element? occurrenceFhirStringElement;
   final FhirDateTime? recorded;
   final Element? recordedElement;
   final FhirBoolean? primarySource;
@@ -31,52 +31,52 @@ class Immunization extends DomainResource {
   final CodeableConcept? site;
   final CodeableConcept? route;
   final Quantity? doseQuantity;
-  final List<ImmunizationPerformer>? performer;
+  final List<BackboneElement>? performer;
   final List<Annotation>? note;
   final List<CodeableConcept>? reasonCode;
   final List<Reference>? reasonReference;
   final FhirBoolean? isSubpotent;
   final Element? isSubpotentElement;
   final List<CodeableConcept>? subpotentReason;
-  final List<ImmunizationEducation>? education;
+  final List<BackboneElement>? education;
   final List<CodeableConcept>? programEligibility;
   final CodeableConcept? fundingSource;
-  final List<ImmunizationReaction>? reaction;
-  final List<ImmunizationProtocolApplied>? protocolApplied;
+  final List<BackboneElement>? reaction;
+  final List<BackboneElement>? protocolApplied;
 
   Immunization({
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    this.status,
-    this.statusElement,
+    required this.status,
+this.statusElement,
     this.statusReason,
     required this.vaccineCode,
     required this.patient,
     this.encounter,
-    this.occurrenceDateTime,
-    this.occurrenceDateTimeElement,
-    this.occurrenceString,
-    this.occurrenceStringElement,
+    required this.occurrenceFhirDateTime,
+this.occurrenceFhirDateTimeElement,
+    required this.occurrenceFhirString,
+this.occurrenceFhirStringElement,
     this.recorded,
-    this.recordedElement,
+this.recordedElement,
     this.primarySource,
-    this.primarySourceElement,
+this.primarySourceElement,
     this.reportOrigin,
     this.location,
     this.manufacturer,
     this.lotNumber,
-    this.lotNumberElement,
+this.lotNumberElement,
     this.expirationDate,
-    this.expirationDateElement,
+this.expirationDateElement,
     this.site,
     this.route,
     this.doseQuantity,
@@ -85,47 +85,40 @@ class Immunization extends DomainResource {
     this.reasonCode,
     this.reasonReference,
     this.isSubpotent,
-    this.isSubpotentElement,
+this.isSubpotentElement,
     this.subpotentReason,
     this.education,
     this.programEligibility,
     this.fundingSource,
     this.reaction,
     this.protocolApplied,
-  }): super(resourceType: R4ResourceType.Immunization);
+  }) : super(resourceType: R4ResourceType.Immunization);
 
 @override
-Immunization clone() => this;
-
+Immunization clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ImmunizationPerformer {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ImmunizationPerformer extends BackboneElement {
   final CodeableConcept? function_;
   final Reference actor;
 
   ImmunizationPerformer({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.function_,
     required this.actor,
   });
 
+@override
+ImmunizationPerformer clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ImmunizationEducation {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ImmunizationEducation extends BackboneElement {
   final FhirString? documentType;
   final Element? documentTypeElement;
   final FhirUri? reference;
@@ -136,28 +129,26 @@ class ImmunizationEducation {
   final Element? presentationDateElement;
 
   ImmunizationEducation({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.documentType,
-    this.documentTypeElement,
+this.documentTypeElement,
     this.reference,
-    this.referenceElement,
+this.referenceElement,
     this.publicationDate,
-    this.publicationDateElement,
+this.publicationDateElement,
     this.presentationDate,
-    this.presentationDateElement,
+this.presentationDateElement,
   });
 
+@override
+ImmunizationEducation clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ImmunizationReaction {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ImmunizationReaction extends BackboneElement {
   final FhirDateTime? date;
   final Element? dateElement;
   final Reference? detail;
@@ -165,57 +156,55 @@ class ImmunizationReaction {
   final Element? reportedElement;
 
   ImmunizationReaction({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.detail,
     this.reported,
-    this.reportedElement,
+this.reportedElement,
   });
 
+@override
+ImmunizationReaction clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ImmunizationProtocolApplied {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ImmunizationProtocolApplied extends BackboneElement {
   final FhirString? series;
   final Element? seriesElement;
   final Reference? authority;
   final List<CodeableConcept>? targetDisease;
-  final double? doseNumberPositiveInt;
-  final Element? doseNumberPositiveIntElement;
-  final FhirString? doseNumberString;
-  final Element? doseNumberStringElement;
-  final double? seriesDosesPositiveInt;
-  final Element? seriesDosesPositiveIntElement;
-  final FhirString? seriesDosesString;
-  final Element? seriesDosesStringElement;
+  final FhirPositiveInt doseNumberFhirPositiveInt;
+  final Element? doseNumberFhirPositiveIntElement;
+  final FhirString doseNumberFhirString;
+  final Element? doseNumberFhirStringElement;
+  final FhirPositiveInt? seriesDosesFhirPositiveInt;
+  final Element? seriesDosesFhirPositiveIntElement;
+  final FhirString? seriesDosesFhirString;
+  final Element? seriesDosesFhirStringElement;
 
   ImmunizationProtocolApplied({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.series,
-    this.seriesElement,
+this.seriesElement,
     this.authority,
     this.targetDisease,
-    this.doseNumberPositiveInt,
-    this.doseNumberPositiveIntElement,
-    this.doseNumberString,
-    this.doseNumberStringElement,
-    this.seriesDosesPositiveInt,
-    this.seriesDosesPositiveIntElement,
-    this.seriesDosesString,
-    this.seriesDosesStringElement,
+    required this.doseNumberFhirPositiveInt,
+this.doseNumberFhirPositiveIntElement,
+    required this.doseNumberFhirString,
+this.doseNumberFhirStringElement,
+    this.seriesDosesFhirPositiveInt,
+this.seriesDosesFhirPositiveIntElement,
+    this.seriesDosesFhirString,
+this.seriesDosesFhirStringElement,
   });
 
+@override
+ImmunizationProtocolApplied clone() => throw UnimplementedError();
 }
-
-
 

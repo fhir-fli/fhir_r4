@@ -27,24 +27,24 @@ class Attachment extends DataType {
     super.id,
     super.extension_,
     this.contentType,
-    this.contentTypeElement,
+this.contentTypeElement,
     this.language,
-    this.languageElement,
+this.languageElement,
     this.data,
-    this.dataElement,
+this.dataElement,
     this.url,
-    this.urlElement,
+this.urlElement,
     this.size,
-    this.sizeElement,
+this.sizeElement,
     this.hash,
-    this.hashElement,
+this.hashElement,
     this.title,
-    this.titleElement,
+this.titleElement,
     this.creation,
-    this.creationElement,
+this.creationElement,
   });
 
+@override
+Attachment clone() => throw UnimplementedError();
 }
-
-
 

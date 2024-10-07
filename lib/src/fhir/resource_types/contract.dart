@@ -40,42 +40,49 @@ class Contract extends DomainResource {
   final Reference? topicReference;
   final CodeableConcept? type;
   final List<CodeableConcept>? subType;
-  final ContractContentDefinition? contentDefinition;
-  final List<ContractTerm>? term;
+  final BackboneElement? contentDefinition;
+  final List<BackboneElement>? term;
+  final List<BackboneElement>? securityLabel;
+  final BackboneElement offer;
+  final List<BackboneElement>? party;
+  final List<BackboneElement>? answer;
+  final List<BackboneElement>? asset;
+  final List<BackboneElement>? context;
+  final List<BackboneElement>? valuedItem;
+  final List<BackboneElement>? action;
+  final List<BackboneElement>? subject;
   final List<Reference>? supportingInfo;
   final List<Reference>? relevantHistory;
-  final List<ContractSigner>? signer;
-  final List<ContractFriendly>? friendly;
-  final List<ContractLegal>? legal;
-  final List<ContractRule>? rule;
-  final Attachment? legallyBindingAttachment;
-  final Reference? legallyBindingReference;
+  final List<BackboneElement>? signer;
+  final List<BackboneElement>? friendly;
+  final List<BackboneElement>? legal;
+  final List<BackboneElement>? rule;
 
   Contract({
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.url,
-    this.urlElement,
+this.urlElement,
     this.version,
-    this.versionElement,
+this.versionElement,
     this.status,
-    this.statusElement,
+this.statusElement,
     this.legalState,
     this.instantiatesCanonical,
     this.instantiatesUri,
-    this.instantiatesUriElement,
+this.instantiatesUriElement,
     this.contentDerivative,
     this.issued,
-    this.issuedElement,
+this.issuedElement,
     this.applies,
     this.expirationType,
     this.subject,
@@ -83,13 +90,13 @@ class Contract extends DomainResource {
     this.domain,
     this.site,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.title,
-    this.titleElement,
+this.titleElement,
     this.subtitle,
-    this.subtitleElement,
+this.subtitleElement,
     this.alias,
-    this.aliasElement,
+this.aliasElement,
     this.author,
     this.scope,
     this.topicCodeableConcept,
@@ -98,62 +105,62 @@ class Contract extends DomainResource {
     this.subType,
     this.contentDefinition,
     this.term,
+    this.securityLabel,
+    required this.offer,
+    this.party,
+    this.answer,
+    this.asset,
+    this.context,
+    this.valuedItem,
+    this.action,
+    this.subject,
     this.supportingInfo,
     this.relevantHistory,
     this.signer,
     this.friendly,
     this.legal,
     this.rule,
-    this.legallyBindingAttachment,
-    this.legallyBindingReference,
-  }): super(resourceType: R4ResourceType.Contract);
+  }) : super(resourceType: R4ResourceType.Contract);
 
 @override
-Contract clone() => this;
-
+Contract clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ContractContentDefinition {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ContractContentDefinition extends BackboneElement {
   final CodeableConcept type;
   final CodeableConcept? subType;
   final Reference? publisher;
   final FhirDateTime? publicationDate;
   final Element? publicationDateElement;
-  final FhirCode? publicationStatus;
+  final FhirCode publicationStatus;
   final Element? publicationStatusElement;
   final FhirMarkdown? copyright;
   final Element? copyrightElement;
 
   ContractContentDefinition({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     required this.type,
     this.subType,
     this.publisher,
     this.publicationDate,
-    this.publicationDateElement,
-    this.publicationStatus,
-    this.publicationStatusElement,
+this.publicationDateElement,
+    required this.publicationStatus,
+this.publicationStatusElement,
     this.copyright,
-    this.copyrightElement,
+this.copyrightElement,
   });
 
+@override
+ContractContentDefinition clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ContractTerm {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ContractTerm extends BackboneElement {
   final Identifier? identifier;
   final FhirDateTime? issued;
   final Element? issuedElement;
@@ -164,42 +171,32 @@ class ContractTerm {
   final CodeableConcept? subType;
   final FhirString? text;
   final Element? textElement;
-  final List<ContractSecurityLabel>? securityLabel;
-  final ContractOffer offer;
-  final List<ContractAsset>? asset;
-  final List<ContractAction>? action;
-  final List<ContractTerm>? group;
+  final List<dynamic>? group;
 
   ContractTerm({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.identifier,
     this.issued,
-    this.issuedElement,
+this.issuedElement,
     this.applies,
     this.topicCodeableConcept,
     this.topicReference,
     this.type,
     this.subType,
     this.text,
-    this.textElement,
-    this.securityLabel,
-    required this.offer,
-    this.asset,
-    this.action,
+this.textElement,
     this.group,
   });
 
+@override
+ContractTerm clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ContractSecurityLabel {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ContractSecurityLabel extends BackboneElement {
   final List<FhirUnsignedInt>? number;
   final List<Element>? numberElement;
   final Coding classification;
@@ -207,32 +204,28 @@ class ContractSecurityLabel {
   final List<Coding>? control;
 
   ContractSecurityLabel({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.number,
-    this.numberElement,
+this.numberElement,
     required this.classification,
     this.category,
     this.control,
   });
 
+@override
+ContractSecurityLabel clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ContractOffer {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ContractOffer extends BackboneElement {
   final List<Identifier>? identifier;
-  final List<ContractParty>? party;
   final Reference? topic;
   final CodeableConcept? type;
   final CodeableConcept? decision;
   final List<CodeableConcept>? decisionMode;
-  final List<ContractAnswer>? answer;
   final FhirString? text;
   final Element? textElement;
   final List<FhirString>? linkId;
@@ -241,115 +234,106 @@ class ContractOffer {
   final List<Element>? securityLabelNumberElement;
 
   ContractOffer({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.identifier,
-    this.party,
     this.topic,
     this.type,
     this.decision,
     this.decisionMode,
-    this.answer,
     this.text,
-    this.textElement,
+this.textElement,
     this.linkId,
-    this.linkIdElement,
+this.linkIdElement,
     this.securityLabelNumber,
-    this.securityLabelNumberElement,
+this.securityLabelNumberElement,
   });
 
+@override
+ContractOffer clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ContractParty {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ContractParty extends BackboneElement {
   final List<Reference> reference;
   final CodeableConcept role;
 
   ContractParty({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     required this.reference,
     required this.role,
   });
 
+@override
+ContractParty clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ContractAnswer {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final bool? valueBoolean;
-  final Element? valueBooleanElement;
-  final double? valueDecimal;
-  final Element? valueDecimalElement;
-  final double? valueInteger;
-  final Element? valueIntegerElement;
-  final FhirString? valueDate;
-  final Element? valueDateElement;
-  final FhirString? valueDateTime;
-  final Element? valueDateTimeElement;
-  final FhirString? valueTime;
-  final Element? valueTimeElement;
-  final FhirString? valueString;
-  final Element? valueStringElement;
-  final FhirString? valueUri;
-  final Element? valueUriElement;
-  final Attachment? valueAttachment;
-  final Coding? valueCoding;
-  final Quantity? valueQuantity;
-  final Reference? valueReference;
+class ContractAnswer extends BackboneElement {
+  final FhirBoolean valueFhirBoolean;
+  final Element? valueFhirBooleanElement;
+  final FhirDecimal valueFhirDecimal;
+  final Element? valueFhirDecimalElement;
+  final FhirInteger valueFhirInteger;
+  final Element? valueFhirIntegerElement;
+  final FhirDate valueFhirDate;
+  final Element? valueFhirDateElement;
+  final FhirDateTime valueFhirDateTime;
+  final Element? valueFhirDateTimeElement;
+  final FhirTime valueFhirTime;
+  final Element? valueFhirTimeElement;
+  final FhirString valueFhirString;
+  final Element? valueFhirStringElement;
+  final FhirUri valueFhirUri;
+  final Element? valueFhirUriElement;
+  final Attachment valueAttachment;
+  final Coding valueCoding;
+  final Quantity valueQuantity;
+  final Reference valueReference;
 
   ContractAnswer({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.valueBoolean,
-    this.valueBooleanElement,
-    this.valueDecimal,
-    this.valueDecimalElement,
-    this.valueInteger,
-    this.valueIntegerElement,
-    this.valueDate,
-    this.valueDateElement,
-    this.valueDateTime,
-    this.valueDateTimeElement,
-    this.valueTime,
-    this.valueTimeElement,
-    this.valueString,
-    this.valueStringElement,
-    this.valueUri,
-    this.valueUriElement,
-    this.valueAttachment,
-    this.valueCoding,
-    this.valueQuantity,
-    this.valueReference,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.valueFhirBoolean,
+this.valueFhirBooleanElement,
+    required this.valueFhirDecimal,
+this.valueFhirDecimalElement,
+    required this.valueFhirInteger,
+this.valueFhirIntegerElement,
+    required this.valueFhirDate,
+this.valueFhirDateElement,
+    required this.valueFhirDateTime,
+this.valueFhirDateTimeElement,
+    required this.valueFhirTime,
+this.valueFhirTimeElement,
+    required this.valueFhirString,
+this.valueFhirStringElement,
+    required this.valueFhirUri,
+this.valueFhirUriElement,
+    required this.valueAttachment,
+    required this.valueCoding,
+    required this.valueQuantity,
+    required this.valueReference,
   });
 
+@override
+ContractAnswer clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ContractAsset {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ContractAsset extends BackboneElement {
   final CodeableConcept? scope;
   final List<CodeableConcept>? type;
   final List<Reference>? typeReference;
   final List<CodeableConcept>? subtype;
   final Coding? relationship;
-  final List<ContractContext>? context;
   final FhirString? condition;
   final Element? conditionElement;
   final List<CodeableConcept>? periodType;
@@ -359,69 +343,62 @@ class ContractAsset {
   final Element? textElement;
   final List<FhirString>? linkId;
   final List<Element>? linkIdElement;
-  final List<ContractAnswer>? answer;
+  final List<dynamic>? answer;
   final List<FhirUnsignedInt>? securityLabelNumber;
   final List<Element>? securityLabelNumberElement;
-  final List<ContractValuedItem>? valuedItem;
 
   ContractAsset({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.scope,
     this.type,
     this.typeReference,
     this.subtype,
     this.relationship,
-    this.context,
     this.condition,
-    this.conditionElement,
+this.conditionElement,
     this.periodType,
     this.period,
     this.usePeriod,
     this.text,
-    this.textElement,
+this.textElement,
     this.linkId,
-    this.linkIdElement,
+this.linkIdElement,
     this.answer,
     this.securityLabelNumber,
-    this.securityLabelNumberElement,
-    this.valuedItem,
+this.securityLabelNumberElement,
   });
 
+@override
+ContractAsset clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ContractContext {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ContractContext extends BackboneElement {
   final Reference? reference;
   final List<CodeableConcept>? code;
   final FhirString? text;
   final Element? textElement;
 
   ContractContext({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.reference,
     this.code,
     this.text,
-    this.textElement,
+this.textElement,
   });
 
+@override
+ContractContext clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ContractValuedItem {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ContractValuedItem extends BackboneElement {
   final CodeableConcept? entityCodeableConcept;
   final Reference? entityReference;
   final Identifier? identifier;
@@ -446,46 +423,43 @@ class ContractValuedItem {
   final List<Element>? securityLabelNumberElement;
 
   ContractValuedItem({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.entityCodeableConcept,
     this.entityReference,
     this.identifier,
     this.effectiveTime,
-    this.effectiveTimeElement,
+this.effectiveTimeElement,
     this.quantity,
     this.unitPrice,
     this.factor,
-    this.factorElement,
+this.factorElement,
     this.points,
-    this.pointsElement,
+this.pointsElement,
     this.net,
     this.payment,
-    this.paymentElement,
+this.paymentElement,
     this.paymentDate,
-    this.paymentDateElement,
+this.paymentDateElement,
     this.responsible,
     this.recipient,
     this.linkId,
-    this.linkIdElement,
+this.linkIdElement,
     this.securityLabelNumber,
-    this.securityLabelNumberElement,
+this.securityLabelNumberElement,
   });
 
+@override
+ContractValuedItem clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ContractAction {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ContractAction extends BackboneElement {
   final FhirBoolean? doNotPerform;
   final Element? doNotPerformElement;
   final CodeableConcept type;
-  final List<ContractSubject>? subject;
   final CodeableConcept intent;
   final List<FhirString>? linkId;
   final List<Element>? linkIdElement;
@@ -493,8 +467,8 @@ class ContractAction {
   final Reference? context;
   final List<FhirString>? contextLinkId;
   final List<Element>? contextLinkIdElement;
-  final FhirString? occurrenceDateTime;
-  final Element? occurrenceDateTimeElement;
+  final FhirDateTime? occurrenceFhirDateTime;
+  final Element? occurrenceFhirDateTimeElement;
   final Period? occurrencePeriod;
   final Timing? occurrenceTiming;
   final List<Reference>? requester;
@@ -516,146 +490,139 @@ class ContractAction {
   final List<Element>? securityLabelNumberElement;
 
   ContractAction({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.doNotPerform,
-    this.doNotPerformElement,
+this.doNotPerformElement,
     required this.type,
-    this.subject,
     required this.intent,
     this.linkId,
-    this.linkIdElement,
+this.linkIdElement,
     required this.status,
     this.context,
     this.contextLinkId,
-    this.contextLinkIdElement,
-    this.occurrenceDateTime,
-    this.occurrenceDateTimeElement,
+this.contextLinkIdElement,
+    this.occurrenceFhirDateTime,
+this.occurrenceFhirDateTimeElement,
     this.occurrencePeriod,
     this.occurrenceTiming,
     this.requester,
     this.requesterLinkId,
-    this.requesterLinkIdElement,
+this.requesterLinkIdElement,
     this.performerType,
     this.performerRole,
     this.performer,
     this.performerLinkId,
-    this.performerLinkIdElement,
+this.performerLinkIdElement,
     this.reasonCode,
     this.reasonReference,
     this.reason,
-    this.reasonElement,
+this.reasonElement,
     this.reasonLinkId,
-    this.reasonLinkIdElement,
+this.reasonLinkIdElement,
     this.note,
     this.securityLabelNumber,
-    this.securityLabelNumberElement,
+this.securityLabelNumberElement,
   });
 
+@override
+ContractAction clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ContractSubject {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ContractSubject extends BackboneElement {
   final List<Reference> reference;
   final CodeableConcept? role;
 
   ContractSubject({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     required this.reference,
     this.role,
   });
 
+@override
+ContractSubject clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ContractSigner {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ContractSigner extends BackboneElement {
   final Coding type;
   final Reference party;
   final List<Signature> signature;
 
   ContractSigner({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     required this.type,
     required this.party,
     required this.signature,
   });
 
+@override
+ContractSigner clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ContractFriendly {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final Attachment? contentAttachment;
-  final Reference? contentReference;
+class ContractFriendly extends BackboneElement {
+  final Attachment contentAttachment;
+  final Reference contentReference;
 
   ContractFriendly({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.contentAttachment,
-    this.contentReference,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.contentAttachment,
+    required this.contentReference,
   });
 
+@override
+ContractFriendly clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ContractLegal {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final Attachment? contentAttachment;
-  final Reference? contentReference;
+class ContractLegal extends BackboneElement {
+  final Attachment contentAttachment;
+  final Reference contentReference;
+  final Attachment? legallyBindingAttachment;
+  final Reference? legallyBindingReference;
 
   ContractLegal({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.contentAttachment,
-    this.contentReference,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.contentAttachment,
+    required this.contentReference,
+    this.legallyBindingAttachment,
+    this.legallyBindingReference,
   });
 
+@override
+ContractLegal clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ContractRule {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final Attachment? contentAttachment;
-  final Reference? contentReference;
+class ContractRule extends BackboneElement {
+  final Attachment contentAttachment;
+  final Reference contentReference;
 
   ContractRule({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.contentAttachment,
-    this.contentReference,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.contentAttachment,
+    required this.contentReference,
   });
 
+@override
+ContractRule clone() => throw UnimplementedError();
 }
-
-
 

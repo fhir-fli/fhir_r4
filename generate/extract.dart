@@ -10,11 +10,8 @@ Future<void> extract() async {
 }
 
 Future<void> _moveSourceFiles() async {
-  await extractFileToDisk('definitions.json/fhir.schema.json.zip', '.');
-  await File('definitions.json/profiles-resources.json')
-      .copy('./profiles-resources.json');
-  await File('definitions.json/profiles-types.json')
-      .copy('./profiles-types.json');
+  await extractFileToDisk(
+      'definitions.json/fhir.schema.json.zip', './definitions.json');
 }
 
 Future<void> _moveNdJsonExamples() async {

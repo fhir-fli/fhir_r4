@@ -15,35 +15,35 @@ class Condition extends DomainResource {
   final List<CodeableConcept>? bodySite;
   final Reference subject;
   final Reference? encounter;
-  final FhirString? onsetDateTime;
-  final Element? onsetDateTimeElement;
+  final FhirDateTime? onsetFhirDateTime;
+  final Element? onsetFhirDateTimeElement;
   final Age? onsetAge;
   final Period? onsetPeriod;
   final Range? onsetRange;
-  final FhirString? onsetString;
-  final Element? onsetStringElement;
-  final FhirString? abatementDateTime;
-  final Element? abatementDateTimeElement;
+  final FhirString? onsetFhirString;
+  final Element? onsetFhirStringElement;
+  final FhirDateTime? abatementFhirDateTime;
+  final Element? abatementFhirDateTimeElement;
   final Age? abatementAge;
   final Period? abatementPeriod;
   final Range? abatementRange;
-  final FhirString? abatementString;
-  final Element? abatementStringElement;
+  final FhirString? abatementFhirString;
+  final Element? abatementFhirStringElement;
   final FhirDateTime? recordedDate;
   final Element? recordedDateElement;
   final Reference? recorder;
   final Reference? asserter;
-  final List<ConditionStage>? stage;
-  final List<ConditionEvidence>? evidence;
+  final List<BackboneElement>? stage;
+  final List<BackboneElement>? evidence;
   final List<Annotation>? note;
 
   Condition({
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -57,75 +57,68 @@ class Condition extends DomainResource {
     this.bodySite,
     required this.subject,
     this.encounter,
-    this.onsetDateTime,
-    this.onsetDateTimeElement,
+    this.onsetFhirDateTime,
+this.onsetFhirDateTimeElement,
     this.onsetAge,
     this.onsetPeriod,
     this.onsetRange,
-    this.onsetString,
-    this.onsetStringElement,
-    this.abatementDateTime,
-    this.abatementDateTimeElement,
+    this.onsetFhirString,
+this.onsetFhirStringElement,
+    this.abatementFhirDateTime,
+this.abatementFhirDateTimeElement,
     this.abatementAge,
     this.abatementPeriod,
     this.abatementRange,
-    this.abatementString,
-    this.abatementStringElement,
+    this.abatementFhirString,
+this.abatementFhirStringElement,
     this.recordedDate,
-    this.recordedDateElement,
+this.recordedDateElement,
     this.recorder,
     this.asserter,
     this.stage,
     this.evidence,
     this.note,
-  }): super(resourceType: R4ResourceType.Condition);
+  }) : super(resourceType: R4ResourceType.Condition);
 
 @override
-Condition clone() => this;
-
+Condition clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ConditionStage {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ConditionStage extends BackboneElement {
   final CodeableConcept? summary;
   final List<Reference>? assessment;
   final CodeableConcept? type;
 
   ConditionStage({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.summary,
     this.assessment,
     this.type,
   });
 
+@override
+ConditionStage clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ConditionEvidence {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ConditionEvidence extends BackboneElement {
   final List<CodeableConcept>? code;
   final List<Reference>? detail;
 
   ConditionEvidence({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.code,
     this.detail,
   });
 
+@override
+ConditionEvidence clone() => throw UnimplementedError();
 }
-
-
 

@@ -7,9 +7,9 @@ import '../../../fhir_r4.dart';
 @JsonCodable()
 class FhirList extends DomainResource {
   final List<Identifier>? identifier;
-  final FhirCode? status;
+  final FhirCode status;
   final Element? statusElement;
-  final FhirCode? mode;
+  final FhirCode mode;
   final Element? modeElement;
   final FhirString? title;
   final Element? titleElement;
@@ -21,51 +21,46 @@ class FhirList extends DomainResource {
   final Reference? source;
   final CodeableConcept? orderedBy;
   final List<Annotation>? note;
-  final List<ListEntry>? entry;
+  final List<BackboneElement>? entry;
   final CodeableConcept? emptyReason;
 
   FhirList({
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    this.status,
-    this.statusElement,
-    this.mode,
-    this.modeElement,
+    required this.status,
+this.statusElement,
+    required this.mode,
+this.modeElement,
     this.title,
-    this.titleElement,
+this.titleElement,
     this.code,
     this.subject,
     this.encounter,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.source,
     this.orderedBy,
     this.note,
     this.entry,
     this.emptyReason,
-  }): super(resourceType: R4ResourceType.FhirList);
+  }) : super(resourceType: R4ResourceType.FhirList);
 
 @override
-FhirList clone() => this;
-
+FhirList clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ListEntry {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ListEntry extends BackboneElement {
   final CodeableConcept? flag;
   final FhirBoolean? deleted;
   final Element? deletedElement;
@@ -74,18 +69,18 @@ class ListEntry {
   final Reference item;
 
   ListEntry({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.flag,
     this.deleted,
-    this.deletedElement,
+this.deletedElement,
     this.date,
-    this.dateElement,
+this.dateElement,
     required this.item,
   });
 
+@override
+ListEntry clone() => throw UnimplementedError();
 }
-
-
 

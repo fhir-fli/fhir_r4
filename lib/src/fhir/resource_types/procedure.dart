@@ -8,27 +8,28 @@ import '../../../fhir_r4.dart';
 class Procedure extends DomainResource {
   final List<Identifier>? identifier;
   final List<FhirCanonical>? instantiatesCanonical;
+  final List<Element>? instantiatesCanonicalElement;
   final List<FhirUri>? instantiatesUri;
   final List<Element>? instantiatesUriElement;
   final List<Reference>? basedOn;
   final List<Reference>? partOf;
-  final FhirCode? status;
+  final FhirCode status;
   final Element? statusElement;
   final CodeableConcept? statusReason;
   final CodeableConcept? category;
   final CodeableConcept? code;
   final Reference subject;
   final Reference? encounter;
-  final FhirString? performedDateTime;
-  final Element? performedDateTimeElement;
+  final FhirDateTime? performedFhirDateTime;
+  final Element? performedFhirDateTimeElement;
   final Period? performedPeriod;
-  final FhirString? performedString;
-  final Element? performedStringElement;
+  final FhirString? performedFhirString;
+  final Element? performedFhirStringElement;
   final Age? performedAge;
   final Range? performedRange;
   final Reference? recorder;
   final Reference? asserter;
-  final List<ProcedurePerformer>? performer;
+  final List<BackboneElement>? performer;
   final Reference? location;
   final List<CodeableConcept>? reasonCode;
   final List<Reference>? reasonReference;
@@ -39,7 +40,7 @@ class Procedure extends DomainResource {
   final List<Reference>? complicationDetail;
   final List<CodeableConcept>? followUp;
   final List<Annotation>? note;
-  final List<ProcedureFocalDevice>? focalDevice;
+  final List<BackboneElement>? focalDevice;
   final List<Reference>? usedReference;
   final List<CodeableConcept>? usedCode;
 
@@ -47,31 +48,32 @@ class Procedure extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
+this.instantiatesCanonicalElement,
     this.instantiatesUri,
-    this.instantiatesUriElement,
+this.instantiatesUriElement,
     this.basedOn,
     this.partOf,
-    this.status,
-    this.statusElement,
+    required this.status,
+this.statusElement,
     this.statusReason,
     this.category,
     this.code,
     required this.subject,
     this.encounter,
-    this.performedDateTime,
-    this.performedDateTimeElement,
+    this.performedFhirDateTime,
+this.performedFhirDateTimeElement,
     this.performedPeriod,
-    this.performedString,
-    this.performedStringElement,
+    this.performedFhirString,
+this.performedFhirStringElement,
     this.performedAge,
     this.performedRange,
     this.recorder,
@@ -90,54 +92,47 @@ class Procedure extends DomainResource {
     this.focalDevice,
     this.usedReference,
     this.usedCode,
-  }): super(resourceType: R4ResourceType.Procedure);
+  }) : super(resourceType: R4ResourceType.Procedure);
 
 @override
-Procedure clone() => this;
-
+Procedure clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ProcedurePerformer {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ProcedurePerformer extends BackboneElement {
   final CodeableConcept? function_;
   final Reference actor;
   final Reference? onBehalfOf;
 
   ProcedurePerformer({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.function_,
     required this.actor,
     this.onBehalfOf,
   });
 
+@override
+ProcedurePerformer clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class ProcedureFocalDevice {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class ProcedureFocalDevice extends BackboneElement {
   final CodeableConcept? action;
   final Reference manipulated;
 
   ProcedureFocalDevice({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.action,
     required this.manipulated,
   });
 
+@override
+ProcedureFocalDevice clone() => throw UnimplementedError();
 }
-
-
 

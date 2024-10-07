@@ -17,7 +17,7 @@ class Library extends DomainResource {
   final Element? titleElement;
   final FhirString? subtitle;
   final Element? subtitleElement;
-  final FhirCode? status;
+  final FhirCode status;
   final Element? statusElement;
   final FhirBoolean? experimental;
   final Element? experimentalElement;
@@ -58,50 +58,50 @@ class Library extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-    this.urlElement,
+this.urlElement,
     this.identifier,
     this.version,
-    this.versionElement,
+this.versionElement,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.title,
-    this.titleElement,
+this.titleElement,
     this.subtitle,
-    this.subtitleElement,
-    this.status,
-    this.statusElement,
+this.subtitleElement,
+    required this.status,
+this.statusElement,
     this.experimental,
-    this.experimentalElement,
+this.experimentalElement,
     required this.type,
     this.subjectCodeableConcept,
     this.subjectReference,
     this.date,
-    this.dateElement,
+this.dateElement,
     this.publisher,
-    this.publisherElement,
+this.publisherElement,
     this.contact,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-    this.purposeElement,
+this.purposeElement,
     this.usage,
-    this.usageElement,
+this.usageElement,
     this.copyright,
-    this.copyrightElement,
+this.copyrightElement,
     this.approvalDate,
-    this.approvalDateElement,
+this.approvalDateElement,
     this.lastReviewDate,
-    this.lastReviewDateElement,
+this.lastReviewDateElement,
     this.effectivePeriod,
     this.topic,
     this.author,
@@ -112,12 +112,9 @@ class Library extends DomainResource {
     this.parameter,
     this.dataRequirement,
     this.content,
-  }): super(resourceType: R4ResourceType.Library);
+  }) : super(resourceType: R4ResourceType.Library);
 
 @override
-Library clone() => this;
-
+Library clone() => throw UnimplementedError();
 }
-
-
 

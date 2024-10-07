@@ -8,7 +8,7 @@ import '../../../fhir_r4.dart';
 class Quantity extends DataType {
   final FhirDecimal? value;
   final Element? valueElement;
-  final dynamic? comparator;
+  final FhirCode? comparator;
   final Element? comparatorElement;
   final FhirString? unit;
   final Element? unitElement;
@@ -21,18 +21,18 @@ class Quantity extends DataType {
     super.id,
     super.extension_,
     this.value,
-    this.valueElement,
+this.valueElement,
     this.comparator,
-    this.comparatorElement,
+this.comparatorElement,
     this.unit,
-    this.unitElement,
+this.unitElement,
     this.system,
-    this.systemElement,
+this.systemElement,
     this.code,
-    this.codeElement,
+this.codeElement,
   });
 
+@override
+Quantity clone() => throw UnimplementedError();
 }
-
-
 

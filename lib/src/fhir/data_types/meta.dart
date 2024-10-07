@@ -13,6 +13,7 @@ class FhirMeta extends DataType {
   final FhirUri? source;
   final Element? sourceElement;
   final List<FhirCanonical>? profile;
+  final List<Element>? profileElement;
   final List<Coding>? security;
   final List<Coding>? tag;
 
@@ -20,17 +21,18 @@ class FhirMeta extends DataType {
     super.id,
     super.extension_,
     this.versionId,
-    this.versionIdElement,
+this.versionIdElement,
     this.lastUpdated,
-    this.lastUpdatedElement,
+this.lastUpdatedElement,
     this.source,
-    this.sourceElement,
+this.sourceElement,
     this.profile,
+this.profileElement,
     this.security,
     this.tag,
   });
 
+@override
+FhirMeta clone() => throw UnimplementedError();
 }
-
-
 

@@ -15,10 +15,10 @@ final Map<String, Map<String, dynamic>> _codesAndVS =
 final Set<String> _valueSets = <String>{};
 
 Future<void> main() async {
-  // await extract();
+  await extract();
   await _codesAndValueSets();
   await _classesFromStructureDefinitions();
-  // await _exportFiles();
+  await _exportFiles();
   await writeEnums(_valueSets, _codesAndVS);
 }
 
@@ -45,8 +45,8 @@ Future<void> _codesAndValueSets() async {
 
 Future<void> _classesFromStructureDefinitions() async {
   final List<String> structureDefinitionBundles = <String>[
-    './profiles-resources.json',
-    './profiles-types.json',
+    './definitions.json/profiles-resources.json',
+    './definitions.json/profiles-types.json',
   ];
 
   _populateNameMap();
@@ -57,7 +57,8 @@ Future<void> _classesFromStructureDefinitions() async {
 }
 
 void _populateNameMap() {
-  final String fileString = File('fhir.schema.json').readAsStringSync();
+  final String fileString =
+      File('./definitions.json/fhir.schema.json').readAsStringSync();
   final Map<String, dynamic> jsonSchema =
       jsonDecode(fileString) as Map<String, dynamic>;
 
@@ -384,18 +385,24 @@ String _getElementType(Map<String, dynamic> element) {
 }
 
 Future<void> _exportFiles() async {
-  final List<String> directories = <String>['data_types', 'resource_types'];
+  final List<String> directories = <String>[
+    'data_types',
+    'resource_types',
+    'enums'
+  ];
   for (final String dir in directories) {
-    String exportFile = '';
+    final List<String> exportFile = <String>[];
     final Directory directory = Directory('../lib/src/fhir/$dir');
     final List<FileSystemEntity> files = directory.listSync();
     for (final FileSystemEntity file in files) {
       final String fileName = file.path.split('/').last;
       if (fileName.endsWith('.dart') && !fileName.endsWith('$dir.dart')) {
-        exportFile += "export '$fileName';\n";
+        exportFile.add("export '$fileName';");
       }
     }
-    File('../lib/src/fhir/$dir/$dir.dart').writeAsStringSync(exportFile);
+    exportFile.sort();
+    File('../lib/src/fhir/$dir/$dir.dart')
+        .writeAsStringSync(exportFile.join('\n'));
   }
 }
 

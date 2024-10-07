@@ -13,16 +13,16 @@ class Medication extends DomainResource {
   final Reference? manufacturer;
   final CodeableConcept? form;
   final Ratio? amount;
-  final List<MedicationIngredient>? ingredient;
-  final MedicationBatch? batch;
+  final List<BackboneElement>? ingredient;
+  final BackboneElement? batch;
 
   Medication({
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -30,68 +30,61 @@ class Medication extends DomainResource {
     this.identifier,
     this.code,
     this.status,
-    this.statusElement,
+this.statusElement,
     this.manufacturer,
     this.form,
     this.amount,
     this.ingredient,
     this.batch,
-  }): super(resourceType: R4ResourceType.Medication);
+  }) : super(resourceType: R4ResourceType.Medication);
 
 @override
-Medication clone() => this;
-
+Medication clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class MedicationIngredient {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final CodeableConcept? itemCodeableConcept;
-  final Reference? itemReference;
+class MedicationIngredient extends BackboneElement {
+  final CodeableConcept itemCodeableConcept;
+  final Reference itemReference;
   final FhirBoolean? isActive;
   final Element? isActiveElement;
   final Ratio? strength;
 
   MedicationIngredient({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.itemCodeableConcept,
-    this.itemReference,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.itemCodeableConcept,
+    required this.itemReference,
     this.isActive,
-    this.isActiveElement,
+this.isActiveElement,
     this.strength,
   });
 
+@override
+MedicationIngredient clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class MedicationBatch {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class MedicationBatch extends BackboneElement {
   final FhirString? lotNumber;
   final Element? lotNumberElement;
   final FhirDateTime? expirationDate;
   final Element? expirationDateElement;
 
   MedicationBatch({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.lotNumber,
-    this.lotNumberElement,
+this.lotNumberElement,
     this.expirationDate,
-    this.expirationDateElement,
+this.expirationDateElement,
   });
 
+@override
+MedicationBatch clone() => throw UnimplementedError();
 }
-
-
 

@@ -6,19 +6,21 @@ import '../../../fhir_r4.dart';
 @Data()
 @JsonCodable()
 class Narrative extends DataType {
-  final dynamic? status;
+  final FhirCode status;
   final Element? statusElement;
   final FhirMarkdown div;
+  final Element? divElement;
 
   Narrative({
     super.id,
     super.extension_,
-    this.status,
-    this.statusElement,
+    required this.status,
+this.statusElement,
     required this.div,
+this.divElement,
   });
 
+@override
+Narrative clone() => throw UnimplementedError();
 }
-
-
 

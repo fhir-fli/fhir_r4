@@ -22,10 +22,10 @@ class Location extends DomainResource {
   final List<ContactPoint>? telecom;
   final Address? address;
   final CodeableConcept? physicalType;
-  final LocationPosition? position;
+  final BackboneElement? position;
   final Reference? managingOrganization;
   final Reference? partOf;
-  final List<LocationHoursOfOperation>? hoursOfOperation;
+  final List<BackboneElement>? hoursOfOperation;
   final FhirString? availabilityExceptions;
   final Element? availabilityExceptionsElement;
   final List<Reference>? endpoint;
@@ -34,25 +34,25 @@ class Location extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.status,
-    this.statusElement,
+this.statusElement,
     this.operationalStatus,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.alias,
-    this.aliasElement,
+this.aliasElement,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.mode,
-    this.modeElement,
+this.modeElement,
     this.type,
     this.telecom,
     this.address,
@@ -62,50 +62,43 @@ class Location extends DomainResource {
     this.partOf,
     this.hoursOfOperation,
     this.availabilityExceptions,
-    this.availabilityExceptionsElement,
+this.availabilityExceptionsElement,
     this.endpoint,
-  }): super(resourceType: R4ResourceType.Location);
+  }) : super(resourceType: R4ResourceType.Location);
 
 @override
-Location clone() => this;
-
+Location clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class LocationPosition {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
-  final FhirDecimal? longitude;
+class LocationPosition extends BackboneElement {
+  final FhirDecimal longitude;
   final Element? longitudeElement;
-  final FhirDecimal? latitude;
+  final FhirDecimal latitude;
   final Element? latitudeElement;
   final FhirDecimal? altitude;
   final Element? altitudeElement;
 
   LocationPosition({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.longitude,
-    this.longitudeElement,
-    this.latitude,
-    this.latitudeElement,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
+    required this.longitude,
+this.longitudeElement,
+    required this.latitude,
+this.latitudeElement,
     this.altitude,
-    this.altitudeElement,
+this.altitudeElement,
   });
 
+@override
+LocationPosition clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class LocationHoursOfOperation {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class LocationHoursOfOperation extends BackboneElement {
   final List<FhirCode>? daysOfWeek;
   final List<Element>? daysOfWeekElement;
   final FhirBoolean? allDay;
@@ -116,20 +109,20 @@ class LocationHoursOfOperation {
   final Element? closingTimeElement;
 
   LocationHoursOfOperation({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.daysOfWeek,
-    this.daysOfWeekElement,
+this.daysOfWeekElement,
     this.allDay,
-    this.allDayElement,
+this.allDayElement,
     this.openingTime,
-    this.openingTimeElement,
+this.openingTimeElement,
     this.closingTime,
-    this.closingTimeElement,
+this.closingTimeElement,
   });
 
+@override
+LocationHoursOfOperation clone() => throw UnimplementedError();
 }
-
-
 

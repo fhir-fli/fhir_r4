@@ -7,7 +7,7 @@ import '../../../fhir_r4.dart';
 @JsonCodable()
 class Flag extends DomainResource {
   final List<Identifier>? identifier;
-  final FhirCode? status;
+  final FhirCode status;
   final Element? statusElement;
   final List<CodeableConcept>? category;
   final CodeableConcept code;
@@ -20,28 +20,25 @@ class Flag extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    this.status,
-    this.statusElement,
+    required this.status,
+this.statusElement,
     this.category,
     required this.code,
     required this.subject,
     this.period,
     this.encounter,
     this.author,
-  }): super(resourceType: R4ResourceType.Flag);
+  }) : super(resourceType: R4ResourceType.Flag);
 
 @override
-Flag clone() => this;
-
+Flag clone() => throw UnimplementedError();
 }
-
-
 

@@ -17,63 +17,58 @@ class Organization extends DomainResource {
   final List<ContactPoint>? telecom;
   final List<Address>? address;
   final Reference? partOf;
-  final List<OrganizationContact>? contact;
+  final List<BackboneElement>? contact;
   final List<Reference>? endpoint;
 
   Organization({
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
-    this.activeElement,
+this.activeElement,
     this.type,
     this.name,
-    this.nameElement,
+this.nameElement,
     this.alias,
-    this.aliasElement,
+this.aliasElement,
     this.telecom,
     this.address,
     this.partOf,
     this.contact,
     this.endpoint,
-  }): super(resourceType: R4ResourceType.Organization);
+  }) : super(resourceType: R4ResourceType.Organization);
 
 @override
-Organization clone() => this;
-
+Organization clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class OrganizationContact {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class OrganizationContact extends BackboneElement {
   final CodeableConcept? purpose;
   final HumanName? name;
   final List<ContactPoint>? telecom;
   final Address? address;
 
   OrganizationContact({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.purpose,
     this.name,
     this.telecom,
     this.address,
   });
 
+@override
+OrganizationContact clone() => throw UnimplementedError();
 }
-
-
 

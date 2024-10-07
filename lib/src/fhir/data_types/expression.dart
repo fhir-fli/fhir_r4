@@ -5,12 +5,12 @@ import '../../../fhir_r4.dart';
 
 @Data()
 @JsonCodable()
-class FhirExpression {
+class FhirExpression extends DataType {
   final FhirString? description;
   final Element? descriptionElement;
   final FhirId? name;
   final Element? nameElement;
-  final dynamic? language;
+  final FhirCode language;
   final Element? languageElement;
   final FhirString? expression;
   final Element? expressionElement;
@@ -21,18 +21,18 @@ class FhirExpression {
     super.id,
     super.extension_,
     this.description,
-    this.descriptionElement,
+this.descriptionElement,
     this.name,
-    this.nameElement,
-    this.language,
-    this.languageElement,
+this.nameElement,
+    required this.language,
+this.languageElement,
     this.expression,
-    this.expressionElement,
+this.expressionElement,
     this.reference,
-    this.referenceElement,
+this.referenceElement,
   });
 
+@override
+FhirExpression clone() => throw UnimplementedError();
 }
-
-
 

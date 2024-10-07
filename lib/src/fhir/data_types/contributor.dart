@@ -6,23 +6,23 @@ import '../../../fhir_r4.dart';
 @Data()
 @JsonCodable()
 class Contributor extends DataType {
-  final dynamic? type;
+  final FhirCode type;
   final Element? typeElement;
-  final FhirString? name;
+  final FhirString name;
   final Element? nameElement;
   final List<ContactDetail>? contact;
 
   Contributor({
     super.id,
     super.extension_,
-    this.type,
-    this.typeElement,
-    this.name,
-    this.nameElement,
+    required this.type,
+this.typeElement,
+    required this.name,
+this.nameElement,
     this.contact,
   });
 
+@override
+Contributor clone() => throw UnimplementedError();
 }
-
-
 

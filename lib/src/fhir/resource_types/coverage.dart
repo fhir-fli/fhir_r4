@@ -7,7 +7,7 @@ import '../../../fhir_r4.dart';
 @JsonCodable()
 class Coverage extends DomainResource {
   final List<Identifier>? identifier;
-  final FhirCode? status;
+  final FhirCode status;
   final Element? statusElement;
   final CodeableConcept? type;
   final Reference? policyHolder;
@@ -20,12 +20,13 @@ class Coverage extends DomainResource {
   final CodeableConcept? relationship;
   final Period? period;
   final List<Reference> payor;
-  final List<CoverageClass>? class_;
+  final List<BackboneElement>? class_;
   final FhirPositiveInt? order;
   final Element? orderElement;
   final FhirString? network;
   final Element? networkElement;
-  final List<CoverageCostToBeneficiary>? costToBeneficiary;
+  final List<BackboneElement>? costToBeneficiary;
+  final List<BackboneElement>? exception;
   final FhirBoolean? subrogation;
   final Element? subrogationElement;
   final List<Reference>? contract;
@@ -34,112 +35,102 @@ class Coverage extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
-    this.status,
-    this.statusElement,
+    required this.status,
+this.statusElement,
     this.type,
     this.policyHolder,
     this.subscriber,
     this.subscriberId,
-    this.subscriberIdElement,
+this.subscriberIdElement,
     required this.beneficiary,
     this.dependent,
-    this.dependentElement,
+this.dependentElement,
     this.relationship,
     this.period,
     required this.payor,
     this.class_,
     this.order,
-    this.orderElement,
+this.orderElement,
     this.network,
-    this.networkElement,
+this.networkElement,
     this.costToBeneficiary,
+    this.exception,
     this.subrogation,
-    this.subrogationElement,
+this.subrogationElement,
     this.contract,
-  }): super(resourceType: R4ResourceType.Coverage);
+  }) : super(resourceType: R4ResourceType.Coverage);
 
 @override
-Coverage clone() => this;
-
+Coverage clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class CoverageClass {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class CoverageClass extends BackboneElement {
   final CodeableConcept type;
-  final FhirString? value;
+  final FhirString value;
   final Element? valueElement;
   final FhirString? name;
   final Element? nameElement;
 
   CoverageClass({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     required this.type,
-    this.value,
-    this.valueElement,
+    required this.value,
+this.valueElement,
     this.name,
-    this.nameElement,
+this.nameElement,
   });
 
+@override
+CoverageClass clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class CoverageCostToBeneficiary {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class CoverageCostToBeneficiary extends BackboneElement {
   final CodeableConcept? type;
-  final Quantity? valueQuantity;
-  final Money? valueMoney;
-  final List<CoverageException>? exception;
+  final Quantity valueQuantity;
+  final Money valueMoney;
 
   CoverageCostToBeneficiary({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     this.type,
-    this.valueQuantity,
-    this.valueMoney,
-    this.exception,
+    required this.valueQuantity,
+    required this.valueMoney,
   });
 
+@override
+CoverageCostToBeneficiary clone() => throw UnimplementedError();
 }
-
 
 @Data()
 @JsonCodable()
-class CoverageException {
-  final FhirId? id;
-  final List<FhirExtension>? extension_;
-  final List<FhirExtension>? modifierExtension;
+class CoverageException extends BackboneElement {
   final CodeableConcept type;
   final Period? period;
 
   CoverageException({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    super.id,
+    super.extension_,
+    super.modifierExtension,
     required this.type,
     this.period,
   });
 
+@override
+CoverageException clone() => throw UnimplementedError();
 }
-
-
 

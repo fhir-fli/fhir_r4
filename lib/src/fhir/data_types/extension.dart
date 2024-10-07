@@ -6,46 +6,46 @@ import '../../../fhir_r4.dart';
 @Data()
 @JsonCodable()
 class FhirExtension extends DataType {
-  final FhirUri? url;
+  final FhirString url;
   final Element? urlElement;
-  final FhirString? valueBase64Binary;
-  final Element? valueBase64BinaryElement;
-  final bool? valueBoolean;
-  final Element? valueBooleanElement;
-  final FhirString? valueCanonical;
-  final Element? valueCanonicalElement;
-  final FhirString? valueCode;
-  final Element? valueCodeElement;
-  final FhirString? valueDate;
-  final Element? valueDateElement;
-  final FhirString? valueDateTime;
-  final Element? valueDateTimeElement;
-  final double? valueDecimal;
-  final Element? valueDecimalElement;
-  final FhirString? valueId;
-  final Element? valueIdElement;
-  final FhirString? valueInstant;
-  final Element? valueInstantElement;
-  final double? valueInteger;
-  final Element? valueIntegerElement;
-  final FhirString? valueMarkdown;
-  final Element? valueMarkdownElement;
-  final FhirString? valueOid;
-  final Element? valueOidElement;
-  final double? valuePositiveInt;
-  final Element? valuePositiveIntElement;
-  final FhirString? valueString;
-  final Element? valueStringElement;
-  final FhirString? valueTime;
-  final Element? valueTimeElement;
-  final double? valueUnsignedInt;
-  final Element? valueUnsignedIntElement;
-  final FhirString? valueUri;
-  final Element? valueUriElement;
-  final FhirString? valueUrl;
-  final Element? valueUrlElement;
-  final FhirString? valueUuid;
-  final Element? valueUuidElement;
+  final FhirBase64Binary? valueFhirBase64Binary;
+  final Element? valueFhirBase64BinaryElement;
+  final FhirBoolean? valueFhirBoolean;
+  final Element? valueFhirBooleanElement;
+  final FhirCanonical? valueFhirCanonical;
+  final Element? valueFhirCanonicalElement;
+  final FhirCode? valueFhirCode;
+  final Element? valueFhirCodeElement;
+  final FhirDate? valueFhirDate;
+  final Element? valueFhirDateElement;
+  final FhirDateTime? valueFhirDateTime;
+  final Element? valueFhirDateTimeElement;
+  final FhirDecimal? valueFhirDecimal;
+  final Element? valueFhirDecimalElement;
+  final FhirId? valueFhirId;
+  final Element? valueFhirIdElement;
+  final FhirInstant? valueFhirInstant;
+  final Element? valueFhirInstantElement;
+  final FhirInteger? valueFhirInteger;
+  final Element? valueFhirIntegerElement;
+  final FhirMarkdown? valueFhirMarkdown;
+  final Element? valueFhirMarkdownElement;
+  final FhirOid? valueFhirOid;
+  final Element? valueFhirOidElement;
+  final FhirPositiveInt? valueFhirPositiveInt;
+  final Element? valueFhirPositiveIntElement;
+  final FhirString? valueFhirString;
+  final Element? valueFhirStringElement;
+  final FhirTime? valueFhirTime;
+  final Element? valueFhirTimeElement;
+  final FhirUnsignedInt? valueFhirUnsignedInt;
+  final Element? valueFhirUnsignedIntElement;
+  final FhirUri? valueFhirUri;
+  final Element? valueFhirUriElement;
+  final FhirUrl? valueFhirUrl;
+  final Element? valueFhirUrlElement;
+  final FhirUuid? valueFhirUuid;
+  final Element? valueFhirUuidElement;
   final Address? valueAddress;
   final Age? valueAge;
   final Annotation? valueAnnotation;
@@ -56,7 +56,7 @@ class FhirExtension extends DataType {
   final ContactPoint? valueContactPoint;
   final Count? valueCount;
   final Distance? valueDistance;
-  final FhirDuration? valueDuration;
+  final FhirDuration? valueFhirDuration;
   final HumanName? valueHumanName;
   final Identifier? valueIdentifier;
   final Money? valueMoney;
@@ -72,7 +72,7 @@ class FhirExtension extends DataType {
   final ContactDetail? valueContactDetail;
   final Contributor? valueContributor;
   final DataRequirement? valueDataRequirement;
-  final FhirExpression? valueExpression;
+  final FhirExpression? valueFhirExpression;
   final ParameterDefinition? valueParameterDefinition;
   final RelatedArtifact? valueRelatedArtifact;
   final TriggerDefinition? valueTriggerDefinition;
@@ -82,46 +82,46 @@ class FhirExtension extends DataType {
   FhirExtension({
     super.id,
     super.extension_,
-    this.url,
-    this.urlElement,
-    this.valueBase64Binary,
-    this.valueBase64BinaryElement,
-    this.valueBoolean,
-    this.valueBooleanElement,
-    this.valueCanonical,
-    this.valueCanonicalElement,
-    this.valueCode,
-    this.valueCodeElement,
-    this.valueDate,
-    this.valueDateElement,
-    this.valueDateTime,
-    this.valueDateTimeElement,
-    this.valueDecimal,
-    this.valueDecimalElement,
-    this.valueId,
-    this.valueIdElement,
-    this.valueInstant,
-    this.valueInstantElement,
-    this.valueInteger,
-    this.valueIntegerElement,
-    this.valueMarkdown,
-    this.valueMarkdownElement,
-    this.valueOid,
-    this.valueOidElement,
-    this.valuePositiveInt,
-    this.valuePositiveIntElement,
-    this.valueString,
-    this.valueStringElement,
-    this.valueTime,
-    this.valueTimeElement,
-    this.valueUnsignedInt,
-    this.valueUnsignedIntElement,
-    this.valueUri,
-    this.valueUriElement,
-    this.valueUrl,
-    this.valueUrlElement,
-    this.valueUuid,
-    this.valueUuidElement,
+    required this.url,
+this.urlElement,
+    this.valueFhirBase64Binary,
+this.valueFhirBase64BinaryElement,
+    this.valueFhirBoolean,
+this.valueFhirBooleanElement,
+    this.valueFhirCanonical,
+this.valueFhirCanonicalElement,
+    this.valueFhirCode,
+this.valueFhirCodeElement,
+    this.valueFhirDate,
+this.valueFhirDateElement,
+    this.valueFhirDateTime,
+this.valueFhirDateTimeElement,
+    this.valueFhirDecimal,
+this.valueFhirDecimalElement,
+    this.valueFhirId,
+this.valueFhirIdElement,
+    this.valueFhirInstant,
+this.valueFhirInstantElement,
+    this.valueFhirInteger,
+this.valueFhirIntegerElement,
+    this.valueFhirMarkdown,
+this.valueFhirMarkdownElement,
+    this.valueFhirOid,
+this.valueFhirOidElement,
+    this.valueFhirPositiveInt,
+this.valueFhirPositiveIntElement,
+    this.valueFhirString,
+this.valueFhirStringElement,
+    this.valueFhirTime,
+this.valueFhirTimeElement,
+    this.valueFhirUnsignedInt,
+this.valueFhirUnsignedIntElement,
+    this.valueFhirUri,
+this.valueFhirUriElement,
+    this.valueFhirUrl,
+this.valueFhirUrlElement,
+    this.valueFhirUuid,
+this.valueFhirUuidElement,
     this.valueAddress,
     this.valueAge,
     this.valueAnnotation,
@@ -132,7 +132,7 @@ class FhirExtension extends DataType {
     this.valueContactPoint,
     this.valueCount,
     this.valueDistance,
-    this.valueDuration,
+    this.valueFhirDuration,
     this.valueHumanName,
     this.valueIdentifier,
     this.valueMoney,
@@ -148,7 +148,7 @@ class FhirExtension extends DataType {
     this.valueContactDetail,
     this.valueContributor,
     this.valueDataRequirement,
-    this.valueExpression,
+    this.valueFhirExpression,
     this.valueParameterDefinition,
     this.valueRelatedArtifact,
     this.valueTriggerDefinition,
@@ -156,7 +156,7 @@ class FhirExtension extends DataType {
     this.valueDosage,
   });
 
+@override
+FhirExtension clone() => throw UnimplementedError();
 }
-
-
 

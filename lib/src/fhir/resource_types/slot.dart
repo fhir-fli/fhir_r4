@@ -12,11 +12,11 @@ class Slot extends DomainResource {
   final List<CodeableConcept>? specialty;
   final CodeableConcept? appointmentType;
   final Reference schedule;
-  final FhirCode? status;
+  final FhirCode status;
   final Element? statusElement;
-  final FhirInstant? start;
+  final FhirInstant start;
   final Element? startElement;
-  final FhirInstant? end;
+  final FhirInstant end;
   final Element? endElement;
   final FhirBoolean? overbooked;
   final Element? overbookedElement;
@@ -27,9 +27,9 @@ class Slot extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
+super.implicitRulesElement,
     super.language,
-    super.languageElement,
+super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -40,22 +40,19 @@ class Slot extends DomainResource {
     this.specialty,
     this.appointmentType,
     required this.schedule,
-    this.status,
-    this.statusElement,
-    this.start,
-    this.startElement,
-    this.end,
-    this.endElement,
+    required this.status,
+this.statusElement,
+    required this.start,
+this.startElement,
+    required this.end,
+this.endElement,
     this.overbooked,
-    this.overbookedElement,
+this.overbookedElement,
     this.comment,
-    this.commentElement,
-  }): super(resourceType: R4ResourceType.Slot);
+this.commentElement,
+  }) : super(resourceType: R4ResourceType.Slot);
 
 @override
-Slot clone() => this;
-
+Slot clone() => throw UnimplementedError();
 }
-
-
 
