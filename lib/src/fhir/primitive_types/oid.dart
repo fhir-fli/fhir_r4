@@ -2,6 +2,10 @@ import 'dart:convert';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
+extension FhirOidExtension on String {
+  FhirOid get toFhirOid => FhirOid(this);
+}
+
 class FhirOid extends PrimitiveType<String> {
   FhirOid._(this._valueString, this._valueOid, this._isValid,
       [Element? element])

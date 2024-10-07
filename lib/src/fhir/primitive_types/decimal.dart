@@ -3,6 +3,10 @@ import 'dart:convert';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
+extension FhirDecimalExtension on num {
+  FhirDecimal get toFhirDecimal => FhirDecimal(this);
+}
+
 class FhirDecimal extends FhirNumber {
   FhirDecimal._(super.valueString, super.valueNumber, super.isValid, this.isInt,
       {super.element})

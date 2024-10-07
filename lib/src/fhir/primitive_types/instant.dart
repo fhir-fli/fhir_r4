@@ -2,6 +2,14 @@ import 'dart:convert';
 
 import '../../../fhir_r4.dart';
 
+extension FhirInstantExtension on DateTime {
+  FhirInstant get toFhirInstant => FhirInstant(this);
+}
+
+extension FhirInstantStringExtension on String {
+  FhirInstant get toFhirInstant => FhirInstant(this);
+}
+
 class FhirInstant extends FhirDateTimeBase {
   FhirInstant.fromBase({
     required super.isValid,

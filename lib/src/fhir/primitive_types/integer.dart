@@ -2,6 +2,10 @@ import 'dart:convert';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
+extension FhirIntegerExtension on num {
+  FhirInteger get toFhirInteger => FhirInteger(this);
+}
+
 class FhirInteger extends FhirNumber {
   FhirInteger._(super.valueString, super.valueNumber, super.isValid,
       {super.element})

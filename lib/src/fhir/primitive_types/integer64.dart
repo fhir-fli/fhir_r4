@@ -2,6 +2,18 @@ import 'dart:convert';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
+extension FhirInteger64NumExtension on num {
+  FhirInteger64 get toFhirInteger64 => FhirInteger64(this);
+}
+
+extension FhirInteger64StringExtension on String {
+  FhirInteger64 get toFhirInteger64 => FhirInteger64(this);
+}
+
+extension FhirInteger64BigIntExtension on BigInt {
+  FhirInteger64 get toFhirInteger64 => FhirInteger64(this);
+}
+
 class FhirInteger64 extends PrimitiveType<BigInt>
     implements Comparable<FhirInteger64> {
   FhirInteger64._(this.valueString, this.valueNumber, this.isValid,

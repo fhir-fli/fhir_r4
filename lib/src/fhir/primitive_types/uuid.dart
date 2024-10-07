@@ -3,6 +3,14 @@ import 'package:uuid/uuid.dart';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
+extension FhirUuidExtension on String {
+  FhirUuid get toFhirUuid => FhirUuid(this);
+}
+
+extension FhirUUidValueExtension on UuidValue {
+  FhirUuid get toFhirUuid => FhirUuid(this);
+}
+
 class FhirUuid extends PrimitiveType<UuidValue> {
   FhirUuid._(this._valueUuid, this._isValid, [Element? element])
       : super(fhirType: 'uuid', element: element);

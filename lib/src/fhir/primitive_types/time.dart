@@ -2,6 +2,10 @@ import 'dart:convert';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
+extension FhirTimeExtension on String {
+  FhirTime get toFhirTime => FhirTime(this);
+}
+
 class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
   final String _valueString;
   final String? _valueTime;

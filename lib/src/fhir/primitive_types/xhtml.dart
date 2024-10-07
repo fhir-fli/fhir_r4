@@ -3,6 +3,10 @@ import 'package:xml/xml.dart';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
+extension FhirXhtmlExtension on String {
+  FhirXhtml get toFhirXhtml => FhirXhtml(this);
+}
+
 class FhirXhtml extends PrimitiveType<String> {
   FhirXhtml._(this._valueString, this._valueXhtml, this._isValid,
       [Element? element])

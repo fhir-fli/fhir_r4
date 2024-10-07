@@ -1,6 +1,14 @@
 import 'dart:convert';
 import '../../../fhir_r4.dart';
 
+extension FhirDateExtension on DateTime {
+  FhirDate get toFhirDate => FhirDate(this);
+}
+
+extension FhirDateStringExtension on String {
+  FhirDate get toFhirDate => FhirDate(this);
+}
+
 class FhirDate extends FhirDateTimeBase {
   FhirDate.fromBase({
     required super.isValid,

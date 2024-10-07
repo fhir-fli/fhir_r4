@@ -2,6 +2,10 @@ import 'dart:convert';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
+extension FhirUnsignedIntExtension on num {
+  FhirUnsignedInt get toFhirUnsignedInt => FhirUnsignedInt(this);
+}
+
 class FhirUnsignedInt extends FhirNumber {
   FhirUnsignedInt._(super.valueString, super.valueNumber, super.isValid,
       {super.element})

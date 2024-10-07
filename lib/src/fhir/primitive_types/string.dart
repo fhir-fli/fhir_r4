@@ -2,6 +2,10 @@ import 'dart:convert';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
+extension FhirStringExtension on String {
+  FhirString get toFhirString => FhirString(this);
+}
+
 class FhirString extends PrimitiveType<String> {
   final String _valueString;
   final dynamic _value;

@@ -2,6 +2,10 @@ import 'dart:convert';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
+extension FhirPositiveIntExtension on num {
+  FhirPositiveInt get toFhirPositiveInt => FhirPositiveInt(this);
+}
+
 class FhirPositiveInt extends FhirNumber {
   FhirPositiveInt._(super.valueString, super.valueNumber, super.isValid,
       {super.element})

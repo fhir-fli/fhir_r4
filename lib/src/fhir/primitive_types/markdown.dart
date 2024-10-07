@@ -2,6 +2,10 @@ import 'dart:convert';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
+extension FhirMarkdownExtension on String {
+  FhirMarkdown get toFhirMarkdown => FhirMarkdown(this);
+}
+
 class FhirMarkdown extends PrimitiveType<String> {
   FhirMarkdown._(this._valueString, this._valueMarkdown, this._isValid,
       [Element? element])

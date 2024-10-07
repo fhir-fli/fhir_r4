@@ -2,6 +2,14 @@ import 'dart:convert';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
+extension FhirUriExtension on String {
+  FhirUri get toFhirUri => FhirUri(this);
+}
+
+extension FhirUriUriExtension on Uri {
+  FhirUri get toFhirUri => FhirUri(this);
+}
+
 class FhirUri extends PrimitiveType<Uri> {
   FhirUri._(this._valueString, this._valueUri, this._isValid,
       [Element? element])

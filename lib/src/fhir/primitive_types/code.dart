@@ -2,6 +2,10 @@ import 'dart:convert';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
+extension FhirCodeExtension on String {
+  FhirCode get toFhirCode => FhirCode(this);
+}
+
 class FhirCode extends PrimitiveType<String> {
   FhirCode._(this._valueString, this._valueCode, this._isValid,
       [Element? element])

@@ -2,6 +2,10 @@ import 'dart:convert';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
+extension FhirIdExtension on String {
+  FhirId get toFhirId => FhirId(this);
+}
+
 class FhirId extends PrimitiveType<String> {
   FhirId._(this._valueString, this._valueId, this._isValid, [Element? element])
       : super(fhirType: 'id', element: element);

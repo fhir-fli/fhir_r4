@@ -2,6 +2,14 @@ import 'dart:convert';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
+extension FhirCanonicalExtension on String {
+  FhirCanonical get toFhirCanonical => FhirCanonical(this);
+}
+
+extension FhirCanonicalUriExtension on Uri {
+  FhirCanonical get toFhirCanonical => FhirCanonical(this);
+}
+
 class FhirCanonical extends PrimitiveType<Uri> {
   FhirCanonical._(this._valueString, this._valueCanonical, this._isValid,
       [Element? element])

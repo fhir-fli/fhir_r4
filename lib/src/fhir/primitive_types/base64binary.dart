@@ -2,6 +2,10 @@ import 'dart:convert';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
+extension FhirBase64BinaryExtension on String {
+  FhirBase64Binary get toFhirBase64Binary => FhirBase64Binary(this);
+}
+
 class FhirBase64Binary extends PrimitiveType<String> {
   FhirBase64Binary._(this._valueString, this._valueBase64Binary, this._isValid,
       [Element? element])

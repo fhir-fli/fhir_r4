@@ -2,6 +2,14 @@ import 'dart:convert';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
+extension FhirUrlExtension on String {
+  FhirUrl get toFhirUrl => FhirUrl(this);
+}
+
+extension FhirUrlUriExtension on Uri {
+  FhirUrl get toFhirUrl => FhirUrl(this);
+}
+
 class FhirUrl extends PrimitiveType<Uri> {
   FhirUrl._(this._valueString, this._valueUri, this._isValid,
       [Element? element])
@@ -82,8 +90,8 @@ class FhirUrl extends PrimitiveType<Uri> {
   }
 
   /// Encoding/decoding
-  static String uriEncode(List<int> canonicalTable, String text,
-      Encoding encoding, bool spaceToPlus) {
+  static String uriEncode(
+      List<int> UrlTable, String text, Encoding encoding, bool spaceToPlus) {
     return Uri.encodeComponent(text);
   }
 

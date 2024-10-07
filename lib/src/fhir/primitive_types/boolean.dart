@@ -2,6 +2,10 @@ import 'dart:convert';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
+extension FhirBooleanExtension on bool {
+  FhirBoolean get toFhirBoolean => FhirBoolean(this);
+}
+
 class FhirBoolean extends PrimitiveType<bool> {
   FhirBoolean._(this._valueString, this._valueBoolean, this._isValid,
       [Element? element])
