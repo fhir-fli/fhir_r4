@@ -58,7 +58,32 @@ class FhirMarkdown extends PrimitiveType<String> {
       );
 
   @override
-  FhirMarkdown setElement(String name, dynamic value) {
-    return FhirMarkdown(value, element?.setProperty(name, value));
+  FhirMarkdown setElement(String name, dynamic elementValue) {
+    return FhirMarkdown(value, element?.setProperty(name, elementValue));
+  }
+
+  @override
+  FhirMarkdown copyWith({
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    return FhirMarkdown._(
+      _valueString,
+      _valueMarkdown,
+      _isValid,
+      element?.copyWith(
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+        children: children,
+        namedChildren: namedChildren,
+      ),
+    );
   }
 }

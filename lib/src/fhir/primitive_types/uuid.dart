@@ -104,4 +104,28 @@ class FhirUuid extends PrimitiveType<UuidValue> {
   static String unparseUuid(List<int> buffer) {
     return Uuid.unparse(buffer);
   }
+
+  @override
+  FhirUuid copyWith({
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    return FhirUuid._(
+      _valueUuid,
+      _isValid,
+      element?.copyWith(
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+        children: children,
+        namedChildren: namedChildren,
+      ),
+    );
+  }
 }

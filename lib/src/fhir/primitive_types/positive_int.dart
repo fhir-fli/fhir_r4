@@ -57,4 +57,29 @@ class FhirPositiveInt extends FhirNumber {
     return FhirPositiveInt(value,
         element: element?.setProperty(name, elementValue));
   }
+
+  @override
+  FhirPositiveInt copyWith({
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    return FhirPositiveInt._(
+      valueString,
+      valueNumber,
+      isValid,
+      element: element?.copyWith(
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+        children: children,
+        namedChildren: namedChildren,
+      ),
+    );
+  }
 }

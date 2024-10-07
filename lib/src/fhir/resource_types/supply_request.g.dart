@@ -1,0 +1,261 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'supply_request.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+SupplyRequest _$SupplyRequestFromJson(Map<String, dynamic> json) =>
+    SupplyRequest(
+      id: json['id'] == null ? null : FhirString.fromJson(json['id']),
+      meta: json['meta'] == null
+          ? null
+          : FhirMeta.fromJson(json['meta'] as Map<String, dynamic>),
+      implicitRules: json['implicitRules'] == null
+          ? null
+          : FhirUri.fromJson(json['implicitRules']),
+      implicitRulesElement: json['implicitRulesElement'] == null
+          ? null
+          : Element.fromJson(
+              json['implicitRulesElement'] as Map<String, dynamic>),
+      language:
+          json['language'] == null ? null : FhirCode.fromJson(json['language']),
+      languageElement: json['languageElement'] == null
+          ? null
+          : Element.fromJson(json['languageElement'] as Map<String, dynamic>),
+      text: json['text'] == null
+          ? null
+          : Narrative.fromJson(json['text'] as Map<String, dynamic>),
+      contained: (json['contained'] as List<dynamic>?)
+          ?.map((e) => Resource.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      extension_: (json['extension_'] as List<dynamic>?)
+          ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      identifier: (json['identifier'] as List<dynamic>?)
+          ?.map((e) => Identifier.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      status: json['status'] == null ? null : FhirCode.fromJson(json['status']),
+      statusElement: json['_status'] == null
+          ? null
+          : Element.fromJson(json['_status'] as Map<String, dynamic>),
+      category: json['category'] == null
+          ? null
+          : CodeableConcept.fromJson(json['category'] as Map<String, dynamic>),
+      priority:
+          json['priority'] == null ? null : FhirCode.fromJson(json['priority']),
+      priorityElement: json['_priority'] == null
+          ? null
+          : Element.fromJson(json['_priority'] as Map<String, dynamic>),
+      itemCodeableConcept: CodeableConcept.fromJson(
+          json['itemCodeableConcept'] as Map<String, dynamic>),
+      itemReference:
+          Reference.fromJson(json['itemReference'] as Map<String, dynamic>),
+      quantity: Quantity.fromJson(json['quantity'] as Map<String, dynamic>),
+      parameter: (json['parameter'] as List<dynamic>?)
+          ?.map(
+              (e) => SupplyRequestParameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      occurrenceDateTime: json['occurrenceDateTime'] == null
+          ? null
+          : FhirDateTime.fromJson(json['occurrenceDateTime'] as String),
+      occurrenceDateTimeElement: json['_occurrenceDateTime'] == null
+          ? null
+          : Element.fromJson(
+              json['_occurrenceDateTime'] as Map<String, dynamic>),
+      occurrencePeriod: json['occurrencePeriod'] == null
+          ? null
+          : Period.fromJson(json['occurrencePeriod'] as Map<String, dynamic>),
+      occurrenceTiming: json['occurrenceTiming'] == null
+          ? null
+          : Timing.fromJson(json['occurrenceTiming'] as Map<String, dynamic>),
+      authoredOn: json['authoredOn'] == null
+          ? null
+          : FhirDateTime.fromJson(json['authoredOn'] as String),
+      authoredOnElement: json['_authoredOn'] == null
+          ? null
+          : Element.fromJson(json['_authoredOn'] as Map<String, dynamic>),
+      requester: json['requester'] == null
+          ? null
+          : Reference.fromJson(json['requester'] as Map<String, dynamic>),
+      supplier: (json['supplier'] as List<dynamic>?)
+          ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      reasonCode: (json['reasonCode'] as List<dynamic>?)
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      reasonReference: (json['reasonReference'] as List<dynamic>?)
+          ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      deliverFrom: json['deliverFrom'] == null
+          ? null
+          : Reference.fromJson(json['deliverFrom'] as Map<String, dynamic>),
+      deliverTo: json['deliverTo'] == null
+          ? null
+          : Reference.fromJson(json['deliverTo'] as Map<String, dynamic>),
+      userData: json['userData'] as Map<String, dynamic>? ??
+          const <String, Object?>{},
+      formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const <String>[],
+      formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const <String>[],
+      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
+      children: (json['children'] as List<dynamic>?)
+              ?.map(FhirBase.fromJson)
+              .toList() ??
+          const <FhirBase>[],
+      namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
+            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+          ) ??
+          const <String, FhirBase>{},
+    );
+
+Map<String, dynamic> _$SupplyRequestToJson(SupplyRequest instance) {
+  final val = <String, dynamic>{
+    'userData': instance.userData,
+    'formatCommentsPre': instance.formatCommentsPre,
+    'formatCommentsPost': instance.formatCommentsPost,
+    'annotations': instance.annotations,
+    'children': instance.children.map((e) => e.toJson()).toList(),
+    'namedChildren':
+        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('id', instance.id?.toJson());
+  writeNotNull('meta', instance.meta?.toJson());
+  writeNotNull('implicitRules', instance.implicitRules?.toJson());
+  writeNotNull('implicitRulesElement', instance.implicitRulesElement?.toJson());
+  writeNotNull('language', instance.language?.toJson());
+  writeNotNull('languageElement', instance.languageElement?.toJson());
+  writeNotNull('text', instance.text?.toJson());
+  writeNotNull(
+      'contained', instance.contained?.map((e) => e.toJson()).toList());
+  writeNotNull(
+      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+  writeNotNull('modifierExtension',
+      instance.modifierExtension?.map((e) => e.toJson()).toList());
+  writeNotNull(
+      'identifier', instance.identifier?.map((e) => e.toJson()).toList());
+  writeNotNull('status', instance.status?.toJson());
+  writeNotNull('_status', instance.statusElement?.toJson());
+  writeNotNull('category', instance.category?.toJson());
+  writeNotNull('priority', instance.priority?.toJson());
+  writeNotNull('_priority', instance.priorityElement?.toJson());
+  val['itemCodeableConcept'] = instance.itemCodeableConcept.toJson();
+  val['itemReference'] = instance.itemReference.toJson();
+  val['quantity'] = instance.quantity.toJson();
+  writeNotNull(
+      'parameter', instance.parameter?.map((e) => e.toJson()).toList());
+  writeNotNull('occurrenceDateTime', instance.occurrenceDateTime?.toJson());
+  writeNotNull(
+      '_occurrenceDateTime', instance.occurrenceDateTimeElement?.toJson());
+  writeNotNull('occurrencePeriod', instance.occurrencePeriod?.toJson());
+  writeNotNull('occurrenceTiming', instance.occurrenceTiming?.toJson());
+  writeNotNull('authoredOn', instance.authoredOn?.toJson());
+  writeNotNull('_authoredOn', instance.authoredOnElement?.toJson());
+  writeNotNull('requester', instance.requester?.toJson());
+  writeNotNull('supplier', instance.supplier?.map((e) => e.toJson()).toList());
+  writeNotNull(
+      'reasonCode', instance.reasonCode?.map((e) => e.toJson()).toList());
+  writeNotNull('reasonReference',
+      instance.reasonReference?.map((e) => e.toJson()).toList());
+  writeNotNull('deliverFrom', instance.deliverFrom?.toJson());
+  writeNotNull('deliverTo', instance.deliverTo?.toJson());
+  return val;
+}
+
+SupplyRequestParameter _$SupplyRequestParameterFromJson(
+        Map<String, dynamic> json) =>
+    SupplyRequestParameter(
+      id: json['id'] == null ? null : FhirString.fromJson(json['id']),
+      extension_: (json['extension_'] as List<dynamic>?)
+          ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      modifierExtension: (json['modifierExtension'] as List<dynamic>?)
+          ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      code: json['code'] == null
+          ? null
+          : CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
+      valueCodeableConcept: json['valueCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['valueCodeableConcept'] as Map<String, dynamic>),
+      valueQuantity: json['valueQuantity'] == null
+          ? null
+          : Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>),
+      valueRange: json['valueRange'] == null
+          ? null
+          : Range.fromJson(json['valueRange'] as Map<String, dynamic>),
+      valueBoolean: json['valueBoolean'] == null
+          ? null
+          : FhirBoolean.fromJson(json['valueBoolean']),
+      valueBooleanElement: json['_valueBoolean'] == null
+          ? null
+          : Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>),
+      userData: json['userData'] as Map<String, dynamic>? ??
+          const <String, Object?>{},
+      formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const <String>[],
+      formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const <String>[],
+      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
+      children: (json['children'] as List<dynamic>?)
+              ?.map(FhirBase.fromJson)
+              .toList() ??
+          const <FhirBase>[],
+      namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
+            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+          ) ??
+          const <String, FhirBase>{},
+    );
+
+Map<String, dynamic> _$SupplyRequestParameterToJson(
+    SupplyRequestParameter instance) {
+  final val = <String, dynamic>{
+    'userData': instance.userData,
+    'formatCommentsPre': instance.formatCommentsPre,
+    'formatCommentsPost': instance.formatCommentsPost,
+    'annotations': instance.annotations,
+    'children': instance.children.map((e) => e.toJson()).toList(),
+    'namedChildren':
+        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('id', instance.id?.toJson());
+  writeNotNull(
+      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+  writeNotNull('modifierExtension',
+      instance.modifierExtension?.map((e) => e.toJson()).toList());
+  writeNotNull('code', instance.code?.toJson());
+  writeNotNull('valueCodeableConcept', instance.valueCodeableConcept?.toJson());
+  writeNotNull('valueQuantity', instance.valueQuantity?.toJson());
+  writeNotNull('valueRange', instance.valueRange?.toJson());
+  writeNotNull('valueBoolean', instance.valueBoolean?.toJson());
+  writeNotNull('_valueBoolean', instance.valueBooleanElement?.toJson());
+  return val;
+}

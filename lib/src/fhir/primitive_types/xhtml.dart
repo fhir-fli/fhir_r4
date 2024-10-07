@@ -59,8 +59,8 @@ class FhirXhtml extends PrimitiveType<String> {
       );
 
   @override
-  FhirXhtml setElement(String name, dynamic value) {
-    return FhirXhtml(value, element?.setProperty(name, value));
+  FhirXhtml setElement(String name, dynamic elementValue) {
+    return FhirXhtml(value, element?.setProperty(name, elementValue));
   }
 
   static bool _validateXhtml(String xhtml) {
@@ -183,4 +183,29 @@ class FhirXhtml extends PrimitiveType<String> {
     'option',
     'style'
   ];
+
+  @override
+  FhirXhtml copyWith({
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    return FhirXhtml._(
+      _valueString,
+      _valueXhtml,
+      _isValid,
+      element?.copyWith(
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+        children: children,
+        namedChildren: namedChildren,
+      ),
+    );
+  }
 }

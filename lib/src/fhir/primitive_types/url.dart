@@ -105,4 +105,29 @@ class FhirUrl extends PrimitiveType<Uri> {
   FhirUrl setElement(String name, dynamic elementValue) {
     return FhirUrl(value, element?.setProperty(name, elementValue));
   }
+
+  @override
+  FhirUrl copyWith({
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    return FhirUrl._(
+      _valueString,
+      _valueUri,
+      _isValid,
+      element?.copyWith(
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+        children: children,
+        namedChildren: namedChildren,
+      ),
+    );
+  }
 }

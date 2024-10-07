@@ -271,7 +271,7 @@ void _writeClassHeader(StringBuffer buffer, WritableClass writableClass) {
   // buffer.writeln('@JsonCodable()');
   // buffer.writeln('@Data()');
   buffer.writeln('@JsonSerializable()');
-  buffer.writeln('@Entity()');
+  // buffer.writeln('@Entity()');
 
   final String extendsClause = writableClass.extendsClause;
   buffer.writeln('class ${writableName.fhirToDartTypes} $extendsClause {');
@@ -296,7 +296,10 @@ void _writeFields(StringBuffer buffer, WritableClass writableClass) {
           .writeln('/// [${field.name.fhirFieldToDartName}] $formattedComment');
 
       // Add @JsonKey annotation with the original field name
-      final String originalFieldName = field.path.split('.').last;
+      String originalFieldName = field.path.split('.').last;
+      originalFieldName = originalFieldName.contains('[x]')
+          ? field.name.fhirFieldToDartName
+          : originalFieldName;
       buffer.writeln("@JsonKey(name: '$originalFieldName')");
       buffer.writeln(
           '  final $fieldDeclaration ${field.name.fhirFieldToDartName};');
@@ -327,16 +330,42 @@ void _writeConstructor(StringBuffer buffer, WritableClass writableClass) {
       }
     }
   }
+
+  // Add FhirBase-specific fields
+  buffer.writeln('    super.userData,');
+  buffer.writeln('    super.formatCommentsPre,');
+  buffer.writeln('    super.formatCommentsPost,');
+  buffer.writeln('    super.annotations,');
+  buffer.writeln('    super.children,');
+  buffer.writeln('    super.namedChildren,');
+
+  // Close constructor
   if (writableName.isResourceType && writableClass.isResourceType) {
     buffer.writeln(
-        '  }) : super(resourceType: R4ResourceType.${writableName.fhirToDartTypes});\n');
+        '  }) : super(resourceType: R4ResourceType.${writableName.fhirToDartTypes},');
+    buffer.writeln("      fhirType: '${writableName.fhirToDartTypes}');");
+  } else if (writableName == 'Quantity') {
+    buffer.writeln(" super.fhirType = 'Quantity' });");
   } else {
-    buffer.writeln('  });\n');
+    buffer
+        .writeln("  }) : super(fhirType: '${writableName.fhirToDartTypes}');");
   }
 }
 
 void _writeClassFooter(StringBuffer buffer, WritableClass writableClass) {
   final String writableName = writableClass.className;
+
+  // Include fromJson constructor for JsonSerializable
+  buffer.writeln('''
+  factory ${writableName.fhirToDartTypes}.fromJson(Map<String, dynamic> json) =>
+      _\$${writableName.fhirToDartTypes}FromJson(json);
+  ''');
+
+  // Include toJson method for JsonSerializable
+  buffer.writeln('@override');
+  buffer.writeln('''
+  Map<String, dynamic> toJson() => _\$${writableName.fhirToDartTypes}ToJson(this);
+  ''');
 
   buffer.writeln('@override');
   buffer.writeln(
@@ -390,7 +419,7 @@ void _writeCopyFunction(StringBuffer buffer, WritableClass writableClass) {
 
   // Define the copy method
   buffer.writeln('@override');
-  buffer.writeln('${writableName.fhirToDartTypes} copy({');
+  buffer.writeln('${writableName.fhirToDartTypes} copyWith({');
 
   // Add each field as an optional parameter
   for (final Field field in writableClass.fields) {
@@ -405,6 +434,14 @@ void _writeCopyFunction(StringBuffer buffer, WritableClass writableClass) {
     }
   }
 
+  // Add FhirBase-specific fields
+  buffer.writeln('    Map<String, Object?>? userData,');
+  buffer.writeln('    List<String>? formatCommentsPre,');
+  buffer.writeln('    List<String>? formatCommentsPost,');
+  buffer.writeln('    List<dynamic>? annotations,');
+  buffer.writeln('    List<FhirBase>? children,');
+  buffer.writeln('    Map<String, FhirBase>? namedChildren,');
+
   buffer.writeln('  }) {');
   buffer.writeln('    return ${writableName.fhirToDartTypes}(');
 
@@ -417,6 +454,16 @@ void _writeCopyFunction(StringBuffer buffer, WritableClass writableClass) {
           '      ${field.name}Element: ${field.name}Element ?? this.${field.name}Element,');
     }
   }
+
+  // Assign FhirBase fields
+  buffer.writeln('      userData: userData ?? this.userData,');
+  buffer.writeln(
+      '      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,');
+  buffer.writeln(
+      '      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,');
+  buffer.writeln('      annotations: annotations ?? this.annotations,');
+  buffer.writeln('      children: children ?? this.children,');
+  buffer.writeln('      namedChildren: namedChildren ?? this.namedChildren,');
 
   buffer.writeln('    );');
   buffer.writeln('  }');

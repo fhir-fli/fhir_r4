@@ -1,13 +1,11 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'medicinal_product_definition.g.dart';
 
 /// [MedicinalProductDefinition] /// A medicinal product, being a substance or combination of substances that is
 /// intended to treat, prevent or diagnose a disease, or to restore, correct or
@@ -15,6 +13,7 @@ import '../../../fhir_r4.dart';
 /// or metabolic action. This resource is intended to define and detail such
 /// products and their properties, for uses other than direct patient care
 /// (e.g. regulatory use, or drug catalogs).
+@JsonSerializable()
 class MedicinalProductDefinition extends DomainResource {
   MedicinalProductDefinition({
     super.id,
@@ -59,8 +58,15 @@ class MedicinalProductDefinition extends DomainResource {
     this.crossReference,
     this.operation,
     this.characteristic,
-  }) : super(resourceType: R4ResourceType.MedicinalProductDefinition);
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(
+            resourceType: R4ResourceType.MedicinalProductDefinition,
+            fhirType: 'MedicinalProductDefinition');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -70,30 +76,40 @@ class MedicinalProductDefinition extends DomainResource {
   /// identifiers, assigned by a manufacturer or regulator, and unique to a
   /// product (which, when compared to a product instance being prescribed, is
   /// actually a product type). See also MedicinalProductDefinition.code.
+  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [type] /// Regulatory type, e.g. Investigational or Authorized.
+  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [domain] /// If this medicine applies to human or veterinary uses.
+  @JsonKey(name: 'domain')
   final CodeableConcept? domain;
 
   /// [version] /// A business identifier relating to a specific version of the product, this
   /// is commonly used to support revisions to an existing product.
+  @JsonKey(name: 'version')
   final FhirString? version;
+  @JsonKey(name: '_version')
   final Element? versionElement;
 
   /// [status] /// The status within the lifecycle of this product record. A high-level
   /// status, this is not intended to duplicate details carried elsewhere such as
   /// legal status, or authorization status.
+  @JsonKey(name: 'status')
   final CodeableConcept? status;
 
   /// [statusDate] /// The date at which the given status became applicable.
+  @JsonKey(name: 'statusDate')
   final FhirDateTime? statusDate;
+  @JsonKey(name: '_statusDate')
   final Element? statusDateElement;
 
   /// [description] /// General description of this product.
+  @JsonKey(name: 'description')
   final FhirMarkdown? description;
+  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [combinedPharmaceuticalDoseForm] /// The dose form for a single part product, or combined form of a multiple
@@ -101,6 +117,7 @@ class MedicinalProductDefinition extends DomainResource {
   /// does not represent the form with components physically mixed, if that might
   /// be necessary, for which see
   /// (AdministrableProductDefinition.administrableDoseForm).
+  @JsonKey(name: 'combinedPharmaceuticalDoseForm')
   final CodeableConcept? combinedPharmaceuticalDoseForm;
 
   /// [route] /// The path by which the product is taken into or makes contact with the body.
@@ -109,6 +126,7 @@ class MedicinalProductDefinition extends DomainResource {
   /// MedicinalProductDefinition.route is the same concept as
   /// AdministrableProductDefinition.routeOfAdministration.code, and they cannot
   /// be used together.
+  @JsonKey(name: 'route')
   final List<CodeableConcept>? route;
 
   /// [indication] /// Description of indication(s) for this product, used when structured
@@ -116,34 +134,43 @@ class MedicinalProductDefinition extends DomainResource {
   /// required, they are captured using the ClinicalUseDefinition resource. An
   /// indication is a medical situation for which using the product is
   /// appropriate.
+  @JsonKey(name: 'indication')
   final FhirMarkdown? indication;
+  @JsonKey(name: '_indication')
   final Element? indicationElement;
 
   /// [legalStatusOfSupply] /// The legal status of supply of the medicinal product as classified by the
   /// regulator.
+  @JsonKey(name: 'legalStatusOfSupply')
   final CodeableConcept? legalStatusOfSupply;
 
   /// [additionalMonitoringIndicator] /// Whether the Medicinal Product is subject to additional monitoring for
   /// regulatory reasons, such as heightened reporting requirements.
+  @JsonKey(name: 'additionalMonitoringIndicator')
   final CodeableConcept? additionalMonitoringIndicator;
 
   /// [specialMeasures] /// Whether the Medicinal Product is subject to special measures for regulatory
   /// reasons, such as a requirement to conduct post-authorisation studies.
+  @JsonKey(name: 'specialMeasures')
   final List<CodeableConcept>? specialMeasures;
 
   /// [pediatricUseIndicator] /// If authorised for use in children, or infants, neonates etc.
+  @JsonKey(name: 'pediatricUseIndicator')
   final CodeableConcept? pediatricUseIndicator;
 
   /// [classification] /// Allows the product to be classified by various systems, commonly WHO ATC.
+  @JsonKey(name: 'classification')
   final List<CodeableConcept>? classification;
 
   /// [marketingStatus] /// Marketing status of the medicinal product, in contrast to marketing
   /// authorization. This refers to the product being actually 'on the market' as
   /// opposed to being allowed to be on the market (which is an authorization).
+  @JsonKey(name: 'marketingStatus')
   final List<MarketingStatus>? marketingStatus;
 
   /// [packagedMedicinalProduct] /// Package type for the product. See also the PackagedProductDefinition
   /// resource.
+  @JsonKey(name: 'packagedMedicinalProduct')
   final List<CodeableConcept>? packagedMedicinalProduct;
 
   /// [ingredient] /// The ingredients of this medicinal product - when not detailed in other
@@ -153,16 +180,19 @@ class MedicinalProductDefinition extends DomainResource {
   /// ManufacturedItemDefinition references. In cases where those levels of
   /// detail are not used, the ingredients may be specified directly here as
   /// codes.
+  @JsonKey(name: 'ingredient')
   final List<CodeableConcept>? ingredient;
 
   /// [impurity] /// Any component of the drug product which is not the chemical entity defined
   /// as the drug substance, or an excipient in the drug product. This includes
   /// process-related impurities and contaminants, product-related impurities
   /// including degradation products.
+  @JsonKey(name: 'impurity')
   final List<CodeableReference>? impurity;
 
   /// [attachedDocument] /// Additional information or supporting documentation about the medicinal
   /// product.
+  @JsonKey(name: 'attachedDocument')
   final List<Reference>? attachedDocument;
 
   /// [masterFile] /// A master file for the medicinal product (e.g. Pharmacovigilance System
@@ -170,12 +200,15 @@ class MedicinalProductDefinition extends DomainResource {
   /// regulatory agencies to provide confidential detailed information about
   /// facilities, processes or articles used in the manufacturing, processing,
   /// packaging and storing of drug products.
+  @JsonKey(name: 'masterFile')
   final List<Reference>? masterFile;
 
   /// [contact] /// A product specific contact, person (in a role), or an organization.
+  @JsonKey(name: 'contact')
   final List<MedicinalProductDefinitionContact>? contact;
 
   /// [clinicalTrial] /// Clinical trials or studies that this product is involved in.
+  @JsonKey(name: 'clinicalTrial')
   final List<Reference>? clinicalTrial;
 
   /// [code] /// A code that this product is known by, usually within some formal
@@ -184,25 +217,37 @@ class MedicinalProductDefinition extends DomainResource {
   /// identifiers during development and within regulatory process. However when
   /// they are prescribed they tend to be identified by codes. The same product
   /// may be have multiple codes, applied to it by multiple organizations.
+  @JsonKey(name: 'code')
   final List<Coding>? code;
 
   /// [name] /// The product's name, including full name and possibly coded parts.
+  @JsonKey(name: 'name')
   final List<MedicinalProductDefinitionName> name;
 
   /// [crossReference] /// Reference to another product, e.g. for linking authorised to
   /// investigational product, or a virtual product.
+  @JsonKey(name: 'crossReference')
   final List<MedicinalProductDefinitionCrossReference>? crossReference;
 
   /// [operation] /// A manufacturing or administrative process or step associated with (or
   /// performed on) the medicinal product.
+  @JsonKey(name: 'operation')
   final List<MedicinalProductDefinitionOperation>? operation;
 
   /// [characteristic] /// Allows the key product features to be recorded, such as "sugar free",
   /// "modified release", "parallel import".
+  @JsonKey(name: 'characteristic')
   final List<MedicinalProductDefinitionCharacteristic>? characteristic;
+  factory MedicinalProductDefinition.fromJson(Map<String, dynamic> json) =>
+      _$MedicinalProductDefinitionFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$MedicinalProductDefinitionToJson(this);
+
   @override
   MedicinalProductDefinition clone() => throw UnimplementedError();
-  MedicinalProductDefinition copy({
+  @override
+  MedicinalProductDefinition copyWith({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -245,6 +290,12 @@ class MedicinalProductDefinition extends DomainResource {
     List<MedicinalProductDefinitionCrossReference>? crossReference,
     List<MedicinalProductDefinitionOperation>? operation,
     List<MedicinalProductDefinitionCharacteristic>? characteristic,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return MedicinalProductDefinition(
       id: id ?? this.id,
@@ -293,15 +344,37 @@ class MedicinalProductDefinition extends DomainResource {
       crossReference: crossReference ?? this.crossReference,
       operation: operation ?? this.operation,
       characteristic: characteristic ?? this.characteristic,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory MedicinalProductDefinition.fromYaml(dynamic yaml) => yaml is String
+      ? MedicinalProductDefinition.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? MedicinalProductDefinition.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'MedicinalProductDefinition cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory MedicinalProductDefinition.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicinalProductDefinition.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [MedicinalProductDefinitionContact] /// A product specific contact, person (in a role), or an organization.
+@JsonSerializable()
 class MedicinalProductDefinitionContact extends BackboneElement {
   MedicinalProductDefinitionContact({
     super.id,
@@ -309,26 +382,48 @@ class MedicinalProductDefinitionContact extends BackboneElement {
     super.modifierExtension,
     this.type,
     required this.contact,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'MedicinalProductDefinitionContact');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Allows the contact to be classified, for example QPPV, Pharmacovigilance
   /// Enquiry Information.
+  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [contact] /// A product specific contact, person (in a role), or an organization.
+  @JsonKey(name: 'contact')
   final Reference contact;
+  factory MedicinalProductDefinitionContact.fromJson(
+          Map<String, dynamic> json) =>
+      _$MedicinalProductDefinitionContactFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$MedicinalProductDefinitionContactToJson(this);
+
   @override
   MedicinalProductDefinitionContact clone() => throw UnimplementedError();
-  MedicinalProductDefinitionContact copy({
+  @override
+  MedicinalProductDefinitionContact copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
     Reference? contact,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return MedicinalProductDefinitionContact(
       id: id ?? this.id,
@@ -336,15 +431,38 @@ class MedicinalProductDefinitionContact extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       contact: contact ?? this.contact,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory MedicinalProductDefinitionContact.fromYaml(dynamic yaml) => yaml
+          is String
+      ? MedicinalProductDefinitionContact.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? MedicinalProductDefinitionContact.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'MedicinalProductDefinitionContact cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory MedicinalProductDefinitionContact.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicinalProductDefinitionContact.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [MedicinalProductDefinitionName] /// The product's name, including full name and possibly coded parts.
+@JsonSerializable()
 class MedicinalProductDefinitionName extends BackboneElement {
   MedicinalProductDefinitionName({
     super.id,
@@ -355,27 +473,44 @@ class MedicinalProductDefinitionName extends BackboneElement {
     this.type,
     this.namePart,
     this.countryLanguage,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'MedicinalProductDefinitionName');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [productName] /// The full product name.
+  @JsonKey(name: 'productName')
   final FhirString productName;
+  @JsonKey(name: '_productName')
   final Element? productNameElement;
 
   /// [type] /// Type of product name, such as rINN, BAN, Proprietary, Non-Proprietary.
+  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [namePart] /// Coding words or phrases of the name.
+  @JsonKey(name: 'namePart')
   final List<MedicinalProductDefinitionNamePart>? namePart;
 
   /// [countryLanguage] /// Country and jurisdiction where the name applies, and associated language.
+  @JsonKey(name: 'countryLanguage')
   final List<MedicinalProductDefinitionCountryLanguage>? countryLanguage;
+  factory MedicinalProductDefinitionName.fromJson(Map<String, dynamic> json) =>
+      _$MedicinalProductDefinitionNameFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$MedicinalProductDefinitionNameToJson(this);
+
   @override
   MedicinalProductDefinitionName clone() => throw UnimplementedError();
-  MedicinalProductDefinitionName copy({
+  @override
+  MedicinalProductDefinitionName copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -384,6 +519,12 @@ class MedicinalProductDefinitionName extends BackboneElement {
     CodeableConcept? type,
     List<MedicinalProductDefinitionNamePart>? namePart,
     List<MedicinalProductDefinitionCountryLanguage>? countryLanguage,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return MedicinalProductDefinitionName(
       id: id ?? this.id,
@@ -394,15 +535,38 @@ class MedicinalProductDefinitionName extends BackboneElement {
       type: type ?? this.type,
       namePart: namePart ?? this.namePart,
       countryLanguage: countryLanguage ?? this.countryLanguage,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory MedicinalProductDefinitionName.fromYaml(dynamic yaml) => yaml
+          is String
+      ? MedicinalProductDefinitionName.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? MedicinalProductDefinitionName.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'MedicinalProductDefinitionName cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory MedicinalProductDefinitionName.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicinalProductDefinitionName.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [MedicinalProductDefinitionNamePart] /// Coding words or phrases of the name.
+@JsonSerializable()
 class MedicinalProductDefinitionNamePart extends BackboneElement {
   MedicinalProductDefinitionNamePart({
     super.id,
@@ -411,27 +575,50 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
     required this.part_,
     this.partElement,
     required this.type,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'MedicinalProductDefinitionNamePart');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [part_] /// A fragment of a product name.
+  @JsonKey(name: 'part')
   final FhirString part_;
+  @JsonKey(name: '_part')
   final Element? partElement;
 
   /// [type] /// Identifying type for this part of the name (e.g. strength part).
+  @JsonKey(name: 'type')
   final CodeableConcept type;
+  factory MedicinalProductDefinitionNamePart.fromJson(
+          Map<String, dynamic> json) =>
+      _$MedicinalProductDefinitionNamePartFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$MedicinalProductDefinitionNamePartToJson(this);
+
   @override
   MedicinalProductDefinitionNamePart clone() => throw UnimplementedError();
-  MedicinalProductDefinitionNamePart copy({
+  @override
+  MedicinalProductDefinitionNamePart copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? part_,
     Element? partElement,
     CodeableConcept? type,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return MedicinalProductDefinitionNamePart(
       id: id ?? this.id,
@@ -440,15 +627,38 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
       part_: part_ ?? this.part_,
       partElement: partElement ?? this.partElement,
       type: type ?? this.type,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory MedicinalProductDefinitionNamePart.fromYaml(dynamic yaml) => yaml
+          is String
+      ? MedicinalProductDefinitionNamePart.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? MedicinalProductDefinitionNamePart.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'MedicinalProductDefinitionNamePart cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory MedicinalProductDefinitionNamePart.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicinalProductDefinitionNamePart.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [MedicinalProductDefinitionCountryLanguage] /// Country and jurisdiction where the name applies, and associated language.
+@JsonSerializable()
 class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
   MedicinalProductDefinitionCountryLanguage({
     super.id,
@@ -457,31 +667,54 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
     required this.country,
     this.jurisdiction,
     required this.language,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'MedicinalProductDefinitionCountryLanguage');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [country] /// Country code for where this name applies.
+  @JsonKey(name: 'country')
   final CodeableConcept country;
 
   /// [jurisdiction] /// Jurisdiction code for where this name applies. A jurisdiction may be a sub-
   /// or supra-national entity (e.g. a state or a geographic region).
+  @JsonKey(name: 'jurisdiction')
   final CodeableConcept? jurisdiction;
 
   /// [language] /// Language code for this name.
+  @JsonKey(name: 'language')
   final CodeableConcept language;
+  factory MedicinalProductDefinitionCountryLanguage.fromJson(
+          Map<String, dynamic> json) =>
+      _$MedicinalProductDefinitionCountryLanguageFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$MedicinalProductDefinitionCountryLanguageToJson(this);
+
   @override
   MedicinalProductDefinitionCountryLanguage clone() =>
       throw UnimplementedError();
-  MedicinalProductDefinitionCountryLanguage copy({
+  @override
+  MedicinalProductDefinitionCountryLanguage copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? country,
     CodeableConcept? jurisdiction,
     CodeableConcept? language,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return MedicinalProductDefinitionCountryLanguage(
       id: id ?? this.id,
@@ -490,16 +723,40 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
       country: country ?? this.country,
       jurisdiction: jurisdiction ?? this.jurisdiction,
       language: language ?? this.language,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory MedicinalProductDefinitionCountryLanguage.fromYaml(dynamic yaml) => yaml
+          is String
+      ? MedicinalProductDefinitionCountryLanguage.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? MedicinalProductDefinitionCountryLanguage.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'MedicinalProductDefinitionCountryLanguage cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory MedicinalProductDefinitionCountryLanguage.fromJsonString(
+      String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicinalProductDefinitionCountryLanguage.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [MedicinalProductDefinitionCrossReference] /// Reference to another product, e.g. for linking authorised to
 /// investigational product, or a virtual product.
+@JsonSerializable()
 class MedicinalProductDefinitionCrossReference extends BackboneElement {
   MedicinalProductDefinitionCrossReference({
     super.id,
@@ -507,29 +764,51 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
     super.modifierExtension,
     required this.product,
     this.type,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'MedicinalProductDefinitionCrossReference');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [product] /// Reference to another product, e.g. for linking authorised to
   /// investigational product.
+  @JsonKey(name: 'product')
   final CodeableReference product;
 
   /// [type] /// The type of relationship, for instance branded to generic, virtual to
   /// actual product, product to development product (investigational), parallel
   /// import version.
+  @JsonKey(name: 'type')
   final CodeableConcept? type;
+  factory MedicinalProductDefinitionCrossReference.fromJson(
+          Map<String, dynamic> json) =>
+      _$MedicinalProductDefinitionCrossReferenceFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$MedicinalProductDefinitionCrossReferenceToJson(this);
+
   @override
   MedicinalProductDefinitionCrossReference clone() =>
       throw UnimplementedError();
-  MedicinalProductDefinitionCrossReference copy({
+  @override
+  MedicinalProductDefinitionCrossReference copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableReference? product,
     CodeableConcept? type,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return MedicinalProductDefinitionCrossReference(
       id: id ?? this.id,
@@ -537,16 +816,40 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       product: product ?? this.product,
       type: type ?? this.type,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory MedicinalProductDefinitionCrossReference.fromYaml(dynamic yaml) => yaml
+          is String
+      ? MedicinalProductDefinitionCrossReference.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? MedicinalProductDefinitionCrossReference.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'MedicinalProductDefinitionCrossReference cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory MedicinalProductDefinitionCrossReference.fromJsonString(
+      String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicinalProductDefinitionCrossReference.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [MedicinalProductDefinitionOperation] /// A manufacturing or administrative process or step associated with (or
 /// performed on) the medicinal product.
+@JsonSerializable()
 class MedicinalProductDefinitionOperation extends BackboneElement {
   MedicinalProductDefinitionOperation({
     super.id,
@@ -556,8 +859,13 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
     this.effectiveDate,
     this.organization,
     this.confidentialityIndicator,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'MedicinalProductDefinitionOperation');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -565,22 +873,35 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
   /// [type] /// The type of manufacturing operation e.g. manufacturing itself,
   /// re-packaging. For the authorization of this, a RegulatedAuthorization would
   /// point to the same plan or activity referenced here.
+  @JsonKey(name: 'type')
   final CodeableReference? type;
 
   /// [effectiveDate] /// Date range of applicability.
+  @JsonKey(name: 'effectiveDate')
   final Period? effectiveDate;
 
   /// [organization] /// The organization or establishment responsible for (or associated with) the
   /// particular process or step, examples include the manufacturer, importer,
   /// agent.
+  @JsonKey(name: 'organization')
   final List<Reference>? organization;
 
   /// [confidentialityIndicator] /// Specifies whether this particular business or manufacturing process is
   /// considered proprietary or confidential.
+  @JsonKey(name: 'confidentialityIndicator')
   final CodeableConcept? confidentialityIndicator;
+  factory MedicinalProductDefinitionOperation.fromJson(
+          Map<String, dynamic> json) =>
+      _$MedicinalProductDefinitionOperationFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$MedicinalProductDefinitionOperationToJson(this);
+
   @override
   MedicinalProductDefinitionOperation clone() => throw UnimplementedError();
-  MedicinalProductDefinitionOperation copy({
+  @override
+  MedicinalProductDefinitionOperation copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -588,6 +909,12 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
     Period? effectiveDate,
     List<Reference>? organization,
     CodeableConcept? confidentialityIndicator,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return MedicinalProductDefinitionOperation(
       id: id ?? this.id,
@@ -598,16 +925,39 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
       organization: organization ?? this.organization,
       confidentialityIndicator:
           confidentialityIndicator ?? this.confidentialityIndicator,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory MedicinalProductDefinitionOperation.fromYaml(dynamic yaml) => yaml
+          is String
+      ? MedicinalProductDefinitionOperation.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? MedicinalProductDefinitionOperation.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'MedicinalProductDefinitionOperation cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory MedicinalProductDefinitionOperation.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicinalProductDefinitionOperation.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [MedicinalProductDefinitionCharacteristic] /// Allows the key product features to be recorded, such as "sugar free",
 /// "modified release", "parallel import".
+@JsonSerializable()
 class MedicinalProductDefinitionCharacteristic extends BackboneElement {
   MedicinalProductDefinitionCharacteristic({
     super.id,
@@ -621,35 +971,57 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
     this.valueBoolean,
     this.valueBooleanElement,
     this.valueAttachment,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'MedicinalProductDefinitionCharacteristic');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// A code expressing the type of characteristic.
+  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [valueCodeableConcept] /// A value for the characteristic.
+  @JsonKey(name: 'valueCodeableConcept')
   final CodeableConcept? valueCodeableConcept;
 
   /// [valueQuantity] /// A value for the characteristic.
+  @JsonKey(name: 'valueQuantity')
   final Quantity? valueQuantity;
 
   /// [valueDate] /// A value for the characteristic.
+  @JsonKey(name: 'valueDate')
   final FhirDate? valueDate;
+  @JsonKey(name: '_valueDate')
   final Element? valueDateElement;
 
   /// [valueBoolean] /// A value for the characteristic.
+  @JsonKey(name: 'valueBoolean')
   final FhirBoolean? valueBoolean;
+  @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
 
   /// [valueAttachment] /// A value for the characteristic.
+  @JsonKey(name: 'valueAttachment')
   final Attachment? valueAttachment;
+  factory MedicinalProductDefinitionCharacteristic.fromJson(
+          Map<String, dynamic> json) =>
+      _$MedicinalProductDefinitionCharacteristicFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$MedicinalProductDefinitionCharacteristicToJson(this);
+
   @override
   MedicinalProductDefinitionCharacteristic clone() =>
       throw UnimplementedError();
-  MedicinalProductDefinitionCharacteristic copy({
+  @override
+  MedicinalProductDefinitionCharacteristic copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -661,6 +1033,12 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
     FhirBoolean? valueBoolean,
     Element? valueBooleanElement,
     Attachment? valueAttachment,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return MedicinalProductDefinitionCharacteristic(
       id: id ?? this.id,
@@ -674,6 +1052,33 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
       valueBoolean: valueBoolean ?? this.valueBoolean,
       valueBooleanElement: valueBooleanElement ?? this.valueBooleanElement,
       valueAttachment: valueAttachment ?? this.valueAttachment,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory MedicinalProductDefinitionCharacteristic.fromYaml(dynamic yaml) => yaml
+          is String
+      ? MedicinalProductDefinitionCharacteristic.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? MedicinalProductDefinitionCharacteristic.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'MedicinalProductDefinitionCharacteristic cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory MedicinalProductDefinitionCharacteristic.fromJsonString(
+      String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicinalProductDefinitionCharacteristic.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

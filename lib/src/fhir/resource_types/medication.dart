@@ -1,17 +1,16 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'medication.g.dart';
 
 /// [Medication] /// This resource is primarily used for the identification and definition of a
 /// medication for the purposes of prescribing, dispensing, and administering a
 /// medication as well as for making statements about medication use.
+@JsonSerializable()
 class Medication extends DomainResource {
   Medication({
     super.id,
@@ -33,13 +32,19 @@ class Medication extends DomainResource {
     this.amount,
     this.ingredient,
     this.batch,
-  }) : super(resourceType: R4ResourceType.Medication);
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(resourceType: R4ResourceType.Medication, fhirType: 'Medication');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Business identifier for this medication.
+  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [code] /// A code (or set of codes) that specify this medication, or a textual
@@ -47,17 +52,22 @@ class Medication extends DomainResource {
   /// medication code such as a code from RxNorm, SNOMED CT, IDMP etc. It could
   /// also be a national or local formulary code, optionally with translations to
   /// other code systems.
+  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [status] /// A code to indicate if the medication is in active use.
+  @JsonKey(name: 'status')
   final FhirCode? status;
+  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [manufacturer] /// Describes the details of the manufacturer of the medication product. This
   /// is not intended to represent the distributor of a medication product.
+  @JsonKey(name: 'manufacturer')
   final Reference? manufacturer;
 
   /// [form] /// Describes the form of the item. Powder; tablets; capsule.
+  @JsonKey(name: 'form')
   final CodeableConcept? form;
 
   /// [amount] /// Specific amount of the drug in the packaged product. For example, when
@@ -65,16 +75,26 @@ class Medication extends DomainResource {
   /// glargine 100 unit per mL solution for injection), this attribute provides
   /// additional clarification of the package amount (For example, 3 mL, 10mL,
   /// etc.).
+  @JsonKey(name: 'amount')
   final Ratio? amount;
 
   /// [ingredient] /// Identifies a particular constituent of interest in the product.
+  @JsonKey(name: 'ingredient')
   final List<MedicationIngredient>? ingredient;
 
   /// [batch] /// Information that only applies to packages (not products).
+  @JsonKey(name: 'batch')
   final MedicationBatch? batch;
+  factory Medication.fromJson(Map<String, dynamic> json) =>
+      _$MedicationFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$MedicationToJson(this);
+
   @override
   Medication clone() => throw UnimplementedError();
-  Medication copy({
+  @override
+  Medication copyWith({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -94,6 +114,12 @@ class Medication extends DomainResource {
     Ratio? amount,
     List<MedicationIngredient>? ingredient,
     MedicationBatch? batch,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return Medication(
       id: id ?? this.id,
@@ -115,15 +141,37 @@ class Medication extends DomainResource {
       amount: amount ?? this.amount,
       ingredient: ingredient ?? this.ingredient,
       batch: batch ?? this.batch,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory Medication.fromYaml(dynamic yaml) => yaml is String
+      ? Medication.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? Medication.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'Medication cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory Medication.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return Medication.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [MedicationIngredient] /// Identifies a particular constituent of interest in the product.
+@JsonSerializable()
 class MedicationIngredient extends BackboneElement {
   MedicationIngredient({
     super.id,
@@ -134,32 +182,49 @@ class MedicationIngredient extends BackboneElement {
     this.isActive,
     this.isActiveElement,
     this.strength,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'MedicationIngredient');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [itemCodeableConcept] /// The actual ingredient - either a substance (simple ingredient) or another
   /// medication of a medication.
+  @JsonKey(name: 'itemCodeableConcept')
   final CodeableConcept itemCodeableConcept;
 
   /// [itemReference] /// The actual ingredient - either a substance (simple ingredient) or another
   /// medication of a medication.
+  @JsonKey(name: 'itemReference')
   final Reference itemReference;
 
   /// [isActive] /// Indication of whether this ingredient affects the therapeutic action of the
   /// drug.
+  @JsonKey(name: 'isActive')
   final FhirBoolean? isActive;
+  @JsonKey(name: '_isActive')
   final Element? isActiveElement;
 
   /// [strength] /// Specifies how many (or how much) of the items there are in this Medication.
   /// For example, 250 mg per tablet. This is expressed as a ratio where the
   /// numerator is 250mg and the denominator is 1 tablet.
+  @JsonKey(name: 'strength')
   final Ratio? strength;
+  factory MedicationIngredient.fromJson(Map<String, dynamic> json) =>
+      _$MedicationIngredientFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$MedicationIngredientToJson(this);
+
   @override
   MedicationIngredient clone() => throw UnimplementedError();
-  MedicationIngredient copy({
+  @override
+  MedicationIngredient copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -168,6 +233,12 @@ class MedicationIngredient extends BackboneElement {
     FhirBoolean? isActive,
     Element? isActiveElement,
     Ratio? strength,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return MedicationIngredient(
       id: id ?? this.id,
@@ -178,15 +249,37 @@ class MedicationIngredient extends BackboneElement {
       isActive: isActive ?? this.isActive,
       isActiveElement: isActiveElement ?? this.isActiveElement,
       strength: strength ?? this.strength,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory MedicationIngredient.fromYaml(dynamic yaml) => yaml is String
+      ? MedicationIngredient.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? MedicationIngredient.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'MedicationIngredient cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory MedicationIngredient.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicationIngredient.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [MedicationBatch] /// Information that only applies to packages (not products).
+@JsonSerializable()
 class MedicationBatch extends BackboneElement {
   MedicationBatch({
     super.id,
@@ -196,22 +289,38 @@ class MedicationBatch extends BackboneElement {
     this.lotNumberElement,
     this.expirationDate,
     this.expirationDateElement,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'MedicationBatch');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [lotNumber] /// The assigned lot number of a batch of the specified product.
+  @JsonKey(name: 'lotNumber')
   final FhirString? lotNumber;
+  @JsonKey(name: '_lotNumber')
   final Element? lotNumberElement;
 
   /// [expirationDate] /// When this specific batch of product will expire.
+  @JsonKey(name: 'expirationDate')
   final FhirDateTime? expirationDate;
+  @JsonKey(name: '_expirationDate')
   final Element? expirationDateElement;
+  factory MedicationBatch.fromJson(Map<String, dynamic> json) =>
+      _$MedicationBatchFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$MedicationBatchToJson(this);
+
   @override
   MedicationBatch clone() => throw UnimplementedError();
-  MedicationBatch copy({
+  @override
+  MedicationBatch copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -219,6 +328,12 @@ class MedicationBatch extends BackboneElement {
     Element? lotNumberElement,
     FhirDateTime? expirationDate,
     Element? expirationDateElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return MedicationBatch(
       id: id ?? this.id,
@@ -229,6 +344,31 @@ class MedicationBatch extends BackboneElement {
       expirationDate: expirationDate ?? this.expirationDate,
       expirationDateElement:
           expirationDateElement ?? this.expirationDateElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory MedicationBatch.fromYaml(dynamic yaml) => yaml is String
+      ? MedicationBatch.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? MedicationBatch.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'MedicationBatch cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory MedicationBatch.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicationBatch.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

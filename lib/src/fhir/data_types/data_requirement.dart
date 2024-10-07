@@ -1,16 +1,15 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'data_requirement.g.dart';
 
 /// [DataRequirement] /// Describes a required data item for evaluation in terms of the type of data,
 /// and optional code or date-based filters of the data.
+@JsonSerializable()
 class DataRequirement extends DataType {
   DataRequirement({
     super.id,
@@ -28,8 +27,13 @@ class DataRequirement extends DataType {
     this.limit,
     this.limitElement,
     this.sort,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'DataRequirement');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -37,20 +41,26 @@ class DataRequirement extends DataType {
   /// [type] /// The type of the required data, specified as the type name of a resource.
   /// For profiles, this value is set to the type of the base resource of the
   /// profile.
+  @JsonKey(name: 'type')
   final FhirCode type;
+  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [profile] /// The profile of the required data, specified as the uri of the profile
   /// definition.
+  @JsonKey(name: 'profile')
   final List<FhirCanonical>? profile;
+  @JsonKey(name: '_profile')
   final List<Element>? profileElement;
 
   /// [subjectCodeableConcept] /// The intended subjects of the data requirement. If this element is not
   /// provided, a Patient subject is assumed.
+  @JsonKey(name: 'subjectCodeableConcept')
   final CodeableConcept? subjectCodeableConcept;
 
   /// [subjectReference] /// The intended subjects of the data requirement. If this element is not
   /// provided, a Patient subject is assumed.
+  @JsonKey(name: 'subjectReference')
   final Reference? subjectReference;
 
   /// [mustSupport] /// Indicates that specific elements of the type are referenced by the
@@ -63,30 +73,44 @@ class DataRequirement extends DataType {
   /// DataRequirement. The path SHALL consist only of identifiers, constant
   /// indexers, and .resolve() (see the [Simple FHIRPath
   /// Profile](fhirpath.html#simple) for full details).
+  @JsonKey(name: 'mustSupport')
   final List<FhirString>? mustSupport;
+  @JsonKey(name: '_mustSupport')
   final List<Element>? mustSupportElement;
 
   /// [codeFilter] /// Code filters specify additional constraints on the data, specifying the
   /// value set of interest for a particular element of the data. Each code
   /// filter defines an additional constraint on the data, i.e. code filters are
   /// AND'ed, not OR'ed.
+  @JsonKey(name: 'codeFilter')
   final List<Element>? codeFilter;
 
   /// [dateFilter] /// Date filters specify additional constraints on the data in terms of the
   /// applicable date range for specific elements. Each date filter specifies an
   /// additional constraint on the data, i.e. date filters are AND'ed, not OR'ed.
+  @JsonKey(name: 'dateFilter')
   final List<Element>? dateFilter;
 
   /// [limit] /// Specifies a maximum number of results that are required (uses the _count
   /// search parameter).
+  @JsonKey(name: 'limit')
   final FhirPositiveInt? limit;
+  @JsonKey(name: '_limit')
   final Element? limitElement;
 
   /// [sort] /// Specifies the order of the results to be returned.
+  @JsonKey(name: 'sort')
   final List<Element>? sort;
+  factory DataRequirement.fromJson(Map<String, dynamic> json) =>
+      _$DataRequirementFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$DataRequirementToJson(this);
+
   @override
   DataRequirement clone() => throw UnimplementedError();
-  DataRequirement copy({
+  @override
+  DataRequirement copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     FhirCode? type,
@@ -102,6 +126,12 @@ class DataRequirement extends DataType {
     FhirPositiveInt? limit,
     Element? limitElement,
     List<Element>? sort,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return DataRequirement(
       id: id ?? this.id,
@@ -120,18 +150,40 @@ class DataRequirement extends DataType {
       limit: limit ?? this.limit,
       limitElement: limitElement ?? this.limitElement,
       sort: sort ?? this.sort,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-}
 
-@JsonCodable()
-@Data()
-@Entity()
+  factory DataRequirement.fromYaml(dynamic yaml) => yaml is String
+      ? DataRequirement.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? DataRequirement.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'DataRequirement cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory DataRequirement.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return DataRequirement.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+}
 
 /// [DataRequirementCodeFilter] /// Code filters specify additional constraints on the data, specifying the
 /// value set of interest for a particular element of the data. Each code
 /// filter defines an additional constraint on the data, i.e. code filters are
 /// AND'ed, not OR'ed.
+@JsonSerializable()
 class DataRequirementCodeFilter extends Element {
   DataRequirementCodeFilter({
     super.id,
@@ -143,8 +195,13 @@ class DataRequirementCodeFilter extends Element {
     this.valueSet,
     this.valueSetElement,
     this.code,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'DataRequirementCodeFilter');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -157,20 +214,26 @@ class DataRequirementCodeFilter extends Element {
   /// [Simple FHIRPath Profile](fhirpath.html#simple) for full details). Note
   /// that the index must be an integer constant. The path must resolve to an
   /// element of type code, Coding, or CodeableConcept.
+  @JsonKey(name: 'path')
   final FhirString? path;
+  @JsonKey(name: '_path')
   final Element? pathElement;
 
   /// [searchParam] /// A token parameter that refers to a search parameter defined on the
   /// specified type of the DataRequirement, and which searches on elements of
   /// type code, Coding, or CodeableConcept.
+  @JsonKey(name: 'searchParam')
   final FhirString? searchParam;
+  @JsonKey(name: '_searchParam')
   final Element? searchParamElement;
 
   /// [valueSet] /// The valueset for the code filter. The valueSet and code elements are
   /// additive. If valueSet is specified, the filter will return only those data
   /// items for which the value of the code-valued element specified in the path
   /// is a member of the specified valueset.
+  @JsonKey(name: 'valueSet')
   final FhirCanonical? valueSet;
+  @JsonKey(name: '_valueSet')
   final Element? valueSetElement;
 
   /// [code] /// The codes for the code filter. If values are given, the filter will return
@@ -178,10 +241,18 @@ class DataRequirementCodeFilter extends Element {
   /// path has a value that is one of the specified codes. If codes are specified
   /// in addition to a value set, the filter returns items matching a code in the
   /// value set or one of the specified codes.
+  @JsonKey(name: 'code')
   final List<Coding>? code;
+  factory DataRequirementCodeFilter.fromJson(Map<String, dynamic> json) =>
+      _$DataRequirementCodeFilterFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$DataRequirementCodeFilterToJson(this);
+
   @override
   DataRequirementCodeFilter clone() => throw UnimplementedError();
-  DataRequirementCodeFilter copy({
+  @override
+  DataRequirementCodeFilter copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     FhirString? path,
@@ -191,6 +262,12 @@ class DataRequirementCodeFilter extends Element {
     FhirCanonical? valueSet,
     Element? valueSetElement,
     List<Coding>? code,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return DataRequirementCodeFilter(
       id: id ?? this.id,
@@ -202,17 +279,39 @@ class DataRequirementCodeFilter extends Element {
       valueSet: valueSet ?? this.valueSet,
       valueSetElement: valueSetElement ?? this.valueSetElement,
       code: code ?? this.code,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-}
 
-@JsonCodable()
-@Data()
-@Entity()
+  factory DataRequirementCodeFilter.fromYaml(dynamic yaml) => yaml is String
+      ? DataRequirementCodeFilter.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? DataRequirementCodeFilter.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'DataRequirementCodeFilter cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory DataRequirementCodeFilter.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return DataRequirementCodeFilter.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+}
 
 /// [DataRequirementDateFilter] /// Date filters specify additional constraints on the data in terms of the
 /// applicable date range for specific elements. Each date filter specifies an
 /// additional constraint on the data, i.e. date filters are AND'ed, not OR'ed.
+@JsonSerializable()
 class DataRequirementDateFilter extends Element {
   DataRequirementDateFilter({
     super.id,
@@ -225,8 +324,13 @@ class DataRequirementDateFilter extends Element {
     this.valueDateTimeElement,
     this.valuePeriod,
     this.valueDuration,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'DataRequirementDateFilter');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -239,13 +343,17 @@ class DataRequirementDateFilter extends Element {
   /// [Simple FHIRPath Profile](fhirpath.html#simple) for full details). Note
   /// that the index must be an integer constant. The path must resolve to an
   /// element of type date, dateTime, Period, Schedule, or Timing.
+  @JsonKey(name: 'path')
   final FhirString? path;
+  @JsonKey(name: '_path')
   final Element? pathElement;
 
   /// [searchParam] /// A date parameter that refers to a search parameter defined on the specified
   /// type of the DataRequirement, and which searches on elements of type date,
   /// dateTime, Period, Schedule, or Timing.
+  @JsonKey(name: 'searchParam')
   final FhirString? searchParam;
+  @JsonKey(name: '_searchParam')
   final Element? searchParamElement;
 
   /// [valueDateTime] /// The value of the filter. If period is specified, the filter will return
@@ -254,7 +362,9 @@ class DataRequirementDateFilter extends Element {
   /// will return only those data items that are equal to the specified dateTime.
   /// If a Duration is specified, the filter will return only those data items
   /// that fall within Duration before now.
+  @JsonKey(name: 'valueDateTime')
   final FhirDateTime? valueDateTime;
+  @JsonKey(name: '_valueDateTime')
   final Element? valueDateTimeElement;
 
   /// [valuePeriod] /// The value of the filter. If period is specified, the filter will return
@@ -263,6 +373,7 @@ class DataRequirementDateFilter extends Element {
   /// will return only those data items that are equal to the specified dateTime.
   /// If a Duration is specified, the filter will return only those data items
   /// that fall within Duration before now.
+  @JsonKey(name: 'valuePeriod')
   final Period? valuePeriod;
 
   /// [valueDuration] /// The value of the filter. If period is specified, the filter will return
@@ -271,10 +382,18 @@ class DataRequirementDateFilter extends Element {
   /// will return only those data items that are equal to the specified dateTime.
   /// If a Duration is specified, the filter will return only those data items
   /// that fall within Duration before now.
+  @JsonKey(name: 'valueDuration')
   final FhirDuration? valueDuration;
+  factory DataRequirementDateFilter.fromJson(Map<String, dynamic> json) =>
+      _$DataRequirementDateFilterFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$DataRequirementDateFilterToJson(this);
+
   @override
   DataRequirementDateFilter clone() => throw UnimplementedError();
-  DataRequirementDateFilter copy({
+  @override
+  DataRequirementDateFilter copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     FhirString? path,
@@ -285,6 +404,12 @@ class DataRequirementDateFilter extends Element {
     Element? valueDateTimeElement,
     Period? valuePeriod,
     FhirDuration? valueDuration,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return DataRequirementDateFilter(
       id: id ?? this.id,
@@ -297,15 +422,37 @@ class DataRequirementDateFilter extends Element {
       valueDateTimeElement: valueDateTimeElement ?? this.valueDateTimeElement,
       valuePeriod: valuePeriod ?? this.valuePeriod,
       valueDuration: valueDuration ?? this.valueDuration,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory DataRequirementDateFilter.fromYaml(dynamic yaml) => yaml is String
+      ? DataRequirementDateFilter.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? DataRequirementDateFilter.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'DataRequirementDateFilter cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory DataRequirementDateFilter.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return DataRequirementDateFilter.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [DataRequirementSort] /// Specifies the order of the results to be returned.
+@JsonSerializable()
 class DataRequirementSort extends Element {
   DataRequirementSort({
     super.id,
@@ -314,8 +461,13 @@ class DataRequirementSort extends Element {
     this.pathElement,
     required this.direction,
     this.directionElement,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'DataRequirementSort');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -325,21 +477,38 @@ class DataRequirementSort extends Element {
   /// traverse sub-elements, as well as indexers ([x]) to traverse
   /// multiple-cardinality sub-elements. Note that the index must be an integer
   /// constant.
+  @JsonKey(name: 'path')
   final FhirString path;
+  @JsonKey(name: '_path')
   final Element? pathElement;
 
   /// [direction] /// The direction of the sort, ascending or descending.
+  @JsonKey(name: 'direction')
   final FhirCode direction;
+  @JsonKey(name: '_direction')
   final Element? directionElement;
+  factory DataRequirementSort.fromJson(Map<String, dynamic> json) =>
+      _$DataRequirementSortFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$DataRequirementSortToJson(this);
+
   @override
   DataRequirementSort clone() => throw UnimplementedError();
-  DataRequirementSort copy({
+  @override
+  DataRequirementSort copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     FhirString? path,
     Element? pathElement,
     FhirCode? direction,
     Element? directionElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return DataRequirementSort(
       id: id ?? this.id,
@@ -348,6 +517,31 @@ class DataRequirementSort extends Element {
       pathElement: pathElement ?? this.pathElement,
       direction: direction ?? this.direction,
       directionElement: directionElement ?? this.directionElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory DataRequirementSort.fromYaml(dynamic yaml) => yaml is String
+      ? DataRequirementSort.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? DataRequirementSort.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'DataRequirementSort cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory DataRequirementSort.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return DataRequirementSort.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

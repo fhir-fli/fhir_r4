@@ -238,4 +238,29 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
   FhirTime setElement(String name, dynamic elementValue) {
     return FhirTime(value, element?.setProperty(name, elementValue));
   }
+
+  @override
+  FhirTime copyWith({
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    return FhirTime._(
+      _valueString,
+      _valueTime,
+      _isValid,
+      element: element?.copyWith(
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+        children: children,
+        namedChildren: namedChildren,
+      ),
+    );
+  }
 }

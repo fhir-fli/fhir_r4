@@ -87,4 +87,28 @@ class FhirDate extends FhirDateTimeBase {
   FhirDate setElement(String name, dynamic elementValue) {
     return FhirDate(value, precision, element?.setProperty(name, elementValue));
   }
+
+  @override
+  FhirDate copyWith({
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    return FhirDate(
+      value,
+      precision,
+      element?.copyWith(
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+        children: children,
+        namedChildren: namedChildren,
+      ),
+    );
+  }
 }

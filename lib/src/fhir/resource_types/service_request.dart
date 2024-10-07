@@ -1,16 +1,15 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'service_request.g.dart';
 
 /// [ServiceRequest] /// A record of a request for service such as diagnostic investigations,
 /// treatments, or operations to be performed.
+@JsonSerializable()
 class ServiceRequest extends DomainResource {
   ServiceRequest({
     super.id,
@@ -71,64 +70,89 @@ class ServiceRequest extends DomainResource {
     this.patientInstruction,
     this.patientInstructionElement,
     this.relevantHistory,
-  }) : super(resourceType: R4ResourceType.ServiceRequest);
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(
+            resourceType: R4ResourceType.ServiceRequest,
+            fhirType: 'ServiceRequest');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifiers assigned to this order instance by the orderer and/or the
   /// receiver and/or order fulfiller.
+  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [instantiatesCanonical] /// The URL pointing to a FHIR-defined protocol, guideline, orderset or other
   /// definition that is adhered to in whole or in part by this ServiceRequest.
+  @JsonKey(name: 'instantiatesCanonical')
   final List<FhirCanonical>? instantiatesCanonical;
+  @JsonKey(name: '_instantiatesCanonical')
   final List<Element>? instantiatesCanonicalElement;
 
   /// [instantiatesUri] /// The URL pointing to an externally maintained protocol, guideline, orderset
   /// or other definition that is adhered to in whole or in part by this
   /// ServiceRequest.
+  @JsonKey(name: 'instantiatesUri')
   final List<FhirUri>? instantiatesUri;
+  @JsonKey(name: '_instantiatesUri')
   final List<Element>? instantiatesUriElement;
 
   /// [basedOn] /// Plan/proposal/order fulfilled by this request.
+  @JsonKey(name: 'basedOn')
   final List<Reference>? basedOn;
 
   /// [replaces] /// The request takes the place of the referenced completed or terminated
   /// request(s).
+  @JsonKey(name: 'replaces')
   final List<Reference>? replaces;
 
   /// [requisition] /// A shared identifier common to all service requests that were authorized
   /// more or less simultaneously by a single author, representing the composite
   /// or group identifier.
+  @JsonKey(name: 'requisition')
   final Identifier? requisition;
 
   /// [status] /// The status of the order.
+  @JsonKey(name: 'status')
   final FhirCode status;
+  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [intent] /// Whether the request is a proposal, plan, an original order or a reflex
   /// order.
+  @JsonKey(name: 'intent')
   final FhirCode intent;
+  @JsonKey(name: '_intent')
   final Element? intentElement;
 
   /// [category] /// A code that classifies the service for searching, sorting and display
   /// purposes (e.g. "Surgical Procedure").
+  @JsonKey(name: 'category')
   final List<CodeableConcept>? category;
 
   /// [priority] /// Indicates how quickly the ServiceRequest should be addressed with respect
   /// to other requests.
+  @JsonKey(name: 'priority')
   final FhirCode? priority;
+  @JsonKey(name: '_priority')
   final Element? priorityElement;
 
   /// [doNotPerform] /// Set this to true if the record is saying that the service/procedure should
   /// NOT be performed.
+  @JsonKey(name: 'doNotPerform')
   final FhirBoolean? doNotPerform;
+  @JsonKey(name: '_doNotPerform')
   final Element? doNotPerformElement;
 
   /// [code] /// A code that identifies a particular service (i.e., procedure, diagnostic
   /// investigation, or panel of investigations) that have been requested.
+  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [orderDetail] /// Additional details and instructions about the how the services are to be
@@ -136,87 +160,110 @@ class ServiceRequest extends DomainResource {
   /// detail for an external or indwelling catheter, or an order for a bandage
   /// may require additional instructions specifying how the bandage should be
   /// applied.
+  @JsonKey(name: 'orderDetail')
   final List<CodeableConcept>? orderDetail;
 
   /// [quantityQuantity] /// An amount of service being requested which can be a quantity ( for example
   /// $1,500 home modification), a ratio ( for example, 20 half day visits per
   /// month), or a range (2.0 to 1.8 Gy per fraction).
+  @JsonKey(name: 'quantityQuantity')
   final Quantity? quantityQuantity;
 
   /// [quantityRatio] /// An amount of service being requested which can be a quantity ( for example
   /// $1,500 home modification), a ratio ( for example, 20 half day visits per
   /// month), or a range (2.0 to 1.8 Gy per fraction).
+  @JsonKey(name: 'quantityRatio')
   final Ratio? quantityRatio;
 
   /// [quantityRange] /// An amount of service being requested which can be a quantity ( for example
   /// $1,500 home modification), a ratio ( for example, 20 half day visits per
   /// month), or a range (2.0 to 1.8 Gy per fraction).
+  @JsonKey(name: 'quantityRange')
   final Range? quantityRange;
 
   /// [subject] /// On whom or what the service is to be performed. This is usually a human
   /// patient, but can also be requested on animals, groups of humans or animals,
   /// devices such as dialysis machines, or even locations (typically for
   /// environmental scans).
+  @JsonKey(name: 'subject')
   final Reference subject;
 
   /// [encounter] /// An encounter that provides additional information about the healthcare
   /// context in which this request is made.
+  @JsonKey(name: 'encounter')
   final Reference? encounter;
 
   /// [occurrenceDateTime] /// The date/time at which the requested service should occur.
+  @JsonKey(name: 'occurrenceDateTime')
   final FhirDateTime? occurrenceDateTime;
+  @JsonKey(name: '_occurrenceDateTime')
   final Element? occurrenceDateTimeElement;
 
   /// [occurrencePeriod] /// The date/time at which the requested service should occur.
+  @JsonKey(name: 'occurrencePeriod')
   final Period? occurrencePeriod;
 
   /// [occurrenceTiming] /// The date/time at which the requested service should occur.
+  @JsonKey(name: 'occurrenceTiming')
   final Timing? occurrenceTiming;
 
   /// [asNeededBoolean] /// If a CodeableConcept is present, it indicates the pre-condition for
   /// performing the service. For example "pain", "on flare-up", etc.
+  @JsonKey(name: 'asNeededBoolean')
   final FhirBoolean? asNeededBoolean;
+  @JsonKey(name: '_asNeededBoolean')
   final Element? asNeededBooleanElement;
 
   /// [asNeededCodeableConcept] /// If a CodeableConcept is present, it indicates the pre-condition for
   /// performing the service. For example "pain", "on flare-up", etc.
+  @JsonKey(name: 'asNeededCodeableConcept')
   final CodeableConcept? asNeededCodeableConcept;
 
   /// [authoredOn] /// When the request transitioned to being actionable.
+  @JsonKey(name: 'authoredOn')
   final FhirDateTime? authoredOn;
+  @JsonKey(name: '_authoredOn')
   final Element? authoredOnElement;
 
   /// [requester] /// The individual who initiated the request and has responsibility for its
   /// activation.
+  @JsonKey(name: 'requester')
   final Reference? requester;
 
   /// [performerType] /// Desired type of performer for doing the requested service.
+  @JsonKey(name: 'performerType')
   final CodeableConcept? performerType;
 
   /// [performer] /// The desired performer for doing the requested service. For example, the
   /// surgeon, dermatopathologist, endoscopist, etc.
+  @JsonKey(name: 'performer')
   final List<Reference>? performer;
 
   /// [locationCode] /// The preferred location(s) where the procedure should actually happen in
   /// coded or free text form. E.g. at home or nursing day care center.
+  @JsonKey(name: 'locationCode')
   final List<CodeableConcept>? locationCode;
 
   /// [locationReference] /// A reference to the the preferred location(s) where the procedure should
   /// actually happen. E.g. at home or nursing day care center.
+  @JsonKey(name: 'locationReference')
   final List<Reference>? locationReference;
 
   /// [reasonCode] /// An explanation or justification for why this service is being requested in
   /// coded or textual form. This is often for billing purposes. May relate to
   /// the resources referred to in `supportingInfo`.
+  @JsonKey(name: 'reasonCode')
   final List<CodeableConcept>? reasonCode;
 
   /// [reasonReference] /// Indicates another resource that provides a justification for why this
   /// service is being requested. May relate to the resources referred to in
   /// `supportingInfo`.
+  @JsonKey(name: 'reasonReference')
   final List<Reference>? reasonReference;
 
   /// [insurance] /// Insurance plans, coverage extensions, pre-authorizations and/or
   /// pre-determinations that may be needed for delivering the requested service.
+  @JsonKey(name: 'insurance')
   final List<Reference>? insurance;
 
   /// [supportingInfo] /// Additional clinical information about the patient or specimen that may
@@ -227,28 +274,42 @@ class ServiceRequest extends DomainResource {
   /// provide context or supporting information needed to complete the order. For
   /// example, reporting the amount of inspired oxygen for blood gas
   /// measurements.
+  @JsonKey(name: 'supportingInfo')
   final List<Reference>? supportingInfo;
 
   /// [specimen] /// One or more specimens that the laboratory procedure will use.
+  @JsonKey(name: 'specimen')
   final List<Reference>? specimen;
 
   /// [bodySite] /// Anatomic location where the procedure should be performed. This is the
   /// target site.
+  @JsonKey(name: 'bodySite')
   final List<CodeableConcept>? bodySite;
 
   /// [note] /// Any other notes and comments made about the service request. For example,
   /// internal billing notes.
+  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [patientInstruction] /// Instructions in terms that are understood by the patient or consumer.
+  @JsonKey(name: 'patientInstruction')
   final FhirString? patientInstruction;
+  @JsonKey(name: '_patientInstruction')
   final Element? patientInstructionElement;
 
   /// [relevantHistory] /// Key events in the history of the request.
+  @JsonKey(name: 'relevantHistory')
   final List<Reference>? relevantHistory;
+  factory ServiceRequest.fromJson(Map<String, dynamic> json) =>
+      _$ServiceRequestFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ServiceRequestToJson(this);
+
   @override
   ServiceRequest clone() => throw UnimplementedError();
-  ServiceRequest copy({
+  @override
+  ServiceRequest copyWith({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -307,6 +368,12 @@ class ServiceRequest extends DomainResource {
     FhirString? patientInstruction,
     Element? patientInstructionElement,
     List<Reference>? relevantHistory,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ServiceRequest(
       id: id ?? this.id,
@@ -374,6 +441,31 @@ class ServiceRequest extends DomainResource {
       patientInstructionElement:
           patientInstructionElement ?? this.patientInstructionElement,
       relevantHistory: relevantHistory ?? this.relevantHistory,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ServiceRequest.fromYaml(dynamic yaml) => yaml is String
+      ? ServiceRequest.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ServiceRequest.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ServiceRequest cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ServiceRequest.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ServiceRequest.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

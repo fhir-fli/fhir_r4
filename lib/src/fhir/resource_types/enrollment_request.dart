@@ -1,16 +1,15 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'enrollment_request.g.dart';
 
 /// [EnrollmentRequest] /// This resource provides the insurance enrollment details to the insurer
 /// regarding a specified coverage.
+@JsonSerializable()
 class EnrollmentRequest extends DomainResource {
   EnrollmentRequest({
     super.id,
@@ -32,38 +31,61 @@ class EnrollmentRequest extends DomainResource {
     this.provider,
     this.candidate,
     this.coverage,
-  }) : super(resourceType: R4ResourceType.EnrollmentRequest);
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(
+            resourceType: R4ResourceType.EnrollmentRequest,
+            fhirType: 'EnrollmentRequest');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// The Response business identifier.
+  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// The status of the resource instance.
+  @JsonKey(name: 'status')
   final FhirCode? status;
+  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [created] /// The date when this resource was created.
+  @JsonKey(name: 'created')
   final FhirDateTime? created;
+  @JsonKey(name: '_created')
   final Element? createdElement;
 
   /// [insurer] /// The Insurer who is target of the request.
+  @JsonKey(name: 'insurer')
   final Reference? insurer;
 
   /// [provider] /// The practitioner who is responsible for the services rendered to the
   /// patient.
+  @JsonKey(name: 'provider')
   final Reference? provider;
 
   /// [candidate] /// Patient Resource.
+  @JsonKey(name: 'candidate')
   final Reference? candidate;
 
   /// [coverage] /// Reference to the program or plan identification, underwriter or payor.
+  @JsonKey(name: 'coverage')
   final Reference? coverage;
+  factory EnrollmentRequest.fromJson(Map<String, dynamic> json) =>
+      _$EnrollmentRequestFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$EnrollmentRequestToJson(this);
+
   @override
   EnrollmentRequest clone() => throw UnimplementedError();
-  EnrollmentRequest copy({
+  @override
+  EnrollmentRequest copyWith({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -83,6 +105,12 @@ class EnrollmentRequest extends DomainResource {
     Reference? provider,
     Reference? candidate,
     Reference? coverage,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return EnrollmentRequest(
       id: id ?? this.id,
@@ -104,6 +132,31 @@ class EnrollmentRequest extends DomainResource {
       provider: provider ?? this.provider,
       candidate: candidate ?? this.candidate,
       coverage: coverage ?? this.coverage,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory EnrollmentRequest.fromYaml(dynamic yaml) => yaml is String
+      ? EnrollmentRequest.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? EnrollmentRequest.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'EnrollmentRequest cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory EnrollmentRequest.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return EnrollmentRequest.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

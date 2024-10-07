@@ -101,4 +101,40 @@ class FhirInstant extends FhirDateTimeBase {
   FhirDate setElement(String name, dynamic elementValue) {
     return FhirDate(value, precision, element?.setProperty(name, elementValue));
   }
+
+  @override
+  FhirInstant copyWith({
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    return FhirInstant.fromBase(
+      isValid: isValid,
+      precision: precision,
+      input: input,
+      parseError: parseError,
+      year: year,
+      month: month,
+      day: day,
+      hour: hour,
+      minute: minute,
+      second: second,
+      millisecond: millisecond,
+      microsecond: microsecond,
+      timeZoneOffset: timeZoneOffset,
+      isUtc: isUtc,
+      element: element?.copyWith(
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+        children: children,
+        namedChildren: namedChildren,
+      ),
+    );
+  }
 }

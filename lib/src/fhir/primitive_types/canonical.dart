@@ -106,4 +106,29 @@ class FhirCanonical extends PrimitiveType<Uri> {
   FhirCanonical setElement(String name, dynamic elementValue) {
     return FhirCanonical(value, element?.setProperty(name, elementValue));
   }
+
+  @override
+  FhirCanonical copyWith({
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    return FhirCanonical._(
+      _valueString,
+      _valueCanonical,
+      _isValid,
+      element?.copyWith(
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+        children: children,
+        namedChildren: namedChildren,
+      ),
+    );
+  }
 }

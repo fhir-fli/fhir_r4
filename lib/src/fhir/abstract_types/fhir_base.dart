@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:collection/collection.dart';
+
 import '../../../fhir_r4.dart';
 
 abstract class FhirBase {
@@ -8,7 +10,7 @@ abstract class FhirBase {
     this.userData = const <String, Object?>{},
     this.formatCommentsPre = const <String>[],
     this.formatCommentsPost = const <String>[],
-    this.propertyChanged = const <String, List<void Function()>>{},
+    // this.propertyChanged = const <String, List<void Function()>>{},
     this.annotations = const <dynamic>[],
     this.children = const <FhirBase>[],
     this.namedChildren = const <String, FhirBase>{},
@@ -18,7 +20,6 @@ abstract class FhirBase {
   final Map<String, Object?> userData;
   final List<String> formatCommentsPre;
   final List<String> formatCommentsPost;
-  final Map<String, List<void Function()>> propertyChanged;
   final List<dynamic> annotations;
   final List<FhirBase> children;
   final Map<String, FhirBase> namedChildren;
@@ -48,6 +49,9 @@ abstract class FhirBase {
       return json;
     }
   }
+
+  factory FhirBase.fromJson(dynamic json) =>
+      throw UnimplementedError('FhirBase.fromJson $json');
 
   String toJsonString() => jsonEncode(toJson());
 
@@ -80,23 +84,6 @@ abstract class FhirBase {
     return copyWith(annotations: updatedAnnotations);
   }
 
-  // Property Changed Methods
-  FhirBase addPropertyChangedListener(
-      String property, void Function() listener) {
-    final Map<String, List<void Function()>> updatedListeners =
-        Map<String, List<void Function()>>.from(propertyChanged)
-          ..putIfAbsent(property, () => <void Function()>[]).add(listener);
-    return copyWith(propertyChanged: updatedListeners);
-  }
-
-  FhirBase removePropertyChangedListener(
-      String property, void Function() listener) {
-    final Map<String, List<void Function()>> updatedListeners =
-        Map<String, List<void Function()>>.from(propertyChanged);
-    updatedListeners[property]?.remove(listener);
-    return copyWith(propertyChanged: updatedListeners);
-  }
-
   // Child Management Methods
   FhirBase addChild(FhirBase child) {
     final List<FhirBase> updatedChildren = List<FhirBase>.from(children)
@@ -126,14 +113,6 @@ abstract class FhirBase {
 
   bool hasFormatComment() =>
       formatCommentsPre.isNotEmpty || formatCommentsPost.isNotEmpty;
-
-  void notifyPropertyChanged(String property) {
-    if (propertyChanged.containsKey(property)) {
-      for (final void Function() listener in propertyChanged[property]!) {
-        listener();
-      }
-    }
-  }
 
   static bool compareDeep(FhirBase? e1, FhirBase? e2,
       {bool allowNull = false}) {
@@ -169,7 +148,9 @@ abstract class FhirBase {
     return true;
   }
 
-  bool equalsDeep(FhirBase? other);
+  bool equalsDeep(FhirBase? other) {
+    return const DeepCollectionEquality().equals(toJson(), other?.toJson());
+  }
 
   bool isExactly(FhirBase other) => other.runtimeType == runtimeType;
 
@@ -189,7 +170,6 @@ abstract class FhirBase {
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,

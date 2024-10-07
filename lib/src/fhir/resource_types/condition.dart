@@ -1,16 +1,15 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'condition.g.dart';
 
 /// [Condition] /// A clinical condition, problem, diagnosis, or other event, situation, issue,
 /// or clinical concept that has risen to a level of concern.
+@JsonSerializable()
 class Condition extends DomainResource {
   Condition({
     super.id,
@@ -53,8 +52,13 @@ class Condition extends DomainResource {
     this.stage,
     this.evidence,
     this.note,
-  }) : super(resourceType: R4ResourceType.Condition);
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(resourceType: R4ResourceType.Condition, fhirType: 'Condition');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -62,116 +66,153 @@ class Condition extends DomainResource {
   /// [identifier] /// Business identifiers assigned to this condition by the performer or other
   /// systems which remain constant as the resource is updated and propagates
   /// from server to server.
+  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [clinicalStatus] /// The clinical status of the condition.
+  @JsonKey(name: 'clinicalStatus')
   final CodeableConcept? clinicalStatus;
 
   /// [verificationStatus] /// The verification status to support the clinical status of the condition.
+  @JsonKey(name: 'verificationStatus')
   final CodeableConcept? verificationStatus;
 
   /// [category] /// A category assigned to the condition.
+  @JsonKey(name: 'category')
   final List<CodeableConcept>? category;
 
   /// [severity] /// A subjective assessment of the severity of the condition as evaluated by
   /// the clinician.
+  @JsonKey(name: 'severity')
   final CodeableConcept? severity;
 
   /// [code] /// Identification of the condition, problem or diagnosis.
+  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [bodySite] /// The anatomical location where this condition manifests itself.
+  @JsonKey(name: 'bodySite')
   final List<CodeableConcept>? bodySite;
 
   /// [subject] /// Indicates the patient or group who the condition record is associated with.
+  @JsonKey(name: 'subject')
   final Reference subject;
 
   /// [encounter] /// The Encounter during which this Condition was created or to which the
   /// creation of this record is tightly associated.
+  @JsonKey(name: 'encounter')
   final Reference? encounter;
 
   /// [onsetDateTime] /// Estimated or actual date or date-time the condition began, in the opinion
   /// of the clinician.
+  @JsonKey(name: 'onsetDateTime')
   final FhirDateTime? onsetDateTime;
+  @JsonKey(name: '_onsetDateTime')
   final Element? onsetDateTimeElement;
 
   /// [onsetAge] /// Estimated or actual date or date-time the condition began, in the opinion
   /// of the clinician.
+  @JsonKey(name: 'onsetAge')
   final Age? onsetAge;
 
   /// [onsetPeriod] /// Estimated or actual date or date-time the condition began, in the opinion
   /// of the clinician.
+  @JsonKey(name: 'onsetPeriod')
   final Period? onsetPeriod;
 
   /// [onsetRange] /// Estimated or actual date or date-time the condition began, in the opinion
   /// of the clinician.
+  @JsonKey(name: 'onsetRange')
   final Range? onsetRange;
 
   /// [onsetString] /// Estimated or actual date or date-time the condition began, in the opinion
   /// of the clinician.
+  @JsonKey(name: 'onsetString')
   final FhirString? onsetString;
+  @JsonKey(name: '_onsetString')
   final Element? onsetStringElement;
 
   /// [abatementDateTime] /// The date or estimated date that the condition resolved or went into
   /// remission. This is called "abatement" because of the many overloaded
   /// connotations associated with "remission" or "resolution" - Conditions are
   /// never really resolved, but they can abate.
+  @JsonKey(name: 'abatementDateTime')
   final FhirDateTime? abatementDateTime;
+  @JsonKey(name: '_abatementDateTime')
   final Element? abatementDateTimeElement;
 
   /// [abatementAge] /// The date or estimated date that the condition resolved or went into
   /// remission. This is called "abatement" because of the many overloaded
   /// connotations associated with "remission" or "resolution" - Conditions are
   /// never really resolved, but they can abate.
+  @JsonKey(name: 'abatementAge')
   final Age? abatementAge;
 
   /// [abatementPeriod] /// The date or estimated date that the condition resolved or went into
   /// remission. This is called "abatement" because of the many overloaded
   /// connotations associated with "remission" or "resolution" - Conditions are
   /// never really resolved, but they can abate.
+  @JsonKey(name: 'abatementPeriod')
   final Period? abatementPeriod;
 
   /// [abatementRange] /// The date or estimated date that the condition resolved or went into
   /// remission. This is called "abatement" because of the many overloaded
   /// connotations associated with "remission" or "resolution" - Conditions are
   /// never really resolved, but they can abate.
+  @JsonKey(name: 'abatementRange')
   final Range? abatementRange;
 
   /// [abatementString] /// The date or estimated date that the condition resolved or went into
   /// remission. This is called "abatement" because of the many overloaded
   /// connotations associated with "remission" or "resolution" - Conditions are
   /// never really resolved, but they can abate.
+  @JsonKey(name: 'abatementString')
   final FhirString? abatementString;
+  @JsonKey(name: '_abatementString')
   final Element? abatementStringElement;
 
   /// [recordedDate] /// The recordedDate represents when this particular Condition record was
   /// created in the system, which is often a system-generated date.
+  @JsonKey(name: 'recordedDate')
   final FhirDateTime? recordedDate;
+  @JsonKey(name: '_recordedDate')
   final Element? recordedDateElement;
 
   /// [recorder] /// Individual who recorded the record and takes responsibility for its
   /// content.
+  @JsonKey(name: 'recorder')
   final Reference? recorder;
 
   /// [asserter] /// Individual who is making the condition statement.
+  @JsonKey(name: 'asserter')
   final Reference? asserter;
 
   /// [stage] /// Clinical stage or grade of a condition. May include formal severity
   /// assessments.
+  @JsonKey(name: 'stage')
   final List<ConditionStage>? stage;
 
   /// [evidence] /// Supporting evidence / manifestations that are the basis of the Condition's
   /// verification status, such as evidence that confirmed or refuted the
   /// condition.
+  @JsonKey(name: 'evidence')
   final List<ConditionEvidence>? evidence;
 
   /// [note] /// Additional information about the Condition. This is a general
   /// notes/comments entry for description of the Condition, its diagnosis and
   /// prognosis.
+  @JsonKey(name: 'note')
   final List<Annotation>? note;
+  factory Condition.fromJson(Map<String, dynamic> json) =>
+      _$ConditionFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ConditionToJson(this);
+
   @override
   Condition clone() => throw UnimplementedError();
-  Condition copy({
+  @override
+  Condition copyWith({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -212,6 +253,12 @@ class Condition extends DomainResource {
     List<ConditionStage>? stage,
     List<ConditionEvidence>? evidence,
     List<Annotation>? note,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return Condition(
       id: id ?? this.id,
@@ -256,16 +303,38 @@ class Condition extends DomainResource {
       stage: stage ?? this.stage,
       evidence: evidence ?? this.evidence,
       note: note ?? this.note,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory Condition.fromYaml(dynamic yaml) => yaml is String
+      ? Condition.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? Condition.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'Condition cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory Condition.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return Condition.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ConditionStage] /// Clinical stage or grade of a condition. May include formal severity
 /// assessments.
+@JsonSerializable()
 class ConditionStage extends BackboneElement {
   ConditionStage({
     super.id,
@@ -274,31 +343,52 @@ class ConditionStage extends BackboneElement {
     this.summary,
     this.assessment,
     this.type,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ConditionStage');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [summary] /// A simple summary of the stage such as "Stage 3". The determination of the
   /// stage is disease-specific.
+  @JsonKey(name: 'summary')
   final CodeableConcept? summary;
 
   /// [assessment] /// Reference to a formal record of the evidence on which the staging
   /// assessment is based.
+  @JsonKey(name: 'assessment')
   final List<Reference>? assessment;
 
   /// [type] /// The kind of staging, such as pathological or clinical staging.
+  @JsonKey(name: 'type')
   final CodeableConcept? type;
+  factory ConditionStage.fromJson(Map<String, dynamic> json) =>
+      _$ConditionStageFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ConditionStageToJson(this);
+
   @override
   ConditionStage clone() => throw UnimplementedError();
-  ConditionStage copy({
+  @override
+  ConditionStage copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? summary,
     List<Reference>? assessment,
     CodeableConcept? type,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ConditionStage(
       id: id ?? this.id,
@@ -307,17 +397,39 @@ class ConditionStage extends BackboneElement {
       summary: summary ?? this.summary,
       assessment: assessment ?? this.assessment,
       type: type ?? this.type,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-}
 
-@JsonCodable()
-@Data()
-@Entity()
+  factory ConditionStage.fromYaml(dynamic yaml) => yaml is String
+      ? ConditionStage.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ConditionStage.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ConditionStage cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ConditionStage.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ConditionStage.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+}
 
 /// [ConditionEvidence] /// Supporting evidence / manifestations that are the basis of the Condition's
 /// verification status, such as evidence that confirmed or refuted the
 /// condition.
+@JsonSerializable()
 class ConditionEvidence extends BackboneElement {
   ConditionEvidence({
     super.id,
@@ -325,25 +437,45 @@ class ConditionEvidence extends BackboneElement {
     super.modifierExtension,
     this.code,
     this.detail,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ConditionEvidence');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// A manifestation or symptom that led to the recording of this condition.
+  @JsonKey(name: 'code')
   final List<CodeableConcept>? code;
 
   /// [detail] /// Links to other relevant information, including pathology reports.
+  @JsonKey(name: 'detail')
   final List<Reference>? detail;
+  factory ConditionEvidence.fromJson(Map<String, dynamic> json) =>
+      _$ConditionEvidenceFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ConditionEvidenceToJson(this);
+
   @override
   ConditionEvidence clone() => throw UnimplementedError();
-  ConditionEvidence copy({
+  @override
+  ConditionEvidence copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<CodeableConcept>? code,
     List<Reference>? detail,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ConditionEvidence(
       id: id ?? this.id,
@@ -351,6 +483,31 @@ class ConditionEvidence extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       detail: detail ?? this.detail,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ConditionEvidence.fromYaml(dynamic yaml) => yaml is String
+      ? ConditionEvidence.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ConditionEvidence.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ConditionEvidence cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ConditionEvidence.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ConditionEvidence.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

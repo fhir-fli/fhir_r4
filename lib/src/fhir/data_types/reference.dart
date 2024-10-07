@@ -1,15 +1,14 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'reference.g.dart';
 
 /// [Reference] /// A reference from one resource to another.
+@JsonSerializable()
 class Reference extends DataType {
   Reference({
     super.id,
@@ -21,8 +20,13 @@ class Reference extends DataType {
     this.identifier,
     this.display,
     this.displayElement,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'Reference');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -34,7 +38,9 @@ class Reference extends DataType {
   /// reference is not to a FHIR RESTful server, then it should be assumed to be
   /// version specific. Internal fragment references (start with '#') refer to
   /// contained resources.
+  @JsonKey(name: 'reference')
   final FhirString? reference;
+  @JsonKey(name: '_reference')
   final Element? referenceElement;
 
   /// [type] /// The expected type of the target of the reference. If both Reference.type
@@ -47,7 +53,9 @@ class Reference extends DataType {
   /// http://hl7.org/fhir/StructureDefinition/Patient. Absolute URLs are only
   /// allowed for logical models (and can only be used in references in logical
   /// models, not resources).
+  @JsonKey(name: 'type')
   final FhirUri? type;
+  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [identifier] /// An identifier for the target resource. This is used when there is no way to
@@ -59,15 +67,25 @@ class Reference extends DataType {
   /// point to a business concept that would be expected to be exposed as a FHIR
   /// instance, and that instance would need to be of a FHIR resource type
   /// allowed by the reference.
+  @JsonKey(name: 'identifier')
   final Identifier? identifier;
 
   /// [display] /// Plain text narrative that identifies the resource in addition to the
   /// resource reference.
+  @JsonKey(name: 'display')
   final FhirString? display;
+  @JsonKey(name: '_display')
   final Element? displayElement;
+  factory Reference.fromJson(Map<String, dynamic> json) =>
+      _$ReferenceFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ReferenceToJson(this);
+
   @override
   Reference clone() => throw UnimplementedError();
-  Reference copy({
+  @override
+  Reference copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     FhirString? reference,
@@ -77,6 +95,12 @@ class Reference extends DataType {
     Identifier? identifier,
     FhirString? display,
     Element? displayElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return Reference(
       id: id ?? this.id,
@@ -88,6 +112,31 @@ class Reference extends DataType {
       identifier: identifier ?? this.identifier,
       display: display ?? this.display,
       displayElement: displayElement ?? this.displayElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory Reference.fromYaml(dynamic yaml) => yaml is String
+      ? Reference.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? Reference.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'Reference cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory Reference.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return Reference.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

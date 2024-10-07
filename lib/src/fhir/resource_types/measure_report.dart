@@ -1,17 +1,16 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'measure_report.g.dart';
 
 /// [MeasureReport] /// The MeasureReport resource contains the results of the calculation of a
 /// measure; and optionally a reference to the resources involved in that
 /// calculation.
+@JsonSerializable()
 class MeasureReport extends DomainResource {
   MeasureReport({
     super.id,
@@ -39,8 +38,15 @@ class MeasureReport extends DomainResource {
     this.improvementNotation,
     this.group,
     this.evaluatedResource,
-  }) : super(resourceType: R4ResourceType.MeasureReport);
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(
+            resourceType: R4ResourceType.MeasureReport,
+            fhirType: 'MeasureReport');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -48,11 +54,14 @@ class MeasureReport extends DomainResource {
   /// [identifier] /// A formal identifier that is used to identify this MeasureReport when it is
   /// represented in other formats or referenced in a specification, model,
   /// design or an instance.
+  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// The MeasureReport status. No data will be available until the MeasureReport
   /// status is complete.
+  @JsonKey(name: 'status')
   final FhirCode status;
+  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [type] /// The type of measure report. This may be an individual report, which
@@ -62,41 +71,60 @@ class MeasureReport extends DomainResource {
   /// population count for each of the criteria in the measure; or a
   /// data-collection, which enables the MeasureReport to be used to exchange the
   /// data-of-interest for a quality measure.
+  @JsonKey(name: 'type')
   final FhirCode type;
+  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [measure] /// A reference to the Measure that was calculated to produce this report.
+  @JsonKey(name: 'measure')
   final FhirCanonical measure;
+  @JsonKey(name: '_measure')
   final Element? measureElement;
 
   /// [subject] /// Optional subject identifying the individual or individuals the report is
   /// for.
+  @JsonKey(name: 'subject')
   final Reference? subject;
 
   /// [date] /// The date this measure report was generated.
+  @JsonKey(name: 'date')
   final FhirDateTime? date;
+  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [reporter] /// The individual, location, or organization that is reporting the data.
+  @JsonKey(name: 'reporter')
   final Reference? reporter;
 
   /// [period] /// The reporting period for which the report was calculated.
+  @JsonKey(name: 'period')
   final Period period;
 
   /// [improvementNotation] /// Whether improvement in the measure is noted by an increase or decrease in
   /// the measure score.
+  @JsonKey(name: 'improvementNotation')
   final CodeableConcept? improvementNotation;
 
   /// [group] /// The results of the calculation, one for each population group in the
   /// measure.
+  @JsonKey(name: 'group')
   final List<MeasureReportGroup>? group;
 
   /// [evaluatedResource] /// A reference to a Bundle containing the Resources that were used in the
   /// calculation of this measure.
+  @JsonKey(name: 'evaluatedResource')
   final List<Reference>? evaluatedResource;
+  factory MeasureReport.fromJson(Map<String, dynamic> json) =>
+      _$MeasureReportFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$MeasureReportToJson(this);
+
   @override
   MeasureReport clone() => throw UnimplementedError();
-  MeasureReport copy({
+  @override
+  MeasureReport copyWith({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -122,6 +150,12 @@ class MeasureReport extends DomainResource {
     CodeableConcept? improvementNotation,
     List<MeasureReportGroup>? group,
     List<Reference>? evaluatedResource,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return MeasureReport(
       id: id ?? this.id,
@@ -149,16 +183,38 @@ class MeasureReport extends DomainResource {
       improvementNotation: improvementNotation ?? this.improvementNotation,
       group: group ?? this.group,
       evaluatedResource: evaluatedResource ?? this.evaluatedResource,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory MeasureReport.fromYaml(dynamic yaml) => yaml is String
+      ? MeasureReport.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? MeasureReport.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'MeasureReport cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory MeasureReport.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MeasureReport.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [MeasureReportGroup] /// The results of the calculation, one for each population group in the
 /// measure.
+@JsonSerializable()
 class MeasureReportGroup extends BackboneElement {
   MeasureReportGroup({
     super.id,
@@ -168,30 +224,46 @@ class MeasureReportGroup extends BackboneElement {
     this.population,
     this.measureScore,
     this.stratifier,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'MeasureReportGroup');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// The meaning of the population group as defined in the measure definition.
+  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [population] /// The populations that make up the population group, one for each type of
   /// population appropriate for the measure.
+  @JsonKey(name: 'population')
   final List<MeasureReportPopulation>? population;
 
   /// [measureScore] /// The measure score for this population group, calculated as appropriate for
   /// the measure type and scoring method, and based on the contents of the
   /// populations defined in the group.
+  @JsonKey(name: 'measureScore')
   final Quantity? measureScore;
 
   /// [stratifier] /// When a measure includes multiple stratifiers, there will be a stratifier
   /// group for each stratifier defined by the measure.
+  @JsonKey(name: 'stratifier')
   final List<MeasureReportStratifier>? stratifier;
+  factory MeasureReportGroup.fromJson(Map<String, dynamic> json) =>
+      _$MeasureReportGroupFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$MeasureReportGroupToJson(this);
+
   @override
   MeasureReportGroup clone() => throw UnimplementedError();
-  MeasureReportGroup copy({
+  @override
+  MeasureReportGroup copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -199,6 +271,12 @@ class MeasureReportGroup extends BackboneElement {
     List<MeasureReportPopulation>? population,
     Quantity? measureScore,
     List<MeasureReportStratifier>? stratifier,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return MeasureReportGroup(
       id: id ?? this.id,
@@ -208,16 +286,38 @@ class MeasureReportGroup extends BackboneElement {
       population: population ?? this.population,
       measureScore: measureScore ?? this.measureScore,
       stratifier: stratifier ?? this.stratifier,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory MeasureReportGroup.fromYaml(dynamic yaml) => yaml is String
+      ? MeasureReportGroup.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? MeasureReportGroup.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'MeasureReportGroup cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory MeasureReportGroup.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MeasureReportGroup.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [MeasureReportPopulation] /// The populations that make up the population group, one for each type of
 /// population appropriate for the measure.
+@JsonSerializable()
 class MeasureReportPopulation extends BackboneElement {
   MeasureReportPopulation({
     super.id,
@@ -227,25 +327,41 @@ class MeasureReportPopulation extends BackboneElement {
     this.count,
     this.countElement,
     this.subjectResults,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'MeasureReportPopulation');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// The type of the population.
+  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [count] /// The number of members of the population.
+  @JsonKey(name: 'count')
   final FhirInteger? count;
+  @JsonKey(name: '_count')
   final Element? countElement;
 
   /// [subjectResults] /// This element refers to a List of subject level MeasureReport resources, one
   /// for each subject in this population.
+  @JsonKey(name: 'subjectResults')
   final Reference? subjectResults;
+  factory MeasureReportPopulation.fromJson(Map<String, dynamic> json) =>
+      _$MeasureReportPopulationFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$MeasureReportPopulationToJson(this);
+
   @override
   MeasureReportPopulation clone() => throw UnimplementedError();
-  MeasureReportPopulation copy({
+  @override
+  MeasureReportPopulation copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -253,6 +369,12 @@ class MeasureReportPopulation extends BackboneElement {
     FhirInteger? count,
     Element? countElement,
     Reference? subjectResults,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return MeasureReportPopulation(
       id: id ?? this.id,
@@ -262,16 +384,38 @@ class MeasureReportPopulation extends BackboneElement {
       count: count ?? this.count,
       countElement: countElement ?? this.countElement,
       subjectResults: subjectResults ?? this.subjectResults,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory MeasureReportPopulation.fromYaml(dynamic yaml) => yaml is String
+      ? MeasureReportPopulation.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? MeasureReportPopulation.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'MeasureReportPopulation cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory MeasureReportPopulation.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MeasureReportPopulation.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [MeasureReportStratifier] /// When a measure includes multiple stratifiers, there will be a stratifier
 /// group for each stratifier defined by the measure.
+@JsonSerializable()
 class MeasureReportStratifier extends BackboneElement {
   MeasureReportStratifier({
     super.id,
@@ -279,27 +423,47 @@ class MeasureReportStratifier extends BackboneElement {
     super.modifierExtension,
     this.code,
     this.stratum,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'MeasureReportStratifier');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// The meaning of this stratifier, as defined in the measure definition.
+  @JsonKey(name: 'code')
   final List<CodeableConcept>? code;
 
   /// [stratum] /// This element contains the results for a single stratum within the
   /// stratifier. For example, when stratifying on administrative gender, there
   /// will be four strata, one for each possible gender value.
+  @JsonKey(name: 'stratum')
   final List<MeasureReportStratum>? stratum;
+  factory MeasureReportStratifier.fromJson(Map<String, dynamic> json) =>
+      _$MeasureReportStratifierFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$MeasureReportStratifierToJson(this);
+
   @override
   MeasureReportStratifier clone() => throw UnimplementedError();
-  MeasureReportStratifier copy({
+  @override
+  MeasureReportStratifier copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<CodeableConcept>? code,
     List<MeasureReportStratum>? stratum,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return MeasureReportStratifier(
       id: id ?? this.id,
@@ -307,17 +471,39 @@ class MeasureReportStratifier extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       stratum: stratum ?? this.stratum,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-}
 
-@JsonCodable()
-@Data()
-@Entity()
+  factory MeasureReportStratifier.fromYaml(dynamic yaml) => yaml is String
+      ? MeasureReportStratifier.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? MeasureReportStratifier.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'MeasureReportStratifier cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory MeasureReportStratifier.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MeasureReportStratifier.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+}
 
 /// [MeasureReportStratum] /// This element contains the results for a single stratum within the
 /// stratifier. For example, when stratifying on administrative gender, there
 /// will be four strata, one for each possible gender value.
+@JsonSerializable()
 class MeasureReportStratum extends BackboneElement {
   MeasureReportStratum({
     super.id,
@@ -327,8 +513,13 @@ class MeasureReportStratum extends BackboneElement {
     this.component,
     this.population,
     this.measureScore,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'MeasureReportStratum');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -336,22 +527,33 @@ class MeasureReportStratum extends BackboneElement {
   /// [value] /// The value for this stratum, expressed as a CodeableConcept. When defining
   /// stratifiers on complex values, the value must be rendered such that the
   /// value for each stratum within the stratifier is unique.
+  @JsonKey(name: 'value')
   final CodeableConcept? value;
 
   /// [component] /// A stratifier component value.
+  @JsonKey(name: 'component')
   final List<MeasureReportComponent>? component;
 
   /// [population] /// The populations that make up the stratum, one for each type of population
   /// appropriate to the measure.
+  @JsonKey(name: 'population')
   final List<MeasureReportPopulation>? population;
 
   /// [measureScore] /// The measure score for this stratum, calculated as appropriate for the
   /// measure type and scoring method, and based on only the members of this
   /// stratum.
+  @JsonKey(name: 'measureScore')
   final Quantity? measureScore;
+  factory MeasureReportStratum.fromJson(Map<String, dynamic> json) =>
+      _$MeasureReportStratumFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$MeasureReportStratumToJson(this);
+
   @override
   MeasureReportStratum clone() => throw UnimplementedError();
-  MeasureReportStratum copy({
+  @override
+  MeasureReportStratum copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -359,6 +561,12 @@ class MeasureReportStratum extends BackboneElement {
     List<MeasureReportComponent>? component,
     List<MeasureReportPopulation>? population,
     Quantity? measureScore,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return MeasureReportStratum(
       id: id ?? this.id,
@@ -368,15 +576,37 @@ class MeasureReportStratum extends BackboneElement {
       component: component ?? this.component,
       population: population ?? this.population,
       measureScore: measureScore ?? this.measureScore,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory MeasureReportStratum.fromYaml(dynamic yaml) => yaml is String
+      ? MeasureReportStratum.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? MeasureReportStratum.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'MeasureReportStratum cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory MeasureReportStratum.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MeasureReportStratum.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [MeasureReportComponent] /// A stratifier component value.
+@JsonSerializable()
 class MeasureReportComponent extends BackboneElement {
   MeasureReportComponent({
     super.id,
@@ -384,25 +614,45 @@ class MeasureReportComponent extends BackboneElement {
     super.modifierExtension,
     required this.code,
     required this.value,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'MeasureReportComponent');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// The code for the stratum component value.
+  @JsonKey(name: 'code')
   final CodeableConcept code;
 
   /// [value] /// The stratum component value.
+  @JsonKey(name: 'value')
   final CodeableConcept value;
+  factory MeasureReportComponent.fromJson(Map<String, dynamic> json) =>
+      _$MeasureReportComponentFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$MeasureReportComponentToJson(this);
+
   @override
   MeasureReportComponent clone() => throw UnimplementedError();
-  MeasureReportComponent copy({
+  @override
+  MeasureReportComponent copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? code,
     CodeableConcept? value,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return MeasureReportComponent(
       id: id ?? this.id,
@@ -410,16 +660,38 @@ class MeasureReportComponent extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       value: value ?? this.value,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory MeasureReportComponent.fromYaml(dynamic yaml) => yaml is String
+      ? MeasureReportComponent.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? MeasureReportComponent.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'MeasureReportComponent cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory MeasureReportComponent.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MeasureReportComponent.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [MeasureReportPopulation1] /// The populations that make up the stratum, one for each type of population
 /// appropriate to the measure.
+@JsonSerializable()
 class MeasureReportPopulation1 extends BackboneElement {
   MeasureReportPopulation1({
     super.id,
@@ -429,25 +701,41 @@ class MeasureReportPopulation1 extends BackboneElement {
     this.count,
     this.countElement,
     this.subjectResults,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'MeasureReportPopulation1');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// The type of the population.
+  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [count] /// The number of members of the population in this stratum.
+  @JsonKey(name: 'count')
   final FhirInteger? count;
+  @JsonKey(name: '_count')
   final Element? countElement;
 
   /// [subjectResults] /// This element refers to a List of subject level MeasureReport resources, one
   /// for each subject in this population in this stratum.
+  @JsonKey(name: 'subjectResults')
   final Reference? subjectResults;
+  factory MeasureReportPopulation1.fromJson(Map<String, dynamic> json) =>
+      _$MeasureReportPopulation1FromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$MeasureReportPopulation1ToJson(this);
+
   @override
   MeasureReportPopulation1 clone() => throw UnimplementedError();
-  MeasureReportPopulation1 copy({
+  @override
+  MeasureReportPopulation1 copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -455,6 +743,12 @@ class MeasureReportPopulation1 extends BackboneElement {
     FhirInteger? count,
     Element? countElement,
     Reference? subjectResults,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return MeasureReportPopulation1(
       id: id ?? this.id,
@@ -464,6 +758,31 @@ class MeasureReportPopulation1 extends BackboneElement {
       count: count ?? this.count,
       countElement: countElement ?? this.countElement,
       subjectResults: subjectResults ?? this.subjectResults,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory MeasureReportPopulation1.fromYaml(dynamic yaml) => yaml is String
+      ? MeasureReportPopulation1.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? MeasureReportPopulation1.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'MeasureReportPopulation1 cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory MeasureReportPopulation1.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MeasureReportPopulation1.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

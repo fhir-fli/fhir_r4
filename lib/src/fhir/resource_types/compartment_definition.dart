@@ -1,16 +1,15 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'compartment_definition.g.dart';
 
 /// [CompartmentDefinition] /// A compartment definition that defines how resources are accessed on a
 /// server.
+@JsonSerializable()
 class CompartmentDefinition extends DomainResource {
   CompartmentDefinition({
     super.id,
@@ -48,8 +47,15 @@ class CompartmentDefinition extends DomainResource {
     required this.search,
     this.searchElement,
     this.resource,
-  }) : super(resourceType: R4ResourceType.CompartmentDefinition);
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(
+            resourceType: R4ResourceType.CompartmentDefinition,
+            fhirType: 'CompartmentDefinition');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -61,7 +67,9 @@ class CompartmentDefinition extends DomainResource {
   /// compartment definition is (or will be) published. This URL can be the
   /// target of a canonical reference. It SHALL remain the same when the
   /// compartment definition is stored on different servers.
+  @JsonKey(name: 'url')
   final FhirUri url;
+  @JsonKey(name: '_url')
   final Element? urlElement;
 
   /// [version] /// The identifier that is used to identify this version of the compartment
@@ -71,45 +79,60 @@ class CompartmentDefinition extends DomainResource {
   /// a timestamp (e.g. yyyymmdd) if a managed version is not available. There is
   /// also no expectation that versions can be placed in a lexicographical
   /// sequence.
+  @JsonKey(name: 'version')
   final FhirString? version;
+  @JsonKey(name: '_version')
   final Element? versionElement;
 
   /// [name] /// A natural language name identifying the compartment definition. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
+  @JsonKey(name: 'name')
   final FhirString name;
+  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [status] /// The status of this compartment definition. Enables tracking the life-cycle
   /// of the content.
+  @JsonKey(name: 'status')
   final FhirCode status;
+  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [experimental] /// A Boolean value to indicate that this compartment definition is authored
   /// for testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
+  @JsonKey(name: 'experimental')
   final FhirBoolean? experimental;
+  @JsonKey(name: '_experimental')
   final Element? experimentalElement;
 
   /// [date] /// The date (and optionally time) when the compartment definition was
   /// published. The date must change when the business version changes and it
   /// must change if the status code changes. In addition, it should change when
   /// the substantive content of the compartment definition changes.
+  @JsonKey(name: 'date')
   final FhirDateTime? date;
+  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [publisher] /// The name of the organization or individual that published the compartment
   /// definition.
+  @JsonKey(name: 'publisher')
   final FhirString? publisher;
+  @JsonKey(name: '_publisher')
   final Element? publisherElement;
 
   /// [contact] /// Contact details to assist a user in finding and communicating with the
   /// publisher.
+  @JsonKey(name: 'contact')
   final List<ContactDetail>? contact;
 
   /// [description] /// A free text natural language description of the compartment definition from
   /// a consumer's perspective.
+  @JsonKey(name: 'description')
   final FhirMarkdown? description;
+  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [useContext] /// The content was developed with a focus and intent of supporting the
@@ -117,26 +140,41 @@ class CompartmentDefinition extends DomainResource {
   /// age, ...) or may be references to specific programs (insurance plans,
   /// studies, ...) and may be used to assist with indexing and searching for
   /// appropriate compartment definition instances.
+  @JsonKey(name: 'useContext')
   final List<UsageContext>? useContext;
 
   /// [purpose] /// Explanation of why this compartment definition is needed and why it has
   /// been designed as it has.
+  @JsonKey(name: 'purpose')
   final FhirMarkdown? purpose;
+  @JsonKey(name: '_purpose')
   final Element? purposeElement;
 
   /// [code] /// Which compartment this definition describes.
+  @JsonKey(name: 'code')
   final FhirCode code;
+  @JsonKey(name: '_code')
   final Element? codeElement;
 
   /// [search] /// Whether the search syntax is supported,.
+  @JsonKey(name: 'search')
   final FhirBoolean search;
+  @JsonKey(name: '_search')
   final Element? searchElement;
 
   /// [resource] /// Information about how a resource is related to the compartment.
+  @JsonKey(name: 'resource')
   final List<CompartmentDefinitionResource>? resource;
+  factory CompartmentDefinition.fromJson(Map<String, dynamic> json) =>
+      _$CompartmentDefinitionFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$CompartmentDefinitionToJson(this);
+
   @override
   CompartmentDefinition clone() => throw UnimplementedError();
-  CompartmentDefinition copy({
+  @override
+  CompartmentDefinition copyWith({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -172,6 +210,12 @@ class CompartmentDefinition extends DomainResource {
     FhirBoolean? search,
     Element? searchElement,
     List<CompartmentDefinitionResource>? resource,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return CompartmentDefinition(
       id: id ?? this.id,
@@ -209,15 +253,37 @@ class CompartmentDefinition extends DomainResource {
       search: search ?? this.search,
       searchElement: searchElement ?? this.searchElement,
       resource: resource ?? this.resource,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory CompartmentDefinition.fromYaml(dynamic yaml) => yaml is String
+      ? CompartmentDefinition.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? CompartmentDefinition.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'CompartmentDefinition cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory CompartmentDefinition.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CompartmentDefinition.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [CompartmentDefinitionResource] /// Information about how a resource is related to the compartment.
+@JsonSerializable()
 class CompartmentDefinitionResource extends BackboneElement {
   CompartmentDefinitionResource({
     super.id,
@@ -229,28 +295,46 @@ class CompartmentDefinitionResource extends BackboneElement {
     this.paramElement,
     this.documentation,
     this.documentationElement,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'CompartmentDefinitionResource');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// The name of a resource supported by the server.
+  @JsonKey(name: 'code')
   final FhirCode code;
+  @JsonKey(name: '_code')
   final Element? codeElement;
 
   /// [param] /// The name of a search parameter that represents the link to the compartment.
   /// More than one may be listed because a resource may be linked to a
   /// compartment in more than one way,.
+  @JsonKey(name: 'param')
   final List<FhirString>? param;
+  @JsonKey(name: '_param')
   final List<Element>? paramElement;
 
   /// [documentation] /// Additional documentation about the resource and compartment.
+  @JsonKey(name: 'documentation')
   final FhirString? documentation;
+  @JsonKey(name: '_documentation')
   final Element? documentationElement;
+  factory CompartmentDefinitionResource.fromJson(Map<String, dynamic> json) =>
+      _$CompartmentDefinitionResourceFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$CompartmentDefinitionResourceToJson(this);
+
   @override
   CompartmentDefinitionResource clone() => throw UnimplementedError();
-  CompartmentDefinitionResource copy({
+  @override
+  CompartmentDefinitionResource copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -260,6 +344,12 @@ class CompartmentDefinitionResource extends BackboneElement {
     List<Element>? paramElement,
     FhirString? documentation,
     Element? documentationElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return CompartmentDefinitionResource(
       id: id ?? this.id,
@@ -271,6 +361,31 @@ class CompartmentDefinitionResource extends BackboneElement {
       paramElement: paramElement ?? this.paramElement,
       documentation: documentation ?? this.documentation,
       documentationElement: documentationElement ?? this.documentationElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory CompartmentDefinitionResource.fromYaml(dynamic yaml) => yaml is String
+      ? CompartmentDefinitionResource.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? CompartmentDefinitionResource.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'CompartmentDefinitionResource cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory CompartmentDefinitionResource.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CompartmentDefinitionResource.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

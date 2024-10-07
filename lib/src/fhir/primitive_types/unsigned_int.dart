@@ -57,4 +57,29 @@ class FhirUnsignedInt extends FhirNumber {
     return FhirUnsignedInt(value,
         element: element?.setProperty(name, elementValue));
   }
+
+  @override
+  FhirUnsignedInt copyWith({
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    return FhirUnsignedInt._(
+      valueString,
+      valueNumber,
+      isValid,
+      element: element?.copyWith(
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+        children: children,
+        namedChildren: namedChildren,
+      ),
+    );
+  }
 }

@@ -140,4 +140,29 @@ class FhirString extends PrimitiveType<String> {
   String toLowerCase() => _valueString.toLowerCase();
 
   String toUpperCase() => _valueString.toUpperCase();
+
+  @override
+  FhirString copyWith({
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    return FhirString._(
+      _valueString,
+      _value,
+      _isValid,
+      element?.copyWith(
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+        children: children,
+        namedChildren: namedChildren,
+      ),
+    );
+  }
 }

@@ -1,19 +1,18 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'coverage_eligibility_request.g.dart';
 
 /// [CoverageEligibilityRequest] /// The CoverageEligibilityRequest provides patient and insurance coverage
 /// information to an insurer for them to respond, in the form of an
 /// CoverageEligibilityResponse, with information regarding whether the stated
 /// coverage is valid and in-force and optionally to provide the insurance
 /// details of the policy.
+@JsonSerializable()
 class CoverageEligibilityRequest extends DomainResource {
   CoverageEligibilityRequest({
     super.id,
@@ -45,20 +44,31 @@ class CoverageEligibilityRequest extends DomainResource {
     this.supportingInfo,
     this.insurance,
     this.item,
-  }) : super(resourceType: R4ResourceType.CoverageEligibilityRequest);
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(
+            resourceType: R4ResourceType.CoverageEligibilityRequest,
+            fhirType: 'CoverageEligibilityRequest');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// A unique identifier assigned to this coverage eligiblity request.
+  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// The status of the resource instance.
+  @JsonKey(name: 'status')
   final FhirCode status;
+  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [priority] /// When the requestor expects the processor to complete processing.
+  @JsonKey(name: 'priority')
   final CodeableConcept? priority;
 
   /// [purpose] /// Code to specify whether requesting: prior authorization requirements for
@@ -66,53 +76,75 @@ class CoverageEligibilityRequest extends DomainResource {
   /// or discovered; discovery and return of coverages for the patient; and/or
   /// validation that the specified coverage is in-force at the date/period
   /// specified or 'now' if not specified.
+  @JsonKey(name: 'purpose')
   final List<FhirCode> purpose;
+  @JsonKey(name: '_purpose')
   final List<Element>? purposeElement;
 
   /// [patient] /// The party who is the beneficiary of the supplied coverage and for whom
   /// eligibility is sought.
+  @JsonKey(name: 'patient')
   final Reference patient;
 
   /// [servicedDate] /// The date or dates when the enclosed suite of services were performed or
   /// completed.
+  @JsonKey(name: 'servicedDate')
   final FhirDate? servicedDate;
+  @JsonKey(name: '_servicedDate')
   final Element? servicedDateElement;
 
   /// [servicedPeriod] /// The date or dates when the enclosed suite of services were performed or
   /// completed.
+  @JsonKey(name: 'servicedPeriod')
   final Period? servicedPeriod;
 
   /// [created] /// The date when this resource was created.
+  @JsonKey(name: 'created')
   final FhirDateTime created;
+  @JsonKey(name: '_created')
   final Element? createdElement;
 
   /// [enterer] /// Person who created the request.
+  @JsonKey(name: 'enterer')
   final Reference? enterer;
 
   /// [provider] /// The provider which is responsible for the request.
+  @JsonKey(name: 'provider')
   final Reference? provider;
 
   /// [insurer] /// The Insurer who issued the coverage in question and is the recipient of the
   /// request.
+  @JsonKey(name: 'insurer')
   final Reference insurer;
 
   /// [facility] /// Facility where the services are intended to be provided.
+  @JsonKey(name: 'facility')
   final Reference? facility;
 
   /// [supportingInfo] /// Additional information codes regarding exceptions, special considerations,
   /// the condition, situation, prior or concurrent issues.
+  @JsonKey(name: 'supportingInfo')
   final List<CoverageEligibilityRequestSupportingInfo>? supportingInfo;
 
   /// [insurance] /// Financial instruments for reimbursement for the health care products and
   /// services.
+  @JsonKey(name: 'insurance')
   final List<CoverageEligibilityRequestInsurance>? insurance;
 
   /// [item] /// Service categories or billable services for which benefit details and/or an
   /// authorization prior to service delivery may be required by the payor.
+  @JsonKey(name: 'item')
   final List<CoverageEligibilityRequestItem>? item;
+  factory CoverageEligibilityRequest.fromJson(Map<String, dynamic> json) =>
+      _$CoverageEligibilityRequestFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$CoverageEligibilityRequestToJson(this);
+
   @override
   CoverageEligibilityRequest clone() => throw UnimplementedError();
-  CoverageEligibilityRequest copy({
+  @override
+  CoverageEligibilityRequest copyWith({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -142,6 +174,12 @@ class CoverageEligibilityRequest extends DomainResource {
     List<CoverageEligibilityRequestSupportingInfo>? supportingInfo,
     List<CoverageEligibilityRequestInsurance>? insurance,
     List<CoverageEligibilityRequestItem>? item,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return CoverageEligibilityRequest(
       id: id ?? this.id,
@@ -173,16 +211,38 @@ class CoverageEligibilityRequest extends DomainResource {
       supportingInfo: supportingInfo ?? this.supportingInfo,
       insurance: insurance ?? this.insurance,
       item: item ?? this.item,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory CoverageEligibilityRequest.fromYaml(dynamic yaml) => yaml is String
+      ? CoverageEligibilityRequest.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? CoverageEligibilityRequest.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'CoverageEligibilityRequest cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory CoverageEligibilityRequest.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CoverageEligibilityRequest.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [CoverageEligibilityRequestSupportingInfo] /// Additional information codes regarding exceptions, special considerations,
 /// the condition, situation, prior or concurrent issues.
+@JsonSerializable()
 class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
   CoverageEligibilityRequestSupportingInfo({
     super.id,
@@ -193,28 +253,47 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
     required this.information,
     this.appliesToAll,
     this.appliesToAllElement,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'CoverageEligibilityRequestSupportingInfo');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [sequence] /// A number to uniquely identify supporting information entries.
+  @JsonKey(name: 'sequence')
   final FhirPositiveInt sequence;
+  @JsonKey(name: '_sequence')
   final Element? sequenceElement;
 
   /// [information] /// Additional data or information such as resources, documents, images etc.
   /// including references to the data or the actual inclusion of the data.
+  @JsonKey(name: 'information')
   final Reference information;
 
   /// [appliesToAll] /// The supporting materials are applicable for all detail items,
   /// product/servce categories and specific billing codes.
+  @JsonKey(name: 'appliesToAll')
   final FhirBoolean? appliesToAll;
+  @JsonKey(name: '_appliesToAll')
   final Element? appliesToAllElement;
+  factory CoverageEligibilityRequestSupportingInfo.fromJson(
+          Map<String, dynamic> json) =>
+      _$CoverageEligibilityRequestSupportingInfoFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$CoverageEligibilityRequestSupportingInfoToJson(this);
+
   @override
   CoverageEligibilityRequestSupportingInfo clone() =>
       throw UnimplementedError();
-  CoverageEligibilityRequestSupportingInfo copy({
+  @override
+  CoverageEligibilityRequestSupportingInfo copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -223,6 +302,12 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
     Reference? information,
     FhirBoolean? appliesToAll,
     Element? appliesToAllElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return CoverageEligibilityRequestSupportingInfo(
       id: id ?? this.id,
@@ -233,16 +318,40 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
       information: information ?? this.information,
       appliesToAll: appliesToAll ?? this.appliesToAll,
       appliesToAllElement: appliesToAllElement ?? this.appliesToAllElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory CoverageEligibilityRequestSupportingInfo.fromYaml(dynamic yaml) => yaml
+          is String
+      ? CoverageEligibilityRequestSupportingInfo.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? CoverageEligibilityRequestSupportingInfo.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'CoverageEligibilityRequestSupportingInfo cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory CoverageEligibilityRequestSupportingInfo.fromJsonString(
+      String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CoverageEligibilityRequestSupportingInfo.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [CoverageEligibilityRequestInsurance] /// Financial instruments for reimbursement for the health care products and
 /// services.
+@JsonSerializable()
 class CoverageEligibilityRequestInsurance extends BackboneElement {
   CoverageEligibilityRequestInsurance({
     super.id,
@@ -253,29 +362,48 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
     required this.coverage,
     this.businessArrangement,
     this.businessArrangementElement,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'CoverageEligibilityRequestInsurance');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [focal] /// A flag to indicate that this Coverage is to be used for evaluation of this
   /// request when set to true.
+  @JsonKey(name: 'focal')
   final FhirBoolean? focal;
+  @JsonKey(name: '_focal')
   final Element? focalElement;
 
   /// [coverage] /// Reference to the insurance card level information contained in the Coverage
   /// resource. The coverage issuing insurer will use these details to locate the
   /// patient's actual coverage within the insurer's information system.
+  @JsonKey(name: 'coverage')
   final Reference coverage;
 
   /// [businessArrangement] /// A business agreement number established between the provider and the
   /// insurer for special business processing purposes.
+  @JsonKey(name: 'businessArrangement')
   final FhirString? businessArrangement;
+  @JsonKey(name: '_businessArrangement')
   final Element? businessArrangementElement;
+  factory CoverageEligibilityRequestInsurance.fromJson(
+          Map<String, dynamic> json) =>
+      _$CoverageEligibilityRequestInsuranceFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$CoverageEligibilityRequestInsuranceToJson(this);
+
   @override
   CoverageEligibilityRequestInsurance clone() => throw UnimplementedError();
-  CoverageEligibilityRequestInsurance copy({
+  @override
+  CoverageEligibilityRequestInsurance copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -284,6 +412,12 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
     Reference? coverage,
     FhirString? businessArrangement,
     Element? businessArrangementElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return CoverageEligibilityRequestInsurance(
       id: id ?? this.id,
@@ -295,16 +429,39 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
       businessArrangement: businessArrangement ?? this.businessArrangement,
       businessArrangementElement:
           businessArrangementElement ?? this.businessArrangementElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory CoverageEligibilityRequestInsurance.fromYaml(dynamic yaml) => yaml
+          is String
+      ? CoverageEligibilityRequestInsurance.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? CoverageEligibilityRequestInsurance.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'CoverageEligibilityRequestInsurance cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory CoverageEligibilityRequestInsurance.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CoverageEligibilityRequestInsurance.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [CoverageEligibilityRequestItem] /// Service categories or billable services for which benefit details and/or an
 /// authorization prior to service delivery may be required by the payor.
+@JsonSerializable()
 class CoverageEligibilityRequestItem extends BackboneElement {
   CoverageEligibilityRequestItem({
     super.id,
@@ -321,50 +478,73 @@ class CoverageEligibilityRequestItem extends BackboneElement {
     this.facility,
     this.diagnosis,
     this.detail,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'CoverageEligibilityRequestItem');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [supportingInfoSequence] /// Exceptions, special conditions and supporting information applicable for
   /// this service or product line.
+  @JsonKey(name: 'supportingInfoSequence')
   final List<FhirPositiveInt>? supportingInfoSequence;
+  @JsonKey(name: '_supportingInfoSequence')
   final List<Element>? supportingInfoSequenceElement;
 
   /// [category] /// Code to identify the general type of benefits under which products and
   /// services are provided.
+  @JsonKey(name: 'category')
   final CodeableConcept? category;
 
   /// [productOrService] /// This contains the product, service, drug or other billing code for the
   /// item.
+  @JsonKey(name: 'productOrService')
   final CodeableConcept? productOrService;
 
   /// [modifier] /// Item typification or modifiers codes to convey additional context for the
   /// product or service.
+  @JsonKey(name: 'modifier')
   final List<CodeableConcept>? modifier;
 
   /// [provider] /// The practitioner who is responsible for the product or service to be
   /// rendered to the patient.
+  @JsonKey(name: 'provider')
   final Reference? provider;
 
   /// [quantity] /// The number of repetitions of a service or product.
+  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [unitPrice] /// The amount charged to the patient by the provider for a single unit.
+  @JsonKey(name: 'unitPrice')
   final Money? unitPrice;
 
   /// [facility] /// Facility where the services will be provided.
+  @JsonKey(name: 'facility')
   final Reference? facility;
 
   /// [diagnosis] /// Patient diagnosis for which care is sought.
+  @JsonKey(name: 'diagnosis')
   final List<CoverageEligibilityRequestDiagnosis>? diagnosis;
 
   /// [detail] /// The plan/proposal/order describing the proposed service in detail.
+  @JsonKey(name: 'detail')
   final List<Reference>? detail;
+  factory CoverageEligibilityRequestItem.fromJson(Map<String, dynamic> json) =>
+      _$CoverageEligibilityRequestItemFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$CoverageEligibilityRequestItemToJson(this);
+
   @override
   CoverageEligibilityRequestItem clone() => throw UnimplementedError();
-  CoverageEligibilityRequestItem copy({
+  @override
+  CoverageEligibilityRequestItem copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -379,6 +559,12 @@ class CoverageEligibilityRequestItem extends BackboneElement {
     Reference? facility,
     List<CoverageEligibilityRequestDiagnosis>? diagnosis,
     List<Reference>? detail,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return CoverageEligibilityRequestItem(
       id: id ?? this.id,
@@ -397,15 +583,38 @@ class CoverageEligibilityRequestItem extends BackboneElement {
       facility: facility ?? this.facility,
       diagnosis: diagnosis ?? this.diagnosis,
       detail: detail ?? this.detail,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory CoverageEligibilityRequestItem.fromYaml(dynamic yaml) => yaml
+          is String
+      ? CoverageEligibilityRequestItem.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? CoverageEligibilityRequestItem.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'CoverageEligibilityRequestItem cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory CoverageEligibilityRequestItem.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CoverageEligibilityRequestItem.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [CoverageEligibilityRequestDiagnosis] /// Patient diagnosis for which care is sought.
+@JsonSerializable()
 class CoverageEligibilityRequestDiagnosis extends BackboneElement {
   CoverageEligibilityRequestDiagnosis({
     super.id,
@@ -413,27 +622,49 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
     super.modifierExtension,
     this.diagnosisCodeableConcept,
     this.diagnosisReference,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'CoverageEligibilityRequestDiagnosis');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [diagnosisCodeableConcept] /// The nature of illness or problem in a coded form or as a reference to an
   /// external defined Condition.
+  @JsonKey(name: 'diagnosisCodeableConcept')
   final CodeableConcept? diagnosisCodeableConcept;
 
   /// [diagnosisReference] /// The nature of illness or problem in a coded form or as a reference to an
   /// external defined Condition.
+  @JsonKey(name: 'diagnosisReference')
   final Reference? diagnosisReference;
+  factory CoverageEligibilityRequestDiagnosis.fromJson(
+          Map<String, dynamic> json) =>
+      _$CoverageEligibilityRequestDiagnosisFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$CoverageEligibilityRequestDiagnosisToJson(this);
+
   @override
   CoverageEligibilityRequestDiagnosis clone() => throw UnimplementedError();
-  CoverageEligibilityRequestDiagnosis copy({
+  @override
+  CoverageEligibilityRequestDiagnosis copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? diagnosisCodeableConcept,
     Reference? diagnosisReference,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return CoverageEligibilityRequestDiagnosis(
       id: id ?? this.id,
@@ -442,6 +673,32 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
       diagnosisCodeableConcept:
           diagnosisCodeableConcept ?? this.diagnosisCodeableConcept,
       diagnosisReference: diagnosisReference ?? this.diagnosisReference,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory CoverageEligibilityRequestDiagnosis.fromYaml(dynamic yaml) => yaml
+          is String
+      ? CoverageEligibilityRequestDiagnosis.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? CoverageEligibilityRequestDiagnosis.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'CoverageEligibilityRequestDiagnosis cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory CoverageEligibilityRequestDiagnosis.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CoverageEligibilityRequestDiagnosis.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

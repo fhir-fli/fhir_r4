@@ -1,19 +1,18 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'message_header.g.dart';
 
 /// [MessageHeader] /// The header for a message exchange that is either requesting or responding
 /// to an action. The reference(s) that are the subject of the action as well
 /// as other information related to the action are typically transmitted in a
 /// bundle in which the MessageHeader resource instance is the first resource
 /// in the bundle.
+@JsonSerializable()
 class MessageHeader extends DomainResource {
   MessageHeader({
     super.id,
@@ -40,8 +39,15 @@ class MessageHeader extends DomainResource {
     this.focus,
     this.definition,
     this.definitionElement,
-  }) : super(resourceType: R4ResourceType.MessageHeader);
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(
+            resourceType: R4ResourceType.MessageHeader,
+            fhirType: 'MessageHeader');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -50,58 +56,79 @@ class MessageHeader extends DomainResource {
   /// its definition. Events defined as part of the FHIR specification have the
   /// system value "http://terminology.hl7.org/CodeSystem/message-events".
   /// Alternatively uri to the EventDefinition.
+  @JsonKey(name: 'eventCoding')
   final Coding eventCoding;
 
   /// [eventUri] /// Code that identifies the event this message represents and connects it with
   /// its definition. Events defined as part of the FHIR specification have the
   /// system value "http://terminology.hl7.org/CodeSystem/message-events".
   /// Alternatively uri to the EventDefinition.
+  @JsonKey(name: 'eventUri')
   final FhirUri eventUri;
+  @JsonKey(name: '_eventUri')
   final Element? eventUriElement;
 
   /// [destination] /// The destination application which the message is intended for.
+  @JsonKey(name: 'destination')
   final List<MessageHeaderDestination>? destination;
 
   /// [sender] /// Identifies the sending system to allow the use of a trust relationship.
+  @JsonKey(name: 'sender')
   final Reference? sender;
 
   /// [enterer] /// The person or device that performed the data entry leading to this message.
   /// When there is more than one candidate, pick the most proximal to the
   /// message. Can provide other enterers in extensions.
+  @JsonKey(name: 'enterer')
   final Reference? enterer;
 
   /// [author] /// The logical author of the message - the person or device that decided the
   /// described event should happen. When there is more than one candidate, pick
   /// the most proximal to the MessageHeader. Can provide other authors in
   /// extensions.
+  @JsonKey(name: 'author')
   final Reference? author;
 
   /// [source] /// The source application from which this message originated.
+  @JsonKey(name: 'source')
   final MessageHeaderSource source;
 
   /// [responsible] /// The person or organization that accepts overall responsibility for the
   /// contents of the message. The implication is that the message event happened
   /// under the policies of the responsible party.
+  @JsonKey(name: 'responsible')
   final Reference? responsible;
 
   /// [reason] /// Coded indication of the cause for the event - indicates a reason for the
   /// occurrence of the event that is a focus of this message.
+  @JsonKey(name: 'reason')
   final CodeableConcept? reason;
 
   /// [response] /// Information about the message that this message is a response to. Only
   /// present if this message is a response.
+  @JsonKey(name: 'response')
   final MessageHeaderResponse? response;
 
   /// [focus] /// The actual data of the message - a reference to the root/focus class of the
   /// event.
+  @JsonKey(name: 'focus')
   final List<Reference>? focus;
 
   /// [definition] /// Permanent link to the MessageDefinition for this message.
+  @JsonKey(name: 'definition')
   final FhirCanonical? definition;
+  @JsonKey(name: '_definition')
   final Element? definitionElement;
+  factory MessageHeader.fromJson(Map<String, dynamic> json) =>
+      _$MessageHeaderFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$MessageHeaderToJson(this);
+
   @override
   MessageHeader clone() => throw UnimplementedError();
-  MessageHeader copy({
+  @override
+  MessageHeader copyWith({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -126,6 +153,12 @@ class MessageHeader extends DomainResource {
     List<Reference>? focus,
     FhirCanonical? definition,
     Element? definitionElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return MessageHeader(
       id: id ?? this.id,
@@ -152,15 +185,37 @@ class MessageHeader extends DomainResource {
       focus: focus ?? this.focus,
       definition: definition ?? this.definition,
       definitionElement: definitionElement ?? this.definitionElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory MessageHeader.fromYaml(dynamic yaml) => yaml is String
+      ? MessageHeader.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? MessageHeader.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'MessageHeader cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory MessageHeader.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MessageHeader.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [MessageHeaderDestination] /// The destination application which the message is intended for.
+@JsonSerializable()
 class MessageHeaderDestination extends BackboneElement {
   MessageHeaderDestination({
     super.id,
@@ -172,30 +227,48 @@ class MessageHeaderDestination extends BackboneElement {
     required this.endpoint,
     this.endpointElement,
     this.receiver,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'MessageHeaderDestination');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [name] /// Human-readable name for the target system.
+  @JsonKey(name: 'name')
   final FhirString? name;
+  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [target] /// Identifies the target end system in situations where the initial message
   /// transmission is to an intermediary system.
+  @JsonKey(name: 'target')
   final Reference? target;
 
   /// [endpoint] /// Indicates where the message should be routed to.
+  @JsonKey(name: 'endpoint')
   final FhirUrl endpoint;
+  @JsonKey(name: '_endpoint')
   final Element? endpointElement;
 
   /// [receiver] /// Allows data conveyed by a message to be addressed to a particular person or
   /// department when routing to a specific application isn't sufficient.
+  @JsonKey(name: 'receiver')
   final Reference? receiver;
+  factory MessageHeaderDestination.fromJson(Map<String, dynamic> json) =>
+      _$MessageHeaderDestinationFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$MessageHeaderDestinationToJson(this);
+
   @override
   MessageHeaderDestination clone() => throw UnimplementedError();
-  MessageHeaderDestination copy({
+  @override
+  MessageHeaderDestination copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -205,6 +278,12 @@ class MessageHeaderDestination extends BackboneElement {
     FhirUrl? endpoint,
     Element? endpointElement,
     Reference? receiver,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return MessageHeaderDestination(
       id: id ?? this.id,
@@ -216,15 +295,37 @@ class MessageHeaderDestination extends BackboneElement {
       endpoint: endpoint ?? this.endpoint,
       endpointElement: endpointElement ?? this.endpointElement,
       receiver: receiver ?? this.receiver,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory MessageHeaderDestination.fromYaml(dynamic yaml) => yaml is String
+      ? MessageHeaderDestination.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? MessageHeaderDestination.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'MessageHeaderDestination cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory MessageHeaderDestination.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MessageHeaderDestination.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [MessageHeaderSource] /// The source application from which this message originated.
+@JsonSerializable()
 class MessageHeaderSource extends BackboneElement {
   MessageHeaderSource({
     super.id,
@@ -239,35 +340,56 @@ class MessageHeaderSource extends BackboneElement {
     this.contact,
     required this.endpoint,
     this.endpointElement,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'MessageHeaderSource');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [name] /// Human-readable name for the source system.
+  @JsonKey(name: 'name')
   final FhirString? name;
+  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [software] /// May include configuration or other information useful in debugging.
+  @JsonKey(name: 'software')
   final FhirString? software;
+  @JsonKey(name: '_software')
   final Element? softwareElement;
 
   /// [version] /// Can convey versions of multiple systems in situations where a message
   /// passes through multiple hands.
+  @JsonKey(name: 'version')
   final FhirString? version;
+  @JsonKey(name: '_version')
   final Element? versionElement;
 
   /// [contact] /// An e-mail, phone, website or other contact point to use to resolve issues
   /// with message communications.
+  @JsonKey(name: 'contact')
   final ContactPoint? contact;
 
   /// [endpoint] /// Identifies the routing target to send acknowledgements to.
+  @JsonKey(name: 'endpoint')
   final FhirUrl endpoint;
+  @JsonKey(name: '_endpoint')
   final Element? endpointElement;
+  factory MessageHeaderSource.fromJson(Map<String, dynamic> json) =>
+      _$MessageHeaderSourceFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$MessageHeaderSourceToJson(this);
+
   @override
   MessageHeaderSource clone() => throw UnimplementedError();
-  MessageHeaderSource copy({
+  @override
+  MessageHeaderSource copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -280,6 +402,12 @@ class MessageHeaderSource extends BackboneElement {
     ContactPoint? contact,
     FhirUrl? endpoint,
     Element? endpointElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return MessageHeaderSource(
       id: id ?? this.id,
@@ -294,16 +422,38 @@ class MessageHeaderSource extends BackboneElement {
       contact: contact ?? this.contact,
       endpoint: endpoint ?? this.endpoint,
       endpointElement: endpointElement ?? this.endpointElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory MessageHeaderSource.fromYaml(dynamic yaml) => yaml is String
+      ? MessageHeaderSource.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? MessageHeaderSource.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'MessageHeaderSource cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory MessageHeaderSource.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MessageHeaderSource.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [MessageHeaderResponse] /// Information about the message that this message is a response to. Only
 /// present if this message is a response.
+@JsonSerializable()
 class MessageHeaderResponse extends BackboneElement {
   MessageHeaderResponse({
     super.id,
@@ -314,26 +464,43 @@ class MessageHeaderResponse extends BackboneElement {
     required this.code,
     this.codeElement,
     this.details,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'MessageHeaderResponse');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// The MessageHeader.id of the message to which this message is a response.
+  @JsonKey(name: 'identifier')
   final FhirId identifier;
+  @JsonKey(name: '_identifier')
   final Element? identifierElement;
 
   /// [code] /// Code that identifies the type of response to the message - whether it was
   /// successful or not, and whether it should be resent or not.
+  @JsonKey(name: 'code')
   final FhirCode code;
+  @JsonKey(name: '_code')
   final Element? codeElement;
 
   /// [details] /// Full details of any issues found in the message.
+  @JsonKey(name: 'details')
   final Reference? details;
+  factory MessageHeaderResponse.fromJson(Map<String, dynamic> json) =>
+      _$MessageHeaderResponseFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$MessageHeaderResponseToJson(this);
+
   @override
   MessageHeaderResponse clone() => throw UnimplementedError();
-  MessageHeaderResponse copy({
+  @override
+  MessageHeaderResponse copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -342,6 +509,12 @@ class MessageHeaderResponse extends BackboneElement {
     FhirCode? code,
     Element? codeElement,
     Reference? details,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return MessageHeaderResponse(
       id: id ?? this.id,
@@ -352,6 +525,31 @@ class MessageHeaderResponse extends BackboneElement {
       code: code ?? this.code,
       codeElement: codeElement ?? this.codeElement,
       details: details ?? this.details,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory MessageHeaderResponse.fromYaml(dynamic yaml) => yaml is String
+      ? MessageHeaderResponse.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? MessageHeaderResponse.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'MessageHeaderResponse cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory MessageHeaderResponse.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MessageHeaderResponse.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

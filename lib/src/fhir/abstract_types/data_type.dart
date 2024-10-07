@@ -14,7 +14,6 @@ abstract class DataType extends Element {
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
-    super.propertyChanged,
     super.annotations,
     super.children,
     super.namedChildren,
@@ -49,12 +48,11 @@ abstract class DataType extends Element {
 
   @override
   DataType copyWith({
-    String? id,
+    FhirString? id,
     List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,

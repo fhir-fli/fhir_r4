@@ -1,4 +1,3 @@
-
 import 'dart:math';
 import 'package:uuid/uuid.dart';
 
@@ -7,7 +6,6 @@ import '../r4.dart';
 String generateNewUuidString() => const Uuid().v4();
 
 FhirString generateNewUuidFhirString() => generateNewUuidString().toFhirString;
-
 
 String generateRandomId({
   int length = 16,
@@ -46,5 +44,7 @@ String generateRandomId({
     throw ArgumentError('No characters selected for random ID generation.');
   }
 
-  return List<String>.generate(length, (_) => characterPool[random.nextInt(characterPool.length)]).join();
+  return List<String>.generate(
+          length, (_) => characterPool[random.nextInt(characterPool.length)])
+      .join();
 }

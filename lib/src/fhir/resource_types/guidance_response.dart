@@ -1,17 +1,16 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'guidance_response.g.dart';
 
 /// [GuidanceResponse] /// A guidance response is the formal response to a guidance request, including
 /// any output parameters returned by the evaluation, as well as the
 /// description of any proposed actions to be taken.
+@JsonSerializable()
 class GuidanceResponse extends DomainResource {
   GuidanceResponse({
     super.id,
@@ -45,8 +44,15 @@ class GuidanceResponse extends DomainResource {
     this.outputParameters,
     this.result,
     this.dataRequirement,
-  }) : super(resourceType: R4ResourceType.GuidanceResponse);
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(
+            resourceType: R4ResourceType.GuidanceResponse,
+            fhirType: 'GuidanceResponse');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -55,23 +61,30 @@ class GuidanceResponse extends DomainResource {
   /// identifier was given as part of the request, it will be reproduced here to
   /// enable the requester to more easily identify the response in a
   /// multi-request scenario.
+  @JsonKey(name: 'requestIdentifier')
   final Identifier? requestIdentifier;
 
   /// [identifier] /// Allows a service to provide unique, business identifiers for the response.
+  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [moduleUri] /// An identifier, CodeableConcept or canonical reference to the guidance that
   /// was requested.
+  @JsonKey(name: 'moduleUri')
   final FhirUri moduleUri;
+  @JsonKey(name: '_moduleUri')
   final Element? moduleUriElement;
 
   /// [moduleCanonical] /// An identifier, CodeableConcept or canonical reference to the guidance that
   /// was requested.
+  @JsonKey(name: 'moduleCanonical')
   final FhirCanonical moduleCanonical;
+  @JsonKey(name: '_moduleCanonical')
   final Element? moduleCanonicalElement;
 
   /// [moduleCodeableConcept] /// An identifier, CodeableConcept or canonical reference to the guidance that
   /// was requested.
+  @JsonKey(name: 'moduleCodeableConcept')
   final CodeableConcept moduleCodeableConcept;
 
   /// [status] /// The status of the response. If the evaluation is completed successfully,
@@ -83,39 +96,50 @@ class GuidanceResponse extends DomainResource {
   /// response could be provided if more data was available, the status will be
   /// data-requested, and the response will contain a description of the
   /// additional requested information.
+  @JsonKey(name: 'status')
   final FhirCode status;
+  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [subject] /// The patient for which the request was processed.
+  @JsonKey(name: 'subject')
   final Reference? subject;
 
   /// [encounter] /// The encounter during which this response was created or to which the
   /// creation of this record is tightly associated.
+  @JsonKey(name: 'encounter')
   final Reference? encounter;
 
   /// [occurrenceDateTime] /// Indicates when the guidance response was processed.
+  @JsonKey(name: 'occurrenceDateTime')
   final FhirDateTime? occurrenceDateTime;
+  @JsonKey(name: '_occurrenceDateTime')
   final Element? occurrenceDateTimeElement;
 
   /// [performer] /// Provides a reference to the device that performed the guidance.
+  @JsonKey(name: 'performer')
   final Reference? performer;
 
   /// [reasonCode] /// Describes the reason for the guidance response in coded or textual form.
+  @JsonKey(name: 'reasonCode')
   final List<CodeableConcept>? reasonCode;
 
   /// [reasonReference] /// Indicates the reason the request was initiated. This is typically provided
   /// as a parameter to the evaluation and echoed by the service, although for
   /// some use cases, such as subscription- or event-based scenarios, it may
   /// provide an indication of the cause for the response.
+  @JsonKey(name: 'reasonReference')
   final List<Reference>? reasonReference;
 
   /// [note] /// Provides a mechanism to communicate additional information about the
   /// response.
+  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [evaluationMessage] /// Messages resulting from the evaluation of the artifact or artifacts. As
   /// part of evaluating the request, the engine may produce informational or
   /// warning messages. These messages will be provided by this element.
+  @JsonKey(name: 'evaluationMessage')
   final List<Reference>? evaluationMessage;
 
   /// [outputParameters] /// The output parameters of the evaluation, if any. Many modules will result
@@ -123,9 +147,11 @@ class GuidanceResponse extends DomainResource {
   /// requests that are returned as part of the operation result. However,
   /// modules may define specific outputs that would be returned as the result of
   /// the evaluation, and these would be returned in this element.
+  @JsonKey(name: 'outputParameters')
   final Reference? outputParameters;
 
   /// [result] /// The actions, if any, produced by the evaluation of the artifact.
+  @JsonKey(name: 'result')
   final Reference? result;
 
   /// [dataRequirement] /// If the evaluation could not be completed due to lack of information, or
@@ -133,10 +159,18 @@ class GuidanceResponse extends DomainResource {
   /// response, this element will a description of the data required in order to
   /// proceed with the evaluation. A subsequent request to the service should
   /// include this data.
+  @JsonKey(name: 'dataRequirement')
   final List<DataRequirement>? dataRequirement;
+  factory GuidanceResponse.fromJson(Map<String, dynamic> json) =>
+      _$GuidanceResponseFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$GuidanceResponseToJson(this);
+
   @override
   GuidanceResponse clone() => throw UnimplementedError();
-  GuidanceResponse copy({
+  @override
+  GuidanceResponse copyWith({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -168,6 +202,12 @@ class GuidanceResponse extends DomainResource {
     Reference? outputParameters,
     Reference? result,
     List<DataRequirement>? dataRequirement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return GuidanceResponse(
       id: id ?? this.id,
@@ -204,6 +244,31 @@ class GuidanceResponse extends DomainResource {
       outputParameters: outputParameters ?? this.outputParameters,
       result: result ?? this.result,
       dataRequirement: dataRequirement ?? this.dataRequirement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory GuidanceResponse.fromYaml(dynamic yaml) => yaml is String
+      ? GuidanceResponse.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? GuidanceResponse.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'GuidanceResponse cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory GuidanceResponse.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return GuidanceResponse.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

@@ -1,15 +1,14 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'example_scenario.g.dart';
 
 /// [ExampleScenario] /// Example of workflow instance.
+@JsonSerializable()
 class ExampleScenario extends DomainResource {
   ExampleScenario({
     super.id,
@@ -49,8 +48,15 @@ class ExampleScenario extends DomainResource {
     this.process,
     this.workflow,
     this.workflowElement,
-  }) : super(resourceType: R4ResourceType.ExampleScenario);
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(
+            resourceType: R4ResourceType.ExampleScenario,
+            fhirType: 'ExampleScenario');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -62,12 +68,15 @@ class ExampleScenario extends DomainResource {
   /// scenario is (or will be) published. This URL can be the target of a
   /// canonical reference. It SHALL remain the same when the example scenario is
   /// stored on different servers.
+  @JsonKey(name: 'url')
   final FhirUri? url;
+  @JsonKey(name: '_url')
   final Element? urlElement;
 
   /// [identifier] /// A formal identifier that is used to identify this example scenario when it
   /// is represented in other formats, or referenced in a specification, model,
   /// design or an instance.
+  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [version] /// The identifier that is used to identify this version of the example
@@ -77,24 +86,32 @@ class ExampleScenario extends DomainResource {
   /// timestamp (e.g. yyyymmdd) if a managed version is not available. There is
   /// also no expectation that versions can be placed in a lexicographical
   /// sequence.
+  @JsonKey(name: 'version')
   final FhirString? version;
+  @JsonKey(name: '_version')
   final Element? versionElement;
 
   /// [name] /// A natural language name identifying the example scenario. This name should
   /// be usable as an identifier for the module by machine processing
   /// applications such as code generation.
+  @JsonKey(name: 'name')
   final FhirString? name;
+  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [status] /// The status of this example scenario. Enables tracking the life-cycle of the
   /// content.
+  @JsonKey(name: 'status')
   final FhirCode status;
+  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [experimental] /// A Boolean value to indicate that this example scenario is authored for
   /// testing purposes (or education/evaluation/marketing) and is not intended to
   /// be used for genuine usage.
+  @JsonKey(name: 'experimental')
   final FhirBoolean? experimental;
+  @JsonKey(name: '_experimental')
   final Element? experimentalElement;
 
   /// [date] /// The date (and optionally time) when the example scenario was published. The
@@ -102,16 +119,21 @@ class ExampleScenario extends DomainResource {
   /// the status code changes. In addition, it should change when the substantive
   /// content of the example scenario changes. (e.g. the 'content logical
   /// definition').
+  @JsonKey(name: 'date')
   final FhirDateTime? date;
+  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [publisher] /// The name of the organization or individual that published the example
   /// scenario.
+  @JsonKey(name: 'publisher')
   final FhirString? publisher;
+  @JsonKey(name: '_publisher')
   final Element? publisherElement;
 
   /// [contact] /// Contact details to assist a user in finding and communicating with the
   /// publisher.
+  @JsonKey(name: 'contact')
   final List<ContactDetail>? contact;
 
   /// [useContext] /// The content was developed with a focus and intent of supporting the
@@ -119,39 +141,57 @@ class ExampleScenario extends DomainResource {
   /// age, ...) or may be references to specific programs (insurance plans,
   /// studies, ...) and may be used to assist with indexing and searching for
   /// appropriate example scenario instances.
+  @JsonKey(name: 'useContext')
   final List<UsageContext>? useContext;
 
   /// [jurisdiction] /// A legal or geographic region in which the example scenario is intended to
   /// be used.
+  @JsonKey(name: 'jurisdiction')
   final List<CodeableConcept>? jurisdiction;
 
   /// [copyright] /// A copyright statement relating to the example scenario and/or its contents.
   /// Copyright statements are generally legal restrictions on the use and
   /// publishing of the example scenario.
+  @JsonKey(name: 'copyright')
   final FhirMarkdown? copyright;
+  @JsonKey(name: '_copyright')
   final Element? copyrightElement;
 
   /// [purpose] /// What the example scenario resource is created for. This should not be used
   /// to show the business purpose of the scenario itself, but the purpose of
   /// documenting a scenario.
+  @JsonKey(name: 'purpose')
   final FhirMarkdown? purpose;
+  @JsonKey(name: '_purpose')
   final Element? purposeElement;
 
   /// [actor] /// Actor participating in the resource.
+  @JsonKey(name: 'actor')
   final List<ExampleScenarioActor>? actor;
 
   /// [instance] /// Each resource and each version that is present in the workflow.
+  @JsonKey(name: 'instance')
   final List<ExampleScenarioInstance>? instance;
 
   /// [process] /// Each major process - a group of operations.
+  @JsonKey(name: 'process')
   final List<ExampleScenarioProcess>? process;
 
   /// [workflow] /// Another nested workflow.
+  @JsonKey(name: 'workflow')
   final List<FhirCanonical>? workflow;
+  @JsonKey(name: '_workflow')
   final List<Element>? workflowElement;
+  factory ExampleScenario.fromJson(Map<String, dynamic> json) =>
+      _$ExampleScenarioFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExampleScenarioToJson(this);
+
   @override
   ExampleScenario clone() => throw UnimplementedError();
-  ExampleScenario copy({
+  @override
+  ExampleScenario copyWith({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -189,6 +229,12 @@ class ExampleScenario extends DomainResource {
     List<ExampleScenarioProcess>? process,
     List<FhirCanonical>? workflow,
     List<Element>? workflowElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExampleScenario(
       id: id ?? this.id,
@@ -228,15 +274,37 @@ class ExampleScenario extends DomainResource {
       process: process ?? this.process,
       workflow: workflow ?? this.workflow,
       workflowElement: workflowElement ?? this.workflowElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExampleScenario.fromYaml(dynamic yaml) => yaml is String
+      ? ExampleScenario.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExampleScenario.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExampleScenario cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExampleScenario.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExampleScenario.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExampleScenarioActor] /// Actor participating in the resource.
+@JsonSerializable()
 class ExampleScenarioActor extends BackboneElement {
   ExampleScenarioActor({
     super.id,
@@ -250,30 +318,50 @@ class ExampleScenarioActor extends BackboneElement {
     this.nameElement,
     this.description,
     this.descriptionElement,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExampleScenarioActor');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [actorId] /// ID or acronym of actor.
+  @JsonKey(name: 'actorId')
   final FhirString actorId;
+  @JsonKey(name: '_actorId')
   final Element? actorIdElement;
 
   /// [type] /// The type of actor - person or system.
+  @JsonKey(name: 'type')
   final FhirCode type;
+  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [name] /// The name of the actor as shown in the page.
+  @JsonKey(name: 'name')
   final FhirString? name;
+  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [description] /// The description of the actor.
+  @JsonKey(name: 'description')
   final FhirMarkdown? description;
+  @JsonKey(name: '_description')
   final Element? descriptionElement;
+  factory ExampleScenarioActor.fromJson(Map<String, dynamic> json) =>
+      _$ExampleScenarioActorFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExampleScenarioActorToJson(this);
+
   @override
   ExampleScenarioActor clone() => throw UnimplementedError();
-  ExampleScenarioActor copy({
+  @override
+  ExampleScenarioActor copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -285,6 +373,12 @@ class ExampleScenarioActor extends BackboneElement {
     Element? nameElement,
     FhirMarkdown? description,
     Element? descriptionElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExampleScenarioActor(
       id: id ?? this.id,
@@ -298,15 +392,37 @@ class ExampleScenarioActor extends BackboneElement {
       nameElement: nameElement ?? this.nameElement,
       description: description ?? this.description,
       descriptionElement: descriptionElement ?? this.descriptionElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExampleScenarioActor.fromYaml(dynamic yaml) => yaml is String
+      ? ExampleScenarioActor.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExampleScenarioActor.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExampleScenarioActor cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExampleScenarioActor.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExampleScenarioActor.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExampleScenarioInstance] /// Each resource and each version that is present in the workflow.
+@JsonSerializable()
 class ExampleScenarioInstance extends BackboneElement {
   ExampleScenarioInstance({
     super.id,
@@ -322,37 +438,59 @@ class ExampleScenarioInstance extends BackboneElement {
     this.descriptionElement,
     this.version,
     this.containedInstance,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExampleScenarioInstance');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [resourceId] /// The id of the resource for referencing.
+  @JsonKey(name: 'resourceId')
   final FhirString resourceId;
+  @JsonKey(name: '_resourceId')
   final Element? resourceIdElement;
 
   /// [resourceType] /// The type of the resource.
+  @JsonKey(name: 'resourceType')
   final FhirCode resourceType;
+  @JsonKey(name: '_resourceType')
   final Element? resourceTypeElement;
 
   /// [name] /// A short name for the resource instance.
+  @JsonKey(name: 'name')
   final FhirString? name;
+  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [description] /// Human-friendly description of the resource instance.
+  @JsonKey(name: 'description')
   final FhirMarkdown? description;
+  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [version] /// A specific version of the resource.
+  @JsonKey(name: 'version')
   final List<ExampleScenarioVersion>? version;
 
   /// [containedInstance] /// Resources contained in the instance (e.g. the observations contained in a
   /// bundle).
+  @JsonKey(name: 'containedInstance')
   final List<ExampleScenarioContainedInstance>? containedInstance;
+  factory ExampleScenarioInstance.fromJson(Map<String, dynamic> json) =>
+      _$ExampleScenarioInstanceFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExampleScenarioInstanceToJson(this);
+
   @override
   ExampleScenarioInstance clone() => throw UnimplementedError();
-  ExampleScenarioInstance copy({
+  @override
+  ExampleScenarioInstance copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -366,6 +504,12 @@ class ExampleScenarioInstance extends BackboneElement {
     Element? descriptionElement,
     List<ExampleScenarioVersion>? version,
     List<ExampleScenarioContainedInstance>? containedInstance,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExampleScenarioInstance(
       id: id ?? this.id,
@@ -381,15 +525,37 @@ class ExampleScenarioInstance extends BackboneElement {
       descriptionElement: descriptionElement ?? this.descriptionElement,
       version: version ?? this.version,
       containedInstance: containedInstance ?? this.containedInstance,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExampleScenarioInstance.fromYaml(dynamic yaml) => yaml is String
+      ? ExampleScenarioInstance.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExampleScenarioInstance.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExampleScenarioInstance cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExampleScenarioInstance.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExampleScenarioInstance.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExampleScenarioVersion] /// A specific version of the resource.
+@JsonSerializable()
 class ExampleScenarioVersion extends BackboneElement {
   ExampleScenarioVersion({
     super.id,
@@ -399,22 +565,38 @@ class ExampleScenarioVersion extends BackboneElement {
     this.versionIdElement,
     required this.description,
     this.descriptionElement,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExampleScenarioVersion');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [versionId] /// The identifier of a specific version of a resource.
+  @JsonKey(name: 'versionId')
   final FhirString versionId;
+  @JsonKey(name: '_versionId')
   final Element? versionIdElement;
 
   /// [description] /// The description of the resource version.
+  @JsonKey(name: 'description')
   final FhirMarkdown description;
+  @JsonKey(name: '_description')
   final Element? descriptionElement;
+  factory ExampleScenarioVersion.fromJson(Map<String, dynamic> json) =>
+      _$ExampleScenarioVersionFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExampleScenarioVersionToJson(this);
+
   @override
   ExampleScenarioVersion clone() => throw UnimplementedError();
-  ExampleScenarioVersion copy({
+  @override
+  ExampleScenarioVersion copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -422,6 +604,12 @@ class ExampleScenarioVersion extends BackboneElement {
     Element? versionIdElement,
     FhirMarkdown? description,
     Element? descriptionElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExampleScenarioVersion(
       id: id ?? this.id,
@@ -431,16 +619,38 @@ class ExampleScenarioVersion extends BackboneElement {
       versionIdElement: versionIdElement ?? this.versionIdElement,
       description: description ?? this.description,
       descriptionElement: descriptionElement ?? this.descriptionElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExampleScenarioVersion.fromYaml(dynamic yaml) => yaml is String
+      ? ExampleScenarioVersion.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExampleScenarioVersion.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExampleScenarioVersion cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExampleScenarioVersion.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExampleScenarioVersion.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExampleScenarioContainedInstance] /// Resources contained in the instance (e.g. the observations contained in a
 /// bundle).
+@JsonSerializable()
 class ExampleScenarioContainedInstance extends BackboneElement {
   ExampleScenarioContainedInstance({
     super.id,
@@ -450,22 +660,40 @@ class ExampleScenarioContainedInstance extends BackboneElement {
     this.resourceIdElement,
     this.versionId,
     this.versionIdElement,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExampleScenarioContainedInstance');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [resourceId] /// Each resource contained in the instance.
+  @JsonKey(name: 'resourceId')
   final FhirString resourceId;
+  @JsonKey(name: '_resourceId')
   final Element? resourceIdElement;
 
   /// [versionId] /// A specific version of a resource contained in the instance.
+  @JsonKey(name: 'versionId')
   final FhirString? versionId;
+  @JsonKey(name: '_versionId')
   final Element? versionIdElement;
+  factory ExampleScenarioContainedInstance.fromJson(
+          Map<String, dynamic> json) =>
+      _$ExampleScenarioContainedInstanceFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ExampleScenarioContainedInstanceToJson(this);
+
   @override
   ExampleScenarioContainedInstance clone() => throw UnimplementedError();
-  ExampleScenarioContainedInstance copy({
+  @override
+  ExampleScenarioContainedInstance copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -473,6 +701,12 @@ class ExampleScenarioContainedInstance extends BackboneElement {
     Element? resourceIdElement,
     FhirString? versionId,
     Element? versionIdElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExampleScenarioContainedInstance(
       id: id ?? this.id,
@@ -482,15 +716,38 @@ class ExampleScenarioContainedInstance extends BackboneElement {
       resourceIdElement: resourceIdElement ?? this.resourceIdElement,
       versionId: versionId ?? this.versionId,
       versionIdElement: versionIdElement ?? this.versionIdElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExampleScenarioContainedInstance.fromYaml(dynamic yaml) => yaml
+          is String
+      ? ExampleScenarioContainedInstance.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExampleScenarioContainedInstance.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExampleScenarioContainedInstance cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExampleScenarioContainedInstance.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExampleScenarioContainedInstance.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExampleScenarioProcess] /// Each major process - a group of operations.
+@JsonSerializable()
 class ExampleScenarioProcess extends BackboneElement {
   ExampleScenarioProcess({
     super.id,
@@ -505,33 +762,54 @@ class ExampleScenarioProcess extends BackboneElement {
     this.postConditions,
     this.postConditionsElement,
     this.step,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExampleScenarioProcess');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [title] /// The diagram title of the group of operations.
+  @JsonKey(name: 'title')
   final FhirString title;
+  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [description] /// A longer description of the group of operations.
+  @JsonKey(name: 'description')
   final FhirMarkdown? description;
+  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [preConditions] /// Description of initial status before the process starts.
+  @JsonKey(name: 'preConditions')
   final FhirMarkdown? preConditions;
+  @JsonKey(name: '_preConditions')
   final Element? preConditionsElement;
 
   /// [postConditions] /// Description of final status after the process ends.
+  @JsonKey(name: 'postConditions')
   final FhirMarkdown? postConditions;
+  @JsonKey(name: '_postConditions')
   final Element? postConditionsElement;
 
   /// [step] /// Each step of the process.
+  @JsonKey(name: 'step')
   final List<ExampleScenarioStep>? step;
+  factory ExampleScenarioProcess.fromJson(Map<String, dynamic> json) =>
+      _$ExampleScenarioProcessFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExampleScenarioProcessToJson(this);
+
   @override
   ExampleScenarioProcess clone() => throw UnimplementedError();
-  ExampleScenarioProcess copy({
+  @override
+  ExampleScenarioProcess copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -544,6 +822,12 @@ class ExampleScenarioProcess extends BackboneElement {
     FhirMarkdown? postConditions,
     Element? postConditionsElement,
     List<ExampleScenarioStep>? step,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExampleScenarioProcess(
       id: id ?? this.id,
@@ -559,15 +843,37 @@ class ExampleScenarioProcess extends BackboneElement {
       postConditionsElement:
           postConditionsElement ?? this.postConditionsElement,
       step: step ?? this.step,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExampleScenarioProcess.fromYaml(dynamic yaml) => yaml is String
+      ? ExampleScenarioProcess.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExampleScenarioProcess.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExampleScenarioProcess cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExampleScenarioProcess.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExampleScenarioProcess.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExampleScenarioStep] /// Each step of the process.
+@JsonSerializable()
 class ExampleScenarioStep extends BackboneElement {
   ExampleScenarioStep({
     super.id,
@@ -578,28 +884,45 @@ class ExampleScenarioStep extends BackboneElement {
     this.pauseElement,
     this.operation,
     this.alternative,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExampleScenarioStep');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [process] /// Nested process.
+  @JsonKey(name: 'process')
   final List<ExampleScenarioProcess>? process;
 
   /// [pause] /// If there is a pause in the flow.
+  @JsonKey(name: 'pause')
   final FhirBoolean? pause;
+  @JsonKey(name: '_pause')
   final Element? pauseElement;
 
   /// [operation] /// Each interaction or action.
+  @JsonKey(name: 'operation')
   final ExampleScenarioOperation? operation;
 
   /// [alternative] /// Indicates an alternative step that can be taken instead of the operations
   /// on the base step in exceptional/atypical circumstances.
+  @JsonKey(name: 'alternative')
   final List<ExampleScenarioAlternative>? alternative;
+  factory ExampleScenarioStep.fromJson(Map<String, dynamic> json) =>
+      _$ExampleScenarioStepFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExampleScenarioStepToJson(this);
+
   @override
   ExampleScenarioStep clone() => throw UnimplementedError();
-  ExampleScenarioStep copy({
+  @override
+  ExampleScenarioStep copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -608,6 +931,12 @@ class ExampleScenarioStep extends BackboneElement {
     Element? pauseElement,
     ExampleScenarioOperation? operation,
     List<ExampleScenarioAlternative>? alternative,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExampleScenarioStep(
       id: id ?? this.id,
@@ -618,15 +947,37 @@ class ExampleScenarioStep extends BackboneElement {
       pauseElement: pauseElement ?? this.pauseElement,
       operation: operation ?? this.operation,
       alternative: alternative ?? this.alternative,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExampleScenarioStep.fromYaml(dynamic yaml) => yaml is String
+      ? ExampleScenarioStep.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExampleScenarioStep.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExampleScenarioStep cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExampleScenarioStep.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExampleScenarioStep.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExampleScenarioOperation] /// Each interaction or action.
+@JsonSerializable()
 class ExampleScenarioOperation extends BackboneElement {
   ExampleScenarioOperation({
     super.id,
@@ -650,52 +1001,82 @@ class ExampleScenarioOperation extends BackboneElement {
     this.receiverActiveElement,
     this.request,
     this.response,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExampleScenarioOperation');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [number] /// The sequential number of the interaction, e.g. 1.2.5.
+  @JsonKey(name: 'number')
   final FhirString number;
+  @JsonKey(name: '_number')
   final Element? numberElement;
 
   /// [type] /// The type of operation - CRUD.
+  @JsonKey(name: 'type')
   final FhirString? type;
+  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [name] /// The human-friendly name of the interaction.
+  @JsonKey(name: 'name')
   final FhirString? name;
+  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [initiator] /// Who starts the transaction.
+  @JsonKey(name: 'initiator')
   final FhirString? initiator;
+  @JsonKey(name: '_initiator')
   final Element? initiatorElement;
 
   /// [receiver] /// Who receives the transaction.
+  @JsonKey(name: 'receiver')
   final FhirString? receiver;
+  @JsonKey(name: '_receiver')
   final Element? receiverElement;
 
   /// [description] /// A comment to be inserted in the diagram.
+  @JsonKey(name: 'description')
   final FhirMarkdown? description;
+  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [initiatorActive] /// Whether the initiator is deactivated right after the transaction.
+  @JsonKey(name: 'initiatorActive')
   final FhirBoolean? initiatorActive;
+  @JsonKey(name: '_initiatorActive')
   final Element? initiatorActiveElement;
 
   /// [receiverActive] /// Whether the receiver is deactivated right after the transaction.
+  @JsonKey(name: 'receiverActive')
   final FhirBoolean? receiverActive;
+  @JsonKey(name: '_receiverActive')
   final Element? receiverActiveElement;
 
   /// [request] /// Each resource instance used by the initiator.
+  @JsonKey(name: 'request')
   final ExampleScenarioContainedInstance? request;
 
   /// [response] /// Each resource instance used by the responder.
+  @JsonKey(name: 'response')
   final ExampleScenarioContainedInstance? response;
+  factory ExampleScenarioOperation.fromJson(Map<String, dynamic> json) =>
+      _$ExampleScenarioOperationFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExampleScenarioOperationToJson(this);
+
   @override
   ExampleScenarioOperation clone() => throw UnimplementedError();
-  ExampleScenarioOperation copy({
+  @override
+  ExampleScenarioOperation copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -717,6 +1098,12 @@ class ExampleScenarioOperation extends BackboneElement {
     Element? receiverActiveElement,
     ExampleScenarioContainedInstance? request,
     ExampleScenarioContainedInstance? response,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExampleScenarioOperation(
       id: id ?? this.id,
@@ -742,16 +1129,38 @@ class ExampleScenarioOperation extends BackboneElement {
           receiverActiveElement ?? this.receiverActiveElement,
       request: request ?? this.request,
       response: response ?? this.response,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExampleScenarioOperation.fromYaml(dynamic yaml) => yaml is String
+      ? ExampleScenarioOperation.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExampleScenarioOperation.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExampleScenarioOperation cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExampleScenarioOperation.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExampleScenarioOperation.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExampleScenarioAlternative] /// Indicates an alternative step that can be taken instead of the operations
 /// on the base step in exceptional/atypical circumstances.
+@JsonSerializable()
 class ExampleScenarioAlternative extends BackboneElement {
   ExampleScenarioAlternative({
     super.id,
@@ -762,27 +1171,44 @@ class ExampleScenarioAlternative extends BackboneElement {
     this.description,
     this.descriptionElement,
     this.step,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExampleScenarioAlternative');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [title] /// The label to display for the alternative that gives a sense of the
   /// circumstance in which the alternative should be invoked.
+  @JsonKey(name: 'title')
   final FhirString title;
+  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [description] /// A human-readable description of the alternative explaining when the
   /// alternative should occur rather than the base step.
+  @JsonKey(name: 'description')
   final FhirMarkdown? description;
+  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [step] /// What happens in each alternative option.
+  @JsonKey(name: 'step')
   final List<ExampleScenarioStep>? step;
+  factory ExampleScenarioAlternative.fromJson(Map<String, dynamic> json) =>
+      _$ExampleScenarioAlternativeFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExampleScenarioAlternativeToJson(this);
+
   @override
   ExampleScenarioAlternative clone() => throw UnimplementedError();
-  ExampleScenarioAlternative copy({
+  @override
+  ExampleScenarioAlternative copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -791,6 +1217,12 @@ class ExampleScenarioAlternative extends BackboneElement {
     FhirMarkdown? description,
     Element? descriptionElement,
     List<ExampleScenarioStep>? step,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExampleScenarioAlternative(
       id: id ?? this.id,
@@ -801,6 +1233,31 @@ class ExampleScenarioAlternative extends BackboneElement {
       description: description ?? this.description,
       descriptionElement: descriptionElement ?? this.descriptionElement,
       step: step ?? this.step,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExampleScenarioAlternative.fromYaml(dynamic yaml) => yaml is String
+      ? ExampleScenarioAlternative.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExampleScenarioAlternative.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExampleScenarioAlternative cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExampleScenarioAlternative.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExampleScenarioAlternative.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

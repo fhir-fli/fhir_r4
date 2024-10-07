@@ -1,17 +1,16 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'binary.g.dart';
 
 /// [Binary] /// A resource that represents the data of a single raw artifact as digital
 /// content accessible in its native format. A Binary resource can contain any
 /// content, whether text, image, pdf, zip archive, etc.
+@JsonSerializable()
 class Binary extends DomainResource {
   Binary({
     super.id,
@@ -25,14 +24,21 @@ class Binary extends DomainResource {
     this.securityContext,
     this.data,
     this.dataElement,
-  }) : super(resourceType: R4ResourceType.Binary);
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(resourceType: R4ResourceType.Binary, fhirType: 'Binary');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [contentType] /// MimeType of the binary content represented as a standard MimeType (BCP 13).
+  @JsonKey(name: 'contentType')
   final FhirCode contentType;
+  @JsonKey(name: '_contentType')
   final Element? contentTypeElement;
 
   /// [securityContext] /// This element identifies another resource that can be used as a proxy of the
@@ -45,14 +51,23 @@ class Binary extends DomainResource {
   /// purely as a security proxy. E.g. to identify that the binary resource
   /// relates to a patient, and access should only be granted to applications
   /// that have access to the patient.
+  @JsonKey(name: 'securityContext')
   final Reference? securityContext;
 
   /// [data] /// The actual content, base64 encoded.
+  @JsonKey(name: 'data')
   final FhirBase64Binary? data;
+  @JsonKey(name: '_data')
   final Element? dataElement;
+  factory Binary.fromJson(Map<String, dynamic> json) => _$BinaryFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$BinaryToJson(this);
+
   @override
   Binary clone() => throw UnimplementedError();
-  Binary copy({
+  @override
+  Binary copyWith({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -64,6 +79,12 @@ class Binary extends DomainResource {
     Reference? securityContext,
     FhirBase64Binary? data,
     Element? dataElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return Binary(
       id: id ?? this.id,
@@ -77,6 +98,31 @@ class Binary extends DomainResource {
       securityContext: securityContext ?? this.securityContext,
       data: data ?? this.data,
       dataElement: dataElement ?? this.dataElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory Binary.fromYaml(dynamic yaml) => yaml is String
+      ? Binary.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? Binary.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'Binary cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory Binary.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return Binary.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

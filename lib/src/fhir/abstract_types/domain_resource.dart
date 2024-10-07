@@ -22,7 +22,6 @@ abstract class DomainResource extends Resource {
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
-    super.propertyChanged,
     super.annotations,
     super.children,
     super.namedChildren,
@@ -94,7 +93,6 @@ abstract class DomainResource extends Resource {
   @override
   @override
   DomainResource copyWith({
-    R4ResourceType? resourceType,
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -108,7 +106,6 @@ abstract class DomainResource extends Resource {
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,

@@ -66,7 +66,9 @@ void exportFiles() {
     final List<FileSystemEntity> files = directory.listSync();
     for (final FileSystemEntity file in files) {
       final String fileName = file.path.split('/').last;
-      if (fileName.endsWith('.dart') && !fileName.endsWith('$dir.dart')) {
+      if (fileName.endsWith('.dart') &&
+          !fileName.endsWith('$dir.dart') &&
+          !fileName.contains('.g.')) {
         exportFile.add("export '$fileName';");
       }
     }

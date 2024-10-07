@@ -1,16 +1,15 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'supply_request.g.dart';
 
 /// [SupplyRequest] /// A record of a request for a medication, substance or device used in the
 /// healthcare setting.
+@JsonSerializable()
 class SupplyRequest extends DomainResource {
   SupplyRequest({
     super.id,
@@ -45,8 +44,15 @@ class SupplyRequest extends DomainResource {
     this.reasonReference,
     this.deliverFrom,
     this.deliverTo,
-  }) : super(resourceType: R4ResourceType.SupplyRequest);
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(
+            resourceType: R4ResourceType.SupplyRequest,
+            fhirType: 'SupplyRequest');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -54,72 +60,101 @@ class SupplyRequest extends DomainResource {
   /// [identifier] /// Business identifiers assigned to this SupplyRequest by the author and/or
   /// other systems. These identifiers remain constant as the resource is updated
   /// and propagates from server to server.
+  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// Status of the supply request.
+  @JsonKey(name: 'status')
   final FhirCode? status;
+  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [category] /// Category of supply, e.g. central, non-stock, etc. This is used to support
   /// work flows associated with the supply process.
+  @JsonKey(name: 'category')
   final CodeableConcept? category;
 
   /// [priority] /// Indicates how quickly this SupplyRequest should be addressed with respect
   /// to other requests.
+  @JsonKey(name: 'priority')
   final FhirCode? priority;
+  @JsonKey(name: '_priority')
   final Element? priorityElement;
 
   /// [itemCodeableConcept] /// The item that is requested to be supplied. This is either a link to a
   /// resource representing the details of the item or a code that identifies the
   /// item from a known list.
+  @JsonKey(name: 'itemCodeableConcept')
   final CodeableConcept itemCodeableConcept;
 
   /// [itemReference] /// The item that is requested to be supplied. This is either a link to a
   /// resource representing the details of the item or a code that identifies the
   /// item from a known list.
+  @JsonKey(name: 'itemReference')
   final Reference itemReference;
 
   /// [quantity] /// The amount that is being ordered of the indicated item.
+  @JsonKey(name: 'quantity')
   final Quantity quantity;
 
   /// [parameter] /// Specific parameters for the ordered item. For example, the size of the
   /// indicated item.
+  @JsonKey(name: 'parameter')
   final List<SupplyRequestParameter>? parameter;
 
   /// [occurrenceDateTime] /// When the request should be fulfilled.
+  @JsonKey(name: 'occurrenceDateTime')
   final FhirDateTime? occurrenceDateTime;
+  @JsonKey(name: '_occurrenceDateTime')
   final Element? occurrenceDateTimeElement;
 
   /// [occurrencePeriod] /// When the request should be fulfilled.
+  @JsonKey(name: 'occurrencePeriod')
   final Period? occurrencePeriod;
 
   /// [occurrenceTiming] /// When the request should be fulfilled.
+  @JsonKey(name: 'occurrenceTiming')
   final Timing? occurrenceTiming;
 
   /// [authoredOn] /// When the request was made.
+  @JsonKey(name: 'authoredOn')
   final FhirDateTime? authoredOn;
+  @JsonKey(name: '_authoredOn')
   final Element? authoredOnElement;
 
   /// [requester] /// The device, practitioner, etc. who initiated the request.
+  @JsonKey(name: 'requester')
   final Reference? requester;
 
   /// [supplier] /// Who is intended to fulfill the request.
+  @JsonKey(name: 'supplier')
   final List<Reference>? supplier;
 
   /// [reasonCode] /// The reason why the supply item was requested.
+  @JsonKey(name: 'reasonCode')
   final List<CodeableConcept>? reasonCode;
 
   /// [reasonReference] /// The reason why the supply item was requested.
+  @JsonKey(name: 'reasonReference')
   final List<Reference>? reasonReference;
 
   /// [deliverFrom] /// Where the supply is expected to come from.
+  @JsonKey(name: 'deliverFrom')
   final Reference? deliverFrom;
 
   /// [deliverTo] /// Where the supply is destined to go.
+  @JsonKey(name: 'deliverTo')
   final Reference? deliverTo;
+  factory SupplyRequest.fromJson(Map<String, dynamic> json) =>
+      _$SupplyRequestFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$SupplyRequestToJson(this);
+
   @override
   SupplyRequest clone() => throw UnimplementedError();
-  SupplyRequest copy({
+  @override
+  SupplyRequest copyWith({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -152,6 +187,12 @@ class SupplyRequest extends DomainResource {
     List<Reference>? reasonReference,
     Reference? deliverFrom,
     Reference? deliverTo,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return SupplyRequest(
       id: id ?? this.id,
@@ -187,16 +228,38 @@ class SupplyRequest extends DomainResource {
       reasonReference: reasonReference ?? this.reasonReference,
       deliverFrom: deliverFrom ?? this.deliverFrom,
       deliverTo: deliverTo ?? this.deliverTo,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory SupplyRequest.fromYaml(dynamic yaml) => yaml is String
+      ? SupplyRequest.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? SupplyRequest.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'SupplyRequest cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory SupplyRequest.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return SupplyRequest.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [SupplyRequestParameter] /// Specific parameters for the ordered item. For example, the size of the
 /// indicated item.
+@JsonSerializable()
 class SupplyRequestParameter extends BackboneElement {
   SupplyRequestParameter({
     super.id,
@@ -208,30 +271,48 @@ class SupplyRequestParameter extends BackboneElement {
     this.valueRange,
     this.valueBoolean,
     this.valueBooleanElement,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'SupplyRequestParameter');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// A code or string that identifies the device detail being asserted.
+  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [valueCodeableConcept] /// The value of the device detail.
+  @JsonKey(name: 'valueCodeableConcept')
   final CodeableConcept? valueCodeableConcept;
 
   /// [valueQuantity] /// The value of the device detail.
+  @JsonKey(name: 'valueQuantity')
   final Quantity? valueQuantity;
 
   /// [valueRange] /// The value of the device detail.
+  @JsonKey(name: 'valueRange')
   final Range? valueRange;
 
   /// [valueBoolean] /// The value of the device detail.
+  @JsonKey(name: 'valueBoolean')
   final FhirBoolean? valueBoolean;
+  @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
+  factory SupplyRequestParameter.fromJson(Map<String, dynamic> json) =>
+      _$SupplyRequestParameterFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$SupplyRequestParameterToJson(this);
+
   @override
   SupplyRequestParameter clone() => throw UnimplementedError();
-  SupplyRequestParameter copy({
+  @override
+  SupplyRequestParameter copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -241,6 +322,12 @@ class SupplyRequestParameter extends BackboneElement {
     Range? valueRange,
     FhirBoolean? valueBoolean,
     Element? valueBooleanElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return SupplyRequestParameter(
       id: id ?? this.id,
@@ -252,6 +339,31 @@ class SupplyRequestParameter extends BackboneElement {
       valueRange: valueRange ?? this.valueRange,
       valueBoolean: valueBoolean ?? this.valueBoolean,
       valueBooleanElement: valueBooleanElement ?? this.valueBooleanElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory SupplyRequestParameter.fromYaml(dynamic yaml) => yaml is String
+      ? SupplyRequestParameter.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? SupplyRequestParameter.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'SupplyRequestParameter cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory SupplyRequestParameter.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return SupplyRequestParameter.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

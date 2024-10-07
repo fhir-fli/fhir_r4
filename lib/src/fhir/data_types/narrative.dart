@@ -1,16 +1,15 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'narrative.g.dart';
 
 /// [Narrative] /// A human-readable summary of the resource conveying the essential clinical
 /// and business information for the resource.
+@JsonSerializable()
 class Narrative extends DataType {
   Narrative({
     super.id,
@@ -18,8 +17,13 @@ class Narrative extends DataType {
     required this.status,
     this.statusElement,
     required this.div,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'Narrative');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -27,19 +31,35 @@ class Narrative extends DataType {
   /// [status] /// The status of the narrative - whether it's entirely generated (from just
   /// the defined data or the extensions too), or whether a human authored it and
   /// it may contain additional data.
+  @JsonKey(name: 'status')
   final FhirCode status;
+  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [div] /// The actual narrative content, a stripped down version of XHTML.
+  @JsonKey(name: 'div')
   final FhirMarkdown div;
+  factory Narrative.fromJson(Map<String, dynamic> json) =>
+      _$NarrativeFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$NarrativeToJson(this);
+
   @override
   Narrative clone() => throw UnimplementedError();
-  Narrative copy({
+  @override
+  Narrative copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     FhirCode? status,
     Element? statusElement,
     FhirMarkdown? div,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return Narrative(
       id: id ?? this.id,
@@ -47,6 +67,31 @@ class Narrative extends DataType {
       status: status ?? this.status,
       statusElement: statusElement ?? this.statusElement,
       div: div ?? this.div,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory Narrative.fromYaml(dynamic yaml) => yaml is String
+      ? Narrative.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? Narrative.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'Narrative cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory Narrative.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return Narrative.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

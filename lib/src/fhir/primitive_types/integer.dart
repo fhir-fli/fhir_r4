@@ -47,4 +47,29 @@ class FhirInteger extends FhirNumber {
     return FhirInteger(value,
         element: element?.setProperty(name, elementValue));
   }
+
+  @override
+  FhirInteger copyWith({
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    return FhirInteger._(
+      valueString,
+      valueNumber,
+      isValid,
+      element: element?.copyWith(
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+        children: children,
+        namedChildren: namedChildren,
+      ),
+    );
+  }
 }

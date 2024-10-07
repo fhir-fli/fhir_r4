@@ -1,16 +1,15 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'product_shelf_life.g.dart';
 
 /// [ProductShelfLife] /// The shelf-life and storage information for a medicinal product item or
 /// container can be described using this class.
+@JsonSerializable()
 class ProductShelfLife extends BackboneType {
   ProductShelfLife({
     super.id,
@@ -20,13 +19,19 @@ class ProductShelfLife extends BackboneType {
     required this.type,
     required this.period,
     this.specialPrecautionsForStorage,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ProductShelfLife');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Unique identifier for the packaged Medicinal Product.
+  @JsonKey(name: 'identifier')
   final Identifier? identifier;
 
   /// [type] /// This describes the shelf life, taking into account various scenarios such
@@ -35,21 +40,31 @@ class ProductShelfLife extends BackboneType {
   /// bottle, etc. The shelf life type shall be specified using an appropriate
   /// controlled vocabulary The controlled term and the controlled term
   /// identifier shall be specified.
+  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [period] /// The shelf life time period can be specified using a numerical value for the
   /// period of time and its unit of time measurement The unit of measurement
   /// shall be specified in accordance with ISO 11240 and the resulting
   /// terminology The symbol and the symbol identifier shall be used.
+  @JsonKey(name: 'period')
   final Quantity period;
 
   /// [specialPrecautionsForStorage] /// Special precautions for storage, if any, can be specified using an
   /// appropriate controlled vocabulary The controlled term and the controlled
   /// term identifier shall be specified.
+  @JsonKey(name: 'specialPrecautionsForStorage')
   final List<CodeableConcept>? specialPrecautionsForStorage;
+  factory ProductShelfLife.fromJson(Map<String, dynamic> json) =>
+      _$ProductShelfLifeFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ProductShelfLifeToJson(this);
+
   @override
   ProductShelfLife clone() => throw UnimplementedError();
-  ProductShelfLife copy({
+  @override
+  ProductShelfLife copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -57,6 +72,12 @@ class ProductShelfLife extends BackboneType {
     CodeableConcept? type,
     Quantity? period,
     List<CodeableConcept>? specialPrecautionsForStorage,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ProductShelfLife(
       id: id ?? this.id,
@@ -67,6 +88,31 @@ class ProductShelfLife extends BackboneType {
       period: period ?? this.period,
       specialPrecautionsForStorage:
           specialPrecautionsForStorage ?? this.specialPrecautionsForStorage,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ProductShelfLife.fromYaml(dynamic yaml) => yaml is String
+      ? ProductShelfLife.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ProductShelfLife.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ProductShelfLife cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ProductShelfLife.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ProductShelfLife.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

@@ -1,16 +1,15 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'request_group.g.dart';
 
 /// [RequestGroup] /// A group of related requests that can be used to capture intended activities
 /// that have inter-dependencies such as "give this medication after that one".
+@JsonSerializable()
 class RequestGroup extends DomainResource {
   RequestGroup({
     super.id,
@@ -47,84 +46,122 @@ class RequestGroup extends DomainResource {
     this.reasonReference,
     this.note,
     this.action,
-  }) : super(resourceType: R4ResourceType.RequestGroup);
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(
+            resourceType: R4ResourceType.RequestGroup,
+            fhirType: 'RequestGroup');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Allows a service to provide a unique, business identifier for the request.
+  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [instantiatesCanonical] /// A canonical URL referencing a FHIR-defined protocol, guideline, orderset or
   /// other definition that is adhered to in whole or in part by this request.
+  @JsonKey(name: 'instantiatesCanonical')
   final List<FhirCanonical>? instantiatesCanonical;
+  @JsonKey(name: '_instantiatesCanonical')
   final List<Element>? instantiatesCanonicalElement;
 
   /// [instantiatesUri] /// A URL referencing an externally defined protocol, guideline, orderset or
   /// other definition that is adhered to in whole or in part by this request.
+  @JsonKey(name: 'instantiatesUri')
   final List<FhirUri>? instantiatesUri;
+  @JsonKey(name: '_instantiatesUri')
   final List<Element>? instantiatesUriElement;
 
   /// [basedOn] /// A plan, proposal or order that is fulfilled in whole or in part by this
   /// request.
+  @JsonKey(name: 'basedOn')
   final List<Reference>? basedOn;
 
   /// [replaces] /// Completed or terminated request(s) whose function is taken by this new
   /// request.
+  @JsonKey(name: 'replaces')
   final List<Reference>? replaces;
 
   /// [groupIdentifier] /// A shared identifier common to all requests that were authorized more or
   /// less simultaneously by a single author, representing the identifier of the
   /// requisition, prescription or similar form.
+  @JsonKey(name: 'groupIdentifier')
   final Identifier? groupIdentifier;
 
   /// [status] /// The current state of the request. For request groups, the status reflects
   /// the status of all the requests in the group.
+  @JsonKey(name: 'status')
   final FhirCode status;
+  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [intent] /// Indicates the level of authority/intentionality associated with the request
   /// and where the request fits into the workflow chain.
+  @JsonKey(name: 'intent')
   final FhirCode intent;
+  @JsonKey(name: '_intent')
   final Element? intentElement;
 
   /// [priority] /// Indicates how quickly the request should be addressed with respect to other
   /// requests.
+  @JsonKey(name: 'priority')
   final FhirCode? priority;
+  @JsonKey(name: '_priority')
   final Element? priorityElement;
 
   /// [code] /// A code that identifies what the overall request group is.
+  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [subject] /// The subject for which the request group was created.
+  @JsonKey(name: 'subject')
   final Reference? subject;
 
   /// [encounter] /// Describes the context of the request group, if any.
+  @JsonKey(name: 'encounter')
   final Reference? encounter;
 
   /// [authoredOn] /// Indicates when the request group was created.
+  @JsonKey(name: 'authoredOn')
   final FhirDateTime? authoredOn;
+  @JsonKey(name: '_authoredOn')
   final Element? authoredOnElement;
 
   /// [author] /// Provides a reference to the author of the request group.
+  @JsonKey(name: 'author')
   final Reference? author;
 
   /// [reasonCode] /// Describes the reason for the request group in coded or textual form.
+  @JsonKey(name: 'reasonCode')
   final List<CodeableConcept>? reasonCode;
 
   /// [reasonReference] /// Indicates another resource whose existence justifies this request group.
+  @JsonKey(name: 'reasonReference')
   final List<Reference>? reasonReference;
 
   /// [note] /// Provides a mechanism to communicate additional information about the
   /// response.
+  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [action] /// The actions, if any, produced by the evaluation of the artifact.
+  @JsonKey(name: 'action')
   final List<RequestGroupAction>? action;
+  factory RequestGroup.fromJson(Map<String, dynamic> json) =>
+      _$RequestGroupFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$RequestGroupToJson(this);
+
   @override
   RequestGroup clone() => throw UnimplementedError();
-  RequestGroup copy({
+  @override
+  RequestGroup copyWith({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -159,6 +196,12 @@ class RequestGroup extends DomainResource {
     List<Reference>? reasonReference,
     List<Annotation>? note,
     List<RequestGroupAction>? action,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return RequestGroup(
       id: id ?? this.id,
@@ -198,15 +241,37 @@ class RequestGroup extends DomainResource {
       reasonReference: reasonReference ?? this.reasonReference,
       note: note ?? this.note,
       action: action ?? this.action,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory RequestGroup.fromYaml(dynamic yaml) => yaml is String
+      ? RequestGroup.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? RequestGroup.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'RequestGroup cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory RequestGroup.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return RequestGroup.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [RequestGroupAction] /// The actions, if any, produced by the evaluation of the artifact.
+@JsonSerializable()
 class RequestGroupAction extends BackboneElement {
   RequestGroupAction({
     super.id,
@@ -247,107 +312,154 @@ class RequestGroupAction extends BackboneElement {
     this.cardinalityBehaviorElement,
     this.resource,
     this.action,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'RequestGroupAction');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [prefix] /// A user-visible prefix for the action.
+  @JsonKey(name: 'prefix')
   final FhirString? prefix;
+  @JsonKey(name: '_prefix')
   final Element? prefixElement;
 
   /// [title] /// The title of the action displayed to a user.
+  @JsonKey(name: 'title')
   final FhirString? title;
+  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [description] /// A short description of the action used to provide a summary to display to
   /// the user.
+  @JsonKey(name: 'description')
   final FhirString? description;
+  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [textEquivalent] /// A text equivalent of the action to be performed. This provides a
   /// human-interpretable description of the action when the definition is
   /// consumed by a system that might not be capable of interpreting it
   /// dynamically.
+  @JsonKey(name: 'textEquivalent')
   final FhirString? textEquivalent;
+  @JsonKey(name: '_textEquivalent')
   final Element? textEquivalentElement;
 
   /// [priority] /// Indicates how quickly the action should be addressed with respect to other
   /// actions.
+  @JsonKey(name: 'priority')
   final FhirCode? priority;
+  @JsonKey(name: '_priority')
   final Element? priorityElement;
 
   /// [code] /// A code that provides meaning for the action or action group. For example, a
   /// section may have a LOINC code for a section of a documentation template.
+  @JsonKey(name: 'code')
   final List<CodeableConcept>? code;
 
   /// [documentation] /// Didactic or other informational resources associated with the action that
   /// can be provided to the CDS recipient. Information resources can include
   /// inline text commentary and links to web resources.
+  @JsonKey(name: 'documentation')
   final List<RelatedArtifact>? documentation;
 
   /// [condition] /// An expression that describes applicability criteria, or start/stop
   /// conditions for the action.
+  @JsonKey(name: 'condition')
   final List<RequestGroupCondition>? condition;
 
   /// [relatedAction] /// A relationship to another action such as "before" or "30-60 minutes after
   /// start of".
+  @JsonKey(name: 'relatedAction')
   final List<RequestGroupRelatedAction>? relatedAction;
 
   /// [timingDateTime] /// An optional value describing when the action should be performed.
+  @JsonKey(name: 'timingDateTime')
   final FhirDateTime? timingDateTime;
+  @JsonKey(name: '_timingDateTime')
   final Element? timingDateTimeElement;
 
   /// [timingAge] /// An optional value describing when the action should be performed.
+  @JsonKey(name: 'timingAge')
   final Age? timingAge;
 
   /// [timingPeriod] /// An optional value describing when the action should be performed.
+  @JsonKey(name: 'timingPeriod')
   final Period? timingPeriod;
 
   /// [timingDuration] /// An optional value describing when the action should be performed.
+  @JsonKey(name: 'timingDuration')
   final FhirDuration? timingDuration;
 
   /// [timingRange] /// An optional value describing when the action should be performed.
+  @JsonKey(name: 'timingRange')
   final Range? timingRange;
 
   /// [timingTiming] /// An optional value describing when the action should be performed.
+  @JsonKey(name: 'timingTiming')
   final Timing? timingTiming;
 
   /// [participant] /// The participant that should perform or be responsible for this action.
+  @JsonKey(name: 'participant')
   final List<Reference>? participant;
 
   /// [type] /// The type of action to perform (create, update, remove).
+  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [groupingBehavior] /// Defines the grouping behavior for the action and its children.
+  @JsonKey(name: 'groupingBehavior')
   final FhirCode? groupingBehavior;
+  @JsonKey(name: '_groupingBehavior')
   final Element? groupingBehaviorElement;
 
   /// [selectionBehavior] /// Defines the selection behavior for the action and its children.
+  @JsonKey(name: 'selectionBehavior')
   final FhirCode? selectionBehavior;
+  @JsonKey(name: '_selectionBehavior')
   final Element? selectionBehaviorElement;
 
   /// [requiredBehavior] /// Defines expectations around whether an action is required.
+  @JsonKey(name: 'requiredBehavior')
   final FhirCode? requiredBehavior;
+  @JsonKey(name: '_requiredBehavior')
   final Element? requiredBehaviorElement;
 
   /// [precheckBehavior] /// Defines whether the action should usually be preselected.
+  @JsonKey(name: 'precheckBehavior')
   final FhirCode? precheckBehavior;
+  @JsonKey(name: '_precheckBehavior')
   final Element? precheckBehaviorElement;
 
   /// [cardinalityBehavior] /// Defines whether the action can be selected multiple times.
+  @JsonKey(name: 'cardinalityBehavior')
   final FhirCode? cardinalityBehavior;
+  @JsonKey(name: '_cardinalityBehavior')
   final Element? cardinalityBehaviorElement;
 
   /// [resource] /// The resource that is the target of the action (e.g. CommunicationRequest).
+  @JsonKey(name: 'resource')
   final Reference? resource;
 
   /// [action] /// Sub actions.
+  @JsonKey(name: 'action')
   final List<RequestGroupAction>? action;
+  factory RequestGroupAction.fromJson(Map<String, dynamic> json) =>
+      _$RequestGroupActionFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$RequestGroupActionToJson(this);
+
   @override
   RequestGroupAction clone() => throw UnimplementedError();
-  RequestGroupAction copy({
+  @override
+  RequestGroupAction copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -386,6 +498,12 @@ class RequestGroupAction extends BackboneElement {
     Element? cardinalityBehaviorElement,
     Reference? resource,
     List<RequestGroupAction>? action,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return RequestGroupAction(
       id: id ?? this.id,
@@ -433,16 +551,38 @@ class RequestGroupAction extends BackboneElement {
           cardinalityBehaviorElement ?? this.cardinalityBehaviorElement,
       resource: resource ?? this.resource,
       action: action ?? this.action,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory RequestGroupAction.fromYaml(dynamic yaml) => yaml is String
+      ? RequestGroupAction.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? RequestGroupAction.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'RequestGroupAction cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory RequestGroupAction.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return RequestGroupAction.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [RequestGroupCondition] /// An expression that describes applicability criteria, or start/stop
 /// conditions for the action.
+@JsonSerializable()
 class RequestGroupCondition extends BackboneElement {
   RequestGroupCondition({
     super.id,
@@ -451,28 +591,49 @@ class RequestGroupCondition extends BackboneElement {
     required this.kind,
     this.kindElement,
     this.expression,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'RequestGroupCondition');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [kind] /// The kind of condition.
+  @JsonKey(name: 'kind')
   final FhirCode kind;
+  @JsonKey(name: '_kind')
   final Element? kindElement;
 
   /// [expression] /// An expression that returns true or false, indicating whether or not the
   /// condition is satisfied.
+  @JsonKey(name: 'expression')
   final FhirExpression? expression;
+  factory RequestGroupCondition.fromJson(Map<String, dynamic> json) =>
+      _$RequestGroupConditionFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$RequestGroupConditionToJson(this);
+
   @override
   RequestGroupCondition clone() => throw UnimplementedError();
-  RequestGroupCondition copy({
+  @override
+  RequestGroupCondition copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirCode? kind,
     Element? kindElement,
     FhirExpression? expression,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return RequestGroupCondition(
       id: id ?? this.id,
@@ -481,16 +642,38 @@ class RequestGroupCondition extends BackboneElement {
       kind: kind ?? this.kind,
       kindElement: kindElement ?? this.kindElement,
       expression: expression ?? this.expression,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory RequestGroupCondition.fromYaml(dynamic yaml) => yaml is String
+      ? RequestGroupCondition.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? RequestGroupCondition.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'RequestGroupCondition cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory RequestGroupCondition.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return RequestGroupCondition.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [RequestGroupRelatedAction] /// A relationship to another action such as "before" or "30-60 minutes after
 /// start of".
+@JsonSerializable()
 class RequestGroupRelatedAction extends BackboneElement {
   RequestGroupRelatedAction({
     super.id,
@@ -502,30 +685,48 @@ class RequestGroupRelatedAction extends BackboneElement {
     this.relationshipElement,
     this.offsetDuration,
     this.offsetRange,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'RequestGroupRelatedAction');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [actionId] /// The element id of the action this is related to.
+  @JsonKey(name: 'actionId')
   final FhirId actionId;
+  @JsonKey(name: '_actionId')
   final Element? actionIdElement;
 
   /// [relationship] /// The relationship of this action to the related action.
+  @JsonKey(name: 'relationship')
   final FhirCode relationship;
+  @JsonKey(name: '_relationship')
   final Element? relationshipElement;
 
   /// [offsetDuration] /// A duration or range of durations to apply to the relationship. For example,
   /// 30-60 minutes before.
+  @JsonKey(name: 'offsetDuration')
   final FhirDuration? offsetDuration;
 
   /// [offsetRange] /// A duration or range of durations to apply to the relationship. For example,
   /// 30-60 minutes before.
+  @JsonKey(name: 'offsetRange')
   final Range? offsetRange;
+  factory RequestGroupRelatedAction.fromJson(Map<String, dynamic> json) =>
+      _$RequestGroupRelatedActionFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$RequestGroupRelatedActionToJson(this);
+
   @override
   RequestGroupRelatedAction clone() => throw UnimplementedError();
-  RequestGroupRelatedAction copy({
+  @override
+  RequestGroupRelatedAction copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -535,6 +736,12 @@ class RequestGroupRelatedAction extends BackboneElement {
     Element? relationshipElement,
     FhirDuration? offsetDuration,
     Range? offsetRange,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return RequestGroupRelatedAction(
       id: id ?? this.id,
@@ -546,6 +753,31 @@ class RequestGroupRelatedAction extends BackboneElement {
       relationshipElement: relationshipElement ?? this.relationshipElement,
       offsetDuration: offsetDuration ?? this.offsetDuration,
       offsetRange: offsetRange ?? this.offsetRange,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory RequestGroupRelatedAction.fromYaml(dynamic yaml) => yaml is String
+      ? RequestGroupRelatedAction.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? RequestGroupRelatedAction.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'RequestGroupRelatedAction cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory RequestGroupRelatedAction.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return RequestGroupRelatedAction.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

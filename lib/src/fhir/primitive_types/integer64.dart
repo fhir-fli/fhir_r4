@@ -245,4 +245,29 @@ class FhirInteger64 extends PrimitiveType<BigInt>
   FhirInteger64 setElement(String name, dynamic elementValue) {
     return FhirInteger64(value, element?.setProperty(name, elementValue));
   }
+
+  @override
+  FhirInteger64 copyWith({
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    return FhirInteger64._(
+      valueString,
+      valueNumber,
+      isValid,
+      element: element?.copyWith(
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+        children: children,
+        namedChildren: namedChildren,
+      ),
+    );
+  }
 }

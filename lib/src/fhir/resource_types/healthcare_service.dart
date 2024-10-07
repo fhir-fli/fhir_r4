@@ -1,15 +1,14 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'healthcare_service.g.dart';
 
 /// [HealthcareService] /// The details of a healthcare service available at a location.
+@JsonSerializable()
 class HealthcareService extends DomainResource {
   HealthcareService({
     super.id,
@@ -52,113 +51,157 @@ class HealthcareService extends DomainResource {
     this.availabilityExceptions,
     this.availabilityExceptionsElement,
     this.endpoint,
-  }) : super(resourceType: R4ResourceType.HealthcareService);
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(
+            resourceType: R4ResourceType.HealthcareService,
+            fhirType: 'HealthcareService');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// External identifiers for this item.
+  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [active] /// This flag is used to mark the record to not be used. This is not used when
   /// a center is closed for maintenance, or for holidays, the notAvailable
   /// period is to be used for this.
+  @JsonKey(name: 'active')
   final FhirBoolean? active;
+  @JsonKey(name: '_active')
   final Element? activeElement;
 
   /// [providedBy] /// The organization that provides this healthcare service.
+  @JsonKey(name: 'providedBy')
   final Reference? providedBy;
 
   /// [category] /// Identifies the broad category of service being performed or delivered.
+  @JsonKey(name: 'category')
   final List<CodeableConcept>? category;
 
   /// [type] /// The specific type of service that may be delivered or performed.
+  @JsonKey(name: 'type')
   final List<CodeableConcept>? type;
 
   /// [specialty] /// Collection of specialties handled by the service site. This is more of a
   /// medical term.
+  @JsonKey(name: 'specialty')
   final List<CodeableConcept>? specialty;
 
   /// [location] /// The location(s) where this healthcare service may be provided.
+  @JsonKey(name: 'location')
   final List<Reference>? location;
 
   /// [name] /// Further description of the service as it would be presented to a consumer
   /// while searching.
+  @JsonKey(name: 'name')
   final FhirString? name;
+  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [comment] /// Any additional description of the service and/or any specific issues not
   /// covered by the other attributes, which can be displayed as further detail
   /// under the serviceName.
+  @JsonKey(name: 'comment')
   final FhirString? comment;
+  @JsonKey(name: '_comment')
   final Element? commentElement;
 
   /// [extraDetails] /// Extra details about the service that can't be placed in the other fields.
+  @JsonKey(name: 'extraDetails')
   final FhirMarkdown? extraDetails;
+  @JsonKey(name: '_extraDetails')
   final Element? extraDetailsElement;
 
   /// [photo] /// If there is a photo/symbol associated with this HealthcareService, it may
   /// be included here to facilitate quick identification of the service in a
   /// list.
+  @JsonKey(name: 'photo')
   final Attachment? photo;
 
   /// [telecom] /// List of contacts related to this specific healthcare service.
+  @JsonKey(name: 'telecom')
   final List<ContactPoint>? telecom;
 
   /// [coverageArea] /// The location(s) that this service is available to (not where the service is
   /// provided).
+  @JsonKey(name: 'coverageArea')
   final List<Reference>? coverageArea;
 
   /// [serviceProvisionCode] /// The code(s) that detail the conditions under which the healthcare service
   /// is available/offered.
+  @JsonKey(name: 'serviceProvisionCode')
   final List<CodeableConcept>? serviceProvisionCode;
 
   /// [eligibility] /// Does this service have specific eligibility requirements that need to be
   /// met in order to use the service?
+  @JsonKey(name: 'eligibility')
   final List<HealthcareServiceEligibility>? eligibility;
 
   /// [program] /// Programs that this service is applicable to.
+  @JsonKey(name: 'program')
   final List<CodeableConcept>? program;
 
   /// [characteristic] /// Collection of characteristics (attributes).
+  @JsonKey(name: 'characteristic')
   final List<CodeableConcept>? characteristic;
 
   /// [communication] /// Some services are specifically made available in multiple languages, this
   /// property permits a directory to declare the languages this is offered in.
   /// Typically this is only provided where a service operates in communities
   /// with mixed languages used.
+  @JsonKey(name: 'communication')
   final List<CodeableConcept>? communication;
 
   /// [referralMethod] /// Ways that the service accepts referrals, if this is not provided then it is
   /// implied that no referral is required.
+  @JsonKey(name: 'referralMethod')
   final List<CodeableConcept>? referralMethod;
 
   /// [appointmentRequired] /// Indicates whether or not a prospective consumer will require an appointment
   /// for a particular service at a site to be provided by the Organization.
   /// Indicates if an appointment is required for access to this service.
+  @JsonKey(name: 'appointmentRequired')
   final FhirBoolean? appointmentRequired;
+  @JsonKey(name: '_appointmentRequired')
   final Element? appointmentRequiredElement;
 
   /// [availableTime] /// A collection of times that the Service Site is available.
+  @JsonKey(name: 'availableTime')
   final List<HealthcareServiceAvailableTime>? availableTime;
 
   /// [notAvailable] /// The HealthcareService is not available during this period of time due to
   /// the provided reason.
+  @JsonKey(name: 'notAvailable')
   final List<HealthcareServiceNotAvailable>? notAvailable;
 
   /// [availabilityExceptions] /// A description of site availability exceptions, e.g. public holiday
   /// availability. Succinctly describing all possible exceptions to normal site
   /// availability as details in the available Times and not available Times.
+  @JsonKey(name: 'availabilityExceptions')
   final FhirString? availabilityExceptions;
+  @JsonKey(name: '_availabilityExceptions')
   final Element? availabilityExceptionsElement;
 
   /// [endpoint] /// Technical endpoints providing access to services operated for the specific
   /// healthcare services defined at this resource.
+  @JsonKey(name: 'endpoint')
   final List<Reference>? endpoint;
+  factory HealthcareService.fromJson(Map<String, dynamic> json) =>
+      _$HealthcareServiceFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$HealthcareServiceToJson(this);
+
   @override
   HealthcareService clone() => throw UnimplementedError();
-  HealthcareService copy({
+  @override
+  HealthcareService copyWith({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -199,6 +242,12 @@ class HealthcareService extends DomainResource {
     FhirString? availabilityExceptions,
     Element? availabilityExceptionsElement,
     List<Reference>? endpoint,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return HealthcareService(
       id: id ?? this.id,
@@ -244,16 +293,38 @@ class HealthcareService extends DomainResource {
       availabilityExceptionsElement:
           availabilityExceptionsElement ?? this.availabilityExceptionsElement,
       endpoint: endpoint ?? this.endpoint,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory HealthcareService.fromYaml(dynamic yaml) => yaml is String
+      ? HealthcareService.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? HealthcareService.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'HealthcareService cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory HealthcareService.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return HealthcareService.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [HealthcareServiceEligibility] /// Does this service have specific eligibility requirements that need to be
 /// met in order to use the service?
+@JsonSerializable()
 class HealthcareServiceEligibility extends BackboneElement {
   HealthcareServiceEligibility({
     super.id,
@@ -262,27 +333,48 @@ class HealthcareServiceEligibility extends BackboneElement {
     this.code,
     this.comment,
     this.commentElement,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'HealthcareServiceEligibility');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// Coded value for the eligibility.
+  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [comment] /// Describes the eligibility conditions for the service.
+  @JsonKey(name: 'comment')
   final FhirMarkdown? comment;
+  @JsonKey(name: '_comment')
   final Element? commentElement;
+  factory HealthcareServiceEligibility.fromJson(Map<String, dynamic> json) =>
+      _$HealthcareServiceEligibilityFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$HealthcareServiceEligibilityToJson(this);
+
   @override
   HealthcareServiceEligibility clone() => throw UnimplementedError();
-  HealthcareServiceEligibility copy({
+  @override
+  HealthcareServiceEligibility copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? code,
     FhirMarkdown? comment,
     Element? commentElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return HealthcareServiceEligibility(
       id: id ?? this.id,
@@ -291,15 +383,37 @@ class HealthcareServiceEligibility extends BackboneElement {
       code: code ?? this.code,
       comment: comment ?? this.comment,
       commentElement: commentElement ?? this.commentElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory HealthcareServiceEligibility.fromYaml(dynamic yaml) => yaml is String
+      ? HealthcareServiceEligibility.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? HealthcareServiceEligibility.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'HealthcareServiceEligibility cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory HealthcareServiceEligibility.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return HealthcareServiceEligibility.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [HealthcareServiceAvailableTime] /// A collection of times that the Service Site is available.
+@JsonSerializable()
 class HealthcareServiceAvailableTime extends BackboneElement {
   HealthcareServiceAvailableTime({
     super.id,
@@ -313,34 +427,54 @@ class HealthcareServiceAvailableTime extends BackboneElement {
     this.availableStartTimeElement,
     this.availableEndTime,
     this.availableEndTimeElement,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'HealthcareServiceAvailableTime');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [daysOfWeek] /// Indicates which days of the week are available between the start and end
   /// Times.
+  @JsonKey(name: 'daysOfWeek')
   final List<FhirCode>? daysOfWeek;
+  @JsonKey(name: '_daysOfWeek')
   final List<Element>? daysOfWeekElement;
 
   /// [allDay] /// Is this always available? (hence times are irrelevant) e.g. 24 hour
   /// service.
+  @JsonKey(name: 'allDay')
   final FhirBoolean? allDay;
+  @JsonKey(name: '_allDay')
   final Element? allDayElement;
 
   /// [availableStartTime] /// The opening time of day. Note: If the AllDay flag is set, then this time is
   /// ignored.
+  @JsonKey(name: 'availableStartTime')
   final FhirTime? availableStartTime;
+  @JsonKey(name: '_availableStartTime')
   final Element? availableStartTimeElement;
 
   /// [availableEndTime] /// The closing time of day. Note: If the AllDay flag is set, then this time is
   /// ignored.
+  @JsonKey(name: 'availableEndTime')
   final FhirTime? availableEndTime;
+  @JsonKey(name: '_availableEndTime')
   final Element? availableEndTimeElement;
+  factory HealthcareServiceAvailableTime.fromJson(Map<String, dynamic> json) =>
+      _$HealthcareServiceAvailableTimeFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$HealthcareServiceAvailableTimeToJson(this);
+
   @override
   HealthcareServiceAvailableTime clone() => throw UnimplementedError();
-  HealthcareServiceAvailableTime copy({
+  @override
+  HealthcareServiceAvailableTime copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -352,6 +486,12 @@ class HealthcareServiceAvailableTime extends BackboneElement {
     Element? availableStartTimeElement,
     FhirTime? availableEndTime,
     Element? availableEndTimeElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return HealthcareServiceAvailableTime(
       id: id ?? this.id,
@@ -367,16 +507,39 @@ class HealthcareServiceAvailableTime extends BackboneElement {
       availableEndTime: availableEndTime ?? this.availableEndTime,
       availableEndTimeElement:
           availableEndTimeElement ?? this.availableEndTimeElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory HealthcareServiceAvailableTime.fromYaml(dynamic yaml) => yaml
+          is String
+      ? HealthcareServiceAvailableTime.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? HealthcareServiceAvailableTime.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'HealthcareServiceAvailableTime cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory HealthcareServiceAvailableTime.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return HealthcareServiceAvailableTime.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [HealthcareServiceNotAvailable] /// The HealthcareService is not available during this period of time due to
 /// the provided reason.
+@JsonSerializable()
 class HealthcareServiceNotAvailable extends BackboneElement {
   HealthcareServiceNotAvailable({
     super.id,
@@ -385,29 +548,50 @@ class HealthcareServiceNotAvailable extends BackboneElement {
     required this.description,
     this.descriptionElement,
     this.during,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'HealthcareServiceNotAvailable');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [description] /// The reason that can be presented to the user as to why this time is not
   /// available.
+  @JsonKey(name: 'description')
   final FhirString description;
+  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [during] /// Service is not available (seasonally or for a public holiday) from this
   /// date.
+  @JsonKey(name: 'during')
   final Period? during;
+  factory HealthcareServiceNotAvailable.fromJson(Map<String, dynamic> json) =>
+      _$HealthcareServiceNotAvailableFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$HealthcareServiceNotAvailableToJson(this);
+
   @override
   HealthcareServiceNotAvailable clone() => throw UnimplementedError();
-  HealthcareServiceNotAvailable copy({
+  @override
+  HealthcareServiceNotAvailable copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? description,
     Element? descriptionElement,
     Period? during,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return HealthcareServiceNotAvailable(
       id: id ?? this.id,
@@ -416,6 +600,31 @@ class HealthcareServiceNotAvailable extends BackboneElement {
       description: description ?? this.description,
       descriptionElement: descriptionElement ?? this.descriptionElement,
       during: during ?? this.during,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory HealthcareServiceNotAvailable.fromYaml(dynamic yaml) => yaml is String
+      ? HealthcareServiceNotAvailable.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? HealthcareServiceNotAvailable.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'HealthcareServiceNotAvailable cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory HealthcareServiceNotAvailable.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return HealthcareServiceNotAvailable.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

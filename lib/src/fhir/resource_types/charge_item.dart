@@ -1,13 +1,11 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'charge_item.g.dart';
 
 /// [ChargeItem] /// The resource ChargeItem describes the provision of healthcare provider
 /// products for a certain patient, therefore referring not only to the
@@ -15,6 +13,7 @@ import '../../../fhir_r4.dart';
 /// time, amounts and participating organizations and persons. Main Usage of
 /// the ChargeItem is to enable the billing process and internal cost
 /// allocation.
+@JsonSerializable()
 class ChargeItem extends DomainResource {
   ChargeItem({
     super.id,
@@ -63,119 +62,167 @@ class ChargeItem extends DomainResource {
     this.account,
     this.note,
     this.supportingInformation,
-  }) : super(resourceType: R4ResourceType.ChargeItem);
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(resourceType: R4ResourceType.ChargeItem, fhirType: 'ChargeItem');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifiers assigned to this event performer or other systems.
+  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [definitionUri] /// References the (external) source of pricing information, rules of
   /// application for the code this ChargeItem uses.
+  @JsonKey(name: 'definitionUri')
   final List<FhirUri>? definitionUri;
+  @JsonKey(name: '_definitionUri')
   final List<Element>? definitionUriElement;
 
   /// [definitionCanonical] /// References the source of pricing information, rules of application for the
   /// code this ChargeItem uses.
+  @JsonKey(name: 'definitionCanonical')
   final List<FhirCanonical>? definitionCanonical;
+  @JsonKey(name: '_definitionCanonical')
   final List<Element>? definitionCanonicalElement;
 
   /// [status] /// The current state of the ChargeItem.
+  @JsonKey(name: 'status')
   final FhirCode status;
+  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [partOf] /// ChargeItems can be grouped to larger ChargeItems covering the whole set.
+  @JsonKey(name: 'partOf')
   final List<Reference>? partOf;
 
   /// [code] /// A code that identifies the charge, like a billing code.
+  @JsonKey(name: 'code')
   final CodeableConcept code;
 
   /// [subject] /// The individual or set of individuals the action is being or was performed
   /// on.
+  @JsonKey(name: 'subject')
   final Reference subject;
 
   /// [context] /// The encounter or episode of care that establishes the context for this
   /// event.
+  @JsonKey(name: 'context')
   final Reference? context;
 
   /// [occurrenceDateTime] /// Date/time(s) or duration when the charged service was applied.
+  @JsonKey(name: 'occurrenceDateTime')
   final FhirDateTime? occurrenceDateTime;
+  @JsonKey(name: '_occurrenceDateTime')
   final Element? occurrenceDateTimeElement;
 
   /// [occurrencePeriod] /// Date/time(s) or duration when the charged service was applied.
+  @JsonKey(name: 'occurrencePeriod')
   final Period? occurrencePeriod;
 
   /// [occurrenceTiming] /// Date/time(s) or duration when the charged service was applied.
+  @JsonKey(name: 'occurrenceTiming')
   final Timing? occurrenceTiming;
 
   /// [performer] /// Indicates who or what performed or participated in the charged service.
+  @JsonKey(name: 'performer')
   final List<ChargeItemPerformer>? performer;
 
   /// [performingOrganization] /// The organization requesting the service.
+  @JsonKey(name: 'performingOrganization')
   final Reference? performingOrganization;
 
   /// [requestingOrganization] /// The organization performing the service.
+  @JsonKey(name: 'requestingOrganization')
   final Reference? requestingOrganization;
 
   /// [costCenter] /// The financial cost center permits the tracking of charge attribution.
+  @JsonKey(name: 'costCenter')
   final Reference? costCenter;
 
   /// [quantity] /// Quantity of which the charge item has been serviced.
+  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [bodysite] /// The anatomical location where the related service has been applied.
+  @JsonKey(name: 'bodysite')
   final List<CodeableConcept>? bodysite;
 
   /// [factorOverride] /// Factor overriding the factor determined by the rules associated with the
   /// code.
+  @JsonKey(name: 'factorOverride')
   final FhirDecimal? factorOverride;
+  @JsonKey(name: '_factorOverride')
   final Element? factorOverrideElement;
 
   /// [priceOverride] /// Total price of the charge overriding the list price associated with the
   /// code.
+  @JsonKey(name: 'priceOverride')
   final Money? priceOverride;
 
   /// [overrideReason] /// If the list price or the rule-based factor associated with the code is
   /// overridden, this attribute can capture a text to indicate the reason for
   /// this action.
+  @JsonKey(name: 'overrideReason')
   final FhirString? overrideReason;
+  @JsonKey(name: '_overrideReason')
   final Element? overrideReasonElement;
 
   /// [enterer] /// The device, practitioner, etc. who entered the charge item.
+  @JsonKey(name: 'enterer')
   final Reference? enterer;
 
   /// [enteredDate] /// Date the charge item was entered.
+  @JsonKey(name: 'enteredDate')
   final FhirDateTime? enteredDate;
+  @JsonKey(name: '_enteredDate')
   final Element? enteredDateElement;
 
   /// [reason] /// Describes why the event occurred in coded or textual form.
+  @JsonKey(name: 'reason')
   final List<CodeableConcept>? reason;
 
   /// [service] /// Indicated the rendered service that caused this charge.
+  @JsonKey(name: 'service')
   final List<Reference>? service;
 
   /// [productReference] /// Identifies the device, food, drug or other product being charged either by
   /// type code or reference to an instance.
+  @JsonKey(name: 'productReference')
   final Reference? productReference;
 
   /// [productCodeableConcept] /// Identifies the device, food, drug or other product being charged either by
   /// type code or reference to an instance.
+  @JsonKey(name: 'productCodeableConcept')
   final CodeableConcept? productCodeableConcept;
 
   /// [account] /// Account into which this ChargeItems belongs.
+  @JsonKey(name: 'account')
   final List<Reference>? account;
 
   /// [note] /// Comments made about the event by the performer, subject or other
   /// participants.
+  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [supportingInformation] /// Further information supporting this charge.
+  @JsonKey(name: 'supportingInformation')
   final List<Reference>? supportingInformation;
+  factory ChargeItem.fromJson(Map<String, dynamic> json) =>
+      _$ChargeItemFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ChargeItemToJson(this);
+
   @override
   ChargeItem clone() => throw UnimplementedError();
-  ChargeItem copy({
+  @override
+  ChargeItem copyWith({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -222,6 +269,12 @@ class ChargeItem extends DomainResource {
     List<Reference>? account,
     List<Annotation>? note,
     List<Reference>? supportingInformation,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ChargeItem(
       id: id ?? this.id,
@@ -278,15 +331,37 @@ class ChargeItem extends DomainResource {
       note: note ?? this.note,
       supportingInformation:
           supportingInformation ?? this.supportingInformation,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ChargeItem.fromYaml(dynamic yaml) => yaml is String
+      ? ChargeItem.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ChargeItem.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ChargeItem cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ChargeItem.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ChargeItem.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ChargeItemPerformer] /// Indicates who or what performed or participated in the charged service.
+@JsonSerializable()
 class ChargeItemPerformer extends BackboneElement {
   ChargeItemPerformer({
     super.id,
@@ -294,27 +369,47 @@ class ChargeItemPerformer extends BackboneElement {
     super.modifierExtension,
     this.function_,
     required this.actor,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ChargeItemPerformer');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [function_] /// Describes the type of performance or participation(e.g. primary surgeon,
   /// anesthesiologiest, etc.).
+  @JsonKey(name: 'function')
   final CodeableConcept? function_;
 
   /// [actor] /// The device, practitioner, etc. who performed or participated in the
   /// service.
+  @JsonKey(name: 'actor')
   final Reference actor;
+  factory ChargeItemPerformer.fromJson(Map<String, dynamic> json) =>
+      _$ChargeItemPerformerFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ChargeItemPerformerToJson(this);
+
   @override
   ChargeItemPerformer clone() => throw UnimplementedError();
-  ChargeItemPerformer copy({
+  @override
+  ChargeItemPerformer copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? function_,
     Reference? actor,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ChargeItemPerformer(
       id: id ?? this.id,
@@ -322,6 +417,31 @@ class ChargeItemPerformer extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       function_: function_ ?? this.function_,
       actor: actor ?? this.actor,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ChargeItemPerformer.fromYaml(dynamic yaml) => yaml is String
+      ? ChargeItemPerformer.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ChargeItemPerformer.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ChargeItemPerformer cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ChargeItemPerformer.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ChargeItemPerformer.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

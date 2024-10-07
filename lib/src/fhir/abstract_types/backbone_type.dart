@@ -5,7 +5,7 @@ import '../../../fhir_r4.dart';
 /// Base class for the few data types that are allowed to carry modifier extensions.
 abstract class BackboneType extends DataType {
   /// Constructor for BackboneType
-  BackboneType({
+  const BackboneType({
     super.id,
     super.extension_,
     this.modifierExtension,
@@ -13,7 +13,6 @@ abstract class BackboneType extends DataType {
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
-    super.propertyChanged,
     super.annotations,
     super.children,
     super.namedChildren,
@@ -107,13 +106,12 @@ abstract class BackboneType extends DataType {
 
   @override
   BackboneType copyWith({
-    String? id,
+    FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,

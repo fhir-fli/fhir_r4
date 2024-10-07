@@ -7,7 +7,8 @@ extension FhirBase64BinaryExtension on String {
 }
 
 class FhirBase64Binary extends PrimitiveType<String> {
-  FhirBase64Binary._(this._valueString, this._valueBase64Binary, this._isValid,
+  const FhirBase64Binary._(
+      this._valueString, this._valueBase64Binary, this._isValid,
       [Element? element])
       : super(fhirType: 'base64Binary', element: element);
 
@@ -75,5 +76,30 @@ class FhirBase64Binary extends PrimitiveType<String> {
   @override
   FhirBase64Binary setElement(String name, dynamic elementValue) {
     return FhirBase64Binary(value, element?.setProperty(name, elementValue));
+  }
+
+  @override
+  FhirBase64Binary copyWith({
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    return FhirBase64Binary._(
+      _valueString,
+      _valueBase64Binary,
+      _isValid,
+      element?.copyWith(
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+        children: children,
+        namedChildren: namedChildren,
+      ),
+    );
   }
 }

@@ -1,16 +1,15 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'sampled_data.g.dart';
 
 /// [SampledData] /// A series of measurements taken by a device, with upper and lower limits.
 /// There may be more than one dimension in the data.
+@JsonSerializable()
 class SampledData extends DataType {
   SampledData({
     super.id,
@@ -28,50 +27,75 @@ class SampledData extends DataType {
     this.dimensionsElement,
     this.data,
     this.dataElement,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'SampledData');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [origin] /// The base quantity that a measured value of zero represents. In addition,
   /// this provides the units of the entire measurement series.
+  @JsonKey(name: 'origin')
   final Quantity origin;
 
   /// [period] /// The length of time between sampling times, measured in milliseconds.
+  @JsonKey(name: 'period')
   final FhirDecimal period;
+  @JsonKey(name: '_period')
   final Element? periodElement;
 
   /// [factor] /// A correction factor that is applied to the sampled data points before they
   /// are added to the origin.
+  @JsonKey(name: 'factor')
   final FhirDecimal? factor;
+  @JsonKey(name: '_factor')
   final Element? factorElement;
 
   /// [lowerLimit] /// The lower limit of detection of the measured points. This is needed if any
   /// of the data points have the value "L" (lower than detection limit).
+  @JsonKey(name: 'lowerLimit')
   final FhirDecimal? lowerLimit;
+  @JsonKey(name: '_lowerLimit')
   final Element? lowerLimitElement;
 
   /// [upperLimit] /// The upper limit of detection of the measured points. This is needed if any
   /// of the data points have the value "U" (higher than detection limit).
+  @JsonKey(name: 'upperLimit')
   final FhirDecimal? upperLimit;
+  @JsonKey(name: '_upperLimit')
   final Element? upperLimitElement;
 
   /// [dimensions] /// The number of sample points at each time point. If this value is greater
   /// than one, then the dimensions will be interlaced - all the sample points
   /// for a point in time will be recorded at once.
+  @JsonKey(name: 'dimensions')
   final FhirPositiveInt dimensions;
+  @JsonKey(name: '_dimensions')
   final Element? dimensionsElement;
 
   /// [data] /// A series of data points which are decimal values separated by a single
   /// space (character u20). The special values "E" (error), "L" (below detection
   /// limit) and "U" (above detection limit) can also be used in place of a
   /// decimal value.
+  @JsonKey(name: 'data')
   final FhirString? data;
+  @JsonKey(name: '_data')
   final Element? dataElement;
+  factory SampledData.fromJson(Map<String, dynamic> json) =>
+      _$SampledDataFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$SampledDataToJson(this);
+
   @override
   SampledData clone() => throw UnimplementedError();
-  SampledData copy({
+  @override
+  SampledData copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     Quantity? origin,
@@ -87,6 +111,12 @@ class SampledData extends DataType {
     Element? dimensionsElement,
     FhirString? data,
     Element? dataElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return SampledData(
       id: id ?? this.id,
@@ -104,6 +134,31 @@ class SampledData extends DataType {
       dimensionsElement: dimensionsElement ?? this.dimensionsElement,
       data: data ?? this.data,
       dataElement: dataElement ?? this.dataElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory SampledData.fromYaml(dynamic yaml) => yaml is String
+      ? SampledData.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? SampledData.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'SampledData cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory SampledData.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return SampledData.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

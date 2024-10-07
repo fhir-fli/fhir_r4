@@ -1,16 +1,15 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'search_parameter.g.dart';
 
 /// [SearchParameter] /// A search parameter that defines a named search item that can be used to
 /// search/filter on a resource.
+@JsonSerializable()
 class SearchParameter extends DomainResource {
   SearchParameter({
     super.id,
@@ -71,8 +70,15 @@ class SearchParameter extends DomainResource {
     this.chain,
     this.chainElement,
     this.component,
-  }) : super(resourceType: R4ResourceType.SearchParameter);
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(
+            resourceType: R4ResourceType.SearchParameter,
+            fhirType: 'SearchParameter');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -84,7 +90,9 @@ class SearchParameter extends DomainResource {
   /// parameter is (or will be) published. This URL can be the target of a
   /// canonical reference. It SHALL remain the same when the search parameter is
   /// stored on different servers.
+  @JsonKey(name: 'url')
   final FhirUri url;
+  @JsonKey(name: '_url')
   final Element? urlElement;
 
   /// [version] /// The identifier that is used to identify this version of the search
@@ -94,13 +102,17 @@ class SearchParameter extends DomainResource {
   /// timestamp (e.g. yyyymmdd) if a managed version is not available. There is
   /// also no expectation that versions can be placed in a lexicographical
   /// sequence.
+  @JsonKey(name: 'version')
   final FhirString? version;
+  @JsonKey(name: '_version')
   final Element? versionElement;
 
   /// [name] /// A natural language name identifying the search parameter. This name should
   /// be usable as an identifier for the module by machine processing
   /// applications such as code generation.
+  @JsonKey(name: 'name')
   final FhirString name;
+  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [derivedFrom] /// Where this search parameter is originally defined. If a derivedFrom is
@@ -108,38 +120,51 @@ class SearchParameter extends DomainResource {
   /// the definition from which it is defined. i.e. the parameter should have the
   /// same meaning, and (usually) the functionality should be a proper subset of
   /// the underlying search parameter.
+  @JsonKey(name: 'derivedFrom')
   final FhirCanonical? derivedFrom;
+  @JsonKey(name: '_derivedFrom')
   final Element? derivedFromElement;
 
   /// [status] /// The status of this search parameter. Enables tracking the life-cycle of the
   /// content.
+  @JsonKey(name: 'status')
   final FhirCode status;
+  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [experimental] /// A Boolean value to indicate that this search parameter is authored for
   /// testing purposes (or education/evaluation/marketing) and is not intended to
   /// be used for genuine usage.
+  @JsonKey(name: 'experimental')
   final FhirBoolean? experimental;
+  @JsonKey(name: '_experimental')
   final Element? experimentalElement;
 
   /// [date] /// The date (and optionally time) when the search parameter was published. The
   /// date must change when the business version changes and it must change if
   /// the status code changes. In addition, it should change when the substantive
   /// content of the search parameter changes.
+  @JsonKey(name: 'date')
   final FhirDateTime? date;
+  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [publisher] /// The name of the organization or individual that published the search
   /// parameter.
+  @JsonKey(name: 'publisher')
   final FhirString? publisher;
+  @JsonKey(name: '_publisher')
   final Element? publisherElement;
 
   /// [contact] /// Contact details to assist a user in finding and communicating with the
   /// publisher.
+  @JsonKey(name: 'contact')
   final List<ContactDetail>? contact;
 
   /// [description] /// And how it used.
+  @JsonKey(name: 'description')
   final FhirMarkdown description;
+  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [useContext] /// The content was developed with a focus and intent of supporting the
@@ -147,67 +172,93 @@ class SearchParameter extends DomainResource {
   /// age, ...) or may be references to specific programs (insurance plans,
   /// studies, ...) and may be used to assist with indexing and searching for
   /// appropriate search parameter instances.
+  @JsonKey(name: 'useContext')
   final List<UsageContext>? useContext;
 
   /// [jurisdiction] /// A legal or geographic region in which the search parameter is intended to
   /// be used.
+  @JsonKey(name: 'jurisdiction')
   final List<CodeableConcept>? jurisdiction;
 
   /// [purpose] /// Explanation of why this search parameter is needed and why it has been
   /// designed as it has.
+  @JsonKey(name: 'purpose')
   final FhirMarkdown? purpose;
+  @JsonKey(name: '_purpose')
   final Element? purposeElement;
 
   /// [code] /// The code used in the URL or the parameter name in a parameters resource for
   /// this search parameter.
+  @JsonKey(name: 'code')
   final FhirCode code;
+  @JsonKey(name: '_code')
   final Element? codeElement;
 
   /// [base] /// The base resource type(s) that this search parameter can be used against.
+  @JsonKey(name: 'base')
   final List<FhirCode> base;
+  @JsonKey(name: '_base')
   final List<Element>? baseElement;
 
   /// [type] /// The type of value that a search parameter may contain, and how the content
   /// is interpreted.
+  @JsonKey(name: 'type')
   final FhirCode type;
+  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [expression] /// A FHIRPath expression that returns a set of elements for the search
   /// parameter.
+  @JsonKey(name: 'expression')
   final FhirString? expression;
+  @JsonKey(name: '_expression')
   final Element? expressionElement;
 
   /// [xpath] /// An XPath expression that returns a set of elements for the search
   /// parameter.
+  @JsonKey(name: 'xpath')
   final FhirString? xpath;
+  @JsonKey(name: '_xpath')
   final Element? xpathElement;
 
   /// [xpathUsage] /// How the search parameter relates to the set of elements returned by
   /// evaluating the xpath query.
+  @JsonKey(name: 'xpathUsage')
   final FhirCode? xpathUsage;
+  @JsonKey(name: '_xpathUsage')
   final Element? xpathUsageElement;
 
   /// [target] /// Types of resource (if a resource is referenced).
+  @JsonKey(name: 'target')
   final List<FhirCode>? target;
+  @JsonKey(name: '_target')
   final List<Element>? targetElement;
 
   /// [multipleOr] /// Whether multiple values are allowed for each time the parameter exists.
   /// Values are separated by commas, and the parameter matches if any of the
   /// values match.
+  @JsonKey(name: 'multipleOr')
   final FhirBoolean? multipleOr;
+  @JsonKey(name: '_multipleOr')
   final Element? multipleOrElement;
 
   /// [multipleAnd] /// Whether multiple parameters are allowed - e.g. more than one parameter with
   /// the same name. The search matches if all the parameters match.
+  @JsonKey(name: 'multipleAnd')
   final FhirBoolean? multipleAnd;
+  @JsonKey(name: '_multipleAnd')
   final Element? multipleAndElement;
 
   /// [comparator] /// Comparators supported for the search parameter.
+  @JsonKey(name: 'comparator')
   final List<FhirCode>? comparator;
+  @JsonKey(name: '_comparator')
   final List<Element>? comparatorElement;
 
   /// [modifier] /// A modifier supported for the search parameter.
+  @JsonKey(name: 'modifier')
   final List<FhirCode>? modifier;
+  @JsonKey(name: '_modifier')
   final List<Element>? modifierElement;
 
   /// [chain] /// Contains the names of any search parameters which may be chained to the
@@ -216,14 +267,24 @@ class SearchParameter extends DomainResource {
   /// returned if they contain a reference to a resource which matches the
   /// chained parameter value. Values for this field should be drawn from
   /// SearchParameter.code for a parameter on the target resource type.
+  @JsonKey(name: 'chain')
   final List<FhirString>? chain;
+  @JsonKey(name: '_chain')
   final List<Element>? chainElement;
 
   /// [component] /// Used to define the parts of a composite search parameter.
+  @JsonKey(name: 'component')
   final List<SearchParameterComponent>? component;
+  factory SearchParameter.fromJson(Map<String, dynamic> json) =>
+      _$SearchParameterFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$SearchParameterToJson(this);
+
   @override
   SearchParameter clone() => throw UnimplementedError();
-  SearchParameter copy({
+  @override
+  SearchParameter copyWith({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -282,6 +343,12 @@ class SearchParameter extends DomainResource {
     List<FhirString>? chain,
     List<Element>? chainElement,
     List<SearchParameterComponent>? component,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return SearchParameter(
       id: id ?? this.id,
@@ -342,15 +409,37 @@ class SearchParameter extends DomainResource {
       chain: chain ?? this.chain,
       chainElement: chainElement ?? this.chainElement,
       component: component ?? this.component,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory SearchParameter.fromYaml(dynamic yaml) => yaml is String
+      ? SearchParameter.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? SearchParameter.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'SearchParameter cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory SearchParameter.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return SearchParameter.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [SearchParameterComponent] /// Used to define the parts of a composite search parameter.
+@JsonSerializable()
 class SearchParameterComponent extends BackboneElement {
   SearchParameterComponent({
     super.id,
@@ -360,23 +449,39 @@ class SearchParameterComponent extends BackboneElement {
     this.definitionElement,
     required this.expression,
     this.expressionElement,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'SearchParameterComponent');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [definition] /// The definition of the search parameter that describes this part.
+  @JsonKey(name: 'definition')
   final FhirCanonical definition;
+  @JsonKey(name: '_definition')
   final Element? definitionElement;
 
   /// [expression] /// A sub-expression that defines how to extract values for this component from
   /// the output of the main SearchParameter.expression.
+  @JsonKey(name: 'expression')
   final FhirString expression;
+  @JsonKey(name: '_expression')
   final Element? expressionElement;
+  factory SearchParameterComponent.fromJson(Map<String, dynamic> json) =>
+      _$SearchParameterComponentFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$SearchParameterComponentToJson(this);
+
   @override
   SearchParameterComponent clone() => throw UnimplementedError();
-  SearchParameterComponent copy({
+  @override
+  SearchParameterComponent copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -384,6 +489,12 @@ class SearchParameterComponent extends BackboneElement {
     Element? definitionElement,
     FhirString? expression,
     Element? expressionElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return SearchParameterComponent(
       id: id ?? this.id,
@@ -393,6 +504,31 @@ class SearchParameterComponent extends BackboneElement {
       definitionElement: definitionElement ?? this.definitionElement,
       expression: expression ?? this.expression,
       expressionElement: expressionElement ?? this.expressionElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory SearchParameterComponent.fromYaml(dynamic yaml) => yaml is String
+      ? SearchParameterComponent.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? SearchParameterComponent.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'SearchParameterComponent cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory SearchParameterComponent.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return SearchParameterComponent.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

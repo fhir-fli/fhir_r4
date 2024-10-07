@@ -1,18 +1,17 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'episode_of_care.g.dart';
 
 /// [EpisodeOfCare] /// An association between a patient and an organization / healthcare
 /// provider(s) during which time encounters may occur. The managing
 /// organization assumes a level of responsibility for the patient during this
 /// time.
+@JsonSerializable()
 class EpisodeOfCare extends DomainResource {
   EpisodeOfCare({
     super.id,
@@ -38,8 +37,15 @@ class EpisodeOfCare extends DomainResource {
     this.careManager,
     this.team,
     this.account,
-  }) : super(resourceType: R4ResourceType.EpisodeOfCare);
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(
+            resourceType: R4ResourceType.EpisodeOfCare,
+            fhirType: 'EpisodeOfCare');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -47,51 +53,71 @@ class EpisodeOfCare extends DomainResource {
   /// [identifier] /// The EpisodeOfCare may be known by different identifiers for different
   /// contexts of use, such as when an external agency is tracking the Episode
   /// for funding purposes.
+  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// planned | waitlist | active | onhold | finished | cancelled.
+  @JsonKey(name: 'status')
   final FhirCode status;
+  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [statusHistory] /// The history of statuses that the EpisodeOfCare has been through (without
   /// requiring processing the history of the resource).
+  @JsonKey(name: 'statusHistory')
   final List<EpisodeOfCareStatusHistory>? statusHistory;
 
   /// [type] /// A classification of the type of episode of care; e.g. specialist referral,
   /// disease management, type of funded care.
+  @JsonKey(name: 'type')
   final List<CodeableConcept>? type;
 
   /// [diagnosis] /// The list of diagnosis relevant to this episode of care.
+  @JsonKey(name: 'diagnosis')
   final List<EpisodeOfCareDiagnosis>? diagnosis;
 
   /// [patient] /// The patient who is the focus of this episode of care.
+  @JsonKey(name: 'patient')
   final Reference patient;
 
   /// [managingOrganization] /// The organization that has assumed the specific responsibilities for the
   /// specified duration.
+  @JsonKey(name: 'managingOrganization')
   final Reference? managingOrganization;
 
   /// [period] /// The interval during which the managing organization assumes the defined
   /// responsibility.
+  @JsonKey(name: 'period')
   final Period? period;
 
   /// [referralRequest] /// Referral Request(s) that are fulfilled by this EpisodeOfCare, incoming
   /// referrals.
+  @JsonKey(name: 'referralRequest')
   final List<Reference>? referralRequest;
 
   /// [careManager] /// The practitioner that is the care manager/care coordinator for this
   /// patient.
+  @JsonKey(name: 'careManager')
   final Reference? careManager;
 
   /// [team] /// The list of practitioners that may be facilitating this episode of care for
   /// specific purposes.
+  @JsonKey(name: 'team')
   final List<Reference>? team;
 
   /// [account] /// The set of accounts that may be used for billing for this EpisodeOfCare.
+  @JsonKey(name: 'account')
   final List<Reference>? account;
+  factory EpisodeOfCare.fromJson(Map<String, dynamic> json) =>
+      _$EpisodeOfCareFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$EpisodeOfCareToJson(this);
+
   @override
   EpisodeOfCare clone() => throw UnimplementedError();
-  EpisodeOfCare copy({
+  @override
+  EpisodeOfCare copyWith({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -115,6 +141,12 @@ class EpisodeOfCare extends DomainResource {
     Reference? careManager,
     List<Reference>? team,
     List<Reference>? account,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return EpisodeOfCare(
       id: id ?? this.id,
@@ -140,16 +172,38 @@ class EpisodeOfCare extends DomainResource {
       careManager: careManager ?? this.careManager,
       team: team ?? this.team,
       account: account ?? this.account,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory EpisodeOfCare.fromYaml(dynamic yaml) => yaml is String
+      ? EpisodeOfCare.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? EpisodeOfCare.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'EpisodeOfCare cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory EpisodeOfCare.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return EpisodeOfCare.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [EpisodeOfCareStatusHistory] /// The history of statuses that the EpisodeOfCare has been through (without
 /// requiring processing the history of the resource).
+@JsonSerializable()
 class EpisodeOfCareStatusHistory extends BackboneElement {
   EpisodeOfCareStatusHistory({
     super.id,
@@ -158,27 +212,48 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
     required this.status,
     this.statusElement,
     required this.period,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'EpisodeOfCareStatusHistory');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [status] /// planned | waitlist | active | onhold | finished | cancelled.
+  @JsonKey(name: 'status')
   final FhirCode status;
+  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [period] /// The period during this EpisodeOfCare that the specific status applied.
+  @JsonKey(name: 'period')
   final Period period;
+  factory EpisodeOfCareStatusHistory.fromJson(Map<String, dynamic> json) =>
+      _$EpisodeOfCareStatusHistoryFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$EpisodeOfCareStatusHistoryToJson(this);
+
   @override
   EpisodeOfCareStatusHistory clone() => throw UnimplementedError();
-  EpisodeOfCareStatusHistory copy({
+  @override
+  EpisodeOfCareStatusHistory copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirCode? status,
     Element? statusElement,
     Period? period,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return EpisodeOfCareStatusHistory(
       id: id ?? this.id,
@@ -187,15 +262,37 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
       status: status ?? this.status,
       statusElement: statusElement ?? this.statusElement,
       period: period ?? this.period,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory EpisodeOfCareStatusHistory.fromYaml(dynamic yaml) => yaml is String
+      ? EpisodeOfCareStatusHistory.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? EpisodeOfCareStatusHistory.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'EpisodeOfCareStatusHistory cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory EpisodeOfCareStatusHistory.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return EpisodeOfCareStatusHistory.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [EpisodeOfCareDiagnosis] /// The list of diagnosis relevant to this episode of care.
+@JsonSerializable()
 class EpisodeOfCareDiagnosis extends BackboneElement {
   EpisodeOfCareDiagnosis({
     super.id,
@@ -205,26 +302,42 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
     this.role,
     this.rank,
     this.rankElement,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'EpisodeOfCareDiagnosis');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [condition] /// A list of conditions/problems/diagnoses that this episode of care is
   /// intended to be providing care for.
+  @JsonKey(name: 'condition')
   final Reference condition;
 
   /// [role] /// Role that this diagnosis has within the episode of care (e.g. admission,
   /// billing, discharge …).
+  @JsonKey(name: 'role')
   final CodeableConcept? role;
 
   /// [rank] /// Ranking of the diagnosis (for each role type).
+  @JsonKey(name: 'rank')
   final FhirPositiveInt? rank;
+  @JsonKey(name: '_rank')
   final Element? rankElement;
+  factory EpisodeOfCareDiagnosis.fromJson(Map<String, dynamic> json) =>
+      _$EpisodeOfCareDiagnosisFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$EpisodeOfCareDiagnosisToJson(this);
+
   @override
   EpisodeOfCareDiagnosis clone() => throw UnimplementedError();
-  EpisodeOfCareDiagnosis copy({
+  @override
+  EpisodeOfCareDiagnosis copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -232,6 +345,12 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
     CodeableConcept? role,
     FhirPositiveInt? rank,
     Element? rankElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return EpisodeOfCareDiagnosis(
       id: id ?? this.id,
@@ -241,6 +360,31 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
       role: role ?? this.role,
       rank: rank ?? this.rank,
       rankElement: rankElement ?? this.rankElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory EpisodeOfCareDiagnosis.fromYaml(dynamic yaml) => yaml is String
+      ? EpisodeOfCareDiagnosis.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? EpisodeOfCareDiagnosis.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'EpisodeOfCareDiagnosis cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory EpisodeOfCareDiagnosis.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return EpisodeOfCareDiagnosis.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

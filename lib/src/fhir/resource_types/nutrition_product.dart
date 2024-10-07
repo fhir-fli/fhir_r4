@@ -1,15 +1,14 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'nutrition_product.g.dart';
 
 /// [NutritionProduct] /// A food or fluid product that is consumed by patients.
+@JsonSerializable()
 class NutritionProduct extends DomainResource {
   NutritionProduct({
     super.id,
@@ -33,50 +32,75 @@ class NutritionProduct extends DomainResource {
     this.productCharacteristic,
     this.instance,
     this.note,
-  }) : super(resourceType: R4ResourceType.NutritionProduct);
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(
+            resourceType: R4ResourceType.NutritionProduct,
+            fhirType: 'NutritionProduct');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [status] /// The current state of the product.
+  @JsonKey(name: 'status')
   final FhirCode status;
+  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [category] /// Nutrition products can have different classifications - according to its
   /// nutritional properties, preparation methods, etc.
+  @JsonKey(name: 'category')
   final List<CodeableConcept>? category;
 
   /// [code] /// The code assigned to the product, for example a manufacturer number or
   /// other terminology.
+  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [manufacturer] /// The organisation (manufacturer, representative or legal authorisation
   /// holder) that is responsible for the device.
+  @JsonKey(name: 'manufacturer')
   final List<Reference>? manufacturer;
 
   /// [nutrient] /// The product's nutritional information expressed by the nutrients.
+  @JsonKey(name: 'nutrient')
   final List<NutritionProductNutrient>? nutrient;
 
   /// [ingredient] /// Ingredients contained in this product.
+  @JsonKey(name: 'ingredient')
   final List<NutritionProductIngredient>? ingredient;
 
   /// [knownAllergen] /// Allergens that are known or suspected to be a part of this nutrition
   /// product.
+  @JsonKey(name: 'knownAllergen')
   final List<CodeableReference>? knownAllergen;
 
   /// [productCharacteristic] /// Specifies descriptive properties of the nutrition product.
+  @JsonKey(name: 'productCharacteristic')
   final List<NutritionProductProductCharacteristic>? productCharacteristic;
 
   /// [instance] /// Conveys instance-level information about this product item. One or several
   /// physical, countable instances or occurrences of the product.
+  @JsonKey(name: 'instance')
   final NutritionProductInstance? instance;
 
   /// [note] /// Comments made about the product.
+  @JsonKey(name: 'note')
   final List<Annotation>? note;
+  factory NutritionProduct.fromJson(Map<String, dynamic> json) =>
+      _$NutritionProductFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$NutritionProductToJson(this);
+
   @override
   NutritionProduct clone() => throw UnimplementedError();
-  NutritionProduct copy({
+  @override
+  NutritionProduct copyWith({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -98,6 +122,12 @@ class NutritionProduct extends DomainResource {
     List<NutritionProductProductCharacteristic>? productCharacteristic,
     NutritionProductInstance? instance,
     List<Annotation>? note,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return NutritionProduct(
       id: id ?? this.id,
@@ -122,15 +152,37 @@ class NutritionProduct extends DomainResource {
           productCharacteristic ?? this.productCharacteristic,
       instance: instance ?? this.instance,
       note: note ?? this.note,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory NutritionProduct.fromYaml(dynamic yaml) => yaml is String
+      ? NutritionProduct.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? NutritionProduct.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'NutritionProduct cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory NutritionProduct.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return NutritionProduct.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [NutritionProductNutrient] /// The product's nutritional information expressed by the nutrients.
+@JsonSerializable()
 class NutritionProductNutrient extends BackboneElement {
   NutritionProductNutrient({
     super.id,
@@ -138,26 +190,46 @@ class NutritionProductNutrient extends BackboneElement {
     super.modifierExtension,
     this.item,
     this.amount,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'NutritionProductNutrient');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [item] /// The (relevant) nutrients in the product.
+  @JsonKey(name: 'item')
   final CodeableReference? item;
 
   /// [amount] /// The amount of nutrient expressed in one or more units: X per pack / per
   /// serving / per dose.
+  @JsonKey(name: 'amount')
   final List<Ratio>? amount;
+  factory NutritionProductNutrient.fromJson(Map<String, dynamic> json) =>
+      _$NutritionProductNutrientFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$NutritionProductNutrientToJson(this);
+
   @override
   NutritionProductNutrient clone() => throw UnimplementedError();
-  NutritionProductNutrient copy({
+  @override
+  NutritionProductNutrient copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableReference? item,
     List<Ratio>? amount,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return NutritionProductNutrient(
       id: id ?? this.id,
@@ -165,15 +237,37 @@ class NutritionProductNutrient extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       item: item ?? this.item,
       amount: amount ?? this.amount,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory NutritionProductNutrient.fromYaml(dynamic yaml) => yaml is String
+      ? NutritionProductNutrient.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? NutritionProductNutrient.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'NutritionProductNutrient cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory NutritionProductNutrient.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return NutritionProductNutrient.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [NutritionProductIngredient] /// Ingredients contained in this product.
+@JsonSerializable()
 class NutritionProductIngredient extends BackboneElement {
   NutritionProductIngredient({
     super.id,
@@ -181,25 +275,45 @@ class NutritionProductIngredient extends BackboneElement {
     super.modifierExtension,
     required this.item,
     this.amount,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'NutritionProductIngredient');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [item] /// The ingredient contained in the product.
+  @JsonKey(name: 'item')
   final CodeableReference item;
 
   /// [amount] /// The amount of ingredient that is in the product.
+  @JsonKey(name: 'amount')
   final List<Ratio>? amount;
+  factory NutritionProductIngredient.fromJson(Map<String, dynamic> json) =>
+      _$NutritionProductIngredientFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$NutritionProductIngredientToJson(this);
+
   @override
   NutritionProductIngredient clone() => throw UnimplementedError();
-  NutritionProductIngredient copy({
+  @override
+  NutritionProductIngredient copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableReference? item,
     List<Ratio>? amount,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return NutritionProductIngredient(
       id: id ?? this.id,
@@ -207,15 +321,37 @@ class NutritionProductIngredient extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       item: item ?? this.item,
       amount: amount ?? this.amount,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory NutritionProductIngredient.fromYaml(dynamic yaml) => yaml is String
+      ? NutritionProductIngredient.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? NutritionProductIngredient.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'NutritionProductIngredient cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory NutritionProductIngredient.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return NutritionProductIngredient.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [NutritionProductProductCharacteristic] /// Specifies descriptive properties of the nutrition product.
+@JsonSerializable()
 class NutritionProductProductCharacteristic extends BackboneElement {
   NutritionProductProductCharacteristic({
     super.id,
@@ -231,39 +367,63 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     required this.valueAttachment,
     required this.valueBoolean,
     this.valueBooleanElement,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'NutritionProductProductCharacteristic');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// A code specifying which characteristic of the product is being described
   /// (for example, colour, shape).
+  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [valueCodeableConcept] /// The actual characteristic value corresponding to the type.
+  @JsonKey(name: 'valueCodeableConcept')
   final CodeableConcept valueCodeableConcept;
 
   /// [valueString] /// The actual characteristic value corresponding to the type.
+  @JsonKey(name: 'valueString')
   final FhirString valueString;
+  @JsonKey(name: '_valueString')
   final Element? valueStringElement;
 
   /// [valueQuantity] /// The actual characteristic value corresponding to the type.
+  @JsonKey(name: 'valueQuantity')
   final Quantity valueQuantity;
 
   /// [valueBase64Binary] /// The actual characteristic value corresponding to the type.
+  @JsonKey(name: 'valueBase64Binary')
   final FhirBase64Binary valueBase64Binary;
+  @JsonKey(name: '_valueBase64Binary')
   final Element? valueBase64BinaryElement;
 
   /// [valueAttachment] /// The actual characteristic value corresponding to the type.
+  @JsonKey(name: 'valueAttachment')
   final Attachment valueAttachment;
 
   /// [valueBoolean] /// The actual characteristic value corresponding to the type.
+  @JsonKey(name: 'valueBoolean')
   final FhirBoolean valueBoolean;
+  @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
+  factory NutritionProductProductCharacteristic.fromJson(
+          Map<String, dynamic> json) =>
+      _$NutritionProductProductCharacteristicFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$NutritionProductProductCharacteristicToJson(this);
+
   @override
   NutritionProductProductCharacteristic clone() => throw UnimplementedError();
-  NutritionProductProductCharacteristic copy({
+  @override
+  NutritionProductProductCharacteristic copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -277,6 +437,12 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     Attachment? valueAttachment,
     FhirBoolean? valueBoolean,
     Element? valueBooleanElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return NutritionProductProductCharacteristic(
       id: id ?? this.id,
@@ -293,16 +459,39 @@ class NutritionProductProductCharacteristic extends BackboneElement {
       valueAttachment: valueAttachment ?? this.valueAttachment,
       valueBoolean: valueBoolean ?? this.valueBoolean,
       valueBooleanElement: valueBooleanElement ?? this.valueBooleanElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory NutritionProductProductCharacteristic.fromYaml(dynamic yaml) => yaml
+          is String
+      ? NutritionProductProductCharacteristic.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? NutritionProductProductCharacteristic.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'NutritionProductProductCharacteristic cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory NutritionProductProductCharacteristic.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return NutritionProductProductCharacteristic.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [NutritionProductInstance] /// Conveys instance-level information about this product item. One or several
 /// physical, countable instances or occurrences of the product.
+@JsonSerializable()
 class NutritionProductInstance extends BackboneElement {
   NutritionProductInstance({
     super.id,
@@ -316,35 +505,55 @@ class NutritionProductInstance extends BackboneElement {
     this.expiryElement,
     this.useBy,
     this.useByElement,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'NutritionProductInstance');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [quantity] /// The amount of items or instances that the resource considers, for instance
   /// when referring to 2 identical units together.
+  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [identifier] /// The identifier for the physical instance, typically a serial number.
+  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [lotNumber] /// The identification of the batch or lot of the product.
+  @JsonKey(name: 'lotNumber')
   final FhirString? lotNumber;
+  @JsonKey(name: '_lotNumber')
   final Element? lotNumberElement;
 
   /// [expiry] /// The time after which the product is no longer expected to be in proper
   /// condition, or its use is not advised or not allowed.
+  @JsonKey(name: 'expiry')
   final FhirDateTime? expiry;
+  @JsonKey(name: '_expiry')
   final Element? expiryElement;
 
   /// [useBy] /// The time after which the product is no longer expected to be in proper
   /// condition, or its use is not advised or not allowed.
+  @JsonKey(name: 'useBy')
   final FhirDateTime? useBy;
+  @JsonKey(name: '_useBy')
   final Element? useByElement;
+  factory NutritionProductInstance.fromJson(Map<String, dynamic> json) =>
+      _$NutritionProductInstanceFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$NutritionProductInstanceToJson(this);
+
   @override
   NutritionProductInstance clone() => throw UnimplementedError();
-  NutritionProductInstance copy({
+  @override
+  NutritionProductInstance copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -356,6 +565,12 @@ class NutritionProductInstance extends BackboneElement {
     Element? expiryElement,
     FhirDateTime? useBy,
     Element? useByElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return NutritionProductInstance(
       id: id ?? this.id,
@@ -369,6 +584,31 @@ class NutritionProductInstance extends BackboneElement {
       expiryElement: expiryElement ?? this.expiryElement,
       useBy: useBy ?? this.useBy,
       useByElement: useByElement ?? this.useByElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory NutritionProductInstance.fromYaml(dynamic yaml) => yaml is String
+      ? NutritionProductInstance.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? NutritionProductInstance.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'NutritionProductInstance cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory NutritionProductInstance.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return NutritionProductInstance.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

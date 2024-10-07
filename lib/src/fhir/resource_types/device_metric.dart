@@ -1,16 +1,15 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'device_metric.g.dart';
 
 /// [DeviceMetric] /// Describes a measurement, calculation or setting capability of a medical
 /// device.
+@JsonSerializable()
 class DeviceMetric extends DomainResource {
   DeviceMetric({
     super.id,
@@ -36,8 +35,15 @@ class DeviceMetric extends DomainResource {
     this.categoryElement,
     this.measurementPeriod,
     this.calibration,
-  }) : super(resourceType: R4ResourceType.DeviceMetric);
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(
+            resourceType: R4ResourceType.DeviceMetric,
+            fhirType: 'DeviceMetric');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -45,19 +51,23 @@ class DeviceMetric extends DomainResource {
   /// [identifier] /// Unique instance identifiers assigned to a device by the device or gateway
   /// software, manufacturers, other organizations or owners. For example: handle
   /// ID.
+  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [type] /// Describes the type of the metric. For example: Heart Rate, PEEP Setting,
   /// etc.
+  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [unit] /// Describes the unit that an observed value determined for this metric will
   /// have. For example: Percent, Seconds, etc.
+  @JsonKey(name: 'unit')
   final CodeableConcept? unit;
 
   /// [source] /// Describes the link to the Device that this DeviceMetric belongs to and that
   /// contains administrative device information such as manufacturer, serial
   /// number, etc.
+  @JsonKey(name: 'source')
   final Reference? source;
 
   /// [parent] /// Describes the link to the Device that this DeviceMetric belongs to and that
@@ -66,11 +76,14 @@ class DeviceMetric extends DomainResource {
   /// that represents a Channel. This reference can be used by a client
   /// application to distinguish DeviceMetrics that have the same type, but
   /// should be interpreted based on their containment location.
+  @JsonKey(name: 'parent')
   final Reference? parent;
 
   /// [operationalStatus] /// Indicates current operational state of the device. For example: On, Off,
   /// Standby, etc.
+  @JsonKey(name: 'operationalStatus')
   final FhirCode? operationalStatus;
+  @JsonKey(name: '_operationalStatus')
   final Element? operationalStatusElement;
 
   /// [color] /// Describes the color representation for the metric. This is often used to
@@ -78,12 +91,16 @@ class DeviceMetric extends DomainResource {
   /// consider a Patient Monitor that has ECG/HR and Pleth for example; the
   /// parameters are displayed in different characteristic colors, such as
   /// HR-blue, BP-green, and PR and SpO2- magenta.
+  @JsonKey(name: 'color')
   final FhirCode? color;
+  @JsonKey(name: '_color')
   final Element? colorElement;
 
   /// [category] /// Indicates the category of the observation generation process. A
   /// DeviceMetric can be for example a setting, measurement, or calculation.
+  @JsonKey(name: 'category')
   final FhirCode category;
+  @JsonKey(name: '_category')
   final Element? categoryElement;
 
   /// [measurementPeriod] /// Describes the measurement repetition time. This is not necessarily the same
@@ -94,14 +111,23 @@ class DeviceMetric extends DomainResource {
   /// triggered automatically every hour. The update period may be different than
   /// the measurement repetition time, if the device does not update the
   /// published observed value with the same frequency as it was measured.
+  @JsonKey(name: 'measurementPeriod')
   final Timing? measurementPeriod;
 
   /// [calibration] /// Describes the calibrations that have been performed or that are required to
   /// be performed.
+  @JsonKey(name: 'calibration')
   final List<DeviceMetricCalibration>? calibration;
+  factory DeviceMetric.fromJson(Map<String, dynamic> json) =>
+      _$DeviceMetricFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$DeviceMetricToJson(this);
+
   @override
   DeviceMetric clone() => throw UnimplementedError();
-  DeviceMetric copy({
+  @override
+  DeviceMetric copyWith({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -125,6 +151,12 @@ class DeviceMetric extends DomainResource {
     Element? categoryElement,
     Timing? measurementPeriod,
     List<DeviceMetricCalibration>? calibration,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return DeviceMetric(
       id: id ?? this.id,
@@ -151,16 +183,38 @@ class DeviceMetric extends DomainResource {
       categoryElement: categoryElement ?? this.categoryElement,
       measurementPeriod: measurementPeriod ?? this.measurementPeriod,
       calibration: calibration ?? this.calibration,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory DeviceMetric.fromYaml(dynamic yaml) => yaml is String
+      ? DeviceMetric.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? DeviceMetric.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'DeviceMetric cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory DeviceMetric.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return DeviceMetric.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [DeviceMetricCalibration] /// Describes the calibrations that have been performed or that are required to
 /// be performed.
+@JsonSerializable()
 class DeviceMetricCalibration extends BackboneElement {
   DeviceMetricCalibration({
     super.id,
@@ -172,26 +226,44 @@ class DeviceMetricCalibration extends BackboneElement {
     this.stateElement,
     this.time,
     this.timeElement,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'DeviceMetricCalibration');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Describes the type of the calibration method.
+  @JsonKey(name: 'type')
   final FhirCode? type;
+  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [state] /// Describes the state of the calibration.
+  @JsonKey(name: 'state')
   final FhirCode? state;
+  @JsonKey(name: '_state')
   final Element? stateElement;
 
   /// [time] /// Describes the time last calibration has been performed.
+  @JsonKey(name: 'time')
   final FhirInstant? time;
+  @JsonKey(name: '_time')
   final Element? timeElement;
+  factory DeviceMetricCalibration.fromJson(Map<String, dynamic> json) =>
+      _$DeviceMetricCalibrationFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$DeviceMetricCalibrationToJson(this);
+
   @override
   DeviceMetricCalibration clone() => throw UnimplementedError();
-  DeviceMetricCalibration copy({
+  @override
+  DeviceMetricCalibration copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -201,6 +273,12 @@ class DeviceMetricCalibration extends BackboneElement {
     Element? stateElement,
     FhirInstant? time,
     Element? timeElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return DeviceMetricCalibration(
       id: id ?? this.id,
@@ -212,6 +290,31 @@ class DeviceMetricCalibration extends BackboneElement {
       stateElement: stateElement ?? this.stateElement,
       time: time ?? this.time,
       timeElement: timeElement ?? this.timeElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory DeviceMetricCalibration.fromYaml(dynamic yaml) => yaml is String
+      ? DeviceMetricCalibration.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? DeviceMetricCalibration.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'DeviceMetricCalibration cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory DeviceMetricCalibration.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return DeviceMetricCalibration.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

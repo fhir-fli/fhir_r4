@@ -1,17 +1,16 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'explanation_of_benefit.g.dart';
 
 /// [ExplanationOfBenefit] /// This resource provides: the claim details; adjudication details from the
 /// processing of a Claim; and optionally account balance information, for
 /// informing the subscriber of the benefits provided.
+@JsonSerializable()
 class ExplanationOfBenefit extends DomainResource {
   ExplanationOfBenefit({
     super.id,
@@ -74,25 +73,37 @@ class ExplanationOfBenefit extends DomainResource {
     this.processNote,
     this.benefitPeriod,
     this.benefitBalance,
-  }) : super(resourceType: R4ResourceType.ExplanationOfBenefit);
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(
+            resourceType: R4ResourceType.ExplanationOfBenefit,
+            fhirType: 'ExplanationOfBenefit');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// A unique identifier assigned to this explanation of benefit.
+  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// The status of the resource instance.
+  @JsonKey(name: 'status')
   final FhirCode status;
+  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [type] /// The category of claim, e.g. oral, pharmacy, vision, institutional,
   /// professional.
+  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [subType] /// A finer grained suite of claim type codes which may convey additional
   /// information such as Inpatient vs Outpatient and/or a specialty service.
+  @JsonKey(name: 'subType')
   final CodeableConcept? subType;
 
   /// [use] /// A code to indicate whether the nature of the request is: to request
@@ -100,154 +111,206 @@ class ExplanationOfBenefit extends DomainResource {
   /// authorization and adjudication for provision in the future; or requesting
   /// the non-binding adjudication of the listed products and services which
   /// could be provided in the future.
+  @JsonKey(name: 'use')
   final FhirCode use;
+  @JsonKey(name: '_use')
   final Element? useElement;
 
   /// [patient] /// The party to whom the professional services and/or products have been
   /// supplied or are being considered and for whom actual for forecast
   /// reimbursement is sought.
+  @JsonKey(name: 'patient')
   final Reference patient;
 
   /// [billablePeriod] /// The period for which charges are being submitted.
+  @JsonKey(name: 'billablePeriod')
   final Period? billablePeriod;
 
   /// [created] /// The date this resource was created.
+  @JsonKey(name: 'created')
   final FhirDateTime created;
+  @JsonKey(name: '_created')
   final Element? createdElement;
 
   /// [enterer] /// Individual who created the claim, predetermination or preauthorization.
+  @JsonKey(name: 'enterer')
   final Reference? enterer;
 
   /// [insurer] /// The party responsible for authorization, adjudication and reimbursement.
+  @JsonKey(name: 'insurer')
   final Reference insurer;
 
   /// [provider] /// The provider which is responsible for the claim, predetermination or
   /// preauthorization.
+  @JsonKey(name: 'provider')
   final Reference provider;
 
   /// [priority] /// The provider-required urgency of processing the request. Typical values
   /// include: stat, routine deferred.
+  @JsonKey(name: 'priority')
   final CodeableConcept? priority;
 
   /// [fundsReserveRequested] /// A code to indicate whether and for whom funds are to be reserved for future
   /// claims.
+  @JsonKey(name: 'fundsReserveRequested')
   final CodeableConcept? fundsReserveRequested;
 
   /// [fundsReserve] /// A code, used only on a response to a preauthorization, to indicate whether
   /// the benefits payable have been reserved and for whom.
+  @JsonKey(name: 'fundsReserve')
   final CodeableConcept? fundsReserve;
 
   /// [related] /// Other claims which are related to this claim such as prior submissions or
   /// claims for related services or for the same event.
+  @JsonKey(name: 'related')
   final List<ExplanationOfBenefitRelated>? related;
 
   /// [prescription] /// Prescription to support the dispensing of pharmacy, device or vision
   /// products.
+  @JsonKey(name: 'prescription')
   final Reference? prescription;
 
   /// [originalPrescription] /// Original prescription which has been superseded by this prescription to
   /// support the dispensing of pharmacy services, medications or products.
+  @JsonKey(name: 'originalPrescription')
   final Reference? originalPrescription;
 
   /// [payee] /// The party to be reimbursed for cost of the products and services according
   /// to the terms of the policy.
+  @JsonKey(name: 'payee')
   final ExplanationOfBenefitPayee? payee;
 
   /// [referral] /// A reference to a referral resource.
+  @JsonKey(name: 'referral')
   final Reference? referral;
 
   /// [facility] /// Facility where the services were provided.
+  @JsonKey(name: 'facility')
   final Reference? facility;
 
   /// [claim] /// The business identifier for the instance of the adjudication request: claim
   /// predetermination or preauthorization.
+  @JsonKey(name: 'claim')
   final Reference? claim;
 
   /// [claimResponse] /// The business identifier for the instance of the adjudication response:
   /// claim, predetermination or preauthorization response.
+  @JsonKey(name: 'claimResponse')
   final Reference? claimResponse;
 
   /// [outcome] /// The outcome of the claim, predetermination, or preauthorization processing.
+  @JsonKey(name: 'outcome')
   final FhirCode outcome;
+  @JsonKey(name: '_outcome')
   final Element? outcomeElement;
 
   /// [disposition] /// A human readable description of the status of the adjudication.
+  @JsonKey(name: 'disposition')
   final FhirString? disposition;
+  @JsonKey(name: '_disposition')
   final Element? dispositionElement;
 
   /// [preAuthRef] /// Reference from the Insurer which is used in later communications which
   /// refers to this adjudication.
+  @JsonKey(name: 'preAuthRef')
   final List<FhirString>? preAuthRef;
+  @JsonKey(name: '_preAuthRef')
   final List<Element>? preAuthRefElement;
 
   /// [preAuthRefPeriod] /// The timeframe during which the supplied preauthorization reference may be
   /// quoted on claims to obtain the adjudication as provided.
+  @JsonKey(name: 'preAuthRefPeriod')
   final List<Period>? preAuthRefPeriod;
 
   /// [careTeam] /// The members of the team who provided the products and services.
+  @JsonKey(name: 'careTeam')
   final List<ExplanationOfBenefitCareTeam>? careTeam;
 
   /// [supportingInfo] /// Additional information codes regarding exceptions, special considerations,
   /// the condition, situation, prior or concurrent issues.
+  @JsonKey(name: 'supportingInfo')
   final List<ExplanationOfBenefitSupportingInfo>? supportingInfo;
 
   /// [diagnosis] /// Information about diagnoses relevant to the claim items.
+  @JsonKey(name: 'diagnosis')
   final List<ExplanationOfBenefitDiagnosis>? diagnosis;
 
   /// [procedure] /// Procedures performed on the patient relevant to the billing items with the
   /// claim.
+  @JsonKey(name: 'procedure')
   final List<ExplanationOfBenefitProcedure>? procedure;
 
   /// [precedence] /// This indicates the relative order of a series of EOBs related to different
   /// coverages for the same suite of services.
+  @JsonKey(name: 'precedence')
   final FhirPositiveInt? precedence;
+  @JsonKey(name: '_precedence')
   final Element? precedenceElement;
 
   /// [insurance] /// Financial instruments for reimbursement for the health care products and
   /// services specified on the claim.
+  @JsonKey(name: 'insurance')
   final List<ExplanationOfBenefitInsurance> insurance;
 
   /// [accident] /// Details of a accident which resulted in injuries which required the
   /// products and services listed in the claim.
+  @JsonKey(name: 'accident')
   final ExplanationOfBenefitAccident? accident;
 
   /// [item] /// A claim line. Either a simple (a product or service) or a 'group' of
   /// details which can also be a simple items or groups of sub-details.
+  @JsonKey(name: 'item')
   final List<ExplanationOfBenefitItem>? item;
 
   /// [addItem] /// The first-tier service adjudications for payor added product or service
   /// lines.
+  @JsonKey(name: 'addItem')
   final List<ExplanationOfBenefitAddItem>? addItem;
 
   /// [adjudication] /// The adjudication results which are presented at the header level rather
   /// than at the line-item or add-item levels.
+  @JsonKey(name: 'adjudication')
   final List<ExplanationOfBenefitAdjudication>? adjudication;
 
   /// [total] /// Categorized monetary totals for the adjudication.
+  @JsonKey(name: 'total')
   final List<ExplanationOfBenefitTotal>? total;
 
   /// [payment] /// Payment details for the adjudication of the claim.
+  @JsonKey(name: 'payment')
   final ExplanationOfBenefitPayment? payment;
 
   /// [formCode] /// A code for the form to be used for printing the content.
+  @JsonKey(name: 'formCode')
   final CodeableConcept? formCode;
 
   /// [form] /// The actual form, by reference or inclusion, for printing the content or an
   /// EOB.
+  @JsonKey(name: 'form')
   final Attachment? form;
 
   /// [processNote] /// A note that describes or explains adjudication results in a human readable
   /// form.
+  @JsonKey(name: 'processNote')
   final List<ExplanationOfBenefitProcessNote>? processNote;
 
   /// [benefitPeriod] /// The term of the benefits documented in this response.
+  @JsonKey(name: 'benefitPeriod')
   final Period? benefitPeriod;
 
   /// [benefitBalance] /// Balance by Benefit Category.
+  @JsonKey(name: 'benefitBalance')
   final List<ExplanationOfBenefitBenefitBalance>? benefitBalance;
+  factory ExplanationOfBenefit.fromJson(Map<String, dynamic> json) =>
+      _$ExplanationOfBenefitFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExplanationOfBenefitToJson(this);
+
   @override
   ExplanationOfBenefit clone() => throw UnimplementedError();
-  ExplanationOfBenefit copy({
+  @override
+  ExplanationOfBenefit copyWith({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -308,6 +371,12 @@ class ExplanationOfBenefit extends DomainResource {
     List<ExplanationOfBenefitProcessNote>? processNote,
     Period? benefitPeriod,
     List<ExplanationOfBenefitBenefitBalance>? benefitBalance,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExplanationOfBenefit(
       id: id ?? this.id,
@@ -371,16 +440,38 @@ class ExplanationOfBenefit extends DomainResource {
       processNote: processNote ?? this.processNote,
       benefitPeriod: benefitPeriod ?? this.benefitPeriod,
       benefitBalance: benefitBalance ?? this.benefitBalance,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExplanationOfBenefit.fromYaml(dynamic yaml) => yaml is String
+      ? ExplanationOfBenefit.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExplanationOfBenefit.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExplanationOfBenefit cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExplanationOfBenefit.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExplanationOfBenefit.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExplanationOfBenefitRelated] /// Other claims which are related to this claim such as prior submissions or
 /// claims for related services or for the same event.
+@JsonSerializable()
 class ExplanationOfBenefitRelated extends BackboneElement {
   ExplanationOfBenefitRelated({
     super.id,
@@ -389,30 +480,51 @@ class ExplanationOfBenefitRelated extends BackboneElement {
     this.claim,
     this.relationship,
     this.reference,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExplanationOfBenefitRelated');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [claim] /// Reference to a related claim.
+  @JsonKey(name: 'claim')
   final Reference? claim;
 
   /// [relationship] /// A code to convey how the claims are related.
+  @JsonKey(name: 'relationship')
   final CodeableConcept? relationship;
 
   /// [reference] /// An alternate organizational reference to the case or file to which this
   /// particular claim pertains.
+  @JsonKey(name: 'reference')
   final Identifier? reference;
+  factory ExplanationOfBenefitRelated.fromJson(Map<String, dynamic> json) =>
+      _$ExplanationOfBenefitRelatedFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExplanationOfBenefitRelatedToJson(this);
+
   @override
   ExplanationOfBenefitRelated clone() => throw UnimplementedError();
-  ExplanationOfBenefitRelated copy({
+  @override
+  ExplanationOfBenefitRelated copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Reference? claim,
     CodeableConcept? relationship,
     Identifier? reference,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExplanationOfBenefitRelated(
       id: id ?? this.id,
@@ -421,16 +533,38 @@ class ExplanationOfBenefitRelated extends BackboneElement {
       claim: claim ?? this.claim,
       relationship: relationship ?? this.relationship,
       reference: reference ?? this.reference,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExplanationOfBenefitRelated.fromYaml(dynamic yaml) => yaml is String
+      ? ExplanationOfBenefitRelated.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExplanationOfBenefitRelated.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExplanationOfBenefitRelated cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExplanationOfBenefitRelated.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExplanationOfBenefitRelated.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExplanationOfBenefitPayee] /// The party to be reimbursed for cost of the products and services according
 /// to the terms of the policy.
+@JsonSerializable()
 class ExplanationOfBenefitPayee extends BackboneElement {
   ExplanationOfBenefitPayee({
     super.id,
@@ -438,26 +572,46 @@ class ExplanationOfBenefitPayee extends BackboneElement {
     super.modifierExtension,
     this.type,
     this.party,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExplanationOfBenefitPayee');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Type of Party to be reimbursed: Subscriber, provider, other.
+  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [party] /// Reference to the individual or organization to whom any payment will be
   /// made.
+  @JsonKey(name: 'party')
   final Reference? party;
+  factory ExplanationOfBenefitPayee.fromJson(Map<String, dynamic> json) =>
+      _$ExplanationOfBenefitPayeeFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExplanationOfBenefitPayeeToJson(this);
+
   @override
   ExplanationOfBenefitPayee clone() => throw UnimplementedError();
-  ExplanationOfBenefitPayee copy({
+  @override
+  ExplanationOfBenefitPayee copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
     Reference? party,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExplanationOfBenefitPayee(
       id: id ?? this.id,
@@ -465,15 +619,37 @@ class ExplanationOfBenefitPayee extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       party: party ?? this.party,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExplanationOfBenefitPayee.fromYaml(dynamic yaml) => yaml is String
+      ? ExplanationOfBenefitPayee.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExplanationOfBenefitPayee.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExplanationOfBenefitPayee cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExplanationOfBenefitPayee.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExplanationOfBenefitPayee.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExplanationOfBenefitCareTeam] /// The members of the team who provided the products and services.
+@JsonSerializable()
 class ExplanationOfBenefitCareTeam extends BackboneElement {
   ExplanationOfBenefitCareTeam({
     super.id,
@@ -486,33 +662,52 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
     this.responsibleElement,
     this.role,
     this.qualification,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExplanationOfBenefitCareTeam');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [sequence] /// A number to uniquely identify care team entries.
+  @JsonKey(name: 'sequence')
   final FhirPositiveInt sequence;
+  @JsonKey(name: '_sequence')
   final Element? sequenceElement;
 
   /// [provider] /// Member of the team who provided the product or service.
+  @JsonKey(name: 'provider')
   final Reference provider;
 
   /// [responsible] /// The party who is billing and/or responsible for the claimed products or
   /// services.
+  @JsonKey(name: 'responsible')
   final FhirBoolean? responsible;
+  @JsonKey(name: '_responsible')
   final Element? responsibleElement;
 
   /// [role] /// The lead, assisting or supervising practitioner and their discipline if a
   /// multidisciplinary team.
+  @JsonKey(name: 'role')
   final CodeableConcept? role;
 
   /// [qualification] /// The qualification of the practitioner which is applicable for this service.
+  @JsonKey(name: 'qualification')
   final CodeableConcept? qualification;
+  factory ExplanationOfBenefitCareTeam.fromJson(Map<String, dynamic> json) =>
+      _$ExplanationOfBenefitCareTeamFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExplanationOfBenefitCareTeamToJson(this);
+
   @override
   ExplanationOfBenefitCareTeam clone() => throw UnimplementedError();
-  ExplanationOfBenefitCareTeam copy({
+  @override
+  ExplanationOfBenefitCareTeam copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -523,6 +718,12 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
     Element? responsibleElement,
     CodeableConcept? role,
     CodeableConcept? qualification,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExplanationOfBenefitCareTeam(
       id: id ?? this.id,
@@ -535,16 +736,38 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
       responsibleElement: responsibleElement ?? this.responsibleElement,
       role: role ?? this.role,
       qualification: qualification ?? this.qualification,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExplanationOfBenefitCareTeam.fromYaml(dynamic yaml) => yaml is String
+      ? ExplanationOfBenefitCareTeam.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExplanationOfBenefitCareTeam.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExplanationOfBenefitCareTeam cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExplanationOfBenefitCareTeam.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExplanationOfBenefitCareTeam.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExplanationOfBenefitSupportingInfo] /// Additional information codes regarding exceptions, special considerations,
 /// the condition, situation, prior or concurrent issues.
+@JsonSerializable()
 class ExplanationOfBenefitSupportingInfo extends BackboneElement {
   ExplanationOfBenefitSupportingInfo({
     super.id,
@@ -565,60 +788,89 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
     this.valueAttachment,
     this.valueReference,
     this.reason,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExplanationOfBenefitSupportingInfo');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [sequence] /// A number to uniquely identify supporting information entries.
+  @JsonKey(name: 'sequence')
   final FhirPositiveInt sequence;
+  @JsonKey(name: '_sequence')
   final Element? sequenceElement;
 
   /// [category] /// The general class of the information supplied: information; exception;
   /// accident, employment; onset, etc.
+  @JsonKey(name: 'category')
   final CodeableConcept category;
 
   /// [code] /// System and code pertaining to the specific information regarding special
   /// conditions relating to the setting, treatment or patient for which care is
   /// sought.
+  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [timingDate] /// The date when or period to which this information refers.
+  @JsonKey(name: 'timingDate')
   final FhirDate? timingDate;
+  @JsonKey(name: '_timingDate')
   final Element? timingDateElement;
 
   /// [timingPeriod] /// The date when or period to which this information refers.
+  @JsonKey(name: 'timingPeriod')
   final Period? timingPeriod;
 
   /// [valueBoolean] /// Additional data or information such as resources, documents, images etc.
   /// including references to the data or the actual inclusion of the data.
+  @JsonKey(name: 'valueBoolean')
   final FhirBoolean? valueBoolean;
+  @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
 
   /// [valueString] /// Additional data or information such as resources, documents, images etc.
   /// including references to the data or the actual inclusion of the data.
+  @JsonKey(name: 'valueString')
   final FhirString? valueString;
+  @JsonKey(name: '_valueString')
   final Element? valueStringElement;
 
   /// [valueQuantity] /// Additional data or information such as resources, documents, images etc.
   /// including references to the data or the actual inclusion of the data.
+  @JsonKey(name: 'valueQuantity')
   final Quantity? valueQuantity;
 
   /// [valueAttachment] /// Additional data or information such as resources, documents, images etc.
   /// including references to the data or the actual inclusion of the data.
+  @JsonKey(name: 'valueAttachment')
   final Attachment? valueAttachment;
 
   /// [valueReference] /// Additional data or information such as resources, documents, images etc.
   /// including references to the data or the actual inclusion of the data.
+  @JsonKey(name: 'valueReference')
   final Reference? valueReference;
 
   /// [reason] /// Provides the reason in the situation where a reason code is required in
   /// addition to the content.
+  @JsonKey(name: 'reason')
   final Coding? reason;
+  factory ExplanationOfBenefitSupportingInfo.fromJson(
+          Map<String, dynamic> json) =>
+      _$ExplanationOfBenefitSupportingInfoFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ExplanationOfBenefitSupportingInfoToJson(this);
+
   @override
   ExplanationOfBenefitSupportingInfo clone() => throw UnimplementedError();
-  ExplanationOfBenefitSupportingInfo copy({
+  @override
+  ExplanationOfBenefitSupportingInfo copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -637,6 +889,12 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
     Attachment? valueAttachment,
     Reference? valueReference,
     Coding? reason,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExplanationOfBenefitSupportingInfo(
       id: id ?? this.id,
@@ -657,15 +915,38 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
       valueAttachment: valueAttachment ?? this.valueAttachment,
       valueReference: valueReference ?? this.valueReference,
       reason: reason ?? this.reason,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExplanationOfBenefitSupportingInfo.fromYaml(dynamic yaml) => yaml
+          is String
+      ? ExplanationOfBenefitSupportingInfo.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExplanationOfBenefitSupportingInfo.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExplanationOfBenefitSupportingInfo cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExplanationOfBenefitSupportingInfo.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExplanationOfBenefitSupportingInfo.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExplanationOfBenefitDiagnosis] /// Information about diagnoses relevant to the claim items.
+@JsonSerializable()
 class ExplanationOfBenefitDiagnosis extends BackboneElement {
   ExplanationOfBenefitDiagnosis({
     super.id,
@@ -678,37 +959,56 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
     this.type,
     this.onAdmission,
     this.packageCode,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExplanationOfBenefitDiagnosis');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [sequence] /// A number to uniquely identify diagnosis entries.
+  @JsonKey(name: 'sequence')
   final FhirPositiveInt sequence;
+  @JsonKey(name: '_sequence')
   final Element? sequenceElement;
 
   /// [diagnosisCodeableConcept] /// The nature of illness or problem in a coded form or as a reference to an
   /// external defined Condition.
+  @JsonKey(name: 'diagnosisCodeableConcept')
   final CodeableConcept diagnosisCodeableConcept;
 
   /// [diagnosisReference] /// The nature of illness or problem in a coded form or as a reference to an
   /// external defined Condition.
+  @JsonKey(name: 'diagnosisReference')
   final Reference diagnosisReference;
 
   /// [type] /// When the condition was observed or the relative ranking.
+  @JsonKey(name: 'type')
   final List<CodeableConcept>? type;
 
   /// [onAdmission] /// Indication of whether the diagnosis was present on admission to a facility.
+  @JsonKey(name: 'onAdmission')
   final CodeableConcept? onAdmission;
 
   /// [packageCode] /// A package billing code or bundle code used to group products and services
   /// to a particular health condition (such as heart attack) which is based on a
   /// predetermined grouping code system.
+  @JsonKey(name: 'packageCode')
   final CodeableConcept? packageCode;
+  factory ExplanationOfBenefitDiagnosis.fromJson(Map<String, dynamic> json) =>
+      _$ExplanationOfBenefitDiagnosisFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExplanationOfBenefitDiagnosisToJson(this);
+
   @override
   ExplanationOfBenefitDiagnosis clone() => throw UnimplementedError();
-  ExplanationOfBenefitDiagnosis copy({
+  @override
+  ExplanationOfBenefitDiagnosis copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -719,6 +1019,12 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
     List<CodeableConcept>? type,
     CodeableConcept? onAdmission,
     CodeableConcept? packageCode,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExplanationOfBenefitDiagnosis(
       id: id ?? this.id,
@@ -732,16 +1038,38 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
       type: type ?? this.type,
       onAdmission: onAdmission ?? this.onAdmission,
       packageCode: packageCode ?? this.packageCode,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExplanationOfBenefitDiagnosis.fromYaml(dynamic yaml) => yaml is String
+      ? ExplanationOfBenefitDiagnosis.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExplanationOfBenefitDiagnosis.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExplanationOfBenefitDiagnosis cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExplanationOfBenefitDiagnosis.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExplanationOfBenefitDiagnosis.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExplanationOfBenefitProcedure] /// Procedures performed on the patient relevant to the billing items with the
 /// claim.
+@JsonSerializable()
 class ExplanationOfBenefitProcedure extends BackboneElement {
   ExplanationOfBenefitProcedure({
     super.id,
@@ -755,36 +1083,56 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
     required this.procedureCodeableConcept,
     required this.procedureReference,
     this.udi,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExplanationOfBenefitProcedure');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [sequence] /// A number to uniquely identify procedure entries.
+  @JsonKey(name: 'sequence')
   final FhirPositiveInt sequence;
+  @JsonKey(name: '_sequence')
   final Element? sequenceElement;
 
   /// [type] /// When the condition was observed or the relative ranking.
+  @JsonKey(name: 'type')
   final List<CodeableConcept>? type;
 
   /// [date] /// Date and optionally time the procedure was performed.
+  @JsonKey(name: 'date')
   final FhirDateTime? date;
+  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [procedureCodeableConcept] /// The code or reference to a Procedure resource which identifies the clinical
   /// intervention performed.
+  @JsonKey(name: 'procedureCodeableConcept')
   final CodeableConcept procedureCodeableConcept;
 
   /// [procedureReference] /// The code or reference to a Procedure resource which identifies the clinical
   /// intervention performed.
+  @JsonKey(name: 'procedureReference')
   final Reference procedureReference;
 
   /// [udi] /// Unique Device Identifiers associated with this line item.
+  @JsonKey(name: 'udi')
   final List<Reference>? udi;
+  factory ExplanationOfBenefitProcedure.fromJson(Map<String, dynamic> json) =>
+      _$ExplanationOfBenefitProcedureFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExplanationOfBenefitProcedureToJson(this);
+
   @override
   ExplanationOfBenefitProcedure clone() => throw UnimplementedError();
-  ExplanationOfBenefitProcedure copy({
+  @override
+  ExplanationOfBenefitProcedure copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -796,6 +1144,12 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
     CodeableConcept? procedureCodeableConcept,
     Reference? procedureReference,
     List<Reference>? udi,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExplanationOfBenefitProcedure(
       id: id ?? this.id,
@@ -810,16 +1164,38 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
           procedureCodeableConcept ?? this.procedureCodeableConcept,
       procedureReference: procedureReference ?? this.procedureReference,
       udi: udi ?? this.udi,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExplanationOfBenefitProcedure.fromYaml(dynamic yaml) => yaml is String
+      ? ExplanationOfBenefitProcedure.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExplanationOfBenefitProcedure.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExplanationOfBenefitProcedure cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExplanationOfBenefitProcedure.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExplanationOfBenefitProcedure.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExplanationOfBenefitInsurance] /// Financial instruments for reimbursement for the health care products and
 /// services specified on the claim.
+@JsonSerializable()
 class ExplanationOfBenefitInsurance extends BackboneElement {
   ExplanationOfBenefitInsurance({
     super.id,
@@ -830,30 +1206,47 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
     required this.coverage,
     this.preAuthRef,
     this.preAuthRefElement,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExplanationOfBenefitInsurance');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [focal] /// A flag to indicate that this Coverage is to be used for adjudication of
   /// this claim when set to true.
+  @JsonKey(name: 'focal')
   final FhirBoolean focal;
+  @JsonKey(name: '_focal')
   final Element? focalElement;
 
   /// [coverage] /// Reference to the insurance card level information contained in the Coverage
   /// resource. The coverage issuing insurer will use these details to locate the
   /// patient's actual coverage within the insurer's information system.
+  @JsonKey(name: 'coverage')
   final Reference coverage;
 
   /// [preAuthRef] /// Reference numbers previously provided by the insurer to the provider to be
   /// quoted on subsequent claims containing services or products related to the
   /// prior authorization.
+  @JsonKey(name: 'preAuthRef')
   final List<FhirString>? preAuthRef;
+  @JsonKey(name: '_preAuthRef')
   final List<Element>? preAuthRefElement;
+  factory ExplanationOfBenefitInsurance.fromJson(Map<String, dynamic> json) =>
+      _$ExplanationOfBenefitInsuranceFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExplanationOfBenefitInsuranceToJson(this);
+
   @override
   ExplanationOfBenefitInsurance clone() => throw UnimplementedError();
-  ExplanationOfBenefitInsurance copy({
+  @override
+  ExplanationOfBenefitInsurance copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -862,6 +1255,12 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
     Reference? coverage,
     List<FhirString>? preAuthRef,
     List<Element>? preAuthRefElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExplanationOfBenefitInsurance(
       id: id ?? this.id,
@@ -872,16 +1271,38 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
       coverage: coverage ?? this.coverage,
       preAuthRef: preAuthRef ?? this.preAuthRef,
       preAuthRefElement: preAuthRefElement ?? this.preAuthRefElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExplanationOfBenefitInsurance.fromYaml(dynamic yaml) => yaml is String
+      ? ExplanationOfBenefitInsurance.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExplanationOfBenefitInsurance.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExplanationOfBenefitInsurance cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExplanationOfBenefitInsurance.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExplanationOfBenefitInsurance.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExplanationOfBenefitAccident] /// Details of a accident which resulted in injuries which required the
 /// products and services listed in the claim.
+@JsonSerializable()
 class ExplanationOfBenefitAccident extends BackboneElement {
   ExplanationOfBenefitAccident({
     super.id,
@@ -892,30 +1313,47 @@ class ExplanationOfBenefitAccident extends BackboneElement {
     this.type,
     this.locationAddress,
     this.locationReference,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExplanationOfBenefitAccident');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [date] /// Date of an accident event related to the products and services contained in
   /// the claim.
+  @JsonKey(name: 'date')
   final FhirDate? date;
+  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [type] /// The type or context of the accident event for the purposes of selection of
   /// potential insurance coverages and determination of coordination between
   /// insurers.
+  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [locationAddress] /// The physical location of the accident event.
+  @JsonKey(name: 'locationAddress')
   final Address? locationAddress;
 
   /// [locationReference] /// The physical location of the accident event.
+  @JsonKey(name: 'locationReference')
   final Reference? locationReference;
+  factory ExplanationOfBenefitAccident.fromJson(Map<String, dynamic> json) =>
+      _$ExplanationOfBenefitAccidentFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExplanationOfBenefitAccidentToJson(this);
+
   @override
   ExplanationOfBenefitAccident clone() => throw UnimplementedError();
-  ExplanationOfBenefitAccident copy({
+  @override
+  ExplanationOfBenefitAccident copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -924,6 +1362,12 @@ class ExplanationOfBenefitAccident extends BackboneElement {
     CodeableConcept? type,
     Address? locationAddress,
     Reference? locationReference,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExplanationOfBenefitAccident(
       id: id ?? this.id,
@@ -934,16 +1378,38 @@ class ExplanationOfBenefitAccident extends BackboneElement {
       type: type ?? this.type,
       locationAddress: locationAddress ?? this.locationAddress,
       locationReference: locationReference ?? this.locationReference,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExplanationOfBenefitAccident.fromYaml(dynamic yaml) => yaml is String
+      ? ExplanationOfBenefitAccident.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExplanationOfBenefitAccident.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExplanationOfBenefitAccident cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExplanationOfBenefitAccident.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExplanationOfBenefitAccident.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExplanationOfBenefitItem] /// A claim line. Either a simple (a product or service) or a 'group' of
 /// details which can also be a simple items or groups of sub-details.
+@JsonSerializable()
 class ExplanationOfBenefitItem extends BackboneElement {
   ExplanationOfBenefitItem({
     super.id,
@@ -983,116 +1449,162 @@ class ExplanationOfBenefitItem extends BackboneElement {
     this.noteNumberElement,
     this.adjudication,
     this.detail,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExplanationOfBenefitItem');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [sequence] /// A number to uniquely identify item entries.
+  @JsonKey(name: 'sequence')
   final FhirPositiveInt sequence;
+  @JsonKey(name: '_sequence')
   final Element? sequenceElement;
 
   /// [careTeamSequence] /// Care team members related to this service or product.
+  @JsonKey(name: 'careTeamSequence')
   final List<FhirPositiveInt>? careTeamSequence;
+  @JsonKey(name: '_careTeamSequence')
   final List<Element>? careTeamSequenceElement;
 
   /// [diagnosisSequence] /// Diagnoses applicable for this service or product.
+  @JsonKey(name: 'diagnosisSequence')
   final List<FhirPositiveInt>? diagnosisSequence;
+  @JsonKey(name: '_diagnosisSequence')
   final List<Element>? diagnosisSequenceElement;
 
   /// [procedureSequence] /// Procedures applicable for this service or product.
+  @JsonKey(name: 'procedureSequence')
   final List<FhirPositiveInt>? procedureSequence;
+  @JsonKey(name: '_procedureSequence')
   final List<Element>? procedureSequenceElement;
 
   /// [informationSequence] /// Exceptions, special conditions and supporting information applicable for
   /// this service or product.
+  @JsonKey(name: 'informationSequence')
   final List<FhirPositiveInt>? informationSequence;
+  @JsonKey(name: '_informationSequence')
   final List<Element>? informationSequenceElement;
 
   /// [revenue] /// The type of revenue or cost center providing the product and/or service.
+  @JsonKey(name: 'revenue')
   final CodeableConcept? revenue;
 
   /// [category] /// Code to identify the general type of benefits under which products and
   /// services are provided.
+  @JsonKey(name: 'category')
   final CodeableConcept? category;
 
   /// [productOrService] /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or other
   /// billing code for the item.
+  @JsonKey(name: 'productOrService')
   final CodeableConcept productOrService;
 
   /// [modifier] /// Item typification or modifiers codes to convey additional context for the
   /// product or service.
+  @JsonKey(name: 'modifier')
   final List<CodeableConcept>? modifier;
 
   /// [programCode] /// Identifies the program under which this may be recovered.
+  @JsonKey(name: 'programCode')
   final List<CodeableConcept>? programCode;
 
   /// [servicedDate] /// The date or dates when the service or product was supplied, performed or
   /// completed.
+  @JsonKey(name: 'servicedDate')
   final FhirDate? servicedDate;
+  @JsonKey(name: '_servicedDate')
   final Element? servicedDateElement;
 
   /// [servicedPeriod] /// The date or dates when the service or product was supplied, performed or
   /// completed.
+  @JsonKey(name: 'servicedPeriod')
   final Period? servicedPeriod;
 
   /// [locationCodeableConcept] /// Where the product or service was provided.
+  @JsonKey(name: 'locationCodeableConcept')
   final CodeableConcept? locationCodeableConcept;
 
   /// [locationAddress] /// Where the product or service was provided.
+  @JsonKey(name: 'locationAddress')
   final Address? locationAddress;
 
   /// [locationReference] /// Where the product or service was provided.
+  @JsonKey(name: 'locationReference')
   final Reference? locationReference;
 
   /// [quantity] /// The number of repetitions of a service or product.
+  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [unitPrice] /// If the item is not a group then this is the fee for the product or service,
   /// otherwise this is the total of the fees for the details of the group.
+  @JsonKey(name: 'unitPrice')
   final Money? unitPrice;
 
   /// [factor] /// A real number that represents a multiplier used in determining the overall
   /// value of services delivered and/or goods received. The concept of a Factor
   /// allows for a discount or surcharge multiplier to be applied to a monetary
   /// amount.
+  @JsonKey(name: 'factor')
   final FhirDecimal? factor;
+  @JsonKey(name: '_factor')
   final Element? factorElement;
 
   /// [net] /// The quantity times the unit price for an additional service or product or
   /// charge.
+  @JsonKey(name: 'net')
   final Money? net;
 
   /// [udi] /// Unique Device Identifiers associated with this line item.
+  @JsonKey(name: 'udi')
   final List<Reference>? udi;
 
   /// [bodySite] /// Physical service site on the patient (limb, tooth, etc.).
+  @JsonKey(name: 'bodySite')
   final CodeableConcept? bodySite;
 
   /// [subSite] /// A region or surface of the bodySite, e.g. limb region or tooth surface(s).
+  @JsonKey(name: 'subSite')
   final List<CodeableConcept>? subSite;
 
   /// [encounter] /// A billed item may include goods or services provided in multiple
   /// encounters.
+  @JsonKey(name: 'encounter')
   final List<Reference>? encounter;
 
   /// [noteNumber] /// The numbers associated with notes below which apply to the adjudication of
   /// this item.
+  @JsonKey(name: 'noteNumber')
   final List<FhirPositiveInt>? noteNumber;
+  @JsonKey(name: '_noteNumber')
   final List<Element>? noteNumberElement;
 
   /// [adjudication] /// If this item is a group then the values here are a summary of the
   /// adjudication of the detail items. If this item is a simple product or
   /// service then this is the result of the adjudication of this item.
+  @JsonKey(name: 'adjudication')
   final List<ExplanationOfBenefitAdjudication>? adjudication;
 
   /// [detail] /// Second-tier of goods and services.
+  @JsonKey(name: 'detail')
   final List<ExplanationOfBenefitDetail>? detail;
+  factory ExplanationOfBenefitItem.fromJson(Map<String, dynamic> json) =>
+      _$ExplanationOfBenefitItemFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExplanationOfBenefitItemToJson(this);
+
   @override
   ExplanationOfBenefitItem clone() => throw UnimplementedError();
-  ExplanationOfBenefitItem copy({
+  @override
+  ExplanationOfBenefitItem copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1130,6 +1642,12 @@ class ExplanationOfBenefitItem extends BackboneElement {
     List<Element>? noteNumberElement,
     List<ExplanationOfBenefitAdjudication>? adjudication,
     List<ExplanationOfBenefitDetail>? detail,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExplanationOfBenefitItem(
       id: id ?? this.id,
@@ -1174,17 +1692,39 @@ class ExplanationOfBenefitItem extends BackboneElement {
       noteNumberElement: noteNumberElement ?? this.noteNumberElement,
       adjudication: adjudication ?? this.adjudication,
       detail: detail ?? this.detail,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-}
 
-@JsonCodable()
-@Data()
-@Entity()
+  factory ExplanationOfBenefitItem.fromYaml(dynamic yaml) => yaml is String
+      ? ExplanationOfBenefitItem.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExplanationOfBenefitItem.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExplanationOfBenefitItem cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExplanationOfBenefitItem.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExplanationOfBenefitItem.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+}
 
 /// [ExplanationOfBenefitAdjudication] /// If this item is a group then the values here are a summary of the
 /// adjudication of the detail items. If this item is a simple product or
 /// service then this is the result of the adjudication of this item.
+@JsonSerializable()
 class ExplanationOfBenefitAdjudication extends BackboneElement {
   ExplanationOfBenefitAdjudication({
     super.id,
@@ -1195,8 +1735,13 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
     this.amount,
     this.value,
     this.valueElement,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExplanationOfBenefitAdjudication');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1206,22 +1751,36 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
   /// percentages allowed or payable under the plan, amounts that the patient is
   /// responsible for in-aggregate or pertaining to this item, amounts paid by
   /// other coverages, and the benefit payable for this item.
+  @JsonKey(name: 'category')
   final CodeableConcept category;
 
   /// [reason] /// A code supporting the understanding of the adjudication result and
   /// explaining variance from expected amount.
+  @JsonKey(name: 'reason')
   final CodeableConcept? reason;
 
   /// [amount] /// Monetary amount associated with the category.
+  @JsonKey(name: 'amount')
   final Money? amount;
 
   /// [value] /// A non-monetary value associated with the category. Mutually exclusive to
   /// the amount element above.
+  @JsonKey(name: 'value')
   final FhirDecimal? value;
+  @JsonKey(name: '_value')
   final Element? valueElement;
+  factory ExplanationOfBenefitAdjudication.fromJson(
+          Map<String, dynamic> json) =>
+      _$ExplanationOfBenefitAdjudicationFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ExplanationOfBenefitAdjudicationToJson(this);
+
   @override
   ExplanationOfBenefitAdjudication clone() => throw UnimplementedError();
-  ExplanationOfBenefitAdjudication copy({
+  @override
+  ExplanationOfBenefitAdjudication copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1230,6 +1789,12 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
     Money? amount,
     FhirDecimal? value,
     Element? valueElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExplanationOfBenefitAdjudication(
       id: id ?? this.id,
@@ -1240,15 +1805,38 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
       amount: amount ?? this.amount,
       value: value ?? this.value,
       valueElement: valueElement ?? this.valueElement,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExplanationOfBenefitAdjudication.fromYaml(dynamic yaml) => yaml
+          is String
+      ? ExplanationOfBenefitAdjudication.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExplanationOfBenefitAdjudication.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExplanationOfBenefitAdjudication cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExplanationOfBenefitAdjudication.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExplanationOfBenefitAdjudication.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExplanationOfBenefitDetail] /// Second-tier of goods and services.
+@JsonSerializable()
 class ExplanationOfBenefitDetail extends BackboneElement {
   ExplanationOfBenefitDetail({
     super.id,
@@ -1271,70 +1859,99 @@ class ExplanationOfBenefitDetail extends BackboneElement {
     this.noteNumberElement,
     this.adjudication,
     this.subDetail,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExplanationOfBenefitDetail');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [sequence] /// A claim detail line. Either a simple (a product or service) or a 'group' of
   /// sub-details which are simple items.
+  @JsonKey(name: 'sequence')
   final FhirPositiveInt sequence;
+  @JsonKey(name: '_sequence')
   final Element? sequenceElement;
 
   /// [revenue] /// The type of revenue or cost center providing the product and/or service.
+  @JsonKey(name: 'revenue')
   final CodeableConcept? revenue;
 
   /// [category] /// Code to identify the general type of benefits under which products and
   /// services are provided.
+  @JsonKey(name: 'category')
   final CodeableConcept? category;
 
   /// [productOrService] /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or other
   /// billing code for the item.
+  @JsonKey(name: 'productOrService')
   final CodeableConcept productOrService;
 
   /// [modifier] /// Item typification or modifiers codes to convey additional context for the
   /// product or service.
+  @JsonKey(name: 'modifier')
   final List<CodeableConcept>? modifier;
 
   /// [programCode] /// Identifies the program under which this may be recovered.
+  @JsonKey(name: 'programCode')
   final List<CodeableConcept>? programCode;
 
   /// [quantity] /// The number of repetitions of a service or product.
+  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [unitPrice] /// If the item is not a group then this is the fee for the product or service,
   /// otherwise this is the total of the fees for the details of the group.
+  @JsonKey(name: 'unitPrice')
   final Money? unitPrice;
 
   /// [factor] /// A real number that represents a multiplier used in determining the overall
   /// value of services delivered and/or goods received. The concept of a Factor
   /// allows for a discount or surcharge multiplier to be applied to a monetary
   /// amount.
+  @JsonKey(name: 'factor')
   final FhirDecimal? factor;
+  @JsonKey(name: '_factor')
   final Element? factorElement;
 
   /// [net] /// The quantity times the unit price for an additional service or product or
   /// charge.
+  @JsonKey(name: 'net')
   final Money? net;
 
   /// [udi] /// Unique Device Identifiers associated with this line item.
+  @JsonKey(name: 'udi')
   final List<Reference>? udi;
 
   /// [noteNumber] /// The numbers associated with notes below which apply to the adjudication of
   /// this item.
+  @JsonKey(name: 'noteNumber')
   final List<FhirPositiveInt>? noteNumber;
+  @JsonKey(name: '_noteNumber')
   final List<Element>? noteNumberElement;
 
   /// [adjudication] /// The adjudication results.
+  @JsonKey(name: 'adjudication')
   final List<ExplanationOfBenefitAdjudication>? adjudication;
 
   /// [subDetail] /// Third-tier of goods and services.
+  @JsonKey(name: 'subDetail')
   final List<ExplanationOfBenefitSubDetail>? subDetail;
+  factory ExplanationOfBenefitDetail.fromJson(Map<String, dynamic> json) =>
+      _$ExplanationOfBenefitDetailFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExplanationOfBenefitDetailToJson(this);
+
   @override
   ExplanationOfBenefitDetail clone() => throw UnimplementedError();
-  ExplanationOfBenefitDetail copy({
+  @override
+  ExplanationOfBenefitDetail copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1355,6 +1972,12 @@ class ExplanationOfBenefitDetail extends BackboneElement {
     List<Element>? noteNumberElement,
     List<ExplanationOfBenefitAdjudication>? adjudication,
     List<ExplanationOfBenefitSubDetail>? subDetail,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExplanationOfBenefitDetail(
       id: id ?? this.id,
@@ -1377,15 +2000,37 @@ class ExplanationOfBenefitDetail extends BackboneElement {
       noteNumberElement: noteNumberElement ?? this.noteNumberElement,
       adjudication: adjudication ?? this.adjudication,
       subDetail: subDetail ?? this.subDetail,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExplanationOfBenefitDetail.fromYaml(dynamic yaml) => yaml is String
+      ? ExplanationOfBenefitDetail.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExplanationOfBenefitDetail.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExplanationOfBenefitDetail cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExplanationOfBenefitDetail.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExplanationOfBenefitDetail.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExplanationOfBenefitSubDetail] /// Third-tier of goods and services.
+@JsonSerializable()
 class ExplanationOfBenefitSubDetail extends BackboneElement {
   ExplanationOfBenefitSubDetail({
     super.id,
@@ -1407,67 +2052,95 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
     this.noteNumber,
     this.noteNumberElement,
     this.adjudication,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExplanationOfBenefitSubDetail');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [sequence] /// A claim detail line. Either a simple (a product or service) or a 'group' of
   /// sub-details which are simple items.
+  @JsonKey(name: 'sequence')
   final FhirPositiveInt sequence;
+  @JsonKey(name: '_sequence')
   final Element? sequenceElement;
 
   /// [revenue] /// The type of revenue or cost center providing the product and/or service.
+  @JsonKey(name: 'revenue')
   final CodeableConcept? revenue;
 
   /// [category] /// Code to identify the general type of benefits under which products and
   /// services are provided.
+  @JsonKey(name: 'category')
   final CodeableConcept? category;
 
   /// [productOrService] /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or other
   /// billing code for the item.
+  @JsonKey(name: 'productOrService')
   final CodeableConcept productOrService;
 
   /// [modifier] /// Item typification or modifiers codes to convey additional context for the
   /// product or service.
+  @JsonKey(name: 'modifier')
   final List<CodeableConcept>? modifier;
 
   /// [programCode] /// Identifies the program under which this may be recovered.
+  @JsonKey(name: 'programCode')
   final List<CodeableConcept>? programCode;
 
   /// [quantity] /// The number of repetitions of a service or product.
+  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [unitPrice] /// If the item is not a group then this is the fee for the product or service,
   /// otherwise this is the total of the fees for the details of the group.
+  @JsonKey(name: 'unitPrice')
   final Money? unitPrice;
 
   /// [factor] /// A real number that represents a multiplier used in determining the overall
   /// value of services delivered and/or goods received. The concept of a Factor
   /// allows for a discount or surcharge multiplier to be applied to a monetary
   /// amount.
+  @JsonKey(name: 'factor')
   final FhirDecimal? factor;
+  @JsonKey(name: '_factor')
   final Element? factorElement;
 
   /// [net] /// The quantity times the unit price for an additional service or product or
   /// charge.
+  @JsonKey(name: 'net')
   final Money? net;
 
   /// [udi] /// Unique Device Identifiers associated with this line item.
+  @JsonKey(name: 'udi')
   final List<Reference>? udi;
 
   /// [noteNumber] /// The numbers associated with notes below which apply to the adjudication of
   /// this item.
+  @JsonKey(name: 'noteNumber')
   final List<FhirPositiveInt>? noteNumber;
+  @JsonKey(name: '_noteNumber')
   final List<Element>? noteNumberElement;
 
   /// [adjudication] /// The adjudication results.
+  @JsonKey(name: 'adjudication')
   final List<ExplanationOfBenefitAdjudication>? adjudication;
+  factory ExplanationOfBenefitSubDetail.fromJson(Map<String, dynamic> json) =>
+      _$ExplanationOfBenefitSubDetailFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExplanationOfBenefitSubDetailToJson(this);
+
   @override
   ExplanationOfBenefitSubDetail clone() => throw UnimplementedError();
-  ExplanationOfBenefitSubDetail copy({
+  @override
+  ExplanationOfBenefitSubDetail copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1487,6 +2160,12 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
     List<FhirPositiveInt>? noteNumber,
     List<Element>? noteNumberElement,
     List<ExplanationOfBenefitAdjudication>? adjudication,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExplanationOfBenefitSubDetail(
       id: id ?? this.id,
@@ -1508,16 +2187,38 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
       noteNumber: noteNumber ?? this.noteNumber,
       noteNumberElement: noteNumberElement ?? this.noteNumberElement,
       adjudication: adjudication ?? this.adjudication,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExplanationOfBenefitSubDetail.fromYaml(dynamic yaml) => yaml is String
+      ? ExplanationOfBenefitSubDetail.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExplanationOfBenefitSubDetail.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExplanationOfBenefitSubDetail cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExplanationOfBenefitSubDetail.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExplanationOfBenefitSubDetail.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExplanationOfBenefitAddItem] /// The first-tier service adjudications for payor added product or service
 /// lines.
+@JsonSerializable()
 class ExplanationOfBenefitAddItem extends BackboneElement {
   ExplanationOfBenefitAddItem({
     super.id,
@@ -1550,96 +2251,135 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
     this.noteNumberElement,
     this.adjudication,
     this.detail,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExplanationOfBenefitAddItem');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [itemSequence] /// Claim items which this service line is intended to replace.
+  @JsonKey(name: 'itemSequence')
   final List<FhirPositiveInt>? itemSequence;
+  @JsonKey(name: '_itemSequence')
   final List<Element>? itemSequenceElement;
 
   /// [detailSequence] /// The sequence number of the details within the claim item which this line is
   /// intended to replace.
+  @JsonKey(name: 'detailSequence')
   final List<FhirPositiveInt>? detailSequence;
+  @JsonKey(name: '_detailSequence')
   final List<Element>? detailSequenceElement;
 
   /// [subDetailSequence] /// The sequence number of the sub-details woithin the details within the claim
   /// item which this line is intended to replace.
+  @JsonKey(name: 'subDetailSequence')
   final List<FhirPositiveInt>? subDetailSequence;
+  @JsonKey(name: '_subDetailSequence')
   final List<Element>? subDetailSequenceElement;
 
   /// [provider] /// The providers who are authorized for the services rendered to the patient.
+  @JsonKey(name: 'provider')
   final List<Reference>? provider;
 
   /// [productOrService] /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or other
   /// billing code for the item.
+  @JsonKey(name: 'productOrService')
   final CodeableConcept productOrService;
 
   /// [modifier] /// Item typification or modifiers codes to convey additional context for the
   /// product or service.
+  @JsonKey(name: 'modifier')
   final List<CodeableConcept>? modifier;
 
   /// [programCode] /// Identifies the program under which this may be recovered.
+  @JsonKey(name: 'programCode')
   final List<CodeableConcept>? programCode;
 
   /// [servicedDate] /// The date or dates when the service or product was supplied, performed or
   /// completed.
+  @JsonKey(name: 'servicedDate')
   final FhirDate? servicedDate;
+  @JsonKey(name: '_servicedDate')
   final Element? servicedDateElement;
 
   /// [servicedPeriod] /// The date or dates when the service or product was supplied, performed or
   /// completed.
+  @JsonKey(name: 'servicedPeriod')
   final Period? servicedPeriod;
 
   /// [locationCodeableConcept] /// Where the product or service was provided.
+  @JsonKey(name: 'locationCodeableConcept')
   final CodeableConcept? locationCodeableConcept;
 
   /// [locationAddress] /// Where the product or service was provided.
+  @JsonKey(name: 'locationAddress')
   final Address? locationAddress;
 
   /// [locationReference] /// Where the product or service was provided.
+  @JsonKey(name: 'locationReference')
   final Reference? locationReference;
 
   /// [quantity] /// The number of repetitions of a service or product.
+  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [unitPrice] /// If the item is not a group then this is the fee for the product or service,
   /// otherwise this is the total of the fees for the details of the group.
+  @JsonKey(name: 'unitPrice')
   final Money? unitPrice;
 
   /// [factor] /// A real number that represents a multiplier used in determining the overall
   /// value of services delivered and/or goods received. The concept of a Factor
   /// allows for a discount or surcharge multiplier to be applied to a monetary
   /// amount.
+  @JsonKey(name: 'factor')
   final FhirDecimal? factor;
+  @JsonKey(name: '_factor')
   final Element? factorElement;
 
   /// [net] /// The quantity times the unit price for an additional service or product or
   /// charge.
+  @JsonKey(name: 'net')
   final Money? net;
 
   /// [bodySite] /// Physical service site on the patient (limb, tooth, etc.).
+  @JsonKey(name: 'bodySite')
   final CodeableConcept? bodySite;
 
   /// [subSite] /// A region or surface of the bodySite, e.g. limb region or tooth surface(s).
+  @JsonKey(name: 'subSite')
   final List<CodeableConcept>? subSite;
 
   /// [noteNumber] /// The numbers associated with notes below which apply to the adjudication of
   /// this item.
+  @JsonKey(name: 'noteNumber')
   final List<FhirPositiveInt>? noteNumber;
+  @JsonKey(name: '_noteNumber')
   final List<Element>? noteNumberElement;
 
   /// [adjudication] /// The adjudication results.
+  @JsonKey(name: 'adjudication')
   final List<ExplanationOfBenefitAdjudication>? adjudication;
 
   /// [detail] /// The second-tier service adjudications for payor added services.
+  @JsonKey(name: 'detail')
   final List<ExplanationOfBenefitDetail>? detail;
+  factory ExplanationOfBenefitAddItem.fromJson(Map<String, dynamic> json) =>
+      _$ExplanationOfBenefitAddItemFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExplanationOfBenefitAddItemToJson(this);
+
   @override
   ExplanationOfBenefitAddItem clone() => throw UnimplementedError();
-  ExplanationOfBenefitAddItem copy({
+  @override
+  ExplanationOfBenefitAddItem copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1670,6 +2410,12 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
     List<Element>? noteNumberElement,
     List<ExplanationOfBenefitAdjudication>? adjudication,
     List<ExplanationOfBenefitDetail>? detail,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExplanationOfBenefitAddItem(
       id: id ?? this.id,
@@ -1705,15 +2451,37 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
       noteNumberElement: noteNumberElement ?? this.noteNumberElement,
       adjudication: adjudication ?? this.adjudication,
       detail: detail ?? this.detail,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExplanationOfBenefitAddItem.fromYaml(dynamic yaml) => yaml is String
+      ? ExplanationOfBenefitAddItem.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExplanationOfBenefitAddItem.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExplanationOfBenefitAddItem cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExplanationOfBenefitAddItem.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExplanationOfBenefitAddItem.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExplanationOfBenefitDetail1] /// The second-tier service adjudications for payor added services.
+@JsonSerializable()
 class ExplanationOfBenefitDetail1 extends BackboneElement {
   ExplanationOfBenefitDetail1({
     super.id,
@@ -1730,8 +2498,13 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
     this.noteNumberElement,
     this.adjudication,
     this.subDetail,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExplanationOfBenefitDetail1');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1739,43 +2512,61 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
   /// [productOrService] /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or other
   /// billing code for the item.
+  @JsonKey(name: 'productOrService')
   final CodeableConcept productOrService;
 
   /// [modifier] /// Item typification or modifiers codes to convey additional context for the
   /// product or service.
+  @JsonKey(name: 'modifier')
   final List<CodeableConcept>? modifier;
 
   /// [quantity] /// The number of repetitions of a service or product.
+  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [unitPrice] /// If the item is not a group then this is the fee for the product or service,
   /// otherwise this is the total of the fees for the details of the group.
+  @JsonKey(name: 'unitPrice')
   final Money? unitPrice;
 
   /// [factor] /// A real number that represents a multiplier used in determining the overall
   /// value of services delivered and/or goods received. The concept of a Factor
   /// allows for a discount or surcharge multiplier to be applied to a monetary
   /// amount.
+  @JsonKey(name: 'factor')
   final FhirDecimal? factor;
+  @JsonKey(name: '_factor')
   final Element? factorElement;
 
   /// [net] /// The quantity times the unit price for an additional service or product or
   /// charge.
+  @JsonKey(name: 'net')
   final Money? net;
 
   /// [noteNumber] /// The numbers associated with notes below which apply to the adjudication of
   /// this item.
+  @JsonKey(name: 'noteNumber')
   final List<FhirPositiveInt>? noteNumber;
+  @JsonKey(name: '_noteNumber')
   final List<Element>? noteNumberElement;
 
   /// [adjudication] /// The adjudication results.
+  @JsonKey(name: 'adjudication')
   final List<ExplanationOfBenefitAdjudication>? adjudication;
 
   /// [subDetail] /// The third-tier service adjudications for payor added services.
+  @JsonKey(name: 'subDetail')
   final List<ExplanationOfBenefitSubDetail>? subDetail;
+  factory ExplanationOfBenefitDetail1.fromJson(Map<String, dynamic> json) =>
+      _$ExplanationOfBenefitDetail1FromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExplanationOfBenefitDetail1ToJson(this);
+
   @override
   ExplanationOfBenefitDetail1 clone() => throw UnimplementedError();
-  ExplanationOfBenefitDetail1 copy({
+  @override
+  ExplanationOfBenefitDetail1 copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1790,6 +2581,12 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
     List<Element>? noteNumberElement,
     List<ExplanationOfBenefitAdjudication>? adjudication,
     List<ExplanationOfBenefitSubDetail>? subDetail,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExplanationOfBenefitDetail1(
       id: id ?? this.id,
@@ -1806,15 +2603,37 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
       noteNumberElement: noteNumberElement ?? this.noteNumberElement,
       adjudication: adjudication ?? this.adjudication,
       subDetail: subDetail ?? this.subDetail,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExplanationOfBenefitDetail1.fromYaml(dynamic yaml) => yaml is String
+      ? ExplanationOfBenefitDetail1.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExplanationOfBenefitDetail1.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExplanationOfBenefitDetail1 cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExplanationOfBenefitDetail1.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExplanationOfBenefitDetail1.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExplanationOfBenefitSubDetail1] /// The third-tier service adjudications for payor added services.
+@JsonSerializable()
 class ExplanationOfBenefitSubDetail1 extends BackboneElement {
   ExplanationOfBenefitSubDetail1({
     super.id,
@@ -1830,8 +2649,13 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
     this.noteNumber,
     this.noteNumberElement,
     this.adjudication,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExplanationOfBenefitSubDetail1');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1839,40 +2663,57 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
   /// [productOrService] /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or other
   /// billing code for the item.
+  @JsonKey(name: 'productOrService')
   final CodeableConcept productOrService;
 
   /// [modifier] /// Item typification or modifiers codes to convey additional context for the
   /// product or service.
+  @JsonKey(name: 'modifier')
   final List<CodeableConcept>? modifier;
 
   /// [quantity] /// The number of repetitions of a service or product.
+  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [unitPrice] /// If the item is not a group then this is the fee for the product or service,
   /// otherwise this is the total of the fees for the details of the group.
+  @JsonKey(name: 'unitPrice')
   final Money? unitPrice;
 
   /// [factor] /// A real number that represents a multiplier used in determining the overall
   /// value of services delivered and/or goods received. The concept of a Factor
   /// allows for a discount or surcharge multiplier to be applied to a monetary
   /// amount.
+  @JsonKey(name: 'factor')
   final FhirDecimal? factor;
+  @JsonKey(name: '_factor')
   final Element? factorElement;
 
   /// [net] /// The quantity times the unit price for an additional service or product or
   /// charge.
+  @JsonKey(name: 'net')
   final Money? net;
 
   /// [noteNumber] /// The numbers associated with notes below which apply to the adjudication of
   /// this item.
+  @JsonKey(name: 'noteNumber')
   final List<FhirPositiveInt>? noteNumber;
+  @JsonKey(name: '_noteNumber')
   final List<Element>? noteNumberElement;
 
   /// [adjudication] /// The adjudication results.
+  @JsonKey(name: 'adjudication')
   final List<ExplanationOfBenefitAdjudication>? adjudication;
+  factory ExplanationOfBenefitSubDetail1.fromJson(Map<String, dynamic> json) =>
+      _$ExplanationOfBenefitSubDetail1FromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExplanationOfBenefitSubDetail1ToJson(this);
+
   @override
   ExplanationOfBenefitSubDetail1 clone() => throw UnimplementedError();
-  ExplanationOfBenefitSubDetail1 copy({
+  @override
+  ExplanationOfBenefitSubDetail1 copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -1886,6 +2727,12 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
     List<FhirPositiveInt>? noteNumber,
     List<Element>? noteNumberElement,
     List<ExplanationOfBenefitAdjudication>? adjudication,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExplanationOfBenefitSubDetail1(
       id: id ?? this.id,
@@ -1901,15 +2748,38 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
       noteNumber: noteNumber ?? this.noteNumber,
       noteNumberElement: noteNumberElement ?? this.noteNumberElement,
       adjudication: adjudication ?? this.adjudication,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExplanationOfBenefitSubDetail1.fromYaml(dynamic yaml) => yaml
+          is String
+      ? ExplanationOfBenefitSubDetail1.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExplanationOfBenefitSubDetail1.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExplanationOfBenefitSubDetail1 cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExplanationOfBenefitSubDetail1.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExplanationOfBenefitSubDetail1.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExplanationOfBenefitTotal] /// Categorized monetary totals for the adjudication.
+@JsonSerializable()
 class ExplanationOfBenefitTotal extends BackboneElement {
   ExplanationOfBenefitTotal({
     super.id,
@@ -1917,8 +2787,13 @@ class ExplanationOfBenefitTotal extends BackboneElement {
     super.modifierExtension,
     required this.category,
     required this.amount,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExplanationOfBenefitTotal');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1928,18 +2803,33 @@ class ExplanationOfBenefitTotal extends BackboneElement {
   /// percentages allowed or payable under the plan, amounts that the patient is
   /// responsible for in aggregate or pertaining to this item, amounts paid by
   /// other coverages, and the benefit payable for this item.
+  @JsonKey(name: 'category')
   final CodeableConcept category;
 
   /// [amount] /// Monetary total amount associated with the category.
+  @JsonKey(name: 'amount')
   final Money amount;
+  factory ExplanationOfBenefitTotal.fromJson(Map<String, dynamic> json) =>
+      _$ExplanationOfBenefitTotalFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExplanationOfBenefitTotalToJson(this);
+
   @override
   ExplanationOfBenefitTotal clone() => throw UnimplementedError();
-  ExplanationOfBenefitTotal copy({
+  @override
+  ExplanationOfBenefitTotal copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? category,
     Money? amount,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExplanationOfBenefitTotal(
       id: id ?? this.id,
@@ -1947,15 +2837,37 @@ class ExplanationOfBenefitTotal extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       category: category ?? this.category,
       amount: amount ?? this.amount,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExplanationOfBenefitTotal.fromYaml(dynamic yaml) => yaml is String
+      ? ExplanationOfBenefitTotal.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExplanationOfBenefitTotal.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExplanationOfBenefitTotal cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExplanationOfBenefitTotal.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExplanationOfBenefitTotal.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExplanationOfBenefitPayment] /// Payment details for the adjudication of the claim.
+@JsonSerializable()
 class ExplanationOfBenefitPayment extends BackboneElement {
   ExplanationOfBenefitPayment({
     super.id,
@@ -1968,36 +2880,55 @@ class ExplanationOfBenefitPayment extends BackboneElement {
     this.dateElement,
     this.amount,
     this.identifier,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExplanationOfBenefitPayment');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Whether this represents partial or complete payment of the benefits
   /// payable.
+  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [adjustment] /// Total amount of all adjustments to this payment included in this
   /// transaction which are not related to this claim's adjudication.
+  @JsonKey(name: 'adjustment')
   final Money? adjustment;
 
   /// [adjustmentReason] /// Reason for the payment adjustment.
+  @JsonKey(name: 'adjustmentReason')
   final CodeableConcept? adjustmentReason;
 
   /// [date] /// Estimated date the payment will be issued or the actual issue date of
   /// payment.
+  @JsonKey(name: 'date')
   final FhirDate? date;
+  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [amount] /// Benefits payable less any payment adjustment.
+  @JsonKey(name: 'amount')
   final Money? amount;
 
   /// [identifier] /// Issuer's unique identifier for the payment instrument.
+  @JsonKey(name: 'identifier')
   final Identifier? identifier;
+  factory ExplanationOfBenefitPayment.fromJson(Map<String, dynamic> json) =>
+      _$ExplanationOfBenefitPaymentFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExplanationOfBenefitPaymentToJson(this);
+
   @override
   ExplanationOfBenefitPayment clone() => throw UnimplementedError();
-  ExplanationOfBenefitPayment copy({
+  @override
+  ExplanationOfBenefitPayment copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -2008,6 +2939,12 @@ class ExplanationOfBenefitPayment extends BackboneElement {
     Element? dateElement,
     Money? amount,
     Identifier? identifier,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExplanationOfBenefitPayment(
       id: id ?? this.id,
@@ -2020,16 +2957,38 @@ class ExplanationOfBenefitPayment extends BackboneElement {
       dateElement: dateElement ?? this.dateElement,
       amount: amount ?? this.amount,
       identifier: identifier ?? this.identifier,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExplanationOfBenefitPayment.fromYaml(dynamic yaml) => yaml is String
+      ? ExplanationOfBenefitPayment.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExplanationOfBenefitPayment.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExplanationOfBenefitPayment cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExplanationOfBenefitPayment.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExplanationOfBenefitPayment.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExplanationOfBenefitProcessNote] /// A note that describes or explains adjudication results in a human readable
 /// form.
+@JsonSerializable()
 class ExplanationOfBenefitProcessNote extends BackboneElement {
   ExplanationOfBenefitProcessNote({
     super.id,
@@ -2042,29 +3001,49 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
     this.text,
     this.textElement,
     this.language,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExplanationOfBenefitProcessNote');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [number] /// A number to uniquely identify a note entry.
+  @JsonKey(name: 'number')
   final FhirPositiveInt? number;
+  @JsonKey(name: '_number')
   final Element? numberElement;
 
   /// [type] /// The business purpose of the note text.
+  @JsonKey(name: 'type')
   final FhirCode? type;
+  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [text] /// The explanation or description associated with the processing.
+  @JsonKey(name: 'text')
   final FhirString? text;
+  @JsonKey(name: '_text')
   final Element? textElement;
 
   /// [language] /// A code to define the language used in the text of the note.
+  @JsonKey(name: 'language')
   final CodeableConcept? language;
+  factory ExplanationOfBenefitProcessNote.fromJson(Map<String, dynamic> json) =>
+      _$ExplanationOfBenefitProcessNoteFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ExplanationOfBenefitProcessNoteToJson(this);
+
   @override
   ExplanationOfBenefitProcessNote clone() => throw UnimplementedError();
-  ExplanationOfBenefitProcessNote copy({
+  @override
+  ExplanationOfBenefitProcessNote copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -2075,6 +3054,12 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
     FhirString? text,
     Element? textElement,
     CodeableConcept? language,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExplanationOfBenefitProcessNote(
       id: id ?? this.id,
@@ -2087,15 +3072,38 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
       text: text ?? this.text,
       textElement: textElement ?? this.textElement,
       language: language ?? this.language,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExplanationOfBenefitProcessNote.fromYaml(dynamic yaml) => yaml
+          is String
+      ? ExplanationOfBenefitProcessNote.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExplanationOfBenefitProcessNote.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExplanationOfBenefitProcessNote cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExplanationOfBenefitProcessNote.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExplanationOfBenefitProcessNote.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExplanationOfBenefitBenefitBalance] /// Balance by Benefit Category.
+@JsonSerializable()
 class ExplanationOfBenefitBenefitBalance extends BackboneElement {
   ExplanationOfBenefitBenefitBalance({
     super.id,
@@ -2112,45 +3120,70 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
     this.unit,
     this.term,
     this.financial,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExplanationOfBenefitBenefitBalance');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [category] /// Code to identify the general type of benefits under which products and
   /// services are provided.
+  @JsonKey(name: 'category')
   final CodeableConcept category;
 
   /// [excluded] /// True if the indicated class of service is excluded from the plan, missing
   /// or False indicates the product or service is included in the coverage.
+  @JsonKey(name: 'excluded')
   final FhirBoolean? excluded;
+  @JsonKey(name: '_excluded')
   final Element? excludedElement;
 
   /// [name] /// A short name or tag for the benefit.
+  @JsonKey(name: 'name')
   final FhirString? name;
+  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [description] /// A richer description of the benefit or services covered.
+  @JsonKey(name: 'description')
   final FhirString? description;
+  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [network] /// Is a flag to indicate whether the benefits refer to in-network providers or
   /// out-of-network providers.
+  @JsonKey(name: 'network')
   final CodeableConcept? network;
 
   /// [unit] /// Indicates if the benefits apply to an individual or to the family.
+  @JsonKey(name: 'unit')
   final CodeableConcept? unit;
 
   /// [term] /// The term or period of the values such as 'maximum lifetime benefit' or
   /// 'maximum annual visits'.
+  @JsonKey(name: 'term')
   final CodeableConcept? term;
 
   /// [financial] /// Benefits Used to date.
+  @JsonKey(name: 'financial')
   final List<ExplanationOfBenefitFinancial>? financial;
+  factory ExplanationOfBenefitBenefitBalance.fromJson(
+          Map<String, dynamic> json) =>
+      _$ExplanationOfBenefitBenefitBalanceFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$ExplanationOfBenefitBenefitBalanceToJson(this);
+
   @override
   ExplanationOfBenefitBenefitBalance clone() => throw UnimplementedError();
-  ExplanationOfBenefitBenefitBalance copy({
+  @override
+  ExplanationOfBenefitBenefitBalance copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -2165,6 +3198,12 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
     CodeableConcept? unit,
     CodeableConcept? term,
     List<ExplanationOfBenefitFinancial>? financial,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExplanationOfBenefitBenefitBalance(
       id: id ?? this.id,
@@ -2181,15 +3220,38 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
       unit: unit ?? this.unit,
       term: term ?? this.term,
       financial: financial ?? this.financial,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExplanationOfBenefitBenefitBalance.fromYaml(dynamic yaml) => yaml
+          is String
+      ? ExplanationOfBenefitBenefitBalance.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExplanationOfBenefitBenefitBalance.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExplanationOfBenefitBenefitBalance cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExplanationOfBenefitBenefitBalance.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExplanationOfBenefitBenefitBalance.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }
 
-@JsonCodable()
-@Data()
-@Entity()
-
 /// [ExplanationOfBenefitFinancial] /// Benefits Used to date.
+@JsonSerializable()
 class ExplanationOfBenefitFinancial extends BackboneElement {
   ExplanationOfBenefitFinancial({
     super.id,
@@ -2204,35 +3266,56 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
     this.usedUnsignedInt,
     this.usedUnsignedIntElement,
     this.usedMoney,
-  });
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(fhirType: 'ExplanationOfBenefitFinancial');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Classification of benefit being provided.
+  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [allowedUnsignedInt] /// The quantity of the benefit which is permitted under the coverage.
+  @JsonKey(name: 'allowedUnsignedInt')
   final FhirUnsignedInt? allowedUnsignedInt;
+  @JsonKey(name: '_allowedUnsignedInt')
   final Element? allowedUnsignedIntElement;
 
   /// [allowedString] /// The quantity of the benefit which is permitted under the coverage.
+  @JsonKey(name: 'allowedString')
   final FhirString? allowedString;
+  @JsonKey(name: '_allowedString')
   final Element? allowedStringElement;
 
   /// [allowedMoney] /// The quantity of the benefit which is permitted under the coverage.
+  @JsonKey(name: 'allowedMoney')
   final Money? allowedMoney;
 
   /// [usedUnsignedInt] /// The quantity of the benefit which have been consumed to date.
+  @JsonKey(name: 'usedUnsignedInt')
   final FhirUnsignedInt? usedUnsignedInt;
+  @JsonKey(name: '_usedUnsignedInt')
   final Element? usedUnsignedIntElement;
 
   /// [usedMoney] /// The quantity of the benefit which have been consumed to date.
+  @JsonKey(name: 'usedMoney')
   final Money? usedMoney;
+  factory ExplanationOfBenefitFinancial.fromJson(Map<String, dynamic> json) =>
+      _$ExplanationOfBenefitFinancialFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ExplanationOfBenefitFinancialToJson(this);
+
   @override
   ExplanationOfBenefitFinancial clone() => throw UnimplementedError();
-  ExplanationOfBenefitFinancial copy({
+  @override
+  ExplanationOfBenefitFinancial copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -2245,6 +3328,12 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
     FhirUnsignedInt? usedUnsignedInt,
     Element? usedUnsignedIntElement,
     Money? usedMoney,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ExplanationOfBenefitFinancial(
       id: id ?? this.id,
@@ -2261,6 +3350,31 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
       usedUnsignedIntElement:
           usedUnsignedIntElement ?? this.usedUnsignedIntElement,
       usedMoney: usedMoney ?? this.usedMoney,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ExplanationOfBenefitFinancial.fromYaml(dynamic yaml) => yaml is String
+      ? ExplanationOfBenefitFinancial.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ExplanationOfBenefitFinancial.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ExplanationOfBenefitFinancial cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ExplanationOfBenefitFinancial.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ExplanationOfBenefitFinancial.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

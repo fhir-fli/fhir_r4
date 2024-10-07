@@ -1,16 +1,15 @@
-import 'package:dataclass/dataclass.dart';
-import 'package:json/json.dart';
+import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonCodable()
-@Data()
-@Entity()
+part 'research_subject.g.dart';
 
 /// [ResearchSubject] /// A physical entity which is the primary unit of operational and/or
 /// administrative interest in a study.
+@JsonSerializable()
 class ResearchSubject extends DomainResource {
   ResearchSubject({
     super.id,
@@ -34,43 +33,68 @@ class ResearchSubject extends DomainResource {
     this.actualArm,
     this.actualArmElement,
     this.consent,
-  }) : super(resourceType: R4ResourceType.ResearchSubject);
-
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  }) : super(
+            resourceType: R4ResourceType.ResearchSubject,
+            fhirType: 'ResearchSubject');
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifiers assigned to this research subject for a study.
+  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// The current state of the subject.
+  @JsonKey(name: 'status')
   final FhirCode status;
+  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [period] /// The dates the subject began and ended their participation in the study.
+  @JsonKey(name: 'period')
   final Period? period;
 
   /// [study] /// Reference to the study the subject is participating in.
+  @JsonKey(name: 'study')
   final Reference study;
 
   /// [individual] /// The record of the person or animal who is involved in the study.
+  @JsonKey(name: 'individual')
   final Reference individual;
 
   /// [assignedArm] /// The name of the arm in the study the subject is expected to follow as part
   /// of this study.
+  @JsonKey(name: 'assignedArm')
   final FhirString? assignedArm;
+  @JsonKey(name: '_assignedArm')
   final Element? assignedArmElement;
 
   /// [actualArm] /// The name of the arm in the study the subject actually followed as part of
   /// this study.
+  @JsonKey(name: 'actualArm')
   final FhirString? actualArm;
+  @JsonKey(name: '_actualArm')
   final Element? actualArmElement;
 
   /// [consent] /// A record of the patient's informed agreement to participate in the study.
+  @JsonKey(name: 'consent')
   final Reference? consent;
+  factory ResearchSubject.fromJson(Map<String, dynamic> json) =>
+      _$ResearchSubjectFromJson(json);
+
+  @override
+  Map<String, dynamic> toJson() => _$ResearchSubjectToJson(this);
+
   @override
   ResearchSubject clone() => throw UnimplementedError();
-  ResearchSubject copy({
+  @override
+  ResearchSubject copyWith({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -92,6 +116,12 @@ class ResearchSubject extends DomainResource {
     FhirString? actualArm,
     Element? actualArmElement,
     Reference? consent,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return ResearchSubject(
       id: id ?? this.id,
@@ -115,6 +145,31 @@ class ResearchSubject extends DomainResource {
       actualArm: actualArm ?? this.actualArm,
       actualArmElement: actualArmElement ?? this.actualArmElement,
       consent: consent ?? this.consent,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
+  }
+
+  factory ResearchSubject.fromYaml(dynamic yaml) => yaml is String
+      ? ResearchSubject.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ResearchSubject.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              'ResearchSubject cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+
+  factory ResearchSubject.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ResearchSubject.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
   }
 }

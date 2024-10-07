@@ -58,7 +58,32 @@ class FhirOid extends PrimitiveType<String> {
       );
 
   @override
-  FhirOid setElement(String name, dynamic value) {
-    return FhirOid(value, element?.setProperty(name, value));
+  FhirOid setElement(String name, dynamic elementValue) {
+    return FhirOid(value, element?.setProperty(name, elementValue));
+  }
+
+  @override
+  FhirOid copyWith({
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    return FhirOid._(
+      _valueString,
+      _valueOid,
+      _isValid,
+      element?.copyWith(
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+        children: children,
+        namedChildren: namedChildren,
+      ),
+    );
   }
 }

@@ -13,7 +13,6 @@ class Element extends FhirBase {
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
-    super.propertyChanged,
     super.annotations,
     super.children,
     super.namedChildren,
@@ -28,23 +27,21 @@ class Element extends FhirBase {
   // Method to copy the current Element with modifications
   @override
   Element copyWith({
-    String? id,
+    FhirString? id,
     List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
   }) {
     return Element(
-      id: id?.toFhirString ?? this.id,
+      id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      propertyChanged: propertyChanged ?? this.propertyChanged,
       annotations: annotations ?? this.annotations,
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,

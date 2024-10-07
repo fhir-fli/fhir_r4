@@ -111,4 +111,29 @@ class FhirUri extends PrimitiveType<Uri> {
   FhirUri setElement(String name, dynamic elementValue) {
     return FhirUri(value, element?.setProperty(name, elementValue));
   }
+
+  @override
+  FhirUri copyWith({
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    return FhirUri._(
+      _valueString,
+      _valueUri,
+      _isValid,
+      element?.copyWith(
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+        children: children,
+        namedChildren: namedChildren,
+      ),
+    );
+  }
 }

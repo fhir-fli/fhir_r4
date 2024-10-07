@@ -64,4 +64,30 @@ class FhirDecimal extends FhirNumber {
     return FhirDecimal(value,
         element: element?.setProperty(name, elementValue));
   }
+
+  @override
+  FhirDecimal copyWith({
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    return FhirDecimal._(
+      valueString,
+      valueNumber,
+      isValid,
+      isInt,
+      element: element?.copyWith(
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+        children: children,
+        namedChildren: namedChildren,
+      ),
+    );
+  }
 }

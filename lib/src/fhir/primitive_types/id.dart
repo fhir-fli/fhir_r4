@@ -60,4 +60,29 @@ class FhirId extends PrimitiveType<String> {
   FhirId setElement(String name, dynamic elementValue) {
     return FhirId(value, element?.setProperty(name, elementValue));
   }
+
+  @override
+  FhirId copyWith({
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    return FhirId._(
+      _valueString,
+      _valueId,
+      _isValid,
+      element?.copyWith(
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+        children: children,
+        namedChildren: namedChildren,
+      ),
+    );
+  }
 }
