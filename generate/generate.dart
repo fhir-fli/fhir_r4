@@ -242,6 +242,8 @@ StringBuffer _generateClassBuffer(Map<String, WritableClass> classes) {
 
   buffer.writeln("import 'package:dataclass/dataclass.dart';");
   buffer.writeln("import 'package:json/json.dart';");
+  buffer.writeln("import 'package:json_annotation/json_annotation.dart';");
+  buffer.writeln("import 'package:objectbox/objectbox.dart';");
   buffer.writeln("\nimport '../../../fhir_r4.dart';\n");
 
   for (final WritableClass writableClass in classes.values) {
@@ -257,6 +259,7 @@ StringBuffer _generateClassBuffer(Map<String, WritableClass> classes) {
 void _writeClassHeader(StringBuffer buffer, WritableClass writableClass) {
   buffer.writeln('@JsonCodable()');
   buffer.writeln('@Data()');
+  buffer.writeln('@Entity()');
   final String writableName = writableClass.className;
   final String extendsClause = writableClass.extendsClause;
   if (extendsClause.isEmpty) {
@@ -266,6 +269,9 @@ void _writeClassHeader(StringBuffer buffer, WritableClass writableClass) {
 }
 
 void _writeFields(StringBuffer buffer, WritableClass writableClass) {
+  buffer.writeln('  @Id()');
+  buffer.writeln('@JsonKey(ignore: true)');
+  buffer.writeln('  int dbId = 0;');
   for (final Field field in writableClass.fields) {
     final String fieldDeclaration = field.isList
         ? 'List<${field.type.fhirToDartTypes}>${field.isRequired ? '' : '?'}'
