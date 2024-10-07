@@ -1,18 +1,28 @@
+import 'dart:convert';
+
+import '../../../fhir_r4.dart';
+
 abstract class FhirBase {
-  // Constructor allowing fhirType to be passed in
-  FhirBase({required this.fhirType});
+  const FhirBase({
+    required this.fhirType,
+    this.userData = const <String, Object?>{},
+    this.formatCommentsPre = const <String>[],
+    this.formatCommentsPost = const <String>[],
+    this.propertyChanged = const <String, List<void Function()>>{},
+    this.annotations = const <dynamic>[],
+    this.children = const <FhirBase>[],
+    this.namedChildren = const <String, FhirBase>{},
+  });
 
-  // FHIR type of the resource (e.g., 'Patient', 'Observation')
   final String fhirType;
+  final Map<String, Object?> userData;
+  final List<String> formatCommentsPre;
+  final List<String> formatCommentsPost;
+  final Map<String, List<void Function()>> propertyChanged;
+  final List<dynamic> annotations;
+  final List<FhirBase> children;
+  final Map<String, FhirBase> namedChildren;
 
-  // User appended data items - allow users to add extra information to the class
-  final Map<String, Object?> _userData = <String, Object?>{};
-
-  // Round tracking xml comments for testing convenience
-  final List<String> _formatCommentsPre = <String>[];
-  final List<String> _formatCommentsPost = <String>[];
-
-  // JSON and YAML Methods
   dynamic toJson() {
     final Map<String, Object?> json = <String, Object?>{};
     namedChildren.forEach((String key, FhirBase child) {
@@ -29,30 +39,80 @@ abstract class FhirBase {
     return json;
   }
 
-  dynamic toYaml(); // To be implemented by subclasses
-  String toJsonString(); // To be implemented by subclasses
-
-  // Property changed event
-  final Map<String, List<void Function()>> _propertyChanged =
-      <String, List<void Function()>>{};
-
-  // Annotations
-  final List<dynamic> _annotations = <dynamic>[];
-
-  // User Data Methods
-  dynamic getUserData(String name) => _userData[name];
-
-  void setUserData(String name, dynamic value) {
-    if (value != null) {
-      _userData[name] = value;
+  /// Produces a Yaml formatted String version of the object
+  dynamic toYaml() {
+    final dynamic json = toJson();
+    if (json is Map<String, Object?>) {
+      return json2yaml(json);
+    } else {
+      return json;
     }
   }
 
-  void clearUserData(String name) {
-    _userData.remove(name);
+  String toJsonString() => jsonEncode(toJson());
+
+  // User Data Methods
+  dynamic getUserData(String name) => userData[name];
+
+  FhirBase setUserData(String name, dynamic value) {
+    final Map<String, Object?> updatedUserData =
+        Map<String, Object?>.from(userData);
+    updatedUserData[name] = value;
+    return copyWith(userData: updatedUserData);
   }
 
-  bool hasUserData(String name) => _userData.containsKey(name);
+  FhirBase clearUserData(String name) {
+    final Map<String, Object?> updatedUserData =
+        Map<String, Object?>.from(userData)..remove(name);
+    return copyWith(userData: updatedUserData);
+  }
+
+  // Annotations Methods
+  FhirBase addAnnotation(dynamic annotation) {
+    final List<dynamic> updatedAnnotations = List<dynamic>.from(annotations)
+      ..add(annotation);
+    return copyWith(annotations: updatedAnnotations);
+  }
+
+  FhirBase removeAnnotations(Type type) {
+    final List<dynamic> updatedAnnotations = List<dynamic>.from(annotations)
+      ..removeWhere((dynamic element) => element.runtimeType == type);
+    return copyWith(annotations: updatedAnnotations);
+  }
+
+  // Property Changed Methods
+  FhirBase addPropertyChangedListener(
+      String property, void Function() listener) {
+    final Map<String, List<void Function()>> updatedListeners =
+        Map<String, List<void Function()>>.from(propertyChanged)
+          ..putIfAbsent(property, () => <void Function()>[]).add(listener);
+    return copyWith(propertyChanged: updatedListeners);
+  }
+
+  FhirBase removePropertyChangedListener(
+      String property, void Function() listener) {
+    final Map<String, List<void Function()>> updatedListeners =
+        Map<String, List<void Function()>>.from(propertyChanged);
+    updatedListeners[property]?.remove(listener);
+    return copyWith(propertyChanged: updatedListeners);
+  }
+
+  // Child Management Methods
+  FhirBase addChild(FhirBase child) {
+    final List<FhirBase> updatedChildren = List<FhirBase>.from(children)
+      ..add(child);
+    return copyWith(children: updatedChildren);
+  }
+
+  FhirBase addNamedChild(String name, FhirBase child) {
+    final Map<String, FhirBase> updatedNamedChildren =
+        Map<String, FhirBase>.from(namedChildren)..[name] = child;
+    return copyWith(namedChildren: updatedNamedChildren);
+  }
+
+  bool isEmpty() => userData.isEmpty && annotations.isEmpty && children.isEmpty;
+
+  bool hasUserData(String name) => userData.containsKey(name);
 
   String? getUserString(String name) {
     final dynamic data = getUserData(name);
@@ -64,54 +124,15 @@ abstract class FhirBase {
     return data is int ? data : 0;
   }
 
-  // Format Comments Methods
-  List<String> get formatCommentsPre => _formatCommentsPre;
-
-  List<String> get formatCommentsPost => _formatCommentsPost;
-
   bool hasFormatComment() =>
-      _formatCommentsPre.isNotEmpty || _formatCommentsPost.isNotEmpty;
-
-  // Annotations Methods
-  void addAnnotation(dynamic annotation) {
-    _annotations.add(annotation);
-  }
-
-  void removeAnnotations(Type type) {
-    _annotations.removeWhere((dynamic element) => element.runtimeType == type);
-  }
-
-  Iterable<dynamic> annotations(Type type) {
-    return _annotations.where((dynamic element) => element.runtimeType == type);
-  }
-
-  // Property Changed Methods
-  void addPropertyChangedListener(String property, void Function() listener) {
-    _propertyChanged
-        .putIfAbsent(property, () => <void Function()>[])
-        .add(listener);
-  }
-
-  void removePropertyChangedListener(
-      String property, void Function() listener) {
-    _propertyChanged[property]?.remove(listener);
-  }
+      formatCommentsPre.isNotEmpty || formatCommentsPost.isNotEmpty;
 
   void notifyPropertyChanged(String property) {
-    if (_propertyChanged.containsKey(property)) {
-      for (final void Function() listener in _propertyChanged[property]!) {
+    if (propertyChanged.containsKey(property)) {
+      for (final void Function() listener in propertyChanged[property]!) {
         listener();
       }
     }
-  }
-
-  // Deep Copy and Comparison Methods
-  FhirBase deepCopy() {
-    final FhirBase copy = clone();
-    if (_annotations.isNotEmpty) {
-      copy._annotations.addAll(_annotations);
-    }
-    return copy;
   }
 
   static bool compareDeep(FhirBase? e1, FhirBase? e2,
@@ -128,23 +149,17 @@ abstract class FhirBase {
       return false;
     }
 
-    if (e2.isMetadataBased() && !e1.isMetadataBased()) {
-      // Respect existing order for debugging consistency; outcome must be the same either way
-      return e2.equalsDeep(e1);
-    } else {
-      return e1.equalsDeep(e2);
-    }
+    return e1.equalsDeep(e2);
   }
 
   bool compareDeepLists<T extends FhirBase>(List<T>? list1, List<T>? list2) {
     if (list1 == null && list2 == null) {
-      return true; // Both are null, so they're considered equal
+      return true;
     }
     if (list1 == null || list2 == null || list1.length != list2.length) {
-      return false; // If one is null or they have different lengths, they're not equal
+      return false;
     }
 
-    // Compare each element in the lists
     for (int i = 0; i < list1.length; i++) {
       if (!list1[i].equalsDeep(list2[i])) {
         return false;
@@ -154,42 +169,32 @@ abstract class FhirBase {
     return true;
   }
 
-  bool equalsDeep(FhirBase? other) {
-    return other != null;
-  }
-
-  bool isMetadataBased() {
-    return false;
-  }
+  bool equalsDeep(FhirBase? other);
 
   bool isExactly(FhirBase other) => other.runtimeType == runtimeType;
 
   bool matches(FhirBase other) => other.runtimeType == runtimeType;
 
-  // Abstract Method to be implemented by subclasses
-  FhirBase clone();
-
-  // Child Elements Methods
-  List<FhirBase> children = <FhirBase>[];
-
-  void addChild(FhirBase child) {
-    children.add(child);
-  }
-
-  Map<String, FhirBase> namedChildren = <String, FhirBase>{};
-
   FhirBase? getChildByName(String name) => namedChildren[name];
 
   bool tryGetValue(String key, dynamic value) => false;
 
-  // Validation Methods
   List<String> validate() => <String>[];
 
-  // Additional utility methods
   bool get isPrimitive => false;
 
   String? primitiveValue() => null;
 
-  bool isEmpty() =>
-      _userData.isEmpty && _annotations.isEmpty && children.isEmpty;
+  FhirBase copyWith({
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  });
+
+  // Subclasses must implement clone
+  FhirBase clone();
 }

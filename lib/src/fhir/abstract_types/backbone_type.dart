@@ -10,6 +10,13 @@ abstract class BackboneType extends DataType {
     super.extension_,
     this.modifierExtension,
     super.fhirType = 'BackboneType',
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.propertyChanged,
+    super.annotations,
+    super.children,
+    super.namedChildren,
   });
 
   /// List of modifier extensions for additional, non-core information
@@ -74,9 +81,6 @@ abstract class BackboneType extends DataType {
     return json;
   }
 
-  @override
-  String toYaml() => json2yaml(toJson());
-
   static BackboneType fromYaml(dynamic yaml) => yaml is String
       ? BackboneType.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
@@ -102,5 +106,16 @@ abstract class BackboneType extends DataType {
   }
 
   @override
-  String toJsonString() => jsonEncode(toJson());
+  BackboneType copyWith({
+    String? id,
+    List<FhirExtension>? extension_,
+    List<FhirExtension>? modifierExtension,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  });
 }

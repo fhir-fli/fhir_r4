@@ -6,10 +6,17 @@ import '../../../fhir_r4.dart';
 
 class Element extends FhirBase {
   // Constructor for Element with optional id and extension_s
-  Element({
+  const Element({
     this.id,
     this.extension_,
     super.fhirType = 'Element',
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.propertyChanged,
+    super.annotations,
+    super.children,
+    super.namedChildren,
   });
 
   // Unique id for the element within a resource
@@ -19,13 +26,28 @@ class Element extends FhirBase {
   final List<FhirExtension>? extension_;
 
   // Method to copy the current Element with modifications
+  @override
   Element copyWith({
     String? id,
     List<FhirExtension>? extension_,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
   }) {
     return Element(
       id: id?.toFhirString ?? this.id,
       extension_: extension_ ?? this.extension_,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      propertyChanged: propertyChanged ?? this.propertyChanged,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 
@@ -170,10 +192,7 @@ class Element extends FhirBase {
     return json;
   }
 
-  @override
-  String toYaml() => json2yaml(toJson());
-
-  static Element fromYaml(dynamic yaml) => yaml is String
+  factory Element.fromYaml(dynamic yaml) => yaml is String
       ? Element.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
       : yaml is YamlMap
@@ -194,7 +213,7 @@ class Element extends FhirBase {
     );
   }
 
-  static Element fromJsonString(String source) {
+  factory Element.fromJsonString(String source) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Element.fromJson(json);
@@ -203,9 +222,6 @@ class Element extends FhirBase {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
-
-  @override
-  String toJsonString() => jsonEncode(toJson());
 
   @override
   FhirBase clone() => copy();

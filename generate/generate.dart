@@ -239,11 +239,18 @@ Map<String, WritableClass> _buildWritableClasses(
 StringBuffer _generateClassBuffer(Map<String, WritableClass> classes) {
   final StringBuffer buffer = StringBuffer();
 
-  buffer.writeln("import 'package:dataclass/dataclass.dart';");
-  buffer.writeln("import 'package:json/json.dart';");
+  buffer.writeln("import 'dart:convert';");
+  // buffer.writeln("import 'package:dataclass/dataclass.dart';");
+  // buffer.writeln("import 'package:json/json.dart';");
   buffer.writeln("import 'package:json_annotation/json_annotation.dart';");
   buffer.writeln("import 'package:objectbox/objectbox.dart';");
+  buffer.writeln("import 'package:yaml/yaml.dart';");
   buffer.writeln("\nimport '../../../fhir_r4.dart';\n");
+
+  final String? writeFileName =
+      classes.values.first.className.fileNameFromClassName(_nameMap);
+
+  buffer.writeln("part '${writeFileName?.properFileName}.g.dart';\n");
 
   for (final WritableClass writableClass in classes.values) {
     _writeClassHeader(buffer, writableClass);
@@ -256,16 +263,17 @@ StringBuffer _generateClassBuffer(Map<String, WritableClass> classes) {
 }
 
 void _writeClassHeader(StringBuffer buffer, WritableClass writableClass) {
-  buffer.writeln('@JsonCodable()');
-  buffer.writeln('@Data()');
-  buffer.writeln('@Entity()');
   final String writableName = writableClass.className;
-  final String extendsClause = writableClass.extendsClause;
 
-  // Format class comment
   final String formattedComment = formatComment(writableClass.comment);
-
   buffer.writeln('/// [${writableName.fhirToDartTypes}] $formattedComment');
+
+  // buffer.writeln('@JsonCodable()');
+  // buffer.writeln('@Data()');
+  buffer.writeln('@JsonSerializable()');
+  buffer.writeln('@Entity()');
+
+  final String extendsClause = writableClass.extendsClause;
   buffer.writeln('class ${writableName.fhirToDartTypes} $extendsClause {');
 }
 
@@ -273,21 +281,30 @@ void _writeFields(StringBuffer buffer, WritableClass writableClass) {
   buffer.writeln('  @Id()');
   buffer.writeln('@JsonKey(ignore: true)');
   buffer.writeln('  int dbId = 0;');
-  for (final Field field in writableClass.fields) {
-    final String fieldDeclaration = field.isList
-        ? 'List<${field.type.fhirToDartTypes}>${field.isRequired ? '' : '?'}'
-        : '${field.type.fhirToDartTypes}${field.isRequired ? '' : '?'}';
 
-    if (field.name != writableClass.classPath && !field.isSuper) {
+  for (final Field field in writableClass.fields) {
+    // Handle fields that are not super fields
+    if (!field.isSuper) {
+      final String fieldDeclaration = field.isList
+          ? 'List<${field.type.fhirToDartTypes}>${field.isRequired ? '' : '?'}'
+          : '${field.type.fhirToDartTypes}${field.isRequired ? '' : '?'}';
+
       // Format field comment
       final String formattedComment = formatComment(field.comment);
 
       buffer
           .writeln('/// [${field.name.fhirFieldToDartName}] $formattedComment');
+
+      // Add @JsonKey annotation with the original field name
+      final String originalFieldName = field.path.split('.').last;
+      buffer.writeln("@JsonKey(name: '$originalFieldName')");
       buffer.writeln(
           '  final $fieldDeclaration ${field.name.fhirFieldToDartName};');
 
+      // Handle associated Element fields with '_primitiveFieldName'
       if (field.type.isPrimitiveType && field.name != 'id') {
+        final String elementFieldName = '_$originalFieldName';
+        buffer.writeln("@JsonKey(name: '$elementFieldName')");
         buffer.writeln(field.isList
             ? '  final List<Element>? ${field.name}Element;'
             : '  final Element? ${field.name}Element;');
@@ -325,15 +342,54 @@ void _writeClassFooter(StringBuffer buffer, WritableClass writableClass) {
   buffer.writeln(
       '${writableName.fhirToDartTypes} clone() => throw UnimplementedError();');
 
-  _writeCopyWithFunction(buffer, writableClass);
+  _writeCopyFunction(buffer, writableClass);
+
+  // Add fromYaml factory
+  _writeFromYamlFactory(buffer, writableClass);
+
+  // Add fromJsonString factory
+  _writeFromJsonStringFactory(buffer, writableClass);
 
   buffer.writeln('}\n');
 }
 
-void _writeCopyWithFunction(StringBuffer buffer, WritableClass writableClass) {
+void _writeFromYamlFactory(StringBuffer buffer, WritableClass writableClass) {
   final String writableName = writableClass.className;
 
-  // Define the copyWith method
+  buffer.writeln('''
+  factory ${writableName.fhirToDartTypes}.fromYaml(dynamic yaml) => yaml is String
+      ? ${writableName.fhirToDartTypes}.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+      : yaml is YamlMap
+          ? ${writableName.fhirToDartTypes}.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+          : throw ArgumentError(
+              '${writableName.fhirToDartTypes} cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
+  ''');
+}
+
+void _writeFromJsonStringFactory(
+    StringBuffer buffer, WritableClass writableClass) {
+  final String writableName = writableClass.className;
+
+  buffer.writeln('''
+  factory ${writableName.fhirToDartTypes}.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ${writableName.fhirToDartTypes}.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed \$json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+  ''');
+}
+
+void _writeCopyFunction(StringBuffer buffer, WritableClass writableClass) {
+  final String writableName = writableClass.className;
+
+  // Define the copy method
+  buffer.writeln('@override');
   buffer.writeln('${writableName.fhirToDartTypes} copy({');
 
   // Add each field as an optional parameter

@@ -6,23 +6,31 @@ import '../../../fhir_r4.dart';
 
 /// [Resource] Base definition for all FHIR elements.
 abstract class Resource extends FhirBase {
-  Resource({
+  const Resource({
     required this.resourceType,
+    required super.fhirType,
     this.id,
     this.meta,
     this.implicitRules,
     this.implicitRulesElement,
     this.language,
     this.languageElement,
-  }) : super(fhirType: resourceType.toString());
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.propertyChanged,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  });
 
-  R4ResourceType resourceType;
-  FhirString? id;
-  FhirMeta? meta;
-  FhirUri? implicitRules;
-  Element? implicitRulesElement;
-  FhirCode? language;
-  Element? languageElement;
+  final R4ResourceType resourceType;
+  final FhirString? id;
+  final FhirMeta? meta;
+  final FhirUri? implicitRules;
+  final Element? implicitRulesElement;
+  final FhirCode? language;
+  final Element? languageElement;
 
   /// Acts like a constructor, returns a [Resource], accepts a
   /// [Map<String, Object?>] as an argument
@@ -73,10 +81,6 @@ abstract class Resource extends FhirBase {
     return val;
   }
 
-  /// Produces a Yaml formatted String version of the object
-  @override
-  String toYaml() => json2yaml(toJson());
-
   /// produce a string of the [resourceType]
   String get resourceTypeString => fhirType;
 
@@ -108,5 +112,20 @@ abstract class Resource extends FhirBase {
   static String resourceTypeToString(R4ResourceType type) => type.toString();
 
   @override
-  String toJsonString() => jsonEncode(toJson());
+  Resource copyWith({
+    R4ResourceType? resourceType,
+    FhirString? id,
+    FhirMeta? meta,
+    FhirUri? implicitRules,
+    Element? implicitRulesElement,
+    FhirCode? language,
+    Element? languageElement,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  });
 }

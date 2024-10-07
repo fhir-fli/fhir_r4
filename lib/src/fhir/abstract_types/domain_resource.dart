@@ -6,8 +6,9 @@ import '../../../fhir_r4.dart';
 
 /// [DomainResource] Base definition for all FHIR elements.
 abstract class DomainResource extends Resource {
-  DomainResource({
+  const DomainResource({
     required super.resourceType,
+    required super.fhirType,
     super.id,
     super.meta,
     super.implicitRules,
@@ -18,12 +19,19 @@ abstract class DomainResource extends Resource {
     this.contained,
     this.extension_,
     this.modifierExtension,
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.propertyChanged,
+    super.annotations,
+    super.children,
+    super.namedChildren,
   });
 
-  Narrative? text;
-  List<Resource>? contained;
-  List<FhirExtension>? extension_;
-  List<FhirExtension>? modifierExtension;
+  final Narrative? text;
+  final List<Resource>? contained;
+  final List<FhirExtension>? extension_;
+  final List<FhirExtension>? modifierExtension;
 
   /// Returns a [Map<String, Object?>] of the [DomainResource]
   @override
@@ -82,4 +90,27 @@ abstract class DomainResource extends Resource {
       R4ResourceType.fromString(type);
 
   static String resourceTypeToString(R4ResourceType type) => type.toString();
+
+  @override
+  @override
+  DomainResource copyWith({
+    R4ResourceType? resourceType,
+    FhirString? id,
+    FhirMeta? meta,
+    FhirUri? implicitRules,
+    Element? implicitRulesElement,
+    FhirCode? language,
+    Element? languageElement,
+    Narrative? text,
+    List<Resource>? contained,
+    List<FhirExtension>? extension_,
+    List<FhirExtension>? modifierExtension,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  });
 }

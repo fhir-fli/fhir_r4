@@ -5,11 +5,18 @@ import '../../../fhir_r4.dart';
 /// Base class for elements inside a resource but not those in a data type.
 abstract class BackboneElement extends DataType {
   /// Constructor for BackboneElement
-  BackboneElement({
+  const BackboneElement({
     super.id,
     super.extension_,
     this.modifierExtension,
     super.fhirType = 'BackboneElement',
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.propertyChanged,
+    super.annotations,
+    super.children,
+    super.namedChildren,
   });
 
   /// List of modifier extensions for additional, non-core information
@@ -75,9 +82,6 @@ abstract class BackboneElement extends DataType {
     return json;
   }
 
-  @override
-  String toYaml() => json2yaml(toJson());
-
   static BackboneElement fromYaml(dynamic yaml) => yaml is String
       ? BackboneElement.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
@@ -103,5 +107,16 @@ abstract class BackboneElement extends DataType {
   }
 
   @override
-  String toJsonString() => jsonEncode(toJson());
+  BackboneElement copyWith({
+    String? id,
+    List<FhirExtension>? extension_,
+    List<FhirExtension>? modifierExtension,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  });
 }
