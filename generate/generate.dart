@@ -3,10 +3,12 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:archive/archive_io.dart';
 import 'package:collection/collection.dart';
 
 import 'fhir_generate_extension.dart';
+import 'file_io.dart';
+import 'writable_class.dart';
+import 'write_enums.dart';
 
 const String fhirSchemaPath = './definitions.json/fhir.schema.json';
 const String valueSetPath = './definitions.json/valuesets.json';
@@ -18,77 +20,69 @@ final Set<String> _valueSets = <String>{};
 
 Future<void> main() async {
   await extract();
-  _codesAndVS.addAll(await codesAndValueSets(valueSetPath));
+  _codesAndVS.addAll(codesAndValueSets(valueSetPath));
   _nameMap.addAll(populateNameMap(fhirSchemaPath));
-  await _classesFromStructureDefinitions();
-  await exportFiles();
-  await writeEnums(_valueSets, _codesAndVS, _nameMap);
-  await _deleteDirectories();
+  _classesFromStructureDefinitions();
+  exportFiles();
+  writeEnums(_valueSets, _codesAndVS, _nameMap);
+  deleteDirectories();
 }
 
-Future<void> _deleteDirectories() async {
-  final List<String> directories = <String>[
-    '__MACOSX',
-    'definitions.json',
-    'examples-json',
-    'examples-ndjson',
-  ];
-  for (final String dir in directories) {
-    final Directory directory = Directory('./$dir');
-    directory.deleteSync(recursive: true);
-  }
-}
-
-Future<void> _classesFromStructureDefinitions() async {
+void _classesFromStructureDefinitions() {
   final List<String> structureDefinitionBundles = <String>[
     './definitions.json/profiles-resources.json',
     './definitions.json/profiles-types.json',
   ];
 
-  for (final String file in structureDefinitionBundles) {
-    await _generateFromBundle(file);
-  }
+  structureDefinitionBundles.forEach(_generateFromBundle);
 }
 
-Future<void> _generateFromBundle(String file) async {
+void _generateFromBundle(String file) {
   final String bundleString = File(file).readAsStringSync();
   final Map<String, dynamic> bundle =
       jsonDecode(bundleString) as Map<String, dynamic>;
 
   for (final dynamic entry in bundle['entry'] as List<dynamic>) {
     if (_isValidStructureDefinition(entry)) {
-      await _generateFromSd(
+      _generateFromSd(
           (entry as Map<String, dynamic>)['resource'] as Map<String, dynamic>);
     }
   }
 }
 
-Future<void> _generateFromSd(Map<String, dynamic> sd) async {
+void _generateFromSd(Map<String, dynamic> sd) {
   final String className = sd['name'] as String;
   if (!className.shouldGenerate) {
     return;
   }
   final Map<String, WritableClass> classes =
-      await _buildWritableClasses(sd, className);
+      _buildWritableClasses(sd, className);
   final StringBuffer buffer = _generateClassBuffer(classes);
 
   writeToFile(buffer, className, _nameMap);
 }
 
-Future<Map<String, WritableClass>> _buildWritableClasses(
-    Map<String, dynamic> sd, String className) async {
+Map<String, WritableClass> _buildWritableClasses(
+    Map<String, dynamic> sd, String className) {
   final Map<String, WritableClass> classes = <String, WritableClass>{};
+
+  final List<dynamic> elements =
+      (sd['snapshot'] as Map<String, dynamic>)['element'] as List<dynamic>;
+
+  final Map<String, dynamic>? rootElement = elements.firstWhereOrNull(
+          (dynamic element) =>
+              (element as Map<String, dynamic>)['path'] == className)
+      as Map<String, dynamic>?;
+
   classes[className] = WritableClass(
     classPath: className,
     className: className,
+    comment: rootElement?['definition'] as String? ?? '',
     isResourceType: className.isResourceType,
     isDataType: className.isDataType,
     isQuantity: className.isQuantity,
     isBackboneType: className.isBackboneType,
   );
-
-  final List<dynamic> elements =
-      (sd['snapshot'] as Map<String, dynamic>)['element'] as List<dynamic>;
 
   for (final dynamic elementDefinition in elements) {
     final Map<String, dynamic> element =
@@ -138,6 +132,7 @@ Future<Map<String, WritableClass>> _buildWritableClasses(
             ? 'Evidencevariable'
             : newClassName,
         classPath: path,
+        comment: element['definition'] as String? ?? '',
         isBackboneElement: true,
       );
     } else if ((className.isDataType ||
@@ -168,6 +163,7 @@ Future<Map<String, WritableClass>> _buildWritableClasses(
       classes[path] = WritableClass(
         className: newClassName,
         classPath: path,
+        comment: element['definition'] as String? ?? '',
         isElement: true,
       );
     }
@@ -201,6 +197,7 @@ Future<Map<String, WritableClass>> _buildWritableClasses(
         classes[classPath]!.addField(Field(
           name: fieldName,
           type: referenceFieldType,
+          comment: element['definition'] as String? ?? '',
           path: path,
           isRequired: isRequired,
           isList: isList,
@@ -213,6 +210,7 @@ Future<Map<String, WritableClass>> _buildWritableClasses(
         classes[classPath]!.addField(Field(
           name: fieldName.replaceAll('[x]', actualType.capitalize),
           type: actualType,
+          comment: element['definition'] as String? ?? '',
           path: path,
           isRequired: isRequired,
           isList: isList,
@@ -227,6 +225,7 @@ Future<Map<String, WritableClass>> _buildWritableClasses(
       classes[classPath]!.addField(Field(
         name: fieldName,
         type: fieldType,
+        comment: element['definition'] as String? ?? '',
         path: path,
         isRequired: isRequired,
         isList: isList,
@@ -262,9 +261,11 @@ void _writeClassHeader(StringBuffer buffer, WritableClass writableClass) {
   buffer.writeln('@Entity()');
   final String writableName = writableClass.className;
   final String extendsClause = writableClass.extendsClause;
-  if (extendsClause.isEmpty) {
-    print('No extends clause for $writableName');
-  }
+
+  // Format class comment
+  final String formattedComment = formatComment(writableClass.comment);
+
+  buffer.writeln('/// [${writableName.fhirToDartTypes}] $formattedComment');
   buffer.writeln('class ${writableName.fhirToDartTypes} $extendsClause {');
 }
 
@@ -276,9 +277,16 @@ void _writeFields(StringBuffer buffer, WritableClass writableClass) {
     final String fieldDeclaration = field.isList
         ? 'List<${field.type.fhirToDartTypes}>${field.isRequired ? '' : '?'}'
         : '${field.type.fhirToDartTypes}${field.isRequired ? '' : '?'}';
+
     if (field.name != writableClass.classPath && !field.isSuper) {
+      // Format field comment
+      final String formattedComment = formatComment(field.comment);
+
+      buffer
+          .writeln('/// [${field.name.fhirFieldToDartName}] $formattedComment');
       buffer.writeln(
           '  final $fieldDeclaration ${field.name.fhirFieldToDartName};');
+
       if (field.type.isPrimitiveType && field.name != 'id') {
         buffer.writeln(field.isList
             ? '  final List<Element>? ${field.name}Element;'
@@ -312,10 +320,50 @@ void _writeConstructor(StringBuffer buffer, WritableClass writableClass) {
 
 void _writeClassFooter(StringBuffer buffer, WritableClass writableClass) {
   final String writableName = writableClass.className;
+
   buffer.writeln('@override');
   buffer.writeln(
       '${writableName.fhirToDartTypes} clone() => throw UnimplementedError();');
+
+  _writeCopyWithFunction(buffer, writableClass);
+
   buffer.writeln('}\n');
+}
+
+void _writeCopyWithFunction(StringBuffer buffer, WritableClass writableClass) {
+  final String writableName = writableClass.className;
+
+  // Define the copyWith method
+  buffer.writeln('${writableName.fhirToDartTypes} copy({');
+
+  // Add each field as an optional parameter
+  for (final Field field in writableClass.fields) {
+    final String fieldDeclaration = field.isList
+        ? 'List<${field.type.fhirToDartTypes}>?'
+        : '${field.type.fhirToDartTypes}?';
+
+    buffer.writeln('    $fieldDeclaration ${field.name.fhirFieldToDartName},');
+    if (field.type.isPrimitiveType && field.name != 'id') {
+      buffer.writeln(
+          '    ${field.isList ? 'List<Element>?' : 'Element?'} ${field.name}Element,');
+    }
+  }
+
+  buffer.writeln('  }) {');
+  buffer.writeln('    return ${writableName.fhirToDartTypes}(');
+
+  // Assign each field in the constructor
+  for (final Field field in writableClass.fields) {
+    buffer.writeln('      ${field.name.fhirFieldToDartName}:'
+        ' ${field.name.fhirFieldToDartName} ?? this.${field.name.fhirFieldToDartName},');
+    if (field.type.isPrimitiveType && field.name != 'id') {
+      buffer.writeln(
+          '      ${field.name}Element: ${field.name}Element ?? this.${field.name}Element,');
+    }
+  }
+
+  buffer.writeln('    );');
+  buffer.writeln('  }');
 }
 
 bool _isValidStructureDefinition(dynamic entry) {
@@ -324,28 +372,6 @@ bool _isValidStructureDefinition(dynamic entry) {
       entry['resource'] is Map<String, dynamic> &&
       (entry['resource'] as Map<String, dynamic>)['resourceType'] ==
           'StructureDefinition';
-}
-
-Future<void> exportFiles() async {
-  final List<String> directories = <String>[
-    'data_types',
-    'resource_types',
-    'enums'
-  ];
-  for (final String dir in directories) {
-    final List<String> exportFile = <String>[];
-    final Directory directory = Directory('../lib/src/fhir/$dir');
-    final List<FileSystemEntity> files = directory.listSync();
-    for (final FileSystemEntity file in files) {
-      final String fileName = file.path.split('/').last;
-      if (fileName.endsWith('.dart') && !fileName.endsWith('$dir.dart')) {
-        exportFile.add("export '$fileName';");
-      }
-    }
-    exportFile.sort();
-    File('../lib/src/fhir/$dir/$dir.dart')
-        .writeAsStringSync(exportFile.join('\n'));
-  }
 }
 
 void writeToFile(
@@ -362,60 +388,7 @@ void writeToFile(
   File(filePath).writeAsStringSync(buffer.toString());
 }
 
-Future<void> extract() async {
-  await _extractFilesToDisk();
-  await _moveJsonExamples();
-  await _moveNdJsonExamples();
-  await _moveSourceFiles();
-}
-
-Future<void> _moveSourceFiles() async {
-  await extractFileToDisk(
-      'definitions.json/fhir.schema.json.zip', './definitions.json');
-}
-
-Future<void> _moveNdJsonExamples() async {
-  final Directory examplesJsonDirectory = Directory('examples-ndjson');
-  final List<FileSystemEntity> examplesJson = examplesJsonDirectory.listSync();
-  for (final FileSystemEntity file in examplesJson) {
-    if (file is File) {
-      final String titleString = file.path.split('/').last.split('.').first;
-      final String fileString = file.readAsStringSync();
-      final List<String> lines = fileString.split('\n');
-      for (int i = 0; i < lines.length; i++) {
-        final String line = lines[i];
-        if (line.isNotEmpty) {
-          final String partialPath = file.path
-              .replaceAll('examples-ndjson', '../test/fhir/examples')
-              .replaceAll('.ndjson', '.json')
-              .replaceAll(titleString, '$titleString$i');
-          final File newFile = File(partialPath);
-          newFile.writeAsStringSync(line);
-        }
-      }
-    }
-  }
-}
-
-Future<void> _moveJsonExamples() async {
-  final Directory examplesJsonDirectory = Directory('examples-json');
-  final List<FileSystemEntity> examplesJson = examplesJsonDirectory.listSync();
-  for (final FileSystemEntity file in examplesJson) {
-    if (file is File) {
-      await file
-          .copy(file.path.replaceAll('examples-json', '../test/fhir/examples'));
-    }
-  }
-}
-
-Future<void> _extractFilesToDisk() async {
-  await extractFileToDisk('definitions.json.zip', '.');
-  await extractFileToDisk('examples-json.zip', '.');
-  await extractFileToDisk('examples-ndjson.zip', '.');
-}
-
-Future<Map<String, Map<String, dynamic>>> codesAndValueSets(
-    String valueSetPath) async {
+Map<String, Map<String, dynamic>> codesAndValueSets(String valueSetPath) {
   final Map<String, Map<String, dynamic>> codesAndVS =
       <String, Map<String, dynamic>>{};
 
@@ -453,371 +426,27 @@ Map<String, String> populateNameMap(String fhirSchemaPath) {
   return nameMap;
 }
 
-Future<void> writeEnums(
-    Set<String> valueSets,
-    Map<String, Map<String, dynamic>> codesAndVS,
-    Map<String, String> nameMap) async {
-  for (final String valueSetUrl in valueSets) {
-    if (!codesAndVS.containsKey(valueSetUrl)) {
-      print('ValueSetUrl not Found: $valueSetUrl');
-    } else {
-      final Map<String, dynamic> valueSet = codesAndVS[valueSetUrl]!;
-      final String enumName =
-          _getEnumNameFromValueSet(valueSetUrl, valueSet, nameMap);
+String formatComment(String comment) {
+  // Clean up existing comment prefixes
+  comment = comment.replaceAll(RegExp(r'^///\s*'), '').trim();
 
-      final List<Map<String, String>> enumValuesWithComments =
-          _extractEnumValuesWithComments(valueSet, codesAndVS);
-      if (enumValuesWithComments.isEmpty) {
-        print('No enum values found for ValueSet: $valueSetUrl');
+  // Split into lines, handle line length limits, and add '///' prefix
+  final List<String> commentLines = comment.split('\n').expand((String line) {
+    final List<String> words = line.split(RegExp(r'\s+'));
+    final List<String> formattedLines = <String>[];
+    String currentLine = '/// ';
+
+    for (final String word in words) {
+      if (currentLine.length + word.length + 1 > 80) {
+        formattedLines.add(currentLine.trim());
+        currentLine = '/// $word ';
       } else {
-        final String enumString = _buildEnumStringWithComments(
-            enumName, enumValuesWithComments, valueSet);
-        await _writeEnumToFile(enumName, enumString);
+        currentLine += '$word ';
       }
     }
-  }
-}
+    formattedLines.add(currentLine.trim());
+    return formattedLines;
+  }).toList();
 
-String _getEnumNameFromValueSet(String valueSetUrl,
-    Map<String, dynamic> valueSet, Map<String, String> nameMap) {
-  final String valueSetName = valueSet['name'] as String? ??
-      valueSet['title'] as String? ??
-      valueSetUrl.split('/').last.split('|').first;
-
-  final String enumName = valueSetName.upperCamelCase;
-  if (enumName.isResourceType ||
-      nameMap.keys.contains(enumName.toLowerCase()) ||
-      nameMap.values.contains(enumName.toLowerCase())) {
-    return '${enumName}Enum';
-  }
-  if (enumName.toLowerCase().contains('spec')) {
-    print(enumName);
-  }
-  return enumName;
-}
-
-// Extract enum values along with their display and definition as comments
-List<Map<String, String>> _extractEnumValuesWithComments(
-    Map<String, dynamic> resource,
-    Map<String, Map<String, dynamic>> codesAndVS) {
-  final List<Map<String, String>> enumValuesWithComments =
-      <Map<String, String>>[];
-
-  // Handle ValueSet first
-  if (resource['resourceType'] == 'ValueSet') {
-    if (resource.containsKey('expansion')) {
-      final List<dynamic> contains = (resource['expansion']
-          as Map<String, dynamic>)['contains'] as List<dynamic>;
-      for (final dynamic concept in contains) {
-        final Map<String, String> conceptDetails = <String, String>{
-          'code': (concept as Map<String, dynamic>)['code'] as String,
-          'display': concept['display'] as String? ?? '',
-          'definition': concept['definition'] as String? ?? ''
-        };
-        enumValuesWithComments.add(conceptDetails);
-      }
-    } else if (resource.containsKey('compose')) {
-      final List<dynamic> include = (resource['compose']
-          as Map<String, dynamic>)['include'] as List<dynamic>;
-
-      for (final dynamic inclusion in include) {
-        final List<dynamic>? concepts =
-            (inclusion as Map<String, dynamic>)['concept'] as List<dynamic>?;
-        for (final dynamic concept in concepts ?? <dynamic>[]) {
-          final Map<String, String> conceptDetails = <String, String>{
-            'code': (concept as Map<String, dynamic>)['code'] as String,
-            'display': concept['display'] as String? ?? '',
-            'definition': concept['definition'] as String? ?? ''
-          };
-          enumValuesWithComments.add(conceptDetails);
-        }
-
-        if (concepts == null || concepts.isEmpty) {
-          final String? systemUrl = inclusion['system'] as String?;
-          if (systemUrl != null) {
-            final Map<String, dynamic>? newCodings = codesAndVS[systemUrl];
-            if (newCodings != null) {
-              if (newCodings['resourceType'] == 'ValueSet') {
-                final List<Map<String, String>> newEnumValues =
-                    _extractEnumValuesWithComments(newCodings, codesAndVS);
-                enumValuesWithComments.addAll(newEnumValues);
-              } else if (newCodings['resourceType'] == 'CodeSystem') {
-                final List<Map<String, String>> newEnumValues =
-                    _extractEnumValuesFromCodeSystemWithComments(newCodings);
-                enumValuesWithComments.addAll(newEnumValues);
-              }
-            }
-          }
-        }
-      }
-    }
-  } else if (resource['resourceType'] == 'CodeSystem') {
-    final List<Map<String, String>> newEnumValues =
-        _extractEnumValuesFromCodeSystemWithComments(resource);
-    enumValuesWithComments.addAll(newEnumValues);
-  }
-
-  return enumValuesWithComments;
-}
-
-// Extract enum values directly from CodeSystem with comments
-List<Map<String, String>> _extractEnumValuesFromCodeSystemWithComments(
-    Map<String, dynamic> codeSystem) {
-  final List<Map<String, String>> enumValuesWithComments =
-      <Map<String, String>>[];
-  if (codeSystem.containsKey('concept')) {
-    final List<dynamic> concepts = codeSystem['concept'] as List<dynamic>;
-    for (final dynamic concept in concepts) {
-      final Map<String, String> conceptDetails = <String, String>{
-        'code': (concept as Map<String, dynamic>)['code'] as String,
-        'display': concept['display'] as String? ?? '',
-        'definition': concept['definition'] as String? ?? ''
-      };
-      enumValuesWithComments.add(conceptDetails);
-    }
-  }
-  return enumValuesWithComments;
-}
-
-// Build the enum string with comments and handle newlines
-String _buildEnumStringWithComments(
-    String enumName,
-    List<Map<String, String>> enumValuesWithComments,
-    Map<String, dynamic> valueSet) {
-  final StringBuffer buffer = StringBuffer();
-  buffer.writeln("import 'package:json_annotation/json_annotation.dart';\n");
-
-  // Add enum description at the top
-  if (valueSet.containsKey('description')) {
-    final String description = valueSet['description']
-        .toString()
-        .replaceAll('\n', ' ')
-        .replaceAll('\r', ' '); // Handling newlines in comments
-    buffer.writeln('/// $description');
-  }
-
-  buffer.writeln('enum $enumName {');
-
-  final Map<String, String> enumValueMap = <String, String>{};
-
-  for (final Map<String, String> value in enumValuesWithComments) {
-    final String validEnumValue =
-        _toValidEnumValue(value['code']!).fhirFieldToDartName;
-
-    // Avoid duplicate enum values
-    if (!enumValueMap.keys.contains(value['code'])) {
-      if (value['display']!.isNotEmpty) {
-        buffer.writeln('  /// Display: ${value['display']}');
-      }
-      if (value['definition']!.isNotEmpty) {
-        final String definition = value['definition']!
-            .replaceAll('\n', ' ')
-            .replaceAll('\r', ' '); // Handling newlines in comments
-        buffer.writeln('  /// Definition: $definition');
-      }
-      buffer.writeln("  @JsonValue('${value['code']}')");
-      buffer.writeln('  $validEnumValue,');
-      enumValueMap[value['code']!] = validEnumValue;
-    }
-  }
-
-  buffer.writeln(';\n');
-
-  buffer.writeln('@override');
-  buffer.writeln('  String toString() {');
-  buffer.writeln('      switch(this) {');
-  for (final String key in enumValueMap.keys) {
-    final String validEnumValue = enumValueMap[key]!;
-    buffer.writeln("        case $validEnumValue: return '$key';");
-  }
-  buffer.writeln('      }');
-  buffer.writeln('      }');
-
-  buffer.writeln('String toJson() => toString();');
-
-  buffer.writeln('  $enumName fromString(String str) {');
-  buffer.writeln('    switch(str) {');
-  for (final String key in enumValueMap.keys) {
-    buffer.writeln("      case '$key': return $enumName.${enumValueMap[key]};");
-  }
-  buffer.writeln(
-      r"    default: throw ArgumentError('Unknown enum value: $str');");
-  buffer.writeln('    }');
-  buffer.writeln('      }');
-
-  buffer.writeln(' $enumName fromJson(dynamic jsonValue) {');
-  buffer.writeln('    if (jsonValue is String) {');
-  buffer.writeln('      return fromString(jsonValue);');
-  buffer.writeln('    } else {');
-  buffer.writeln(r" throw ArgumentError('Unknown enum value: $jsonValue');");
-  buffer.writeln('}');
-  buffer.writeln('}');
-
-  buffer.writeln('}\n');
-
-  return buffer.toString();
-}
-
-// Convert enum value to valid Dart enum value (lowerCamelCase)
-String _toValidEnumValue(String value) {
-  // Convert to camelCase and handle numeric starting cases by prefixing with "value"
-  switch (value) {
-    case '=':
-      return 'equals';
-    case '!=':
-      return 'notEquals';
-    case '>':
-      return 'greaterThan';
-    case '<':
-      return 'lessThan';
-    case '>=':
-      return 'greaterThanOrEquals';
-    case '<=':
-      return 'lessThanOrEquals';
-    case '+':
-      return 'plus';
-    case '-':
-      return 'minus';
-  }
-
-  value = value.startsWith('http://')
-      ? value.substring(7)
-      : value.startsWith('https://')
-          ? value.substring(8)
-          : value;
-
-  value = value
-      .replaceAll('-', '_')
-      .replaceAll(' ', '_')
-      .replaceAll('/', '_')
-      .replaceAll('.', '_')
-      .replaceAll('+', '_')
-      .replaceAll(':', '_');
-
-  value = RegExp(r'^[0-9]').hasMatch(value) ? 'value$value' : value;
-  return value.fhirFieldToDartName;
-}
-
-Future<void> _writeEnumToFile(String enumName, String enumString) async {
-  final String enumFileName = '${enumName.snakeCase}.dart';
-  final String filePath = '../lib/src/fhir/enums/$enumFileName';
-
-  final File enumFile = File(filePath);
-  if (!enumFile.existsSync()) {
-    enumFile.createSync(recursive: true);
-  }
-
-  await enumFile.writeAsString(enumString);
-}
-
-class WritableClass {
-  WritableClass({
-    required this.className,
-    required this.classPath,
-    this.isResourceType = false,
-    this.isDataType = false,
-    this.isQuantity = false,
-    this.isBackboneType = false,
-    this.isBackboneElement = false,
-    this.isElement = false,
-  });
-
-  final String className;
-  final String classPath;
-  bool isResourceType;
-  bool isDataType;
-  bool isQuantity;
-  bool isBackboneType;
-  bool isBackboneElement;
-  bool isElement;
-  final List<Field> fields = <Field>[];
-
-  void addField(Field field) {
-    field.setSuperField(this);
-    fields.add(field);
-  }
-
-  String get extendsClause => isDataType
-      ? 'extends DataType'
-      : isQuantity
-          ? 'extends Quantity'
-          : isBackboneType
-              ? 'extends BackboneType'
-              : isBackboneElement
-                  ? 'extends BackboneElement'
-                  : isResourceType
-                      ? 'extends DomainResource'
-                      : isElement
-                          ? 'extends Element'
-                          : '';
-}
-
-class Field {
-  Field({
-    required this.name,
-    required this.type,
-    required this.path,
-    required this.isList,
-    required this.isRequired,
-  });
-
-  final String name;
-  final String type;
-  final String path;
-  final bool isList;
-  final bool isRequired;
-  bool isSuper = false;
-
-  void setSuperField(WritableClass writableClass) {
-    isSuper = isSuperField(writableClass);
-  }
-
-  bool isSuperField(WritableClass writableClass) {
-    if (writableClass.isResourceType) {
-      // Super fields for DomainResource
-      return <String>[
-        'id',
-        'meta',
-        'implicitrules',
-        'implicitruleselement',
-        'language',
-        'languageelement',
-        'text',
-        'contained',
-        'extension',
-        'modifierextension',
-      ].contains(name.toLowerCase());
-    } else if (writableClass.isBackboneType ||
-        writableClass.isBackboneElement) {
-      // Super fields for BackboneType && BackboneElement
-      return <String>[
-        'id',
-        'extension',
-        'modifierextension',
-      ].contains(name.toLowerCase());
-    } else if (writableClass.isDataType || writableClass.isElement) {
-      // Super fields for DataType
-      return <String>[
-        'id',
-        'extension',
-      ].contains(name.toLowerCase());
-    } else if (writableClass.isQuantity) {
-      // Super fields for Quantity
-      return <String>[
-        'id',
-        'extension',
-        'value',
-        'valueelement',
-        'comparator',
-        'comparatorelement',
-        'unit',
-        'unitelement',
-        'system',
-        'systemelement',
-        'code',
-        'codeelement',
-      ].contains(name.toLowerCase());
-    }
-    return false;
-  }
+  return commentLines.join('\n');
 }

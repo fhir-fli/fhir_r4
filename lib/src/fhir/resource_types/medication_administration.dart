@@ -8,6 +8,12 @@ import '../../../fhir_r4.dart';
 @JsonCodable()
 @Data()
 @Entity()
+
+/// [MedicationAdministration] /// Describes the event of a patient consuming or otherwise being administered
+/// a medication. This may be as simple as swallowing a tablet or it may be a
+/// long running infusion. Related resources tie this event to the authorizing
+/// prescription, and the specific encounter between patient and health care
+/// practitioner.
 class MedicationAdministration extends DomainResource {
   MedicationAdministration({
     super.id,
@@ -49,37 +55,187 @@ class MedicationAdministration extends DomainResource {
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
+
+  /// [identifier] /// Identifiers associated with this Medication Administration that are defined
+  /// by business processes and/or used to refer to it when a direct URL
+  /// reference to the resource itself is not appropriate. They are business
+  /// identifiers assigned to this resource by the performer or other systems and
+  /// remain constant as the resource is updated and propagates from server to
+  /// server.
   final List<Identifier>? identifier;
+
+  /// [instantiates] /// A protocol, guideline, orderset, or other definition that was adhered to in
+  /// whole or in part by this event.
   final List<FhirUri>? instantiates;
   final List<Element>? instantiatesElement;
+
+  /// [partOf] /// A larger event of which this particular event is a component or step.
   final List<Reference>? partOf;
+
+  /// [status] /// Will generally be set to show that the administration has been completed.
+  /// For some long running administrations such as infusions, it is possible for
+  /// an administration to be started but not completed or it may be paused while
+  /// some other process is under way.
   final FhirCode status;
   final Element? statusElement;
+
+  /// [statusReason] /// A code indicating why the administration was not performed.
   final List<CodeableConcept>? statusReason;
+
+  /// [category] /// Indicates where the medication is expected to be consumed or administered.
   final CodeableConcept? category;
+
+  /// [medicationCodeableConcept] /// Identifies the medication that was administered. This is either a link to a
+  /// resource representing the details of the medication or a simple attribute
+  /// carrying a code that identifies the medication from a known list of
+  /// medications.
   final CodeableConcept medicationCodeableConcept;
+
+  /// [medicationReference] /// Identifies the medication that was administered. This is either a link to a
+  /// resource representing the details of the medication or a simple attribute
+  /// carrying a code that identifies the medication from a known list of
+  /// medications.
   final Reference medicationReference;
+
+  /// [subject] /// The person or animal or group receiving the medication.
   final Reference subject;
+
+  /// [context] /// The visit, admission, or other contact between patient and health care
+  /// provider during which the medication administration was performed.
   final Reference? context;
+
+  /// [supportingInformation] /// Additional information (for example, patient height and weight) that
+  /// supports the administration of the medication.
   final List<Reference>? supportingInformation;
+
+  /// [effectiveDateTime] /// A specific date/time or interval of time during which the administration
+  /// took place (or did not take place, when the 'notGiven' attribute is true).
+  /// For many administrations, such as swallowing a tablet the use of dateTime
+  /// is more appropriate.
   final FhirDateTime effectiveDateTime;
   final Element? effectiveDateTimeElement;
+
+  /// [effectivePeriod] /// A specific date/time or interval of time during which the administration
+  /// took place (or did not take place, when the 'notGiven' attribute is true).
+  /// For many administrations, such as swallowing a tablet the use of dateTime
+  /// is more appropriate.
   final Period effectivePeriod;
+
+  /// [performer] /// Indicates who or what performed the medication administration and how they
+  /// were involved.
   final List<MedicationAdministrationPerformer>? performer;
+
+  /// [reasonCode] /// A code indicating why the medication was given.
   final List<CodeableConcept>? reasonCode;
+
+  /// [reasonReference] /// Condition or observation that supports why the medication was administered.
   final List<Reference>? reasonReference;
+
+  /// [request] /// The original request, instruction or authority to perform the
+  /// administration.
   final Reference? request;
+
+  /// [device] /// The device used in administering the medication to the patient. For
+  /// example, a particular infusion pump.
   final List<Reference>? device;
+
+  /// [note] /// Extra information about the medication administration that is not conveyed
+  /// by the other attributes.
   final List<Annotation>? note;
+
+  /// [dosage] /// Describes the medication dosage information details e.g. dose, rate, site,
+  /// route, etc.
   final MedicationAdministrationDosage? dosage;
+
+  /// [eventHistory] /// A summary of the events of interest that have occurred, such as when the
+  /// administration was verified.
   final List<Reference>? eventHistory;
   @override
   MedicationAdministration clone() => throw UnimplementedError();
+  MedicationAdministration copy({
+    FhirString? id,
+    FhirMeta? meta,
+    FhirUri? implicitRules,
+    Element? implicitRulesElement,
+    FhirCode? language,
+    Element? languageElement,
+    Narrative? text,
+    List<Resource>? contained,
+    List<FhirExtension>? extension_,
+    List<FhirExtension>? modifierExtension,
+    List<Identifier>? identifier,
+    List<FhirUri>? instantiates,
+    List<Element>? instantiatesElement,
+    List<Reference>? partOf,
+    FhirCode? status,
+    Element? statusElement,
+    List<CodeableConcept>? statusReason,
+    CodeableConcept? category,
+    CodeableConcept? medicationCodeableConcept,
+    Reference? medicationReference,
+    Reference? subject,
+    Reference? context,
+    List<Reference>? supportingInformation,
+    FhirDateTime? effectiveDateTime,
+    Element? effectiveDateTimeElement,
+    Period? effectivePeriod,
+    List<MedicationAdministrationPerformer>? performer,
+    List<CodeableConcept>? reasonCode,
+    List<Reference>? reasonReference,
+    Reference? request,
+    List<Reference>? device,
+    List<Annotation>? note,
+    MedicationAdministrationDosage? dosage,
+    List<Reference>? eventHistory,
+  }) {
+    return MedicationAdministration(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
+      language: language ?? this.language,
+      languageElement: languageElement ?? this.languageElement,
+      text: text ?? this.text,
+      contained: contained ?? this.contained,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      instantiates: instantiates ?? this.instantiates,
+      instantiatesElement: instantiatesElement ?? this.instantiatesElement,
+      partOf: partOf ?? this.partOf,
+      status: status ?? this.status,
+      statusElement: statusElement ?? this.statusElement,
+      statusReason: statusReason ?? this.statusReason,
+      category: category ?? this.category,
+      medicationCodeableConcept:
+          medicationCodeableConcept ?? this.medicationCodeableConcept,
+      medicationReference: medicationReference ?? this.medicationReference,
+      subject: subject ?? this.subject,
+      context: context ?? this.context,
+      supportingInformation:
+          supportingInformation ?? this.supportingInformation,
+      effectiveDateTime: effectiveDateTime ?? this.effectiveDateTime,
+      effectiveDateTimeElement:
+          effectiveDateTimeElement ?? this.effectiveDateTimeElement,
+      effectivePeriod: effectivePeriod ?? this.effectivePeriod,
+      performer: performer ?? this.performer,
+      reasonCode: reasonCode ?? this.reasonCode,
+      reasonReference: reasonReference ?? this.reasonReference,
+      request: request ?? this.request,
+      device: device ?? this.device,
+      note: note ?? this.note,
+      dosage: dosage ?? this.dosage,
+      eventHistory: eventHistory ?? this.eventHistory,
+    );
+  }
 }
 
 @JsonCodable()
 @Data()
 @Entity()
+
+/// [MedicationAdministrationPerformer] /// Indicates who or what performed the medication administration and how they
+/// were involved.
 class MedicationAdministrationPerformer extends BackboneElement {
   MedicationAdministrationPerformer({
     super.id,
@@ -92,15 +248,38 @@ class MedicationAdministrationPerformer extends BackboneElement {
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
+
+  /// [function_] /// Distinguishes the type of involvement of the performer in the medication
+  /// administration.
   final CodeableConcept? function_;
+
+  /// [actor] /// Indicates who or what performed the medication administration.
   final Reference actor;
   @override
   MedicationAdministrationPerformer clone() => throw UnimplementedError();
+  MedicationAdministrationPerformer copy({
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    List<FhirExtension>? modifierExtension,
+    CodeableConcept? function_,
+    Reference? actor,
+  }) {
+    return MedicationAdministrationPerformer(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      function_: function_ ?? this.function_,
+      actor: actor ?? this.actor,
+    );
+  }
 }
 
 @JsonCodable()
 @Data()
 @Entity()
+
+/// [MedicationAdministrationDosage] /// Describes the medication dosage information details e.g. dose, rate, site,
+/// route, etc.
 class MedicationAdministrationDosage extends BackboneElement {
   MedicationAdministrationDosage({
     super.id,
@@ -119,14 +298,74 @@ class MedicationAdministrationDosage extends BackboneElement {
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
+
+  /// [text] /// Free text dosage can be used for cases where the dosage administered is too
+  /// complex to code. When coded dosage is present, the free text dosage may
+  /// still be present for display to humans. The dosage instructions should
+  /// reflect the dosage of the medication that was administered.
   final FhirString? text;
   final Element? textElement;
+
+  /// [site] /// A coded specification of the anatomic site where the medication first
+  /// entered the body. For example, "left arm".
   final CodeableConcept? site;
+
+  /// [route] /// A code specifying the route or physiological path of administration of a
+  /// therapeutic agent into or onto the patient. For example, topical,
+  /// intravenous, etc.
   final CodeableConcept? route;
+
+  /// [method] /// A coded value indicating the method by which the medication is intended to
+  /// be or was introduced into or on the body. This attribute will most often
+  /// NOT be populated. It is most commonly used for injections. For example,
+  /// Slow Push, Deep IV.
   final CodeableConcept? method;
+
+  /// [dose] /// The amount of the medication given at one administration event. Use this
+  /// value when the administration is essentially an instantaneous event such as
+  /// a swallowing a tablet or giving an injection.
   final Quantity? dose;
+
+  /// [rateRatio] /// Identifies the speed with which the medication was or will be introduced
+  /// into the patient. Typically, the rate for an infusion e.g. 100 ml per 1
+  /// hour or 100 ml/hr. May also be expressed as a rate per unit of time, e.g.
+  /// 500 ml per 2 hours. Other examples: 200 mcg/min or 200 mcg/1 minute; 1
+  /// liter/8 hours.
   final Ratio? rateRatio;
+
+  /// [rateQuantity] /// Identifies the speed with which the medication was or will be introduced
+  /// into the patient. Typically, the rate for an infusion e.g. 100 ml per 1
+  /// hour or 100 ml/hr. May also be expressed as a rate per unit of time, e.g.
+  /// 500 ml per 2 hours. Other examples: 200 mcg/min or 200 mcg/1 minute; 1
+  /// liter/8 hours.
   final Quantity? rateQuantity;
   @override
   MedicationAdministrationDosage clone() => throw UnimplementedError();
+  MedicationAdministrationDosage copy({
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    List<FhirExtension>? modifierExtension,
+    FhirString? text,
+    Element? textElement,
+    CodeableConcept? site,
+    CodeableConcept? route,
+    CodeableConcept? method,
+    Quantity? dose,
+    Ratio? rateRatio,
+    Quantity? rateQuantity,
+  }) {
+    return MedicationAdministrationDosage(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      text: text ?? this.text,
+      textElement: textElement ?? this.textElement,
+      site: site ?? this.site,
+      route: route ?? this.route,
+      method: method ?? this.method,
+      dose: dose ?? this.dose,
+      rateRatio: rateRatio ?? this.rateRatio,
+      rateQuantity: rateQuantity ?? this.rateQuantity,
+    );
+  }
 }

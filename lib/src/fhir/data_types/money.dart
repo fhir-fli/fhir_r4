@@ -8,6 +8,8 @@ import '../../../fhir_r4.dart';
 @JsonCodable()
 @Data()
 @Entity()
+
+/// [Money] /// An amount of economic utility in some recognized currency.
 class Money extends DataType {
   Money({
     super.id,
@@ -21,10 +23,31 @@ class Money extends DataType {
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
+
+  /// [value] /// Numerical value (with implicit precision).
   final FhirDecimal? value;
   final Element? valueElement;
+
+  /// [currency] /// ISO 4217 Currency Code.
   final FhirCode? currency;
   final Element? currencyElement;
   @override
   Money clone() => throw UnimplementedError();
+  Money copy({
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    FhirDecimal? value,
+    Element? valueElement,
+    FhirCode? currency,
+    Element? currencyElement,
+  }) {
+    return Money(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      value: value ?? this.value,
+      valueElement: valueElement ?? this.valueElement,
+      currency: currency ?? this.currency,
+      currencyElement: currencyElement ?? this.currencyElement,
+    );
+  }
 }

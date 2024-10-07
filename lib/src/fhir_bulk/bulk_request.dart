@@ -3,70 +3,59 @@
 // Dart imports:
 import 'dart:convert';
 
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:http/http.dart';
 
 import '../../fhir_r4.dart';
 
-part 'bulk_request.freezed.dart';
+class BulkRequestPatient extends BulkRequest {
+  const BulkRequestPatient(
+      {required super.base, super.since, super.types, super.client});
+}
 
-@freezed
+class BulkRequestGroup extends BulkRequest {
+  const BulkRequestGroup(
+      {required super.base,
+      required this.id,
+      super.since,
+      super.types,
+      super.client});
 
-/// Freezed union class for making different types of Bulk Requests
-class BulkRequest with _$BulkRequest {
-  BulkRequest._();
+  final FhirId id;
+}
 
-  ///  Patient
-  factory BulkRequest.patient({
-    required Uri base,
-    FhirDateTime? since,
-    List<WhichResource>? types,
-    Client? client,
-  }) = _BulkPatientRequest;
+class BulkRequestSystem extends BulkRequest {
+  const BulkRequestSystem(
+      {required super.base, super.since, super.types, super.client});
+}
 
-  ///  Group
-  factory BulkRequest.group({
-    required Uri base,
-    required FhirId id,
-    FhirDateTime? since,
-    List<WhichResource>? types,
-    Client? client,
-  }) = _BulkGroupRequest;
+abstract class BulkRequest {
+  const BulkRequest({
+    required this.base,
+    this.since,
+    this.types,
+    this.client,
+  });
 
-  ///  System
-  factory BulkRequest.system({
-    required Uri base,
-    FhirDateTime? since,
-    List<WhichResource>? types,
-    Client? client,
-  }) = _BulkSystemRequest;
+  final Uri base;
+  final FhirDateTime? since;
+  final List<WhichResource>? types;
+  final Client? client;
 
   /// Actually perform the request by type
-  Future<List<Resource?>> request({
-    required Map<String, String> headers,
-  }) async {
+  Future<List<Resource?>> request() async {
+    final Map<String, String> headers = <String, String>{};
     headers['accept'] = 'application/fhir+json';
     headers['prefer'] = 'respond-async';
-    return map(
-      patient: (_BulkPatientRequest request) async => _request(
-        RestfulRequest.get_,
-        '$base/Patient/\$export${_parameters(since, types)}',
-        headers,
-        client,
-      ),
-      group: (_BulkGroupRequest request) async => _request(
-        RestfulRequest.get_,
-        '$base/Group/${request.id}/\$export${_parameters(since, types)}',
-        headers,
-        client,
-      ),
-      system: (_BulkSystemRequest request) async => _request(
-        RestfulRequest.get_,
-        '$base/\$export${_parameters(since, types)}',
-        headers,
-        client,
-      ),
-    );
+    String baseUrl;
+    if (this is BulkRequestPatient) {
+      baseUrl = '$base/Patient/\$export${_parameters(since, types)}';
+    } else if (this is BulkRequestGroup) {
+      baseUrl =
+          '$base/Group/${(this as BulkRequestGroup).id}/\$export${_parameters(since, types)}';
+    } else {
+      baseUrl = '$base/\$export${_parameters(since, types)}';
+    }
+    return _request(RestfulRequest.get_, baseUrl, headers, client);
   }
 
   /// Returns the string of parameters allowed in the request
@@ -173,11 +162,12 @@ class BulkRequest with _$BulkRequest {
           OperationOutcomeIssue(
             severity: FhirCode('error'),
             code: FhirCode('unknown'),
-            details: CodeableConcept(text: 'Failed to make restful request'),
-            diagnostics: '\nStatus Code: $statusCode -'
+            details: CodeableConcept(
+                text: FhirString('Failed to make restful request')),
+            diagnostics: FhirString('\nStatus Code: $statusCode -'
                 ' ${_errorCodes[statusCode]}'
                 '\nResult headers: ${result.headers}'
-                '\nResult body: ${result.body}',
+                '\nResult body: ${result.body}'),
           ),
         ],
       ),
@@ -195,8 +185,8 @@ class BulkRequest with _$BulkRequest {
             OperationOutcomeIssue(
               severity: FhirCode('error'),
               code: FhirCode('value'),
-              details: CodeableConcept(text: issue),
-              diagnostics: diagnostics,
+              details: CodeableConcept(text: issue.toFhirString),
+              diagnostics: diagnostics?.toFhirString,
             ),
           ],
         ),

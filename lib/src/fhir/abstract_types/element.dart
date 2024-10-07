@@ -7,10 +7,10 @@ import '../../../fhir_r4.dart';
 class Element extends FhirBase {
   // Constructor for Element with optional id and extension_s
   Element({
-    String? id,
+    this.id,
     this.extension_,
     super.fhirType = 'Element',
-  }) : id = id == null ? null : FhirString(id);
+  });
 
   // Unique id for the element within a resource
   final FhirString? id;
@@ -24,7 +24,7 @@ class Element extends FhirBase {
     List<FhirExtension>? extension_,
   }) {
     return Element(
-      id: id ?? this.id?.value,
+      id: id?.toFhirString ?? this.id,
       extension_: extension_ ?? this.extension_,
     );
   }
@@ -89,13 +89,13 @@ class Element extends FhirBase {
     switch (name) {
       case 'id':
         if (value is String) {
-          return Element(id: value, extension_: extension_);
+          return Element(id: value.toFhirString, extension_: extension_);
         } else {
           throw ArgumentError('Invalid type for id. Expected String.');
         }
       case 'extension':
         if (value is List<FhirExtension>) {
-          return Element(id: id?.value, extension_: value);
+          return Element(id: id, extension_: value);
         } else {
           throw ArgumentError(
               'Invalid type for extension. Expected List<FhirExtension>.');
@@ -110,13 +110,13 @@ class Element extends FhirBase {
     switch (hash) {
       case 3355: // hash for 'id'
         if (value is String) {
-          return Element(id: value, extension_: extension_);
+          return Element(id: value.toFhirString, extension_: extension_);
         } else {
           throw ArgumentError('Invalid type for id. Expected String.');
         }
       case -612557761: // hash for 'extension'
         if (value is List<FhirExtension>) {
-          return Element(id: id?.value, extension_: value);
+          return Element(id: id, extension_: value);
         } else {
           throw ArgumentError(
               'Invalid type for extension. Expected List<FhirExtension>.');
@@ -148,7 +148,7 @@ class Element extends FhirBase {
   // Method to copy the current element
   Element copy() {
     final Element copiedElement = Element(
-      id: id?.value,
+      id: id,
       extension_: extension_ == null
           ? null
           : List<FhirExtension>.from(
@@ -185,7 +185,7 @@ class Element extends FhirBase {
 
   factory Element.fromJson(Map<String, Object?> json) {
     return Element(
-      id: json['id'] as String?,
+      id: (json['id'] as String?)?.toFhirString,
       extension_: json['_extension'] == null
           ? <FhirExtension>[]
           : List<FhirExtension>.from((json['_extension']! as List<dynamic>).map(

@@ -8,6 +8,9 @@ import '../../../fhir_r4.dart';
 @JsonCodable()
 @Data()
 @Entity()
+
+/// [Practitioner] /// A person who is directly or indirectly involved in the provisioning of
+/// healthcare.
 class Practitioner extends DomainResource {
   Practitioner({
     super.id,
@@ -38,26 +41,109 @@ class Practitioner extends DomainResource {
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
+
+  /// [identifier] /// An identifier that applies to this person in this role.
   final List<Identifier>? identifier;
+
+  /// [active] /// Whether this practitioner's record is in active use.
   final FhirBoolean? active;
   final Element? activeElement;
+
+  /// [name] /// The name(s) associated with the practitioner.
   final List<HumanName>? name;
+
+  /// [telecom] /// A contact detail for the practitioner, e.g. a telephone number or an email
+  /// address.
   final List<ContactPoint>? telecom;
+
+  /// [address] /// Address(es) of the practitioner that are not role specific (typically home
+  /// address). Work addresses are not typically entered in this property as they
+  /// are usually role dependent.
   final List<Address>? address;
+
+  /// [gender] /// Administrative Gender - the gender that the person is considered to have
+  /// for administration and record keeping purposes.
   final FhirCode? gender;
   final Element? genderElement;
+
+  /// [birthDate] /// The date of birth for the practitioner.
   final FhirDate? birthDate;
   final Element? birthDateElement;
+
+  /// [photo] /// Image of the person.
   final List<Attachment>? photo;
+
+  /// [qualification] /// The official certifications, training, and licenses that authorize or
+  /// otherwise pertain to the provision of care by the practitioner. For
+  /// example, a medical license issued by a medical board authorizing the
+  /// practitioner to practice medicine within a certian locality.
   final List<PractitionerQualification>? qualification;
+
+  /// [communication] /// A language the practitioner can use in patient communication.
   final List<CodeableConcept>? communication;
   @override
   Practitioner clone() => throw UnimplementedError();
+  Practitioner copy({
+    FhirString? id,
+    FhirMeta? meta,
+    FhirUri? implicitRules,
+    Element? implicitRulesElement,
+    FhirCode? language,
+    Element? languageElement,
+    Narrative? text,
+    List<Resource>? contained,
+    List<FhirExtension>? extension_,
+    List<FhirExtension>? modifierExtension,
+    List<Identifier>? identifier,
+    FhirBoolean? active,
+    Element? activeElement,
+    List<HumanName>? name,
+    List<ContactPoint>? telecom,
+    List<Address>? address,
+    FhirCode? gender,
+    Element? genderElement,
+    FhirDate? birthDate,
+    Element? birthDateElement,
+    List<Attachment>? photo,
+    List<PractitionerQualification>? qualification,
+    List<CodeableConcept>? communication,
+  }) {
+    return Practitioner(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
+      language: language ?? this.language,
+      languageElement: languageElement ?? this.languageElement,
+      text: text ?? this.text,
+      contained: contained ?? this.contained,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      active: active ?? this.active,
+      activeElement: activeElement ?? this.activeElement,
+      name: name ?? this.name,
+      telecom: telecom ?? this.telecom,
+      address: address ?? this.address,
+      gender: gender ?? this.gender,
+      genderElement: genderElement ?? this.genderElement,
+      birthDate: birthDate ?? this.birthDate,
+      birthDateElement: birthDateElement ?? this.birthDateElement,
+      photo: photo ?? this.photo,
+      qualification: qualification ?? this.qualification,
+      communication: communication ?? this.communication,
+    );
+  }
 }
 
 @JsonCodable()
 @Data()
 @Entity()
+
+/// [PractitionerQualification] /// The official certifications, training, and licenses that authorize or
+/// otherwise pertain to the provision of care by the practitioner. For
+/// example, a medical license issued by a medical board authorizing the
+/// practitioner to practice medicine within a certian locality.
 class PractitionerQualification extends BackboneElement {
   PractitionerQualification({
     super.id,
@@ -72,10 +158,37 @@ class PractitionerQualification extends BackboneElement {
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
+
+  /// [identifier] /// An identifier that applies to this person's qualification in this role.
   final List<Identifier>? identifier;
+
+  /// [code] /// Coded representation of the qualification.
   final CodeableConcept code;
+
+  /// [period] /// Period during which the qualification is valid.
   final Period? period;
+
+  /// [issuer] /// Organization that regulates and issues the qualification.
   final Reference? issuer;
   @override
   PractitionerQualification clone() => throw UnimplementedError();
+  PractitionerQualification copy({
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    List<FhirExtension>? modifierExtension,
+    List<Identifier>? identifier,
+    CodeableConcept? code,
+    Period? period,
+    Reference? issuer,
+  }) {
+    return PractitionerQualification(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      code: code ?? this.code,
+      period: period ?? this.period,
+      issuer: issuer ?? this.issuer,
+    );
+  }
 }

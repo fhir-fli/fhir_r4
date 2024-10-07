@@ -8,6 +8,8 @@ import '../../../fhir_r4.dart';
 @JsonCodable()
 @Data()
 @Entity()
+
+/// [HealthcareService] /// The details of a healthcare service available at a location.
 class HealthcareService extends DomainResource {
   HealthcareService({
     super.id,
@@ -55,43 +57,203 @@ class HealthcareService extends DomainResource {
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
+
+  /// [identifier] /// External identifiers for this item.
   final List<Identifier>? identifier;
+
+  /// [active] /// This flag is used to mark the record to not be used. This is not used when
+  /// a center is closed for maintenance, or for holidays, the notAvailable
+  /// period is to be used for this.
   final FhirBoolean? active;
   final Element? activeElement;
+
+  /// [providedBy] /// The organization that provides this healthcare service.
   final Reference? providedBy;
+
+  /// [category] /// Identifies the broad category of service being performed or delivered.
   final List<CodeableConcept>? category;
+
+  /// [type] /// The specific type of service that may be delivered or performed.
   final List<CodeableConcept>? type;
+
+  /// [specialty] /// Collection of specialties handled by the service site. This is more of a
+  /// medical term.
   final List<CodeableConcept>? specialty;
+
+  /// [location] /// The location(s) where this healthcare service may be provided.
   final List<Reference>? location;
+
+  /// [name] /// Further description of the service as it would be presented to a consumer
+  /// while searching.
   final FhirString? name;
   final Element? nameElement;
+
+  /// [comment] /// Any additional description of the service and/or any specific issues not
+  /// covered by the other attributes, which can be displayed as further detail
+  /// under the serviceName.
   final FhirString? comment;
   final Element? commentElement;
+
+  /// [extraDetails] /// Extra details about the service that can't be placed in the other fields.
   final FhirMarkdown? extraDetails;
   final Element? extraDetailsElement;
+
+  /// [photo] /// If there is a photo/symbol associated with this HealthcareService, it may
+  /// be included here to facilitate quick identification of the service in a
+  /// list.
   final Attachment? photo;
+
+  /// [telecom] /// List of contacts related to this specific healthcare service.
   final List<ContactPoint>? telecom;
+
+  /// [coverageArea] /// The location(s) that this service is available to (not where the service is
+  /// provided).
   final List<Reference>? coverageArea;
+
+  /// [serviceProvisionCode] /// The code(s) that detail the conditions under which the healthcare service
+  /// is available/offered.
   final List<CodeableConcept>? serviceProvisionCode;
+
+  /// [eligibility] /// Does this service have specific eligibility requirements that need to be
+  /// met in order to use the service?
   final List<HealthcareServiceEligibility>? eligibility;
+
+  /// [program] /// Programs that this service is applicable to.
   final List<CodeableConcept>? program;
+
+  /// [characteristic] /// Collection of characteristics (attributes).
   final List<CodeableConcept>? characteristic;
+
+  /// [communication] /// Some services are specifically made available in multiple languages, this
+  /// property permits a directory to declare the languages this is offered in.
+  /// Typically this is only provided where a service operates in communities
+  /// with mixed languages used.
   final List<CodeableConcept>? communication;
+
+  /// [referralMethod] /// Ways that the service accepts referrals, if this is not provided then it is
+  /// implied that no referral is required.
   final List<CodeableConcept>? referralMethod;
+
+  /// [appointmentRequired] /// Indicates whether or not a prospective consumer will require an appointment
+  /// for a particular service at a site to be provided by the Organization.
+  /// Indicates if an appointment is required for access to this service.
   final FhirBoolean? appointmentRequired;
   final Element? appointmentRequiredElement;
+
+  /// [availableTime] /// A collection of times that the Service Site is available.
   final List<HealthcareServiceAvailableTime>? availableTime;
+
+  /// [notAvailable] /// The HealthcareService is not available during this period of time due to
+  /// the provided reason.
   final List<HealthcareServiceNotAvailable>? notAvailable;
+
+  /// [availabilityExceptions] /// A description of site availability exceptions, e.g. public holiday
+  /// availability. Succinctly describing all possible exceptions to normal site
+  /// availability as details in the available Times and not available Times.
   final FhirString? availabilityExceptions;
   final Element? availabilityExceptionsElement;
+
+  /// [endpoint] /// Technical endpoints providing access to services operated for the specific
+  /// healthcare services defined at this resource.
   final List<Reference>? endpoint;
   @override
   HealthcareService clone() => throw UnimplementedError();
+  HealthcareService copy({
+    FhirString? id,
+    FhirMeta? meta,
+    FhirUri? implicitRules,
+    Element? implicitRulesElement,
+    FhirCode? language,
+    Element? languageElement,
+    Narrative? text,
+    List<Resource>? contained,
+    List<FhirExtension>? extension_,
+    List<FhirExtension>? modifierExtension,
+    List<Identifier>? identifier,
+    FhirBoolean? active,
+    Element? activeElement,
+    Reference? providedBy,
+    List<CodeableConcept>? category,
+    List<CodeableConcept>? type,
+    List<CodeableConcept>? specialty,
+    List<Reference>? location,
+    FhirString? name,
+    Element? nameElement,
+    FhirString? comment,
+    Element? commentElement,
+    FhirMarkdown? extraDetails,
+    Element? extraDetailsElement,
+    Attachment? photo,
+    List<ContactPoint>? telecom,
+    List<Reference>? coverageArea,
+    List<CodeableConcept>? serviceProvisionCode,
+    List<HealthcareServiceEligibility>? eligibility,
+    List<CodeableConcept>? program,
+    List<CodeableConcept>? characteristic,
+    List<CodeableConcept>? communication,
+    List<CodeableConcept>? referralMethod,
+    FhirBoolean? appointmentRequired,
+    Element? appointmentRequiredElement,
+    List<HealthcareServiceAvailableTime>? availableTime,
+    List<HealthcareServiceNotAvailable>? notAvailable,
+    FhirString? availabilityExceptions,
+    Element? availabilityExceptionsElement,
+    List<Reference>? endpoint,
+  }) {
+    return HealthcareService(
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
+      language: language ?? this.language,
+      languageElement: languageElement ?? this.languageElement,
+      text: text ?? this.text,
+      contained: contained ?? this.contained,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      identifier: identifier ?? this.identifier,
+      active: active ?? this.active,
+      activeElement: activeElement ?? this.activeElement,
+      providedBy: providedBy ?? this.providedBy,
+      category: category ?? this.category,
+      type: type ?? this.type,
+      specialty: specialty ?? this.specialty,
+      location: location ?? this.location,
+      name: name ?? this.name,
+      nameElement: nameElement ?? this.nameElement,
+      comment: comment ?? this.comment,
+      commentElement: commentElement ?? this.commentElement,
+      extraDetails: extraDetails ?? this.extraDetails,
+      extraDetailsElement: extraDetailsElement ?? this.extraDetailsElement,
+      photo: photo ?? this.photo,
+      telecom: telecom ?? this.telecom,
+      coverageArea: coverageArea ?? this.coverageArea,
+      serviceProvisionCode: serviceProvisionCode ?? this.serviceProvisionCode,
+      eligibility: eligibility ?? this.eligibility,
+      program: program ?? this.program,
+      characteristic: characteristic ?? this.characteristic,
+      communication: communication ?? this.communication,
+      referralMethod: referralMethod ?? this.referralMethod,
+      appointmentRequired: appointmentRequired ?? this.appointmentRequired,
+      appointmentRequiredElement:
+          appointmentRequiredElement ?? this.appointmentRequiredElement,
+      availableTime: availableTime ?? this.availableTime,
+      notAvailable: notAvailable ?? this.notAvailable,
+      availabilityExceptions:
+          availabilityExceptions ?? this.availabilityExceptions,
+      availabilityExceptionsElement:
+          availabilityExceptionsElement ?? this.availabilityExceptionsElement,
+      endpoint: endpoint ?? this.endpoint,
+    );
+  }
 }
 
 @JsonCodable()
 @Data()
 @Entity()
+
+/// [HealthcareServiceEligibility] /// Does this service have specific eligibility requirements that need to be
+/// met in order to use the service?
 class HealthcareServiceEligibility extends BackboneElement {
   HealthcareServiceEligibility({
     super.id,
@@ -105,16 +267,39 @@ class HealthcareServiceEligibility extends BackboneElement {
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
+
+  /// [code] /// Coded value for the eligibility.
   final CodeableConcept? code;
+
+  /// [comment] /// Describes the eligibility conditions for the service.
   final FhirMarkdown? comment;
   final Element? commentElement;
   @override
   HealthcareServiceEligibility clone() => throw UnimplementedError();
+  HealthcareServiceEligibility copy({
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    List<FhirExtension>? modifierExtension,
+    CodeableConcept? code,
+    FhirMarkdown? comment,
+    Element? commentElement,
+  }) {
+    return HealthcareServiceEligibility(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      code: code ?? this.code,
+      comment: comment ?? this.comment,
+      commentElement: commentElement ?? this.commentElement,
+    );
+  }
 }
 
 @JsonCodable()
 @Data()
 @Entity()
+
+/// [HealthcareServiceAvailableTime] /// A collection of times that the Service Site is available.
 class HealthcareServiceAvailableTime extends BackboneElement {
   HealthcareServiceAvailableTime({
     super.id,
@@ -133,21 +318,65 @@ class HealthcareServiceAvailableTime extends BackboneElement {
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
+
+  /// [daysOfWeek] /// Indicates which days of the week are available between the start and end
+  /// Times.
   final List<FhirCode>? daysOfWeek;
   final List<Element>? daysOfWeekElement;
+
+  /// [allDay] /// Is this always available? (hence times are irrelevant) e.g. 24 hour
+  /// service.
   final FhirBoolean? allDay;
   final Element? allDayElement;
+
+  /// [availableStartTime] /// The opening time of day. Note: If the AllDay flag is set, then this time is
+  /// ignored.
   final FhirTime? availableStartTime;
   final Element? availableStartTimeElement;
+
+  /// [availableEndTime] /// The closing time of day. Note: If the AllDay flag is set, then this time is
+  /// ignored.
   final FhirTime? availableEndTime;
   final Element? availableEndTimeElement;
   @override
   HealthcareServiceAvailableTime clone() => throw UnimplementedError();
+  HealthcareServiceAvailableTime copy({
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    List<FhirExtension>? modifierExtension,
+    List<FhirCode>? daysOfWeek,
+    List<Element>? daysOfWeekElement,
+    FhirBoolean? allDay,
+    Element? allDayElement,
+    FhirTime? availableStartTime,
+    Element? availableStartTimeElement,
+    FhirTime? availableEndTime,
+    Element? availableEndTimeElement,
+  }) {
+    return HealthcareServiceAvailableTime(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      daysOfWeek: daysOfWeek ?? this.daysOfWeek,
+      daysOfWeekElement: daysOfWeekElement ?? this.daysOfWeekElement,
+      allDay: allDay ?? this.allDay,
+      allDayElement: allDayElement ?? this.allDayElement,
+      availableStartTime: availableStartTime ?? this.availableStartTime,
+      availableStartTimeElement:
+          availableStartTimeElement ?? this.availableStartTimeElement,
+      availableEndTime: availableEndTime ?? this.availableEndTime,
+      availableEndTimeElement:
+          availableEndTimeElement ?? this.availableEndTimeElement,
+    );
+  }
 }
 
 @JsonCodable()
 @Data()
 @Entity()
+
+/// [HealthcareServiceNotAvailable] /// The HealthcareService is not available during this period of time due to
+/// the provided reason.
 class HealthcareServiceNotAvailable extends BackboneElement {
   HealthcareServiceNotAvailable({
     super.id,
@@ -161,9 +390,32 @@ class HealthcareServiceNotAvailable extends BackboneElement {
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
+
+  /// [description] /// The reason that can be presented to the user as to why this time is not
+  /// available.
   final FhirString description;
   final Element? descriptionElement;
+
+  /// [during] /// Service is not available (seasonally or for a public holiday) from this
+  /// date.
   final Period? during;
   @override
   HealthcareServiceNotAvailable clone() => throw UnimplementedError();
+  HealthcareServiceNotAvailable copy({
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    List<FhirExtension>? modifierExtension,
+    FhirString? description,
+    Element? descriptionElement,
+    Period? during,
+  }) {
+    return HealthcareServiceNotAvailable(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      description: description ?? this.description,
+      descriptionElement: descriptionElement ?? this.descriptionElement,
+      during: during ?? this.during,
+    );
+  }
 }
