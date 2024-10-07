@@ -6,27 +6,31 @@ enum CharacteristicMethod {
   /// Definition: Default.
   @JsonValue('Default')
   Default,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case Default: return 'Default';
-      }
-      }
-String toJson() => toString();
-  CharacteristicMethod fromString(String str) {
-    switch(str) {
-      case 'Default': return CharacteristicMethod.Default;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case Default:
+        return 'Default';
     }
-      }
- CharacteristicMethod fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  CharacteristicMethod fromString(String str) {
+    switch (str) {
+      case 'Default':
+        return CharacteristicMethod.Default;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  CharacteristicMethod fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

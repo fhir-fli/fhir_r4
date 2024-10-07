@@ -15,25 +15,24 @@ class AdministrableProductDefinition extends DomainResource {
   final List<Reference>? producedFrom;
   final List<CodeableConcept>? ingredient;
   final Reference? device;
-  final List<BackboneElement>? property;
-  final List<BackboneElement> routeOfAdministration;
-  final List<BackboneElement>? targetSpecies;
-  final List<BackboneElement>? withdrawalPeriod;
+  final List<AdministrableProductDefinitionProperty>? property;
+  final List<AdministrableProductDefinitionRouteOfAdministration>
+      routeOfAdministration;
 
   AdministrableProductDefinition({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.formOf,
     this.administrableDoseForm,
     this.unitOfPresentation,
@@ -42,12 +41,10 @@ this.statusElement,
     this.device,
     this.property,
     required this.routeOfAdministration,
-    this.targetSpecies,
-    this.withdrawalPeriod,
   }) : super(resourceType: R4ResourceType.AdministrableProductDefinition);
 
-@override
-AdministrableProductDefinition clone() => throw UnimplementedError();
+  @override
+  AdministrableProductDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -56,10 +53,10 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
   final CodeableConcept type;
   final CodeableConcept? valueCodeableConcept;
   final Quantity? valueQuantity;
-  final FhirDate? valueFhirDate;
-  final Element? valueFhirDateElement;
-  final FhirBoolean? valueFhirBoolean;
-  final Element? valueFhirBooleanElement;
+  final FhirDate? valueDate;
+  final Element? valueDateElement;
+  final FhirBoolean? valueBoolean;
+  final Element? valueBooleanElement;
   final Attachment? valueAttachment;
   final CodeableConcept? status;
 
@@ -70,27 +67,29 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
     required this.type,
     this.valueCodeableConcept,
     this.valueQuantity,
-    this.valueFhirDate,
-this.valueFhirDateElement,
-    this.valueFhirBoolean,
-this.valueFhirBooleanElement,
+    this.valueDate,
+    this.valueDateElement,
+    this.valueBoolean,
+    this.valueBooleanElement,
     this.valueAttachment,
     this.status,
   });
 
-@override
-AdministrableProductDefinitionProperty clone() => throw UnimplementedError();
+  @override
+  AdministrableProductDefinitionProperty clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
-class AdministrableProductDefinitionRouteOfAdministration extends BackboneElement {
+class AdministrableProductDefinitionRouteOfAdministration
+    extends BackboneElement {
   final CodeableConcept code;
   final Quantity? firstDose;
   final Quantity? maxSingleDose;
   final Quantity? maxDosePerDay;
   final Ratio? maxDosePerTreatmentPeriod;
   final FhirDuration? maxTreatmentPeriod;
+  final List<AdministrableProductDefinitionTargetSpecies>? targetSpecies;
 
   AdministrableProductDefinitionRouteOfAdministration({
     super.id,
@@ -102,26 +101,31 @@ class AdministrableProductDefinitionRouteOfAdministration extends BackboneElemen
     this.maxDosePerDay,
     this.maxDosePerTreatmentPeriod,
     this.maxTreatmentPeriod,
+    this.targetSpecies,
   });
 
-@override
-AdministrableProductDefinitionRouteOfAdministration clone() => throw UnimplementedError();
+  @override
+  AdministrableProductDefinitionRouteOfAdministration clone() =>
+      throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
 class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
   final CodeableConcept code;
+  final List<AdministrableProductDefinitionWithdrawalPeriod>? withdrawalPeriod;
 
   AdministrableProductDefinitionTargetSpecies({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.code,
+    this.withdrawalPeriod,
   });
 
-@override
-AdministrableProductDefinitionTargetSpecies clone() => throw UnimplementedError();
+  @override
+  AdministrableProductDefinitionTargetSpecies clone() =>
+      throw UnimplementedError();
 }
 
 @Data()
@@ -139,10 +143,10 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
     required this.tissue,
     required this.value,
     this.supportingInformation,
-this.supportingInformationElement,
+    this.supportingInformationElement,
   });
 
-@override
-AdministrableProductDefinitionWithdrawalPeriod clone() => throw UnimplementedError();
+  @override
+  AdministrableProductDefinitionWithdrawalPeriod clone() =>
+      throw UnimplementedError();
 }
-

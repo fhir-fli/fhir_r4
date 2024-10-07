@@ -12,10 +12,10 @@ class TriggerDefinition extends DataType {
   final Element? nameElement;
   final Timing? timingTiming;
   final Reference? timingReference;
-  final FhirDate? timingFhirDate;
-  final Element? timingFhirDateElement;
-  final FhirDateTime? timingFhirDateTime;
-  final Element? timingFhirDateTimeElement;
+  final FhirDate? timingDate;
+  final Element? timingDateElement;
+  final FhirDateTime? timingDateTime;
+  final Element? timingDateTimeElement;
   final List<DataRequirement>? data;
   final FhirExpression? condition;
 
@@ -23,20 +23,19 @@ class TriggerDefinition extends DataType {
     super.id,
     super.extension_,
     required this.type,
-this.typeElement,
+    this.typeElement,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.timingTiming,
     this.timingReference,
-    this.timingFhirDate,
-this.timingFhirDateElement,
-    this.timingFhirDateTime,
-this.timingFhirDateTimeElement,
+    this.timingDate,
+    this.timingDateElement,
+    this.timingDateTime,
+    this.timingDateTimeElement,
     this.data,
     this.condition,
   });
 
-@override
-TriggerDefinition clone() => throw UnimplementedError();
+  @override
+  TriggerDefinition clone() => throw UnimplementedError();
 }
-

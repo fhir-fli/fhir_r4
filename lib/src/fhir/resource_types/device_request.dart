@@ -22,11 +22,11 @@ class DeviceRequest extends DomainResource {
   final Element? priorityElement;
   final Reference codeReference;
   final CodeableConcept codeCodeableConcept;
-  final List<BackboneElement>? parameter;
+  final List<DeviceRequestParameter>? parameter;
   final Reference subject;
   final Reference? encounter;
-  final FhirDateTime? occurrenceFhirDateTime;
-  final Element? occurrenceFhirDateTimeElement;
+  final FhirDateTime? occurrenceDateTime;
+  final Element? occurrenceDateTimeElement;
   final Period? occurrencePeriod;
   final Timing? occurrenceTiming;
   final FhirDateTime? authoredOn;
@@ -45,38 +45,38 @@ class DeviceRequest extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
-this.instantiatesCanonicalElement,
+    this.instantiatesCanonicalElement,
     this.instantiatesUri,
-this.instantiatesUriElement,
+    this.instantiatesUriElement,
     this.basedOn,
     this.priorRequest,
     this.groupIdentifier,
     this.status,
-this.statusElement,
+    this.statusElement,
     required this.intent,
-this.intentElement,
+    this.intentElement,
     this.priority,
-this.priorityElement,
+    this.priorityElement,
     required this.codeReference,
     required this.codeCodeableConcept,
     this.parameter,
     required this.subject,
     this.encounter,
-    this.occurrenceFhirDateTime,
-this.occurrenceFhirDateTimeElement,
+    this.occurrenceDateTime,
+    this.occurrenceDateTimeElement,
     this.occurrencePeriod,
     this.occurrenceTiming,
     this.authoredOn,
-this.authoredOnElement,
+    this.authoredOnElement,
     this.requester,
     this.performerType,
     this.performer,
@@ -88,8 +88,8 @@ this.authoredOnElement,
     this.relevantHistory,
   }) : super(resourceType: R4ResourceType.DeviceRequest);
 
-@override
-DeviceRequest clone() => throw UnimplementedError();
+  @override
+  DeviceRequest clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -99,8 +99,8 @@ class DeviceRequestParameter extends BackboneElement {
   final CodeableConcept? valueCodeableConcept;
   final Quantity? valueQuantity;
   final Range? valueRange;
-  final FhirBoolean? valueFhirBoolean;
-  final Element? valueFhirBooleanElement;
+  final FhirBoolean? valueBoolean;
+  final Element? valueBooleanElement;
 
   DeviceRequestParameter({
     super.id,
@@ -110,11 +110,10 @@ class DeviceRequestParameter extends BackboneElement {
     this.valueCodeableConcept,
     this.valueQuantity,
     this.valueRange,
-    this.valueFhirBoolean,
-this.valueFhirBooleanElement,
+    this.valueBoolean,
+    this.valueBooleanElement,
   });
 
-@override
-DeviceRequestParameter clone() => throw UnimplementedError();
+  @override
+  DeviceRequestParameter clone() => throw UnimplementedError();
 }
-

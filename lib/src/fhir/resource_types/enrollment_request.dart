@@ -20,25 +20,24 @@ class EnrollmentRequest extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.status,
-this.statusElement,
+    this.statusElement,
     this.created,
-this.createdElement,
+    this.createdElement,
     this.insurer,
     this.provider,
     this.candidate,
     this.coverage,
   }) : super(resourceType: R4ResourceType.EnrollmentRequest);
 
-@override
-EnrollmentRequest clone() => throw UnimplementedError();
+  @override
+  EnrollmentRequest clone() => throw UnimplementedError();
 }
-

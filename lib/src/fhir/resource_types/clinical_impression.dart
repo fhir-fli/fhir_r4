@@ -15,20 +15,20 @@ class ClinicalImpression extends DomainResource {
   final Element? descriptionElement;
   final Reference subject;
   final Reference? encounter;
-  final FhirDateTime? effectiveFhirDateTime;
-  final Element? effectiveFhirDateTimeElement;
+  final FhirDateTime? effectiveDateTime;
+  final Element? effectiveDateTimeElement;
   final Period? effectivePeriod;
   final FhirDateTime? date;
   final Element? dateElement;
   final Reference? assessor;
   final Reference? previous;
   final List<Reference>? problem;
-  final List<BackboneElement>? investigation;
+  final List<ClinicalImpressionInvestigation>? investigation;
   final List<FhirUri>? protocol;
   final List<Element>? protocolElement;
   final FhirString? summary;
   final Element? summaryElement;
-  final List<BackboneElement>? finding;
+  final List<ClinicalImpressionFinding>? finding;
   final List<CodeableConcept>? prognosisCodeableConcept;
   final List<Reference>? prognosisReference;
   final List<Reference>? supportingInfo;
@@ -38,35 +38,35 @@ class ClinicalImpression extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.statusReason,
     this.code,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     required this.subject,
     this.encounter,
-    this.effectiveFhirDateTime,
-this.effectiveFhirDateTimeElement,
+    this.effectiveDateTime,
+    this.effectiveDateTimeElement,
     this.effectivePeriod,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.assessor,
     this.previous,
     this.problem,
     this.investigation,
     this.protocol,
-this.protocolElement,
+    this.protocolElement,
     this.summary,
-this.summaryElement,
+    this.summaryElement,
     this.finding,
     this.prognosisCodeableConcept,
     this.prognosisReference,
@@ -74,8 +74,8 @@ this.summaryElement,
     this.note,
   }) : super(resourceType: R4ResourceType.ClinicalImpression);
 
-@override
-ClinicalImpression clone() => throw UnimplementedError();
+  @override
+  ClinicalImpression clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -92,8 +92,8 @@ class ClinicalImpressionInvestigation extends BackboneElement {
     this.item,
   });
 
-@override
-ClinicalImpressionInvestigation clone() => throw UnimplementedError();
+  @override
+  ClinicalImpressionInvestigation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -111,10 +111,9 @@ class ClinicalImpressionFinding extends BackboneElement {
     this.itemCodeableConcept,
     this.itemReference,
     this.basis,
-this.basisElement,
+    this.basisElement,
   });
 
-@override
-ClinicalImpressionFinding clone() => throw UnimplementedError();
+  @override
+  ClinicalImpressionFinding clone() => throw UnimplementedError();
 }
-

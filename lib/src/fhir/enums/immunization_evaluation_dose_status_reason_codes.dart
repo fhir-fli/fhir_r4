@@ -6,51 +6,67 @@ enum ImmunizationEvaluationDoseStatusReasonCodes {
   /// Definition: The product was stored in a manner inconsistent with manufacturer guidelines potentially reducing the effectiveness of the product.
   @JsonValue('advstorage')
   advstorage,
+
   /// Display: Cold chain break
   /// Definition: The product was stored at a temperature inconsistent with manufacturer guidelines potentially reducing the effectiveness of the product.
   @JsonValue('coldchbrk')
   coldchbrk,
+
   /// Display: Expired lot
   /// Definition: The product was administered after the expiration date associated with lot of vaccine.
   @JsonValue('explot')
   explot,
+
   /// Display: Administered outside recommended schedule
   /// Definition: The product was administered at a time inconsistent with the documented schedule.
   @JsonValue('outsidesched')
   outsidesched,
+
   /// Display: Product recall
   /// Definition: The product administered has been recalled by the manufacturer.
   @JsonValue('prodrecall')
   prodrecall,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case advstorage: return 'advstorage';
-        case coldchbrk: return 'coldchbrk';
-        case explot: return 'explot';
-        case outsidesched: return 'outsidesched';
-        case prodrecall: return 'prodrecall';
-      }
-      }
-String toJson() => toString();
-  ImmunizationEvaluationDoseStatusReasonCodes fromString(String str) {
-    switch(str) {
-      case 'advstorage': return ImmunizationEvaluationDoseStatusReasonCodes.advstorage;
-      case 'coldchbrk': return ImmunizationEvaluationDoseStatusReasonCodes.coldchbrk;
-      case 'explot': return ImmunizationEvaluationDoseStatusReasonCodes.explot;
-      case 'outsidesched': return ImmunizationEvaluationDoseStatusReasonCodes.outsidesched;
-      case 'prodrecall': return ImmunizationEvaluationDoseStatusReasonCodes.prodrecall;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case advstorage:
+        return 'advstorage';
+      case coldchbrk:
+        return 'coldchbrk';
+      case explot:
+        return 'explot';
+      case outsidesched:
+        return 'outsidesched';
+      case prodrecall:
+        return 'prodrecall';
     }
-      }
- ImmunizationEvaluationDoseStatusReasonCodes fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  ImmunizationEvaluationDoseStatusReasonCodes fromString(String str) {
+    switch (str) {
+      case 'advstorage':
+        return ImmunizationEvaluationDoseStatusReasonCodes.advstorage;
+      case 'coldchbrk':
+        return ImmunizationEvaluationDoseStatusReasonCodes.coldchbrk;
+      case 'explot':
+        return ImmunizationEvaluationDoseStatusReasonCodes.explot;
+      case 'outsidesched':
+        return ImmunizationEvaluationDoseStatusReasonCodes.outsidesched;
+      case 'prodrecall':
+        return ImmunizationEvaluationDoseStatusReasonCodes.prodrecall;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  ImmunizationEvaluationDoseStatusReasonCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

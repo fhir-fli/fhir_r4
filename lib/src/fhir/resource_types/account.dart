@@ -14,42 +14,42 @@ class Account extends DomainResource {
   final Element? nameElement;
   final List<Reference>? subject;
   final Period? servicePeriod;
-  final List<BackboneElement>? coverage;
+  final List<AccountCoverage>? coverage;
   final Reference? owner;
   final FhirString? description;
   final Element? descriptionElement;
-  final List<BackboneElement>? guarantor;
+  final List<AccountGuarantor>? guarantor;
   final Reference? partOf;
 
   Account({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.type,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.subject,
     this.servicePeriod,
     this.coverage,
     this.owner,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.guarantor,
     this.partOf,
   }) : super(resourceType: R4ResourceType.Account);
 
-@override
-Account clone() => throw UnimplementedError();
+  @override
+  Account clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -65,11 +65,11 @@ class AccountCoverage extends BackboneElement {
     super.modifierExtension,
     required this.coverage,
     this.priority,
-this.priorityElement,
+    this.priorityElement,
   });
 
-@override
-AccountCoverage clone() => throw UnimplementedError();
+  @override
+  AccountCoverage clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -86,11 +86,10 @@ class AccountGuarantor extends BackboneElement {
     super.modifierExtension,
     required this.party,
     this.onHold,
-this.onHoldElement,
+    this.onHoldElement,
     this.period,
   });
 
-@override
-AccountGuarantor clone() => throw UnimplementedError();
+  @override
+  AccountGuarantor clone() => throw UnimplementedError();
 }
-

@@ -69,59 +69,56 @@ class Measure extends DomainResource {
   final List<Element>? definitionElement;
   final FhirMarkdown? guidance;
   final Element? guidanceElement;
-  final List<BackboneElement>? group;
-  final List<BackboneElement>? population;
-  final List<BackboneElement>? stratifier;
-  final List<BackboneElement>? component;
-  final List<BackboneElement>? supplementalData;
+  final List<MeasureGroup>? group;
+  final List<MeasureSupplementalData>? supplementalData;
 
   Measure({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-this.urlElement,
+    this.urlElement,
     this.identifier,
     this.version,
-this.versionElement,
+    this.versionElement,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.title,
-this.titleElement,
+    this.titleElement,
     this.subtitle,
-this.subtitleElement,
+    this.subtitleElement,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.experimental,
-this.experimentalElement,
+    this.experimentalElement,
     this.subjectCodeableConcept,
     this.subjectReference,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.publisher,
-this.publisherElement,
+    this.publisherElement,
     this.contact,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-this.purposeElement,
+    this.purposeElement,
     this.usage,
-this.usageElement,
+    this.usageElement,
     this.copyright,
-this.copyrightElement,
+    this.copyrightElement,
     this.approvalDate,
-this.approvalDateElement,
+    this.approvalDateElement,
     this.lastReviewDate,
-this.lastReviewDateElement,
+    this.lastReviewDateElement,
     this.effectivePeriod,
     this.topic,
     this.author,
@@ -130,34 +127,31 @@ this.lastReviewDateElement,
     this.endorser,
     this.relatedArtifact,
     this.library_,
-this.libraryElement,
+    this.libraryElement,
     this.disclaimer,
-this.disclaimerElement,
+    this.disclaimerElement,
     this.scoring,
     this.compositeScoring,
     this.type,
     this.riskAdjustment,
-this.riskAdjustmentElement,
+    this.riskAdjustmentElement,
     this.rateAggregation,
-this.rateAggregationElement,
+    this.rateAggregationElement,
     this.rationale,
-this.rationaleElement,
+    this.rationaleElement,
     this.clinicalRecommendationStatement,
-this.clinicalRecommendationStatementElement,
+    this.clinicalRecommendationStatementElement,
     this.improvementNotation,
     this.definition,
-this.definitionElement,
+    this.definitionElement,
     this.guidance,
-this.guidanceElement,
+    this.guidanceElement,
     this.group,
-    this.population,
-    this.stratifier,
-    this.component,
     this.supplementalData,
   }) : super(resourceType: R4ResourceType.Measure);
 
-@override
-Measure clone() => throw UnimplementedError();
+  @override
+  Measure clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -166,6 +160,8 @@ class MeasureGroup extends BackboneElement {
   final CodeableConcept? code;
   final FhirString? description;
   final Element? descriptionElement;
+  final List<MeasurePopulation>? population;
+  final List<MeasureStratifier>? stratifier;
 
   MeasureGroup({
     super.id,
@@ -173,11 +169,13 @@ class MeasureGroup extends BackboneElement {
     super.modifierExtension,
     this.code,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
+    this.population,
+    this.stratifier,
   });
 
-@override
-MeasureGroup clone() => throw UnimplementedError();
+  @override
+  MeasureGroup clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -194,12 +192,12 @@ class MeasurePopulation extends BackboneElement {
     super.modifierExtension,
     this.code,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     required this.criteria,
   });
 
-@override
-MeasurePopulation clone() => throw UnimplementedError();
+  @override
+  MeasurePopulation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -209,6 +207,7 @@ class MeasureStratifier extends BackboneElement {
   final FhirString? description;
   final Element? descriptionElement;
   final FhirExpression? criteria;
+  final List<MeasureComponent>? component;
 
   MeasureStratifier({
     super.id,
@@ -216,12 +215,13 @@ class MeasureStratifier extends BackboneElement {
     super.modifierExtension,
     this.code,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.criteria,
+    this.component,
   });
 
-@override
-MeasureStratifier clone() => throw UnimplementedError();
+  @override
+  MeasureStratifier clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -238,12 +238,12 @@ class MeasureComponent extends BackboneElement {
     super.modifierExtension,
     this.code,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     required this.criteria,
   });
 
-@override
-MeasureComponent clone() => throw UnimplementedError();
+  @override
+  MeasureComponent clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -262,11 +262,10 @@ class MeasureSupplementalData extends BackboneElement {
     this.code,
     this.usage,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     required this.criteria,
   });
 
-@override
-MeasureSupplementalData clone() => throw UnimplementedError();
+  @override
+  MeasureSupplementalData clone() => throw UnimplementedError();
 }
-

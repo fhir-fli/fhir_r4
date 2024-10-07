@@ -6,33 +6,40 @@ enum ImmunizationEvaluationDoseStatusCodes {
   /// Definition: The dose counts toward fulfilling a path to immunity for a patient, providing protection against the target disease.
   @JsonValue('valid')
   valid,
+
   /// Display: Not valid
   /// Definition: The dose does not count toward fulfilling a path to immunity for a patient.
   @JsonValue('notvalid')
   notvalid,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case valid: return 'valid';
-        case notvalid: return 'notvalid';
-      }
-      }
-String toJson() => toString();
-  ImmunizationEvaluationDoseStatusCodes fromString(String str) {
-    switch(str) {
-      case 'valid': return ImmunizationEvaluationDoseStatusCodes.valid;
-      case 'notvalid': return ImmunizationEvaluationDoseStatusCodes.notvalid;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case valid:
+        return 'valid';
+      case notvalid:
+        return 'notvalid';
     }
-      }
- ImmunizationEvaluationDoseStatusCodes fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  ImmunizationEvaluationDoseStatusCodes fromString(String str) {
+    switch (str) {
+      case 'valid':
+        return ImmunizationEvaluationDoseStatusCodes.valid;
+      case 'notvalid':
+        return ImmunizationEvaluationDoseStatusCodes.notvalid;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  ImmunizationEvaluationDoseStatusCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

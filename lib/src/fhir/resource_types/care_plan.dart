@@ -34,43 +34,42 @@ class CarePlan extends DomainResource {
   final List<Reference>? addresses;
   final List<Reference>? supportingInfo;
   final List<Reference>? goal;
-  final List<BackboneElement>? activity;
-  final BackboneElement? detail;
+  final List<CarePlanActivity>? activity;
   final List<Annotation>? note;
 
   CarePlan({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
-this.instantiatesCanonicalElement,
+    this.instantiatesCanonicalElement,
     this.instantiatesUri,
-this.instantiatesUriElement,
+    this.instantiatesUriElement,
     this.basedOn,
     this.replaces,
     this.partOf,
     required this.status,
-this.statusElement,
+    this.statusElement,
     required this.intent,
-this.intentElement,
+    this.intentElement,
     this.category,
     this.title,
-this.titleElement,
+    this.titleElement,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     required this.subject,
     this.encounter,
     this.period,
     this.created,
-this.createdElement,
+    this.createdElement,
     this.author,
     this.contributor,
     this.careTeam,
@@ -78,12 +77,11 @@ this.createdElement,
     this.supportingInfo,
     this.goal,
     this.activity,
-    this.detail,
     this.note,
   }) : super(resourceType: R4ResourceType.CarePlan);
 
-@override
-CarePlan clone() => throw UnimplementedError();
+  @override
+  CarePlan clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -93,6 +91,7 @@ class CarePlanActivity extends BackboneElement {
   final List<Reference>? outcomeReference;
   final List<Annotation>? progress;
   final Reference? reference;
+  final CarePlanDetail? detail;
 
   CarePlanActivity({
     super.id,
@@ -102,10 +101,11 @@ class CarePlanActivity extends BackboneElement {
     this.outcomeReference,
     this.progress,
     this.reference,
+    this.detail,
   });
 
-@override
-CarePlanActivity clone() => throw UnimplementedError();
+  @override
+  CarePlanActivity clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -128,8 +128,8 @@ class CarePlanDetail extends BackboneElement {
   final Element? doNotPerformElement;
   final Timing? scheduledTiming;
   final Period? scheduledPeriod;
-  final FhirString? scheduledFhirString;
-  final Element? scheduledFhirStringElement;
+  final FhirString? scheduledString;
+  final Element? scheduledStringElement;
   final Reference? location;
   final List<Reference>? performer;
   final CodeableConcept? productCodeableConcept;
@@ -144,24 +144,24 @@ class CarePlanDetail extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.kind,
-this.kindElement,
+    this.kindElement,
     this.instantiatesCanonical,
-this.instantiatesCanonicalElement,
+    this.instantiatesCanonicalElement,
     this.instantiatesUri,
-this.instantiatesUriElement,
+    this.instantiatesUriElement,
     this.code,
     this.reasonCode,
     this.reasonReference,
     this.goal,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.statusReason,
     this.doNotPerform,
-this.doNotPerformElement,
+    this.doNotPerformElement,
     this.scheduledTiming,
     this.scheduledPeriod,
-    this.scheduledFhirString,
-this.scheduledFhirStringElement,
+    this.scheduledString,
+    this.scheduledStringElement,
     this.location,
     this.performer,
     this.productCodeableConcept,
@@ -169,10 +169,9 @@ this.scheduledFhirStringElement,
     this.dailyAmount,
     this.quantity,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
   });
 
-@override
-CarePlanDetail clone() => throw UnimplementedError();
+  @override
+  CarePlanDetail clone() => throw UnimplementedError();
 }
-

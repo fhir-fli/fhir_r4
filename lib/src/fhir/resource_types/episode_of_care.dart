@@ -9,9 +9,9 @@ class EpisodeOfCare extends DomainResource {
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
-  final List<BackboneElement>? statusHistory;
+  final List<EpisodeOfCareStatusHistory>? statusHistory;
   final List<CodeableConcept>? type;
-  final List<BackboneElement>? diagnosis;
+  final List<EpisodeOfCareDiagnosis>? diagnosis;
   final Reference patient;
   final Reference? managingOrganization;
   final Period? period;
@@ -24,16 +24,16 @@ class EpisodeOfCare extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.statusHistory,
     this.type,
     this.diagnosis,
@@ -46,8 +46,8 @@ this.statusElement,
     this.account,
   }) : super(resourceType: R4ResourceType.EpisodeOfCare);
 
-@override
-EpisodeOfCare clone() => throw UnimplementedError();
+  @override
+  EpisodeOfCare clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -62,12 +62,12 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.status,
-this.statusElement,
+    this.statusElement,
     required this.period,
   });
 
-@override
-EpisodeOfCareStatusHistory clone() => throw UnimplementedError();
+  @override
+  EpisodeOfCareStatusHistory clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -85,10 +85,9 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
     required this.condition,
     this.role,
     this.rank,
-this.rankElement,
+    this.rankElement,
   });
 
-@override
-EpisodeOfCareDiagnosis clone() => throw UnimplementedError();
+  @override
+  EpisodeOfCareDiagnosis clone() => throw UnimplementedError();
 }
-

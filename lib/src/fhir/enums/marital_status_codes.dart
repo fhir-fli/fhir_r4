@@ -4,27 +4,31 @@ import 'package:json_annotation/json_annotation.dart';
 enum MaritalStatusCodes {
   @JsonValue('UNK')
   UNK,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case UNK: return 'UNK';
-      }
-      }
-String toJson() => toString();
-  MaritalStatusCodes fromString(String str) {
-    switch(str) {
-      case 'UNK': return MaritalStatusCodes.UNK;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case UNK:
+        return 'UNK';
     }
-      }
- MaritalStatusCodes fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  MaritalStatusCodes fromString(String str) {
+    switch (str) {
+      case 'UNK':
+        return MaritalStatusCodes.UNK;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  MaritalStatusCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

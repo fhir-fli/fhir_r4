@@ -24,8 +24,8 @@ class PlanDefinition extends DomainResource {
   final Element? experimentalElement;
   final CodeableConcept? subjectCodeableConcept;
   final Reference? subjectReference;
-  final FhirCanonical? subjectFhirCanonical;
-  final Element? subjectFhirCanonicalElement;
+  final FhirCanonical? subjectCanonical;
+  final Element? subjectCanonicalElement;
   final FhirDateTime? date;
   final Element? dateElement;
   final FhirString? publisher;
@@ -54,64 +54,59 @@ class PlanDefinition extends DomainResource {
   final List<RelatedArtifact>? relatedArtifact;
   final List<FhirCanonical>? library_;
   final List<Element>? libraryElement;
-  final List<BackboneElement>? goal;
-  final List<BackboneElement>? target;
-  final List<BackboneElement>? action;
-  final List<BackboneElement>? condition;
-  final List<BackboneElement>? relatedAction;
-  final List<BackboneElement>? participant;
-  final List<BackboneElement>? dynamicValue;
+  final List<PlanDefinitionGoal>? goal;
+  final List<PlanDefinitionAction>? action;
 
   PlanDefinition({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-this.urlElement,
+    this.urlElement,
     this.identifier,
     this.version,
-this.versionElement,
+    this.versionElement,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.title,
-this.titleElement,
+    this.titleElement,
     this.subtitle,
-this.subtitleElement,
+    this.subtitleElement,
     this.type,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.experimental,
-this.experimentalElement,
+    this.experimentalElement,
     this.subjectCodeableConcept,
     this.subjectReference,
-    this.subjectFhirCanonical,
-this.subjectFhirCanonicalElement,
+    this.subjectCanonical,
+    this.subjectCanonicalElement,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.publisher,
-this.publisherElement,
+    this.publisherElement,
     this.contact,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-this.purposeElement,
+    this.purposeElement,
     this.usage,
-this.usageElement,
+    this.usageElement,
     this.copyright,
-this.copyrightElement,
+    this.copyrightElement,
     this.approvalDate,
-this.approvalDateElement,
+    this.approvalDateElement,
     this.lastReviewDate,
-this.lastReviewDateElement,
+    this.lastReviewDateElement,
     this.effectivePeriod,
     this.topic,
     this.author,
@@ -120,18 +115,13 @@ this.lastReviewDateElement,
     this.endorser,
     this.relatedArtifact,
     this.library_,
-this.libraryElement,
+    this.libraryElement,
     this.goal,
-    this.target,
     this.action,
-    this.condition,
-    this.relatedAction,
-    this.participant,
-    this.dynamicValue,
   }) : super(resourceType: R4ResourceType.PlanDefinition);
 
-@override
-PlanDefinition clone() => throw UnimplementedError();
+  @override
+  PlanDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -143,6 +133,7 @@ class PlanDefinitionGoal extends BackboneElement {
   final CodeableConcept? start;
   final List<CodeableConcept>? addresses;
   final List<RelatedArtifact>? documentation;
+  final List<PlanDefinitionTarget>? target;
 
   PlanDefinitionGoal({
     super.id,
@@ -154,10 +145,11 @@ class PlanDefinitionGoal extends BackboneElement {
     this.start,
     this.addresses,
     this.documentation,
+    this.target,
   });
 
-@override
-PlanDefinitionGoal clone() => throw UnimplementedError();
+  @override
+  PlanDefinitionGoal clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -180,8 +172,8 @@ class PlanDefinitionTarget extends BackboneElement {
     this.due,
   });
 
-@override
-PlanDefinitionTarget clone() => throw UnimplementedError();
+  @override
+  PlanDefinitionTarget clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -204,18 +196,21 @@ class PlanDefinitionAction extends BackboneElement {
   final List<Element>? goalIdElement;
   final CodeableConcept? subjectCodeableConcept;
   final Reference? subjectReference;
-  final FhirCanonical? subjectFhirCanonical;
-  final Element? subjectFhirCanonicalElement;
+  final FhirCanonical? subjectCanonical;
+  final Element? subjectCanonicalElement;
   final List<TriggerDefinition>? trigger;
+  final List<PlanDefinitionCondition>? condition;
   final List<DataRequirement>? input;
   final List<DataRequirement>? output;
-  final FhirDateTime? timingFhirDateTime;
-  final Element? timingFhirDateTimeElement;
+  final List<PlanDefinitionRelatedAction>? relatedAction;
+  final FhirDateTime? timingDateTime;
+  final Element? timingDateTimeElement;
   final Age? timingAge;
   final Period? timingPeriod;
-  final FhirDuration? timingFhirDuration;
+  final FhirDuration? timingDuration;
   final Range? timingRange;
   final Timing? timingTiming;
+  final List<PlanDefinitionParticipant>? participant;
   final CodeableConcept? type;
   final FhirCode? groupingBehavior;
   final Element? groupingBehaviorElement;
@@ -227,69 +222,74 @@ class PlanDefinitionAction extends BackboneElement {
   final Element? precheckBehaviorElement;
   final FhirCode? cardinalityBehavior;
   final Element? cardinalityBehaviorElement;
-  final FhirCanonical? definitionFhirCanonical;
-  final Element? definitionFhirCanonicalElement;
-  final FhirUri? definitionFhirUri;
-  final Element? definitionFhirUriElement;
+  final FhirCanonical? definitionCanonical;
+  final Element? definitionCanonicalElement;
+  final FhirUri? definitionUri;
+  final Element? definitionUriElement;
   final FhirCanonical? transform;
   final Element? transformElement;
-  final List<dynamic>? action;
+  final List<PlanDefinitionDynamicValue>? dynamicValue;
+  final List<PlanDefinitionAction>? action;
 
   PlanDefinitionAction({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.prefix,
-this.prefixElement,
+    this.prefixElement,
     this.title,
-this.titleElement,
+    this.titleElement,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.textEquivalent,
-this.textEquivalentElement,
+    this.textEquivalentElement,
     this.priority,
-this.priorityElement,
+    this.priorityElement,
     this.code,
     this.reason,
     this.documentation,
     this.goalId,
-this.goalIdElement,
+    this.goalIdElement,
     this.subjectCodeableConcept,
     this.subjectReference,
-    this.subjectFhirCanonical,
-this.subjectFhirCanonicalElement,
+    this.subjectCanonical,
+    this.subjectCanonicalElement,
     this.trigger,
+    this.condition,
     this.input,
     this.output,
-    this.timingFhirDateTime,
-this.timingFhirDateTimeElement,
+    this.relatedAction,
+    this.timingDateTime,
+    this.timingDateTimeElement,
     this.timingAge,
     this.timingPeriod,
-    this.timingFhirDuration,
+    this.timingDuration,
     this.timingRange,
     this.timingTiming,
+    this.participant,
     this.type,
     this.groupingBehavior,
-this.groupingBehaviorElement,
+    this.groupingBehaviorElement,
     this.selectionBehavior,
-this.selectionBehaviorElement,
+    this.selectionBehaviorElement,
     this.requiredBehavior,
-this.requiredBehaviorElement,
+    this.requiredBehaviorElement,
     this.precheckBehavior,
-this.precheckBehaviorElement,
+    this.precheckBehaviorElement,
     this.cardinalityBehavior,
-this.cardinalityBehaviorElement,
-    this.definitionFhirCanonical,
-this.definitionFhirCanonicalElement,
-    this.definitionFhirUri,
-this.definitionFhirUriElement,
+    this.cardinalityBehaviorElement,
+    this.definitionCanonical,
+    this.definitionCanonicalElement,
+    this.definitionUri,
+    this.definitionUriElement,
     this.transform,
-this.transformElement,
+    this.transformElement,
+    this.dynamicValue,
     this.action,
   });
 
-@override
-PlanDefinitionAction clone() => throw UnimplementedError();
+  @override
+  PlanDefinitionAction clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -304,12 +304,12 @@ class PlanDefinitionCondition extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.kind,
-this.kindElement,
+    this.kindElement,
     this.expression,
   });
 
-@override
-PlanDefinitionCondition clone() => throw UnimplementedError();
+  @override
+  PlanDefinitionCondition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -319,7 +319,7 @@ class PlanDefinitionRelatedAction extends BackboneElement {
   final Element? actionIdElement;
   final FhirCode relationship;
   final Element? relationshipElement;
-  final FhirDuration? offsetFhirDuration;
+  final FhirDuration? offsetDuration;
   final Range? offsetRange;
 
   PlanDefinitionRelatedAction({
@@ -327,15 +327,15 @@ class PlanDefinitionRelatedAction extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.actionId,
-this.actionIdElement,
+    this.actionIdElement,
     required this.relationship,
-this.relationshipElement,
-    this.offsetFhirDuration,
+    this.relationshipElement,
+    this.offsetDuration,
     this.offsetRange,
   });
 
-@override
-PlanDefinitionRelatedAction clone() => throw UnimplementedError();
+  @override
+  PlanDefinitionRelatedAction clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -350,12 +350,12 @@ class PlanDefinitionParticipant extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-this.typeElement,
+    this.typeElement,
     this.role,
   });
 
-@override
-PlanDefinitionParticipant clone() => throw UnimplementedError();
+  @override
+  PlanDefinitionParticipant clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -370,11 +370,10 @@ class PlanDefinitionDynamicValue extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.path,
-this.pathElement,
+    this.pathElement,
     this.expression,
   });
 
-@override
-PlanDefinitionDynamicValue clone() => throw UnimplementedError();
+  @override
+  PlanDefinitionDynamicValue clone() => throw UnimplementedError();
 }
-

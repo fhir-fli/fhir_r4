@@ -22,44 +22,44 @@ class VerificationResult extends DomainResource {
   final FhirDate? nextScheduled;
   final Element? nextScheduledElement;
   final CodeableConcept? failureAction;
-  final List<BackboneElement>? primarySource;
-  final BackboneElement? attestation;
-  final List<BackboneElement>? validator;
+  final List<VerificationResultPrimarySource>? primarySource;
+  final VerificationResultAttestation? attestation;
+  final List<VerificationResultValidator>? validator;
 
   VerificationResult({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.target,
     this.targetLocation,
-this.targetLocationElement,
+    this.targetLocationElement,
     this.need,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.statusDate,
-this.statusDateElement,
+    this.statusDateElement,
     this.validationType,
     this.validationProcess,
     this.frequency,
     this.lastPerformed,
-this.lastPerformedElement,
+    this.lastPerformedElement,
     this.nextScheduled,
-this.nextScheduledElement,
+    this.nextScheduledElement,
     this.failureAction,
     this.primarySource,
     this.attestation,
     this.validator,
   }) : super(resourceType: R4ResourceType.VerificationResult);
 
-@override
-VerificationResult clone() => throw UnimplementedError();
+  @override
+  VerificationResult clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -83,13 +83,13 @@ class VerificationResultPrimarySource extends BackboneElement {
     this.communicationMethod,
     this.validationStatus,
     this.validationDate,
-this.validationDateElement,
+    this.validationDateElement,
     this.canPushUpdates,
     this.pushTypeAvailable,
   });
 
-@override
-VerificationResultPrimarySource clone() => throw UnimplementedError();
+  @override
+  VerificationResultPrimarySource clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -115,17 +115,17 @@ class VerificationResultAttestation extends BackboneElement {
     this.onBehalfOf,
     this.communicationMethod,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.sourceIdentityCertificate,
-this.sourceIdentityCertificateElement,
+    this.sourceIdentityCertificateElement,
     this.proxyIdentityCertificate,
-this.proxyIdentityCertificateElement,
+    this.proxyIdentityCertificateElement,
     this.proxySignature,
     this.sourceSignature,
   });
 
-@override
-VerificationResultAttestation clone() => throw UnimplementedError();
+  @override
+  VerificationResultAttestation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -142,11 +142,10 @@ class VerificationResultValidator extends BackboneElement {
     super.modifierExtension,
     required this.organization,
     this.identityCertificate,
-this.identityCertificateElement,
+    this.identityCertificateElement,
     this.attestationSignature,
   });
 
-@override
-VerificationResultValidator clone() => throw UnimplementedError();
+  @override
+  VerificationResultValidator clone() => throw UnimplementedError();
 }
-

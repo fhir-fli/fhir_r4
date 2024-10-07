@@ -21,7 +21,6 @@ class ProductShelfLife extends BackboneType {
     this.specialPrecautionsForStorage,
   });
 
-@override
-ProductShelfLife clone() => throw UnimplementedError();
+  @override
+  ProductShelfLife clone() => throw UnimplementedError();
 }
-

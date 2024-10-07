@@ -8,10 +8,10 @@ import '../../../fhir_r4.dart';
 class GuidanceResponse extends DomainResource {
   final Identifier? requestIdentifier;
   final List<Identifier>? identifier;
-  final FhirUri moduleFhirUri;
-  final Element? moduleFhirUriElement;
-  final FhirCanonical moduleFhirCanonical;
-  final Element? moduleFhirCanonicalElement;
+  final FhirUri moduleUri;
+  final Element? moduleUriElement;
+  final FhirCanonical moduleCanonical;
+  final Element? moduleCanonicalElement;
   final CodeableConcept moduleCodeableConcept;
   final FhirCode status;
   final Element? statusElement;
@@ -32,26 +32,26 @@ class GuidanceResponse extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.requestIdentifier,
     this.identifier,
-    required this.moduleFhirUri,
-this.moduleFhirUriElement,
-    required this.moduleFhirCanonical,
-this.moduleFhirCanonicalElement,
+    required this.moduleUri,
+    this.moduleUriElement,
+    required this.moduleCanonical,
+    this.moduleCanonicalElement,
     required this.moduleCodeableConcept,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.subject,
     this.encounter,
     this.occurrenceDateTime,
-this.occurrenceDateTimeElement,
+    this.occurrenceDateTimeElement,
     this.performer,
     this.reasonCode,
     this.reasonReference,
@@ -62,7 +62,6 @@ this.occurrenceDateTimeElement,
     this.dataRequirement,
   }) : super(resourceType: R4ResourceType.GuidanceResponse);
 
-@override
-GuidanceResponse clone() => throw UnimplementedError();
+  @override
+  GuidanceResponse clone() => throw UnimplementedError();
 }
-

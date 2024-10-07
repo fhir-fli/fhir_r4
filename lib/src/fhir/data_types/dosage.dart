@@ -14,8 +14,8 @@ class Dosage extends BackboneType {
   final FhirString? patientInstruction;
   final Element? patientInstructionElement;
   final Timing? timing;
-  final FhirBoolean? asNeededFhirBoolean;
-  final Element? asNeededFhirBooleanElement;
+  final FhirBoolean? asNeededBoolean;
+  final Element? asNeededBooleanElement;
   final CodeableConcept? asNeededCodeableConcept;
   final CodeableConcept? site;
   final CodeableConcept? route;
@@ -30,15 +30,15 @@ class Dosage extends BackboneType {
     super.extension_,
     super.modifierExtension,
     this.sequence,
-this.sequenceElement,
+    this.sequenceElement,
     this.text,
-this.textElement,
+    this.textElement,
     this.additionalInstruction,
     this.patientInstruction,
-this.patientInstructionElement,
+    this.patientInstructionElement,
     this.timing,
-    this.asNeededFhirBoolean,
-this.asNeededFhirBooleanElement,
+    this.asNeededBoolean,
+    this.asNeededBooleanElement,
     this.asNeededCodeableConcept,
     this.site,
     this.route,
@@ -49,13 +49,13 @@ this.asNeededFhirBooleanElement,
     this.maxDosePerLifetime,
   });
 
-@override
-Dosage clone() => throw UnimplementedError();
+  @override
+  Dosage clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
-class DosageDoseAndRate extends Element {
+class DosageDoseAndRate extends BackboneElement {
   final CodeableConcept? type;
   final Range? doseRange;
   final Quantity? doseQuantity;
@@ -74,7 +74,6 @@ class DosageDoseAndRate extends Element {
     this.rateQuantity,
   });
 
-@override
-DosageDoseAndRate clone() => throw UnimplementedError();
+  @override
+  DosageDoseAndRate clone() => throw UnimplementedError();
 }
-

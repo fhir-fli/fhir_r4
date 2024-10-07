@@ -14,37 +14,51 @@ enum Confidentiality {
   U,
   @JsonValue('V')
   V,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case L: return 'L';
-        case M: return 'M';
-        case N: return 'N';
-        case R: return 'R';
-        case U: return 'U';
-        case V: return 'V';
-      }
-      }
-String toJson() => toString();
-  Confidentiality fromString(String str) {
-    switch(str) {
-      case 'L': return Confidentiality.L;
-      case 'M': return Confidentiality.M;
-      case 'N': return Confidentiality.N;
-      case 'R': return Confidentiality.R;
-      case 'U': return Confidentiality.U;
-      case 'V': return Confidentiality.V;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case L:
+        return 'L';
+      case M:
+        return 'M';
+      case N:
+        return 'N';
+      case R:
+        return 'R';
+      case U:
+        return 'U';
+      case V:
+        return 'V';
     }
-      }
- Confidentiality fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  Confidentiality fromString(String str) {
+    switch (str) {
+      case 'L':
+        return Confidentiality.L;
+      case 'M':
+        return Confidentiality.M;
+      case 'N':
+        return Confidentiality.N;
+      case 'R':
+        return Confidentiality.R;
+      case 'U':
+        return Confidentiality.U;
+      case 'V':
+        return Confidentiality.V;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  Confidentiality fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

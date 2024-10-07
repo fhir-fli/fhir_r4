@@ -14,11 +14,10 @@ class ContactDetail extends DataType {
     super.id,
     super.extension_,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.telecom,
   });
 
-@override
-ContactDetail clone() => throw UnimplementedError();
+  @override
+  ContactDetail clone() => throw UnimplementedError();
 }
-

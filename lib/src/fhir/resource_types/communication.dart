@@ -33,43 +33,43 @@ class Communication extends DomainResource {
   final Reference? sender;
   final List<CodeableConcept>? reasonCode;
   final List<Reference>? reasonReference;
-  final List<BackboneElement>? payload;
+  final List<CommunicationPayload>? payload;
   final List<Annotation>? note;
 
   Communication({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
-this.instantiatesCanonicalElement,
+    this.instantiatesCanonicalElement,
     this.instantiatesUri,
-this.instantiatesUriElement,
+    this.instantiatesUriElement,
     this.basedOn,
     this.partOf,
     this.inResponseTo,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.statusReason,
     this.category,
     this.priority,
-this.priorityElement,
+    this.priorityElement,
     this.medium,
     this.subject,
     this.topic,
     this.about,
     this.encounter,
     this.sent,
-this.sentElement,
+    this.sentElement,
     this.received,
-this.receivedElement,
+    this.receivedElement,
     this.recipient,
     this.sender,
     this.reasonCode,
@@ -78,15 +78,15 @@ this.receivedElement,
     this.note,
   }) : super(resourceType: R4ResourceType.Communication);
 
-@override
-Communication clone() => throw UnimplementedError();
+  @override
+  Communication clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
 class CommunicationPayload extends BackboneElement {
-  final FhirString contentFhirString;
-  final Element? contentFhirStringElement;
+  final FhirString contentString;
+  final Element? contentStringElement;
   final Attachment contentAttachment;
   final Reference contentReference;
 
@@ -94,13 +94,12 @@ class CommunicationPayload extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.contentFhirString,
-this.contentFhirStringElement,
+    required this.contentString,
+    this.contentStringElement,
     required this.contentAttachment,
     required this.contentReference,
   });
 
-@override
-CommunicationPayload clone() => throw UnimplementedError();
+  @override
+  CommunicationPayload clone() => throw UnimplementedError();
 }
-

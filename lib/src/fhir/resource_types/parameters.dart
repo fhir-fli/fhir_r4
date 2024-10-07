@@ -6,20 +6,20 @@ import '../../../fhir_r4.dart';
 @Data()
 @JsonCodable()
 class Parameters extends DomainResource {
-  final List<BackboneElement>? parameter;
+  final List<ParametersParameter>? parameter;
 
   Parameters({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     this.parameter,
   }) : super(resourceType: R4ResourceType.Parameters);
 
-@override
-Parameters clone() => throw UnimplementedError();
+  @override
+  Parameters clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -27,44 +27,44 @@ Parameters clone() => throw UnimplementedError();
 class ParametersParameter extends BackboneElement {
   final FhirString name;
   final Element? nameElement;
-  final FhirBase64Binary? valueFhirBase64Binary;
-  final Element? valueFhirBase64BinaryElement;
-  final FhirBoolean? valueFhirBoolean;
-  final Element? valueFhirBooleanElement;
-  final FhirCanonical? valueFhirCanonical;
-  final Element? valueFhirCanonicalElement;
-  final FhirCode? valueFhirCode;
-  final Element? valueFhirCodeElement;
-  final FhirDate? valueFhirDate;
-  final Element? valueFhirDateElement;
-  final FhirDateTime? valueFhirDateTime;
-  final Element? valueFhirDateTimeElement;
-  final FhirDecimal? valueFhirDecimal;
-  final Element? valueFhirDecimalElement;
-  final FhirId? valueFhirId;
-  final Element? valueFhirIdElement;
-  final FhirInstant? valueFhirInstant;
-  final Element? valueFhirInstantElement;
-  final FhirInteger? valueFhirInteger;
-  final Element? valueFhirIntegerElement;
-  final FhirMarkdown? valueFhirMarkdown;
-  final Element? valueFhirMarkdownElement;
-  final FhirOid? valueFhirOid;
-  final Element? valueFhirOidElement;
-  final FhirPositiveInt? valueFhirPositiveInt;
-  final Element? valueFhirPositiveIntElement;
-  final FhirString? valueFhirString;
-  final Element? valueFhirStringElement;
-  final FhirTime? valueFhirTime;
-  final Element? valueFhirTimeElement;
-  final FhirUnsignedInt? valueFhirUnsignedInt;
-  final Element? valueFhirUnsignedIntElement;
-  final FhirUri? valueFhirUri;
-  final Element? valueFhirUriElement;
-  final FhirUrl? valueFhirUrl;
-  final Element? valueFhirUrlElement;
-  final FhirUuid? valueFhirUuid;
-  final Element? valueFhirUuidElement;
+  final FhirBase64Binary? valueBase64Binary;
+  final Element? valueBase64BinaryElement;
+  final FhirBoolean? valueBoolean;
+  final Element? valueBooleanElement;
+  final FhirCanonical? valueCanonical;
+  final Element? valueCanonicalElement;
+  final FhirCode? valueCode;
+  final Element? valueCodeElement;
+  final FhirDate? valueDate;
+  final Element? valueDateElement;
+  final FhirDateTime? valueDateTime;
+  final Element? valueDateTimeElement;
+  final FhirDecimal? valueDecimal;
+  final Element? valueDecimalElement;
+  final FhirId? valueId;
+  final Element? valueIdElement;
+  final FhirInstant? valueInstant;
+  final Element? valueInstantElement;
+  final FhirInteger? valueInteger;
+  final Element? valueIntegerElement;
+  final FhirMarkdown? valueMarkdown;
+  final Element? valueMarkdownElement;
+  final FhirOid? valueOid;
+  final Element? valueOidElement;
+  final FhirPositiveInt? valuePositiveInt;
+  final Element? valuePositiveIntElement;
+  final FhirString? valueString;
+  final Element? valueStringElement;
+  final FhirTime? valueTime;
+  final Element? valueTimeElement;
+  final FhirUnsignedInt? valueUnsignedInt;
+  final Element? valueUnsignedIntElement;
+  final FhirUri? valueUri;
+  final Element? valueUriElement;
+  final FhirUrl? valueUrl;
+  final Element? valueUrlElement;
+  final FhirUuid? valueUuid;
+  final Element? valueUuidElement;
   final Address? valueAddress;
   final Age? valueAge;
   final Annotation? valueAnnotation;
@@ -74,7 +74,7 @@ class ParametersParameter extends BackboneElement {
   final ContactPoint? valueContactPoint;
   final Count? valueCount;
   final Distance? valueDistance;
-  final FhirDuration? valueFhirDuration;
+  final FhirDuration? valueDuration;
   final HumanName? valueHumanName;
   final Identifier? valueIdentifier;
   final Money? valueMoney;
@@ -89,60 +89,60 @@ class ParametersParameter extends BackboneElement {
   final ContactDetail? valueContactDetail;
   final Contributor? valueContributor;
   final DataRequirement? valueDataRequirement;
-  final FhirExpression? valueFhirExpression;
+  final FhirExpression? valueExpression;
   final ParameterDefinition? valueParameterDefinition;
   final RelatedArtifact? valueRelatedArtifact;
   final TriggerDefinition? valueTriggerDefinition;
   final UsageContext? valueUsageContext;
   final Dosage? valueDosage;
-  final FhirMeta? valueFhirMeta;
+  final FhirMeta? valueMeta;
   final Resource? resource;
-  final List<dynamic>? part_;
+  final List<ParametersParameter>? part_;
 
   ParametersParameter({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.name,
-this.nameElement,
-    this.valueFhirBase64Binary,
-this.valueFhirBase64BinaryElement,
-    this.valueFhirBoolean,
-this.valueFhirBooleanElement,
-    this.valueFhirCanonical,
-this.valueFhirCanonicalElement,
-    this.valueFhirCode,
-this.valueFhirCodeElement,
-    this.valueFhirDate,
-this.valueFhirDateElement,
-    this.valueFhirDateTime,
-this.valueFhirDateTimeElement,
-    this.valueFhirDecimal,
-this.valueFhirDecimalElement,
-    this.valueFhirId,
-this.valueFhirIdElement,
-    this.valueFhirInstant,
-this.valueFhirInstantElement,
-    this.valueFhirInteger,
-this.valueFhirIntegerElement,
-    this.valueFhirMarkdown,
-this.valueFhirMarkdownElement,
-    this.valueFhirOid,
-this.valueFhirOidElement,
-    this.valueFhirPositiveInt,
-this.valueFhirPositiveIntElement,
-    this.valueFhirString,
-this.valueFhirStringElement,
-    this.valueFhirTime,
-this.valueFhirTimeElement,
-    this.valueFhirUnsignedInt,
-this.valueFhirUnsignedIntElement,
-    this.valueFhirUri,
-this.valueFhirUriElement,
-    this.valueFhirUrl,
-this.valueFhirUrlElement,
-    this.valueFhirUuid,
-this.valueFhirUuidElement,
+    this.nameElement,
+    this.valueBase64Binary,
+    this.valueBase64BinaryElement,
+    this.valueBoolean,
+    this.valueBooleanElement,
+    this.valueCanonical,
+    this.valueCanonicalElement,
+    this.valueCode,
+    this.valueCodeElement,
+    this.valueDate,
+    this.valueDateElement,
+    this.valueDateTime,
+    this.valueDateTimeElement,
+    this.valueDecimal,
+    this.valueDecimalElement,
+    this.valueId,
+    this.valueIdElement,
+    this.valueInstant,
+    this.valueInstantElement,
+    this.valueInteger,
+    this.valueIntegerElement,
+    this.valueMarkdown,
+    this.valueMarkdownElement,
+    this.valueOid,
+    this.valueOidElement,
+    this.valuePositiveInt,
+    this.valuePositiveIntElement,
+    this.valueString,
+    this.valueStringElement,
+    this.valueTime,
+    this.valueTimeElement,
+    this.valueUnsignedInt,
+    this.valueUnsignedIntElement,
+    this.valueUri,
+    this.valueUriElement,
+    this.valueUrl,
+    this.valueUrlElement,
+    this.valueUuid,
+    this.valueUuidElement,
     this.valueAddress,
     this.valueAge,
     this.valueAnnotation,
@@ -152,7 +152,7 @@ this.valueFhirUuidElement,
     this.valueContactPoint,
     this.valueCount,
     this.valueDistance,
-    this.valueFhirDuration,
+    this.valueDuration,
     this.valueHumanName,
     this.valueIdentifier,
     this.valueMoney,
@@ -167,18 +167,17 @@ this.valueFhirUuidElement,
     this.valueContactDetail,
     this.valueContributor,
     this.valueDataRequirement,
-    this.valueFhirExpression,
+    this.valueExpression,
     this.valueParameterDefinition,
     this.valueRelatedArtifact,
     this.valueTriggerDefinition,
     this.valueUsageContext,
     this.valueDosage,
-    this.valueFhirMeta,
+    this.valueMeta,
     this.resource,
     this.part_,
   });
 
-@override
-ParametersParameter clone() => throw UnimplementedError();
+  @override
+  ParametersParameter clone() => throw UnimplementedError();
 }
-

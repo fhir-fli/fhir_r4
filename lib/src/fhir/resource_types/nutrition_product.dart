@@ -11,26 +11,26 @@ class NutritionProduct extends DomainResource {
   final List<CodeableConcept>? category;
   final CodeableConcept? code;
   final List<Reference>? manufacturer;
-  final List<BackboneElement>? nutrient;
-  final List<BackboneElement>? ingredient;
+  final List<NutritionProductNutrient>? nutrient;
+  final List<NutritionProductIngredient>? ingredient;
   final List<CodeableReference>? knownAllergen;
-  final List<BackboneElement>? productCharacteristic;
-  final BackboneElement? instance;
+  final List<NutritionProductProductCharacteristic>? productCharacteristic;
+  final NutritionProductInstance? instance;
   final List<Annotation>? note;
 
   NutritionProduct({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.category,
     this.code,
     this.manufacturer,
@@ -42,8 +42,8 @@ this.statusElement,
     this.note,
   }) : super(resourceType: R4ResourceType.NutritionProduct);
 
-@override
-NutritionProduct clone() => throw UnimplementedError();
+  @override
+  NutritionProduct clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -60,8 +60,8 @@ class NutritionProductNutrient extends BackboneElement {
     this.amount,
   });
 
-@override
-NutritionProductNutrient clone() => throw UnimplementedError();
+  @override
+  NutritionProductNutrient clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -78,8 +78,8 @@ class NutritionProductIngredient extends BackboneElement {
     this.amount,
   });
 
-@override
-NutritionProductIngredient clone() => throw UnimplementedError();
+  @override
+  NutritionProductIngredient clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -87,14 +87,14 @@ NutritionProductIngredient clone() => throw UnimplementedError();
 class NutritionProductProductCharacteristic extends BackboneElement {
   final CodeableConcept type;
   final CodeableConcept valueCodeableConcept;
-  final FhirString valueFhirString;
-  final Element? valueFhirStringElement;
+  final FhirString valueString;
+  final Element? valueStringElement;
   final Quantity valueQuantity;
-  final FhirBase64Binary valueFhirBase64Binary;
-  final Element? valueFhirBase64BinaryElement;
+  final FhirBase64Binary valueBase64Binary;
+  final Element? valueBase64BinaryElement;
   final Attachment valueAttachment;
-  final FhirBoolean valueFhirBoolean;
-  final Element? valueFhirBooleanElement;
+  final FhirBoolean valueBoolean;
+  final Element? valueBooleanElement;
 
   NutritionProductProductCharacteristic({
     super.id,
@@ -102,18 +102,18 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     super.modifierExtension,
     required this.type,
     required this.valueCodeableConcept,
-    required this.valueFhirString,
-this.valueFhirStringElement,
+    required this.valueString,
+    this.valueStringElement,
     required this.valueQuantity,
-    required this.valueFhirBase64Binary,
-this.valueFhirBase64BinaryElement,
+    required this.valueBase64Binary,
+    this.valueBase64BinaryElement,
     required this.valueAttachment,
-    required this.valueFhirBoolean,
-this.valueFhirBooleanElement,
+    required this.valueBoolean,
+    this.valueBooleanElement,
   });
 
-@override
-NutritionProductProductCharacteristic clone() => throw UnimplementedError();
+  @override
+  NutritionProductProductCharacteristic clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -135,14 +135,13 @@ class NutritionProductInstance extends BackboneElement {
     this.quantity,
     this.identifier,
     this.lotNumber,
-this.lotNumberElement,
+    this.lotNumberElement,
     this.expiry,
-this.expiryElement,
+    this.expiryElement,
     this.useBy,
-this.useByElement,
+    this.useByElement,
   });
 
-@override
-NutritionProductInstance clone() => throw UnimplementedError();
+  @override
+  NutritionProductInstance clone() => throw UnimplementedError();
 }
-

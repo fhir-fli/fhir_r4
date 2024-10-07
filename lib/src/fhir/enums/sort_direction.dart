@@ -6,33 +6,40 @@ enum SortDirection {
   /// Definition: Sort by the value ascending, so that lower values appear first.
   @JsonValue('ascending')
   ascending,
+
   /// Display: Descending
   /// Definition: Sort by the value descending, so that lower values appear last.
   @JsonValue('descending')
   descending,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case ascending: return 'ascending';
-        case descending: return 'descending';
-      }
-      }
-String toJson() => toString();
-  SortDirection fromString(String str) {
-    switch(str) {
-      case 'ascending': return SortDirection.ascending;
-      case 'descending': return SortDirection.descending;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case ascending:
+        return 'ascending';
+      case descending:
+        return 'descending';
     }
-      }
- SortDirection fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  SortDirection fromString(String str) {
+    switch (str) {
+      case 'ascending':
+        return SortDirection.ascending;
+      case 'descending':
+        return SortDirection.descending;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  SortDirection fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

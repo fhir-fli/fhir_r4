@@ -21,15 +21,15 @@ class DocumentManifest extends DomainResource {
   final FhirString? description;
   final Element? descriptionElement;
   final List<Reference> content;
-  final List<BackboneElement>? related;
+  final List<DocumentManifestRelated>? related;
 
   DocumentManifest({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -37,23 +37,23 @@ super.languageElement,
     this.masterIdentifier,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.type,
     this.subject,
     this.created,
-this.createdElement,
+    this.createdElement,
     this.author,
     this.recipient,
     this.source,
-this.sourceElement,
+    this.sourceElement,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     required this.content,
     this.related,
   }) : super(resourceType: R4ResourceType.DocumentManifest);
 
-@override
-DocumentManifest clone() => throw UnimplementedError();
+  @override
+  DocumentManifest clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -70,7 +70,6 @@ class DocumentManifestRelated extends BackboneElement {
     this.ref,
   });
 
-@override
-DocumentManifestRelated clone() => throw UnimplementedError();
+  @override
+  DocumentManifestRelated clone() => throw UnimplementedError();
 }
-

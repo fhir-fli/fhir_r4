@@ -14,8 +14,8 @@ class DiagnosticReport extends DomainResource {
   final CodeableConcept code;
   final Reference? subject;
   final Reference? encounter;
-  final FhirDateTime? effectiveFhirDateTime;
-  final Element? effectiveFhirDateTimeElement;
+  final FhirDateTime? effectiveDateTime;
+  final Element? effectiveDateTimeElement;
   final Period? effectivePeriod;
   final FhirInstant? issued;
   final Element? issuedElement;
@@ -24,7 +24,7 @@ class DiagnosticReport extends DomainResource {
   final List<Reference>? specimen;
   final List<Reference>? result;
   final List<Reference>? imagingStudy;
-  final List<BackboneElement>? media;
+  final List<DiagnosticReportMedia>? media;
   final FhirString? conclusion;
   final Element? conclusionElement;
   final List<CodeableConcept>? conclusionCode;
@@ -34,9 +34,9 @@ class DiagnosticReport extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -44,16 +44,16 @@ super.languageElement,
     this.identifier,
     this.basedOn,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.category,
     required this.code,
     this.subject,
     this.encounter,
-    this.effectiveFhirDateTime,
-this.effectiveFhirDateTimeElement,
+    this.effectiveDateTime,
+    this.effectiveDateTimeElement,
     this.effectivePeriod,
     this.issued,
-this.issuedElement,
+    this.issuedElement,
     this.performer,
     this.resultsInterpreter,
     this.specimen,
@@ -61,13 +61,13 @@ this.issuedElement,
     this.imagingStudy,
     this.media,
     this.conclusion,
-this.conclusionElement,
+    this.conclusionElement,
     this.conclusionCode,
     this.presentedForm,
   }) : super(resourceType: R4ResourceType.DiagnosticReport);
 
-@override
-DiagnosticReport clone() => throw UnimplementedError();
+  @override
+  DiagnosticReport clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -82,11 +82,10 @@ class DiagnosticReportMedia extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.comment,
-this.commentElement,
+    this.commentElement,
     required this.link,
   });
 
-@override
-DiagnosticReportMedia clone() => throw UnimplementedError();
+  @override
+  DiagnosticReportMedia clone() => throw UnimplementedError();
 }
-

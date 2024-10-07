@@ -59,59 +59,59 @@ class ResearchElementDefinition extends DomainResource {
   final Element? typeElement;
   final FhirCode? variableType;
   final Element? variableTypeElement;
-  final List<BackboneElement> characteristic;
+  final List<ResearchElementDefinitionCharacteristic> characteristic;
 
   ResearchElementDefinition({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-this.urlElement,
+    this.urlElement,
     this.identifier,
     this.version,
-this.versionElement,
+    this.versionElement,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.title,
-this.titleElement,
+    this.titleElement,
     this.shortTitle,
-this.shortTitleElement,
+    this.shortTitleElement,
     this.subtitle,
-this.subtitleElement,
+    this.subtitleElement,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.experimental,
-this.experimentalElement,
+    this.experimentalElement,
     this.subjectCodeableConcept,
     this.subjectReference,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.publisher,
-this.publisherElement,
+    this.publisherElement,
     this.contact,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.comment,
-this.commentElement,
+    this.commentElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-this.purposeElement,
+    this.purposeElement,
     this.usage,
-this.usageElement,
+    this.usageElement,
     this.copyright,
-this.copyrightElement,
+    this.copyrightElement,
     this.approvalDate,
-this.approvalDateElement,
+    this.approvalDateElement,
     this.lastReviewDate,
-this.lastReviewDateElement,
+    this.lastReviewDateElement,
     this.effectivePeriod,
     this.topic,
     this.author,
@@ -120,25 +120,25 @@ this.lastReviewDateElement,
     this.endorser,
     this.relatedArtifact,
     this.library_,
-this.libraryElement,
+    this.libraryElement,
     required this.type,
-this.typeElement,
+    this.typeElement,
     this.variableType,
-this.variableTypeElement,
+    this.variableTypeElement,
     required this.characteristic,
   }) : super(resourceType: R4ResourceType.ResearchElementDefinition);
 
-@override
-ResearchElementDefinition clone() => throw UnimplementedError();
+  @override
+  ResearchElementDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
 class ResearchElementDefinitionCharacteristic extends BackboneElement {
   final CodeableConcept definitionCodeableConcept;
-  final FhirCanonical definitionFhirCanonical;
-  final Element? definitionFhirCanonicalElement;
-  final FhirExpression definitionFhirExpression;
+  final FhirCanonical definitionCanonical;
+  final Element? definitionCanonicalElement;
+  final FhirExpression definitionExpression;
   final DataRequirement definitionDataRequirement;
   final List<UsageContext>? usageContext;
   final FhirBoolean? exclude;
@@ -146,20 +146,20 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
   final CodeableConcept? unitOfMeasure;
   final FhirString? studyEffectiveDescription;
   final Element? studyEffectiveDescriptionElement;
-  final FhirDateTime? studyEffectiveFhirDateTime;
-  final Element? studyEffectiveFhirDateTimeElement;
+  final FhirDateTime? studyEffectiveDateTime;
+  final Element? studyEffectiveDateTimeElement;
   final Period? studyEffectivePeriod;
-  final FhirDuration? studyEffectiveFhirDuration;
+  final FhirDuration? studyEffectiveDuration;
   final Timing? studyEffectiveTiming;
   final FhirDuration? studyEffectiveTimeFromStart;
   final FhirCode? studyEffectiveGroupMeasure;
   final Element? studyEffectiveGroupMeasureElement;
   final FhirString? participantEffectiveDescription;
   final Element? participantEffectiveDescriptionElement;
-  final FhirDateTime? participantEffectiveFhirDateTime;
-  final Element? participantEffectiveFhirDateTimeElement;
+  final FhirDateTime? participantEffectiveDateTime;
+  final Element? participantEffectiveDateTimeElement;
   final Period? participantEffectivePeriod;
-  final FhirDuration? participantEffectiveFhirDuration;
+  final FhirDuration? participantEffectiveDuration;
   final Timing? participantEffectiveTiming;
   final FhirDuration? participantEffectiveTimeFromStart;
   final FhirCode? participantEffectiveGroupMeasure;
@@ -170,37 +170,36 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.definitionCodeableConcept,
-    required this.definitionFhirCanonical,
-this.definitionFhirCanonicalElement,
-    required this.definitionFhirExpression,
+    required this.definitionCanonical,
+    this.definitionCanonicalElement,
+    required this.definitionExpression,
     required this.definitionDataRequirement,
     this.usageContext,
     this.exclude,
-this.excludeElement,
+    this.excludeElement,
     this.unitOfMeasure,
     this.studyEffectiveDescription,
-this.studyEffectiveDescriptionElement,
-    this.studyEffectiveFhirDateTime,
-this.studyEffectiveFhirDateTimeElement,
+    this.studyEffectiveDescriptionElement,
+    this.studyEffectiveDateTime,
+    this.studyEffectiveDateTimeElement,
     this.studyEffectivePeriod,
-    this.studyEffectiveFhirDuration,
+    this.studyEffectiveDuration,
     this.studyEffectiveTiming,
     this.studyEffectiveTimeFromStart,
     this.studyEffectiveGroupMeasure,
-this.studyEffectiveGroupMeasureElement,
+    this.studyEffectiveGroupMeasureElement,
     this.participantEffectiveDescription,
-this.participantEffectiveDescriptionElement,
-    this.participantEffectiveFhirDateTime,
-this.participantEffectiveFhirDateTimeElement,
+    this.participantEffectiveDescriptionElement,
+    this.participantEffectiveDateTime,
+    this.participantEffectiveDateTimeElement,
     this.participantEffectivePeriod,
-    this.participantEffectiveFhirDuration,
+    this.participantEffectiveDuration,
     this.participantEffectiveTiming,
     this.participantEffectiveTimeFromStart,
     this.participantEffectiveGroupMeasure,
-this.participantEffectiveGroupMeasureElement,
+    this.participantEffectiveGroupMeasureElement,
   });
 
-@override
-ResearchElementDefinitionCharacteristic clone() => throw UnimplementedError();
+  @override
+  ResearchElementDefinitionCharacteristic clone() => throw UnimplementedError();
 }
-

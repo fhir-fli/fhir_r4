@@ -6,33 +6,40 @@ enum CharacteristicCombination {
   /// Definition: Combine characteristics with AND.
   @JsonValue('intersection')
   intersection,
+
   /// Display: union
   /// Definition: Combine characteristics with OR.
   @JsonValue('union')
   union,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case intersection: return 'intersection';
-        case union: return 'union';
-      }
-      }
-String toJson() => toString();
-  CharacteristicCombination fromString(String str) {
-    switch(str) {
-      case 'intersection': return CharacteristicCombination.intersection;
-      case 'union': return CharacteristicCombination.union;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case intersection:
+        return 'intersection';
+      case union:
+        return 'union';
     }
-      }
- CharacteristicCombination fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  CharacteristicCombination fromString(String str) {
+    switch (str) {
+      case 'intersection':
+        return CharacteristicCombination.intersection;
+      case 'union':
+        return CharacteristicCombination.union;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  CharacteristicCombination fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

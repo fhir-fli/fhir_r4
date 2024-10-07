@@ -26,31 +26,30 @@ class PaymentNotice extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.request,
     this.response,
     required this.created,
-this.createdElement,
+    this.createdElement,
     this.provider,
     required this.payment,
     this.paymentDate,
-this.paymentDateElement,
+    this.paymentDateElement,
     this.payee,
     required this.recipient,
     required this.amount,
     this.paymentStatus,
   }) : super(resourceType: R4ResourceType.PaymentNotice);
 
-@override
-PaymentNotice clone() => throw UnimplementedError();
+  @override
+  PaymentNotice clone() => throw UnimplementedError();
 }
-

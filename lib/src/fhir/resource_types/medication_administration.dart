@@ -19,35 +19,35 @@ class MedicationAdministration extends DomainResource {
   final Reference subject;
   final Reference? context;
   final List<Reference>? supportingInformation;
-  final FhirDateTime effectiveFhirDateTime;
-  final Element? effectiveFhirDateTimeElement;
+  final FhirDateTime effectiveDateTime;
+  final Element? effectiveDateTimeElement;
   final Period effectivePeriod;
-  final List<BackboneElement>? performer;
+  final List<MedicationAdministrationPerformer>? performer;
   final List<CodeableConcept>? reasonCode;
   final List<Reference>? reasonReference;
   final Reference? request;
   final List<Reference>? device;
   final List<Annotation>? note;
-  final BackboneElement? dosage;
+  final MedicationAdministrationDosage? dosage;
   final List<Reference>? eventHistory;
 
   MedicationAdministration({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiates,
-this.instantiatesElement,
+    this.instantiatesElement,
     this.partOf,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.statusReason,
     this.category,
     required this.medicationCodeableConcept,
@@ -55,8 +55,8 @@ this.statusElement,
     required this.subject,
     this.context,
     this.supportingInformation,
-    required this.effectiveFhirDateTime,
-this.effectiveFhirDateTimeElement,
+    required this.effectiveDateTime,
+    this.effectiveDateTimeElement,
     required this.effectivePeriod,
     this.performer,
     this.reasonCode,
@@ -68,8 +68,8 @@ this.effectiveFhirDateTimeElement,
     this.eventHistory,
   }) : super(resourceType: R4ResourceType.MedicationAdministration);
 
-@override
-MedicationAdministration clone() => throw UnimplementedError();
+  @override
+  MedicationAdministration clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -86,8 +86,8 @@ class MedicationAdministrationPerformer extends BackboneElement {
     required this.actor,
   });
 
-@override
-MedicationAdministrationPerformer clone() => throw UnimplementedError();
+  @override
+  MedicationAdministrationPerformer clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -107,7 +107,7 @@ class MedicationAdministrationDosage extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.text,
-this.textElement,
+    this.textElement,
     this.site,
     this.route,
     this.method,
@@ -116,7 +116,6 @@ this.textElement,
     this.rateQuantity,
   });
 
-@override
-MedicationAdministrationDosage clone() => throw UnimplementedError();
+  @override
+  MedicationAdministrationDosage clone() => throw UnimplementedError();
 }
-

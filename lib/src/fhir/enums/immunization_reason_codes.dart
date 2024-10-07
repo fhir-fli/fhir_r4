@@ -6,29 +6,35 @@ enum ImmunizationReasonCodes {
   value429060002,
   @JsonValue('281657000')
   value281657000,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case value429060002: return '429060002';
-        case value281657000: return '281657000';
-      }
-      }
-String toJson() => toString();
-  ImmunizationReasonCodes fromString(String str) {
-    switch(str) {
-      case '429060002': return ImmunizationReasonCodes.value429060002;
-      case '281657000': return ImmunizationReasonCodes.value281657000;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case value429060002:
+        return '429060002';
+      case value281657000:
+        return '281657000';
     }
-      }
- ImmunizationReasonCodes fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  ImmunizationReasonCodes fromString(String str) {
+    switch (str) {
+      case '429060002':
+        return ImmunizationReasonCodes.value429060002;
+      case '281657000':
+        return ImmunizationReasonCodes.value281657000;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  ImmunizationReasonCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

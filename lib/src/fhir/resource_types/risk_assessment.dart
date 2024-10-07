@@ -15,15 +15,15 @@ class RiskAssessment extends DomainResource {
   final CodeableConcept? code;
   final Reference subject;
   final Reference? encounter;
-  final FhirDateTime? occurrenceFhirDateTime;
-  final Element? occurrenceFhirDateTimeElement;
+  final FhirDateTime? occurrenceDateTime;
+  final Element? occurrenceDateTimeElement;
   final Period? occurrencePeriod;
   final Reference? condition;
   final Reference? performer;
   final List<CodeableConcept>? reasonCode;
   final List<Reference>? reasonReference;
   final List<Reference>? basis;
-  final List<BackboneElement>? prediction;
+  final List<RiskAssessmentPrediction>? prediction;
   final FhirString? mitigation;
   final Element? mitigationElement;
   final List<Annotation>? note;
@@ -32,9 +32,9 @@ class RiskAssessment extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -43,13 +43,13 @@ super.languageElement,
     this.basedOn,
     this.parent,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.method,
     this.code,
     required this.subject,
     this.encounter,
-    this.occurrenceFhirDateTime,
-this.occurrenceFhirDateTimeElement,
+    this.occurrenceDateTime,
+    this.occurrenceDateTimeElement,
     this.occurrencePeriod,
     this.condition,
     this.performer,
@@ -58,20 +58,20 @@ this.occurrenceFhirDateTimeElement,
     this.basis,
     this.prediction,
     this.mitigation,
-this.mitigationElement,
+    this.mitigationElement,
     this.note,
   }) : super(resourceType: R4ResourceType.RiskAssessment);
 
-@override
-RiskAssessment clone() => throw UnimplementedError();
+  @override
+  RiskAssessment clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
 class RiskAssessmentPrediction extends BackboneElement {
   final CodeableConcept? outcome;
-  final FhirDecimal? probabilityFhirDecimal;
-  final Element? probabilityFhirDecimalElement;
+  final FhirDecimal? probabilityDecimal;
+  final Element? probabilityDecimalElement;
   final Range? probabilityRange;
   final CodeableConcept? qualitativeRisk;
   final FhirDecimal? relativeRisk;
@@ -86,19 +86,18 @@ class RiskAssessmentPrediction extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.outcome,
-    this.probabilityFhirDecimal,
-this.probabilityFhirDecimalElement,
+    this.probabilityDecimal,
+    this.probabilityDecimalElement,
     this.probabilityRange,
     this.qualitativeRisk,
     this.relativeRisk,
-this.relativeRiskElement,
+    this.relativeRiskElement,
     this.whenPeriod,
     this.whenRange,
     this.rationale,
-this.rationaleElement,
+    this.rationaleElement,
   });
 
-@override
-RiskAssessmentPrediction clone() => throw UnimplementedError();
+  @override
+  RiskAssessmentPrediction clone() => throw UnimplementedError();
 }
-

@@ -6,39 +6,49 @@ enum ConditionalDeleteStatus {
   /// Definition: No support for conditional deletes.
   @JsonValue('not-supported')
   not_supported,
+
   /// Display: Single Deletes Supported
   /// Definition: Conditional deletes are supported, but only single resources at a time.
   @JsonValue('single')
   single,
+
   /// Display: Multiple Deletes Supported
   /// Definition: Conditional deletes are supported, and multiple resources can be deleted in a single interaction.
   @JsonValue('multiple')
   multiple,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case not_supported: return 'not-supported';
-        case single: return 'single';
-        case multiple: return 'multiple';
-      }
-      }
-String toJson() => toString();
-  ConditionalDeleteStatus fromString(String str) {
-    switch(str) {
-      case 'not-supported': return ConditionalDeleteStatus.not_supported;
-      case 'single': return ConditionalDeleteStatus.single;
-      case 'multiple': return ConditionalDeleteStatus.multiple;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case not_supported:
+        return 'not-supported';
+      case single:
+        return 'single';
+      case multiple:
+        return 'multiple';
     }
-      }
- ConditionalDeleteStatus fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  ConditionalDeleteStatus fromString(String str) {
+    switch (str) {
+      case 'not-supported':
+        return ConditionalDeleteStatus.not_supported;
+      case 'single':
+        return ConditionalDeleteStatus.single;
+      case 'multiple':
+        return ConditionalDeleteStatus.multiple;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  ConditionalDeleteStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

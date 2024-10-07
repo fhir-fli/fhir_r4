@@ -397,54 +397,6 @@ extension FhirGenerate on String {
           ? '${this}_'
           : this;
 
-  bool isSuperField(String className, bool isBackboneElement, bool isElement) {
-    if (className.isResourceType) {
-      // Super fields for DomainResource
-      return <String>[
-        'id',
-        'meta',
-        'implicitrules',
-        'implicitruleselement',
-        'language',
-        'languageelement',
-        'text',
-        'contained',
-        'extension',
-        'modifierextension',
-      ].contains(toLowerCase());
-    } else if (className.isBackboneType || isBackboneElement) {
-      // Super fields for BackboneType && BackboneElement
-      return <String>[
-        'id',
-        'extension',
-        'modifierextension',
-      ].contains(toLowerCase());
-    } else if (className.isDataType || isElement) {
-      // Super fields for DataType
-      return <String>[
-        'id',
-        'extension',
-      ].contains(toLowerCase());
-    } else if (className.isQuantity) {
-      // Super fields for Quantity
-      return <String>[
-        'id',
-        'extension',
-        'value',
-        'valueelement',
-        'comparator',
-        'comparatorelement',
-        'unit',
-        'unitelement',
-        'system',
-        'systemelement',
-        'code',
-        'codeelement',
-      ].contains(toLowerCase());
-    }
-    return false;
-  }
-
   String get properFileName {
     final RegExp upperCase = RegExp(r'(?<!^)([A-Z])');
     final String snakeCase = replaceAllMapped(upperCase, (Match match) {
@@ -513,4 +465,17 @@ extension FhirGenerate on String {
             // Join back together without spaces
             .join();
   }
+
+  String findLongestMatch(List<String> classes) {
+    String longestMatch = '';
+    for (final String key in classes) {
+      if (startsWith(key) && key.length > longestMatch.length) {
+        longestMatch = key;
+      }
+    }
+    return longestMatch;
+  }
+
+  String? fileNameFromClassName(Map<String, String> nameMap) =>
+      nameMap[toLowerCase()];
 }

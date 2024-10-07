@@ -16,19 +16,19 @@ class Timing extends BackboneType {
     super.extension_,
     super.modifierExtension,
     this.event,
-this.eventElement,
+    this.eventElement,
     this.repeat,
     this.code,
   });
 
-@override
-Timing clone() => throw UnimplementedError();
+  @override
+  Timing clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
-class TimingRepeat extends Element {
-  final FhirDuration? boundsFhirDuration;
+class TimingRepeat extends BackboneElement {
+  final FhirDuration? boundsDuration;
   final Range? boundsRange;
   final Period? boundsPeriod;
   final FhirPositiveInt? count;
@@ -63,40 +63,39 @@ class TimingRepeat extends Element {
   TimingRepeat({
     super.id,
     super.extension_,
-    this.boundsFhirDuration,
+    this.boundsDuration,
     this.boundsRange,
     this.boundsPeriod,
     this.count,
-this.countElement,
+    this.countElement,
     this.countMax,
-this.countMaxElement,
+    this.countMaxElement,
     this.duration,
-this.durationElement,
+    this.durationElement,
     this.durationMax,
-this.durationMaxElement,
+    this.durationMaxElement,
     this.durationUnit,
-this.durationUnitElement,
+    this.durationUnitElement,
     this.frequency,
-this.frequencyElement,
+    this.frequencyElement,
     this.frequencyMax,
-this.frequencyMaxElement,
+    this.frequencyMaxElement,
     this.period,
-this.periodElement,
+    this.periodElement,
     this.periodMax,
-this.periodMaxElement,
+    this.periodMaxElement,
     this.periodUnit,
-this.periodUnitElement,
+    this.periodUnitElement,
     this.dayOfWeek,
-this.dayOfWeekElement,
+    this.dayOfWeekElement,
     this.timeOfDay,
-this.timeOfDayElement,
+    this.timeOfDayElement,
     this.when,
-this.whenElement,
+    this.whenElement,
     this.offset,
-this.offsetElement,
+    this.offsetElement,
   });
 
-@override
-TimingRepeat clone() => throw UnimplementedError();
+  @override
+  TimingRepeat clone() => throw UnimplementedError();
 }
-

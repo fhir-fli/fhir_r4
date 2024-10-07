@@ -27,32 +27,31 @@ class FhirEndpoint extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     required this.connectionType,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.managingOrganization,
     this.contact,
     this.period,
     required this.payloadType,
     this.payloadMimeType,
-this.payloadMimeTypeElement,
+    this.payloadMimeTypeElement,
     required this.address,
-this.addressElement,
+    this.addressElement,
     this.header,
-this.headerElement,
+    this.headerElement,
   }) : super(resourceType: R4ResourceType.FhirEndpoint);
 
-@override
-FhirEndpoint clone() => throw UnimplementedError();
+  @override
+  FhirEndpoint clone() => throw UnimplementedError();
 }
-

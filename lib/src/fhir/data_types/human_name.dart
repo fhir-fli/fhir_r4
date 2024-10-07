@@ -24,21 +24,20 @@ class HumanName extends DataType {
     super.id,
     super.extension_,
     this.use,
-this.useElement,
+    this.useElement,
     this.text,
-this.textElement,
+    this.textElement,
     this.family,
-this.familyElement,
+    this.familyElement,
     this.given,
-this.givenElement,
+    this.givenElement,
     this.prefix,
-this.prefixElement,
+    this.prefixElement,
     this.suffix,
-this.suffixElement,
+    this.suffixElement,
     this.period,
   });
 
-@override
-HumanName clone() => throw UnimplementedError();
+  @override
+  HumanName clone() => throw UnimplementedError();
 }
-

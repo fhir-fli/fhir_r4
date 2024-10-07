@@ -6,39 +6,49 @@ enum MeasureReportStatus {
   /// Definition: The report is complete and ready for use.
   @JsonValue('complete')
   complete,
+
   /// Display: Pending
   /// Definition: The report is currently being generated.
   @JsonValue('pending')
   pending,
+
   /// Display: Error
   /// Definition: An error occurred attempting to generate the report.
   @JsonValue('error')
   error,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case complete: return 'complete';
-        case pending: return 'pending';
-        case error: return 'error';
-      }
-      }
-String toJson() => toString();
-  MeasureReportStatus fromString(String str) {
-    switch(str) {
-      case 'complete': return MeasureReportStatus.complete;
-      case 'pending': return MeasureReportStatus.pending;
-      case 'error': return MeasureReportStatus.error;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case complete:
+        return 'complete';
+      case pending:
+        return 'pending';
+      case error:
+        return 'error';
     }
-      }
- MeasureReportStatus fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  MeasureReportStatus fromString(String str) {
+    switch (str) {
+      case 'complete':
+        return MeasureReportStatus.complete;
+      case 'pending':
+        return MeasureReportStatus.pending;
+      case 'error':
+        return MeasureReportStatus.error;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  MeasureReportStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

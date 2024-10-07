@@ -10,33 +10,43 @@ enum CarePlanIntent {
   order,
   @JsonValue('option')
   option,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case proposal: return 'proposal';
-        case plan: return 'plan';
-        case order: return 'order';
-        case option: return 'option';
-      }
-      }
-String toJson() => toString();
-  CarePlanIntent fromString(String str) {
-    switch(str) {
-      case 'proposal': return CarePlanIntent.proposal;
-      case 'plan': return CarePlanIntent.plan;
-      case 'order': return CarePlanIntent.order;
-      case 'option': return CarePlanIntent.option;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case proposal:
+        return 'proposal';
+      case plan:
+        return 'plan';
+      case order:
+        return 'order';
+      case option:
+        return 'option';
     }
-      }
- CarePlanIntent fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  CarePlanIntent fromString(String str) {
+    switch (str) {
+      case 'proposal':
+        return CarePlanIntent.proposal;
+      case 'plan':
+        return CarePlanIntent.plan;
+      case 'order':
+        return CarePlanIntent.order;
+      case 'option':
+        return CarePlanIntent.option;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  CarePlanIntent fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

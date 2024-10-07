@@ -16,8 +16,8 @@ class Media extends DomainResource {
   final CodeableConcept? view;
   final Reference? subject;
   final Reference? encounter;
-  final FhirDateTime? createdFhirDateTime;
-  final Element? createdFhirDateTimeElement;
+  final FhirDateTime? createdDateTime;
+  final Element? createdDateTimeElement;
   final Period? createdPeriod;
   final FhirInstant? issued;
   final Element? issuedElement;
@@ -42,9 +42,9 @@ class Media extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -53,36 +53,35 @@ super.languageElement,
     this.basedOn,
     this.partOf,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.type,
     this.modality,
     this.view,
     this.subject,
     this.encounter,
-    this.createdFhirDateTime,
-this.createdFhirDateTimeElement,
+    this.createdDateTime,
+    this.createdDateTimeElement,
     this.createdPeriod,
     this.issued,
-this.issuedElement,
+    this.issuedElement,
     this.operator_,
     this.reasonCode,
     this.bodySite,
     this.deviceName,
-this.deviceNameElement,
+    this.deviceNameElement,
     this.device,
     this.height,
-this.heightElement,
+    this.heightElement,
     this.width,
-this.widthElement,
+    this.widthElement,
     this.frames,
-this.framesElement,
+    this.framesElement,
     this.duration,
-this.durationElement,
+    this.durationElement,
     required this.content,
     this.note,
   }) : super(resourceType: R4ResourceType.Media);
 
-@override
-Media clone() => throw UnimplementedError();
+  @override
+  Media clone() => throw UnimplementedError();
 }
-

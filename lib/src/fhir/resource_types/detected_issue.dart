@@ -13,51 +13,51 @@ class DetectedIssue extends DomainResource {
   final FhirCode? severity;
   final Element? severityElement;
   final Reference? patient;
-  final FhirDateTime? identifiedFhirDateTime;
-  final Element? identifiedFhirDateTimeElement;
+  final FhirDateTime? identifiedDateTime;
+  final Element? identifiedDateTimeElement;
   final Period? identifiedPeriod;
   final Reference? author;
   final List<Reference>? implicated;
-  final List<BackboneElement>? evidence;
+  final List<DetectedIssueEvidence>? evidence;
   final FhirString? detail;
   final Element? detailElement;
   final FhirUri? reference;
   final Element? referenceElement;
-  final List<BackboneElement>? mitigation;
+  final List<DetectedIssueMitigation>? mitigation;
 
   DetectedIssue({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.code,
     this.severity,
-this.severityElement,
+    this.severityElement,
     this.patient,
-    this.identifiedFhirDateTime,
-this.identifiedFhirDateTimeElement,
+    this.identifiedDateTime,
+    this.identifiedDateTimeElement,
     this.identifiedPeriod,
     this.author,
     this.implicated,
     this.evidence,
     this.detail,
-this.detailElement,
+    this.detailElement,
     this.reference,
-this.referenceElement,
+    this.referenceElement,
     this.mitigation,
   }) : super(resourceType: R4ResourceType.DetectedIssue);
 
-@override
-DetectedIssue clone() => throw UnimplementedError();
+  @override
+  DetectedIssue clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -74,8 +74,8 @@ class DetectedIssueEvidence extends BackboneElement {
     this.detail,
   });
 
-@override
-DetectedIssueEvidence clone() => throw UnimplementedError();
+  @override
+  DetectedIssueEvidence clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -92,11 +92,10 @@ class DetectedIssueMitigation extends BackboneElement {
     super.modifierExtension,
     required this.action,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.author,
   });
 
-@override
-DetectedIssueMitigation clone() => throw UnimplementedError();
+  @override
+  DetectedIssueMitigation clone() => throw UnimplementedError();
 }
-

@@ -21,52 +21,51 @@ class ImmunizationEvaluation extends DomainResource {
   final Element? descriptionElement;
   final FhirString? series;
   final Element? seriesElement;
-  final FhirPositiveInt? doseNumberFhirPositiveInt;
-  final Element? doseNumberFhirPositiveIntElement;
-  final FhirString? doseNumberFhirString;
-  final Element? doseNumberFhirStringElement;
-  final FhirPositiveInt? seriesDosesFhirPositiveInt;
-  final Element? seriesDosesFhirPositiveIntElement;
-  final FhirString? seriesDosesFhirString;
-  final Element? seriesDosesFhirStringElement;
+  final FhirPositiveInt? doseNumberPositiveInt;
+  final Element? doseNumberPositiveIntElement;
+  final FhirString? doseNumberString;
+  final Element? doseNumberStringElement;
+  final FhirPositiveInt? seriesDosesPositiveInt;
+  final Element? seriesDosesPositiveIntElement;
+  final FhirString? seriesDosesString;
+  final Element? seriesDosesStringElement;
 
   ImmunizationEvaluation({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     required this.patient,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.authority,
     required this.targetDisease,
     required this.immunizationEvent,
     required this.doseStatus,
     this.doseStatusReason,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.series,
-this.seriesElement,
-    this.doseNumberFhirPositiveInt,
-this.doseNumberFhirPositiveIntElement,
-    this.doseNumberFhirString,
-this.doseNumberFhirStringElement,
-    this.seriesDosesFhirPositiveInt,
-this.seriesDosesFhirPositiveIntElement,
-    this.seriesDosesFhirString,
-this.seriesDosesFhirStringElement,
+    this.seriesElement,
+    this.doseNumberPositiveInt,
+    this.doseNumberPositiveIntElement,
+    this.doseNumberString,
+    this.doseNumberStringElement,
+    this.seriesDosesPositiveInt,
+    this.seriesDosesPositiveIntElement,
+    this.seriesDosesString,
+    this.seriesDosesStringElement,
   }) : super(resourceType: R4ResourceType.ImmunizationEvaluation);
 
-@override
-ImmunizationEvaluation clone() => throw UnimplementedError();
+  @override
+  ImmunizationEvaluation clone() => throw UnimplementedError();
 }
-

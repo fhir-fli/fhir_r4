@@ -17,53 +17,47 @@ class PackagedProductDefinition extends DomainResource {
   final List<Quantity>? containedItemQuantity;
   final FhirMarkdown? description;
   final Element? descriptionElement;
-  final List<BackboneElement>? legalStatusOfSupply;
+  final List<PackagedProductDefinitionLegalStatusOfSupply>? legalStatusOfSupply;
   final List<MarketingStatus>? marketingStatus;
   final List<CodeableConcept>? characteristic;
   final FhirBoolean? copackagedIndicator;
   final Element? copackagedIndicatorElement;
   final List<Reference>? manufacturer;
-  final BackboneElement? package;
-  final List<BackboneElement>? shelfLifeStorage;
-  final List<BackboneElement>? property;
-  final List<BackboneElement>? containedItem;
+  final PackagedProductDefinitionPackage? package;
 
   PackagedProductDefinition({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.type,
     this.packageFor,
     this.status,
     this.statusDate,
-this.statusDateElement,
+    this.statusDateElement,
     this.containedItemQuantity,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.legalStatusOfSupply,
     this.marketingStatus,
     this.characteristic,
     this.copackagedIndicator,
-this.copackagedIndicatorElement,
+    this.copackagedIndicatorElement,
     this.manufacturer,
     this.package,
-    this.shelfLifeStorage,
-    this.property,
-    this.containedItem,
   }) : super(resourceType: R4ResourceType.PackagedProductDefinition);
 
-@override
-PackagedProductDefinition clone() => throw UnimplementedError();
+  @override
+  PackagedProductDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -80,8 +74,9 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
     this.jurisdiction,
   });
 
-@override
-PackagedProductDefinitionLegalStatusOfSupply clone() => throw UnimplementedError();
+  @override
+  PackagedProductDefinitionLegalStatusOfSupply clone() =>
+      throw UnimplementedError();
 }
 
 @Data()
@@ -93,8 +88,11 @@ class PackagedProductDefinitionPackage extends BackboneElement {
   final Element? quantityElement;
   final List<CodeableConcept>? material;
   final List<CodeableConcept>? alternateMaterial;
+  final List<PackagedProductDefinitionShelfLifeStorage>? shelfLifeStorage;
   final List<Reference>? manufacturer;
-  final List<dynamic>? package;
+  final List<PackagedProductDefinitionProperty>? property;
+  final List<PackagedProductDefinitionContainedItem>? containedItem;
+  final List<PackagedProductDefinitionPackage>? package;
 
   PackagedProductDefinitionPackage({
     super.id,
@@ -103,24 +101,27 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     this.identifier,
     this.type,
     this.quantity,
-this.quantityElement,
+    this.quantityElement,
     this.material,
     this.alternateMaterial,
+    this.shelfLifeStorage,
     this.manufacturer,
+    this.property,
+    this.containedItem,
     this.package,
   });
 
-@override
-PackagedProductDefinitionPackage clone() => throw UnimplementedError();
+  @override
+  PackagedProductDefinitionPackage clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
 class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   final CodeableConcept? type;
-  final FhirDuration? periodFhirDuration;
-  final FhirString? periodFhirString;
-  final Element? periodFhirStringElement;
+  final FhirDuration? periodDuration;
+  final FhirString? periodString;
+  final Element? periodStringElement;
   final List<CodeableConcept>? specialPrecautionsForStorage;
 
   PackagedProductDefinitionShelfLifeStorage({
@@ -128,14 +129,15 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.type,
-    this.periodFhirDuration,
-    this.periodFhirString,
-this.periodFhirStringElement,
+    this.periodDuration,
+    this.periodString,
+    this.periodStringElement,
     this.specialPrecautionsForStorage,
   });
 
-@override
-PackagedProductDefinitionShelfLifeStorage clone() => throw UnimplementedError();
+  @override
+  PackagedProductDefinitionShelfLifeStorage clone() =>
+      throw UnimplementedError();
 }
 
 @Data()
@@ -144,10 +146,10 @@ class PackagedProductDefinitionProperty extends BackboneElement {
   final CodeableConcept type;
   final CodeableConcept? valueCodeableConcept;
   final Quantity? valueQuantity;
-  final FhirDate? valueFhirDate;
-  final Element? valueFhirDateElement;
-  final FhirBoolean? valueFhirBoolean;
-  final Element? valueFhirBooleanElement;
+  final FhirDate? valueDate;
+  final Element? valueDateElement;
+  final FhirBoolean? valueBoolean;
+  final Element? valueBooleanElement;
   final Attachment? valueAttachment;
 
   PackagedProductDefinitionProperty({
@@ -157,15 +159,15 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     required this.type,
     this.valueCodeableConcept,
     this.valueQuantity,
-    this.valueFhirDate,
-this.valueFhirDateElement,
-    this.valueFhirBoolean,
-this.valueFhirBooleanElement,
+    this.valueDate,
+    this.valueDateElement,
+    this.valueBoolean,
+    this.valueBooleanElement,
     this.valueAttachment,
   });
 
-@override
-PackagedProductDefinitionProperty clone() => throw UnimplementedError();
+  @override
+  PackagedProductDefinitionProperty clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -182,7 +184,6 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
     this.amount,
   });
 
-@override
-PackagedProductDefinitionContainedItem clone() => throw UnimplementedError();
+  @override
+  PackagedProductDefinitionContainedItem clone() => throw UnimplementedError();
 }
-

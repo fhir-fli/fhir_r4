@@ -30,12 +30,12 @@ class ServiceRequest extends DomainResource {
   final Range? quantityRange;
   final Reference subject;
   final Reference? encounter;
-  final FhirDateTime? occurrenceFhirDateTime;
-  final Element? occurrenceFhirDateTimeElement;
+  final FhirDateTime? occurrenceDateTime;
+  final Element? occurrenceDateTimeElement;
   final Period? occurrencePeriod;
   final Timing? occurrenceTiming;
-  final FhirBoolean? asNeededFhirBoolean;
-  final Element? asNeededFhirBooleanElement;
+  final FhirBoolean? asNeededBoolean;
+  final Element? asNeededBooleanElement;
   final CodeableConcept? asNeededCodeableConcept;
   final FhirDateTime? authoredOn;
   final Element? authoredOnElement;
@@ -59,30 +59,30 @@ class ServiceRequest extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
-this.instantiatesCanonicalElement,
+    this.instantiatesCanonicalElement,
     this.instantiatesUri,
-this.instantiatesUriElement,
+    this.instantiatesUriElement,
     this.basedOn,
     this.replaces,
     this.requisition,
     required this.status,
-this.statusElement,
+    this.statusElement,
     required this.intent,
-this.intentElement,
+    this.intentElement,
     this.category,
     this.priority,
-this.priorityElement,
+    this.priorityElement,
     this.doNotPerform,
-this.doNotPerformElement,
+    this.doNotPerformElement,
     this.code,
     this.orderDetail,
     this.quantityQuantity,
@@ -90,15 +90,15 @@ this.doNotPerformElement,
     this.quantityRange,
     required this.subject,
     this.encounter,
-    this.occurrenceFhirDateTime,
-this.occurrenceFhirDateTimeElement,
+    this.occurrenceDateTime,
+    this.occurrenceDateTimeElement,
     this.occurrencePeriod,
     this.occurrenceTiming,
-    this.asNeededFhirBoolean,
-this.asNeededFhirBooleanElement,
+    this.asNeededBoolean,
+    this.asNeededBooleanElement,
     this.asNeededCodeableConcept,
     this.authoredOn,
-this.authoredOnElement,
+    this.authoredOnElement,
     this.requester,
     this.performerType,
     this.performer,
@@ -112,11 +112,10 @@ this.authoredOnElement,
     this.bodySite,
     this.note,
     this.patientInstruction,
-this.patientInstructionElement,
+    this.patientInstructionElement,
     this.relevantHistory,
   }) : super(resourceType: R4ResourceType.ServiceRequest);
 
-@override
-ServiceRequest clone() => throw UnimplementedError();
+  @override
+  ServiceRequest clone() => throw UnimplementedError();
 }
-

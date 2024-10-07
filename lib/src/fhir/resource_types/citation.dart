@@ -41,73 +41,55 @@ class Citation extends DomainResource {
   final List<ContactDetail>? editor;
   final List<ContactDetail>? reviewer;
   final List<ContactDetail>? endorser;
-  final List<BackboneElement>? summary;
-  final List<BackboneElement>? classification;
+  final List<CitationSummary>? summary;
+  final List<CitationClassification>? classification;
   final List<Annotation>? note;
   final List<CodeableConcept>? currentState;
-  final List<BackboneElement>? statusDate;
-  final List<BackboneElement>? relatesTo;
-  final BackboneElement? citedArtifact;
-  final BackboneElement? version;
-  final List<BackboneElement>? statusDate;
-  final List<BackboneElement>? title;
-  final List<BackboneElement>? abstract_;
-  final BackboneElement? part_;
-  final List<BackboneElement>? relatesTo;
-  final List<BackboneElement>? publicationForm;
-  final BackboneElement? publishedIn;
-  final BackboneElement? periodicRelease;
-  final BackboneElement? dateOfPublication;
-  final List<BackboneElement>? webLocation;
-  final List<BackboneElement>? classification;
-  final BackboneElement? whoClassified;
-  final BackboneElement? contributorship;
-  final List<BackboneElement>? entry;
-  final List<BackboneElement>? affiliationInfo;
-  final List<BackboneElement>? contributionInstance;
-  final List<BackboneElement>? summary;
+  final List<CitationStatusDate>? statusDate;
+  final List<CitationRelatesTo>? relatesTo;
+  final CitationCitedArtifact? citedArtifact;
 
   Citation({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-this.urlElement,
+    this.urlElement,
     this.identifier,
     this.version,
-this.versionElement,
+    this.versionElement,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.title,
-this.titleElement,
+    this.titleElement,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.experimental,
-this.experimentalElement,
+    this.experimentalElement,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.publisher,
-this.publisherElement,
+    this.publisherElement,
     this.contact,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-this.purposeElement,
+    this.purposeElement,
     this.copyright,
-this.copyrightElement,
+    this.copyrightElement,
     this.approvalDate,
-this.approvalDateElement,
+    this.approvalDateElement,
     this.lastReviewDate,
-this.lastReviewDateElement,
+    this.lastReviewDateElement,
     this.effectivePeriod,
     this.author,
     this.editor,
@@ -120,28 +102,10 @@ this.lastReviewDateElement,
     this.statusDate,
     this.relatesTo,
     this.citedArtifact,
-    this.version,
-    this.statusDate,
-    this.title,
-    this.abstract_,
-    this.part_,
-    this.relatesTo,
-    this.publicationForm,
-    this.publishedIn,
-    this.periodicRelease,
-    this.dateOfPublication,
-    this.webLocation,
-    this.classification,
-    this.whoClassified,
-    this.contributorship,
-    this.entry,
-    this.affiliationInfo,
-    this.contributionInstance,
-    this.summary,
   }) : super(resourceType: R4ResourceType.Citation);
 
-@override
-Citation clone() => throw UnimplementedError();
+  @override
+  Citation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -157,11 +121,11 @@ class CitationSummary extends BackboneElement {
     super.modifierExtension,
     this.style,
     required this.text,
-this.textElement,
+    this.textElement,
   });
 
-@override
-CitationSummary clone() => throw UnimplementedError();
+  @override
+  CitationSummary clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -178,8 +142,8 @@ class CitationClassification extends BackboneElement {
     this.classifier,
   });
 
-@override
-CitationClassification clone() => throw UnimplementedError();
+  @override
+  CitationClassification clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -196,12 +160,12 @@ class CitationStatusDate extends BackboneElement {
     super.modifierExtension,
     required this.activity,
     this.actual,
-this.actualElement,
+    this.actualElement,
     required this.period,
   });
 
-@override
-CitationStatusDate clone() => throw UnimplementedError();
+  @override
+  CitationStatusDate clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -209,8 +173,8 @@ CitationStatusDate clone() => throw UnimplementedError();
 class CitationRelatesTo extends BackboneElement {
   final CodeableConcept relationshipType;
   final List<CodeableConcept>? targetClassifier;
-  final FhirUri targetFhirUri;
-  final Element? targetFhirUriElement;
+  final FhirUri targetUri;
+  final Element? targetUriElement;
   final Identifier targetIdentifier;
   final Reference targetReference;
   final Attachment targetAttachment;
@@ -221,15 +185,15 @@ class CitationRelatesTo extends BackboneElement {
     super.modifierExtension,
     required this.relationshipType,
     this.targetClassifier,
-    required this.targetFhirUri,
-this.targetFhirUriElement,
+    required this.targetUri,
+    this.targetUriElement,
     required this.targetIdentifier,
     required this.targetReference,
     required this.targetAttachment,
   });
 
-@override
-CitationRelatesTo clone() => throw UnimplementedError();
+  @override
+  CitationRelatesTo clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -239,7 +203,17 @@ class CitationCitedArtifact extends BackboneElement {
   final List<Identifier>? relatedIdentifier;
   final FhirDateTime? dateAccessed;
   final Element? dateAccessedElement;
+  final CitationVersion? version;
   final List<CodeableConcept>? currentState;
+  final List<CitationStatusDate>? statusDate;
+  final List<CitationTitle>? title;
+  final List<CitationAbstract>? abstract_;
+  final CitationPart? part_;
+  final List<CitationRelatesTo>? relatesTo;
+  final List<CitationPublicationForm>? publicationForm;
+  final List<CitationWebLocation>? webLocation;
+  final List<CitationClassification>? classification;
+  final CitationContributorship? contributorship;
   final List<Annotation>? note;
 
   CitationCitedArtifact({
@@ -249,13 +223,23 @@ class CitationCitedArtifact extends BackboneElement {
     this.identifier,
     this.relatedIdentifier,
     this.dateAccessed,
-this.dateAccessedElement,
+    this.dateAccessedElement,
+    this.version,
     this.currentState,
+    this.statusDate,
+    this.title,
+    this.abstract_,
+    this.part_,
+    this.relatesTo,
+    this.publicationForm,
+    this.webLocation,
+    this.classification,
+    this.contributorship,
     this.note,
   });
 
-@override
-CitationCitedArtifact clone() => throw UnimplementedError();
+  @override
+  CitationCitedArtifact clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -270,12 +254,12 @@ class CitationVersion extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.value,
-this.valueElement,
+    this.valueElement,
     this.baseCitation,
   });
 
-@override
-CitationVersion clone() => throw UnimplementedError();
+  @override
+  CitationVersion clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -292,12 +276,12 @@ class CitationStatusDate extends BackboneElement {
     super.modifierExtension,
     required this.activity,
     this.actual,
-this.actualElement,
+    this.actualElement,
     required this.period,
   });
 
-@override
-CitationStatusDate clone() => throw UnimplementedError();
+  @override
+  CitationStatusDate clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -315,11 +299,11 @@ class CitationTitle extends BackboneElement {
     this.type,
     this.language,
     required this.text,
-this.textElement,
+    this.textElement,
   });
 
-@override
-CitationTitle clone() => throw UnimplementedError();
+  @override
+  CitationTitle clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -339,13 +323,13 @@ class CitationAbstract extends BackboneElement {
     this.type,
     this.language,
     required this.text,
-this.textElement,
+    this.textElement,
     this.copyright,
-this.copyrightElement,
+    this.copyrightElement,
   });
 
-@override
-CitationAbstract clone() => throw UnimplementedError();
+  @override
+  CitationAbstract clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -362,12 +346,12 @@ class CitationPart extends BackboneElement {
     super.modifierExtension,
     this.type,
     this.value,
-this.valueElement,
+    this.valueElement,
     this.baseCitation,
   });
 
-@override
-CitationPart clone() => throw UnimplementedError();
+  @override
+  CitationPart clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -375,8 +359,8 @@ CitationPart clone() => throw UnimplementedError();
 class CitationRelatesTo extends BackboneElement {
   final CodeableConcept relationshipType;
   final List<CodeableConcept>? targetClassifier;
-  final FhirUri targetFhirUri;
-  final Element? targetFhirUriElement;
+  final FhirUri targetUri;
+  final Element? targetUriElement;
   final Identifier targetIdentifier;
   final Reference targetReference;
   final Attachment targetAttachment;
@@ -387,20 +371,22 @@ class CitationRelatesTo extends BackboneElement {
     super.modifierExtension,
     required this.relationshipType,
     this.targetClassifier,
-    required this.targetFhirUri,
-this.targetFhirUriElement,
+    required this.targetUri,
+    this.targetUriElement,
     required this.targetIdentifier,
     required this.targetReference,
     required this.targetAttachment,
   });
 
-@override
-CitationRelatesTo clone() => throw UnimplementedError();
+  @override
+  CitationRelatesTo clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
 class CitationPublicationForm extends BackboneElement {
+  final CitationPublishedIn? publishedIn;
+  final CitationPeriodicRelease? periodicRelease;
   final FhirDateTime? articleDate;
   final Element? articleDateElement;
   final FhirDateTime? lastRevisionDate;
@@ -423,27 +409,29 @@ class CitationPublicationForm extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
+    this.publishedIn,
+    this.periodicRelease,
     this.articleDate,
-this.articleDateElement,
+    this.articleDateElement,
     this.lastRevisionDate,
-this.lastRevisionDateElement,
+    this.lastRevisionDateElement,
     this.language,
     this.accessionNumber,
-this.accessionNumberElement,
+    this.accessionNumberElement,
     this.pageString,
-this.pageStringElement,
+    this.pageStringElement,
     this.firstPage,
-this.firstPageElement,
+    this.firstPageElement,
     this.lastPage,
-this.lastPageElement,
+    this.lastPageElement,
     this.pageCount,
-this.pageCountElement,
+    this.pageCountElement,
     this.copyright,
-this.copyrightElement,
+    this.copyrightElement,
   });
 
-@override
-CitationPublicationForm clone() => throw UnimplementedError();
+  @override
+  CitationPublicationForm clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -464,14 +452,14 @@ class CitationPublishedIn extends BackboneElement {
     this.type,
     this.identifier,
     this.title,
-this.titleElement,
+    this.titleElement,
     this.publisher,
     this.publisherLocation,
-this.publisherLocationElement,
+    this.publisherLocationElement,
   });
 
-@override
-CitationPublishedIn clone() => throw UnimplementedError();
+  @override
+  CitationPublishedIn clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -482,6 +470,7 @@ class CitationPeriodicRelease extends BackboneElement {
   final Element? volumeElement;
   final FhirString? issue;
   final Element? issueElement;
+  final CitationDateOfPublication? dateOfPublication;
 
   CitationPeriodicRelease({
     super.id,
@@ -489,13 +478,14 @@ class CitationPeriodicRelease extends BackboneElement {
     super.modifierExtension,
     this.citedMedium,
     this.volume,
-this.volumeElement,
+    this.volumeElement,
     this.issue,
-this.issueElement,
+    this.issueElement,
+    this.dateOfPublication,
   });
 
-@override
-CitationPeriodicRelease clone() => throw UnimplementedError();
+  @override
+  CitationPeriodicRelease clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -519,21 +509,21 @@ class CitationDateOfPublication extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.year,
-this.yearElement,
+    this.yearElement,
     this.month,
-this.monthElement,
+    this.monthElement,
     this.day,
-this.dayElement,
+    this.dayElement,
     this.season,
-this.seasonElement,
+    this.seasonElement,
     this.text,
-this.textElement,
+    this.textElement,
   });
 
-@override
-CitationDateOfPublication clone() => throw UnimplementedError();
+  @override
+  CitationDateOfPublication clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -549,11 +539,11 @@ class CitationWebLocation extends BackboneElement {
     super.modifierExtension,
     this.type,
     this.url,
-this.urlElement,
+    this.urlElement,
   });
 
-@override
-CitationWebLocation clone() => throw UnimplementedError();
+  @override
+  CitationWebLocation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -561,6 +551,7 @@ CitationWebLocation clone() => throw UnimplementedError();
 class CitationClassification extends BackboneElement {
   final CodeableConcept? type;
   final List<CodeableConcept>? classifier;
+  final CitationWhoClassified? whoClassified;
 
   CitationClassification({
     super.id,
@@ -568,10 +559,11 @@ class CitationClassification extends BackboneElement {
     super.modifierExtension,
     this.type,
     this.classifier,
+    this.whoClassified,
   });
 
-@override
-CitationClassification clone() => throw UnimplementedError();
+  @override
+  CitationClassification clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -593,13 +585,13 @@ class CitationWhoClassified extends BackboneElement {
     this.organization,
     this.publisher,
     this.classifierCopyright,
-this.classifierCopyrightElement,
+    this.classifierCopyrightElement,
     this.freeToShare,
-this.freeToShareElement,
+    this.freeToShareElement,
   });
 
-@override
-CitationWhoClassified clone() => throw UnimplementedError();
+  @override
+  CitationWhoClassified clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -607,17 +599,21 @@ CitationWhoClassified clone() => throw UnimplementedError();
 class CitationContributorship extends BackboneElement {
   final FhirBoolean? complete;
   final Element? completeElement;
+  final List<CitationEntry>? entry;
+  final List<CitationSummary>? summary;
 
   CitationContributorship({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.complete,
-this.completeElement,
+    this.completeElement,
+    this.entry,
+    this.summary,
   });
 
-@override
-CitationContributorship clone() => throw UnimplementedError();
+  @override
+  CitationContributorship clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -629,10 +625,12 @@ class CitationEntry extends BackboneElement {
   final FhirString? collectiveName;
   final Element? collectiveNameElement;
   final List<Identifier>? identifier;
+  final List<CitationAffiliationInfo>? affiliationInfo;
   final List<Address>? address;
   final List<ContactPoint>? telecom;
   final List<CodeableConcept>? contributionType;
   final CodeableConcept? role;
+  final List<CitationContributionInstance>? contributionInstance;
   final FhirBoolean? correspondingContact;
   final Element? correspondingContactElement;
   final FhirPositiveInt? listOrder;
@@ -644,22 +642,24 @@ class CitationEntry extends BackboneElement {
     super.modifierExtension,
     this.name,
     this.initials,
-this.initialsElement,
+    this.initialsElement,
     this.collectiveName,
-this.collectiveNameElement,
+    this.collectiveNameElement,
     this.identifier,
+    this.affiliationInfo,
     this.address,
     this.telecom,
     this.contributionType,
     this.role,
+    this.contributionInstance,
     this.correspondingContact,
-this.correspondingContactElement,
+    this.correspondingContactElement,
     this.listOrder,
-this.listOrderElement,
+    this.listOrderElement,
   });
 
-@override
-CitationEntry clone() => throw UnimplementedError();
+  @override
+  CitationEntry clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -676,14 +676,14 @@ class CitationAffiliationInfo extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.affiliation,
-this.affiliationElement,
+    this.affiliationElement,
     this.role,
-this.roleElement,
+    this.roleElement,
     this.identifier,
   });
 
-@override
-CitationAffiliationInfo clone() => throw UnimplementedError();
+  @override
+  CitationAffiliationInfo clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -699,11 +699,11 @@ class CitationContributionInstance extends BackboneElement {
     super.modifierExtension,
     required this.type,
     this.time,
-this.timeElement,
+    this.timeElement,
   });
 
-@override
-CitationContributionInstance clone() => throw UnimplementedError();
+  @override
+  CitationContributionInstance clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -723,10 +723,9 @@ class CitationSummary extends BackboneElement {
     this.style,
     this.source,
     required this.value,
-this.valueElement,
+    this.valueElement,
   });
 
-@override
-CitationSummary clone() => throw UnimplementedError();
+  @override
+  CitationSummary clone() => throw UnimplementedError();
 }
-

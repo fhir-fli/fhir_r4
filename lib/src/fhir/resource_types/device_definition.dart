@@ -7,23 +7,23 @@ import '../../../fhir_r4.dart';
 @JsonCodable()
 class DeviceDefinition extends DomainResource {
   final List<Identifier>? identifier;
-  final List<BackboneElement>? udiDeviceIdentifier;
-  final FhirString? manufacturerFhirString;
-  final Element? manufacturerFhirStringElement;
+  final List<DeviceDefinitionUdiDeviceIdentifier>? udiDeviceIdentifier;
+  final FhirString? manufacturerString;
+  final Element? manufacturerStringElement;
   final Reference? manufacturerReference;
-  final List<BackboneElement>? deviceName;
+  final List<DeviceDefinitionDeviceName>? deviceName;
   final FhirString? modelNumber;
   final Element? modelNumberElement;
   final CodeableConcept? type;
-  final List<BackboneElement>? specialization;
+  final List<DeviceDefinitionSpecialization>? specialization;
   final List<FhirString>? version;
   final List<Element>? versionElement;
   final List<CodeableConcept>? safety;
   final List<ProductShelfLife>? shelfLifeStorage;
   final ProdCharacteristic? physicalCharacteristics;
   final List<CodeableConcept>? languageCode;
-  final List<BackboneElement>? capability;
-  final List<BackboneElement>? property;
+  final List<DeviceDefinitionCapability>? capability;
+  final List<DeviceDefinitionProperty>? property;
   final Reference? owner;
   final List<ContactPoint>? contact;
   final FhirUri? url;
@@ -33,31 +33,31 @@ class DeviceDefinition extends DomainResource {
   final List<Annotation>? note;
   final Quantity? quantity;
   final Reference? parentDevice;
-  final List<BackboneElement>? material;
+  final List<DeviceDefinitionMaterial>? material;
 
   DeviceDefinition({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.udiDeviceIdentifier,
-    this.manufacturerFhirString,
-this.manufacturerFhirStringElement,
+    this.manufacturerString,
+    this.manufacturerStringElement,
     this.manufacturerReference,
     this.deviceName,
     this.modelNumber,
-this.modelNumberElement,
+    this.modelNumberElement,
     this.type,
     this.specialization,
     this.version,
-this.versionElement,
+    this.versionElement,
     this.safety,
     this.shelfLifeStorage,
     this.physicalCharacteristics,
@@ -67,17 +67,17 @@ this.versionElement,
     this.owner,
     this.contact,
     this.url,
-this.urlElement,
+    this.urlElement,
     this.onlineInformation,
-this.onlineInformationElement,
+    this.onlineInformationElement,
     this.note,
     this.quantity,
     this.parentDevice,
     this.material,
   }) : super(resourceType: R4ResourceType.DeviceDefinition);
 
-@override
-DeviceDefinition clone() => throw UnimplementedError();
+  @override
+  DeviceDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -95,15 +95,15 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.deviceIdentifier,
-this.deviceIdentifierElement,
+    this.deviceIdentifierElement,
     required this.issuer,
-this.issuerElement,
+    this.issuerElement,
     required this.jurisdiction,
-this.jurisdictionElement,
+    this.jurisdictionElement,
   });
 
-@override
-DeviceDefinitionUdiDeviceIdentifier clone() => throw UnimplementedError();
+  @override
+  DeviceDefinitionUdiDeviceIdentifier clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -119,13 +119,13 @@ class DeviceDefinitionDeviceName extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-this.nameElement,
+    this.nameElement,
     required this.type,
-this.typeElement,
+    this.typeElement,
   });
 
-@override
-DeviceDefinitionDeviceName clone() => throw UnimplementedError();
+  @override
+  DeviceDefinitionDeviceName clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -141,13 +141,13 @@ class DeviceDefinitionSpecialization extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.systemType,
-this.systemTypeElement,
+    this.systemTypeElement,
     this.version,
-this.versionElement,
+    this.versionElement,
   });
 
-@override
-DeviceDefinitionSpecialization clone() => throw UnimplementedError();
+  @override
+  DeviceDefinitionSpecialization clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -164,8 +164,8 @@ class DeviceDefinitionCapability extends BackboneElement {
     this.description,
   });
 
-@override
-DeviceDefinitionCapability clone() => throw UnimplementedError();
+  @override
+  DeviceDefinitionCapability clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -184,8 +184,8 @@ class DeviceDefinitionProperty extends BackboneElement {
     this.valueCode,
   });
 
-@override
-DeviceDefinitionProperty clone() => throw UnimplementedError();
+  @override
+  DeviceDefinitionProperty clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -203,12 +203,11 @@ class DeviceDefinitionMaterial extends BackboneElement {
     super.modifierExtension,
     required this.substance,
     this.alternate,
-this.alternateElement,
+    this.alternateElement,
     this.allergenicIndicator,
-this.allergenicIndicatorElement,
+    this.allergenicIndicatorElement,
   });
 
-@override
-DeviceDefinitionMaterial clone() => throw UnimplementedError();
+  @override
+  DeviceDefinitionMaterial clone() => throw UnimplementedError();
 }
-

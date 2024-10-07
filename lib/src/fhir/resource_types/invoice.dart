@@ -16,12 +16,11 @@ class Invoice extends DomainResource {
   final Reference? recipient;
   final FhirDateTime? date;
   final Element? dateElement;
-  final List<BackboneElement>? participant;
+  final List<InvoiceParticipant>? participant;
   final Reference? issuer;
   final Reference? account;
-  final List<BackboneElement>? lineItem;
-  final List<BackboneElement>? priceComponent;
-  final List<dynamic>? totalPriceComponent;
+  final List<InvoiceLineItem>? lineItem;
+  final List<InvoicePriceComponent>? totalPriceComponent;
   final Money? totalNet;
   final Money? totalGross;
   final FhirMarkdown? paymentTerms;
@@ -32,38 +31,37 @@ class Invoice extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.cancelledReason,
-this.cancelledReasonElement,
+    this.cancelledReasonElement,
     this.type,
     this.subject,
     this.recipient,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.participant,
     this.issuer,
     this.account,
     this.lineItem,
-    this.priceComponent,
     this.totalPriceComponent,
     this.totalNet,
     this.totalGross,
     this.paymentTerms,
-this.paymentTermsElement,
+    this.paymentTermsElement,
     this.note,
   }) : super(resourceType: R4ResourceType.Invoice);
 
-@override
-Invoice clone() => throw UnimplementedError();
+  @override
+  Invoice clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -80,8 +78,8 @@ class InvoiceParticipant extends BackboneElement {
     required this.actor,
   });
 
-@override
-InvoiceParticipant clone() => throw UnimplementedError();
+  @override
+  InvoiceParticipant clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -91,19 +89,21 @@ class InvoiceLineItem extends BackboneElement {
   final Element? sequenceElement;
   final Reference chargeItemReference;
   final CodeableConcept chargeItemCodeableConcept;
+  final List<InvoicePriceComponent>? priceComponent;
 
   InvoiceLineItem({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.sequence,
-this.sequenceElement,
+    this.sequenceElement,
     required this.chargeItemReference,
     required this.chargeItemCodeableConcept,
+    this.priceComponent,
   });
 
-@override
-InvoiceLineItem clone() => throw UnimplementedError();
+  @override
+  InvoiceLineItem clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -121,14 +121,13 @@ class InvoicePriceComponent extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-this.typeElement,
+    this.typeElement,
     this.code,
     this.factor,
-this.factorElement,
+    this.factorElement,
     this.amount,
   });
 
-@override
-InvoicePriceComponent clone() => throw UnimplementedError();
+  @override
+  InvoicePriceComponent clone() => throw UnimplementedError();
 }
-

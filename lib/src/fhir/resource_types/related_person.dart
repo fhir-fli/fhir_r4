@@ -20,38 +20,38 @@ class RelatedPerson extends DomainResource {
   final List<Address>? address;
   final List<Attachment>? photo;
   final Period? period;
-  final List<BackboneElement>? communication;
+  final List<RelatedPersonCommunication>? communication;
 
   RelatedPerson({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
-this.activeElement,
+    this.activeElement,
     required this.patient,
     this.relationship,
     this.name,
     this.telecom,
     this.gender,
-this.genderElement,
+    this.genderElement,
     this.birthDate,
-this.birthDateElement,
+    this.birthDateElement,
     this.address,
     this.photo,
     this.period,
     this.communication,
   }) : super(resourceType: R4ResourceType.RelatedPerson);
 
-@override
-RelatedPerson clone() => throw UnimplementedError();
+  @override
+  RelatedPerson clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -67,10 +67,9 @@ class RelatedPersonCommunication extends BackboneElement {
     super.modifierExtension,
     required this.language,
     this.preferred,
-this.preferredElement,
+    this.preferredElement,
   });
 
-@override
-RelatedPersonCommunication clone() => throw UnimplementedError();
+  @override
+  RelatedPersonCommunication clone() => throw UnimplementedError();
 }
-

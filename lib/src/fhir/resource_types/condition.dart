@@ -15,35 +15,35 @@ class Condition extends DomainResource {
   final List<CodeableConcept>? bodySite;
   final Reference subject;
   final Reference? encounter;
-  final FhirDateTime? onsetFhirDateTime;
-  final Element? onsetFhirDateTimeElement;
+  final FhirDateTime? onsetDateTime;
+  final Element? onsetDateTimeElement;
   final Age? onsetAge;
   final Period? onsetPeriod;
   final Range? onsetRange;
-  final FhirString? onsetFhirString;
-  final Element? onsetFhirStringElement;
-  final FhirDateTime? abatementFhirDateTime;
-  final Element? abatementFhirDateTimeElement;
+  final FhirString? onsetString;
+  final Element? onsetStringElement;
+  final FhirDateTime? abatementDateTime;
+  final Element? abatementDateTimeElement;
   final Age? abatementAge;
   final Period? abatementPeriod;
   final Range? abatementRange;
-  final FhirString? abatementFhirString;
-  final Element? abatementFhirStringElement;
+  final FhirString? abatementString;
+  final Element? abatementStringElement;
   final FhirDateTime? recordedDate;
   final Element? recordedDateElement;
   final Reference? recorder;
   final Reference? asserter;
-  final List<BackboneElement>? stage;
-  final List<BackboneElement>? evidence;
+  final List<ConditionStage>? stage;
+  final List<ConditionEvidence>? evidence;
   final List<Annotation>? note;
 
   Condition({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -57,22 +57,22 @@ super.languageElement,
     this.bodySite,
     required this.subject,
     this.encounter,
-    this.onsetFhirDateTime,
-this.onsetFhirDateTimeElement,
+    this.onsetDateTime,
+    this.onsetDateTimeElement,
     this.onsetAge,
     this.onsetPeriod,
     this.onsetRange,
-    this.onsetFhirString,
-this.onsetFhirStringElement,
-    this.abatementFhirDateTime,
-this.abatementFhirDateTimeElement,
+    this.onsetString,
+    this.onsetStringElement,
+    this.abatementDateTime,
+    this.abatementDateTimeElement,
     this.abatementAge,
     this.abatementPeriod,
     this.abatementRange,
-    this.abatementFhirString,
-this.abatementFhirStringElement,
+    this.abatementString,
+    this.abatementStringElement,
     this.recordedDate,
-this.recordedDateElement,
+    this.recordedDateElement,
     this.recorder,
     this.asserter,
     this.stage,
@@ -80,8 +80,8 @@ this.recordedDateElement,
     this.note,
   }) : super(resourceType: R4ResourceType.Condition);
 
-@override
-Condition clone() => throw UnimplementedError();
+  @override
+  Condition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -100,8 +100,8 @@ class ConditionStage extends BackboneElement {
     this.type,
   });
 
-@override
-ConditionStage clone() => throw UnimplementedError();
+  @override
+  ConditionStage clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -118,7 +118,6 @@ class ConditionEvidence extends BackboneElement {
     this.detail,
   });
 
-@override
-ConditionEvidence clone() => throw UnimplementedError();
+  @override
+  ConditionEvidence clone() => throw UnimplementedError();
 }
-

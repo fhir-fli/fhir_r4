@@ -13,8 +13,8 @@ class CoverageEligibilityRequest extends DomainResource {
   final List<FhirCode> purpose;
   final List<Element>? purposeElement;
   final Reference patient;
-  final FhirDate? servicedFhirDate;
-  final Element? servicedFhirDateElement;
+  final FhirDate? servicedDate;
+  final Element? servicedDateElement;
   final Period? servicedPeriod;
   final FhirDateTime created;
   final Element? createdElement;
@@ -22,34 +22,33 @@ class CoverageEligibilityRequest extends DomainResource {
   final Reference? provider;
   final Reference insurer;
   final Reference? facility;
-  final List<BackboneElement>? supportingInfo;
-  final List<BackboneElement>? insurance;
-  final List<BackboneElement>? item;
-  final List<BackboneElement>? diagnosis;
+  final List<CoverageEligibilityRequestSupportingInfo>? supportingInfo;
+  final List<CoverageEligibilityRequestInsurance>? insurance;
+  final List<CoverageEligibilityRequestItem>? item;
 
   CoverageEligibilityRequest({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.priority,
     required this.purpose,
-this.purposeElement,
+    this.purposeElement,
     required this.patient,
-    this.servicedFhirDate,
-this.servicedFhirDateElement,
+    this.servicedDate,
+    this.servicedDateElement,
     this.servicedPeriod,
     required this.created,
-this.createdElement,
+    this.createdElement,
     this.enterer,
     this.provider,
     required this.insurer,
@@ -57,11 +56,10 @@ this.createdElement,
     this.supportingInfo,
     this.insurance,
     this.item,
-    this.diagnosis,
   }) : super(resourceType: R4ResourceType.CoverageEligibilityRequest);
 
-@override
-CoverageEligibilityRequest clone() => throw UnimplementedError();
+  @override
+  CoverageEligibilityRequest clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -78,14 +76,15 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.sequence,
-this.sequenceElement,
+    this.sequenceElement,
     required this.information,
     this.appliesToAll,
-this.appliesToAllElement,
+    this.appliesToAllElement,
   });
 
-@override
-CoverageEligibilityRequestSupportingInfo clone() => throw UnimplementedError();
+  @override
+  CoverageEligibilityRequestSupportingInfo clone() =>
+      throw UnimplementedError();
 }
 
 @Data()
@@ -102,14 +101,14 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.focal,
-this.focalElement,
+    this.focalElement,
     required this.coverage,
     this.businessArrangement,
-this.businessArrangementElement,
+    this.businessArrangementElement,
   });
 
-@override
-CoverageEligibilityRequestInsurance clone() => throw UnimplementedError();
+  @override
+  CoverageEligibilityRequestInsurance clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -124,6 +123,7 @@ class CoverageEligibilityRequestItem extends BackboneElement {
   final Quantity? quantity;
   final Money? unitPrice;
   final Reference? facility;
+  final List<CoverageEligibilityRequestDiagnosis>? diagnosis;
   final List<Reference>? detail;
 
   CoverageEligibilityRequestItem({
@@ -131,7 +131,7 @@ class CoverageEligibilityRequestItem extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.supportingInfoSequence,
-this.supportingInfoSequenceElement,
+    this.supportingInfoSequenceElement,
     this.category,
     this.productOrService,
     this.modifier,
@@ -139,11 +139,12 @@ this.supportingInfoSequenceElement,
     this.quantity,
     this.unitPrice,
     this.facility,
+    this.diagnosis,
     this.detail,
   });
 
-@override
-CoverageEligibilityRequestItem clone() => throw UnimplementedError();
+  @override
+  CoverageEligibilityRequestItem clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -160,7 +161,6 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
     this.diagnosisReference,
   });
 
-@override
-CoverageEligibilityRequestDiagnosis clone() => throw UnimplementedError();
+  @override
+  CoverageEligibilityRequestDiagnosis clone() => throw UnimplementedError();
 }
-

@@ -18,7 +18,6 @@ class RatioRange extends DataType {
     this.denominator,
   });
 
-@override
-RatioRange clone() => throw UnimplementedError();
+  @override
+  RatioRange clone() => throw UnimplementedError();
 }
-

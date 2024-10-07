@@ -15,7 +15,7 @@ class CareTeam extends DomainResource {
   final Reference? subject;
   final Reference? encounter;
   final Period? period;
-  final List<BackboneElement>? participant;
+  final List<CareTeamParticipant>? participant;
   final List<CodeableConcept>? reasonCode;
   final List<Reference>? reasonReference;
   final List<Reference>? managingOrganization;
@@ -26,19 +26,19 @@ class CareTeam extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.status,
-this.statusElement,
+    this.statusElement,
     this.category,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.subject,
     this.encounter,
     this.period,
@@ -50,8 +50,8 @@ this.nameElement,
     this.note,
   }) : super(resourceType: R4ResourceType.CareTeam);
 
-@override
-CareTeam clone() => throw UnimplementedError();
+  @override
+  CareTeam clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -72,7 +72,6 @@ class CareTeamParticipant extends BackboneElement {
     this.period,
   });
 
-@override
-CareTeamParticipant clone() => throw UnimplementedError();
+  @override
+  CareTeamParticipant clone() => throw UnimplementedError();
 }
-

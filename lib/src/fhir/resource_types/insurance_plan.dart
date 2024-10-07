@@ -18,37 +18,31 @@ class InsurancePlan extends DomainResource {
   final Reference? ownedBy;
   final Reference? administeredBy;
   final List<Reference>? coverageArea;
-  final List<BackboneElement>? contact;
+  final List<InsurancePlanContact>? contact;
   final List<Reference>? endpoint;
   final List<Reference>? network;
-  final List<BackboneElement>? coverage;
-  final List<BackboneElement> benefit;
-  final List<BackboneElement>? limit;
-  final List<BackboneElement>? plan;
-  final List<BackboneElement>? generalCost;
-  final List<BackboneElement>? specificCost;
-  final List<BackboneElement>? benefit;
-  final List<BackboneElement>? cost;
+  final List<InsurancePlanCoverage>? coverage;
+  final List<InsurancePlanPlan>? plan;
 
   InsurancePlan({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.status,
-this.statusElement,
+    this.statusElement,
     this.type,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.alias,
-this.aliasElement,
+    this.aliasElement,
     this.period,
     this.ownedBy,
     this.administeredBy,
@@ -57,17 +51,11 @@ this.aliasElement,
     this.endpoint,
     this.network,
     this.coverage,
-    required this.benefit,
-    this.limit,
     this.plan,
-    this.generalCost,
-    this.specificCost,
-    this.benefit,
-    this.cost,
   }) : super(resourceType: R4ResourceType.InsurancePlan);
 
-@override
-InsurancePlan clone() => throw UnimplementedError();
+  @override
+  InsurancePlan clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -88,8 +76,8 @@ class InsurancePlanContact extends BackboneElement {
     this.address,
   });
 
-@override
-InsurancePlanContact clone() => throw UnimplementedError();
+  @override
+  InsurancePlanContact clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -97,6 +85,7 @@ InsurancePlanContact clone() => throw UnimplementedError();
 class InsurancePlanCoverage extends BackboneElement {
   final CodeableConcept type;
   final List<Reference>? network;
+  final List<InsurancePlanBenefit> benefit;
 
   InsurancePlanCoverage({
     super.id,
@@ -104,10 +93,11 @@ class InsurancePlanCoverage extends BackboneElement {
     super.modifierExtension,
     required this.type,
     this.network,
+    required this.benefit,
   });
 
-@override
-InsurancePlanCoverage clone() => throw UnimplementedError();
+  @override
+  InsurancePlanCoverage clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -116,6 +106,7 @@ class InsurancePlanBenefit extends BackboneElement {
   final CodeableConcept type;
   final FhirString? requirement;
   final Element? requirementElement;
+  final List<InsurancePlanLimit>? limit;
 
   InsurancePlanBenefit({
     super.id,
@@ -123,11 +114,12 @@ class InsurancePlanBenefit extends BackboneElement {
     super.modifierExtension,
     required this.type,
     this.requirement,
-this.requirementElement,
+    this.requirementElement,
+    this.limit,
   });
 
-@override
-InsurancePlanBenefit clone() => throw UnimplementedError();
+  @override
+  InsurancePlanBenefit clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -144,8 +136,8 @@ class InsurancePlanLimit extends BackboneElement {
     this.code,
   });
 
-@override
-InsurancePlanLimit clone() => throw UnimplementedError();
+  @override
+  InsurancePlanLimit clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -155,6 +147,8 @@ class InsurancePlanPlan extends BackboneElement {
   final CodeableConcept? type;
   final List<Reference>? coverageArea;
   final List<Reference>? network;
+  final List<InsurancePlanGeneralCost>? generalCost;
+  final List<InsurancePlanSpecificCost>? specificCost;
 
   InsurancePlanPlan({
     super.id,
@@ -164,10 +158,12 @@ class InsurancePlanPlan extends BackboneElement {
     this.type,
     this.coverageArea,
     this.network,
+    this.generalCost,
+    this.specificCost,
   });
 
-@override
-InsurancePlanPlan clone() => throw UnimplementedError();
+  @override
+  InsurancePlanPlan clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -186,46 +182,50 @@ class InsurancePlanGeneralCost extends BackboneElement {
     super.modifierExtension,
     this.type,
     this.groupSize,
-this.groupSizeElement,
+    this.groupSizeElement,
     this.cost,
     this.comment,
-this.commentElement,
+    this.commentElement,
   });
 
-@override
-InsurancePlanGeneralCost clone() => throw UnimplementedError();
+  @override
+  InsurancePlanGeneralCost clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
 class InsurancePlanSpecificCost extends BackboneElement {
   final CodeableConcept category;
+  final List<InsurancePlanBenefit>? benefit;
 
   InsurancePlanSpecificCost({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.category,
+    this.benefit,
   });
 
-@override
-InsurancePlanSpecificCost clone() => throw UnimplementedError();
+  @override
+  InsurancePlanSpecificCost clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
 class InsurancePlanBenefit extends BackboneElement {
   final CodeableConcept type;
+  final List<InsurancePlanCost>? cost;
 
   InsurancePlanBenefit({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.type,
+    this.cost,
   });
 
-@override
-InsurancePlanBenefit clone() => throw UnimplementedError();
+  @override
+  InsurancePlanBenefit clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -246,7 +246,6 @@ class InsurancePlanCost extends BackboneElement {
     this.value,
   });
 
-@override
-InsurancePlanCost clone() => throw UnimplementedError();
+  @override
+  InsurancePlanCost clone() => throw UnimplementedError();
 }
-

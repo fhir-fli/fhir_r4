@@ -6,33 +6,40 @@ enum EnableWhenBehavior {
   /// Definition: Enable the question when all the enableWhen criteria are satisfied.
   @JsonValue('all')
   all,
+
   /// Display: Any
   /// Definition: Enable the question when any of the enableWhen criteria are satisfied.
   @JsonValue('any')
   any,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case all: return 'all';
-        case any: return 'any';
-      }
-      }
-String toJson() => toString();
-  EnableWhenBehavior fromString(String str) {
-    switch(str) {
-      case 'all': return EnableWhenBehavior.all;
-      case 'any': return EnableWhenBehavior.any;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case all:
+        return 'all';
+      case any:
+        return 'any';
     }
-      }
- EnableWhenBehavior fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  EnableWhenBehavior fromString(String str) {
+    switch (str) {
+      case 'all':
+        return EnableWhenBehavior.all;
+      case 'any':
+        return EnableWhenBehavior.any;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  EnableWhenBehavior fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

@@ -22,10 +22,9 @@ class MarketingStatus extends BackboneType {
     required this.status,
     this.dateRange,
     this.restoreDate,
-this.restoreDateElement,
+    this.restoreDateElement,
   });
 
-@override
-MarketingStatus clone() => throw UnimplementedError();
+  @override
+  MarketingStatus clone() => throw UnimplementedError();
 }
-

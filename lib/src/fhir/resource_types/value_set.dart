@@ -34,66 +34,54 @@ class ValueSet extends DomainResource {
   final Element? purposeElement;
   final FhirMarkdown? copyright;
   final Element? copyrightElement;
-  final BackboneElement? compose;
-  final List<BackboneElement> include;
-  final List<BackboneElement>? concept;
-  final List<BackboneElement>? designation;
-  final List<BackboneElement>? filter;
-  final BackboneElement? expansion;
-  final List<BackboneElement>? parameter;
-  final List<BackboneElement>? contains;
+  final ValueSetCompose? compose;
+  final ValueSetExpansion? expansion;
 
   ValueSet({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-this.urlElement,
+    this.urlElement,
     this.identifier,
     this.version,
-this.versionElement,
+    this.versionElement,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.title,
-this.titleElement,
+    this.titleElement,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.experimental,
-this.experimentalElement,
+    this.experimentalElement,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.publisher,
-this.publisherElement,
+    this.publisherElement,
     this.contact,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.immutable,
-this.immutableElement,
+    this.immutableElement,
     this.purpose,
-this.purposeElement,
+    this.purposeElement,
     this.copyright,
-this.copyrightElement,
+    this.copyrightElement,
     this.compose,
-    required this.include,
-    this.concept,
-    this.designation,
-    this.filter,
     this.expansion,
-    this.parameter,
-    this.contains,
   }) : super(resourceType: R4ResourceType.ValueSet);
 
-@override
-ValueSet clone() => throw UnimplementedError();
+  @override
+  ValueSet clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -103,21 +91,23 @@ class ValueSetCompose extends BackboneElement {
   final Element? lockedDateElement;
   final FhirBoolean? inactive;
   final Element? inactiveElement;
-  final List<dynamic>? exclude;
+  final List<ValueSetInclude> include;
+  final List<ValueSetInclude>? exclude;
 
   ValueSetCompose({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.lockedDate,
-this.lockedDateElement,
+    this.lockedDateElement,
     this.inactive,
-this.inactiveElement,
+    this.inactiveElement,
+    required this.include,
     this.exclude,
   });
 
-@override
-ValueSetCompose clone() => throw UnimplementedError();
+  @override
+  ValueSetCompose clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -127,6 +117,8 @@ class ValueSetInclude extends BackboneElement {
   final Element? systemElement;
   final FhirString? version;
   final Element? versionElement;
+  final List<ValueSetConcept>? concept;
+  final List<ValueSetFilter>? filter;
   final List<FhirCanonical>? valueSet;
   final List<Element>? valueSetElement;
 
@@ -135,15 +127,17 @@ class ValueSetInclude extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.system,
-this.systemElement,
+    this.systemElement,
     this.version,
-this.versionElement,
+    this.versionElement,
+    this.concept,
+    this.filter,
     this.valueSet,
-this.valueSetElement,
+    this.valueSetElement,
   });
 
-@override
-ValueSetInclude clone() => throw UnimplementedError();
+  @override
+  ValueSetInclude clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -153,19 +147,21 @@ class ValueSetConcept extends BackboneElement {
   final Element? codeElement;
   final FhirString? display;
   final Element? displayElement;
+  final List<ValueSetDesignation>? designation;
 
   ValueSetConcept({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.code,
-this.codeElement,
+    this.codeElement,
     this.display,
-this.displayElement,
+    this.displayElement,
+    this.designation,
   });
 
-@override
-ValueSetConcept clone() => throw UnimplementedError();
+  @override
+  ValueSetConcept clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -182,14 +178,14 @@ class ValueSetDesignation extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.language,
-this.languageElement,
+    this.languageElement,
     this.use,
     required this.value,
-this.valueElement,
+    this.valueElement,
   });
 
-@override
-ValueSetDesignation clone() => throw UnimplementedError();
+  @override
+  ValueSetDesignation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -207,15 +203,15 @@ class ValueSetFilter extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.property,
-this.propertyElement,
+    this.propertyElement,
     required this.op,
-this.opElement,
+    this.opElement,
     required this.value,
-this.valueElement,
+    this.valueElement,
   });
 
-@override
-ValueSetFilter clone() => throw UnimplementedError();
+  @override
+  ValueSetFilter clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -229,23 +225,27 @@ class ValueSetExpansion extends BackboneElement {
   final Element? totalElement;
   final FhirInteger? offset;
   final Element? offsetElement;
+  final List<ValueSetParameter>? parameter;
+  final List<ValueSetContains>? contains;
 
   ValueSetExpansion({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.identifier,
-this.identifierElement,
+    this.identifierElement,
     required this.timestamp,
-this.timestampElement,
+    this.timestampElement,
     this.total,
-this.totalElement,
+    this.totalElement,
     this.offset,
-this.offsetElement,
+    this.offsetElement,
+    this.parameter,
+    this.contains,
   });
 
-@override
-ValueSetExpansion clone() => throw UnimplementedError();
+  @override
+  ValueSetExpansion clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -253,45 +253,45 @@ ValueSetExpansion clone() => throw UnimplementedError();
 class ValueSetParameter extends BackboneElement {
   final FhirString name;
   final Element? nameElement;
-  final FhirString? valueFhirString;
-  final Element? valueFhirStringElement;
-  final FhirBoolean? valueFhirBoolean;
-  final Element? valueFhirBooleanElement;
-  final FhirInteger? valueFhirInteger;
-  final Element? valueFhirIntegerElement;
-  final FhirDecimal? valueFhirDecimal;
-  final Element? valueFhirDecimalElement;
-  final FhirUri? valueFhirUri;
-  final Element? valueFhirUriElement;
-  final FhirCode? valueFhirCode;
-  final Element? valueFhirCodeElement;
-  final FhirDateTime? valueFhirDateTime;
-  final Element? valueFhirDateTimeElement;
+  final FhirString? valueString;
+  final Element? valueStringElement;
+  final FhirBoolean? valueBoolean;
+  final Element? valueBooleanElement;
+  final FhirInteger? valueInteger;
+  final Element? valueIntegerElement;
+  final FhirDecimal? valueDecimal;
+  final Element? valueDecimalElement;
+  final FhirUri? valueUri;
+  final Element? valueUriElement;
+  final FhirCode? valueCode;
+  final Element? valueCodeElement;
+  final FhirDateTime? valueDateTime;
+  final Element? valueDateTimeElement;
 
   ValueSetParameter({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.name,
-this.nameElement,
-    this.valueFhirString,
-this.valueFhirStringElement,
-    this.valueFhirBoolean,
-this.valueFhirBooleanElement,
-    this.valueFhirInteger,
-this.valueFhirIntegerElement,
-    this.valueFhirDecimal,
-this.valueFhirDecimalElement,
-    this.valueFhirUri,
-this.valueFhirUriElement,
-    this.valueFhirCode,
-this.valueFhirCodeElement,
-    this.valueFhirDateTime,
-this.valueFhirDateTimeElement,
+    this.nameElement,
+    this.valueString,
+    this.valueStringElement,
+    this.valueBoolean,
+    this.valueBooleanElement,
+    this.valueInteger,
+    this.valueIntegerElement,
+    this.valueDecimal,
+    this.valueDecimalElement,
+    this.valueUri,
+    this.valueUriElement,
+    this.valueCode,
+    this.valueCodeElement,
+    this.valueDateTime,
+    this.valueDateTimeElement,
   });
 
-@override
-ValueSetParameter clone() => throw UnimplementedError();
+  @override
+  ValueSetParameter clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -309,30 +309,29 @@ class ValueSetContains extends BackboneElement {
   final Element? codeElement;
   final FhirString? display;
   final Element? displayElement;
-  final List<dynamic>? designation;
-  final List<dynamic>? contains;
+  final List<ValueSetDesignation>? designation;
+  final List<ValueSetContains>? contains;
 
   ValueSetContains({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.system,
-this.systemElement,
+    this.systemElement,
     this.abstract_,
-this.abstractElement,
+    this.abstractElement,
     this.inactive,
-this.inactiveElement,
+    this.inactiveElement,
     this.version,
-this.versionElement,
+    this.versionElement,
     this.code,
-this.codeElement,
+    this.codeElement,
     this.display,
-this.displayElement,
+    this.displayElement,
     this.designation,
     this.contains,
   });
 
-@override
-ValueSetContains clone() => throw UnimplementedError();
+  @override
+  ValueSetContains clone() => throw UnimplementedError();
 }
-

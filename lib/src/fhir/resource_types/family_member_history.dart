@@ -22,82 +22,82 @@ class FamilyMemberHistory extends DomainResource {
   final CodeableConcept relationship;
   final CodeableConcept? sex;
   final Period? bornPeriod;
-  final FhirDate? bornFhirDate;
-  final Element? bornFhirDateElement;
-  final FhirString? bornFhirString;
-  final Element? bornFhirStringElement;
+  final FhirDate? bornDate;
+  final Element? bornDateElement;
+  final FhirString? bornString;
+  final Element? bornStringElement;
   final Age? ageAge;
   final Range? ageRange;
-  final FhirString? ageFhirString;
-  final Element? ageFhirStringElement;
+  final FhirString? ageString;
+  final Element? ageStringElement;
   final FhirBoolean? estimatedAge;
   final Element? estimatedAgeElement;
-  final FhirBoolean? deceasedFhirBoolean;
-  final Element? deceasedFhirBooleanElement;
+  final FhirBoolean? deceasedBoolean;
+  final Element? deceasedBooleanElement;
   final Age? deceasedAge;
   final Range? deceasedRange;
-  final FhirDate? deceasedFhirDate;
-  final Element? deceasedFhirDateElement;
-  final FhirString? deceasedFhirString;
-  final Element? deceasedFhirStringElement;
+  final FhirDate? deceasedDate;
+  final Element? deceasedDateElement;
+  final FhirString? deceasedString;
+  final Element? deceasedStringElement;
   final List<CodeableConcept>? reasonCode;
   final List<Reference>? reasonReference;
   final List<Annotation>? note;
-  final List<BackboneElement>? condition;
+  final List<FamilyMemberHistoryCondition>? condition;
 
   FamilyMemberHistory({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
-this.instantiatesCanonicalElement,
+    this.instantiatesCanonicalElement,
     this.instantiatesUri,
-this.instantiatesUriElement,
+    this.instantiatesUriElement,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.dataAbsentReason,
     required this.patient,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.name,
-this.nameElement,
+    this.nameElement,
     required this.relationship,
     this.sex,
     this.bornPeriod,
-    this.bornFhirDate,
-this.bornFhirDateElement,
-    this.bornFhirString,
-this.bornFhirStringElement,
+    this.bornDate,
+    this.bornDateElement,
+    this.bornString,
+    this.bornStringElement,
     this.ageAge,
     this.ageRange,
-    this.ageFhirString,
-this.ageFhirStringElement,
+    this.ageString,
+    this.ageStringElement,
     this.estimatedAge,
-this.estimatedAgeElement,
-    this.deceasedFhirBoolean,
-this.deceasedFhirBooleanElement,
+    this.estimatedAgeElement,
+    this.deceasedBoolean,
+    this.deceasedBooleanElement,
     this.deceasedAge,
     this.deceasedRange,
-    this.deceasedFhirDate,
-this.deceasedFhirDateElement,
-    this.deceasedFhirString,
-this.deceasedFhirStringElement,
+    this.deceasedDate,
+    this.deceasedDateElement,
+    this.deceasedString,
+    this.deceasedStringElement,
     this.reasonCode,
     this.reasonReference,
     this.note,
     this.condition,
   }) : super(resourceType: R4ResourceType.FamilyMemberHistory);
 
-@override
-FamilyMemberHistory clone() => throw UnimplementedError();
+  @override
+  FamilyMemberHistory clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -110,8 +110,8 @@ class FamilyMemberHistoryCondition extends BackboneElement {
   final Age? onsetAge;
   final Range? onsetRange;
   final Period? onsetPeriod;
-  final FhirString? onsetFhirString;
-  final Element? onsetFhirStringElement;
+  final FhirString? onsetString;
+  final Element? onsetStringElement;
   final List<Annotation>? note;
 
   FamilyMemberHistoryCondition({
@@ -121,16 +121,15 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     required this.code,
     this.outcome,
     this.contributedToDeath,
-this.contributedToDeathElement,
+    this.contributedToDeathElement,
     this.onsetAge,
     this.onsetRange,
     this.onsetPeriod,
-    this.onsetFhirString,
-this.onsetFhirStringElement,
+    this.onsetString,
+    this.onsetStringElement,
     this.note,
   });
 
-@override
-FamilyMemberHistoryCondition clone() => throw UnimplementedError();
+  @override
+  FamilyMemberHistoryCondition clone() => throw UnimplementedError();
 }
-

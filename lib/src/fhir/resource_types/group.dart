@@ -19,39 +19,39 @@ class FhirGroup extends DomainResource {
   final FhirUnsignedInt? quantity;
   final Element? quantityElement;
   final Reference? managingEntity;
-  final List<BackboneElement>? characteristic;
-  final List<BackboneElement>? member;
+  final List<GroupCharacteristic>? characteristic;
+  final List<GroupMember>? member;
 
   FhirGroup({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
-this.activeElement,
+    this.activeElement,
     required this.type,
-this.typeElement,
+    this.typeElement,
     required this.actual,
-this.actualElement,
+    this.actualElement,
     this.code,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.quantity,
-this.quantityElement,
+    this.quantityElement,
     this.managingEntity,
     this.characteristic,
     this.member,
   }) : super(resourceType: R4ResourceType.FhirGroup);
 
-@override
-FhirGroup clone() => throw UnimplementedError();
+  @override
+  FhirGroup clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -59,8 +59,8 @@ FhirGroup clone() => throw UnimplementedError();
 class GroupCharacteristic extends BackboneElement {
   final CodeableConcept code;
   final CodeableConcept valueCodeableConcept;
-  final FhirBoolean valueFhirBoolean;
-  final Element? valueFhirBooleanElement;
+  final FhirBoolean valueBoolean;
+  final Element? valueBooleanElement;
   final Quantity valueQuantity;
   final Range valueRange;
   final Reference valueReference;
@@ -74,18 +74,18 @@ class GroupCharacteristic extends BackboneElement {
     super.modifierExtension,
     required this.code,
     required this.valueCodeableConcept,
-    required this.valueFhirBoolean,
-this.valueFhirBooleanElement,
+    required this.valueBoolean,
+    this.valueBooleanElement,
     required this.valueQuantity,
     required this.valueRange,
     required this.valueReference,
     required this.exclude,
-this.excludeElement,
+    this.excludeElement,
     this.period,
   });
 
-@override
-GroupCharacteristic clone() => throw UnimplementedError();
+  @override
+  GroupCharacteristic clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -103,10 +103,9 @@ class GroupMember extends BackboneElement {
     required this.entity,
     this.period,
     this.inactive,
-this.inactiveElement,
+    this.inactiveElement,
   });
 
-@override
-GroupMember clone() => throw UnimplementedError();
+  @override
+  GroupMember clone() => throw UnimplementedError();
 }
-

@@ -24,16 +24,16 @@ class OrganizationAffiliation extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
-this.activeElement,
+    this.activeElement,
     this.period,
     this.organization,
     this.participatingOrganization,
@@ -46,7 +46,6 @@ this.activeElement,
     this.endpoint,
   }) : super(resourceType: R4ResourceType.OrganizationAffiliation);
 
-@override
-OrganizationAffiliation clone() => throw UnimplementedError();
+  @override
+  OrganizationAffiliation clone() => throw UnimplementedError();
 }
-

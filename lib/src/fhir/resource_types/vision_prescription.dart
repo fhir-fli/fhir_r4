@@ -16,36 +16,34 @@ class VisionPrescription extends DomainResource {
   final FhirDateTime dateWritten;
   final Element? dateWrittenElement;
   final Reference prescriber;
-  final List<BackboneElement> lensSpecification;
-  final List<BackboneElement>? prism;
+  final List<VisionPrescriptionLensSpecification> lensSpecification;
 
   VisionPrescription({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     required this.created,
-this.createdElement,
+    this.createdElement,
     required this.patient,
     this.encounter,
     required this.dateWritten,
-this.dateWrittenElement,
+    this.dateWrittenElement,
     required this.prescriber,
     required this.lensSpecification,
-    this.prism,
   }) : super(resourceType: R4ResourceType.VisionPrescription);
 
-@override
-VisionPrescription clone() => throw UnimplementedError();
+  @override
+  VisionPrescription clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -60,6 +58,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   final Element? cylinderElement;
   final FhirInteger? axis;
   final Element? axisElement;
+  final List<VisionPrescriptionPrism>? prism;
   final FhirDecimal? add;
   final Element? addElement;
   final FhirDecimal? power;
@@ -81,31 +80,32 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     super.modifierExtension,
     required this.product,
     required this.eye,
-this.eyeElement,
+    this.eyeElement,
     this.sphere,
-this.sphereElement,
+    this.sphereElement,
     this.cylinder,
-this.cylinderElement,
+    this.cylinderElement,
     this.axis,
-this.axisElement,
+    this.axisElement,
+    this.prism,
     this.add,
-this.addElement,
+    this.addElement,
     this.power,
-this.powerElement,
+    this.powerElement,
     this.backCurve,
-this.backCurveElement,
+    this.backCurveElement,
     this.diameter,
-this.diameterElement,
+    this.diameterElement,
     this.duration,
     this.color,
-this.colorElement,
+    this.colorElement,
     this.brand,
-this.brandElement,
+    this.brandElement,
     this.note,
   });
 
-@override
-VisionPrescriptionLensSpecification clone() => throw UnimplementedError();
+  @override
+  VisionPrescriptionLensSpecification clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -121,12 +121,11 @@ class VisionPrescriptionPrism extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.amount,
-this.amountElement,
+    this.amountElement,
     required this.base,
-this.baseElement,
+    this.baseElement,
   });
 
-@override
-VisionPrescriptionPrism clone() => throw UnimplementedError();
+  @override
+  VisionPrescriptionPrism clone() => throw UnimplementedError();
 }
-

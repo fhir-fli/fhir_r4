@@ -32,68 +32,56 @@ class StructureMap extends DomainResource {
   final Element? purposeElement;
   final FhirMarkdown? copyright;
   final Element? copyrightElement;
-  final List<BackboneElement>? structure;
+  final List<StructureMapStructure>? structure;
   final List<FhirCanonical>? import_;
   final List<Element>? importElement;
-  final List<BackboneElement> group;
-  final List<BackboneElement> input;
-  final List<BackboneElement> rule;
-  final List<BackboneElement> source;
-  final List<BackboneElement>? target;
-  final List<BackboneElement>? parameter;
-  final List<BackboneElement>? dependent;
+  final List<StructureMapGroup> group;
 
   StructureMap({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     required this.url,
-this.urlElement,
+    this.urlElement,
     this.identifier,
     this.version,
-this.versionElement,
+    this.versionElement,
     required this.name,
-this.nameElement,
+    this.nameElement,
     this.title,
-this.titleElement,
+    this.titleElement,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.experimental,
-this.experimentalElement,
+    this.experimentalElement,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.publisher,
-this.publisherElement,
+    this.publisherElement,
     this.contact,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-this.purposeElement,
+    this.purposeElement,
     this.copyright,
-this.copyrightElement,
+    this.copyrightElement,
     this.structure,
     this.import_,
-this.importElement,
+    this.importElement,
     required this.group,
-    required this.input,
-    required this.rule,
-    required this.source,
-    this.target,
-    this.parameter,
-    this.dependent,
   }) : super(resourceType: R4ResourceType.StructureMap);
 
-@override
-StructureMap clone() => throw UnimplementedError();
+  @override
+  StructureMap clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -113,17 +101,17 @@ class StructureMapStructure extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.url,
-this.urlElement,
+    this.urlElement,
     required this.mode,
-this.modeElement,
+    this.modeElement,
     this.alias,
-this.aliasElement,
+    this.aliasElement,
     this.documentation,
-this.documentationElement,
+    this.documentationElement,
   });
 
-@override
-StructureMapStructure clone() => throw UnimplementedError();
+  @override
+  StructureMapStructure clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -137,23 +125,27 @@ class StructureMapGroup extends BackboneElement {
   final Element? typeModeElement;
   final FhirString? documentation;
   final Element? documentationElement;
+  final List<StructureMapInput> input;
+  final List<StructureMapRule> rule;
 
   StructureMapGroup({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.name,
-this.nameElement,
+    this.nameElement,
     this.extends_,
-this.extendsElement,
+    this.extendsElement,
     required this.typeMode,
-this.typeModeElement,
+    this.typeModeElement,
     this.documentation,
-this.documentationElement,
+    this.documentationElement,
+    required this.input,
+    required this.rule,
   });
 
-@override
-StructureMapGroup clone() => throw UnimplementedError();
+  @override
+  StructureMapGroup clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -173,17 +165,17 @@ class StructureMapInput extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-this.nameElement,
+    this.nameElement,
     this.type,
-this.typeElement,
+    this.typeElement,
     required this.mode,
-this.modeElement,
+    this.modeElement,
     this.documentation,
-this.documentationElement,
+    this.documentationElement,
   });
 
-@override
-StructureMapInput clone() => throw UnimplementedError();
+  @override
+  StructureMapInput clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -191,7 +183,10 @@ StructureMapInput clone() => throw UnimplementedError();
 class StructureMapRule extends BackboneElement {
   final FhirId name;
   final Element? nameElement;
-  final List<dynamic>? rule;
+  final List<StructureMapSource> source;
+  final List<StructureMapTarget>? target;
+  final List<StructureMapRule>? rule;
+  final List<StructureMapDependent>? dependent;
   final FhirString? documentation;
   final Element? documentationElement;
 
@@ -200,14 +195,17 @@ class StructureMapRule extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-this.nameElement,
+    this.nameElement,
+    required this.source,
+    this.target,
     this.rule,
+    this.dependent,
     this.documentation,
-this.documentationElement,
+    this.documentationElement,
   });
 
-@override
-StructureMapRule clone() => throw UnimplementedError();
+  @override
+  StructureMapRule clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -221,44 +219,44 @@ class StructureMapSource extends BackboneElement {
   final Element? maxElement;
   final FhirString? type;
   final Element? typeElement;
-  final FhirBase64Binary? defaultValueFhirBase64Binary;
-  final Element? defaultValueFhirBase64BinaryElement;
-  final FhirBoolean? defaultValueFhirBoolean;
-  final Element? defaultValueFhirBooleanElement;
-  final FhirCanonical? defaultValueFhirCanonical;
-  final Element? defaultValueFhirCanonicalElement;
-  final FhirCode? defaultValueFhirCode;
-  final Element? defaultValueFhirCodeElement;
-  final FhirDate? defaultValueFhirDate;
-  final Element? defaultValueFhirDateElement;
-  final FhirDateTime? defaultValueFhirDateTime;
-  final Element? defaultValueFhirDateTimeElement;
-  final FhirDecimal? defaultValueFhirDecimal;
-  final Element? defaultValueFhirDecimalElement;
-  final FhirId? defaultValueFhirId;
-  final Element? defaultValueFhirIdElement;
-  final FhirInstant? defaultValueFhirInstant;
-  final Element? defaultValueFhirInstantElement;
-  final FhirInteger? defaultValueFhirInteger;
-  final Element? defaultValueFhirIntegerElement;
-  final FhirMarkdown? defaultValueFhirMarkdown;
-  final Element? defaultValueFhirMarkdownElement;
-  final FhirOid? defaultValueFhirOid;
-  final Element? defaultValueFhirOidElement;
-  final FhirPositiveInt? defaultValueFhirPositiveInt;
-  final Element? defaultValueFhirPositiveIntElement;
-  final FhirString? defaultValueFhirString;
-  final Element? defaultValueFhirStringElement;
-  final FhirTime? defaultValueFhirTime;
-  final Element? defaultValueFhirTimeElement;
-  final FhirUnsignedInt? defaultValueFhirUnsignedInt;
-  final Element? defaultValueFhirUnsignedIntElement;
-  final FhirUri? defaultValueFhirUri;
-  final Element? defaultValueFhirUriElement;
-  final FhirUrl? defaultValueFhirUrl;
-  final Element? defaultValueFhirUrlElement;
-  final FhirUuid? defaultValueFhirUuid;
-  final Element? defaultValueFhirUuidElement;
+  final FhirBase64Binary? defaultValueBase64Binary;
+  final Element? defaultValueBase64BinaryElement;
+  final FhirBoolean? defaultValueBoolean;
+  final Element? defaultValueBooleanElement;
+  final FhirCanonical? defaultValueCanonical;
+  final Element? defaultValueCanonicalElement;
+  final FhirCode? defaultValueCode;
+  final Element? defaultValueCodeElement;
+  final FhirDate? defaultValueDate;
+  final Element? defaultValueDateElement;
+  final FhirDateTime? defaultValueDateTime;
+  final Element? defaultValueDateTimeElement;
+  final FhirDecimal? defaultValueDecimal;
+  final Element? defaultValueDecimalElement;
+  final FhirId? defaultValueId;
+  final Element? defaultValueIdElement;
+  final FhirInstant? defaultValueInstant;
+  final Element? defaultValueInstantElement;
+  final FhirInteger? defaultValueInteger;
+  final Element? defaultValueIntegerElement;
+  final FhirMarkdown? defaultValueMarkdown;
+  final Element? defaultValueMarkdownElement;
+  final FhirOid? defaultValueOid;
+  final Element? defaultValueOidElement;
+  final FhirPositiveInt? defaultValuePositiveInt;
+  final Element? defaultValuePositiveIntElement;
+  final FhirString? defaultValueString;
+  final Element? defaultValueStringElement;
+  final FhirTime? defaultValueTime;
+  final Element? defaultValueTimeElement;
+  final FhirUnsignedInt? defaultValueUnsignedInt;
+  final Element? defaultValueUnsignedIntElement;
+  final FhirUri? defaultValueUri;
+  final Element? defaultValueUriElement;
+  final FhirUrl? defaultValueUrl;
+  final Element? defaultValueUrlElement;
+  final FhirUuid? defaultValueUuid;
+  final Element? defaultValueUuidElement;
   final Address? defaultValueAddress;
   final Age? defaultValueAge;
   final Annotation? defaultValueAnnotation;
@@ -268,7 +266,7 @@ class StructureMapSource extends BackboneElement {
   final ContactPoint? defaultValueContactPoint;
   final Count? defaultValueCount;
   final Distance? defaultValueDistance;
-  final FhirDuration? defaultValueFhirDuration;
+  final FhirDuration? defaultValueDuration;
   final HumanName? defaultValueHumanName;
   final Identifier? defaultValueIdentifier;
   final Money? defaultValueMoney;
@@ -283,13 +281,13 @@ class StructureMapSource extends BackboneElement {
   final ContactDetail? defaultValueContactDetail;
   final Contributor? defaultValueContributor;
   final DataRequirement? defaultValueDataRequirement;
-  final FhirExpression? defaultValueFhirExpression;
+  final FhirExpression? defaultValueExpression;
   final ParameterDefinition? defaultValueParameterDefinition;
   final RelatedArtifact? defaultValueRelatedArtifact;
   final TriggerDefinition? defaultValueTriggerDefinition;
   final UsageContext? defaultValueUsageContext;
   final Dosage? defaultValueDosage;
-  final FhirMeta? defaultValueFhirMeta;
+  final FhirMeta? defaultValueMeta;
   final FhirString? element;
   final Element? elementElement;
   final FhirCode? listMode;
@@ -308,51 +306,51 @@ class StructureMapSource extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.context,
-this.contextElement,
+    this.contextElement,
     this.min,
-this.minElement,
+    this.minElement,
     this.max,
-this.maxElement,
+    this.maxElement,
     this.type,
-this.typeElement,
-    this.defaultValueFhirBase64Binary,
-this.defaultValueFhirBase64BinaryElement,
-    this.defaultValueFhirBoolean,
-this.defaultValueFhirBooleanElement,
-    this.defaultValueFhirCanonical,
-this.defaultValueFhirCanonicalElement,
-    this.defaultValueFhirCode,
-this.defaultValueFhirCodeElement,
-    this.defaultValueFhirDate,
-this.defaultValueFhirDateElement,
-    this.defaultValueFhirDateTime,
-this.defaultValueFhirDateTimeElement,
-    this.defaultValueFhirDecimal,
-this.defaultValueFhirDecimalElement,
-    this.defaultValueFhirId,
-this.defaultValueFhirIdElement,
-    this.defaultValueFhirInstant,
-this.defaultValueFhirInstantElement,
-    this.defaultValueFhirInteger,
-this.defaultValueFhirIntegerElement,
-    this.defaultValueFhirMarkdown,
-this.defaultValueFhirMarkdownElement,
-    this.defaultValueFhirOid,
-this.defaultValueFhirOidElement,
-    this.defaultValueFhirPositiveInt,
-this.defaultValueFhirPositiveIntElement,
-    this.defaultValueFhirString,
-this.defaultValueFhirStringElement,
-    this.defaultValueFhirTime,
-this.defaultValueFhirTimeElement,
-    this.defaultValueFhirUnsignedInt,
-this.defaultValueFhirUnsignedIntElement,
-    this.defaultValueFhirUri,
-this.defaultValueFhirUriElement,
-    this.defaultValueFhirUrl,
-this.defaultValueFhirUrlElement,
-    this.defaultValueFhirUuid,
-this.defaultValueFhirUuidElement,
+    this.typeElement,
+    this.defaultValueBase64Binary,
+    this.defaultValueBase64BinaryElement,
+    this.defaultValueBoolean,
+    this.defaultValueBooleanElement,
+    this.defaultValueCanonical,
+    this.defaultValueCanonicalElement,
+    this.defaultValueCode,
+    this.defaultValueCodeElement,
+    this.defaultValueDate,
+    this.defaultValueDateElement,
+    this.defaultValueDateTime,
+    this.defaultValueDateTimeElement,
+    this.defaultValueDecimal,
+    this.defaultValueDecimalElement,
+    this.defaultValueId,
+    this.defaultValueIdElement,
+    this.defaultValueInstant,
+    this.defaultValueInstantElement,
+    this.defaultValueInteger,
+    this.defaultValueIntegerElement,
+    this.defaultValueMarkdown,
+    this.defaultValueMarkdownElement,
+    this.defaultValueOid,
+    this.defaultValueOidElement,
+    this.defaultValuePositiveInt,
+    this.defaultValuePositiveIntElement,
+    this.defaultValueString,
+    this.defaultValueStringElement,
+    this.defaultValueTime,
+    this.defaultValueTimeElement,
+    this.defaultValueUnsignedInt,
+    this.defaultValueUnsignedIntElement,
+    this.defaultValueUri,
+    this.defaultValueUriElement,
+    this.defaultValueUrl,
+    this.defaultValueUrlElement,
+    this.defaultValueUuid,
+    this.defaultValueUuidElement,
     this.defaultValueAddress,
     this.defaultValueAge,
     this.defaultValueAnnotation,
@@ -362,7 +360,7 @@ this.defaultValueFhirUuidElement,
     this.defaultValueContactPoint,
     this.defaultValueCount,
     this.defaultValueDistance,
-    this.defaultValueFhirDuration,
+    this.defaultValueDuration,
     this.defaultValueHumanName,
     this.defaultValueIdentifier,
     this.defaultValueMoney,
@@ -377,29 +375,29 @@ this.defaultValueFhirUuidElement,
     this.defaultValueContactDetail,
     this.defaultValueContributor,
     this.defaultValueDataRequirement,
-    this.defaultValueFhirExpression,
+    this.defaultValueExpression,
     this.defaultValueParameterDefinition,
     this.defaultValueRelatedArtifact,
     this.defaultValueTriggerDefinition,
     this.defaultValueUsageContext,
     this.defaultValueDosage,
-    this.defaultValueFhirMeta,
+    this.defaultValueMeta,
     this.element,
-this.elementElement,
+    this.elementElement,
     this.listMode,
-this.listModeElement,
+    this.listModeElement,
     this.variable,
-this.variableElement,
+    this.variableElement,
     this.condition,
-this.conditionElement,
+    this.conditionElement,
     this.check,
-this.checkElement,
+    this.checkElement,
     this.logMessage,
-this.logMessageElement,
+    this.logMessageElement,
   });
 
-@override
-StructureMapSource clone() => throw UnimplementedError();
+  @override
+  StructureMapSource clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -419,63 +417,65 @@ class StructureMapTarget extends BackboneElement {
   final Element? listRuleIdElement;
   final FhirCode? transform;
   final Element? transformElement;
+  final List<StructureMapParameter>? parameter;
 
   StructureMapTarget({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.context,
-this.contextElement,
+    this.contextElement,
     this.contextType,
-this.contextTypeElement,
+    this.contextTypeElement,
     this.element,
-this.elementElement,
+    this.elementElement,
     this.variable,
-this.variableElement,
+    this.variableElement,
     this.listMode,
-this.listModeElement,
+    this.listModeElement,
     this.listRuleId,
-this.listRuleIdElement,
+    this.listRuleIdElement,
     this.transform,
-this.transformElement,
+    this.transformElement,
+    this.parameter,
   });
 
-@override
-StructureMapTarget clone() => throw UnimplementedError();
+  @override
+  StructureMapTarget clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
 class StructureMapParameter extends BackboneElement {
-  final FhirId valueFhirId;
-  final Element? valueFhirIdElement;
-  final FhirString valueFhirString;
-  final Element? valueFhirStringElement;
-  final FhirBoolean valueFhirBoolean;
-  final Element? valueFhirBooleanElement;
-  final FhirInteger valueFhirInteger;
-  final Element? valueFhirIntegerElement;
-  final FhirDecimal valueFhirDecimal;
-  final Element? valueFhirDecimalElement;
+  final FhirId valueId;
+  final Element? valueIdElement;
+  final FhirString valueString;
+  final Element? valueStringElement;
+  final FhirBoolean valueBoolean;
+  final Element? valueBooleanElement;
+  final FhirInteger valueInteger;
+  final Element? valueIntegerElement;
+  final FhirDecimal valueDecimal;
+  final Element? valueDecimalElement;
 
   StructureMapParameter({
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.valueFhirId,
-this.valueFhirIdElement,
-    required this.valueFhirString,
-this.valueFhirStringElement,
-    required this.valueFhirBoolean,
-this.valueFhirBooleanElement,
-    required this.valueFhirInteger,
-this.valueFhirIntegerElement,
-    required this.valueFhirDecimal,
-this.valueFhirDecimalElement,
+    required this.valueId,
+    this.valueIdElement,
+    required this.valueString,
+    this.valueStringElement,
+    required this.valueBoolean,
+    this.valueBooleanElement,
+    required this.valueInteger,
+    this.valueIntegerElement,
+    required this.valueDecimal,
+    this.valueDecimalElement,
   });
 
-@override
-StructureMapParameter clone() => throw UnimplementedError();
+  @override
+  StructureMapParameter clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -491,12 +491,11 @@ class StructureMapDependent extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-this.nameElement,
+    this.nameElement,
     required this.variable,
-this.variableElement,
+    this.variableElement,
   });
 
-@override
-StructureMapDependent clone() => throw UnimplementedError();
+  @override
+  StructureMapDependent clone() => throw UnimplementedError();
 }
-

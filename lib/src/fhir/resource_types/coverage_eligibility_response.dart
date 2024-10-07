@@ -12,8 +12,8 @@ class CoverageEligibilityResponse extends DomainResource {
   final List<FhirCode> purpose;
   final List<Element>? purposeElement;
   final Reference patient;
-  final FhirDate? servicedFhirDate;
-  final Element? servicedFhirDateElement;
+  final FhirDate? servicedDate;
+  final Element? servicedDateElement;
   final Period? servicedPeriod;
   final FhirDateTime created;
   final Element? createdElement;
@@ -24,54 +24,50 @@ class CoverageEligibilityResponse extends DomainResource {
   final FhirString? disposition;
   final Element? dispositionElement;
   final Reference insurer;
-  final List<BackboneElement>? insurance;
-  final List<BackboneElement>? item;
-  final List<BackboneElement>? benefit;
+  final List<CoverageEligibilityResponseInsurance>? insurance;
   final FhirString? preAuthRef;
   final Element? preAuthRefElement;
   final CodeableConcept? form;
-  final List<BackboneElement>? error;
+  final List<CoverageEligibilityResponseError>? error;
 
   CoverageEligibilityResponse({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     required this.purpose,
-this.purposeElement,
+    this.purposeElement,
     required this.patient,
-    this.servicedFhirDate,
-this.servicedFhirDateElement,
+    this.servicedDate,
+    this.servicedDateElement,
     this.servicedPeriod,
     required this.created,
-this.createdElement,
+    this.createdElement,
     this.requestor,
     required this.request,
     required this.outcome,
-this.outcomeElement,
+    this.outcomeElement,
     this.disposition,
-this.dispositionElement,
+    this.dispositionElement,
     required this.insurer,
     this.insurance,
-    this.item,
-    this.benefit,
     this.preAuthRef,
-this.preAuthRefElement,
+    this.preAuthRefElement,
     this.form,
     this.error,
   }) : super(resourceType: R4ResourceType.CoverageEligibilityResponse);
 
-@override
-CoverageEligibilityResponse clone() => throw UnimplementedError();
+  @override
+  CoverageEligibilityResponse clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -81,6 +77,7 @@ class CoverageEligibilityResponseInsurance extends BackboneElement {
   final FhirBoolean? inforce;
   final Element? inforceElement;
   final Period? benefitPeriod;
+  final List<CoverageEligibilityResponseItem>? item;
 
   CoverageEligibilityResponseInsurance({
     super.id,
@@ -88,12 +85,13 @@ class CoverageEligibilityResponseInsurance extends BackboneElement {
     super.modifierExtension,
     required this.coverage,
     this.inforce,
-this.inforceElement,
+    this.inforceElement,
     this.benefitPeriod,
+    this.item,
   });
 
-@override
-CoverageEligibilityResponseInsurance clone() => throw UnimplementedError();
+  @override
+  CoverageEligibilityResponseInsurance clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -112,6 +110,7 @@ class CoverageEligibilityResponseItem extends BackboneElement {
   final CodeableConcept? network;
   final CodeableConcept? unit;
   final CodeableConcept? term;
+  final List<CoverageEligibilityResponseBenefit>? benefit;
   final FhirBoolean? authorizationRequired;
   final Element? authorizationRequiredElement;
   final List<CodeableConcept>? authorizationSupporting;
@@ -127,38 +126,39 @@ class CoverageEligibilityResponseItem extends BackboneElement {
     this.modifier,
     this.provider,
     this.excluded,
-this.excludedElement,
+    this.excludedElement,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.network,
     this.unit,
     this.term,
+    this.benefit,
     this.authorizationRequired,
-this.authorizationRequiredElement,
+    this.authorizationRequiredElement,
     this.authorizationSupporting,
     this.authorizationUrl,
-this.authorizationUrlElement,
+    this.authorizationUrlElement,
   });
 
-@override
-CoverageEligibilityResponseItem clone() => throw UnimplementedError();
+  @override
+  CoverageEligibilityResponseItem clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
 class CoverageEligibilityResponseBenefit extends BackboneElement {
   final CodeableConcept type;
-  final FhirUnsignedInt? allowedFhirUnsignedInt;
-  final Element? allowedFhirUnsignedIntElement;
-  final FhirString? allowedFhirString;
-  final Element? allowedFhirStringElement;
+  final FhirUnsignedInt? allowedUnsignedInt;
+  final Element? allowedUnsignedIntElement;
+  final FhirString? allowedString;
+  final Element? allowedStringElement;
   final Money? allowedMoney;
-  final FhirUnsignedInt? usedFhirUnsignedInt;
-  final Element? usedFhirUnsignedIntElement;
-  final FhirString? usedFhirString;
-  final Element? usedFhirStringElement;
+  final FhirUnsignedInt? usedUnsignedInt;
+  final Element? usedUnsignedIntElement;
+  final FhirString? usedString;
+  final Element? usedStringElement;
   final Money? usedMoney;
 
   CoverageEligibilityResponseBenefit({
@@ -166,20 +166,20 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    this.allowedFhirUnsignedInt,
-this.allowedFhirUnsignedIntElement,
-    this.allowedFhirString,
-this.allowedFhirStringElement,
+    this.allowedUnsignedInt,
+    this.allowedUnsignedIntElement,
+    this.allowedString,
+    this.allowedStringElement,
     this.allowedMoney,
-    this.usedFhirUnsignedInt,
-this.usedFhirUnsignedIntElement,
-    this.usedFhirString,
-this.usedFhirStringElement,
+    this.usedUnsignedInt,
+    this.usedUnsignedIntElement,
+    this.usedString,
+    this.usedStringElement,
     this.usedMoney,
   });
 
-@override
-CoverageEligibilityResponseBenefit clone() => throw UnimplementedError();
+  @override
+  CoverageEligibilityResponseBenefit clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -194,7 +194,6 @@ class CoverageEligibilityResponseError extends BackboneElement {
     required this.code,
   });
 
-@override
-CoverageEligibilityResponseError clone() => throw UnimplementedError();
+  @override
+  CoverageEligibilityResponseError clone() => throw UnimplementedError();
 }
-

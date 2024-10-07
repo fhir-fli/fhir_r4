@@ -31,27 +31,27 @@ class ResearchStudy extends DomainResource {
   final List<Reference>? site;
   final CodeableConcept? reasonStopped;
   final List<Annotation>? note;
-  final List<BackboneElement>? arm;
-  final List<BackboneElement>? objective;
+  final List<ResearchStudyArm>? arm;
+  final List<ResearchStudyObjective>? objective;
 
   ResearchStudy({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.title,
-this.titleElement,
+    this.titleElement,
     this.protocol,
     this.partOf,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.primaryPurposeType,
     this.phase,
     this.category,
@@ -62,7 +62,7 @@ this.statusElement,
     this.keyword,
     this.location,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.enrollment,
     this.period,
     this.sponsor,
@@ -74,8 +74,8 @@ this.descriptionElement,
     this.objective,
   }) : super(resourceType: R4ResourceType.ResearchStudy);
 
-@override
-ResearchStudy clone() => throw UnimplementedError();
+  @override
+  ResearchStudy clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -92,14 +92,14 @@ class ResearchStudyArm extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-this.nameElement,
+    this.nameElement,
     this.type,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
   });
 
-@override
-ResearchStudyArm clone() => throw UnimplementedError();
+  @override
+  ResearchStudyArm clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -114,11 +114,10 @@ class ResearchStudyObjective extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.type,
   });
 
-@override
-ResearchStudyObjective clone() => throw UnimplementedError();
+  @override
+  ResearchStudyObjective clone() => throw UnimplementedError();
 }
-

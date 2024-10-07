@@ -42,48 +42,48 @@ class Task extends DomainResource {
   final List<Reference>? insurance;
   final List<Annotation>? note;
   final List<Reference>? relevantHistory;
-  final BackboneElement? restriction;
-  final List<BackboneElement>? input;
-  final List<BackboneElement>? output;
+  final TaskRestriction? restriction;
+  final List<TaskInput>? input;
+  final List<TaskOutput>? output;
 
   Task({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
-this.instantiatesCanonicalElement,
+    this.instantiatesCanonicalElement,
     this.instantiatesUri,
-this.instantiatesUriElement,
+    this.instantiatesUriElement,
     this.basedOn,
     this.groupIdentifier,
     this.partOf,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.statusReason,
     this.businessStatus,
     required this.intent,
-this.intentElement,
+    this.intentElement,
     this.priority,
-this.priorityElement,
+    this.priorityElement,
     this.code,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.focus,
     this.for_,
     this.encounter,
     this.executionPeriod,
     this.authoredOn,
-this.authoredOnElement,
+    this.authoredOnElement,
     this.lastModified,
-this.lastModifiedElement,
+    this.lastModifiedElement,
     this.requester,
     this.performerType,
     this.owner,
@@ -98,8 +98,8 @@ this.lastModifiedElement,
     this.output,
   }) : super(resourceType: R4ResourceType.Task);
 
-@override
-Task clone() => throw UnimplementedError();
+  @override
+  Task clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -115,57 +115,57 @@ class TaskRestriction extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.repetitions,
-this.repetitionsElement,
+    this.repetitionsElement,
     this.period,
     this.recipient,
   });
 
-@override
-TaskRestriction clone() => throw UnimplementedError();
+  @override
+  TaskRestriction clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
 class TaskInput extends BackboneElement {
   final CodeableConcept type;
-  final FhirBase64Binary valueFhirBase64Binary;
-  final Element? valueFhirBase64BinaryElement;
-  final FhirBoolean valueFhirBoolean;
-  final Element? valueFhirBooleanElement;
-  final FhirCanonical valueFhirCanonical;
-  final Element? valueFhirCanonicalElement;
-  final FhirCode valueFhirCode;
-  final Element? valueFhirCodeElement;
-  final FhirDate valueFhirDate;
-  final Element? valueFhirDateElement;
-  final FhirDateTime valueFhirDateTime;
-  final Element? valueFhirDateTimeElement;
-  final FhirDecimal valueFhirDecimal;
-  final Element? valueFhirDecimalElement;
-  final FhirId valueFhirId;
-  final Element? valueFhirIdElement;
-  final FhirInstant valueFhirInstant;
-  final Element? valueFhirInstantElement;
-  final FhirInteger valueFhirInteger;
-  final Element? valueFhirIntegerElement;
-  final FhirMarkdown valueFhirMarkdown;
-  final Element? valueFhirMarkdownElement;
-  final FhirOid valueFhirOid;
-  final Element? valueFhirOidElement;
-  final FhirPositiveInt valueFhirPositiveInt;
-  final Element? valueFhirPositiveIntElement;
-  final FhirString valueFhirString;
-  final Element? valueFhirStringElement;
-  final FhirTime valueFhirTime;
-  final Element? valueFhirTimeElement;
-  final FhirUnsignedInt valueFhirUnsignedInt;
-  final Element? valueFhirUnsignedIntElement;
-  final FhirUri valueFhirUri;
-  final Element? valueFhirUriElement;
-  final FhirUrl valueFhirUrl;
-  final Element? valueFhirUrlElement;
-  final FhirUuid valueFhirUuid;
-  final Element? valueFhirUuidElement;
+  final FhirBase64Binary valueBase64Binary;
+  final Element? valueBase64BinaryElement;
+  final FhirBoolean valueBoolean;
+  final Element? valueBooleanElement;
+  final FhirCanonical valueCanonical;
+  final Element? valueCanonicalElement;
+  final FhirCode valueCode;
+  final Element? valueCodeElement;
+  final FhirDate valueDate;
+  final Element? valueDateElement;
+  final FhirDateTime valueDateTime;
+  final Element? valueDateTimeElement;
+  final FhirDecimal valueDecimal;
+  final Element? valueDecimalElement;
+  final FhirId valueId;
+  final Element? valueIdElement;
+  final FhirInstant valueInstant;
+  final Element? valueInstantElement;
+  final FhirInteger valueInteger;
+  final Element? valueIntegerElement;
+  final FhirMarkdown valueMarkdown;
+  final Element? valueMarkdownElement;
+  final FhirOid valueOid;
+  final Element? valueOidElement;
+  final FhirPositiveInt valuePositiveInt;
+  final Element? valuePositiveIntElement;
+  final FhirString valueString;
+  final Element? valueStringElement;
+  final FhirTime valueTime;
+  final Element? valueTimeElement;
+  final FhirUnsignedInt valueUnsignedInt;
+  final Element? valueUnsignedIntElement;
+  final FhirUri valueUri;
+  final Element? valueUriElement;
+  final FhirUrl valueUrl;
+  final Element? valueUrlElement;
+  final FhirUuid valueUuid;
+  final Element? valueUuidElement;
   final Address valueAddress;
   final Age valueAge;
   final Annotation valueAnnotation;
@@ -175,7 +175,7 @@ class TaskInput extends BackboneElement {
   final ContactPoint valueContactPoint;
   final Count valueCount;
   final Distance valueDistance;
-  final FhirDuration valueFhirDuration;
+  final FhirDuration valueDuration;
   final HumanName valueHumanName;
   final Identifier valueIdentifier;
   final Money valueMoney;
@@ -190,57 +190,57 @@ class TaskInput extends BackboneElement {
   final ContactDetail valueContactDetail;
   final Contributor valueContributor;
   final DataRequirement valueDataRequirement;
-  final FhirExpression valueFhirExpression;
+  final FhirExpression valueExpression;
   final ParameterDefinition valueParameterDefinition;
   final RelatedArtifact valueRelatedArtifact;
   final TriggerDefinition valueTriggerDefinition;
   final UsageContext valueUsageContext;
   final Dosage valueDosage;
-  final FhirMeta valueFhirMeta;
+  final FhirMeta valueMeta;
 
   TaskInput({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.type,
-    required this.valueFhirBase64Binary,
-this.valueFhirBase64BinaryElement,
-    required this.valueFhirBoolean,
-this.valueFhirBooleanElement,
-    required this.valueFhirCanonical,
-this.valueFhirCanonicalElement,
-    required this.valueFhirCode,
-this.valueFhirCodeElement,
-    required this.valueFhirDate,
-this.valueFhirDateElement,
-    required this.valueFhirDateTime,
-this.valueFhirDateTimeElement,
-    required this.valueFhirDecimal,
-this.valueFhirDecimalElement,
-    required this.valueFhirId,
-this.valueFhirIdElement,
-    required this.valueFhirInstant,
-this.valueFhirInstantElement,
-    required this.valueFhirInteger,
-this.valueFhirIntegerElement,
-    required this.valueFhirMarkdown,
-this.valueFhirMarkdownElement,
-    required this.valueFhirOid,
-this.valueFhirOidElement,
-    required this.valueFhirPositiveInt,
-this.valueFhirPositiveIntElement,
-    required this.valueFhirString,
-this.valueFhirStringElement,
-    required this.valueFhirTime,
-this.valueFhirTimeElement,
-    required this.valueFhirUnsignedInt,
-this.valueFhirUnsignedIntElement,
-    required this.valueFhirUri,
-this.valueFhirUriElement,
-    required this.valueFhirUrl,
-this.valueFhirUrlElement,
-    required this.valueFhirUuid,
-this.valueFhirUuidElement,
+    required this.valueBase64Binary,
+    this.valueBase64BinaryElement,
+    required this.valueBoolean,
+    this.valueBooleanElement,
+    required this.valueCanonical,
+    this.valueCanonicalElement,
+    required this.valueCode,
+    this.valueCodeElement,
+    required this.valueDate,
+    this.valueDateElement,
+    required this.valueDateTime,
+    this.valueDateTimeElement,
+    required this.valueDecimal,
+    this.valueDecimalElement,
+    required this.valueId,
+    this.valueIdElement,
+    required this.valueInstant,
+    this.valueInstantElement,
+    required this.valueInteger,
+    this.valueIntegerElement,
+    required this.valueMarkdown,
+    this.valueMarkdownElement,
+    required this.valueOid,
+    this.valueOidElement,
+    required this.valuePositiveInt,
+    this.valuePositiveIntElement,
+    required this.valueString,
+    this.valueStringElement,
+    required this.valueTime,
+    this.valueTimeElement,
+    required this.valueUnsignedInt,
+    this.valueUnsignedIntElement,
+    required this.valueUri,
+    this.valueUriElement,
+    required this.valueUrl,
+    this.valueUrlElement,
+    required this.valueUuid,
+    this.valueUuidElement,
     required this.valueAddress,
     required this.valueAge,
     required this.valueAnnotation,
@@ -250,7 +250,7 @@ this.valueFhirUuidElement,
     required this.valueContactPoint,
     required this.valueCount,
     required this.valueDistance,
-    required this.valueFhirDuration,
+    required this.valueDuration,
     required this.valueHumanName,
     required this.valueIdentifier,
     required this.valueMoney,
@@ -265,61 +265,61 @@ this.valueFhirUuidElement,
     required this.valueContactDetail,
     required this.valueContributor,
     required this.valueDataRequirement,
-    required this.valueFhirExpression,
+    required this.valueExpression,
     required this.valueParameterDefinition,
     required this.valueRelatedArtifact,
     required this.valueTriggerDefinition,
     required this.valueUsageContext,
     required this.valueDosage,
-    required this.valueFhirMeta,
+    required this.valueMeta,
   });
 
-@override
-TaskInput clone() => throw UnimplementedError();
+  @override
+  TaskInput clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
 class TaskOutput extends BackboneElement {
   final CodeableConcept type;
-  final FhirBase64Binary valueFhirBase64Binary;
-  final Element? valueFhirBase64BinaryElement;
-  final FhirBoolean valueFhirBoolean;
-  final Element? valueFhirBooleanElement;
-  final FhirCanonical valueFhirCanonical;
-  final Element? valueFhirCanonicalElement;
-  final FhirCode valueFhirCode;
-  final Element? valueFhirCodeElement;
-  final FhirDate valueFhirDate;
-  final Element? valueFhirDateElement;
-  final FhirDateTime valueFhirDateTime;
-  final Element? valueFhirDateTimeElement;
-  final FhirDecimal valueFhirDecimal;
-  final Element? valueFhirDecimalElement;
-  final FhirId valueFhirId;
-  final Element? valueFhirIdElement;
-  final FhirInstant valueFhirInstant;
-  final Element? valueFhirInstantElement;
-  final FhirInteger valueFhirInteger;
-  final Element? valueFhirIntegerElement;
-  final FhirMarkdown valueFhirMarkdown;
-  final Element? valueFhirMarkdownElement;
-  final FhirOid valueFhirOid;
-  final Element? valueFhirOidElement;
-  final FhirPositiveInt valueFhirPositiveInt;
-  final Element? valueFhirPositiveIntElement;
-  final FhirString valueFhirString;
-  final Element? valueFhirStringElement;
-  final FhirTime valueFhirTime;
-  final Element? valueFhirTimeElement;
-  final FhirUnsignedInt valueFhirUnsignedInt;
-  final Element? valueFhirUnsignedIntElement;
-  final FhirUri valueFhirUri;
-  final Element? valueFhirUriElement;
-  final FhirUrl valueFhirUrl;
-  final Element? valueFhirUrlElement;
-  final FhirUuid valueFhirUuid;
-  final Element? valueFhirUuidElement;
+  final FhirBase64Binary valueBase64Binary;
+  final Element? valueBase64BinaryElement;
+  final FhirBoolean valueBoolean;
+  final Element? valueBooleanElement;
+  final FhirCanonical valueCanonical;
+  final Element? valueCanonicalElement;
+  final FhirCode valueCode;
+  final Element? valueCodeElement;
+  final FhirDate valueDate;
+  final Element? valueDateElement;
+  final FhirDateTime valueDateTime;
+  final Element? valueDateTimeElement;
+  final FhirDecimal valueDecimal;
+  final Element? valueDecimalElement;
+  final FhirId valueId;
+  final Element? valueIdElement;
+  final FhirInstant valueInstant;
+  final Element? valueInstantElement;
+  final FhirInteger valueInteger;
+  final Element? valueIntegerElement;
+  final FhirMarkdown valueMarkdown;
+  final Element? valueMarkdownElement;
+  final FhirOid valueOid;
+  final Element? valueOidElement;
+  final FhirPositiveInt valuePositiveInt;
+  final Element? valuePositiveIntElement;
+  final FhirString valueString;
+  final Element? valueStringElement;
+  final FhirTime valueTime;
+  final Element? valueTimeElement;
+  final FhirUnsignedInt valueUnsignedInt;
+  final Element? valueUnsignedIntElement;
+  final FhirUri valueUri;
+  final Element? valueUriElement;
+  final FhirUrl valueUrl;
+  final Element? valueUrlElement;
+  final FhirUuid valueUuid;
+  final Element? valueUuidElement;
   final Address valueAddress;
   final Age valueAge;
   final Annotation valueAnnotation;
@@ -329,7 +329,7 @@ class TaskOutput extends BackboneElement {
   final ContactPoint valueContactPoint;
   final Count valueCount;
   final Distance valueDistance;
-  final FhirDuration valueFhirDuration;
+  final FhirDuration valueDuration;
   final HumanName valueHumanName;
   final Identifier valueIdentifier;
   final Money valueMoney;
@@ -344,57 +344,57 @@ class TaskOutput extends BackboneElement {
   final ContactDetail valueContactDetail;
   final Contributor valueContributor;
   final DataRequirement valueDataRequirement;
-  final FhirExpression valueFhirExpression;
+  final FhirExpression valueExpression;
   final ParameterDefinition valueParameterDefinition;
   final RelatedArtifact valueRelatedArtifact;
   final TriggerDefinition valueTriggerDefinition;
   final UsageContext valueUsageContext;
   final Dosage valueDosage;
-  final FhirMeta valueFhirMeta;
+  final FhirMeta valueMeta;
 
   TaskOutput({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.type,
-    required this.valueFhirBase64Binary,
-this.valueFhirBase64BinaryElement,
-    required this.valueFhirBoolean,
-this.valueFhirBooleanElement,
-    required this.valueFhirCanonical,
-this.valueFhirCanonicalElement,
-    required this.valueFhirCode,
-this.valueFhirCodeElement,
-    required this.valueFhirDate,
-this.valueFhirDateElement,
-    required this.valueFhirDateTime,
-this.valueFhirDateTimeElement,
-    required this.valueFhirDecimal,
-this.valueFhirDecimalElement,
-    required this.valueFhirId,
-this.valueFhirIdElement,
-    required this.valueFhirInstant,
-this.valueFhirInstantElement,
-    required this.valueFhirInteger,
-this.valueFhirIntegerElement,
-    required this.valueFhirMarkdown,
-this.valueFhirMarkdownElement,
-    required this.valueFhirOid,
-this.valueFhirOidElement,
-    required this.valueFhirPositiveInt,
-this.valueFhirPositiveIntElement,
-    required this.valueFhirString,
-this.valueFhirStringElement,
-    required this.valueFhirTime,
-this.valueFhirTimeElement,
-    required this.valueFhirUnsignedInt,
-this.valueFhirUnsignedIntElement,
-    required this.valueFhirUri,
-this.valueFhirUriElement,
-    required this.valueFhirUrl,
-this.valueFhirUrlElement,
-    required this.valueFhirUuid,
-this.valueFhirUuidElement,
+    required this.valueBase64Binary,
+    this.valueBase64BinaryElement,
+    required this.valueBoolean,
+    this.valueBooleanElement,
+    required this.valueCanonical,
+    this.valueCanonicalElement,
+    required this.valueCode,
+    this.valueCodeElement,
+    required this.valueDate,
+    this.valueDateElement,
+    required this.valueDateTime,
+    this.valueDateTimeElement,
+    required this.valueDecimal,
+    this.valueDecimalElement,
+    required this.valueId,
+    this.valueIdElement,
+    required this.valueInstant,
+    this.valueInstantElement,
+    required this.valueInteger,
+    this.valueIntegerElement,
+    required this.valueMarkdown,
+    this.valueMarkdownElement,
+    required this.valueOid,
+    this.valueOidElement,
+    required this.valuePositiveInt,
+    this.valuePositiveIntElement,
+    required this.valueString,
+    this.valueStringElement,
+    required this.valueTime,
+    this.valueTimeElement,
+    required this.valueUnsignedInt,
+    this.valueUnsignedIntElement,
+    required this.valueUri,
+    this.valueUriElement,
+    required this.valueUrl,
+    this.valueUrlElement,
+    required this.valueUuid,
+    this.valueUuidElement,
     required this.valueAddress,
     required this.valueAge,
     required this.valueAnnotation,
@@ -404,7 +404,7 @@ this.valueFhirUuidElement,
     required this.valueContactPoint,
     required this.valueCount,
     required this.valueDistance,
-    required this.valueFhirDuration,
+    required this.valueDuration,
     required this.valueHumanName,
     required this.valueIdentifier,
     required this.valueMoney,
@@ -419,16 +419,15 @@ this.valueFhirUuidElement,
     required this.valueContactDetail,
     required this.valueContributor,
     required this.valueDataRequirement,
-    required this.valueFhirExpression,
+    required this.valueExpression,
     required this.valueParameterDefinition,
     required this.valueRelatedArtifact,
     required this.valueTriggerDefinition,
     required this.valueUsageContext,
     required this.valueDosage,
-    required this.valueFhirMeta,
+    required this.valueMeta,
   });
 
-@override
-TaskOutput clone() => throw UnimplementedError();
+  @override
+  TaskOutput clone() => throw UnimplementedError();
 }
-

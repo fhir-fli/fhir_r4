@@ -17,35 +17,35 @@ class Subscription extends DomainResource {
   final Element? criteriaElement;
   final FhirString? error;
   final Element? errorElement;
-  final BackboneElement channel;
+  final SubscriptionChannel channel;
 
   Subscription({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.contact,
     this.end,
-this.endElement,
+    this.endElement,
     required this.reason,
-this.reasonElement,
+    this.reasonElement,
     required this.criteria,
-this.criteriaElement,
+    this.criteriaElement,
     this.error,
-this.errorElement,
+    this.errorElement,
     required this.channel,
   }) : super(resourceType: R4ResourceType.Subscription);
 
-@override
-Subscription clone() => throw UnimplementedError();
+  @override
+  Subscription clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -65,16 +65,15 @@ class SubscriptionChannel extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-this.typeElement,
+    this.typeElement,
     this.endpoint,
-this.endpointElement,
+    this.endpointElement,
     this.payload,
-this.payloadElement,
+    this.payloadElement,
     this.header,
-this.headerElement,
+    this.headerElement,
   });
 
-@override
-SubscriptionChannel clone() => throw UnimplementedError();
+  @override
+  SubscriptionChannel clone() => throw UnimplementedError();
 }
-

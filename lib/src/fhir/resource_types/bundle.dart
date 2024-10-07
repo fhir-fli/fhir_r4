@@ -13,37 +13,31 @@ class Bundle extends DomainResource {
   final Element? timestampElement;
   final FhirUnsignedInt? total;
   final Element? totalElement;
-  final List<BackboneElement>? link;
-  final List<BackboneElement>? entry;
-  final BackboneElement? search;
-  final BackboneElement? request;
-  final BackboneElement? response;
+  final List<BundleLink>? link;
+  final List<BundleEntry>? entry;
   final Signature? signature;
 
   Bundle({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     this.identifier,
     required this.type,
-this.typeElement,
+    this.typeElement,
     this.timestamp,
-this.timestampElement,
+    this.timestampElement,
     this.total,
-this.totalElement,
+    this.totalElement,
     this.link,
     this.entry,
-    this.search,
-    this.request,
-    this.response,
     this.signature,
   }) : super(resourceType: R4ResourceType.Bundle);
 
-@override
-Bundle clone() => throw UnimplementedError();
+  @override
+  Bundle clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -59,22 +53,25 @@ class BundleLink extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.relation,
-this.relationElement,
+    this.relationElement,
     required this.url,
-this.urlElement,
+    this.urlElement,
   });
 
-@override
-BundleLink clone() => throw UnimplementedError();
+  @override
+  BundleLink clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
 class BundleEntry extends BackboneElement {
-  final List<dynamic>? link;
+  final List<BundleLink>? link;
   final FhirUri? fullUrl;
   final Element? fullUrlElement;
   final Resource? resource;
+  final BundleSearch? search;
+  final BundleRequest? request;
+  final BundleResponse? response;
 
   BundleEntry({
     super.id,
@@ -82,12 +79,15 @@ class BundleEntry extends BackboneElement {
     super.modifierExtension,
     this.link,
     this.fullUrl,
-this.fullUrlElement,
+    this.fullUrlElement,
     this.resource,
+    this.search,
+    this.request,
+    this.response,
   });
 
-@override
-BundleEntry clone() => throw UnimplementedError();
+  @override
+  BundleEntry clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -103,13 +103,13 @@ class BundleSearch extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.mode,
-this.modeElement,
+    this.modeElement,
     this.score,
-this.scoreElement,
+    this.scoreElement,
   });
 
-@override
-BundleSearch clone() => throw UnimplementedError();
+  @override
+  BundleSearch clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -133,21 +133,21 @@ class BundleRequest extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.method,
-this.methodElement,
+    this.methodElement,
     required this.url,
-this.urlElement,
+    this.urlElement,
     this.ifNoneMatch,
-this.ifNoneMatchElement,
+    this.ifNoneMatchElement,
     this.ifModifiedSince,
-this.ifModifiedSinceElement,
+    this.ifModifiedSinceElement,
     this.ifMatch,
-this.ifMatchElement,
+    this.ifMatchElement,
     this.ifNoneExist,
-this.ifNoneExistElement,
+    this.ifNoneExistElement,
   });
 
-@override
-BundleRequest clone() => throw UnimplementedError();
+  @override
+  BundleRequest clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -168,17 +168,16 @@ class BundleResponse extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.location,
-this.locationElement,
+    this.locationElement,
     this.etag,
-this.etagElement,
+    this.etagElement,
     this.lastModified,
-this.lastModifiedElement,
+    this.lastModifiedElement,
     this.outcome,
   });
 
-@override
-BundleResponse clone() => throw UnimplementedError();
+  @override
+  BundleResponse clone() => throw UnimplementedError();
 }
-

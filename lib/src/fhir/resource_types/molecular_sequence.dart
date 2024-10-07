@@ -16,36 +16,33 @@ class MolecularSequence extends DomainResource {
   final Reference? device;
   final Reference? performer;
   final Quantity? quantity;
-  final BackboneElement? referenceSeq;
-  final List<BackboneElement>? variant;
+  final MolecularSequenceReferenceSeq? referenceSeq;
+  final List<MolecularSequenceVariant>? variant;
   final FhirString? observedSeq;
   final Element? observedSeqElement;
-  final List<BackboneElement>? quality;
-  final BackboneElement? roc;
+  final List<MolecularSequenceQuality>? quality;
   final FhirInteger? readCoverage;
   final Element? readCoverageElement;
-  final List<BackboneElement>? repository;
+  final List<MolecularSequenceRepository>? repository;
   final List<Reference>? pointer;
-  final List<BackboneElement>? structureVariant;
-  final BackboneElement? outer;
-  final BackboneElement? inner;
+  final List<MolecularSequenceStructureVariant>? structureVariant;
 
   MolecularSequence({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.type,
-this.typeElement,
+    this.typeElement,
     required this.coordinateSystem,
-this.coordinateSystemElement,
+    this.coordinateSystemElement,
     this.patient,
     this.specimen,
     this.device,
@@ -54,20 +51,17 @@ this.coordinateSystemElement,
     this.referenceSeq,
     this.variant,
     this.observedSeq,
-this.observedSeqElement,
+    this.observedSeqElement,
     this.quality,
-    this.roc,
     this.readCoverage,
-this.readCoverageElement,
+    this.readCoverageElement,
     this.repository,
     this.pointer,
     this.structureVariant,
-    this.outer,
-    this.inner,
   }) : super(resourceType: R4ResourceType.MolecularSequence);
 
-@override
-MolecularSequence clone() => throw UnimplementedError();
+  @override
+  MolecularSequence clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -95,23 +89,23 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     super.modifierExtension,
     this.chromosome,
     this.genomeBuild,
-this.genomeBuildElement,
+    this.genomeBuildElement,
     this.orientation,
-this.orientationElement,
+    this.orientationElement,
     this.referenceSeqId,
     this.referenceSeqPointer,
     this.referenceSeqString,
-this.referenceSeqStringElement,
+    this.referenceSeqStringElement,
     this.strand,
-this.strandElement,
+    this.strandElement,
     this.windowStart,
-this.windowStartElement,
+    this.windowStartElement,
     this.windowEnd,
-this.windowEndElement,
+    this.windowEndElement,
   });
 
-@override
-MolecularSequenceReferenceSeq clone() => throw UnimplementedError();
+  @override
+  MolecularSequenceReferenceSeq clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -134,20 +128,20 @@ class MolecularSequenceVariant extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.start,
-this.startElement,
+    this.startElement,
     this.end,
-this.endElement,
+    this.endElement,
     this.observedAllele,
-this.observedAlleleElement,
+    this.observedAlleleElement,
     this.referenceAllele,
-this.referenceAlleleElement,
+    this.referenceAlleleElement,
     this.cigar,
-this.cigarElement,
+    this.cigarElement,
     this.variantPointer,
   });
 
-@override
-MolecularSequenceVariant clone() => throw UnimplementedError();
+  @override
+  MolecularSequenceVariant clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -178,40 +172,42 @@ class MolecularSequenceQuality extends BackboneElement {
   final Element? recallElement;
   final FhirDecimal? fScore;
   final Element? fScoreElement;
+  final MolecularSequenceRoc? roc;
 
   MolecularSequenceQuality({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.type,
-this.typeElement,
+    this.typeElement,
     this.standardSequence,
     this.start,
-this.startElement,
+    this.startElement,
     this.end,
-this.endElement,
+    this.endElement,
     this.score,
     this.method,
     this.truthTP,
-this.truthTPElement,
+    this.truthTPElement,
     this.queryTP,
-this.queryTPElement,
+    this.queryTPElement,
     this.truthFN,
-this.truthFNElement,
+    this.truthFNElement,
     this.queryFP,
-this.queryFPElement,
+    this.queryFPElement,
     this.gtFP,
-this.gtFPElement,
+    this.gtFPElement,
     this.precision,
-this.precisionElement,
+    this.precisionElement,
     this.recall,
-this.recallElement,
+    this.recallElement,
     this.fScore,
-this.fScoreElement,
+    this.fScoreElement,
+    this.roc,
   });
 
-@override
-MolecularSequenceQuality clone() => throw UnimplementedError();
+  @override
+  MolecularSequenceQuality clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -237,23 +233,23 @@ class MolecularSequenceRoc extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.score,
-this.scoreElement,
+    this.scoreElement,
     this.numTP,
-this.numTPElement,
+    this.numTPElement,
     this.numFP,
-this.numFPElement,
+    this.numFPElement,
     this.numFN,
-this.numFNElement,
+    this.numFNElement,
     this.precision,
-this.precisionElement,
+    this.precisionElement,
     this.sensitivity,
-this.sensitivityElement,
+    this.sensitivityElement,
     this.fMeasure,
-this.fMeasureElement,
+    this.fMeasureElement,
   });
 
-@override
-MolecularSequenceRoc clone() => throw UnimplementedError();
+  @override
+  MolecularSequenceRoc clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -277,21 +273,21 @@ class MolecularSequenceRepository extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-this.typeElement,
+    this.typeElement,
     this.url,
-this.urlElement,
+    this.urlElement,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.datasetId,
-this.datasetIdElement,
+    this.datasetIdElement,
     this.variantsetId,
-this.variantsetIdElement,
+    this.variantsetIdElement,
     this.readsetId,
-this.readsetIdElement,
+    this.readsetIdElement,
   });
 
-@override
-MolecularSequenceRepository clone() => throw UnimplementedError();
+  @override
+  MolecularSequenceRepository clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -302,6 +298,8 @@ class MolecularSequenceStructureVariant extends BackboneElement {
   final Element? exactElement;
   final FhirInteger? length;
   final Element? lengthElement;
+  final MolecularSequenceOuter? outer;
+  final MolecularSequenceInner? inner;
 
   MolecularSequenceStructureVariant({
     super.id,
@@ -309,13 +307,15 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     super.modifierExtension,
     this.variantType,
     this.exact,
-this.exactElement,
+    this.exactElement,
     this.length,
-this.lengthElement,
+    this.lengthElement,
+    this.outer,
+    this.inner,
   });
 
-@override
-MolecularSequenceStructureVariant clone() => throw UnimplementedError();
+  @override
+  MolecularSequenceStructureVariant clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -331,13 +331,13 @@ class MolecularSequenceOuter extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.start,
-this.startElement,
+    this.startElement,
     this.end,
-this.endElement,
+    this.endElement,
   });
 
-@override
-MolecularSequenceOuter clone() => throw UnimplementedError();
+  @override
+  MolecularSequenceOuter clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -353,12 +353,11 @@ class MolecularSequenceInner extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.start,
-this.startElement,
+    this.startElement,
     this.end,
-this.endElement,
+    this.endElement,
   });
 
-@override
-MolecularSequenceInner clone() => throw UnimplementedError();
+  @override
+  MolecularSequenceInner clone() => throw UnimplementedError();
 }
-

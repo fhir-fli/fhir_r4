@@ -6,27 +6,31 @@ enum CommonTags {
   /// Definition: This request is intended to be acted upon, not merely stored
   @JsonValue('actionable')
   actionable,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case actionable: return 'actionable';
-      }
-      }
-String toJson() => toString();
-  CommonTags fromString(String str) {
-    switch(str) {
-      case 'actionable': return CommonTags.actionable;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case actionable:
+        return 'actionable';
     }
-      }
- CommonTags fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  CommonTags fromString(String str) {
+    switch (str) {
+      case 'actionable':
+        return CommonTags.actionable;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  CommonTags fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

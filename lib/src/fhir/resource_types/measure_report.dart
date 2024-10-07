@@ -19,67 +19,61 @@ class MeasureReport extends DomainResource {
   final Reference? reporter;
   final Period period;
   final CodeableConcept? improvementNotation;
-  final List<BackboneElement>? group;
-  final List<BackboneElement>? population;
-  final List<BackboneElement>? stratifier;
-  final List<BackboneElement>? stratum;
-  final List<BackboneElement>? component;
-  final List<BackboneElement>? population;
+  final List<MeasureReportGroup>? group;
   final List<Reference>? evaluatedResource;
 
   MeasureReport({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     required this.type,
-this.typeElement,
+    this.typeElement,
     required this.measure,
-this.measureElement,
+    this.measureElement,
     this.subject,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.reporter,
     required this.period,
     this.improvementNotation,
     this.group,
-    this.population,
-    this.stratifier,
-    this.stratum,
-    this.component,
-    this.population,
     this.evaluatedResource,
   }) : super(resourceType: R4ResourceType.MeasureReport);
 
-@override
-MeasureReport clone() => throw UnimplementedError();
+  @override
+  MeasureReport clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
 class MeasureReportGroup extends BackboneElement {
   final CodeableConcept? code;
+  final List<MeasureReportPopulation>? population;
   final Quantity? measureScore;
+  final List<MeasureReportStratifier>? stratifier;
 
   MeasureReportGroup({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.code,
+    this.population,
     this.measureScore,
+    this.stratifier,
   });
 
-@override
-MeasureReportGroup clone() => throw UnimplementedError();
+  @override
+  MeasureReportGroup clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -96,34 +90,38 @@ class MeasureReportPopulation extends BackboneElement {
     super.modifierExtension,
     this.code,
     this.count,
-this.countElement,
+    this.countElement,
     this.subjectResults,
   });
 
-@override
-MeasureReportPopulation clone() => throw UnimplementedError();
+  @override
+  MeasureReportPopulation clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
 class MeasureReportStratifier extends BackboneElement {
   final List<CodeableConcept>? code;
+  final List<MeasureReportStratum>? stratum;
 
   MeasureReportStratifier({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.code,
+    this.stratum,
   });
 
-@override
-MeasureReportStratifier clone() => throw UnimplementedError();
+  @override
+  MeasureReportStratifier clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
 class MeasureReportStratum extends BackboneElement {
   final CodeableConcept? value;
+  final List<MeasureReportComponent>? component;
+  final List<MeasureReportPopulation>? population;
   final Quantity? measureScore;
 
   MeasureReportStratum({
@@ -131,11 +129,13 @@ class MeasureReportStratum extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.value,
+    this.component,
+    this.population,
     this.measureScore,
   });
 
-@override
-MeasureReportStratum clone() => throw UnimplementedError();
+  @override
+  MeasureReportStratum clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -152,8 +152,8 @@ class MeasureReportComponent extends BackboneElement {
     required this.value,
   });
 
-@override
-MeasureReportComponent clone() => throw UnimplementedError();
+  @override
+  MeasureReportComponent clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -170,11 +170,10 @@ class MeasureReportPopulation extends BackboneElement {
     super.modifierExtension,
     this.code,
     this.count,
-this.countElement,
+    this.countElement,
     this.subjectResults,
   });
 
-@override
-MeasureReportPopulation clone() => throw UnimplementedError();
+  @override
+  MeasureReportPopulation clone() => throw UnimplementedError();
 }
-

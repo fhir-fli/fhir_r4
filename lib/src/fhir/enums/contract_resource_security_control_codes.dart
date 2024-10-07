@@ -6,27 +6,31 @@ enum ContractResourceSecurityControlCodes {
   /// Definition: To be completed
   @JsonValue('policy')
   policy,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case policy: return 'policy';
-      }
-      }
-String toJson() => toString();
-  ContractResourceSecurityControlCodes fromString(String str) {
-    switch(str) {
-      case 'policy': return ContractResourceSecurityControlCodes.policy;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case policy:
+        return 'policy';
     }
-      }
- ContractResourceSecurityControlCodes fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  ContractResourceSecurityControlCodes fromString(String str) {
+    switch (str) {
+      case 'policy':
+        return ContractResourceSecurityControlCodes.policy;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  ContractResourceSecurityControlCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

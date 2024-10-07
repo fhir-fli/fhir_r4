@@ -10,33 +10,43 @@ enum SystemRestfulInteraction {
   search_system,
   @JsonValue('history-system')
   history_system,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case transaction: return 'transaction';
-        case batch: return 'batch';
-        case search_system: return 'search-system';
-        case history_system: return 'history-system';
-      }
-      }
-String toJson() => toString();
-  SystemRestfulInteraction fromString(String str) {
-    switch(str) {
-      case 'transaction': return SystemRestfulInteraction.transaction;
-      case 'batch': return SystemRestfulInteraction.batch;
-      case 'search-system': return SystemRestfulInteraction.search_system;
-      case 'history-system': return SystemRestfulInteraction.history_system;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case transaction:
+        return 'transaction';
+      case batch:
+        return 'batch';
+      case search_system:
+        return 'search-system';
+      case history_system:
+        return 'history-system';
     }
-      }
- SystemRestfulInteraction fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  SystemRestfulInteraction fromString(String str) {
+    switch (str) {
+      case 'transaction':
+        return SystemRestfulInteraction.transaction;
+      case 'batch':
+        return SystemRestfulInteraction.batch;
+      case 'search-system':
+        return SystemRestfulInteraction.search_system;
+      case 'history-system':
+        return SystemRestfulInteraction.history_system;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  SystemRestfulInteraction fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

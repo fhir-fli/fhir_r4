@@ -16,13 +16,12 @@ class Contributor extends DataType {
     super.id,
     super.extension_,
     required this.type,
-this.typeElement,
+    this.typeElement,
     required this.name,
-this.nameElement,
+    this.nameElement,
     this.contact,
   });
 
-@override
-Contributor clone() => throw UnimplementedError();
+  @override
+  Contributor clone() => throw UnimplementedError();
 }
-

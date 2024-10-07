@@ -16,8 +16,8 @@ class ObservationDefinition extends DomainResource {
   final CodeableConcept? method;
   final FhirString? preferredReportName;
   final Element? preferredReportNameElement;
-  final BackboneElement? quantitativeDetails;
-  final List<BackboneElement>? qualifiedInterval;
+  final ObservationDefinitionQuantitativeDetails? quantitativeDetails;
+  final List<ObservationDefinitionQualifiedInterval>? qualifiedInterval;
   final Reference? validCodedValueSet;
   final Reference? normalCodedValueSet;
   final Reference? abnormalCodedValueSet;
@@ -27,9 +27,9 @@ class ObservationDefinition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -38,12 +38,12 @@ super.languageElement,
     required this.code,
     this.identifier,
     this.permittedDataType,
-this.permittedDataTypeElement,
+    this.permittedDataTypeElement,
     this.multipleResultsAllowed,
-this.multipleResultsAllowedElement,
+    this.multipleResultsAllowedElement,
     this.method,
     this.preferredReportName,
-this.preferredReportNameElement,
+    this.preferredReportNameElement,
     this.quantitativeDetails,
     this.qualifiedInterval,
     this.validCodedValueSet,
@@ -52,8 +52,8 @@ this.preferredReportNameElement,
     this.criticalCodedValueSet,
   }) : super(resourceType: R4ResourceType.ObservationDefinition);
 
-@override
-ObservationDefinition clone() => throw UnimplementedError();
+  @override
+  ObservationDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -73,13 +73,14 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
     this.customaryUnit,
     this.unit,
     this.conversionFactor,
-this.conversionFactorElement,
+    this.conversionFactorElement,
     this.decimalPrecision,
-this.decimalPrecisionElement,
+    this.decimalPrecisionElement,
   });
 
-@override
-ObservationDefinitionQuantitativeDetails clone() => throw UnimplementedError();
+  @override
+  ObservationDefinitionQuantitativeDetails clone() =>
+      throw UnimplementedError();
 }
 
 @Data()
@@ -102,19 +103,18 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.category,
-this.categoryElement,
+    this.categoryElement,
     this.range,
     this.context,
     this.appliesTo,
     this.gender,
-this.genderElement,
+    this.genderElement,
     this.age,
     this.gestationalAge,
     this.condition,
-this.conditionElement,
+    this.conditionElement,
   });
 
-@override
-ObservationDefinitionQualifiedInterval clone() => throw UnimplementedError();
+  @override
+  ObservationDefinitionQualifiedInterval clone() => throw UnimplementedError();
 }
-

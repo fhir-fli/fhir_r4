@@ -20,16 +20,16 @@ class Flag extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.category,
     required this.code,
     required this.subject,
@@ -38,7 +38,6 @@ this.statusElement,
     this.author,
   }) : super(resourceType: R4ResourceType.Flag);
 
-@override
-Flag clone() => throw UnimplementedError();
+  @override
+  Flag clone() => throw UnimplementedError();
 }
-

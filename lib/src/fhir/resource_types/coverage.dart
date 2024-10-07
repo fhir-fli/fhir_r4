@@ -20,13 +20,12 @@ class Coverage extends DomainResource {
   final CodeableConcept? relationship;
   final Period? period;
   final List<Reference> payor;
-  final List<BackboneElement>? class_;
+  final List<CoverageClass>? class_;
   final FhirPositiveInt? order;
   final Element? orderElement;
   final FhirString? network;
   final Element? networkElement;
-  final List<BackboneElement>? costToBeneficiary;
-  final List<BackboneElement>? exception;
+  final List<CoverageCostToBeneficiary>? costToBeneficiary;
   final FhirBoolean? subrogation;
   final Element? subrogationElement;
   final List<Reference>? contract;
@@ -35,41 +34,40 @@ class Coverage extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.type,
     this.policyHolder,
     this.subscriber,
     this.subscriberId,
-this.subscriberIdElement,
+    this.subscriberIdElement,
     required this.beneficiary,
     this.dependent,
-this.dependentElement,
+    this.dependentElement,
     this.relationship,
     this.period,
     required this.payor,
     this.class_,
     this.order,
-this.orderElement,
+    this.orderElement,
     this.network,
-this.networkElement,
+    this.networkElement,
     this.costToBeneficiary,
-    this.exception,
     this.subrogation,
-this.subrogationElement,
+    this.subrogationElement,
     this.contract,
   }) : super(resourceType: R4ResourceType.Coverage);
 
-@override
-Coverage clone() => throw UnimplementedError();
+  @override
+  Coverage clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -87,13 +85,13 @@ class CoverageClass extends BackboneElement {
     super.modifierExtension,
     required this.type,
     required this.value,
-this.valueElement,
+    this.valueElement,
     this.name,
-this.nameElement,
+    this.nameElement,
   });
 
-@override
-CoverageClass clone() => throw UnimplementedError();
+  @override
+  CoverageClass clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -102,6 +100,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
   final CodeableConcept? type;
   final Quantity valueQuantity;
   final Money valueMoney;
+  final List<CoverageException>? exception;
 
   CoverageCostToBeneficiary({
     super.id,
@@ -110,10 +109,11 @@ class CoverageCostToBeneficiary extends BackboneElement {
     this.type,
     required this.valueQuantity,
     required this.valueMoney,
+    this.exception,
   });
 
-@override
-CoverageCostToBeneficiary clone() => throw UnimplementedError();
+  @override
+  CoverageCostToBeneficiary clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -130,7 +130,6 @@ class CoverageException extends BackboneElement {
     this.period,
   });
 
-@override
-CoverageException clone() => throw UnimplementedError();
+  @override
+  CoverageException clone() => throw UnimplementedError();
 }
-

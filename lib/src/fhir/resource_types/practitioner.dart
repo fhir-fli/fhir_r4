@@ -17,37 +17,37 @@ class Practitioner extends DomainResource {
   final FhirDate? birthDate;
   final Element? birthDateElement;
   final List<Attachment>? photo;
-  final List<BackboneElement>? qualification;
+  final List<PractitionerQualification>? qualification;
   final List<CodeableConcept>? communication;
 
   Practitioner({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
-this.activeElement,
+    this.activeElement,
     this.name,
     this.telecom,
     this.address,
     this.gender,
-this.genderElement,
+    this.genderElement,
     this.birthDate,
-this.birthDateElement,
+    this.birthDateElement,
     this.photo,
     this.qualification,
     this.communication,
   }) : super(resourceType: R4ResourceType.Practitioner);
 
-@override
-Practitioner clone() => throw UnimplementedError();
+  @override
+  Practitioner clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -68,7 +68,6 @@ class PractitionerQualification extends BackboneElement {
     this.issuer,
   });
 
-@override
-PractitionerQualification clone() => throw UnimplementedError();
+  @override
+  PractitionerQualification clone() => throw UnimplementedError();
 }
-

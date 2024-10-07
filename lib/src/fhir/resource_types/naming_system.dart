@@ -26,44 +26,44 @@ class NamingSystem extends DomainResource {
   final List<CodeableConcept>? jurisdiction;
   final FhirString? usage;
   final Element? usageElement;
-  final List<BackboneElement> uniqueId;
+  final List<NamingSystemUniqueId> uniqueId;
 
   NamingSystem({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     required this.name,
-this.nameElement,
+    this.nameElement,
     required this.status,
-this.statusElement,
+    this.statusElement,
     required this.kind,
-this.kindElement,
+    this.kindElement,
     required this.date,
-this.dateElement,
+    this.dateElement,
     this.publisher,
-this.publisherElement,
+    this.publisherElement,
     this.contact,
     this.responsible,
-this.responsibleElement,
+    this.responsibleElement,
     this.type,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.usage,
-this.usageElement,
+    this.usageElement,
     required this.uniqueId,
   }) : super(resourceType: R4ResourceType.NamingSystem);
 
-@override
-NamingSystem clone() => throw UnimplementedError();
+  @override
+  NamingSystem clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -84,17 +84,16 @@ class NamingSystemUniqueId extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-this.typeElement,
+    this.typeElement,
     required this.value,
-this.valueElement,
+    this.valueElement,
     this.preferred,
-this.preferredElement,
+    this.preferredElement,
     this.comment,
-this.commentElement,
+    this.commentElement,
     this.period,
   });
 
-@override
-NamingSystemUniqueId clone() => throw UnimplementedError();
+  @override
+  NamingSystemUniqueId clone() => throw UnimplementedError();
 }
-

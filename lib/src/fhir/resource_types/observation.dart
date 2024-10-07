@@ -16,30 +16,30 @@ class Observation extends DomainResource {
   final Reference? subject;
   final List<Reference>? focus;
   final Reference? encounter;
-  final FhirDateTime? effectiveFhirDateTime;
-  final Element? effectiveFhirDateTimeElement;
+  final FhirDateTime? effectiveDateTime;
+  final Element? effectiveDateTimeElement;
   final Period? effectivePeriod;
   final Timing? effectiveTiming;
-  final FhirInstant? effectiveFhirInstant;
-  final Element? effectiveFhirInstantElement;
+  final FhirInstant? effectiveInstant;
+  final Element? effectiveInstantElement;
   final FhirInstant? issued;
   final Element? issuedElement;
   final List<Reference>? performer;
   final Quantity? valueQuantity;
   final CodeableConcept? valueCodeableConcept;
-  final FhirString? valueFhirString;
-  final Element? valueFhirStringElement;
-  final FhirBoolean? valueFhirBoolean;
-  final Element? valueFhirBooleanElement;
-  final FhirInteger? valueFhirInteger;
-  final Element? valueFhirIntegerElement;
+  final FhirString? valueString;
+  final Element? valueStringElement;
+  final FhirBoolean? valueBoolean;
+  final Element? valueBooleanElement;
+  final FhirInteger? valueInteger;
+  final Element? valueIntegerElement;
   final Range? valueRange;
   final Ratio? valueRatio;
   final SampledData? valueSampledData;
-  final FhirTime? valueFhirTime;
-  final Element? valueFhirTimeElement;
-  final FhirDateTime? valueFhirDateTime;
-  final Element? valueFhirDateTimeElement;
+  final FhirTime? valueTime;
+  final Element? valueTimeElement;
+  final FhirDateTime? valueDateTime;
+  final Element? valueDateTimeElement;
   final Period? valuePeriod;
   final CodeableConcept? dataAbsentReason;
   final List<CodeableConcept>? interpretation;
@@ -48,18 +48,18 @@ class Observation extends DomainResource {
   final CodeableConcept? method;
   final Reference? specimen;
   final Reference? device;
-  final List<BackboneElement>? referenceRange;
+  final List<ObservationReferenceRange>? referenceRange;
   final List<Reference>? hasMember;
   final List<Reference>? derivedFrom;
-  final List<BackboneElement>? component;
+  final List<ObservationComponent>? component;
 
   Observation({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -68,36 +68,36 @@ super.languageElement,
     this.basedOn,
     this.partOf,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.category,
     required this.code,
     this.subject,
     this.focus,
     this.encounter,
-    this.effectiveFhirDateTime,
-this.effectiveFhirDateTimeElement,
+    this.effectiveDateTime,
+    this.effectiveDateTimeElement,
     this.effectivePeriod,
     this.effectiveTiming,
-    this.effectiveFhirInstant,
-this.effectiveFhirInstantElement,
+    this.effectiveInstant,
+    this.effectiveInstantElement,
     this.issued,
-this.issuedElement,
+    this.issuedElement,
     this.performer,
     this.valueQuantity,
     this.valueCodeableConcept,
-    this.valueFhirString,
-this.valueFhirStringElement,
-    this.valueFhirBoolean,
-this.valueFhirBooleanElement,
-    this.valueFhirInteger,
-this.valueFhirIntegerElement,
+    this.valueString,
+    this.valueStringElement,
+    this.valueBoolean,
+    this.valueBooleanElement,
+    this.valueInteger,
+    this.valueIntegerElement,
     this.valueRange,
     this.valueRatio,
     this.valueSampledData,
-    this.valueFhirTime,
-this.valueFhirTimeElement,
-    this.valueFhirDateTime,
-this.valueFhirDateTimeElement,
+    this.valueTime,
+    this.valueTimeElement,
+    this.valueDateTime,
+    this.valueDateTimeElement,
     this.valuePeriod,
     this.dataAbsentReason,
     this.interpretation,
@@ -112,8 +112,8 @@ this.valueFhirDateTimeElement,
     this.component,
   }) : super(resourceType: R4ResourceType.Observation);
 
-@override
-Observation clone() => throw UnimplementedError();
+  @override
+  Observation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -137,11 +137,11 @@ class ObservationReferenceRange extends BackboneElement {
     this.appliesTo,
     this.age,
     this.text,
-this.textElement,
+    this.textElement,
   });
 
-@override
-ObservationReferenceRange clone() => throw UnimplementedError();
+  @override
+  ObservationReferenceRange clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -150,23 +150,23 @@ class ObservationComponent extends BackboneElement {
   final CodeableConcept code;
   final Quantity? valueQuantity;
   final CodeableConcept? valueCodeableConcept;
-  final FhirString? valueFhirString;
-  final Element? valueFhirStringElement;
-  final FhirBoolean? valueFhirBoolean;
-  final Element? valueFhirBooleanElement;
-  final FhirInteger? valueFhirInteger;
-  final Element? valueFhirIntegerElement;
+  final FhirString? valueString;
+  final Element? valueStringElement;
+  final FhirBoolean? valueBoolean;
+  final Element? valueBooleanElement;
+  final FhirInteger? valueInteger;
+  final Element? valueIntegerElement;
   final Range? valueRange;
   final Ratio? valueRatio;
   final SampledData? valueSampledData;
-  final FhirTime? valueFhirTime;
-  final Element? valueFhirTimeElement;
-  final FhirDateTime? valueFhirDateTime;
-  final Element? valueFhirDateTimeElement;
+  final FhirTime? valueTime;
+  final Element? valueTimeElement;
+  final FhirDateTime? valueDateTime;
+  final Element? valueDateTimeElement;
   final Period? valuePeriod;
   final CodeableConcept? dataAbsentReason;
   final List<CodeableConcept>? interpretation;
-  final List<dynamic>? referenceRange;
+  final List<ObservationReferenceRange>? referenceRange;
 
   ObservationComponent({
     super.id,
@@ -175,26 +175,25 @@ class ObservationComponent extends BackboneElement {
     required this.code,
     this.valueQuantity,
     this.valueCodeableConcept,
-    this.valueFhirString,
-this.valueFhirStringElement,
-    this.valueFhirBoolean,
-this.valueFhirBooleanElement,
-    this.valueFhirInteger,
-this.valueFhirIntegerElement,
+    this.valueString,
+    this.valueStringElement,
+    this.valueBoolean,
+    this.valueBooleanElement,
+    this.valueInteger,
+    this.valueIntegerElement,
     this.valueRange,
     this.valueRatio,
     this.valueSampledData,
-    this.valueFhirTime,
-this.valueFhirTimeElement,
-    this.valueFhirDateTime,
-this.valueFhirDateTimeElement,
+    this.valueTime,
+    this.valueTimeElement,
+    this.valueDateTime,
+    this.valueDateTimeElement,
     this.valuePeriod,
     this.dataAbsentReason,
     this.interpretation,
     this.referenceRange,
   });
 
-@override
-ObservationComponent clone() => throw UnimplementedError();
+  @override
+  ObservationComponent clone() => throw UnimplementedError();
 }
-

@@ -9,25 +9,25 @@ class Encounter extends DomainResource {
   final List<Identifier>? identifier;
   final FhirCode status;
   final Element? statusElement;
-  final List<BackboneElement>? statusHistory;
+  final List<EncounterStatusHistory>? statusHistory;
   final Coding class_;
-  final List<BackboneElement>? classHistory;
+  final List<EncounterClassHistory>? classHistory;
   final List<CodeableConcept>? type;
   final CodeableConcept? serviceType;
   final CodeableConcept? priority;
   final Reference? subject;
   final List<Reference>? episodeOfCare;
   final List<Reference>? basedOn;
-  final List<BackboneElement>? participant;
+  final List<EncounterParticipant>? participant;
   final List<Reference>? appointment;
   final Period? period;
   final FhirDuration? length;
   final List<CodeableConcept>? reasonCode;
   final List<Reference>? reasonReference;
-  final List<BackboneElement>? diagnosis;
+  final List<EncounterDiagnosis>? diagnosis;
   final List<Reference>? account;
-  final BackboneElement? hospitalization;
-  final List<BackboneElement>? location;
+  final EncounterHospitalization? hospitalization;
+  final List<EncounterLocation>? location;
   final Reference? serviceProvider;
   final Reference? partOf;
 
@@ -35,16 +35,16 @@ class Encounter extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.statusHistory,
     required this.class_,
     this.classHistory,
@@ -68,8 +68,8 @@ this.statusElement,
     this.partOf,
   }) : super(resourceType: R4ResourceType.Encounter);
 
-@override
-Encounter clone() => throw UnimplementedError();
+  @override
+  Encounter clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -84,12 +84,12 @@ class EncounterStatusHistory extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.status,
-this.statusElement,
+    this.statusElement,
     required this.period,
   });
 
-@override
-EncounterStatusHistory clone() => throw UnimplementedError();
+  @override
+  EncounterStatusHistory clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -106,8 +106,8 @@ class EncounterClassHistory extends BackboneElement {
     required this.period,
   });
 
-@override
-EncounterClassHistory clone() => throw UnimplementedError();
+  @override
+  EncounterClassHistory clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -126,8 +126,8 @@ class EncounterParticipant extends BackboneElement {
     this.individual,
   });
 
-@override
-EncounterParticipant clone() => throw UnimplementedError();
+  @override
+  EncounterParticipant clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -145,11 +145,11 @@ class EncounterDiagnosis extends BackboneElement {
     required this.condition,
     this.use,
     this.rank,
-this.rankElement,
+    this.rankElement,
   });
 
-@override
-EncounterDiagnosis clone() => throw UnimplementedError();
+  @override
+  EncounterDiagnosis clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -180,8 +180,8 @@ class EncounterHospitalization extends BackboneElement {
     this.dischargeDisposition,
   });
 
-@override
-EncounterHospitalization clone() => throw UnimplementedError();
+  @override
+  EncounterHospitalization clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -199,12 +199,11 @@ class EncounterLocation extends BackboneElement {
     super.modifierExtension,
     required this.location,
     this.status,
-this.statusElement,
+    this.statusElement,
     this.physicalType,
     this.period,
   });
 
-@override
-EncounterLocation clone() => throw UnimplementedError();
+  @override
+  EncounterLocation clone() => throw UnimplementedError();
 }
-

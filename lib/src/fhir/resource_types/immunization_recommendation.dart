@@ -11,16 +11,15 @@ class ImmunizationRecommendation extends DomainResource {
   final FhirDateTime date;
   final Element? dateElement;
   final Reference? authority;
-  final List<BackboneElement> recommendation;
-  final List<BackboneElement>? dateCriterion;
+  final List<ImmunizationRecommendationRecommendation> recommendation;
 
   ImmunizationRecommendation({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -28,14 +27,13 @@ super.languageElement,
     this.identifier,
     required this.patient,
     required this.date,
-this.dateElement,
+    this.dateElement,
     this.authority,
     required this.recommendation,
-    this.dateCriterion,
   }) : super(resourceType: R4ResourceType.ImmunizationRecommendation);
 
-@override
-ImmunizationRecommendation clone() => throw UnimplementedError();
+  @override
+  ImmunizationRecommendation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -46,18 +44,19 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
   final List<CodeableConcept>? contraindicatedVaccineCode;
   final CodeableConcept forecastStatus;
   final List<CodeableConcept>? forecastReason;
+  final List<ImmunizationRecommendationDateCriterion>? dateCriterion;
   final FhirString? description;
   final Element? descriptionElement;
   final FhirString? series;
   final Element? seriesElement;
-  final FhirPositiveInt? doseNumberFhirPositiveInt;
-  final Element? doseNumberFhirPositiveIntElement;
-  final FhirString? doseNumberFhirString;
-  final Element? doseNumberFhirStringElement;
-  final FhirPositiveInt? seriesDosesFhirPositiveInt;
-  final Element? seriesDosesFhirPositiveIntElement;
-  final FhirString? seriesDosesFhirString;
-  final Element? seriesDosesFhirStringElement;
+  final FhirPositiveInt? doseNumberPositiveInt;
+  final Element? doseNumberPositiveIntElement;
+  final FhirString? doseNumberString;
+  final Element? doseNumberStringElement;
+  final FhirPositiveInt? seriesDosesPositiveInt;
+  final Element? seriesDosesPositiveIntElement;
+  final FhirString? seriesDosesString;
+  final Element? seriesDosesStringElement;
   final List<Reference>? supportingImmunization;
   final List<Reference>? supportingPatientInformation;
 
@@ -70,24 +69,26 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
     this.contraindicatedVaccineCode,
     required this.forecastStatus,
     this.forecastReason,
+    this.dateCriterion,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.series,
-this.seriesElement,
-    this.doseNumberFhirPositiveInt,
-this.doseNumberFhirPositiveIntElement,
-    this.doseNumberFhirString,
-this.doseNumberFhirStringElement,
-    this.seriesDosesFhirPositiveInt,
-this.seriesDosesFhirPositiveIntElement,
-    this.seriesDosesFhirString,
-this.seriesDosesFhirStringElement,
+    this.seriesElement,
+    this.doseNumberPositiveInt,
+    this.doseNumberPositiveIntElement,
+    this.doseNumberString,
+    this.doseNumberStringElement,
+    this.seriesDosesPositiveInt,
+    this.seriesDosesPositiveIntElement,
+    this.seriesDosesString,
+    this.seriesDosesStringElement,
     this.supportingImmunization,
     this.supportingPatientInformation,
   });
 
-@override
-ImmunizationRecommendationRecommendation clone() => throw UnimplementedError();
+  @override
+  ImmunizationRecommendationRecommendation clone() =>
+      throw UnimplementedError();
 }
 
 @Data()
@@ -103,10 +104,9 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
     super.modifierExtension,
     required this.code,
     required this.value,
-this.valueElement,
+    this.valueElement,
   });
 
-@override
-ImmunizationRecommendationDateCriterion clone() => throw UnimplementedError();
+  @override
+  ImmunizationRecommendationDateCriterion clone() => throw UnimplementedError();
 }
-

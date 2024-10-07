@@ -14,13 +14,12 @@ class EvidenceReport extends DomainResource {
   final List<Identifier>? identifier;
   final List<Identifier>? relatedIdentifier;
   final Reference? citeAsReference;
-  final FhirMarkdown? citeAsFhirMarkdown;
-  final Element? citeAsFhirMarkdownElement;
+  final FhirMarkdown? citeAsMarkdown;
+  final Element? citeAsMarkdownElement;
   final CodeableConcept? type;
   final List<Annotation>? note;
   final List<RelatedArtifact>? relatedArtifact;
-  final BackboneElement subject;
-  final List<BackboneElement>? characteristic;
+  final EvidenceReportSubject subject;
   final FhirString? publisher;
   final Element? publisherElement;
   final List<ContactDetail>? contact;
@@ -28,37 +27,36 @@ class EvidenceReport extends DomainResource {
   final List<ContactDetail>? editor;
   final List<ContactDetail>? reviewer;
   final List<ContactDetail>? endorser;
-  final List<BackboneElement>? relatesTo;
-  final List<BackboneElement>? section;
+  final List<EvidenceReportRelatesTo>? relatesTo;
+  final List<EvidenceReportSection>? section;
 
   EvidenceReport({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-this.urlElement,
+    this.urlElement,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.useContext,
     this.identifier,
     this.relatedIdentifier,
     this.citeAsReference,
-    this.citeAsFhirMarkdown,
-this.citeAsFhirMarkdownElement,
+    this.citeAsMarkdown,
+    this.citeAsMarkdownElement,
     this.type,
     this.note,
     this.relatedArtifact,
     required this.subject,
-    this.characteristic,
     this.publisher,
-this.publisherElement,
+    this.publisherElement,
     this.contact,
     this.author,
     this.editor,
@@ -68,24 +66,26 @@ this.publisherElement,
     this.section,
   }) : super(resourceType: R4ResourceType.EvidenceReport);
 
-@override
-EvidenceReport clone() => throw UnimplementedError();
+  @override
+  EvidenceReport clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
 class EvidenceReportSubject extends BackboneElement {
+  final List<EvidenceReportCharacteristic>? characteristic;
   final List<Annotation>? note;
 
   EvidenceReportSubject({
     super.id,
     super.extension_,
     super.modifierExtension,
+    this.characteristic,
     this.note,
   });
 
-@override
-EvidenceReportSubject clone() => throw UnimplementedError();
+  @override
+  EvidenceReportSubject clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -94,8 +94,8 @@ class EvidenceReportCharacteristic extends BackboneElement {
   final CodeableConcept code;
   final Reference valueReference;
   final CodeableConcept valueCodeableConcept;
-  final FhirBoolean valueFhirBoolean;
-  final Element? valueFhirBooleanElement;
+  final FhirBoolean valueBoolean;
+  final Element? valueBooleanElement;
   final Quantity valueQuantity;
   final Range valueRange;
   final FhirBoolean? exclude;
@@ -109,17 +109,17 @@ class EvidenceReportCharacteristic extends BackboneElement {
     required this.code,
     required this.valueReference,
     required this.valueCodeableConcept,
-    required this.valueFhirBoolean,
-this.valueFhirBooleanElement,
+    required this.valueBoolean,
+    this.valueBooleanElement,
     required this.valueQuantity,
     required this.valueRange,
     this.exclude,
-this.excludeElement,
+    this.excludeElement,
     this.period,
   });
 
-@override
-EvidenceReportCharacteristic clone() => throw UnimplementedError();
+  @override
+  EvidenceReportCharacteristic clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -135,13 +135,13 @@ class EvidenceReportRelatesTo extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-this.codeElement,
+    this.codeElement,
     required this.targetIdentifier,
     required this.targetReference,
   });
 
-@override
-EvidenceReportRelatesTo clone() => throw UnimplementedError();
+  @override
+  EvidenceReportRelatesTo clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -160,20 +160,20 @@ class EvidenceReportSection extends BackboneElement {
   final List<Reference>? entryReference;
   final List<Quantity>? entryQuantity;
   final CodeableConcept? emptyReason;
-  final List<dynamic>? section;
+  final List<EvidenceReportSection>? section;
 
   EvidenceReportSection({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.title,
-this.titleElement,
+    this.titleElement,
     this.focus,
     this.focusReference,
     this.author,
     this.text,
     this.mode,
-this.modeElement,
+    this.modeElement,
     this.orderedBy,
     this.entryClassifier,
     this.entryReference,
@@ -182,7 +182,6 @@ this.modeElement,
     this.section,
   });
 
-@override
-EvidenceReportSection clone() => throw UnimplementedError();
+  @override
+  EvidenceReportSection clone() => throw UnimplementedError();
 }
-

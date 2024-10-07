@@ -13,9 +13,9 @@ class SupplyDelivery extends DomainResource {
   final Element? statusElement;
   final Reference? patient;
   final CodeableConcept? type;
-  final BackboneElement? suppliedItem;
-  final FhirDateTime? occurrenceFhirDateTime;
-  final Element? occurrenceFhirDateTimeElement;
+  final SupplyDeliverySuppliedItem? suppliedItem;
+  final FhirDateTime? occurrenceDateTime;
+  final Element? occurrenceDateTimeElement;
   final Period? occurrencePeriod;
   final Timing? occurrenceTiming;
   final Reference? supplier;
@@ -26,9 +26,9 @@ class SupplyDelivery extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -37,12 +37,12 @@ super.languageElement,
     this.basedOn,
     this.partOf,
     this.status,
-this.statusElement,
+    this.statusElement,
     this.patient,
     this.type,
     this.suppliedItem,
-    this.occurrenceFhirDateTime,
-this.occurrenceFhirDateTimeElement,
+    this.occurrenceDateTime,
+    this.occurrenceDateTimeElement,
     this.occurrencePeriod,
     this.occurrenceTiming,
     this.supplier,
@@ -50,8 +50,8 @@ this.occurrenceFhirDateTimeElement,
     this.receiver,
   }) : super(resourceType: R4ResourceType.SupplyDelivery);
 
-@override
-SupplyDelivery clone() => throw UnimplementedError();
+  @override
+  SupplyDelivery clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -70,7 +70,6 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
     this.itemReference,
   });
 
-@override
-SupplyDeliverySuppliedItem clone() => throw UnimplementedError();
+  @override
+  SupplyDeliverySuppliedItem clone() => throw UnimplementedError();
 }
-

@@ -15,9 +15,9 @@ class SupplyRequest extends DomainResource {
   final CodeableConcept itemCodeableConcept;
   final Reference itemReference;
   final Quantity quantity;
-  final List<BackboneElement>? parameter;
-  final FhirDateTime? occurrenceFhirDateTime;
-  final Element? occurrenceFhirDateTimeElement;
+  final List<SupplyRequestParameter>? parameter;
+  final FhirDateTime? occurrenceDateTime;
+  final Element? occurrenceDateTimeElement;
   final Period? occurrencePeriod;
   final Timing? occurrenceTiming;
   final FhirDateTime? authoredOn;
@@ -33,29 +33,29 @@ class SupplyRequest extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.status,
-this.statusElement,
+    this.statusElement,
     this.category,
     this.priority,
-this.priorityElement,
+    this.priorityElement,
     required this.itemCodeableConcept,
     required this.itemReference,
     required this.quantity,
     this.parameter,
-    this.occurrenceFhirDateTime,
-this.occurrenceFhirDateTimeElement,
+    this.occurrenceDateTime,
+    this.occurrenceDateTimeElement,
     this.occurrencePeriod,
     this.occurrenceTiming,
     this.authoredOn,
-this.authoredOnElement,
+    this.authoredOnElement,
     this.requester,
     this.supplier,
     this.reasonCode,
@@ -64,8 +64,8 @@ this.authoredOnElement,
     this.deliverTo,
   }) : super(resourceType: R4ResourceType.SupplyRequest);
 
-@override
-SupplyRequest clone() => throw UnimplementedError();
+  @override
+  SupplyRequest clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -75,8 +75,8 @@ class SupplyRequestParameter extends BackboneElement {
   final CodeableConcept? valueCodeableConcept;
   final Quantity? valueQuantity;
   final Range? valueRange;
-  final FhirBoolean? valueFhirBoolean;
-  final Element? valueFhirBooleanElement;
+  final FhirBoolean? valueBoolean;
+  final Element? valueBooleanElement;
 
   SupplyRequestParameter({
     super.id,
@@ -86,11 +86,10 @@ class SupplyRequestParameter extends BackboneElement {
     this.valueCodeableConcept,
     this.valueQuantity,
     this.valueRange,
-    this.valueFhirBoolean,
-this.valueFhirBooleanElement,
+    this.valueBoolean,
+    this.valueBooleanElement,
   });
 
-@override
-SupplyRequestParameter clone() => throw UnimplementedError();
+  @override
+  SupplyRequestParameter clone() => throw UnimplementedError();
 }
-

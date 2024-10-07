@@ -29,51 +29,47 @@ class RequestGroup extends DomainResource {
   final List<CodeableConcept>? reasonCode;
   final List<Reference>? reasonReference;
   final List<Annotation>? note;
-  final List<BackboneElement>? action;
-  final List<BackboneElement>? condition;
-  final List<BackboneElement>? relatedAction;
+  final List<RequestGroupAction>? action;
 
   RequestGroup({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
-this.instantiatesCanonicalElement,
+    this.instantiatesCanonicalElement,
     this.instantiatesUri,
-this.instantiatesUriElement,
+    this.instantiatesUriElement,
     this.basedOn,
     this.replaces,
     this.groupIdentifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     required this.intent,
-this.intentElement,
+    this.intentElement,
     this.priority,
-this.priorityElement,
+    this.priorityElement,
     this.code,
     this.subject,
     this.encounter,
     this.authoredOn,
-this.authoredOnElement,
+    this.authoredOnElement,
     this.author,
     this.reasonCode,
     this.reasonReference,
     this.note,
     this.action,
-    this.condition,
-    this.relatedAction,
   }) : super(resourceType: R4ResourceType.RequestGroup);
 
-@override
-RequestGroup clone() => throw UnimplementedError();
+  @override
+  RequestGroup clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -91,11 +87,13 @@ class RequestGroupAction extends BackboneElement {
   final Element? priorityElement;
   final List<CodeableConcept>? code;
   final List<RelatedArtifact>? documentation;
-  final FhirDateTime? timingFhirDateTime;
-  final Element? timingFhirDateTimeElement;
+  final List<RequestGroupCondition>? condition;
+  final List<RequestGroupRelatedAction>? relatedAction;
+  final FhirDateTime? timingDateTime;
+  final Element? timingDateTimeElement;
   final Age? timingAge;
   final Period? timingPeriod;
-  final FhirDuration? timingFhirDuration;
+  final FhirDuration? timingDuration;
   final Range? timingRange;
   final Timing? timingTiming;
   final List<Reference>? participant;
@@ -111,49 +109,51 @@ class RequestGroupAction extends BackboneElement {
   final FhirCode? cardinalityBehavior;
   final Element? cardinalityBehaviorElement;
   final Reference? resource;
-  final List<dynamic>? action;
+  final List<RequestGroupAction>? action;
 
   RequestGroupAction({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.prefix,
-this.prefixElement,
+    this.prefixElement,
     this.title,
-this.titleElement,
+    this.titleElement,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.textEquivalent,
-this.textEquivalentElement,
+    this.textEquivalentElement,
     this.priority,
-this.priorityElement,
+    this.priorityElement,
     this.code,
     this.documentation,
-    this.timingFhirDateTime,
-this.timingFhirDateTimeElement,
+    this.condition,
+    this.relatedAction,
+    this.timingDateTime,
+    this.timingDateTimeElement,
     this.timingAge,
     this.timingPeriod,
-    this.timingFhirDuration,
+    this.timingDuration,
     this.timingRange,
     this.timingTiming,
     this.participant,
     this.type,
     this.groupingBehavior,
-this.groupingBehaviorElement,
+    this.groupingBehaviorElement,
     this.selectionBehavior,
-this.selectionBehaviorElement,
+    this.selectionBehaviorElement,
     this.requiredBehavior,
-this.requiredBehaviorElement,
+    this.requiredBehaviorElement,
     this.precheckBehavior,
-this.precheckBehaviorElement,
+    this.precheckBehaviorElement,
     this.cardinalityBehavior,
-this.cardinalityBehaviorElement,
+    this.cardinalityBehaviorElement,
     this.resource,
     this.action,
   });
 
-@override
-RequestGroupAction clone() => throw UnimplementedError();
+  @override
+  RequestGroupAction clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -168,12 +168,12 @@ class RequestGroupCondition extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.kind,
-this.kindElement,
+    this.kindElement,
     this.expression,
   });
 
-@override
-RequestGroupCondition clone() => throw UnimplementedError();
+  @override
+  RequestGroupCondition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -183,7 +183,7 @@ class RequestGroupRelatedAction extends BackboneElement {
   final Element? actionIdElement;
   final FhirCode relationship;
   final Element? relationshipElement;
-  final FhirDuration? offsetFhirDuration;
+  final FhirDuration? offsetDuration;
   final Range? offsetRange;
 
   RequestGroupRelatedAction({
@@ -191,14 +191,13 @@ class RequestGroupRelatedAction extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.actionId,
-this.actionIdElement,
+    this.actionIdElement,
     required this.relationship,
-this.relationshipElement,
-    this.offsetFhirDuration,
+    this.relationshipElement,
+    this.offsetDuration,
     this.offsetRange,
   });
 
-@override
-RequestGroupRelatedAction clone() => throw UnimplementedError();
+  @override
+  RequestGroupRelatedAction clone() => throw UnimplementedError();
 }
-

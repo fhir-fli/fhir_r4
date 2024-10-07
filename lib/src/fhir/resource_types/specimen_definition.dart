@@ -12,18 +12,15 @@ class SpecimenDefinition extends DomainResource {
   final FhirString? timeAspect;
   final Element? timeAspectElement;
   final List<CodeableConcept>? collection;
-  final List<BackboneElement>? typeTested;
-  final BackboneElement? container;
-  final List<BackboneElement>? additive;
-  final List<BackboneElement>? handling;
+  final List<SpecimenDefinitionTypeTested>? typeTested;
 
   SpecimenDefinition({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -32,16 +29,13 @@ super.languageElement,
     this.typeCollected,
     this.patientPreparation,
     this.timeAspect,
-this.timeAspectElement,
+    this.timeAspectElement,
     this.collection,
     this.typeTested,
-    this.container,
-    this.additive,
-    this.handling,
   }) : super(resourceType: R4ResourceType.SpecimenDefinition);
 
-@override
-SpecimenDefinition clone() => throw UnimplementedError();
+  @override
+  SpecimenDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -52,28 +46,32 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
   final CodeableConcept? type;
   final FhirCode preference;
   final Element? preferenceElement;
+  final SpecimenDefinitionContainer? container;
   final FhirString? requirement;
   final Element? requirementElement;
   final FhirDuration? retentionTime;
   final List<CodeableConcept>? rejectionCriterion;
+  final List<SpecimenDefinitionHandling>? handling;
 
   SpecimenDefinitionTypeTested({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.isDerived,
-this.isDerivedElement,
+    this.isDerivedElement,
     this.type,
     required this.preference,
-this.preferenceElement,
+    this.preferenceElement,
+    this.container,
     this.requirement,
-this.requirementElement,
+    this.requirementElement,
     this.retentionTime,
     this.rejectionCriterion,
+    this.handling,
   });
 
-@override
-SpecimenDefinitionTypeTested clone() => throw UnimplementedError();
+  @override
+  SpecimenDefinitionTypeTested clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -86,8 +84,9 @@ class SpecimenDefinitionContainer extends BackboneElement {
   final Element? descriptionElement;
   final Quantity? capacity;
   final Quantity? minimumVolumeQuantity;
-  final FhirString? minimumVolumeFhirString;
-  final Element? minimumVolumeFhirStringElement;
+  final FhirString? minimumVolumeString;
+  final Element? minimumVolumeStringElement;
+  final List<SpecimenDefinitionAdditive>? additive;
   final FhirString? preparation;
   final Element? preparationElement;
 
@@ -99,17 +98,18 @@ class SpecimenDefinitionContainer extends BackboneElement {
     this.type,
     this.cap,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.capacity,
     this.minimumVolumeQuantity,
-    this.minimumVolumeFhirString,
-this.minimumVolumeFhirStringElement,
+    this.minimumVolumeString,
+    this.minimumVolumeStringElement,
+    this.additive,
     this.preparation,
-this.preparationElement,
+    this.preparationElement,
   });
 
-@override
-SpecimenDefinitionContainer clone() => throw UnimplementedError();
+  @override
+  SpecimenDefinitionContainer clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -126,8 +126,8 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     required this.additiveReference,
   });
 
-@override
-SpecimenDefinitionAdditive clone() => throw UnimplementedError();
+  @override
+  SpecimenDefinitionAdditive clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -147,10 +147,9 @@ class SpecimenDefinitionHandling extends BackboneElement {
     this.temperatureRange,
     this.maxDuration,
     this.instruction,
-this.instructionElement,
+    this.instructionElement,
   });
 
-@override
-SpecimenDefinitionHandling clone() => throw UnimplementedError();
+  @override
+  SpecimenDefinitionHandling clone() => throw UnimplementedError();
 }
-

@@ -24,27 +24,27 @@ class DataRequirement extends DataType {
     super.id,
     super.extension_,
     required this.type,
-this.typeElement,
+    this.typeElement,
     this.profile,
-this.profileElement,
+    this.profileElement,
     this.subjectCodeableConcept,
     this.subjectReference,
     this.mustSupport,
-this.mustSupportElement,
+    this.mustSupportElement,
     this.codeFilter,
     this.dateFilter,
     this.limit,
-this.limitElement,
+    this.limitElement,
     this.sort,
   });
 
-@override
-DataRequirement clone() => throw UnimplementedError();
+  @override
+  DataRequirement clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
-class DataRequirementCodeFilter extends Element {
+class DataRequirementCodeFilter extends BackboneElement {
   final FhirString? path;
   final Element? pathElement;
   final FhirString? searchParam;
@@ -57,50 +57,50 @@ class DataRequirementCodeFilter extends Element {
     super.id,
     super.extension_,
     this.path,
-this.pathElement,
+    this.pathElement,
     this.searchParam,
-this.searchParamElement,
+    this.searchParamElement,
     this.valueSet,
-this.valueSetElement,
+    this.valueSetElement,
     this.code,
   });
 
-@override
-DataRequirementCodeFilter clone() => throw UnimplementedError();
+  @override
+  DataRequirementCodeFilter clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
-class DataRequirementDateFilter extends Element {
+class DataRequirementDateFilter extends BackboneElement {
   final FhirString? path;
   final Element? pathElement;
   final FhirString? searchParam;
   final Element? searchParamElement;
-  final FhirDateTime? valueFhirDateTime;
-  final Element? valueFhirDateTimeElement;
+  final FhirDateTime? valueDateTime;
+  final Element? valueDateTimeElement;
   final Period? valuePeriod;
-  final FhirDuration? valueFhirDuration;
+  final FhirDuration? valueDuration;
 
   DataRequirementDateFilter({
     super.id,
     super.extension_,
     this.path,
-this.pathElement,
+    this.pathElement,
     this.searchParam,
-this.searchParamElement,
-    this.valueFhirDateTime,
-this.valueFhirDateTimeElement,
+    this.searchParamElement,
+    this.valueDateTime,
+    this.valueDateTimeElement,
     this.valuePeriod,
-    this.valueFhirDuration,
+    this.valueDuration,
   });
 
-@override
-DataRequirementDateFilter clone() => throw UnimplementedError();
+  @override
+  DataRequirementDateFilter clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
-class DataRequirementSort extends Element {
+class DataRequirementSort extends BackboneElement {
   final FhirString path;
   final Element? pathElement;
   final FhirCode direction;
@@ -110,12 +110,11 @@ class DataRequirementSort extends Element {
     super.id,
     super.extension_,
     required this.path,
-this.pathElement,
+    this.pathElement,
     required this.direction,
-this.directionElement,
+    this.directionElement,
   });
 
-@override
-DataRequirementSort clone() => throw UnimplementedError();
+  @override
+  DataRequirementSort clone() => throw UnimplementedError();
 }
-

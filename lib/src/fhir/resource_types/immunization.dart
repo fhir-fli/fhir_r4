@@ -13,10 +13,10 @@ class Immunization extends DomainResource {
   final CodeableConcept vaccineCode;
   final Reference patient;
   final Reference? encounter;
-  final FhirDateTime occurrenceFhirDateTime;
-  final Element? occurrenceFhirDateTimeElement;
-  final FhirString occurrenceFhirString;
-  final Element? occurrenceFhirStringElement;
+  final FhirDateTime occurrenceDateTime;
+  final Element? occurrenceDateTimeElement;
+  final FhirString occurrenceString;
+  final Element? occurrenceStringElement;
   final FhirDateTime? recorded;
   final Element? recordedElement;
   final FhirBoolean? primarySource;
@@ -31,52 +31,52 @@ class Immunization extends DomainResource {
   final CodeableConcept? site;
   final CodeableConcept? route;
   final Quantity? doseQuantity;
-  final List<BackboneElement>? performer;
+  final List<ImmunizationPerformer>? performer;
   final List<Annotation>? note;
   final List<CodeableConcept>? reasonCode;
   final List<Reference>? reasonReference;
   final FhirBoolean? isSubpotent;
   final Element? isSubpotentElement;
   final List<CodeableConcept>? subpotentReason;
-  final List<BackboneElement>? education;
+  final List<ImmunizationEducation>? education;
   final List<CodeableConcept>? programEligibility;
   final CodeableConcept? fundingSource;
-  final List<BackboneElement>? reaction;
-  final List<BackboneElement>? protocolApplied;
+  final List<ImmunizationReaction>? reaction;
+  final List<ImmunizationProtocolApplied>? protocolApplied;
 
   Immunization({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.statusReason,
     required this.vaccineCode,
     required this.patient,
     this.encounter,
-    required this.occurrenceFhirDateTime,
-this.occurrenceFhirDateTimeElement,
-    required this.occurrenceFhirString,
-this.occurrenceFhirStringElement,
+    required this.occurrenceDateTime,
+    this.occurrenceDateTimeElement,
+    required this.occurrenceString,
+    this.occurrenceStringElement,
     this.recorded,
-this.recordedElement,
+    this.recordedElement,
     this.primarySource,
-this.primarySourceElement,
+    this.primarySourceElement,
     this.reportOrigin,
     this.location,
     this.manufacturer,
     this.lotNumber,
-this.lotNumberElement,
+    this.lotNumberElement,
     this.expirationDate,
-this.expirationDateElement,
+    this.expirationDateElement,
     this.site,
     this.route,
     this.doseQuantity,
@@ -85,7 +85,7 @@ this.expirationDateElement,
     this.reasonCode,
     this.reasonReference,
     this.isSubpotent,
-this.isSubpotentElement,
+    this.isSubpotentElement,
     this.subpotentReason,
     this.education,
     this.programEligibility,
@@ -94,8 +94,8 @@ this.isSubpotentElement,
     this.protocolApplied,
   }) : super(resourceType: R4ResourceType.Immunization);
 
-@override
-Immunization clone() => throw UnimplementedError();
+  @override
+  Immunization clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -112,8 +112,8 @@ class ImmunizationPerformer extends BackboneElement {
     required this.actor,
   });
 
-@override
-ImmunizationPerformer clone() => throw UnimplementedError();
+  @override
+  ImmunizationPerformer clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -133,17 +133,17 @@ class ImmunizationEducation extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.documentType,
-this.documentTypeElement,
+    this.documentTypeElement,
     this.reference,
-this.referenceElement,
+    this.referenceElement,
     this.publicationDate,
-this.publicationDateElement,
+    this.publicationDateElement,
     this.presentationDate,
-this.presentationDateElement,
+    this.presentationDateElement,
   });
 
-@override
-ImmunizationEducation clone() => throw UnimplementedError();
+  @override
+  ImmunizationEducation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -160,14 +160,14 @@ class ImmunizationReaction extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.detail,
     this.reported,
-this.reportedElement,
+    this.reportedElement,
   });
 
-@override
-ImmunizationReaction clone() => throw UnimplementedError();
+  @override
+  ImmunizationReaction clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -177,34 +177,33 @@ class ImmunizationProtocolApplied extends BackboneElement {
   final Element? seriesElement;
   final Reference? authority;
   final List<CodeableConcept>? targetDisease;
-  final FhirPositiveInt doseNumberFhirPositiveInt;
-  final Element? doseNumberFhirPositiveIntElement;
-  final FhirString doseNumberFhirString;
-  final Element? doseNumberFhirStringElement;
-  final FhirPositiveInt? seriesDosesFhirPositiveInt;
-  final Element? seriesDosesFhirPositiveIntElement;
-  final FhirString? seriesDosesFhirString;
-  final Element? seriesDosesFhirStringElement;
+  final FhirPositiveInt doseNumberPositiveInt;
+  final Element? doseNumberPositiveIntElement;
+  final FhirString doseNumberString;
+  final Element? doseNumberStringElement;
+  final FhirPositiveInt? seriesDosesPositiveInt;
+  final Element? seriesDosesPositiveIntElement;
+  final FhirString? seriesDosesString;
+  final Element? seriesDosesStringElement;
 
   ImmunizationProtocolApplied({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.series,
-this.seriesElement,
+    this.seriesElement,
     this.authority,
     this.targetDisease,
-    required this.doseNumberFhirPositiveInt,
-this.doseNumberFhirPositiveIntElement,
-    required this.doseNumberFhirString,
-this.doseNumberFhirStringElement,
-    this.seriesDosesFhirPositiveInt,
-this.seriesDosesFhirPositiveIntElement,
-    this.seriesDosesFhirString,
-this.seriesDosesFhirStringElement,
+    required this.doseNumberPositiveInt,
+    this.doseNumberPositiveIntElement,
+    required this.doseNumberString,
+    this.doseNumberStringElement,
+    this.seriesDosesPositiveInt,
+    this.seriesDosesPositiveIntElement,
+    this.seriesDosesString,
+    this.seriesDosesStringElement,
   });
 
-@override
-ImmunizationProtocolApplied clone() => throw UnimplementedError();
+  @override
+  ImmunizationProtocolApplied clone() => throw UnimplementedError();
 }
-

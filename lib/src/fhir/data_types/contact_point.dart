@@ -20,17 +20,16 @@ class ContactPoint extends DataType {
     super.id,
     super.extension_,
     this.system,
-this.systemElement,
+    this.systemElement,
     this.value,
-this.valueElement,
+    this.valueElement,
     this.use,
-this.useElement,
+    this.useElement,
     this.rank,
-this.rankElement,
+    this.rankElement,
     this.period,
   });
 
-@override
-ContactPoint clone() => throw UnimplementedError();
+  @override
+  ContactPoint clone() => throw UnimplementedError();
 }
-

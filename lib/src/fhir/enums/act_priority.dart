@@ -26,49 +26,75 @@ enum ActPriority {
   UD,
   @JsonValue('UR')
   UR,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case A: return 'A';
-        case CR: return 'CR';
-        case EL: return 'EL';
-        case EM: return 'EM';
-        case P: return 'P';
-        case PRN: return 'PRN';
-        case R: return 'R';
-        case RR: return 'RR';
-        case S: return 'S';
-        case T: return 'T';
-        case UD: return 'UD';
-        case UR: return 'UR';
-      }
-      }
-String toJson() => toString();
-  ActPriority fromString(String str) {
-    switch(str) {
-      case 'A': return ActPriority.A;
-      case 'CR': return ActPriority.CR;
-      case 'EL': return ActPriority.EL;
-      case 'EM': return ActPriority.EM;
-      case 'P': return ActPriority.P;
-      case 'PRN': return ActPriority.PRN;
-      case 'R': return ActPriority.R;
-      case 'RR': return ActPriority.RR;
-      case 'S': return ActPriority.S;
-      case 'T': return ActPriority.T;
-      case 'UD': return ActPriority.UD;
-      case 'UR': return ActPriority.UR;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case A:
+        return 'A';
+      case CR:
+        return 'CR';
+      case EL:
+        return 'EL';
+      case EM:
+        return 'EM';
+      case P:
+        return 'P';
+      case PRN:
+        return 'PRN';
+      case R:
+        return 'R';
+      case RR:
+        return 'RR';
+      case S:
+        return 'S';
+      case T:
+        return 'T';
+      case UD:
+        return 'UD';
+      case UR:
+        return 'UR';
     }
-      }
- ActPriority fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  ActPriority fromString(String str) {
+    switch (str) {
+      case 'A':
+        return ActPriority.A;
+      case 'CR':
+        return ActPriority.CR;
+      case 'EL':
+        return ActPriority.EL;
+      case 'EM':
+        return ActPriority.EM;
+      case 'P':
+        return ActPriority.P;
+      case 'PRN':
+        return ActPriority.PRN;
+      case 'R':
+        return ActPriority.R;
+      case 'RR':
+        return ActPriority.RR;
+      case 'S':
+        return ActPriority.S;
+      case 'T':
+        return ActPriority.T;
+      case 'UD':
+        return ActPriority.UD;
+      case 'UR':
+        return ActPriority.UR;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  ActPriority fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

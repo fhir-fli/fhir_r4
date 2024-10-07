@@ -7,8 +7,8 @@ import '../../../fhir_r4.dart';
 @JsonCodable()
 class Annotation extends DataType {
   final Reference? authorReference;
-  final FhirString? authorFhirString;
-  final Element? authorFhirStringElement;
+  final FhirString? authorString;
+  final Element? authorStringElement;
   final FhirDateTime? time;
   final Element? timeElement;
   final FhirMarkdown text;
@@ -18,15 +18,14 @@ class Annotation extends DataType {
     super.id,
     super.extension_,
     this.authorReference,
-    this.authorFhirString,
-this.authorFhirStringElement,
+    this.authorString,
+    this.authorStringElement,
     this.time,
-this.timeElement,
+    this.timeElement,
     required this.text,
-this.textElement,
+    this.textElement,
   });
 
-@override
-Annotation clone() => throw UnimplementedError();
+  @override
+  Annotation clone() => throw UnimplementedError();
 }
-

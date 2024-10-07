@@ -25,55 +25,49 @@ class NutritionOrder extends DomainResource {
   final List<Reference>? allergyIntolerance;
   final List<CodeableConcept>? foodPreferenceModifier;
   final List<CodeableConcept>? excludeFoodModifier;
-  final BackboneElement? oralDiet;
-  final List<BackboneElement>? nutrient;
-  final List<BackboneElement>? texture;
-  final List<BackboneElement>? supplement;
-  final BackboneElement? enteralFormula;
-  final List<BackboneElement>? administration;
+  final NutritionOrderOralDiet? oralDiet;
+  final List<NutritionOrderSupplement>? supplement;
+  final NutritionOrderEnteralFormula? enteralFormula;
   final List<Annotation>? note;
 
   NutritionOrder({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
-this.instantiatesCanonicalElement,
+    this.instantiatesCanonicalElement,
     this.instantiatesUri,
-this.instantiatesUriElement,
+    this.instantiatesUriElement,
     this.instantiates,
-this.instantiatesElement,
+    this.instantiatesElement,
     required this.status,
-this.statusElement,
+    this.statusElement,
     required this.intent,
-this.intentElement,
+    this.intentElement,
     required this.patient,
     this.encounter,
     required this.dateTime,
-this.dateTimeElement,
+    this.dateTimeElement,
     this.orderer,
     this.allergyIntolerance,
     this.foodPreferenceModifier,
     this.excludeFoodModifier,
     this.oralDiet,
-    this.nutrient,
-    this.texture,
     this.supplement,
     this.enteralFormula,
-    this.administration,
     this.note,
   }) : super(resourceType: R4ResourceType.NutritionOrder);
 
-@override
-NutritionOrder clone() => throw UnimplementedError();
+  @override
+  NutritionOrder clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -81,6 +75,8 @@ NutritionOrder clone() => throw UnimplementedError();
 class NutritionOrderOralDiet extends BackboneElement {
   final List<CodeableConcept>? type;
   final List<Timing>? schedule;
+  final List<NutritionOrderNutrient>? nutrient;
+  final List<NutritionOrderTexture>? texture;
   final List<CodeableConcept>? fluidConsistencyType;
   final FhirString? instruction;
   final Element? instructionElement;
@@ -91,13 +87,15 @@ class NutritionOrderOralDiet extends BackboneElement {
     super.modifierExtension,
     this.type,
     this.schedule,
+    this.nutrient,
+    this.texture,
     this.fluidConsistencyType,
     this.instruction,
-this.instructionElement,
+    this.instructionElement,
   });
 
-@override
-NutritionOrderOralDiet clone() => throw UnimplementedError();
+  @override
+  NutritionOrderOralDiet clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -114,8 +112,8 @@ class NutritionOrderNutrient extends BackboneElement {
     this.amount,
   });
 
-@override
-NutritionOrderNutrient clone() => throw UnimplementedError();
+  @override
+  NutritionOrderNutrient clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -132,8 +130,8 @@ class NutritionOrderTexture extends BackboneElement {
     this.foodType,
   });
 
-@override
-NutritionOrderTexture clone() => throw UnimplementedError();
+  @override
+  NutritionOrderTexture clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -153,15 +151,15 @@ class NutritionOrderSupplement extends BackboneElement {
     super.modifierExtension,
     this.type,
     this.productName,
-this.productNameElement,
+    this.productNameElement,
     this.schedule,
     this.quantity,
     this.instruction,
-this.instructionElement,
+    this.instructionElement,
   });
 
-@override
-NutritionOrderSupplement clone() => throw UnimplementedError();
+  @override
+  NutritionOrderSupplement clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -175,6 +173,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
   final Element? additiveProductNameElement;
   final Quantity? caloricDensity;
   final CodeableConcept? routeofAdministration;
+  final List<NutritionOrderAdministration>? administration;
   final Quantity? maxVolumeToDeliver;
 
   NutritionOrderEnteralFormula({
@@ -183,17 +182,18 @@ class NutritionOrderEnteralFormula extends BackboneElement {
     super.modifierExtension,
     this.baseFormulaType,
     this.baseFormulaProductName,
-this.baseFormulaProductNameElement,
+    this.baseFormulaProductNameElement,
     this.additiveType,
     this.additiveProductName,
-this.additiveProductNameElement,
+    this.additiveProductNameElement,
     this.caloricDensity,
     this.routeofAdministration,
+    this.administration,
     this.maxVolumeToDeliver,
   });
 
-@override
-NutritionOrderEnteralFormula clone() => throw UnimplementedError();
+  @override
+  NutritionOrderEnteralFormula clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -215,10 +215,9 @@ class NutritionOrderAdministration extends BackboneElement {
     this.rateQuantity,
     this.rateRatio,
     this.administrationInstruction,
-this.administrationInstructionElement,
+    this.administrationInstructionElement,
   });
 
-@override
-NutritionOrderAdministration clone() => throw UnimplementedError();
+  @override
+  NutritionOrderAdministration clone() => throw UnimplementedError();
 }
-

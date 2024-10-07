@@ -5,37 +5,47 @@ enum Stereochemistry {
   /// Display: constitutional isomer
   @JsonValue('ConstitutionalIsomer')
   ConstitutionalIsomer,
+
   /// Display: stereoisomer
   @JsonValue('Stereoisomer')
   Stereoisomer,
+
   /// Display: enantiomer
   @JsonValue('Enantiomer')
   Enantiomer,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case ConstitutionalIsomer: return 'ConstitutionalIsomer';
-        case Stereoisomer: return 'Stereoisomer';
-        case Enantiomer: return 'Enantiomer';
-      }
-      }
-String toJson() => toString();
-  Stereochemistry fromString(String str) {
-    switch(str) {
-      case 'ConstitutionalIsomer': return Stereochemistry.ConstitutionalIsomer;
-      case 'Stereoisomer': return Stereochemistry.Stereoisomer;
-      case 'Enantiomer': return Stereochemistry.Enantiomer;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case ConstitutionalIsomer:
+        return 'ConstitutionalIsomer';
+      case Stereoisomer:
+        return 'Stereoisomer';
+      case Enantiomer:
+        return 'Enantiomer';
     }
-      }
- Stereochemistry fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  Stereochemistry fromString(String str) {
+    switch (str) {
+      case 'ConstitutionalIsomer':
+        return Stereochemistry.ConstitutionalIsomer;
+      case 'Stereoisomer':
+        return Stereochemistry.Stereoisomer;
+      case 'Enantiomer':
+        return Stereochemistry.Enantiomer;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  Stereochemistry fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

@@ -15,12 +15,11 @@ class Money extends DataType {
     super.id,
     super.extension_,
     this.value,
-this.valueElement,
+    this.valueElement,
     this.currency,
-this.currencyElement,
+    this.currencyElement,
   });
 
-@override
-Money clone() => throw UnimplementedError();
+  @override
+  Money clone() => throw UnimplementedError();
 }
-

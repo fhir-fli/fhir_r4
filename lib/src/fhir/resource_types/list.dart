@@ -21,32 +21,32 @@ class FhirList extends DomainResource {
   final Reference? source;
   final CodeableConcept? orderedBy;
   final List<Annotation>? note;
-  final List<BackboneElement>? entry;
+  final List<ListEntry>? entry;
   final CodeableConcept? emptyReason;
 
   FhirList({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     required this.mode,
-this.modeElement,
+    this.modeElement,
     this.title,
-this.titleElement,
+    this.titleElement,
     this.code,
     this.subject,
     this.encounter,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.source,
     this.orderedBy,
     this.note,
@@ -54,8 +54,8 @@ this.dateElement,
     this.emptyReason,
   }) : super(resourceType: R4ResourceType.FhirList);
 
-@override
-FhirList clone() => throw UnimplementedError();
+  @override
+  FhirList clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -74,13 +74,12 @@ class ListEntry extends BackboneElement {
     super.modifierExtension,
     this.flag,
     this.deleted,
-this.deletedElement,
+    this.deletedElement,
     this.date,
-this.dateElement,
+    this.dateElement,
     required this.item,
   });
 
-@override
-ListEntry clone() => throw UnimplementedError();
+  @override
+  ListEntry clone() => throw UnimplementedError();
 }
-

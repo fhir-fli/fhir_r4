@@ -19,16 +19,15 @@ class QuestionnaireResponse extends DomainResource {
   final Element? authoredElement;
   final Reference? author;
   final Reference? source;
-  final List<BackboneElement>? item;
-  final List<BackboneElement>? answer;
+  final List<QuestionnaireResponseItem>? item;
 
   QuestionnaireResponse({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -37,21 +36,20 @@ super.languageElement,
     this.basedOn,
     this.partOf,
     this.questionnaire,
-this.questionnaireElement,
+    this.questionnaireElement,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.subject,
     this.encounter,
     this.authored,
-this.authoredElement,
+    this.authoredElement,
     this.author,
     this.source,
     this.item,
-    this.answer,
   }) : super(resourceType: R4ResourceType.QuestionnaireResponse);
 
-@override
-QuestionnaireResponse clone() => throw UnimplementedError();
+  @override
+  QuestionnaireResponse clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -63,70 +61,72 @@ class QuestionnaireResponseItem extends BackboneElement {
   final Element? definitionElement;
   final FhirString? text;
   final Element? textElement;
-  final List<dynamic>? item;
+  final List<QuestionnaireResponseAnswer>? answer;
+  final List<QuestionnaireResponseItem>? item;
 
   QuestionnaireResponseItem({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.linkId,
-this.linkIdElement,
+    this.linkIdElement,
     this.definition,
-this.definitionElement,
+    this.definitionElement,
     this.text,
-this.textElement,
+    this.textElement,
+    this.answer,
     this.item,
   });
 
-@override
-QuestionnaireResponseItem clone() => throw UnimplementedError();
+  @override
+  QuestionnaireResponseItem clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
 class QuestionnaireResponseAnswer extends BackboneElement {
-  final FhirBoolean? valueFhirBoolean;
-  final Element? valueFhirBooleanElement;
-  final FhirDecimal? valueFhirDecimal;
-  final Element? valueFhirDecimalElement;
-  final FhirInteger? valueFhirInteger;
-  final Element? valueFhirIntegerElement;
-  final FhirDate? valueFhirDate;
-  final Element? valueFhirDateElement;
-  final FhirDateTime? valueFhirDateTime;
-  final Element? valueFhirDateTimeElement;
-  final FhirTime? valueFhirTime;
-  final Element? valueFhirTimeElement;
-  final FhirString? valueFhirString;
-  final Element? valueFhirStringElement;
-  final FhirUri? valueFhirUri;
-  final Element? valueFhirUriElement;
+  final FhirBoolean? valueBoolean;
+  final Element? valueBooleanElement;
+  final FhirDecimal? valueDecimal;
+  final Element? valueDecimalElement;
+  final FhirInteger? valueInteger;
+  final Element? valueIntegerElement;
+  final FhirDate? valueDate;
+  final Element? valueDateElement;
+  final FhirDateTime? valueDateTime;
+  final Element? valueDateTimeElement;
+  final FhirTime? valueTime;
+  final Element? valueTimeElement;
+  final FhirString? valueString;
+  final Element? valueStringElement;
+  final FhirUri? valueUri;
+  final Element? valueUriElement;
   final Attachment? valueAttachment;
   final Coding? valueCoding;
   final Quantity? valueQuantity;
   final Reference? valueReference;
-  final List<dynamic>? item;
+  final List<QuestionnaireResponseItem>? item;
 
   QuestionnaireResponseAnswer({
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.valueFhirBoolean,
-this.valueFhirBooleanElement,
-    this.valueFhirDecimal,
-this.valueFhirDecimalElement,
-    this.valueFhirInteger,
-this.valueFhirIntegerElement,
-    this.valueFhirDate,
-this.valueFhirDateElement,
-    this.valueFhirDateTime,
-this.valueFhirDateTimeElement,
-    this.valueFhirTime,
-this.valueFhirTimeElement,
-    this.valueFhirString,
-this.valueFhirStringElement,
-    this.valueFhirUri,
-this.valueFhirUriElement,
+    this.valueBoolean,
+    this.valueBooleanElement,
+    this.valueDecimal,
+    this.valueDecimalElement,
+    this.valueInteger,
+    this.valueIntegerElement,
+    this.valueDate,
+    this.valueDateElement,
+    this.valueDateTime,
+    this.valueDateTimeElement,
+    this.valueTime,
+    this.valueTimeElement,
+    this.valueString,
+    this.valueStringElement,
+    this.valueUri,
+    this.valueUriElement,
     this.valueAttachment,
     this.valueCoding,
     this.valueQuantity,
@@ -134,7 +134,6 @@ this.valueFhirUriElement,
     this.item,
   });
 
-@override
-QuestionnaireResponseAnswer clone() => throw UnimplementedError();
+  @override
+  QuestionnaireResponseAnswer clone() => throw UnimplementedError();
 }
-

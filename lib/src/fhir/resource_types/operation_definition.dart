@@ -51,75 +51,71 @@ class OperationDefinition extends DomainResource {
   final Element? inputProfileElement;
   final FhirCanonical? outputProfile;
   final Element? outputProfileElement;
-  final List<BackboneElement>? parameter;
-  final BackboneElement? binding;
-  final List<BackboneElement>? referencedFrom;
-  final List<BackboneElement>? overload;
+  final List<OperationDefinitionParameter>? parameter;
+  final List<OperationDefinitionOverload>? overload;
 
   OperationDefinition({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-this.urlElement,
+    this.urlElement,
     this.version,
-this.versionElement,
+    this.versionElement,
     required this.name,
-this.nameElement,
+    this.nameElement,
     this.title,
-this.titleElement,
+    this.titleElement,
     required this.status,
-this.statusElement,
+    this.statusElement,
     required this.kind,
-this.kindElement,
+    this.kindElement,
     this.experimental,
-this.experimentalElement,
+    this.experimentalElement,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.publisher,
-this.publisherElement,
+    this.publisherElement,
     this.contact,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-this.purposeElement,
+    this.purposeElement,
     this.affectsState,
-this.affectsStateElement,
+    this.affectsStateElement,
     required this.code,
-this.codeElement,
+    this.codeElement,
     this.comment,
-this.commentElement,
+    this.commentElement,
     this.base,
-this.baseElement,
+    this.baseElement,
     this.resource,
-this.resourceElement,
+    this.resourceElement,
     required this.system,
-this.systemElement,
+    this.systemElement,
     required this.type,
-this.typeElement,
+    this.typeElement,
     required this.instance,
-this.instanceElement,
+    this.instanceElement,
     this.inputProfile,
-this.inputProfileElement,
+    this.inputProfileElement,
     this.outputProfile,
-this.outputProfileElement,
+    this.outputProfileElement,
     this.parameter,
-    this.binding,
-    this.referencedFrom,
     this.overload,
   }) : super(resourceType: R4ResourceType.OperationDefinition);
 
-@override
-OperationDefinition clone() => throw UnimplementedError();
+  @override
+  OperationDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -141,33 +137,37 @@ class OperationDefinitionParameter extends BackboneElement {
   final List<Element>? targetProfileElement;
   final FhirCode? searchType;
   final Element? searchTypeElement;
-  final List<dynamic>? part_;
+  final OperationDefinitionBinding? binding;
+  final List<OperationDefinitionReferencedFrom>? referencedFrom;
+  final List<OperationDefinitionParameter>? part_;
 
   OperationDefinitionParameter({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.name,
-this.nameElement,
+    this.nameElement,
     required this.use,
-this.useElement,
+    this.useElement,
     required this.min,
-this.minElement,
+    this.minElement,
     required this.max,
-this.maxElement,
+    this.maxElement,
     this.documentation,
-this.documentationElement,
+    this.documentationElement,
     this.type,
-this.typeElement,
+    this.typeElement,
     this.targetProfile,
-this.targetProfileElement,
+    this.targetProfileElement,
     this.searchType,
-this.searchTypeElement,
+    this.searchTypeElement,
+    this.binding,
+    this.referencedFrom,
     this.part_,
   });
 
-@override
-OperationDefinitionParameter clone() => throw UnimplementedError();
+  @override
+  OperationDefinitionParameter clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -183,13 +183,13 @@ class OperationDefinitionBinding extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.strength,
-this.strengthElement,
+    this.strengthElement,
     required this.valueSet,
-this.valueSetElement,
+    this.valueSetElement,
   });
 
-@override
-OperationDefinitionBinding clone() => throw UnimplementedError();
+  @override
+  OperationDefinitionBinding clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -205,13 +205,13 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.source,
-this.sourceElement,
+    this.sourceElement,
     this.sourceId,
-this.sourceIdElement,
+    this.sourceIdElement,
   });
 
-@override
-OperationDefinitionReferencedFrom clone() => throw UnimplementedError();
+  @override
+  OperationDefinitionReferencedFrom clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -227,12 +227,11 @@ class OperationDefinitionOverload extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.parameterName,
-this.parameterNameElement,
+    this.parameterNameElement,
     this.comment,
-this.commentElement,
+    this.commentElement,
   });
 
-@override
-OperationDefinitionOverload clone() => throw UnimplementedError();
+  @override
+  OperationDefinitionOverload clone() => throw UnimplementedError();
 }
-

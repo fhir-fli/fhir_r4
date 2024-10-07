@@ -6,33 +6,40 @@ enum ImmunizationProgramEligibility {
   /// Definition: The patient is not eligible for the funding program.
   @JsonValue('ineligible')
   ineligible,
+
   /// Display: Uninsured
   /// Definition: The patient is eligible for the funding program because they are uninsured.
   @JsonValue('uninsured')
   uninsured,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case ineligible: return 'ineligible';
-        case uninsured: return 'uninsured';
-      }
-      }
-String toJson() => toString();
-  ImmunizationProgramEligibility fromString(String str) {
-    switch(str) {
-      case 'ineligible': return ImmunizationProgramEligibility.ineligible;
-      case 'uninsured': return ImmunizationProgramEligibility.uninsured;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case ineligible:
+        return 'ineligible';
+      case uninsured:
+        return 'uninsured';
     }
-      }
- ImmunizationProgramEligibility fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  ImmunizationProgramEligibility fromString(String str) {
+    switch (str) {
+      case 'ineligible':
+        return ImmunizationProgramEligibility.ineligible;
+      case 'uninsured':
+        return ImmunizationProgramEligibility.uninsured;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  ImmunizationProgramEligibility fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

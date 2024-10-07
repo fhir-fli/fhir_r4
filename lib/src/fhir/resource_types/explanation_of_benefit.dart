@@ -23,10 +23,10 @@ class ExplanationOfBenefit extends DomainResource {
   final CodeableConcept? priority;
   final CodeableConcept? fundsReserveRequested;
   final CodeableConcept? fundsReserve;
-  final List<BackboneElement>? related;
+  final List<ExplanationOfBenefitRelated>? related;
   final Reference? prescription;
   final Reference? originalPrescription;
-  final BackboneElement? payee;
+  final ExplanationOfBenefitPayee? payee;
   final Reference? referral;
   final Reference? facility;
   final Reference? claim;
@@ -38,53 +38,47 @@ class ExplanationOfBenefit extends DomainResource {
   final List<FhirString>? preAuthRef;
   final List<Element>? preAuthRefElement;
   final List<Period>? preAuthRefPeriod;
-  final List<BackboneElement>? careTeam;
-  final List<BackboneElement>? supportingInfo;
-  final List<BackboneElement>? diagnosis;
-  final List<BackboneElement>? procedure;
+  final List<ExplanationOfBenefitCareTeam>? careTeam;
+  final List<ExplanationOfBenefitSupportingInfo>? supportingInfo;
+  final List<ExplanationOfBenefitDiagnosis>? diagnosis;
+  final List<ExplanationOfBenefitProcedure>? procedure;
   final FhirPositiveInt? precedence;
   final Element? precedenceElement;
-  final List<BackboneElement> insurance;
-  final BackboneElement? accident;
-  final List<BackboneElement>? item;
-  final List<BackboneElement>? adjudication;
-  final List<BackboneElement>? detail;
-  final List<BackboneElement>? subDetail;
-  final List<BackboneElement>? addItem;
-  final List<BackboneElement>? detail;
-  final List<BackboneElement>? subDetail;
-  final List<dynamic>? adjudication;
-  final List<BackboneElement>? total;
-  final BackboneElement? payment;
+  final List<ExplanationOfBenefitInsurance> insurance;
+  final ExplanationOfBenefitAccident? accident;
+  final List<ExplanationOfBenefitItem>? item;
+  final List<ExplanationOfBenefitAddItem>? addItem;
+  final List<ExplanationOfBenefitAdjudication>? adjudication;
+  final List<ExplanationOfBenefitTotal>? total;
+  final ExplanationOfBenefitPayment? payment;
   final CodeableConcept? formCode;
   final Attachment? form;
-  final List<BackboneElement>? processNote;
+  final List<ExplanationOfBenefitProcessNote>? processNote;
   final Period? benefitPeriod;
-  final List<BackboneElement>? benefitBalance;
-  final List<BackboneElement>? financial;
+  final List<ExplanationOfBenefitBenefitBalance>? benefitBalance;
 
   ExplanationOfBenefit({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     required this.type,
     this.subType,
     required this.use,
-this.useElement,
+    this.useElement,
     required this.patient,
     this.billablePeriod,
     required this.created,
-this.createdElement,
+    this.createdElement,
     this.enterer,
     required this.insurer,
     required this.provider,
@@ -100,27 +94,22 @@ this.createdElement,
     this.claim,
     this.claimResponse,
     required this.outcome,
-this.outcomeElement,
+    this.outcomeElement,
     this.disposition,
-this.dispositionElement,
+    this.dispositionElement,
     this.preAuthRef,
-this.preAuthRefElement,
+    this.preAuthRefElement,
     this.preAuthRefPeriod,
     this.careTeam,
     this.supportingInfo,
     this.diagnosis,
     this.procedure,
     this.precedence,
-this.precedenceElement,
+    this.precedenceElement,
     required this.insurance,
     this.accident,
     this.item,
-    this.adjudication,
-    this.detail,
-    this.subDetail,
     this.addItem,
-    this.detail,
-    this.subDetail,
     this.adjudication,
     this.total,
     this.payment,
@@ -129,11 +118,10 @@ this.precedenceElement,
     this.processNote,
     this.benefitPeriod,
     this.benefitBalance,
-    this.financial,
   }) : super(resourceType: R4ResourceType.ExplanationOfBenefit);
 
-@override
-ExplanationOfBenefit clone() => throw UnimplementedError();
+  @override
+  ExplanationOfBenefit clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -152,8 +140,8 @@ class ExplanationOfBenefitRelated extends BackboneElement {
     this.reference,
   });
 
-@override
-ExplanationOfBenefitRelated clone() => throw UnimplementedError();
+  @override
+  ExplanationOfBenefitRelated clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -170,8 +158,8 @@ class ExplanationOfBenefitPayee extends BackboneElement {
     this.party,
   });
 
-@override
-ExplanationOfBenefitPayee clone() => throw UnimplementedError();
+  @override
+  ExplanationOfBenefitPayee clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -190,16 +178,16 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.sequence,
-this.sequenceElement,
+    this.sequenceElement,
     required this.provider,
     this.responsible,
-this.responsibleElement,
+    this.responsibleElement,
     this.role,
     this.qualification,
   });
 
-@override
-ExplanationOfBenefitCareTeam clone() => throw UnimplementedError();
+  @override
+  ExplanationOfBenefitCareTeam clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -209,13 +197,13 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
   final Element? sequenceElement;
   final CodeableConcept category;
   final CodeableConcept? code;
-  final FhirDate? timingFhirDate;
-  final Element? timingFhirDateElement;
+  final FhirDate? timingDate;
+  final Element? timingDateElement;
   final Period? timingPeriod;
-  final FhirBoolean? valueFhirBoolean;
-  final Element? valueFhirBooleanElement;
-  final FhirString? valueFhirString;
-  final Element? valueFhirStringElement;
+  final FhirBoolean? valueBoolean;
+  final Element? valueBooleanElement;
+  final FhirString? valueString;
+  final Element? valueStringElement;
   final Quantity? valueQuantity;
   final Attachment? valueAttachment;
   final Reference? valueReference;
@@ -226,24 +214,24 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.sequence,
-this.sequenceElement,
+    this.sequenceElement,
     required this.category,
     this.code,
-    this.timingFhirDate,
-this.timingFhirDateElement,
+    this.timingDate,
+    this.timingDateElement,
     this.timingPeriod,
-    this.valueFhirBoolean,
-this.valueFhirBooleanElement,
-    this.valueFhirString,
-this.valueFhirStringElement,
+    this.valueBoolean,
+    this.valueBooleanElement,
+    this.valueString,
+    this.valueStringElement,
     this.valueQuantity,
     this.valueAttachment,
     this.valueReference,
     this.reason,
   });
 
-@override
-ExplanationOfBenefitSupportingInfo clone() => throw UnimplementedError();
+  @override
+  ExplanationOfBenefitSupportingInfo clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -262,7 +250,7 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.sequence,
-this.sequenceElement,
+    this.sequenceElement,
     required this.diagnosisCodeableConcept,
     required this.diagnosisReference,
     this.type,
@@ -270,8 +258,8 @@ this.sequenceElement,
     this.packageCode,
   });
 
-@override
-ExplanationOfBenefitDiagnosis clone() => throw UnimplementedError();
+  @override
+  ExplanationOfBenefitDiagnosis clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -291,17 +279,17 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.sequence,
-this.sequenceElement,
+    this.sequenceElement,
     this.type,
     this.date,
-this.dateElement,
+    this.dateElement,
     required this.procedureCodeableConcept,
     required this.procedureReference,
     this.udi,
   });
 
-@override
-ExplanationOfBenefitProcedure clone() => throw UnimplementedError();
+  @override
+  ExplanationOfBenefitProcedure clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -318,14 +306,14 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.focal,
-this.focalElement,
+    this.focalElement,
     required this.coverage,
     this.preAuthRef,
-this.preAuthRefElement,
+    this.preAuthRefElement,
   });
 
-@override
-ExplanationOfBenefitInsurance clone() => throw UnimplementedError();
+  @override
+  ExplanationOfBenefitInsurance clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -342,14 +330,14 @@ class ExplanationOfBenefitAccident extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.type,
     this.locationAddress,
     this.locationReference,
   });
 
-@override
-ExplanationOfBenefitAccident clone() => throw UnimplementedError();
+  @override
+  ExplanationOfBenefitAccident clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -370,8 +358,8 @@ class ExplanationOfBenefitItem extends BackboneElement {
   final CodeableConcept productOrService;
   final List<CodeableConcept>? modifier;
   final List<CodeableConcept>? programCode;
-  final FhirDate? servicedFhirDate;
-  final Element? servicedFhirDateElement;
+  final FhirDate? servicedDate;
+  final Element? servicedDateElement;
   final Period? servicedPeriod;
   final CodeableConcept? locationCodeableConcept;
   final Address? locationAddress;
@@ -387,28 +375,30 @@ class ExplanationOfBenefitItem extends BackboneElement {
   final List<Reference>? encounter;
   final List<FhirPositiveInt>? noteNumber;
   final List<Element>? noteNumberElement;
+  final List<ExplanationOfBenefitAdjudication>? adjudication;
+  final List<ExplanationOfBenefitDetail>? detail;
 
   ExplanationOfBenefitItem({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.sequence,
-this.sequenceElement,
+    this.sequenceElement,
     this.careTeamSequence,
-this.careTeamSequenceElement,
+    this.careTeamSequenceElement,
     this.diagnosisSequence,
-this.diagnosisSequenceElement,
+    this.diagnosisSequenceElement,
     this.procedureSequence,
-this.procedureSequenceElement,
+    this.procedureSequenceElement,
     this.informationSequence,
-this.informationSequenceElement,
+    this.informationSequenceElement,
     this.revenue,
     this.category,
     required this.productOrService,
     this.modifier,
     this.programCode,
-    this.servicedFhirDate,
-this.servicedFhirDateElement,
+    this.servicedDate,
+    this.servicedDateElement,
     this.servicedPeriod,
     this.locationCodeableConcept,
     this.locationAddress,
@@ -416,18 +406,20 @@ this.servicedFhirDateElement,
     this.quantity,
     this.unitPrice,
     this.factor,
-this.factorElement,
+    this.factorElement,
     this.net,
     this.udi,
     this.bodySite,
     this.subSite,
     this.encounter,
     this.noteNumber,
-this.noteNumberElement,
+    this.noteNumberElement,
+    this.adjudication,
+    this.detail,
   });
 
-@override
-ExplanationOfBenefitItem clone() => throw UnimplementedError();
+  @override
+  ExplanationOfBenefitItem clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -447,11 +439,11 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
     this.reason,
     this.amount,
     this.value,
-this.valueElement,
+    this.valueElement,
   });
 
-@override
-ExplanationOfBenefitAdjudication clone() => throw UnimplementedError();
+  @override
+  ExplanationOfBenefitAdjudication clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -472,14 +464,15 @@ class ExplanationOfBenefitDetail extends BackboneElement {
   final List<Reference>? udi;
   final List<FhirPositiveInt>? noteNumber;
   final List<Element>? noteNumberElement;
-  final List<dynamic>? adjudication;
+  final List<ExplanationOfBenefitAdjudication>? adjudication;
+  final List<ExplanationOfBenefitSubDetail>? subDetail;
 
   ExplanationOfBenefitDetail({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.sequence,
-this.sequenceElement,
+    this.sequenceElement,
     this.revenue,
     this.category,
     required this.productOrService,
@@ -488,16 +481,17 @@ this.sequenceElement,
     this.quantity,
     this.unitPrice,
     this.factor,
-this.factorElement,
+    this.factorElement,
     this.net,
     this.udi,
     this.noteNumber,
-this.noteNumberElement,
+    this.noteNumberElement,
     this.adjudication,
+    this.subDetail,
   });
 
-@override
-ExplanationOfBenefitDetail clone() => throw UnimplementedError();
+  @override
+  ExplanationOfBenefitDetail clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -518,14 +512,14 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
   final List<Reference>? udi;
   final List<FhirPositiveInt>? noteNumber;
   final List<Element>? noteNumberElement;
-  final List<dynamic>? adjudication;
+  final List<ExplanationOfBenefitAdjudication>? adjudication;
 
   ExplanationOfBenefitSubDetail({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.sequence,
-this.sequenceElement,
+    this.sequenceElement,
     this.revenue,
     this.category,
     required this.productOrService,
@@ -534,16 +528,16 @@ this.sequenceElement,
     this.quantity,
     this.unitPrice,
     this.factor,
-this.factorElement,
+    this.factorElement,
     this.net,
     this.udi,
     this.noteNumber,
-this.noteNumberElement,
+    this.noteNumberElement,
     this.adjudication,
   });
 
-@override
-ExplanationOfBenefitSubDetail clone() => throw UnimplementedError();
+  @override
+  ExplanationOfBenefitSubDetail clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -559,8 +553,8 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
   final CodeableConcept productOrService;
   final List<CodeableConcept>? modifier;
   final List<CodeableConcept>? programCode;
-  final FhirDate? servicedFhirDate;
-  final Element? servicedFhirDateElement;
+  final FhirDate? servicedDate;
+  final Element? servicedDateElement;
   final Period? servicedPeriod;
   final CodeableConcept? locationCodeableConcept;
   final Address? locationAddress;
@@ -574,24 +568,25 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
   final List<CodeableConcept>? subSite;
   final List<FhirPositiveInt>? noteNumber;
   final List<Element>? noteNumberElement;
-  final List<dynamic>? adjudication;
+  final List<ExplanationOfBenefitAdjudication>? adjudication;
+  final List<ExplanationOfBenefitDetail>? detail;
 
   ExplanationOfBenefitAddItem({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.itemSequence,
-this.itemSequenceElement,
+    this.itemSequenceElement,
     this.detailSequence,
-this.detailSequenceElement,
+    this.detailSequenceElement,
     this.subDetailSequence,
-this.subDetailSequenceElement,
+    this.subDetailSequenceElement,
     this.provider,
     required this.productOrService,
     this.modifier,
     this.programCode,
-    this.servicedFhirDate,
-this.servicedFhirDateElement,
+    this.servicedDate,
+    this.servicedDateElement,
     this.servicedPeriod,
     this.locationCodeableConcept,
     this.locationAddress,
@@ -599,17 +594,18 @@ this.servicedFhirDateElement,
     this.quantity,
     this.unitPrice,
     this.factor,
-this.factorElement,
+    this.factorElement,
     this.net,
     this.bodySite,
     this.subSite,
     this.noteNumber,
-this.noteNumberElement,
+    this.noteNumberElement,
     this.adjudication,
+    this.detail,
   });
 
-@override
-ExplanationOfBenefitAddItem clone() => throw UnimplementedError();
+  @override
+  ExplanationOfBenefitAddItem clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -624,7 +620,8 @@ class ExplanationOfBenefitDetail extends BackboneElement {
   final Money? net;
   final List<FhirPositiveInt>? noteNumber;
   final List<Element>? noteNumberElement;
-  final List<dynamic>? adjudication;
+  final List<ExplanationOfBenefitAdjudication>? adjudication;
+  final List<ExplanationOfBenefitSubDetail>? subDetail;
 
   ExplanationOfBenefitDetail({
     super.id,
@@ -635,15 +632,16 @@ class ExplanationOfBenefitDetail extends BackboneElement {
     this.quantity,
     this.unitPrice,
     this.factor,
-this.factorElement,
+    this.factorElement,
     this.net,
     this.noteNumber,
-this.noteNumberElement,
+    this.noteNumberElement,
     this.adjudication,
+    this.subDetail,
   });
 
-@override
-ExplanationOfBenefitDetail clone() => throw UnimplementedError();
+  @override
+  ExplanationOfBenefitDetail clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -658,7 +656,7 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
   final Money? net;
   final List<FhirPositiveInt>? noteNumber;
   final List<Element>? noteNumberElement;
-  final List<dynamic>? adjudication;
+  final List<ExplanationOfBenefitAdjudication>? adjudication;
 
   ExplanationOfBenefitSubDetail({
     super.id,
@@ -669,15 +667,15 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
     this.quantity,
     this.unitPrice,
     this.factor,
-this.factorElement,
+    this.factorElement,
     this.net,
     this.noteNumber,
-this.noteNumberElement,
+    this.noteNumberElement,
     this.adjudication,
   });
 
-@override
-ExplanationOfBenefitSubDetail clone() => throw UnimplementedError();
+  @override
+  ExplanationOfBenefitSubDetail clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -694,8 +692,8 @@ class ExplanationOfBenefitTotal extends BackboneElement {
     required this.amount,
   });
 
-@override
-ExplanationOfBenefitTotal clone() => throw UnimplementedError();
+  @override
+  ExplanationOfBenefitTotal clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -717,13 +715,13 @@ class ExplanationOfBenefitPayment extends BackboneElement {
     this.adjustment,
     this.adjustmentReason,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.amount,
     this.identifier,
   });
 
-@override
-ExplanationOfBenefitPayment clone() => throw UnimplementedError();
+  @override
+  ExplanationOfBenefitPayment clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -742,16 +740,16 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.number,
-this.numberElement,
+    this.numberElement,
     this.type,
-this.typeElement,
+    this.typeElement,
     this.text,
-this.textElement,
+    this.textElement,
     this.language,
   });
 
-@override
-ExplanationOfBenefitProcessNote clone() => throw UnimplementedError();
+  @override
+  ExplanationOfBenefitProcessNote clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -767,6 +765,7 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
   final CodeableConcept? network;
   final CodeableConcept? unit;
   final CodeableConcept? term;
+  final List<ExplanationOfBenefitFinancial>? financial;
 
   ExplanationOfBenefitBenefitBalance({
     super.id,
@@ -774,31 +773,32 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
     super.modifierExtension,
     required this.category,
     this.excluded,
-this.excludedElement,
+    this.excludedElement,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.network,
     this.unit,
     this.term,
+    this.financial,
   });
 
-@override
-ExplanationOfBenefitBenefitBalance clone() => throw UnimplementedError();
+  @override
+  ExplanationOfBenefitBenefitBalance clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
 class ExplanationOfBenefitFinancial extends BackboneElement {
   final CodeableConcept type;
-  final FhirUnsignedInt? allowedFhirUnsignedInt;
-  final Element? allowedFhirUnsignedIntElement;
-  final FhirString? allowedFhirString;
-  final Element? allowedFhirStringElement;
+  final FhirUnsignedInt? allowedUnsignedInt;
+  final Element? allowedUnsignedIntElement;
+  final FhirString? allowedString;
+  final Element? allowedStringElement;
   final Money? allowedMoney;
-  final FhirUnsignedInt? usedFhirUnsignedInt;
-  final Element? usedFhirUnsignedIntElement;
+  final FhirUnsignedInt? usedUnsignedInt;
+  final Element? usedUnsignedIntElement;
   final Money? usedMoney;
 
   ExplanationOfBenefitFinancial({
@@ -806,17 +806,16 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    this.allowedFhirUnsignedInt,
-this.allowedFhirUnsignedIntElement,
-    this.allowedFhirString,
-this.allowedFhirStringElement,
+    this.allowedUnsignedInt,
+    this.allowedUnsignedIntElement,
+    this.allowedString,
+    this.allowedStringElement,
     this.allowedMoney,
-    this.usedFhirUnsignedInt,
-this.usedFhirUnsignedIntElement,
+    this.usedUnsignedInt,
+    this.usedUnsignedIntElement,
     this.usedMoney,
   });
 
-@override
-ExplanationOfBenefitFinancial clone() => throw UnimplementedError();
+  @override
+  ExplanationOfBenefitFinancial clone() => throw UnimplementedError();
 }
-

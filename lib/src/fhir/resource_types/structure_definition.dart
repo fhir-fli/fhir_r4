@@ -35,79 +35,79 @@ class StructureDefinition extends DomainResource {
   final List<Coding>? keyword;
   final FhirCode? fhirVersion;
   final Element? fhirVersionElement;
-  final List<BackboneElement>? mapping;
+  final List<StructureDefinitionMapping>? mapping;
   final FhirCode kind;
   final Element? kindElement;
   final FhirBoolean abstract_;
   final Element? abstractElement;
-  final List<BackboneElement>? context;
+  final List<StructureDefinitionContext>? context;
   final FhirUri type;
   final Element? typeElement;
   final FhirCanonical? baseDefinition;
   final Element? baseDefinitionElement;
   final FhirCode? derivation;
   final Element? derivationElement;
-  final BackboneElement? snapshot;
-  final BackboneElement? differential;
+  final StructureDefinitionSnapshot? snapshot;
+  final StructureDefinitionDifferential? differential;
 
   StructureDefinition({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     required this.url,
-this.urlElement,
+    this.urlElement,
     this.identifier,
     this.version,
-this.versionElement,
+    this.versionElement,
     required this.name,
-this.nameElement,
+    this.nameElement,
     this.title,
-this.titleElement,
+    this.titleElement,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.experimental,
-this.experimentalElement,
+    this.experimentalElement,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.publisher,
-this.publisherElement,
+    this.publisherElement,
     this.contact,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-this.purposeElement,
+    this.purposeElement,
     this.copyright,
-this.copyrightElement,
+    this.copyrightElement,
     this.keyword,
     this.fhirVersion,
-this.fhirVersionElement,
+    this.fhirVersionElement,
     this.mapping,
     required this.kind,
-this.kindElement,
+    this.kindElement,
     required this.abstract_,
-this.abstractElement,
+    this.abstractElement,
     this.context,
     required this.type,
-this.typeElement,
+    this.typeElement,
     this.baseDefinition,
-this.baseDefinitionElement,
+    this.baseDefinitionElement,
     this.derivation,
-this.derivationElement,
+    this.derivationElement,
     this.snapshot,
     this.differential,
   }) : super(resourceType: R4ResourceType.StructureDefinition);
 
-@override
-StructureDefinition clone() => throw UnimplementedError();
+  @override
+  StructureDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -127,17 +127,17 @@ class StructureDefinitionMapping extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.identity,
-this.identityElement,
+    this.identityElement,
     this.uri,
-this.uriElement,
+    this.uriElement,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.comment,
-this.commentElement,
+    this.commentElement,
   });
 
-@override
-StructureDefinitionMapping clone() => throw UnimplementedError();
+  @override
+  StructureDefinitionMapping clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -155,15 +155,15 @@ class StructureDefinitionContext extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-this.typeElement,
+    this.typeElement,
     required this.expression,
-this.expressionElement,
+    this.expressionElement,
     this.contextInvariant,
-this.contextInvariantElement,
+    this.contextInvariantElement,
   });
 
-@override
-StructureDefinitionContext clone() => throw UnimplementedError();
+  @override
+  StructureDefinitionContext clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -178,8 +178,8 @@ class StructureDefinitionSnapshot extends BackboneElement {
     required this.element,
   });
 
-@override
-StructureDefinitionSnapshot clone() => throw UnimplementedError();
+  @override
+  StructureDefinitionSnapshot clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -194,7 +194,6 @@ class StructureDefinitionDifferential extends BackboneElement {
     required this.element,
   });
 
-@override
-StructureDefinitionDifferential clone() => throw UnimplementedError();
+  @override
+  StructureDefinitionDifferential clone() => throw UnimplementedError();
 }
-

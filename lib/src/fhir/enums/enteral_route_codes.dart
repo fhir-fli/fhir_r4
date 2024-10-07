@@ -20,43 +20,63 @@ enum EnteralRouteCodes {
   JJTINSTL,
   @JsonValue('OJJ')
   OJJ,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case PO: return 'PO';
-        case EFT: return 'EFT';
-        case ENTINSTL: return 'ENTINSTL';
-        case GT: return 'GT';
-        case NGT: return 'NGT';
-        case OGT: return 'OGT';
-        case GJT: return 'GJT';
-        case JJTINSTL: return 'JJTINSTL';
-        case OJJ: return 'OJJ';
-      }
-      }
-String toJson() => toString();
-  EnteralRouteCodes fromString(String str) {
-    switch(str) {
-      case 'PO': return EnteralRouteCodes.PO;
-      case 'EFT': return EnteralRouteCodes.EFT;
-      case 'ENTINSTL': return EnteralRouteCodes.ENTINSTL;
-      case 'GT': return EnteralRouteCodes.GT;
-      case 'NGT': return EnteralRouteCodes.NGT;
-      case 'OGT': return EnteralRouteCodes.OGT;
-      case 'GJT': return EnteralRouteCodes.GJT;
-      case 'JJTINSTL': return EnteralRouteCodes.JJTINSTL;
-      case 'OJJ': return EnteralRouteCodes.OJJ;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case PO:
+        return 'PO';
+      case EFT:
+        return 'EFT';
+      case ENTINSTL:
+        return 'ENTINSTL';
+      case GT:
+        return 'GT';
+      case NGT:
+        return 'NGT';
+      case OGT:
+        return 'OGT';
+      case GJT:
+        return 'GJT';
+      case JJTINSTL:
+        return 'JJTINSTL';
+      case OJJ:
+        return 'OJJ';
     }
-      }
- EnteralRouteCodes fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  EnteralRouteCodes fromString(String str) {
+    switch (str) {
+      case 'PO':
+        return EnteralRouteCodes.PO;
+      case 'EFT':
+        return EnteralRouteCodes.EFT;
+      case 'ENTINSTL':
+        return EnteralRouteCodes.ENTINSTL;
+      case 'GT':
+        return EnteralRouteCodes.GT;
+      case 'NGT':
+        return EnteralRouteCodes.NGT;
+      case 'OGT':
+        return EnteralRouteCodes.OGT;
+      case 'GJT':
+        return EnteralRouteCodes.GJT;
+      case 'JJTINSTL':
+        return EnteralRouteCodes.JJTINSTL;
+      case 'OJJ':
+        return EnteralRouteCodes.OJJ;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  EnteralRouteCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

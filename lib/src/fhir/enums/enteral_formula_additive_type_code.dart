@@ -6,51 +6,67 @@ enum EnteralFormulaAdditiveTypeCode {
   /// Definition: Modular lipid enteral formula component
   @JsonValue('lipid')
   lipid,
+
   /// Display: Protein
   /// Definition: Modular protein enteral formula component
   @JsonValue('protein')
   protein,
+
   /// Display: Carbohydrate
   /// Definition: Modular carbohydrate enteral formula component
   @JsonValue('carbohydrate')
   carbohydrate,
+
   /// Display: Fiber
   /// Definition: Modular fiber enteral formula component
   @JsonValue('fiber')
   fiber,
+
   /// Display: Water
   /// Definition: Added water
   @JsonValue('water')
   water,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case lipid: return 'lipid';
-        case protein: return 'protein';
-        case carbohydrate: return 'carbohydrate';
-        case fiber: return 'fiber';
-        case water: return 'water';
-      }
-      }
-String toJson() => toString();
-  EnteralFormulaAdditiveTypeCode fromString(String str) {
-    switch(str) {
-      case 'lipid': return EnteralFormulaAdditiveTypeCode.lipid;
-      case 'protein': return EnteralFormulaAdditiveTypeCode.protein;
-      case 'carbohydrate': return EnteralFormulaAdditiveTypeCode.carbohydrate;
-      case 'fiber': return EnteralFormulaAdditiveTypeCode.fiber;
-      case 'water': return EnteralFormulaAdditiveTypeCode.water;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case lipid:
+        return 'lipid';
+      case protein:
+        return 'protein';
+      case carbohydrate:
+        return 'carbohydrate';
+      case fiber:
+        return 'fiber';
+      case water:
+        return 'water';
     }
-      }
- EnteralFormulaAdditiveTypeCode fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  EnteralFormulaAdditiveTypeCode fromString(String str) {
+    switch (str) {
+      case 'lipid':
+        return EnteralFormulaAdditiveTypeCode.lipid;
+      case 'protein':
+        return EnteralFormulaAdditiveTypeCode.protein;
+      case 'carbohydrate':
+        return EnteralFormulaAdditiveTypeCode.carbohydrate;
+      case 'fiber':
+        return EnteralFormulaAdditiveTypeCode.fiber;
+      case 'water':
+        return EnteralFormulaAdditiveTypeCode.water;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  EnteralFormulaAdditiveTypeCode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

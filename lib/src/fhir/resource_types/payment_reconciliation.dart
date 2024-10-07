@@ -23,36 +23,36 @@ class PaymentReconciliation extends DomainResource {
   final Element? paymentDateElement;
   final Money paymentAmount;
   final Identifier? paymentIdentifier;
-  final List<BackboneElement>? detail;
+  final List<PaymentReconciliationDetail>? detail;
   final CodeableConcept? formCode;
-  final List<BackboneElement>? processNote;
+  final List<PaymentReconciliationProcessNote>? processNote;
 
   PaymentReconciliation({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.period,
     required this.created,
-this.createdElement,
+    this.createdElement,
     this.paymentIssuer,
     this.request,
     this.requestor,
     this.outcome,
-this.outcomeElement,
+    this.outcomeElement,
     this.disposition,
-this.dispositionElement,
+    this.dispositionElement,
     required this.paymentDate,
-this.paymentDateElement,
+    this.paymentDateElement,
     required this.paymentAmount,
     this.paymentIdentifier,
     this.detail,
@@ -60,8 +60,8 @@ this.paymentDateElement,
     this.processNote,
   }) : super(resourceType: R4ResourceType.PaymentReconciliation);
 
-@override
-PaymentReconciliation clone() => throw UnimplementedError();
+  @override
+  PaymentReconciliation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -90,14 +90,14 @@ class PaymentReconciliationDetail extends BackboneElement {
     this.submitter,
     this.response,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.responsible,
     this.payee,
     this.amount,
   });
 
-@override
-PaymentReconciliationDetail clone() => throw UnimplementedError();
+  @override
+  PaymentReconciliationDetail clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -113,12 +113,11 @@ class PaymentReconciliationProcessNote extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.type,
-this.typeElement,
+    this.typeElement,
     this.text,
-this.textElement,
+    this.textElement,
   });
 
-@override
-PaymentReconciliationProcessNote clone() => throw UnimplementedError();
+  @override
+  PaymentReconciliationProcessNote clone() => throw UnimplementedError();
 }
-

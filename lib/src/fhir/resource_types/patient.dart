@@ -15,53 +15,53 @@ class Patient extends DomainResource {
   final Element? genderElement;
   final FhirDate? birthDate;
   final Element? birthDateElement;
-  final FhirBoolean? deceasedFhirBoolean;
-  final Element? deceasedFhirBooleanElement;
-  final FhirDateTime? deceasedFhirDateTime;
-  final Element? deceasedFhirDateTimeElement;
+  final FhirBoolean? deceasedBoolean;
+  final Element? deceasedBooleanElement;
+  final FhirDateTime? deceasedDateTime;
+  final Element? deceasedDateTimeElement;
   final List<Address>? address;
   final CodeableConcept? maritalStatus;
-  final FhirBoolean? multipleBirthFhirBoolean;
-  final Element? multipleBirthFhirBooleanElement;
-  final FhirInteger? multipleBirthFhirInteger;
-  final Element? multipleBirthFhirIntegerElement;
+  final FhirBoolean? multipleBirthBoolean;
+  final Element? multipleBirthBooleanElement;
+  final FhirInteger? multipleBirthInteger;
+  final Element? multipleBirthIntegerElement;
   final List<Attachment>? photo;
-  final List<BackboneElement>? contact;
-  final List<BackboneElement>? communication;
+  final List<PatientContact>? contact;
+  final List<PatientCommunication>? communication;
   final List<Reference>? generalPractitioner;
   final Reference? managingOrganization;
-  final List<BackboneElement>? link;
+  final List<PatientLink>? link;
 
   Patient({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
-this.activeElement,
+    this.activeElement,
     this.name,
     this.telecom,
     this.gender,
-this.genderElement,
+    this.genderElement,
     this.birthDate,
-this.birthDateElement,
-    this.deceasedFhirBoolean,
-this.deceasedFhirBooleanElement,
-    this.deceasedFhirDateTime,
-this.deceasedFhirDateTimeElement,
+    this.birthDateElement,
+    this.deceasedBoolean,
+    this.deceasedBooleanElement,
+    this.deceasedDateTime,
+    this.deceasedDateTimeElement,
     this.address,
     this.maritalStatus,
-    this.multipleBirthFhirBoolean,
-this.multipleBirthFhirBooleanElement,
-    this.multipleBirthFhirInteger,
-this.multipleBirthFhirIntegerElement,
+    this.multipleBirthBoolean,
+    this.multipleBirthBooleanElement,
+    this.multipleBirthInteger,
+    this.multipleBirthIntegerElement,
     this.photo,
     this.contact,
     this.communication,
@@ -70,8 +70,8 @@ this.multipleBirthFhirIntegerElement,
     this.link,
   }) : super(resourceType: R4ResourceType.Patient);
 
-@override
-Patient clone() => throw UnimplementedError();
+  @override
+  Patient clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -95,13 +95,13 @@ class PatientContact extends BackboneElement {
     this.telecom,
     this.address,
     this.gender,
-this.genderElement,
+    this.genderElement,
     this.organization,
     this.period,
   });
 
-@override
-PatientContact clone() => throw UnimplementedError();
+  @override
+  PatientContact clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -117,11 +117,11 @@ class PatientCommunication extends BackboneElement {
     super.modifierExtension,
     required this.language,
     this.preferred,
-this.preferredElement,
+    this.preferredElement,
   });
 
-@override
-PatientCommunication clone() => throw UnimplementedError();
+  @override
+  PatientCommunication clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -137,10 +137,9 @@ class PatientLink extends BackboneElement {
     super.modifierExtension,
     required this.other,
     required this.type,
-this.typeElement,
+    this.typeElement,
   });
 
-@override
-PatientLink clone() => throw UnimplementedError();
+  @override
+  PatientLink clone() => throw UnimplementedError();
 }
-

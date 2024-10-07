@@ -23,8 +23,8 @@ class ActivityDefinition extends DomainResource {
   final Element? experimentalElement;
   final CodeableConcept? subjectCodeableConcept;
   final Reference? subjectReference;
-  final FhirCanonical? subjectFhirCanonical;
-  final Element? subjectFhirCanonicalElement;
+  final FhirCanonical? subjectCanonical;
+  final Element? subjectCanonicalElement;
   final FhirDateTime? date;
   final Element? dateElement;
   final FhirString? publisher;
@@ -65,14 +65,14 @@ class ActivityDefinition extends DomainResource {
   final FhirBoolean? doNotPerform;
   final Element? doNotPerformElement;
   final Timing? timingTiming;
-  final FhirDateTime? timingFhirDateTime;
-  final Element? timingFhirDateTimeElement;
+  final FhirDateTime? timingDateTime;
+  final Element? timingDateTimeElement;
   final Age? timingAge;
   final Period? timingPeriod;
   final Range? timingRange;
-  final FhirDuration? timingFhirDuration;
+  final FhirDuration? timingDuration;
   final Reference? location;
-  final List<BackboneElement>? participant;
+  final List<ActivityDefinitionParticipant>? participant;
   final Reference? productReference;
   final CodeableConcept? productCodeableConcept;
   final Quantity? quantity;
@@ -83,57 +83,57 @@ class ActivityDefinition extends DomainResource {
   final List<Reference>? observationResultRequirement;
   final FhirCanonical? transform;
   final Element? transformElement;
-  final List<BackboneElement>? dynamicValue;
+  final List<ActivityDefinitionDynamicValue>? dynamicValue;
 
   ActivityDefinition({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-this.urlElement,
+    this.urlElement,
     this.identifier,
     this.version,
-this.versionElement,
+    this.versionElement,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.title,
-this.titleElement,
+    this.titleElement,
     this.subtitle,
-this.subtitleElement,
+    this.subtitleElement,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.experimental,
-this.experimentalElement,
+    this.experimentalElement,
     this.subjectCodeableConcept,
     this.subjectReference,
-    this.subjectFhirCanonical,
-this.subjectFhirCanonicalElement,
+    this.subjectCanonical,
+    this.subjectCanonicalElement,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.publisher,
-this.publisherElement,
+    this.publisherElement,
     this.contact,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-this.purposeElement,
+    this.purposeElement,
     this.usage,
-this.usageElement,
+    this.usageElement,
     this.copyright,
-this.copyrightElement,
+    this.copyrightElement,
     this.approvalDate,
-this.approvalDateElement,
+    this.approvalDateElement,
     this.lastReviewDate,
-this.lastReviewDateElement,
+    this.lastReviewDateElement,
     this.effectivePeriod,
     this.topic,
     this.author,
@@ -142,25 +142,25 @@ this.lastReviewDateElement,
     this.endorser,
     this.relatedArtifact,
     this.library_,
-this.libraryElement,
+    this.libraryElement,
     this.kind,
-this.kindElement,
+    this.kindElement,
     this.profile,
-this.profileElement,
+    this.profileElement,
     this.code,
     this.intent,
-this.intentElement,
+    this.intentElement,
     this.priority,
-this.priorityElement,
+    this.priorityElement,
     this.doNotPerform,
-this.doNotPerformElement,
+    this.doNotPerformElement,
     this.timingTiming,
-    this.timingFhirDateTime,
-this.timingFhirDateTimeElement,
+    this.timingDateTime,
+    this.timingDateTimeElement,
     this.timingAge,
     this.timingPeriod,
     this.timingRange,
-    this.timingFhirDuration,
+    this.timingDuration,
     this.location,
     this.participant,
     this.productReference,
@@ -172,12 +172,12 @@ this.timingFhirDateTimeElement,
     this.observationRequirement,
     this.observationResultRequirement,
     this.transform,
-this.transformElement,
+    this.transformElement,
     this.dynamicValue,
   }) : super(resourceType: R4ResourceType.ActivityDefinition);
 
-@override
-ActivityDefinition clone() => throw UnimplementedError();
+  @override
+  ActivityDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -192,12 +192,12 @@ class ActivityDefinitionParticipant extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-this.typeElement,
+    this.typeElement,
     this.role,
   });
 
-@override
-ActivityDefinitionParticipant clone() => throw UnimplementedError();
+  @override
+  ActivityDefinitionParticipant clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -212,11 +212,10 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.path,
-this.pathElement,
+    this.pathElement,
     required this.expression,
   });
 
-@override
-ActivityDefinitionDynamicValue clone() => throw UnimplementedError();
+  @override
+  ActivityDefinitionDynamicValue clone() => throw UnimplementedError();
 }
-

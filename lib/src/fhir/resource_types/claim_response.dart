@@ -27,63 +27,53 @@ class ClaimResponse extends DomainResource {
   final Element? preAuthRefElement;
   final Period? preAuthPeriod;
   final CodeableConcept? payeeType;
-  final List<BackboneElement>? item;
-  final List<BackboneElement> adjudication;
-  final List<BackboneElement>? detail;
-  final List<BackboneElement>? subDetail;
-  final List<BackboneElement>? addItem;
-  final List<BackboneElement>? detail;
-  final List<BackboneElement>? subDetail;
-  final List<dynamic>? adjudication;
-  final List<BackboneElement>? total;
-  final BackboneElement? payment;
+  final List<ClaimResponseItem>? item;
+  final List<ClaimResponseAddItem>? addItem;
+  final List<ClaimResponseAdjudication>? adjudication;
+  final List<ClaimResponseTotal>? total;
+  final ClaimResponsePayment? payment;
   final CodeableConcept? fundsReserve;
   final CodeableConcept? formCode;
   final Attachment? form;
-  final List<BackboneElement>? processNote;
+  final List<ClaimResponseProcessNote>? processNote;
   final List<Reference>? communicationRequest;
-  final List<BackboneElement>? insurance;
-  final List<BackboneElement>? error;
+  final List<ClaimResponseInsurance>? insurance;
+  final List<ClaimResponseError>? error;
 
   ClaimResponse({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     required this.type,
     this.subType,
     required this.use,
-this.useElement,
+    this.useElement,
     required this.patient,
     required this.created,
-this.createdElement,
+    this.createdElement,
     required this.insurer,
     this.requestor,
     this.request,
     required this.outcome,
-this.outcomeElement,
+    this.outcomeElement,
     this.disposition,
-this.dispositionElement,
+    this.dispositionElement,
     this.preAuthRef,
-this.preAuthRefElement,
+    this.preAuthRefElement,
     this.preAuthPeriod,
     this.payeeType,
     this.item,
-    required this.adjudication,
-    this.detail,
-    this.subDetail,
     this.addItem,
-    this.detail,
-    this.subDetail,
     this.adjudication,
     this.total,
     this.payment,
@@ -96,8 +86,8 @@ this.preAuthRefElement,
     this.error,
   }) : super(resourceType: R4ResourceType.ClaimResponse);
 
-@override
-ClaimResponse clone() => throw UnimplementedError();
+  @override
+  ClaimResponse clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -107,19 +97,23 @@ class ClaimResponseItem extends BackboneElement {
   final Element? itemSequenceElement;
   final List<FhirPositiveInt>? noteNumber;
   final List<Element>? noteNumberElement;
+  final List<ClaimResponseAdjudication> adjudication;
+  final List<ClaimResponseDetail>? detail;
 
   ClaimResponseItem({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.itemSequence,
-this.itemSequenceElement,
+    this.itemSequenceElement,
     this.noteNumber,
-this.noteNumberElement,
+    this.noteNumberElement,
+    required this.adjudication,
+    this.detail,
   });
 
-@override
-ClaimResponseItem clone() => throw UnimplementedError();
+  @override
+  ClaimResponseItem clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -139,11 +133,11 @@ class ClaimResponseAdjudication extends BackboneElement {
     this.reason,
     this.amount,
     this.value,
-this.valueElement,
+    this.valueElement,
   });
 
-@override
-ClaimResponseAdjudication clone() => throw UnimplementedError();
+  @override
+  ClaimResponseAdjudication clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -153,21 +147,23 @@ class ClaimResponseDetail extends BackboneElement {
   final Element? detailSequenceElement;
   final List<FhirPositiveInt>? noteNumber;
   final List<Element>? noteNumberElement;
-  final List<dynamic> adjudication;
+  final List<ClaimResponseAdjudication> adjudication;
+  final List<ClaimResponseSubDetail>? subDetail;
 
   ClaimResponseDetail({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.detailSequence,
-this.detailSequenceElement,
+    this.detailSequenceElement,
     this.noteNumber,
-this.noteNumberElement,
+    this.noteNumberElement,
     required this.adjudication,
+    this.subDetail,
   });
 
-@override
-ClaimResponseDetail clone() => throw UnimplementedError();
+  @override
+  ClaimResponseDetail clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -177,21 +173,21 @@ class ClaimResponseSubDetail extends BackboneElement {
   final Element? subDetailSequenceElement;
   final List<FhirPositiveInt>? noteNumber;
   final List<Element>? noteNumberElement;
-  final List<dynamic>? adjudication;
+  final List<ClaimResponseAdjudication>? adjudication;
 
   ClaimResponseSubDetail({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.subDetailSequence,
-this.subDetailSequenceElement,
+    this.subDetailSequenceElement,
     this.noteNumber,
-this.noteNumberElement,
+    this.noteNumberElement,
     this.adjudication,
   });
 
-@override
-ClaimResponseSubDetail clone() => throw UnimplementedError();
+  @override
+  ClaimResponseSubDetail clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -207,8 +203,8 @@ class ClaimResponseAddItem extends BackboneElement {
   final CodeableConcept productOrService;
   final List<CodeableConcept>? modifier;
   final List<CodeableConcept>? programCode;
-  final FhirDate? servicedFhirDate;
-  final Element? servicedFhirDateElement;
+  final FhirDate? servicedDate;
+  final Element? servicedDateElement;
   final Period? servicedPeriod;
   final CodeableConcept? locationCodeableConcept;
   final Address? locationAddress;
@@ -222,24 +218,25 @@ class ClaimResponseAddItem extends BackboneElement {
   final List<CodeableConcept>? subSite;
   final List<FhirPositiveInt>? noteNumber;
   final List<Element>? noteNumberElement;
-  final List<dynamic> adjudication;
+  final List<ClaimResponseAdjudication> adjudication;
+  final List<ClaimResponseDetail>? detail;
 
   ClaimResponseAddItem({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.itemSequence,
-this.itemSequenceElement,
+    this.itemSequenceElement,
     this.detailSequence,
-this.detailSequenceElement,
+    this.detailSequenceElement,
     this.subdetailSequence,
-this.subdetailSequenceElement,
+    this.subdetailSequenceElement,
     this.provider,
     required this.productOrService,
     this.modifier,
     this.programCode,
-    this.servicedFhirDate,
-this.servicedFhirDateElement,
+    this.servicedDate,
+    this.servicedDateElement,
     this.servicedPeriod,
     this.locationCodeableConcept,
     this.locationAddress,
@@ -247,17 +244,18 @@ this.servicedFhirDateElement,
     this.quantity,
     this.unitPrice,
     this.factor,
-this.factorElement,
+    this.factorElement,
     this.net,
     this.bodySite,
     this.subSite,
     this.noteNumber,
-this.noteNumberElement,
+    this.noteNumberElement,
     required this.adjudication,
+    this.detail,
   });
 
-@override
-ClaimResponseAddItem clone() => throw UnimplementedError();
+  @override
+  ClaimResponseAddItem clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -272,7 +270,8 @@ class ClaimResponseDetail extends BackboneElement {
   final Money? net;
   final List<FhirPositiveInt>? noteNumber;
   final List<Element>? noteNumberElement;
-  final List<dynamic> adjudication;
+  final List<ClaimResponseAdjudication> adjudication;
+  final List<ClaimResponseSubDetail>? subDetail;
 
   ClaimResponseDetail({
     super.id,
@@ -283,15 +282,16 @@ class ClaimResponseDetail extends BackboneElement {
     this.quantity,
     this.unitPrice,
     this.factor,
-this.factorElement,
+    this.factorElement,
     this.net,
     this.noteNumber,
-this.noteNumberElement,
+    this.noteNumberElement,
     required this.adjudication,
+    this.subDetail,
   });
 
-@override
-ClaimResponseDetail clone() => throw UnimplementedError();
+  @override
+  ClaimResponseDetail clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -306,7 +306,7 @@ class ClaimResponseSubDetail extends BackboneElement {
   final Money? net;
   final List<FhirPositiveInt>? noteNumber;
   final List<Element>? noteNumberElement;
-  final List<dynamic> adjudication;
+  final List<ClaimResponseAdjudication> adjudication;
 
   ClaimResponseSubDetail({
     super.id,
@@ -317,15 +317,15 @@ class ClaimResponseSubDetail extends BackboneElement {
     this.quantity,
     this.unitPrice,
     this.factor,
-this.factorElement,
+    this.factorElement,
     this.net,
     this.noteNumber,
-this.noteNumberElement,
+    this.noteNumberElement,
     required this.adjudication,
   });
 
-@override
-ClaimResponseSubDetail clone() => throw UnimplementedError();
+  @override
+  ClaimResponseSubDetail clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -342,8 +342,8 @@ class ClaimResponseTotal extends BackboneElement {
     required this.amount,
   });
 
-@override
-ClaimResponseTotal clone() => throw UnimplementedError();
+  @override
+  ClaimResponseTotal clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -365,13 +365,13 @@ class ClaimResponsePayment extends BackboneElement {
     this.adjustment,
     this.adjustmentReason,
     this.date,
-this.dateElement,
+    this.dateElement,
     required this.amount,
     this.identifier,
   });
 
-@override
-ClaimResponsePayment clone() => throw UnimplementedError();
+  @override
+  ClaimResponsePayment clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -390,16 +390,16 @@ class ClaimResponseProcessNote extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.number,
-this.numberElement,
+    this.numberElement,
     this.type,
-this.typeElement,
+    this.typeElement,
     required this.text,
-this.textElement,
+    this.textElement,
     this.language,
   });
 
-@override
-ClaimResponseProcessNote clone() => throw UnimplementedError();
+  @override
+  ClaimResponseProcessNote clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -419,17 +419,17 @@ class ClaimResponseInsurance extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.sequence,
-this.sequenceElement,
+    this.sequenceElement,
     required this.focal,
-this.focalElement,
+    this.focalElement,
     required this.coverage,
     this.businessArrangement,
-this.businessArrangementElement,
+    this.businessArrangementElement,
     this.claimResponse,
   });
 
-@override
-ClaimResponseInsurance clone() => throw UnimplementedError();
+  @override
+  ClaimResponseInsurance clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -448,15 +448,14 @@ class ClaimResponseError extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.itemSequence,
-this.itemSequenceElement,
+    this.itemSequenceElement,
     this.detailSequence,
-this.detailSequenceElement,
+    this.detailSequenceElement,
     this.subDetailSequence,
-this.subDetailSequenceElement,
+    this.subDetailSequenceElement,
     required this.code,
   });
 
-@override
-ClaimResponseError clone() => throw UnimplementedError();
+  @override
+  ClaimResponseError clone() => throw UnimplementedError();
 }
-

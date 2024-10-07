@@ -21,15 +21,15 @@ class RegulatedAuthorization extends DomainResource {
   final List<CodeableConcept>? basis;
   final Reference? holder;
   final Reference? regulator;
-  final BackboneElement? case_;
+  final RegulatedAuthorizationCase? case_;
 
   RegulatedAuthorization({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -38,11 +38,11 @@ super.languageElement,
     this.subject,
     this.type,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.region,
     this.status,
     this.statusDate,
-this.statusDateElement,
+    this.statusDateElement,
     this.validityPeriod,
     this.indication,
     this.intendedUse,
@@ -52,8 +52,8 @@ this.statusDateElement,
     this.case_,
   }) : super(resourceType: R4ResourceType.RegulatedAuthorization);
 
-@override
-RegulatedAuthorization clone() => throw UnimplementedError();
+  @override
+  RegulatedAuthorization clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -63,9 +63,9 @@ class RegulatedAuthorizationCase extends BackboneElement {
   final CodeableConcept? type;
   final CodeableConcept? status;
   final Period? datePeriod;
-  final FhirDateTime? dateFhirDateTime;
-  final Element? dateFhirDateTimeElement;
-  final List<dynamic>? application;
+  final FhirDateTime? dateDateTime;
+  final Element? dateDateTimeElement;
+  final List<RegulatedAuthorizationCase>? application;
 
   RegulatedAuthorizationCase({
     super.id,
@@ -75,12 +75,11 @@ class RegulatedAuthorizationCase extends BackboneElement {
     this.type,
     this.status,
     this.datePeriod,
-    this.dateFhirDateTime,
-this.dateFhirDateTimeElement,
+    this.dateDateTime,
+    this.dateDateTimeElement,
     this.application,
   });
 
-@override
-RegulatedAuthorizationCase clone() => throw UnimplementedError();
+  @override
+  RegulatedAuthorizationCase clone() => throw UnimplementedError();
 }
-

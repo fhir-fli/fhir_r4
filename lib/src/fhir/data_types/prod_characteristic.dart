@@ -32,16 +32,15 @@ class ProdCharacteristic extends BackboneType {
     this.nominalVolume,
     this.externalDiameter,
     this.shape,
-this.shapeElement,
+    this.shapeElement,
     this.color,
-this.colorElement,
+    this.colorElement,
     this.imprint,
-this.imprintElement,
+    this.imprintElement,
     this.image,
     this.scoring,
   });
 
-@override
-ProdCharacteristic clone() => throw UnimplementedError();
+  @override
+  ProdCharacteristic clone() => throw UnimplementedError();
 }
-

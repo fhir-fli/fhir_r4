@@ -22,9 +22,9 @@ class CommunicationRequest extends DomainResource {
   final Reference? subject;
   final List<Reference>? about;
   final Reference? encounter;
-  final List<BackboneElement>? payload;
-  final FhirDateTime? occurrenceFhirDateTime;
-  final Element? occurrenceFhirDateTimeElement;
+  final List<CommunicationRequestPayload>? payload;
+  final FhirDateTime? occurrenceDateTime;
+  final Element? occurrenceDateTimeElement;
   final Period? occurrencePeriod;
   final FhirDateTime? authoredOn;
   final Element? authoredOnElement;
@@ -39,9 +39,9 @@ class CommunicationRequest extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -51,23 +51,23 @@ super.languageElement,
     this.replaces,
     this.groupIdentifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.statusReason,
     this.category,
     this.priority,
-this.priorityElement,
+    this.priorityElement,
     this.doNotPerform,
-this.doNotPerformElement,
+    this.doNotPerformElement,
     this.medium,
     this.subject,
     this.about,
     this.encounter,
     this.payload,
-    this.occurrenceFhirDateTime,
-this.occurrenceFhirDateTimeElement,
+    this.occurrenceDateTime,
+    this.occurrenceDateTimeElement,
     this.occurrencePeriod,
     this.authoredOn,
-this.authoredOnElement,
+    this.authoredOnElement,
     this.requester,
     this.recipient,
     this.sender,
@@ -76,15 +76,15 @@ this.authoredOnElement,
     this.note,
   }) : super(resourceType: R4ResourceType.CommunicationRequest);
 
-@override
-CommunicationRequest clone() => throw UnimplementedError();
+  @override
+  CommunicationRequest clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
 class CommunicationRequestPayload extends BackboneElement {
-  final FhirString contentFhirString;
-  final Element? contentFhirStringElement;
+  final FhirString contentString;
+  final Element? contentStringElement;
   final Attachment contentAttachment;
   final Reference contentReference;
 
@@ -92,13 +92,12 @@ class CommunicationRequestPayload extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.contentFhirString,
-this.contentFhirStringElement,
+    required this.contentString,
+    this.contentStringElement,
     required this.contentAttachment,
     required this.contentReference,
   });
 
-@override
-CommunicationRequestPayload clone() => throw UnimplementedError();
+  @override
+  CommunicationRequestPayload clone() => throw UnimplementedError();
 }
-

@@ -31,53 +31,49 @@ class GraphDefinition extends DomainResource {
   final Element? startElement;
   final FhirCanonical? profile;
   final Element? profileElement;
-  final List<BackboneElement>? link;
-  final List<BackboneElement>? target;
-  final List<BackboneElement>? compartment;
+  final List<GraphDefinitionLink>? link;
 
   GraphDefinition({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-this.urlElement,
+    this.urlElement,
     this.version,
-this.versionElement,
+    this.versionElement,
     required this.name,
-this.nameElement,
+    this.nameElement,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.experimental,
-this.experimentalElement,
+    this.experimentalElement,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.publisher,
-this.publisherElement,
+    this.publisherElement,
     this.contact,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-this.purposeElement,
+    this.purposeElement,
     required this.start,
-this.startElement,
+    this.startElement,
     this.profile,
-this.profileElement,
+    this.profileElement,
     this.link,
-    this.target,
-    this.compartment,
   }) : super(resourceType: R4ResourceType.GraphDefinition);
 
-@override
-GraphDefinition clone() => throw UnimplementedError();
+  @override
+  GraphDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -93,25 +89,27 @@ class GraphDefinitionLink extends BackboneElement {
   final Element? maxElement;
   final FhirString? description;
   final Element? descriptionElement;
+  final List<GraphDefinitionTarget>? target;
 
   GraphDefinitionLink({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.path,
-this.pathElement,
+    this.pathElement,
     this.sliceName,
-this.sliceNameElement,
+    this.sliceNameElement,
     this.min,
-this.minElement,
+    this.minElement,
     this.max,
-this.maxElement,
+    this.maxElement,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
+    this.target,
   });
 
-@override
-GraphDefinitionLink clone() => throw UnimplementedError();
+  @override
+  GraphDefinitionLink clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -123,23 +121,25 @@ class GraphDefinitionTarget extends BackboneElement {
   final Element? paramsElement;
   final FhirCanonical? profile;
   final Element? profileElement;
-  final List<dynamic>? link;
+  final List<GraphDefinitionCompartment>? compartment;
+  final List<GraphDefinitionLink>? link;
 
   GraphDefinitionTarget({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.type,
-this.typeElement,
+    this.typeElement,
     this.params,
-this.paramsElement,
+    this.paramsElement,
     this.profile,
-this.profileElement,
+    this.profileElement,
+    this.compartment,
     this.link,
   });
 
-@override
-GraphDefinitionTarget clone() => throw UnimplementedError();
+  @override
+  GraphDefinitionTarget clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -161,18 +161,17 @@ class GraphDefinitionCompartment extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.use,
-this.useElement,
+    this.useElement,
     required this.code,
-this.codeElement,
+    this.codeElement,
     required this.rule,
-this.ruleElement,
+    this.ruleElement,
     this.expression,
-this.expressionElement,
+    this.expressionElement,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
   });
 
-@override
-GraphDefinitionCompartment clone() => throw UnimplementedError();
+  @override
+  GraphDefinitionCompartment clone() => throw UnimplementedError();
 }
-

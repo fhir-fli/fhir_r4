@@ -22,45 +22,43 @@ class Claim extends DomainResource {
   final Reference provider;
   final CodeableConcept priority;
   final CodeableConcept? fundsReserve;
-  final List<BackboneElement>? related;
+  final List<ClaimRelated>? related;
   final Reference? prescription;
   final Reference? originalPrescription;
-  final BackboneElement? payee;
+  final ClaimPayee? payee;
   final Reference? referral;
   final Reference? facility;
-  final List<BackboneElement>? careTeam;
-  final List<BackboneElement>? supportingInfo;
-  final List<BackboneElement>? diagnosis;
-  final List<BackboneElement>? procedure;
-  final List<BackboneElement> insurance;
-  final BackboneElement? accident;
-  final List<BackboneElement>? item;
-  final List<BackboneElement>? detail;
-  final List<BackboneElement>? subDetail;
+  final List<ClaimCareTeam>? careTeam;
+  final List<ClaimSupportingInfo>? supportingInfo;
+  final List<ClaimDiagnosis>? diagnosis;
+  final List<ClaimProcedure>? procedure;
+  final List<ClaimInsurance> insurance;
+  final ClaimAccident? accident;
+  final List<ClaimItem>? item;
   final Money? total;
 
   Claim({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-this.statusElement,
+    this.statusElement,
     required this.type,
     this.subType,
     required this.use,
-this.useElement,
+    this.useElement,
     required this.patient,
     this.billablePeriod,
     required this.created,
-this.createdElement,
+    this.createdElement,
     this.enterer,
     this.insurer,
     required this.provider,
@@ -79,13 +77,11 @@ this.createdElement,
     required this.insurance,
     this.accident,
     this.item,
-    this.detail,
-    this.subDetail,
     this.total,
   }) : super(resourceType: R4ResourceType.Claim);
 
-@override
-Claim clone() => throw UnimplementedError();
+  @override
+  Claim clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -104,8 +100,8 @@ class ClaimRelated extends BackboneElement {
     this.reference,
   });
 
-@override
-ClaimRelated clone() => throw UnimplementedError();
+  @override
+  ClaimRelated clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -122,8 +118,8 @@ class ClaimPayee extends BackboneElement {
     this.party,
   });
 
-@override
-ClaimPayee clone() => throw UnimplementedError();
+  @override
+  ClaimPayee clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -142,16 +138,16 @@ class ClaimCareTeam extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.sequence,
-this.sequenceElement,
+    this.sequenceElement,
     required this.provider,
     this.responsible,
-this.responsibleElement,
+    this.responsibleElement,
     this.role,
     this.qualification,
   });
 
-@override
-ClaimCareTeam clone() => throw UnimplementedError();
+  @override
+  ClaimCareTeam clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -161,13 +157,13 @@ class ClaimSupportingInfo extends BackboneElement {
   final Element? sequenceElement;
   final CodeableConcept category;
   final CodeableConcept? code;
-  final FhirDate? timingFhirDate;
-  final Element? timingFhirDateElement;
+  final FhirDate? timingDate;
+  final Element? timingDateElement;
   final Period? timingPeriod;
-  final FhirBoolean? valueFhirBoolean;
-  final Element? valueFhirBooleanElement;
-  final FhirString? valueFhirString;
-  final Element? valueFhirStringElement;
+  final FhirBoolean? valueBoolean;
+  final Element? valueBooleanElement;
+  final FhirString? valueString;
+  final Element? valueStringElement;
   final Quantity? valueQuantity;
   final Attachment? valueAttachment;
   final Reference? valueReference;
@@ -178,24 +174,24 @@ class ClaimSupportingInfo extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.sequence,
-this.sequenceElement,
+    this.sequenceElement,
     required this.category,
     this.code,
-    this.timingFhirDate,
-this.timingFhirDateElement,
+    this.timingDate,
+    this.timingDateElement,
     this.timingPeriod,
-    this.valueFhirBoolean,
-this.valueFhirBooleanElement,
-    this.valueFhirString,
-this.valueFhirStringElement,
+    this.valueBoolean,
+    this.valueBooleanElement,
+    this.valueString,
+    this.valueStringElement,
     this.valueQuantity,
     this.valueAttachment,
     this.valueReference,
     this.reason,
   });
 
-@override
-ClaimSupportingInfo clone() => throw UnimplementedError();
+  @override
+  ClaimSupportingInfo clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -214,7 +210,7 @@ class ClaimDiagnosis extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.sequence,
-this.sequenceElement,
+    this.sequenceElement,
     required this.diagnosisCodeableConcept,
     required this.diagnosisReference,
     this.type,
@@ -222,8 +218,8 @@ this.sequenceElement,
     this.packageCode,
   });
 
-@override
-ClaimDiagnosis clone() => throw UnimplementedError();
+  @override
+  ClaimDiagnosis clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -243,17 +239,17 @@ class ClaimProcedure extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.sequence,
-this.sequenceElement,
+    this.sequenceElement,
     this.type,
     this.date,
-this.dateElement,
+    this.dateElement,
     required this.procedureCodeableConcept,
     required this.procedureReference,
     this.udi,
   });
 
-@override
-ClaimProcedure clone() => throw UnimplementedError();
+  @override
+  ClaimProcedure clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -276,20 +272,20 @@ class ClaimInsurance extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.sequence,
-this.sequenceElement,
+    this.sequenceElement,
     required this.focal,
-this.focalElement,
+    this.focalElement,
     this.identifier,
     required this.coverage,
     this.businessArrangement,
-this.businessArrangementElement,
+    this.businessArrangementElement,
     this.preAuthRef,
-this.preAuthRefElement,
+    this.preAuthRefElement,
     this.claimResponse,
   });
 
-@override
-ClaimInsurance clone() => throw UnimplementedError();
+  @override
+  ClaimInsurance clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -306,14 +302,14 @@ class ClaimAccident extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.date,
-this.dateElement,
+    this.dateElement,
     this.type,
     this.locationAddress,
     this.locationReference,
   });
 
-@override
-ClaimAccident clone() => throw UnimplementedError();
+  @override
+  ClaimAccident clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -334,8 +330,8 @@ class ClaimItem extends BackboneElement {
   final CodeableConcept productOrService;
   final List<CodeableConcept>? modifier;
   final List<CodeableConcept>? programCode;
-  final FhirDate? servicedFhirDate;
-  final Element? servicedFhirDateElement;
+  final FhirDate? servicedDate;
+  final Element? servicedDateElement;
   final Period? servicedPeriod;
   final CodeableConcept? locationCodeableConcept;
   final Address? locationAddress;
@@ -349,28 +345,29 @@ class ClaimItem extends BackboneElement {
   final CodeableConcept? bodySite;
   final List<CodeableConcept>? subSite;
   final List<Reference>? encounter;
+  final List<ClaimDetail>? detail;
 
   ClaimItem({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.sequence,
-this.sequenceElement,
+    this.sequenceElement,
     this.careTeamSequence,
-this.careTeamSequenceElement,
+    this.careTeamSequenceElement,
     this.diagnosisSequence,
-this.diagnosisSequenceElement,
+    this.diagnosisSequenceElement,
     this.procedureSequence,
-this.procedureSequenceElement,
+    this.procedureSequenceElement,
     this.informationSequence,
-this.informationSequenceElement,
+    this.informationSequenceElement,
     this.revenue,
     this.category,
     required this.productOrService,
     this.modifier,
     this.programCode,
-    this.servicedFhirDate,
-this.servicedFhirDateElement,
+    this.servicedDate,
+    this.servicedDateElement,
     this.servicedPeriod,
     this.locationCodeableConcept,
     this.locationAddress,
@@ -378,16 +375,17 @@ this.servicedFhirDateElement,
     this.quantity,
     this.unitPrice,
     this.factor,
-this.factorElement,
+    this.factorElement,
     this.net,
     this.udi,
     this.bodySite,
     this.subSite,
     this.encounter,
+    this.detail,
   });
 
-@override
-ClaimItem clone() => throw UnimplementedError();
+  @override
+  ClaimItem clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -406,13 +404,14 @@ class ClaimDetail extends BackboneElement {
   final Element? factorElement;
   final Money? net;
   final List<Reference>? udi;
+  final List<ClaimSubDetail>? subDetail;
 
   ClaimDetail({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.sequence,
-this.sequenceElement,
+    this.sequenceElement,
     this.revenue,
     this.category,
     required this.productOrService,
@@ -421,13 +420,14 @@ this.sequenceElement,
     this.quantity,
     this.unitPrice,
     this.factor,
-this.factorElement,
+    this.factorElement,
     this.net,
     this.udi,
+    this.subDetail,
   });
 
-@override
-ClaimDetail clone() => throw UnimplementedError();
+  @override
+  ClaimDetail clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -452,7 +452,7 @@ class ClaimSubDetail extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.sequence,
-this.sequenceElement,
+    this.sequenceElement,
     this.revenue,
     this.category,
     required this.productOrService,
@@ -461,12 +461,11 @@ this.sequenceElement,
     this.quantity,
     this.unitPrice,
     this.factor,
-this.factorElement,
+    this.factorElement,
     this.net,
     this.udi,
   });
 
-@override
-ClaimSubDetail clone() => throw UnimplementedError();
+  @override
+  ClaimSubDetail clone() => throw UnimplementedError();
 }
-

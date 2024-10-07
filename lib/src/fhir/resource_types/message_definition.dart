@@ -39,14 +39,14 @@ class MessageDefinition extends DomainResource {
   final List<FhirCanonical>? parent;
   final List<Element>? parentElement;
   final Coding eventCoding;
-  final FhirUri eventFhirUri;
-  final Element? eventFhirUriElement;
+  final FhirUri eventUri;
+  final Element? eventUriElement;
   final FhirCode? category;
   final Element? categoryElement;
-  final List<BackboneElement>? focus;
+  final List<MessageDefinitionFocus>? focus;
   final FhirCode? responseRequired;
   final Element? responseRequiredElement;
-  final List<BackboneElement>? allowedResponse;
+  final List<MessageDefinitionAllowedResponse>? allowedResponse;
   final List<FhirCanonical>? graph;
   final List<Element>? graphElement;
 
@@ -54,60 +54,60 @@ class MessageDefinition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-this.urlElement,
+    this.urlElement,
     this.identifier,
     this.version,
-this.versionElement,
+    this.versionElement,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.title,
-this.titleElement,
+    this.titleElement,
     this.replaces,
-this.replacesElement,
+    this.replacesElement,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.experimental,
-this.experimentalElement,
+    this.experimentalElement,
     required this.date,
-this.dateElement,
+    this.dateElement,
     this.publisher,
-this.publisherElement,
+    this.publisherElement,
     this.contact,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-this.purposeElement,
+    this.purposeElement,
     this.copyright,
-this.copyrightElement,
+    this.copyrightElement,
     this.base,
-this.baseElement,
+    this.baseElement,
     this.parent,
-this.parentElement,
+    this.parentElement,
     required this.eventCoding,
-    required this.eventFhirUri,
-this.eventFhirUriElement,
+    required this.eventUri,
+    this.eventUriElement,
     this.category,
-this.categoryElement,
+    this.categoryElement,
     this.focus,
     this.responseRequired,
-this.responseRequiredElement,
+    this.responseRequiredElement,
     this.allowedResponse,
     this.graph,
-this.graphElement,
+    this.graphElement,
   }) : super(resourceType: R4ResourceType.MessageDefinition);
 
-@override
-MessageDefinition clone() => throw UnimplementedError();
+  @override
+  MessageDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -127,17 +127,17 @@ class MessageDefinitionFocus extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-this.codeElement,
+    this.codeElement,
     this.profile,
-this.profileElement,
+    this.profileElement,
     required this.min,
-this.minElement,
+    this.minElement,
     this.max,
-this.maxElement,
+    this.maxElement,
   });
 
-@override
-MessageDefinitionFocus clone() => throw UnimplementedError();
+  @override
+  MessageDefinitionFocus clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -153,12 +153,11 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.message,
-this.messageElement,
+    this.messageElement,
     this.situation,
-this.situationElement,
+    this.situationElement,
   });
 
-@override
-MessageDefinitionAllowedResponse clone() => throw UnimplementedError();
+  @override
+  MessageDefinitionAllowedResponse clone() => throw UnimplementedError();
 }
-

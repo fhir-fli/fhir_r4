@@ -25,22 +25,21 @@ class ParameterDefinition extends DataType {
     super.id,
     super.extension_,
     this.name,
-this.nameElement,
+    this.nameElement,
     required this.use,
-this.useElement,
+    this.useElement,
     this.min,
-this.minElement,
+    this.minElement,
     this.max,
-this.maxElement,
+    this.maxElement,
     this.documentation,
-this.documentationElement,
+    this.documentationElement,
     required this.type,
-this.typeElement,
+    this.typeElement,
     this.profile,
-this.profileElement,
+    this.profileElement,
   });
 
-@override
-ParameterDefinition clone() => throw UnimplementedError();
+  @override
+  ParameterDefinition clone() => throw UnimplementedError();
 }
-

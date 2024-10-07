@@ -39,46 +39,45 @@ class EvidenceVariable extends DomainResource {
   final Element? actualElement;
   final FhirCode? characteristicCombination;
   final Element? characteristicCombinationElement;
-  final List<BackboneElement>? characteristic;
-  final BackboneElement? timeFromStart;
+  final List<EvidenceVariableCharacteristic>? characteristic;
   final FhirCode? handling;
   final Element? handlingElement;
-  final List<BackboneElement>? category;
+  final List<EvidenceVariableCategory>? category;
 
   EvidenceVariable({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-this.urlElement,
+    this.urlElement,
     this.identifier,
     this.version,
-this.versionElement,
+    this.versionElement,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.title,
-this.titleElement,
+    this.titleElement,
     this.shortTitle,
-this.shortTitleElement,
+    this.shortTitleElement,
     this.subtitle,
-this.subtitleElement,
+    this.subtitleElement,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.note,
     this.useContext,
     this.publisher,
-this.publisherElement,
+    this.publisherElement,
     this.contact,
     this.author,
     this.editor,
@@ -86,18 +85,17 @@ this.publisherElement,
     this.endorser,
     this.relatedArtifact,
     this.actual,
-this.actualElement,
+    this.actualElement,
     this.characteristicCombination,
-this.characteristicCombinationElement,
+    this.characteristicCombinationElement,
     this.characteristic,
-    this.timeFromStart,
     this.handling,
-this.handlingElement,
+    this.handlingElement,
     this.category,
   }) : super(resourceType: R4ResourceType.EvidenceVariable);
 
-@override
-EvidenceVariable clone() => throw UnimplementedError();
+  @override
+  EvidenceVariable clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -106,14 +104,15 @@ class EvidenceVariableCharacteristic extends BackboneElement {
   final FhirString? description;
   final Element? descriptionElement;
   final Reference definitionReference;
-  final FhirCanonical definitionFhirCanonical;
-  final Element? definitionFhirCanonicalElement;
+  final FhirCanonical definitionCanonical;
+  final Element? definitionCanonicalElement;
   final CodeableConcept definitionCodeableConcept;
-  final FhirExpression definitionFhirExpression;
+  final FhirExpression definitionExpression;
   final CodeableConcept? method;
   final Reference? device;
   final FhirBoolean? exclude;
   final Element? excludeElement;
+  final EvidenceVariableTimeFromStart? timeFromStart;
   final FhirCode? groupMeasure;
   final Element? groupMeasureElement;
 
@@ -122,22 +121,23 @@ class EvidenceVariableCharacteristic extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     required this.definitionReference,
-    required this.definitionFhirCanonical,
-this.definitionFhirCanonicalElement,
+    required this.definitionCanonical,
+    this.definitionCanonicalElement,
     required this.definitionCodeableConcept,
-    required this.definitionFhirExpression,
+    required this.definitionExpression,
     this.method,
     this.device,
     this.exclude,
-this.excludeElement,
+    this.excludeElement,
+    this.timeFromStart,
     this.groupMeasure,
-this.groupMeasureElement,
+    this.groupMeasureElement,
   });
 
-@override
-EvidenceVariableCharacteristic clone() => throw UnimplementedError();
+  @override
+  EvidenceVariableCharacteristic clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -154,14 +154,14 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.quantity,
     this.range,
     this.note,
   });
 
-@override
-EvidenceVariableTimeFromStart clone() => throw UnimplementedError();
+  @override
+  EvidenceVariableTimeFromStart clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -178,13 +178,12 @@ class EvidenceVariableCategory extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.valueCodeableConcept,
     this.valueQuantity,
     this.valueRange,
   });
 
-@override
-EvidenceVariableCategory clone() => throw UnimplementedError();
+  @override
+  EvidenceVariableCategory clone() => throw UnimplementedError();
 }
-

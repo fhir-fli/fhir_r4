@@ -25,20 +25,19 @@ class SampledData extends DataType {
     super.extension_,
     required this.origin,
     required this.period,
-this.periodElement,
+    this.periodElement,
     this.factor,
-this.factorElement,
+    this.factorElement,
     this.lowerLimit,
-this.lowerLimitElement,
+    this.lowerLimitElement,
     this.upperLimit,
-this.upperLimitElement,
+    this.upperLimitElement,
     required this.dimensions,
-this.dimensionsElement,
+    this.dimensionsElement,
     this.data,
-this.dataElement,
+    this.dataElement,
   });
 
-@override
-SampledData clone() => throw UnimplementedError();
+  @override
+  SampledData clone() => throw UnimplementedError();
 }
-

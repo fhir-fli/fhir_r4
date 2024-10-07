@@ -20,16 +20,16 @@ class Procedure extends DomainResource {
   final CodeableConcept? code;
   final Reference subject;
   final Reference? encounter;
-  final FhirDateTime? performedFhirDateTime;
-  final Element? performedFhirDateTimeElement;
+  final FhirDateTime? performedDateTime;
+  final Element? performedDateTimeElement;
   final Period? performedPeriod;
-  final FhirString? performedFhirString;
-  final Element? performedFhirStringElement;
+  final FhirString? performedString;
+  final Element? performedStringElement;
   final Age? performedAge;
   final Range? performedRange;
   final Reference? recorder;
   final Reference? asserter;
-  final List<BackboneElement>? performer;
+  final List<ProcedurePerformer>? performer;
   final Reference? location;
   final List<CodeableConcept>? reasonCode;
   final List<Reference>? reasonReference;
@@ -40,7 +40,7 @@ class Procedure extends DomainResource {
   final List<Reference>? complicationDetail;
   final List<CodeableConcept>? followUp;
   final List<Annotation>? note;
-  final List<BackboneElement>? focalDevice;
+  final List<ProcedureFocalDevice>? focalDevice;
   final List<Reference>? usedReference;
   final List<CodeableConcept>? usedCode;
 
@@ -48,32 +48,32 @@ class Procedure extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
-this.instantiatesCanonicalElement,
+    this.instantiatesCanonicalElement,
     this.instantiatesUri,
-this.instantiatesUriElement,
+    this.instantiatesUriElement,
     this.basedOn,
     this.partOf,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.statusReason,
     this.category,
     this.code,
     required this.subject,
     this.encounter,
-    this.performedFhirDateTime,
-this.performedFhirDateTimeElement,
+    this.performedDateTime,
+    this.performedDateTimeElement,
     this.performedPeriod,
-    this.performedFhirString,
-this.performedFhirStringElement,
+    this.performedString,
+    this.performedStringElement,
     this.performedAge,
     this.performedRange,
     this.recorder,
@@ -94,8 +94,8 @@ this.performedFhirStringElement,
     this.usedCode,
   }) : super(resourceType: R4ResourceType.Procedure);
 
-@override
-Procedure clone() => throw UnimplementedError();
+  @override
+  Procedure clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -114,8 +114,8 @@ class ProcedurePerformer extends BackboneElement {
     this.onBehalfOf,
   });
 
-@override
-ProcedurePerformer clone() => throw UnimplementedError();
+  @override
+  ProcedurePerformer clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -132,7 +132,6 @@ class ProcedureFocalDevice extends BackboneElement {
     required this.manipulated,
   });
 
-@override
-ProcedureFocalDevice clone() => throw UnimplementedError();
+  @override
+  ProcedureFocalDevice clone() => throw UnimplementedError();
 }
-

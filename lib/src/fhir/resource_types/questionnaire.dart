@@ -42,66 +42,60 @@ class Questionnaire extends DomainResource {
   final Element? lastReviewDateElement;
   final Period? effectivePeriod;
   final List<Coding>? code;
-  final List<BackboneElement>? item;
-  final List<BackboneElement>? enableWhen;
-  final List<BackboneElement>? answerOption;
-  final List<BackboneElement>? initial;
+  final List<QuestionnaireItem>? item;
 
   Questionnaire({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
-this.urlElement,
+    this.urlElement,
     this.identifier,
     this.version,
-this.versionElement,
+    this.versionElement,
     this.name,
-this.nameElement,
+    this.nameElement,
     this.title,
-this.titleElement,
+    this.titleElement,
     this.derivedFrom,
-this.derivedFromElement,
+    this.derivedFromElement,
     required this.status,
-this.statusElement,
+    this.statusElement,
     this.experimental,
-this.experimentalElement,
+    this.experimentalElement,
     this.subjectType,
-this.subjectTypeElement,
+    this.subjectTypeElement,
     this.date,
-this.dateElement,
+    this.dateElement,
     this.publisher,
-this.publisherElement,
+    this.publisherElement,
     this.contact,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-this.purposeElement,
+    this.purposeElement,
     this.copyright,
-this.copyrightElement,
+    this.copyrightElement,
     this.approvalDate,
-this.approvalDateElement,
+    this.approvalDateElement,
     this.lastReviewDate,
-this.lastReviewDateElement,
+    this.lastReviewDateElement,
     this.effectivePeriod,
     this.code,
     this.item,
-    this.enableWhen,
-    this.answerOption,
-    this.initial,
   }) : super(resourceType: R4ResourceType.Questionnaire);
 
-@override
-Questionnaire clone() => throw UnimplementedError();
+  @override
+  Questionnaire clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -118,6 +112,7 @@ class QuestionnaireItem extends BackboneElement {
   final Element? textElement;
   final FhirCode type;
   final Element? typeElement;
+  final List<QuestionnaireEnableWhen>? enableWhen;
   final FhirCode? enableBehavior;
   final Element? enableBehaviorElement;
   final FhirBoolean? required_;
@@ -130,40 +125,45 @@ class QuestionnaireItem extends BackboneElement {
   final Element? maxLengthElement;
   final FhirCanonical? answerValueSet;
   final Element? answerValueSetElement;
-  final List<dynamic>? item;
+  final List<QuestionnaireAnswerOption>? answerOption;
+  final List<QuestionnaireInitial>? initial;
+  final List<QuestionnaireItem>? item;
 
   QuestionnaireItem({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.linkId,
-this.linkIdElement,
+    this.linkIdElement,
     this.definition,
-this.definitionElement,
+    this.definitionElement,
     this.code,
     this.prefix,
-this.prefixElement,
+    this.prefixElement,
     this.text,
-this.textElement,
+    this.textElement,
     required this.type,
-this.typeElement,
+    this.typeElement,
+    this.enableWhen,
     this.enableBehavior,
-this.enableBehaviorElement,
+    this.enableBehaviorElement,
     this.required_,
-this.requiredElement,
+    this.requiredElement,
     this.repeats,
-this.repeatsElement,
+    this.repeatsElement,
     this.readOnly,
-this.readOnlyElement,
+    this.readOnlyElement,
     this.maxLength,
-this.maxLengthElement,
+    this.maxLengthElement,
     this.answerValueSet,
-this.answerValueSetElement,
+    this.answerValueSetElement,
+    this.answerOption,
+    this.initial,
     this.item,
   });
 
-@override
-QuestionnaireItem clone() => throw UnimplementedError();
+  @override
+  QuestionnaireItem clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -173,20 +173,20 @@ class QuestionnaireEnableWhen extends BackboneElement {
   final Element? questionElement;
   final FhirCode operator_;
   final Element? operatorElement;
-  final FhirBoolean answerFhirBoolean;
-  final Element? answerFhirBooleanElement;
-  final FhirDecimal answerFhirDecimal;
-  final Element? answerFhirDecimalElement;
-  final FhirInteger answerFhirInteger;
-  final Element? answerFhirIntegerElement;
-  final FhirDate answerFhirDate;
-  final Element? answerFhirDateElement;
-  final FhirDateTime answerFhirDateTime;
-  final Element? answerFhirDateTimeElement;
-  final FhirTime answerFhirTime;
-  final Element? answerFhirTimeElement;
-  final FhirString answerFhirString;
-  final Element? answerFhirStringElement;
+  final FhirBoolean answerBoolean;
+  final Element? answerBooleanElement;
+  final FhirDecimal answerDecimal;
+  final Element? answerDecimalElement;
+  final FhirInteger answerInteger;
+  final Element? answerIntegerElement;
+  final FhirDate answerDate;
+  final Element? answerDateElement;
+  final FhirDateTime answerDateTime;
+  final Element? answerDateTimeElement;
+  final FhirTime answerTime;
+  final Element? answerTimeElement;
+  final FhirString answerString;
+  final Element? answerStringElement;
   final Coding answerCoding;
   final Quantity answerQuantity;
   final Reference answerReference;
@@ -196,43 +196,43 @@ class QuestionnaireEnableWhen extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.question,
-this.questionElement,
+    this.questionElement,
     required this.operator_,
-this.operatorElement,
-    required this.answerFhirBoolean,
-this.answerFhirBooleanElement,
-    required this.answerFhirDecimal,
-this.answerFhirDecimalElement,
-    required this.answerFhirInteger,
-this.answerFhirIntegerElement,
-    required this.answerFhirDate,
-this.answerFhirDateElement,
-    required this.answerFhirDateTime,
-this.answerFhirDateTimeElement,
-    required this.answerFhirTime,
-this.answerFhirTimeElement,
-    required this.answerFhirString,
-this.answerFhirStringElement,
+    this.operatorElement,
+    required this.answerBoolean,
+    this.answerBooleanElement,
+    required this.answerDecimal,
+    this.answerDecimalElement,
+    required this.answerInteger,
+    this.answerIntegerElement,
+    required this.answerDate,
+    this.answerDateElement,
+    required this.answerDateTime,
+    this.answerDateTimeElement,
+    required this.answerTime,
+    this.answerTimeElement,
+    required this.answerString,
+    this.answerStringElement,
     required this.answerCoding,
     required this.answerQuantity,
     required this.answerReference,
   });
 
-@override
-QuestionnaireEnableWhen clone() => throw UnimplementedError();
+  @override
+  QuestionnaireEnableWhen clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
 class QuestionnaireAnswerOption extends BackboneElement {
-  final FhirInteger valueFhirInteger;
-  final Element? valueFhirIntegerElement;
-  final FhirDate valueFhirDate;
-  final Element? valueFhirDateElement;
-  final FhirTime valueFhirTime;
-  final Element? valueFhirTimeElement;
-  final FhirString valueFhirString;
-  final Element? valueFhirStringElement;
+  final FhirInteger valueInteger;
+  final Element? valueIntegerElement;
+  final FhirDate valueDate;
+  final Element? valueDateElement;
+  final FhirTime valueTime;
+  final Element? valueTimeElement;
+  final FhirString valueString;
+  final Element? valueStringElement;
   final Coding valueCoding;
   final Reference valueReference;
   final FhirBoolean? initialSelected;
@@ -242,43 +242,43 @@ class QuestionnaireAnswerOption extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.valueFhirInteger,
-this.valueFhirIntegerElement,
-    required this.valueFhirDate,
-this.valueFhirDateElement,
-    required this.valueFhirTime,
-this.valueFhirTimeElement,
-    required this.valueFhirString,
-this.valueFhirStringElement,
+    required this.valueInteger,
+    this.valueIntegerElement,
+    required this.valueDate,
+    this.valueDateElement,
+    required this.valueTime,
+    this.valueTimeElement,
+    required this.valueString,
+    this.valueStringElement,
     required this.valueCoding,
     required this.valueReference,
     this.initialSelected,
-this.initialSelectedElement,
+    this.initialSelectedElement,
   });
 
-@override
-QuestionnaireAnswerOption clone() => throw UnimplementedError();
+  @override
+  QuestionnaireAnswerOption clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
 class QuestionnaireInitial extends BackboneElement {
-  final FhirBoolean valueFhirBoolean;
-  final Element? valueFhirBooleanElement;
-  final FhirDecimal valueFhirDecimal;
-  final Element? valueFhirDecimalElement;
-  final FhirInteger valueFhirInteger;
-  final Element? valueFhirIntegerElement;
-  final FhirDate valueFhirDate;
-  final Element? valueFhirDateElement;
-  final FhirDateTime valueFhirDateTime;
-  final Element? valueFhirDateTimeElement;
-  final FhirTime valueFhirTime;
-  final Element? valueFhirTimeElement;
-  final FhirString valueFhirString;
-  final Element? valueFhirStringElement;
-  final FhirUri valueFhirUri;
-  final Element? valueFhirUriElement;
+  final FhirBoolean valueBoolean;
+  final Element? valueBooleanElement;
+  final FhirDecimal valueDecimal;
+  final Element? valueDecimalElement;
+  final FhirInteger valueInteger;
+  final Element? valueIntegerElement;
+  final FhirDate valueDate;
+  final Element? valueDateElement;
+  final FhirDateTime valueDateTime;
+  final Element? valueDateTimeElement;
+  final FhirTime valueTime;
+  final Element? valueTimeElement;
+  final FhirString valueString;
+  final Element? valueStringElement;
+  final FhirUri valueUri;
+  final Element? valueUriElement;
   final Attachment valueAttachment;
   final Coding valueCoding;
   final Quantity valueQuantity;
@@ -288,29 +288,28 @@ class QuestionnaireInitial extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.valueFhirBoolean,
-this.valueFhirBooleanElement,
-    required this.valueFhirDecimal,
-this.valueFhirDecimalElement,
-    required this.valueFhirInteger,
-this.valueFhirIntegerElement,
-    required this.valueFhirDate,
-this.valueFhirDateElement,
-    required this.valueFhirDateTime,
-this.valueFhirDateTimeElement,
-    required this.valueFhirTime,
-this.valueFhirTimeElement,
-    required this.valueFhirString,
-this.valueFhirStringElement,
-    required this.valueFhirUri,
-this.valueFhirUriElement,
+    required this.valueBoolean,
+    this.valueBooleanElement,
+    required this.valueDecimal,
+    this.valueDecimalElement,
+    required this.valueInteger,
+    this.valueIntegerElement,
+    required this.valueDate,
+    this.valueDateElement,
+    required this.valueDateTime,
+    this.valueDateTimeElement,
+    required this.valueTime,
+    this.valueTimeElement,
+    required this.valueString,
+    this.valueStringElement,
+    required this.valueUri,
+    this.valueUriElement,
     required this.valueAttachment,
     required this.valueCoding,
     required this.valueQuantity,
     required this.valueReference,
   });
 
-@override
-QuestionnaireInitial clone() => throw UnimplementedError();
+  @override
+  QuestionnaireInitial clone() => throw UnimplementedError();
 }
-

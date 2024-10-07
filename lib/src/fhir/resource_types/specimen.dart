@@ -16,9 +16,9 @@ class Specimen extends DomainResource {
   final Element? receivedTimeElement;
   final List<Reference>? parent;
   final List<Reference>? request;
-  final BackboneElement? collection;
-  final List<BackboneElement>? processing;
-  final List<BackboneElement>? container;
+  final SpecimenCollection? collection;
+  final List<SpecimenProcessing>? processing;
+  final List<SpecimenContainer>? container;
   final List<CodeableConcept>? condition;
   final List<Annotation>? note;
 
@@ -26,9 +26,9 @@ class Specimen extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -36,11 +36,11 @@ super.languageElement,
     this.identifier,
     this.accessionIdentifier,
     this.status,
-this.statusElement,
+    this.statusElement,
     this.type,
     this.subject,
     this.receivedTime,
-this.receivedTimeElement,
+    this.receivedTimeElement,
     this.parent,
     this.request,
     this.collection,
@@ -50,42 +50,42 @@ this.receivedTimeElement,
     this.note,
   }) : super(resourceType: R4ResourceType.Specimen);
 
-@override
-Specimen clone() => throw UnimplementedError();
+  @override
+  Specimen clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
 class SpecimenCollection extends BackboneElement {
   final Reference? collector;
-  final FhirDateTime? collectedFhirDateTime;
-  final Element? collectedFhirDateTimeElement;
+  final FhirDateTime? collectedDateTime;
+  final Element? collectedDateTimeElement;
   final Period? collectedPeriod;
   final FhirDuration? duration;
   final Quantity? quantity;
   final CodeableConcept? method;
   final CodeableConcept? bodySite;
   final CodeableConcept? fastingStatusCodeableConcept;
-  final FhirDuration? fastingStatusFhirDuration;
+  final FhirDuration? fastingStatusDuration;
 
   SpecimenCollection({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.collector,
-    this.collectedFhirDateTime,
-this.collectedFhirDateTimeElement,
+    this.collectedDateTime,
+    this.collectedDateTimeElement,
     this.collectedPeriod,
     this.duration,
     this.quantity,
     this.method,
     this.bodySite,
     this.fastingStatusCodeableConcept,
-    this.fastingStatusFhirDuration,
+    this.fastingStatusDuration,
   });
 
-@override
-SpecimenCollection clone() => throw UnimplementedError();
+  @override
+  SpecimenCollection clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -95,8 +95,8 @@ class SpecimenProcessing extends BackboneElement {
   final Element? descriptionElement;
   final CodeableConcept? procedure;
   final List<Reference>? additive;
-  final FhirDateTime? timeFhirDateTime;
-  final Element? timeFhirDateTimeElement;
+  final FhirDateTime? timeDateTime;
+  final Element? timeDateTimeElement;
   final Period? timePeriod;
 
   SpecimenProcessing({
@@ -104,16 +104,16 @@ class SpecimenProcessing extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.procedure,
     this.additive,
-    this.timeFhirDateTime,
-this.timeFhirDateTimeElement,
+    this.timeDateTime,
+    this.timeDateTimeElement,
     this.timePeriod,
   });
 
-@override
-SpecimenProcessing clone() => throw UnimplementedError();
+  @override
+  SpecimenProcessing clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -134,7 +134,7 @@ class SpecimenContainer extends BackboneElement {
     super.modifierExtension,
     this.identifier,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.type,
     this.capacity,
     this.specimenQuantity,
@@ -142,7 +142,6 @@ this.descriptionElement,
     this.additiveReference,
   });
 
-@override
-SpecimenContainer clone() => throw UnimplementedError();
+  @override
+  SpecimenContainer clone() => throw UnimplementedError();
 }
-

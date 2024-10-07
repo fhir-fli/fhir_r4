@@ -9,18 +9,15 @@ class Narrative extends DataType {
   final FhirCode status;
   final Element? statusElement;
   final FhirMarkdown div;
-  final Element? divElement;
 
   Narrative({
     super.id,
     super.extension_,
     required this.status,
-this.statusElement,
+    this.statusElement,
     required this.div,
-this.divElement,
   });
 
-@override
-Narrative clone() => throw UnimplementedError();
+  @override
+  Narrative clone() => throw UnimplementedError();
 }
-

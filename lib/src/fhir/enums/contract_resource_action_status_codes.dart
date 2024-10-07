@@ -6,27 +6,31 @@ enum ContractResourceActionStatusCodes {
   /// Definition: To be completed
   @JsonValue('complete')
   complete,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case complete: return 'complete';
-      }
-      }
-String toJson() => toString();
-  ContractResourceActionStatusCodes fromString(String str) {
-    switch(str) {
-      case 'complete': return ContractResourceActionStatusCodes.complete;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case complete:
+        return 'complete';
     }
-      }
- ContractResourceActionStatusCodes fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  ContractResourceActionStatusCodes fromString(String str) {
+    switch (str) {
+      case 'complete':
+        return ContractResourceActionStatusCodes.complete;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  ContractResourceActionStatusCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

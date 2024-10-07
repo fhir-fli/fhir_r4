@@ -6,33 +6,40 @@ enum SpecimenContainedPreference {
   /// Definition: This type of contained specimen is preferred to collect this kind of specimen.
   @JsonValue('preferred')
   preferred,
+
   /// Display: Alternate
   /// Definition: This type of conditioned specimen is an alternate.
   @JsonValue('alternate')
   alternate,
-;
+  ;
 
-@override
+  @override
   String toString() {
-      switch(this) {
-        case preferred: return 'preferred';
-        case alternate: return 'alternate';
-      }
-      }
-String toJson() => toString();
-  SpecimenContainedPreference fromString(String str) {
-    switch(str) {
-      case 'preferred': return SpecimenContainedPreference.preferred;
-      case 'alternate': return SpecimenContainedPreference.alternate;
-    default: throw ArgumentError('Unknown enum value: $str');
+    switch (this) {
+      case preferred:
+        return 'preferred';
+      case alternate:
+        return 'alternate';
     }
-      }
- SpecimenContainedPreference fromJson(dynamic jsonValue) {
+  }
+
+  String toJson() => toString();
+  SpecimenContainedPreference fromString(String str) {
+    switch (str) {
+      case 'preferred':
+        return SpecimenContainedPreference.preferred;
+      case 'alternate':
+        return SpecimenContainedPreference.alternate;
+      default:
+        throw ArgumentError('Unknown enum value: $str');
+    }
+  }
+
+  SpecimenContainedPreference fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {
- throw ArgumentError('Unknown enum value: $jsonValue');
+      throw ArgumentError('Unknown enum value: $jsonValue');
+    }
+  }
 }
-}
-}
-

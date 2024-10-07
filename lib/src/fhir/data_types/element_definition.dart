@@ -18,7 +18,6 @@ class ElementDefinition extends BackboneType {
   final Element? labelElement;
   final List<Coding>? code;
   final Element? slicing;
-  final List<Element>? discriminator;
   final FhirString? short;
   final Element? shortElement;
   final FhirMarkdown? definition;
@@ -37,44 +36,44 @@ class ElementDefinition extends BackboneType {
   final FhirUri? contentReference;
   final Element? contentReferenceElement;
   final List<Element>? type;
-  final FhirBase64Binary? defaultValueFhirBase64Binary;
-  final Element? defaultValueFhirBase64BinaryElement;
-  final FhirBoolean? defaultValueFhirBoolean;
-  final Element? defaultValueFhirBooleanElement;
-  final FhirCanonical? defaultValueFhirCanonical;
-  final Element? defaultValueFhirCanonicalElement;
-  final FhirCode? defaultValueFhirCode;
-  final Element? defaultValueFhirCodeElement;
-  final FhirDate? defaultValueFhirDate;
-  final Element? defaultValueFhirDateElement;
-  final FhirDateTime? defaultValueFhirDateTime;
-  final Element? defaultValueFhirDateTimeElement;
-  final FhirDecimal? defaultValueFhirDecimal;
-  final Element? defaultValueFhirDecimalElement;
-  final FhirId? defaultValueFhirId;
-  final Element? defaultValueFhirIdElement;
-  final FhirInstant? defaultValueFhirInstant;
-  final Element? defaultValueFhirInstantElement;
-  final FhirInteger? defaultValueFhirInteger;
-  final Element? defaultValueFhirIntegerElement;
-  final FhirMarkdown? defaultValueFhirMarkdown;
-  final Element? defaultValueFhirMarkdownElement;
-  final FhirOid? defaultValueFhirOid;
-  final Element? defaultValueFhirOidElement;
-  final FhirPositiveInt? defaultValueFhirPositiveInt;
-  final Element? defaultValueFhirPositiveIntElement;
-  final FhirString? defaultValueFhirString;
-  final Element? defaultValueFhirStringElement;
-  final FhirTime? defaultValueFhirTime;
-  final Element? defaultValueFhirTimeElement;
-  final FhirUnsignedInt? defaultValueFhirUnsignedInt;
-  final Element? defaultValueFhirUnsignedIntElement;
-  final FhirUri? defaultValueFhirUri;
-  final Element? defaultValueFhirUriElement;
-  final FhirUrl? defaultValueFhirUrl;
-  final Element? defaultValueFhirUrlElement;
-  final FhirUuid? defaultValueFhirUuid;
-  final Element? defaultValueFhirUuidElement;
+  final FhirBase64Binary? defaultValueBase64Binary;
+  final Element? defaultValueBase64BinaryElement;
+  final FhirBoolean? defaultValueBoolean;
+  final Element? defaultValueBooleanElement;
+  final FhirCanonical? defaultValueCanonical;
+  final Element? defaultValueCanonicalElement;
+  final FhirCode? defaultValueCode;
+  final Element? defaultValueCodeElement;
+  final FhirDate? defaultValueDate;
+  final Element? defaultValueDateElement;
+  final FhirDateTime? defaultValueDateTime;
+  final Element? defaultValueDateTimeElement;
+  final FhirDecimal? defaultValueDecimal;
+  final Element? defaultValueDecimalElement;
+  final FhirId? defaultValueId;
+  final Element? defaultValueIdElement;
+  final FhirInstant? defaultValueInstant;
+  final Element? defaultValueInstantElement;
+  final FhirInteger? defaultValueInteger;
+  final Element? defaultValueIntegerElement;
+  final FhirMarkdown? defaultValueMarkdown;
+  final Element? defaultValueMarkdownElement;
+  final FhirOid? defaultValueOid;
+  final Element? defaultValueOidElement;
+  final FhirPositiveInt? defaultValuePositiveInt;
+  final Element? defaultValuePositiveIntElement;
+  final FhirString? defaultValueString;
+  final Element? defaultValueStringElement;
+  final FhirTime? defaultValueTime;
+  final Element? defaultValueTimeElement;
+  final FhirUnsignedInt? defaultValueUnsignedInt;
+  final Element? defaultValueUnsignedIntElement;
+  final FhirUri? defaultValueUri;
+  final Element? defaultValueUriElement;
+  final FhirUrl? defaultValueUrl;
+  final Element? defaultValueUrlElement;
+  final FhirUuid? defaultValueUuid;
+  final Element? defaultValueUuidElement;
   final Address? defaultValueAddress;
   final Age? defaultValueAge;
   final Annotation? defaultValueAnnotation;
@@ -85,7 +84,7 @@ class ElementDefinition extends BackboneType {
   final ContactPoint? defaultValueContactPoint;
   final Count? defaultValueCount;
   final Distance? defaultValueDistance;
-  final FhirDuration? defaultValueFhirDuration;
+  final FhirDuration? defaultValueDuration;
   final HumanName? defaultValueHumanName;
   final Identifier? defaultValueIdentifier;
   final Money? defaultValueMoney;
@@ -101,7 +100,7 @@ class ElementDefinition extends BackboneType {
   final ContactDetail? defaultValueContactDetail;
   final Contributor? defaultValueContributor;
   final DataRequirement? defaultValueDataRequirement;
-  final FhirExpression? defaultValueFhirExpression;
+  final FhirExpression? defaultValueExpression;
   final ParameterDefinition? defaultValueParameterDefinition;
   final RelatedArtifact? defaultValueRelatedArtifact;
   final TriggerDefinition? defaultValueTriggerDefinition;
@@ -111,44 +110,44 @@ class ElementDefinition extends BackboneType {
   final Element? meaningWhenMissingElement;
   final FhirString? orderMeaning;
   final Element? orderMeaningElement;
-  final FhirBase64Binary? fixedFhirBase64Binary;
-  final Element? fixedFhirBase64BinaryElement;
-  final FhirBoolean? fixedFhirBoolean;
-  final Element? fixedFhirBooleanElement;
-  final FhirCanonical? fixedFhirCanonical;
-  final Element? fixedFhirCanonicalElement;
-  final FhirCode? fixedFhirCode;
-  final Element? fixedFhirCodeElement;
-  final FhirDate? fixedFhirDate;
-  final Element? fixedFhirDateElement;
-  final FhirDateTime? fixedFhirDateTime;
-  final Element? fixedFhirDateTimeElement;
-  final FhirDecimal? fixedFhirDecimal;
-  final Element? fixedFhirDecimalElement;
-  final FhirId? fixedFhirId;
-  final Element? fixedFhirIdElement;
-  final FhirInstant? fixedFhirInstant;
-  final Element? fixedFhirInstantElement;
-  final FhirInteger? fixedFhirInteger;
-  final Element? fixedFhirIntegerElement;
-  final FhirMarkdown? fixedFhirMarkdown;
-  final Element? fixedFhirMarkdownElement;
-  final FhirOid? fixedFhirOid;
-  final Element? fixedFhirOidElement;
-  final FhirPositiveInt? fixedFhirPositiveInt;
-  final Element? fixedFhirPositiveIntElement;
-  final FhirString? fixedFhirString;
-  final Element? fixedFhirStringElement;
-  final FhirTime? fixedFhirTime;
-  final Element? fixedFhirTimeElement;
-  final FhirUnsignedInt? fixedFhirUnsignedInt;
-  final Element? fixedFhirUnsignedIntElement;
-  final FhirUri? fixedFhirUri;
-  final Element? fixedFhirUriElement;
-  final FhirUrl? fixedFhirUrl;
-  final Element? fixedFhirUrlElement;
-  final FhirUuid? fixedFhirUuid;
-  final Element? fixedFhirUuidElement;
+  final FhirBase64Binary? fixedBase64Binary;
+  final Element? fixedBase64BinaryElement;
+  final FhirBoolean? fixedBoolean;
+  final Element? fixedBooleanElement;
+  final FhirCanonical? fixedCanonical;
+  final Element? fixedCanonicalElement;
+  final FhirCode? fixedCode;
+  final Element? fixedCodeElement;
+  final FhirDate? fixedDate;
+  final Element? fixedDateElement;
+  final FhirDateTime? fixedDateTime;
+  final Element? fixedDateTimeElement;
+  final FhirDecimal? fixedDecimal;
+  final Element? fixedDecimalElement;
+  final FhirId? fixedId;
+  final Element? fixedIdElement;
+  final FhirInstant? fixedInstant;
+  final Element? fixedInstantElement;
+  final FhirInteger? fixedInteger;
+  final Element? fixedIntegerElement;
+  final FhirMarkdown? fixedMarkdown;
+  final Element? fixedMarkdownElement;
+  final FhirOid? fixedOid;
+  final Element? fixedOidElement;
+  final FhirPositiveInt? fixedPositiveInt;
+  final Element? fixedPositiveIntElement;
+  final FhirString? fixedString;
+  final Element? fixedStringElement;
+  final FhirTime? fixedTime;
+  final Element? fixedTimeElement;
+  final FhirUnsignedInt? fixedUnsignedInt;
+  final Element? fixedUnsignedIntElement;
+  final FhirUri? fixedUri;
+  final Element? fixedUriElement;
+  final FhirUrl? fixedUrl;
+  final Element? fixedUrlElement;
+  final FhirUuid? fixedUuid;
+  final Element? fixedUuidElement;
   final Address? fixedAddress;
   final Age? fixedAge;
   final Annotation? fixedAnnotation;
@@ -159,7 +158,7 @@ class ElementDefinition extends BackboneType {
   final ContactPoint? fixedContactPoint;
   final Count? fixedCount;
   final Distance? fixedDistance;
-  final FhirDuration? fixedFhirDuration;
+  final FhirDuration? fixedDuration;
   final HumanName? fixedHumanName;
   final Identifier? fixedIdentifier;
   final Money? fixedMoney;
@@ -175,50 +174,50 @@ class ElementDefinition extends BackboneType {
   final ContactDetail? fixedContactDetail;
   final Contributor? fixedContributor;
   final DataRequirement? fixedDataRequirement;
-  final FhirExpression? fixedFhirExpression;
+  final FhirExpression? fixedExpression;
   final ParameterDefinition? fixedParameterDefinition;
   final RelatedArtifact? fixedRelatedArtifact;
   final TriggerDefinition? fixedTriggerDefinition;
   final UsageContext? fixedUsageContext;
   final Dosage? fixedDosage;
-  final FhirBase64Binary? patternFhirBase64Binary;
-  final Element? patternFhirBase64BinaryElement;
-  final FhirBoolean? patternFhirBoolean;
-  final Element? patternFhirBooleanElement;
-  final FhirCanonical? patternFhirCanonical;
-  final Element? patternFhirCanonicalElement;
-  final FhirCode? patternFhirCode;
-  final Element? patternFhirCodeElement;
-  final FhirDate? patternFhirDate;
-  final Element? patternFhirDateElement;
-  final FhirDateTime? patternFhirDateTime;
-  final Element? patternFhirDateTimeElement;
-  final FhirDecimal? patternFhirDecimal;
-  final Element? patternFhirDecimalElement;
-  final FhirId? patternFhirId;
-  final Element? patternFhirIdElement;
-  final FhirInstant? patternFhirInstant;
-  final Element? patternFhirInstantElement;
-  final FhirInteger? patternFhirInteger;
-  final Element? patternFhirIntegerElement;
-  final FhirMarkdown? patternFhirMarkdown;
-  final Element? patternFhirMarkdownElement;
-  final FhirOid? patternFhirOid;
-  final Element? patternFhirOidElement;
-  final FhirPositiveInt? patternFhirPositiveInt;
-  final Element? patternFhirPositiveIntElement;
-  final FhirString? patternFhirString;
-  final Element? patternFhirStringElement;
-  final FhirTime? patternFhirTime;
-  final Element? patternFhirTimeElement;
-  final FhirUnsignedInt? patternFhirUnsignedInt;
-  final Element? patternFhirUnsignedIntElement;
-  final FhirUri? patternFhirUri;
-  final Element? patternFhirUriElement;
-  final FhirUrl? patternFhirUrl;
-  final Element? patternFhirUrlElement;
-  final FhirUuid? patternFhirUuid;
-  final Element? patternFhirUuidElement;
+  final FhirBase64Binary? patternBase64Binary;
+  final Element? patternBase64BinaryElement;
+  final FhirBoolean? patternBoolean;
+  final Element? patternBooleanElement;
+  final FhirCanonical? patternCanonical;
+  final Element? patternCanonicalElement;
+  final FhirCode? patternCode;
+  final Element? patternCodeElement;
+  final FhirDate? patternDate;
+  final Element? patternDateElement;
+  final FhirDateTime? patternDateTime;
+  final Element? patternDateTimeElement;
+  final FhirDecimal? patternDecimal;
+  final Element? patternDecimalElement;
+  final FhirId? patternId;
+  final Element? patternIdElement;
+  final FhirInstant? patternInstant;
+  final Element? patternInstantElement;
+  final FhirInteger? patternInteger;
+  final Element? patternIntegerElement;
+  final FhirMarkdown? patternMarkdown;
+  final Element? patternMarkdownElement;
+  final FhirOid? patternOid;
+  final Element? patternOidElement;
+  final FhirPositiveInt? patternPositiveInt;
+  final Element? patternPositiveIntElement;
+  final FhirString? patternString;
+  final Element? patternStringElement;
+  final FhirTime? patternTime;
+  final Element? patternTimeElement;
+  final FhirUnsignedInt? patternUnsignedInt;
+  final Element? patternUnsignedIntElement;
+  final FhirUri? patternUri;
+  final Element? patternUriElement;
+  final FhirUrl? patternUrl;
+  final Element? patternUrlElement;
+  final FhirUuid? patternUuid;
+  final Element? patternUuidElement;
   final Address? patternAddress;
   final Age? patternAge;
   final Annotation? patternAnnotation;
@@ -229,7 +228,7 @@ class ElementDefinition extends BackboneType {
   final ContactPoint? patternContactPoint;
   final Count? patternCount;
   final Distance? patternDistance;
-  final FhirDuration? patternFhirDuration;
+  final FhirDuration? patternDuration;
   final HumanName? patternHumanName;
   final Identifier? patternIdentifier;
   final Money? patternMoney;
@@ -245,46 +244,46 @@ class ElementDefinition extends BackboneType {
   final ContactDetail? patternContactDetail;
   final Contributor? patternContributor;
   final DataRequirement? patternDataRequirement;
-  final FhirExpression? patternFhirExpression;
+  final FhirExpression? patternExpression;
   final ParameterDefinition? patternParameterDefinition;
   final RelatedArtifact? patternRelatedArtifact;
   final TriggerDefinition? patternTriggerDefinition;
   final UsageContext? patternUsageContext;
   final Dosage? patternDosage;
   final List<Element>? example;
-  final FhirDate? minValueFhirDate;
-  final Element? minValueFhirDateElement;
-  final FhirDateTime? minValueFhirDateTime;
-  final Element? minValueFhirDateTimeElement;
-  final FhirInstant? minValueFhirInstant;
-  final Element? minValueFhirInstantElement;
-  final FhirTime? minValueFhirTime;
-  final Element? minValueFhirTimeElement;
-  final FhirDecimal? minValueFhirDecimal;
-  final Element? minValueFhirDecimalElement;
-  final FhirInteger? minValueFhirInteger;
-  final Element? minValueFhirIntegerElement;
-  final FhirPositiveInt? minValueFhirPositiveInt;
-  final Element? minValueFhirPositiveIntElement;
-  final FhirUnsignedInt? minValueFhirUnsignedInt;
-  final Element? minValueFhirUnsignedIntElement;
+  final FhirDate? minValueDate;
+  final Element? minValueDateElement;
+  final FhirDateTime? minValueDateTime;
+  final Element? minValueDateTimeElement;
+  final FhirInstant? minValueInstant;
+  final Element? minValueInstantElement;
+  final FhirTime? minValueTime;
+  final Element? minValueTimeElement;
+  final FhirDecimal? minValueDecimal;
+  final Element? minValueDecimalElement;
+  final FhirInteger? minValueInteger;
+  final Element? minValueIntegerElement;
+  final FhirPositiveInt? minValuePositiveInt;
+  final Element? minValuePositiveIntElement;
+  final FhirUnsignedInt? minValueUnsignedInt;
+  final Element? minValueUnsignedIntElement;
   final Quantity? minValueQuantity;
-  final FhirDate? maxValueFhirDate;
-  final Element? maxValueFhirDateElement;
-  final FhirDateTime? maxValueFhirDateTime;
-  final Element? maxValueFhirDateTimeElement;
-  final FhirInstant? maxValueFhirInstant;
-  final Element? maxValueFhirInstantElement;
-  final FhirTime? maxValueFhirTime;
-  final Element? maxValueFhirTimeElement;
-  final FhirDecimal? maxValueFhirDecimal;
-  final Element? maxValueFhirDecimalElement;
-  final FhirInteger? maxValueFhirInteger;
-  final Element? maxValueFhirIntegerElement;
-  final FhirPositiveInt? maxValueFhirPositiveInt;
-  final Element? maxValueFhirPositiveIntElement;
-  final FhirUnsignedInt? maxValueFhirUnsignedInt;
-  final Element? maxValueFhirUnsignedIntElement;
+  final FhirDate? maxValueDate;
+  final Element? maxValueDateElement;
+  final FhirDateTime? maxValueDateTime;
+  final Element? maxValueDateTimeElement;
+  final FhirInstant? maxValueInstant;
+  final Element? maxValueInstantElement;
+  final FhirTime? maxValueTime;
+  final Element? maxValueTimeElement;
+  final FhirDecimal? maxValueDecimal;
+  final Element? maxValueDecimalElement;
+  final FhirInteger? maxValueInteger;
+  final Element? maxValueIntegerElement;
+  final FhirPositiveInt? maxValuePositiveInt;
+  final Element? maxValuePositiveIntElement;
+  final FhirUnsignedInt? maxValueUnsignedInt;
+  final Element? maxValueUnsignedIntElement;
   final Quantity? maxValueQuantity;
   final FhirInteger? maxLength;
   final Element? maxLengthElement;
@@ -307,74 +306,73 @@ class ElementDefinition extends BackboneType {
     super.extension_,
     super.modifierExtension,
     required this.path,
-this.pathElement,
+    this.pathElement,
     this.representation,
-this.representationElement,
+    this.representationElement,
     this.sliceName,
-this.sliceNameElement,
+    this.sliceNameElement,
     this.sliceIsConstraining,
-this.sliceIsConstrainingElement,
+    this.sliceIsConstrainingElement,
     this.label,
-this.labelElement,
+    this.labelElement,
     this.code,
     this.slicing,
-    this.discriminator,
     this.short,
-this.shortElement,
+    this.shortElement,
     this.definition,
-this.definitionElement,
+    this.definitionElement,
     this.comment,
-this.commentElement,
+    this.commentElement,
     this.requirements,
-this.requirementsElement,
+    this.requirementsElement,
     this.alias,
-this.aliasElement,
+    this.aliasElement,
     this.min,
-this.minElement,
+    this.minElement,
     this.max,
-this.maxElement,
+    this.maxElement,
     this.base,
     this.contentReference,
-this.contentReferenceElement,
+    this.contentReferenceElement,
     this.type,
-    this.defaultValueFhirBase64Binary,
-this.defaultValueFhirBase64BinaryElement,
-    this.defaultValueFhirBoolean,
-this.defaultValueFhirBooleanElement,
-    this.defaultValueFhirCanonical,
-this.defaultValueFhirCanonicalElement,
-    this.defaultValueFhirCode,
-this.defaultValueFhirCodeElement,
-    this.defaultValueFhirDate,
-this.defaultValueFhirDateElement,
-    this.defaultValueFhirDateTime,
-this.defaultValueFhirDateTimeElement,
-    this.defaultValueFhirDecimal,
-this.defaultValueFhirDecimalElement,
-    this.defaultValueFhirId,
-this.defaultValueFhirIdElement,
-    this.defaultValueFhirInstant,
-this.defaultValueFhirInstantElement,
-    this.defaultValueFhirInteger,
-this.defaultValueFhirIntegerElement,
-    this.defaultValueFhirMarkdown,
-this.defaultValueFhirMarkdownElement,
-    this.defaultValueFhirOid,
-this.defaultValueFhirOidElement,
-    this.defaultValueFhirPositiveInt,
-this.defaultValueFhirPositiveIntElement,
-    this.defaultValueFhirString,
-this.defaultValueFhirStringElement,
-    this.defaultValueFhirTime,
-this.defaultValueFhirTimeElement,
-    this.defaultValueFhirUnsignedInt,
-this.defaultValueFhirUnsignedIntElement,
-    this.defaultValueFhirUri,
-this.defaultValueFhirUriElement,
-    this.defaultValueFhirUrl,
-this.defaultValueFhirUrlElement,
-    this.defaultValueFhirUuid,
-this.defaultValueFhirUuidElement,
+    this.defaultValueBase64Binary,
+    this.defaultValueBase64BinaryElement,
+    this.defaultValueBoolean,
+    this.defaultValueBooleanElement,
+    this.defaultValueCanonical,
+    this.defaultValueCanonicalElement,
+    this.defaultValueCode,
+    this.defaultValueCodeElement,
+    this.defaultValueDate,
+    this.defaultValueDateElement,
+    this.defaultValueDateTime,
+    this.defaultValueDateTimeElement,
+    this.defaultValueDecimal,
+    this.defaultValueDecimalElement,
+    this.defaultValueId,
+    this.defaultValueIdElement,
+    this.defaultValueInstant,
+    this.defaultValueInstantElement,
+    this.defaultValueInteger,
+    this.defaultValueIntegerElement,
+    this.defaultValueMarkdown,
+    this.defaultValueMarkdownElement,
+    this.defaultValueOid,
+    this.defaultValueOidElement,
+    this.defaultValuePositiveInt,
+    this.defaultValuePositiveIntElement,
+    this.defaultValueString,
+    this.defaultValueStringElement,
+    this.defaultValueTime,
+    this.defaultValueTimeElement,
+    this.defaultValueUnsignedInt,
+    this.defaultValueUnsignedIntElement,
+    this.defaultValueUri,
+    this.defaultValueUriElement,
+    this.defaultValueUrl,
+    this.defaultValueUrlElement,
+    this.defaultValueUuid,
+    this.defaultValueUuidElement,
     this.defaultValueAddress,
     this.defaultValueAge,
     this.defaultValueAnnotation,
@@ -385,7 +383,7 @@ this.defaultValueFhirUuidElement,
     this.defaultValueContactPoint,
     this.defaultValueCount,
     this.defaultValueDistance,
-    this.defaultValueFhirDuration,
+    this.defaultValueDuration,
     this.defaultValueHumanName,
     this.defaultValueIdentifier,
     this.defaultValueMoney,
@@ -401,54 +399,54 @@ this.defaultValueFhirUuidElement,
     this.defaultValueContactDetail,
     this.defaultValueContributor,
     this.defaultValueDataRequirement,
-    this.defaultValueFhirExpression,
+    this.defaultValueExpression,
     this.defaultValueParameterDefinition,
     this.defaultValueRelatedArtifact,
     this.defaultValueTriggerDefinition,
     this.defaultValueUsageContext,
     this.defaultValueDosage,
     this.meaningWhenMissing,
-this.meaningWhenMissingElement,
+    this.meaningWhenMissingElement,
     this.orderMeaning,
-this.orderMeaningElement,
-    this.fixedFhirBase64Binary,
-this.fixedFhirBase64BinaryElement,
-    this.fixedFhirBoolean,
-this.fixedFhirBooleanElement,
-    this.fixedFhirCanonical,
-this.fixedFhirCanonicalElement,
-    this.fixedFhirCode,
-this.fixedFhirCodeElement,
-    this.fixedFhirDate,
-this.fixedFhirDateElement,
-    this.fixedFhirDateTime,
-this.fixedFhirDateTimeElement,
-    this.fixedFhirDecimal,
-this.fixedFhirDecimalElement,
-    this.fixedFhirId,
-this.fixedFhirIdElement,
-    this.fixedFhirInstant,
-this.fixedFhirInstantElement,
-    this.fixedFhirInteger,
-this.fixedFhirIntegerElement,
-    this.fixedFhirMarkdown,
-this.fixedFhirMarkdownElement,
-    this.fixedFhirOid,
-this.fixedFhirOidElement,
-    this.fixedFhirPositiveInt,
-this.fixedFhirPositiveIntElement,
-    this.fixedFhirString,
-this.fixedFhirStringElement,
-    this.fixedFhirTime,
-this.fixedFhirTimeElement,
-    this.fixedFhirUnsignedInt,
-this.fixedFhirUnsignedIntElement,
-    this.fixedFhirUri,
-this.fixedFhirUriElement,
-    this.fixedFhirUrl,
-this.fixedFhirUrlElement,
-    this.fixedFhirUuid,
-this.fixedFhirUuidElement,
+    this.orderMeaningElement,
+    this.fixedBase64Binary,
+    this.fixedBase64BinaryElement,
+    this.fixedBoolean,
+    this.fixedBooleanElement,
+    this.fixedCanonical,
+    this.fixedCanonicalElement,
+    this.fixedCode,
+    this.fixedCodeElement,
+    this.fixedDate,
+    this.fixedDateElement,
+    this.fixedDateTime,
+    this.fixedDateTimeElement,
+    this.fixedDecimal,
+    this.fixedDecimalElement,
+    this.fixedId,
+    this.fixedIdElement,
+    this.fixedInstant,
+    this.fixedInstantElement,
+    this.fixedInteger,
+    this.fixedIntegerElement,
+    this.fixedMarkdown,
+    this.fixedMarkdownElement,
+    this.fixedOid,
+    this.fixedOidElement,
+    this.fixedPositiveInt,
+    this.fixedPositiveIntElement,
+    this.fixedString,
+    this.fixedStringElement,
+    this.fixedTime,
+    this.fixedTimeElement,
+    this.fixedUnsignedInt,
+    this.fixedUnsignedIntElement,
+    this.fixedUri,
+    this.fixedUriElement,
+    this.fixedUrl,
+    this.fixedUrlElement,
+    this.fixedUuid,
+    this.fixedUuidElement,
     this.fixedAddress,
     this.fixedAge,
     this.fixedAnnotation,
@@ -459,7 +457,7 @@ this.fixedFhirUuidElement,
     this.fixedContactPoint,
     this.fixedCount,
     this.fixedDistance,
-    this.fixedFhirDuration,
+    this.fixedDuration,
     this.fixedHumanName,
     this.fixedIdentifier,
     this.fixedMoney,
@@ -475,50 +473,50 @@ this.fixedFhirUuidElement,
     this.fixedContactDetail,
     this.fixedContributor,
     this.fixedDataRequirement,
-    this.fixedFhirExpression,
+    this.fixedExpression,
     this.fixedParameterDefinition,
     this.fixedRelatedArtifact,
     this.fixedTriggerDefinition,
     this.fixedUsageContext,
     this.fixedDosage,
-    this.patternFhirBase64Binary,
-this.patternFhirBase64BinaryElement,
-    this.patternFhirBoolean,
-this.patternFhirBooleanElement,
-    this.patternFhirCanonical,
-this.patternFhirCanonicalElement,
-    this.patternFhirCode,
-this.patternFhirCodeElement,
-    this.patternFhirDate,
-this.patternFhirDateElement,
-    this.patternFhirDateTime,
-this.patternFhirDateTimeElement,
-    this.patternFhirDecimal,
-this.patternFhirDecimalElement,
-    this.patternFhirId,
-this.patternFhirIdElement,
-    this.patternFhirInstant,
-this.patternFhirInstantElement,
-    this.patternFhirInteger,
-this.patternFhirIntegerElement,
-    this.patternFhirMarkdown,
-this.patternFhirMarkdownElement,
-    this.patternFhirOid,
-this.patternFhirOidElement,
-    this.patternFhirPositiveInt,
-this.patternFhirPositiveIntElement,
-    this.patternFhirString,
-this.patternFhirStringElement,
-    this.patternFhirTime,
-this.patternFhirTimeElement,
-    this.patternFhirUnsignedInt,
-this.patternFhirUnsignedIntElement,
-    this.patternFhirUri,
-this.patternFhirUriElement,
-    this.patternFhirUrl,
-this.patternFhirUrlElement,
-    this.patternFhirUuid,
-this.patternFhirUuidElement,
+    this.patternBase64Binary,
+    this.patternBase64BinaryElement,
+    this.patternBoolean,
+    this.patternBooleanElement,
+    this.patternCanonical,
+    this.patternCanonicalElement,
+    this.patternCode,
+    this.patternCodeElement,
+    this.patternDate,
+    this.patternDateElement,
+    this.patternDateTime,
+    this.patternDateTimeElement,
+    this.patternDecimal,
+    this.patternDecimalElement,
+    this.patternId,
+    this.patternIdElement,
+    this.patternInstant,
+    this.patternInstantElement,
+    this.patternInteger,
+    this.patternIntegerElement,
+    this.patternMarkdown,
+    this.patternMarkdownElement,
+    this.patternOid,
+    this.patternOidElement,
+    this.patternPositiveInt,
+    this.patternPositiveIntElement,
+    this.patternString,
+    this.patternStringElement,
+    this.patternTime,
+    this.patternTimeElement,
+    this.patternUnsignedInt,
+    this.patternUnsignedIntElement,
+    this.patternUri,
+    this.patternUriElement,
+    this.patternUrl,
+    this.patternUrlElement,
+    this.patternUuid,
+    this.patternUuidElement,
     this.patternAddress,
     this.patternAge,
     this.patternAnnotation,
@@ -529,7 +527,7 @@ this.patternFhirUuidElement,
     this.patternContactPoint,
     this.patternCount,
     this.patternDistance,
-    this.patternFhirDuration,
+    this.patternDuration,
     this.patternHumanName,
     this.patternIdentifier,
     this.patternMoney,
@@ -545,71 +543,72 @@ this.patternFhirUuidElement,
     this.patternContactDetail,
     this.patternContributor,
     this.patternDataRequirement,
-    this.patternFhirExpression,
+    this.patternExpression,
     this.patternParameterDefinition,
     this.patternRelatedArtifact,
     this.patternTriggerDefinition,
     this.patternUsageContext,
     this.patternDosage,
     this.example,
-    this.minValueFhirDate,
-this.minValueFhirDateElement,
-    this.minValueFhirDateTime,
-this.minValueFhirDateTimeElement,
-    this.minValueFhirInstant,
-this.minValueFhirInstantElement,
-    this.minValueFhirTime,
-this.minValueFhirTimeElement,
-    this.minValueFhirDecimal,
-this.minValueFhirDecimalElement,
-    this.minValueFhirInteger,
-this.minValueFhirIntegerElement,
-    this.minValueFhirPositiveInt,
-this.minValueFhirPositiveIntElement,
-    this.minValueFhirUnsignedInt,
-this.minValueFhirUnsignedIntElement,
+    this.minValueDate,
+    this.minValueDateElement,
+    this.minValueDateTime,
+    this.minValueDateTimeElement,
+    this.minValueInstant,
+    this.minValueInstantElement,
+    this.minValueTime,
+    this.minValueTimeElement,
+    this.minValueDecimal,
+    this.minValueDecimalElement,
+    this.minValueInteger,
+    this.minValueIntegerElement,
+    this.minValuePositiveInt,
+    this.minValuePositiveIntElement,
+    this.minValueUnsignedInt,
+    this.minValueUnsignedIntElement,
     this.minValueQuantity,
-    this.maxValueFhirDate,
-this.maxValueFhirDateElement,
-    this.maxValueFhirDateTime,
-this.maxValueFhirDateTimeElement,
-    this.maxValueFhirInstant,
-this.maxValueFhirInstantElement,
-    this.maxValueFhirTime,
-this.maxValueFhirTimeElement,
-    this.maxValueFhirDecimal,
-this.maxValueFhirDecimalElement,
-    this.maxValueFhirInteger,
-this.maxValueFhirIntegerElement,
-    this.maxValueFhirPositiveInt,
-this.maxValueFhirPositiveIntElement,
-    this.maxValueFhirUnsignedInt,
-this.maxValueFhirUnsignedIntElement,
+    this.maxValueDate,
+    this.maxValueDateElement,
+    this.maxValueDateTime,
+    this.maxValueDateTimeElement,
+    this.maxValueInstant,
+    this.maxValueInstantElement,
+    this.maxValueTime,
+    this.maxValueTimeElement,
+    this.maxValueDecimal,
+    this.maxValueDecimalElement,
+    this.maxValueInteger,
+    this.maxValueIntegerElement,
+    this.maxValuePositiveInt,
+    this.maxValuePositiveIntElement,
+    this.maxValueUnsignedInt,
+    this.maxValueUnsignedIntElement,
     this.maxValueQuantity,
     this.maxLength,
-this.maxLengthElement,
+    this.maxLengthElement,
     this.condition,
-this.conditionElement,
+    this.conditionElement,
     this.constraint,
     this.mustSupport,
-this.mustSupportElement,
+    this.mustSupportElement,
     this.isModifier,
-this.isModifierElement,
+    this.isModifierElement,
     this.isModifierReason,
-this.isModifierReasonElement,
+    this.isModifierReasonElement,
     this.isSummary,
-this.isSummaryElement,
+    this.isSummaryElement,
     this.binding,
     this.mapping,
   });
 
-@override
-ElementDefinition clone() => throw UnimplementedError();
+  @override
+  ElementDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
-class ElementDefinitionSlicing extends Element {
+class ElementDefinitionSlicing extends BackboneElement {
+  final List<Element>? discriminator;
   final FhirString? description;
   final Element? descriptionElement;
   final FhirBoolean? ordered;
@@ -620,21 +619,22 @@ class ElementDefinitionSlicing extends Element {
   ElementDefinitionSlicing({
     super.id,
     super.extension_,
+    this.discriminator,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.ordered,
-this.orderedElement,
+    this.orderedElement,
     required this.rules,
-this.rulesElement,
+    this.rulesElement,
   });
 
-@override
-ElementDefinitionSlicing clone() => throw UnimplementedError();
+  @override
+  ElementDefinitionSlicing clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
-class ElementDefinitionDiscriminator extends Element {
+class ElementDefinitionDiscriminator extends BackboneElement {
   final FhirCode type;
   final Element? typeElement;
   final FhirString path;
@@ -644,18 +644,18 @@ class ElementDefinitionDiscriminator extends Element {
     super.id,
     super.extension_,
     required this.type,
-this.typeElement,
+    this.typeElement,
     required this.path,
-this.pathElement,
+    this.pathElement,
   });
 
-@override
-ElementDefinitionDiscriminator clone() => throw UnimplementedError();
+  @override
+  ElementDefinitionDiscriminator clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
-class ElementDefinitionBase extends Element {
+class ElementDefinitionBase extends BackboneElement {
   final FhirString path;
   final Element? pathElement;
   final FhirUnsignedInt min;
@@ -667,20 +667,20 @@ class ElementDefinitionBase extends Element {
     super.id,
     super.extension_,
     required this.path,
-this.pathElement,
+    this.pathElement,
     required this.min,
-this.minElement,
+    this.minElement,
     required this.max,
-this.maxElement,
+    this.maxElement,
   });
 
-@override
-ElementDefinitionBase clone() => throw UnimplementedError();
+  @override
+  ElementDefinitionBase clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
-class ElementDefinitionType extends Element {
+class ElementDefinitionType extends BackboneElement {
   final FhirUri code;
   final Element? codeElement;
   final List<FhirCanonical>? profile;
@@ -696,64 +696,64 @@ class ElementDefinitionType extends Element {
     super.id,
     super.extension_,
     required this.code,
-this.codeElement,
+    this.codeElement,
     this.profile,
-this.profileElement,
+    this.profileElement,
     this.targetProfile,
-this.targetProfileElement,
+    this.targetProfileElement,
     this.aggregation,
-this.aggregationElement,
+    this.aggregationElement,
     this.versioning,
-this.versioningElement,
+    this.versioningElement,
   });
 
-@override
-ElementDefinitionType clone() => throw UnimplementedError();
+  @override
+  ElementDefinitionType clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
-class ElementDefinitionExample extends Element {
+class ElementDefinitionExample extends BackboneElement {
   final FhirString label;
   final Element? labelElement;
-  final FhirBase64Binary valueFhirBase64Binary;
-  final Element? valueFhirBase64BinaryElement;
-  final FhirBoolean valueFhirBoolean;
-  final Element? valueFhirBooleanElement;
-  final FhirCanonical valueFhirCanonical;
-  final Element? valueFhirCanonicalElement;
-  final FhirCode valueFhirCode;
-  final Element? valueFhirCodeElement;
-  final FhirDate valueFhirDate;
-  final Element? valueFhirDateElement;
-  final FhirDateTime valueFhirDateTime;
-  final Element? valueFhirDateTimeElement;
-  final FhirDecimal valueFhirDecimal;
-  final Element? valueFhirDecimalElement;
-  final FhirId valueFhirId;
-  final Element? valueFhirIdElement;
-  final FhirInstant valueFhirInstant;
-  final Element? valueFhirInstantElement;
-  final FhirInteger valueFhirInteger;
-  final Element? valueFhirIntegerElement;
-  final FhirMarkdown valueFhirMarkdown;
-  final Element? valueFhirMarkdownElement;
-  final FhirOid valueFhirOid;
-  final Element? valueFhirOidElement;
-  final FhirPositiveInt valueFhirPositiveInt;
-  final Element? valueFhirPositiveIntElement;
-  final FhirString valueFhirString;
-  final Element? valueFhirStringElement;
-  final FhirTime valueFhirTime;
-  final Element? valueFhirTimeElement;
-  final FhirUnsignedInt valueFhirUnsignedInt;
-  final Element? valueFhirUnsignedIntElement;
-  final FhirUri valueFhirUri;
-  final Element? valueFhirUriElement;
-  final FhirUrl valueFhirUrl;
-  final Element? valueFhirUrlElement;
-  final FhirUuid valueFhirUuid;
-  final Element? valueFhirUuidElement;
+  final FhirBase64Binary valueBase64Binary;
+  final Element? valueBase64BinaryElement;
+  final FhirBoolean valueBoolean;
+  final Element? valueBooleanElement;
+  final FhirCanonical valueCanonical;
+  final Element? valueCanonicalElement;
+  final FhirCode valueCode;
+  final Element? valueCodeElement;
+  final FhirDate valueDate;
+  final Element? valueDateElement;
+  final FhirDateTime valueDateTime;
+  final Element? valueDateTimeElement;
+  final FhirDecimal valueDecimal;
+  final Element? valueDecimalElement;
+  final FhirId valueId;
+  final Element? valueIdElement;
+  final FhirInstant valueInstant;
+  final Element? valueInstantElement;
+  final FhirInteger valueInteger;
+  final Element? valueIntegerElement;
+  final FhirMarkdown valueMarkdown;
+  final Element? valueMarkdownElement;
+  final FhirOid valueOid;
+  final Element? valueOidElement;
+  final FhirPositiveInt valuePositiveInt;
+  final Element? valuePositiveIntElement;
+  final FhirString valueString;
+  final Element? valueStringElement;
+  final FhirTime valueTime;
+  final Element? valueTimeElement;
+  final FhirUnsignedInt valueUnsignedInt;
+  final Element? valueUnsignedIntElement;
+  final FhirUri valueUri;
+  final Element? valueUriElement;
+  final FhirUrl valueUrl;
+  final Element? valueUrlElement;
+  final FhirUuid valueUuid;
+  final Element? valueUuidElement;
   final Address valueAddress;
   final Age valueAge;
   final Annotation valueAnnotation;
@@ -764,7 +764,7 @@ class ElementDefinitionExample extends Element {
   final ContactPoint valueContactPoint;
   final Count valueCount;
   final Distance valueDistance;
-  final FhirDuration valueFhirDuration;
+  final FhirDuration valueDuration;
   final HumanName valueHumanName;
   final Identifier valueIdentifier;
   final Money valueMoney;
@@ -780,7 +780,7 @@ class ElementDefinitionExample extends Element {
   final ContactDetail valueContactDetail;
   final Contributor valueContributor;
   final DataRequirement valueDataRequirement;
-  final FhirExpression valueFhirExpression;
+  final FhirExpression valueExpression;
   final ParameterDefinition valueParameterDefinition;
   final RelatedArtifact valueRelatedArtifact;
   final TriggerDefinition valueTriggerDefinition;
@@ -791,45 +791,45 @@ class ElementDefinitionExample extends Element {
     super.id,
     super.extension_,
     required this.label,
-this.labelElement,
-    required this.valueFhirBase64Binary,
-this.valueFhirBase64BinaryElement,
-    required this.valueFhirBoolean,
-this.valueFhirBooleanElement,
-    required this.valueFhirCanonical,
-this.valueFhirCanonicalElement,
-    required this.valueFhirCode,
-this.valueFhirCodeElement,
-    required this.valueFhirDate,
-this.valueFhirDateElement,
-    required this.valueFhirDateTime,
-this.valueFhirDateTimeElement,
-    required this.valueFhirDecimal,
-this.valueFhirDecimalElement,
-    required this.valueFhirId,
-this.valueFhirIdElement,
-    required this.valueFhirInstant,
-this.valueFhirInstantElement,
-    required this.valueFhirInteger,
-this.valueFhirIntegerElement,
-    required this.valueFhirMarkdown,
-this.valueFhirMarkdownElement,
-    required this.valueFhirOid,
-this.valueFhirOidElement,
-    required this.valueFhirPositiveInt,
-this.valueFhirPositiveIntElement,
-    required this.valueFhirString,
-this.valueFhirStringElement,
-    required this.valueFhirTime,
-this.valueFhirTimeElement,
-    required this.valueFhirUnsignedInt,
-this.valueFhirUnsignedIntElement,
-    required this.valueFhirUri,
-this.valueFhirUriElement,
-    required this.valueFhirUrl,
-this.valueFhirUrlElement,
-    required this.valueFhirUuid,
-this.valueFhirUuidElement,
+    this.labelElement,
+    required this.valueBase64Binary,
+    this.valueBase64BinaryElement,
+    required this.valueBoolean,
+    this.valueBooleanElement,
+    required this.valueCanonical,
+    this.valueCanonicalElement,
+    required this.valueCode,
+    this.valueCodeElement,
+    required this.valueDate,
+    this.valueDateElement,
+    required this.valueDateTime,
+    this.valueDateTimeElement,
+    required this.valueDecimal,
+    this.valueDecimalElement,
+    required this.valueId,
+    this.valueIdElement,
+    required this.valueInstant,
+    this.valueInstantElement,
+    required this.valueInteger,
+    this.valueIntegerElement,
+    required this.valueMarkdown,
+    this.valueMarkdownElement,
+    required this.valueOid,
+    this.valueOidElement,
+    required this.valuePositiveInt,
+    this.valuePositiveIntElement,
+    required this.valueString,
+    this.valueStringElement,
+    required this.valueTime,
+    this.valueTimeElement,
+    required this.valueUnsignedInt,
+    this.valueUnsignedIntElement,
+    required this.valueUri,
+    this.valueUriElement,
+    required this.valueUrl,
+    this.valueUrlElement,
+    required this.valueUuid,
+    this.valueUuidElement,
     required this.valueAddress,
     required this.valueAge,
     required this.valueAnnotation,
@@ -840,7 +840,7 @@ this.valueFhirUuidElement,
     required this.valueContactPoint,
     required this.valueCount,
     required this.valueDistance,
-    required this.valueFhirDuration,
+    required this.valueDuration,
     required this.valueHumanName,
     required this.valueIdentifier,
     required this.valueMoney,
@@ -856,7 +856,7 @@ this.valueFhirUuidElement,
     required this.valueContactDetail,
     required this.valueContributor,
     required this.valueDataRequirement,
-    required this.valueFhirExpression,
+    required this.valueExpression,
     required this.valueParameterDefinition,
     required this.valueRelatedArtifact,
     required this.valueTriggerDefinition,
@@ -864,13 +864,13 @@ this.valueFhirUuidElement,
     required this.valueDosage,
   });
 
-@override
-ElementDefinitionExample clone() => throw UnimplementedError();
+  @override
+  ElementDefinitionExample clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
-class ElementDefinitionConstraint extends Element {
+class ElementDefinitionConstraint extends BackboneElement {
   final FhirId key;
   final Element? keyElement;
   final FhirString? requirements;
@@ -890,28 +890,28 @@ class ElementDefinitionConstraint extends Element {
     super.id,
     super.extension_,
     required this.key,
-this.keyElement,
+    this.keyElement,
     this.requirements,
-this.requirementsElement,
+    this.requirementsElement,
     required this.severity,
-this.severityElement,
+    this.severityElement,
     required this.human,
-this.humanElement,
+    this.humanElement,
     this.expression,
-this.expressionElement,
+    this.expressionElement,
     this.xpath,
-this.xpathElement,
+    this.xpathElement,
     this.source,
-this.sourceElement,
+    this.sourceElement,
   });
 
-@override
-ElementDefinitionConstraint clone() => throw UnimplementedError();
+  @override
+  ElementDefinitionConstraint clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
-class ElementDefinitionBinding extends Element {
+class ElementDefinitionBinding extends BackboneElement {
   final FhirCode strength;
   final Element? strengthElement;
   final FhirString? description;
@@ -923,20 +923,20 @@ class ElementDefinitionBinding extends Element {
     super.id,
     super.extension_,
     required this.strength,
-this.strengthElement,
+    this.strengthElement,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.valueSet,
-this.valueSetElement,
+    this.valueSetElement,
   });
 
-@override
-ElementDefinitionBinding clone() => throw UnimplementedError();
+  @override
+  ElementDefinitionBinding clone() => throw UnimplementedError();
 }
 
 @Data()
 @JsonCodable()
-class ElementDefinitionMapping extends Element {
+class ElementDefinitionMapping extends BackboneElement {
   final FhirId identity;
   final Element? identityElement;
   final FhirCode? language;
@@ -950,16 +950,15 @@ class ElementDefinitionMapping extends Element {
     super.id,
     super.extension_,
     required this.identity,
-this.identityElement,
+    this.identityElement,
     this.language,
-this.languageElement,
+    this.languageElement,
     required this.map,
-this.mapElement,
+    this.mapElement,
     this.comment,
-this.commentElement,
+    this.commentElement,
   });
 
-@override
-ElementDefinitionMapping clone() => throw UnimplementedError();
+  @override
+  ElementDefinitionMapping clone() => throw UnimplementedError();
 }
-

@@ -31,23 +31,21 @@ class MedicinalProductDefinition extends DomainResource {
   final List<CodeableReference>? impurity;
   final List<Reference>? attachedDocument;
   final List<Reference>? masterFile;
-  final List<BackboneElement>? contact;
+  final List<MedicinalProductDefinitionContact>? contact;
   final List<Reference>? clinicalTrial;
   final List<Coding>? code;
-  final List<BackboneElement> name;
-  final List<BackboneElement>? namePart;
-  final List<BackboneElement>? countryLanguage;
-  final List<BackboneElement>? crossReference;
-  final List<BackboneElement>? operation;
-  final List<BackboneElement>? characteristic;
+  final List<MedicinalProductDefinitionName> name;
+  final List<MedicinalProductDefinitionCrossReference>? crossReference;
+  final List<MedicinalProductDefinitionOperation>? operation;
+  final List<MedicinalProductDefinitionCharacteristic>? characteristic;
 
   MedicinalProductDefinition({
     super.id,
     super.meta,
     super.implicitRules,
-super.implicitRulesElement,
+    super.implicitRulesElement,
     super.language,
-super.languageElement,
+    super.languageElement,
     super.text,
     super.contained,
     super.extension_,
@@ -56,16 +54,16 @@ super.languageElement,
     this.type,
     this.domain,
     this.version,
-this.versionElement,
+    this.versionElement,
     this.status,
     this.statusDate,
-this.statusDateElement,
+    this.statusDateElement,
     this.description,
-this.descriptionElement,
+    this.descriptionElement,
     this.combinedPharmaceuticalDoseForm,
     this.route,
     this.indication,
-this.indicationElement,
+    this.indicationElement,
     this.legalStatusOfSupply,
     this.additionalMonitoringIndicator,
     this.specialMeasures,
@@ -81,15 +79,13 @@ this.indicationElement,
     this.clinicalTrial,
     this.code,
     required this.name,
-    this.namePart,
-    this.countryLanguage,
     this.crossReference,
     this.operation,
     this.characteristic,
   }) : super(resourceType: R4ResourceType.MedicinalProductDefinition);
 
-@override
-MedicinalProductDefinition clone() => throw UnimplementedError();
+  @override
+  MedicinalProductDefinition clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -106,8 +102,8 @@ class MedicinalProductDefinitionContact extends BackboneElement {
     required this.contact,
   });
 
-@override
-MedicinalProductDefinitionContact clone() => throw UnimplementedError();
+  @override
+  MedicinalProductDefinitionContact clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -116,18 +112,22 @@ class MedicinalProductDefinitionName extends BackboneElement {
   final FhirString productName;
   final Element? productNameElement;
   final CodeableConcept? type;
+  final List<MedicinalProductDefinitionNamePart>? namePart;
+  final List<MedicinalProductDefinitionCountryLanguage>? countryLanguage;
 
   MedicinalProductDefinitionName({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.productName,
-this.productNameElement,
+    this.productNameElement,
     this.type,
+    this.namePart,
+    this.countryLanguage,
   });
 
-@override
-MedicinalProductDefinitionName clone() => throw UnimplementedError();
+  @override
+  MedicinalProductDefinitionName clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -142,12 +142,12 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.part_,
-this.partElement,
+    this.partElement,
     required this.type,
   });
 
-@override
-MedicinalProductDefinitionNamePart clone() => throw UnimplementedError();
+  @override
+  MedicinalProductDefinitionNamePart clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -166,8 +166,9 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
     required this.language,
   });
 
-@override
-MedicinalProductDefinitionCountryLanguage clone() => throw UnimplementedError();
+  @override
+  MedicinalProductDefinitionCountryLanguage clone() =>
+      throw UnimplementedError();
 }
 
 @Data()
@@ -184,8 +185,9 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
     this.type,
   });
 
-@override
-MedicinalProductDefinitionCrossReference clone() => throw UnimplementedError();
+  @override
+  MedicinalProductDefinitionCrossReference clone() =>
+      throw UnimplementedError();
 }
 
 @Data()
@@ -206,8 +208,8 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
     this.confidentialityIndicator,
   });
 
-@override
-MedicinalProductDefinitionOperation clone() => throw UnimplementedError();
+  @override
+  MedicinalProductDefinitionOperation clone() => throw UnimplementedError();
 }
 
 @Data()
@@ -216,10 +218,10 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
   final CodeableConcept type;
   final CodeableConcept? valueCodeableConcept;
   final Quantity? valueQuantity;
-  final FhirDate? valueFhirDate;
-  final Element? valueFhirDateElement;
-  final FhirBoolean? valueFhirBoolean;
-  final Element? valueFhirBooleanElement;
+  final FhirDate? valueDate;
+  final Element? valueDateElement;
+  final FhirBoolean? valueBoolean;
+  final Element? valueBooleanElement;
   final Attachment? valueAttachment;
 
   MedicinalProductDefinitionCharacteristic({
@@ -229,14 +231,14 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
     required this.type,
     this.valueCodeableConcept,
     this.valueQuantity,
-    this.valueFhirDate,
-this.valueFhirDateElement,
-    this.valueFhirBoolean,
-this.valueFhirBooleanElement,
+    this.valueDate,
+    this.valueDateElement,
+    this.valueBoolean,
+    this.valueBooleanElement,
     this.valueAttachment,
   });
 
-@override
-MedicinalProductDefinitionCharacteristic clone() => throw UnimplementedError();
+  @override
+  MedicinalProductDefinitionCharacteristic clone() =>
+      throw UnimplementedError();
 }
-
