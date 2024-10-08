@@ -8,6 +8,7 @@ import 'package:collection/collection.dart';
 import 'consts.dart';
 import 'fhir_generate_extension.dart';
 import 'file_io.dart';
+import 'parse_search_parameters.dart';
 import 'resource_utils.dart';
 import 'writable_class.dart';
 import 'write_enums.dart';
@@ -25,6 +26,7 @@ Future<void> main() async {
   exportFiles();
   writeEnums(_valueSets, _codesAndVS, _nameMap);
   generateResourceUtils();
+  parseSearchParameters();
   deleteDirectories();
 }
 

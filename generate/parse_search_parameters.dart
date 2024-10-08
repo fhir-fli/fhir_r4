@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 
-Future<void> parseSearchParameters() async {
-  final File file = File('search-parameters.json'); // Path to your JSON file
-  final String jsonString = await file.readAsString();
+import 'consts.dart';
+
+void parseSearchParameters() {
+  final File file = File(searchParametersPath); // Path to your JSON file
+  final String jsonString = file.readAsStringSync();
   final Map<String, dynamic> data =
       jsonDecode(jsonString) as Map<String, dynamic>;
 
@@ -57,7 +59,7 @@ Future<void> parseSearchParameters() async {
   }
 
   // Create the searches directory if it doesn't exist
-  final Directory dir = Directory('searches');
+  final Directory dir = Directory(searchesPath);
   if (!dir.existsSync()) {
     dir.createSync();
   }
@@ -155,14 +157,14 @@ Future<void> parseSearchParameters() async {
 
     // Write to individual file in the searches directory
     final File outputFile =
-        File('searches/${resourceType.toLowerCase()}_search.dart');
-    await outputFile.writeAsString(buffer.toString());
+        File('$searchesPath/${resourceType.toLowerCase()}_search.dart');
+    outputFile.writeAsStringSync(buffer.toString());
   }
 
   // ignore: avoid_print
   print('Dart search classes generated successfully!');
 
-  final Directory searchDir = Directory('searches');
+  final Directory searchDir = Directory(searchesPath);
   final List<String> files = searchDir
       .listSync()
       .whereType<File>()
@@ -172,7 +174,7 @@ Future<void> parseSearchParameters() async {
 
   files.sort();
 
-  File('searches/searches.dart').writeAsStringSync(
+  File('$searchesPath/searches.dart').writeAsStringSync(
       files.map((String file) => "export '$file';").join('\n'));
 }
 
