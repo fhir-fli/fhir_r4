@@ -69,7 +69,7 @@ void parseSearchParameters() {
       in resourceParameters.entries) {
     final String resourceType = entry.key;
     final List<Map<String, String>> parameters = entry.value;
-    final String className = '${resourceType}Search';
+    final String className = 'Search$resourceType';
 
     // Prepare content for the file
     final StringBuffer buffer = StringBuffer();
@@ -80,14 +80,13 @@ void parseSearchParameters() {
     ];
     if (!noParameters.contains(className)) {
       buffer.writeln("import '../../../fhir_r4.dart';");
-      buffer.writeln("import '../enums/search_modifier.dart';\n");
     }
 
     buffer.writeln('class $className {');
     buffer.writeln(
         '  final Map<String, String> parameters = <String, String>{};');
 
-    // Generate methods for each search parameter
+// Generate methods for each search parameter
     for (final Map<String, String> param in parameters) {
       final String paramCode = param['code']!.replaceAll('-', '_');
       final String paramType = param['type']!;
@@ -100,42 +99,48 @@ void parseSearchParameters() {
           buffer.writeln('  $className ${_methodName(methodName)}'
               '(FhirDateTime value, {SearchModifier? modifier}) {');
           buffer.writeln(
-              "    parameters['\${modifier}$paramCode'] = value.toString();");
+              "    parameters['\${modifier != null ? '\$modifier' : ''}$paramCode'] = value.toString();");
           buffer.writeln('    return this;');
           buffer.writeln('  }\n');
         case 'token':
           buffer.writeln('  $className ${_methodName(methodName)}'
               '(FhirString value, {FhirUri? system, SearchModifier? modifier}) {');
           buffer.writeln(
-              "    parameters['\${modifier}$paramCode'] = system != null ? '\$system|\$value' : '\$value';");
+              "    parameters['\${modifier != null ? '\$modifier' : ''}$paramCode'] = system != null ? '\$system|\$value' : '\$value';");
           buffer.writeln('    return this;');
           buffer.writeln('  }\n');
         case 'string':
+          // Only allow eq, ne modifiers for string types
           buffer.writeln('  $className ${_methodName(methodName)}'
               '(FhirString value, {SearchModifier? modifier}) {');
           buffer.writeln(
-              "    parameters['\${modifier}$paramCode'] = value.toString();");
+              "    if (modifier != null && !<String>['eq', 'ne'].contains(modifier.toString())) {");
+          buffer.writeln(
+              r"      throw ArgumentError('Modifier $modifier not allowed for string type');");
+          buffer.writeln('    }');
+          buffer.writeln(
+              "    parameters['\${modifier != null ? '\$modifier' : ''}$paramCode'] = value.toString();");
           buffer.writeln('    return this;');
           buffer.writeln('  }\n');
         case 'number':
-          buffer.writeln('  $className ${_methodName(methodName)}'
-              '(FhirDecimal value, {SearchModifier? modifier}) {');
-          buffer.writeln(
-              "    parameters['\${modifier}$paramCode'] = value.toString();");
-          buffer.writeln('    return this;');
-          buffer.writeln('  }\n');
         case 'quantity':
+          // Allow gt, lt, ge, le, ap modifiers for number and quantity
           buffer.writeln('  $className ${_methodName(methodName)}'
               '(FhirDecimal value, {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {');
           buffer.writeln(
-              "    parameters['\${modifier}$paramCode'] = '\$value.toString()}|\${system?.toString() ?? ''}|\${unit?.toString() ?? ''}';");
+              "    if (modifier != null && !<String>['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {");
+          buffer.writeln(
+              "      throw ArgumentError('Modifier \$modifier not allowed for $paramType type');");
+          buffer.writeln('    }');
+          buffer.writeln(
+              "    parameters['\${modifier != null ? '\$modifier' : ''}$paramCode'] = '\$value|\${system?.toString() ?? ''}|\${unit?.toString() ?? ''}';");
           buffer.writeln('    return this;');
           buffer.writeln('  }\n');
         case 'uri':
           buffer.writeln('  $className ${_methodName(methodName)}'
               '(FhirUri value, {SearchModifier? modifier}) {');
           buffer.writeln(
-              "    parameters['\${modifier}$paramCode'] = value.toString();");
+              "    parameters['\${modifier != null ? '\$modifier' : ''}$paramCode'] = value.toString();");
           buffer.writeln('    return this;');
           buffer.writeln('  }\n');
         // Add more cases here as needed for other parameter types
@@ -157,7 +162,7 @@ void parseSearchParameters() {
 
     // Write to individual file in the searches directory
     final File outputFile =
-        File('$searchesPath/${resourceType.toLowerCase()}_search.dart');
+        File('$searchesPath/search_${resourceType.toLowerCase()}.dart');
     outputFile.writeAsStringSync(buffer.toString());
   }
 
