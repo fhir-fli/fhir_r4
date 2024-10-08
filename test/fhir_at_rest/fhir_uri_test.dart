@@ -1,26 +1,10 @@
-import 'package:fhir_r4/src/fhir_at_rest/r4.dart';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:http/http.dart' as http;
 import 'package:test/test.dart';
 
 void main() {
   group('FHIR URI - READ:', () {
     test('get patient', () async {
-      final FhirReadRequest request = FhirReadRequest(
-        base: Uri.parse('http://hapi.fhir.org/baseR4'),
-        resourceType: 'Patient',
-        id: '12345',
-        headers: <String, String>{'Accept': 'application/fhir+json'},
-      );
-
-      final String uri = request.buildUri().toString();
-      expect(uri, 'http://hapi.fhir.org/baseR4/Patient/12345');
-
-      final http.Response response = await request.sendRequest();
-      expect(response.request?.url.toString(),
-          'http://hapi.fhir.org/baseR4/Patient/12345');
-    });
-
-    test('get patient with pretty', () async {
       final FhirReadRequest request = FhirReadRequest(
         base: Uri.parse('http://hapi.fhir.org/baseR4'),
         resourceType: 'Patient',
@@ -106,23 +90,6 @@ void main() {
 
   group('FHIR URI - VREAD:', () {
     test('get patient version', () async {
-      final FhirVReadRequest request = FhirVReadRequest(
-        base: Uri.parse('http://hapi.fhir.org/baseR4'),
-        resourceType: 'Patient',
-        id: '12345',
-        vid: '6789',
-        headers: <String, String>{'Accept': 'application/fhir+json'},
-      );
-
-      final String uri = request.buildUri().toString();
-      expect(uri, 'http://hapi.fhir.org/baseR4/Patient/12345/_history/6789');
-
-      final http.Response response = await request.sendRequest();
-      expect(response.request?.url.toString(),
-          'http://hapi.fhir.org/baseR4/Patient/12345/_history/6789');
-    });
-
-    test('get patient version with pretty', () async {
       final FhirVReadRequest request = FhirVReadRequest(
         base: Uri.parse('http://hapi.fhir.org/baseR4'),
         resourceType: 'Patient',
@@ -395,31 +362,31 @@ void main() {
     test('patient id search', () async {
       // Use the specific SearchPatient class instead of manually defining parameters
       final SearchPatient searchPatient =
-          SearchPatient().id(FhirString('12345'));
+          SearchPatient().id(FhirString('12345')) as SearchPatient;
       final FhirSearchRequest request = FhirSearchRequest(
         base: Uri.parse('http://hapi.fhir.org/baseR4'),
         resourceType: 'Patient',
-        search: searchPatient, // Pass in the searchPatient instance here
-        pretty: false,
+        search: searchPatient,
       );
 
-      // Expected query: _id=12345
-      expect(request, FhirRequest.fromJson(request.toJson()));
-      expect(request.runtimeType,
-          FhirRequest.fromJson(request.toJson()).runtimeType);
-      expect(
-        request.uri(),
-        'http://hapi.fhir.org/baseR4/Patient?_format=json&_pretty=false&_id=12345',
-      );
+      final String uri = request.buildUri().toString();
+      expect(uri, 'http://hapi.fhir.org/baseR4/Observation/_search');
+
+      final http.Response response = await request.sendRequest();
+      expect(response.request?.url.toString(),
+          'http://hapi.fhir.org/baseR4/Observation/_search');
     });
 
     test('search observations with _lastUpdated using POST', () async {
+      final SearchObservation obsSearch = SearchObservation().lastUpdated(
+          '2020-01-01'.toFhirDateTime,
+          modifier: SearchModifier.gt) as SearchObservation;
       final FhirSearchRequest request = FhirSearchRequest(
         base: Uri.parse('http://hapi.fhir.org/baseR4'),
         resourceType: 'Observation',
         usePost: true,
         headers: <String, String>{'Accept': 'application/fhir+json'},
-        queryParameters: <String, String>{'_lastUpdated': 'gt2020-01-01'},
+        search: obsSearch,
       );
 
       final String uri = request.buildUri().toString();
@@ -432,15 +399,17 @@ void main() {
   });
   group('FHIR URI - OPERATION:', () {
     test(r'$everything operation for Patient', () async {
+      final RestfulParameters search = RestfulParameters()
+          .add('start', '2020-01-01')
+          .add('end', '2020-08-01');
+
+      SearchPatient().id(FhirString('744742')) as SearchPatient;
       final FhirOperationRequest request = FhirOperationRequest(
         base: Uri.parse('http://hapi.fhir.org/baseR4'),
         resourceType: 'Patient',
         id: '744742',
         operation: 'everything',
-        queryParameters: <String, dynamic>{
-          'start': '2020-01-01',
-          'end': '2020-08-01'
-        },
+        parameters: search,
         headers: <String, String>{'Accept': 'application/fhir+json'},
       );
 

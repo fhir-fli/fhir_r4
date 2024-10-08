@@ -79,14 +79,15 @@ void parseSearchParameters() {
 
       buffer.writeln("import '../../../fhir_r4.dart';");
 
-      final String extendClause =
-          resourceType == 'Resource' ? '' : 'extends SearchResource ';
+      final String extendClause = resourceType == 'Resource'
+          ? 'extends RestfulParameters '
+          : 'extends SearchResource ';
 
       buffer.writeln('class $className $extendClause{');
-      if (resourceType == 'Resource') {
-        buffer.writeln(
-            '  final Map<String, String> parameters = <String, String>{};');
-      }
+      // if (resourceType == 'Resource') {
+      //   buffer.writeln(
+      //       '  final Map<String, String> parameters = <String, String>{};');
+      // }
 
       // Generate methods for each search parameter
       for (final Map<String, String> param in parameters) {
@@ -152,18 +153,18 @@ void parseSearchParameters() {
         }
       }
 
-      if (resourceType == 'Resource') {
-        buffer.writeln('  $className add(String parameter, String value) {');
-        buffer.writeln('    parameters[parameter] = value;');
-        buffer.writeln('    return this;');
-        buffer.writeln('  }\n');
+      // if (resourceType == 'Resource') {
+      //   buffer.writeln('  $className add(String parameter, String value) {');
+      //   buffer.writeln('    parameters[parameter] = value;');
+      //   buffer.writeln('    return this;');
+      //   buffer.writeln('  }\n');
 
-        // Generate the query builder method
-        buffer.writeln('  String buildQuery() {');
-        buffer.writeln(
-            r"    return parameters.entries.map((MapEntry<String, String> e) => '${e.key}=${e.value}').join('&');");
-        buffer.writeln('  }');
-      }
+      //   // Generate the query builder method
+      //   buffer.writeln('  String buildQuery() {');
+      //   buffer.writeln(
+      //       r"    return parameters.entries.map((MapEntry<String, String> e) => '${e.key}=${e.value}').join('&');");
+      //   buffer.writeln('  }');
+      // }
 
       buffer.writeln('}\n');
 
@@ -172,9 +173,6 @@ void parseSearchParameters() {
           File('$searchesPath/search_${resourceType.toLowerCase()}.dart');
       outputFile.writeAsStringSync(buffer.toString());
     }
-
-    // ignore: avoid_print
-    print('Dart search classes generated successfully!');
 
     final Directory searchDir = Directory(searchesPath);
     final List<String> files = searchDir

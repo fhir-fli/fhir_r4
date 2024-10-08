@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../../fhir_r4.dart';
-import 'enums/enums.dart';
 
 abstract class FhirRequest {
   final Uri base;
@@ -212,18 +211,18 @@ class FhirCreateRequest extends FhirRequest {
 // 7. Search Request (GET or POST)
 class FhirSearchRequest extends FhirRequest {
   final String resourceType;
-  final SearchBase search; // Holds search parameters
+  final SearchResource search; // Holds search parameters
   final bool usePost;
 
   FhirSearchRequest({
     required super.base,
     required this.resourceType,
-    SearchBase? search, // Optional search object
+    SearchResource? search, // Optional search object
     this.usePost = false,
     super.headers = const <String, String>{},
     super.summary,
     super.client,
-  }) : search = search ?? SearchBase();
+  }) : search = search ?? SearchResource();
 
   @override
   Uri buildUri() {
@@ -390,7 +389,7 @@ class FhirBatchRequest extends FhirRequest {
 // 13. Operation Request (POST or GET)
 class FhirOperationRequest extends FhirRequest {
   final String operation;
-  final Map<String, dynamic>? fhirParameter;
+  final RestfulParameters? parameters;
   final String? id;
   final String? resourceType;
   final bool usePost;
@@ -398,7 +397,7 @@ class FhirOperationRequest extends FhirRequest {
   FhirOperationRequest({
     required super.base,
     required this.operation,
-    this.fhirParameter,
+    this.parameters,
     this.id,
     this.resourceType,
     this.usePost = false,
@@ -418,8 +417,8 @@ class FhirOperationRequest extends FhirRequest {
 
   @override
   String? buildBody() {
-    if (usePost && fhirParameter != null) {
-      return jsonEncode(fhirParameter);
+    if (usePost && parameters != null) {
+      return jsonEncode(parameters!.parameters);
     }
     return null;
   }

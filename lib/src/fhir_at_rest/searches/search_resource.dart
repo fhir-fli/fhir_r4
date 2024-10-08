@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchResource {
-  final Map<String, String> parameters = <String, String>{};
+class SearchResource extends RestfulParameters {
   SearchResource content(FhirString value, {SearchModifier? modifier}) {
     if (modifier != null &&
         !<String>['eq', 'ne'].contains(modifier.toString())) {
@@ -100,16 +99,5 @@ class SearchResource {
     parameters['${modifier != null ? '$modifier' : ''}_type'] =
         system != null ? '$system|$value' : '$value';
     return this;
-  }
-
-  SearchResource add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }
