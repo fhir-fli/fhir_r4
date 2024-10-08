@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:archive/archive_io.dart';
 
+import 'consts.dart';
 import 'fhir_generate_extension.dart';
 
 Future<void> extract() async {
@@ -13,26 +14,24 @@ Future<void> extract() async {
 }
 
 Future<void> _extractFilesToDisk() async {
-  await extractFileToDisk('definitions.json.zip', '.');
-  await extractFileToDisk('examples-json.zip', '.');
-  await extractFileToDisk('examples-ndjson.zip', '.');
-  await extractFileToDisk(
-      'definitions.json/fhir.schema.json.zip', './definitions.json');
+  await extractFileToDisk(definitionsPathZip, '.');
+  await extractFileToDisk(examplesPathZip, '.');
+  await extractFileToDisk(ndJsonExamplesPathZip, '.');
+  await extractFileToDisk(schemaPathZip, definitionsPath);
 }
 
 void _moveJsonExamples() {
-  final Directory examplesJsonDirectory = Directory('examples-json');
+  final Directory examplesJsonDirectory = Directory(examplesPath);
   final List<FileSystemEntity> examplesJson = examplesJsonDirectory.listSync();
   for (final FileSystemEntity file in examplesJson) {
     if (file is File) {
-      file.copySync(
-          file.path.replaceAll('examples-json', '../test/fhir/examples'));
+      file.copySync(file.path.replaceAll(examplesPath, testPath));
     }
   }
 }
 
 void _moveNdJsonExamples() {
-  final Directory examplesJsonDirectory = Directory('examples-ndjson');
+  final Directory examplesJsonDirectory = Directory(ndJsonExamplesPath);
   final List<FileSystemEntity> examplesJson = examplesJsonDirectory.listSync();
   for (final FileSystemEntity file in examplesJson) {
     if (file is File) {
@@ -43,7 +42,7 @@ void _moveNdJsonExamples() {
         final String line = lines[i];
         if (line.isNotEmpty) {
           final String partialPath = file.path
-              .replaceAll('examples-ndjson', '../test/fhir/examples')
+              .replaceAll(ndJsonExamplesPath, testPath)
               .replaceAll('.ndjson', '.json')
               .replaceAll(titleString, '$titleString$i');
           final File newFile = File(partialPath);
@@ -55,14 +54,9 @@ void _moveNdJsonExamples() {
 }
 
 void exportFiles() {
-  final List<String> directories = <String>[
-    'data_types',
-    'resource_types',
-    'enums'
-  ];
   for (final String dir in directories) {
     final List<String> exportFile = <String>[];
-    final Directory directory = Directory('../lib/src/fhir/$dir');
+    final Directory directory = Directory('$fhirDirectory$dir');
     final List<FileSystemEntity> files = directory.listSync();
     for (final FileSystemEntity file in files) {
       final String fileName = file.path.split('/').last;
@@ -73,14 +67,14 @@ void exportFiles() {
       }
     }
     exportFile.sort();
-    File('../lib/src/fhir/$dir/$dir.dart')
+    File('$fhirDirectory$dir/$dir.dart')
         .writeAsStringSync(exportFile.join('\n'));
   }
 }
 
 void writeEnumToFile(String enumName, String enumString) {
   final String enumFileName = '${enumName.snakeCase}.dart';
-  final String filePath = '../lib/src/fhir/enums/$enumFileName';
+  final String filePath = '${fhirDirectory}enums/$enumFileName';
 
   final File enumFile = File(filePath);
   if (!enumFile.existsSync()) {
@@ -93,9 +87,9 @@ void writeEnumToFile(String enumName, String enumString) {
 void deleteDirectories() {
   final List<String> directories = <String>[
     '__MACOSX',
-    'definitions.json',
-    'examples-json',
-    'examples-ndjson',
+    definitionsPath,
+    examplesPath,
+    ndJsonExamplesPath,
   ];
 
   for (final String dir in directories) {

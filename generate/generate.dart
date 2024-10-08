@@ -5,13 +5,12 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 
+import 'consts.dart';
 import 'fhir_generate_extension.dart';
 import 'file_io.dart';
+import 'resource_utils.dart';
 import 'writable_class.dart';
 import 'write_enums.dart';
-
-const String fhirSchemaPath = './definitions.json/fhir.schema.json';
-const String valueSetPath = './definitions.json/valuesets.json';
 
 final Map<String, String> _nameMap = <String, String>{};
 final Map<String, Map<String, dynamic>> _codesAndVS =
@@ -25,13 +24,14 @@ Future<void> main() async {
   _classesFromStructureDefinitions();
   exportFiles();
   writeEnums(_valueSets, _codesAndVS, _nameMap);
+  generateResourceUtils();
   deleteDirectories();
 }
 
 void _classesFromStructureDefinitions() {
   final List<String> structureDefinitionBundles = <String>[
-    './definitions.json/profiles-resources.json',
-    './definitions.json/profiles-types.json',
+    resourceProfilesPath,
+    typeProfilesPath,
   ];
 
   structureDefinitionBundles.forEach(_generateFromBundle);
@@ -250,7 +250,7 @@ StringBuffer _generateClassBuffer(Map<String, WritableClass> classes) {
   buffer.writeln("import 'package:json_annotation/json_annotation.dart';");
   buffer.writeln("import 'package:objectbox/objectbox.dart';");
   buffer.writeln("import 'package:yaml/yaml.dart';");
-  buffer.writeln("\nimport '../../../fhir_r4.dart';\n");
+  buffer.writeln("\nimport '../../../$fhirVersion.dart';\n");
 
   final String? writeFileName =
       classes.values.first.className.fileNameFromClassName(_nameMap);
@@ -491,8 +491,8 @@ void writeToFile(
   }
 
   writeFileName = writeFileName.properFileName;
-  final String filePath = '../lib/src/fhir/'
-      '${className.isResource ? "resource_types" : "data_types"}/$writeFileName.dart';
+  final String filePath =
+      '$fhirDirectory${className.isResource ? "resource_types" : "data_types"}/$writeFileName.dart';
   File(filePath).writeAsStringSync(buffer.toString());
 }
 
