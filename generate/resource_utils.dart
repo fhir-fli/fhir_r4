@@ -8,6 +8,11 @@ import 'consts.dart';
 void generateResourceUtils() {
   // Parse the schema and get the resource types
   final List<String> resourceTypes = extractResourceTypes();
+  ignoredClasses.forEach(resourceTypes.remove);
+  resourceTypes
+      .removeWhere((String element) => classNamesAdjusted.contains(element));
+  resourceTypes.addAll(classNamesAdjusted.map((String e) => 'Fhir$e'));
+  resourceTypes.sort();
 
   // Generate the various files
   generateResourceFromJson(resourceTypes);
@@ -52,12 +57,16 @@ void generateResourceFromJson(List<String> resourceTypes) {
   buffer.writeln('  switch (resourceType) {');
 
   for (final String resourceType in resourceTypes) {
-    buffer.writeln("    case '$resourceType':");
+    buffer.writeln("    case '${resourceType.replaceAll('Fhir', '')}':");
     buffer.writeln('      return $resourceType.fromJson(json);');
   }
 
   buffer.writeln('    default:');
-  buffer.writeln("      throw Exception('Unknown resource type');");
+  buffer.writeln('      throw UnsupportedError(');
+  buffer.writeln(
+      "      'You have passed Resource.fromJson a type which does not exist or is null. '");
+  buffer.writeln(r"      'In this case, the resourceType is $resourceType.');");
+
   buffer.writeln('  }');
   buffer.writeln('}');
 
@@ -80,8 +89,6 @@ void generateResourceNewId(List<String> resourceTypes) {
         '      return (resource as $resourceType).copyWith(id: newId);');
   }
 
-  buffer.writeln('    default:');
-  buffer.writeln("      throw Exception('Unknown resource type');");
   buffer.writeln('  }');
   buffer.writeln('}');
 
@@ -93,7 +100,7 @@ void generateResourceNewId(List<String> resourceTypes) {
 void generateResourceNewVersion(List<String> resourceTypes) {
   final StringBuffer buffer = StringBuffer();
   buffer.writeln("import '../../../$fhirVersion.dart';");
-  buffer.writeln('/// Updates the [meta] field of the resource');
+  buffer.writeln(updatedMeta);
   buffer.writeln(
       'Resource updateMeta(Resource resource, {FhirMeta? meta, bool versionIdAsTime = false}) {');
   buffer.writeln(
@@ -106,8 +113,6 @@ void generateResourceNewVersion(List<String> resourceTypes) {
         '      return (resource as $resourceType).copyWith(meta: newMeta);');
   }
 
-  buffer.writeln('    default:');
-  buffer.writeln("      throw Exception('Unknown resource type');");
   buffer.writeln('  }');
   buffer.writeln('}');
 
@@ -123,9 +128,11 @@ void generateResourceTypesEnum(List<String> resourceTypes) {
 
   // Write the enum values
   for (final String resourceType in resourceTypes) {
-    buffer.writeln("  @JsonValue('$resourceType')");
+    buffer.writeln("  @JsonValue('${resourceType.replaceAll('Fhir', '')}')");
     buffer.writeln('  $resourceType,');
   }
+
+  buffer.writeln(';');
 
   // Add the helper methods
   buffer.writeln('  @override');
@@ -133,7 +140,7 @@ void generateResourceTypesEnum(List<String> resourceTypes) {
   buffer.writeln('    switch (this) {');
   for (final String resourceType in resourceTypes) {
     buffer.writeln('      case $fhirResourceType.$resourceType:');
-    buffer.writeln("        return '$resourceType';");
+    buffer.writeln("        return '${resourceType.replaceAll('Fhir', '')}';");
   }
   buffer.writeln('    }');
   buffer.writeln('  }');
@@ -143,7 +150,7 @@ void generateResourceTypesEnum(List<String> resourceTypes) {
   buffer.writeln('  static $fhirResourceType? fromString(String string) {');
   buffer.writeln('    switch (string) {');
   for (final String resourceType in resourceTypes) {
-    buffer.writeln("      case '$resourceType':");
+    buffer.writeln("      case '${resourceType.replaceAll('Fhir', '')}':");
     buffer.writeln('        return $fhirResourceType.$resourceType;');
   }
   buffer.writeln('      default:');
@@ -160,7 +167,7 @@ void generateResourceTypesEnum(List<String> resourceTypes) {
 
   buffer.writeln('  static List<String> get typesAsStrings => <String>[');
   for (final String resourceType in resourceTypes) {
-    buffer.writeln("    '$resourceType',");
+    buffer.writeln("    '${resourceType.replaceAll('Fhir', '')}',");
   }
   buffer.writeln('  ];');
 
@@ -169,3 +176,46 @@ void generateResourceTypesEnum(List<String> resourceTypes) {
   File('${fhirDirectory}utils/resource_types_enum.dart')
       .writeAsStringSync(buffer.toString());
 }
+
+const String updatedMeta = '''
+/// Returns a [FhirMeta] object, creates a new one if none is passed, otherwise
+/// updates the [lastUpdated] and increases the [version] by 1
+FhirMeta updateFhirMetaVersion(FhirMeta? oldFhirMeta,
+    [bool versionIdAsTime = false]) {
+  final DateTime now = DateTime.now().toUtc();
+  if (versionIdAsTime) {
+    if (oldFhirMeta == null) {
+      return FhirMeta(
+        lastUpdated: FhirInstant(now),
+        versionId: FhirId(now.toIso8601String().replaceAll(':', '.')),
+      );
+    } else {
+      return oldFhirMeta.copyWith(
+        lastUpdated: FhirInstant(now),
+        versionId: FhirId(now.toIso8601String().replaceAll(':', '.')),
+      );
+    }
+  }
+  final int version = oldFhirMeta == null
+      ? 1
+      : oldFhirMeta.versionId == null
+          ? 1
+          : int.parse(oldFhirMeta.versionId.toString()) + 1;
+  if (oldFhirMeta == null) {
+    return FhirMeta(
+      lastUpdated: FhirInstant(now),
+      versionId: FhirId(version.toString()),
+    );
+  } else {
+    return oldFhirMeta.copyWith(
+      lastUpdated: FhirInstant(now),
+      versionId: FhirId(version.toString()),
+    );
+  }
+}
+
+/// Updates the [meta] field of this Resource, updates the meta.lastUpdated
+/// field, adds 1 to the version number and adds an [Id] if there is not already
+/// one, accepts [meta] as an argument and will update that field, otherwise
+/// will try and update the [meta] field already in the resource
+''';

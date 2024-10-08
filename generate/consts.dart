@@ -14,6 +14,8 @@ const String typeProfilesPath = './definitions.json/profiles-types.json';
 const String fhirVersion = 'fhir_r4';
 const String fhirResourceType = 'R4ResourceType';
 const String fhirDirectory = '../lib/src/fhir/';
+const List<String> classNamesAdjusted = <String>['List', 'Endpoint', 'Group'];
+const List<String> ignoredClasses = <String>['ExampleScenario_Instance'];
 const List<String> directories = <String>[
   'data_types',
   'resource_types',

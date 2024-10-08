@@ -97,8 +97,6 @@ Resource resourceFromJson(Map<String, dynamic> json) {
       return DocumentReference.fromJson(json);
     case 'Encounter':
       return Encounter.fromJson(json);
-    case 'Endpoint':
-      return FhirEndpoint.fromJson(json);
     case 'EnrollmentRequest':
       return EnrollmentRequest.fromJson(json);
     case 'EnrollmentResponse':
@@ -119,14 +117,18 @@ Resource resourceFromJson(Map<String, dynamic> json) {
       return ExplanationOfBenefit.fromJson(json);
     case 'FamilyMemberHistory':
       return FamilyMemberHistory.fromJson(json);
+    case 'Endpoint':
+      return FhirEndpoint.fromJson(json);
+    case 'Group':
+      return FhirGroup.fromJson(json);
+    case 'List':
+      return FhirList.fromJson(json);
     case 'Flag':
       return Flag.fromJson(json);
     case 'Goal':
       return Goal.fromJson(json);
     case 'GraphDefinition':
       return GraphDefinition.fromJson(json);
-    case 'Group':
-      return FhirGroup.fromJson(json);
     case 'GuidanceResponse':
       return GuidanceResponse.fromJson(json);
     case 'HealthcareService':
@@ -151,8 +153,6 @@ Resource resourceFromJson(Map<String, dynamic> json) {
       return Library.fromJson(json);
     case 'Linkage':
       return Linkage.fromJson(json);
-    case 'List':
-      return FhirList.fromJson(json);
     case 'Location':
       return Location.fromJson(json);
     case 'ManufacturedItemDefinition':
@@ -289,7 +289,7 @@ Resource resourceFromJson(Map<String, dynamic> json) {
       return VisionPrescription.fromJson(json);
     default:
       throw UnsupportedError(
-          "You have passed Resource.fromJson a type doesn't exist or is null. "
+          'You have passed Resource.fromJson a type which does not exist or is null. '
           'In this case, the resourceType is $resourceType.');
   }
 }

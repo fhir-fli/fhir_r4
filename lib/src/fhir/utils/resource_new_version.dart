@@ -40,6 +40,7 @@ FhirMeta updateFhirMetaVersion(FhirMeta? oldFhirMeta,
 /// field, adds 1 to the version number and adds an [Id] if there is not already
 /// one, accepts [meta] as an argument and will update that field, otherwise
 /// will try and update the [meta] field already in the resource
+
 Resource updateMeta(Resource resource,
     {FhirMeta? meta, bool versionIdAsTime = false}) {
   final FhirMeta newMeta =
@@ -138,8 +139,6 @@ Resource updateMeta(Resource resource,
       return (resource as DocumentReference).copyWith(meta: newMeta);
     case R4ResourceType.Encounter:
       return (resource as Encounter).copyWith(meta: newMeta);
-    case R4ResourceType.FhirEndpoint:
-      return (resource as FhirEndpoint).copyWith(meta: newMeta);
     case R4ResourceType.EnrollmentRequest:
       return (resource as EnrollmentRequest).copyWith(meta: newMeta);
     case R4ResourceType.EnrollmentResponse:
@@ -160,14 +159,18 @@ Resource updateMeta(Resource resource,
       return (resource as ExplanationOfBenefit).copyWith(meta: newMeta);
     case R4ResourceType.FamilyMemberHistory:
       return (resource as FamilyMemberHistory).copyWith(meta: newMeta);
+    case R4ResourceType.FhirEndpoint:
+      return (resource as FhirEndpoint).copyWith(meta: newMeta);
+    case R4ResourceType.FhirGroup:
+      return (resource as FhirGroup).copyWith(meta: newMeta);
+    case R4ResourceType.FhirList:
+      return (resource as FhirList).copyWith(meta: newMeta);
     case R4ResourceType.Flag:
       return (resource as Flag).copyWith(meta: newMeta);
     case R4ResourceType.Goal:
       return (resource as Goal).copyWith(meta: newMeta);
     case R4ResourceType.GraphDefinition:
       return (resource as GraphDefinition).copyWith(meta: newMeta);
-    case R4ResourceType.FhirGroup:
-      return (resource as FhirGroup).copyWith(meta: newMeta);
     case R4ResourceType.GuidanceResponse:
       return (resource as GuidanceResponse).copyWith(meta: newMeta);
     case R4ResourceType.HealthcareService:
@@ -192,8 +195,6 @@ Resource updateMeta(Resource resource,
       return (resource as Library).copyWith(meta: newMeta);
     case R4ResourceType.Linkage:
       return (resource as Linkage).copyWith(meta: newMeta);
-    case R4ResourceType.FhirList:
-      return (resource as FhirList).copyWith(meta: newMeta);
     case R4ResourceType.Location:
       return (resource as Location).copyWith(meta: newMeta);
     case R4ResourceType.ManufacturedItemDefinition:

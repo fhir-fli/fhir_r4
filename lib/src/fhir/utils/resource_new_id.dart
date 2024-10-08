@@ -96,8 +96,6 @@ Resource newId(Resource resource) {
       return (resource as DocumentReference).copyWith(id: newId);
     case R4ResourceType.Encounter:
       return (resource as Encounter).copyWith(id: newId);
-    case R4ResourceType.FhirEndpoint:
-      return (resource as FhirEndpoint).copyWith(id: newId);
     case R4ResourceType.EnrollmentRequest:
       return (resource as EnrollmentRequest).copyWith(id: newId);
     case R4ResourceType.EnrollmentResponse:
@@ -118,14 +116,18 @@ Resource newId(Resource resource) {
       return (resource as ExplanationOfBenefit).copyWith(id: newId);
     case R4ResourceType.FamilyMemberHistory:
       return (resource as FamilyMemberHistory).copyWith(id: newId);
+    case R4ResourceType.FhirEndpoint:
+      return (resource as FhirEndpoint).copyWith(id: newId);
+    case R4ResourceType.FhirGroup:
+      return (resource as FhirGroup).copyWith(id: newId);
+    case R4ResourceType.FhirList:
+      return (resource as FhirList).copyWith(id: newId);
     case R4ResourceType.Flag:
       return (resource as Flag).copyWith(id: newId);
     case R4ResourceType.Goal:
       return (resource as Goal).copyWith(id: newId);
     case R4ResourceType.GraphDefinition:
       return (resource as GraphDefinition).copyWith(id: newId);
-    case R4ResourceType.FhirGroup:
-      return (resource as FhirGroup).copyWith(id: newId);
     case R4ResourceType.GuidanceResponse:
       return (resource as GuidanceResponse).copyWith(id: newId);
     case R4ResourceType.HealthcareService:
@@ -150,8 +152,6 @@ Resource newId(Resource resource) {
       return (resource as Library).copyWith(id: newId);
     case R4ResourceType.Linkage:
       return (resource as Linkage).copyWith(id: newId);
-    case R4ResourceType.FhirList:
-      return (resource as FhirList).copyWith(id: newId);
     case R4ResourceType.Location:
       return (resource as Location).copyWith(id: newId);
     case R4ResourceType.ManufacturedItemDefinition:
