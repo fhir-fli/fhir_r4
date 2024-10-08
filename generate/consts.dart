@@ -24,3 +24,9 @@ const List<String> directories = <String>[
   'resource_types',
   'enums'
 ];
+final List<String> noParameters = <String>[
+  'LinkageSearch',
+  'VerificationResultSearch',
+  'SearchLinkage',
+  'SearchVerificationResult'
+];

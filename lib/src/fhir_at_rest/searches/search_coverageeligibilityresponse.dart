@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchCoverageEligibilityResponse {
-  final Map<String, String> parameters = <String, String>{};
+class SearchCoverageEligibilityResponse extends SearchResource {
   SearchCoverageEligibilityResponse created(FhirDateTime value,
       {SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}created'] =
@@ -40,16 +39,5 @@ class SearchCoverageEligibilityResponse {
     parameters['${modifier != null ? '$modifier' : ''}status'] =
         system != null ? '$system|$value' : '$value';
     return this;
-  }
-
-  SearchCoverageEligibilityResponse add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

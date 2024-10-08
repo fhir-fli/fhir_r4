@@ -479,4 +479,11 @@ extension FhirGenerate on String {
 
   String? fileNameFromClassName(Map<String, String> nameMap) =>
       nameMap[toLowerCase()];
+
+  String resourceTypeIfResource(String className) =>
+      this == 'type' && className == 'Resource'
+          ? 'resourceType'
+          : this == 'source' && className == 'Resource'
+              ? 'resourceSource'
+              : this;
 }

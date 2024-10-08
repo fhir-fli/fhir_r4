@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchMeasure {
-  final Map<String, String> parameters = <String, String>{};
+class SearchMeasure extends SearchResource {
   SearchMeasure context(FhirString value,
       {FhirUri? system, SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}context'] =
@@ -116,16 +115,5 @@ class SearchMeasure {
     parameters['${modifier != null ? '$modifier' : ''}version'] =
         system != null ? '$system|$value' : '$value';
     return this;
-  }
-
-  SearchMeasure add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

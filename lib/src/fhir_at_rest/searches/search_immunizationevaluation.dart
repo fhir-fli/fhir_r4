@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchImmunizationEvaluation {
-  final Map<String, String> parameters = <String, String>{};
+class SearchImmunizationEvaluation extends SearchResource {
   SearchImmunizationEvaluation date(FhirDateTime value,
       {SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}date'] = value.toString();
@@ -35,16 +34,5 @@ class SearchImmunizationEvaluation {
     parameters['${modifier != null ? '$modifier' : ''}target_disease'] =
         system != null ? '$system|$value' : '$value';
     return this;
-  }
-
-  SearchImmunizationEvaluation add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

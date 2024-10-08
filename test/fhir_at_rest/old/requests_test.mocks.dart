@@ -5,7 +5,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
-import 'package:fhir_r4/src/fhir_at_rest/fhir_request.dart' as _i3;
+import 'package:fhir_r4/fhir_r4.dart' as _i3;
 import 'package:http/http.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -85,6 +85,12 @@ class MockFhirRequest extends _i1.Mock implements _i3.FhirRequest {
       ) as _i2.Client);
 
   @override
+  _i3.Summary get summary => (super.noSuchMethod(
+        Invocation.getter(#summary),
+        returnValue: _i3.Summary.true_,
+      ) as _i3.Summary);
+
+  @override
   _i4.Future<_i2.Response> sendRequest() => (super.noSuchMethod(
         Invocation.method(
           #sendRequest,
@@ -122,4 +128,13 @@ class MockFhirRequest extends _i1.Mock implements _i3.FhirRequest {
         ),
         returnValue: <String, String>{},
       ) as Map<String, String>);
+
+  @override
+  Map<String, dynamic> buildQueryParams() => (super.noSuchMethod(
+        Invocation.method(
+          #buildQueryParams,
+          [],
+        ),
+        returnValue: <String, dynamic>{},
+      ) as Map<String, dynamic>);
 }

@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchMessageDefinition {
-  final Map<String, String> parameters = <String, String>{};
+class SearchMessageDefinition extends SearchResource {
   SearchMessageDefinition context(FhirString value,
       {FhirUri? system, SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}context'] =
@@ -126,16 +125,5 @@ class SearchMessageDefinition {
     parameters['${modifier != null ? '$modifier' : ''}focus'] =
         system != null ? '$system|$value' : '$value';
     return this;
-  }
-
-  SearchMessageDefinition add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

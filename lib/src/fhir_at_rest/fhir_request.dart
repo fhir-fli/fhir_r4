@@ -1,14 +1,20 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
+
+import '../../fhir_r4.dart';
+import 'enums/enums.dart';
 
 abstract class FhirRequest {
   final Uri base;
   final Map<String, String> headers;
   final http.Client client;
+  final Summary summary;
 
   FhirRequest({
     required this.base,
     required this.headers,
+    this.summary = Summary.none,
     http.Client? client,
   }) : client = client ?? http.Client();
 
@@ -23,6 +29,15 @@ abstract class FhirRequest {
         'Accept': 'application/fhir+json',
         ...headers,
       };
+
+  /// Function to add summary query if necessary
+  Map<String, dynamic> buildQueryParams() {
+    final Map<String, dynamic> queryParams = <String, dynamic>{};
+    if (summary != Summary.none) {
+      queryParams['_summary'] = summary.toString();
+    }
+    return queryParams;
+  }
 }
 
 // 1. Read Request (GET)
@@ -35,11 +50,13 @@ class FhirReadRequest extends FhirRequest {
     required this.resourceType,
     required this.id,
     super.headers = const <String, String>{},
+    super.summary,
     super.client,
   });
 
   @override
-  Uri buildUri() => Uri.parse('$base/$resourceType/$id');
+  Uri buildUri() => Uri.parse('$base/$resourceType/$id')
+      .replace(queryParameters: buildQueryParams());
 
   @override
   String? buildBody() => null;
@@ -62,11 +79,13 @@ class FhirVReadRequest extends FhirRequest {
     required this.id,
     required this.vid,
     super.headers = const <String, String>{},
+    super.summary,
     super.client,
   });
 
   @override
-  Uri buildUri() => Uri.parse('$base/$resourceType/$id/_history/$vid');
+  Uri buildUri() => Uri.parse('$base/$resourceType/$id/_history/$vid')
+      .replace(queryParameters: buildQueryParams());
 
   @override
   String? buildBody() => null;
@@ -89,11 +108,13 @@ class FhirUpdateRequest extends FhirRequest {
     required this.id,
     required this.resource,
     super.headers = const <String, String>{},
+    super.summary,
     super.client,
   });
 
   @override
-  Uri buildUri() => Uri.parse('$base/$resourceType/$id');
+  Uri buildUri() => Uri.parse('$base/$resourceType/$id')
+      .replace(queryParameters: buildQueryParams());
 
   @override
   String buildBody() => jsonEncode(resource);
@@ -116,11 +137,13 @@ class FhirPatchRequest extends FhirRequest {
     required this.id,
     required this.patchBody,
     super.headers = const <String, String>{},
+    super.summary,
     super.client,
   });
 
   @override
-  Uri buildUri() => Uri.parse('$base/$resourceType/$id');
+  Uri buildUri() => Uri.parse('$base/$resourceType/$id')
+      .replace(queryParameters: buildQueryParams());
 
   @override
   String buildBody() => jsonEncode(patchBody);
@@ -141,11 +164,13 @@ class FhirDeleteRequest extends FhirRequest {
     required this.resourceType,
     required this.id,
     super.headers = const <String, String>{},
+    super.summary,
     super.client,
   });
 
   @override
-  Uri buildUri() => Uri.parse('$base/$resourceType/$id');
+  Uri buildUri() => Uri.parse('$base/$resourceType/$id')
+      .replace(queryParameters: buildQueryParams());
 
   @override
   String? buildBody() => null;
@@ -166,11 +191,13 @@ class FhirCreateRequest extends FhirRequest {
     required this.resourceType,
     required this.resource,
     super.headers = const <String, String>{},
+    super.summary,
     super.client,
   });
 
   @override
-  Uri buildUri() => Uri.parse('$base/$resourceType');
+  Uri buildUri() => Uri.parse('$base/$resourceType')
+      .replace(queryParameters: buildQueryParams());
 
   @override
   String buildBody() => jsonEncode(resource);
@@ -182,28 +209,37 @@ class FhirCreateRequest extends FhirRequest {
 }
 
 // 7. Search Request (GET or POST)
+// 7. Search Request (GET or POST)
 class FhirSearchRequest extends FhirRequest {
   final String resourceType;
-  final Map<String, dynamic> queryParameters;
+  final SearchBase search; // Holds search parameters
   final bool usePost;
 
   FhirSearchRequest({
     required super.base,
     required this.resourceType,
-    this.queryParameters = const <String, dynamic>{},
+    SearchBase? search, // Optional search object
     this.usePost = false,
     super.headers = const <String, String>{},
+    super.summary,
     super.client,
-  });
+  }) : search = search ?? SearchBase();
 
   @override
-  Uri buildUri() => Uri.parse('$base/$resourceType')
-      .replace(queryParameters: queryParameters);
+  Uri buildUri() {
+    // Use the search object to build query parameters
+    final Map<String, dynamic> params = <String, dynamic>{
+      ...Uri.splitQueryString(search.buildQuery())
+    };
+    params.addAll(buildQueryParams()); // Include summary query if applicable
+    return Uri.parse('$base/$resourceType').replace(queryParameters: params);
+  }
 
   @override
   String? buildBody() {
     if (usePost) {
-      return jsonEncode(queryParameters);
+      return jsonEncode(
+          search.parameters); // Use search parameters for POST body
     }
     return null;
   }
@@ -229,11 +265,13 @@ class FhirHistoryRequest extends FhirRequest {
     required this.resourceType,
     required this.id,
     super.headers = const <String, String>{},
+    super.summary,
     super.client,
   });
 
   @override
-  Uri buildUri() => Uri.parse('$base/$resourceType/$id/_history');
+  Uri buildUri() => Uri.parse('$base/$resourceType/$id/_history')
+      .replace(queryParameters: buildQueryParams());
 
   @override
   String? buildBody() => null;
@@ -249,11 +287,13 @@ class FhirHistoryAllRequest extends FhirRequest {
   FhirHistoryAllRequest({
     required super.base,
     super.headers = const <String, String>{},
+    super.summary,
     super.client,
   });
 
   @override
-  Uri buildUri() => Uri.parse('$base/_history');
+  Uri buildUri() =>
+      Uri.parse('$base/_history').replace(queryParameters: buildQueryParams());
 
   @override
   String? buildBody() => null;
@@ -266,14 +306,27 @@ class FhirHistoryAllRequest extends FhirRequest {
 
 // 10. Capabilities Request (GET)
 class FhirCapabilitiesRequest extends FhirRequest {
+  final Mode? mode; // Optional Mode parameter
+
   FhirCapabilitiesRequest({
     required super.base,
+    this.mode, // Add the Mode parameter
     super.headers = const <String, String>{},
+    super.summary,
     super.client,
   });
 
   @override
-  Uri buildUri() => Uri.parse('$base/metadata');
+  Uri buildUri() {
+    final Map<String, dynamic> queryParams = buildQueryParams();
+
+    // Add mode to query parameters if provided
+    if (mode != null) {
+      queryParams['mode'] = mode.toString();
+    }
+
+    return Uri.parse('$base/metadata').replace(queryParameters: queryParams);
+  }
 
   @override
   String? buildBody() => null;
@@ -292,11 +345,13 @@ class FhirTransactionRequest extends FhirRequest {
     required super.base,
     required this.bundle,
     super.headers = const <String, String>{},
+    super.summary,
     super.client,
   });
 
   @override
-  Uri buildUri() => Uri.parse('$base');
+  Uri buildUri() =>
+      Uri.parse('$base').replace(queryParameters: buildQueryParams());
 
   @override
   String buildBody() => jsonEncode(bundle);
@@ -315,11 +370,13 @@ class FhirBatchRequest extends FhirRequest {
     required super.base,
     required this.bundle,
     super.headers = const <String, String>{},
+    super.summary,
     super.client,
   });
 
   @override
-  Uri buildUri() => Uri.parse('$base');
+  Uri buildUri() =>
+      Uri.parse('$base').replace(queryParameters: buildQueryParams());
 
   @override
   String buildBody() => jsonEncode(bundle);
@@ -346,6 +403,7 @@ class FhirOperationRequest extends FhirRequest {
     this.resourceType,
     this.usePost = false,
     super.headers = const <String, String>{},
+    super.summary,
     super.client,
   });
 
@@ -354,7 +412,8 @@ class FhirOperationRequest extends FhirRequest {
     final String operationPath =
         resourceType != null ? '/$resourceType/$operation' : '/$operation';
     final String idPath = id != null ? '/$id' : '';
-    return Uri.parse('$base$idPath$operationPath');
+    return Uri.parse('$base$idPath$operationPath')
+        .replace(queryParameters: buildQueryParams());
   }
 
   @override

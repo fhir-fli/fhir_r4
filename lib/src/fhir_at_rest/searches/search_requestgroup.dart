@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchRequestGroup {
-  final Map<String, String> parameters = <String, String>{};
+class SearchRequestGroup extends SearchResource {
   SearchRequestGroup authored(FhirDateTime value, {SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}authored'] =
         value.toString();
@@ -56,16 +55,5 @@ class SearchRequestGroup {
     parameters['${modifier != null ? '$modifier' : ''}status'] =
         system != null ? '$system|$value' : '$value';
     return this;
-  }
-
-  SearchRequestGroup add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

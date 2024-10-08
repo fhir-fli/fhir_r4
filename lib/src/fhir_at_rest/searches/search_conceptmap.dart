@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchConceptMap {
-  final Map<String, String> parameters = <String, String>{};
+class SearchConceptMap extends SearchResource {
   SearchConceptMap context(FhirString value,
       {FhirUri? system, SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}context'] =
@@ -141,16 +140,5 @@ class SearchConceptMap {
     parameters['${modifier != null ? '$modifier' : ''}target_system'] =
         value.toString();
     return this;
-  }
-
-  SearchConceptMap add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

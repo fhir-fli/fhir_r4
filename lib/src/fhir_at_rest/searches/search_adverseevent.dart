@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchAdverseEvent {
-  final Map<String, String> parameters = <String, String>{};
+class SearchAdverseEvent extends SearchResource {
   SearchAdverseEvent actuality(FhirString value,
       {FhirUri? system, SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}actuality'] =
@@ -41,16 +40,5 @@ class SearchAdverseEvent {
     parameters['${modifier != null ? '$modifier' : ''}severity'] =
         system != null ? '$system|$value' : '$value';
     return this;
-  }
-
-  SearchAdverseEvent add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

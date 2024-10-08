@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchList {
-  final Map<String, String> parameters = <String, String>{};
+class SearchList extends SearchResource {
   SearchList code(FhirString value,
       {FhirUri? system, SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}code'] =
@@ -54,16 +53,5 @@ class SearchList {
     parameters['${modifier != null ? '$modifier' : ''}title'] =
         value.toString();
     return this;
-  }
-
-  SearchList add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

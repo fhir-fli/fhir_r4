@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchCitation {
-  final Map<String, String> parameters = <String, String>{};
+class SearchCitation extends SearchResource {
   SearchCitation context(FhirString value,
       {FhirUri? system, SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}context'] =
@@ -109,16 +108,5 @@ class SearchCitation {
     parameters['${modifier != null ? '$modifier' : ''}version'] =
         system != null ? '$system|$value' : '$value';
     return this;
-  }
-
-  SearchCitation add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

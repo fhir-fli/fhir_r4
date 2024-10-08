@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'consts.dart';
+import 'fhir_generate_extension.dart';
 
 void parseSearchParameters() {
   final File file = File(searchParametersPath); // Path to your JSON file
@@ -69,118 +70,125 @@ void parseSearchParameters() {
       in resourceParameters.entries) {
     final String resourceType = entry.key;
     final List<Map<String, String>> parameters = entry.value;
-    final String className = 'Search$resourceType';
+    if (resourceType != 'DomainResource') {
+      final String className = 'Search$resourceType';
 
-    // Prepare content for the file
-    final StringBuffer buffer = StringBuffer();
-    buffer.writeln('// This file is auto-generated. Do not edit directly.');
-    final List<String> noParameters = <String>[
-      'LinkageSearch',
-      'VerificationResultSearch'
-    ];
-    if (!noParameters.contains(className)) {
+      // Prepare content for the file
+      final StringBuffer buffer = StringBuffer();
+      buffer.writeln('// This file is auto-generated. Do not edit directly.');
+
       buffer.writeln("import '../../../fhir_r4.dart';");
-    }
 
-    buffer.writeln('class $className {');
-    buffer.writeln(
-        '  final Map<String, String> parameters = <String, String>{};');
+      final String extendClause =
+          resourceType == 'Resource' ? '' : 'extends SearchResource ';
 
-// Generate methods for each search parameter
-    for (final Map<String, String> param in parameters) {
-      final String paramCode = param['code']!.replaceAll('-', '_');
-      final String paramType = param['type']!;
-
-      // Convert the method name to PascalCase
-      final String methodName = _toPascalCase(paramCode);
-
-      switch (paramType) {
-        case 'date':
-          buffer.writeln('  $className ${_methodName(methodName)}'
-              '(FhirDateTime value, {SearchModifier? modifier}) {');
-          buffer.writeln(
-              "    parameters['\${modifier != null ? '\$modifier' : ''}$paramCode'] = value.toString();");
-          buffer.writeln('    return this;');
-          buffer.writeln('  }\n');
-        case 'token':
-          buffer.writeln('  $className ${_methodName(methodName)}'
-              '(FhirString value, {FhirUri? system, SearchModifier? modifier}) {');
-          buffer.writeln(
-              "    parameters['\${modifier != null ? '\$modifier' : ''}$paramCode'] = system != null ? '\$system|\$value' : '\$value';");
-          buffer.writeln('    return this;');
-          buffer.writeln('  }\n');
-        case 'string':
-          // Only allow eq, ne modifiers for string types
-          buffer.writeln('  $className ${_methodName(methodName)}'
-              '(FhirString value, {SearchModifier? modifier}) {');
-          buffer.writeln(
-              "    if (modifier != null && !<String>['eq', 'ne'].contains(modifier.toString())) {");
-          buffer.writeln(
-              r"      throw ArgumentError('Modifier $modifier not allowed for string type');");
-          buffer.writeln('    }');
-          buffer.writeln(
-              "    parameters['\${modifier != null ? '\$modifier' : ''}$paramCode'] = value.toString();");
-          buffer.writeln('    return this;');
-          buffer.writeln('  }\n');
-        case 'number':
-        case 'quantity':
-          // Allow gt, lt, ge, le, ap modifiers for number and quantity
-          buffer.writeln('  $className ${_methodName(methodName)}'
-              '(FhirDecimal value, {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {');
-          buffer.writeln(
-              "    if (modifier != null && !<String>['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {");
-          buffer.writeln(
-              "      throw ArgumentError('Modifier \$modifier not allowed for $paramType type');");
-          buffer.writeln('    }');
-          buffer.writeln(
-              "    parameters['\${modifier != null ? '\$modifier' : ''}$paramCode'] = '\$value|\${system?.toString() ?? ''}|\${unit?.toString() ?? ''}';");
-          buffer.writeln('    return this;');
-          buffer.writeln('  }\n');
-        case 'uri':
-          buffer.writeln('  $className ${_methodName(methodName)}'
-              '(FhirUri value, {SearchModifier? modifier}) {');
-          buffer.writeln(
-              "    parameters['\${modifier != null ? '\$modifier' : ''}$paramCode'] = value.toString();");
-          buffer.writeln('    return this;');
-          buffer.writeln('  }\n');
-        // Add more cases here as needed for other parameter types
+      buffer.writeln('class $className $extendClause{');
+      if (resourceType == 'Resource') {
+        buffer.writeln(
+            '  final Map<String, String> parameters = <String, String>{};');
       }
+
+      // Generate methods for each search parameter
+      for (final Map<String, String> param in parameters) {
+        final String paramCode = param['code']!.replaceAll('-', '_');
+        final String paramType = param['type']!;
+
+        // Convert the method name to PascalCase
+        final String methodName = _toPascalCase(paramCode);
+
+        switch (paramType) {
+          case 'date':
+            buffer.writeln('  $className ${_methodName(methodName)}'
+                '(FhirDateTime value, {SearchModifier? modifier}) {');
+            buffer.writeln(
+                "    parameters['\${modifier != null ? '\$modifier' : ''}$paramCode'] = value.toString();");
+            buffer.writeln('    return this;');
+            buffer.writeln('  }\n');
+          case 'token':
+            buffer.writeln(
+                '  $className ${_methodName(methodName).resourceTypeIfResource(resourceType)}'
+                '(FhirString value, {FhirUri? system, SearchModifier? modifier}) {');
+            buffer.writeln(
+                "    parameters['\${modifier != null ? '\$modifier' : ''}$paramCode'] = system != null ? '\$system|\$value' : '\$value';");
+            buffer.writeln('    return this;');
+            buffer.writeln('  }\n');
+          case 'string':
+            // Only allow eq, ne modifiers for string types
+            buffer.writeln(
+                '  $className ${_methodName(methodName).resourceTypeIfResource(resourceType)}'
+                '(FhirString value, {SearchModifier? modifier}) {');
+            buffer.writeln(
+                "    if (modifier != null && !<String>['eq', 'ne'].contains(modifier.toString())) {");
+            buffer.writeln(
+                r"      throw ArgumentError('Modifier $modifier not allowed for string type');");
+            buffer.writeln('    }');
+            buffer.writeln(
+                "    parameters['\${modifier != null ? '\$modifier' : ''}$paramCode'] = value.toString();");
+            buffer.writeln('    return this;');
+            buffer.writeln('  }\n');
+          case 'number':
+          case 'quantity':
+            // Allow gt, lt, ge, le, ap modifiers for number and quantity
+            buffer.writeln('  $className ${_methodName(methodName)}'
+                '(FhirDecimal value, {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {');
+            buffer.writeln(
+                "    if (modifier != null && !<String>['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {");
+            buffer.writeln(
+                "      throw ArgumentError('Modifier \$modifier not allowed for $paramType type');");
+            buffer.writeln('    }');
+            buffer.writeln(
+                "    parameters['\${modifier != null ? '\$modifier' : ''}$paramCode'] = '\$value|\${system?.toString() ?? ''}|\${unit?.toString() ?? ''}';");
+            buffer.writeln('    return this;');
+            buffer.writeln('  }\n');
+          case 'uri':
+            buffer.writeln(
+                '  $className ${_methodName(methodName).resourceTypeIfResource(resourceType)}'
+                '(FhirUri value, {SearchModifier? modifier}) {');
+            buffer.writeln(
+                "    parameters['\${modifier != null ? '\$modifier' : ''}$paramCode'] = value.toString();");
+            buffer.writeln('    return this;');
+            buffer.writeln('  }\n');
+          // Add more cases here as needed for other parameter types
+        }
+      }
+
+      if (resourceType == 'Resource') {
+        buffer.writeln('  $className add(String parameter, String value) {');
+        buffer.writeln('    parameters[parameter] = value;');
+        buffer.writeln('    return this;');
+        buffer.writeln('  }\n');
+
+        // Generate the query builder method
+        buffer.writeln('  String buildQuery() {');
+        buffer.writeln(
+            r"    return parameters.entries.map((MapEntry<String, String> e) => '${e.key}=${e.value}').join('&');");
+        buffer.writeln('  }');
+      }
+
+      buffer.writeln('}\n');
+
+      // Write to individual file in the searches directory
+      final File outputFile =
+          File('$searchesPath/search_${resourceType.toLowerCase()}.dart');
+      outputFile.writeAsStringSync(buffer.toString());
     }
 
-    buffer.writeln('  $className add(String parameter, String value) {');
-    buffer.writeln('    parameters[parameter] = value;');
-    buffer.writeln('    return this;');
-    buffer.writeln('  }\n');
+    // ignore: avoid_print
+    print('Dart search classes generated successfully!');
 
-    // Generate the query builder method
-    buffer.writeln('  String buildQuery() {');
-    buffer.writeln(
-        r"    return parameters.entries.map((MapEntry<String, String> e) => '${e.key}=${e.value}').join('&');");
-    buffer.writeln('  }');
+    final Directory searchDir = Directory(searchesPath);
+    final List<String> files = searchDir
+        .listSync()
+        .whereType<File>()
+        .where((File file) => file.path.endsWith('.dart'))
+        .map((File file) => file.path.split('/').last)
+        .toList();
 
-    buffer.writeln('}\n');
+    files.sort();
 
-    // Write to individual file in the searches directory
-    final File outputFile =
-        File('$searchesPath/search_${resourceType.toLowerCase()}.dart');
-    outputFile.writeAsStringSync(buffer.toString());
+    File('$searchesPath/searches.dart').writeAsStringSync(
+        files.map((String file) => "export '$file';").join('\n'));
   }
-
-  // ignore: avoid_print
-  print('Dart search classes generated successfully!');
-
-  final Directory searchDir = Directory(searchesPath);
-  final List<String> files = searchDir
-      .listSync()
-      .whereType<File>()
-      .where((File file) => file.path.endsWith('.dart'))
-      .map((File file) => file.path.split('/').last)
-      .toList();
-
-  files.sort();
-
-  File('$searchesPath/searches.dart').writeAsStringSync(
-      files.map((String file) => "export '$file';").join('\n'));
 }
 
 String _methodName(String name) {

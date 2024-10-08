@@ -55,7 +55,7 @@ abstract class BulkRequest {
     } else {
       baseUrl = '$base/\$export${_parameters(since, types)}';
     }
-    return _request(RestfulRequest.get_, baseUrl, headers, client);
+    return _request(baseUrl, headers, client);
   }
 
   /// Returns the string of parameters allowed in the request
@@ -83,7 +83,6 @@ abstract class BulkRequest {
 
   /// Actual request (private class) after all formatting and parameters have been added
   Future<List<Resource?>> _request(
-    RestfulRequest type,
     String uri,
     Map<String, String> headers,
     Client? client,

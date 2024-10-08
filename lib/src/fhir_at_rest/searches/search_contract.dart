@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchContract {
-  final Map<String, String> parameters = <String, String>{};
+class SearchContract extends SearchResource {
   SearchContract identifier(FhirString value,
       {FhirUri? system, SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}identifier'] =
@@ -32,16 +31,5 @@ class SearchContract {
   SearchContract url(FhirUri value, {SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
-  }
-
-  SearchContract add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

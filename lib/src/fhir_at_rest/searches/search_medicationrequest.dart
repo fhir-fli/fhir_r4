@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchMedicationRequest {
-  final Map<String, String> parameters = <String, String>{};
+class SearchMedicationRequest extends SearchResource {
   SearchMedicationRequest code(FhirString value,
       {FhirUri? system, SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}code'] =
@@ -62,16 +61,5 @@ class SearchMedicationRequest {
     parameters['${modifier != null ? '$modifier' : ''}priority'] =
         system != null ? '$system|$value' : '$value';
     return this;
-  }
-
-  SearchMedicationRequest add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchPractitioner {
-  final Map<String, String> parameters = <String, String>{};
+class SearchPractitioner extends SearchResource {
   SearchPractitioner address(FhirString value, {SearchModifier? modifier}) {
     if (modifier != null &&
         !<String>['eq', 'ne'].contains(modifier.toString())) {
@@ -149,16 +148,5 @@ class SearchPractitioner {
     }
     parameters['${modifier != null ? '$modifier' : ''}name'] = value.toString();
     return this;
-  }
-
-  SearchPractitioner add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

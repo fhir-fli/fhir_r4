@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchRegulatedAuthorization {
-  final Map<String, String> parameters = <String, String>{};
+class SearchRegulatedAuthorization extends SearchResource {
   SearchRegulatedAuthorization case_(FhirString value,
       {FhirUri? system, SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}case'] =
@@ -36,16 +35,5 @@ class SearchRegulatedAuthorization {
     parameters['${modifier != null ? '$modifier' : ''}status'] =
         system != null ? '$system|$value' : '$value';
     return this;
-  }
-
-  SearchRegulatedAuthorization add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

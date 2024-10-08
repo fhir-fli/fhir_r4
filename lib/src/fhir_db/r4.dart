@@ -200,15 +200,12 @@ class FhirDb {
     if (resource == null) {
       throw const FormatException('Resource cannot be null');
     }
-    if (resource.resourceType == null) {
-      throw const FormatException('ResourceType cannot be null');
-    }
 
     await _ensureInit(pw: pw);
     final bool exists = resource.id != null &&
         await this.exists(
-          resourceType: resource.resourceType!,
-          id: resource.id!,
+          resourceType: resource.resourceType,
+          id: resource.id!.value!,
           pw: pw,
         );
 
@@ -249,7 +246,7 @@ class FhirDb {
     final Resource newResource = resource.newIdIfNoId().updateVersion(
         oldMeta: resource.meta, versionIdAsTime: versionIdAsTime);
     await _saveToDb(
-      resourceType: newResource.resourceType!,
+      resourceType: newResource.resourceType,
       resource: newResource.toJson(),
       pw: pw,
     );
@@ -267,8 +264,8 @@ class FhirDb {
   ) async {
     if (resource.id != null) {
       final Resource? oldResource = await get(
-        resourceType: resource.resourceType!,
-        id: resource.id!,
+        resourceType: resource.resourceType,
+        id: resource.id!.value!,
         pw: pw,
       );
       if (oldResource != null) {
@@ -280,7 +277,7 @@ class FhirDb {
         final Resource newResource = resource.updateVersion(
             oldMeta: oldMeta, versionIdAsTime: versionIdAsTime);
         await _saveToDb(
-          resourceType: newResource.resourceType!,
+          resourceType: newResource.resourceType,
           resource: newResource.toJson(),
           pw: pw,
         );
@@ -445,8 +442,8 @@ class FhirDb {
   Future<List<Resource>> _searchByResource(
       Resource resource, String? pw) async {
     final Resource? result = await get(
-      resourceType: resource.resourceType!,
-      id: resource.id!,
+      resourceType: resource.resourceType,
+      id: resource.id!.value!,
       pw: pw,
     );
     return result == null ? <Resource>[] : <Resource>[result];
@@ -488,7 +485,7 @@ class FhirDb {
   }) async {
     final Set<R4ResourceType> typeList = <R4ResourceType>{};
     if (resource?.resourceType != null) {
-      typeList.add(resource!.resourceType!);
+      typeList.add(resource!.resourceType);
     }
     if (resourceTypes != null && resourceTypes.isNotEmpty) {
       typeList.addAll(resourceTypes);
@@ -531,12 +528,10 @@ class FhirDb {
     bool Function(Map<String, dynamic>)? finder,
     String? pw,
   }) async {
-    if (resource != null &&
-        resource.resourceType != null &&
-        resource.id != null) {
+    if (resource != null && resource.id != null) {
       return _deleteById(
-        resourceType: resource.resourceType!,
-        id: resource.id!,
+        resourceType: resource.resourceType,
+        id: resource.id!.value!,
         pw: pw,
       );
     } else if (resourceType != null && id != null) {

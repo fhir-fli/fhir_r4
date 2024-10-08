@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchCommunicationRequest {
-  final Map<String, String> parameters = <String, String>{};
+class SearchCommunicationRequest extends SearchResource {
   SearchCommunicationRequest authored(FhirDateTime value,
       {SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}authored'] =
@@ -57,16 +56,5 @@ class SearchCommunicationRequest {
     parameters['${modifier != null ? '$modifier' : ''}status'] =
         system != null ? '$system|$value' : '$value';
     return this;
-  }
-
-  SearchCommunicationRequest add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

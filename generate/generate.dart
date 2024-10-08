@@ -123,10 +123,6 @@ Map<String, WritableClass> _buildWritableClasses(
     final Map<String, dynamic> element =
         elementDefinition as Map<String, dynamic>;
 
-    if ((element['path'] as String).toLowerCase().contains('binary')) {
-      print(element['path']);
-    }
-
     // Handle ValueSets if binding is present
     if (element['binding'] != null &&
         (element['binding'] as Map<String, dynamic>)['valueSet'] != null) {
@@ -136,7 +132,7 @@ Map<String, WritableClass> _buildWritableClasses(
       if (_codesAndVS.keys.contains(valueSetUrl)) {
         _valueSets.add(valueSetUrl);
       } else {
-        print('Error: $valueSetUrl');
+        // print('Error: $valueSetUrl');
       }
     }
 
@@ -556,7 +552,7 @@ Map<String, Map<String, dynamic>> codesAndValueSets(String valueSetPath) {
   final Map<String, dynamic> bundle =
       jsonDecode(codesString) as Map<String, dynamic>;
 
-  for (final dynamic entry in (bundle['entry'] as List<dynamic>)) {
+  for (final dynamic entry in bundle['entry'] as List<dynamic>) {
     if ((entry as Map<String, dynamic>)['resource'] != null &&
             entry['resource'] is Map<String, dynamic> &&
             (entry['resource'] as Map<String, dynamic>)['resourceType'] ==

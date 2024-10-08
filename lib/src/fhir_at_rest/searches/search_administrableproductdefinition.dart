@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchAdministrableProductDefinition {
-  final Map<String, String> parameters = <String, String>{};
+class SearchAdministrableProductDefinition extends SearchResource {
   SearchAdministrableProductDefinition doseForm(FhirString value,
       {FhirUri? system, SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}dose_form'] =
@@ -36,16 +35,5 @@ class SearchAdministrableProductDefinition {
     parameters['${modifier != null ? '$modifier' : ''}target_species'] =
         system != null ? '$system|$value' : '$value';
     return this;
-  }
-
-  SearchAdministrableProductDefinition add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

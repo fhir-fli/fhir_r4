@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchClinicalImpression {
-  final Map<String, String> parameters = <String, String>{};
+class SearchClinicalImpression extends SearchResource {
   SearchClinicalImpression date(FhirDateTime value,
       {SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}date'] = value.toString();
@@ -28,16 +27,5 @@ class SearchClinicalImpression {
     parameters['${modifier != null ? '$modifier' : ''}status'] =
         system != null ? '$system|$value' : '$value';
     return this;
-  }
-
-  SearchClinicalImpression add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

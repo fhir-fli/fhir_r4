@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchInvoice {
-  final Map<String, String> parameters = <String, String>{};
+class SearchInvoice extends SearchResource {
   SearchInvoice date(FhirDateTime value, {SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}date'] = value.toString();
     return this;
@@ -56,16 +55,5 @@ class SearchInvoice {
     parameters['${modifier != null ? '$modifier' : ''}type'] =
         system != null ? '$system|$value' : '$value';
     return this;
-  }
-
-  SearchInvoice add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

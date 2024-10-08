@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchRiskAssessment {
-  final Map<String, String> parameters = <String, String>{};
+class SearchRiskAssessment extends SearchResource {
   SearchRiskAssessment date(FhirDateTime value, {SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}date'] = value.toString();
     return this;
@@ -38,16 +37,5 @@ class SearchRiskAssessment {
     parameters['${modifier != null ? '$modifier' : ''}risk'] =
         system != null ? '$system|$value' : '$value';
     return this;
-  }
-
-  SearchRiskAssessment add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

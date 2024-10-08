@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchChargeItem {
-  final Map<String, String> parameters = <String, String>{};
+class SearchChargeItem extends SearchResource {
   SearchChargeItem code(FhirString value,
       {FhirUri? system, SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}code'] =
@@ -67,16 +66,5 @@ class SearchChargeItem {
     parameters['${modifier != null ? '$modifier' : ''}quantity'] =
         '$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}';
     return this;
-  }
-
-  SearchChargeItem add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

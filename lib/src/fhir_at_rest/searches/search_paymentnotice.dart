@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchPaymentNotice {
-  final Map<String, String> parameters = <String, String>{};
+class SearchPaymentNotice extends SearchResource {
   SearchPaymentNotice created(FhirDateTime value, {SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}created'] =
         value.toString();
@@ -28,16 +27,5 @@ class SearchPaymentNotice {
     parameters['${modifier != null ? '$modifier' : ''}status'] =
         system != null ? '$system|$value' : '$value';
     return this;
-  }
-
-  SearchPaymentNotice add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

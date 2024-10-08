@@ -16,7 +16,7 @@ void writeEnums(Set<String> valueSets,
       final List<Map<String, String>> enumValuesWithComments =
           _extractEnumValuesWithComments(valueSet, codesAndVS);
       if (enumValuesWithComments.isEmpty) {
-        print('No enum values found for ValueSet: $valueSetUrl');
+        // print('No enum values found for ValueSet: $valueSetUrl');
       } else {
         final String enumString = _buildEnumStringWithComments(
             enumName, enumValuesWithComments, valueSet);

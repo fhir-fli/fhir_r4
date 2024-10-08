@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchMolecularSequence {
-  final Map<String, String> parameters = <String, String>{};
+class SearchMolecularSequence extends SearchResource {
   SearchMolecularSequence chromosome(FhirString value,
       {FhirUri? system, SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}chromosome'] =
@@ -73,16 +72,5 @@ class SearchMolecularSequence {
     parameters['${modifier != null ? '$modifier' : ''}window_start'] =
         '$value|${system?.toString() ?? ''}|${unit?.toString() ?? ''}';
     return this;
-  }
-
-  SearchMolecularSequence add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

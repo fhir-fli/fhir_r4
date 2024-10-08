@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchTask {
-  final Map<String, String> parameters = <String, String>{};
+class SearchTask extends SearchResource {
   SearchTask authoredOn(FhirDateTime value, {SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}authored_on'] =
         value.toString();
@@ -75,16 +74,5 @@ class SearchTask {
     parameters['${modifier != null ? '$modifier' : ''}status'] =
         system != null ? '$system|$value' : '$value';
     return this;
-  }
-
-  SearchTask add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

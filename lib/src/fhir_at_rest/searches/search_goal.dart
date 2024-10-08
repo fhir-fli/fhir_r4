@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchGoal {
-  final Map<String, String> parameters = <String, String>{};
+class SearchGoal extends SearchResource {
   SearchGoal identifier(FhirString value,
       {FhirUri? system, SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}identifier'] =
@@ -41,16 +40,5 @@ class SearchGoal {
     parameters['${modifier != null ? '$modifier' : ''}target_date'] =
         value.toString();
     return this;
-  }
-
-  SearchGoal add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

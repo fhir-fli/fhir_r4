@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchExampleScenario {
-  final Map<String, String> parameters = <String, String>{};
+class SearchExampleScenario extends SearchResource {
   SearchExampleScenario context(FhirString value,
       {FhirUri? system, SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}context'] =
@@ -84,16 +83,5 @@ class SearchExampleScenario {
     parameters['${modifier != null ? '$modifier' : ''}version'] =
         system != null ? '$system|$value' : '$value';
     return this;
-  }
-
-  SearchExampleScenario add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }

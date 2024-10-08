@@ -1,8 +1,7 @@
 // This file is auto-generated. Do not edit directly.
 import '../../../fhir_r4.dart';
 
-class SearchOrganizationAffiliation {
-  final Map<String, String> parameters = <String, String>{};
+class SearchOrganizationAffiliation extends SearchResource {
   SearchOrganizationAffiliation active(FhirString value,
       {FhirUri? system, SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}active'] =
@@ -56,16 +55,5 @@ class SearchOrganizationAffiliation {
     parameters['${modifier != null ? '$modifier' : ''}telecom'] =
         system != null ? '$system|$value' : '$value';
     return this;
-  }
-
-  SearchOrganizationAffiliation add(String parameter, String value) {
-    parameters[parameter] = value;
-    return this;
-  }
-
-  String buildQuery() {
-    return parameters.entries
-        .map((MapEntry<String, String> e) => '${e.key}=${e.value}')
-        .join('&');
   }
 }
