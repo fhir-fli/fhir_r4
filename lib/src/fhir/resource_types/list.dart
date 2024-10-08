@@ -44,6 +44,7 @@ class FhirList extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.FhirList, fhirType: 'FhirList');
   @Id()
   @JsonKey(ignore: true)
@@ -56,7 +57,7 @@ class FhirList extends DomainResource {
 
   /// [status] /// Indicates the current state of this list.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final ListStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -65,7 +66,7 @@ class FhirList extends DomainResource {
   /// a list of items from another source, or whether it is a prepared list where
   /// items may be marked as added, modified or deleted.
   @JsonKey(name: 'mode')
-  final FhirCode mode;
+  final ListMode mode;
   @JsonKey(name: '_mode')
   final Element? modeElement;
 
@@ -77,7 +78,7 @@ class FhirList extends DomainResource {
 
   /// [code] /// This code defines the purpose of the list - why it was created.
   @JsonKey(name: 'code')
-  final CodeableConcept? code;
+  final ExampleUseCodesForList? code;
 
   /// [subject] /// The common subject (or patient) of the resources that are in the list if
   /// there is one.
@@ -102,7 +103,7 @@ class FhirList extends DomainResource {
 
   /// [orderedBy] /// What order applies to the items in the list.
   @JsonKey(name: 'orderedBy')
-  final CodeableConcept? orderedBy;
+  final ListOrderCodes? orderedBy;
 
   /// [note] /// Comments that apply to the overall list.
   @JsonKey(name: 'note')
@@ -114,7 +115,7 @@ class FhirList extends DomainResource {
 
   /// [emptyReason] /// If the list is empty, why the list is empty.
   @JsonKey(name: 'emptyReason')
-  final CodeableConcept? emptyReason;
+  final ListEmptyReasons? emptyReason;
   factory FhirList.fromJson(Map<String, dynamic> json) =>
       _$FhirListFromJson(json);
 
@@ -129,29 +130,29 @@ class FhirList extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    ListStatus? status,
     Element? statusElement,
-    FhirCode? mode,
+    ListMode? mode,
     Element? modeElement,
     FhirString? title,
     Element? titleElement,
-    CodeableConcept? code,
+    ExampleUseCodesForList? code,
     Reference? subject,
     Reference? encounter,
     FhirDateTime? date,
     Element? dateElement,
     Reference? source,
-    CodeableConcept? orderedBy,
+    ListOrderCodes? orderedBy,
     List<Annotation>? note,
     List<ListEntry>? entry,
-    CodeableConcept? emptyReason,
+    ListEmptyReasons? emptyReason,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -243,7 +244,7 @@ class ListEntry extends BackboneElement {
   /// [flag] /// The flag allows the system constructing the list to indicate the role and
   /// significance of the item in the list.
   @JsonKey(name: 'flag')
-  final CodeableConcept? flag;
+  final PatientMedicineChangeTypes? flag;
 
   /// [deleted] /// True if this item is marked as deleted in the list.
   @JsonKey(name: 'deleted')
@@ -273,7 +274,7 @@ class ListEntry extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? flag,
+    PatientMedicineChangeTypes? flag,
     FhirBoolean? deleted,
     Element? deletedElement,
     FhirDateTime? date,

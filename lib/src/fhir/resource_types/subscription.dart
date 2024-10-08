@@ -43,6 +43,7 @@ class Subscription extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.Subscription,
             fhirType: 'Subscription');
@@ -53,7 +54,7 @@ class Subscription extends DomainResource {
   /// [status] /// The status of the subscription, which marks the server state for managing
   /// the subscription.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final SubscriptionStatusCodes status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -106,13 +107,13 @@ class Subscription extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? status,
+    SubscriptionStatusCodes? status,
     Element? statusElement,
     List<ContactPoint>? contact,
     FhirInstant? end,
@@ -212,7 +213,7 @@ class SubscriptionChannel extends BackboneElement {
 
   /// [type] /// The type of channel to send notifications on.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final SubscriptionChannelType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -249,7 +250,7 @@ class SubscriptionChannel extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? type,
+    SubscriptionChannelType? type,
     Element? typeElement,
     FhirUrl? endpoint,
     Element? endpointElement,

@@ -36,39 +36,25 @@ FhirMeta _$FhirMetaFromJson(Map<String, dynamic> json) => FhirMeta(
           ?.map((e) => Coding.fromJson(e as Map<String, dynamic>))
           .toList(),
       tag: (json['tag'] as List<dynamic>?)
-          ?.map((e) => Coding.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => $enumDecode(_$CommonTagsEnumMap, e))
           .toList(),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$FhirMetaToJson(FhirMeta instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -76,6 +62,13 @@ Map<String, dynamic> _$FhirMetaToJson(FhirMeta instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -92,3 +85,7 @@ Map<String, dynamic> _$FhirMetaToJson(FhirMeta instance) {
   writeNotNull('tag', instance.tag?.map((e) => e.toJson()).toList());
   return val;
 }
+
+const _$CommonTagsEnumMap = {
+  CommonTags.actionable: 'actionable',
+};

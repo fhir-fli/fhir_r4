@@ -83,6 +83,7 @@ class ResearchDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.ResearchDefinition,
             fhirType: 'ResearchDefinition');
@@ -155,7 +156,7 @@ class ResearchDefinition extends DomainResource {
   /// [status] /// The status of this research definition. Enables tracking the life-cycle of
   /// the content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -171,13 +172,13 @@ class ResearchDefinition extends DomainResource {
   /// provided, a Patient subject is assumed, but the subject of the
   /// ResearchDefinition can be anything.
   @JsonKey(name: 'subjectCodeableConcept')
-  final CodeableConcept? subjectCodeableConcept;
+  final SubjectType? subjectCodeableConcept;
 
   /// [subjectReference] /// The intended subjects for the ResearchDefinition. If this element is not
   /// provided, a Patient subject is assumed, but the subject of the
   /// ResearchDefinition can be anything.
   @JsonKey(name: 'subjectReference')
-  final Reference? subjectReference;
+  final SubjectType? subjectReference;
 
   /// [date] /// The date (and optionally time) when the research definition was published.
   /// The date must change when the business version changes and it must change
@@ -271,7 +272,7 @@ class ResearchDefinition extends DomainResource {
   /// provide a high-level categorization grouping types of ResearchDefinitions
   /// that can be useful for filtering and searching.
   @JsonKey(name: 'topic')
-  final List<CodeableConcept>? topic;
+  final List<DefinitionTopic>? topic;
 
   /// [author] /// An individiual or organization primarily involved in the creation and
   /// maintenance of the content.
@@ -338,7 +339,7 @@ class ResearchDefinition extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -357,12 +358,12 @@ class ResearchDefinition extends DomainResource {
     Element? shortTitleElement,
     FhirString? subtitle,
     Element? subtitleElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
-    CodeableConcept? subjectCodeableConcept,
-    Reference? subjectReference,
+    SubjectType? subjectCodeableConcept,
+    SubjectType? subjectReference,
     FhirDateTime? date,
     Element? dateElement,
     FhirString? publisher,
@@ -385,7 +386,7 @@ class ResearchDefinition extends DomainResource {
     FhirDate? lastReviewDate,
     Element? lastReviewDateElement,
     Period? effectivePeriod,
-    List<CodeableConcept>? topic,
+    List<DefinitionTopic>? topic,
     List<ContactDetail>? author,
     List<ContactDetail>? editor,
     List<ContactDetail>? reviewer,

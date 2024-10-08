@@ -56,6 +56,7 @@ class DeviceDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.DeviceDefinition,
             fhirType: 'DeviceDefinition');
@@ -190,7 +191,7 @@ class DeviceDefinition extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -450,7 +451,7 @@ class DeviceDefinitionDeviceName extends BackboneElement {
   /// UDILabelName | UserFriendlyName | PatientReportedName |
   /// ManufactureDeviceName | ModelName.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final DeviceNameType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
   factory DeviceDefinitionDeviceName.fromJson(Map<String, dynamic> json) =>
@@ -468,7 +469,7 @@ class DeviceDefinitionDeviceName extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? name,
     Element? nameElement,
-    FhirCode? type,
+    DeviceNameType? type,
     Element? typeElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

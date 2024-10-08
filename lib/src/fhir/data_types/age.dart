@@ -46,7 +46,7 @@ class Age extends Quantity {
     List<FhirExtension>? extension_,
     FhirDecimal? value,
     Element? valueElement,
-    FhirCode? comparator,
+    QuantityComparator? comparator,
     Element? comparatorElement,
     FhirString? unit,
     Element? unitElement,

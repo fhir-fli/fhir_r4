@@ -36,6 +36,7 @@ class Substance extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Substance, fhirType: 'Substance');
   @Id()
   @JsonKey(ignore: true)
@@ -47,7 +48,7 @@ class Substance extends DomainResource {
 
   /// [status] /// A code to indicate if the substance is actively used.
   @JsonKey(name: 'status')
-  final FhirCode? status;
+  final FHIRSubstanceStatus? status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -89,14 +90,14 @@ class Substance extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    FHIRSubstanceStatus? status,
     Element? statusElement,
     List<CodeableConcept>? category,
     CodeableConcept? code,

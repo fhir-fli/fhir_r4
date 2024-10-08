@@ -66,6 +66,7 @@ class Task extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Task, fhirType: 'Task');
   @Id()
   @JsonKey(ignore: true)
@@ -111,7 +112,7 @@ class Task extends DomainResource {
 
   /// [status] /// The current status of the task.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final TaskStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -126,20 +127,20 @@ class Task extends DomainResource {
   /// [intent] /// Indicates the "level" of actionability associated with the Task, i.e.
   /// i+R[9]Cs this a proposed task, a planned task, an actionable task, etc.
   @JsonKey(name: 'intent')
-  final FhirCode intent;
+  final TaskIntent intent;
   @JsonKey(name: '_intent')
   final Element? intentElement;
 
   /// [priority] /// Indicates how quickly the Task should be addressed with respect to other
   /// requests.
   @JsonKey(name: 'priority')
-  final FhirCode? priority;
+  final RequestPriority? priority;
   @JsonKey(name: '_priority')
   final Element? priorityElement;
 
   /// [code] /// A name or code (or both) briefly describing what the task involves.
   @JsonKey(name: 'code')
-  final CodeableConcept? code;
+  final TaskCode? code;
 
   /// [description] /// A free-text description of what is to be performed.
   @JsonKey(name: 'description')
@@ -244,7 +245,7 @@ class Task extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -258,15 +259,15 @@ class Task extends DomainResource {
     List<Reference>? basedOn,
     Identifier? groupIdentifier,
     List<Reference>? partOf,
-    FhirCode? status,
+    TaskStatus? status,
     Element? statusElement,
     CodeableConcept? statusReason,
     CodeableConcept? businessStatus,
-    FhirCode? intent,
+    TaskIntent? intent,
     Element? intentElement,
-    FhirCode? priority,
+    RequestPriority? priority,
     Element? priorityElement,
-    CodeableConcept? code,
+    TaskCode? code,
     FhirString? description,
     Element? descriptionElement,
     Reference? focus,

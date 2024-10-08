@@ -68,6 +68,7 @@ class ChargeItem extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.ChargeItem, fhirType: 'ChargeItem');
   @Id()
   @JsonKey(ignore: true)
@@ -93,7 +94,7 @@ class ChargeItem extends DomainResource {
 
   /// [status] /// The current state of the ChargeItem.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final ChargeItemStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -103,7 +104,7 @@ class ChargeItem extends DomainResource {
 
   /// [code] /// A code that identifies the charge, like a billing code.
   @JsonKey(name: 'code')
-  final CodeableConcept code;
+  final ChargeItemCode code;
 
   /// [subject] /// The individual or set of individuals the action is being or was performed
   /// on.
@@ -227,7 +228,7 @@ class ChargeItem extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -238,10 +239,10 @@ class ChargeItem extends DomainResource {
     List<Element>? definitionUriElement,
     List<FhirCanonical>? definitionCanonical,
     List<Element>? definitionCanonicalElement,
-    FhirCode? status,
+    ChargeItemStatus? status,
     Element? statusElement,
     List<Reference>? partOf,
-    CodeableConcept? code,
+    ChargeItemCode? code,
     Reference? subject,
     Reference? context,
     FhirDateTime? occurrenceDateTime,

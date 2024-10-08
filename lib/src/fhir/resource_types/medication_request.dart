@@ -74,6 +74,7 @@ class MedicationRequest extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.MedicationRequest,
             fhirType: 'MedicationRequest');
@@ -92,29 +93,29 @@ class MedicationRequest extends DomainResource {
   /// [status] /// A code specifying the current state of the order. Generally, this will be
   /// active or completed state.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final MedicationrequestStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [statusReason] /// Captures the reason for the current state of the MedicationRequest.
   @JsonKey(name: 'statusReason')
-  final CodeableConcept? statusReason;
+  final MedicationRequestStatusReasonCodes? statusReason;
 
   /// [intent] /// Whether the request is a proposal, plan, or an original order.
   @JsonKey(name: 'intent')
-  final FhirCode intent;
+  final MedicationRequestIntent intent;
   @JsonKey(name: '_intent')
   final Element? intentElement;
 
   /// [category] /// Indicates the type of medication request (for example, where the medication
   /// is expected to be consumed or administered (i.e. inpatient or outpatient)).
   @JsonKey(name: 'category')
-  final List<CodeableConcept>? category;
+  final List<MedicationRequestCategoryCodes>? category;
 
   /// [priority] /// Indicates how quickly the Medication Request should be addressed with
   /// respect to other requests.
   @JsonKey(name: 'priority')
-  final FhirCode? priority;
+  final RequestPriority? priority;
   @JsonKey(name: '_priority')
   final Element? priorityElement;
 
@@ -196,7 +197,7 @@ class MedicationRequest extends DomainResource {
 
   /// [reasonCode] /// The reason or the indication for ordering or not ordering the medication.
   @JsonKey(name: 'reasonCode')
-  final List<CodeableConcept>? reasonCode;
+  final List<ConditionProblemDiagnosisCodes>? reasonCode;
 
   /// [reasonReference] /// Condition or observation that supports why the medication was ordered.
   @JsonKey(name: 'reasonReference')
@@ -231,7 +232,7 @@ class MedicationRequest extends DomainResource {
   /// [courseOfTherapyType] /// The description of the overall patte3rn of the administration of the
   /// medication to the patient.
   @JsonKey(name: 'courseOfTherapyType')
-  final CodeableConcept? courseOfTherapyType;
+  final MedicationRequestCourseOfTherapyCodes? courseOfTherapyType;
 
   /// [insurance] /// Insurance plans, coverage extensions, pre-authorizations and/or
   /// pre-determinations that may be required for delivering the requested
@@ -295,20 +296,20 @@ class MedicationRequest extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    MedicationrequestStatus? status,
     Element? statusElement,
-    CodeableConcept? statusReason,
-    FhirCode? intent,
+    MedicationRequestStatusReasonCodes? statusReason,
+    MedicationRequestIntent? intent,
     Element? intentElement,
-    List<CodeableConcept>? category,
-    FhirCode? priority,
+    List<MedicationRequestCategoryCodes>? category,
+    RequestPriority? priority,
     Element? priorityElement,
     FhirBoolean? doNotPerform,
     Element? doNotPerformElement,
@@ -326,7 +327,7 @@ class MedicationRequest extends DomainResource {
     Reference? performer,
     CodeableConcept? performerType,
     Reference? recorder,
-    List<CodeableConcept>? reasonCode,
+    List<ConditionProblemDiagnosisCodes>? reasonCode,
     List<Reference>? reasonReference,
     List<FhirCanonical>? instantiatesCanonical,
     List<Element>? instantiatesCanonicalElement,
@@ -334,7 +335,7 @@ class MedicationRequest extends DomainResource {
     List<Element>? instantiatesUriElement,
     List<Reference>? basedOn,
     Identifier? groupIdentifier,
-    CodeableConcept? courseOfTherapyType,
+    MedicationRequestCourseOfTherapyCodes? courseOfTherapyType,
     List<Reference>? insurance,
     List<Annotation>? note,
     List<Dosage>? dosageInstruction,

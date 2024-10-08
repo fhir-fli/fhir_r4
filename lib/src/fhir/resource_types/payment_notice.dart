@@ -43,6 +43,7 @@ class PaymentNotice extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.PaymentNotice,
             fhirType: 'PaymentNotice');
@@ -56,7 +57,7 @@ class PaymentNotice extends DomainResource {
 
   /// [status] /// The status of the resource instance.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final FinancialResourceStatusCodes status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -104,7 +105,7 @@ class PaymentNotice extends DomainResource {
 
   /// [paymentStatus] /// A code indicating whether payment has been sent or cleared.
   @JsonKey(name: 'paymentStatus')
-  final CodeableConcept? paymentStatus;
+  final PaymentStatusCodes? paymentStatus;
   factory PaymentNotice.fromJson(Map<String, dynamic> json) =>
       _$PaymentNoticeFromJson(json);
 
@@ -119,14 +120,14 @@ class PaymentNotice extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    FinancialResourceStatusCodes? status,
     Element? statusElement,
     Reference? request,
     Reference? response,
@@ -139,7 +140,7 @@ class PaymentNotice extends DomainResource {
     Reference? payee,
     Reference? recipient,
     Money? amount,
-    CodeableConcept? paymentStatus,
+    PaymentStatusCodes? paymentStatus,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

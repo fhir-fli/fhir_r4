@@ -12,7 +12,7 @@ DataRequirement _$DataRequirementFromJson(Map<String, dynamic> json) =>
       extension_: (json['extension_'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: FhirCode.fromJson(json['type']),
+      type: $enumDecode(_$FHIRAllTypesEnumMap, json['type']),
       typeElement: json['_type'] == null
           ? null
           : Element.fromJson(json['_type'] as Map<String, dynamic>),
@@ -22,14 +22,10 @@ DataRequirement _$DataRequirementFromJson(Map<String, dynamic> json) =>
       profileElement: (json['_profile'] as List<dynamic>?)
           ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
           .toList(),
-      subjectCodeableConcept: json['subjectCodeableConcept'] == null
-          ? null
-          : CodeableConcept.fromJson(
-              json['subjectCodeableConcept'] as Map<String, dynamic>),
-      subjectReference: json['subjectReference'] == null
-          ? null
-          : Reference.fromJson(
-              json['subjectReference'] as Map<String, dynamic>),
+      subjectCodeableConcept: $enumDecodeNullable(
+          _$SubjectTypeEnumMap, json['subjectCodeableConcept']),
+      subjectReference:
+          $enumDecodeNullable(_$SubjectTypeEnumMap, json['subjectReference']),
       mustSupport: (json['mustSupport'] as List<dynamic>?)
           ?.map(FhirString.fromJson)
           .toList(),
@@ -51,37 +47,23 @@ DataRequirement _$DataRequirementFromJson(Map<String, dynamic> json) =>
       sort: (json['sort'] as List<dynamic>?)
           ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
           .toList(),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$DataRequirementToJson(DataRequirement instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -89,6 +71,13 @@ Map<String, dynamic> _$DataRequirementToJson(DataRequirement instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -113,6 +102,84 @@ Map<String, dynamic> _$DataRequirementToJson(DataRequirement instance) {
   writeNotNull('sort', instance.sort?.map((e) => e.toJson()).toList());
   return val;
 }
+
+const _$FHIRAllTypesEnumMap = {
+  FHIRAllTypes.Address: 'Address',
+  FHIRAllTypes.Age: 'Age',
+  FHIRAllTypes.Annotation: 'Annotation',
+  FHIRAllTypes.Attachment: 'Attachment',
+  FHIRAllTypes.BackboneElement: 'BackboneElement',
+  FHIRAllTypes.CodeableConcept: 'CodeableConcept',
+  FHIRAllTypes.CodeableReference: 'CodeableReference',
+  FHIRAllTypes.Coding: 'Coding',
+  FHIRAllTypes.ContactDetail: 'ContactDetail',
+  FHIRAllTypes.ContactPoint: 'ContactPoint',
+  FHIRAllTypes.Contributor: 'Contributor',
+  FHIRAllTypes.Count: 'Count',
+  FHIRAllTypes.DataRequirement: 'DataRequirement',
+  FHIRAllTypes.Distance: 'Distance',
+  FHIRAllTypes.Dosage: 'Dosage',
+  FHIRAllTypes.Duration: 'Duration',
+  FHIRAllTypes.Element: 'Element',
+  FHIRAllTypes.ElementDefinition: 'ElementDefinition',
+  FHIRAllTypes.Expression: 'Expression',
+  FHIRAllTypes.Extension: 'Extension',
+  FHIRAllTypes.HumanName: 'HumanName',
+  FHIRAllTypes.Identifier: 'Identifier',
+  FHIRAllTypes.MarketingStatus: 'MarketingStatus',
+  FHIRAllTypes.Meta: 'Meta',
+  FHIRAllTypes.Money: 'Money',
+  FHIRAllTypes.MoneyQuantity: 'MoneyQuantity',
+  FHIRAllTypes.Narrative: 'Narrative',
+  FHIRAllTypes.ParameterDefinition: 'ParameterDefinition',
+  FHIRAllTypes.Period: 'Period',
+  FHIRAllTypes.Population: 'Population',
+  FHIRAllTypes.ProdCharacteristic: 'ProdCharacteristic',
+  FHIRAllTypes.ProductShelfLife: 'ProductShelfLife',
+  FHIRAllTypes.Quantity: 'Quantity',
+  FHIRAllTypes.Range: 'Range',
+  FHIRAllTypes.Ratio: 'Ratio',
+  FHIRAllTypes.RatioRange: 'RatioRange',
+  FHIRAllTypes.Reference: 'Reference',
+  FHIRAllTypes.RelatedArtifact: 'RelatedArtifact',
+  FHIRAllTypes.SampledData: 'SampledData',
+  FHIRAllTypes.Signature: 'Signature',
+  FHIRAllTypes.SimpleQuantity: 'SimpleQuantity',
+  FHIRAllTypes.Timing: 'Timing',
+  FHIRAllTypes.TriggerDefinition: 'TriggerDefinition',
+  FHIRAllTypes.UsageContext: 'UsageContext',
+  FHIRAllTypes.base64Binary: 'base64Binary',
+  FHIRAllTypes.boolean: 'boolean',
+  FHIRAllTypes.canonical: 'canonical',
+  FHIRAllTypes.code: 'code',
+  FHIRAllTypes.date: 'date',
+  FHIRAllTypes.dateTime: 'dateTime',
+  FHIRAllTypes.decimal: 'decimal',
+  FHIRAllTypes.id: 'id',
+  FHIRAllTypes.instant: 'instant',
+  FHIRAllTypes.integer: 'integer',
+  FHIRAllTypes.markdown: 'markdown',
+  FHIRAllTypes.oid: 'oid',
+  FHIRAllTypes.positiveInt: 'positiveInt',
+  FHIRAllTypes.string: 'string',
+  FHIRAllTypes.time: 'time',
+  FHIRAllTypes.unsignedInt: 'unsignedInt',
+  FHIRAllTypes.uri: 'uri',
+  FHIRAllTypes.url: 'url',
+  FHIRAllTypes.uuid: 'uuid',
+  FHIRAllTypes.xhtml: 'xhtml',
+  FHIRAllTypes.Resource: 'Resource',
+  FHIRAllTypes.Type: 'Type',
+  FHIRAllTypes.Any: 'Any',
+};
+
+const _$SubjectTypeEnumMap = {
+  SubjectType.Patient: 'Patient',
+  SubjectType.Practitioner: 'Practitioner',
+  SubjectType.Organization: 'Organization',
+  SubjectType.Location: 'Location',
+  SubjectType.Device: 'Device',
+};
 
 DataRequirementCodeFilter _$DataRequirementCodeFilterFromJson(
         Map<String, dynamic> json) =>
@@ -140,38 +207,24 @@ DataRequirementCodeFilter _$DataRequirementCodeFilterFromJson(
       code: (json['code'] as List<dynamic>?)
           ?.map((e) => Coding.fromJson(e as Map<String, dynamic>))
           .toList(),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$DataRequirementCodeFilterToJson(
     DataRequirementCodeFilter instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -179,6 +232,13 @@ Map<String, dynamic> _$DataRequirementCodeFilterToJson(
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -222,38 +282,24 @@ DataRequirementDateFilter _$DataRequirementDateFilterFromJson(
           ? null
           : FhirDuration.fromJson(
               json['valueDuration'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$DataRequirementDateFilterToJson(
     DataRequirementDateFilter instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -261,6 +307,13 @@ Map<String, dynamic> _$DataRequirementDateFilterToJson(
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -285,41 +338,27 @@ DataRequirementSort _$DataRequirementSortFromJson(Map<String, dynamic> json) =>
       pathElement: json['_path'] == null
           ? null
           : Element.fromJson(json['_path'] as Map<String, dynamic>),
-      direction: FhirCode.fromJson(json['direction']),
+      direction: $enumDecode(_$SortDirectionEnumMap, json['direction']),
       directionElement: json['_direction'] == null
           ? null
           : Element.fromJson(json['_direction'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$DataRequirementSortToJson(DataRequirementSort instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -327,6 +366,13 @@ Map<String, dynamic> _$DataRequirementSortToJson(DataRequirementSort instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -336,3 +382,8 @@ Map<String, dynamic> _$DataRequirementSortToJson(DataRequirementSort instance) {
   writeNotNull('_direction', instance.directionElement?.toJson());
   return val;
 }
+
+const _$SortDirectionEnumMap = {
+  SortDirection.ascending: 'ascending',
+  SortDirection.descending: 'descending',
+};

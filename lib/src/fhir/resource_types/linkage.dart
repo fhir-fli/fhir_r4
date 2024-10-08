@@ -32,6 +32,7 @@ class Linkage extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Linkage, fhirType: 'Linkage');
   @Id()
   @JsonKey(ignore: true)
@@ -69,7 +70,7 @@ class Linkage extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -156,7 +157,7 @@ class LinkageItem extends BackboneElement {
   /// [type] /// Distinguishes which item is "source of truth" (if any) and which items are
   /// no longer considered to be current representations.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final LinkageType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -176,7 +177,7 @@ class LinkageItem extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? type,
+    LinkageType? type,
     Element? typeElement,
     Reference? resource,
     Map<String, Object?>? userData,

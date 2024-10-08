@@ -1,5 +1,8 @@
 // ignore_for_file: avoid_print
 
+import 'dart:io';
+
+import 'consts.dart';
 import 'fhir_generate_extension.dart';
 import 'file_io.dart';
 
@@ -11,12 +14,12 @@ void writeEnums(Set<String> valueSets,
     } else {
       final Map<String, dynamic> valueSet = codesAndVS[valueSetUrl]!;
       final String enumName =
-          _getEnumNameFromValueSet(valueSetUrl, valueSet, nameMap);
+          getEnumNameFromValueSet(valueSetUrl, valueSet, nameMap);
 
       final List<Map<String, String>> enumValuesWithComments =
           _extractEnumValuesWithComments(valueSet, codesAndVS);
       if (enumValuesWithComments.isEmpty) {
-        // print('No enum values found for ValueSet: $valueSetUrl');
+        print('No enum values found for ValueSet: $valueSetUrl');
       } else {
         final String enumString = _buildEnumStringWithComments(
             enumName, enumValuesWithComments, valueSet);
@@ -24,9 +27,24 @@ void writeEnums(Set<String> valueSets,
       }
     }
   }
+  final List<String> exportEnums = <String>[];
+  final Directory enumDirectory = Directory('$fhirDirectory/enums');
+  if (enumDirectory.existsSync()) {
+    final List<FileSystemEntity> files = enumDirectory.listSync();
+    for (final FileSystemEntity file in files) {
+      if (file is File) {
+        final String fileName = file.path.split('/').last;
+        if (!fileName.endsWith('enums.dart')) {
+          exportEnums.add("export '$fileName';\n");
+        }
+      }
+    }
+  }
+  exportEnums.sort();
+  writeEnumToFile('enums', exportEnums.join());
 }
 
-String _getEnumNameFromValueSet(String valueSetUrl,
+String getEnumNameFromValueSet(String valueSetUrl,
     Map<String, dynamic> valueSet, Map<String, String> nameMap) {
   final String valueSetName = valueSet['name'] as String? ??
       valueSet['title'] as String? ??
@@ -35,7 +53,8 @@ String _getEnumNameFromValueSet(String valueSetUrl,
   final String enumName = valueSetName.upperCamelCase;
   if (enumName.isResource ||
       nameMap.keys.contains(enumName.toLowerCase()) ||
-      nameMap.values.contains(enumName.toLowerCase())) {
+      nameMap.values.contains(enumName.toLowerCase()) ||
+      enumNameOverlaps.contains(enumName.toLowerCase())) {
     return '${enumName}Enum';
   }
 

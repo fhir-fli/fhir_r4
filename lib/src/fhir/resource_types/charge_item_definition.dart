@@ -68,6 +68,7 @@ class ChargeItemDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.ChargeItemDefinition,
             fhirType: 'ChargeItemDefinition');
@@ -138,7 +139,7 @@ class ChargeItemDefinition extends DomainResource {
 
   /// [status] /// The current state of the ChargeItemDefinition.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -221,7 +222,7 @@ class ChargeItemDefinition extends DomainResource {
   /// [code] /// The defined billing details in this resource pertain to the given billing
   /// code.
   @JsonKey(name: 'code')
-  final CodeableConcept? code;
+  final ChargeItemCode? code;
 
   /// [instance] /// The defined billing details in this resource pertain to the given product
   /// instance(s).
@@ -251,7 +252,7 @@ class ChargeItemDefinition extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -270,7 +271,7 @@ class ChargeItemDefinition extends DomainResource {
     List<Element>? partOfElement,
     List<FhirCanonical>? replaces,
     List<Element>? replacesElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
@@ -290,7 +291,7 @@ class ChargeItemDefinition extends DomainResource {
     FhirDate? lastReviewDate,
     Element? lastReviewDateElement,
     Period? effectivePeriod,
-    CodeableConcept? code,
+    ChargeItemCode? code,
     List<Reference>? instance,
     List<ChargeItemDefinitionApplicability>? applicability,
     List<ChargeItemDefinitionPropertyGroup>? propertyGroup,
@@ -620,7 +621,7 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
 
   /// [type] /// This code identifies the type of the component.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final InvoicePriceComponentType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -654,7 +655,7 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? type,
+    InvoicePriceComponentType? type,
     Element? typeElement,
     CodeableConcept? code,
     FhirDecimal? factor,

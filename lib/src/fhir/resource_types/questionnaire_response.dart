@@ -43,6 +43,7 @@ class QuestionnaireResponse extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.QuestionnaireResponse,
             fhirType: 'QuestionnaireResponse');
@@ -77,7 +78,7 @@ class QuestionnaireResponse extends DomainResource {
 
   /// [status] /// The position of the questionnaire response within its overall lifecycle.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final QuestionnaireResponseStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -125,7 +126,7 @@ class QuestionnaireResponse extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -136,7 +137,7 @@ class QuestionnaireResponse extends DomainResource {
     List<Reference>? partOf,
     FhirCanonical? questionnaire,
     Element? questionnaireElement,
-    FhirCode? status,
+    QuestionnaireResponseStatus? status,
     Element? statusElement,
     Reference? subject,
     Reference? encounter,

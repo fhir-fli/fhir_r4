@@ -41,6 +41,7 @@ class ClinicalUseDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.ClinicalUseDefinition,
             fhirType: 'ClinicalUseDefinition');
@@ -54,7 +55,7 @@ class ClinicalUseDefinition extends DomainResource {
 
   /// [type] /// indication | contraindication | interaction | undesirable-effect | warning.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final ClinicalUseDefinitionType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -62,7 +63,7 @@ class ClinicalUseDefinition extends DomainResource {
   /// heading areas such as "Pregnancy and Lactation", "Overdose", "Effects on
   /// Ability to Drive and Use Machines".
   @JsonKey(name: 'category')
-  final List<CodeableConcept>? category;
+  final List<ClinicalUseDefinitionCategory>? category;
 
   /// [subject] /// The medication or procedure for which this is an indication.
   @JsonKey(name: 'subject')
@@ -70,7 +71,7 @@ class ClinicalUseDefinition extends DomainResource {
 
   /// [status] /// Whether this is a current issue or one that has been retired etc.
   @JsonKey(name: 'status')
-  final CodeableConcept? status;
+  final PublicationStatus? status;
 
   /// [contraindication] /// Specifics for when this is a contraindication.
   @JsonKey(name: 'contraindication')
@@ -113,18 +114,18 @@ class ClinicalUseDefinition extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? type,
+    ClinicalUseDefinitionType? type,
     Element? typeElement,
-    List<CodeableConcept>? category,
+    List<ClinicalUseDefinitionCategory>? category,
     List<Reference>? subject,
-    CodeableConcept? status,
+    PublicationStatus? status,
     ClinicalUseDefinitionContraindication? contraindication,
     ClinicalUseDefinitionIndication? indication,
     ClinicalUseDefinitionInteraction? interaction,
@@ -326,7 +327,7 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
   /// [relationshipType] /// The type of relationship between the medicinal product indication or
   /// contraindication and another therapy.
   @JsonKey(name: 'relationshipType')
-  final CodeableConcept relationshipType;
+  final TherapyRelationshipType relationshipType;
 
   /// [therapy] /// Reference to a specific medication (active substance, medicinal product or
   /// class of products) as part of an indication or contraindication.
@@ -347,7 +348,7 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? relationshipType,
+    TherapyRelationshipType? relationshipType,
     CodeableReference? therapy,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -435,7 +436,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
 
   /// [intendedEffect] /// The intended effect, aim or strategy to be achieved.
   @JsonKey(name: 'intendedEffect')
-  final CodeableReference? intendedEffect;
+  final ProductIntendedUse? intendedEffect;
 
   /// [durationRange] /// Timing or duration information, that may be associated with use with the
   /// indicated condition e.g. Adult patients suffering from myocardial
@@ -479,7 +480,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     CodeableReference? diseaseSymptomProcedure,
     CodeableReference? diseaseStatus,
     List<CodeableReference>? comorbidity,
-    CodeableReference? intendedEffect,
+    ProductIntendedUse? intendedEffect,
     Range? durationRange,
     FhirString? durationString,
     Element? durationStringElement,
@@ -567,7 +568,7 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
   /// [type] /// The type of the interaction e.g. drug-drug interaction, drug-food
   /// interaction, drug-lab test interaction.
   @JsonKey(name: 'type')
-  final CodeableConcept? type;
+  final InteractionType? type;
 
   /// [effect] /// The effect of the interaction, for example "reduced gastric absorption of
   /// primary medication".
@@ -576,7 +577,7 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
 
   /// [incidence] /// The incidence of the interaction, e.g. theoretical, observed.
   @JsonKey(name: 'incidence')
-  final CodeableConcept? incidence;
+  final InteractionIncidence? incidence;
 
   /// [management] /// Actions for managing the interaction.
   @JsonKey(name: 'management')
@@ -597,9 +598,9 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<ClinicalUseDefinitionInteractant>? interactant,
-    CodeableConcept? type,
+    InteractionType? type,
     CodeableReference? effect,
-    CodeableConcept? incidence,
+    InteractionIncidence? incidence,
     List<CodeableConcept>? management,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -766,7 +767,7 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
 
   /// [frequencyOfOccurrence] /// How often the effect is seen.
   @JsonKey(name: 'frequencyOfOccurrence')
-  final CodeableConcept? frequencyOfOccurrence;
+  final UndesirablEffectFrequency? frequencyOfOccurrence;
   factory ClinicalUseDefinitionUndesirableEffect.fromJson(
           Map<String, dynamic> json) =>
       _$ClinicalUseDefinitionUndesirableEffectFromJson(json);
@@ -784,7 +785,7 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableReference? symptomConditionEffect,
     CodeableConcept? classification,
-    CodeableConcept? frequencyOfOccurrence,
+    UndesirablEffectFrequency? frequencyOfOccurrence,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -863,7 +864,7 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
 
   /// [code] /// A coded or unformatted textual definition of this warning.
   @JsonKey(name: 'code')
-  final CodeableConcept? code;
+  final WarningType? code;
   factory ClinicalUseDefinitionWarning.fromJson(Map<String, dynamic> json) =>
       _$ClinicalUseDefinitionWarningFromJson(json);
 
@@ -879,7 +880,7 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirMarkdown? description,
     Element? descriptionElement,
-    CodeableConcept? code,
+    WarningType? code,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

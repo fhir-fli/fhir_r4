@@ -91,7 +91,7 @@ class FhirUrl extends PrimitiveType<Uri> {
 
   /// Encoding/decoding
   static String uriEncode(
-      List<int> UrlTable, String text, Encoding encoding, bool spaceToPlus) {
+      List<int> urlTable, String text, Encoding encoding, bool spaceToPlus) {
     return Uri.encodeComponent(text);
   }
 

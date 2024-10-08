@@ -53,6 +53,7 @@ class Patient extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Patient, fhirType: 'Patient');
   @Id()
   @JsonKey(ignore: true)
@@ -88,7 +89,7 @@ class Patient extends DomainResource {
   /// [gender] /// Administrative Gender - the gender that the patient is considered to have
   /// for administration and record keeping purposes.
   @JsonKey(name: 'gender')
-  final FhirCode? gender;
+  final AdministrativeGender? gender;
   @JsonKey(name: '_gender')
   final Element? genderElement;
 
@@ -116,7 +117,7 @@ class Patient extends DomainResource {
 
   /// [maritalStatus] /// This field contains a patient's most recent marital (civil) status.
   @JsonKey(name: 'maritalStatus')
-  final CodeableConcept? maritalStatus;
+  final MaritalStatusCodes? maritalStatus;
 
   /// [multipleBirthBoolean] /// Indicates whether the patient is part of a multiple (boolean) or indicates
   /// the actual birth order (integer).
@@ -170,7 +171,7 @@ class Patient extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -181,7 +182,7 @@ class Patient extends DomainResource {
     Element? activeElement,
     List<HumanName>? name,
     List<ContactPoint>? telecom,
-    FhirCode? gender,
+    AdministrativeGender? gender,
     Element? genderElement,
     FhirDate? birthDate,
     Element? birthDateElement,
@@ -190,7 +191,7 @@ class Patient extends DomainResource {
     FhirDateTime? deceasedDateTime,
     Element? deceasedDateTimeElement,
     List<Address>? address,
-    CodeableConcept? maritalStatus,
+    MaritalStatusCodes? maritalStatus,
     FhirBoolean? multipleBirthBoolean,
     Element? multipleBirthBooleanElement,
     FhirInteger? multipleBirthInteger,
@@ -323,7 +324,7 @@ class PatientContact extends BackboneElement {
   /// [gender] /// Administrative Gender - the gender that the contact person is considered to
   /// have for administration and record keeping purposes.
   @JsonKey(name: 'gender')
-  final FhirCode? gender;
+  final AdministrativeGender? gender;
   @JsonKey(name: '_gender')
   final Element? genderElement;
 
@@ -353,7 +354,7 @@ class PatientContact extends BackboneElement {
     HumanName? name,
     List<ContactPoint>? telecom,
     Address? address,
-    FhirCode? gender,
+    AdministrativeGender? gender,
     Element? genderElement,
     Reference? organization,
     Period? period,
@@ -432,7 +433,7 @@ class PatientCommunication extends BackboneElement {
   /// upper case; e.g. "en" for English, or "en-US" for American English versus
   /// "en-EN" for England English.
   @JsonKey(name: 'language')
-  final CodeableConcept language;
+  final CommonLanguages language;
 
   /// [preferred] /// Indicates whether or not the patient prefers this language (over other
   /// languages he masters up a certain level).
@@ -453,7 +454,7 @@ class PatientCommunication extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? language,
+    CommonLanguages? language,
     FhirBoolean? preferred,
     Element? preferredElement,
     Map<String, Object?>? userData,
@@ -527,7 +528,7 @@ class PatientLink extends BackboneElement {
   /// [type] /// The type of link between this patient resource and another patient
   /// resource.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final LinkType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
   factory PatientLink.fromJson(Map<String, dynamic> json) =>
@@ -544,7 +545,7 @@ class PatientLink extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Reference? other,
-    FhirCode? type,
+    LinkType? type,
     Element? typeElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

@@ -66,6 +66,7 @@ class FamilyMemberHistory extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.FamilyMemberHistory,
             fhirType: 'FamilyMemberHistory');
@@ -98,13 +99,13 @@ class FamilyMemberHistory extends DomainResource {
   /// [status] /// A code specifying the status of the record of the family history of a
   /// specific family member.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final FamilyHistoryStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [dataAbsentReason] /// Describes why the family member's history is not available.
   @JsonKey(name: 'dataAbsentReason')
-  final CodeableConcept? dataAbsentReason;
+  final FamilyHistoryAbsentReason? dataAbsentReason;
 
   /// [patient] /// The person who this history concerns.
   @JsonKey(name: 'patient')
@@ -131,7 +132,7 @@ class FamilyMemberHistory extends DomainResource {
 
   /// [sex] /// The birth sex of the family member.
   @JsonKey(name: 'sex')
-  final CodeableConcept? sex;
+  final AdministrativeGender? sex;
 
   /// [bornPeriod] /// The actual or approximate date of birth of the relative.
   @JsonKey(name: 'bornPeriod')
@@ -235,7 +236,7 @@ class FamilyMemberHistory extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -246,16 +247,16 @@ class FamilyMemberHistory extends DomainResource {
     List<Element>? instantiatesCanonicalElement,
     List<FhirUri>? instantiatesUri,
     List<Element>? instantiatesUriElement,
-    FhirCode? status,
+    FamilyHistoryStatus? status,
     Element? statusElement,
-    CodeableConcept? dataAbsentReason,
+    FamilyHistoryAbsentReason? dataAbsentReason,
     Reference? patient,
     FhirDateTime? date,
     Element? dateElement,
     FhirString? name,
     Element? nameElement,
     CodeableConcept? relationship,
-    CodeableConcept? sex,
+    AdministrativeGender? sex,
     Period? bornPeriod,
     FhirDate? bornDate,
     Element? bornDateElement,
@@ -404,7 +405,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
   /// Diabetes) or a less specific string like 'cancer' depending on how much is
   /// known about the condition and the capabilities of the creating system.
   @JsonKey(name: 'code')
-  final CodeableConcept code;
+  final ConditionProblemDiagnosisCodes code;
 
   /// [outcome] /// Indicates what happened following the condition. If the condition resulted
   /// in death, deceased date is captured on the relation.
@@ -460,7 +461,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
+    ConditionProblemDiagnosisCodes? code,
     CodeableConcept? outcome,
     FhirBoolean? contributedToDeath,
     Element? contributedToDeathElement,

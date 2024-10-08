@@ -59,6 +59,7 @@ class Media extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Media, fhirType: 'Media');
   @Id()
   @JsonKey(ignore: true)
@@ -82,20 +83,20 @@ class Media extends DomainResource {
 
   /// [status] /// The current state of the {{title}}.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final EventStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [type] /// A code that classifies whether the media is an image, video or audio
   /// recording or some other media category.
   @JsonKey(name: 'type')
-  final CodeableConcept? type;
+  final MediaType? type;
 
   /// [modality] /// Details of the type of the media - usually, how it was acquired (what type
   /// of device). If images sourced from a DICOM system, are wrapped in a Media
   /// resource, then this is the modality.
   @JsonKey(name: 'modality')
-  final CodeableConcept? modality;
+  final MediaModality? modality;
 
   /// [view] /// The name of the imaging view e.g. Lateral or Antero-posterior (AP).
   @JsonKey(name: 'view')
@@ -200,7 +201,7 @@ class Media extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -209,10 +210,10 @@ class Media extends DomainResource {
     List<Identifier>? identifier,
     List<Reference>? basedOn,
     List<Reference>? partOf,
-    FhirCode? status,
+    EventStatus? status,
     Element? statusElement,
-    CodeableConcept? type,
-    CodeableConcept? modality,
+    MediaType? type,
+    MediaModality? modality,
     CodeableConcept? view,
     Reference? subject,
     Reference? encounter,

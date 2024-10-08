@@ -63,6 +63,7 @@ class SubscriptionTopic extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.SubscriptionTopic,
             fhirType: 'SubscriptionTopic');
@@ -115,7 +116,7 @@ class SubscriptionTopic extends DomainResource {
 
   /// [status] /// The current state of the SubscriptionTopic.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -233,7 +234,7 @@ class SubscriptionTopic extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -248,7 +249,7 @@ class SubscriptionTopic extends DomainResource {
     Element? titleElement,
     List<FhirCanonical>? derivedFrom,
     List<Element>? derivedFromElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
@@ -404,7 +405,7 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
   /// <a
   /// href="elementdefinition-definitions.html#ElementDefinition.type.code">ElementDefinition.type.code</a>.
   @JsonKey(name: 'resource')
-  final FhirUri resource;
+  final FHIRDefinedType resource;
   @JsonKey(name: '_resource')
   final Element? resourceElement;
 
@@ -412,7 +413,7 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
   /// for the SubscriptionTopic. Multiple values are considered OR joined (e.g.,
   /// CREATE or UPDATE).
   @JsonKey(name: 'supportedInteraction')
-  final List<FhirCode>? supportedInteraction;
+  final List<InteractionTrigger>? supportedInteraction;
   @JsonKey(name: '_supportedInteraction')
   final List<Element>? supportedInteractionElement;
 
@@ -444,9 +445,9 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirMarkdown? description,
     Element? descriptionElement,
-    FhirUri? resource,
+    FHIRDefinedType? resource,
     Element? resourceElement,
-    List<FhirCode>? supportedInteraction,
+    List<InteractionTrigger>? supportedInteraction,
     List<Element>? supportedInteractionElement,
     SubscriptionTopicQueryCriteria? queryCriteria,
     FhirString? fhirPathCriteria,
@@ -542,7 +543,7 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
   /// [resultForCreate] /// For "create" interactions, should the "previous" criteria count as an
   /// automatic pass or an automatic fail.
   @JsonKey(name: 'resultForCreate')
-  final FhirCode? resultForCreate;
+  final CriteriaNotExistsBehavior? resultForCreate;
   @JsonKey(name: '_resultForCreate')
   final Element? resultForCreateElement;
 
@@ -556,7 +557,7 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
   /// [resultForDelete] /// For "delete" interactions, should the "current" criteria count as an
   /// automatic pass or an automatic fail.
   @JsonKey(name: 'resultForDelete')
-  final FhirCode? resultForDelete;
+  final CriteriaNotExistsBehavior? resultForDelete;
   @JsonKey(name: '_resultForDelete')
   final Element? resultForDeleteElement;
 
@@ -582,11 +583,11 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? previous,
     Element? previousElement,
-    FhirCode? resultForCreate,
+    CriteriaNotExistsBehavior? resultForCreate,
     Element? resultForCreateElement,
     FhirString? current,
     Element? currentElement,
-    FhirCode? resultForDelete,
+    CriteriaNotExistsBehavior? resultForDelete,
     Element? resultForDeleteElement,
     FhirBoolean? requireBoth,
     Element? requireBothElement,
@@ -688,7 +689,7 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
   /// <a
   /// href="elementdefinition-definitions.html#ElementDefinition.type.code">ElementDefinition.type.code</a>.
   @JsonKey(name: 'resource')
-  final FhirUri resource;
+  final FHIRDefinedType resource;
   @JsonKey(name: '_resource')
   final Element? resourceElement;
   factory SubscriptionTopicEventTrigger.fromJson(Map<String, dynamic> json) =>
@@ -707,7 +708,7 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
     FhirMarkdown? description,
     Element? descriptionElement,
     CodeableConcept? event,
-    FhirUri? resource,
+    FHIRDefinedType? resource,
     Element? resourceElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -796,7 +797,7 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
   /// SubscriptionTopic.resourceTrigger.resource or
   /// SubscriptionTopic.eventTrigger.resource when they are present.
   @JsonKey(name: 'resource')
-  final FhirUri? resource;
+  final FHIRDefinedType? resource;
   @JsonKey(name: '_resource')
   final Element? resourceElement;
 
@@ -821,7 +822,7 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
   /// If the filterParameter is a SearchParameter, this list of modifiers SHALL
   /// be a strict subset of the modifiers defined on that SearchParameter.
   @JsonKey(name: 'modifier')
-  final List<FhirCode>? modifier;
+  final List<SubscriptionSearchModifier>? modifier;
   @JsonKey(name: '_modifier')
   final List<Element>? modifierElement;
   factory SubscriptionTopicCanFilterBy.fromJson(Map<String, dynamic> json) =>
@@ -839,13 +840,13 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirMarkdown? description,
     Element? descriptionElement,
-    FhirUri? resource,
+    FHIRDefinedType? resource,
     Element? resourceElement,
     FhirString? filterParameter,
     Element? filterParameterElement,
     FhirUri? filterDefinition,
     Element? filterDefinitionElement,
-    List<FhirCode>? modifier,
+    List<SubscriptionSearchModifier>? modifier,
     List<Element>? modifierElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -930,7 +931,7 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
   /// or a specificity of SubscriptionTopic.resourceTrigger.resource or
   /// SubscriptionTopic.eventTrigger.resource when they are present.
   @JsonKey(name: 'resource')
-  final FhirUri resource;
+  final FHIRDefinedType resource;
   @JsonKey(name: '_resource')
   final Element? resourceElement;
 
@@ -966,7 +967,7 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirUri? resource,
+    FHIRDefinedType? resource,
     Element? resourceElement,
     List<FhirString>? include,
     List<Element>? includeElement,

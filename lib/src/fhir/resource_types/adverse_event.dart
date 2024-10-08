@@ -54,6 +54,7 @@ class AdverseEvent extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.AdverseEvent,
             fhirType: 'AdverseEvent');
@@ -71,13 +72,13 @@ class AdverseEvent extends DomainResource {
   /// that this is independent of whether anyone was affected or harmed or how
   /// severely.
   @JsonKey(name: 'actuality')
-  final FhirCode actuality;
+  final AdverseEventActuality actuality;
   @JsonKey(name: '_actuality')
   final Element? actualityElement;
 
   /// [category] /// The overall type of event, intended for search and filtering purposes.
   @JsonKey(name: 'category')
-  final List<CodeableConcept>? category;
+  final List<AdverseEventCategory>? category;
 
   /// [event] /// This element defines the specific type of event that occurred or that was
   /// prevented from occurring.
@@ -123,17 +124,17 @@ class AdverseEvent extends DomainResource {
 
   /// [seriousness] /// Assessment whether this event was of real importance.
   @JsonKey(name: 'seriousness')
-  final CodeableConcept? seriousness;
+  final AdverseEventSeriousness? seriousness;
 
   /// [severity] /// Describes the severity of the adverse event, in relation to the subject.
   /// Contrast to AdverseEvent.seriousness - a severe rash might not be serious,
   /// but a mild heart problem is.
   @JsonKey(name: 'severity')
-  final CodeableConcept? severity;
+  final AdverseEventSeverity? severity;
 
   /// [outcome] /// Describes the type of outcome from the adverse event.
   @JsonKey(name: 'outcome')
-  final CodeableConcept? outcome;
+  final AdverseEventOutcome? outcome;
 
   /// [recorder] /// Information on who recorded the adverse event. May be the patient or a
   /// practitioner.
@@ -179,16 +180,16 @@ class AdverseEvent extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Identifier? identifier,
-    FhirCode? actuality,
+    AdverseEventActuality? actuality,
     Element? actualityElement,
-    List<CodeableConcept>? category,
+    List<AdverseEventCategory>? category,
     CodeableConcept? event,
     Reference? subject,
     Reference? encounter,
@@ -200,9 +201,9 @@ class AdverseEvent extends DomainResource {
     Element? recordedDateElement,
     List<Reference>? resultingCondition,
     Reference? location,
-    CodeableConcept? seriousness,
-    CodeableConcept? severity,
-    CodeableConcept? outcome,
+    AdverseEventSeriousness? seriousness,
+    AdverseEventSeverity? severity,
+    AdverseEventOutcome? outcome,
     Reference? recorder,
     List<Reference>? contributor,
     List<AdverseEventSuspectEntity>? suspectEntity,
@@ -392,7 +393,7 @@ class AdverseEventCausality extends BackboneElement {
 
   /// [assessment] /// Assessment of if the entity caused the event.
   @JsonKey(name: 'assessment')
-  final CodeableConcept? assessment;
+  final AdverseEventCausalityAssessment? assessment;
 
   /// [productRelatedness] /// AdverseEvent.suspectEntity.causalityProductRelatedness.
   @JsonKey(name: 'productRelatedness')
@@ -406,7 +407,7 @@ class AdverseEventCausality extends BackboneElement {
 
   /// [method] /// ProbabilityScale | Bayesian | Checklist.
   @JsonKey(name: 'method')
-  final CodeableConcept? method;
+  final AdverseEventCausalityMethod? method;
   factory AdverseEventCausality.fromJson(Map<String, dynamic> json) =>
       _$AdverseEventCausalityFromJson(json);
 
@@ -420,11 +421,11 @@ class AdverseEventCausality extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? assessment,
+    AdverseEventCausalityAssessment? assessment,
     FhirString? productRelatedness,
     Element? productRelatednessElement,
     Reference? author,
-    CodeableConcept? method,
+    AdverseEventCausalityMethod? method,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

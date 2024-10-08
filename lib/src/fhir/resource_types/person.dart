@@ -41,6 +41,7 @@ class Person extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Person, fhirType: 'Person');
   @Id()
   @JsonKey(ignore: true)
@@ -61,7 +62,7 @@ class Person extends DomainResource {
 
   /// [gender] /// Administrative Gender.
   @JsonKey(name: 'gender')
-  final FhirCode? gender;
+  final AdministrativeGender? gender;
   @JsonKey(name: '_gender')
   final Element? genderElement;
 
@@ -106,7 +107,7 @@ class Person extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -115,7 +116,7 @@ class Person extends DomainResource {
     List<Identifier>? identifier,
     List<HumanName>? name,
     List<ContactPoint>? telecom,
-    FhirCode? gender,
+    AdministrativeGender? gender,
     Element? genderElement,
     FhirDate? birthDate,
     Element? birthDateElement,
@@ -212,7 +213,7 @@ class PersonLink extends BackboneElement {
 
   /// [assurance] /// Level of assurance that this link is associated with the target resource.
   @JsonKey(name: 'assurance')
-  final FhirCode? assurance;
+  final IdentityAssuranceLevel? assurance;
   @JsonKey(name: '_assurance')
   final Element? assuranceElement;
   factory PersonLink.fromJson(Map<String, dynamic> json) =>
@@ -229,7 +230,7 @@ class PersonLink extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Reference? target,
-    FhirCode? assurance,
+    IdentityAssuranceLevel? assurance,
     Element? assuranceElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

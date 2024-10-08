@@ -51,6 +51,7 @@ class CoverageEligibilityResponse extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.CoverageEligibilityResponse,
             fhirType: 'CoverageEligibilityResponse');
@@ -64,7 +65,7 @@ class CoverageEligibilityResponse extends DomainResource {
 
   /// [status] /// The status of the resource instance.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final FinancialResourceStatusCodes status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -74,7 +75,7 @@ class CoverageEligibilityResponse extends DomainResource {
   /// validation that the specified coverage is in-force at the date/period
   /// specified or 'now' if not specified.
   @JsonKey(name: 'purpose')
-  final List<FhirCode> purpose;
+  final List<EligibilityResponsePurpose> purpose;
   @JsonKey(name: '_purpose')
   final List<Element>? purposeElement;
 
@@ -111,7 +112,7 @@ class CoverageEligibilityResponse extends DomainResource {
 
   /// [outcome] /// The outcome of the request processing.
   @JsonKey(name: 'outcome')
-  final FhirCode outcome;
+  final RemittanceOutcome outcome;
   @JsonKey(name: '_outcome')
   final Element? outcomeElement;
 
@@ -140,7 +141,7 @@ class CoverageEligibilityResponse extends DomainResource {
 
   /// [form] /// A code for the form to be used for printing the content.
   @JsonKey(name: 'form')
-  final CodeableConcept? form;
+  final FormCodes? form;
 
   /// [error] /// Errors encountered during the processing of the request.
   @JsonKey(name: 'error')
@@ -159,16 +160,16 @@ class CoverageEligibilityResponse extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    FinancialResourceStatusCodes? status,
     Element? statusElement,
-    List<FhirCode>? purpose,
+    List<EligibilityResponsePurpose>? purpose,
     List<Element>? purposeElement,
     Reference? patient,
     FhirDate? servicedDate,
@@ -178,7 +179,7 @@ class CoverageEligibilityResponse extends DomainResource {
     Element? createdElement,
     Reference? requestor,
     Reference? request,
-    FhirCode? outcome,
+    RemittanceOutcome? outcome,
     Element? outcomeElement,
     FhirString? disposition,
     Element? dispositionElement,
@@ -186,7 +187,7 @@ class CoverageEligibilityResponse extends DomainResource {
     List<CoverageEligibilityResponseInsurance>? insurance,
     FhirString? preAuthRef,
     Element? preAuthRefElement,
-    CodeableConcept? form,
+    FormCodes? form,
     List<CoverageEligibilityResponseError>? error,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -410,17 +411,17 @@ class CoverageEligibilityResponseItem extends BackboneElement {
   /// [category] /// Code to identify the general type of benefits under which products and
   /// services are provided.
   @JsonKey(name: 'category')
-  final CodeableConcept? category;
+  final BenefitCategoryCodes? category;
 
   /// [productOrService] /// This contains the product, service, drug or other billing code for the
   /// item.
   @JsonKey(name: 'productOrService')
-  final CodeableConcept? productOrService;
+  final USCLSCodes? productOrService;
 
   /// [modifier] /// Item typification or modifiers codes to convey additional context for the
   /// product or service.
   @JsonKey(name: 'modifier')
-  final List<CodeableConcept>? modifier;
+  final List<ModifierTypeCodes>? modifier;
 
   /// [provider] /// The practitioner who is eligible for the provision of the product or
   /// service.
@@ -449,16 +450,16 @@ class CoverageEligibilityResponseItem extends BackboneElement {
   /// [network] /// Is a flag to indicate whether the benefits refer to in-network providers or
   /// out-of-network providers.
   @JsonKey(name: 'network')
-  final CodeableConcept? network;
+  final NetworkTypeCodes? network;
 
   /// [unit] /// Indicates if the benefits apply to an individual or to the family.
   @JsonKey(name: 'unit')
-  final CodeableConcept? unit;
+  final UnitTypeCodes? unit;
 
   /// [term] /// The term or period of the values such as 'maximum lifetime benefit' or
   /// 'maximum annual visits'.
   @JsonKey(name: 'term')
-  final CodeableConcept? term;
+  final BenefitTermCodes? term;
 
   /// [benefit] /// Benefits used to date.
   @JsonKey(name: 'benefit')
@@ -474,7 +475,8 @@ class CoverageEligibilityResponseItem extends BackboneElement {
   /// [authorizationSupporting] /// Codes or comments regarding information or actions associated with the
   /// preauthorization.
   @JsonKey(name: 'authorizationSupporting')
-  final List<CodeableConcept>? authorizationSupporting;
+  final List<CoverageEligibilityResponseAuthSupportCodes>?
+      authorizationSupporting;
 
   /// [authorizationUrl] /// A web location for obtaining requirements or descriptive information
   /// regarding the preauthorization.
@@ -496,9 +498,9 @@ class CoverageEligibilityResponseItem extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? category,
-    CodeableConcept? productOrService,
-    List<CodeableConcept>? modifier,
+    BenefitCategoryCodes? category,
+    USCLSCodes? productOrService,
+    List<ModifierTypeCodes>? modifier,
     Reference? provider,
     FhirBoolean? excluded,
     Element? excludedElement,
@@ -506,13 +508,13 @@ class CoverageEligibilityResponseItem extends BackboneElement {
     Element? nameElement,
     FhirString? description,
     Element? descriptionElement,
-    CodeableConcept? network,
-    CodeableConcept? unit,
-    CodeableConcept? term,
+    NetworkTypeCodes? network,
+    UnitTypeCodes? unit,
+    BenefitTermCodes? term,
     List<CoverageEligibilityResponseBenefit>? benefit,
     FhirBoolean? authorizationRequired,
     Element? authorizationRequiredElement,
-    List<CodeableConcept>? authorizationSupporting,
+    List<CoverageEligibilityResponseAuthSupportCodes>? authorizationSupporting,
     FhirUri? authorizationUrl,
     Element? authorizationUrlElement,
     Map<String, Object?>? userData,
@@ -610,7 +612,7 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
 
   /// [type] /// Classification of benefit being provided.
   @JsonKey(name: 'type')
-  final CodeableConcept type;
+  final BenefitTypeCodes type;
 
   /// [allowedUnsignedInt] /// The quantity of the benefit which is permitted under the coverage.
   @JsonKey(name: 'allowedUnsignedInt')
@@ -658,7 +660,7 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
+    BenefitTypeCodes? type,
     FhirUnsignedInt? allowedUnsignedInt,
     Element? allowedUnsignedIntElement,
     FhirString? allowedString,
@@ -745,7 +747,7 @@ class CoverageEligibilityResponseError extends BackboneElement {
   /// [code] /// An error code,from a specified code system, which details why the
   /// eligibility check could not be performed.
   @JsonKey(name: 'code')
-  final CodeableConcept code;
+  final AdjudicationErrorCodes code;
   factory CoverageEligibilityResponseError.fromJson(
           Map<String, dynamic> json) =>
       _$CoverageEligibilityResponseErrorFromJson(json);
@@ -761,7 +763,7 @@ class CoverageEligibilityResponseError extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
+    AdjudicationErrorCodes? code,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

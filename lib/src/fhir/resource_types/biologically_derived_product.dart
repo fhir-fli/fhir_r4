@@ -43,6 +43,7 @@ class BiologicallyDerivedProduct extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.BiologicallyDerivedProduct,
             fhirType: 'BiologicallyDerivedProduct');
@@ -59,7 +60,7 @@ class BiologicallyDerivedProduct extends DomainResource {
 
   /// [productCategory] /// Broad category of this product.
   @JsonKey(name: 'productCategory')
-  final FhirCode? productCategory;
+  final BiologicallyDerivedProductCategory? productCategory;
   @JsonKey(name: '_productCategory')
   final Element? productCategoryElement;
 
@@ -70,7 +71,7 @@ class BiologicallyDerivedProduct extends DomainResource {
 
   /// [status] /// Whether the product is currently available.
   @JsonKey(name: 'status')
-  final FhirCode? status;
+  final BiologicallyDerivedProductStatus? status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -121,17 +122,17 @@ class BiologicallyDerivedProduct extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? productCategory,
+    BiologicallyDerivedProductCategory? productCategory,
     Element? productCategoryElement,
     CodeableConcept? productCode,
-    FhirCode? status,
+    BiologicallyDerivedProductStatus? status,
     Element? statusElement,
     List<Reference>? request,
     FhirInteger? quantity,
@@ -576,7 +577,7 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
 
   /// [scale] /// Temperature scale used.
   @JsonKey(name: 'scale')
-  final FhirCode? scale;
+  final BiologicallyDerivedProductStorageScale? scale;
   @JsonKey(name: '_scale')
   final Element? scaleElement;
 
@@ -602,7 +603,7 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
     Element? descriptionElement,
     FhirDecimal? temperature,
     Element? temperatureElement,
-    FhirCode? scale,
+    BiologicallyDerivedProductStorageScale? scale,
     Element? scaleElement,
     Period? duration,
     Map<String, Object?>? userData,

@@ -41,6 +41,7 @@ class DeviceMetric extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.DeviceMetric,
             fhirType: 'DeviceMetric');
@@ -82,7 +83,7 @@ class DeviceMetric extends DomainResource {
   /// [operationalStatus] /// Indicates current operational state of the device. For example: On, Off,
   /// Standby, etc.
   @JsonKey(name: 'operationalStatus')
-  final FhirCode? operationalStatus;
+  final DeviceMetricOperationalStatus? operationalStatus;
   @JsonKey(name: '_operationalStatus')
   final Element? operationalStatusElement;
 
@@ -92,14 +93,14 @@ class DeviceMetric extends DomainResource {
   /// parameters are displayed in different characteristic colors, such as
   /// HR-blue, BP-green, and PR and SpO2- magenta.
   @JsonKey(name: 'color')
-  final FhirCode? color;
+  final DeviceMetricColor? color;
   @JsonKey(name: '_color')
   final Element? colorElement;
 
   /// [category] /// Indicates the category of the observation generation process. A
   /// DeviceMetric can be for example a setting, measurement, or calculation.
   @JsonKey(name: 'category')
-  final FhirCode category;
+  final DeviceMetricCategory category;
   @JsonKey(name: '_category')
   final Element? categoryElement;
 
@@ -132,7 +133,7 @@ class DeviceMetric extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -143,11 +144,11 @@ class DeviceMetric extends DomainResource {
     CodeableConcept? unit,
     Reference? source,
     Reference? parent,
-    FhirCode? operationalStatus,
+    DeviceMetricOperationalStatus? operationalStatus,
     Element? operationalStatusElement,
-    FhirCode? color,
+    DeviceMetricColor? color,
     Element? colorElement,
-    FhirCode? category,
+    DeviceMetricCategory? category,
     Element? categoryElement,
     Timing? measurementPeriod,
     List<DeviceMetricCalibration>? calibration,
@@ -239,13 +240,13 @@ class DeviceMetricCalibration extends BackboneElement {
 
   /// [type] /// Describes the type of the calibration method.
   @JsonKey(name: 'type')
-  final FhirCode? type;
+  final DeviceMetricCalibrationType? type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [state] /// Describes the state of the calibration.
   @JsonKey(name: 'state')
-  final FhirCode? state;
+  final DeviceMetricCalibrationState? state;
   @JsonKey(name: '_state')
   final Element? stateElement;
 
@@ -267,9 +268,9 @@ class DeviceMetricCalibration extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? type,
+    DeviceMetricCalibrationType? type,
     Element? typeElement,
-    FhirCode? state,
+    DeviceMetricCalibrationState? state,
     Element? stateElement,
     FhirInstant? time,
     Element? timeElement,

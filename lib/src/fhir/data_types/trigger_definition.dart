@@ -39,7 +39,7 @@ class TriggerDefinition extends DataType {
 
   /// [type] /// The type of triggering event.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final TriggerType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -94,7 +94,7 @@ class TriggerDefinition extends DataType {
   TriggerDefinition copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
-    FhirCode? type,
+    TriggerType? type,
     Element? typeElement,
     FhirString? name,
     Element? nameElement,

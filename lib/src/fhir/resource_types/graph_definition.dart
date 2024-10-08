@@ -55,6 +55,7 @@ class GraphDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.GraphDefinition,
             fhirType: 'GraphDefinition');
@@ -97,7 +98,7 @@ class GraphDefinition extends DomainResource {
   /// [status] /// The status of this graph definition. Enables tracking the life-cycle of the
   /// content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -186,7 +187,7 @@ class GraphDefinition extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -198,7 +199,7 @@ class GraphDefinition extends DomainResource {
     Element? versionElement,
     FhirString? name,
     Element? nameElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
@@ -581,19 +582,19 @@ class GraphDefinitionCompartment extends BackboneElement {
   /// whether resources are subject to the rule, or whether it is a rule that
   /// must be followed.
   @JsonKey(name: 'use')
-  final FhirCode use;
+  final GraphCompartmentUse use;
   @JsonKey(name: '_use')
   final Element? useElement;
 
   /// [code] /// Identifies the compartment.
   @JsonKey(name: 'code')
-  final FhirCode code;
+  final CompartmentType code;
   @JsonKey(name: '_code')
   final Element? codeElement;
 
   /// [rule] /// identical | matching | different | no-rule | custom.
   @JsonKey(name: 'rule')
-  final FhirCode rule;
+  final GraphCompartmentRule rule;
   @JsonKey(name: '_rule')
   final Element? ruleElement;
 
@@ -621,11 +622,11 @@ class GraphDefinitionCompartment extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? use,
+    GraphCompartmentUse? use,
     Element? useElement,
-    FhirCode? code,
+    CompartmentType? code,
     Element? codeElement,
-    FhirCode? rule,
+    GraphCompartmentRule? rule,
     Element? ruleElement,
     FhirString? expression,
     Element? expressionElement,

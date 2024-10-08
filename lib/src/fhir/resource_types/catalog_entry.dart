@@ -45,6 +45,7 @@ class CatalogEntry extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.CatalogEntry,
             fhirType: 'CatalogEntry');
@@ -82,7 +83,7 @@ class CatalogEntry extends DomainResource {
   /// [status] /// Used to support catalog exchange even for unsupported products, e.g.
   /// getting list of medications even if not prescribable.
   @JsonKey(name: 'status')
-  final FhirCode? status;
+  final PublicationStatus? status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -129,7 +130,7 @@ class CatalogEntry extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -142,7 +143,7 @@ class CatalogEntry extends DomainResource {
     Reference? referencedItem,
     List<Identifier>? additionalIdentifier,
     List<CodeableConcept>? classification,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     Period? validityPeriod,
     FhirDateTime? validTo,
@@ -243,7 +244,7 @@ class CatalogEntryRelatedEntry extends BackboneElement {
   /// [relationtype] /// The type of relation to the related item: child, parent, packageContent,
   /// containerPackage, usedIn, uses, requires, etc.
   @JsonKey(name: 'relationtype')
-  final FhirCode relationtype;
+  final CatalogEntryRelationType relationtype;
   @JsonKey(name: '_relationtype')
   final Element? relationtypeElement;
 
@@ -263,7 +264,7 @@ class CatalogEntryRelatedEntry extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? relationtype,
+    CatalogEntryRelationType? relationtype,
     Element? relationtypeElement,
     Reference? item,
     Map<String, Object?>? userData,

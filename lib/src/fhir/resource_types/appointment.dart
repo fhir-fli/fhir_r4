@@ -60,6 +60,7 @@ class Appointment extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Appointment, fhirType: 'Appointment');
   @Id()
   @JsonKey(ignore: true)
@@ -76,7 +77,7 @@ class Appointment extends DomainResource {
   /// own participation status which indicates their involvement in the process,
   /// however this status indicates the shared status.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final AppointmentStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -84,21 +85,21 @@ class Appointment extends DomainResource {
   /// reporting/billing/futher processing to determine if further actions are
   /// required, or specific fees apply.
   @JsonKey(name: 'cancelationReason')
-  final CodeableConcept? cancelationReason;
+  final AppointmentCancellationReason? cancelationReason;
 
   /// [serviceCategory] /// A broad categorization of the service that is to be performed during this
   /// appointment.
   @JsonKey(name: 'serviceCategory')
-  final List<CodeableConcept>? serviceCategory;
+  final List<ServiceCategory>? serviceCategory;
 
   /// [serviceType] /// The specific service that is to be performed during this appointment.
   @JsonKey(name: 'serviceType')
-  final List<CodeableConcept>? serviceType;
+  final List<ServiceType>? serviceType;
 
   /// [specialty] /// The specialty of a practitioner that would be required to perform the
   /// service requested in this appointment.
   @JsonKey(name: 'specialty')
-  final List<CodeableConcept>? specialty;
+  final List<PracticeSettingCodeValueSet>? specialty;
 
   /// [appointmentType] /// The style of appointment or patient that has been booked in the slot (not
   /// service type).
@@ -223,19 +224,19 @@ class Appointment extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    AppointmentStatus? status,
     Element? statusElement,
-    CodeableConcept? cancelationReason,
-    List<CodeableConcept>? serviceCategory,
-    List<CodeableConcept>? serviceType,
-    List<CodeableConcept>? specialty,
+    AppointmentCancellationReason? cancelationReason,
+    List<ServiceCategory>? serviceCategory,
+    List<ServiceType>? serviceType,
+    List<PracticeSettingCodeValueSet>? specialty,
     CodeableConcept? appointmentType,
     List<CodeableConcept>? reasonCode,
     List<Reference>? reasonReference,
@@ -368,7 +369,7 @@ class AppointmentParticipant extends BackboneElement {
 
   /// [type] /// Role of participant in the appointment.
   @JsonKey(name: 'type')
-  final List<CodeableConcept>? type;
+  final List<ParticipantType>? type;
 
   /// [actor] /// A Person, Location/HealthcareService or Device that is participating in the
   /// appointment.
@@ -379,13 +380,13 @@ class AppointmentParticipant extends BackboneElement {
   /// covers a use-case where two doctors need to meet to discuss the results for
   /// a specific patient, and the patient is not required to be present.
   @JsonKey(name: 'required')
-  final FhirCode? required_;
+  final ParticipantRequired? required_;
   @JsonKey(name: '_required')
   final Element? requiredElement;
 
   /// [status] /// Participation status of the actor.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final ParticipationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -405,11 +406,11 @@ class AppointmentParticipant extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    List<CodeableConcept>? type,
+    List<ParticipantType>? type,
     Reference? actor,
-    FhirCode? required_,
+    ParticipantRequired? required_,
     Element? requiredElement,
-    FhirCode? status,
+    ParticipationStatus? status,
     Element? statusElement,
     Period? period,
     Map<String, Object?>? userData,

@@ -43,6 +43,7 @@ class EpisodeOfCare extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.EpisodeOfCare,
             fhirType: 'EpisodeOfCare');
@@ -58,7 +59,7 @@ class EpisodeOfCare extends DomainResource {
 
   /// [status] /// planned | waitlist | active | onhold | finished | cancelled.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final EpisodeOfCareStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -70,7 +71,7 @@ class EpisodeOfCare extends DomainResource {
   /// [type] /// A classification of the type of episode of care; e.g. specialist referral,
   /// disease management, type of funded care.
   @JsonKey(name: 'type')
-  final List<CodeableConcept>? type;
+  final List<EpisodeOfCareType>? type;
 
   /// [diagnosis] /// The list of diagnosis relevant to this episode of care.
   @JsonKey(name: 'diagnosis')
@@ -122,17 +123,17 @@ class EpisodeOfCare extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    EpisodeOfCareStatus? status,
     Element? statusElement,
     List<EpisodeOfCareStatusHistory>? statusHistory,
-    List<CodeableConcept>? type,
+    List<EpisodeOfCareType>? type,
     List<EpisodeOfCareDiagnosis>? diagnosis,
     Reference? patient,
     Reference? managingOrganization,
@@ -225,7 +226,7 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
 
   /// [status] /// planned | waitlist | active | onhold | finished | cancelled.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final EpisodeOfCareStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -245,7 +246,7 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? status,
+    EpisodeOfCareStatus? status,
     Element? statusElement,
     Period? period,
     Map<String, Object?>? userData,
@@ -321,7 +322,7 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
   /// [role] /// Role that this diagnosis has within the episode of care (e.g. admission,
   /// billing, discharge …).
   @JsonKey(name: 'role')
-  final CodeableConcept? role;
+  final DiagnosisRole? role;
 
   /// [rank] /// Ranking of the diagnosis (for each role type).
   @JsonKey(name: 'rank')
@@ -342,7 +343,7 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Reference? condition,
-    CodeableConcept? role,
+    DiagnosisRole? role,
     FhirPositiveInt? rank,
     Element? rankElement,
     Map<String, Object?>? userData,

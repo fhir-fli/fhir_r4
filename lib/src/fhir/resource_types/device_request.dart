@@ -63,6 +63,7 @@ class DeviceRequest extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.DeviceRequest,
             fhirType: 'DeviceRequest');
@@ -104,21 +105,21 @@ class DeviceRequest extends DomainResource {
 
   /// [status] /// The status of the request.
   @JsonKey(name: 'status')
-  final FhirCode? status;
+  final RequestStatus? status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [intent] /// Whether the request is a proposal, plan, an original order or a reflex
   /// order.
   @JsonKey(name: 'intent')
-  final FhirCode intent;
+  final RequestIntent intent;
   @JsonKey(name: '_intent')
   final Element? intentElement;
 
   /// [priority] /// Indicates how quickly the {{title}} should be addressed with respect to
   /// other requests.
   @JsonKey(name: 'priority')
-  final FhirCode? priority;
+  final RequestPriority? priority;
   @JsonKey(name: '_priority')
   final Element? priorityElement;
 
@@ -188,7 +189,7 @@ class DeviceRequest extends DomainResource {
 
   /// [reasonCode] /// Reason or justification for the use of this device.
   @JsonKey(name: 'reasonCode')
-  final List<CodeableConcept>? reasonCode;
+  final List<ConditionProblemDiagnosisCodes>? reasonCode;
 
   /// [reasonReference] /// Reason or justification for the use of this device.
   @JsonKey(name: 'reasonReference')
@@ -229,7 +230,7 @@ class DeviceRequest extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -243,11 +244,11 @@ class DeviceRequest extends DomainResource {
     List<Reference>? basedOn,
     List<Reference>? priorRequest,
     Identifier? groupIdentifier,
-    FhirCode? status,
+    RequestStatus? status,
     Element? statusElement,
-    FhirCode? intent,
+    RequestIntent? intent,
     Element? intentElement,
-    FhirCode? priority,
+    RequestPriority? priority,
     Element? priorityElement,
     Reference? codeReference,
     CodeableConcept? codeCodeableConcept,
@@ -263,7 +264,7 @@ class DeviceRequest extends DomainResource {
     Reference? requester,
     CodeableConcept? performerType,
     Reference? performer,
-    List<CodeableConcept>? reasonCode,
+    List<ConditionProblemDiagnosisCodes>? reasonCode,
     List<Reference>? reasonReference,
     List<Reference>? insurance,
     List<Reference>? supportingInfo,

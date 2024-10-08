@@ -43,6 +43,7 @@ class Account extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Account, fhirType: 'Account');
   @Id()
   @JsonKey(ignore: true)
@@ -55,7 +56,7 @@ class Account extends DomainResource {
 
   /// [status] /// Indicates whether the account is presently used/usable or not.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final AccountStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -118,14 +119,14 @@ class Account extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    AccountStatus? status,
     Element? statusElement,
     CodeableConcept? type,
     FhirString? name,

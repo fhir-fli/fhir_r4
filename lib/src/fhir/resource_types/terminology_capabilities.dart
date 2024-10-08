@@ -68,6 +68,7 @@ class TerminologyCapabilities extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.TerminologyCapabilities,
             fhirType: 'TerminologyCapabilities');
@@ -116,7 +117,7 @@ class TerminologyCapabilities extends DomainResource {
   /// [status] /// The status of this terminology capabilities. Enables tracking the
   /// life-cycle of the content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -190,7 +191,7 @@ class TerminologyCapabilities extends DomainResource {
   /// running instance of software, a particular product (kind, not instance of
   /// software) or a class of implementation (e.g. a desired purchase).
   @JsonKey(name: 'kind')
-  final FhirCode kind;
+  final CapabilityStatementKind kind;
   @JsonKey(name: '_kind')
   final Element? kindElement;
 
@@ -226,7 +227,7 @@ class TerminologyCapabilities extends DomainResource {
   /// [codeSearch] /// The degree to which the server supports the code search parameter on
   /// ValueSet, if it is supported.
   @JsonKey(name: 'codeSearch')
-  final FhirCode? codeSearch;
+  final CodeSearchSupport? codeSearch;
   @JsonKey(name: '_codeSearch')
   final Element? codeSearchElement;
 
@@ -257,7 +258,7 @@ class TerminologyCapabilities extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -271,7 +272,7 @@ class TerminologyCapabilities extends DomainResource {
     Element? nameElement,
     FhirString? title,
     Element? titleElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
@@ -288,7 +289,7 @@ class TerminologyCapabilities extends DomainResource {
     Element? purposeElement,
     FhirMarkdown? copyright,
     Element? copyrightElement,
-    FhirCode? kind,
+    CapabilityStatementKind? kind,
     Element? kindElement,
     TerminologyCapabilitiesSoftware? software,
     TerminologyCapabilitiesImplementation? implementation,
@@ -296,7 +297,7 @@ class TerminologyCapabilities extends DomainResource {
     Element? lockedDateElement,
     List<TerminologyCapabilitiesCodeSystem>? codeSystem,
     TerminologyCapabilitiesExpansion? expansion,
-    FhirCode? codeSearch,
+    CodeSearchSupport? codeSearch,
     Element? codeSearchElement,
     TerminologyCapabilitiesValidateCode? validateCode,
     TerminologyCapabilitiesTranslation? translation,

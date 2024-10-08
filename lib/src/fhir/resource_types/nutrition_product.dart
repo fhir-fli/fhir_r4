@@ -38,6 +38,7 @@ class NutritionProduct extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.NutritionProduct,
             fhirType: 'NutritionProduct');
@@ -47,7 +48,7 @@ class NutritionProduct extends DomainResource {
 
   /// [status] /// The current state of the product.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final NutritionProductStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -105,13 +106,13 @@ class NutritionProduct extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? status,
+    NutritionProductStatus? status,
     Element? statusElement,
     List<CodeableConcept>? category,
     CodeableConcept? code,

@@ -52,7 +52,7 @@ class FhirExpression extends DataType {
 
   /// [language] /// The media type of the language for the expression.
   @JsonKey(name: 'language')
-  final FhirCode language;
+  final ExpressionLanguage language;
   @JsonKey(name: '_language')
   final Element? languageElement;
 
@@ -83,7 +83,7 @@ class FhirExpression extends DataType {
     Element? descriptionElement,
     FhirId? name,
     Element? nameElement,
-    FhirCode? language,
+    ExpressionLanguage? language,
     Element? languageElement,
     FhirString? expression,
     Element? expressionElement,

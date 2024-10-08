@@ -40,6 +40,7 @@ class AppointmentResponse extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.AppointmentResponse,
             fhirType: 'AppointmentResponse');
@@ -74,7 +75,7 @@ class AppointmentResponse extends DomainResource {
 
   /// [participantType] /// Role of participant in the appointment.
   @JsonKey(name: 'participantType')
-  final List<CodeableConcept>? participantType;
+  final List<ParticipantType>? participantType;
 
   /// [actor] /// A Person, Location, HealthcareService, or Device that is participating in
   /// the appointment.
@@ -87,7 +88,7 @@ class AppointmentResponse extends DomainResource {
   /// status is accepted, the times can either be the time of the appointment (as
   /// a confirmation of the time) or can be empty.
   @JsonKey(name: 'participantStatus')
-  final FhirCode participantStatus;
+  final ParticipationStatus participantStatus;
   @JsonKey(name: '_participantStatus')
   final Element? participantStatusElement;
 
@@ -110,7 +111,7 @@ class AppointmentResponse extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -122,9 +123,9 @@ class AppointmentResponse extends DomainResource {
     Element? startElement,
     FhirInstant? end,
     Element? endElement,
-    List<CodeableConcept>? participantType,
+    List<ParticipantType>? participantType,
     Reference? actor,
-    FhirCode? participantStatus,
+    ParticipationStatus? participantStatus,
     Element? participantStatusElement,
     FhirString? comment,
     Element? commentElement,

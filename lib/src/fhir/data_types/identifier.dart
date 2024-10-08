@@ -36,14 +36,14 @@ class Identifier extends DataType {
 
   /// [use] /// The purpose of this identifier.
   @JsonKey(name: 'use')
-  final FhirCode? use;
+  final IdentifierUse? use;
   @JsonKey(name: '_use')
   final Element? useElement;
 
   /// [type] /// A coded type for the identifier that can be used to determine which
   /// identifier to use for a specific purpose.
   @JsonKey(name: 'type')
-  final CodeableConcept? type;
+  final IdentifierTypeCodes? type;
 
   /// [system] /// Establishes the namespace for the value - that is, a URL that describes a
   /// set values that are unique.
@@ -78,9 +78,9 @@ class Identifier extends DataType {
   Identifier copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
-    FhirCode? use,
+    IdentifierUse? use,
     Element? useElement,
-    CodeableConcept? type,
+    IdentifierTypeCodes? type,
     FhirUri? system,
     Element? systemElement,
     FhirString? value,

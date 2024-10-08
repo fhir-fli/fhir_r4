@@ -63,6 +63,7 @@ class TestScript extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.TestScript, fhirType: 'TestScript');
   @Id()
   @JsonKey(ignore: true)
@@ -114,7 +115,7 @@ class TestScript extends DomainResource {
   /// [status] /// The status of this test script. Enables tracking the life-cycle of the
   /// content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -236,7 +237,7 @@ class TestScript extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -251,7 +252,7 @@ class TestScript extends DomainResource {
     Element? nameElement,
     FhirString? title,
     Element? titleElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
@@ -390,7 +391,7 @@ class TestScriptOrigin extends BackboneElement {
 
   /// [profile] /// The type of origin profile the test system supports.
   @JsonKey(name: 'profile')
-  final Coding profile;
+  final TestScriptProfileOriginType profile;
   factory TestScriptOrigin.fromJson(Map<String, dynamic> json) =>
       _$TestScriptOriginFromJson(json);
 
@@ -406,7 +407,7 @@ class TestScriptOrigin extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirInteger? index,
     Element? indexElement,
-    Coding? profile,
+    TestScriptProfileOriginType? profile,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -481,7 +482,7 @@ class TestScriptDestination extends BackboneElement {
 
   /// [profile] /// The type of destination profile the test system supports.
   @JsonKey(name: 'profile')
-  final Coding profile;
+  final TestScriptProfileDestinationType profile;
   factory TestScriptDestination.fromJson(Map<String, dynamic> json) =>
       _$TestScriptDestinationFromJson(json);
 
@@ -497,7 +498,7 @@ class TestScriptDestination extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirInteger? index,
     Element? indexElement,
-    Coding? profile,
+    TestScriptProfileDestinationType? profile,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1379,11 +1380,11 @@ class TestScriptOperation extends BackboneElement {
 
   /// [type] /// Server interaction or operation type.
   @JsonKey(name: 'type')
-  final Coding? type;
+  final TestScriptOperationCode? type;
 
   /// [resource] /// The type of the resource. See http://build.fhir.org/resourcelist.html.
   @JsonKey(name: 'resource')
-  final FhirCode? resource;
+  final FHIRDefinedType? resource;
   @JsonKey(name: '_resource')
   final Element? resourceElement;
 
@@ -1430,7 +1431,7 @@ class TestScriptOperation extends BackboneElement {
   /// [method] /// The HTTP method the test engine MUST use for this operation regardless of
   /// any other operation details.
   @JsonKey(name: 'method')
-  final FhirCode? method;
+  final TestScriptRequestMethodCode? method;
   @JsonKey(name: '_method')
   final Element? methodElement;
 
@@ -1495,8 +1496,8 @@ class TestScriptOperation extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Coding? type,
-    FhirCode? resource,
+    TestScriptOperationCode? type,
+    FHIRDefinedType? resource,
     Element? resourceElement,
     FhirString? label,
     Element? labelElement,
@@ -1510,7 +1511,7 @@ class TestScriptOperation extends BackboneElement {
     Element? destinationElement,
     FhirBoolean? encodeRequestUrl,
     Element? encodeRequestUrlElement,
-    FhirCode? method,
+    TestScriptRequestMethodCode? method,
     Element? methodElement,
     FhirInteger? origin,
     Element? originElement,
@@ -1772,7 +1773,7 @@ class TestScriptAssert extends BackboneElement {
 
   /// [direction] /// The direction to use for the assertion.
   @JsonKey(name: 'direction')
-  final FhirCode? direction;
+  final AssertionDirectionType? direction;
   @JsonKey(name: '_direction')
   final Element? directionElement;
 
@@ -1836,7 +1837,7 @@ class TestScriptAssert extends BackboneElement {
   /// [operator_] /// The operator type defines the conditional behavior of the assert. If not
   /// defined, the default is equals.
   @JsonKey(name: 'operator')
-  final FhirCode? operator_;
+  final AssertionOperatorType? operator_;
   @JsonKey(name: '_operator')
   final Element? operatorElement;
 
@@ -1850,7 +1851,7 @@ class TestScriptAssert extends BackboneElement {
   /// [requestMethod] /// The request method or HTTP operation code to compare against that used by
   /// the client system under test.
   @JsonKey(name: 'requestMethod')
-  final FhirCode? requestMethod;
+  final TestScriptRequestMethodCode? requestMethod;
   @JsonKey(name: '_requestMethod')
   final Element? requestMethodElement;
 
@@ -1862,14 +1863,14 @@ class TestScriptAssert extends BackboneElement {
 
   /// [resource] /// The type of the resource. See http://build.fhir.org/resourcelist.html.
   @JsonKey(name: 'resource')
-  final FhirCode? resource;
+  final FHIRDefinedType? resource;
   @JsonKey(name: '_resource')
   final Element? resourceElement;
 
   /// [response] /// okay | created | noContent | notModified | bad | forbidden | notFound |
   /// methodNotAllowed | conflict | gone | preconditionFailed | unprocessable.
   @JsonKey(name: 'response')
-  final FhirCode? response;
+  final AssertionResponseTypes? response;
   @JsonKey(name: '_response')
   final Element? responseElement;
 
@@ -1921,7 +1922,7 @@ class TestScriptAssert extends BackboneElement {
     Element? labelElement,
     FhirString? description,
     Element? descriptionElement,
-    FhirCode? direction,
+    AssertionDirectionType? direction,
     Element? directionElement,
     FhirString? compareToSourceId,
     Element? compareToSourceIdElement,
@@ -1939,17 +1940,17 @@ class TestScriptAssert extends BackboneElement {
     Element? minimumIdElement,
     FhirBoolean? navigationLinks,
     Element? navigationLinksElement,
-    FhirCode? operator_,
+    AssertionOperatorType? operator_,
     Element? operatorElement,
     FhirString? path,
     Element? pathElement,
-    FhirCode? requestMethod,
+    TestScriptRequestMethodCode? requestMethod,
     Element? requestMethodElement,
     FhirString? requestURL,
     Element? requestURLElement,
-    FhirCode? resource,
+    FHIRDefinedType? resource,
     Element? resourceElement,
-    FhirCode? response,
+    AssertionResponseTypes? response,
     Element? responseElement,
     FhirString? responseCode,
     Element? responseCodeElement,

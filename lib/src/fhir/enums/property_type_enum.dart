@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
 /// The type of a property value.
-enum PropertyType {
+enum PropertyTypeEnum {
   /// Display: code (internal reference)
   /// Definition: The property value is a code that identifies a concept defined in the code system.
   @JsonValue('code')
@@ -59,28 +59,28 @@ enum PropertyType {
   }
 
   String toJson() => toString();
-  PropertyType fromString(String str) {
+  PropertyTypeEnum fromString(String str) {
     switch (str) {
       case 'code':
-        return PropertyType.code;
+        return PropertyTypeEnum.code;
       case 'Coding':
-        return PropertyType.Coding;
+        return PropertyTypeEnum.Coding;
       case 'string':
-        return PropertyType.string;
+        return PropertyTypeEnum.string;
       case 'integer':
-        return PropertyType.integer;
+        return PropertyTypeEnum.integer;
       case 'boolean':
-        return PropertyType.boolean;
+        return PropertyTypeEnum.boolean;
       case 'dateTime':
-        return PropertyType.dateTime;
+        return PropertyTypeEnum.dateTime;
       case 'decimal':
-        return PropertyType.decimal;
+        return PropertyTypeEnum.decimal;
       default:
         throw ArgumentError('Unknown enum value: $str');
     }
   }
 
-  PropertyType fromJson(dynamic jsonValue) {
+  PropertyTypeEnum fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

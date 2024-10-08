@@ -65,6 +65,7 @@ class Device extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Device, fhirType: 'Device');
   @Id()
   @JsonKey(ignore: true)
@@ -88,13 +89,13 @@ class Device extends DomainResource {
 
   /// [status] /// Status of the Device availability.
   @JsonKey(name: 'status')
-  final FhirCode? status;
+  final FHIRDeviceStatus? status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [statusReason] /// Reason for the dtatus of the Device availability.
   @JsonKey(name: 'statusReason')
-  final List<CodeableConcept>? statusReason;
+  final List<FHIRDeviceStatusReason>? statusReason;
 
   /// [distinctIdentifier] /// The distinct identification string as required by regulation for a human
   /// cell, tissue, or cellular and tissue-based product.
@@ -222,7 +223,7 @@ class Device extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -231,9 +232,9 @@ class Device extends DomainResource {
     List<Identifier>? identifier,
     Reference? definition,
     List<DeviceUdiCarrier>? udiCarrier,
-    FhirCode? status,
+    FHIRDeviceStatus? status,
     Element? statusElement,
-    List<CodeableConcept>? statusReason,
+    List<FHIRDeviceStatusReason>? statusReason,
     FhirString? distinctIdentifier,
     Element? distinctIdentifierElement,
     FhirString? manufacturer,
@@ -434,7 +435,7 @@ class DeviceUdiCarrier extends BackboneElement {
 
   /// [entryType] /// A coded entry to indicate how the data was entered.
   @JsonKey(name: 'entryType')
-  final FhirCode? entryType;
+  final UDIEntryType? entryType;
   @JsonKey(name: '_entryType')
   final Element? entryTypeElement;
   factory DeviceUdiCarrier.fromJson(Map<String, dynamic> json) =>
@@ -460,7 +461,7 @@ class DeviceUdiCarrier extends BackboneElement {
     Element? carrierAIDCElement,
     FhirString? carrierHRF,
     Element? carrierHRFElement,
-    FhirCode? entryType,
+    UDIEntryType? entryType,
     Element? entryTypeElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -550,7 +551,7 @@ class DeviceDeviceName extends BackboneElement {
   /// UDILabelName | UserFriendlyName | PatientReportedName |
   /// ManufactureDeviceName | ModelName.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final DeviceNameType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
   factory DeviceDeviceName.fromJson(Map<String, dynamic> json) =>
@@ -568,7 +569,7 @@ class DeviceDeviceName extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? name,
     Element? nameElement,
-    FhirCode? type,
+    DeviceNameType? type,
     Element? typeElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

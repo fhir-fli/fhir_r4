@@ -30,6 +30,7 @@ class Binary extends Resource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Binary, fhirType: 'Binary');
   @Id()
   @JsonKey(ignore: true)
@@ -72,7 +73,7 @@ class Binary extends Resource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     FhirCode? contentType,
     Element? contentTypeElement,

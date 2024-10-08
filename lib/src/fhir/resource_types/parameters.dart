@@ -26,6 +26,7 @@ class Parameters extends Resource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Parameters, fhirType: 'Parameters');
   @Id()
   @JsonKey(ignore: true)
@@ -48,7 +49,7 @@ class Parameters extends Resource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     List<ParametersParameter>? parameter,
     Map<String, Object?>? userData,

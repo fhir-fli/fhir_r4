@@ -43,6 +43,7 @@ class CareTeam extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.CareTeam, fhirType: 'CareTeam');
   @Id()
   @JsonKey(ignore: true)
@@ -56,7 +57,7 @@ class CareTeam extends DomainResource {
 
   /// [status] /// Indicates the current state of the care team.
   @JsonKey(name: 'status')
-  final FhirCode? status;
+  final CareTeamStatus? status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -124,14 +125,14 @@ class CareTeam extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    CareTeamStatus? status,
     Element? statusElement,
     List<CodeableConcept>? category,
     FhirString? name,

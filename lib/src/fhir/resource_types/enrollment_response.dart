@@ -40,6 +40,7 @@ class EnrollmentResponse extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.EnrollmentResponse,
             fhirType: 'EnrollmentResponse');
@@ -53,7 +54,7 @@ class EnrollmentResponse extends DomainResource {
 
   /// [status] /// The status of the resource instance.
   @JsonKey(name: 'status')
-  final FhirCode? status;
+  final FinancialResourceStatusCodes? status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -63,7 +64,7 @@ class EnrollmentResponse extends DomainResource {
 
   /// [outcome] /// Processing status: error, complete.
   @JsonKey(name: 'outcome')
-  final FhirCode? outcome;
+  final RemittanceOutcome? outcome;
   @JsonKey(name: '_outcome')
   final Element? outcomeElement;
 
@@ -101,17 +102,17 @@ class EnrollmentResponse extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    FinancialResourceStatusCodes? status,
     Element? statusElement,
     Reference? request,
-    FhirCode? outcome,
+    RemittanceOutcome? outcome,
     Element? outcomeElement,
     FhirString? disposition,
     Element? dispositionElement,

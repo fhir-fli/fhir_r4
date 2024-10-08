@@ -57,6 +57,7 @@ class HealthcareService extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.HealthcareService,
             fhirType: 'HealthcareService');
@@ -82,16 +83,16 @@ class HealthcareService extends DomainResource {
 
   /// [category] /// Identifies the broad category of service being performed or delivered.
   @JsonKey(name: 'category')
-  final List<CodeableConcept>? category;
+  final List<ServiceCategory>? category;
 
   /// [type] /// The specific type of service that may be delivered or performed.
   @JsonKey(name: 'type')
-  final List<CodeableConcept>? type;
+  final List<ServiceType>? type;
 
   /// [specialty] /// Collection of specialties handled by the service site. This is more of a
   /// medical term.
   @JsonKey(name: 'specialty')
-  final List<CodeableConcept>? specialty;
+  final List<PracticeSettingCodeValueSet>? specialty;
 
   /// [location] /// The location(s) where this healthcare service may be provided.
   @JsonKey(name: 'location')
@@ -136,7 +137,7 @@ class HealthcareService extends DomainResource {
   /// [serviceProvisionCode] /// The code(s) that detail the conditions under which the healthcare service
   /// is available/offered.
   @JsonKey(name: 'serviceProvisionCode')
-  final List<CodeableConcept>? serviceProvisionCode;
+  final List<ServiceProvisionConditions>? serviceProvisionCode;
 
   /// [eligibility] /// Does this service have specific eligibility requirements that need to be
   /// met in order to use the service?
@@ -145,7 +146,7 @@ class HealthcareService extends DomainResource {
 
   /// [program] /// Programs that this service is applicable to.
   @JsonKey(name: 'program')
-  final List<CodeableConcept>? program;
+  final List<Program>? program;
 
   /// [characteristic] /// Collection of characteristics (attributes).
   @JsonKey(name: 'characteristic')
@@ -156,12 +157,12 @@ class HealthcareService extends DomainResource {
   /// Typically this is only provided where a service operates in communities
   /// with mixed languages used.
   @JsonKey(name: 'communication')
-  final List<CodeableConcept>? communication;
+  final List<CommonLanguages>? communication;
 
   /// [referralMethod] /// Ways that the service accepts referrals, if this is not provided then it is
   /// implied that no referral is required.
   @JsonKey(name: 'referralMethod')
-  final List<CodeableConcept>? referralMethod;
+  final List<ReferralMethod>? referralMethod;
 
   /// [appointmentRequired] /// Indicates whether or not a prospective consumer will require an appointment
   /// for a particular service at a site to be provided by the Organization.
@@ -206,7 +207,7 @@ class HealthcareService extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -216,9 +217,9 @@ class HealthcareService extends DomainResource {
     FhirBoolean? active,
     Element? activeElement,
     Reference? providedBy,
-    List<CodeableConcept>? category,
-    List<CodeableConcept>? type,
-    List<CodeableConcept>? specialty,
+    List<ServiceCategory>? category,
+    List<ServiceType>? type,
+    List<PracticeSettingCodeValueSet>? specialty,
     List<Reference>? location,
     FhirString? name,
     Element? nameElement,
@@ -229,12 +230,12 @@ class HealthcareService extends DomainResource {
     Attachment? photo,
     List<ContactPoint>? telecom,
     List<Reference>? coverageArea,
-    List<CodeableConcept>? serviceProvisionCode,
+    List<ServiceProvisionConditions>? serviceProvisionCode,
     List<HealthcareServiceEligibility>? eligibility,
-    List<CodeableConcept>? program,
+    List<Program>? program,
     List<CodeableConcept>? characteristic,
-    List<CodeableConcept>? communication,
-    List<CodeableConcept>? referralMethod,
+    List<CommonLanguages>? communication,
+    List<ReferralMethod>? referralMethod,
     FhirBoolean? appointmentRequired,
     Element? appointmentRequiredElement,
     List<HealthcareServiceAvailableTime>? availableTime,
@@ -441,7 +442,7 @@ class HealthcareServiceAvailableTime extends BackboneElement {
   /// [daysOfWeek] /// Indicates which days of the week are available between the start and end
   /// Times.
   @JsonKey(name: 'daysOfWeek')
-  final List<FhirCode>? daysOfWeek;
+  final List<DaysOfWeek>? daysOfWeek;
   @JsonKey(name: '_daysOfWeek')
   final List<Element>? daysOfWeekElement;
 
@@ -478,7 +479,7 @@ class HealthcareServiceAvailableTime extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    List<FhirCode>? daysOfWeek,
+    List<DaysOfWeek>? daysOfWeek,
     List<Element>? daysOfWeekElement,
     FhirBoolean? allDay,
     Element? allDayElement,

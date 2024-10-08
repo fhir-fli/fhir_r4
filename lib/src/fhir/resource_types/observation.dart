@@ -74,6 +74,7 @@ class Observation extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Observation, fhirType: 'Observation');
   @Id()
   @JsonKey(ignore: true)
@@ -96,13 +97,13 @@ class Observation extends DomainResource {
 
   /// [status] /// The status of the result value.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final ObservationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [category] /// A code that classifies the general type of observation being made.
   @JsonKey(name: 'category')
-  final List<CodeableConcept>? category;
+  final List<ObservationCategoryCodes>? category;
 
   /// [code] /// Describes what was observed. Sometimes this is called the observation
   /// "name".
@@ -249,7 +250,7 @@ class Observation extends DomainResource {
   /// [dataAbsentReason] /// Provides a reason why the expected value in the element
   /// Observation.value[x] is missing.
   @JsonKey(name: 'dataAbsentReason')
-  final CodeableConcept? dataAbsentReason;
+  final DataAbsentReason? dataAbsentReason;
 
   /// [interpretation] /// A categorical assessment of an observation value. For example, high, low,
   /// normal.
@@ -317,7 +318,7 @@ class Observation extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -326,9 +327,9 @@ class Observation extends DomainResource {
     List<Identifier>? identifier,
     List<Reference>? basedOn,
     List<Reference>? partOf,
-    FhirCode? status,
+    ObservationStatus? status,
     Element? statusElement,
-    List<CodeableConcept>? category,
+    List<ObservationCategoryCodes>? category,
     CodeableConcept? code,
     Reference? subject,
     List<Reference>? focus,
@@ -358,7 +359,7 @@ class Observation extends DomainResource {
     FhirDateTime? valueDateTime,
     Element? valueDateTimeElement,
     Period? valuePeriod,
-    CodeableConcept? dataAbsentReason,
+    DataAbsentReason? dataAbsentReason,
     List<CodeableConcept>? interpretation,
     List<Annotation>? note,
     CodeableConcept? bodySite,
@@ -509,7 +510,7 @@ class ObservationReferenceRange extends BackboneElement {
   /// [type] /// Codes to indicate the what part of the targeted reference population it
   /// applies to. For example, the normal or therapeutic range.
   @JsonKey(name: 'type')
-  final CodeableConcept? type;
+  final ObservationReferenceRangeMeaningCodes? type;
 
   /// [appliesTo] /// Codes to indicate the target population this reference range applies to.
   /// For example, a reference range may be based on the normal population or a
@@ -518,7 +519,7 @@ class ObservationReferenceRange extends BackboneElement {
   /// African American females, both a code of female and a code for African
   /// American would be used.
   @JsonKey(name: 'appliesTo')
-  final List<CodeableConcept>? appliesTo;
+  final List<ObservationReferenceRangeAppliesToCodes>? appliesTo;
 
   /// [age] /// The age at which this reference range is applicable. This is a neonatal age
   /// (e.g. number of weeks at term) if the meaning says so.
@@ -547,8 +548,8 @@ class ObservationReferenceRange extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Quantity? low,
     Quantity? high,
-    CodeableConcept? type,
-    List<CodeableConcept>? appliesTo,
+    ObservationReferenceRangeMeaningCodes? type,
+    List<ObservationReferenceRangeAppliesToCodes>? appliesTo,
     Range? age,
     FhirString? text,
     Element? textElement,
@@ -714,7 +715,7 @@ class ObservationComponent extends BackboneElement {
   /// [dataAbsentReason] /// Provides a reason why the expected value in the element
   /// Observation.component.value[x] is missing.
   @JsonKey(name: 'dataAbsentReason')
-  final CodeableConcept? dataAbsentReason;
+  final DataAbsentReason? dataAbsentReason;
 
   /// [interpretation] /// A categorical assessment of an observation value. For example, high, low,
   /// normal.
@@ -755,7 +756,7 @@ class ObservationComponent extends BackboneElement {
     FhirDateTime? valueDateTime,
     Element? valueDateTimeElement,
     Period? valuePeriod,
-    CodeableConcept? dataAbsentReason,
+    DataAbsentReason? dataAbsentReason,
     List<CodeableConcept>? interpretation,
     List<ObservationReferenceRange>? referenceRange,
     Map<String, Object?>? userData,

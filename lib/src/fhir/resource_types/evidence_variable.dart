@@ -65,6 +65,7 @@ class EvidenceVariable extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.EvidenceVariable,
             fhirType: 'EvidenceVariable');
@@ -137,7 +138,7 @@ class EvidenceVariable extends DomainResource {
   /// [status] /// The status of this evidence variable. Enables tracking the life-cycle of
   /// the content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -215,7 +216,7 @@ class EvidenceVariable extends DomainResource {
 
   /// [characteristicCombination] /// Used to specify if two or more characteristics are combined with OR or AND.
   @JsonKey(name: 'characteristicCombination')
-  final FhirCode? characteristicCombination;
+  final CharacteristicCombination? characteristicCombination;
   @JsonKey(name: '_characteristicCombination')
   final Element? characteristicCombinationElement;
 
@@ -226,7 +227,7 @@ class EvidenceVariable extends DomainResource {
 
   /// [handling] /// Used for an outcome to classify.
   @JsonKey(name: 'handling')
-  final FhirCode? handling;
+  final EvidenceVariableHandling? handling;
   @JsonKey(name: '_handling')
   final Element? handlingElement;
 
@@ -248,7 +249,7 @@ class EvidenceVariable extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -267,7 +268,7 @@ class EvidenceVariable extends DomainResource {
     Element? shortTitleElement,
     FhirString? subtitle,
     Element? subtitleElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirDateTime? date,
     Element? dateElement,
@@ -285,10 +286,10 @@ class EvidenceVariable extends DomainResource {
     List<RelatedArtifact>? relatedArtifact,
     FhirBoolean? actual,
     Element? actualElement,
-    FhirCode? characteristicCombination,
+    CharacteristicCombination? characteristicCombination,
     Element? characteristicCombinationElement,
     List<EvidenceVariableCharacteristic>? characteristic,
-    FhirCode? handling,
+    EvidenceVariableHandling? handling,
     Element? handlingElement,
     List<EvidenceVariableCategory>? category,
     Map<String, Object?>? userData,
@@ -449,7 +450,7 @@ class EvidenceVariableCharacteristic extends BackboneElement {
 
   /// [method] /// Method used for describing characteristic.
   @JsonKey(name: 'method')
-  final CodeableConcept? method;
+  final CharacteristicMethod? method;
 
   /// [device] /// Device used for determining characteristic.
   @JsonKey(name: 'device')
@@ -468,7 +469,7 @@ class EvidenceVariableCharacteristic extends BackboneElement {
 
   /// [groupMeasure] /// Indicates how elements are aggregated within the study effective period.
   @JsonKey(name: 'groupMeasure')
-  final FhirCode? groupMeasure;
+  final GroupMeasure? groupMeasure;
   @JsonKey(name: '_groupMeasure')
   final Element? groupMeasureElement;
   factory EvidenceVariableCharacteristic.fromJson(Map<String, dynamic> json) =>
@@ -491,12 +492,12 @@ class EvidenceVariableCharacteristic extends BackboneElement {
     Element? definitionCanonicalElement,
     CodeableConcept? definitionCodeableConcept,
     FhirExpression? definitionExpression,
-    CodeableConcept? method,
+    CharacteristicMethod? method,
     Reference? device,
     FhirBoolean? exclude,
     Element? excludeElement,
     EvidenceVariableTimeFromStart? timeFromStart,
-    FhirCode? groupMeasure,
+    GroupMeasure? groupMeasure,
     Element? groupMeasureElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

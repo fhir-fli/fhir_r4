@@ -44,6 +44,7 @@ class Slot extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Slot, fhirType: 'Slot');
   @Id()
   @JsonKey(ignore: true)
@@ -56,19 +57,19 @@ class Slot extends DomainResource {
   /// [serviceCategory] /// A broad categorization of the service that is to be performed during this
   /// appointment.
   @JsonKey(name: 'serviceCategory')
-  final List<CodeableConcept>? serviceCategory;
+  final List<ServiceCategory>? serviceCategory;
 
   /// [serviceType] /// The type of appointments that can be booked into this slot (ideally this
   /// would be an identifiable service - which is at a location, rather than the
   /// location itself). If provided then this overrides the value provided on the
   /// availability resource.
   @JsonKey(name: 'serviceType')
-  final List<CodeableConcept>? serviceType;
+  final List<ServiceType>? serviceType;
 
   /// [specialty] /// The specialty of a practitioner that would be required to perform the
   /// service requested in this appointment.
   @JsonKey(name: 'specialty')
-  final List<CodeableConcept>? specialty;
+  final List<PracticeSettingCodeValueSet>? specialty;
 
   /// [appointmentType] /// The style of appointment or patient that may be booked in the slot (not
   /// service type).
@@ -82,7 +83,7 @@ class Slot extends DomainResource {
 
   /// [status] /// busy | free | busy-unavailable | busy-tentative | entered-in-error.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final SlotStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -124,19 +125,19 @@ class Slot extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    List<CodeableConcept>? serviceCategory,
-    List<CodeableConcept>? serviceType,
-    List<CodeableConcept>? specialty,
+    List<ServiceCategory>? serviceCategory,
+    List<ServiceType>? serviceType,
+    List<PracticeSettingCodeValueSet>? specialty,
     CodeableConcept? appointmentType,
     Reference? schedule,
-    FhirCode? status,
+    SlotStatus? status,
     Element? statusElement,
     FhirInstant? start,
     Element? startElement,

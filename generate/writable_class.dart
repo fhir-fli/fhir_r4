@@ -54,12 +54,14 @@ class Field {
     required this.comment,
     required this.isList,
     required this.isRequired,
+    required this.needsElement,
   });
 
   final String name;
   final String type;
   final String comment;
   final String path;
+  final bool needsElement;
   final bool isList;
   final bool isRequired;
   bool isSuper = false;

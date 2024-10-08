@@ -51,6 +51,7 @@ class DocumentReference extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.DocumentReference,
             fhirType: 'DocumentReference');
@@ -71,13 +72,13 @@ class DocumentReference extends DomainResource {
 
   /// [status] /// The status of this document reference.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final DocumentReferenceStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [docStatus] /// The status of the underlying document.
   @JsonKey(name: 'docStatus')
-  final FhirCode? docStatus;
+  final CompositionStatus? docStatus;
   @JsonKey(name: '_docStatus')
   final Element? docStatusElement;
 
@@ -91,7 +92,7 @@ class DocumentReference extends DomainResource {
   /// and searching. This may be implied by or derived from the code specified in
   /// the DocumentReference.type.
   @JsonKey(name: 'category')
-  final List<CodeableConcept>? category;
+  final List<DocumentClassValueSet>? category;
 
   /// [subject] /// Who or what the document is about. The document can be about a person,
   /// (patient or healthcare practitioner), a device (e.g. a machine) or even a
@@ -160,7 +161,7 @@ class DocumentReference extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -168,12 +169,12 @@ class DocumentReference extends DomainResource {
     List<FhirExtension>? modifierExtension,
     Identifier? masterIdentifier,
     List<Identifier>? identifier,
-    FhirCode? status,
+    DocumentReferenceStatus? status,
     Element? statusElement,
-    FhirCode? docStatus,
+    CompositionStatus? docStatus,
     Element? docStatusElement,
     CodeableConcept? type,
-    List<CodeableConcept>? category,
+    List<DocumentClassValueSet>? category,
     Reference? subject,
     FhirInstant? date,
     Element? dateElement,
@@ -277,7 +278,7 @@ class DocumentReferenceRelatesTo extends BackboneElement {
 
   /// [code] /// The type of relationship that this document has with anther document.
   @JsonKey(name: 'code')
-  final FhirCode code;
+  final DocumentRelationshipType code;
   @JsonKey(name: '_code')
   final Element? codeElement;
 
@@ -297,7 +298,7 @@ class DocumentReferenceRelatesTo extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? code,
+    DocumentRelationshipType? code,
     Element? codeElement,
     Reference? target,
     Map<String, Object?>? userData,
@@ -474,12 +475,12 @@ class DocumentReferenceContext extends BackboneElement {
 
   /// [facilityType] /// The kind of facility where the patient was seen.
   @JsonKey(name: 'facilityType')
-  final CodeableConcept? facilityType;
+  final FacilityTypeCodeValueSet? facilityType;
 
   /// [practiceSetting] /// This property may convey specifics about the practice setting where the
   /// content was created, often reflecting the clinical specialty.
   @JsonKey(name: 'practiceSetting')
-  final CodeableConcept? practiceSetting;
+  final PracticeSettingCodeValueSet? practiceSetting;
 
   /// [sourcePatientInfo] /// The Patient Information as known when the document was published. May be a
   /// reference to a version specific, or contained.
@@ -505,8 +506,8 @@ class DocumentReferenceContext extends BackboneElement {
     List<Reference>? encounter,
     List<CodeableConcept>? event,
     Period? period,
-    CodeableConcept? facilityType,
-    CodeableConcept? practiceSetting,
+    FacilityTypeCodeValueSet? facilityType,
+    PracticeSettingCodeValueSet? practiceSetting,
     Reference? sourcePatientInfo,
     List<Reference>? related,
     Map<String, Object?>? userData,

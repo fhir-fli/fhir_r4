@@ -55,6 +55,7 @@ class AllergyIntolerance extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.AllergyIntolerance,
             fhirType: 'AllergyIntolerance');
@@ -70,31 +71,31 @@ class AllergyIntolerance extends DomainResource {
 
   /// [clinicalStatus] /// The clinical status of the allergy or intolerance.
   @JsonKey(name: 'clinicalStatus')
-  final CodeableConcept? clinicalStatus;
+  final AllergyIntoleranceClinicalStatusCodes? clinicalStatus;
 
   /// [verificationStatus] /// Assertion about certainty associated with the propensity, or potential
   /// risk, of a reaction to the identified substance (including pharmaceutical
   /// product).
   @JsonKey(name: 'verificationStatus')
-  final CodeableConcept? verificationStatus;
+  final AllergyIntoleranceVerificationStatusCodes? verificationStatus;
 
   /// [type] /// Identification of the underlying physiological mechanism for the reaction
   /// risk.
   @JsonKey(name: 'type')
-  final FhirCode? type;
+  final AllergyIntoleranceType? type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [category] /// Category of the identified substance.
   @JsonKey(name: 'category')
-  final List<FhirCode>? category;
+  final List<AllergyIntoleranceCategory>? category;
   @JsonKey(name: '_category')
   final List<Element>? categoryElement;
 
   /// [criticality] /// Estimate of the potential clinical harm, or seriousness, of the reaction to
   /// the identified substance.
   @JsonKey(name: 'criticality')
-  final FhirCode? criticality;
+  final AllergyIntoleranceCriticality? criticality;
   @JsonKey(name: '_criticality')
   final Element? criticalityElement;
 
@@ -200,20 +201,20 @@ class AllergyIntolerance extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    CodeableConcept? clinicalStatus,
-    CodeableConcept? verificationStatus,
-    FhirCode? type,
+    AllergyIntoleranceClinicalStatusCodes? clinicalStatus,
+    AllergyIntoleranceVerificationStatusCodes? verificationStatus,
+    AllergyIntoleranceType? type,
     Element? typeElement,
-    List<FhirCode>? category,
+    List<AllergyIntoleranceCategory>? category,
     List<Element>? categoryElement,
-    FhirCode? criticality,
+    AllergyIntoleranceCriticality? criticality,
     Element? criticalityElement,
     CodeableConcept? code,
     Reference? patient,
@@ -372,7 +373,7 @@ class AllergyIntoleranceReaction extends BackboneElement {
   /// [severity] /// Clinical assessment of the severity of the reaction event as a whole,
   /// potentially considering multiple different manifestations.
   @JsonKey(name: 'severity')
-  final FhirCode? severity;
+  final AllergyIntoleranceSeverity? severity;
   @JsonKey(name: '_severity')
   final Element? severityElement;
 
@@ -404,7 +405,7 @@ class AllergyIntoleranceReaction extends BackboneElement {
     Element? descriptionElement,
     FhirDateTime? onset,
     Element? onsetElement,
-    FhirCode? severity,
+    AllergyIntoleranceSeverity? severity,
     Element? severityElement,
     CodeableConcept? exposureRoute,
     List<Annotation>? note,

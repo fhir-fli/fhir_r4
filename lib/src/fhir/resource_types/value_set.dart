@@ -60,6 +60,7 @@ class ValueSet extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.ValueSet, fhirType: 'ValueSet');
   @Id()
   @JsonKey(ignore: true)
@@ -113,7 +114,7 @@ class ValueSet extends DomainResource {
   /// (ValueSet.compose) and the associated ValueSet metadata. Expansions do not
   /// have a state.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -211,7 +212,7 @@ class ValueSet extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -226,7 +227,7 @@ class ValueSet extends DomainResource {
     Element? nameElement,
     FhirString? title,
     Element? titleElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
@@ -701,13 +702,13 @@ class ValueSetDesignation extends BackboneElement {
 
   /// [language] /// The language this designation is defined for.
   @JsonKey(name: 'language')
-  final FhirCode? language;
+  final CommonLanguages? language;
   @JsonKey(name: '_language')
   final Element? languageElement;
 
   /// [use] /// A code that represents types of uses of designations.
   @JsonKey(name: 'use')
-  final Coding? use;
+  final DesignationUse? use;
 
   /// [value] /// The text value for this designation.
   @JsonKey(name: 'value')
@@ -727,9 +728,9 @@ class ValueSetDesignation extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
-    Coding? use,
+    DesignationUse? use,
     FhirString? value,
     Element? valueElement,
     Map<String, Object?>? userData,
@@ -811,7 +812,7 @@ class ValueSetFilter extends BackboneElement {
 
   /// [op] /// The kind of operation to perform as a part of the filter criteria.
   @JsonKey(name: 'op')
-  final FhirCode op;
+  final FilterOperator op;
   @JsonKey(name: '_op')
   final Element? opElement;
 
@@ -840,7 +841,7 @@ class ValueSetFilter extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirCode? property,
     Element? propertyElement,
-    FhirCode? op,
+    FilterOperator? op,
     Element? opElement,
     FhirString? value,
     Element? valueElement,

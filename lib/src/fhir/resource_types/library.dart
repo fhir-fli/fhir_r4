@@ -77,6 +77,7 @@ class Library extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Library, fhirType: 'Library');
   @Id()
   @JsonKey(ignore: true)
@@ -139,7 +140,7 @@ class Library extends DomainResource {
 
   /// [status] /// The status of this library. Enables tracking the life-cycle of the content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -154,17 +155,17 @@ class Library extends DomainResource {
   /// [type] /// Identifies the type of library such as a Logic Library, Model Definition,
   /// Asset Collection, or Module Definition.
   @JsonKey(name: 'type')
-  final CodeableConcept type;
+  final LibraryType type;
 
   /// [subjectCodeableConcept] /// A code or group definition that describes the intended subject of the
   /// contents of the library.
   @JsonKey(name: 'subjectCodeableConcept')
-  final CodeableConcept? subjectCodeableConcept;
+  final SubjectType? subjectCodeableConcept;
 
   /// [subjectReference] /// A code or group definition that describes the intended subject of the
   /// contents of the library.
   @JsonKey(name: 'subjectReference')
-  final Reference? subjectReference;
+  final SubjectType? subjectReference;
 
   /// [date] /// The date (and optionally time) when the library was published. The date
   /// must change when the business version changes and it must change if the
@@ -250,7 +251,7 @@ class Library extends DomainResource {
   /// high-level categorization of the library that can be useful for filtering
   /// and searching.
   @JsonKey(name: 'topic')
-  final List<CodeableConcept>? topic;
+  final List<DefinitionTopic>? topic;
 
   /// [author] /// An individiual or organization primarily involved in the creation and
   /// maintenance of the content.
@@ -305,7 +306,7 @@ class Library extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -322,13 +323,13 @@ class Library extends DomainResource {
     Element? titleElement,
     FhirString? subtitle,
     Element? subtitleElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
-    CodeableConcept? type,
-    CodeableConcept? subjectCodeableConcept,
-    Reference? subjectReference,
+    LibraryType? type,
+    SubjectType? subjectCodeableConcept,
+    SubjectType? subjectReference,
     FhirDateTime? date,
     Element? dateElement,
     FhirString? publisher,
@@ -349,7 +350,7 @@ class Library extends DomainResource {
     FhirDate? lastReviewDate,
     Element? lastReviewDateElement,
     Period? effectivePeriod,
-    List<CodeableConcept>? topic,
+    List<DefinitionTopic>? topic,
     List<ContactDetail>? author,
     List<ContactDetail>? editor,
     List<ContactDetail>? reviewer,

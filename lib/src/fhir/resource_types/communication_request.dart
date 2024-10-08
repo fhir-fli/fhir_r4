@@ -57,6 +57,7 @@ class CommunicationRequest extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.CommunicationRequest,
             fhirType: 'CommunicationRequest');
@@ -87,7 +88,7 @@ class CommunicationRequest extends DomainResource {
 
   /// [status] /// The status of the proposal or order.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final RequestStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -98,12 +99,12 @@ class CommunicationRequest extends DomainResource {
   /// [category] /// The type of message to be sent such as alert, notification, reminder,
   /// instruction, etc.
   @JsonKey(name: 'category')
-  final List<CodeableConcept>? category;
+  final List<CommunicationCategory>? category;
 
   /// [priority] /// Characterizes how quickly the proposed act must be initiated. Includes
   /// concepts such as stat, urgent, routine.
   @JsonKey(name: 'priority')
-  final FhirCode? priority;
+  final RequestPriority? priority;
   @JsonKey(name: '_priority')
   final Element? priorityElement;
 
@@ -194,7 +195,7 @@ class CommunicationRequest extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -204,11 +205,11 @@ class CommunicationRequest extends DomainResource {
     List<Reference>? basedOn,
     List<Reference>? replaces,
     Identifier? groupIdentifier,
-    FhirCode? status,
+    RequestStatus? status,
     Element? statusElement,
     CodeableConcept? statusReason,
-    List<CodeableConcept>? category,
-    FhirCode? priority,
+    List<CommunicationCategory>? category,
+    RequestPriority? priority,
     Element? priorityElement,
     FhirBoolean? doNotPerform,
     Element? doNotPerformElement,

@@ -67,6 +67,7 @@ class Evidence extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Evidence, fhirType: 'Evidence');
   @Id()
   @JsonKey(ignore: true)
@@ -119,7 +120,7 @@ class Evidence extends DomainResource {
 
   /// [status] /// The status of this summary. Enables tracking the life-cycle of the content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -212,11 +213,11 @@ class Evidence extends DomainResource {
 
   /// [synthesisType] /// The method to combine studies.
   @JsonKey(name: 'synthesisType')
-  final CodeableConcept? synthesisType;
+  final SynthesisType? synthesisType;
 
   /// [studyType] /// The type of study that produced this evidence.
   @JsonKey(name: 'studyType')
-  final CodeableConcept? studyType;
+  final StudyType? studyType;
 
   /// [statistic] /// Values and parameters for a single statistic.
   @JsonKey(name: 'statistic')
@@ -240,7 +241,7 @@ class Evidence extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -256,7 +257,7 @@ class Evidence extends DomainResource {
     Reference? citeAsReference,
     FhirMarkdown? citeAsMarkdown,
     Element? citeAsMarkdownElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirDateTime? date,
     Element? dateElement,
@@ -279,8 +280,8 @@ class Evidence extends DomainResource {
     Element? assertionElement,
     List<Annotation>? note,
     List<EvidenceVariableDefinition>? variableDefinition,
-    CodeableConcept? synthesisType,
-    CodeableConcept? studyType,
+    SynthesisType? synthesisType,
+    StudyType? studyType,
     List<EvidenceStatistic>? statistic,
     List<EvidenceCertainty>? certainty,
     Map<String, Object?>? userData,
@@ -407,7 +408,7 @@ class EvidenceVariableDefinition extends BackboneElement {
   /// [variableRole] /// population | subpopulation | exposure | referenceExposure |
   /// measuredVariable | confounder.
   @JsonKey(name: 'variableRole')
-  final CodeableConcept variableRole;
+  final EvidenceVariableRole variableRole;
 
   /// [observed] /// Definition of the actual variable related to the statistic(s).
   @JsonKey(name: 'observed')
@@ -420,7 +421,7 @@ class EvidenceVariableDefinition extends BackboneElement {
   /// [directnessMatch] /// Indication of quality of match between intended variable to actual
   /// variable.
   @JsonKey(name: 'directnessMatch')
-  final CodeableConcept? directnessMatch;
+  final EvidenceDirectness? directnessMatch;
   factory EvidenceVariableDefinition.fromJson(Map<String, dynamic> json) =>
       _$EvidenceVariableDefinitionFromJson(json);
 
@@ -437,10 +438,10 @@ class EvidenceVariableDefinition extends BackboneElement {
     FhirMarkdown? description,
     Element? descriptionElement,
     List<Annotation>? note,
-    CodeableConcept? variableRole,
+    EvidenceVariableRole? variableRole,
     Reference? observed,
     Reference? intended,
-    CodeableConcept? directnessMatch,
+    EvidenceDirectness? directnessMatch,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -531,7 +532,7 @@ class EvidenceStatistic extends BackboneElement {
 
   /// [statisticType] /// Type of statistic, eg relative risk.
   @JsonKey(name: 'statisticType')
-  final CodeableConcept? statisticType;
+  final StatisticType? statisticType;
 
   /// [category] /// When the measured variable is handled categorically, the category element
   /// is used to define which category the statistic is reporting.
@@ -585,7 +586,7 @@ class EvidenceStatistic extends BackboneElement {
     FhirString? description,
     Element? descriptionElement,
     List<Annotation>? note,
-    CodeableConcept? statisticType,
+    StatisticType? statisticType,
     CodeableConcept? category,
     Quantity? quantity,
     FhirUnsignedInt? numberOfEvents,
@@ -819,7 +820,7 @@ class EvidenceAttributeEstimate extends BackboneElement {
 
   /// [type] /// The type of attribute estimate, eg confidence interval or p value.
   @JsonKey(name: 'type')
-  final CodeableConcept? type;
+  final AttributeEstimateType? type;
 
   /// [quantity] /// The singular quantity of the attribute estimate, for attribute estimates
   /// represented as single values; also used to report unit of measure.
@@ -856,7 +857,7 @@ class EvidenceAttributeEstimate extends BackboneElement {
     FhirString? description,
     Element? descriptionElement,
     List<Annotation>? note,
-    CodeableConcept? type,
+    AttributeEstimateType? type,
     Quantity? quantity,
     FhirDecimal? level,
     Element? levelElement,
@@ -935,7 +936,7 @@ class EvidenceModelCharacteristic extends BackboneElement {
 
   /// [code] /// Description of a component of the method to generate the statistic.
   @JsonKey(name: 'code')
-  final CodeableConcept code;
+  final StatisticModelCode code;
 
   /// [value] /// Further specification of the quantified value of the component of the
   /// method to generate the statistic.
@@ -962,7 +963,7 @@ class EvidenceModelCharacteristic extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
+    StatisticModelCode? code,
     Quantity? value,
     List<EvidenceVariable>? variable,
     List<EvidenceAttributeEstimate>? attributeEstimate,
@@ -1040,7 +1041,7 @@ class Evidencevariable extends BackboneElement {
 
   /// [handling] /// How the variable is classified for use in adjusted analysis.
   @JsonKey(name: 'handling')
-  final FhirCode? handling;
+  final EvidenceVariableHandling? handling;
   @JsonKey(name: '_handling')
   final Element? handlingElement;
 
@@ -1069,7 +1070,7 @@ class Evidencevariable extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Reference? variableDefinition,
-    FhirCode? handling,
+    EvidenceVariableHandling? handling,
     Element? handlingElement,
     List<CodeableConcept>? valueCategory,
     List<Quantity>? valueQuantity,
@@ -1159,11 +1160,11 @@ class EvidenceCertainty extends BackboneElement {
 
   /// [type] /// Aspect of certainty being rated.
   @JsonKey(name: 'type')
-  final CodeableConcept? type;
+  final EvidenceCertaintyType? type;
 
   /// [rating] /// Assessment or judgement of the aspect.
   @JsonKey(name: 'rating')
-  final CodeableConcept? rating;
+  final EvidenceCertaintyRating? rating;
 
   /// [rater] /// Individual or group who did the rating.
   @JsonKey(name: 'rater')
@@ -1190,8 +1191,8 @@ class EvidenceCertainty extends BackboneElement {
     FhirString? description,
     Element? descriptionElement,
     List<Annotation>? note,
-    CodeableConcept? type,
-    CodeableConcept? rating,
+    EvidenceCertaintyType? type,
+    EvidenceCertaintyRating? rating,
     FhirString? rater,
     Element? raterElement,
     List<EvidenceCertainty>? subcomponent,

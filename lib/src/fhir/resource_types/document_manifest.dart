@@ -44,6 +44,7 @@ class DocumentManifest extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.DocumentManifest,
             fhirType: 'DocumentManifest');
@@ -63,7 +64,7 @@ class DocumentManifest extends DomainResource {
 
   /// [status] /// The status of this document manifest.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final DocumentReferenceStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -134,7 +135,7 @@ class DocumentManifest extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -142,7 +143,7 @@ class DocumentManifest extends DomainResource {
     List<FhirExtension>? modifierExtension,
     Identifier? masterIdentifier,
     List<Identifier>? identifier,
-    FhirCode? status,
+    DocumentReferenceStatus? status,
     Element? statusElement,
     CodeableConcept? type,
     Reference? subject,

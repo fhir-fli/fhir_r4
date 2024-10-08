@@ -76,6 +76,7 @@ class ServiceRequest extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.ServiceRequest,
             fhirType: 'ServiceRequest');
@@ -120,26 +121,26 @@ class ServiceRequest extends DomainResource {
 
   /// [status] /// The status of the order.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final RequestStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [intent] /// Whether the request is a proposal, plan, an original order or a reflex
   /// order.
   @JsonKey(name: 'intent')
-  final FhirCode intent;
+  final RequestIntent intent;
   @JsonKey(name: '_intent')
   final Element? intentElement;
 
   /// [category] /// A code that classifies the service for searching, sorting and display
   /// purposes (e.g. "Surgical Procedure").
   @JsonKey(name: 'category')
-  final List<CodeableConcept>? category;
+  final List<ServiceRequestCategoryCodes>? category;
 
   /// [priority] /// Indicates how quickly the ServiceRequest should be addressed with respect
   /// to other requests.
   @JsonKey(name: 'priority')
-  final FhirCode? priority;
+  final RequestPriority? priority;
   @JsonKey(name: '_priority')
   final Element? priorityElement;
 
@@ -161,7 +162,7 @@ class ServiceRequest extends DomainResource {
   /// may require additional instructions specifying how the bandage should be
   /// applied.
   @JsonKey(name: 'orderDetail')
-  final List<CodeableConcept>? orderDetail;
+  final List<ServiceRequestOrderDetailsCodes>? orderDetail;
 
   /// [quantityQuantity] /// An amount of service being requested which can be a quantity ( for example
   /// $1,500 home modification), a ratio ( for example, 20 half day visits per
@@ -314,7 +315,7 @@ class ServiceRequest extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -328,17 +329,17 @@ class ServiceRequest extends DomainResource {
     List<Reference>? basedOn,
     List<Reference>? replaces,
     Identifier? requisition,
-    FhirCode? status,
+    RequestStatus? status,
     Element? statusElement,
-    FhirCode? intent,
+    RequestIntent? intent,
     Element? intentElement,
-    List<CodeableConcept>? category,
-    FhirCode? priority,
+    List<ServiceRequestCategoryCodes>? category,
+    RequestPriority? priority,
     Element? priorityElement,
     FhirBoolean? doNotPerform,
     Element? doNotPerformElement,
     CodeableConcept? code,
-    List<CodeableConcept>? orderDetail,
+    List<ServiceRequestOrderDetailsCodes>? orderDetail,
     Quantity? quantityQuantity,
     Ratio? quantityRatio,
     Range? quantityRange,

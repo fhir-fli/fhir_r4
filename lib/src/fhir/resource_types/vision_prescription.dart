@@ -39,6 +39,7 @@ class VisionPrescription extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.VisionPrescription,
             fhirType: 'VisionPrescription');
@@ -52,7 +53,7 @@ class VisionPrescription extends DomainResource {
 
   /// [status] /// The status of the resource instance.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final FinancialResourceStatusCodes status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -100,14 +101,14 @@ class VisionPrescription extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    FinancialResourceStatusCodes? status,
     Element? statusElement,
     FhirDateTime? created,
     Element? createdElement,
@@ -221,11 +222,11 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   /// [product] /// Identifies the type of vision correction product which is required for the
   /// patient.
   @JsonKey(name: 'product')
-  final CodeableConcept product;
+  final ExampleVisionPrescriptionProductCodes product;
 
   /// [eye] /// The eye for which the lens specification applies.
   @JsonKey(name: 'eye')
-  final FhirCode eye;
+  final VisionEyes eye;
   @JsonKey(name: '_eye')
   final Element? eyeElement;
 
@@ -309,8 +310,8 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? product,
-    FhirCode? eye,
+    ExampleVisionPrescriptionProductCodes? product,
+    VisionEyes? eye,
     Element? eyeElement,
     FhirDecimal? sphere,
     Element? sphereElement,
@@ -428,7 +429,7 @@ class VisionPrescriptionPrism extends BackboneElement {
 
   /// [base] /// The relative base, or reference lens edge, for the prism.
   @JsonKey(name: 'base')
-  final FhirCode base;
+  final VisionBase base;
   @JsonKey(name: '_base')
   final Element? baseElement;
   factory VisionPrescriptionPrism.fromJson(Map<String, dynamic> json) =>
@@ -446,7 +447,7 @@ class VisionPrescriptionPrism extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirDecimal? amount,
     Element? amountElement,
-    FhirCode? base,
+    VisionBase? base,
     Element? baseElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

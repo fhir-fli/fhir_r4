@@ -55,6 +55,7 @@ class MedicationAdministration extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.MedicationAdministration,
             fhirType: 'MedicationAdministration');
@@ -87,7 +88,7 @@ class MedicationAdministration extends DomainResource {
   /// an administration to be started but not completed or it may be paused while
   /// some other process is under way.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final MedicationAdministrationStatusCodes status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -97,7 +98,7 @@ class MedicationAdministration extends DomainResource {
 
   /// [category] /// Indicates where the medication is expected to be consumed or administered.
   @JsonKey(name: 'category')
-  final CodeableConcept? category;
+  final MedicationAdministrationCategoryCodes? category;
 
   /// [medicationCodeableConcept] /// Identifies the medication that was administered. This is either a link to a
   /// resource representing the details of the medication or a simple attribute
@@ -150,7 +151,7 @@ class MedicationAdministration extends DomainResource {
 
   /// [reasonCode] /// A code indicating why the medication was given.
   @JsonKey(name: 'reasonCode')
-  final List<CodeableConcept>? reasonCode;
+  final List<ReasonMedicationGivenCodes>? reasonCode;
 
   /// [reasonReference] /// Condition or observation that supports why the medication was administered.
   @JsonKey(name: 'reasonReference')
@@ -194,7 +195,7 @@ class MedicationAdministration extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -204,10 +205,10 @@ class MedicationAdministration extends DomainResource {
     List<FhirUri>? instantiates,
     List<Element>? instantiatesElement,
     List<Reference>? partOf,
-    FhirCode? status,
+    MedicationAdministrationStatusCodes? status,
     Element? statusElement,
     List<CodeableConcept>? statusReason,
-    CodeableConcept? category,
+    MedicationAdministrationCategoryCodes? category,
     CodeableConcept? medicationCodeableConcept,
     Reference? medicationReference,
     Reference? subject,
@@ -217,7 +218,7 @@ class MedicationAdministration extends DomainResource {
     Element? effectiveDateTimeElement,
     Period? effectivePeriod,
     List<MedicationAdministrationPerformer>? performer,
-    List<CodeableConcept>? reasonCode,
+    List<ReasonMedicationGivenCodes>? reasonCode,
     List<Reference>? reasonReference,
     Reference? request,
     List<Reference>? device,
@@ -322,7 +323,7 @@ class MedicationAdministrationPerformer extends BackboneElement {
   /// [function_] /// Distinguishes the type of involvement of the performer in the medication
   /// administration.
   @JsonKey(name: 'function')
-  final CodeableConcept? function_;
+  final MedicationAdministrationPerformerFunctionCodes? function_;
 
   /// [actor] /// Indicates who or what performed the medication administration.
   @JsonKey(name: 'actor')
@@ -342,7 +343,7 @@ class MedicationAdministrationPerformer extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? function_,
+    MedicationAdministrationPerformerFunctionCodes? function_,
     Reference? actor,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

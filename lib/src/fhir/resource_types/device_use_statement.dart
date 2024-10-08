@@ -46,6 +46,7 @@ class DeviceUseStatement extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.DeviceUseStatement,
             fhirType: 'DeviceUseStatement');
@@ -66,7 +67,7 @@ class DeviceUseStatement extends DomainResource {
   /// of the device used that this statement is about. Generally this will be
   /// active or completed.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final DeviceUseStatementStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -142,7 +143,7 @@ class DeviceUseStatement extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -150,7 +151,7 @@ class DeviceUseStatement extends DomainResource {
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     List<Reference>? basedOn,
-    FhirCode? status,
+    DeviceUseStatementStatus? status,
     Element? statusElement,
     Reference? subject,
     List<Reference>? derivedFrom,

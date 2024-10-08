@@ -63,6 +63,7 @@ class ImplementationGuide extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.ImplementationGuide,
             fhirType: 'ImplementationGuide');
@@ -110,7 +111,7 @@ class ImplementationGuide extends DomainResource {
   /// [status] /// The status of this implementation guide. Enables tracking the life-cycle of
   /// the content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -183,7 +184,7 @@ class ImplementationGuide extends DomainResource {
   /// [license] /// The license that applies to this Implementation Guide, using an SPDX
   /// license code, or 'not-open-source'.
   @JsonKey(name: 'license')
-  final FhirCode? license;
+  final SPDXLicense? license;
   @JsonKey(name: '_license')
   final Element? licenseElement;
 
@@ -192,7 +193,7 @@ class ImplementationGuide extends DomainResource {
   /// formal version of the specification, without the revision number, e.g.
   /// [publication].[major].[minor], which is 4.3.0 for this version.
   @JsonKey(name: 'fhirVersion')
-  final List<FhirCode> fhirVersion;
+  final List<FHIRVersion> fhirVersion;
   @JsonKey(name: '_fhirVersion')
   final List<Element>? fhirVersionElement;
 
@@ -230,7 +231,7 @@ class ImplementationGuide extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -244,7 +245,7 @@ class ImplementationGuide extends DomainResource {
     Element? nameElement,
     FhirString? title,
     Element? titleElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
@@ -261,9 +262,9 @@ class ImplementationGuide extends DomainResource {
     Element? copyrightElement,
     FhirId? packageId,
     Element? packageIdElement,
-    FhirCode? license,
+    SPDXLicense? license,
     Element? licenseElement,
-    List<FhirCode>? fhirVersion,
+    List<FHIRVersion>? fhirVersion,
     List<Element>? fhirVersionElement,
     List<ImplementationGuideDependsOn>? dependsOn,
     List<ImplementationGuideGlobal>? global,
@@ -802,7 +803,7 @@ class ImplementationGuideResource extends BackboneElement {
   /// versions are specified, the resource is assumed to apply to all the
   /// versions stated in ImplementationGuide.fhirVersion.
   @JsonKey(name: 'fhirVersion')
-  final List<FhirCode>? fhirVersion;
+  final List<FHIRVersion>? fhirVersion;
   @JsonKey(name: '_fhirVersion')
   final List<Element>? fhirVersionElement;
 
@@ -855,7 +856,7 @@ class ImplementationGuideResource extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Reference? reference,
-    List<FhirCode>? fhirVersion,
+    List<FHIRVersion>? fhirVersion,
     List<Element>? fhirVersionElement,
     FhirString? name,
     Element? nameElement,
@@ -968,7 +969,7 @@ class ImplementationGuidePage extends BackboneElement {
 
   /// [generation] /// A code that indicates how the page is generated.
   @JsonKey(name: 'generation')
-  final FhirCode generation;
+  final GuidePageGeneration generation;
   @JsonKey(name: '_generation')
   final Element? generationElement;
 
@@ -993,7 +994,7 @@ class ImplementationGuidePage extends BackboneElement {
     Reference? nameReference,
     FhirString? title,
     Element? titleElement,
-    FhirCode? generation,
+    GuidePageGeneration? generation,
     Element? generationElement,
     List<ImplementationGuidePage>? page,
     Map<String, Object?>? userData,
@@ -1070,7 +1071,7 @@ class ImplementationGuideParameter extends BackboneElement {
   /// rule-broken-links | generate-xml | generate-json | generate-turtle |
   /// html-template.
   @JsonKey(name: 'code')
-  final FhirCode code;
+  final GuideParameterCode code;
   @JsonKey(name: '_code')
   final Element? codeElement;
 
@@ -1092,7 +1093,7 @@ class ImplementationGuideParameter extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? code,
+    GuideParameterCode? code,
     Element? codeElement,
     FhirString? value,
     Element? valueElement,

@@ -44,6 +44,7 @@ class PractitionerRole extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.PractitionerRole,
             fhirType: 'PractitionerRole');
@@ -82,7 +83,7 @@ class PractitionerRole extends DomainResource {
 
   /// [specialty] /// Specific specialty of the practitioner.
   @JsonKey(name: 'specialty')
-  final List<CodeableConcept>? specialty;
+  final List<PracticeSettingCodeValueSet>? specialty;
 
   /// [location] /// The location(s) at which this practitioner provides care.
   @JsonKey(name: 'location')
@@ -133,7 +134,7 @@ class PractitionerRole extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -146,7 +147,7 @@ class PractitionerRole extends DomainResource {
     Reference? practitioner,
     Reference? organization,
     List<CodeableConcept>? code,
-    List<CodeableConcept>? specialty,
+    List<PracticeSettingCodeValueSet>? specialty,
     List<Reference>? location,
     List<Reference>? healthcareService,
     List<ContactPoint>? telecom,
@@ -250,7 +251,7 @@ class PractitionerRoleAvailableTime extends BackboneElement {
   /// [daysOfWeek] /// Indicates which days of the week are available between the start and end
   /// Times.
   @JsonKey(name: 'daysOfWeek')
-  final List<FhirCode>? daysOfWeek;
+  final List<DaysOfWeek>? daysOfWeek;
   @JsonKey(name: '_daysOfWeek')
   final List<Element>? daysOfWeekElement;
 
@@ -287,7 +288,7 @@ class PractitionerRoleAvailableTime extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    List<FhirCode>? daysOfWeek,
+    List<DaysOfWeek>? daysOfWeek,
     List<Element>? daysOfWeekElement,
     FhirBoolean? allDay,
     Element? allDayElement,

@@ -47,6 +47,7 @@ class MolecularSequence extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.MolecularSequence,
             fhirType: 'MolecularSequence');
@@ -61,7 +62,7 @@ class MolecularSequence extends DomainResource {
 
   /// [type] /// Amino Acid Sequence/ DNA Sequence / RNA Sequence.
   @JsonKey(name: 'type')
-  final FhirCode? type;
+  final SequenceType? type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -153,14 +154,14 @@ class MolecularSequence extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? type,
+    SequenceType? type,
     Element? typeElement,
     FhirInteger? coordinateSystem,
     Element? coordinateSystemElement,
@@ -286,7 +287,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
   /// origins of replication
   /// ([SO:0000340](http://www.sequenceontology.org/browser/current_svn/term/SO:0000340)).
   @JsonKey(name: 'chromosome')
-  final CodeableConcept? chromosome;
+  final ChromosomeHuman? chromosome;
 
   /// [genomeBuild] /// The Genome Build used for reference, following GRCh build versions e.g.
   /// 'GRCh 37'. Version number must be included if a versioned release of a
@@ -300,7 +301,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
   /// that contains the open reading frame of the gene is the "sense" strand, and
   /// the opposite complementary strand is the "antisense" strand.
   @JsonKey(name: 'orientation')
-  final FhirCode? orientation;
+  final OrientationType? orientation;
   @JsonKey(name: '_orientation')
   final Element? orientationElement;
 
@@ -325,7 +326,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
   /// 5'-end is on the short arm of the chromosome, and the Crick strand as the
   /// one whose 5'-end is on the long arm.
   @JsonKey(name: 'strand')
-  final FhirCode? strand;
+  final StrandType? strand;
   @JsonKey(name: '_strand')
   final Element? strandElement;
 
@@ -357,16 +358,16 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? chromosome,
+    ChromosomeHuman? chromosome,
     FhirString? genomeBuild,
     Element? genomeBuildElement,
-    FhirCode? orientation,
+    OrientationType? orientation,
     Element? orientationElement,
     CodeableConcept? referenceSeqId,
     Reference? referenceSeqPointer,
     FhirString? referenceSeqString,
     Element? referenceSeqStringElement,
-    FhirCode? strand,
+    StrandType? strand,
     Element? strandElement,
     FhirInteger? windowStart,
     Element? windowStartElement,
@@ -635,7 +636,7 @@ class MolecularSequenceQuality extends BackboneElement {
 
   /// [type] /// INDEL / SNP / Undefined variant.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final QualityType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -747,7 +748,7 @@ class MolecularSequenceQuality extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? type,
+    QualityType? type,
     Element? typeElement,
     CodeableConcept? standardSequence,
     FhirInteger? start,
@@ -1033,7 +1034,7 @@ class MolecularSequenceRepository extends BackboneElement {
   /// [type] /// Click and see / RESTful API / Need login to see / RESTful API with
   /// authentication / Other ways to see resource.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final RepositoryType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -1085,7 +1086,7 @@ class MolecularSequenceRepository extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? type,
+    RepositoryType? type,
     Element? typeElement,
     FhirUri? url,
     Element? urlElement,

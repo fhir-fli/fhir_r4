@@ -50,6 +50,7 @@ class GuidanceResponse extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.GuidanceResponse,
             fhirType: 'GuidanceResponse');
@@ -97,7 +98,7 @@ class GuidanceResponse extends DomainResource {
   /// data-requested, and the response will contain a description of the
   /// additional requested information.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final GuidanceResponseStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -175,7 +176,7 @@ class GuidanceResponse extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -188,7 +189,7 @@ class GuidanceResponse extends DomainResource {
     FhirCanonical? moduleCanonical,
     Element? moduleCanonicalElement,
     CodeableConcept? moduleCodeableConcept,
-    FhirCode? status,
+    GuidanceResponseStatus? status,
     Element? statusElement,
     Reference? subject,
     Reference? encounter,

@@ -72,6 +72,7 @@ class MessageDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.MessageDefinition,
             fhirType: 'MessageDefinition');
@@ -127,7 +128,7 @@ class MessageDefinition extends DomainResource {
   /// [status] /// The status of this message definition. Enables tracking the life-cycle of
   /// the content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -220,7 +221,7 @@ class MessageDefinition extends DomainResource {
 
   /// [category] /// The impact of the content of the message.
   @JsonKey(name: 'category')
-  final FhirCode? category;
+  final MessageSignificanceCategory? category;
   @JsonKey(name: '_category')
   final Element? categoryElement;
 
@@ -233,7 +234,7 @@ class MessageDefinition extends DomainResource {
   /// [responseRequired] /// Declare at a message definition level whether a response is required or
   /// only upon error or success, or never.
   @JsonKey(name: 'responseRequired')
-  final FhirCode? responseRequired;
+  final MessageheaderResponseRequest? responseRequired;
   @JsonKey(name: '_responseRequired')
   final Element? responseRequiredElement;
 
@@ -265,7 +266,7 @@ class MessageDefinition extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -282,7 +283,7 @@ class MessageDefinition extends DomainResource {
     Element? titleElement,
     List<FhirCanonical>? replaces,
     List<Element>? replacesElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
@@ -306,10 +307,10 @@ class MessageDefinition extends DomainResource {
     Coding? eventCoding,
     FhirUri? eventUri,
     Element? eventUriElement,
-    FhirCode? category,
+    MessageSignificanceCategory? category,
     Element? categoryElement,
     List<MessageDefinitionFocus>? focus,
-    FhirCode? responseRequired,
+    MessageheaderResponseRequest? responseRequired,
     Element? responseRequiredElement,
     List<MessageDefinitionAllowedResponse>? allowedResponse,
     List<FhirCanonical>? graph,

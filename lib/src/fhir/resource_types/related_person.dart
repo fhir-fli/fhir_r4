@@ -44,6 +44,7 @@ class RelatedPerson extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.RelatedPerson,
             fhirType: 'RelatedPerson');
@@ -81,7 +82,7 @@ class RelatedPerson extends DomainResource {
   /// [gender] /// Administrative Gender - the gender that the person is considered to have
   /// for administration and record keeping purposes.
   @JsonKey(name: 'gender')
-  final FhirCode? gender;
+  final AdministrativeGender? gender;
   @JsonKey(name: '_gender')
   final Element? genderElement;
 
@@ -122,7 +123,7 @@ class RelatedPerson extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -135,7 +136,7 @@ class RelatedPerson extends DomainResource {
     List<CodeableConcept>? relationship,
     List<HumanName>? name,
     List<ContactPoint>? telecom,
-    FhirCode? gender,
+    AdministrativeGender? gender,
     Element? genderElement,
     FhirDate? birthDate,
     Element? birthDateElement,
@@ -232,7 +233,7 @@ class RelatedPersonCommunication extends BackboneElement {
   /// upper case; e.g. "en" for English, or "en-US" for American English versus
   /// "en-EN" for England English.
   @JsonKey(name: 'language')
-  final CodeableConcept language;
+  final CommonLanguages language;
 
   /// [preferred] /// Indicates whether or not the patient prefers this language (over other
   /// languages he masters up a certain level).
@@ -253,7 +254,7 @@ class RelatedPersonCommunication extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? language,
+    CommonLanguages? language,
     FhirBoolean? preferred,
     Element? preferredElement,
     Map<String, Object?>? userData,

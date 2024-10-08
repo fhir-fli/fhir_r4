@@ -34,6 +34,7 @@ class ImmunizationRecommendation extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.ImmunizationRecommendation,
             fhirType: 'ImmunizationRecommendation');
@@ -76,7 +77,7 @@ class ImmunizationRecommendation extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -185,7 +186,7 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
 
   /// [targetDisease] /// The targeted disease for the recommendation.
   @JsonKey(name: 'targetDisease')
-  final CodeableConcept? targetDisease;
+  final ImmunizationRecommendationTargetDiseaseCodes? targetDisease;
 
   /// [contraindicatedVaccineCode] /// Vaccine(s) which should not be used to fulfill the recommendation.
   @JsonKey(name: 'contraindicatedVaccineCode')
@@ -194,11 +195,11 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
   /// [forecastStatus] /// Indicates the patient status with respect to the path to immunity for the
   /// target disease.
   @JsonKey(name: 'forecastStatus')
-  final CodeableConcept forecastStatus;
+  final ImmunizationRecommendationStatusCodes forecastStatus;
 
   /// [forecastReason] /// The reason for the assigned forecast status.
   @JsonKey(name: 'forecastReason')
-  final List<CodeableConcept>? forecastReason;
+  final List<ImmunizationRecommendationReasonCodes>? forecastReason;
 
   /// [dateCriterion] /// Vaccine date recommendations. For example, earliest date to administer,
   /// latest date to administer, etc.
@@ -272,10 +273,10 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<CodeableConcept>? vaccineCode,
-    CodeableConcept? targetDisease,
+    ImmunizationRecommendationTargetDiseaseCodes? targetDisease,
     List<CodeableConcept>? contraindicatedVaccineCode,
-    CodeableConcept? forecastStatus,
-    List<CodeableConcept>? forecastReason,
+    ImmunizationRecommendationStatusCodes? forecastStatus,
+    List<ImmunizationRecommendationReasonCodes>? forecastReason,
     List<ImmunizationRecommendationDateCriterion>? dateCriterion,
     FhirString? description,
     Element? descriptionElement,
@@ -387,7 +388,7 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
   /// [code] /// Date classification of recommendation. For example, earliest date to give,
   /// latest date to give, etc.
   @JsonKey(name: 'code')
-  final CodeableConcept code;
+  final ImmunizationRecommendationDateCriterionCodes code;
 
   /// [value] /// The date whose meaning is specified by dateCriterion.code.
   @JsonKey(name: 'value')
@@ -409,7 +410,7 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
+    ImmunizationRecommendationDateCriterionCodes? code,
     FhirDateTime? value,
     Element? valueElement,
     Map<String, Object?>? userData,

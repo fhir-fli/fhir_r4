@@ -40,6 +40,7 @@ class AdministrableProductDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.AdministrableProductDefinition,
             fhirType: 'AdministrableProductDefinition');
@@ -54,7 +55,7 @@ class AdministrableProductDefinition extends DomainResource {
   /// [status] /// The status of this administrable product. Enables tracking the life-cycle
   /// of the content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -76,13 +77,13 @@ class AdministrableProductDefinition extends DomainResource {
   /// injection' (once mixed with another item having manufactured form 'solvent
   /// for solution for injection').
   @JsonKey(name: 'administrableDoseForm')
-  final CodeableConcept? administrableDoseForm;
+  final AdministrableDoseForm? administrableDoseForm;
 
   /// [unitOfPresentation] /// The presentation type in which this item is given to a patient. e.g. for a
   /// spray - 'puff' (as in 'contains 100 mcg per puff'), or for a liquid -
   /// 'vial' (as in 'contains 5 ml per vial').
   @JsonKey(name: 'unitOfPresentation')
-  final CodeableConcept? unitOfPresentation;
+  final UnitOfPresentation? unitOfPresentation;
 
   /// [producedFrom] /// Indicates the specific manufactured items that are part of the 'formOf'
   /// product that are used in the preparation of this specific administrable
@@ -136,18 +137,18 @@ class AdministrableProductDefinition extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     List<Reference>? formOf,
-    CodeableConcept? administrableDoseForm,
-    CodeableConcept? unitOfPresentation,
+    AdministrableDoseForm? administrableDoseForm,
+    UnitOfPresentation? unitOfPresentation,
     List<Reference>? producedFrom,
     List<CodeableConcept>? ingredient,
     Reference? device,
@@ -272,7 +273,7 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
 
   /// [status] /// The status of characteristic e.g. assigned or pending.
   @JsonKey(name: 'status')
-  final CodeableConcept? status;
+  final PublicationStatus? status;
   factory AdministrableProductDefinitionProperty.fromJson(
           Map<String, dynamic> json) =>
       _$AdministrableProductDefinitionPropertyFromJson(json);
@@ -296,7 +297,7 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
     FhirBoolean? valueBoolean,
     Element? valueBooleanElement,
     Attachment? valueAttachment,
-    CodeableConcept? status,
+    PublicationStatus? status,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -502,7 +503,7 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
 
   /// [code] /// Coded expression for the species.
   @JsonKey(name: 'code')
-  final CodeableConcept code;
+  final TargetSpecies code;
 
   /// [withdrawalPeriod] /// A species specific time during which consumption of animal product is not
   /// appropriate.
@@ -524,7 +525,7 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
+    TargetSpecies? code,
     List<AdministrableProductDefinitionWithdrawalPeriod>? withdrawalPeriod,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -596,7 +597,7 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
   /// [tissue] /// Coded expression for the type of tissue for which the withdrawal period
   /// applies, e.g. meat, milk.
   @JsonKey(name: 'tissue')
-  final CodeableConcept tissue;
+  final AnimalTissueType tissue;
 
   /// [value] /// A value for the time.
   @JsonKey(name: 'value')
@@ -623,7 +624,7 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? tissue,
+    AnimalTissueType? tissue,
     Quantity? value,
     FhirString? supportingInformation,
     Element? supportingInformationElement,

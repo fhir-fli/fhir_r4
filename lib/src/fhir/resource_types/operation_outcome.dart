@@ -29,6 +29,7 @@ class OperationOutcome extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.OperationOutcome,
             fhirType: 'OperationOutcome');
@@ -54,7 +55,7 @@ class OperationOutcome extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -142,7 +143,7 @@ class OperationOutcomeIssue extends BackboneElement {
   /// [severity] /// Indicates whether the issue indicates a variation from successful
   /// processing.
   @JsonKey(name: 'severity')
-  final FhirCode severity;
+  final IssueSeverity severity;
   @JsonKey(name: '_severity')
   final Element? severityElement;
 
@@ -151,7 +152,7 @@ class OperationOutcomeIssue extends BackboneElement {
   /// value set, and may additional provide its own code for the error in the
   /// details element.
   @JsonKey(name: 'code')
-  final FhirCode code;
+  final IssueType code;
   @JsonKey(name: '_code')
   final Element? codeElement;
 
@@ -198,9 +199,9 @@ class OperationOutcomeIssue extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? severity,
+    IssueSeverity? severity,
     Element? severityElement,
-    FhirCode? code,
+    IssueType? code,
     Element? codeElement,
     CodeableConcept? details,
     FhirString? diagnostics,

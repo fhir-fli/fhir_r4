@@ -1,10 +1,12 @@
 import 'dart:convert';
 
+import 'package:json_annotation/json_annotation.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [Resource] Base definition for all FHIR elements.
+@JsonSerializable()
 abstract class Resource extends FhirBase {
   const Resource({
     required this.resourceType,
@@ -23,12 +25,19 @@ abstract class Resource extends FhirBase {
     super.namedChildren,
   });
 
+  @JsonKey(name: 'resourceType')
   final R4ResourceType resourceType;
+  @JsonKey(name: 'id')
   final FhirString? id;
+  @JsonKey(name: 'meta')
   final FhirMeta? meta;
+  @JsonKey(name: 'implicitRules')
   final FhirUri? implicitRules;
+  @JsonKey(name: '_implicitRules')
   final Element? implicitRulesElement;
-  final FhirCode? language;
+  @JsonKey(name: 'language')
+  final CommonLanguages? language;
+  @JsonKey(name: '_language')
   final Element? languageElement;
 
   /// Acts like a constructor, returns a [Resource], accepts a
@@ -116,7 +125,7 @@ abstract class Resource extends FhirBase {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

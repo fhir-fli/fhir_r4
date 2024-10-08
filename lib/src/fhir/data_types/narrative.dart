@@ -32,7 +32,7 @@ class Narrative extends DataType {
   /// the defined data or the extensions too), or whether a human authored it and
   /// it may contain additional data.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final NarrativeStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -51,7 +51,7 @@ class Narrative extends DataType {
   Narrative copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
-    FhirCode? status,
+    NarrativeStatus? status,
     Element? statusElement,
     FhirMarkdown? div,
     Map<String, Object?>? userData,

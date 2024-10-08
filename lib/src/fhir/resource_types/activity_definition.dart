@@ -107,6 +107,7 @@ class ActivityDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.ActivityDefinition,
             fhirType: 'ActivityDefinition');
@@ -172,7 +173,7 @@ class ActivityDefinition extends DomainResource {
   /// [status] /// The status of this activity definition. Enables tracking the life-cycle of
   /// the content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -192,7 +193,7 @@ class ActivityDefinition extends DomainResource {
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
   @JsonKey(name: 'subjectCodeableConcept')
-  final CodeableConcept? subjectCodeableConcept;
+  final SubjectType? subjectCodeableConcept;
 
   /// [subjectReference] /// A code, group definition, or canonical reference that describes or
   /// identifies the intended subject of the activity being defined. Canonical
@@ -202,7 +203,7 @@ class ActivityDefinition extends DomainResource {
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
   @JsonKey(name: 'subjectReference')
-  final Reference? subjectReference;
+  final SubjectType? subjectReference;
 
   /// [subjectCanonical] /// A code, group definition, or canonical reference that describes or
   /// identifies the intended subject of the activity being defined. Canonical
@@ -212,7 +213,7 @@ class ActivityDefinition extends DomainResource {
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
   @JsonKey(name: 'subjectCanonical')
-  final FhirCanonical? subjectCanonical;
+  final SubjectType? subjectCanonical;
   @JsonKey(name: '_subjectCanonical')
   final Element? subjectCanonicalElement;
 
@@ -302,7 +303,7 @@ class ActivityDefinition extends DomainResource {
   /// high-level categorization of the activity that can be useful for filtering
   /// and searching.
   @JsonKey(name: 'topic')
-  final List<CodeableConcept>? topic;
+  final List<DefinitionTopic>? topic;
 
   /// [author] /// An individiual or organization primarily involved in the creation and
   /// maintenance of the content.
@@ -341,7 +342,7 @@ class ActivityDefinition extends DomainResource {
   /// CommunicationRequest. Typically, but not always, this is a Request
   /// resource.
   @JsonKey(name: 'kind')
-  final FhirCode? kind;
+  final RequestResourceType? kind;
   @JsonKey(name: '_kind')
   final Element? kindElement;
 
@@ -360,14 +361,14 @@ class ActivityDefinition extends DomainResource {
   /// [intent] /// Indicates the level of authority/intentionality associated with the
   /// activity and where the request should fit into the workflow chain.
   @JsonKey(name: 'intent')
-  final FhirCode? intent;
+  final RequestIntent? intent;
   @JsonKey(name: '_intent')
   final Element? intentElement;
 
   /// [priority] /// Indicates how quickly the activity should be addressed with respect to
   /// other requests.
   @JsonKey(name: 'priority')
-  final FhirCode? priority;
+  final RequestPriority? priority;
   @JsonKey(name: '_priority')
   final Element? priorityElement;
 
@@ -489,7 +490,7 @@ class ActivityDefinition extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -506,13 +507,13 @@ class ActivityDefinition extends DomainResource {
     Element? titleElement,
     FhirString? subtitle,
     Element? subtitleElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
-    CodeableConcept? subjectCodeableConcept,
-    Reference? subjectReference,
-    FhirCanonical? subjectCanonical,
+    SubjectType? subjectCodeableConcept,
+    SubjectType? subjectReference,
+    SubjectType? subjectCanonical,
     Element? subjectCanonicalElement,
     FhirDateTime? date,
     Element? dateElement,
@@ -534,7 +535,7 @@ class ActivityDefinition extends DomainResource {
     FhirDate? lastReviewDate,
     Element? lastReviewDateElement,
     Period? effectivePeriod,
-    List<CodeableConcept>? topic,
+    List<DefinitionTopic>? topic,
     List<ContactDetail>? author,
     List<ContactDetail>? editor,
     List<ContactDetail>? reviewer,
@@ -542,14 +543,14 @@ class ActivityDefinition extends DomainResource {
     List<RelatedArtifact>? relatedArtifact,
     List<FhirCanonical>? library_,
     List<Element>? libraryElement,
-    FhirCode? kind,
+    RequestResourceType? kind,
     Element? kindElement,
     FhirCanonical? profile,
     Element? profileElement,
     CodeableConcept? code,
-    FhirCode? intent,
+    RequestIntent? intent,
     Element? intentElement,
-    FhirCode? priority,
+    RequestPriority? priority,
     Element? priorityElement,
     FhirBoolean? doNotPerform,
     Element? doNotPerformElement,
@@ -728,7 +729,7 @@ class ActivityDefinitionParticipant extends BackboneElement {
 
   /// [type] /// The type of participant in the action.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final ActionParticipantType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -748,7 +749,7 @@ class ActivityDefinitionParticipant extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? type,
+    ActionParticipantType? type,
     Element? typeElement,
     CodeableConcept? role,
     Map<String, Object?>? userData,

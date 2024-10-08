@@ -51,6 +51,7 @@ class Coverage extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Coverage, fhirType: 'Coverage');
   @Id()
   @JsonKey(ignore: true)
@@ -62,7 +63,7 @@ class Coverage extends DomainResource {
 
   /// [status] /// The status of the resource instance.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final FinancialResourceStatusCodes status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -101,7 +102,7 @@ class Coverage extends DomainResource {
 
   /// [relationship] /// The relationship of beneficiary (patient) to the subscriber.
   @JsonKey(name: 'relationship')
-  final CodeableConcept? relationship;
+  final SubscriberRelationshipCodes? relationship;
 
   /// [period] /// Time period during which the coverage is in force. A missing start date
   /// indicates the start date isn't known, a missing end date means the coverage
@@ -166,14 +167,14 @@ class Coverage extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    FinancialResourceStatusCodes? status,
     Element? statusElement,
     CodeableConcept? type,
     Reference? policyHolder,
@@ -183,7 +184,7 @@ class Coverage extends DomainResource {
     Reference? beneficiary,
     FhirString? dependent,
     Element? dependentElement,
-    CodeableConcept? relationship,
+    SubscriberRelationshipCodes? relationship,
     Period? period,
     List<Reference>? payor,
     List<CoverageClass>? class_,
@@ -292,7 +293,7 @@ class CoverageClass extends BackboneElement {
   /// number and optional name is provided, for example may be used to identify a
   /// class of coverage or employer group, Policy, Plan.
   @JsonKey(name: 'type')
-  final CodeableConcept type;
+  final CoverageClassCodes type;
 
   /// [value] /// The alphanumeric string value associated with the insurer issued label.
   @JsonKey(name: 'value')
@@ -318,7 +319,7 @@ class CoverageClass extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
+    CoverageClassCodes? type,
     FhirString? value,
     Element? valueElement,
     FhirString? name,
@@ -394,7 +395,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
 
   /// [type] /// The category of patient centric costs associated with treatment.
   @JsonKey(name: 'type')
-  final CodeableConcept? type;
+  final CoverageCopayTypeCodes? type;
 
   /// [valueQuantity] /// The amount due from the patient for the cost category.
   @JsonKey(name: 'valueQuantity')
@@ -421,7 +422,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
+    CoverageCopayTypeCodes? type,
     Quantity? valueQuantity,
     Money? valueMoney,
     List<CoverageException>? exception,
@@ -492,7 +493,7 @@ class CoverageException extends BackboneElement {
 
   /// [type] /// The code for the specific exception.
   @JsonKey(name: 'type')
-  final CodeableConcept type;
+  final ExampleCoverageFinancialExceptionCodes type;
 
   /// [period] /// The timeframe during when the exception is in force.
   @JsonKey(name: 'period')
@@ -510,7 +511,7 @@ class CoverageException extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
+    ExampleCoverageFinancialExceptionCodes? type,
     Period? period,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

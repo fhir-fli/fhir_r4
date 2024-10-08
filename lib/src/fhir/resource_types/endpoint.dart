@@ -45,6 +45,7 @@ class FhirEndpoint extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.FhirEndpoint,
             fhirType: 'FhirEndpoint');
@@ -59,7 +60,7 @@ class FhirEndpoint extends DomainResource {
 
   /// [status] /// active | suspended | error | off | test.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final EndpointStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -67,7 +68,7 @@ class FhirEndpoint extends DomainResource {
   /// endpoint, such as what WSDLs should be used in what way. (e.g.
   /// XDS.b/DICOM/cds-hook).
   @JsonKey(name: 'connectionType')
-  final Coding connectionType;
+  final EndpointConnectionType connectionType;
 
   /// [name] /// A friendly name that this endpoint can be referred to with.
   @JsonKey(name: 'name')
@@ -93,7 +94,7 @@ class FhirEndpoint extends DomainResource {
   /// [payloadType] /// The payload type describes the acceptable content that can be communicated
   /// on the endpoint.
   @JsonKey(name: 'payloadType')
-  final List<CodeableConcept> payloadType;
+  final List<EndpointPayloadType> payloadType;
 
   /// [payloadMimeType] /// The mime type to send the payload in - e.g. application/fhir+xml,
   /// application/fhir+json. If the mime type is not specified, then the sender
@@ -129,22 +130,22 @@ class FhirEndpoint extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    EndpointStatus? status,
     Element? statusElement,
-    Coding? connectionType,
+    EndpointConnectionType? connectionType,
     FhirString? name,
     Element? nameElement,
     Reference? managingOrganization,
     List<ContactPoint>? contact,
     Period? period,
-    List<CodeableConcept>? payloadType,
+    List<EndpointPayloadType>? payloadType,
     List<FhirCode>? payloadMimeType,
     List<Element>? payloadMimeTypeElement,
     FhirUrl? address,

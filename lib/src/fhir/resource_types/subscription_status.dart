@@ -39,6 +39,7 @@ class SubscriptionStatus extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.SubscriptionStatus,
             fhirType: 'SubscriptionStatus');
@@ -49,13 +50,13 @@ class SubscriptionStatus extends DomainResource {
   /// [status] /// The status of the subscription, which marks the server state for managing
   /// the subscription.
   @JsonKey(name: 'status')
-  final FhirCode? status;
+  final SubscriptionStatusCodes? status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [type] /// The type of event being conveyed with this notificaiton.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final SubscriptionNotificationType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -101,15 +102,15 @@ class SubscriptionStatus extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? status,
+    SubscriptionStatusCodes? status,
     Element? statusElement,
-    FhirCode? type,
+    SubscriptionNotificationType? type,
     Element? typeElement,
     FhirString? eventsSinceSubscriptionStart,
     Element? eventsSinceSubscriptionStartElement,

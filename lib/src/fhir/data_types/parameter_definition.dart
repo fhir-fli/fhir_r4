@@ -50,7 +50,7 @@ class ParameterDefinition extends DataType {
 
   /// [use] /// Whether the parameter is input or output for the module.
   @JsonKey(name: 'use')
-  final FhirCode use;
+  final OperationParameterUse use;
   @JsonKey(name: '_use')
   final Element? useElement;
 
@@ -77,7 +77,7 @@ class ParameterDefinition extends DataType {
 
   /// [type] /// The type of the parameter.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final FHIRAllTypes type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -101,7 +101,7 @@ class ParameterDefinition extends DataType {
     List<FhirExtension>? extension_,
     FhirCode? name,
     Element? nameElement,
-    FhirCode? use,
+    OperationParameterUse? use,
     Element? useElement,
     FhirInteger? min,
     Element? minElement,
@@ -109,7 +109,7 @@ class ParameterDefinition extends DataType {
     Element? maxElement,
     FhirString? documentation,
     Element? documentationElement,
-    FhirCode? type,
+    FHIRAllTypes? type,
     Element? typeElement,
     FhirCanonical? profile,
     Element? profileElement,

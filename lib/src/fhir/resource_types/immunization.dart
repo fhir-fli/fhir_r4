@@ -65,6 +65,7 @@ class Immunization extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.Immunization,
             fhirType: 'Immunization');
@@ -78,13 +79,13 @@ class Immunization extends DomainResource {
 
   /// [status] /// Indicates the current status of the immunization event.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final ImmunizationStatusCodes status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [statusReason] /// Indicates the reason the immunization event was not performed.
   @JsonKey(name: 'statusReason')
-  final CodeableConcept? statusReason;
+  final ImmunizationStatusReasonCodes? statusReason;
 
   /// [vaccineCode] /// Vaccine that was administered or was to be administered.
   @JsonKey(name: 'vaccineCode')
@@ -129,7 +130,7 @@ class Immunization extends DomainResource {
   /// [reportOrigin] /// The source of the data when the report of the immunization event is not
   /// based on information from the person who administered the vaccine.
   @JsonKey(name: 'reportOrigin')
-  final CodeableConcept? reportOrigin;
+  final ImmunizationOriginCodes? reportOrigin;
 
   /// [location] /// The service delivery location where the vaccine administration occurred.
   @JsonKey(name: 'location')
@@ -153,11 +154,11 @@ class Immunization extends DomainResource {
 
   /// [site] /// Body site where vaccine was administered.
   @JsonKey(name: 'site')
-  final CodeableConcept? site;
+  final CodesForImmunizationSiteOfAdministration? site;
 
   /// [route] /// The path by which the vaccine product is taken into the body.
   @JsonKey(name: 'route')
-  final CodeableConcept? route;
+  final ImmunizationRouteCodes? route;
 
   /// [doseQuantity] /// The quantity of vaccine product that was administered.
   @JsonKey(name: 'doseQuantity')
@@ -174,7 +175,7 @@ class Immunization extends DomainResource {
 
   /// [reasonCode] /// Reasons why the vaccine was administered.
   @JsonKey(name: 'reasonCode')
-  final List<CodeableConcept>? reasonCode;
+  final List<ImmunizationReasonCodes>? reasonCode;
 
   /// [reasonReference] /// Condition, Observation or DiagnosticReport that supports why the
   /// immunization was administered.
@@ -190,7 +191,7 @@ class Immunization extends DomainResource {
 
   /// [subpotentReason] /// Reason why a dose is considered to be subpotent.
   @JsonKey(name: 'subpotentReason')
-  final List<CodeableConcept>? subpotentReason;
+  final List<ImmunizationSubpotentReason>? subpotentReason;
 
   /// [education] /// Educational material presented to the patient (or guardian) at the time of
   /// vaccine administration.
@@ -199,14 +200,14 @@ class Immunization extends DomainResource {
 
   /// [programEligibility] /// Indicates a patient's eligibility for a funding program.
   @JsonKey(name: 'programEligibility')
-  final List<CodeableConcept>? programEligibility;
+  final List<ImmunizationProgramEligibility>? programEligibility;
 
   /// [fundingSource] /// Indicates the source of the vaccine actually administered. This may be
   /// different than the patient eligibility (e.g. the patient may be eligible
   /// for a publically purchased vaccine but due to inventory issues, vaccine
   /// purchased with private funds was actually administered).
   @JsonKey(name: 'fundingSource')
-  final CodeableConcept? fundingSource;
+  final ImmunizationFundingSource? fundingSource;
 
   /// [reaction] /// Categorical data indicating that an adverse event is associated in time to
   /// an immunization.
@@ -231,16 +232,16 @@ class Immunization extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    ImmunizationStatusCodes? status,
     Element? statusElement,
-    CodeableConcept? statusReason,
+    ImmunizationStatusReasonCodes? statusReason,
     CodeableConcept? vaccineCode,
     Reference? patient,
     Reference? encounter,
@@ -252,26 +253,26 @@ class Immunization extends DomainResource {
     Element? recordedElement,
     FhirBoolean? primarySource,
     Element? primarySourceElement,
-    CodeableConcept? reportOrigin,
+    ImmunizationOriginCodes? reportOrigin,
     Reference? location,
     Reference? manufacturer,
     FhirString? lotNumber,
     Element? lotNumberElement,
     FhirDate? expirationDate,
     Element? expirationDateElement,
-    CodeableConcept? site,
-    CodeableConcept? route,
+    CodesForImmunizationSiteOfAdministration? site,
+    ImmunizationRouteCodes? route,
     Quantity? doseQuantity,
     List<ImmunizationPerformer>? performer,
     List<Annotation>? note,
-    List<CodeableConcept>? reasonCode,
+    List<ImmunizationReasonCodes>? reasonCode,
     List<Reference>? reasonReference,
     FhirBoolean? isSubpotent,
     Element? isSubpotentElement,
-    List<CodeableConcept>? subpotentReason,
+    List<ImmunizationSubpotentReason>? subpotentReason,
     List<ImmunizationEducation>? education,
-    List<CodeableConcept>? programEligibility,
-    CodeableConcept? fundingSource,
+    List<ImmunizationProgramEligibility>? programEligibility,
+    ImmunizationFundingSource? fundingSource,
     List<ImmunizationReaction>? reaction,
     List<ImmunizationProtocolApplied>? protocolApplied,
     Map<String, Object?>? userData,
@@ -384,7 +385,7 @@ class ImmunizationPerformer extends BackboneElement {
   /// [function_] /// Describes the type of performance (e.g. ordering provider, administering
   /// provider, etc.).
   @JsonKey(name: 'function')
-  final CodeableConcept? function_;
+  final ImmunizationFunctionCodes? function_;
 
   /// [actor] /// The practitioner or organization who performed the action.
   @JsonKey(name: 'actor')
@@ -402,7 +403,7 @@ class ImmunizationPerformer extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? function_,
+    ImmunizationFunctionCodes? function_,
     Reference? actor,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -715,7 +716,7 @@ class ImmunizationProtocolApplied extends BackboneElement {
 
   /// [targetDisease] /// The vaccine preventable disease the dose is being administered against.
   @JsonKey(name: 'targetDisease')
-  final List<CodeableConcept>? targetDisease;
+  final List<ImmunizationTargetDiseaseCodes>? targetDisease;
 
   /// [doseNumberPositiveInt] /// Nominal position in a series.
   @JsonKey(name: 'doseNumberPositiveInt')
@@ -756,7 +757,7 @@ class ImmunizationProtocolApplied extends BackboneElement {
     FhirString? series,
     Element? seriesElement,
     Reference? authority,
-    List<CodeableConcept>? targetDisease,
+    List<ImmunizationTargetDiseaseCodes>? targetDisease,
     FhirPositiveInt? doseNumberPositiveInt,
     Element? doseNumberPositiveIntElement,
     FhirString? doseNumberString,

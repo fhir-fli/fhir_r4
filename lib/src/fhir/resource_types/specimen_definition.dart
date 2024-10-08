@@ -34,6 +34,7 @@ class SpecimenDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.SpecimenDefinition,
             fhirType: 'SpecimenDefinition');
@@ -61,7 +62,7 @@ class SpecimenDefinition extends DomainResource {
 
   /// [collection] /// The action to be performed for collecting the specimen.
   @JsonKey(name: 'collection')
-  final List<CodeableConcept>? collection;
+  final List<SpecimenCollectionEnum>? collection;
 
   /// [typeTested] /// Specimen conditioned in a container as expected by the testing laboratory.
   @JsonKey(name: 'typeTested')
@@ -80,7 +81,7 @@ class SpecimenDefinition extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -91,7 +92,7 @@ class SpecimenDefinition extends DomainResource {
     List<CodeableConcept>? patientPreparation,
     FhirString? timeAspect,
     Element? timeAspectElement,
-    List<CodeableConcept>? collection,
+    List<SpecimenCollectionEnum>? collection,
     List<SpecimenDefinitionTypeTested>? typeTested,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -188,7 +189,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
 
   /// [preference] /// The preference for this type of conditioned specimen.
   @JsonKey(name: 'preference')
-  final FhirCode preference;
+  final SpecimenContainedPreference preference;
   @JsonKey(name: '_preference')
   final Element? preferenceElement;
 
@@ -210,7 +211,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
 
   /// [rejectionCriterion] /// Criterion for rejection of the specimen in its container by the laboratory.
   @JsonKey(name: 'rejectionCriterion')
-  final List<CodeableConcept>? rejectionCriterion;
+  final List<RejectionCriterion>? rejectionCriterion;
 
   /// [handling] /// Set of instructions for preservation/transport of the specimen at a defined
   /// temperature interval, prior the testing process.
@@ -232,13 +233,13 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     FhirBoolean? isDerived,
     Element? isDerivedElement,
     CodeableConcept? type,
-    FhirCode? preference,
+    SpecimenContainedPreference? preference,
     Element? preferenceElement,
     SpecimenDefinitionContainer? container,
     FhirString? requirement,
     Element? requirementElement,
     FhirDuration? retentionTime,
-    List<CodeableConcept>? rejectionCriterion,
+    List<RejectionCriterion>? rejectionCriterion,
     List<SpecimenDefinitionHandling>? handling,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -323,7 +324,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
 
   /// [material] /// The type of material of the container.
   @JsonKey(name: 'material')
-  final CodeableConcept? material;
+  final ContainerMaterials? material;
 
   /// [type] /// The type of container used to contain this kind of specimen.
   @JsonKey(name: 'type')
@@ -331,7 +332,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
 
   /// [cap] /// Color of container cap.
   @JsonKey(name: 'cap')
-  final CodeableConcept? cap;
+  final ContainerCap? cap;
 
   /// [description] /// The textual description of the kind of container.
   @JsonKey(name: 'description')
@@ -377,9 +378,9 @@ class SpecimenDefinitionContainer extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? material,
+    ContainerMaterials? material,
     CodeableConcept? type,
-    CodeableConcept? cap,
+    ContainerCap? cap,
     FhirString? description,
     Element? descriptionElement,
     Quantity? capacity,
@@ -559,7 +560,7 @@ class SpecimenDefinitionHandling extends BackboneElement {
   /// of handling. Conditions that are not related to temperature may be handled
   /// in the instruction element.
   @JsonKey(name: 'temperatureQualifier')
-  final CodeableConcept? temperatureQualifier;
+  final HandlingConditionSet? temperatureQualifier;
 
   /// [temperatureRange] /// The temperature interval for this set of handling instructions.
   @JsonKey(name: 'temperatureRange')
@@ -589,7 +590,7 @@ class SpecimenDefinitionHandling extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? temperatureQualifier,
+    HandlingConditionSet? temperatureQualifier,
     Range? temperatureRange,
     FhirDuration? maxDuration,
     FhirString? instruction,

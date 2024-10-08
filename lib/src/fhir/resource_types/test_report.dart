@@ -45,6 +45,7 @@ class TestReport extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.TestReport, fhirType: 'TestReport');
   @Id()
   @JsonKey(ignore: true)
@@ -63,7 +64,7 @@ class TestReport extends DomainResource {
 
   /// [status] /// The current state of this test report.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final TestReportStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -75,7 +76,7 @@ class TestReport extends DomainResource {
 
   /// [result] /// The overall result from the execution of the TestScript.
   @JsonKey(name: 'result')
-  final FhirCode result;
+  final TestReportResult result;
   @JsonKey(name: '_result')
   final Element? resultElement;
 
@@ -130,7 +131,7 @@ class TestReport extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -139,10 +140,10 @@ class TestReport extends DomainResource {
     Identifier? identifier,
     FhirString? name,
     Element? nameElement,
-    FhirCode? status,
+    TestReportStatus? status,
     Element? statusElement,
     Reference? testScript,
-    FhirCode? result,
+    TestReportResult? result,
     Element? resultElement,
     FhirDecimal? score,
     Element? scoreElement,
@@ -246,7 +247,7 @@ class TestReportParticipant extends BackboneElement {
 
   /// [type] /// The type of participant.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final TestReportParticipantType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -274,7 +275,7 @@ class TestReportParticipant extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? type,
+    TestReportParticipantType? type,
     Element? typeElement,
     FhirUri? uri,
     Element? uriElement,
@@ -514,7 +515,7 @@ class TestReportOperation extends BackboneElement {
 
   /// [result] /// The result of this operation.
   @JsonKey(name: 'result')
-  final FhirCode result;
+  final TestReportActionResult result;
   @JsonKey(name: '_result')
   final Element? resultElement;
 
@@ -542,7 +543,7 @@ class TestReportOperation extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? result,
+    TestReportActionResult? result,
     Element? resultElement,
     FhirMarkdown? message,
     Element? messageElement,
@@ -620,7 +621,7 @@ class TestReportAssert extends BackboneElement {
 
   /// [result] /// The result of this assertion.
   @JsonKey(name: 'result')
-  final FhirCode result;
+  final TestReportActionResult result;
   @JsonKey(name: '_result')
   final Element? resultElement;
 
@@ -648,7 +649,7 @@ class TestReportAssert extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? result,
+    TestReportActionResult? result,
     Element? resultElement,
     FhirMarkdown? message,
     Element? messageElement,

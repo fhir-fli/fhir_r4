@@ -44,7 +44,7 @@ class Signature extends DataType {
   /// when determining accountability for various actions concerning the
   /// document.
   @JsonKey(name: 'type')
-  final List<Coding> type;
+  final List<SignatureTypeCodes> type;
 
   /// [when] /// When the digital signature was signed.
   @JsonKey(name: 'when')
@@ -95,7 +95,7 @@ class Signature extends DataType {
   Signature copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
-    List<Coding>? type,
+    List<SignatureTypeCodes>? type,
     FhirInstant? when,
     Element? whenElement,
     Reference? who,

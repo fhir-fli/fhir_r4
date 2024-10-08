@@ -53,6 +53,7 @@ class CompartmentDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.CompartmentDefinition,
             fhirType: 'CompartmentDefinition');
@@ -95,7 +96,7 @@ class CompartmentDefinition extends DomainResource {
   /// [status] /// The status of this compartment definition. Enables tracking the life-cycle
   /// of the content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -152,7 +153,7 @@ class CompartmentDefinition extends DomainResource {
 
   /// [code] /// Which compartment this definition describes.
   @JsonKey(name: 'code')
-  final FhirCode code;
+  final CompartmentType code;
   @JsonKey(name: '_code')
   final Element? codeElement;
 
@@ -179,7 +180,7 @@ class CompartmentDefinition extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -191,7 +192,7 @@ class CompartmentDefinition extends DomainResource {
     Element? versionElement,
     FhirString? name,
     Element? nameElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
@@ -205,7 +206,7 @@ class CompartmentDefinition extends DomainResource {
     List<UsageContext>? useContext,
     FhirMarkdown? purpose,
     Element? purposeElement,
-    FhirCode? code,
+    CompartmentType? code,
     Element? codeElement,
     FhirBoolean? search,
     Element? searchElement,

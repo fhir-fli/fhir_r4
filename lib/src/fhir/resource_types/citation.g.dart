@@ -14,22 +14,20 @@ Citation _$CitationFromJson(Map<String, dynamic> json) => Citation(
       implicitRules: json['implicitRules'] == null
           ? null
           : FhirUri.fromJson(json['implicitRules']),
-      implicitRulesElement: json['implicitRulesElement'] == null
+      implicitRulesElement: json['_implicitRules'] == null
           ? null
-          : Element.fromJson(
-              json['implicitRulesElement'] as Map<String, dynamic>),
-      language:
-          json['language'] == null ? null : FhirCode.fromJson(json['language']),
-      languageElement: json['languageElement'] == null
+          : Element.fromJson(json['_implicitRules'] as Map<String, dynamic>),
+      language: $enumDecodeNullable(_$CommonLanguagesEnumMap, json['language']),
+      languageElement: json['_language'] == null
           ? null
-          : Element.fromJson(json['languageElement'] as Map<String, dynamic>),
+          : Element.fromJson(json['_language'] as Map<String, dynamic>),
       text: json['text'] == null
           ? null
           : Narrative.fromJson(json['text'] as Map<String, dynamic>),
       contained: (json['contained'] as List<dynamic>?)
           ?.map((e) => Resource.fromJson(e as Map<String, dynamic>))
           .toList(),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -55,7 +53,7 @@ Citation _$CitationFromJson(Map<String, dynamic> json) => Citation(
       titleElement: json['_title'] == null
           ? null
           : Element.fromJson(json['_title'] as Map<String, dynamic>),
-      status: FhirCode.fromJson(json['status']),
+      status: $enumDecode(_$PublicationStatusEnumMap, json['status']),
       statusElement: json['_status'] == null
           ? null
           : Element.fromJson(json['_status'] as Map<String, dynamic>),
@@ -142,7 +140,7 @@ Citation _$CitationFromJson(Map<String, dynamic> json) => Citation(
           ?.map((e) => Annotation.fromJson(e as Map<String, dynamic>))
           .toList(),
       currentState: (json['currentState'] as List<dynamic>?)
-          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => $enumDecode(_$CitationStatusTypeEnumMap, e))
           .toList(),
       statusDate: (json['statusDate'] as List<dynamic>?)
           ?.map((e) => CitationStatusDate.fromJson(e as Map<String, dynamic>))
@@ -154,37 +152,25 @@ Citation _$CitationFromJson(Map<String, dynamic> json) => Citation(
           ? null
           : CitationCitedArtifact.fromJson(
               json['citedArtifact'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
+      resourceType:
+          $enumDecodeNullable(_$R4ResourceTypeEnumMap, json['resourceType']),
     );
 
 Map<String, dynamic> _$CitationToJson(Citation instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -192,17 +178,25 @@ Map<String, dynamic> _$CitationToJson(Citation instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
+  val['resourceType'] = instance.resourceType.toJson();
   writeNotNull('id', instance.id?.toJson());
   writeNotNull('meta', instance.meta?.toJson());
   writeNotNull('implicitRules', instance.implicitRules?.toJson());
-  writeNotNull('implicitRulesElement', instance.implicitRulesElement?.toJson());
+  writeNotNull('_implicitRules', instance.implicitRulesElement?.toJson());
   writeNotNull('language', instance.language?.toJson());
-  writeNotNull('languageElement', instance.languageElement?.toJson());
+  writeNotNull('_language', instance.languageElement?.toJson());
   writeNotNull('text', instance.text?.toJson());
   writeNotNull(
       'contained', instance.contained?.map((e) => e.toJson()).toList());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('url', instance.url?.toJson());
@@ -257,6 +251,253 @@ Map<String, dynamic> _$CitationToJson(Citation instance) {
   return val;
 }
 
+const _$CommonLanguagesEnumMap = {
+  CommonLanguages.ar: 'ar',
+  CommonLanguages.bn: 'bn',
+  CommonLanguages.cs: 'cs',
+  CommonLanguages.da: 'da',
+  CommonLanguages.de: 'de',
+  CommonLanguages.de_AT: 'de-AT',
+  CommonLanguages.de_CH: 'de-CH',
+  CommonLanguages.de_DE: 'de-DE',
+  CommonLanguages.el: 'el',
+  CommonLanguages.en: 'en',
+  CommonLanguages.en_AU: 'en-AU',
+  CommonLanguages.en_CA: 'en-CA',
+  CommonLanguages.en_GB: 'en-GB',
+  CommonLanguages.en_IN: 'en-IN',
+  CommonLanguages.en_NZ: 'en-NZ',
+  CommonLanguages.en_SG: 'en-SG',
+  CommonLanguages.en_US: 'en-US',
+  CommonLanguages.es: 'es',
+  CommonLanguages.es_AR: 'es-AR',
+  CommonLanguages.es_ES: 'es-ES',
+  CommonLanguages.es_UY: 'es-UY',
+  CommonLanguages.fi: 'fi',
+  CommonLanguages.fr: 'fr',
+  CommonLanguages.fr_BE: 'fr-BE',
+  CommonLanguages.fr_CH: 'fr-CH',
+  CommonLanguages.fr_FR: 'fr-FR',
+  CommonLanguages.fy: 'fy',
+  CommonLanguages.fy_NL: 'fy-NL',
+  CommonLanguages.hi: 'hi',
+  CommonLanguages.hr: 'hr',
+  CommonLanguages.it: 'it',
+  CommonLanguages.it_CH: 'it-CH',
+  CommonLanguages.it_IT: 'it-IT',
+  CommonLanguages.ja: 'ja',
+  CommonLanguages.ko: 'ko',
+  CommonLanguages.nl: 'nl',
+  CommonLanguages.nl_BE: 'nl-BE',
+  CommonLanguages.nl_NL: 'nl-NL',
+  CommonLanguages.no: 'no',
+  CommonLanguages.no_NO: 'no-NO',
+  CommonLanguages.pa: 'pa',
+  CommonLanguages.pl: 'pl',
+  CommonLanguages.pt: 'pt',
+  CommonLanguages.pt_BR: 'pt-BR',
+  CommonLanguages.ru: 'ru',
+  CommonLanguages.ru_RU: 'ru-RU',
+  CommonLanguages.sr: 'sr',
+  CommonLanguages.sr_RS: 'sr-RS',
+  CommonLanguages.sv: 'sv',
+  CommonLanguages.sv_SE: 'sv-SE',
+  CommonLanguages.te: 'te',
+  CommonLanguages.zh: 'zh',
+  CommonLanguages.zh_CN: 'zh-CN',
+  CommonLanguages.zh_HK: 'zh-HK',
+  CommonLanguages.zh_SG: 'zh-SG',
+  CommonLanguages.zh_TW: 'zh-TW',
+};
+
+const _$PublicationStatusEnumMap = {
+  PublicationStatus.draft: 'draft',
+  PublicationStatus.active: 'active',
+  PublicationStatus.retired: 'retired',
+  PublicationStatus.unknown: 'unknown',
+};
+
+const _$CitationStatusTypeEnumMap = {
+  CitationStatusType.pubmed_pubstatus_received: 'pubmed-pubstatus-received',
+  CitationStatusType.pubmed_pubstatus_accepted: 'pubmed-pubstatus-accepted',
+  CitationStatusType.pubmed_pubstatus_epublish: 'pubmed-pubstatus-epublish',
+  CitationStatusType.pubmed_pubstatus_ppublish: 'pubmed-pubstatus-ppublish',
+  CitationStatusType.pubmed_pubstatus_revised: 'pubmed-pubstatus-revised',
+  CitationStatusType.pubmed_pubstatus_aheadofprint:
+      'pubmed-pubstatus-aheadofprint',
+  CitationStatusType.pubmed_pubstatus_retracted: 'pubmed-pubstatus-retracted',
+  CitationStatusType.pubmed_pubstatus_ecollection:
+      'pubmed-pubstatus-ecollection',
+  CitationStatusType.pubmed_pubstatus_pmc: 'pubmed-pubstatus-pmc',
+  CitationStatusType.pubmed_pubstatus_pmcr: 'pubmed-pubstatus-pmcr',
+  CitationStatusType.pubmed_pubstatus_pubmed: 'pubmed-pubstatus-pubmed',
+  CitationStatusType.pubmed_pubstatus_pubmedr: 'pubmed-pubstatus-pubmedr',
+  CitationStatusType.pubmed_pubstatus_premedline: 'pubmed-pubstatus-premedline',
+  CitationStatusType.pubmed_pubstatus_medline: 'pubmed-pubstatus-medline',
+  CitationStatusType.pubmed_pubstatus_medliner: 'pubmed-pubstatus-medliner',
+  CitationStatusType.pubmed_pubstatus_entrez: 'pubmed-pubstatus-entrez',
+  CitationStatusType.pubmed_pubstatus_pmc_release:
+      'pubmed-pubstatus-pmc-release',
+  CitationStatusType.medline_completed: 'medline-completed',
+  CitationStatusType.medline_in_process: 'medline-in-process',
+  CitationStatusType.medline_pubmed_not_medline: 'medline-pubmed-not-medline',
+  CitationStatusType.medline_in_data_review: 'medline-in-data-review',
+  CitationStatusType.medline_publisher: 'medline-publisher',
+  CitationStatusType.medline_medline: 'medline-medline',
+  CitationStatusType.medline_oldmedline: 'medline-oldmedline',
+  CitationStatusType.pubmed_publication_status_ppublish:
+      'pubmed-publication-status-ppublish',
+  CitationStatusType.pubmed_publication_status_epublish:
+      'pubmed-publication-status-epublish',
+  CitationStatusType.pubmed_publication_status_aheadofprint:
+      'pubmed-publication-status-aheadofprint',
+};
+
+const _$R4ResourceTypeEnumMap = {
+  R4ResourceType.Account: 'Account',
+  R4ResourceType.ActivityDefinition: 'ActivityDefinition',
+  R4ResourceType.AdministrableProductDefinition:
+      'AdministrableProductDefinition',
+  R4ResourceType.AdverseEvent: 'AdverseEvent',
+  R4ResourceType.AllergyIntolerance: 'AllergyIntolerance',
+  R4ResourceType.Appointment: 'Appointment',
+  R4ResourceType.AppointmentResponse: 'AppointmentResponse',
+  R4ResourceType.AuditEvent: 'AuditEvent',
+  R4ResourceType.Basic: 'Basic',
+  R4ResourceType.Binary: 'Binary',
+  R4ResourceType.BiologicallyDerivedProduct: 'BiologicallyDerivedProduct',
+  R4ResourceType.BodyStructure: 'BodyStructure',
+  R4ResourceType.Bundle: 'Bundle',
+  R4ResourceType.CapabilityStatement: 'CapabilityStatement',
+  R4ResourceType.CarePlan: 'CarePlan',
+  R4ResourceType.CareTeam: 'CareTeam',
+  R4ResourceType.CatalogEntry: 'CatalogEntry',
+  R4ResourceType.ChargeItem: 'ChargeItem',
+  R4ResourceType.ChargeItemDefinition: 'ChargeItemDefinition',
+  R4ResourceType.Citation: 'Citation',
+  R4ResourceType.Claim: 'Claim',
+  R4ResourceType.ClaimResponse: 'ClaimResponse',
+  R4ResourceType.ClinicalImpression: 'ClinicalImpression',
+  R4ResourceType.ClinicalUseDefinition: 'ClinicalUseDefinition',
+  R4ResourceType.CodeSystem: 'CodeSystem',
+  R4ResourceType.Communication: 'Communication',
+  R4ResourceType.CommunicationRequest: 'CommunicationRequest',
+  R4ResourceType.CompartmentDefinition: 'CompartmentDefinition',
+  R4ResourceType.Composition: 'Composition',
+  R4ResourceType.ConceptMap: 'ConceptMap',
+  R4ResourceType.Condition: 'Condition',
+  R4ResourceType.Consent: 'Consent',
+  R4ResourceType.Contract: 'Contract',
+  R4ResourceType.Coverage: 'Coverage',
+  R4ResourceType.CoverageEligibilityRequest: 'CoverageEligibilityRequest',
+  R4ResourceType.CoverageEligibilityResponse: 'CoverageEligibilityResponse',
+  R4ResourceType.DetectedIssue: 'DetectedIssue',
+  R4ResourceType.Device: 'Device',
+  R4ResourceType.DeviceDefinition: 'DeviceDefinition',
+  R4ResourceType.DeviceMetric: 'DeviceMetric',
+  R4ResourceType.DeviceRequest: 'DeviceRequest',
+  R4ResourceType.DeviceUseStatement: 'DeviceUseStatement',
+  R4ResourceType.DiagnosticReport: 'DiagnosticReport',
+  R4ResourceType.DocumentManifest: 'DocumentManifest',
+  R4ResourceType.DocumentReference: 'DocumentReference',
+  R4ResourceType.Encounter: 'Encounter',
+  R4ResourceType.EnrollmentRequest: 'EnrollmentRequest',
+  R4ResourceType.EnrollmentResponse: 'EnrollmentResponse',
+  R4ResourceType.EpisodeOfCare: 'EpisodeOfCare',
+  R4ResourceType.EventDefinition: 'EventDefinition',
+  R4ResourceType.Evidence: 'Evidence',
+  R4ResourceType.EvidenceReport: 'EvidenceReport',
+  R4ResourceType.EvidenceVariable: 'EvidenceVariable',
+  R4ResourceType.ExampleScenario: 'ExampleScenario',
+  R4ResourceType.ExplanationOfBenefit: 'ExplanationOfBenefit',
+  R4ResourceType.FamilyMemberHistory: 'FamilyMemberHistory',
+  R4ResourceType.FhirEndpoint: 'Endpoint',
+  R4ResourceType.FhirGroup: 'Group',
+  R4ResourceType.FhirList: 'List',
+  R4ResourceType.Flag: 'Flag',
+  R4ResourceType.Goal: 'Goal',
+  R4ResourceType.GraphDefinition: 'GraphDefinition',
+  R4ResourceType.GuidanceResponse: 'GuidanceResponse',
+  R4ResourceType.HealthcareService: 'HealthcareService',
+  R4ResourceType.ImagingStudy: 'ImagingStudy',
+  R4ResourceType.Immunization: 'Immunization',
+  R4ResourceType.ImmunizationEvaluation: 'ImmunizationEvaluation',
+  R4ResourceType.ImmunizationRecommendation: 'ImmunizationRecommendation',
+  R4ResourceType.ImplementationGuide: 'ImplementationGuide',
+  R4ResourceType.Ingredient: 'Ingredient',
+  R4ResourceType.InsurancePlan: 'InsurancePlan',
+  R4ResourceType.Invoice: 'Invoice',
+  R4ResourceType.Library: 'Library',
+  R4ResourceType.Linkage: 'Linkage',
+  R4ResourceType.Location: 'Location',
+  R4ResourceType.ManufacturedItemDefinition: 'ManufacturedItemDefinition',
+  R4ResourceType.Measure: 'Measure',
+  R4ResourceType.MeasureReport: 'MeasureReport',
+  R4ResourceType.Media: 'Media',
+  R4ResourceType.Medication: 'Medication',
+  R4ResourceType.MedicationAdministration: 'MedicationAdministration',
+  R4ResourceType.MedicationDispense: 'MedicationDispense',
+  R4ResourceType.MedicationKnowledge: 'MedicationKnowledge',
+  R4ResourceType.MedicationRequest: 'MedicationRequest',
+  R4ResourceType.MedicationStatement: 'MedicationStatement',
+  R4ResourceType.MedicinalProductDefinition: 'MedicinalProductDefinition',
+  R4ResourceType.MessageDefinition: 'MessageDefinition',
+  R4ResourceType.MessageHeader: 'MessageHeader',
+  R4ResourceType.MolecularSequence: 'MolecularSequence',
+  R4ResourceType.NamingSystem: 'NamingSystem',
+  R4ResourceType.NutritionOrder: 'NutritionOrder',
+  R4ResourceType.NutritionProduct: 'NutritionProduct',
+  R4ResourceType.Observation: 'Observation',
+  R4ResourceType.ObservationDefinition: 'ObservationDefinition',
+  R4ResourceType.OperationDefinition: 'OperationDefinition',
+  R4ResourceType.OperationOutcome: 'OperationOutcome',
+  R4ResourceType.Organization: 'Organization',
+  R4ResourceType.OrganizationAffiliation: 'OrganizationAffiliation',
+  R4ResourceType.PackagedProductDefinition: 'PackagedProductDefinition',
+  R4ResourceType.Parameters: 'Parameters',
+  R4ResourceType.Patient: 'Patient',
+  R4ResourceType.PaymentNotice: 'PaymentNotice',
+  R4ResourceType.PaymentReconciliation: 'PaymentReconciliation',
+  R4ResourceType.Person: 'Person',
+  R4ResourceType.PlanDefinition: 'PlanDefinition',
+  R4ResourceType.Practitioner: 'Practitioner',
+  R4ResourceType.PractitionerRole: 'PractitionerRole',
+  R4ResourceType.Procedure: 'Procedure',
+  R4ResourceType.Provenance: 'Provenance',
+  R4ResourceType.Questionnaire: 'Questionnaire',
+  R4ResourceType.QuestionnaireResponse: 'QuestionnaireResponse',
+  R4ResourceType.RegulatedAuthorization: 'RegulatedAuthorization',
+  R4ResourceType.RelatedPerson: 'RelatedPerson',
+  R4ResourceType.RequestGroup: 'RequestGroup',
+  R4ResourceType.ResearchDefinition: 'ResearchDefinition',
+  R4ResourceType.ResearchElementDefinition: 'ResearchElementDefinition',
+  R4ResourceType.ResearchStudy: 'ResearchStudy',
+  R4ResourceType.ResearchSubject: 'ResearchSubject',
+  R4ResourceType.RiskAssessment: 'RiskAssessment',
+  R4ResourceType.Schedule: 'Schedule',
+  R4ResourceType.SearchParameter: 'SearchParameter',
+  R4ResourceType.ServiceRequest: 'ServiceRequest',
+  R4ResourceType.Slot: 'Slot',
+  R4ResourceType.Specimen: 'Specimen',
+  R4ResourceType.SpecimenDefinition: 'SpecimenDefinition',
+  R4ResourceType.StructureDefinition: 'StructureDefinition',
+  R4ResourceType.StructureMap: 'StructureMap',
+  R4ResourceType.Subscription: 'Subscription',
+  R4ResourceType.SubscriptionStatus: 'SubscriptionStatus',
+  R4ResourceType.SubscriptionTopic: 'SubscriptionTopic',
+  R4ResourceType.Substance: 'Substance',
+  R4ResourceType.SubstanceDefinition: 'SubstanceDefinition',
+  R4ResourceType.SupplyDelivery: 'SupplyDelivery',
+  R4ResourceType.SupplyRequest: 'SupplyRequest',
+  R4ResourceType.Task: 'Task',
+  R4ResourceType.TerminologyCapabilities: 'TerminologyCapabilities',
+  R4ResourceType.TestReport: 'TestReport',
+  R4ResourceType.TestScript: 'TestScript',
+  R4ResourceType.ValueSet: 'ValueSet',
+  R4ResourceType.VerificationResult: 'VerificationResult',
+  R4ResourceType.VisionPrescription: 'VisionPrescription',
+};
+
 CitationSummary _$CitationSummaryFromJson(Map<String, dynamic> json) =>
     CitationSummary(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
@@ -266,44 +507,28 @@ CitationSummary _$CitationSummaryFromJson(Map<String, dynamic> json) =>
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      style: json['style'] == null
-          ? null
-          : CodeableConcept.fromJson(json['style'] as Map<String, dynamic>),
+      style: $enumDecodeNullable(_$CitationSummaryStyleEnumMap, json['style']),
       text: FhirMarkdown.fromJson(json['text']),
       textElement: json['_text'] == null
           ? null
           : Element.fromJson(json['_text'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$CitationSummaryToJson(CitationSummary instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -311,6 +536,13 @@ Map<String, dynamic> _$CitationSummaryToJson(CitationSummary instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -322,6 +554,23 @@ Map<String, dynamic> _$CitationSummaryToJson(CitationSummary instance) {
   return val;
 }
 
+const _$CitationSummaryStyleEnumMap = {
+  CitationSummaryStyle.vancouver: 'vancouver',
+  CitationSummaryStyle.ama11: 'ama11',
+  CitationSummaryStyle.apa7: 'apa7',
+  CitationSummaryStyle.apa6: 'apa6',
+  CitationSummaryStyle.asa6: 'asa6',
+  CitationSummaryStyle.mla8: 'mla8',
+  CitationSummaryStyle.cochrane: 'cochrane',
+  CitationSummaryStyle.elsevier_harvard: 'elsevier-harvard',
+  CitationSummaryStyle.nature: 'nature',
+  CitationSummaryStyle.acs: 'acs',
+  CitationSummaryStyle.chicago_a_17: 'chicago-a-17',
+  CitationSummaryStyle.chicago_b_17: 'chicago-b-17',
+  CitationSummaryStyle.ieee: 'ieee',
+  CitationSummaryStyle.comppub: 'comppub',
+};
+
 CitationClassification _$CitationClassificationFromJson(
         Map<String, dynamic> json) =>
     CitationClassification(
@@ -332,44 +581,29 @@ CitationClassification _$CitationClassificationFromJson(
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: json['type'] == null
-          ? null
-          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      type: $enumDecodeNullable(
+          _$CitationClassificationTypeEnumMap, json['type']),
       classifier: (json['classifier'] as List<dynamic>?)
-          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => $enumDecode(_$CitationArtifactClassifierEnumMap, e))
           .toList(),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$CitationClassificationToJson(
     CitationClassification instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -377,6 +611,13 @@ Map<String, dynamic> _$CitationClassificationToJson(
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -388,6 +629,39 @@ Map<String, dynamic> _$CitationClassificationToJson(
   return val;
 }
 
+const _$CitationClassificationTypeEnumMap = {
+  CitationClassificationType.citation_source: 'citation-source',
+  CitationClassificationType.medline_owner: 'medline-owner',
+  CitationClassificationType.fevir_platform_use: 'fevir-platform-use',
+};
+
+const _$CitationArtifactClassifierEnumMap = {
+  CitationArtifactClassifier.webpage: 'webpage',
+  CitationArtifactClassifier.D016428: 'D016428',
+  CitationArtifactClassifier.D016422: 'D016422',
+  CitationArtifactClassifier.D016420: 'D016420',
+  CitationArtifactClassifier.D016425: 'D016425',
+  CitationArtifactClassifier.executable_app: 'executable-app',
+  CitationArtifactClassifier.D000076942: 'D000076942',
+  CitationArtifactClassifier.D019991: 'D019991',
+  CitationArtifactClassifier.D001877: 'D001877',
+  CitationArtifactClassifier.D064886: 'D064886',
+  CitationArtifactClassifier.value68059040: '68059040',
+  CitationArtifactClassifier.audio: 'audio',
+  CitationArtifactClassifier.image: 'image',
+  CitationArtifactClassifier.machine_code: 'machine-code',
+  CitationArtifactClassifier.protocol: 'protocol',
+  CitationArtifactClassifier.fhir_resource: 'fhir-resource',
+  CitationArtifactClassifier.Print: 'Print',
+  CitationArtifactClassifier.Print_Electronic: 'Print-Electronic',
+  CitationArtifactClassifier.Electronic: 'Electronic',
+  CitationArtifactClassifier.Electronic_Print: 'Electronic-Print',
+  CitationArtifactClassifier.Electronic_eCollection: 'Electronic-eCollection',
+  CitationArtifactClassifier.medline_base: 'medline-base',
+  CitationArtifactClassifier.common_share: 'common-share',
+  CitationArtifactClassifier.project_specific: 'project-specific',
+};
+
 CitationStatusDate _$CitationStatusDateFromJson(Map<String, dynamic> json) =>
     CitationStatusDate(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
@@ -397,45 +671,30 @@ CitationStatusDate _$CitationStatusDateFromJson(Map<String, dynamic> json) =>
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      activity:
-          CodeableConcept.fromJson(json['activity'] as Map<String, dynamic>),
+      activity: $enumDecode(_$CitationStatusTypeEnumMap, json['activity']),
       actual:
           json['actual'] == null ? null : FhirBoolean.fromJson(json['actual']),
       actualElement: json['_actual'] == null
           ? null
           : Element.fromJson(json['_actual'] as Map<String, dynamic>),
       period: Period.fromJson(json['period'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$CitationStatusDateToJson(CitationStatusDate instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -443,6 +702,13 @@ Map<String, dynamic> _$CitationStatusDateToJson(CitationStatusDate instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -464,10 +730,10 @@ CitationRelatesTo _$CitationRelatesToFromJson(Map<String, dynamic> json) =>
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      relationshipType: CodeableConcept.fromJson(
-          json['relationshipType'] as Map<String, dynamic>),
+      relationshipType: $enumDecode(
+          _$ArtifactRelationshipTypeEnumMap, json['relationshipType']),
       targetClassifier: (json['targetClassifier'] as List<dynamic>?)
-          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => $enumDecode(_$CitationArtifactClassifierEnumMap, e))
           .toList(),
       targetUri: FhirUri.fromJson(json['targetUri']),
       targetUriElement: json['_targetUri'] == null
@@ -479,37 +745,23 @@ CitationRelatesTo _$CitationRelatesToFromJson(Map<String, dynamic> json) =>
           Reference.fromJson(json['targetReference'] as Map<String, dynamic>),
       targetAttachment:
           Attachment.fromJson(json['targetAttachment'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$CitationRelatesToToJson(CitationRelatesTo instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -517,6 +769,13 @@ Map<String, dynamic> _$CitationRelatesToToJson(CitationRelatesTo instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -532,6 +791,33 @@ Map<String, dynamic> _$CitationRelatesToToJson(CitationRelatesTo instance) {
   val['targetAttachment'] = instance.targetAttachment.toJson();
   return val;
 }
+
+const _$ArtifactRelationshipTypeEnumMap = {
+  ArtifactRelationshipType.replaces: 'replaces',
+  ArtifactRelationshipType.amends: 'amends',
+  ArtifactRelationshipType.appends: 'appends',
+  ArtifactRelationshipType.transforms: 'transforms',
+  ArtifactRelationshipType.replaced_with: 'replaced-with',
+  ArtifactRelationshipType.amended_with: 'amended-with',
+  ArtifactRelationshipType.appended_with: 'appended-with',
+  ArtifactRelationshipType.transformed_with: 'transformed-with',
+  ArtifactRelationshipType.derived_from: 'derived-from',
+  ArtifactRelationshipType.transformed_into: 'transformed-into',
+  ArtifactRelationshipType.composed_of: 'composed-of',
+  ArtifactRelationshipType.part_of: 'part-of',
+  ArtifactRelationshipType.supports: 'supports',
+  ArtifactRelationshipType.supported_with: 'supported-with',
+  ArtifactRelationshipType.depends_on: 'depends-on',
+  ArtifactRelationshipType.similar_to: 'similar-to',
+  ArtifactRelationshipType.cites: 'cites',
+  ArtifactRelationshipType.cited_by: 'cited-by',
+  ArtifactRelationshipType.retracts: 'retracts',
+  ArtifactRelationshipType.retracted_by: 'retracted-by',
+  ArtifactRelationshipType.comments_on: 'comments-on',
+  ArtifactRelationshipType.comment_in: 'comment-in',
+  ArtifactRelationshipType.corrects: 'corrects',
+  ArtifactRelationshipType.correction_in: 'correction-in',
+};
 
 CitationCitedArtifact _$CitationCitedArtifactFromJson(
         Map<String, dynamic> json) =>
@@ -559,7 +845,7 @@ CitationCitedArtifact _$CitationCitedArtifactFromJson(
           ? null
           : CitationVersion.fromJson(json['version'] as Map<String, dynamic>),
       currentState: (json['currentState'] as List<dynamic>?)
-          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => $enumDecode(_$CitedArtifactStatusTypeEnumMap, e))
           .toList(),
       statusDate: (json['statusDate'] as List<dynamic>?)
           ?.map((e) => CitationStatusDate.fromJson(e as Map<String, dynamic>))
@@ -594,38 +880,24 @@ CitationCitedArtifact _$CitationCitedArtifactFromJson(
       note: (json['note'] as List<dynamic>?)
           ?.map((e) => Annotation.fromJson(e as Map<String, dynamic>))
           .toList(),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$CitationCitedArtifactToJson(
     CitationCitedArtifact instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -633,6 +905,13 @@ Map<String, dynamic> _$CitationCitedArtifactToJson(
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -665,6 +944,25 @@ Map<String, dynamic> _$CitationCitedArtifactToJson(
   return val;
 }
 
+const _$CitedArtifactStatusTypeEnumMap = {
+  CitedArtifactStatusType.created: 'created',
+  CitedArtifactStatusType.submitted: 'submitted',
+  CitedArtifactStatusType.withdrawn: 'withdrawn',
+  CitedArtifactStatusType.pre_review: 'pre-review',
+  CitedArtifactStatusType.under_review: 'under-review',
+  CitedArtifactStatusType.post_review_pre_published:
+      'post-review-pre-published',
+  CitedArtifactStatusType.rejected: 'rejected',
+  CitedArtifactStatusType.published_early_form: 'published-early-form',
+  CitedArtifactStatusType.published_final_form: 'published-final-form',
+  CitedArtifactStatusType.accepted: 'accepted',
+  CitedArtifactStatusType.archived: 'archived',
+  CitedArtifactStatusType.retracted: 'retracted',
+  CitedArtifactStatusType.draft: 'draft',
+  CitedArtifactStatusType.active: 'active',
+  CitedArtifactStatusType.approved: 'approved',
+};
+
 CitationVersion _$CitationVersionFromJson(Map<String, dynamic> json) =>
     CitationVersion(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
@@ -681,37 +979,23 @@ CitationVersion _$CitationVersionFromJson(Map<String, dynamic> json) =>
       baseCitation: json['baseCitation'] == null
           ? null
           : Reference.fromJson(json['baseCitation'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$CitationVersionToJson(CitationVersion instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -719,6 +1003,13 @@ Map<String, dynamic> _$CitationVersionToJson(CitationVersion instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -739,45 +1030,30 @@ CitationStatusDate1 _$CitationStatusDate1FromJson(Map<String, dynamic> json) =>
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      activity:
-          CodeableConcept.fromJson(json['activity'] as Map<String, dynamic>),
+      activity: $enumDecode(_$CitedArtifactStatusTypeEnumMap, json['activity']),
       actual:
           json['actual'] == null ? null : FhirBoolean.fromJson(json['actual']),
       actualElement: json['_actual'] == null
           ? null
           : Element.fromJson(json['_actual'] as Map<String, dynamic>),
       period: Period.fromJson(json['period'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$CitationStatusDate1ToJson(CitationStatusDate1 instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -785,6 +1061,13 @@ Map<String, dynamic> _$CitationStatusDate1ToJson(CitationStatusDate1 instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -807,46 +1090,30 @@ CitationTitle _$CitationTitleFromJson(Map<String, dynamic> json) =>
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       type: (json['type'] as List<dynamic>?)
-          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => $enumDecode(_$TitleTypeEnumMap, e))
           .toList(),
-      language: json['language'] == null
-          ? null
-          : CodeableConcept.fromJson(json['language'] as Map<String, dynamic>),
+      language: $enumDecodeNullable(_$CommonLanguagesEnumMap, json['language']),
       text: FhirMarkdown.fromJson(json['text']),
       textElement: json['_text'] == null
           ? null
           : Element.fromJson(json['_text'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$CitationTitleToJson(CitationTitle instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -854,6 +1121,13 @@ Map<String, dynamic> _$CitationTitleToJson(CitationTitle instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -866,6 +1140,22 @@ Map<String, dynamic> _$CitationTitleToJson(CitationTitle instance) {
   return val;
 }
 
+const _$TitleTypeEnumMap = {
+  TitleType.primary: 'primary',
+  TitleType.official: 'official',
+  TitleType.scientific: 'scientific',
+  TitleType.plain_language: 'plain-language',
+  TitleType.subtitle: 'subtitle',
+  TitleType.short_title: 'short-title',
+  TitleType.acronym: 'acronym',
+  TitleType.earlier_title: 'earlier-title',
+  TitleType.language: 'language',
+  TitleType.autotranslated: 'autotranslated',
+  TitleType.human_use: 'human-use',
+  TitleType.machine_use: 'machine-use',
+  TitleType.duplicate_uid: 'duplicate-uid',
+};
+
 CitationAbstract _$CitationAbstractFromJson(Map<String, dynamic> json) =>
     CitationAbstract(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
@@ -875,12 +1165,9 @@ CitationAbstract _$CitationAbstractFromJson(Map<String, dynamic> json) =>
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: json['type'] == null
-          ? null
-          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
-      language: json['language'] == null
-          ? null
-          : CodeableConcept.fromJson(json['language'] as Map<String, dynamic>),
+      type:
+          $enumDecodeNullable(_$CitedArtifactAbstractTypeEnumMap, json['type']),
+      language: $enumDecodeNullable(_$CommonLanguagesEnumMap, json['language']),
       text: FhirMarkdown.fromJson(json['text']),
       textElement: json['_text'] == null
           ? null
@@ -891,37 +1178,23 @@ CitationAbstract _$CitationAbstractFromJson(Map<String, dynamic> json) =>
       copyrightElement: json['_copyright'] == null
           ? null
           : Element.fromJson(json['_copyright'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$CitationAbstractToJson(CitationAbstract instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -929,6 +1202,13 @@ Map<String, dynamic> _$CitationAbstractToJson(CitationAbstract instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -943,6 +1223,20 @@ Map<String, dynamic> _$CitationAbstractToJson(CitationAbstract instance) {
   return val;
 }
 
+const _$CitedArtifactAbstractTypeEnumMap = {
+  CitedArtifactAbstractType.primary_human_use: 'primary-human-use',
+  CitedArtifactAbstractType.primary_machine_use: 'primary-machine-use',
+  CitedArtifactAbstractType.truncated: 'truncated',
+  CitedArtifactAbstractType.short_abstract: 'short-abstract',
+  CitedArtifactAbstractType.long_abstract: 'long-abstract',
+  CitedArtifactAbstractType.plain_language: 'plain-language',
+  CitedArtifactAbstractType.different_publisher: 'different-publisher',
+  CitedArtifactAbstractType.language: 'language',
+  CitedArtifactAbstractType.autotranslated: 'autotranslated',
+  CitedArtifactAbstractType.duplicate_pmid: 'duplicate-pmid',
+  CitedArtifactAbstractType.earlier_abstract: 'earlier-abstract',
+};
+
 CitationPart _$CitationPartFromJson(Map<String, dynamic> json) => CitationPart(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
       extension_: (json['extension_'] as List<dynamic>?)
@@ -951,9 +1245,7 @@ CitationPart _$CitationPartFromJson(Map<String, dynamic> json) => CitationPart(
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: json['type'] == null
-          ? null
-          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      type: $enumDecodeNullable(_$CitedArtifactPartTypeEnumMap, json['type']),
       value: json['value'] == null ? null : FhirString.fromJson(json['value']),
       valueElement: json['_value'] == null
           ? null
@@ -961,37 +1253,23 @@ CitationPart _$CitationPartFromJson(Map<String, dynamic> json) => CitationPart(
       baseCitation: json['baseCitation'] == null
           ? null
           : Reference.fromJson(json['baseCitation'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$CitationPartToJson(CitationPart instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -999,6 +1277,13 @@ Map<String, dynamic> _$CitationPartToJson(CitationPart instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -1011,6 +1296,18 @@ Map<String, dynamic> _$CitationPartToJson(CitationPart instance) {
   return val;
 }
 
+const _$CitedArtifactPartTypeEnumMap = {
+  CitedArtifactPartType.pages: 'pages',
+  CitedArtifactPartType.sections: 'sections',
+  CitedArtifactPartType.paragraphs: 'paragraphs',
+  CitedArtifactPartType.lines: 'lines',
+  CitedArtifactPartType.tables: 'tables',
+  CitedArtifactPartType.figures: 'figures',
+  CitedArtifactPartType.supplement: 'supplement',
+  CitedArtifactPartType.supplement_subpart: 'supplement-subpart',
+  CitedArtifactPartType.article_set: 'article-set',
+};
+
 CitationRelatesTo1 _$CitationRelatesTo1FromJson(Map<String, dynamic> json) =>
     CitationRelatesTo1(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
@@ -1020,10 +1317,10 @@ CitationRelatesTo1 _$CitationRelatesTo1FromJson(Map<String, dynamic> json) =>
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      relationshipType: CodeableConcept.fromJson(
-          json['relationshipType'] as Map<String, dynamic>),
+      relationshipType: $enumDecode(
+          _$ArtifactRelationshipTypeEnumMap, json['relationshipType']),
       targetClassifier: (json['targetClassifier'] as List<dynamic>?)
-          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => $enumDecode(_$CitationArtifactClassifierEnumMap, e))
           .toList(),
       targetUri: FhirUri.fromJson(json['targetUri']),
       targetUriElement: json['_targetUri'] == null
@@ -1035,37 +1332,23 @@ CitationRelatesTo1 _$CitationRelatesTo1FromJson(Map<String, dynamic> json) =>
           Reference.fromJson(json['targetReference'] as Map<String, dynamic>),
       targetAttachment:
           Attachment.fromJson(json['targetAttachment'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$CitationRelatesTo1ToJson(CitationRelatesTo1 instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -1073,6 +1356,13 @@ Map<String, dynamic> _$CitationRelatesTo1ToJson(CitationRelatesTo1 instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -1120,7 +1410,7 @@ CitationPublicationForm _$CitationPublicationFormFromJson(
           ? null
           : Element.fromJson(json['_lastRevisionDate'] as Map<String, dynamic>),
       language: (json['language'] as List<dynamic>?)
-          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => $enumDecode(_$CommonLanguagesEnumMap, e))
           .toList(),
       accessionNumber: json['accessionNumber'] == null
           ? null
@@ -1158,38 +1448,24 @@ CitationPublicationForm _$CitationPublicationFormFromJson(
       copyrightElement: json['_copyright'] == null
           ? null
           : Element.fromJson(json['_copyright'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$CitationPublicationFormToJson(
     CitationPublicationForm instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -1197,6 +1473,13 @@ Map<String, dynamic> _$CitationPublicationFormToJson(
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -1233,9 +1516,7 @@ CitationPublishedIn _$CitationPublishedInFromJson(Map<String, dynamic> json) =>
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: json['type'] == null
-          ? null
-          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      type: $enumDecodeNullable(_$PublishedInTypeEnumMap, json['type']),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map((e) => Identifier.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -1253,37 +1534,23 @@ CitationPublishedIn _$CitationPublishedInFromJson(Map<String, dynamic> json) =>
           ? null
           : Element.fromJson(
               json['_publisherLocation'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$CitationPublishedInToJson(CitationPublishedIn instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -1291,6 +1558,13 @@ Map<String, dynamic> _$CitationPublishedInToJson(CitationPublishedIn instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -1308,6 +1582,13 @@ Map<String, dynamic> _$CitationPublishedInToJson(CitationPublishedIn instance) {
   return val;
 }
 
+const _$PublishedInTypeEnumMap = {
+  PublishedInType.D020492: 'D020492',
+  PublishedInType.D019991: 'D019991',
+  PublishedInType.D001877: 'D001877',
+  PublishedInType.D064886: 'D064886',
+};
+
 CitationPeriodicRelease _$CitationPeriodicReleaseFromJson(
         Map<String, dynamic> json) =>
     CitationPeriodicRelease(
@@ -1318,10 +1599,8 @@ CitationPeriodicRelease _$CitationPeriodicReleaseFromJson(
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      citedMedium: json['citedMedium'] == null
-          ? null
-          : CodeableConcept.fromJson(
-              json['citedMedium'] as Map<String, dynamic>),
+      citedMedium:
+          $enumDecodeNullable(_$CitedMediumEnumMap, json['citedMedium']),
       volume:
           json['volume'] == null ? null : FhirString.fromJson(json['volume']),
       volumeElement: json['_volume'] == null
@@ -1335,38 +1614,24 @@ CitationPeriodicRelease _$CitationPeriodicReleaseFromJson(
           ? null
           : CitationDateOfPublication.fromJson(
               json['dateOfPublication'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$CitationPeriodicReleaseToJson(
     CitationPeriodicRelease instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -1374,6 +1639,13 @@ Map<String, dynamic> _$CitationPeriodicReleaseToJson(
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -1387,6 +1659,16 @@ Map<String, dynamic> _$CitationPeriodicReleaseToJson(
   writeNotNull('dateOfPublication', instance.dateOfPublication?.toJson());
   return val;
 }
+
+const _$CitedMediumEnumMap = {
+  CitedMedium.internet: 'internet',
+  CitedMedium.print: 'print',
+  CitedMedium.offline_digital_storage: 'offline-digital-storage',
+  CitedMedium.internet_without_issue: 'internet-without-issue',
+  CitedMedium.print_without_issue: 'print-without-issue',
+  CitedMedium.offline_digital_storage_without_issue:
+      'offline-digital-storage-without-issue',
+};
 
 CitationDateOfPublication _$CitationDateOfPublicationFromJson(
         Map<String, dynamic> json) =>
@@ -1425,38 +1707,24 @@ CitationDateOfPublication _$CitationDateOfPublicationFromJson(
       textElement: json['_text'] == null
           ? null
           : Element.fromJson(json['_text'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$CitationDateOfPublicationToJson(
     CitationDateOfPublication instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -1464,6 +1732,13 @@ Map<String, dynamic> _$CitationDateOfPublicationToJson(
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -1493,44 +1768,28 @@ CitationWebLocation _$CitationWebLocationFromJson(Map<String, dynamic> json) =>
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: json['type'] == null
-          ? null
-          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      type: $enumDecodeNullable(_$ArticleUrlTypeEnumMap, json['type']),
       url: json['url'] == null ? null : FhirUri.fromJson(json['url']),
       urlElement: json['_url'] == null
           ? null
           : Element.fromJson(json['_url'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$CitationWebLocationToJson(CitationWebLocation instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -1538,6 +1797,13 @@ Map<String, dynamic> _$CitationWebLocationToJson(CitationWebLocation instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -1549,6 +1815,25 @@ Map<String, dynamic> _$CitationWebLocationToJson(CitationWebLocation instance) {
   return val;
 }
 
+const _$ArticleUrlTypeEnumMap = {
+  ArticleUrlType.abstract_: 'abstract',
+  ArticleUrlType.abstract_version: 'abstract-version',
+  ArticleUrlType.doi_based: 'doi-based',
+  ArticleUrlType.full_text: 'full-text',
+  ArticleUrlType.full_text_version: 'full-text-version',
+  ArticleUrlType.pdf: 'pdf',
+  ArticleUrlType.pdf_version: 'pdf-version',
+  ArticleUrlType.webpage: 'webpage',
+  ArticleUrlType.not_specified: 'not-specified',
+  ArticleUrlType.json: 'json',
+  ArticleUrlType.json_version: 'json-version',
+  ArticleUrlType.xml: 'xml',
+  ArticleUrlType.xml_version: 'xml-version',
+  ArticleUrlType.supplement: 'supplement',
+  ArticleUrlType.supplementary_file_directory: 'supplementary-file-directory',
+  ArticleUrlType.compressed_file: 'compressed-file',
+};
+
 CitationClassification1 _$CitationClassification1FromJson(
         Map<String, dynamic> json) =>
     CitationClassification1(
@@ -1559,48 +1844,33 @@ CitationClassification1 _$CitationClassification1FromJson(
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: json['type'] == null
-          ? null
-          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      type: $enumDecodeNullable(
+          _$CitedArtifactClassificationTypeEnumMap, json['type']),
       classifier: (json['classifier'] as List<dynamic>?)
-          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => $enumDecode(_$CitationArtifactClassifierEnumMap, e))
           .toList(),
       whoClassified: json['whoClassified'] == null
           ? null
           : CitationWhoClassified.fromJson(
               json['whoClassified'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$CitationClassification1ToJson(
     CitationClassification1 instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -1608,6 +1878,13 @@ Map<String, dynamic> _$CitationClassification1ToJson(
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -1619,6 +1896,24 @@ Map<String, dynamic> _$CitationClassification1ToJson(
   writeNotNull('whoClassified', instance.whoClassified?.toJson());
   return val;
 }
+
+const _$CitedArtifactClassificationTypeEnumMap = {
+  CitedArtifactClassificationType.publication_type: 'publication-type',
+  CitedArtifactClassificationType.mesh_heading: 'mesh-heading',
+  CitedArtifactClassificationType.supplemental_mesh_protocol:
+      'supplemental-mesh-protocol',
+  CitedArtifactClassificationType.supplemental_mesh_disease:
+      'supplemental-mesh-disease',
+  CitedArtifactClassificationType.supplemental_mesh_organism:
+      'supplemental-mesh-organism',
+  CitedArtifactClassificationType.keyword: 'keyword',
+  CitedArtifactClassificationType.citation_subset: 'citation-subset',
+  CitedArtifactClassificationType.chemical: 'chemical',
+  CitedArtifactClassificationType.publishing_model: 'publishing-model',
+  CitedArtifactClassificationType.knowledge_artifact_type:
+      'knowledge-artifact-type',
+  CitedArtifactClassificationType.coverage: 'coverage',
+};
 
 CitationWhoClassified _$CitationWhoClassifiedFromJson(
         Map<String, dynamic> json) =>
@@ -1652,38 +1947,24 @@ CitationWhoClassified _$CitationWhoClassifiedFromJson(
       freeToShareElement: json['_freeToShare'] == null
           ? null
           : Element.fromJson(json['_freeToShare'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$CitationWhoClassifiedToJson(
     CitationWhoClassified instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -1691,6 +1972,13 @@ Map<String, dynamic> _$CitationWhoClassifiedToJson(
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -1729,38 +2017,24 @@ CitationContributorship _$CitationContributorshipFromJson(
       summary: (json['summary'] as List<dynamic>?)
           ?.map((e) => CitationSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$CitationContributorshipToJson(
     CitationContributorship instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -1768,6 +2042,13 @@ Map<String, dynamic> _$CitationContributorshipToJson(
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -1818,11 +2099,9 @@ CitationEntry _$CitationEntryFromJson(Map<String, dynamic> json) =>
           ?.map((e) => ContactPoint.fromJson(e as Map<String, dynamic>))
           .toList(),
       contributionType: (json['contributionType'] as List<dynamic>?)
-          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => $enumDecode(_$ArtifactContributionTypeEnumMap, e))
           .toList(),
-      role: json['role'] == null
-          ? null
-          : CodeableConcept.fromJson(json['role'] as Map<String, dynamic>),
+      role: $enumDecodeNullable(_$ContributorRoleEnumMap, json['role']),
       contributionInstance: (json['contributionInstance'] as List<dynamic>?)
           ?.map((e) =>
               CitationContributionInstance.fromJson(e as Map<String, dynamic>))
@@ -1840,37 +2119,23 @@ CitationEntry _$CitationEntryFromJson(Map<String, dynamic> json) =>
       listOrderElement: json['_listOrder'] == null
           ? null
           : Element.fromJson(json['_listOrder'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$CitationEntryToJson(CitationEntry instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -1878,6 +2143,13 @@ Map<String, dynamic> _$CitationEntryToJson(CitationEntry instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -1907,6 +2179,33 @@ Map<String, dynamic> _$CitationEntryToJson(CitationEntry instance) {
   return val;
 }
 
+const _$ArtifactContributionTypeEnumMap = {
+  ArtifactContributionType.conceptualization: 'conceptualization',
+  ArtifactContributionType.data_curation: 'data-curation',
+  ArtifactContributionType.formal_analysis: 'formal-analysis',
+  ArtifactContributionType.funding_acquisition: 'funding-acquisition',
+  ArtifactContributionType.investigation: 'investigation',
+  ArtifactContributionType.methodology: 'methodology',
+  ArtifactContributionType.project_administration: 'project-administration',
+  ArtifactContributionType.resources: 'resources',
+  ArtifactContributionType.software: 'software',
+  ArtifactContributionType.supervision: 'supervision',
+  ArtifactContributionType.validation: 'validation',
+  ArtifactContributionType.visualization: 'visualization',
+  ArtifactContributionType.writing_original_draft: 'writing-original-draft',
+  ArtifactContributionType.writing_review_editing: 'writing-review-editing',
+};
+
+const _$ContributorRoleEnumMap = {
+  ContributorRole.publisher: 'publisher',
+  ContributorRole.author: 'author',
+  ContributorRole.reviewer: 'reviewer',
+  ContributorRole.endorser: 'endorser',
+  ContributorRole.editor: 'editor',
+  ContributorRole.informant: 'informant',
+  ContributorRole.funder: 'funder',
+};
+
 CitationAffiliationInfo _$CitationAffiliationInfoFromJson(
         Map<String, dynamic> json) =>
     CitationAffiliationInfo(
@@ -1930,38 +2229,24 @@ CitationAffiliationInfo _$CitationAffiliationInfoFromJson(
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map((e) => Identifier.fromJson(e as Map<String, dynamic>))
           .toList(),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$CitationAffiliationInfoToJson(
     CitationAffiliationInfo instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -1969,6 +2254,13 @@ Map<String, dynamic> _$CitationAffiliationInfoToJson(
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -1993,45 +2285,32 @@ CitationContributionInstance _$CitationContributionInstanceFromJson(
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      type:
+          $enumDecode(_$ArtifactContributionInstanceTypeEnumMap, json['type']),
       time: json['time'] == null
           ? null
           : FhirDateTime.fromJson(json['time'] as String),
       timeElement: json['_time'] == null
           ? null
           : Element.fromJson(json['_time'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$CitationContributionInstanceToJson(
     CitationContributionInstance instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -2039,6 +2318,13 @@ Map<String, dynamic> _$CitationContributionInstanceToJson(
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -2050,6 +2336,12 @@ Map<String, dynamic> _$CitationContributionInstanceToJson(
   return val;
 }
 
+const _$ArtifactContributionInstanceTypeEnumMap = {
+  ArtifactContributionInstanceType.reviewed: 'reviewed',
+  ArtifactContributionInstanceType.approved: 'approved',
+  ArtifactContributionInstanceType.edited: 'edited',
+};
+
 CitationSummary1 _$CitationSummary1FromJson(Map<String, dynamic> json) =>
     CitationSummary1(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
@@ -2059,50 +2351,32 @@ CitationSummary1 _$CitationSummary1FromJson(Map<String, dynamic> json) =>
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: json['type'] == null
-          ? null
-          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
-      style: json['style'] == null
-          ? null
-          : CodeableConcept.fromJson(json['style'] as Map<String, dynamic>),
-      source: json['source'] == null
-          ? null
-          : CodeableConcept.fromJson(json['source'] as Map<String, dynamic>),
+      type: $enumDecodeNullable(_$ContributorSummaryTypeEnumMap, json['type']),
+      style:
+          $enumDecodeNullable(_$ContributorSummaryStyleEnumMap, json['style']),
+      source: $enumDecodeNullable(
+          _$ContributorSummarySourceEnumMap, json['source']),
       value: FhirMarkdown.fromJson(json['value']),
       valueElement: json['_value'] == null
           ? null
           : Element.fromJson(json['_value'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$CitationSummary1ToJson(CitationSummary1 instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -2110,6 +2384,13 @@ Map<String, dynamic> _$CitationSummary1ToJson(CitationSummary1 instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -2122,3 +2403,40 @@ Map<String, dynamic> _$CitationSummary1ToJson(CitationSummary1 instance) {
   writeNotNull('_value', instance.valueElement?.toJson());
   return val;
 }
+
+const _$ContributorSummaryTypeEnumMap = {
+  ContributorSummaryType.author_string: 'author-string',
+  ContributorSummaryType.contributorship_list: 'contributorship-list',
+  ContributorSummaryType.contributorship_statement: 'contributorship-statement',
+  ContributorSummaryType.acknowledgement_list: 'acknowledgement-list',
+  ContributorSummaryType.acknowledgment_statement: 'acknowledgment-statement',
+  ContributorSummaryType.funding_statement: 'funding-statement',
+  ContributorSummaryType.competing_interests_statement:
+      'competing-interests-statement',
+};
+
+const _$ContributorSummaryStyleEnumMap = {
+  ContributorSummaryStyle.a1full: 'a1full',
+  ContributorSummaryStyle.a1init: 'a1init',
+  ContributorSummaryStyle.a3full: 'a3full',
+  ContributorSummaryStyle.a3init: 'a3init',
+  ContributorSummaryStyle.a6full: 'a6full',
+  ContributorSummaryStyle.a6init: 'a6init',
+  ContributorSummaryStyle.aallfull: 'aallfull',
+  ContributorSummaryStyle.aallfullwithand: 'aallfullwithand',
+  ContributorSummaryStyle.aallfullwithampersand: 'aallfullwithampersand',
+  ContributorSummaryStyle.aallinit: 'aallinit',
+  ContributorSummaryStyle.aallinitwithand: 'aallinitwithand',
+  ContributorSummaryStyle.aallinitwithampersand: 'aallinitwithampersand',
+  ContributorSummaryStyle.contr_full_by_person: 'contr-full-by-person',
+  ContributorSummaryStyle.contr_init_by_person: 'contr-init-by-person',
+  ContributorSummaryStyle.contr_full_by_contr: 'contr-full-by-contr',
+  ContributorSummaryStyle.contr_init_by_contr: 'contr-init-by-contr',
+};
+
+const _$ContributorSummarySourceEnumMap = {
+  ContributorSummarySource.publisher_data: 'publisher-data',
+  ContributorSummarySource.article_copy: 'article-copy',
+  ContributorSummarySource.citation_manager: 'citation-manager',
+  ContributorSummarySource.custom: 'custom',
+};

@@ -17,8 +17,7 @@ Attachment _$AttachmentFromJson(Map<String, dynamic> json) => Attachment(
       contentTypeElement: json['_contentType'] == null
           ? null
           : Element.fromJson(json['_contentType'] as Map<String, dynamic>),
-      language:
-          json['language'] == null ? null : FhirCode.fromJson(json['language']),
+      language: $enumDecodeNullable(_$CommonLanguagesEnumMap, json['language']),
       languageElement: json['_language'] == null
           ? null
           : Element.fromJson(json['_language'] as Map<String, dynamic>),
@@ -51,37 +50,23 @@ Attachment _$AttachmentFromJson(Map<String, dynamic> json) => Attachment(
       creationElement: json['_creation'] == null
           ? null
           : Element.fromJson(json['_creation'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$AttachmentToJson(Attachment instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -89,6 +74,13 @@ Map<String, dynamic> _$AttachmentToJson(Attachment instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -110,3 +102,62 @@ Map<String, dynamic> _$AttachmentToJson(Attachment instance) {
   writeNotNull('_creation', instance.creationElement?.toJson());
   return val;
 }
+
+const _$CommonLanguagesEnumMap = {
+  CommonLanguages.ar: 'ar',
+  CommonLanguages.bn: 'bn',
+  CommonLanguages.cs: 'cs',
+  CommonLanguages.da: 'da',
+  CommonLanguages.de: 'de',
+  CommonLanguages.de_AT: 'de-AT',
+  CommonLanguages.de_CH: 'de-CH',
+  CommonLanguages.de_DE: 'de-DE',
+  CommonLanguages.el: 'el',
+  CommonLanguages.en: 'en',
+  CommonLanguages.en_AU: 'en-AU',
+  CommonLanguages.en_CA: 'en-CA',
+  CommonLanguages.en_GB: 'en-GB',
+  CommonLanguages.en_IN: 'en-IN',
+  CommonLanguages.en_NZ: 'en-NZ',
+  CommonLanguages.en_SG: 'en-SG',
+  CommonLanguages.en_US: 'en-US',
+  CommonLanguages.es: 'es',
+  CommonLanguages.es_AR: 'es-AR',
+  CommonLanguages.es_ES: 'es-ES',
+  CommonLanguages.es_UY: 'es-UY',
+  CommonLanguages.fi: 'fi',
+  CommonLanguages.fr: 'fr',
+  CommonLanguages.fr_BE: 'fr-BE',
+  CommonLanguages.fr_CH: 'fr-CH',
+  CommonLanguages.fr_FR: 'fr-FR',
+  CommonLanguages.fy: 'fy',
+  CommonLanguages.fy_NL: 'fy-NL',
+  CommonLanguages.hi: 'hi',
+  CommonLanguages.hr: 'hr',
+  CommonLanguages.it: 'it',
+  CommonLanguages.it_CH: 'it-CH',
+  CommonLanguages.it_IT: 'it-IT',
+  CommonLanguages.ja: 'ja',
+  CommonLanguages.ko: 'ko',
+  CommonLanguages.nl: 'nl',
+  CommonLanguages.nl_BE: 'nl-BE',
+  CommonLanguages.nl_NL: 'nl-NL',
+  CommonLanguages.no: 'no',
+  CommonLanguages.no_NO: 'no-NO',
+  CommonLanguages.pa: 'pa',
+  CommonLanguages.pl: 'pl',
+  CommonLanguages.pt: 'pt',
+  CommonLanguages.pt_BR: 'pt-BR',
+  CommonLanguages.ru: 'ru',
+  CommonLanguages.ru_RU: 'ru-RU',
+  CommonLanguages.sr: 'sr',
+  CommonLanguages.sr_RS: 'sr-RS',
+  CommonLanguages.sv: 'sv',
+  CommonLanguages.sv_SE: 'sv-SE',
+  CommonLanguages.te: 'te',
+  CommonLanguages.zh: 'zh',
+  CommonLanguages.zh_CN: 'zh-CN',
+  CommonLanguages.zh_HK: 'zh-HK',
+  CommonLanguages.zh_SG: 'zh-SG',
+  CommonLanguages.zh_TW: 'zh-TW',
+};

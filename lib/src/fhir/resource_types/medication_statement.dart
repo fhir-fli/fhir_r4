@@ -72,6 +72,7 @@ class MedicationStatement extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.MedicationStatement,
             fhirType: 'MedicationStatement');
@@ -100,7 +101,7 @@ class MedicationStatement extends DomainResource {
   /// of the medication used that this statement is about. Generally, this will
   /// be active or completed.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final MedicationStatementStatusCodes status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -110,7 +111,7 @@ class MedicationStatement extends DomainResource {
 
   /// [category] /// Indicates where the medication is expected to be consumed or administered.
   @JsonKey(name: 'category')
-  final CodeableConcept? category;
+  final MedicationUsageCategoryCodes? category;
 
   /// [medicationCodeableConcept] /// Identifies the medication being administered. This is either a link to a
   /// resource representing the details of the medication or a simple attribute
@@ -170,7 +171,7 @@ class MedicationStatement extends DomainResource {
 
   /// [reasonCode] /// A reason for why the medication is being/was taken.
   @JsonKey(name: 'reasonCode')
-  final List<CodeableConcept>? reasonCode;
+  final List<ConditionProblemDiagnosisCodes>? reasonCode;
 
   /// [reasonReference] /// Condition or observation that supports why the medication is being/was
   /// taken.
@@ -199,7 +200,7 @@ class MedicationStatement extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -208,10 +209,10 @@ class MedicationStatement extends DomainResource {
     List<Identifier>? identifier,
     List<Reference>? basedOn,
     List<Reference>? partOf,
-    FhirCode? status,
+    MedicationStatementStatusCodes? status,
     Element? statusElement,
     List<CodeableConcept>? statusReason,
-    CodeableConcept? category,
+    MedicationUsageCategoryCodes? category,
     CodeableConcept? medicationCodeableConcept,
     Reference? medicationReference,
     Reference? subject,
@@ -223,7 +224,7 @@ class MedicationStatement extends DomainResource {
     Element? dateAssertedElement,
     Reference? informationSource,
     List<Reference>? derivedFrom,
-    List<CodeableConcept>? reasonCode,
+    List<ConditionProblemDiagnosisCodes>? reasonCode,
     List<Reference>? reasonReference,
     List<Annotation>? note,
     List<Dosage>? dosage,

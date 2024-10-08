@@ -51,6 +51,7 @@ class Goal extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Goal, fhirType: 'Goal');
   @Id()
   @JsonKey(ignore: true)
@@ -64,23 +65,23 @@ class Goal extends DomainResource {
 
   /// [lifecycleStatus] /// The state of the goal throughout its lifecycle.
   @JsonKey(name: 'lifecycleStatus')
-  final FhirCode lifecycleStatus;
+  final GoalLifecycleStatus lifecycleStatus;
   @JsonKey(name: '_lifecycleStatus')
   final Element? lifecycleStatusElement;
 
   /// [achievementStatus] /// Describes the progression, or lack thereof, towards the goal against the
   /// target.
   @JsonKey(name: 'achievementStatus')
-  final CodeableConcept? achievementStatus;
+  final GoalAchievementStatus? achievementStatus;
 
   /// [category] /// Indicates a category the goal falls within.
   @JsonKey(name: 'category')
-  final List<CodeableConcept>? category;
+  final List<GoalCategory>? category;
 
   /// [priority] /// Identifies the mutually agreed level of importance associated with
   /// reaching/sustaining the goal.
   @JsonKey(name: 'priority')
-  final CodeableConcept? priority;
+  final GoalPriority? priority;
 
   /// [description] /// Human-readable and/or coded description of a specific desired objective of
   /// care, such as "control blood pressure" or "negotiate an obstacle course" or
@@ -95,13 +96,13 @@ class Goal extends DomainResource {
 
   /// [startDate] /// The date or event after which the goal should begin being pursued.
   @JsonKey(name: 'startDate')
-  final FhirDate? startDate;
+  final GoalStartEvent? startDate;
   @JsonKey(name: '_startDate')
   final Element? startDateElement;
 
   /// [startCodeableConcept] /// The date or event after which the goal should begin being pursued.
   @JsonKey(name: 'startCodeableConcept')
-  final CodeableConcept? startCodeableConcept;
+  final GoalStartEvent? startCodeableConcept;
 
   /// [target] /// Indicates what should be done by when.
   @JsonKey(name: 'target')
@@ -154,23 +155,23 @@ class Goal extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? lifecycleStatus,
+    GoalLifecycleStatus? lifecycleStatus,
     Element? lifecycleStatusElement,
-    CodeableConcept? achievementStatus,
-    List<CodeableConcept>? category,
-    CodeableConcept? priority,
+    GoalAchievementStatus? achievementStatus,
+    List<GoalCategory>? category,
+    GoalPriority? priority,
     CodeableConcept? description,
     Reference? subject,
-    FhirDate? startDate,
+    GoalStartEvent? startDate,
     Element? startDateElement,
-    CodeableConcept? startCodeableConcept,
+    GoalStartEvent? startCodeableConcept,
     List<GoalTarget>? target,
     FhirDate? statusDate,
     Element? statusDateElement,

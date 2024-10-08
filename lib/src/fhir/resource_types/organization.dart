@@ -43,6 +43,7 @@ class Organization extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.Organization,
             fhirType: 'Organization');
@@ -63,7 +64,7 @@ class Organization extends DomainResource {
 
   /// [type] /// The kind(s) of organization that this is.
   @JsonKey(name: 'type')
-  final List<CodeableConcept>? type;
+  final List<OrganizationType>? type;
 
   /// [name] /// A name associated with the organization.
   @JsonKey(name: 'name')
@@ -112,7 +113,7 @@ class Organization extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -121,7 +122,7 @@ class Organization extends DomainResource {
     List<Identifier>? identifier,
     FhirBoolean? active,
     Element? activeElement,
-    List<CodeableConcept>? type,
+    List<OrganizationType>? type,
     FhirString? name,
     Element? nameElement,
     List<FhirString>? alias,
@@ -215,7 +216,7 @@ class OrganizationContact extends BackboneElement {
 
   /// [purpose] /// Indicates a purpose for which the contact can be reached.
   @JsonKey(name: 'purpose')
-  final CodeableConcept? purpose;
+  final ContactEntityType? purpose;
 
   /// [name] /// A name associated with the contact.
   @JsonKey(name: 'name')
@@ -242,7 +243,7 @@ class OrganizationContact extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? purpose,
+    ContactEntityType? purpose,
     HumanName? name,
     List<ContactPoint>? telecom,
     Address? address,

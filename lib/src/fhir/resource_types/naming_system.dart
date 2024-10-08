@@ -50,6 +50,7 @@ class NamingSystem extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.NamingSystem,
             fhirType: 'NamingSystem');
@@ -68,14 +69,14 @@ class NamingSystem extends DomainResource {
   /// [status] /// The status of this naming system. Enables tracking the life-cycle of the
   /// content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [kind] /// Indicates the purpose for the naming system - what kinds of things does it
   /// make unique?
   @JsonKey(name: 'kind')
-  final FhirCode kind;
+  final NamingSystemType kind;
   @JsonKey(name: '_kind')
   final Element? kindElement;
 
@@ -110,7 +111,7 @@ class NamingSystem extends DomainResource {
   /// [type] /// Categorizes a naming system for easier search by grouping related naming
   /// systems.
   @JsonKey(name: 'type')
-  final CodeableConcept? type;
+  final IdentifierTypeCodes? type;
 
   /// [description] /// A free text natural language description of the naming system from a
   /// consumer's perspective. Details about what the namespace identifies
@@ -158,7 +159,7 @@ class NamingSystem extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -166,9 +167,9 @@ class NamingSystem extends DomainResource {
     List<FhirExtension>? modifierExtension,
     FhirString? name,
     Element? nameElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
-    FhirCode? kind,
+    NamingSystemType? kind,
     Element? kindElement,
     FhirDateTime? date,
     Element? dateElement,
@@ -177,7 +178,7 @@ class NamingSystem extends DomainResource {
     List<ContactDetail>? contact,
     FhirString? responsible,
     Element? responsibleElement,
-    CodeableConcept? type,
+    IdentifierTypeCodes? type,
     FhirMarkdown? description,
     Element? descriptionElement,
     List<UsageContext>? useContext,
@@ -284,7 +285,7 @@ class NamingSystemUniqueId extends BackboneElement {
   /// [type] /// Identifies the unique identifier scheme used for this particular
   /// identifier.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final NamingSystemIdentifierType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -326,7 +327,7 @@ class NamingSystemUniqueId extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? type,
+    NamingSystemIdentifierType? type,
     Element? typeElement,
     FhirString? value,
     Element? valueElement,

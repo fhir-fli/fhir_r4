@@ -76,6 +76,7 @@ class SearchParameter extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.SearchParameter,
             fhirType: 'SearchParameter');
@@ -128,7 +129,7 @@ class SearchParameter extends DomainResource {
   /// [status] /// The status of this search parameter. Enables tracking the life-cycle of the
   /// content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -203,7 +204,7 @@ class SearchParameter extends DomainResource {
   /// [type] /// The type of value that a search parameter may contain, and how the content
   /// is interpreted.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final SearchParamType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -224,7 +225,7 @@ class SearchParameter extends DomainResource {
   /// [xpathUsage] /// How the search parameter relates to the set of elements returned by
   /// evaluating the xpath query.
   @JsonKey(name: 'xpathUsage')
-  final FhirCode? xpathUsage;
+  final XPathUsageType? xpathUsage;
   @JsonKey(name: '_xpathUsage')
   final Element? xpathUsageElement;
 
@@ -251,13 +252,13 @@ class SearchParameter extends DomainResource {
 
   /// [comparator] /// Comparators supported for the search parameter.
   @JsonKey(name: 'comparator')
-  final List<FhirCode>? comparator;
+  final List<SearchComparator>? comparator;
   @JsonKey(name: '_comparator')
   final List<Element>? comparatorElement;
 
   /// [modifier] /// A modifier supported for the search parameter.
   @JsonKey(name: 'modifier')
-  final List<FhirCode>? modifier;
+  final List<SearchModifierCode>? modifier;
   @JsonKey(name: '_modifier')
   final List<Element>? modifierElement;
 
@@ -289,7 +290,7 @@ class SearchParameter extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -303,7 +304,7 @@ class SearchParameter extends DomainResource {
     Element? nameElement,
     FhirCanonical? derivedFrom,
     Element? derivedFromElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
@@ -322,13 +323,13 @@ class SearchParameter extends DomainResource {
     Element? codeElement,
     List<FhirCode>? base,
     List<Element>? baseElement,
-    FhirCode? type,
+    SearchParamType? type,
     Element? typeElement,
     FhirString? expression,
     Element? expressionElement,
     FhirString? xpath,
     Element? xpathElement,
-    FhirCode? xpathUsage,
+    XPathUsageType? xpathUsage,
     Element? xpathUsageElement,
     List<FhirCode>? target,
     List<Element>? targetElement,
@@ -336,9 +337,9 @@ class SearchParameter extends DomainResource {
     Element? multipleOrElement,
     FhirBoolean? multipleAnd,
     Element? multipleAndElement,
-    List<FhirCode>? comparator,
+    List<SearchComparator>? comparator,
     List<Element>? comparatorElement,
-    List<FhirCode>? modifier,
+    List<SearchModifierCode>? modifier,
     List<Element>? modifierElement,
     List<FhirString>? chain,
     List<Element>? chainElement,

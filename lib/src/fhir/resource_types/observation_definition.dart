@@ -44,6 +44,7 @@ class ObservationDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.ObservationDefinition,
             fhirType: 'ObservationDefinition');
@@ -53,7 +54,7 @@ class ObservationDefinition extends DomainResource {
 
   /// [category] /// A code that classifies the general type of observation.
   @JsonKey(name: 'category')
-  final List<CodeableConcept>? category;
+  final List<ObservationCategoryCodes>? category;
 
   /// [code] /// Describes what will be observed. Sometimes this is called the observation
   /// "name".
@@ -67,7 +68,7 @@ class ObservationDefinition extends DomainResource {
   /// [permittedDataType] /// The data types allowed for the value element of the instance observations
   /// conforming to this ObservationDefinition.
   @JsonKey(name: 'permittedDataType')
-  final List<FhirCode>? permittedDataType;
+  final List<ObservationDataType>? permittedDataType;
   @JsonKey(name: '_permittedDataType')
   final List<Element>? permittedDataTypeElement;
 
@@ -131,16 +132,16 @@ class ObservationDefinition extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    List<CodeableConcept>? category,
+    List<ObservationCategoryCodes>? category,
     CodeableConcept? code,
     List<Identifier>? identifier,
-    List<FhirCode>? permittedDataType,
+    List<ObservationDataType>? permittedDataType,
     List<Element>? permittedDataTypeElement,
     FhirBoolean? multipleResultsAllowed,
     Element? multipleResultsAllowedElement,
@@ -374,7 +375,7 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
   /// [category] /// The category of interval of values for continuous or ordinal observations
   /// conforming to this ObservationDefinition.
   @JsonKey(name: 'category')
-  final FhirCode? category;
+  final ObservationRangeCategory? category;
   @JsonKey(name: '_category')
   final Element? categoryElement;
 
@@ -386,15 +387,15 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
   /// [context] /// Codes to indicate the health context the range applies to. For example, the
   /// normal or therapeutic range.
   @JsonKey(name: 'context')
-  final CodeableConcept? context;
+  final ObservationReferenceRangeMeaningCodes? context;
 
   /// [appliesTo] /// Codes to indicate the target population this reference range applies to.
   @JsonKey(name: 'appliesTo')
-  final List<CodeableConcept>? appliesTo;
+  final List<ObservationReferenceRangeAppliesToCodes>? appliesTo;
 
   /// [gender] /// Sex of the population the range applies to.
   @JsonKey(name: 'gender')
-  final FhirCode? gender;
+  final AdministrativeGender? gender;
   @JsonKey(name: '_gender')
   final Element? genderElement;
 
@@ -428,12 +429,12 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? category,
+    ObservationRangeCategory? category,
     Element? categoryElement,
     Range? range,
-    CodeableConcept? context,
-    List<CodeableConcept>? appliesTo,
-    FhirCode? gender,
+    ObservationReferenceRangeMeaningCodes? context,
+    List<ObservationReferenceRangeAppliesToCodes>? appliesTo,
+    AdministrativeGender? gender,
     Element? genderElement,
     Range? age,
     Range? gestationalAge,

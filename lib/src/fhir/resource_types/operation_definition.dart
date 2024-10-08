@@ -75,6 +75,7 @@ class OperationDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.OperationDefinition,
             fhirType: 'OperationDefinition');
@@ -123,13 +124,13 @@ class OperationDefinition extends DomainResource {
   /// [status] /// The status of this operation definition. Enables tracking the life-cycle of
   /// the content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [kind] /// Whether this is an operation or a named query.
   @JsonKey(name: 'kind')
-  final FhirCode kind;
+  final OperationKind kind;
   @JsonKey(name: '_kind')
   final Element? kindElement;
 
@@ -283,7 +284,7 @@ class OperationDefinition extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -297,9 +298,9 @@ class OperationDefinition extends DomainResource {
     Element? nameElement,
     FhirString? title,
     Element? titleElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
-    FhirCode? kind,
+    OperationKind? kind,
     Element? kindElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
@@ -475,7 +476,7 @@ class OperationDefinitionParameter extends BackboneElement {
 
   /// [use] /// Whether this is an input or an output parameter.
   @JsonKey(name: 'use')
-  final FhirCode use;
+  final OperationParameterUse use;
   @JsonKey(name: '_use')
   final Element? useElement;
 
@@ -501,7 +502,7 @@ class OperationDefinitionParameter extends BackboneElement {
 
   /// [type] /// The type for this parameter.
   @JsonKey(name: 'type')
-  final FhirCode? type;
+  final FHIRAllTypes? type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -521,7 +522,7 @@ class OperationDefinitionParameter extends BackboneElement {
   /// [searchType] /// How the parameter is understood as a search parameter. This is only used if
   /// the parameter type is 'string'.
   @JsonKey(name: 'searchType')
-  final FhirCode? searchType;
+  final SearchParamType? searchType;
   @JsonKey(name: '_searchType')
   final Element? searchTypeElement;
 
@@ -553,7 +554,7 @@ class OperationDefinitionParameter extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirCode? name,
     Element? nameElement,
-    FhirCode? use,
+    OperationParameterUse? use,
     Element? useElement,
     FhirInteger? min,
     Element? minElement,
@@ -561,11 +562,11 @@ class OperationDefinitionParameter extends BackboneElement {
     Element? maxElement,
     FhirString? documentation,
     Element? documentationElement,
-    FhirCode? type,
+    FHIRAllTypes? type,
     Element? typeElement,
     List<FhirCanonical>? targetProfile,
     List<Element>? targetProfileElement,
-    FhirCode? searchType,
+    SearchParamType? searchType,
     Element? searchTypeElement,
     OperationDefinitionBinding? binding,
     List<OperationDefinitionReferencedFrom>? referencedFrom,
@@ -656,7 +657,7 @@ class OperationDefinitionBinding extends BackboneElement {
   /// binding - that is, the degree to which the provided value set must be
   /// adhered to in the instances.
   @JsonKey(name: 'strength')
-  final FhirCode strength;
+  final BindingStrength strength;
   @JsonKey(name: '_strength')
   final Element? strengthElement;
 
@@ -679,7 +680,7 @@ class OperationDefinitionBinding extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? strength,
+    BindingStrength? strength,
     Element? strengthElement,
     FhirCanonical? valueSet,
     Element? valueSetElement,

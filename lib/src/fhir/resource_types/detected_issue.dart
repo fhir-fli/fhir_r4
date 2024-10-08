@@ -48,6 +48,7 @@ class DetectedIssue extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.DetectedIssue,
             fhirType: 'DetectedIssue');
@@ -61,7 +62,7 @@ class DetectedIssue extends DomainResource {
 
   /// [status] /// Indicates the status of the detected issue.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final ObservationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -72,7 +73,7 @@ class DetectedIssue extends DomainResource {
   /// [severity] /// Indicates the degree of importance associated with the identified issue
   /// based on the potential impact on the patient.
   @JsonKey(name: 'severity')
-  final FhirCode? severity;
+  final DetectedIssueSeverity? severity;
   @JsonKey(name: '_severity')
   final Element? severityElement;
 
@@ -139,17 +140,17 @@ class DetectedIssue extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    ObservationStatus? status,
     Element? statusElement,
     CodeableConcept? code,
-    FhirCode? severity,
+    DetectedIssueSeverity? severity,
     Element? severityElement,
     Reference? patient,
     FhirDateTime? identifiedDateTime,

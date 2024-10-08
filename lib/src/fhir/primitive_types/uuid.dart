@@ -71,8 +71,8 @@ class FhirUuid extends PrimitiveType<UuidValue> {
       );
 
   @override
-  FhirUuid setElement(String name, dynamic value) {
-    return FhirUuid(value, element?.setProperty(name, value));
+  FhirUuid setElement(String name, dynamic elementValue) {
+    return FhirUuid(value, element?.setProperty(name, elementValue));
   }
 
   factory FhirUuid.v1() {

@@ -37,7 +37,7 @@ class ContactPoint extends DataType {
   /// [system] /// Telecommunications form for contact point - what communications system is
   /// required to make use of the contact.
   @JsonKey(name: 'system')
-  final FhirCode? system;
+  final ContactPointSystem? system;
   @JsonKey(name: '_system')
   final Element? systemElement;
 
@@ -50,7 +50,7 @@ class ContactPoint extends DataType {
 
   /// [use] /// Identifies the purpose for the contact point.
   @JsonKey(name: 'use')
-  final FhirCode? use;
+  final ContactPointUse? use;
   @JsonKey(name: '_use')
   final Element? useElement;
 
@@ -77,11 +77,11 @@ class ContactPoint extends DataType {
   ContactPoint copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
-    FhirCode? system,
+    ContactPointSystem? system,
     Element? systemElement,
     FhirString? value,
     Element? valueElement,
-    FhirCode? use,
+    ContactPointUse? use,
     Element? useElement,
     FhirPositiveInt? rank,
     Element? rankElement,

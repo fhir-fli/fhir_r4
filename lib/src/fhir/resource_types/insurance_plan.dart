@@ -44,6 +44,7 @@ class InsurancePlan extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.InsurancePlan,
             fhirType: 'InsurancePlan');
@@ -58,7 +59,7 @@ class InsurancePlan extends DomainResource {
 
   /// [status] /// The current state of the health insurance product.
   @JsonKey(name: 'status')
-  final FhirCode? status;
+  final PublicationStatus? status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -133,14 +134,14 @@ class InsurancePlan extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     List<CodeableConcept>? type,
     FhirString? name,
@@ -244,7 +245,7 @@ class InsurancePlanContact extends BackboneElement {
 
   /// [purpose] /// Indicates a purpose for which the contact can be reached.
   @JsonKey(name: 'purpose')
-  final CodeableConcept? purpose;
+  final ContactEntityType? purpose;
 
   /// [name] /// A name associated with the contact.
   @JsonKey(name: 'name')
@@ -271,7 +272,7 @@ class InsurancePlanContact extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? purpose,
+    ContactEntityType? purpose,
     HumanName? name,
     List<ContactPoint>? telecom,
     Address? address,

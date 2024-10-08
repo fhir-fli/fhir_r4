@@ -66,6 +66,7 @@ class Procedure extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Procedure, fhirType: 'Procedure');
   @Id()
   @JsonKey(ignore: true)
@@ -104,7 +105,7 @@ class Procedure extends DomainResource {
   /// [status] /// A code specifying the state of the procedure. Generally, this will be the
   /// in-progress or completed state.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final EventStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -115,7 +116,7 @@ class Procedure extends DomainResource {
   /// [category] /// A code that classifies the procedure for searching, sorting and display
   /// purposes (e.g. "Surgical Procedure").
   @JsonKey(name: 'category')
-  final CodeableConcept? category;
+  final ProcedureCategoryCodesSNOMEDCT? category;
 
   /// [code] /// The specific procedure that is performed. Use text if the exact nature of
   /// the procedure cannot be coded (e.g. "Laparoscopic Appendectomy").
@@ -205,7 +206,7 @@ class Procedure extends DomainResource {
   /// [outcome] /// The outcome of the procedure - did it resolve the reasons for the procedure
   /// being performed?
   @JsonKey(name: 'outcome')
-  final CodeableConcept? outcome;
+  final ProcedureOutcomeCodesSNOMEDCT? outcome;
 
   /// [report] /// This could be a histology result, pathology report, surgical report, etc.
   @JsonKey(name: 'report')
@@ -216,7 +217,7 @@ class Procedure extends DomainResource {
   /// notes, which will typically describe the procedure itself rather than any
   /// 'post procedure' issues.
   @JsonKey(name: 'complication')
-  final List<CodeableConcept>? complication;
+  final List<ConditionProblemDiagnosisCodes>? complication;
 
   /// [complicationDetail] /// Any complications that occurred during the procedure, or in the immediate
   /// post-performance period.
@@ -227,7 +228,7 @@ class Procedure extends DomainResource {
   /// follow up may be represented as a simple note or could potentially be more
   /// complex, in which case the CarePlan resource can be used.
   @JsonKey(name: 'followUp')
-  final List<CodeableConcept>? followUp;
+  final List<ProcedureFollowUpCodesSNOMEDCT>? followUp;
 
   /// [note] /// Any other notes and comments about the procedure.
   @JsonKey(name: 'note')
@@ -261,7 +262,7 @@ class Procedure extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -274,10 +275,10 @@ class Procedure extends DomainResource {
     List<Element>? instantiatesUriElement,
     List<Reference>? basedOn,
     List<Reference>? partOf,
-    FhirCode? status,
+    EventStatus? status,
     Element? statusElement,
     CodeableConcept? statusReason,
-    CodeableConcept? category,
+    ProcedureCategoryCodesSNOMEDCT? category,
     CodeableConcept? code,
     Reference? subject,
     Reference? encounter,
@@ -295,11 +296,11 @@ class Procedure extends DomainResource {
     List<CodeableConcept>? reasonCode,
     List<Reference>? reasonReference,
     List<CodeableConcept>? bodySite,
-    CodeableConcept? outcome,
+    ProcedureOutcomeCodesSNOMEDCT? outcome,
     List<Reference>? report,
-    List<CodeableConcept>? complication,
+    List<ConditionProblemDiagnosisCodes>? complication,
     List<Reference>? complicationDetail,
-    List<CodeableConcept>? followUp,
+    List<ProcedureFollowUpCodesSNOMEDCT>? followUp,
     List<Annotation>? note,
     List<ProcedureFocalDevice>? focalDevice,
     List<Reference>? usedReference,

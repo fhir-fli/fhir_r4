@@ -233,7 +233,7 @@ class DosageDoseAndRate extends Element {
 
   /// [type] /// The kind of dose or rate specified, for example, ordered or calculated.
   @JsonKey(name: 'type')
-  final CodeableConcept? type;
+  final DoseAndRateType? type;
 
   /// [doseRange] /// Amount of medication per dose.
   @JsonKey(name: 'doseRange')
@@ -266,7 +266,7 @@ class DosageDoseAndRate extends Element {
   DosageDoseAndRate copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
-    CodeableConcept? type,
+    DoseAndRateType? type,
     Range? doseRange,
     Quantity? doseQuantity,
     Ratio? rateRatio,

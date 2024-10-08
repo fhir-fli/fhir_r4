@@ -12,7 +12,7 @@ Signature _$SignatureFromJson(Map<String, dynamic> json) => Signature(
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       type: (json['type'] as List<dynamic>)
-          .map((e) => Coding.fromJson(e as Map<String, dynamic>))
+          .map((e) => $enumDecode(_$SignatureTypeCodesEnumMap, e))
           .toList(),
       when: FhirInstant.fromJson(json['when'] as String),
       whenElement: json['_when'] == null
@@ -39,37 +39,23 @@ Signature _$SignatureFromJson(Map<String, dynamic> json) => Signature(
       dataElement: json['_data'] == null
           ? null
           : Element.fromJson(json['_data'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$SignatureToJson(Signature instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -77,6 +63,13 @@ Map<String, dynamic> _$SignatureToJson(Signature instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -93,3 +86,24 @@ Map<String, dynamic> _$SignatureToJson(Signature instance) {
   writeNotNull('_data', instance.dataElement?.toJson());
   return val;
 }
+
+const _$SignatureTypeCodesEnumMap = {
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_1: '1.2.840.10065.1.12.1.1',
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_2: '1.2.840.10065.1.12.1.2',
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_3: '1.2.840.10065.1.12.1.3',
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_4: '1.2.840.10065.1.12.1.4',
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_5: '1.2.840.10065.1.12.1.5',
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_6: '1.2.840.10065.1.12.1.6',
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_7: '1.2.840.10065.1.12.1.7',
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_8: '1.2.840.10065.1.12.1.8',
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_9: '1.2.840.10065.1.12.1.9',
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_10: '1.2.840.10065.1.12.1.10',
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_11: '1.2.840.10065.1.12.1.11',
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_12: '1.2.840.10065.1.12.1.12',
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_13: '1.2.840.10065.1.12.1.13',
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_14: '1.2.840.10065.1.12.1.14',
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_15: '1.2.840.10065.1.12.1.15',
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_16: '1.2.840.10065.1.12.1.16',
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_17: '1.2.840.10065.1.12.1.17',
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_18: '1.2.840.10065.1.12.1.18',
+};

@@ -159,8 +159,8 @@ abstract class BulkRequest {
       OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
-            severity: FhirCode('error'),
-            code: FhirCode('unknown'),
+            severity: IssueSeverity.error,
+            code: IssueType.invalid,
             details: CodeableConcept(
                 text: FhirString('Failed to make restful request')),
             diagnostics: FhirString('\nStatus Code: $statusCode -'
@@ -182,8 +182,8 @@ abstract class BulkRequest {
         OperationOutcome(
           issue: <OperationOutcomeIssue>[
             OperationOutcomeIssue(
-              severity: FhirCode('error'),
-              code: FhirCode('value'),
+              severity: IssueSeverity.error,
+              code: IssueType.invalid,
               details: CodeableConcept(text: issue.toFhirString),
               diagnostics: diagnostics?.toFhirString,
             ),

@@ -38,6 +38,7 @@ class Schedule extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Schedule, fhirType: 'Schedule');
   @Id()
   @JsonKey(ignore: true)
@@ -57,16 +58,16 @@ class Schedule extends DomainResource {
   /// [serviceCategory] /// A broad categorization of the service that is to be performed during this
   /// appointment.
   @JsonKey(name: 'serviceCategory')
-  final List<CodeableConcept>? serviceCategory;
+  final List<ServiceCategory>? serviceCategory;
 
   /// [serviceType] /// The specific service that is to be performed during this appointment.
   @JsonKey(name: 'serviceType')
-  final List<CodeableConcept>? serviceType;
+  final List<ServiceType>? serviceType;
 
   /// [specialty] /// The specialty of a practitioner that would be required to perform the
   /// service requested in this appointment.
   @JsonKey(name: 'specialty')
-  final List<CodeableConcept>? specialty;
+  final List<PracticeSettingCodeValueSet>? specialty;
 
   /// [actor] /// Slots that reference this schedule resource provide the availability
   /// details to these referenced resource(s).
@@ -101,7 +102,7 @@ class Schedule extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -110,9 +111,9 @@ class Schedule extends DomainResource {
     List<Identifier>? identifier,
     FhirBoolean? active,
     Element? activeElement,
-    List<CodeableConcept>? serviceCategory,
-    List<CodeableConcept>? serviceType,
-    List<CodeableConcept>? specialty,
+    List<ServiceCategory>? serviceCategory,
+    List<ServiceType>? serviceType,
+    List<PracticeSettingCodeValueSet>? specialty,
     List<Reference>? actor,
     Period? planningHorizon,
     FhirString? comment,

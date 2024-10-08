@@ -49,6 +49,7 @@ class RiskAssessment extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.RiskAssessment,
             fhirType: 'RiskAssessment');
@@ -72,7 +73,7 @@ class RiskAssessment extends DomainResource {
   /// [status] /// The status of the RiskAssessment, using the same statuses as an
   /// Observation.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final ObservationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -152,7 +153,7 @@ class RiskAssessment extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -161,7 +162,7 @@ class RiskAssessment extends DomainResource {
     List<Identifier>? identifier,
     Reference? basedOn,
     Reference? parent,
-    FhirCode? status,
+    ObservationStatus? status,
     Element? statusElement,
     CodeableConcept? method,
     CodeableConcept? code,
@@ -295,7 +296,7 @@ class RiskAssessmentPrediction extends BackboneElement {
   /// [qualitativeRisk] /// Indicates how likely the outcome is (in the specified timeframe), expressed
   /// as a qualitative value (e.g. low, medium, or high).
   @JsonKey(name: 'qualitativeRisk')
-  final CodeableConcept? qualitativeRisk;
+  final RiskProbability? qualitativeRisk;
 
   /// [relativeRisk] /// Indicates the risk for this particular subject (with their specific
   /// characteristics) divided by the risk of the population in general. (Numbers
@@ -338,7 +339,7 @@ class RiskAssessmentPrediction extends BackboneElement {
     FhirDecimal? probabilityDecimal,
     Element? probabilityDecimalElement,
     Range? probabilityRange,
-    CodeableConcept? qualitativeRisk,
+    RiskProbability? qualitativeRisk,
     FhirDecimal? relativeRisk,
     Element? relativeRiskElement,
     Period? whenPeriod,

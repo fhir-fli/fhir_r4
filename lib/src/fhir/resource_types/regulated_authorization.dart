@@ -46,6 +46,7 @@ class RegulatedAuthorization extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.RegulatedAuthorization,
             fhirType: 'RegulatedAuthorization');
@@ -65,7 +66,7 @@ class RegulatedAuthorization extends DomainResource {
   /// [type] /// Overall type of this authorization, for example drug marketing approval,
   /// orphan drug designation.
   @JsonKey(name: 'type')
-  final CodeableConcept? type;
+  final RegulatedAuthorizationType? type;
 
   /// [description] /// General textual supporting information.
   @JsonKey(name: 'description')
@@ -81,7 +82,7 @@ class RegulatedAuthorization extends DomainResource {
   /// [status] /// The status that is authorised e.g. approved. Intermediate states and
   /// actions can be tracked with cases and applications.
   @JsonKey(name: 'status')
-  final CodeableConcept? status;
+  final PublicationStatus? status;
 
   /// [statusDate] /// The date at which the current status was assigned.
   @JsonKey(name: 'statusDate')
@@ -101,12 +102,12 @@ class RegulatedAuthorization extends DomainResource {
 
   /// [intendedUse] /// The intended use of the product, e.g. prevention, treatment, diagnosis.
   @JsonKey(name: 'intendedUse')
-  final CodeableConcept? intendedUse;
+  final ProductIntendedUse? intendedUse;
 
   /// [basis] /// The legal or regulatory framework against which this authorization is
   /// granted, or other reasons for it.
   @JsonKey(name: 'basis')
-  final List<CodeableConcept>? basis;
+  final List<RegulatedAuthorizationBasis>? basis;
 
   /// [holder] /// The organization that has been granted this authorization, by some
   /// authoritative body (the 'regulator').
@@ -142,7 +143,7 @@ class RegulatedAuthorization extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -150,17 +151,17 @@ class RegulatedAuthorization extends DomainResource {
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     List<Reference>? subject,
-    CodeableConcept? type,
+    RegulatedAuthorizationType? type,
     FhirMarkdown? description,
     Element? descriptionElement,
     List<CodeableConcept>? region,
-    CodeableConcept? status,
+    PublicationStatus? status,
     FhirDateTime? statusDate,
     Element? statusDateElement,
     Period? validityPeriod,
     CodeableReference? indication,
-    CodeableConcept? intendedUse,
-    List<CodeableConcept>? basis,
+    ProductIntendedUse? intendedUse,
+    List<RegulatedAuthorizationBasis>? basis,
     Reference? holder,
     Reference? regulator,
     RegulatedAuthorizationCase? case_,
@@ -264,11 +265,11 @@ class RegulatedAuthorizationCase extends BackboneElement {
 
   /// [type] /// The defining type of case.
   @JsonKey(name: 'type')
-  final CodeableConcept? type;
+  final RegulatedAuthorizationCaseType? type;
 
   /// [status] /// The status associated with the case.
   @JsonKey(name: 'status')
-  final CodeableConcept? status;
+  final PublicationStatus? status;
 
   /// [datePeriod] /// Relevant date for this case.
   @JsonKey(name: 'datePeriod')
@@ -301,8 +302,8 @@ class RegulatedAuthorizationCase extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Identifier? identifier,
-    CodeableConcept? type,
-    CodeableConcept? status,
+    RegulatedAuthorizationCaseType? type,
+    PublicationStatus? status,
     Period? datePeriod,
     FhirDateTime? dateDateTime,
     Element? dateDateTimeElement,

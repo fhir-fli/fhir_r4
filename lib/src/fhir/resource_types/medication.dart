@@ -38,6 +38,7 @@ class Medication extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Medication, fhirType: 'Medication');
   @Id()
   @JsonKey(ignore: true)
@@ -57,7 +58,7 @@ class Medication extends DomainResource {
 
   /// [status] /// A code to indicate if the medication is in active use.
   @JsonKey(name: 'status')
-  final FhirCode? status;
+  final MedicationStatusCodes? status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -99,7 +100,7 @@ class Medication extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -107,7 +108,7 @@ class Medication extends DomainResource {
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     CodeableConcept? code,
-    FhirCode? status,
+    MedicationStatusCodes? status,
     Element? statusElement,
     Reference? manufacturer,
     CodeableConcept? form,

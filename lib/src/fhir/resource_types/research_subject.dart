@@ -39,6 +39,7 @@ class ResearchSubject extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.ResearchSubject,
             fhirType: 'ResearchSubject');
@@ -52,7 +53,7 @@ class ResearchSubject extends DomainResource {
 
   /// [status] /// The current state of the subject.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final ResearchSubjectStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -99,14 +100,14 @@ class ResearchSubject extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    ResearchSubjectStatus? status,
     Element? statusElement,
     Period? period,
     Reference? study,

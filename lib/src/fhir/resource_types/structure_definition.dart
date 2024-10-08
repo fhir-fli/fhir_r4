@@ -72,6 +72,7 @@ class StructureDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.StructureDefinition,
             fhirType: 'StructureDefinition');
@@ -126,7 +127,7 @@ class StructureDefinition extends DomainResource {
   /// [status] /// The status of this structure definition. Enables tracking the life-cycle of
   /// the content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -198,14 +199,14 @@ class StructureDefinition extends DomainResource {
   /// assist with indexing and searching of templates nby describing the use of
   /// this structure definition, or the content it describes.
   @JsonKey(name: 'keyword')
-  final List<Coding>? keyword;
+  final List<DefinitionUseCodes>? keyword;
 
   /// [fhirVersion] /// The version of the FHIR specification on which this StructureDefinition is
   /// based - this is the formal version of the specification, without the
   /// revision number, e.g. [publication].[major].[minor], which is 4.3.0 for
   /// this version.
   @JsonKey(name: 'fhirVersion')
-  final FhirCode? fhirVersion;
+  final FHIRVersion? fhirVersion;
   @JsonKey(name: '_fhirVersion')
   final Element? fhirVersionElement;
 
@@ -215,7 +216,7 @@ class StructureDefinition extends DomainResource {
 
   /// [kind] /// Defines the kind of structure that this definition is describing.
   @JsonKey(name: 'kind')
-  final FhirCode kind;
+  final StructureDefinitionKind kind;
   @JsonKey(name: '_kind')
   final Element? kindElement;
 
@@ -242,7 +243,7 @@ class StructureDefinition extends DomainResource {
   /// http://hl7.org/fhir/StructureDefinition/string. Absolute URLs are only
   /// allowed in logical models.
   @JsonKey(name: 'type')
-  final FhirUri type;
+  final FHIRDefinedType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -255,7 +256,7 @@ class StructureDefinition extends DomainResource {
 
   /// [derivation] /// How the type relates to the baseDefinition.
   @JsonKey(name: 'derivation')
-  final FhirCode? derivation;
+  final TypeDerivationRule? derivation;
   @JsonKey(name: '_derivation')
   final Element? derivationElement;
 
@@ -282,7 +283,7 @@ class StructureDefinition extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -297,7 +298,7 @@ class StructureDefinition extends DomainResource {
     Element? nameElement,
     FhirString? title,
     Element? titleElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
@@ -314,20 +315,20 @@ class StructureDefinition extends DomainResource {
     Element? purposeElement,
     FhirMarkdown? copyright,
     Element? copyrightElement,
-    List<Coding>? keyword,
-    FhirCode? fhirVersion,
+    List<DefinitionUseCodes>? keyword,
+    FHIRVersion? fhirVersion,
     Element? fhirVersionElement,
     List<StructureDefinitionMapping>? mapping,
-    FhirCode? kind,
+    StructureDefinitionKind? kind,
     Element? kindElement,
     FhirBoolean? abstract_,
     Element? abstractElement,
     List<StructureDefinitionContext>? context,
-    FhirUri? type,
+    FHIRDefinedType? type,
     Element? typeElement,
     FhirCanonical? baseDefinition,
     Element? baseDefinitionElement,
-    FhirCode? derivation,
+    TypeDerivationRule? derivation,
     Element? derivationElement,
     StructureDefinitionSnapshot? snapshot,
     StructureDefinitionDifferential? differential,
@@ -571,7 +572,7 @@ class StructureDefinitionContext extends BackboneElement {
   /// [type] /// Defines how to interpret the expression that defines what the context of
   /// the extension is.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final ExtensionContextType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -601,7 +602,7 @@ class StructureDefinitionContext extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? type,
+    ExtensionContextType? type,
     Element? typeElement,
     FhirString? expression,
     Element? expressionElement,

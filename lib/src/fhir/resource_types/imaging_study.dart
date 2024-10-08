@@ -56,6 +56,7 @@ class ImagingStudy extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.ImagingStudy,
             fhirType: 'ImagingStudy');
@@ -70,7 +71,7 @@ class ImagingStudy extends DomainResource {
 
   /// [status] /// The current state of the ImagingStudy.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final ImagingStudyStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -186,14 +187,14 @@ class ImagingStudy extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    ImagingStudyStatus? status,
     Element? statusElement,
     List<Coding>? modality,
     Reference? subject,
@@ -377,7 +378,7 @@ class ImagingStudySeries extends BackboneElement {
   /// consistent with any laterality information indicated in
   /// ImagingStudy.series.bodySite.
   @JsonKey(name: 'laterality')
-  final Coding? laterality;
+  final Laterality? laterality;
 
   /// [specimen] /// The specimen imaged, e.g., for whole slide imaging of a biopsy.
   @JsonKey(name: 'specimen')
@@ -421,7 +422,7 @@ class ImagingStudySeries extends BackboneElement {
     Element? numberOfInstancesElement,
     List<Reference>? endpoint,
     Coding? bodySite,
-    Coding? laterality,
+    Laterality? laterality,
     List<Reference>? specimen,
     FhirDateTime? started,
     Element? startedElement,
@@ -507,7 +508,7 @@ class ImagingStudyPerformer extends BackboneElement {
 
   /// [function_] /// Distinguishes the type of involvement of the performer in the series.
   @JsonKey(name: 'function')
-  final CodeableConcept? function_;
+  final ImagingStudySeriesPerformerFunction? function_;
 
   /// [actor] /// Indicates who or what performed the series.
   @JsonKey(name: 'actor')
@@ -525,7 +526,7 @@ class ImagingStudyPerformer extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? function_,
+    ImagingStudySeriesPerformerFunction? function_,
     Reference? actor,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

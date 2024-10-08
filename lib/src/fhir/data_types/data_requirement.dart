@@ -42,7 +42,7 @@ class DataRequirement extends DataType {
   /// For profiles, this value is set to the type of the base resource of the
   /// profile.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final FHIRAllTypes type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -56,12 +56,12 @@ class DataRequirement extends DataType {
   /// [subjectCodeableConcept] /// The intended subjects of the data requirement. If this element is not
   /// provided, a Patient subject is assumed.
   @JsonKey(name: 'subjectCodeableConcept')
-  final CodeableConcept? subjectCodeableConcept;
+  final SubjectType? subjectCodeableConcept;
 
   /// [subjectReference] /// The intended subjects of the data requirement. If this element is not
   /// provided, a Patient subject is assumed.
   @JsonKey(name: 'subjectReference')
-  final Reference? subjectReference;
+  final SubjectType? subjectReference;
 
   /// [mustSupport] /// Indicates that specific elements of the type are referenced by the
   /// knowledge module and must be supported by the consumer in order to obtain
@@ -113,12 +113,12 @@ class DataRequirement extends DataType {
   DataRequirement copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
-    FhirCode? type,
+    FHIRAllTypes? type,
     Element? typeElement,
     List<FhirCanonical>? profile,
     List<Element>? profileElement,
-    CodeableConcept? subjectCodeableConcept,
-    Reference? subjectReference,
+    SubjectType? subjectCodeableConcept,
+    SubjectType? subjectReference,
     List<FhirString>? mustSupport,
     List<Element>? mustSupportElement,
     List<Element>? codeFilter,
@@ -484,7 +484,7 @@ class DataRequirementSort extends Element {
 
   /// [direction] /// The direction of the sort, ascending or descending.
   @JsonKey(name: 'direction')
-  final FhirCode direction;
+  final SortDirection direction;
   @JsonKey(name: '_direction')
   final Element? directionElement;
   factory DataRequirementSort.fromJson(Map<String, dynamic> json) =>
@@ -501,7 +501,7 @@ class DataRequirementSort extends Element {
     List<FhirExtension>? extension_,
     FhirString? path,
     Element? pathElement,
-    FhirCode? direction,
+    SortDirection? direction,
     Element? directionElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

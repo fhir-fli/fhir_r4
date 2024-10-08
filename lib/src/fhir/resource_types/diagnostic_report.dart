@@ -54,6 +54,7 @@ class DiagnosticReport extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.DiagnosticReport,
             fhirType: 'DiagnosticReport');
@@ -71,7 +72,7 @@ class DiagnosticReport extends DomainResource {
 
   /// [status] /// The status of the diagnostic report.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final DiagnosticReportStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -180,7 +181,7 @@ class DiagnosticReport extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -188,7 +189,7 @@ class DiagnosticReport extends DomainResource {
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     List<Reference>? basedOn,
-    FhirCode? status,
+    DiagnosticReportStatus? status,
     Element? statusElement,
     List<CodeableConcept>? category,
     CodeableConcept? code,

@@ -82,6 +82,7 @@ class ResearchElementDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.ResearchElementDefinition,
             fhirType: 'ResearchElementDefinition');
@@ -155,7 +156,7 @@ class ResearchElementDefinition extends DomainResource {
   /// [status] /// The status of this research element definition. Enables tracking the
   /// life-cycle of the content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -171,13 +172,13 @@ class ResearchElementDefinition extends DomainResource {
   /// not provided, a Patient subject is assumed, but the subject of the
   /// ResearchElementDefinition can be anything.
   @JsonKey(name: 'subjectCodeableConcept')
-  final CodeableConcept? subjectCodeableConcept;
+  final SubjectType? subjectCodeableConcept;
 
   /// [subjectReference] /// The intended subjects for the ResearchElementDefinition. If this element is
   /// not provided, a Patient subject is assumed, but the subject of the
   /// ResearchElementDefinition can be anything.
   @JsonKey(name: 'subjectReference')
-  final Reference? subjectReference;
+  final SubjectType? subjectReference;
 
   /// [date] /// The date (and optionally time) when the research element definition was
   /// published. The date must change when the business version changes and it
@@ -271,7 +272,7 @@ class ResearchElementDefinition extends DomainResource {
   /// Topics provide a high-level categorization grouping types of
   /// ResearchElementDefinitions that can be useful for filtering and searching.
   @JsonKey(name: 'topic')
-  final List<CodeableConcept>? topic;
+  final List<DefinitionTopic>? topic;
 
   /// [author] /// An individiual or organization primarily involved in the creation and
   /// maintenance of the content.
@@ -307,13 +308,13 @@ class ResearchElementDefinition extends DomainResource {
 
   /// [type] /// The type of research element, a population, an exposure, or an outcome.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final ResearchElementType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [variableType] /// The type of the outcome (e.g. Dichotomous, Continuous, or Descriptive).
   @JsonKey(name: 'variableType')
-  final FhirCode? variableType;
+  final VariableType? variableType;
   @JsonKey(name: '_variableType')
   final Element? variableTypeElement;
 
@@ -335,7 +336,7 @@ class ResearchElementDefinition extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -354,12 +355,12 @@ class ResearchElementDefinition extends DomainResource {
     Element? shortTitleElement,
     FhirString? subtitle,
     Element? subtitleElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
-    CodeableConcept? subjectCodeableConcept,
-    Reference? subjectReference,
+    SubjectType? subjectCodeableConcept,
+    SubjectType? subjectReference,
     FhirDateTime? date,
     Element? dateElement,
     FhirString? publisher,
@@ -382,7 +383,7 @@ class ResearchElementDefinition extends DomainResource {
     FhirDate? lastReviewDate,
     Element? lastReviewDateElement,
     Period? effectivePeriod,
-    List<CodeableConcept>? topic,
+    List<DefinitionTopic>? topic,
     List<ContactDetail>? author,
     List<ContactDetail>? editor,
     List<ContactDetail>? reviewer,
@@ -390,9 +391,9 @@ class ResearchElementDefinition extends DomainResource {
     List<RelatedArtifact>? relatedArtifact,
     List<FhirCanonical>? library_,
     List<Element>? libraryElement,
-    FhirCode? type,
+    ResearchElementType? type,
     Element? typeElement,
-    FhirCode? variableType,
+    VariableType? variableType,
     Element? variableTypeElement,
     List<ResearchElementDefinitionCharacteristic>? characteristic,
     Map<String, Object?>? userData,
@@ -621,7 +622,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
 
   /// [studyEffectiveGroupMeasure] /// Indicates how elements are aggregated within the study effective period.
   @JsonKey(name: 'studyEffectiveGroupMeasure')
-  final FhirCode? studyEffectiveGroupMeasure;
+  final GroupMeasure? studyEffectiveGroupMeasure;
   @JsonKey(name: '_studyEffectiveGroupMeasure')
   final Element? studyEffectiveGroupMeasureElement;
 
@@ -655,7 +656,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
 
   /// [participantEffectiveGroupMeasure] /// Indicates how elements are aggregated within the study effective period.
   @JsonKey(name: 'participantEffectiveGroupMeasure')
-  final FhirCode? participantEffectiveGroupMeasure;
+  final GroupMeasure? participantEffectiveGroupMeasure;
   @JsonKey(name: '_participantEffectiveGroupMeasure')
   final Element? participantEffectiveGroupMeasureElement;
   factory ResearchElementDefinitionCharacteristic.fromJson(
@@ -690,7 +691,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     FhirDuration? studyEffectiveDuration,
     Timing? studyEffectiveTiming,
     FhirDuration? studyEffectiveTimeFromStart,
-    FhirCode? studyEffectiveGroupMeasure,
+    GroupMeasure? studyEffectiveGroupMeasure,
     Element? studyEffectiveGroupMeasureElement,
     FhirString? participantEffectiveDescription,
     Element? participantEffectiveDescriptionElement,
@@ -700,7 +701,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     FhirDuration? participantEffectiveDuration,
     Timing? participantEffectiveTiming,
     FhirDuration? participantEffectiveTimeFromStart,
-    FhirCode? participantEffectiveGroupMeasure,
+    GroupMeasure? participantEffectiveGroupMeasure,
     Element? participantEffectiveGroupMeasureElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

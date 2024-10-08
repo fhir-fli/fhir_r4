@@ -51,7 +51,7 @@ class Attachment extends DataType {
   /// [language] /// The human language of the content. The value can be any valid value
   /// according to BCP 47.
   @JsonKey(name: 'language')
-  final FhirCode? language;
+  final CommonLanguages? language;
   @JsonKey(name: '_language')
   final Element? languageElement;
 
@@ -105,7 +105,7 @@ class Attachment extends DataType {
     List<FhirExtension>? extension_,
     FhirCode? contentType,
     Element? contentTypeElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     FhirBase64Binary? data,
     Element? dataElement,

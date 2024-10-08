@@ -49,14 +49,14 @@ class Address extends DataType {
 
   /// [use] /// The purpose of this address.
   @JsonKey(name: 'use')
-  final FhirCode? use;
+  final AddressUse? use;
   @JsonKey(name: '_use')
   final Element? useElement;
 
   /// [type] /// Distinguishes between physical addresses (those you can visit) and mailing
   /// addresses (e.g. PO Boxes and care-of addresses). Most addresses are both.
   @JsonKey(name: 'type')
-  final FhirCode? type;
+  final AddressType? type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -123,9 +123,9 @@ class Address extends DataType {
   Address copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
-    FhirCode? use,
+    AddressUse? use,
     Element? useElement,
-    FhirCode? type,
+    AddressType? type,
     Element? typeElement,
     FhirString? text,
     Element? textElement,

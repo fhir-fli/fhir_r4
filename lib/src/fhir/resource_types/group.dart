@@ -45,6 +45,7 @@ class FhirGroup extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.FhirGroup, fhirType: 'FhirGroup');
   @Id()
   @JsonKey(ignore: true)
@@ -64,7 +65,7 @@ class FhirGroup extends DomainResource {
   /// [type] /// Identifies the broad classification of the kind of resources the group
   /// includes.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final GroupType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -119,7 +120,7 @@ class FhirGroup extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -128,7 +129,7 @@ class FhirGroup extends DomainResource {
     List<Identifier>? identifier,
     FhirBoolean? active,
     Element? activeElement,
-    FhirCode? type,
+    GroupType? type,
     Element? typeElement,
     FhirBoolean? actual,
     Element? actualElement,

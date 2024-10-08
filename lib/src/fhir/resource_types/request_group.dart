@@ -52,6 +52,7 @@ class RequestGroup extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.RequestGroup,
             fhirType: 'RequestGroup');
@@ -96,21 +97,21 @@ class RequestGroup extends DomainResource {
   /// [status] /// The current state of the request. For request groups, the status reflects
   /// the status of all the requests in the group.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final RequestStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [intent] /// Indicates the level of authority/intentionality associated with the request
   /// and where the request fits into the workflow chain.
   @JsonKey(name: 'intent')
-  final FhirCode intent;
+  final RequestIntent intent;
   @JsonKey(name: '_intent')
   final Element? intentElement;
 
   /// [priority] /// Indicates how quickly the request should be addressed with respect to other
   /// requests.
   @JsonKey(name: 'priority')
-  final FhirCode? priority;
+  final RequestPriority? priority;
   @JsonKey(name: '_priority')
   final Element? priorityElement;
 
@@ -166,7 +167,7 @@ class RequestGroup extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -180,11 +181,11 @@ class RequestGroup extends DomainResource {
     List<Reference>? basedOn,
     List<Reference>? replaces,
     Identifier? groupIdentifier,
-    FhirCode? status,
+    RequestStatus? status,
     Element? statusElement,
-    FhirCode? intent,
+    RequestIntent? intent,
     Element? intentElement,
-    FhirCode? priority,
+    RequestPriority? priority,
     Element? priorityElement,
     CodeableConcept? code,
     Reference? subject,
@@ -354,7 +355,7 @@ class RequestGroupAction extends BackboneElement {
   /// [priority] /// Indicates how quickly the action should be addressed with respect to other
   /// actions.
   @JsonKey(name: 'priority')
-  final FhirCode? priority;
+  final RequestPriority? priority;
   @JsonKey(name: '_priority')
   final Element? priorityElement;
 
@@ -411,35 +412,35 @@ class RequestGroupAction extends BackboneElement {
 
   /// [type] /// The type of action to perform (create, update, remove).
   @JsonKey(name: 'type')
-  final CodeableConcept? type;
+  final ActionType? type;
 
   /// [groupingBehavior] /// Defines the grouping behavior for the action and its children.
   @JsonKey(name: 'groupingBehavior')
-  final FhirCode? groupingBehavior;
+  final ActionGroupingBehavior? groupingBehavior;
   @JsonKey(name: '_groupingBehavior')
   final Element? groupingBehaviorElement;
 
   /// [selectionBehavior] /// Defines the selection behavior for the action and its children.
   @JsonKey(name: 'selectionBehavior')
-  final FhirCode? selectionBehavior;
+  final ActionSelectionBehavior? selectionBehavior;
   @JsonKey(name: '_selectionBehavior')
   final Element? selectionBehaviorElement;
 
   /// [requiredBehavior] /// Defines expectations around whether an action is required.
   @JsonKey(name: 'requiredBehavior')
-  final FhirCode? requiredBehavior;
+  final ActionRequiredBehavior? requiredBehavior;
   @JsonKey(name: '_requiredBehavior')
   final Element? requiredBehaviorElement;
 
   /// [precheckBehavior] /// Defines whether the action should usually be preselected.
   @JsonKey(name: 'precheckBehavior')
-  final FhirCode? precheckBehavior;
+  final ActionPrecheckBehavior? precheckBehavior;
   @JsonKey(name: '_precheckBehavior')
   final Element? precheckBehaviorElement;
 
   /// [cardinalityBehavior] /// Defines whether the action can be selected multiple times.
   @JsonKey(name: 'cardinalityBehavior')
-  final FhirCode? cardinalityBehavior;
+  final ActionCardinalityBehavior? cardinalityBehavior;
   @JsonKey(name: '_cardinalityBehavior')
   final Element? cardinalityBehaviorElement;
 
@@ -471,7 +472,7 @@ class RequestGroupAction extends BackboneElement {
     Element? descriptionElement,
     FhirString? textEquivalent,
     Element? textEquivalentElement,
-    FhirCode? priority,
+    RequestPriority? priority,
     Element? priorityElement,
     List<CodeableConcept>? code,
     List<RelatedArtifact>? documentation,
@@ -485,16 +486,16 @@ class RequestGroupAction extends BackboneElement {
     Range? timingRange,
     Timing? timingTiming,
     List<Reference>? participant,
-    CodeableConcept? type,
-    FhirCode? groupingBehavior,
+    ActionType? type,
+    ActionGroupingBehavior? groupingBehavior,
     Element? groupingBehaviorElement,
-    FhirCode? selectionBehavior,
+    ActionSelectionBehavior? selectionBehavior,
     Element? selectionBehaviorElement,
-    FhirCode? requiredBehavior,
+    ActionRequiredBehavior? requiredBehavior,
     Element? requiredBehaviorElement,
-    FhirCode? precheckBehavior,
+    ActionPrecheckBehavior? precheckBehavior,
     Element? precheckBehaviorElement,
-    FhirCode? cardinalityBehavior,
+    ActionCardinalityBehavior? cardinalityBehavior,
     Element? cardinalityBehaviorElement,
     Reference? resource,
     List<RequestGroupAction>? action,
@@ -604,7 +605,7 @@ class RequestGroupCondition extends BackboneElement {
 
   /// [kind] /// The kind of condition.
   @JsonKey(name: 'kind')
-  final FhirCode kind;
+  final ActionConditionKind kind;
   @JsonKey(name: '_kind')
   final Element? kindElement;
 
@@ -625,7 +626,7 @@ class RequestGroupCondition extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? kind,
+    ActionConditionKind? kind,
     Element? kindElement,
     FhirExpression? expression,
     Map<String, Object?>? userData,
@@ -704,7 +705,7 @@ class RequestGroupRelatedAction extends BackboneElement {
 
   /// [relationship] /// The relationship of this action to the related action.
   @JsonKey(name: 'relationship')
-  final FhirCode relationship;
+  final ActionRelationshipType relationship;
   @JsonKey(name: '_relationship')
   final Element? relationshipElement;
 
@@ -732,7 +733,7 @@ class RequestGroupRelatedAction extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirId? actionId,
     Element? actionIdElement,
-    FhirCode? relationship,
+    ActionRelationshipType? relationship,
     Element? relationshipElement,
     FhirDuration? offsetDuration,
     Range? offsetRange,

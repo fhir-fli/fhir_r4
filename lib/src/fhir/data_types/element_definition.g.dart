@@ -20,7 +20,7 @@ ElementDefinition _$ElementDefinitionFromJson(Map<String, dynamic> json) =>
           ? null
           : Element.fromJson(json['_path'] as Map<String, dynamic>),
       representation: (json['representation'] as List<dynamic>?)
-          ?.map(FhirCode.fromJson)
+          ?.map((e) => $enumDecode(_$PropertyRepresentationEnumMap, e))
           .toList(),
       representationElement: (json['_representation'] as List<dynamic>?)
           ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
@@ -965,37 +965,23 @@ ElementDefinition _$ElementDefinitionFromJson(Map<String, dynamic> json) =>
       mapping: (json['mapping'] as List<dynamic>?)
           ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
           .toList(),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$ElementDefinitionToJson(ElementDefinition instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -1003,6 +989,13 @@ Map<String, dynamic> _$ElementDefinitionToJson(ElementDefinition instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -1364,6 +1357,14 @@ Map<String, dynamic> _$ElementDefinitionToJson(ElementDefinition instance) {
   return val;
 }
 
+const _$PropertyRepresentationEnumMap = {
+  PropertyRepresentation.xmlAttr: 'xmlAttr',
+  PropertyRepresentation.xmlText: 'xmlText',
+  PropertyRepresentation.typeAttr: 'typeAttr',
+  PropertyRepresentation.cdaText: 'cdaText',
+  PropertyRepresentation.xhtml: 'xhtml',
+};
+
 ElementDefinitionSlicing _$ElementDefinitionSlicingFromJson(
         Map<String, dynamic> json) =>
     ElementDefinitionSlicing(
@@ -1386,42 +1387,28 @@ ElementDefinitionSlicing _$ElementDefinitionSlicingFromJson(
       orderedElement: json['_ordered'] == null
           ? null
           : Element.fromJson(json['_ordered'] as Map<String, dynamic>),
-      rules: FhirCode.fromJson(json['rules']),
+      rules: $enumDecode(_$SlicingRulesEnumMap, json['rules']),
       rulesElement: json['_rules'] == null
           ? null
           : Element.fromJson(json['_rules'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$ElementDefinitionSlicingToJson(
     ElementDefinitionSlicing instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -1429,6 +1416,13 @@ Map<String, dynamic> _$ElementDefinitionSlicingToJson(
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -1443,6 +1437,12 @@ Map<String, dynamic> _$ElementDefinitionSlicingToJson(
   return val;
 }
 
+const _$SlicingRulesEnumMap = {
+  SlicingRules.closed: 'closed',
+  SlicingRules.open: 'open',
+  SlicingRules.openAtEnd: 'openAtEnd',
+};
+
 ElementDefinitionDiscriminator _$ElementDefinitionDiscriminatorFromJson(
         Map<String, dynamic> json) =>
     ElementDefinitionDiscriminator(
@@ -1450,7 +1450,7 @@ ElementDefinitionDiscriminator _$ElementDefinitionDiscriminatorFromJson(
       extension_: (json['extension_'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: FhirCode.fromJson(json['type']),
+      type: $enumDecode(_$DiscriminatorTypeEnumMap, json['type']),
       typeElement: json['_type'] == null
           ? null
           : Element.fromJson(json['_type'] as Map<String, dynamic>),
@@ -1458,38 +1458,24 @@ ElementDefinitionDiscriminator _$ElementDefinitionDiscriminatorFromJson(
       pathElement: json['_path'] == null
           ? null
           : Element.fromJson(json['_path'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$ElementDefinitionDiscriminatorToJson(
     ElementDefinitionDiscriminator instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -1497,6 +1483,13 @@ Map<String, dynamic> _$ElementDefinitionDiscriminatorToJson(
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -1506,6 +1499,14 @@ Map<String, dynamic> _$ElementDefinitionDiscriminatorToJson(
   writeNotNull('_path', instance.pathElement?.toJson());
   return val;
 }
+
+const _$DiscriminatorTypeEnumMap = {
+  DiscriminatorType.value: 'value',
+  DiscriminatorType.exists: 'exists',
+  DiscriminatorType.pattern: 'pattern',
+  DiscriminatorType.type: 'type',
+  DiscriminatorType.profile: 'profile',
+};
 
 ElementDefinitionBase _$ElementDefinitionBaseFromJson(
         Map<String, dynamic> json) =>
@@ -1526,38 +1527,24 @@ ElementDefinitionBase _$ElementDefinitionBaseFromJson(
       maxElement: json['_max'] == null
           ? null
           : Element.fromJson(json['_max'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$ElementDefinitionBaseToJson(
     ElementDefinitionBase instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -1565,6 +1552,13 @@ Map<String, dynamic> _$ElementDefinitionBaseToJson(
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -1584,7 +1578,7 @@ ElementDefinitionType _$ElementDefinitionTypeFromJson(
       extension_: (json['extension_'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      code: FhirUri.fromJson(json['code']),
+      code: $enumDecode(_$ElementTypesEnumMap, json['code']),
       codeElement: json['_code'] == null
           ? null
           : Element.fromJson(json['_code'] as Map<String, dynamic>),
@@ -1601,49 +1595,34 @@ ElementDefinitionType _$ElementDefinitionTypeFromJson(
           ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
           .toList(),
       aggregation: (json['aggregation'] as List<dynamic>?)
-          ?.map(FhirCode.fromJson)
+          ?.map((e) => $enumDecode(_$AggregationModeEnumMap, e))
           .toList(),
       aggregationElement: (json['_aggregation'] as List<dynamic>?)
           ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
           .toList(),
-      versioning: json['versioning'] == null
-          ? null
-          : FhirCode.fromJson(json['versioning']),
+      versioning: $enumDecodeNullable(
+          _$ReferenceVersionRulesEnumMap, json['versioning']),
       versioningElement: json['_versioning'] == null
           ? null
           : Element.fromJson(json['_versioning'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$ElementDefinitionTypeToJson(
     ElementDefinitionType instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -1651,6 +1630,13 @@ Map<String, dynamic> _$ElementDefinitionTypeToJson(
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -1671,6 +1657,34 @@ Map<String, dynamic> _$ElementDefinitionTypeToJson(
   writeNotNull('_versioning', instance.versioningElement?.toJson());
   return val;
 }
+
+const _$ElementTypesEnumMap = {
+  ElementTypes.hl7_org_fhirpath_System_String:
+      'http://hl7.org/fhirpath/System.String',
+  ElementTypes.hl7_org_fhirpath_System_Boolean:
+      'http://hl7.org/fhirpath/System.Boolean',
+  ElementTypes.hl7_org_fhirpath_System_Date:
+      'http://hl7.org/fhirpath/System.Date',
+  ElementTypes.hl7_org_fhirpath_System_DateTime:
+      'http://hl7.org/fhirpath/System.DateTime',
+  ElementTypes.hl7_org_fhirpath_System_Decimal:
+      'http://hl7.org/fhirpath/System.Decimal',
+  ElementTypes.hl7_org_fhirpath_System_Integer:
+      'http://hl7.org/fhirpath/System.Integer',
+  ElementTypes.hl7_org_fhirpath_System_Time:
+      'http://hl7.org/fhirpath/System.Time',
+};
+
+const _$AggregationModeEnumMap = {
+  AggregationMode.contained: 'contained',
+  AggregationMode.referenced: 'referenced',
+};
+
+const _$ReferenceVersionRulesEnumMap = {
+  ReferenceVersionRules.either: 'either',
+  ReferenceVersionRules.independent: 'independent',
+  ReferenceVersionRules.specific: 'specific',
+};
 
 ElementDefinitionExample _$ElementDefinitionExampleFromJson(
         Map<String, dynamic> json) =>
@@ -1815,38 +1829,24 @@ ElementDefinitionExample _$ElementDefinitionExampleFromJson(
       valueUsageContext: UsageContext.fromJson(
           json['valueUsageContext'] as Map<String, dynamic>),
       valueDosage: Dosage.fromJson(json['valueDosage'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$ElementDefinitionExampleToJson(
     ElementDefinitionExample instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -1854,6 +1854,13 @@ Map<String, dynamic> _$ElementDefinitionExampleToJson(
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -1950,7 +1957,7 @@ ElementDefinitionConstraint _$ElementDefinitionConstraintFromJson(
       requirementsElement: json['_requirements'] == null
           ? null
           : Element.fromJson(json['_requirements'] as Map<String, dynamic>),
-      severity: FhirCode.fromJson(json['severity']),
+      severity: $enumDecode(_$ConstraintSeverityEnumMap, json['severity']),
       severityElement: json['_severity'] == null
           ? null
           : Element.fromJson(json['_severity'] as Map<String, dynamic>),
@@ -1974,38 +1981,24 @@ ElementDefinitionConstraint _$ElementDefinitionConstraintFromJson(
       sourceElement: json['_source'] == null
           ? null
           : Element.fromJson(json['_source'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$ElementDefinitionConstraintToJson(
     ElementDefinitionConstraint instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -2013,6 +2006,13 @@ Map<String, dynamic> _$ElementDefinitionConstraintToJson(
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -2033,6 +2033,11 @@ Map<String, dynamic> _$ElementDefinitionConstraintToJson(
   return val;
 }
 
+const _$ConstraintSeverityEnumMap = {
+  ConstraintSeverity.error: 'error',
+  ConstraintSeverity.warning: 'warning',
+};
+
 ElementDefinitionBinding _$ElementDefinitionBindingFromJson(
         Map<String, dynamic> json) =>
     ElementDefinitionBinding(
@@ -2040,7 +2045,7 @@ ElementDefinitionBinding _$ElementDefinitionBindingFromJson(
       extension_: (json['extension_'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      strength: FhirCode.fromJson(json['strength']),
+      strength: $enumDecode(_$BindingStrengthEnumMap, json['strength']),
       strengthElement: json['_strength'] == null
           ? null
           : Element.fromJson(json['_strength'] as Map<String, dynamic>),
@@ -2056,38 +2061,24 @@ ElementDefinitionBinding _$ElementDefinitionBindingFromJson(
       valueSetElement: json['_valueSet'] == null
           ? null
           : Element.fromJson(json['_valueSet'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$ElementDefinitionBindingToJson(
     ElementDefinitionBinding instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -2095,6 +2086,13 @@ Map<String, dynamic> _$ElementDefinitionBindingToJson(
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -2106,6 +2104,13 @@ Map<String, dynamic> _$ElementDefinitionBindingToJson(
   writeNotNull('_valueSet', instance.valueSetElement?.toJson());
   return val;
 }
+
+const _$BindingStrengthEnumMap = {
+  BindingStrength.required_: 'required',
+  BindingStrength.extensible: 'extensible',
+  BindingStrength.preferred: 'preferred',
+  BindingStrength.example: 'example',
+};
 
 ElementDefinitionMapping _$ElementDefinitionMappingFromJson(
         Map<String, dynamic> json) =>
@@ -2132,38 +2137,24 @@ ElementDefinitionMapping _$ElementDefinitionMappingFromJson(
       commentElement: json['_comment'] == null
           ? null
           : Element.fromJson(json['_comment'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$ElementDefinitionMappingToJson(
     ElementDefinitionMapping instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -2171,6 +2162,13 @@ Map<String, dynamic> _$ElementDefinitionMappingToJson(
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());

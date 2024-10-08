@@ -48,6 +48,7 @@ class PaymentReconciliation extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.PaymentReconciliation,
             fhirType: 'PaymentReconciliation');
@@ -61,7 +62,7 @@ class PaymentReconciliation extends DomainResource {
 
   /// [status] /// The status of the resource instance.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final FinancialResourceStatusCodes status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -91,7 +92,7 @@ class PaymentReconciliation extends DomainResource {
 
   /// [outcome] /// The outcome of a request for a reconciliation.
   @JsonKey(name: 'outcome')
-  final FhirCode? outcome;
+  final RemittanceOutcome? outcome;
   @JsonKey(name: '_outcome')
   final Element? outcomeElement;
 
@@ -122,7 +123,7 @@ class PaymentReconciliation extends DomainResource {
 
   /// [formCode] /// A code for the form to be used for printing the content.
   @JsonKey(name: 'formCode')
-  final CodeableConcept? formCode;
+  final FormCodes? formCode;
 
   /// [processNote] /// A note that describes or explains the processing in a human readable form.
   @JsonKey(name: 'processNote')
@@ -141,14 +142,14 @@ class PaymentReconciliation extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    FinancialResourceStatusCodes? status,
     Element? statusElement,
     Period? period,
     FhirDateTime? created,
@@ -156,7 +157,7 @@ class PaymentReconciliation extends DomainResource {
     Reference? paymentIssuer,
     Reference? request,
     Reference? requestor,
-    FhirCode? outcome,
+    RemittanceOutcome? outcome,
     Element? outcomeElement,
     FhirString? disposition,
     Element? dispositionElement,
@@ -165,7 +166,7 @@ class PaymentReconciliation extends DomainResource {
     Money? paymentAmount,
     Identifier? paymentIdentifier,
     List<PaymentReconciliationDetail>? detail,
-    CodeableConcept? formCode,
+    FormCodes? formCode,
     List<PaymentReconciliationProcessNote>? processNote,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -273,7 +274,7 @@ class PaymentReconciliationDetail extends BackboneElement {
 
   /// [type] /// Code to indicate the nature of the payment.
   @JsonKey(name: 'type')
-  final CodeableConcept type;
+  final PaymentTypeCodes type;
 
   /// [request] /// A resource, such as a Claim, the evaluation of which could lead to payment.
   @JsonKey(name: 'request')
@@ -321,7 +322,7 @@ class PaymentReconciliationDetail extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Identifier? identifier,
     Identifier? predecessor,
-    CodeableConcept? type,
+    PaymentTypeCodes? type,
     Reference? request,
     Reference? submitter,
     Reference? response,
@@ -405,7 +406,7 @@ class PaymentReconciliationProcessNote extends BackboneElement {
 
   /// [type] /// The business purpose of the note text.
   @JsonKey(name: 'type')
-  final FhirCode? type;
+  final NoteType? type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -429,7 +430,7 @@ class PaymentReconciliationProcessNote extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? type,
+    NoteType? type,
     Element? typeElement,
     FhirString? text,
     Element? textElement,

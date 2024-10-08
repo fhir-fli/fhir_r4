@@ -48,6 +48,7 @@ class Invoice extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Invoice, fhirType: 'Invoice');
   @Id()
   @JsonKey(ignore: true)
@@ -60,7 +61,7 @@ class Invoice extends DomainResource {
 
   /// [status] /// The current state of the Invoice.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final InvoiceStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -149,14 +150,14 @@ class Invoice extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    InvoiceStatus? status,
     Element? statusElement,
     FhirString? cancelledReason,
     Element? cancelledReasonElement,
@@ -478,7 +479,7 @@ class InvoicePriceComponent extends BackboneElement {
 
   /// [type] /// This code identifies the type of the component.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final InvoicePriceComponentType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -510,7 +511,7 @@ class InvoicePriceComponent extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? type,
+    InvoicePriceComponentType? type,
     Element? typeElement,
     CodeableConcept? code,
     FhirDecimal? factor,

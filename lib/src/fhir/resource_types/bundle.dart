@@ -33,6 +33,7 @@ class Bundle extends Resource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Bundle, fhirType: 'Bundle');
   @Id()
   @JsonKey(ignore: true)
@@ -45,7 +46,7 @@ class Bundle extends Resource {
 
   /// [type] /// Indicates the purpose of this bundle - how it is intended to be used.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final BundleType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -90,10 +91,10 @@ class Bundle extends Resource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Identifier? identifier,
-    FhirCode? type,
+    BundleType? type,
     Element? typeElement,
     FhirInstant? timestamp,
     Element? timestampElement,
@@ -408,7 +409,7 @@ class BundleSearch extends BackboneElement {
   /// because of an _include requirement, or to convey information or warning
   /// information about the search process.
   @JsonKey(name: 'mode')
-  final FhirCode? mode;
+  final SearchEntryMode? mode;
   @JsonKey(name: '_mode')
   final Element? modeElement;
 
@@ -430,7 +431,7 @@ class BundleSearch extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? mode,
+    SearchEntryMode? mode,
     Element? modeElement,
     FhirDecimal? score,
     Element? scoreElement,
@@ -513,7 +514,7 @@ class BundleRequest extends BackboneElement {
   /// [method] /// In a transaction or batch, this is the HTTP action to be executed for this
   /// entry. In a history bundle, this indicates the HTTP action that occurred.
   @JsonKey(name: 'method')
-  final FhirCode method;
+  final HTTPVerb method;
   @JsonKey(name: '_method')
   final Element? methodElement;
 
@@ -567,7 +568,7 @@ class BundleRequest extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? method,
+    HTTPVerb? method,
     Element? methodElement,
     FhirUri? url,
     Element? urlElement,

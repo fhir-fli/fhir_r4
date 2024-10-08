@@ -39,6 +39,7 @@ class BodyStructure extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.BodyStructure,
             fhirType: 'BodyStructure');
@@ -70,7 +71,7 @@ class BodyStructure extends DomainResource {
   /// [locationQualifier] /// Qualifier to refine the anatomical location. These include qualifiers for
   /// laterality, relative location, directionality, number, and plane.
   @JsonKey(name: 'locationQualifier')
-  final List<CodeableConcept>? locationQualifier;
+  final List<BodystructureLocationQualifier>? locationQualifier;
 
   /// [description] /// A summary, characterization or explanation of the body structure.
   @JsonKey(name: 'description')
@@ -99,7 +100,7 @@ class BodyStructure extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -110,7 +111,7 @@ class BodyStructure extends DomainResource {
     Element? activeElement,
     CodeableConcept? morphology,
     CodeableConcept? location,
-    List<CodeableConcept>? locationQualifier,
+    List<BodystructureLocationQualifier>? locationQualifier,
     FhirString? description,
     Element? descriptionElement,
     List<Attachment>? image,

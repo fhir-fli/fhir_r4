@@ -72,6 +72,7 @@ class EventDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.EventDefinition,
             fhirType: 'EventDefinition');
@@ -133,7 +134,7 @@ class EventDefinition extends DomainResource {
   /// [status] /// The status of this event definition. Enables tracking the life-cycle of the
   /// content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -148,12 +149,12 @@ class EventDefinition extends DomainResource {
   /// [subjectCodeableConcept] /// A code or group definition that describes the intended subject of the event
   /// definition.
   @JsonKey(name: 'subjectCodeableConcept')
-  final CodeableConcept? subjectCodeableConcept;
+  final SubjectType? subjectCodeableConcept;
 
   /// [subjectReference] /// A code or group definition that describes the intended subject of the event
   /// definition.
   @JsonKey(name: 'subjectReference')
-  final Reference? subjectReference;
+  final SubjectType? subjectReference;
 
   /// [date] /// The date (and optionally time) when the event definition was published. The
   /// date must change when the business version changes and it must change if
@@ -241,7 +242,7 @@ class EventDefinition extends DomainResource {
   /// categorization of the module that can be useful for filtering and
   /// searching.
   @JsonKey(name: 'topic')
-  final List<CodeableConcept>? topic;
+  final List<DefinitionTopic>? topic;
 
   /// [author] /// An individiual or organization primarily involved in the creation and
   /// maintenance of the content.
@@ -287,7 +288,7 @@ class EventDefinition extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -304,12 +305,12 @@ class EventDefinition extends DomainResource {
     Element? titleElement,
     FhirString? subtitle,
     Element? subtitleElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
-    CodeableConcept? subjectCodeableConcept,
-    Reference? subjectReference,
+    SubjectType? subjectCodeableConcept,
+    SubjectType? subjectReference,
     FhirDateTime? date,
     Element? dateElement,
     FhirString? publisher,
@@ -330,7 +331,7 @@ class EventDefinition extends DomainResource {
     FhirDate? lastReviewDate,
     Element? lastReviewDateElement,
     Period? effectivePeriod,
-    List<CodeableConcept>? topic,
+    List<DefinitionTopic>? topic,
     List<ContactDetail>? author,
     List<ContactDetail>? editor,
     List<ContactDetail>? reviewer,

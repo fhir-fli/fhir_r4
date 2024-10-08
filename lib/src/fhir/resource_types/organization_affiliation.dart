@@ -41,6 +41,7 @@ class OrganizationAffiliation extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.OrganizationAffiliation,
             fhirType: 'OrganizationAffiliation');
@@ -83,12 +84,12 @@ class OrganizationAffiliation extends DomainResource {
   /// [code] /// Definition of the role the participatingOrganization plays in the
   /// association.
   @JsonKey(name: 'code')
-  final List<CodeableConcept>? code;
+  final List<OrganizationAffiliationRole>? code;
 
   /// [specialty] /// Specific specialty of the participatingOrganization in the context of the
   /// role.
   @JsonKey(name: 'specialty')
-  final List<CodeableConcept>? specialty;
+  final List<PracticeSettingCodeValueSet>? specialty;
 
   /// [location] /// The location(s) at which the role occurs.
   @JsonKey(name: 'location')
@@ -120,7 +121,7 @@ class OrganizationAffiliation extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -133,8 +134,8 @@ class OrganizationAffiliation extends DomainResource {
     Reference? organization,
     Reference? participatingOrganization,
     List<Reference>? network,
-    List<CodeableConcept>? code,
-    List<CodeableConcept>? specialty,
+    List<OrganizationAffiliationRole>? code,
+    List<PracticeSettingCodeValueSet>? specialty,
     List<Reference>? location,
     List<Reference>? healthcareService,
     List<ContactPoint>? telecom,

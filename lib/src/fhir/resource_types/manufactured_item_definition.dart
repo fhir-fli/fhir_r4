@@ -36,6 +36,7 @@ class ManufacturedItemDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.ManufacturedItemDefinition,
             fhirType: 'ManufacturedItemDefinition');
@@ -49,7 +50,7 @@ class ManufacturedItemDefinition extends DomainResource {
 
   /// [status] /// The status of this item. Enables tracking the life-cycle of the content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -61,7 +62,7 @@ class ManufacturedItemDefinition extends DomainResource {
   /// [unitOfPresentation] /// The “real world” units in which the quantity of the manufactured item is
   /// described.
   @JsonKey(name: 'unitOfPresentation')
-  final CodeableConcept? unitOfPresentation;
+  final UnitOfPresentation? unitOfPresentation;
 
   /// [manufacturer] /// Manufacturer of the item (Note that this should be named "manufacturer" but
   /// it currently causes technical issues).
@@ -91,17 +92,17 @@ class ManufacturedItemDefinition extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     CodeableConcept? manufacturedDoseForm,
-    CodeableConcept? unitOfPresentation,
+    UnitOfPresentation? unitOfPresentation,
     List<Reference>? manufacturer,
     List<CodeableConcept>? ingredient,
     List<ManufacturedItemDefinitionProperty>? property,

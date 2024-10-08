@@ -72,6 +72,7 @@ class CapabilityStatement extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.CapabilityStatement,
             fhirType: 'CapabilityStatement');
@@ -120,7 +121,7 @@ class CapabilityStatement extends DomainResource {
   /// [status] /// The status of this capability statement. Enables tracking the life-cycle of
   /// the content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -194,7 +195,7 @@ class CapabilityStatement extends DomainResource {
   /// running instance of software, a particular product (kind, not instance of
   /// software) or a class of implementation (e.g. a desired purchase).
   @JsonKey(name: 'kind')
-  final FhirCode kind;
+  final CapabilityStatementKind kind;
   @JsonKey(name: '_kind')
   final Element? kindElement;
 
@@ -234,7 +235,7 @@ class CapabilityStatement extends DomainResource {
   /// describes (which SHALL be the same as the FHIR version of the
   /// CapabilityStatement itself). There is no default value.
   @JsonKey(name: 'fhirVersion')
-  final FhirCode fhirVersion;
+  final FHIRVersion fhirVersion;
   @JsonKey(name: '_fhirVersion')
   final Element? fhirVersionElement;
 
@@ -277,7 +278,7 @@ class CapabilityStatement extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -291,7 +292,7 @@ class CapabilityStatement extends DomainResource {
     Element? nameElement,
     FhirString? title,
     Element? titleElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
@@ -308,7 +309,7 @@ class CapabilityStatement extends DomainResource {
     Element? purposeElement,
     FhirMarkdown? copyright,
     Element? copyrightElement,
-    FhirCode? kind,
+    CapabilityStatementKind? kind,
     Element? kindElement,
     List<FhirCanonical>? instantiates,
     List<Element>? instantiatesElement,
@@ -316,7 +317,7 @@ class CapabilityStatement extends DomainResource {
     List<Element>? importsElement,
     CapabilityStatementSoftware? software,
     CapabilityStatementImplementation? implementation,
-    FhirCode? fhirVersion,
+    FHIRVersion? fhirVersion,
     Element? fhirVersionElement,
     List<FhirCode>? format,
     List<Element>? formatElement,
@@ -677,7 +678,7 @@ class CapabilityStatementRest extends BackboneElement {
   /// [mode] /// Identifies whether this portion of the statement is describing the ability
   /// to initiate or receive restful operations.
   @JsonKey(name: 'mode')
-  final FhirCode mode;
+  final RestfulCapabilityMode mode;
   @JsonKey(name: '_mode')
   final Element? modeElement;
 
@@ -734,7 +735,7 @@ class CapabilityStatementRest extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? mode,
+    RestfulCapabilityMode? mode,
     Element? modeElement,
     FhirMarkdown? documentation,
     Element? documentationElement,
@@ -829,7 +830,7 @@ class CapabilityStatementSecurity extends BackboneElement {
 
   /// [service] /// Types of security services that are supported/required by the system.
   @JsonKey(name: 'service')
-  final List<CodeableConcept>? service;
+  final List<RestfulSecurityService>? service;
 
   /// [description] /// General description of how security works.
   @JsonKey(name: 'description')
@@ -851,7 +852,7 @@ class CapabilityStatementSecurity extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirBoolean? cors,
     Element? corsElement,
-    List<CodeableConcept>? service,
+    List<RestfulSecurityService>? service,
     FhirMarkdown? description,
     Element? descriptionElement,
     Map<String, Object?>? userData,
@@ -994,7 +995,7 @@ class CapabilityStatementResource extends BackboneElement {
   /// then the server supports all the versioning features, including using
   /// e-tags for version integrity in the API.
   @JsonKey(name: 'versioning')
-  final FhirCode? versioning;
+  final ResourceVersionPolicy? versioning;
   @JsonKey(name: '_versioning')
   final Element? versioningElement;
 
@@ -1022,7 +1023,7 @@ class CapabilityStatementResource extends BackboneElement {
 
   /// [conditionalRead] /// A code that indicates how the server supports conditional read.
   @JsonKey(name: 'conditionalRead')
-  final FhirCode? conditionalRead;
+  final ConditionalReadStatus? conditionalRead;
   @JsonKey(name: '_conditionalRead')
   final Element? conditionalReadElement;
 
@@ -1034,13 +1035,13 @@ class CapabilityStatementResource extends BackboneElement {
 
   /// [conditionalDelete] /// A code that indicates how the server supports conditional delete.
   @JsonKey(name: 'conditionalDelete')
-  final FhirCode? conditionalDelete;
+  final ConditionalDeleteStatus? conditionalDelete;
   @JsonKey(name: '_conditionalDelete')
   final Element? conditionalDeleteElement;
 
   /// [referencePolicy] /// A set of flags that defines how references are supported.
   @JsonKey(name: 'referencePolicy')
-  final List<FhirCode>? referencePolicy;
+  final List<ReferenceHandlingPolicy>? referencePolicy;
   @JsonKey(name: '_referencePolicy')
   final List<Element>? referencePolicyElement;
 
@@ -1089,7 +1090,7 @@ class CapabilityStatementResource extends BackboneElement {
     FhirMarkdown? documentation,
     Element? documentationElement,
     List<CapabilityStatementInteraction>? interaction,
-    FhirCode? versioning,
+    ResourceVersionPolicy? versioning,
     Element? versioningElement,
     FhirBoolean? readHistory,
     Element? readHistoryElement,
@@ -1097,13 +1098,13 @@ class CapabilityStatementResource extends BackboneElement {
     Element? updateCreateElement,
     FhirBoolean? conditionalCreate,
     Element? conditionalCreateElement,
-    FhirCode? conditionalRead,
+    ConditionalReadStatus? conditionalRead,
     Element? conditionalReadElement,
     FhirBoolean? conditionalUpdate,
     Element? conditionalUpdateElement,
-    FhirCode? conditionalDelete,
+    ConditionalDeleteStatus? conditionalDelete,
     Element? conditionalDeleteElement,
-    List<FhirCode>? referencePolicy,
+    List<ReferenceHandlingPolicy>? referencePolicy,
     List<Element>? referencePolicyElement,
     List<FhirString>? searchInclude,
     List<Element>? searchIncludeElement,
@@ -1213,7 +1214,7 @@ class CapabilityStatementInteraction extends BackboneElement {
 
   /// [code] /// Coded identifier of the operation, supported by the system resource.
   @JsonKey(name: 'code')
-  final FhirCode code;
+  final TypeRestfulInteraction code;
   @JsonKey(name: '_code')
   final Element? codeElement;
 
@@ -1237,7 +1238,7 @@ class CapabilityStatementInteraction extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? code,
+    TypeRestfulInteraction? code,
     Element? codeElement,
     FhirMarkdown? documentation,
     Element? documentationElement,
@@ -1335,7 +1336,7 @@ class CapabilityStatementSearchParam extends BackboneElement {
   /// [type] /// The type of value a search parameter refers to, and how the content is
   /// interpreted.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final SearchParamType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -1362,7 +1363,7 @@ class CapabilityStatementSearchParam extends BackboneElement {
     Element? nameElement,
     FhirCanonical? definition,
     Element? definitionElement,
-    FhirCode? type,
+    SearchParamType? type,
     Element? typeElement,
     FhirMarkdown? documentation,
     Element? documentationElement,
@@ -1558,7 +1559,7 @@ class CapabilityStatementInteraction1 extends BackboneElement {
 
   /// [code] /// A coded identifier of the operation, supported by the system.
   @JsonKey(name: 'code')
-  final FhirCode code;
+  final SystemRestfulInteraction code;
   @JsonKey(name: '_code')
   final Element? codeElement;
 
@@ -1583,7 +1584,7 @@ class CapabilityStatementInteraction1 extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? code,
+    SystemRestfulInteraction? code,
     Element? codeElement,
     FhirMarkdown? documentation,
     Element? documentationElement,
@@ -1771,7 +1772,7 @@ class CapabilityStatementEndpoint extends BackboneElement {
   /// [protocol] /// A list of the messaging transport protocol(s) identifiers, supported by
   /// this endpoint.
   @JsonKey(name: 'protocol')
-  final Coding protocol;
+  final MessageTransport protocol;
 
   /// [address] /// The network address of the endpoint. For solutions that do not use network
   /// addresses for routing, it can be just an identifier.
@@ -1792,7 +1793,7 @@ class CapabilityStatementEndpoint extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Coding? protocol,
+    MessageTransport? protocol,
     FhirUrl? address,
     Element? addressElement,
     Map<String, Object?>? userData,
@@ -1864,7 +1865,7 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
   /// [mode] /// The mode of this event declaration - whether application is sender or
   /// receiver.
   @JsonKey(name: 'mode')
-  final FhirCode mode;
+  final EventCapabilityMode mode;
   @JsonKey(name: '_mode')
   final Element? modeElement;
 
@@ -1889,7 +1890,7 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? mode,
+    EventCapabilityMode? mode,
     Element? modeElement,
     FhirCanonical? definition,
     Element? definitionElement,
@@ -1965,7 +1966,7 @@ class CapabilityStatementDocument extends BackboneElement {
   /// [mode] /// Mode of this document declaration - whether an application is a producer or
   /// consumer.
   @JsonKey(name: 'mode')
-  final FhirCode mode;
+  final DocumentMode mode;
   @JsonKey(name: '_mode')
   final Element? modeElement;
 
@@ -1996,7 +1997,7 @@ class CapabilityStatementDocument extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? mode,
+    DocumentMode? mode,
     Element? modeElement,
     FhirMarkdown? documentation,
     Element? documentationElement,

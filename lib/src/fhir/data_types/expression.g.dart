@@ -22,7 +22,7 @@ FhirExpression _$FhirExpressionFromJson(Map<String, dynamic> json) =>
       nameElement: json['_name'] == null
           ? null
           : Element.fromJson(json['_name'] as Map<String, dynamic>),
-      language: FhirCode.fromJson(json['language']),
+      language: $enumDecode(_$ExpressionLanguageEnumMap, json['language']),
       languageElement: json['_language'] == null
           ? null
           : Element.fromJson(json['_language'] as Map<String, dynamic>),
@@ -38,37 +38,23 @@ FhirExpression _$FhirExpressionFromJson(Map<String, dynamic> json) =>
       referenceElement: json['_reference'] == null
           ? null
           : Element.fromJson(json['_reference'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$FhirExpressionToJson(FhirExpression instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -76,6 +62,13 @@ Map<String, dynamic> _$FhirExpressionToJson(FhirExpression instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -91,3 +84,11 @@ Map<String, dynamic> _$FhirExpressionToJson(FhirExpression instance) {
   writeNotNull('_reference', instance.referenceElement?.toJson());
   return val;
 }
+
+const _$ExpressionLanguageEnumMap = {
+  ExpressionLanguage.text_cql: 'text/cql',
+  ExpressionLanguage.text_fhirpath: 'text/fhirpath',
+  ExpressionLanguage.application_x_fhir_query: 'application/x-fhir-query',
+  ExpressionLanguage.text_cql_identifier: 'text/cql-identifier',
+  ExpressionLanguage.text_cql_expression: 'text/cql-expression',
+};

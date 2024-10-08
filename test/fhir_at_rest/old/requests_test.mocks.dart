@@ -137,4 +137,29 @@ class MockFhirRequest extends _i1.Mock implements _i3.FhirRequest {
         ),
         returnValue: <String, dynamic>{},
       ) as Map<String, dynamic>);
+
+  @override
+  Uri buildUriWithParams(
+    Uri? baseUri,
+    Map<String, dynamic>? queryParams,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #buildUriWithParams,
+          [
+            baseUri,
+            queryParams,
+          ],
+        ),
+        returnValue: _FakeUri_0(
+          this,
+          Invocation.method(
+            #buildUriWithParams,
+            [
+              baseUri,
+              queryParams,
+            ],
+          ),
+        ),
+      ) as Uri);
 }

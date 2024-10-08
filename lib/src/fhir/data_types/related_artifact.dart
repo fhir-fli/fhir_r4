@@ -40,7 +40,7 @@ class RelatedArtifact extends DataType {
 
   /// [type] /// The type of relationship to the related artifact.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final RelatedArtifactType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -94,7 +94,7 @@ class RelatedArtifact extends DataType {
   RelatedArtifact copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
-    FhirCode? type,
+    RelatedArtifactType? type,
     Element? typeElement,
     FhirString? label,
     Element? labelElement,

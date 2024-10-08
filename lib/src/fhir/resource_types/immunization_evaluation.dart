@@ -52,6 +52,7 @@ class ImmunizationEvaluation extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.ImmunizationEvaluation,
             fhirType: 'ImmunizationEvaluation');
@@ -66,7 +67,7 @@ class ImmunizationEvaluation extends DomainResource {
   /// [status] /// Indicates the current status of the evaluation of the vaccination
   /// administration event.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final ImmunizationEvaluationStatusCodes status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -86,7 +87,7 @@ class ImmunizationEvaluation extends DomainResource {
 
   /// [targetDisease] /// The vaccine preventable disease the dose is being evaluated against.
   @JsonKey(name: 'targetDisease')
-  final CodeableConcept targetDisease;
+  final ImmunizationEvaluationTargetDiseaseCodes targetDisease;
 
   /// [immunizationEvent] /// The vaccine administration event being evaluated.
   @JsonKey(name: 'immunizationEvent')
@@ -95,12 +96,12 @@ class ImmunizationEvaluation extends DomainResource {
   /// [doseStatus] /// Indicates if the dose is valid or not valid with respect to the published
   /// recommendations.
   @JsonKey(name: 'doseStatus')
-  final CodeableConcept doseStatus;
+  final ImmunizationEvaluationDoseStatusCodes doseStatus;
 
   /// [doseStatusReason] /// Provides an explanation as to why the vaccine administration event is valid
   /// or not relative to the published recommendations.
   @JsonKey(name: 'doseStatusReason')
-  final List<CodeableConcept>? doseStatusReason;
+  final List<ImmunizationEvaluationDoseStatusReasonCodes>? doseStatusReason;
 
   /// [description] /// Additional information about the evaluation.
   @JsonKey(name: 'description')
@@ -152,23 +153,23 @@ class ImmunizationEvaluation extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    ImmunizationEvaluationStatusCodes? status,
     Element? statusElement,
     Reference? patient,
     FhirDateTime? date,
     Element? dateElement,
     Reference? authority,
-    CodeableConcept? targetDisease,
+    ImmunizationEvaluationTargetDiseaseCodes? targetDisease,
     Reference? immunizationEvent,
-    CodeableConcept? doseStatus,
-    List<CodeableConcept>? doseStatusReason,
+    ImmunizationEvaluationDoseStatusCodes? doseStatus,
+    List<ImmunizationEvaluationDoseStatusReasonCodes>? doseStatusReason,
     FhirString? description,
     Element? descriptionElement,
     FhirString? series,

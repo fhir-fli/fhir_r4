@@ -14,22 +14,20 @@ Evidence _$EvidenceFromJson(Map<String, dynamic> json) => Evidence(
       implicitRules: json['implicitRules'] == null
           ? null
           : FhirUri.fromJson(json['implicitRules']),
-      implicitRulesElement: json['implicitRulesElement'] == null
+      implicitRulesElement: json['_implicitRules'] == null
           ? null
-          : Element.fromJson(
-              json['implicitRulesElement'] as Map<String, dynamic>),
-      language:
-          json['language'] == null ? null : FhirCode.fromJson(json['language']),
-      languageElement: json['languageElement'] == null
+          : Element.fromJson(json['_implicitRules'] as Map<String, dynamic>),
+      language: $enumDecodeNullable(_$CommonLanguagesEnumMap, json['language']),
+      languageElement: json['_language'] == null
           ? null
-          : Element.fromJson(json['languageElement'] as Map<String, dynamic>),
+          : Element.fromJson(json['_language'] as Map<String, dynamic>),
       text: json['text'] == null
           ? null
           : Narrative.fromJson(json['text'] as Map<String, dynamic>),
       contained: (json['contained'] as List<dynamic>?)
           ?.map((e) => Resource.fromJson(e as Map<String, dynamic>))
           .toList(),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -60,7 +58,7 @@ Evidence _$EvidenceFromJson(Map<String, dynamic> json) => Evidence(
       citeAsMarkdownElement: json['_citeAsMarkdown'] == null
           ? null
           : Element.fromJson(json['_citeAsMarkdown'] as Map<String, dynamic>),
-      status: FhirCode.fromJson(json['status']),
+      status: $enumDecode(_$PublicationStatusEnumMap, json['status']),
       statusElement: json['_status'] == null
           ? null
           : Element.fromJson(json['_status'] as Map<String, dynamic>),
@@ -128,50 +126,34 @@ Evidence _$EvidenceFromJson(Map<String, dynamic> json) => Evidence(
           .map((e) =>
               EvidenceVariableDefinition.fromJson(e as Map<String, dynamic>))
           .toList(),
-      synthesisType: json['synthesisType'] == null
-          ? null
-          : CodeableConcept.fromJson(
-              json['synthesisType'] as Map<String, dynamic>),
-      studyType: json['studyType'] == null
-          ? null
-          : CodeableConcept.fromJson(json['studyType'] as Map<String, dynamic>),
+      synthesisType:
+          $enumDecodeNullable(_$SynthesisTypeEnumMap, json['synthesisType']),
+      studyType: $enumDecodeNullable(_$StudyTypeEnumMap, json['studyType']),
       statistic: (json['statistic'] as List<dynamic>?)
           ?.map((e) => EvidenceStatistic.fromJson(e as Map<String, dynamic>))
           .toList(),
       certainty: (json['certainty'] as List<dynamic>?)
           ?.map((e) => EvidenceCertainty.fromJson(e as Map<String, dynamic>))
           .toList(),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
+      resourceType:
+          $enumDecodeNullable(_$R4ResourceTypeEnumMap, json['resourceType']),
     );
 
 Map<String, dynamic> _$EvidenceToJson(Evidence instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -179,17 +161,25 @@ Map<String, dynamic> _$EvidenceToJson(Evidence instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
+  val['resourceType'] = instance.resourceType.toJson();
   writeNotNull('id', instance.id?.toJson());
   writeNotNull('meta', instance.meta?.toJson());
   writeNotNull('implicitRules', instance.implicitRules?.toJson());
-  writeNotNull('implicitRulesElement', instance.implicitRulesElement?.toJson());
+  writeNotNull('_implicitRules', instance.implicitRulesElement?.toJson());
   writeNotNull('language', instance.language?.toJson());
-  writeNotNull('languageElement', instance.languageElement?.toJson());
+  writeNotNull('_language', instance.languageElement?.toJson());
   writeNotNull('text', instance.text?.toJson());
   writeNotNull(
       'contained', instance.contained?.map((e) => e.toJson()).toList());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('url', instance.url?.toJson());
@@ -238,6 +228,237 @@ Map<String, dynamic> _$EvidenceToJson(Evidence instance) {
   return val;
 }
 
+const _$CommonLanguagesEnumMap = {
+  CommonLanguages.ar: 'ar',
+  CommonLanguages.bn: 'bn',
+  CommonLanguages.cs: 'cs',
+  CommonLanguages.da: 'da',
+  CommonLanguages.de: 'de',
+  CommonLanguages.de_AT: 'de-AT',
+  CommonLanguages.de_CH: 'de-CH',
+  CommonLanguages.de_DE: 'de-DE',
+  CommonLanguages.el: 'el',
+  CommonLanguages.en: 'en',
+  CommonLanguages.en_AU: 'en-AU',
+  CommonLanguages.en_CA: 'en-CA',
+  CommonLanguages.en_GB: 'en-GB',
+  CommonLanguages.en_IN: 'en-IN',
+  CommonLanguages.en_NZ: 'en-NZ',
+  CommonLanguages.en_SG: 'en-SG',
+  CommonLanguages.en_US: 'en-US',
+  CommonLanguages.es: 'es',
+  CommonLanguages.es_AR: 'es-AR',
+  CommonLanguages.es_ES: 'es-ES',
+  CommonLanguages.es_UY: 'es-UY',
+  CommonLanguages.fi: 'fi',
+  CommonLanguages.fr: 'fr',
+  CommonLanguages.fr_BE: 'fr-BE',
+  CommonLanguages.fr_CH: 'fr-CH',
+  CommonLanguages.fr_FR: 'fr-FR',
+  CommonLanguages.fy: 'fy',
+  CommonLanguages.fy_NL: 'fy-NL',
+  CommonLanguages.hi: 'hi',
+  CommonLanguages.hr: 'hr',
+  CommonLanguages.it: 'it',
+  CommonLanguages.it_CH: 'it-CH',
+  CommonLanguages.it_IT: 'it-IT',
+  CommonLanguages.ja: 'ja',
+  CommonLanguages.ko: 'ko',
+  CommonLanguages.nl: 'nl',
+  CommonLanguages.nl_BE: 'nl-BE',
+  CommonLanguages.nl_NL: 'nl-NL',
+  CommonLanguages.no: 'no',
+  CommonLanguages.no_NO: 'no-NO',
+  CommonLanguages.pa: 'pa',
+  CommonLanguages.pl: 'pl',
+  CommonLanguages.pt: 'pt',
+  CommonLanguages.pt_BR: 'pt-BR',
+  CommonLanguages.ru: 'ru',
+  CommonLanguages.ru_RU: 'ru-RU',
+  CommonLanguages.sr: 'sr',
+  CommonLanguages.sr_RS: 'sr-RS',
+  CommonLanguages.sv: 'sv',
+  CommonLanguages.sv_SE: 'sv-SE',
+  CommonLanguages.te: 'te',
+  CommonLanguages.zh: 'zh',
+  CommonLanguages.zh_CN: 'zh-CN',
+  CommonLanguages.zh_HK: 'zh-HK',
+  CommonLanguages.zh_SG: 'zh-SG',
+  CommonLanguages.zh_TW: 'zh-TW',
+};
+
+const _$PublicationStatusEnumMap = {
+  PublicationStatus.draft: 'draft',
+  PublicationStatus.active: 'active',
+  PublicationStatus.retired: 'retired',
+  PublicationStatus.unknown: 'unknown',
+};
+
+const _$SynthesisTypeEnumMap = {
+  SynthesisType.std_MA: 'std-MA',
+  SynthesisType.IPD_MA: 'IPD-MA',
+  SynthesisType.indirect_NMA: 'indirect-NMA',
+  SynthesisType.combined_NMA: 'combined-NMA',
+  SynthesisType.range: 'range',
+  SynthesisType.classification: 'classification',
+  SynthesisType.NotApplicable: 'NotApplicable',
+};
+
+const _$StudyTypeEnumMap = {
+  StudyType.RCT: 'RCT',
+  StudyType.CCT: 'CCT',
+  StudyType.cohort: 'cohort',
+  StudyType.case_control: 'case-control',
+  StudyType.series: 'series',
+  StudyType.case_report: 'case-report',
+  StudyType.mixed: 'mixed',
+};
+
+const _$R4ResourceTypeEnumMap = {
+  R4ResourceType.Account: 'Account',
+  R4ResourceType.ActivityDefinition: 'ActivityDefinition',
+  R4ResourceType.AdministrableProductDefinition:
+      'AdministrableProductDefinition',
+  R4ResourceType.AdverseEvent: 'AdverseEvent',
+  R4ResourceType.AllergyIntolerance: 'AllergyIntolerance',
+  R4ResourceType.Appointment: 'Appointment',
+  R4ResourceType.AppointmentResponse: 'AppointmentResponse',
+  R4ResourceType.AuditEvent: 'AuditEvent',
+  R4ResourceType.Basic: 'Basic',
+  R4ResourceType.Binary: 'Binary',
+  R4ResourceType.BiologicallyDerivedProduct: 'BiologicallyDerivedProduct',
+  R4ResourceType.BodyStructure: 'BodyStructure',
+  R4ResourceType.Bundle: 'Bundle',
+  R4ResourceType.CapabilityStatement: 'CapabilityStatement',
+  R4ResourceType.CarePlan: 'CarePlan',
+  R4ResourceType.CareTeam: 'CareTeam',
+  R4ResourceType.CatalogEntry: 'CatalogEntry',
+  R4ResourceType.ChargeItem: 'ChargeItem',
+  R4ResourceType.ChargeItemDefinition: 'ChargeItemDefinition',
+  R4ResourceType.Citation: 'Citation',
+  R4ResourceType.Claim: 'Claim',
+  R4ResourceType.ClaimResponse: 'ClaimResponse',
+  R4ResourceType.ClinicalImpression: 'ClinicalImpression',
+  R4ResourceType.ClinicalUseDefinition: 'ClinicalUseDefinition',
+  R4ResourceType.CodeSystem: 'CodeSystem',
+  R4ResourceType.Communication: 'Communication',
+  R4ResourceType.CommunicationRequest: 'CommunicationRequest',
+  R4ResourceType.CompartmentDefinition: 'CompartmentDefinition',
+  R4ResourceType.Composition: 'Composition',
+  R4ResourceType.ConceptMap: 'ConceptMap',
+  R4ResourceType.Condition: 'Condition',
+  R4ResourceType.Consent: 'Consent',
+  R4ResourceType.Contract: 'Contract',
+  R4ResourceType.Coverage: 'Coverage',
+  R4ResourceType.CoverageEligibilityRequest: 'CoverageEligibilityRequest',
+  R4ResourceType.CoverageEligibilityResponse: 'CoverageEligibilityResponse',
+  R4ResourceType.DetectedIssue: 'DetectedIssue',
+  R4ResourceType.Device: 'Device',
+  R4ResourceType.DeviceDefinition: 'DeviceDefinition',
+  R4ResourceType.DeviceMetric: 'DeviceMetric',
+  R4ResourceType.DeviceRequest: 'DeviceRequest',
+  R4ResourceType.DeviceUseStatement: 'DeviceUseStatement',
+  R4ResourceType.DiagnosticReport: 'DiagnosticReport',
+  R4ResourceType.DocumentManifest: 'DocumentManifest',
+  R4ResourceType.DocumentReference: 'DocumentReference',
+  R4ResourceType.Encounter: 'Encounter',
+  R4ResourceType.EnrollmentRequest: 'EnrollmentRequest',
+  R4ResourceType.EnrollmentResponse: 'EnrollmentResponse',
+  R4ResourceType.EpisodeOfCare: 'EpisodeOfCare',
+  R4ResourceType.EventDefinition: 'EventDefinition',
+  R4ResourceType.Evidence: 'Evidence',
+  R4ResourceType.EvidenceReport: 'EvidenceReport',
+  R4ResourceType.EvidenceVariable: 'EvidenceVariable',
+  R4ResourceType.ExampleScenario: 'ExampleScenario',
+  R4ResourceType.ExplanationOfBenefit: 'ExplanationOfBenefit',
+  R4ResourceType.FamilyMemberHistory: 'FamilyMemberHistory',
+  R4ResourceType.FhirEndpoint: 'Endpoint',
+  R4ResourceType.FhirGroup: 'Group',
+  R4ResourceType.FhirList: 'List',
+  R4ResourceType.Flag: 'Flag',
+  R4ResourceType.Goal: 'Goal',
+  R4ResourceType.GraphDefinition: 'GraphDefinition',
+  R4ResourceType.GuidanceResponse: 'GuidanceResponse',
+  R4ResourceType.HealthcareService: 'HealthcareService',
+  R4ResourceType.ImagingStudy: 'ImagingStudy',
+  R4ResourceType.Immunization: 'Immunization',
+  R4ResourceType.ImmunizationEvaluation: 'ImmunizationEvaluation',
+  R4ResourceType.ImmunizationRecommendation: 'ImmunizationRecommendation',
+  R4ResourceType.ImplementationGuide: 'ImplementationGuide',
+  R4ResourceType.Ingredient: 'Ingredient',
+  R4ResourceType.InsurancePlan: 'InsurancePlan',
+  R4ResourceType.Invoice: 'Invoice',
+  R4ResourceType.Library: 'Library',
+  R4ResourceType.Linkage: 'Linkage',
+  R4ResourceType.Location: 'Location',
+  R4ResourceType.ManufacturedItemDefinition: 'ManufacturedItemDefinition',
+  R4ResourceType.Measure: 'Measure',
+  R4ResourceType.MeasureReport: 'MeasureReport',
+  R4ResourceType.Media: 'Media',
+  R4ResourceType.Medication: 'Medication',
+  R4ResourceType.MedicationAdministration: 'MedicationAdministration',
+  R4ResourceType.MedicationDispense: 'MedicationDispense',
+  R4ResourceType.MedicationKnowledge: 'MedicationKnowledge',
+  R4ResourceType.MedicationRequest: 'MedicationRequest',
+  R4ResourceType.MedicationStatement: 'MedicationStatement',
+  R4ResourceType.MedicinalProductDefinition: 'MedicinalProductDefinition',
+  R4ResourceType.MessageDefinition: 'MessageDefinition',
+  R4ResourceType.MessageHeader: 'MessageHeader',
+  R4ResourceType.MolecularSequence: 'MolecularSequence',
+  R4ResourceType.NamingSystem: 'NamingSystem',
+  R4ResourceType.NutritionOrder: 'NutritionOrder',
+  R4ResourceType.NutritionProduct: 'NutritionProduct',
+  R4ResourceType.Observation: 'Observation',
+  R4ResourceType.ObservationDefinition: 'ObservationDefinition',
+  R4ResourceType.OperationDefinition: 'OperationDefinition',
+  R4ResourceType.OperationOutcome: 'OperationOutcome',
+  R4ResourceType.Organization: 'Organization',
+  R4ResourceType.OrganizationAffiliation: 'OrganizationAffiliation',
+  R4ResourceType.PackagedProductDefinition: 'PackagedProductDefinition',
+  R4ResourceType.Parameters: 'Parameters',
+  R4ResourceType.Patient: 'Patient',
+  R4ResourceType.PaymentNotice: 'PaymentNotice',
+  R4ResourceType.PaymentReconciliation: 'PaymentReconciliation',
+  R4ResourceType.Person: 'Person',
+  R4ResourceType.PlanDefinition: 'PlanDefinition',
+  R4ResourceType.Practitioner: 'Practitioner',
+  R4ResourceType.PractitionerRole: 'PractitionerRole',
+  R4ResourceType.Procedure: 'Procedure',
+  R4ResourceType.Provenance: 'Provenance',
+  R4ResourceType.Questionnaire: 'Questionnaire',
+  R4ResourceType.QuestionnaireResponse: 'QuestionnaireResponse',
+  R4ResourceType.RegulatedAuthorization: 'RegulatedAuthorization',
+  R4ResourceType.RelatedPerson: 'RelatedPerson',
+  R4ResourceType.RequestGroup: 'RequestGroup',
+  R4ResourceType.ResearchDefinition: 'ResearchDefinition',
+  R4ResourceType.ResearchElementDefinition: 'ResearchElementDefinition',
+  R4ResourceType.ResearchStudy: 'ResearchStudy',
+  R4ResourceType.ResearchSubject: 'ResearchSubject',
+  R4ResourceType.RiskAssessment: 'RiskAssessment',
+  R4ResourceType.Schedule: 'Schedule',
+  R4ResourceType.SearchParameter: 'SearchParameter',
+  R4ResourceType.ServiceRequest: 'ServiceRequest',
+  R4ResourceType.Slot: 'Slot',
+  R4ResourceType.Specimen: 'Specimen',
+  R4ResourceType.SpecimenDefinition: 'SpecimenDefinition',
+  R4ResourceType.StructureDefinition: 'StructureDefinition',
+  R4ResourceType.StructureMap: 'StructureMap',
+  R4ResourceType.Subscription: 'Subscription',
+  R4ResourceType.SubscriptionStatus: 'SubscriptionStatus',
+  R4ResourceType.SubscriptionTopic: 'SubscriptionTopic',
+  R4ResourceType.Substance: 'Substance',
+  R4ResourceType.SubstanceDefinition: 'SubstanceDefinition',
+  R4ResourceType.SupplyDelivery: 'SupplyDelivery',
+  R4ResourceType.SupplyRequest: 'SupplyRequest',
+  R4ResourceType.Task: 'Task',
+  R4ResourceType.TerminologyCapabilities: 'TerminologyCapabilities',
+  R4ResourceType.TestReport: 'TestReport',
+  R4ResourceType.TestScript: 'TestScript',
+  R4ResourceType.ValueSet: 'ValueSet',
+  R4ResourceType.VerificationResult: 'VerificationResult',
+  R4ResourceType.VisionPrescription: 'VisionPrescription',
+};
+
 EvidenceVariableDefinition _$EvidenceVariableDefinitionFromJson(
         Map<String, dynamic> json) =>
     EvidenceVariableDefinition(
@@ -257,50 +478,34 @@ EvidenceVariableDefinition _$EvidenceVariableDefinitionFromJson(
       note: (json['note'] as List<dynamic>?)
           ?.map((e) => Annotation.fromJson(e as Map<String, dynamic>))
           .toList(),
-      variableRole: CodeableConcept.fromJson(
-          json['variableRole'] as Map<String, dynamic>),
+      variableRole:
+          $enumDecode(_$EvidenceVariableRoleEnumMap, json['variableRole']),
       observed: json['observed'] == null
           ? null
           : Reference.fromJson(json['observed'] as Map<String, dynamic>),
       intended: json['intended'] == null
           ? null
           : Reference.fromJson(json['intended'] as Map<String, dynamic>),
-      directnessMatch: json['directnessMatch'] == null
-          ? null
-          : CodeableConcept.fromJson(
-              json['directnessMatch'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      directnessMatch: $enumDecodeNullable(
+          _$EvidenceDirectnessEnumMap, json['directnessMatch']),
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$EvidenceVariableDefinitionToJson(
     EvidenceVariableDefinition instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -308,6 +513,13 @@ Map<String, dynamic> _$EvidenceVariableDefinitionToJson(
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -322,6 +534,22 @@ Map<String, dynamic> _$EvidenceVariableDefinitionToJson(
   writeNotNull('directnessMatch', instance.directnessMatch?.toJson());
   return val;
 }
+
+const _$EvidenceVariableRoleEnumMap = {
+  EvidenceVariableRole.population: 'population',
+  EvidenceVariableRole.subpopulation: 'subpopulation',
+  EvidenceVariableRole.exposure: 'exposure',
+  EvidenceVariableRole.referenceExposure: 'referenceExposure',
+  EvidenceVariableRole.measuredVariable: 'measuredVariable',
+  EvidenceVariableRole.confounder: 'confounder',
+};
+
+const _$EvidenceDirectnessEnumMap = {
+  EvidenceDirectness.low: 'low',
+  EvidenceDirectness.moderate: 'moderate',
+  EvidenceDirectness.high: 'high',
+  EvidenceDirectness.exact: 'exact',
+};
 
 EvidenceStatistic _$EvidenceStatisticFromJson(Map<String, dynamic> json) =>
     EvidenceStatistic(
@@ -341,10 +569,8 @@ EvidenceStatistic _$EvidenceStatisticFromJson(Map<String, dynamic> json) =>
       note: (json['note'] as List<dynamic>?)
           ?.map((e) => Annotation.fromJson(e as Map<String, dynamic>))
           .toList(),
-      statisticType: json['statisticType'] == null
-          ? null
-          : CodeableConcept.fromJson(
-              json['statisticType'] as Map<String, dynamic>),
+      statisticType:
+          $enumDecodeNullable(_$StatisticTypeEnumMap, json['statisticType']),
       category: json['category'] == null
           ? null
           : CodeableConcept.fromJson(json['category'] as Map<String, dynamic>),
@@ -375,37 +601,23 @@ EvidenceStatistic _$EvidenceStatisticFromJson(Map<String, dynamic> json) =>
           ?.map((e) =>
               EvidenceModelCharacteristic.fromJson(e as Map<String, dynamic>))
           .toList(),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$EvidenceStatisticToJson(EvidenceStatistic instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -413,6 +625,13 @@ Map<String, dynamic> _$EvidenceStatisticToJson(EvidenceStatistic instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -435,6 +654,31 @@ Map<String, dynamic> _$EvidenceStatisticToJson(EvidenceStatistic instance) {
       instance.modelCharacteristic?.map((e) => e.toJson()).toList());
   return val;
 }
+
+const _$StatisticTypeEnumMap = {
+  StatisticType.absolute_MedianDiff: 'absolute-MedianDiff',
+  StatisticType.C25463: 'C25463',
+  StatisticType.value0000301: '0000301',
+  StatisticType.predictedRisk: 'predictedRisk',
+  StatisticType.descriptive: 'descriptive',
+  StatisticType.C93150: 'C93150',
+  StatisticType.C16726: 'C16726',
+  StatisticType.rate_ratio: 'rate-ratio',
+  StatisticType.C25564: 'C25564',
+  StatisticType.C53319: 'C53319',
+  StatisticType.value0000457: '0000457',
+  StatisticType.C28007: 'C28007',
+  StatisticType.C25570: 'C25570',
+  StatisticType.C16932: 'C16932',
+  StatisticType.C65172: 'C65172',
+  StatisticType.C17010: 'C17010',
+  StatisticType.C44256: 'C44256',
+  StatisticType.value0000565: '0000565',
+  StatisticType.C93152: 'C93152',
+  StatisticType.value0000424: '0000424',
+  StatisticType.C65171: 'C65171',
+  StatisticType.value0000100: '0000100',
+};
 
 EvidenceSampleSize _$EvidenceSampleSizeFromJson(Map<String, dynamic> json) =>
     EvidenceSampleSize(
@@ -473,37 +717,23 @@ EvidenceSampleSize _$EvidenceSampleSizeFromJson(Map<String, dynamic> json) =>
       knownDataCountElement: json['_knownDataCount'] == null
           ? null
           : Element.fromJson(json['_knownDataCount'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$EvidenceSampleSizeToJson(EvidenceSampleSize instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -511,6 +741,13 @@ Map<String, dynamic> _$EvidenceSampleSizeToJson(EvidenceSampleSize instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -548,9 +785,7 @@ EvidenceAttributeEstimate _$EvidenceAttributeEstimateFromJson(
       note: (json['note'] as List<dynamic>?)
           ?.map((e) => Annotation.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: json['type'] == null
-          ? null
-          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      type: $enumDecodeNullable(_$AttributeEstimateTypeEnumMap, json['type']),
       quantity: json['quantity'] == null
           ? null
           : Quantity.fromJson(json['quantity'] as Map<String, dynamic>),
@@ -565,38 +800,24 @@ EvidenceAttributeEstimate _$EvidenceAttributeEstimateFromJson(
           ?.map((e) =>
               EvidenceAttributeEstimate.fromJson(e as Map<String, dynamic>))
           .toList(),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$EvidenceAttributeEstimateToJson(
     EvidenceAttributeEstimate instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -604,6 +825,13 @@ Map<String, dynamic> _$EvidenceAttributeEstimateToJson(
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -622,6 +850,20 @@ Map<String, dynamic> _$EvidenceAttributeEstimateToJson(
   return val;
 }
 
+const _$AttributeEstimateTypeEnumMap = {
+  AttributeEstimateType.value0000419: '0000419',
+  AttributeEstimateType.C53324: 'C53324',
+  AttributeEstimateType.value0000455: '0000455',
+  AttributeEstimateType.value0000420: '0000420',
+  AttributeEstimateType.C53245: 'C53245',
+  AttributeEstimateType.C44185: 'C44185',
+  AttributeEstimateType.C38013: 'C38013',
+  AttributeEstimateType.C53322: 'C53322',
+  AttributeEstimateType.value0000037: '0000037',
+  AttributeEstimateType.value0000421: '0000421',
+  AttributeEstimateType.C48918: 'C48918',
+};
+
 EvidenceModelCharacteristic _$EvidenceModelCharacteristicFromJson(
         Map<String, dynamic> json) =>
     EvidenceModelCharacteristic(
@@ -632,7 +874,7 @@ EvidenceModelCharacteristic _$EvidenceModelCharacteristicFromJson(
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      code: CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
+      code: $enumDecode(_$StatisticModelCodeEnumMap, json['code']),
       value: json['value'] == null
           ? null
           : Quantity.fromJson(json['value'] as Map<String, dynamic>),
@@ -643,38 +885,24 @@ EvidenceModelCharacteristic _$EvidenceModelCharacteristicFromJson(
           ?.map((e) =>
               EvidenceAttributeEstimate.fromJson(e as Map<String, dynamic>))
           .toList(),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$EvidenceModelCharacteristicToJson(
     EvidenceModelCharacteristic instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -682,6 +910,13 @@ Map<String, dynamic> _$EvidenceModelCharacteristicToJson(
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -695,6 +930,93 @@ Map<String, dynamic> _$EvidenceModelCharacteristicToJson(
   return val;
 }
 
+const _$StatisticModelCodeEnumMap = {
+  StatisticModelCode.oneTailedTest: 'oneTailedTest',
+  StatisticModelCode.twoTailedTest: 'twoTailedTest',
+  StatisticModelCode.zTest: 'zTest',
+  StatisticModelCode.oneSampleTTest: 'oneSampleTTest',
+  StatisticModelCode.twoSampleTTest: 'twoSampleTTest',
+  StatisticModelCode.pairedTTest: 'pairedTTest',
+  StatisticModelCode.chiSquareTest: 'chiSquareTest',
+  StatisticModelCode.chiSquareTestTrend: 'chiSquareTestTrend',
+  StatisticModelCode.pearsonCorrelation: 'pearsonCorrelation',
+  StatisticModelCode.anova: 'anova',
+  StatisticModelCode.anovaOneWay: 'anovaOneWay',
+  StatisticModelCode.anovaTwoWay: 'anovaTwoWay',
+  StatisticModelCode.anovaTwoWayReplication: 'anovaTwoWayReplication',
+  StatisticModelCode.manova: 'manova',
+  StatisticModelCode.anovaThreeWay: 'anovaThreeWay',
+  StatisticModelCode.signTest: 'signTest',
+  StatisticModelCode.wilcoxonSignedRankTest: 'wilcoxonSignedRankTest',
+  StatisticModelCode.wilcoxonRankSumTest: 'wilcoxonRankSumTest',
+  StatisticModelCode.mannWhitneyUTest: 'mannWhitneyUTest',
+  StatisticModelCode.fishersExactTest: 'fishersExactTest',
+  StatisticModelCode.mcnemarsTest: 'mcnemarsTest',
+  StatisticModelCode.kruskalWallisTest: 'kruskalWallisTest',
+  StatisticModelCode.spearmanCorrelation: 'spearmanCorrelation',
+  StatisticModelCode.kendallCorrelation: 'kendallCorrelation',
+  StatisticModelCode.friedmanTest: 'friedmanTest',
+  StatisticModelCode.goodmanKruskasGamma: 'goodmanKruskasGamma',
+  StatisticModelCode.glm: 'glm',
+  StatisticModelCode.glmProbit: 'glmProbit',
+  StatisticModelCode.glmLogit: 'glmLogit',
+  StatisticModelCode.glmIdentity: 'glmIdentity',
+  StatisticModelCode.glmLog: 'glmLog',
+  StatisticModelCode.glmGeneralizedLogit: 'glmGeneralizedLogit',
+  StatisticModelCode.glmm: 'glmm',
+  StatisticModelCode.glmmProbit: 'glmmProbit',
+  StatisticModelCode.glmmLogit: 'glmmLogit',
+  StatisticModelCode.glmmIdentity: 'glmmIdentity',
+  StatisticModelCode.glmmLog: 'glmmLog',
+  StatisticModelCode.glmmGeneralizedLogit: 'glmmGeneralizedLogit',
+  StatisticModelCode.linearRegression: 'linearRegression',
+  StatisticModelCode.logisticRegression: 'logisticRegression',
+  StatisticModelCode.polynomialRegression: 'polynomialRegression',
+  StatisticModelCode.coxProportionalHazards: 'coxProportionalHazards',
+  StatisticModelCode.binomialDistributionRegression:
+      'binomialDistributionRegression',
+  StatisticModelCode.multinomialDistributionRegression:
+      'multinomialDistributionRegression',
+  StatisticModelCode.poissonRegression: 'poissonRegression',
+  StatisticModelCode.negativeBinomialRegression: 'negativeBinomialRegression',
+  StatisticModelCode.zeroCellConstant: 'zeroCellConstant',
+  StatisticModelCode.zeroCellContinuityCorrection:
+      'zeroCellContinuityCorrection',
+  StatisticModelCode.adjusted: 'adjusted',
+  StatisticModelCode.interactionTerm: 'interactionTerm',
+  StatisticModelCode.manteHaenszelMethod: 'manteHaenszelMethod',
+  StatisticModelCode.metaAnalysis: 'metaAnalysis',
+  StatisticModelCode.inverseVariance: 'inverseVariance',
+  StatisticModelCode.petoMethod: 'petoMethod',
+  StatisticModelCode.hartungKnapp: 'hartungKnapp',
+  StatisticModelCode.modifiedHartungKnapp: 'modifiedHartungKnapp',
+  StatisticModelCode.effectsFixed: 'effectsFixed',
+  StatisticModelCode.effectsRandom: 'effectsRandom',
+  StatisticModelCode.chiSquareTestHomogeneity: 'chiSquareTestHomogeneity',
+  StatisticModelCode.dersimonianLairdMethod: 'dersimonianLairdMethod',
+  StatisticModelCode.pauleMandelMethod: 'pauleMandelMethod',
+  StatisticModelCode.restrictedLikelihood: 'restrictedLikelihood',
+  StatisticModelCode.maximumLikelihood: 'maximumLikelihood',
+  StatisticModelCode.empiricalBayes: 'empiricalBayes',
+  StatisticModelCode.hunterSchmidt: 'hunterSchmidt',
+  StatisticModelCode.sidikJonkman: 'sidikJonkman',
+  StatisticModelCode.hedgesMethod: 'hedgesMethod',
+  StatisticModelCode.tauDersimonianLaird: 'tauDersimonianLaird',
+  StatisticModelCode.tauPauleMandel: 'tauPauleMandel',
+  StatisticModelCode.tauRestrictedMaximumLikelihood:
+      'tauRestrictedMaximumLikelihood',
+  StatisticModelCode.tauMaximumLikelihood: 'tauMaximumLikelihood',
+  StatisticModelCode.tauEmpiricalBayes: 'tauEmpiricalBayes',
+  StatisticModelCode.tauHunterSchmidt: 'tauHunterSchmidt',
+  StatisticModelCode.tauSidikJonkman: 'tauSidikJonkman',
+  StatisticModelCode.tauHedges: 'tauHedges',
+  StatisticModelCode.poolMantelHaenzsel: 'poolMantelHaenzsel',
+  StatisticModelCode.poolInverseVariance: 'poolInverseVariance',
+  StatisticModelCode.poolPeto: 'poolPeto',
+  StatisticModelCode.poolGeneralizedLinearMixedModel:
+      'poolGeneralizedLinearMixedModel',
+};
+
 Evidencevariable _$EvidencevariableFromJson(Map<String, dynamic> json) =>
     Evidencevariable(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
@@ -706,8 +1028,8 @@ Evidencevariable _$EvidencevariableFromJson(Map<String, dynamic> json) =>
           .toList(),
       variableDefinition: Reference.fromJson(
           json['variableDefinition'] as Map<String, dynamic>),
-      handling:
-          json['handling'] == null ? null : FhirCode.fromJson(json['handling']),
+      handling: $enumDecodeNullable(
+          _$EvidenceVariableHandlingEnumMap, json['handling']),
       handlingElement: json['_handling'] == null
           ? null
           : Element.fromJson(json['_handling'] as Map<String, dynamic>),
@@ -720,37 +1042,23 @@ Evidencevariable _$EvidencevariableFromJson(Map<String, dynamic> json) =>
       valueRange: (json['valueRange'] as List<dynamic>?)
           ?.map((e) => Range.fromJson(e as Map<String, dynamic>))
           .toList(),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$EvidencevariableToJson(Evidencevariable instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -758,6 +1066,13 @@ Map<String, dynamic> _$EvidencevariableToJson(Evidencevariable instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -774,6 +1089,13 @@ Map<String, dynamic> _$EvidencevariableToJson(Evidencevariable instance) {
       'valueRange', instance.valueRange?.map((e) => e.toJson()).toList());
   return val;
 }
+
+const _$EvidenceVariableHandlingEnumMap = {
+  EvidenceVariableHandling.continuous: 'continuous',
+  EvidenceVariableHandling.dichotomous: 'dichotomous',
+  EvidenceVariableHandling.ordinal: 'ordinal',
+  EvidenceVariableHandling.polychotomous: 'polychotomous',
+};
 
 EvidenceCertainty _$EvidenceCertaintyFromJson(Map<String, dynamic> json) =>
     EvidenceCertainty(
@@ -793,12 +1115,9 @@ EvidenceCertainty _$EvidenceCertaintyFromJson(Map<String, dynamic> json) =>
       note: (json['note'] as List<dynamic>?)
           ?.map((e) => Annotation.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: json['type'] == null
-          ? null
-          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
-      rating: json['rating'] == null
-          ? null
-          : CodeableConcept.fromJson(json['rating'] as Map<String, dynamic>),
+      type: $enumDecodeNullable(_$EvidenceCertaintyTypeEnumMap, json['type']),
+      rating:
+          $enumDecodeNullable(_$EvidenceCertaintyRatingEnumMap, json['rating']),
       rater: json['rater'] == null ? null : FhirString.fromJson(json['rater']),
       raterElement: json['_rater'] == null
           ? null
@@ -806,37 +1125,23 @@ EvidenceCertainty _$EvidenceCertaintyFromJson(Map<String, dynamic> json) =>
       subcomponent: (json['subcomponent'] as List<dynamic>?)
           ?.map((e) => EvidenceCertainty.fromJson(e as Map<String, dynamic>))
           .toList(),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$EvidenceCertaintyToJson(EvidenceCertainty instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -844,6 +1149,13 @@ Map<String, dynamic> _$EvidenceCertaintyToJson(EvidenceCertainty instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -860,3 +1172,35 @@ Map<String, dynamic> _$EvidenceCertaintyToJson(EvidenceCertainty instance) {
       'subcomponent', instance.subcomponent?.map((e) => e.toJson()).toList());
   return val;
 }
+
+const _$EvidenceCertaintyTypeEnumMap = {
+  EvidenceCertaintyType.Overall: 'Overall',
+  EvidenceCertaintyType.RiskOfBias: 'RiskOfBias',
+  EvidenceCertaintyType.Inconsistency: 'Inconsistency',
+  EvidenceCertaintyType.Indirectness: 'Indirectness',
+  EvidenceCertaintyType.Imprecision: 'Imprecision',
+  EvidenceCertaintyType.PublicationBias: 'PublicationBias',
+  EvidenceCertaintyType.DoseResponseGradient: 'DoseResponseGradient',
+  EvidenceCertaintyType.PlausibleConfounding: 'PlausibleConfounding',
+  EvidenceCertaintyType.LargeEffect: 'LargeEffect',
+};
+
+const _$EvidenceCertaintyRatingEnumMap = {
+  EvidenceCertaintyRating.high: 'high',
+  EvidenceCertaintyRating.moderate: 'moderate',
+  EvidenceCertaintyRating.low: 'low',
+  EvidenceCertaintyRating.very_low: 'very-low',
+  EvidenceCertaintyRating.no_concern: 'no-concern',
+  EvidenceCertaintyRating.serious_concern: 'serious-concern',
+  EvidenceCertaintyRating.very_serious_concern: 'very-serious-concern',
+  EvidenceCertaintyRating.extremely_serious_concern:
+      'extremely-serious-concern',
+  EvidenceCertaintyRating.present: 'present',
+  EvidenceCertaintyRating.absent: 'absent',
+  EvidenceCertaintyRating.no_change: 'no-change',
+  EvidenceCertaintyRating.downcode1: 'downcode1',
+  EvidenceCertaintyRating.downcode2: 'downcode2',
+  EvidenceCertaintyRating.downcode3: 'downcode3',
+  EvidenceCertaintyRating.upcode1: 'upcode1',
+  EvidenceCertaintyRating.upcode2: 'upcode2',
+};

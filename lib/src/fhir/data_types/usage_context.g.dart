@@ -11,7 +11,7 @@ UsageContext _$UsageContextFromJson(Map<String, dynamic> json) => UsageContext(
       extension_: (json['extension_'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      code: Coding.fromJson(json['code'] as Map<String, dynamic>),
+      code: $enumDecode(_$UsageContextTypeEnumMap, json['code']),
       valueCodeableConcept: CodeableConcept.fromJson(
           json['valueCodeableConcept'] as Map<String, dynamic>),
       valueQuantity:
@@ -19,37 +19,23 @@ UsageContext _$UsageContextFromJson(Map<String, dynamic> json) => UsageContext(
       valueRange: Range.fromJson(json['valueRange'] as Map<String, dynamic>),
       valueReference:
           Reference.fromJson(json['valueReference'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$UsageContextToJson(UsageContext instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -57,6 +43,13 @@ Map<String, dynamic> _$UsageContextToJson(UsageContext instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -67,3 +60,15 @@ Map<String, dynamic> _$UsageContextToJson(UsageContext instance) {
   val['valueReference'] = instance.valueReference.toJson();
   return val;
 }
+
+const _$UsageContextTypeEnumMap = {
+  UsageContextType.gender: 'gender',
+  UsageContextType.age: 'age',
+  UsageContextType.focus: 'focus',
+  UsageContextType.user: 'user',
+  UsageContextType.workflow: 'workflow',
+  UsageContextType.task: 'task',
+  UsageContextType.venue: 'venue',
+  UsageContextType.species: 'species',
+  UsageContextType.program: 'program',
+};

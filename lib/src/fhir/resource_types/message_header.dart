@@ -45,6 +45,7 @@ class MessageHeader extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.MessageHeader,
             fhirType: 'MessageHeader');
@@ -102,7 +103,7 @@ class MessageHeader extends DomainResource {
   /// [reason] /// Coded indication of the cause for the event - indicates a reason for the
   /// occurrence of the event that is a focus of this message.
   @JsonKey(name: 'reason')
-  final CodeableConcept? reason;
+  final ExampleMessageReasonCodes? reason;
 
   /// [response] /// Information about the message that this message is a response to. Only
   /// present if this message is a response.
@@ -133,7 +134,7 @@ class MessageHeader extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -148,7 +149,7 @@ class MessageHeader extends DomainResource {
     Reference? author,
     MessageHeaderSource? source,
     Reference? responsible,
-    CodeableConcept? reason,
+    ExampleMessageReasonCodes? reason,
     MessageHeaderResponse? response,
     List<Reference>? focus,
     FhirCanonical? definition,
@@ -484,7 +485,7 @@ class MessageHeaderResponse extends BackboneElement {
   /// [code] /// Code that identifies the type of response to the message - whether it was
   /// successful or not, and whether it should be resent or not.
   @JsonKey(name: 'code')
-  final FhirCode code;
+  final ResponseType code;
   @JsonKey(name: '_code')
   final Element? codeElement;
 
@@ -506,7 +507,7 @@ class MessageHeaderResponse extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirId? identifier,
     Element? identifierElement,
-    FhirCode? code,
+    ResponseType? code,
     Element? codeElement,
     Reference? details,
     Map<String, Object?>? userData,

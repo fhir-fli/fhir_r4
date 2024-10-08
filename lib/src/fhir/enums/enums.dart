@@ -393,7 +393,7 @@ export 'product_name_part_type.dart';
 export 'product_name_type.dart';
 export 'program.dart';
 export 'property_representation.dart';
-export 'property_type.dart';
+export 'property_type_enum.dart';
 export 'provenance_activity_type.dart';
 export 'provenance_entity_role.dart';
 export 'provenance_participant_role.dart';

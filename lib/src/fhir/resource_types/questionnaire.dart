@@ -67,6 +67,7 @@ class Questionnaire extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.Questionnaire,
             fhirType: 'Questionnaire');
@@ -126,7 +127,7 @@ class Questionnaire extends DomainResource {
   /// [status] /// The status of this questionnaire. Enables tracking the life-cycle of the
   /// content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -243,7 +244,7 @@ class Questionnaire extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -260,7 +261,7 @@ class Questionnaire extends DomainResource {
     Element? titleElement,
     List<FhirCanonical>? derivedFrom,
     List<Element>? derivedFromElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
@@ -469,7 +470,7 @@ class QuestionnaireItem extends BackboneElement {
   /// grouping of other items or a particular type of data to be captured
   /// (string, integer, coded choice, etc.).
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final QuestionnaireItemType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -482,7 +483,7 @@ class QuestionnaireItem extends BackboneElement {
   /// [enableBehavior] /// Controls how multiple enableWhen values are interpreted - whether all or
   /// any must be true.
   @JsonKey(name: 'enableBehavior')
-  final FhirCode? enableBehavior;
+  final EnableWhenBehavior? enableBehavior;
   @JsonKey(name: '_enableBehavior')
   final Element? enableBehaviorElement;
 
@@ -557,10 +558,10 @@ class QuestionnaireItem extends BackboneElement {
     Element? prefixElement,
     FhirString? text,
     Element? textElement,
-    FhirCode? type,
+    QuestionnaireItemType? type,
     Element? typeElement,
     List<QuestionnaireEnableWhen>? enableWhen,
-    FhirCode? enableBehavior,
+    EnableWhenBehavior? enableBehavior,
     Element? enableBehaviorElement,
     FhirBoolean? required_,
     Element? requiredElement,
@@ -694,7 +695,7 @@ class QuestionnaireEnableWhen extends BackboneElement {
 
   /// [operator_] /// Specifies the criteria by which the question is enabled.
   @JsonKey(name: 'operator')
-  final FhirCode operator_;
+  final QuestionnaireItemOperator operator_;
   @JsonKey(name: '_operator')
   final Element? operatorElement;
 
@@ -776,7 +777,7 @@ class QuestionnaireEnableWhen extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? question,
     Element? questionElement,
-    FhirCode? operator_,
+    QuestionnaireItemOperator? operator_,
     Element? operatorElement,
     FhirBoolean? answerBoolean,
     Element? answerBooleanElement,

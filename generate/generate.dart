@@ -122,6 +122,7 @@ Map<String, WritableClass> _buildWritableClasses(
   for (final dynamic elementDefinition in elements) {
     final Map<String, dynamic> element =
         elementDefinition as Map<String, dynamic>;
+    String? enumName;
 
     // Handle ValueSets if binding is present
     if (element['binding'] != null &&
@@ -131,8 +132,13 @@ Map<String, WritableClass> _buildWritableClasses(
       final String valueSetUrl = fullUrl.splitOffVersion;
       if (_codesAndVS.keys.contains(valueSetUrl)) {
         _valueSets.add(valueSetUrl);
+        final String newEnumName = getEnumNameFromValueSet(
+            valueSetUrl, _codesAndVS[valueSetUrl]!, _nameMap);
+        if (!badValueSets.contains(newEnumName)) {
+          enumName = newEnumName;
+        }
       } else {
-        // print('Error: $valueSetUrl');
+        print('Error: $valueSetUrl');
       }
     }
 
@@ -231,8 +237,9 @@ Map<String, WritableClass> _buildWritableClasses(
         }
         classes[classPath]!.addField(Field(
           name: fieldName,
-          type: referenceFieldType,
+          type: enumName ?? referenceFieldType,
           comment: element['definition'] as String? ?? '',
+          needsElement: referenceFieldType.isPrimitiveType,
           path: path,
           isRequired: isRequired,
           isList: isList,
@@ -244,8 +251,9 @@ Map<String, WritableClass> _buildWritableClasses(
             (type as Map<String, dynamic>)['code'] as String;
         classes[classPath]!.addField(Field(
           name: fieldName.replaceAll('[x]', actualType.capitalize),
-          type: actualType,
+          type: enumName ?? actualType,
           comment: element['definition'] as String? ?? '',
+          needsElement: actualType.isPrimitiveType,
           path: path,
           isRequired: isRequired,
           isList: isList,
@@ -259,8 +267,9 @@ Map<String, WritableClass> _buildWritableClasses(
       }
       classes[classPath]!.addField(Field(
         name: fieldName,
-        type: fieldType,
+        type: enumName ?? fieldType,
         comment: element['definition'] as String? ?? '',
+        needsElement: fieldType.isPrimitiveType,
         path: path,
         isRequired: isRequired,
         isList: isList,
@@ -329,7 +338,7 @@ void _writeFields(StringBuffer buffer, WritableClass writableClass,
     final String fieldType = field.type.fhirToDartTypes;
     fhirFieldMapBuffer
         .writeln("'${field.name}': const FhirField($isList, '$fieldType'),");
-    if (field.type.isPrimitiveType && field.name != 'id') {
+    if (field.needsElement && field.name != 'id') {
       fhirFieldMapBuffer
           .writeln("'_${field.name}': const FhirField($isList, '$fieldType'),");
     }
@@ -355,7 +364,7 @@ void _writeFields(StringBuffer buffer, WritableClass writableClass,
           '  final $fieldDeclaration ${field.name.fhirFieldToDartName};');
 
       // Handle associated Element fields with '_primitiveFieldName'
-      if (field.type.isPrimitiveType && field.name != 'id') {
+      if (field.needsElement && field.name != 'id') {
         final String elementFieldName = '_$originalFieldName';
         buffer.writeln("@JsonKey(name: '$elementFieldName')");
         buffer.writeln(field.isList
@@ -377,7 +386,7 @@ void _writeConstructor(StringBuffer buffer, WritableClass writableClass) {
     if (field.name != writableName) {
       buffer.writeln('    ${field.isRequired ? 'required ' : ''}'
           '${field.isSuper ? 'super' : 'this'}.${field.name.fhirFieldToDartName},');
-      if (field.type.isPrimitiveType && field.name != 'id') {
+      if (field.needsElement && field.name != 'id') {
         buffer.writeln(
             '${field.isSuper ? 'super' : 'this'}.${field.name}Element,');
       }
@@ -394,6 +403,7 @@ void _writeConstructor(StringBuffer buffer, WritableClass writableClass) {
 
   // Close constructor
   if (writableName.isResource && writableClass.isResource) {
+    buffer.writeln('R4ResourceType? resourceType,');
     buffer.writeln(
         '  }) : super(resourceType: R4ResourceType.${writableName.fhirToDartTypes},');
     buffer.writeln("      fhirType: '${writableName.fhirToDartTypes}');");
@@ -481,7 +491,7 @@ void _writeCopyFunction(StringBuffer buffer, WritableClass writableClass) {
         : '${field.type.fhirToDartTypes}?';
 
     buffer.writeln('    $fieldDeclaration ${field.name.fhirFieldToDartName},');
-    if (field.type.isPrimitiveType && field.name != 'id') {
+    if (field.needsElement && field.name != 'id') {
       buffer.writeln(
           '    ${field.isList ? 'List<Element>?' : 'Element?'} ${field.name}Element,');
     }
@@ -502,7 +512,7 @@ void _writeCopyFunction(StringBuffer buffer, WritableClass writableClass) {
   for (final Field field in writableClass.fields) {
     buffer.writeln('      ${field.name.fhirFieldToDartName}:'
         ' ${field.name.fhirFieldToDartName} ?? this.${field.name.fhirFieldToDartName},');
-    if (field.type.isPrimitiveType && field.name != 'id') {
+    if (field.needsElement && field.name != 'id') {
       buffer.writeln(
           '      ${field.name}Element: ${field.name}Element ?? this.${field.name}Element,');
     }

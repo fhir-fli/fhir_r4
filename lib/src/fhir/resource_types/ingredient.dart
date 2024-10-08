@@ -37,6 +37,7 @@ class Ingredient extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Ingredient, fhirType: 'Ingredient');
   @Id()
   @JsonKey(ignore: true)
@@ -51,7 +52,7 @@ class Ingredient extends DomainResource {
   /// [status] /// The status of this ingredient. Enables tracking the life-cycle of the
   /// content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -62,13 +63,13 @@ class Ingredient extends DomainResource {
   /// [role] /// A classification of the ingredient identifying its purpose within the
   /// product, e.g. active, inactive.
   @JsonKey(name: 'role')
-  final CodeableConcept role;
+  final IngredientRole role;
 
   /// [function_] /// A classification of the ingredient identifying its precise purpose(s) in
   /// the drug product. This extends the Ingredient.role to add more detail.
   /// Example: antioxidant, alkalizing agent.
   @JsonKey(name: 'function')
-  final List<CodeableConcept>? function_;
+  final List<IngredientFunction>? function_;
 
   /// [allergenicIndicator] /// If the ingredient is a known or suspected allergen. Note that this is a
   /// property of the substance, so if a reference to a SubstanceDefinition is
@@ -104,18 +105,18 @@ class Ingredient extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Identifier? identifier,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     List<Reference>? for_,
-    CodeableConcept? role,
-    List<CodeableConcept>? function_,
+    IngredientRole? role,
+    List<IngredientFunction>? function_,
     FhirBoolean? allergenicIndicator,
     Element? allergenicIndicatorElement,
     List<IngredientManufacturer>? manufacturer,
@@ -208,7 +209,7 @@ class IngredientManufacturer extends BackboneElement {
   /// authorized one for this ingredient. Note that this is not the manufacturing
   /// process role.
   @JsonKey(name: 'role')
-  final FhirCode? role;
+  final IngredientManufacturerRole? role;
   @JsonKey(name: '_role')
   final Element? roleElement;
 
@@ -228,7 +229,7 @@ class IngredientManufacturer extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? role,
+    IngredientManufacturerRole? role,
     Element? roleElement,
     Reference? manufacturer,
     Map<String, Object?>? userData,

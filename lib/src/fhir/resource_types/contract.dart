@@ -70,6 +70,7 @@ class Contract extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Contract, fhirType: 'Contract');
   @Id()
   @JsonKey(ignore: true)
@@ -96,7 +97,7 @@ class Contract extends DomainResource {
 
   /// [status] /// The status of the resource instance.
   @JsonKey(name: 'status')
-  final FhirCode? status;
+  final ContractResourceStatusCodes? status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -106,7 +107,7 @@ class Contract extends DomainResource {
   /// contractual duty, obligation, or right, and therefore evidences that act,
   /// process, or agreement.
   @JsonKey(name: 'legalState')
-  final CodeableConcept? legalState;
+  final ContractResourceLegalStateCodes? legalState;
 
   /// [instantiatesCanonical] /// The URL pointing to a FHIR-defined Contract Definition that is adhered to
   /// in whole or part by this Contract.
@@ -138,7 +139,7 @@ class Contract extends DomainResource {
   /// [expirationType] /// Event resulting in discontinuation or termination of this Contract instance
   /// by one or more parties to the contract.
   @JsonKey(name: 'expirationType')
-  final CodeableConcept? expirationType;
+  final ContractResourceExpirationTypeCodes? expirationType;
 
   /// [subject] /// The target entity impacted by or of interest to parties to the agreement.
   @JsonKey(name: 'subject')
@@ -203,7 +204,7 @@ class Contract extends DomainResource {
   /// [scope] /// A selector of legal concerns for this Contract definition, derivative, or
   /// instance in any legal state.
   @JsonKey(name: 'scope')
-  final CodeableConcept? scope;
+  final ContractResourceScopeCodes? scope;
 
   /// [topicCodeableConcept] /// Narrows the range of legal concerns to focus on the achievement of specific
   /// contractual objectives.
@@ -292,7 +293,7 @@ class Contract extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -303,9 +304,9 @@ class Contract extends DomainResource {
     Element? urlElement,
     FhirString? version,
     Element? versionElement,
-    FhirCode? status,
+    ContractResourceStatusCodes? status,
     Element? statusElement,
-    CodeableConcept? legalState,
+    ContractResourceLegalStateCodes? legalState,
     Reference? instantiatesCanonical,
     FhirUri? instantiatesUri,
     Element? instantiatesUriElement,
@@ -313,7 +314,7 @@ class Contract extends DomainResource {
     FhirDateTime? issued,
     Element? issuedElement,
     Period? applies,
-    CodeableConcept? expirationType,
+    ContractResourceExpirationTypeCodes? expirationType,
     List<Reference>? subject,
     List<Reference>? authority,
     List<Reference>? domain,
@@ -327,7 +328,7 @@ class Contract extends DomainResource {
     List<FhirString>? alias,
     List<Element>? aliasElement,
     Reference? author,
-    CodeableConcept? scope,
+    ContractResourceScopeCodes? scope,
     CodeableConcept? topicCodeableConcept,
     Reference? topicReference,
     CodeableConcept? type,
@@ -464,11 +465,11 @@ class ContractContentDefinition extends BackboneElement {
   /// application for a contract such as an insurance policy or benefits under a
   /// program, e.g., workers compensation.
   @JsonKey(name: 'type')
-  final CodeableConcept type;
+  final ContractResourceDefinitionTypeCodes type;
 
   /// [subType] /// Detailed Precusory content type.
   @JsonKey(name: 'subType')
-  final CodeableConcept? subType;
+  final ContractResourceDefinitionSubtypeCodes? subType;
 
   /// [publisher] /// The individual or organization that published the Contract precursor
   /// content.
@@ -488,7 +489,7 @@ class ContractContentDefinition extends BackboneElement {
   /// executed | negotiable | offered | policy | rejected | renewed | revoked |
   /// resolved | terminated.
   @JsonKey(name: 'publicationStatus')
-  final FhirCode publicationStatus;
+  final ContractResourcePublicationStatusCodes publicationStatus;
   @JsonKey(name: '_publicationStatus')
   final Element? publicationStatusElement;
 
@@ -512,12 +513,12 @@ class ContractContentDefinition extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    CodeableConcept? subType,
+    ContractResourceDefinitionTypeCodes? type,
+    ContractResourceDefinitionSubtypeCodes? subType,
     Reference? publisher,
     FhirDateTime? publicationDate,
     Element? publicationDateElement,
-    FhirCode? publicationStatus,
+    ContractResourcePublicationStatusCodes? publicationStatus,
     Element? publicationStatusElement,
     FhirMarkdown? copyright,
     Element? copyrightElement,
@@ -783,17 +784,17 @@ class ContractSecurityLabel extends BackboneElement {
   /// [classification] /// Security label privacy tag that species the level of confidentiality
   /// protection required for this term and/or term elements.
   @JsonKey(name: 'classification')
-  final Coding classification;
+  final ContractResourceScopeCodes classification;
 
   /// [category] /// Security label privacy tag that species the applicable privacy and security
   /// policies governing this term and/or term elements.
   @JsonKey(name: 'category')
-  final List<Coding>? category;
+  final List<ContractResourceScopeCodes>? category;
 
   /// [control] /// Security label privacy tag that species the manner in which term and/or
   /// term elements are to be protected.
   @JsonKey(name: 'control')
-  final List<Coding>? control;
+  final List<ContractResourceSecurityControlCodes>? control;
   factory ContractSecurityLabel.fromJson(Map<String, dynamic> json) =>
       _$ContractSecurityLabelFromJson(json);
 
@@ -809,9 +810,9 @@ class ContractSecurityLabel extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     List<FhirUnsignedInt>? number,
     List<Element>? numberElement,
-    Coding? classification,
-    List<Coding>? category,
-    List<Coding>? control,
+    ContractResourceScopeCodes? classification,
+    List<ContractResourceScopeCodes>? category,
+    List<ContractResourceSecurityControlCodes>? control,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -914,7 +915,7 @@ class ContractOffer extends BackboneElement {
 
   /// [decisionMode] /// How the decision about a Contract was conveyed.
   @JsonKey(name: 'decisionMode')
-  final List<CodeableConcept>? decisionMode;
+  final List<ContractResourceDecisionModeCodes>? decisionMode;
 
   /// [answer] /// Response to offer text.
   @JsonKey(name: 'answer')
@@ -956,7 +957,7 @@ class ContractOffer extends BackboneElement {
     Reference? topic,
     CodeableConcept? type,
     CodeableConcept? decision,
-    List<CodeableConcept>? decisionMode,
+    List<ContractResourceDecisionModeCodes>? decisionMode,
     List<ContractAnswer>? answer,
     FhirString? text,
     Element? textElement,
@@ -1044,7 +1045,7 @@ class ContractParty extends BackboneElement {
 
   /// [role] /// How the party participates in the offer.
   @JsonKey(name: 'role')
-  final CodeableConcept role;
+  final ContractResourcePartyRoleCodes role;
   factory ContractParty.fromJson(Map<String, dynamic> json) =>
       _$ContractPartyFromJson(json);
 
@@ -1059,7 +1060,7 @@ class ContractParty extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Reference>? reference,
-    CodeableConcept? role,
+    ContractResourcePartyRoleCodes? role,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1371,11 +1372,11 @@ class ContractAsset extends BackboneElement {
 
   /// [scope] /// Differentiates the kind of the asset .
   @JsonKey(name: 'scope')
-  final CodeableConcept? scope;
+  final ContractResourceAssetScopeCodes? scope;
 
   /// [type] /// Target entity type about which the term may be concerned.
   @JsonKey(name: 'type')
-  final List<CodeableConcept>? type;
+  final List<ContractResourceAssetTypeCodes>? type;
 
   /// [typeReference] /// Associated entities.
   @JsonKey(name: 'typeReference')
@@ -1383,13 +1384,13 @@ class ContractAsset extends BackboneElement {
 
   /// [subtype] /// May be a subtype or part of an offered asset.
   @JsonKey(name: 'subtype')
-  final List<CodeableConcept>? subtype;
+  final List<ContractResourceAssetSubTypeCodes>? subtype;
 
   /// [relationship] /// Specifies the applicability of the term to an asset resource instance, and
   /// instances it refers to orinstances that refer to it, and/or are owned by
   /// the offeree.
   @JsonKey(name: 'relationship')
-  final Coding? relationship;
+  final ConsentContentClass? relationship;
 
   /// [context] /// Circumstance of the asset.
   @JsonKey(name: 'context')
@@ -1404,7 +1405,7 @@ class ContractAsset extends BackboneElement {
 
   /// [periodType] /// Type of Asset availability for use or ownership.
   @JsonKey(name: 'periodType')
-  final List<CodeableConcept>? periodType;
+  final List<ContractResourceAssetAvailiabilityCodes>? periodType;
 
   /// [period] /// Asset relevant contractual time period.
   @JsonKey(name: 'period')
@@ -1455,15 +1456,15 @@ class ContractAsset extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? scope,
-    List<CodeableConcept>? type,
+    ContractResourceAssetScopeCodes? scope,
+    List<ContractResourceAssetTypeCodes>? type,
     List<Reference>? typeReference,
-    List<CodeableConcept>? subtype,
-    Coding? relationship,
+    List<ContractResourceAssetSubTypeCodes>? subtype,
+    ConsentContentClass? relationship,
     List<ContractContext>? context,
     FhirString? condition,
     Element? conditionElement,
-    List<CodeableConcept>? periodType,
+    List<ContractResourceAssetAvailiabilityCodes>? periodType,
     List<Period>? period,
     List<Period>? usePeriod,
     FhirString? text,
@@ -1565,7 +1566,7 @@ class ContractContext extends BackboneElement {
   /// [code] /// Coded representation of the context generally or of the Referenced entity,
   /// such as the asset holder type or location.
   @JsonKey(name: 'code')
-  final List<CodeableConcept>? code;
+  final List<ContractResourceAssetContextCodes>? code;
 
   /// [text] /// Context description.
   @JsonKey(name: 'text')
@@ -1586,7 +1587,7 @@ class ContractContext extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Reference? reference,
-    List<CodeableConcept>? code,
+    List<ContractResourceAssetContextCodes>? code,
     FhirString? text,
     Element? textElement,
     Map<String, Object?>? userData,
@@ -1937,7 +1938,7 @@ class ContractAction extends BackboneElement {
 
   /// [status] /// Current state of the term action.
   @JsonKey(name: 'status')
-  final CodeableConcept status;
+  final ContractResourceActionStatusCodes status;
 
   /// [context] /// Encounter or Episode with primary association to specified term activity.
   @JsonKey(name: 'context')
@@ -1978,12 +1979,12 @@ class ContractAction extends BackboneElement {
   /// [performerType] /// The type of individual that is desired or required to perform or not
   /// perform the action.
   @JsonKey(name: 'performerType')
-  final List<CodeableConcept>? performerType;
+  final List<ProvenanceParticipantType>? performerType;
 
   /// [performerRole] /// The type of role or competency of an individual desired or required to
   /// perform or not perform the action.
   @JsonKey(name: 'performerRole')
-  final CodeableConcept? performerRole;
+  final ProvenanceParticipantRole? performerRole;
 
   /// [performer] /// Indicates who or what is being asked to perform (or not perform) the ction.
   @JsonKey(name: 'performer')
@@ -2052,7 +2053,7 @@ class ContractAction extends BackboneElement {
     CodeableConcept? intent,
     List<FhirString>? linkId,
     List<Element>? linkIdElement,
-    CodeableConcept? status,
+    ContractResourceActionStatusCodes? status,
     Reference? context,
     List<FhirString>? contextLinkId,
     List<Element>? contextLinkIdElement,
@@ -2063,8 +2064,8 @@ class ContractAction extends BackboneElement {
     List<Reference>? requester,
     List<FhirString>? requesterLinkId,
     List<Element>? requesterLinkIdElement,
-    List<CodeableConcept>? performerType,
-    CodeableConcept? performerRole,
+    List<ProvenanceParticipantType>? performerType,
+    ProvenanceParticipantRole? performerRole,
     Reference? performer,
     List<FhirString>? performerLinkId,
     List<Element>? performerLinkIdElement,

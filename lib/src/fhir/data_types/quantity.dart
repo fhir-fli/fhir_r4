@@ -47,7 +47,7 @@ class Quantity extends DataType {
   /// value is greater or less than the stated value due to measurement issues;
   /// e.g. if the comparator is "<" , then the real value is < stated value.
   @JsonKey(name: 'comparator')
-  final FhirCode? comparator;
+  final QuantityComparator? comparator;
   @JsonKey(name: '_comparator')
   final Element? comparatorElement;
 
@@ -82,7 +82,7 @@ class Quantity extends DataType {
     List<FhirExtension>? extension_,
     FhirDecimal? value,
     Element? valueElement,
-    FhirCode? comparator,
+    QuantityComparator? comparator,
     Element? comparatorElement,
     FhirString? unit,
     Element? unitElement,

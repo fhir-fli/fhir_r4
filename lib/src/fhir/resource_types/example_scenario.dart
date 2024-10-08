@@ -54,6 +54,7 @@ class ExampleScenario extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.ExampleScenario,
             fhirType: 'ExampleScenario');
@@ -102,7 +103,7 @@ class ExampleScenario extends DomainResource {
   /// [status] /// The status of this example scenario. Enables tracking the life-cycle of the
   /// content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -196,7 +197,7 @@ class ExampleScenario extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -209,7 +210,7 @@ class ExampleScenario extends DomainResource {
     Element? versionElement,
     FhirString? name,
     Element? nameElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
@@ -337,7 +338,7 @@ class ExampleScenarioActor extends BackboneElement {
 
   /// [type] /// The type of actor - person or system.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final ExampleScenarioActorType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -367,7 +368,7 @@ class ExampleScenarioActor extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? actorId,
     Element? actorIdElement,
-    FhirCode? type,
+    ExampleScenarioActorType? type,
     Element? typeElement,
     FhirString? name,
     Element? nameElement,

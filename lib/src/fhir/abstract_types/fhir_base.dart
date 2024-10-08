@@ -7,26 +7,25 @@ import '../../../fhir_r4.dart';
 abstract class FhirBase {
   const FhirBase({
     required this.fhirType,
-    this.userData = const <String, Object?>{},
-    this.formatCommentsPre = const <String>[],
-    this.formatCommentsPost = const <String>[],
-    // this.propertyChanged = const <String, List<void Function()>>{},
-    this.annotations = const <dynamic>[],
-    this.children = const <FhirBase>[],
-    this.namedChildren = const <String, FhirBase>{},
+    this.userData,
+    this.formatCommentsPre,
+    this.formatCommentsPost,
+    this.annotations,
+    this.children,
+    this.namedChildren,
   });
 
   final String fhirType;
-  final Map<String, Object?> userData;
-  final List<String> formatCommentsPre;
-  final List<String> formatCommentsPost;
-  final List<dynamic> annotations;
-  final List<FhirBase> children;
-  final Map<String, FhirBase> namedChildren;
+  final Map<String, Object?>? userData;
+  final List<String>? formatCommentsPre;
+  final List<String>? formatCommentsPost;
+  final List<dynamic>? annotations;
+  final List<FhirBase>? children;
+  final Map<String, FhirBase>? namedChildren;
 
   dynamic toJson() {
     final Map<String, Object?> json = <String, Object?>{};
-    namedChildren.forEach((String key, FhirBase child) {
+    namedChildren?.forEach((String key, FhirBase child) {
       json[key] = child.toJson();
     });
     return json;
@@ -56,50 +55,69 @@ abstract class FhirBase {
   String toJsonString() => jsonEncode(toJson());
 
   // User Data Methods
-  dynamic getUserData(String name) => userData[name];
+  dynamic getUserData(String name) => userData?[name];
 
   FhirBase setUserData(String name, dynamic value) {
-    final Map<String, Object?> updatedUserData =
-        Map<String, Object?>.from(userData);
-    updatedUserData[name] = value;
+    final Map<String, Object?>? updatedUserData =
+        userData == null ? null : Map<String, Object?>.from(userData!);
+    updatedUserData?[name] = value;
     return copyWith(userData: updatedUserData);
   }
 
   FhirBase clearUserData(String name) {
-    final Map<String, Object?> updatedUserData =
-        Map<String, Object?>.from(userData)..remove(name);
+    final Map<String, Object?>? updatedUserData =
+        userData == null ? null : Map<String, Object?>.from(userData!);
+    if (updatedUserData != null) {
+      updatedUserData.remove(name);
+    }
     return copyWith(userData: updatedUserData);
   }
 
   // Annotations Methods
   FhirBase addAnnotation(dynamic annotation) {
-    final List<dynamic> updatedAnnotations = List<dynamic>.from(annotations)
-      ..add(annotation);
+    final List<dynamic>? updatedAnnotations =
+        annotations == null ? null : List<dynamic>.from(annotations!);
+    if (annotations != null) {
+      updatedAnnotations!.add(annotation);
+    }
+
     return copyWith(annotations: updatedAnnotations);
   }
 
   FhirBase removeAnnotations(Type type) {
-    final List<dynamic> updatedAnnotations = List<dynamic>.from(annotations)
-      ..removeWhere((dynamic element) => element.runtimeType == type);
+    final List<dynamic>? updatedAnnotations =
+        annotations == null ? null : List<dynamic>.from(annotations!);
+    if (updatedAnnotations != null) {
+      updatedAnnotations
+          .removeWhere((dynamic element) => element.runtimeType == type);
+    }
     return copyWith(annotations: updatedAnnotations);
   }
 
   // Child Management Methods
   FhirBase addChild(FhirBase child) {
-    final List<FhirBase> updatedChildren = List<FhirBase>.from(children)
-      ..add(child);
+    final List<FhirBase>? updatedChildren =
+        children == null ? null : List<FhirBase>.from(children!);
+    if (children != null) {
+      children!.add(child);
+    }
     return copyWith(children: updatedChildren);
   }
 
   FhirBase addNamedChild(String name, FhirBase child) {
-    final Map<String, FhirBase> updatedNamedChildren =
-        Map<String, FhirBase>.from(namedChildren)..[name] = child;
+    final Map<String, FhirBase> updatedNamedChildren = namedChildren == null
+        ? <String, FhirBase>{}
+        : Map<String, FhirBase>.from(namedChildren!);
+    updatedNamedChildren[name] = child;
     return copyWith(namedChildren: updatedNamedChildren);
   }
 
-  bool isEmpty() => userData.isEmpty && annotations.isEmpty && children.isEmpty;
+  bool isEmpty() =>
+      (userData?.isEmpty ?? true) &&
+      (annotations?.isEmpty ?? true) &&
+      (children?.isEmpty ?? true);
 
-  bool hasUserData(String name) => userData.containsKey(name);
+  bool hasUserData(String name) => userData?.containsKey(name) ?? false;
 
   String? getUserString(String name) {
     final dynamic data = getUserData(name);
@@ -112,7 +130,8 @@ abstract class FhirBase {
   }
 
   bool hasFormatComment() =>
-      formatCommentsPre.isNotEmpty || formatCommentsPost.isNotEmpty;
+      (formatCommentsPre?.isNotEmpty ?? false) ||
+      (formatCommentsPost?.isNotEmpty ?? false);
 
   static bool compareDeep(FhirBase? e1, FhirBase? e2,
       {bool allowNull = false}) {
@@ -156,7 +175,7 @@ abstract class FhirBase {
 
   bool matches(FhirBase other) => other.runtimeType == runtimeType;
 
-  FhirBase? getChildByName(String name) => namedChildren[name];
+  FhirBase? getChildByName(String name) => namedChildren?[name];
 
   bool tryGetValue(String key, dynamic value) => false;
 

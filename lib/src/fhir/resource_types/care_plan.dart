@@ -59,6 +59,7 @@ class CarePlan extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.CarePlan, fhirType: 'CarePlan');
   @Id()
   @JsonKey(ignore: true)
@@ -102,14 +103,14 @@ class CarePlan extends DomainResource {
   /// [status] /// Indicates whether the plan is currently being acted upon, represents future
   /// intentions or is now a historical record.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final RequestStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [intent] /// Indicates the level of authority/intentionality associated with the care
   /// plan and where the care plan fits into the workflow chain.
   @JsonKey(name: 'intent')
-  final FhirCode intent;
+  final CarePlanIntent intent;
   @JsonKey(name: '_intent')
   final Element? intentElement;
 
@@ -205,7 +206,7 @@ class CarePlan extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -219,9 +220,9 @@ class CarePlan extends DomainResource {
     List<Reference>? basedOn,
     List<Reference>? replaces,
     List<Reference>? partOf,
-    FhirCode? status,
+    RequestStatus? status,
     Element? statusElement,
-    FhirCode? intent,
+    CarePlanIntent? intent,
     Element? intentElement,
     List<CodeableConcept>? category,
     FhirString? title,
@@ -490,7 +491,7 @@ class CarePlanDetail extends BackboneElement {
   /// CarePlan.activity.reference. For example, a MedicationRequest, a
   /// ServiceRequest, or a CommunicationRequest.
   @JsonKey(name: 'kind')
-  final FhirCode? kind;
+  final CarePlanActivityKind? kind;
   @JsonKey(name: '_kind')
   final Element? kindElement;
 
@@ -533,7 +534,7 @@ class CarePlanDetail extends BackboneElement {
 
   /// [status] /// Identifies what progress is being made for the specific activity.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final CarePlanActivityStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -617,7 +618,7 @@ class CarePlanDetail extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? kind,
+    CarePlanActivityKind? kind,
     Element? kindElement,
     List<FhirCanonical>? instantiatesCanonical,
     List<Element>? instantiatesCanonicalElement,
@@ -627,7 +628,7 @@ class CarePlanDetail extends BackboneElement {
     List<CodeableConcept>? reasonCode,
     List<Reference>? reasonReference,
     List<Reference>? goal,
-    FhirCode? status,
+    CarePlanActivityStatus? status,
     Element? statusElement,
     CodeableConcept? statusReason,
     FhirBoolean? doNotPerform,

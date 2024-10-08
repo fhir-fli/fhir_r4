@@ -42,6 +42,7 @@ class SupplyDelivery extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.SupplyDelivery,
             fhirType: 'SupplyDelivery');
@@ -65,7 +66,7 @@ class SupplyDelivery extends DomainResource {
 
   /// [status] /// A code specifying the state of the dispense event.
   @JsonKey(name: 'status')
-  final FhirCode? status;
+  final SupplyDeliveryStatus? status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -78,7 +79,7 @@ class SupplyDelivery extends DomainResource {
   /// Trial Fill, Completion of Trial, Partial Fill, Emergency Fill, Samples,
   /// etc.
   @JsonKey(name: 'type')
-  final CodeableConcept? type;
+  final SupplyItemType? type;
 
   /// [suppliedItem] /// The item that is being delivered or has been supplied.
   @JsonKey(name: 'suppliedItem')
@@ -125,7 +126,7 @@ class SupplyDelivery extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -134,10 +135,10 @@ class SupplyDelivery extends DomainResource {
     List<Identifier>? identifier,
     List<Reference>? basedOn,
     List<Reference>? partOf,
-    FhirCode? status,
+    SupplyDeliveryStatus? status,
     Element? statusElement,
     Reference? patient,
-    CodeableConcept? type,
+    SupplyItemType? type,
     SupplyDeliverySuppliedItem? suppliedItem,
     FhirDateTime? occurrenceDateTime,
     Element? occurrenceDateTimeElement,

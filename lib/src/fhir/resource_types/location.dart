@@ -52,6 +52,7 @@ class Location extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Location, fhirType: 'Location');
   @Id()
   @JsonKey(ignore: true)
@@ -65,7 +66,7 @@ class Location extends DomainResource {
   /// the current value which may be covered by the operationStatus, or by a
   /// schedule/slots if they are configured for the location.
   @JsonKey(name: 'status')
-  final FhirCode? status;
+  final LocationStatus? status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -99,7 +100,7 @@ class Location extends DomainResource {
   /// [mode] /// Indicates whether a resource instance represents a specific location or a
   /// class of locations.
   @JsonKey(name: 'mode')
-  final FhirCode? mode;
+  final LocationMode? mode;
   @JsonKey(name: '_mode')
   final Element? modeElement;
 
@@ -119,7 +120,7 @@ class Location extends DomainResource {
 
   /// [physicalType] /// Physical form of the location, e.g. building, room, vehicle, road.
   @JsonKey(name: 'physicalType')
-  final CodeableConcept? physicalType;
+  final LocationType? physicalType;
 
   /// [position] /// The absolute geographic location of the Location, expressed using the WGS84
   /// datum (This is the same co-ordinate system used in KML).
@@ -165,14 +166,14 @@ class Location extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    LocationStatus? status,
     Element? statusElement,
     Coding? operationalStatus,
     FhirString? name,
@@ -181,12 +182,12 @@ class Location extends DomainResource {
     List<Element>? aliasElement,
     FhirString? description,
     Element? descriptionElement,
-    FhirCode? mode,
+    LocationMode? mode,
     Element? modeElement,
     List<CodeableConcept>? type,
     List<ContactPoint>? telecom,
     Address? address,
-    CodeableConcept? physicalType,
+    LocationType? physicalType,
     LocationPosition? position,
     Reference? managingOrganization,
     Reference? partOf,
@@ -405,7 +406,7 @@ class LocationHoursOfOperation extends BackboneElement {
   /// [daysOfWeek] /// Indicates which days of the week are available between the start and end
   /// Times.
   @JsonKey(name: 'daysOfWeek')
-  final List<FhirCode>? daysOfWeek;
+  final List<DaysOfWeek>? daysOfWeek;
   @JsonKey(name: '_daysOfWeek')
   final List<Element>? daysOfWeekElement;
 
@@ -439,7 +440,7 @@ class LocationHoursOfOperation extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    List<FhirCode>? daysOfWeek,
+    List<DaysOfWeek>? daysOfWeek,
     List<Element>? daysOfWeekElement,
     FhirBoolean? allDay,
     Element? allDayElement,

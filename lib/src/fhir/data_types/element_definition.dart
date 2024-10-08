@@ -330,7 +330,7 @@ class ElementDefinition extends BackboneType {
   /// [representation] /// Codes that define how this element is represented in instances, when the
   /// deviation varies from the normal case.
   @JsonKey(name: 'representation')
-  final List<FhirCode>? representation;
+  final List<PropertyRepresentation>? representation;
   @JsonKey(name: '_representation')
   final List<Element>? representationElement;
 
@@ -2491,7 +2491,7 @@ class ElementDefinition extends BackboneType {
     List<FhirExtension>? modifierExtension,
     FhirString? path,
     Element? pathElement,
-    List<FhirCode>? representation,
+    List<PropertyRepresentation>? representation,
     List<Element>? representationElement,
     FhirString? sliceName,
     Element? sliceNameElement,
@@ -3256,7 +3256,7 @@ class ElementDefinitionSlicing extends Element {
   /// profile authors can also say that additional slices are only allowed at the
   /// end.
   @JsonKey(name: 'rules')
-  final FhirCode rules;
+  final SlicingRules rules;
   @JsonKey(name: '_rules')
   final Element? rulesElement;
   factory ElementDefinitionSlicing.fromJson(Map<String, dynamic> json) =>
@@ -3276,7 +3276,7 @@ class ElementDefinitionSlicing extends Element {
     Element? descriptionElement,
     FhirBoolean? ordered,
     Element? orderedElement,
-    FhirCode? rules,
+    SlicingRules? rules,
     Element? rulesElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -3351,7 +3351,7 @@ class ElementDefinitionDiscriminator extends Element {
 
   /// [type] /// How the element value is interpreted when discrimination is evaluated.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final DiscriminatorType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -3374,7 +3374,7 @@ class ElementDefinitionDiscriminator extends Element {
   ElementDefinitionDiscriminator copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
-    FhirCode? type,
+    DiscriminatorType? type,
     Element? typeElement,
     FhirString? path,
     Element? pathElement,
@@ -3570,7 +3570,7 @@ class ElementDefinitionType extends Element {
   /// http://hl7.org/fhir/StructureDefinition/string. Absolute URLs are only
   /// allowed in logical models.
   @JsonKey(name: 'code')
-  final FhirUri code;
+  final ElementTypes code;
   @JsonKey(name: '_code')
   final Element? codeElement;
 
@@ -3603,14 +3603,14 @@ class ElementDefinitionType extends Element {
   /// be aggregated - is it a contained resource, or a reference, and if the
   /// context is a bundle, is it included in the bundle.
   @JsonKey(name: 'aggregation')
-  final List<FhirCode>? aggregation;
+  final List<AggregationMode>? aggregation;
   @JsonKey(name: '_aggregation')
   final List<Element>? aggregationElement;
 
   /// [versioning] /// Whether this reference needs to be version specific or version independent,
   /// or whether either can be used.
   @JsonKey(name: 'versioning')
-  final FhirCode? versioning;
+  final ReferenceVersionRules? versioning;
   @JsonKey(name: '_versioning')
   final Element? versioningElement;
   factory ElementDefinitionType.fromJson(Map<String, dynamic> json) =>
@@ -3625,15 +3625,15 @@ class ElementDefinitionType extends Element {
   ElementDefinitionType copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
-    FhirUri? code,
+    ElementTypes? code,
     Element? codeElement,
     List<FhirCanonical>? profile,
     List<Element>? profileElement,
     List<FhirCanonical>? targetProfile,
     List<Element>? targetProfileElement,
-    List<FhirCode>? aggregation,
+    List<AggregationMode>? aggregation,
     List<Element>? aggregationElement,
-    FhirCode? versioning,
+    ReferenceVersionRules? versioning,
     Element? versioningElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -4323,7 +4323,7 @@ class ElementDefinitionConstraint extends Element {
   /// [severity] /// Identifies the impact constraint violation has on the conformance of the
   /// instance.
   @JsonKey(name: 'severity')
-  final FhirCode severity;
+  final ConstraintSeverity severity;
   @JsonKey(name: '_severity')
   final Element? severityElement;
 
@@ -4370,7 +4370,7 @@ class ElementDefinitionConstraint extends Element {
     Element? keyElement,
     FhirString? requirements,
     Element? requirementsElement,
-    FhirCode? severity,
+    ConstraintSeverity? severity,
     Element? severityElement,
     FhirString? human,
     Element? humanElement,
@@ -4461,7 +4461,7 @@ class ElementDefinitionBinding extends Element {
   /// binding - that is, the degree to which the provided value set must be
   /// adhered to in the instances.
   @JsonKey(name: 'strength')
-  final FhirCode strength;
+  final BindingStrength strength;
   @JsonKey(name: '_strength')
   final Element? strengthElement;
 
@@ -4489,7 +4489,7 @@ class ElementDefinitionBinding extends Element {
   ElementDefinitionBinding copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
-    FhirCode? strength,
+    BindingStrength? strength,
     Element? strengthElement,
     FhirString? description,
     Element? descriptionElement,

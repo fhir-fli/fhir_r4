@@ -54,6 +54,7 @@ class Composition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Composition, fhirType: 'Composition');
   @Id()
   @JsonKey(ignore: true)
@@ -67,7 +68,7 @@ class Composition extends DomainResource {
   /// [status] /// The workflow/clinical status of this composition. The status is a marker
   /// for the clinical standing of the document.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final CompositionStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -155,14 +156,14 @@ class Composition extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Identifier? identifier,
-    FhirCode? status,
+    CompositionStatus? status,
     Element? statusElement,
     CodeableConcept? type,
     List<CodeableConcept>? category,
@@ -272,7 +273,7 @@ class CompositionAttester extends BackboneElement {
 
   /// [mode] /// The type of attestation the authenticator offers.
   @JsonKey(name: 'mode')
-  final FhirCode mode;
+  final CompositionAttestationMode mode;
   @JsonKey(name: '_mode')
   final Element? modeElement;
 
@@ -298,7 +299,7 @@ class CompositionAttester extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? mode,
+    CompositionAttestationMode? mode,
     Element? modeElement,
     FhirDateTime? time,
     Element? timeElement,
@@ -374,7 +375,7 @@ class CompositionRelatesTo extends BackboneElement {
   /// [code] /// The type of relationship that this composition has with anther composition
   /// or document.
   @JsonKey(name: 'code')
-  final FhirCode code;
+  final DocumentRelationshipType code;
   @JsonKey(name: '_code')
   final Element? codeElement;
 
@@ -398,7 +399,7 @@ class CompositionRelatesTo extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? code,
+    DocumentRelationshipType? code,
     Element? codeElement,
     Identifier? targetIdentifier,
     Reference? targetReference,
@@ -585,7 +586,7 @@ class CompositionSection extends BackboneElement {
   /// [code] /// A code identifying the kind of content contained within the section. This
   /// must be consistent with the section title.
   @JsonKey(name: 'code')
-  final CodeableConcept? code;
+  final DocumentSectionCodes? code;
 
   /// [author] /// Identifies who is responsible for the information in this section, not
   /// necessarily who typed it in.
@@ -616,13 +617,13 @@ class CompositionSection extends BackboneElement {
   /// snapshot of a list of items from another source, or whether it is a
   /// prepared list where items may be marked as added, modified or deleted.
   @JsonKey(name: 'mode')
-  final FhirCode? mode;
+  final ListMode? mode;
   @JsonKey(name: '_mode')
   final Element? modeElement;
 
   /// [orderedBy] /// Specifies the order applied to the items in the section entries.
   @JsonKey(name: 'orderedBy')
-  final CodeableConcept? orderedBy;
+  final ListOrderCodes? orderedBy;
 
   /// [entry] /// A reference to the actual resource from which the narrative in the section
   /// is derived.
@@ -632,7 +633,7 @@ class CompositionSection extends BackboneElement {
   /// [emptyReason] /// If the section is empty, why the list is empty. An empty section typically
   /// has some text explaining the empty reason.
   @JsonKey(name: 'emptyReason')
-  final CodeableConcept? emptyReason;
+  final ListEmptyReasons? emptyReason;
 
   /// [section] /// A nested sub-section within this section.
   @JsonKey(name: 'section')
@@ -652,15 +653,15 @@ class CompositionSection extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? title,
     Element? titleElement,
-    CodeableConcept? code,
+    DocumentSectionCodes? code,
     List<Reference>? author,
     Reference? focus,
     Narrative? text,
-    FhirCode? mode,
+    ListMode? mode,
     Element? modeElement,
-    CodeableConcept? orderedBy,
+    ListOrderCodes? orderedBy,
     List<Reference>? entry,
-    CodeableConcept? emptyReason,
+    ListEmptyReasons? emptyReason,
     List<CompositionSection>? section,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

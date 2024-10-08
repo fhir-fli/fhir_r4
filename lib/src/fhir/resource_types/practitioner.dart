@@ -41,6 +41,7 @@ class Practitioner extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.Practitioner,
             fhirType: 'Practitioner');
@@ -76,7 +77,7 @@ class Practitioner extends DomainResource {
   /// [gender] /// Administrative Gender - the gender that the person is considered to have
   /// for administration and record keeping purposes.
   @JsonKey(name: 'gender')
-  final FhirCode? gender;
+  final AdministrativeGender? gender;
   @JsonKey(name: '_gender')
   final Element? genderElement;
 
@@ -99,7 +100,7 @@ class Practitioner extends DomainResource {
 
   /// [communication] /// A language the practitioner can use in patient communication.
   @JsonKey(name: 'communication')
-  final List<CodeableConcept>? communication;
+  final List<CommonLanguages>? communication;
   factory Practitioner.fromJson(Map<String, dynamic> json) =>
       _$PractitionerFromJson(json);
 
@@ -114,7 +115,7 @@ class Practitioner extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -126,13 +127,13 @@ class Practitioner extends DomainResource {
     List<HumanName>? name,
     List<ContactPoint>? telecom,
     List<Address>? address,
-    FhirCode? gender,
+    AdministrativeGender? gender,
     Element? genderElement,
     FhirDate? birthDate,
     Element? birthDateElement,
     List<Attachment>? photo,
     List<PractitionerQualification>? qualification,
-    List<CodeableConcept>? communication,
+    List<CommonLanguages>? communication,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

@@ -39,7 +39,7 @@ class HumanName extends DataType {
 
   /// [use] /// Identifies the purpose for this name.
   @JsonKey(name: 'use')
-  final FhirCode? use;
+  final NameUse? use;
   @JsonKey(name: '_use')
   final Element? useElement;
 
@@ -94,7 +94,7 @@ class HumanName extends DataType {
   HumanName copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
-    FhirCode? use,
+    NameUse? use,
     Element? useElement,
     FhirString? text,
     Element? textElement,

@@ -73,6 +73,7 @@ class Citation extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Citation, fhirType: 'Citation');
   @Id()
   @JsonKey(ignore: true)
@@ -123,7 +124,7 @@ class Citation extends DomainResource {
 
   /// [status] /// The status of this summary. Enables tracking the life-cycle of the content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -237,7 +238,7 @@ class Citation extends DomainResource {
 
   /// [currentState] /// The status of the citation.
   @JsonKey(name: 'currentState')
-  final List<CodeableConcept>? currentState;
+  final List<CitationStatusType>? currentState;
 
   /// [statusDate] /// An effective date or period for a status of the citation.
   @JsonKey(name: 'statusDate')
@@ -264,7 +265,7 @@ class Citation extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -279,7 +280,7 @@ class Citation extends DomainResource {
     Element? nameElement,
     FhirString? title,
     Element? titleElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
@@ -308,7 +309,7 @@ class Citation extends DomainResource {
     List<CitationSummary>? summary,
     List<CitationClassification>? classification,
     List<Annotation>? note,
-    List<CodeableConcept>? currentState,
+    List<CitationStatusType>? currentState,
     List<CitationStatusDate>? statusDate,
     List<CitationRelatesTo>? relatesTo,
     CitationCitedArtifact? citedArtifact,
@@ -425,7 +426,7 @@ class CitationSummary extends BackboneElement {
 
   /// [style] /// Format for display of the citation.
   @JsonKey(name: 'style')
-  final CodeableConcept? style;
+  final CitationSummaryStyle? style;
 
   /// [text] /// The human-readable display of the citation.
   @JsonKey(name: 'text')
@@ -445,7 +446,7 @@ class CitationSummary extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? style,
+    CitationSummaryStyle? style,
     FhirMarkdown? text,
     Element? textElement,
     Map<String, Object?>? userData,
@@ -513,11 +514,11 @@ class CitationClassification extends BackboneElement {
 
   /// [type] /// The kind of classifier (e.g. publication type, keyword).
   @JsonKey(name: 'type')
-  final CodeableConcept? type;
+  final CitationClassificationType? type;
 
   /// [classifier] /// The specific classification value.
   @JsonKey(name: 'classifier')
-  final List<CodeableConcept>? classifier;
+  final List<CitationArtifactClassifier>? classifier;
   factory CitationClassification.fromJson(Map<String, dynamic> json) =>
       _$CitationClassificationFromJson(json);
 
@@ -531,8 +532,8 @@ class CitationClassification extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    List<CodeableConcept>? classifier,
+    CitationClassificationType? type,
+    List<CitationArtifactClassifier>? classifier,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -599,7 +600,7 @@ class CitationStatusDate extends BackboneElement {
 
   /// [activity] /// Classification of the status.
   @JsonKey(name: 'activity')
-  final CodeableConcept activity;
+  final CitationStatusType activity;
 
   /// [actual] /// Either occurred or expected.
   @JsonKey(name: 'actual')
@@ -623,7 +624,7 @@ class CitationStatusDate extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? activity,
+    CitationStatusType? activity,
     FhirBoolean? actual,
     Element? actualElement,
     Period? period,
@@ -698,11 +699,11 @@ class CitationRelatesTo extends BackboneElement {
 
   /// [relationshipType] /// How the Citation resource relates to the target artifact.
   @JsonKey(name: 'relationshipType')
-  final CodeableConcept relationshipType;
+  final ArtifactRelationshipType relationshipType;
 
   /// [targetClassifier] /// The clasification of the related artifact.
   @JsonKey(name: 'targetClassifier')
-  final List<CodeableConcept>? targetClassifier;
+  final List<CitationArtifactClassifier>? targetClassifier;
 
   /// [targetUri] /// The article or artifact that the Citation Resource is related to.
   @JsonKey(name: 'targetUri')
@@ -734,8 +735,8 @@ class CitationRelatesTo extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? relationshipType,
-    List<CodeableConcept>? targetClassifier,
+    ArtifactRelationshipType? relationshipType,
+    List<CitationArtifactClassifier>? targetClassifier,
     FhirUri? targetUri,
     Element? targetUriElement,
     Identifier? targetIdentifier,
@@ -845,7 +846,7 @@ class CitationCitedArtifact extends BackboneElement {
 
   /// [currentState] /// The status of the cited artifact.
   @JsonKey(name: 'currentState')
-  final List<CodeableConcept>? currentState;
+  final List<CitedArtifactStatusType>? currentState;
 
   /// [statusDate] /// An effective date or period for a status of the cited artifact.
   @JsonKey(name: 'statusDate')
@@ -906,7 +907,7 @@ class CitationCitedArtifact extends BackboneElement {
     FhirDateTime? dateAccessed,
     Element? dateAccessedElement,
     CitationVersion? version,
-    List<CodeableConcept>? currentState,
+    List<CitedArtifactStatusType>? currentState,
     List<CitationStatusDate>? statusDate,
     List<CitationTitle>? title,
     List<CitationAbstract>? abstract_,
@@ -1086,7 +1087,7 @@ class CitationStatusDate1 extends BackboneElement {
 
   /// [activity] /// Classification of the status.
   @JsonKey(name: 'activity')
-  final CodeableConcept activity;
+  final CitedArtifactStatusType activity;
 
   /// [actual] /// Either occurred or expected.
   @JsonKey(name: 'actual')
@@ -1110,7 +1111,7 @@ class CitationStatusDate1 extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? activity,
+    CitedArtifactStatusType? activity,
     FhirBoolean? actual,
     Element? actualElement,
     Period? period,
@@ -1182,11 +1183,11 @@ class CitationTitle extends BackboneElement {
 
   /// [type] /// Used to express the reason or specific aspect for the title.
   @JsonKey(name: 'type')
-  final List<CodeableConcept>? type;
+  final List<TitleType>? type;
 
   /// [language] /// Used to express the specific language.
   @JsonKey(name: 'language')
-  final CodeableConcept? language;
+  final CommonLanguages? language;
 
   /// [text] /// The title of the article or artifact.
   @JsonKey(name: 'text')
@@ -1206,8 +1207,8 @@ class CitationTitle extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    List<CodeableConcept>? type,
-    CodeableConcept? language,
+    List<TitleType>? type,
+    CommonLanguages? language,
     FhirMarkdown? text,
     Element? textElement,
     Map<String, Object?>? userData,
@@ -1280,11 +1281,11 @@ class CitationAbstract extends BackboneElement {
 
   /// [type] /// Used to express the reason or specific aspect for the abstract.
   @JsonKey(name: 'type')
-  final CodeableConcept? type;
+  final CitedArtifactAbstractType? type;
 
   /// [language] /// Used to express the specific language.
   @JsonKey(name: 'language')
-  final CodeableConcept? language;
+  final CommonLanguages? language;
 
   /// [text] /// Abstract content.
   @JsonKey(name: 'text')
@@ -1310,8 +1311,8 @@ class CitationAbstract extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    CodeableConcept? language,
+    CitedArtifactAbstractType? type,
+    CommonLanguages? language,
     FhirMarkdown? text,
     Element? textElement,
     FhirMarkdown? copyright,
@@ -1386,7 +1387,7 @@ class CitationPart extends BackboneElement {
 
   /// [type] /// The kind of component.
   @JsonKey(name: 'type')
-  final CodeableConcept? type;
+  final CitedArtifactPartType? type;
 
   /// [value] /// The specification of the component.
   @JsonKey(name: 'value')
@@ -1410,7 +1411,7 @@ class CitationPart extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
+    CitedArtifactPartType? type,
     FhirString? value,
     Element? valueElement,
     Reference? baseCitation,
@@ -1485,11 +1486,11 @@ class CitationRelatesTo1 extends BackboneElement {
 
   /// [relationshipType] /// How the cited artifact relates to the target artifact.
   @JsonKey(name: 'relationshipType')
-  final CodeableConcept relationshipType;
+  final ArtifactRelationshipType relationshipType;
 
   /// [targetClassifier] /// The clasification of the related artifact.
   @JsonKey(name: 'targetClassifier')
-  final List<CodeableConcept>? targetClassifier;
+  final List<CitationArtifactClassifier>? targetClassifier;
 
   /// [targetUri] /// The article or artifact that the cited artifact is related to.
   @JsonKey(name: 'targetUri')
@@ -1521,8 +1522,8 @@ class CitationRelatesTo1 extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? relationshipType,
-    List<CodeableConcept>? targetClassifier,
+    ArtifactRelationshipType? relationshipType,
+    List<CitationArtifactClassifier>? targetClassifier,
     FhirUri? targetUri,
     Element? targetUriElement,
     Identifier? targetIdentifier,
@@ -1636,7 +1637,7 @@ class CitationPublicationForm extends BackboneElement {
 
   /// [language] /// Language in which this form of the article is published.
   @JsonKey(name: 'language')
-  final List<CodeableConcept>? language;
+  final List<CommonLanguages>? language;
 
   /// [accessionNumber] /// Entry number or identifier for inclusion in a database.
   @JsonKey(name: 'accessionNumber')
@@ -1692,7 +1693,7 @@ class CitationPublicationForm extends BackboneElement {
     Element? articleDateElement,
     FhirDateTime? lastRevisionDate,
     Element? lastRevisionDateElement,
-    List<CodeableConcept>? language,
+    List<CommonLanguages>? language,
     FhirString? accessionNumber,
     Element? accessionNumberElement,
     FhirString? pageString,
@@ -1793,7 +1794,7 @@ class CitationPublishedIn extends BackboneElement {
 
   /// [type] /// Kind of container (e.g. Periodical, database, or book).
   @JsonKey(name: 'type')
-  final CodeableConcept? type;
+  final PublishedInType? type;
 
   /// [identifier] /// Journal identifiers include ISSN, ISO Abbreviation and NLMuniqueID; Book
   /// identifiers include ISBN.
@@ -1828,7 +1829,7 @@ class CitationPublishedIn extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
+    PublishedInType? type,
     List<Identifier>? identifier,
     FhirString? title,
     Element? titleElement,
@@ -1910,7 +1911,7 @@ class CitationPeriodicRelease extends BackboneElement {
   /// [citedMedium] /// Describes the form of the medium cited. Common codes are "Internet" or
   /// "Print".
   @JsonKey(name: 'citedMedium')
-  final CodeableConcept? citedMedium;
+  final CitedMedium? citedMedium;
 
   /// [volume] /// Volume number of journal in which the article is published.
   @JsonKey(name: 'volume')
@@ -1940,7 +1941,7 @@ class CitationPeriodicRelease extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? citedMedium,
+    CitedMedium? citedMedium,
     FhirString? volume,
     Element? volumeElement,
     FhirString? issue,
@@ -2158,7 +2159,7 @@ class CitationWebLocation extends BackboneElement {
 
   /// [type] /// Code the reason for different URLs, e.g. abstract and full-text.
   @JsonKey(name: 'type')
-  final CodeableConcept? type;
+  final ArticleUrlType? type;
 
   /// [url] /// The specific URL.
   @JsonKey(name: 'url')
@@ -2178,7 +2179,7 @@ class CitationWebLocation extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
+    ArticleUrlType? type,
     FhirUri? url,
     Element? urlElement,
     Map<String, Object?>? userData,
@@ -2247,11 +2248,11 @@ class CitationClassification1 extends BackboneElement {
 
   /// [type] /// The kind of classifier (e.g. publication type, keyword).
   @JsonKey(name: 'type')
-  final CodeableConcept? type;
+  final CitedArtifactClassificationType? type;
 
   /// [classifier] /// The specific classification value.
   @JsonKey(name: 'classifier')
-  final List<CodeableConcept>? classifier;
+  final List<CitationArtifactClassifier>? classifier;
 
   /// [whoClassified] /// Provenance and copyright of classification.
   @JsonKey(name: 'whoClassified')
@@ -2269,8 +2270,8 @@ class CitationClassification1 extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    List<CodeableConcept>? classifier,
+    CitedArtifactClassificationType? type,
+    List<CitationArtifactClassifier>? classifier,
     CitationWhoClassified? whoClassified,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -2599,11 +2600,11 @@ class CitationEntry extends BackboneElement {
   /// [contributionType] /// This element identifies the specific nature of an individual’s contribution
   /// with respect to the cited work.
   @JsonKey(name: 'contributionType')
-  final List<CodeableConcept>? contributionType;
+  final List<ArtifactContributionType>? contributionType;
 
   /// [role] /// The role of the contributor (e.g. author, editor, reviewer).
   @JsonKey(name: 'role')
-  final CodeableConcept? role;
+  final ContributorRole? role;
 
   /// [contributionInstance] /// Contributions with accounting for time or number.
   @JsonKey(name: 'contributionInstance')
@@ -2643,8 +2644,8 @@ class CitationEntry extends BackboneElement {
     List<CitationAffiliationInfo>? affiliationInfo,
     List<Address>? address,
     List<ContactPoint>? telecom,
-    List<CodeableConcept>? contributionType,
-    CodeableConcept? role,
+    List<ArtifactContributionType>? contributionType,
+    ContributorRole? role,
     List<CitationContributionInstance>? contributionInstance,
     FhirBoolean? correspondingContact,
     Element? correspondingContactElement,
@@ -2832,7 +2833,7 @@ class CitationContributionInstance extends BackboneElement {
 
   /// [type] /// The specific contribution.
   @JsonKey(name: 'type')
-  final CodeableConcept type;
+  final ArtifactContributionInstanceType type;
 
   /// [time] /// The time that the contribution was made.
   @JsonKey(name: 'time')
@@ -2852,7 +2853,7 @@ class CitationContributionInstance extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
+    ArtifactContributionInstanceType? type,
     FhirDateTime? time,
     Element? timeElement,
     Map<String, Object?>? userData,
@@ -2925,15 +2926,15 @@ class CitationSummary1 extends BackboneElement {
   /// [type] /// Used most commonly to express an author list or a contributorship
   /// statement.
   @JsonKey(name: 'type')
-  final CodeableConcept? type;
+  final ContributorSummaryType? type;
 
   /// [style] /// The format for the display string.
   @JsonKey(name: 'style')
-  final CodeableConcept? style;
+  final ContributorSummaryStyle? style;
 
   /// [source] /// Used to code the producer or rule for creating the display string.
   @JsonKey(name: 'source')
-  final CodeableConcept? source;
+  final ContributorSummarySource? source;
 
   /// [value] /// The display string for the author list, contributor list, or
   /// contributorship statement.
@@ -2954,9 +2955,9 @@ class CitationSummary1 extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    CodeableConcept? style,
-    CodeableConcept? source,
+    ContributorSummaryType? type,
+    ContributorSummaryStyle? style,
+    ContributorSummarySource? source,
     FhirMarkdown? value,
     Element? valueElement,
     Map<String, Object?>? userData,

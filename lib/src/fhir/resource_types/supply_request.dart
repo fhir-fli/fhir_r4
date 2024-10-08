@@ -50,6 +50,7 @@ class SupplyRequest extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.SupplyRequest,
             fhirType: 'SupplyRequest');
@@ -65,19 +66,19 @@ class SupplyRequest extends DomainResource {
 
   /// [status] /// Status of the supply request.
   @JsonKey(name: 'status')
-  final FhirCode? status;
+  final SupplyRequestStatus? status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [category] /// Category of supply, e.g. central, non-stock, etc. This is used to support
   /// work flows associated with the supply process.
   @JsonKey(name: 'category')
-  final CodeableConcept? category;
+  final SupplyType? category;
 
   /// [priority] /// Indicates how quickly this SupplyRequest should be addressed with respect
   /// to other requests.
   @JsonKey(name: 'priority')
-  final FhirCode? priority;
+  final RequestPriority? priority;
   @JsonKey(name: '_priority')
   final Element? priorityElement;
 
@@ -132,7 +133,7 @@ class SupplyRequest extends DomainResource {
 
   /// [reasonCode] /// The reason why the supply item was requested.
   @JsonKey(name: 'reasonCode')
-  final List<CodeableConcept>? reasonCode;
+  final List<SupplyRequestReason>? reasonCode;
 
   /// [reasonReference] /// The reason why the supply item was requested.
   @JsonKey(name: 'reasonReference')
@@ -159,17 +160,17 @@ class SupplyRequest extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    SupplyRequestStatus? status,
     Element? statusElement,
-    CodeableConcept? category,
-    FhirCode? priority,
+    SupplyType? category,
+    RequestPriority? priority,
     Element? priorityElement,
     CodeableConcept? itemCodeableConcept,
     Reference? itemReference,
@@ -183,7 +184,7 @@ class SupplyRequest extends DomainResource {
     Element? authoredOnElement,
     Reference? requester,
     List<Reference>? supplier,
-    List<CodeableConcept>? reasonCode,
+    List<SupplyRequestReason>? reasonCode,
     List<Reference>? reasonReference,
     Reference? deliverFrom,
     Reference? deliverTo,

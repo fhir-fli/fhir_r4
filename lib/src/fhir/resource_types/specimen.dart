@@ -42,6 +42,7 @@ class Specimen extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Specimen, fhirType: 'Specimen');
   @Id()
   @JsonKey(ignore: true)
@@ -59,7 +60,7 @@ class Specimen extends DomainResource {
 
   /// [status] /// The availability of the specimen.
   @JsonKey(name: 'status')
-  final FhirCode? status;
+  final SpecimenStatus? status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -124,7 +125,7 @@ class Specimen extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -132,7 +133,7 @@ class Specimen extends DomainResource {
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     Identifier? accessionIdentifier,
-    FhirCode? status,
+    SpecimenStatus? status,
     Element? statusElement,
     CodeableConcept? type,
     Reference? subject,
@@ -263,7 +264,7 @@ class SpecimenCollection extends BackboneElement {
   /// [method] /// A coded value specifying the technique that is used to perform the
   /// procedure.
   @JsonKey(name: 'method')
-  final CodeableConcept? method;
+  final FHIRSpecimenCollectionMethod? method;
 
   /// [bodySite] /// Anatomical location from which the specimen was collected (if subject is a
   /// patient). This is the target site. This element is not used for
@@ -299,7 +300,7 @@ class SpecimenCollection extends BackboneElement {
     Period? collectedPeriod,
     FhirDuration? duration,
     Quantity? quantity,
-    CodeableConcept? method,
+    FHIRSpecimenCollectionMethod? method,
     CodeableConcept? bodySite,
     CodeableConcept? fastingStatusCodeableConcept,
     FhirDuration? fastingStatusDuration,

@@ -37,6 +37,7 @@ class EnrollmentRequest extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.EnrollmentRequest,
             fhirType: 'EnrollmentRequest');
@@ -50,7 +51,7 @@ class EnrollmentRequest extends DomainResource {
 
   /// [status] /// The status of the resource instance.
   @JsonKey(name: 'status')
-  final FhirCode? status;
+  final FinancialResourceStatusCodes? status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -90,14 +91,14 @@ class EnrollmentRequest extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    FinancialResourceStatusCodes? status,
     Element? statusElement,
     FhirDateTime? created,
     Element? createdElement,

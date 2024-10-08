@@ -32,7 +32,7 @@ class Contributor extends DataType {
 
   /// [type] /// The type of contributor.
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final ContributorType type;
   @JsonKey(name: '_type')
   final Element? typeElement;
 
@@ -59,7 +59,7 @@ class Contributor extends DataType {
   Contributor copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
-    FhirCode? type,
+    ContributorType? type,
     Element? typeElement,
     FhirString? name,
     Element? nameElement,

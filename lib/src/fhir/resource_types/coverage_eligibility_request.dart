@@ -50,6 +50,7 @@ class CoverageEligibilityRequest extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.CoverageEligibilityRequest,
             fhirType: 'CoverageEligibilityRequest');
@@ -63,13 +64,13 @@ class CoverageEligibilityRequest extends DomainResource {
 
   /// [status] /// The status of the resource instance.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final FinancialResourceStatusCodes status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [priority] /// When the requestor expects the processor to complete processing.
   @JsonKey(name: 'priority')
-  final CodeableConcept? priority;
+  final ProcessPriorityCodes? priority;
 
   /// [purpose] /// Code to specify whether requesting: prior authorization requirements for
   /// some service categories or billing codes; benefits for coverages specified
@@ -77,7 +78,7 @@ class CoverageEligibilityRequest extends DomainResource {
   /// validation that the specified coverage is in-force at the date/period
   /// specified or 'now' if not specified.
   @JsonKey(name: 'purpose')
-  final List<FhirCode> purpose;
+  final List<EligibilityRequestPurpose> purpose;
   @JsonKey(name: '_purpose')
   final List<Element>? purposeElement;
 
@@ -149,17 +150,17 @@ class CoverageEligibilityRequest extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    FinancialResourceStatusCodes? status,
     Element? statusElement,
-    CodeableConcept? priority,
-    List<FhirCode>? purpose,
+    ProcessPriorityCodes? priority,
+    List<EligibilityRequestPurpose>? purpose,
     List<Element>? purposeElement,
     Reference? patient,
     FhirDate? servicedDate,
@@ -499,17 +500,17 @@ class CoverageEligibilityRequestItem extends BackboneElement {
   /// [category] /// Code to identify the general type of benefits under which products and
   /// services are provided.
   @JsonKey(name: 'category')
-  final CodeableConcept? category;
+  final BenefitCategoryCodes? category;
 
   /// [productOrService] /// This contains the product, service, drug or other billing code for the
   /// item.
   @JsonKey(name: 'productOrService')
-  final CodeableConcept? productOrService;
+  final USCLSCodes? productOrService;
 
   /// [modifier] /// Item typification or modifiers codes to convey additional context for the
   /// product or service.
   @JsonKey(name: 'modifier')
-  final List<CodeableConcept>? modifier;
+  final List<ModifierTypeCodes>? modifier;
 
   /// [provider] /// The practitioner who is responsible for the product or service to be
   /// rendered to the patient.
@@ -550,9 +551,9 @@ class CoverageEligibilityRequestItem extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     List<FhirPositiveInt>? supportingInfoSequence,
     List<Element>? supportingInfoSequenceElement,
-    CodeableConcept? category,
-    CodeableConcept? productOrService,
-    List<CodeableConcept>? modifier,
+    BenefitCategoryCodes? category,
+    USCLSCodes? productOrService,
+    List<ModifierTypeCodes>? modifier,
     Reference? provider,
     Quantity? quantity,
     Money? unitPrice,

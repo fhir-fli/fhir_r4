@@ -58,6 +58,7 @@ class StructureMap extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.StructureMap,
             fhirType: 'StructureMap');
@@ -111,7 +112,7 @@ class StructureMap extends DomainResource {
   /// [status] /// The status of this structure map. Enables tracking the life-cycle of the
   /// content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -208,7 +209,7 @@ class StructureMap extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -223,7 +224,7 @@ class StructureMap extends DomainResource {
     Element? nameElement,
     FhirString? title,
     Element? titleElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
@@ -356,7 +357,7 @@ class StructureMapStructure extends BackboneElement {
 
   /// [mode] /// How the referenced structure is used in this mapping.
   @JsonKey(name: 'mode')
-  final FhirCode mode;
+  final StructureMapModelMode mode;
   @JsonKey(name: '_mode')
   final Element? modeElement;
 
@@ -386,7 +387,7 @@ class StructureMapStructure extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirCanonical? url,
     Element? urlElement,
-    FhirCode? mode,
+    StructureMapModelMode? mode,
     Element? modeElement,
     FhirString? alias,
     Element? aliasElement,
@@ -484,7 +485,7 @@ class StructureMapGroup extends BackboneElement {
   /// [typeMode] /// If this is the default rule set to apply for the source type or this
   /// combination of types.
   @JsonKey(name: 'typeMode')
-  final FhirCode typeMode;
+  final StructureMapGroupTypeMode typeMode;
   @JsonKey(name: '_typeMode')
   final Element? typeModeElement;
 
@@ -520,7 +521,7 @@ class StructureMapGroup extends BackboneElement {
     Element? nameElement,
     FhirId? extends_,
     Element? extendsElement,
-    FhirCode? typeMode,
+    StructureMapGroupTypeMode? typeMode,
     Element? typeModeElement,
     FhirString? documentation,
     Element? documentationElement,
@@ -617,7 +618,7 @@ class StructureMapInput extends BackboneElement {
 
   /// [mode] /// Mode for this instance of data.
   @JsonKey(name: 'mode')
-  final FhirCode mode;
+  final StructureMapInputMode mode;
   @JsonKey(name: '_mode')
   final Element? modeElement;
 
@@ -643,7 +644,7 @@ class StructureMapInput extends BackboneElement {
     Element? nameElement,
     FhirString? type,
     Element? typeElement,
-    FhirCode? mode,
+    StructureMapInputMode? mode,
     Element? modeElement,
     FhirString? documentation,
     Element? documentationElement,
@@ -1198,7 +1199,7 @@ class StructureMapSource extends BackboneElement {
 
   /// [listMode] /// How to handle the list mode for this element.
   @JsonKey(name: 'listMode')
-  final FhirCode? listMode;
+  final StructureMapSourceListMode? listMode;
   @JsonKey(name: '_listMode')
   final Element? listModeElement;
 
@@ -1319,7 +1320,7 @@ class StructureMapSource extends BackboneElement {
     FhirMeta? defaultValueMeta,
     FhirString? element,
     Element? elementElement,
-    FhirCode? listMode,
+    StructureMapSourceListMode? listMode,
     Element? listModeElement,
     FhirId? variable,
     Element? variableElement,
@@ -1539,7 +1540,7 @@ class StructureMapTarget extends BackboneElement {
 
   /// [contextType] /// How to interpret the context.
   @JsonKey(name: 'contextType')
-  final FhirCode? contextType;
+  final StructureMapContextType? contextType;
   @JsonKey(name: '_contextType')
   final Element? contextTypeElement;
 
@@ -1557,7 +1558,7 @@ class StructureMapTarget extends BackboneElement {
 
   /// [listMode] /// If field is a list, how to manage the list.
   @JsonKey(name: 'listMode')
-  final List<FhirCode>? listMode;
+  final List<StructureMapTargetListMode>? listMode;
   @JsonKey(name: '_listMode')
   final List<Element>? listModeElement;
 
@@ -1569,7 +1570,7 @@ class StructureMapTarget extends BackboneElement {
 
   /// [transform] /// How the data is copied / created.
   @JsonKey(name: 'transform')
-  final FhirCode? transform;
+  final StructureMapTransform? transform;
   @JsonKey(name: '_transform')
   final Element? transformElement;
 
@@ -1591,17 +1592,17 @@ class StructureMapTarget extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirId? context,
     Element? contextElement,
-    FhirCode? contextType,
+    StructureMapContextType? contextType,
     Element? contextTypeElement,
     FhirString? element,
     Element? elementElement,
     FhirId? variable,
     Element? variableElement,
-    List<FhirCode>? listMode,
+    List<StructureMapTargetListMode>? listMode,
     List<Element>? listModeElement,
     FhirId? listRuleId,
     Element? listRuleIdElement,
-    FhirCode? transform,
+    StructureMapTransform? transform,
     Element? transformElement,
     List<StructureMapParameter>? parameter,
     Map<String, Object?>? userData,

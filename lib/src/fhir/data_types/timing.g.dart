@@ -23,40 +23,24 @@ Timing _$TimingFromJson(Map<String, dynamic> json) => Timing(
       repeat: json['repeat'] == null
           ? null
           : Element.fromJson(json['repeat'] as Map<String, dynamic>),
-      code: json['code'] == null
-          ? null
-          : CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      code: $enumDecodeNullable(_$TimingAbbreviationEnumMap, json['code']),
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$TimingToJson(Timing instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -64,6 +48,13 @@ Map<String, dynamic> _$TimingToJson(Timing instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -76,6 +67,25 @@ Map<String, dynamic> _$TimingToJson(Timing instance) {
   writeNotNull('code', instance.code?.toJson());
   return val;
 }
+
+const _$TimingAbbreviationEnumMap = {
+  TimingAbbreviation.BID: 'BID',
+  TimingAbbreviation.TID: 'TID',
+  TimingAbbreviation.QID: 'QID',
+  TimingAbbreviation.AM: 'AM',
+  TimingAbbreviation.PM: 'PM',
+  TimingAbbreviation.QD: 'QD',
+  TimingAbbreviation.QOD: 'QOD',
+  TimingAbbreviation.Q1H: 'Q1H',
+  TimingAbbreviation.Q2H: 'Q2H',
+  TimingAbbreviation.Q3H: 'Q3H',
+  TimingAbbreviation.Q4H: 'Q4H',
+  TimingAbbreviation.Q6H: 'Q6H',
+  TimingAbbreviation.Q8H: 'Q8H',
+  TimingAbbreviation.BED: 'BED',
+  TimingAbbreviation.WK: 'WK',
+  TimingAbbreviation.MO: 'MO',
+};
 
 TimingRepeat _$TimingRepeatFromJson(Map<String, dynamic> json) => TimingRepeat(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
@@ -116,9 +126,8 @@ TimingRepeat _$TimingRepeatFromJson(Map<String, dynamic> json) => TimingRepeat(
       durationMaxElement: json['_durationMax'] == null
           ? null
           : Element.fromJson(json['_durationMax'] as Map<String, dynamic>),
-      durationUnit: json['durationUnit'] == null
-          ? null
-          : FhirCode.fromJson(json['durationUnit']),
+      durationUnit:
+          $enumDecodeNullable(_$UnitsOfTimeEnumMap, json['durationUnit']),
       durationUnitElement: json['_durationUnit'] == null
           ? null
           : Element.fromJson(json['_durationUnit'] as Map<String, dynamic>),
@@ -145,14 +154,12 @@ TimingRepeat _$TimingRepeatFromJson(Map<String, dynamic> json) => TimingRepeat(
       periodMaxElement: json['_periodMax'] == null
           ? null
           : Element.fromJson(json['_periodMax'] as Map<String, dynamic>),
-      periodUnit: json['periodUnit'] == null
-          ? null
-          : FhirCode.fromJson(json['periodUnit']),
+      periodUnit: $enumDecodeNullable(_$UnitsOfTimeEnumMap, json['periodUnit']),
       periodUnitElement: json['_periodUnit'] == null
           ? null
           : Element.fromJson(json['_periodUnit'] as Map<String, dynamic>),
       dayOfWeek: (json['dayOfWeek'] as List<dynamic>?)
-          ?.map(FhirCode.fromJson)
+          ?.map((e) => $enumDecode(_$DaysOfWeekEnumMap, e))
           .toList(),
       dayOfWeekElement: (json['_dayOfWeek'] as List<dynamic>?)
           ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
@@ -163,7 +170,9 @@ TimingRepeat _$TimingRepeatFromJson(Map<String, dynamic> json) => TimingRepeat(
       timeOfDayElement: (json['_timeOfDay'] as List<dynamic>?)
           ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
           .toList(),
-      when: (json['when'] as List<dynamic>?)?.map(FhirCode.fromJson).toList(),
+      when: (json['when'] as List<dynamic>?)
+          ?.map((e) => $enumDecode(_$EventTimingEnumMap, e))
+          .toList(),
       whenElement: (json['_when'] as List<dynamic>?)
           ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -173,37 +182,23 @@ TimingRepeat _$TimingRepeatFromJson(Map<String, dynamic> json) => TimingRepeat(
       offsetElement: json['_offset'] == null
           ? null
           : Element.fromJson(json['_offset'] as Map<String, dynamic>),
-      userData: json['userData'] as Map<String, dynamic>? ??
-          const <String, Object?>{},
+      userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
+          ?.map((e) => e as String)
+          .toList(),
       formatCommentsPost: (json['formatCommentsPost'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      annotations: json['annotations'] as List<dynamic>? ?? const <dynamic>[],
-      children: (json['children'] as List<dynamic>?)
-              ?.map(FhirBase.fromJson)
-              .toList() ??
-          const <FhirBase>[],
+          ?.map((e) => e as String)
+          .toList(),
+      annotations: json['annotations'] as List<dynamic>?,
+      children:
+          (json['children'] as List<dynamic>?)?.map(FhirBase.fromJson).toList(),
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, FhirBase.fromJson(e)),
-          ) ??
-          const <String, FhirBase>{},
+        (k, e) => MapEntry(k, FhirBase.fromJson(e)),
+      ),
     );
 
 Map<String, dynamic> _$TimingRepeatToJson(TimingRepeat instance) {
-  final val = <String, dynamic>{
-    'userData': instance.userData,
-    'formatCommentsPre': instance.formatCommentsPre,
-    'formatCommentsPost': instance.formatCommentsPost,
-    'annotations': instance.annotations,
-    'children': instance.children.map((e) => e.toJson()).toList(),
-    'namedChildren':
-        instance.namedChildren.map((k, e) => MapEntry(k, e.toJson())),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -211,6 +206,13 @@ Map<String, dynamic> _$TimingRepeatToJson(TimingRepeat instance) {
     }
   }
 
+  writeNotNull('userData', instance.userData);
+  writeNotNull('formatCommentsPre', instance.formatCommentsPre);
+  writeNotNull('formatCommentsPost', instance.formatCommentsPost);
+  writeNotNull('annotations', instance.annotations);
+  writeNotNull('children', instance.children?.map((e) => e.toJson()).toList());
+  writeNotNull('namedChildren',
+      instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
       'extension_', instance.extension_?.map((e) => e.toJson()).toList());
@@ -251,3 +253,52 @@ Map<String, dynamic> _$TimingRepeatToJson(TimingRepeat instance) {
   writeNotNull('_offset', instance.offsetElement?.toJson());
   return val;
 }
+
+const _$UnitsOfTimeEnumMap = {
+  UnitsOfTime.s: 's',
+  UnitsOfTime.min: 'min',
+  UnitsOfTime.h: 'h',
+  UnitsOfTime.d: 'd',
+  UnitsOfTime.wk: 'wk',
+  UnitsOfTime.mo: 'mo',
+  UnitsOfTime.a: 'a',
+};
+
+const _$DaysOfWeekEnumMap = {
+  DaysOfWeek.mon: 'mon',
+  DaysOfWeek.tue: 'tue',
+  DaysOfWeek.wed: 'wed',
+  DaysOfWeek.thu: 'thu',
+  DaysOfWeek.fri: 'fri',
+  DaysOfWeek.sat: 'sat',
+  DaysOfWeek.sun: 'sun',
+};
+
+const _$EventTimingEnumMap = {
+  EventTiming.MORN: 'MORN',
+  EventTiming.MORN_early: 'MORN.early',
+  EventTiming.MORN_late: 'MORN.late',
+  EventTiming.NOON: 'NOON',
+  EventTiming.AFT: 'AFT',
+  EventTiming.AFT_early: 'AFT.early',
+  EventTiming.AFT_late: 'AFT.late',
+  EventTiming.EVE: 'EVE',
+  EventTiming.EVE_early: 'EVE.early',
+  EventTiming.EVE_late: 'EVE.late',
+  EventTiming.NIGHT: 'NIGHT',
+  EventTiming.PHS: 'PHS',
+  EventTiming.HS: 'HS',
+  EventTiming.WAKE: 'WAKE',
+  EventTiming.C: 'C',
+  EventTiming.CM: 'CM',
+  EventTiming.CD: 'CD',
+  EventTiming.CV: 'CV',
+  EventTiming.AC: 'AC',
+  EventTiming.ACM: 'ACM',
+  EventTiming.ACD: 'ACD',
+  EventTiming.ACV: 'ACV',
+  EventTiming.PC: 'PC',
+  EventTiming.PCM: 'PCM',
+  EventTiming.PCD: 'PCD',
+  EventTiming.PCV: 'PCV',
+};

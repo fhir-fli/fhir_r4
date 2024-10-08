@@ -74,6 +74,7 @@ class CodeSystem extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.CodeSystem, fhirType: 'CodeSystem');
   @Id()
   @JsonKey(ignore: true)
@@ -126,7 +127,7 @@ class CodeSystem extends DomainResource {
   /// [status] /// The date (and optionally time) when the code system resource was created or
   /// revised.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -208,7 +209,7 @@ class CodeSystem extends DomainResource {
 
   /// [hierarchyMeaning] /// The meaning of the hierarchy of concepts as represented in this resource.
   @JsonKey(name: 'hierarchyMeaning')
-  final FhirCode? hierarchyMeaning;
+  final CodeSystemHierarchyMeaning? hierarchyMeaning;
   @JsonKey(name: '_hierarchyMeaning')
   final Element? hierarchyMeaningElement;
 
@@ -229,7 +230,7 @@ class CodeSystem extends DomainResource {
   /// [content] /// The extent of the content of the code system (the concepts and codes it
   /// defines) are represented in this resource instance.
   @JsonKey(name: 'content')
-  final FhirCode content;
+  final CodeSystemContentMode content;
   @JsonKey(name: '_content')
   final Element? contentElement;
 
@@ -277,7 +278,7 @@ class CodeSystem extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -292,7 +293,7 @@ class CodeSystem extends DomainResource {
     Element? nameElement,
     FhirString? title,
     Element? titleElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
@@ -313,13 +314,13 @@ class CodeSystem extends DomainResource {
     Element? caseSensitiveElement,
     FhirCanonical? valueSet,
     Element? valueSetElement,
-    FhirCode? hierarchyMeaning,
+    CodeSystemHierarchyMeaning? hierarchyMeaning,
     Element? hierarchyMeaningElement,
     FhirBoolean? compositional,
     Element? compositionalElement,
     FhirBoolean? versionNeeded,
     Element? versionNeededElement,
-    FhirCode? content,
+    CodeSystemContentMode? content,
     Element? contentElement,
     FhirCanonical? supplements,
     Element? supplementsElement,
@@ -463,7 +464,7 @@ class CodeSystemFilter extends BackboneElement {
 
   /// [operator_] /// A list of operators that can be used with the filter.
   @JsonKey(name: 'operator')
-  final List<FhirCode> operator_;
+  final List<FilterOperator> operator_;
   @JsonKey(name: '_operator')
   final List<Element>? operatorElement;
 
@@ -489,7 +490,7 @@ class CodeSystemFilter extends BackboneElement {
     Element? codeElement,
     FhirString? description,
     Element? descriptionElement,
-    List<FhirCode>? operator_,
+    List<FilterOperator>? operator_,
     List<Element>? operatorElement,
     FhirString? value,
     Element? valueElement,
@@ -594,7 +595,7 @@ class CodeSystemProperty extends BackboneElement {
   /// [type] /// The type of the property value. Properties of type "code" contain a code
   /// defined by the code system (e.g. a reference to another defined concept).
   @JsonKey(name: 'type')
-  final FhirCode type;
+  final PropertyTypeEnum type;
   @JsonKey(name: '_type')
   final Element? typeElement;
   factory CodeSystemProperty.fromJson(Map<String, dynamic> json) =>
@@ -616,7 +617,7 @@ class CodeSystemProperty extends BackboneElement {
     Element? uriElement,
     FhirString? description,
     Element? descriptionElement,
-    FhirCode? type,
+    PropertyTypeEnum? type,
     Element? typeElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -829,13 +830,13 @@ class CodeSystemDesignation extends BackboneElement {
 
   /// [language] /// The language this designation is defined for.
   @JsonKey(name: 'language')
-  final FhirCode? language;
+  final CommonLanguages? language;
   @JsonKey(name: '_language')
   final Element? languageElement;
 
   /// [use] /// A code that details how this designation would be used.
   @JsonKey(name: 'use')
-  final Coding? use;
+  final DesignationUse? use;
 
   /// [value] /// The text value for this designation.
   @JsonKey(name: 'value')
@@ -855,9 +856,9 @@ class CodeSystemDesignation extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
-    Coding? use,
+    DesignationUse? use,
     FhirString? value,
     Element? valueElement,
     Map<String, Object?>? userData,

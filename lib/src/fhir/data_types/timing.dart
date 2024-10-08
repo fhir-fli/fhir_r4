@@ -51,7 +51,7 @@ class Timing extends BackboneType {
   /// exception that .repeat.bounds still applies over the code (and is not
   /// contained in the code).
   @JsonKey(name: 'code')
-  final CodeableConcept? code;
+  final TimingAbbreviation? code;
   factory Timing.fromJson(Map<String, dynamic> json) => _$TimingFromJson(json);
 
   @override
@@ -67,7 +67,7 @@ class Timing extends BackboneType {
     List<FhirDateTime>? event,
     List<Element>? eventElement,
     Element? repeat,
-    CodeableConcept? code,
+    TimingAbbreviation? code,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -210,7 +210,7 @@ class TimingRepeat extends Element {
 
   /// [durationUnit] /// The units of time for the duration, in UCUM units.
   @JsonKey(name: 'durationUnit')
-  final FhirCode? durationUnit;
+  final UnitsOfTime? durationUnit;
   @JsonKey(name: '_durationUnit')
   final Element? durationUnitElement;
 
@@ -248,14 +248,14 @@ class TimingRepeat extends Element {
 
   /// [periodUnit] /// The units of time for the period in UCUM units.
   @JsonKey(name: 'periodUnit')
-  final FhirCode? periodUnit;
+  final UnitsOfTime? periodUnit;
   @JsonKey(name: '_periodUnit')
   final Element? periodUnitElement;
 
   /// [dayOfWeek] /// If one or more days of week is provided, then the action happens only on
   /// the specified day(s).
   @JsonKey(name: 'dayOfWeek')
-  final List<FhirCode>? dayOfWeek;
+  final List<DaysOfWeek>? dayOfWeek;
   @JsonKey(name: '_dayOfWeek')
   final List<Element>? dayOfWeekElement;
 
@@ -268,7 +268,7 @@ class TimingRepeat extends Element {
   /// [when] /// An approximate time period during the day, potentially linked to an event
   /// of daily living that indicates when the action should occur.
   @JsonKey(name: 'when')
-  final List<FhirCode>? when;
+  final List<EventTiming>? when;
   @JsonKey(name: '_when')
   final List<Element>? whenElement;
 
@@ -302,7 +302,7 @@ class TimingRepeat extends Element {
     Element? durationElement,
     FhirDecimal? durationMax,
     Element? durationMaxElement,
-    FhirCode? durationUnit,
+    UnitsOfTime? durationUnit,
     Element? durationUnitElement,
     FhirPositiveInt? frequency,
     Element? frequencyElement,
@@ -312,13 +312,13 @@ class TimingRepeat extends Element {
     Element? periodElement,
     FhirDecimal? periodMax,
     Element? periodMaxElement,
-    FhirCode? periodUnit,
+    UnitsOfTime? periodUnit,
     Element? periodUnitElement,
-    List<FhirCode>? dayOfWeek,
+    List<DaysOfWeek>? dayOfWeek,
     List<Element>? dayOfWeekElement,
     List<FhirTime>? timeOfDay,
     List<Element>? timeOfDayElement,
-    List<FhirCode>? when,
+    List<EventTiming>? when,
     List<Element>? whenElement,
     FhirUnsignedInt? offset,
     Element? offsetElement,

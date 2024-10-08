@@ -78,7 +78,7 @@ class FhirMeta extends DataType {
   /// relate resources to process and workflow, and applications are not required
   /// to consider the tags when interpreting the meaning of a resource.
   @JsonKey(name: 'tag')
-  final List<Coding>? tag;
+  final List<CommonTags>? tag;
   factory FhirMeta.fromJson(Map<String, dynamic> json) =>
       _$FhirMetaFromJson(json);
 
@@ -100,7 +100,7 @@ class FhirMeta extends DataType {
     List<FhirCanonical>? profile,
     List<Element>? profileElement,
     List<Coding>? security,
-    List<Coding>? tag,
+    List<CommonTags>? tag,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

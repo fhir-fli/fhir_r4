@@ -37,6 +37,7 @@ class Flag extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Flag, fhirType: 'Flag');
   @Id()
   @JsonKey(ignore: true)
@@ -50,7 +51,7 @@ class Flag extends DomainResource {
 
   /// [status] /// Supports basic workflow.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final FlagStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -58,7 +59,7 @@ class Flag extends DomainResource {
   /// administrative etc. Intended to be used as a means of filtering which flags
   /// are displayed to particular user or in a given context.
   @JsonKey(name: 'category')
-  final List<CodeableConcept>? category;
+  final List<FlagCategory>? category;
 
   /// [code] /// The coded value or textual component of the flag to display to the user.
   @JsonKey(name: 'code')
@@ -94,16 +95,16 @@ class Flag extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    FhirCode? status,
+    FlagStatus? status,
     Element? statusElement,
-    List<CodeableConcept>? category,
+    List<FlagCategory>? category,
     CodeableConcept? code,
     Reference? subject,
     Period? period,

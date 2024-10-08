@@ -1,10 +1,12 @@
 import 'dart:convert';
 
+import 'package:json_annotation/json_annotation.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [DomainResource] Base definition for all FHIR elements.
+@JsonSerializable()
 abstract class DomainResource extends Resource {
   const DomainResource({
     required super.resourceType,
@@ -27,9 +29,13 @@ abstract class DomainResource extends Resource {
     super.namedChildren,
   });
 
+  @JsonKey(name: 'text')
   final Narrative? text;
+  @JsonKey(name: 'contained')
   final List<Resource>? contained;
+  @JsonKey(name: 'extension')
   final List<FhirExtension>? extension_;
+  @JsonKey(name: 'modifierExtension')
   final List<FhirExtension>? modifierExtension;
 
   /// Returns a [Map<String, Object?>] of the [DomainResource]
@@ -97,7 +103,7 @@ abstract class DomainResource extends Resource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,

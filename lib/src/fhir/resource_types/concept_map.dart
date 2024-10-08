@@ -64,6 +64,7 @@ class ConceptMap extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.ConceptMap, fhirType: 'ConceptMap');
   @Id()
   @JsonKey(ignore: true)
@@ -115,7 +116,7 @@ class ConceptMap extends DomainResource {
   /// [status] /// The status of this concept map. Enables tracking the life-cycle of the
   /// content.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final PublicationStatus status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -229,7 +230,7 @@ class ConceptMap extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -244,7 +245,7 @@ class ConceptMap extends DomainResource {
     Element? nameElement,
     FhirString? title,
     Element? titleElement,
-    FhirCode? status,
+    PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
@@ -641,7 +642,7 @@ class ConceptMapTarget extends BackboneElement {
   /// dependencies and products). The equivalence is read from target to source
   /// (e.g. the target is 'wider' than the source).
   @JsonKey(name: 'equivalence')
-  final FhirCode equivalence;
+  final ConceptMapEquivalence equivalence;
   @JsonKey(name: '_equivalence')
   final Element? equivalenceElement;
 
@@ -682,7 +683,7 @@ class ConceptMapTarget extends BackboneElement {
     Element? codeElement,
     FhirString? display,
     Element? displayElement,
-    FhirCode? equivalence,
+    ConceptMapEquivalence? equivalence,
     Element? equivalenceElement,
     FhirString? comment,
     Element? commentElement,
@@ -899,7 +900,7 @@ class ConceptMapUnmapped extends BackboneElement {
   /// code), or alternatively, a reference to a different concept map can be
   /// provided (by canonical URL).
   @JsonKey(name: 'mode')
-  final FhirCode mode;
+  final ConceptMapGroupUnmappedMode mode;
   @JsonKey(name: '_mode')
   final Element? modeElement;
 
@@ -937,7 +938,7 @@ class ConceptMapUnmapped extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? mode,
+    ConceptMapGroupUnmappedMode? mode,
     Element? modeElement,
     FhirCode? code,
     Element? codeElement,

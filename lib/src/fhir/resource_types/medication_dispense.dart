@@ -60,6 +60,7 @@ class MedicationDispense extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.MedicationDispense,
             fhirType: 'MedicationDispense');
@@ -81,23 +82,23 @@ class MedicationDispense extends DomainResource {
 
   /// [status] /// A code specifying the state of the set of dispense events.
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final MedicationDispenseStatusCodes status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [statusReasonCodeableConcept] /// Indicates the reason why a dispense was not performed.
   @JsonKey(name: 'statusReasonCodeableConcept')
-  final CodeableConcept? statusReasonCodeableConcept;
+  final MedicationDispenseStatusReasonCodes? statusReasonCodeableConcept;
 
   /// [statusReasonReference] /// Indicates the reason why a dispense was not performed.
   @JsonKey(name: 'statusReasonReference')
-  final Reference? statusReasonReference;
+  final MedicationDispenseStatusReasonCodes? statusReasonReference;
 
   /// [category] /// Indicates the type of medication dispense (for example, where the
   /// medication is expected to be consumed or administered (i.e. inpatient or
   /// outpatient)).
   @JsonKey(name: 'category')
-  final CodeableConcept? category;
+  final MedicationDispenseCategoryCodes? category;
 
   /// [medicationCodeableConcept] /// Identifies the medication being administered. This is either a link to a
   /// resource representing the details of the medication or a simple attribute
@@ -218,7 +219,7 @@ class MedicationDispense extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -226,11 +227,11 @@ class MedicationDispense extends DomainResource {
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     List<Reference>? partOf,
-    FhirCode? status,
+    MedicationDispenseStatusCodes? status,
     Element? statusElement,
-    CodeableConcept? statusReasonCodeableConcept,
-    Reference? statusReasonReference,
-    CodeableConcept? category,
+    MedicationDispenseStatusReasonCodes? statusReasonCodeableConcept,
+    MedicationDispenseStatusReasonCodes? statusReasonReference,
+    MedicationDispenseCategoryCodes? category,
     CodeableConcept? medicationCodeableConcept,
     Reference? medicationReference,
     Reference? subject,
@@ -358,7 +359,7 @@ class MedicationDispensePerformer extends BackboneElement {
   /// [function_] /// Distinguishes the type of performer in the dispense. For example, date
   /// enterer, packager, final checker.
   @JsonKey(name: 'function')
-  final CodeableConcept? function_;
+  final MedicationDispensePerformerFunctionCodes? function_;
 
   /// [actor] /// The device, practitioner, etc. who performed the action. It should be
   /// assumed that the actor is the dispenser of the medication.
@@ -377,7 +378,7 @@ class MedicationDispensePerformer extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? function_,
+    MedicationDispensePerformerFunctionCodes? function_,
     Reference? actor,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

@@ -47,6 +47,7 @@ class VerificationResult extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(
             resourceType: R4ResourceType.VerificationResult,
             fhirType: 'VerificationResult');
@@ -72,7 +73,7 @@ class VerificationResult extends DomainResource {
   /// [status] /// The validation status of the target (attested; validated; in process;
   /// requires revalidation; validation failed; revalidation failed).
   @JsonKey(name: 'status')
-  final FhirCode status;
+  final Status status;
   @JsonKey(name: '_status')
   final Element? statusElement;
 
@@ -137,7 +138,7 @@ class VerificationResult extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -147,7 +148,7 @@ class VerificationResult extends DomainResource {
     List<FhirString>? targetLocation,
     List<Element>? targetLocationElement,
     CodeableConcept? need,
-    FhirCode? status,
+    Status? status,
     Element? statusElement,
     FhirDateTime? statusDate,
     Element? statusDateElement,

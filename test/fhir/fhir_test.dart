@@ -30,12 +30,6 @@ Future<void> roundtripTestJson() async {
   );
 }
 
-Future<List<String>> r4JsonValidation() async {
-  final List<String> tested = await r4Validation();
-  print('Completed R4 Json');
-  return tested;
-}
-
 Future<void> roundtripTestYaml() async {
   group(
     'YAML',
@@ -54,42 +48,39 @@ Future<void> roundtripTestYaml() async {
   );
 }
 
+Future<List<String>> r4JsonValidation() async {
+  final List<String> tested = await r4Validation(isYaml: false);
+  print('Completed R4 Json');
+  return tested;
+}
+
 Future<List<String>> r4YamlValidation() async {
-  final List<String> tested = await r4ValidationYaml();
+  final List<String> tested = await r4Validation(isYaml: true);
   print('Completed R4 Yaml');
   return tested;
 }
 
-Future<List<String>> r4Validation() async {
+Future<List<String>> r4Validation({required bool isYaml}) async {
   final Directory dir = Directory('./test/fhir/examples');
-  final List<String> string = <String>[];
+  final List<String> errors = <String>[];
 
   for (final FileSystemEntity file in await dir.list().toList()) {
     final String contents = await File(file.path).readAsString();
     try {
-      final Resource resource =
-          Resource.fromJson(jsonDecode(contents) as Map<String, dynamic>);
-      if (!const DeepCollectionEquality()
-          .equals(resource.toJson(), jsonDecode(contents))) {
-        string.add(file.path);
-      }
-      if (!const DeepCollectionEquality()
-          .equals(jsonDecode(contents), resource.toJson())) {
-        string.add(file.path);
-        String fileString = await File('./test/fhir/wrong.txt').readAsString();
-        fileString += '***************************************************';
-        fileString += file.path;
-        fileString += '\n$contents\n\n${jsonEncode(resource.toJson())}';
-        fileString += '\n***************************************************';
-        await File('./test/fhir/wrong.txt').writeAsString(fileString);
-        await File(
-                './test/fhir/wrong/${file.path.split('/').last.replaceAll('.json', '1.json')}')
-            .writeAsString(contents);
-        await File(
-                './test/fhir/wrong/${file.path.split('/').last.replaceAll('.json', '2.json')}')
-            .writeAsString(jsonEncode(resource.toJson()));
-        throw Exception(
-            'Error with file $file\nResource: ${resource.resourceType}/${resource.id}');
+      final Resource resource = isYaml
+          ? Resource.fromYaml(contents)
+          : Resource.fromJson(jsonDecode(contents) as Map<String, dynamic>);
+
+      final Map<String, dynamic> serialized = isYaml
+          ? jsonDecode(resource.toJsonString()) as Map<String, dynamic>
+          : resource.toJson();
+
+      final Map<String, dynamic> original =
+          jsonDecode(contents) as Map<String, dynamic>;
+
+      if (!const DeepCollectionEquality().equals(serialized, original)) {
+        errors.add(file.path);
+        await _writeErrorFiles(file, original, serialized);
       }
     } catch (e) {
       final dynamic errorContents = jsonDecode(contents);
@@ -97,46 +88,19 @@ Future<List<String>> r4Validation() async {
           'Error with file $file\nResource: ${errorContents["resourceType"]}/${errorContents["id"]} Error: $e');
     }
   }
-  return string;
+  return errors;
 }
 
-Future<List<String>> r4ValidationYaml() async {
-  final Directory dir = Directory('./test/fhir/examples');
-  final List<String> string = <String>[];
+Future<void> _writeErrorFiles(FileSystemEntity file,
+    Map<String, dynamic> original, Map<String, dynamic> serialized) async {
+  final String fileName = file.path.split('/').last.replaceAll('.json', '');
+  final String originalFilePath = './test/fhir/wrong/${fileName}_original.json';
+  final String serializedFilePath =
+      './test/fhir/wrong/${fileName}_serialized.json';
 
-  for (final FileSystemEntity file in await dir.list().toList()) {
-    final String contents = await File(file.path).readAsString();
-    try {
-      final Resource tempResource =
-          Resource.fromJson(jsonDecode(contents) as Map<String, dynamic>);
-      final Resource resource = Resource.fromYaml(tempResource.toYaml());
-      if (!const DeepCollectionEquality()
-          .equals(resource.toJson(), jsonDecode(contents))) {
-        print(jsonEncode(resource.toJson()));
-        print(contents);
-        string.add(file.path);
-      }
-      if (!const DeepCollectionEquality()
-          .equals(jsonDecode(contents), resource.toJson())) {
-        string.add(file.path);
-        String fileString = await File('./test/fhir/wrong.txt').readAsString();
-        fileString += '***************************************************';
-        fileString += file.path;
-        fileString += '\n$contents\n\n${jsonEncode(resource.toJson())}';
-        fileString += '\n***************************************************';
-        await File('./test/fhir/wrong.txt').writeAsString(fileString);
-        await File(
-                './test/fhir/wrong/${file.path.split('/').last.replaceAll('.json', '1.json')}')
-            .writeAsString(contents);
-        await File(
-                './test/fhir/wrong/${file.path.split('/').last.replaceAll('.json', '2.json')}')
-            .writeAsString(jsonEncode(resource.toJson()));
-      }
-    } catch (e) {
-      final dynamic errorContents = jsonDecode(contents);
-      print(
-          'Error with file $file\nResource: ${errorContents["resourceType"]}/${errorContents["id"]} Error: $e');
-    }
-  }
-  return string;
+  await File(originalFilePath).writeAsString(jsonEncode(original));
+  await File(serializedFilePath).writeAsString(jsonEncode(serialized));
+
+  print(
+      'Discrepancy found in ${file.path}. Files written to ./test/fhir/wrong/');
 }

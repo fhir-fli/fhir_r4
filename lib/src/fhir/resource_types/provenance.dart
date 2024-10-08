@@ -50,6 +50,7 @@ class Provenance extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Provenance, fhirType: 'Provenance');
   @Id()
   @JsonKey(ignore: true)
@@ -97,7 +98,7 @@ class Provenance extends DomainResource {
   /// with entities; it may include consuming, processing, transforming,
   /// modifying, relocating, using, or generating entities.
   @JsonKey(name: 'activity')
-  final CodeableConcept? activity;
+  final ProvenanceActivityType? activity;
 
   /// [agent] /// An actor taking a role in an activity for which it can be assigned some
   /// degree of responsibility for the activity taking place.
@@ -126,7 +127,7 @@ class Provenance extends DomainResource {
     FhirMeta? meta,
     FhirUri? implicitRules,
     Element? implicitRulesElement,
-    FhirCode? language,
+    CommonLanguages? language,
     Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
@@ -142,7 +143,7 @@ class Provenance extends DomainResource {
     List<Element>? policyElement,
     Reference? location,
     List<CodeableConcept>? reason,
-    CodeableConcept? activity,
+    ProvenanceActivityType? activity,
     List<ProvenanceAgent>? agent,
     List<ProvenanceEntity>? entity,
     List<Signature>? signature,
@@ -233,12 +234,12 @@ class ProvenanceAgent extends BackboneElement {
 
   /// [type] /// The participation the agent had with respect to the activity.
   @JsonKey(name: 'type')
-  final CodeableConcept? type;
+  final ProvenanceParticipantType? type;
 
   /// [role] /// The function of the agent with respect to the activity. The security role
   /// enabling the agent with respect to the activity.
   @JsonKey(name: 'role')
-  final List<CodeableConcept>? role;
+  final List<SecurityRoleType>? role;
 
   /// [who] /// The individual, device or organization that participated in the event.
   @JsonKey(name: 'who')
@@ -260,8 +261,8 @@ class ProvenanceAgent extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    List<CodeableConcept>? role,
+    ProvenanceParticipantType? type,
+    List<SecurityRoleType>? role,
     Reference? who,
     Reference? onBehalfOf,
     Map<String, Object?>? userData,
@@ -332,7 +333,7 @@ class ProvenanceEntity extends BackboneElement {
 
   /// [role] /// How the entity was used during the activity.
   @JsonKey(name: 'role')
-  final FhirCode role;
+  final ProvenanceEntityRole role;
   @JsonKey(name: '_role')
   final Element? roleElement;
 
@@ -360,7 +361,7 @@ class ProvenanceEntity extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirCode? role,
+    ProvenanceEntityRole? role,
     Element? roleElement,
     Reference? what,
     List<ProvenanceAgent>? agent,
