@@ -70,7 +70,7 @@ void generateResourceFromJson(List<String> resourceTypes) {
   buffer.writeln('  }');
   buffer.writeln('}');
 
-  File('${fhirDirectory}utils/resource_from_json.dart')
+  File('$fhirDirectory/utils/resource_from_json.dart')
       .writeAsStringSync(buffer.toString());
 }
 
@@ -92,7 +92,7 @@ void generateResourceNewId(List<String> resourceTypes) {
   buffer.writeln('  }');
   buffer.writeln('}');
 
-  File('${fhirDirectory}utils/resource_new_id.dart')
+  File('$fhirDirectory/utils/resource_new_id.dart')
       .writeAsStringSync(buffer.toString());
 }
 
@@ -116,7 +116,7 @@ void generateResourceNewVersion(List<String> resourceTypes) {
   buffer.writeln('  }');
   buffer.writeln('}');
 
-  File('${fhirDirectory}utils/resource_new_version.dart')
+  File('$fhirDirectory/utils/resource_new_version.dart')
       .writeAsStringSync(buffer.toString());
 }
 
@@ -173,7 +173,7 @@ void generateResourceTypesEnum(List<String> resourceTypes) {
 
   buffer.writeln('}');
 
-  File('${fhirDirectory}utils/resource_types_enum.dart')
+  File('$fhirDirectory/utils/resource_types_enum.dart')
       .writeAsStringSync(buffer.toString());
 }
 

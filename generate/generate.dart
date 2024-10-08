@@ -34,10 +34,41 @@ void _classesFromStructureDefinitions() {
     typeProfilesPath,
   ];
 
-  structureDefinitionBundles.forEach(_generateFromBundle);
+  final StringBuffer fhirFieldMapBuffer = StringBuffer();
+
+  for (final String file in structureDefinitionBundles) {
+    _generateFromBundle(file, fhirFieldMapBuffer);
+  }
+
+  // After processing all structure definitions, write the fhirFieldMap
+  _writeFhirFieldMap(fhirFieldMapBuffer);
 }
 
-void _generateFromBundle(String file) {
+void _writeFhirFieldMap(StringBuffer fhirFieldMapBuffer) {
+  // Add the opening lines for fhirFieldMap
+  final StringBuffer finalBuffer = StringBuffer();
+  finalBuffer.writeln('class FhirField {');
+  finalBuffer.writeln('  const FhirField(this.isList, this.type);');
+  finalBuffer.writeln('  final bool isList;');
+  finalBuffer.writeln('  final String type;');
+  finalBuffer.writeln('}\n');
+
+  finalBuffer.writeln('/// Field map for FHIR structures');
+  finalBuffer.writeln(
+      'final Map<String, Map<String, FhirField>> fhirFieldMap = <String, Map<String, FhirField>>{');
+
+  // Add the content from the buffer passed during processing
+  finalBuffer.writeln(fhirFieldMapBuffer.toString());
+
+  // Close the map
+  finalBuffer.writeln('};');
+
+  // Write the result to a file (e.g., fhir_field_map.dart)
+  File('$fhirDirectory/utils/fhir_field_map.dart')
+      .writeAsStringSync(finalBuffer.toString());
+}
+
+void _generateFromBundle(String file, StringBuffer fhirFieldMapBuffer) {
   final String bundleString = File(file).readAsStringSync();
   final Map<String, dynamic> bundle =
       jsonDecode(bundleString) as Map<String, dynamic>;
@@ -45,19 +76,20 @@ void _generateFromBundle(String file) {
   for (final dynamic entry in bundle['entry'] as List<dynamic>) {
     if (_isValidStructureDefinition(entry)) {
       _generateFromSd(
-          (entry as Map<String, dynamic>)['resource'] as Map<String, dynamic>);
+          (entry as Map<String, dynamic>)['resource'] as Map<String, dynamic>,
+          fhirFieldMapBuffer);
     }
   }
 }
 
-void _generateFromSd(Map<String, dynamic> sd) {
+void _generateFromSd(Map<String, dynamic> sd, StringBuffer fhirFieldMapBuffer) {
   final String className = sd['name'] as String;
   if (!className.shouldGenerate) {
     return;
   }
   final Map<String, WritableClass> classes =
       _buildWritableClasses(sd, className);
-  final StringBuffer buffer = _generateClassBuffer(classes);
+  final StringBuffer buffer = _generateClassBuffer(classes, fhirFieldMapBuffer);
 
   writeToFile(buffer, className, _nameMap);
 }
@@ -241,7 +273,8 @@ Map<String, WritableClass> _buildWritableClasses(
   return classes;
 }
 
-StringBuffer _generateClassBuffer(Map<String, WritableClass> classes) {
+StringBuffer _generateClassBuffer(
+    Map<String, WritableClass> classes, StringBuffer fhirFieldMapBuffer) {
   final StringBuffer buffer = StringBuffer();
 
   buffer.writeln("import 'dart:convert';");
@@ -258,16 +291,17 @@ StringBuffer _generateClassBuffer(Map<String, WritableClass> classes) {
   buffer.writeln("part '${writeFileName?.properFileName}.g.dart';\n");
 
   for (final WritableClass writableClass in classes.values) {
-    _writeClassHeader(buffer, writableClass);
+    _writeClassHeader(buffer, writableClass, fhirFieldMapBuffer);
     _writeConstructor(buffer, writableClass);
-    _writeFields(buffer, writableClass);
+    _writeFields(buffer, writableClass, fhirFieldMapBuffer);
     _writeClassFooter(buffer, writableClass);
   }
 
   return buffer;
 }
 
-void _writeClassHeader(StringBuffer buffer, WritableClass writableClass) {
+void _writeClassHeader(StringBuffer buffer, WritableClass writableClass,
+    StringBuffer fhirFieldMapBuffer) {
   final String writableName = writableClass.className;
 
   final String formattedComment = formatComment(writableClass.comment);
@@ -280,14 +314,27 @@ void _writeClassHeader(StringBuffer buffer, WritableClass writableClass) {
 
   final String extendsClause = writableClass.extendsClause;
   buffer.writeln('class ${writableName.fhirToDartTypes} $extendsClause {');
+
+  // Add to the fhirFieldMapBuffer
+  fhirFieldMapBuffer.writeln("'$writableName': <String, FhirField>{");
 }
 
-void _writeFields(StringBuffer buffer, WritableClass writableClass) {
+void _writeFields(StringBuffer buffer, WritableClass writableClass,
+    StringBuffer fhirFieldMapBuffer) {
   buffer.writeln('  @Id()');
   buffer.writeln('@JsonKey(ignore: true)');
   buffer.writeln('  int dbId = 0;');
 
   for (final Field field in writableClass.fields) {
+    // Add field details to fhirFieldMapBuffer
+    final bool isList = field.isList;
+    final String fieldType = field.type.fhirToDartTypes;
+    fhirFieldMapBuffer
+        .writeln("'${field.name}': const FhirField($isList, '$fieldType'),");
+    if (field.type.isPrimitiveType && field.name != 'id') {
+      fhirFieldMapBuffer
+          .writeln("'_${field.name}': const FhirField($isList, '$fieldType'),");
+    }
     // Handle fields that are not super fields
     if (!field.isSuper) {
       final String fieldDeclaration = field.isList
@@ -319,6 +366,9 @@ void _writeFields(StringBuffer buffer, WritableClass writableClass) {
       }
     }
   }
+
+  // Close the class definition in fhirFieldMapBuffer
+  fhirFieldMapBuffer.writeln('},');
 }
 
 void _writeConstructor(StringBuffer buffer, WritableClass writableClass) {
@@ -492,7 +542,7 @@ void writeToFile(
 
   writeFileName = writeFileName.properFileName;
   final String filePath =
-      '$fhirDirectory${className.isResource ? "resource_types" : "data_types"}/$writeFileName.dart';
+      '$fhirDirectory/${className.isResource ? "resource_types" : "data_types"}/$writeFileName.dart';
   File(filePath).writeAsStringSync(buffer.toString());
 }
 

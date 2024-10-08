@@ -56,7 +56,7 @@ void _moveNdJsonExamples() {
 void exportFiles() {
   for (final String dir in directories) {
     final List<String> exportFile = <String>[];
-    final Directory directory = Directory('$fhirDirectory$dir');
+    final Directory directory = Directory('$fhirDirectory/$dir');
     final List<FileSystemEntity> files = directory.listSync();
     for (final FileSystemEntity file in files) {
       final String fileName = file.path.split('/').last;
@@ -67,14 +67,14 @@ void exportFiles() {
       }
     }
     exportFile.sort();
-    File('$fhirDirectory$dir/$dir.dart')
+    File('$fhirDirectory/$dir/$dir.dart')
         .writeAsStringSync(exportFile.join('\n'));
   }
 }
 
 void writeEnumToFile(String enumName, String enumString) {
   final String enumFileName = '${enumName.snakeCase}.dart';
-  final String filePath = '${fhirDirectory}enums/$enumFileName';
+  final String filePath = '$fhirDirectory/enums/$enumFileName';
 
   final File enumFile = File(filePath);
   if (!enumFile.existsSync()) {

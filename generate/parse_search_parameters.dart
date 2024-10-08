@@ -1,10 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-// Import your FhirPrimitives here
-// import 'package:your_fhir_package/fhir_primitives.dart';
-
-void main() async {
+Future<void> parseSearchParameters() async {
   final File file = File('search-parameters.json'); // Path to your JSON file
   final String jsonString = await file.readAsString();
   final Map<String, dynamic> data =
