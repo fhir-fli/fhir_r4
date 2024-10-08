@@ -16,10 +16,10 @@ String generateRandomId({
   bool includeSpecialCharacters = false,
 }) {
   final Random random = Random();
-  final String lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
-  final String uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  final String numbers = '0123456789';
-  final String specialCharacters = '!@#\$%^&*()_+-=[]{}|;:\'",.<>?/';
+  const String lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
+  const String uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const String numbers = '0123456789';
+  const String specialCharacters = '!@#\$%^&*()_+-=[]{}|;:\'",.<>?/';
 
   String characterPool = '';
 

@@ -33,7 +33,7 @@ String _getEnumNameFromValueSet(String valueSetUrl,
       valueSetUrl.split('/').last.split('|').first;
 
   final String enumName = valueSetName.upperCamelCase;
-  if (enumName.isResourceType ||
+  if (enumName.isResource ||
       nameMap.keys.contains(enumName.toLowerCase()) ||
       nameMap.values.contains(enumName.toLowerCase())) {
     return '${enumName}Enum';

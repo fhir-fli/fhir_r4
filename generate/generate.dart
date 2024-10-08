@@ -78,7 +78,8 @@ Map<String, WritableClass> _buildWritableClasses(
     classPath: className,
     className: className,
     comment: rootElement?['definition'] as String? ?? '',
-    isResourceType: className.isResourceType,
+    isResource: className.isResource,
+    isDomainResource: className.isDomainResource,
     isDataType: className.isDataType,
     isQuantity: className.isQuantity,
     isBackboneType: className.isBackboneType,
@@ -87,6 +88,10 @@ Map<String, WritableClass> _buildWritableClasses(
   for (final dynamic elementDefinition in elements) {
     final Map<String, dynamic> element =
         elementDefinition as Map<String, dynamic>;
+
+    if ((element['path'] as String).toLowerCase().contains('binary')) {
+      print(element['path']);
+    }
 
     // Handle ValueSets if binding is present
     if (element['binding'] != null &&
@@ -104,7 +109,7 @@ Map<String, WritableClass> _buildWritableClasses(
     final String path = elementDefinition['path'] as String;
     final String classPath = path.findLongestMatch(classes.keys.toList());
 
-    if (className.isResourceType &&
+    if (className.isResource &&
         elementDefinition['type'] is List<dynamic> &&
         (elementDefinition['type'] as List<dynamic>).length == 1 &&
         ((elementDefinition['type'] as List<dynamic>).first
@@ -340,7 +345,7 @@ void _writeConstructor(StringBuffer buffer, WritableClass writableClass) {
   buffer.writeln('    super.namedChildren,');
 
   // Close constructor
-  if (writableName.isResourceType && writableClass.isResourceType) {
+  if (writableName.isResource && writableClass.isResource) {
     buffer.writeln(
         '  }) : super(resourceType: R4ResourceType.${writableName.fhirToDartTypes},');
     buffer.writeln("      fhirType: '${writableName.fhirToDartTypes}');");
@@ -487,7 +492,7 @@ void writeToFile(
 
   writeFileName = writeFileName.properFileName;
   final String filePath = '../lib/src/fhir/'
-      '${className.isResourceType ? "resource_types" : "data_types"}/$writeFileName.dart';
+      '${className.isResource ? "resource_types" : "data_types"}/$writeFileName.dart';
   File(filePath).writeAsStringSync(buffer.toString());
 }
 

@@ -11,7 +11,7 @@ part 'parameters.g.dart';
 /// back from an [operation](operations.html). It has no other use, and there
 /// is no RESTful endpoint associated with it.
 @JsonSerializable()
-class Parameters extends DomainResource {
+class Parameters extends Resource {
   Parameters({
     super.id,
     super.meta,

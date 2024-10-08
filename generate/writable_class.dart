@@ -3,7 +3,8 @@ class WritableClass {
     required this.className,
     required this.classPath,
     required this.comment,
-    this.isResourceType = false,
+    this.isResource = false,
+    this.isDomainResource = false,
     this.isDataType = false,
     this.isQuantity = false,
     this.isBackboneType = false,
@@ -14,7 +15,8 @@ class WritableClass {
   final String className;
   final String classPath;
   final String comment;
-  bool isResourceType;
+  bool isResource;
+  bool isDomainResource;
   bool isDataType;
   bool isQuantity;
   bool isBackboneType;
@@ -35,11 +37,13 @@ class WritableClass {
               ? 'extends BackboneType'
               : isBackboneElement
                   ? 'extends BackboneElement'
-                  : isResourceType
+                  : isDomainResource
                       ? 'extends DomainResource'
-                      : isElement
-                          ? 'extends Element'
-                          : '';
+                      : isResource
+                          ? 'extends Resource'
+                          : isElement
+                              ? 'extends Element'
+                              : '';
 }
 
 class Field {
@@ -65,7 +69,7 @@ class Field {
   }
 
   bool isSuperField(WritableClass writableClass) {
-    if (writableClass.isResourceType) {
+    if (writableClass.isDomainResource) {
       // Super fields for DomainResource
       return <String>[
         'id',
@@ -78,6 +82,16 @@ class Field {
         'contained',
         'extension',
         'modifierextension',
+      ].contains(name.toLowerCase());
+    } else if (writableClass.isResource) {
+      // Super fields for Resource
+      return <String>[
+        'id',
+        'meta',
+        'implicitrules',
+        'implicitruleselement',
+        'language',
+        'languageelement',
       ].contains(name.toLowerCase());
     } else if (writableClass.isBackboneType ||
         writableClass.isBackboneElement) {

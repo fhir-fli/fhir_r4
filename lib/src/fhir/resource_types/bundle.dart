@@ -9,7 +9,7 @@ part 'bundle.g.dart';
 
 /// [Bundle] /// A container for a collection of resources.
 @JsonSerializable()
-class Bundle extends DomainResource {
+class Bundle extends Resource {
   Bundle({
     super.id,
     super.meta,

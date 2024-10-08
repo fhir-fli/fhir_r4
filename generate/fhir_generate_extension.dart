@@ -182,7 +182,11 @@ extension FhirGenerate on String {
     ].contains(toLowerCase());
   }
 
-  bool get isResourceType => <String>[
+  bool get isResource =>
+      <String>['binary', 'bundle', 'parameters'].contains(toLowerCase()) ||
+      isDomainResource;
+
+  bool get isDomainResource => <String>[
         'account',
         'activitydefinition',
         'administrableproductdefinition',
@@ -192,10 +196,8 @@ extension FhirGenerate on String {
         'appointmentresponse',
         'auditevent',
         'basic',
-        'binary',
         'biologicallyderivedproduct',
         'bodystructure',
-        'bundle',
         'capabilitystatement',
         'careplan',
         'careteam',
@@ -282,7 +284,6 @@ extension FhirGenerate on String {
         'organization',
         'organizationaffiliation',
         'packagedproductdefinition',
-        'parameters',
         'patient',
         'paymentnotice',
         'paymentreconciliation',

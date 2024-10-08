@@ -11,7 +11,7 @@ part 'binary.g.dart';
 /// content accessible in its native format. A Binary resource can contain any
 /// content, whether text, image, pdf, zip archive, etc.
 @JsonSerializable()
-class Binary extends DomainResource {
+class Binary extends Resource {
   Binary({
     super.id,
     super.meta,
