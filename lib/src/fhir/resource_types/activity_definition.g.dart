@@ -465,6 +465,7 @@ const _$PublicationStatusEnumMap = {
 };
 
 const _$SubjectTypeEnumMap = {
+  SubjectType.Resource: 'Resource',
   SubjectType.Patient: 'Patient',
   SubjectType.Practitioner: 'Practitioner',
   SubjectType.Organization: 'Organization',

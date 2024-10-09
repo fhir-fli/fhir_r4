@@ -2,6 +2,10 @@ import 'package:json_annotation/json_annotation.dart';
 
 /// Resource types defined as part of FHIR that can be represented as in-line definitions of a care plan activity.
 enum CarePlanActivityKind {
+  /// Display: Resource
+  /// Definition: --- Abstract Type! ---This is the base resource type for everything.
+  @JsonValue('Resource')
+  Resource,
   @JsonValue('Appointment')
   Appointment,
   @JsonValue('CommunicationRequest')
@@ -23,6 +27,8 @@ enum CarePlanActivityKind {
   @override
   String toString() {
     switch (this) {
+      case Resource:
+        return 'Resource';
       case Appointment:
         return 'Appointment';
       case CommunicationRequest:
@@ -45,6 +51,8 @@ enum CarePlanActivityKind {
   String toJson() => toString();
   CarePlanActivityKind fromString(String str) {
     switch (str) {
+      case 'Resource':
+        return CarePlanActivityKind.Resource;
       case 'Appointment':
         return CarePlanActivityKind.Appointment;
       case 'CommunicationRequest':

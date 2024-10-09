@@ -323,12 +323,13 @@ const _$TaskIntentEnumMap = {
   TaskIntent.unknown: 'unknown',
   TaskIntent.proposal: 'proposal',
   TaskIntent.plan: 'plan',
+  TaskIntent.directive: 'directive',
   TaskIntent.order: 'order',
+  TaskIntent.option: 'option',
   TaskIntent.original_order: 'original-order',
   TaskIntent.reflex_order: 'reflex-order',
   TaskIntent.filler_order: 'filler-order',
   TaskIntent.instance_order: 'instance-order',
-  TaskIntent.option: 'option',
 };
 
 const _$RequestPriorityEnumMap = {

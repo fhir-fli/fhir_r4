@@ -2,6 +2,10 @@ import 'package:json_annotation/json_annotation.dart';
 
 /// Possible types of subjects.
 enum SubjectType {
+  /// Display: Resource
+  /// Definition: --- Abstract Type! ---This is the base resource type for everything.
+  @JsonValue('Resource')
+  Resource,
   @JsonValue('Patient')
   Patient,
   @JsonValue('Practitioner')
@@ -17,6 +21,8 @@ enum SubjectType {
   @override
   String toString() {
     switch (this) {
+      case Resource:
+        return 'Resource';
       case Patient:
         return 'Patient';
       case Practitioner:
@@ -33,6 +39,8 @@ enum SubjectType {
   String toJson() => toString();
   SubjectType fromString(String str) {
     switch (str) {
+      case 'Resource':
+        return SubjectType.Resource;
       case 'Patient':
         return SubjectType.Patient;
       case 'Practitioner':

@@ -276,6 +276,7 @@ const _$RequestStatusEnumMap = {
 const _$CarePlanIntentEnumMap = {
   CarePlanIntent.proposal: 'proposal',
   CarePlanIntent.plan: 'plan',
+  CarePlanIntent.directive: 'directive',
   CarePlanIntent.order: 'order',
   CarePlanIntent.option: 'option',
 };
@@ -660,6 +661,7 @@ Map<String, dynamic> _$CarePlanDetailToJson(CarePlanDetail instance) {
 }
 
 const _$CarePlanActivityKindEnumMap = {
+  CarePlanActivityKind.Resource: 'Resource',
   CarePlanActivityKind.Appointment: 'Appointment',
   CarePlanActivityKind.CommunicationRequest: 'CommunicationRequest',
   CarePlanActivityKind.DeviceRequest: 'DeviceRequest',

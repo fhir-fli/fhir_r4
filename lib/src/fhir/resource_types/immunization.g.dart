@@ -299,9 +299,14 @@ const _$CommonLanguagesEnumMap = {
 };
 
 const _$ImmunizationStatusCodesEnumMap = {
+  ImmunizationStatusCodes.preparation: 'preparation',
+  ImmunizationStatusCodes.in_progress: 'in-progress',
+  ImmunizationStatusCodes.not_done: 'not-done',
+  ImmunizationStatusCodes.on_hold: 'on-hold',
+  ImmunizationStatusCodes.stopped: 'stopped',
   ImmunizationStatusCodes.completed: 'completed',
   ImmunizationStatusCodes.entered_in_error: 'entered-in-error',
-  ImmunizationStatusCodes.not_done: 'not-done',
+  ImmunizationStatusCodes.unknown: 'unknown',
 };
 
 const _$R4ResourceTypeEnumMap = {

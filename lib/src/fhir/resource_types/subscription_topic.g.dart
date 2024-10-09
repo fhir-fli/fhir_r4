@@ -598,9 +598,18 @@ const _$FHIRDefinedTypeEnumMap = {
 };
 
 const _$InteractionTriggerEnumMap = {
-  InteractionTrigger.create: 'create',
+  InteractionTrigger.read: 'read',
+  InteractionTrigger.vread: 'vread',
   InteractionTrigger.update: 'update',
+  InteractionTrigger.patch: 'patch',
   InteractionTrigger.delete: 'delete',
+  InteractionTrigger.history: 'history',
+  InteractionTrigger.create: 'create',
+  InteractionTrigger.search: 'search',
+  InteractionTrigger.capabilities: 'capabilities',
+  InteractionTrigger.transaction: 'transaction',
+  InteractionTrigger.batch: 'batch',
+  InteractionTrigger.operation: 'operation',
 };
 
 SubscriptionTopicQueryCriteria _$SubscriptionTopicQueryCriteriaFromJson(

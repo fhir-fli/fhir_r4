@@ -258,9 +258,14 @@ const _$CommonLanguagesEnumMap = {
 };
 
 const _$ClinicalImpressionStatusEnumMap = {
+  ClinicalImpressionStatus.preparation: 'preparation',
   ClinicalImpressionStatus.in_progress: 'in-progress',
+  ClinicalImpressionStatus.not_done: 'not-done',
+  ClinicalImpressionStatus.on_hold: 'on-hold',
+  ClinicalImpressionStatus.stopped: 'stopped',
   ClinicalImpressionStatus.completed: 'completed',
   ClinicalImpressionStatus.entered_in_error: 'entered-in-error',
+  ClinicalImpressionStatus.unknown: 'unknown',
 };
 
 const _$R4ResourceTypeEnumMap = {

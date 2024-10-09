@@ -68,12 +68,58 @@ List<Map<String, String>> _extractEnumValuesWithComments(
   final List<Map<String, String>> enumValuesWithComments =
       <Map<String, String>>[];
 
-  // Handle ValueSet first
+  // Handle ValueSet
   if (resource['resourceType'] == 'ValueSet') {
-    // if (resource.containsKey('compose')) {
-    //   print(resource['compose']);
-    // }
-    if (resource.containsKey('expansion')) {
+    // Process ValueSet `compose`
+    if (resource.containsKey('compose')) {
+      final List<dynamic> include = (resource['compose']
+          as Map<String, dynamic>)['include'] as List<dynamic>;
+
+      for (final dynamic inclusion in include) {
+        // Handle system reference in include
+        final String? systemUrl =
+            (inclusion as Map<String, dynamic>)['system'] as String?;
+        if (systemUrl != null) {
+          final Map<String, dynamic>? newCodings = codesAndVS[systemUrl];
+
+          // Check if we have the referenced CodeSystem locally
+          if (newCodings != null) {
+            // Process CodeSystem directly if referenced
+            if (newCodings['resourceType'] == 'CodeSystem') {
+              final List<Map<String, String>> newEnumValues =
+                  _extractEnumValuesFromCodeSystemWithComments(newCodings);
+              enumValuesWithComments.addAll(newEnumValues);
+            }
+            // Handle recursive ValueSet references if necessary
+            else if (newCodings['resourceType'] == 'ValueSet') {
+              final List<Map<String, String>> newEnumValues =
+                  _extractEnumValuesWithComments(newCodings, codesAndVS);
+              enumValuesWithComments.addAll(newEnumValues);
+            }
+          } else {
+            // Log missing CodeSystem or ValueSet
+            print('System URL $systemUrl not found in local data.');
+            // Optionally, handle fetching the missing CodeSystem externally
+          }
+        }
+
+        // Handle any concepts explicitly defined (though this ValueSet does not define any)
+        final List<dynamic>? concepts = inclusion['concept'] as List<dynamic>?;
+        if (concepts != null) {
+          for (final dynamic concept in concepts) {
+            final Map<String, String> conceptDetails = <String, String>{
+              'code': (concept as Map<String, dynamic>)['code'] as String,
+              'display': concept['display'] as String? ?? '',
+              'definition': concept['definition'] as String? ?? ''
+            };
+            enumValuesWithComments.add(conceptDetails);
+          }
+        }
+      }
+    }
+
+    // Process ValueSet `expansion` if available
+    else if (resource.containsKey('expansion')) {
       final List<dynamic> contains = (resource['expansion']
           as Map<String, dynamic>)['contains'] as List<dynamic>;
       for (final dynamic concept in contains) {
@@ -84,42 +130,9 @@ List<Map<String, String>> _extractEnumValuesWithComments(
         };
         enumValuesWithComments.add(conceptDetails);
       }
-    } else if (resource.containsKey('compose')) {
-      final List<dynamic> include = (resource['compose']
-          as Map<String, dynamic>)['include'] as List<dynamic>;
-
-      for (final dynamic inclusion in include) {
-        final List<dynamic>? concepts =
-            (inclusion as Map<String, dynamic>)['concept'] as List<dynamic>?;
-        for (final dynamic concept in concepts ?? <dynamic>[]) {
-          final Map<String, String> conceptDetails = <String, String>{
-            'code': (concept as Map<String, dynamic>)['code'] as String,
-            'display': concept['display'] as String? ?? '',
-            'definition': concept['definition'] as String? ?? ''
-          };
-          enumValuesWithComments.add(conceptDetails);
-        }
-
-        if (concepts == null || concepts.isEmpty) {
-          final String? systemUrl = inclusion['system'] as String?;
-          if (systemUrl != null) {
-            final Map<String, dynamic>? newCodings = codesAndVS[systemUrl];
-            if (newCodings != null) {
-              if (newCodings['resourceType'] == 'ValueSet') {
-                final List<Map<String, String>> newEnumValues =
-                    _extractEnumValuesWithComments(newCodings, codesAndVS);
-                enumValuesWithComments.addAll(newEnumValues);
-              } else if (newCodings['resourceType'] == 'CodeSystem') {
-                final List<Map<String, String>> newEnumValues =
-                    _extractEnumValuesFromCodeSystemWithComments(newCodings);
-                enumValuesWithComments.addAll(newEnumValues);
-              }
-            }
-          }
-        }
-      }
     }
   } else if (resource['resourceType'] == 'CodeSystem') {
+    // Extract concepts directly from CodeSystem
     final List<Map<String, String>> newEnumValues =
         _extractEnumValuesFromCodeSystemWithComments(resource);
     enumValuesWithComments.addAll(newEnumValues);
