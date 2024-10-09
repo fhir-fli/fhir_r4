@@ -1,3 +1,4 @@
+// Paths and Directory Names
 const String fhirSchemaPath = './definitions.json/fhir.schema.json';
 const String valueSetPath = './definitions.json/valuesets.json';
 const String searchParametersPath = './definitions.json/search-parameters.json';
@@ -13,23 +14,27 @@ const String testPath = '../test/fhir/examples';
 const String resourceProfilesPath =
     './definitions.json/profiles-resources.json';
 const String typeProfilesPath = './definitions.json/profiles-types.json';
+
+// Version and Types
 const String fhirVersion = 'fhir_r4';
 const String fhirResourceType = 'R4ResourceType';
 const String fhirDirectory = '$codeDirectory/fhir';
 const String codeDirectory = '../lib/src';
+
+// Lists
 const List<String> classNamesAdjusted = <String>['List', 'Endpoint', 'Group'];
 const List<String> ignoredClasses = <String>['ExampleScenario_Instance'];
 const List<String> enumNameOverlaps = <String>['propertytype'];
 const List<String> directories = <String>[
   'data_types',
   'resource_types',
-  'enums'
+  'enums',
 ];
-final List<String> noParameters = <String>[
+const List<String> noParameters = <String>[
   'LinkageSearch',
   'VerificationResultSearch',
   'SearchLinkage',
-  'SearchVerificationResult'
+  'SearchVerificationResult',
 ];
 final List<String> badValueSets = <String>[
   'AccountTypes',

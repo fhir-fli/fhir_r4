@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'consts.dart';
-import 'fhir_generate_extension.dart';
+import 'consts.dart'; // Import constants
 
 void parseSearchParameters() {
-  final File file = File(searchParametersPath); // Path to your JSON file
+  final File file =
+      File(searchParametersPath); // Use the constant from consts.dart
   final String jsonString = file.readAsStringSync();
   final Map<String, dynamic> data =
       jsonDecode(jsonString) as Map<String, dynamic>;
@@ -20,8 +20,7 @@ void parseSearchParameters() {
     final List<dynamic> baseList = resource['base'] as List<dynamic>;
     final String code = resource['code'] as String;
     final String type = resource['type'] as String;
-    final List<dynamic>? components =
-        resource['component'] as List<dynamic>?; // Handle composite parameters
+    final List<dynamic>? components = resource['component'] as List<dynamic>?;
 
     for (final dynamic base in baseList) {
       final String resourceType = base as String;
@@ -60,7 +59,7 @@ void parseSearchParameters() {
   }
 
   // Create the searches directory if it doesn't exist
-  final Directory dir = Directory(searchesPath);
+  final Directory dir = Directory(searchesPath); // Use constant
   if (!dir.existsSync()) {
     dir.createSync();
   }
@@ -77,17 +76,13 @@ void parseSearchParameters() {
       final StringBuffer buffer = StringBuffer();
       buffer.writeln('// This file is auto-generated. Do not edit directly.');
 
-      buffer.writeln("import '../../../fhir_r4.dart';");
+      buffer.writeln("import '../../../$fhirVersion.dart';");
 
       final String extendClause = resourceType == 'Resource'
           ? 'extends RestfulParameters '
           : 'extends SearchResource ';
 
       buffer.writeln('class $className $extendClause{');
-      // if (resourceType == 'Resource') {
-      //   buffer.writeln(
-      //       '  final Map<String, String> parameters = <String, String>{};');
-      // }
 
       // Generate methods for each search parameter
       for (final Map<String, String> param in parameters) {
@@ -107,16 +102,13 @@ void parseSearchParameters() {
             buffer.writeln('  }\n');
           case 'token':
             buffer.writeln(
-                '  $className ${_methodName(methodName).resourceTypeIfResource(resourceType)}'
-                '(FhirString value, {FhirUri? system, SearchModifier? modifier}) {');
+                '  $className ${_methodName(methodName)}(FhirString value, {FhirUri? system, SearchModifier? modifier}) {');
             buffer.writeln(
                 "    parameters['\${modifier != null ? '\$modifier' : ''}$paramCode'] = system != null ? '\$system|\$value' : '\$value';");
             buffer.writeln('    return this;');
             buffer.writeln('  }\n');
           case 'string':
-            // Only allow eq, ne modifiers for string types
-            buffer.writeln(
-                '  $className ${_methodName(methodName).resourceTypeIfResource(resourceType)}'
+            buffer.writeln('  $className ${_methodName(methodName)}'
                 '(FhirString value, {SearchModifier? modifier}) {');
             buffer.writeln(
                 "    if (modifier != null && !<String>['eq', 'ne'].contains(modifier.toString())) {");
@@ -129,7 +121,6 @@ void parseSearchParameters() {
             buffer.writeln('  }\n');
           case 'number':
           case 'quantity':
-            // Allow gt, lt, ge, le, ap modifiers for number and quantity
             buffer.writeln('  $className ${_methodName(methodName)}'
                 '(FhirDecimal value, {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {');
             buffer.writeln(
@@ -143,8 +134,7 @@ void parseSearchParameters() {
             buffer.writeln('  }\n');
           case 'uri':
             buffer.writeln(
-                '  $className ${_methodName(methodName).resourceTypeIfResource(resourceType)}'
-                '(FhirUri value, {SearchModifier? modifier}) {');
+                '  $className ${_methodName(methodName)}(FhirUri value, {SearchModifier? modifier}) {');
             buffer.writeln(
                 "    parameters['\${modifier != null ? '\$modifier' : ''}$paramCode'] = value.toString();");
             buffer.writeln('    return this;');
@@ -152,19 +142,6 @@ void parseSearchParameters() {
           // Add more cases here as needed for other parameter types
         }
       }
-
-      // if (resourceType == 'Resource') {
-      //   buffer.writeln('  $className add(String parameter, String value) {');
-      //   buffer.writeln('    parameters[parameter] = value;');
-      //   buffer.writeln('    return this;');
-      //   buffer.writeln('  }\n');
-
-      //   // Generate the query builder method
-      //   buffer.writeln('  String buildQuery() {');
-      //   buffer.writeln(
-      //       r"    return parameters.entries.map((MapEntry<String, String> e) => '${e.key}=${e.value}').join('&');");
-      //   buffer.writeln('  }');
-      // }
 
       buffer.writeln('}\n');
 
@@ -174,6 +151,7 @@ void parseSearchParameters() {
       outputFile.writeAsStringSync(buffer.toString());
     }
 
+    // Updating the exports
     final Directory searchDir = Directory(searchesPath);
     final List<String> files = searchDir
         .listSync()
@@ -192,17 +170,11 @@ void parseSearchParameters() {
 String _methodName(String name) {
   final List<String> reservedWords = <String>['class', 'case'];
   name = name.substring(0, 1).toLowerCase() + name.substring(1);
-  if (reservedWords.contains(name)) {
-    return '${name}_';
-  }
-  return name;
+  return reservedWords.contains(name) ? '${name}_' : name;
 }
 
 // Helper function to convert snake_case to PascalCase
 String _toPascalCase(String text) {
-  if (text.isEmpty) {
-    return '';
-  }
   return text
       .split('_')
       .map((String word) =>

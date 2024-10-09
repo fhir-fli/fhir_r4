@@ -77,7 +77,8 @@ List<Map<String, String>> _extractEnumValuesWithComments(
 
       for (final dynamic inclusion in include) {
         // Handle system reference in include
-        final String? systemUrl = inclusion['system'] as String?;
+        final String? systemUrl =
+            (inclusion as Map<String, dynamic>)['system'] as String?;
         if (systemUrl != null) {
           final Map<String, dynamic>? newCodings = codesAndVS[systemUrl];
 
