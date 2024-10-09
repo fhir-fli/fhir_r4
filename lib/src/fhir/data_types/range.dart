@@ -51,7 +51,7 @@ class Range extends DataType {
 
   factory Range.fromJson(Map<String, dynamic> json) {
     return Range(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

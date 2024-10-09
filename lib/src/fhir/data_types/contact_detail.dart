@@ -44,7 +44,7 @@ class ContactDetail extends DataType {
           extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
     }
     if (name?.value != null) {
-      json['name'] = name!.value;
+      json['name'] = name!.toJson();
     }
     if (nameElement != null) {
       json['_name'] = nameElement!.toJson();
@@ -58,14 +58,14 @@ class ContactDetail extends DataType {
 
   factory ContactDetail.fromJson(Map<String, dynamic> json) {
     return ContactDetail(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      name: json['name'] != null ? FhirString(json['name']) : null,
+      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
       nameElement: json['_name'] != null
           ? Element.fromJson(json['_name'] as Map<String, dynamic>)
           : null,

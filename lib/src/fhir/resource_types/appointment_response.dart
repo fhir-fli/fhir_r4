@@ -92,7 +92,7 @@ class AppointmentResponse extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -122,13 +122,13 @@ class AppointmentResponse extends DomainResource {
     }
     json['appointment'] = appointment.toJson();
     if (start?.value != null) {
-      json['start'] = start!.value;
+      json['start'] = start!.toJson();
     }
     if (startElement != null) {
       json['_start'] = startElement!.toJson();
     }
     if (end?.value != null) {
-      json['end'] = end!.value;
+      json['end'] = end!.toJson();
     }
     if (endElement != null) {
       json['_end'] = endElement!.toJson();
@@ -143,7 +143,7 @@ class AppointmentResponse extends DomainResource {
     }
     json['participantStatus'] = participantStatus.toJson();
     if (comment?.value != null) {
-      json['comment'] = comment!.value;
+      json['comment'] = comment!.toJson();
     }
     if (commentElement != null) {
       json['_comment'] = commentElement!.toJson();
@@ -153,17 +153,21 @@ class AppointmentResponse extends DomainResource {
 
   factory AppointmentResponse.fromJson(Map<String, dynamic> json) {
     return AppointmentResponse(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -194,11 +198,11 @@ class AppointmentResponse extends DomainResource {
           : null,
       appointment:
           Reference.fromJson(json['appointment'] as Map<String, dynamic>),
-      start: json['start'] != null ? FhirInstant(json['start']) : null,
+      start: json['start'] != null ? FhirInstant.fromJson(json['start']) : null,
       startElement: json['_start'] != null
           ? Element.fromJson(json['_start'] as Map<String, dynamic>)
           : null,
-      end: json['end'] != null ? FhirInstant(json['end']) : null,
+      end: json['end'] != null ? FhirInstant.fromJson(json['end']) : null,
       endElement: json['_end'] != null
           ? Element.fromJson(json['_end'] as Map<String, dynamic>)
           : null,
@@ -211,9 +215,13 @@ class AppointmentResponse extends DomainResource {
       actor: json['actor'] != null
           ? Reference.fromJson(json['actor'] as Map<String, dynamic>)
           : null,
-      participantStatus: ParticipationStatus.fromJson(
-          json['participantStatus'] as Map<String, dynamic>),
-      comment: json['comment'] != null ? FhirString(json['comment']) : null,
+      participantStatus:
+          ParticipationStatus.fromJson(json['participantStatus']),
+      participantStatusElement: json['_participantStatus'] != null
+          ? Element.fromJson(json['_participantStatus'] as Map<String, dynamic>)
+          : null,
+      comment:
+          json['comment'] != null ? FhirString.fromJson(json['comment']) : null,
       commentElement: json['_comment'] != null
           ? Element.fromJson(json['_comment'] as Map<String, dynamic>)
           : null,

@@ -183,7 +183,7 @@ class Device extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -227,37 +227,37 @@ class Device extends DomainResource {
           .toList();
     }
     if (distinctIdentifier?.value != null) {
-      json['distinctIdentifier'] = distinctIdentifier!.value;
+      json['distinctIdentifier'] = distinctIdentifier!.toJson();
     }
     if (distinctIdentifierElement != null) {
       json['_distinctIdentifier'] = distinctIdentifierElement!.toJson();
     }
     if (manufacturer?.value != null) {
-      json['manufacturer'] = manufacturer!.value;
+      json['manufacturer'] = manufacturer!.toJson();
     }
     if (manufacturerElement != null) {
       json['_manufacturer'] = manufacturerElement!.toJson();
     }
     if (manufactureDate?.value != null) {
-      json['manufactureDate'] = manufactureDate!.value;
+      json['manufactureDate'] = manufactureDate!.toJson();
     }
     if (manufactureDateElement != null) {
       json['_manufactureDate'] = manufactureDateElement!.toJson();
     }
     if (expirationDate?.value != null) {
-      json['expirationDate'] = expirationDate!.value;
+      json['expirationDate'] = expirationDate!.toJson();
     }
     if (expirationDateElement != null) {
       json['_expirationDate'] = expirationDateElement!.toJson();
     }
     if (lotNumber?.value != null) {
-      json['lotNumber'] = lotNumber!.value;
+      json['lotNumber'] = lotNumber!.toJson();
     }
     if (lotNumberElement != null) {
       json['_lotNumber'] = lotNumberElement!.toJson();
     }
     if (serialNumber?.value != null) {
-      json['serialNumber'] = serialNumber!.value;
+      json['serialNumber'] = serialNumber!.toJson();
     }
     if (serialNumberElement != null) {
       json['_serialNumber'] = serialNumberElement!.toJson();
@@ -267,13 +267,13 @@ class Device extends DomainResource {
           deviceName!.map<dynamic>((DeviceDeviceName v) => v.toJson()).toList();
     }
     if (modelNumber?.value != null) {
-      json['modelNumber'] = modelNumber!.value;
+      json['modelNumber'] = modelNumber!.toJson();
     }
     if (modelNumberElement != null) {
       json['_modelNumber'] = modelNumberElement!.toJson();
     }
     if (partNumber?.value != null) {
-      json['partNumber'] = partNumber!.value;
+      json['partNumber'] = partNumber!.toJson();
     }
     if (partNumberElement != null) {
       json['_partNumber'] = partNumberElement!.toJson();
@@ -308,7 +308,7 @@ class Device extends DomainResource {
       json['location'] = location!.toJson();
     }
     if (url?.value != null) {
-      json['url'] = url!.value;
+      json['url'] = url!.toJson();
     }
     if (urlElement != null) {
       json['_url'] = urlElement!.toJson();
@@ -328,17 +328,21 @@ class Device extends DomainResource {
 
   factory Device.fromJson(Map<String, dynamic> json) {
     return Device(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -377,7 +381,10 @@ class Device extends DomainResource {
               .toList()
           : null,
       status: json['status'] != null
-          ? FHIRDeviceStatus.fromJson(json['status'] as Map<String, dynamic>)
+          ? FHIRDeviceStatus.fromJson(json['status'])
+          : null,
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
           : null,
       statusReason: json['statusReason'] != null
           ? (json['statusReason'] as List<dynamic>)
@@ -386,37 +393,38 @@ class Device extends DomainResource {
               .toList()
           : null,
       distinctIdentifier: json['distinctIdentifier'] != null
-          ? FhirString(json['distinctIdentifier'])
+          ? FhirString.fromJson(json['distinctIdentifier'])
           : null,
       distinctIdentifierElement: json['_distinctIdentifier'] != null
           ? Element.fromJson(
               json['_distinctIdentifier'] as Map<String, dynamic>)
           : null,
       manufacturer: json['manufacturer'] != null
-          ? FhirString(json['manufacturer'])
+          ? FhirString.fromJson(json['manufacturer'])
           : null,
       manufacturerElement: json['_manufacturer'] != null
           ? Element.fromJson(json['_manufacturer'] as Map<String, dynamic>)
           : null,
       manufactureDate: json['manufactureDate'] != null
-          ? FhirDateTime(json['manufactureDate'])
+          ? FhirDateTime.fromJson(json['manufactureDate'])
           : null,
       manufactureDateElement: json['_manufactureDate'] != null
           ? Element.fromJson(json['_manufactureDate'] as Map<String, dynamic>)
           : null,
       expirationDate: json['expirationDate'] != null
-          ? FhirDateTime(json['expirationDate'])
+          ? FhirDateTime.fromJson(json['expirationDate'])
           : null,
       expirationDateElement: json['_expirationDate'] != null
           ? Element.fromJson(json['_expirationDate'] as Map<String, dynamic>)
           : null,
-      lotNumber:
-          json['lotNumber'] != null ? FhirString(json['lotNumber']) : null,
+      lotNumber: json['lotNumber'] != null
+          ? FhirString.fromJson(json['lotNumber'])
+          : null,
       lotNumberElement: json['_lotNumber'] != null
           ? Element.fromJson(json['_lotNumber'] as Map<String, dynamic>)
           : null,
       serialNumber: json['serialNumber'] != null
-          ? FhirString(json['serialNumber'])
+          ? FhirString.fromJson(json['serialNumber'])
           : null,
       serialNumberElement: json['_serialNumber'] != null
           ? Element.fromJson(json['_serialNumber'] as Map<String, dynamic>)
@@ -427,13 +435,15 @@ class Device extends DomainResource {
                   DeviceDeviceName.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      modelNumber:
-          json['modelNumber'] != null ? FhirString(json['modelNumber']) : null,
+      modelNumber: json['modelNumber'] != null
+          ? FhirString.fromJson(json['modelNumber'])
+          : null,
       modelNumberElement: json['_modelNumber'] != null
           ? Element.fromJson(json['_modelNumber'] as Map<String, dynamic>)
           : null,
-      partNumber:
-          json['partNumber'] != null ? FhirString(json['partNumber']) : null,
+      partNumber: json['partNumber'] != null
+          ? FhirString.fromJson(json['partNumber'])
+          : null,
       partNumberElement: json['_partNumber'] != null
           ? Element.fromJson(json['_partNumber'] as Map<String, dynamic>)
           : null,
@@ -473,7 +483,7 @@ class Device extends DomainResource {
       location: json['location'] != null
           ? Reference.fromJson(json['location'] as Map<String, dynamic>)
           : null,
-      url: json['url'] != null ? FhirUri(json['url']) : null,
+      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
       urlElement: json['_url'] != null
           ? Element.fromJson(json['_url'] as Map<String, dynamic>)
           : null,
@@ -723,31 +733,31 @@ class DeviceUdiCarrier extends BackboneElement {
           .toList();
     }
     if (deviceIdentifier?.value != null) {
-      json['deviceIdentifier'] = deviceIdentifier!.value;
+      json['deviceIdentifier'] = deviceIdentifier!.toJson();
     }
     if (deviceIdentifierElement != null) {
       json['_deviceIdentifier'] = deviceIdentifierElement!.toJson();
     }
     if (issuer?.value != null) {
-      json['issuer'] = issuer!.value;
+      json['issuer'] = issuer!.toJson();
     }
     if (issuerElement != null) {
       json['_issuer'] = issuerElement!.toJson();
     }
     if (jurisdiction?.value != null) {
-      json['jurisdiction'] = jurisdiction!.value;
+      json['jurisdiction'] = jurisdiction!.toJson();
     }
     if (jurisdictionElement != null) {
       json['_jurisdiction'] = jurisdictionElement!.toJson();
     }
     if (carrierAIDC?.value != null) {
-      json['carrierAIDC'] = carrierAIDC!.value;
+      json['carrierAIDC'] = carrierAIDC!.toJson();
     }
     if (carrierAIDCElement != null) {
       json['_carrierAIDC'] = carrierAIDCElement!.toJson();
     }
     if (carrierHRF?.value != null) {
-      json['carrierHRF'] = carrierHRF!.value;
+      json['carrierHRF'] = carrierHRF!.toJson();
     }
     if (carrierHRFElement != null) {
       json['_carrierHRF'] = carrierHRFElement!.toJson();
@@ -760,7 +770,7 @@ class DeviceUdiCarrier extends BackboneElement {
 
   factory DeviceUdiCarrier.fromJson(Map<String, dynamic> json) {
     return DeviceUdiCarrier(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -774,33 +784,38 @@ class DeviceUdiCarrier extends BackboneElement {
               .toList()
           : null,
       deviceIdentifier: json['deviceIdentifier'] != null
-          ? FhirString(json['deviceIdentifier'])
+          ? FhirString.fromJson(json['deviceIdentifier'])
           : null,
       deviceIdentifierElement: json['_deviceIdentifier'] != null
           ? Element.fromJson(json['_deviceIdentifier'] as Map<String, dynamic>)
           : null,
-      issuer: json['issuer'] != null ? FhirUri(json['issuer']) : null,
+      issuer: json['issuer'] != null ? FhirUri.fromJson(json['issuer']) : null,
       issuerElement: json['_issuer'] != null
           ? Element.fromJson(json['_issuer'] as Map<String, dynamic>)
           : null,
-      jurisdiction:
-          json['jurisdiction'] != null ? FhirUri(json['jurisdiction']) : null,
+      jurisdiction: json['jurisdiction'] != null
+          ? FhirUri.fromJson(json['jurisdiction'])
+          : null,
       jurisdictionElement: json['_jurisdiction'] != null
           ? Element.fromJson(json['_jurisdiction'] as Map<String, dynamic>)
           : null,
       carrierAIDC: json['carrierAIDC'] != null
-          ? FhirBase64Binary(json['carrierAIDC'])
+          ? FhirBase64Binary.fromJson(json['carrierAIDC'])
           : null,
       carrierAIDCElement: json['_carrierAIDC'] != null
           ? Element.fromJson(json['_carrierAIDC'] as Map<String, dynamic>)
           : null,
-      carrierHRF:
-          json['carrierHRF'] != null ? FhirString(json['carrierHRF']) : null,
+      carrierHRF: json['carrierHRF'] != null
+          ? FhirString.fromJson(json['carrierHRF'])
+          : null,
       carrierHRFElement: json['_carrierHRF'] != null
           ? Element.fromJson(json['_carrierHRF'] as Map<String, dynamic>)
           : null,
       entryType: json['entryType'] != null
-          ? UDIEntryType.fromJson(json['entryType'] as Map<String, dynamic>)
+          ? UDIEntryType.fromJson(json['entryType'])
+          : null,
+      entryTypeElement: json['_entryType'] != null
+          ? Element.fromJson(json['_entryType'] as Map<String, dynamic>)
           : null,
     );
   }
@@ -927,7 +942,7 @@ class DeviceDeviceName extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['name'] = name.value;
+    json['name'] = name.toJson();
     if (nameElement != null) {
       json['_name'] = nameElement!.toJson();
     }
@@ -937,7 +952,7 @@ class DeviceDeviceName extends BackboneElement {
 
   factory DeviceDeviceName.fromJson(Map<String, dynamic> json) {
     return DeviceDeviceName(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -950,11 +965,14 @@ class DeviceDeviceName extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      name: FhirString(json['name']),
+      name: FhirString.fromJson(json['name']),
       nameElement: json['_name'] != null
           ? Element.fromJson(json['_name'] as Map<String, dynamic>)
           : null,
-      type: DeviceNameType.fromJson(json['type'] as Map<String, dynamic>),
+      type: DeviceNameType.fromJson(json['type']),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
@@ -1059,7 +1077,7 @@ class DeviceSpecialization extends BackboneElement {
     }
     json['systemType'] = systemType.toJson();
     if (version?.value != null) {
-      json['version'] = version!.value;
+      json['version'] = version!.toJson();
     }
     if (versionElement != null) {
       json['_version'] = versionElement!.toJson();
@@ -1069,7 +1087,7 @@ class DeviceSpecialization extends BackboneElement {
 
   factory DeviceSpecialization.fromJson(Map<String, dynamic> json) {
     return DeviceSpecialization(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1084,7 +1102,8 @@ class DeviceSpecialization extends BackboneElement {
           : null,
       systemType:
           CodeableConcept.fromJson(json['systemType'] as Map<String, dynamic>),
-      version: json['version'] != null ? FhirString(json['version']) : null,
+      version:
+          json['version'] != null ? FhirString.fromJson(json['version']) : null,
       versionElement: json['_version'] != null
           ? Element.fromJson(json['_version'] as Map<String, dynamic>)
           : null,
@@ -1197,7 +1216,7 @@ class DeviceVersion extends BackboneElement {
     if (component != null) {
       json['component'] = component!.toJson();
     }
-    json['value'] = value.value;
+    json['value'] = value.toJson();
     if (valueElement != null) {
       json['_value'] = valueElement!.toJson();
     }
@@ -1206,7 +1225,7 @@ class DeviceVersion extends BackboneElement {
 
   factory DeviceVersion.fromJson(Map<String, dynamic> json) {
     return DeviceVersion(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1225,7 +1244,7 @@ class DeviceVersion extends BackboneElement {
       component: json['component'] != null
           ? Identifier.fromJson(json['component'] as Map<String, dynamic>)
           : null,
-      value: FhirString(json['value']),
+      value: FhirString.fromJson(json['value']),
       valueElement: json['_value'] != null
           ? Element.fromJson(json['_value'] as Map<String, dynamic>)
           : null,
@@ -1347,7 +1366,7 @@ class DeviceProperty extends BackboneElement {
 
   factory DeviceProperty.fromJson(Map<String, dynamic> json) {
     return DeviceProperty(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

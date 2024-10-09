@@ -319,7 +319,7 @@ class Measure extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -344,7 +344,7 @@ class Measure extends DomainResource {
           .toList();
     }
     if (url?.value != null) {
-      json['url'] = url!.value;
+      json['url'] = url!.toJson();
     }
     if (urlElement != null) {
       json['_url'] = urlElement!.toJson();
@@ -354,32 +354,32 @@ class Measure extends DomainResource {
           identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
     }
     if (version?.value != null) {
-      json['version'] = version!.value;
+      json['version'] = version!.toJson();
     }
     if (versionElement != null) {
       json['_version'] = versionElement!.toJson();
     }
     if (name?.value != null) {
-      json['name'] = name!.value;
+      json['name'] = name!.toJson();
     }
     if (nameElement != null) {
       json['_name'] = nameElement!.toJson();
     }
     if (title?.value != null) {
-      json['title'] = title!.value;
+      json['title'] = title!.toJson();
     }
     if (titleElement != null) {
       json['_title'] = titleElement!.toJson();
     }
     if (subtitle?.value != null) {
-      json['subtitle'] = subtitle!.value;
+      json['subtitle'] = subtitle!.toJson();
     }
     if (subtitleElement != null) {
       json['_subtitle'] = subtitleElement!.toJson();
     }
     json['status'] = status.toJson();
     if (experimental?.value != null) {
-      json['experimental'] = experimental!.value;
+      json['experimental'] = experimental!.toJson();
     }
     if (experimentalElement != null) {
       json['_experimental'] = experimentalElement!.toJson();
@@ -391,13 +391,13 @@ class Measure extends DomainResource {
       json['subjectReference'] = subjectReference!.toJson();
     }
     if (date?.value != null) {
-      json['date'] = date!.value;
+      json['date'] = date!.toJson();
     }
     if (dateElement != null) {
       json['_date'] = dateElement!.toJson();
     }
     if (publisher?.value != null) {
-      json['publisher'] = publisher!.value;
+      json['publisher'] = publisher!.toJson();
     }
     if (publisherElement != null) {
       json['_publisher'] = publisherElement!.toJson();
@@ -407,7 +407,7 @@ class Measure extends DomainResource {
           contact!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
@@ -422,31 +422,31 @@ class Measure extends DomainResource {
           .toList();
     }
     if (purpose?.value != null) {
-      json['purpose'] = purpose!.value;
+      json['purpose'] = purpose!.toJson();
     }
     if (purposeElement != null) {
       json['_purpose'] = purposeElement!.toJson();
     }
     if (usage?.value != null) {
-      json['usage'] = usage!.value;
+      json['usage'] = usage!.toJson();
     }
     if (usageElement != null) {
       json['_usage'] = usageElement!.toJson();
     }
     if (copyright?.value != null) {
-      json['copyright'] = copyright!.value;
+      json['copyright'] = copyright!.toJson();
     }
     if (copyrightElement != null) {
       json['_copyright'] = copyrightElement!.toJson();
     }
     if (approvalDate?.value != null) {
-      json['approvalDate'] = approvalDate!.value;
+      json['approvalDate'] = approvalDate!.toJson();
     }
     if (approvalDateElement != null) {
       json['_approvalDate'] = approvalDateElement!.toJson();
     }
     if (lastReviewDate?.value != null) {
-      json['lastReviewDate'] = lastReviewDate!.value;
+      json['lastReviewDate'] = lastReviewDate!.toJson();
     }
     if (lastReviewDateElement != null) {
       json['_lastReviewDate'] = lastReviewDateElement!.toJson();
@@ -480,14 +480,14 @@ class Measure extends DomainResource {
           .toList();
     }
     if (library_ != null && library_!.isNotEmpty) {
-      json['library'] = library_!.map((FhirCanonical v) => v.value).toList();
+      json['library'] = library_!.map((FhirCanonical v) => v.toJson()).toList();
     }
     if (libraryElement != null && libraryElement!.isNotEmpty) {
       json['_library'] =
           libraryElement!.map((Element v) => v.toJson()).toList();
     }
     if (disclaimer?.value != null) {
-      json['disclaimer'] = disclaimer!.value;
+      json['disclaimer'] = disclaimer!.toJson();
     }
     if (disclaimerElement != null) {
       json['_disclaimer'] = disclaimerElement!.toJson();
@@ -503,26 +503,26 @@ class Measure extends DomainResource {
           type!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
     }
     if (riskAdjustment?.value != null) {
-      json['riskAdjustment'] = riskAdjustment!.value;
+      json['riskAdjustment'] = riskAdjustment!.toJson();
     }
     if (riskAdjustmentElement != null) {
       json['_riskAdjustment'] = riskAdjustmentElement!.toJson();
     }
     if (rateAggregation?.value != null) {
-      json['rateAggregation'] = rateAggregation!.value;
+      json['rateAggregation'] = rateAggregation!.toJson();
     }
     if (rateAggregationElement != null) {
       json['_rateAggregation'] = rateAggregationElement!.toJson();
     }
     if (rationale?.value != null) {
-      json['rationale'] = rationale!.value;
+      json['rationale'] = rationale!.toJson();
     }
     if (rationaleElement != null) {
       json['_rationale'] = rationaleElement!.toJson();
     }
     if (clinicalRecommendationStatement?.value != null) {
       json['clinicalRecommendationStatement'] =
-          clinicalRecommendationStatement!.value;
+          clinicalRecommendationStatement!.toJson();
     }
     if (clinicalRecommendationStatementElement != null) {
       json['_clinicalRecommendationStatement'] =
@@ -533,14 +533,14 @@ class Measure extends DomainResource {
     }
     if (definition != null && definition!.isNotEmpty) {
       json['definition'] =
-          definition!.map((FhirMarkdown v) => v.value).toList();
+          definition!.map((FhirMarkdown v) => v.toJson()).toList();
     }
     if (definitionElement != null && definitionElement!.isNotEmpty) {
       json['_definition'] =
           definitionElement!.map((Element v) => v.toJson()).toList();
     }
     if (guidance?.value != null) {
-      json['guidance'] = guidance!.value;
+      json['guidance'] = guidance!.toJson();
     }
     if (guidanceElement != null) {
       json['_guidance'] = guidanceElement!.toJson();
@@ -559,17 +559,21 @@ class Measure extends DomainResource {
 
   factory Measure.fromJson(Map<String, dynamic> json) {
     return Measure(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -592,7 +596,7 @@ class Measure extends DomainResource {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      url: json['url'] != null ? FhirUri(json['url']) : null,
+      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
       urlElement: json['_url'] != null
           ? Element.fromJson(json['_url'] as Map<String, dynamic>)
           : null,
@@ -602,26 +606,31 @@ class Measure extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      version: json['version'] != null ? FhirString(json['version']) : null,
+      version:
+          json['version'] != null ? FhirString.fromJson(json['version']) : null,
       versionElement: json['_version'] != null
           ? Element.fromJson(json['_version'] as Map<String, dynamic>)
           : null,
-      name: json['name'] != null ? FhirString(json['name']) : null,
+      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
       nameElement: json['_name'] != null
           ? Element.fromJson(json['_name'] as Map<String, dynamic>)
           : null,
-      title: json['title'] != null ? FhirString(json['title']) : null,
+      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
       titleElement: json['_title'] != null
           ? Element.fromJson(json['_title'] as Map<String, dynamic>)
           : null,
-      subtitle: json['subtitle'] != null ? FhirString(json['subtitle']) : null,
+      subtitle: json['subtitle'] != null
+          ? FhirString.fromJson(json['subtitle'])
+          : null,
       subtitleElement: json['_subtitle'] != null
           ? Element.fromJson(json['_subtitle'] as Map<String, dynamic>)
           : null,
-      status:
-          PublicationStatus.fromJson(json['status'] as Map<String, dynamic>),
+      status: PublicationStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       experimental: json['experimental'] != null
-          ? FhirBoolean(json['experimental'])
+          ? FhirBoolean.fromJson(json['experimental'])
           : null,
       experimentalElement: json['_experimental'] != null
           ? Element.fromJson(json['_experimental'] as Map<String, dynamic>)
@@ -633,12 +642,13 @@ class Measure extends DomainResource {
       subjectReference: json['subjectReference'] != null
           ? Reference.fromJson(json['subjectReference'] as Map<String, dynamic>)
           : null,
-      date: json['date'] != null ? FhirDateTime(json['date']) : null,
+      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
       dateElement: json['_date'] != null
           ? Element.fromJson(json['_date'] as Map<String, dynamic>)
           : null,
-      publisher:
-          json['publisher'] != null ? FhirString(json['publisher']) : null,
+      publisher: json['publisher'] != null
+          ? FhirString.fromJson(json['publisher'])
+          : null,
       publisherElement: json['_publisher'] != null
           ? Element.fromJson(json['_publisher'] as Map<String, dynamic>)
           : null,
@@ -649,7 +659,7 @@ class Measure extends DomainResource {
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown(json['description'])
+          ? FhirMarkdown.fromJson(json['description'])
           : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
@@ -666,26 +676,30 @@ class Measure extends DomainResource {
                   CodeableConcept.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      purpose: json['purpose'] != null ? FhirMarkdown(json['purpose']) : null,
+      purpose: json['purpose'] != null
+          ? FhirMarkdown.fromJson(json['purpose'])
+          : null,
       purposeElement: json['_purpose'] != null
           ? Element.fromJson(json['_purpose'] as Map<String, dynamic>)
           : null,
-      usage: json['usage'] != null ? FhirString(json['usage']) : null,
+      usage: json['usage'] != null ? FhirString.fromJson(json['usage']) : null,
       usageElement: json['_usage'] != null
           ? Element.fromJson(json['_usage'] as Map<String, dynamic>)
           : null,
-      copyright:
-          json['copyright'] != null ? FhirMarkdown(json['copyright']) : null,
+      copyright: json['copyright'] != null
+          ? FhirMarkdown.fromJson(json['copyright'])
+          : null,
       copyrightElement: json['_copyright'] != null
           ? Element.fromJson(json['_copyright'] as Map<String, dynamic>)
           : null,
-      approvalDate:
-          json['approvalDate'] != null ? FhirDate(json['approvalDate']) : null,
+      approvalDate: json['approvalDate'] != null
+          ? FhirDate.fromJson(json['approvalDate'])
+          : null,
       approvalDateElement: json['_approvalDate'] != null
           ? Element.fromJson(json['_approvalDate'] as Map<String, dynamic>)
           : null,
       lastReviewDate: json['lastReviewDate'] != null
-          ? FhirDate(json['lastReviewDate'])
+          ? FhirDate.fromJson(json['lastReviewDate'])
           : null,
       lastReviewDateElement: json['_lastReviewDate'] != null
           ? Element.fromJson(json['_lastReviewDate'] as Map<String, dynamic>)
@@ -741,8 +755,9 @@ class Measure extends DomainResource {
                   (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      disclaimer:
-          json['disclaimer'] != null ? FhirMarkdown(json['disclaimer']) : null,
+      disclaimer: json['disclaimer'] != null
+          ? FhirMarkdown.fromJson(json['disclaimer'])
+          : null,
       disclaimerElement: json['_disclaimer'] != null
           ? Element.fromJson(json['_disclaimer'] as Map<String, dynamic>)
           : null,
@@ -760,25 +775,26 @@ class Measure extends DomainResource {
               .toList()
           : null,
       riskAdjustment: json['riskAdjustment'] != null
-          ? FhirString(json['riskAdjustment'])
+          ? FhirString.fromJson(json['riskAdjustment'])
           : null,
       riskAdjustmentElement: json['_riskAdjustment'] != null
           ? Element.fromJson(json['_riskAdjustment'] as Map<String, dynamic>)
           : null,
       rateAggregation: json['rateAggregation'] != null
-          ? FhirString(json['rateAggregation'])
+          ? FhirString.fromJson(json['rateAggregation'])
           : null,
       rateAggregationElement: json['_rateAggregation'] != null
           ? Element.fromJson(json['_rateAggregation'] as Map<String, dynamic>)
           : null,
-      rationale:
-          json['rationale'] != null ? FhirMarkdown(json['rationale']) : null,
+      rationale: json['rationale'] != null
+          ? FhirMarkdown.fromJson(json['rationale'])
+          : null,
       rationaleElement: json['_rationale'] != null
           ? Element.fromJson(json['_rationale'] as Map<String, dynamic>)
           : null,
       clinicalRecommendationStatement:
           json['clinicalRecommendationStatement'] != null
-              ? FhirMarkdown(json['clinicalRecommendationStatement'])
+              ? FhirMarkdown.fromJson(json['clinicalRecommendationStatement'])
               : null,
       clinicalRecommendationStatementElement:
           json['_clinicalRecommendationStatement'] != null
@@ -801,8 +817,9 @@ class Measure extends DomainResource {
                   (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      guidance:
-          json['guidance'] != null ? FhirMarkdown(json['guidance']) : null,
+      guidance: json['guidance'] != null
+          ? FhirMarkdown.fromJson(json['guidance'])
+          : null,
       guidanceElement: json['_guidance'] != null
           ? Element.fromJson(json['_guidance'] as Map<String, dynamic>)
           : null,
@@ -1078,7 +1095,7 @@ class MeasureGroup extends BackboneElement {
       json['code'] = code!.toJson();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
@@ -1098,7 +1115,7 @@ class MeasureGroup extends BackboneElement {
 
   factory MeasureGroup.fromJson(Map<String, dynamic> json) {
     return MeasureGroup(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1114,8 +1131,9 @@ class MeasureGroup extends BackboneElement {
       code: json['code'] != null
           ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
           : null,
-      description:
-          json['description'] != null ? FhirString(json['description']) : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
           : null,
@@ -1243,7 +1261,7 @@ class MeasurePopulation extends BackboneElement {
       json['code'] = code!.toJson();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
@@ -1254,7 +1272,7 @@ class MeasurePopulation extends BackboneElement {
 
   factory MeasurePopulation.fromJson(Map<String, dynamic> json) {
     return MeasurePopulation(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1270,8 +1288,9 @@ class MeasurePopulation extends BackboneElement {
       code: json['code'] != null
           ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
           : null,
-      description:
-          json['description'] != null ? FhirString(json['description']) : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
           : null,
@@ -1398,7 +1417,7 @@ class MeasureStratifier extends BackboneElement {
       json['code'] = code!.toJson();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
@@ -1415,7 +1434,7 @@ class MeasureStratifier extends BackboneElement {
 
   factory MeasureStratifier.fromJson(Map<String, dynamic> json) {
     return MeasureStratifier(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1431,8 +1450,9 @@ class MeasureStratifier extends BackboneElement {
       code: json['code'] != null
           ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
           : null,
-      description:
-          json['description'] != null ? FhirString(json['description']) : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
           : null,
@@ -1563,7 +1583,7 @@ class MeasureComponent extends BackboneElement {
       json['code'] = code!.toJson();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
@@ -1574,7 +1594,7 @@ class MeasureComponent extends BackboneElement {
 
   factory MeasureComponent.fromJson(Map<String, dynamic> json) {
     return MeasureComponent(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1590,8 +1610,9 @@ class MeasureComponent extends BackboneElement {
       code: json['code'] != null
           ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
           : null,
-      description:
-          json['description'] != null ? FhirString(json['description']) : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
           : null,
@@ -1726,7 +1747,7 @@ class MeasureSupplementalData extends BackboneElement {
           usage!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
@@ -1737,7 +1758,7 @@ class MeasureSupplementalData extends BackboneElement {
 
   factory MeasureSupplementalData.fromJson(Map<String, dynamic> json) {
     return MeasureSupplementalData(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1759,8 +1780,9 @@ class MeasureSupplementalData extends BackboneElement {
                   CodeableConcept.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      description:
-          json['description'] != null ? FhirString(json['description']) : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
           : null,

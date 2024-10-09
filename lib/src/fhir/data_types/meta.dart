@@ -79,25 +79,25 @@ class FhirMeta extends DataType {
           extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
     }
     if (versionId?.value != null) {
-      json['versionId'] = versionId!.value;
+      json['versionId'] = versionId!.toJson();
     }
     if (versionIdElement != null) {
       json['_versionId'] = versionIdElement!.toJson();
     }
     if (lastUpdated?.value != null) {
-      json['lastUpdated'] = lastUpdated!.value;
+      json['lastUpdated'] = lastUpdated!.toJson();
     }
     if (lastUpdatedElement != null) {
       json['_lastUpdated'] = lastUpdatedElement!.toJson();
     }
     if (source?.value != null) {
-      json['source'] = source!.value;
+      json['source'] = source!.toJson();
     }
     if (sourceElement != null) {
       json['_source'] = sourceElement!.toJson();
     }
     if (profile != null && profile!.isNotEmpty) {
-      json['profile'] = profile!.map((FhirCanonical v) => v.value).toList();
+      json['profile'] = profile!.map((FhirCanonical v) => v.toJson()).toList();
     }
     if (profileElement != null && profileElement!.isNotEmpty) {
       json['_profile'] =
@@ -115,23 +115,25 @@ class FhirMeta extends DataType {
 
   factory FhirMeta.fromJson(Map<String, dynamic> json) {
     return FhirMeta(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      versionId: json['versionId'] != null ? FhirId(json['versionId']) : null,
+      versionId:
+          json['versionId'] != null ? FhirId.fromJson(json['versionId']) : null,
       versionIdElement: json['_versionId'] != null
           ? Element.fromJson(json['_versionId'] as Map<String, dynamic>)
           : null,
-      lastUpdated:
-          json['lastUpdated'] != null ? FhirInstant(json['lastUpdated']) : null,
+      lastUpdated: json['lastUpdated'] != null
+          ? FhirInstant.fromJson(json['lastUpdated'])
+          : null,
       lastUpdatedElement: json['_lastUpdated'] != null
           ? Element.fromJson(json['_lastUpdated'] as Map<String, dynamic>)
           : null,
-      source: json['source'] != null ? FhirUri(json['source']) : null,
+      source: json['source'] != null ? FhirUri.fromJson(json['source']) : null,
       sourceElement: json['_source'] != null
           ? Element.fromJson(json['_source'] as Map<String, dynamic>)
           : null,

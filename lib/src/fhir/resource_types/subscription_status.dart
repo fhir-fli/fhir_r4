@@ -84,7 +84,7 @@ class SubscriptionStatus extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -114,7 +114,7 @@ class SubscriptionStatus extends DomainResource {
     json['type'] = type.toJson();
     if (eventsSinceSubscriptionStart?.value != null) {
       json['eventsSinceSubscriptionStart'] =
-          eventsSinceSubscriptionStart!.value;
+          eventsSinceSubscriptionStart!.toJson();
     }
     if (eventsSinceSubscriptionStartElement != null) {
       json['_eventsSinceSubscriptionStart'] =
@@ -127,7 +127,7 @@ class SubscriptionStatus extends DomainResource {
     }
     json['subscription'] = subscription.toJson();
     if (topic?.value != null) {
-      json['topic'] = topic!.value;
+      json['topic'] = topic!.toJson();
     }
     if (topicElement != null) {
       json['_topic'] = topicElement!.toJson();
@@ -141,17 +141,21 @@ class SubscriptionStatus extends DomainResource {
 
   factory SubscriptionStatus.fromJson(Map<String, dynamic> json) {
     return SubscriptionStatus(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -175,13 +179,17 @@ class SubscriptionStatus extends DomainResource {
               .toList()
           : null,
       status: json['status'] != null
-          ? SubscriptionStatusCodes.fromJson(
-              json['status'] as Map<String, dynamic>)
+          ? SubscriptionStatusCodes.fromJson(json['status'])
           : null,
-      type: SubscriptionNotificationType.fromJson(
-          json['type'] as Map<String, dynamic>),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
+      type: SubscriptionNotificationType.fromJson(json['type']),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
+          : null,
       eventsSinceSubscriptionStart: json['eventsSinceSubscriptionStart'] != null
-          ? FhirString(json['eventsSinceSubscriptionStart'])
+          ? FhirString.fromJson(json['eventsSinceSubscriptionStart'])
           : null,
       eventsSinceSubscriptionStartElement:
           json['_eventsSinceSubscriptionStart'] != null
@@ -197,7 +205,8 @@ class SubscriptionStatus extends DomainResource {
           : null,
       subscription:
           Reference.fromJson(json['subscription'] as Map<String, dynamic>),
-      topic: json['topic'] != null ? FhirCanonical(json['topic']) : null,
+      topic:
+          json['topic'] != null ? FhirCanonical.fromJson(json['topic']) : null,
       topicElement: json['_topic'] != null
           ? Element.fromJson(json['_topic'] as Map<String, dynamic>)
           : null,
@@ -356,12 +365,12 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['eventNumber'] = eventNumber.value;
+    json['eventNumber'] = eventNumber.toJson();
     if (eventNumberElement != null) {
       json['_eventNumber'] = eventNumberElement!.toJson();
     }
     if (timestamp?.value != null) {
-      json['timestamp'] = timestamp!.value;
+      json['timestamp'] = timestamp!.toJson();
     }
     if (timestampElement != null) {
       json['_timestamp'] = timestampElement!.toJson();
@@ -379,7 +388,7 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
   factory SubscriptionStatusNotificationEvent.fromJson(
       Map<String, dynamic> json) {
     return SubscriptionStatusNotificationEvent(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -392,12 +401,13 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      eventNumber: FhirString(json['eventNumber']),
+      eventNumber: FhirString.fromJson(json['eventNumber']),
       eventNumberElement: json['_eventNumber'] != null
           ? Element.fromJson(json['_eventNumber'] as Map<String, dynamic>)
           : null,
-      timestamp:
-          json['timestamp'] != null ? FhirInstant(json['timestamp']) : null,
+      timestamp: json['timestamp'] != null
+          ? FhirInstant.fromJson(json['timestamp'])
+          : null,
       timestampElement: json['_timestamp'] != null
           ? Element.fromJson(json['_timestamp'] as Map<String, dynamic>)
           : null,

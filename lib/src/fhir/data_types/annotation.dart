@@ -59,18 +59,18 @@ class Annotation extends DataType {
       json['authorReference'] = authorReference!.toJson();
     }
     if (authorString?.value != null) {
-      json['authorString'] = authorString!.value;
+      json['authorString'] = authorString!.toJson();
     }
     if (authorStringElement != null) {
       json['_authorString'] = authorStringElement!.toJson();
     }
     if (time?.value != null) {
-      json['time'] = time!.value;
+      json['time'] = time!.toJson();
     }
     if (timeElement != null) {
       json['_time'] = timeElement!.toJson();
     }
-    json['text'] = text.value;
+    json['text'] = text.toJson();
     if (textElement != null) {
       json['_text'] = textElement!.toJson();
     }
@@ -79,7 +79,7 @@ class Annotation extends DataType {
 
   factory Annotation.fromJson(Map<String, dynamic> json) {
     return Annotation(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -90,16 +90,16 @@ class Annotation extends DataType {
           ? Reference.fromJson(json['authorReference'] as Map<String, dynamic>)
           : null,
       authorString: json['authorString'] != null
-          ? FhirString(json['authorString'])
+          ? FhirString.fromJson(json['authorString'])
           : null,
       authorStringElement: json['_authorString'] != null
           ? Element.fromJson(json['_authorString'] as Map<String, dynamic>)
           : null,
-      time: json['time'] != null ? FhirDateTime(json['time']) : null,
+      time: json['time'] != null ? FhirDateTime.fromJson(json['time']) : null,
       timeElement: json['_time'] != null
           ? Element.fromJson(json['_time'] as Map<String, dynamic>)
           : null,
-      text: FhirMarkdown(json['text']),
+      text: FhirMarkdown.fromJson(json['text']),
       textElement: json['_text'] != null
           ? Element.fromJson(json['_text'] as Map<String, dynamic>)
           : null,

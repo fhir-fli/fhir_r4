@@ -90,7 +90,7 @@ class Person extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -129,7 +129,7 @@ class Person extends DomainResource {
       json['gender'] = gender!.toJson();
     }
     if (birthDate?.value != null) {
-      json['birthDate'] = birthDate!.value;
+      json['birthDate'] = birthDate!.toJson();
     }
     if (birthDateElement != null) {
       json['_birthDate'] = birthDateElement!.toJson();
@@ -145,7 +145,7 @@ class Person extends DomainResource {
       json['managingOrganization'] = managingOrganization!.toJson();
     }
     if (active?.value != null) {
-      json['active'] = active!.value;
+      json['active'] = active!.toJson();
     }
     if (activeElement != null) {
       json['_active'] = activeElement!.toJson();
@@ -158,17 +158,21 @@ class Person extends DomainResource {
 
   factory Person.fromJson(Map<String, dynamic> json) {
     return Person(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -210,10 +214,14 @@ class Person extends DomainResource {
               .toList()
           : null,
       gender: json['gender'] != null
-          ? AdministrativeGender.fromJson(
-              json['gender'] as Map<String, dynamic>)
+          ? AdministrativeGender.fromJson(json['gender'])
           : null,
-      birthDate: json['birthDate'] != null ? FhirDate(json['birthDate']) : null,
+      genderElement: json['_gender'] != null
+          ? Element.fromJson(json['_gender'] as Map<String, dynamic>)
+          : null,
+      birthDate: json['birthDate'] != null
+          ? FhirDate.fromJson(json['birthDate'])
+          : null,
       birthDateElement: json['_birthDate'] != null
           ? Element.fromJson(json['_birthDate'] as Map<String, dynamic>)
           : null,
@@ -230,7 +238,8 @@ class Person extends DomainResource {
           ? Reference.fromJson(
               json['managingOrganization'] as Map<String, dynamic>)
           : null,
-      active: json['active'] != null ? FhirBoolean(json['active']) : null,
+      active:
+          json['active'] != null ? FhirBoolean.fromJson(json['active']) : null,
       activeElement: json['_active'] != null
           ? Element.fromJson(json['_active'] as Map<String, dynamic>)
           : null,
@@ -382,7 +391,7 @@ class PersonLink extends BackboneElement {
 
   factory PersonLink.fromJson(Map<String, dynamic> json) {
     return PersonLink(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -397,8 +406,10 @@ class PersonLink extends BackboneElement {
           : null,
       target: Reference.fromJson(json['target'] as Map<String, dynamic>),
       assurance: json['assurance'] != null
-          ? IdentityAssuranceLevel.fromJson(
-              json['assurance'] as Map<String, dynamic>)
+          ? IdentityAssuranceLevel.fromJson(json['assurance'])
+          : null,
+      assuranceElement: json['_assurance'] != null
+          ? Element.fromJson(json['_assurance'] as Map<String, dynamic>)
           : null,
     );
   }

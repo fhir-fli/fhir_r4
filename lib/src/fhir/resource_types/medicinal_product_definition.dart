@@ -214,7 +214,7 @@ class MedicinalProductDefinition extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -249,7 +249,7 @@ class MedicinalProductDefinition extends DomainResource {
       json['domain'] = domain!.toJson();
     }
     if (version?.value != null) {
-      json['version'] = version!.value;
+      json['version'] = version!.toJson();
     }
     if (versionElement != null) {
       json['_version'] = versionElement!.toJson();
@@ -258,13 +258,13 @@ class MedicinalProductDefinition extends DomainResource {
       json['status'] = status!.toJson();
     }
     if (statusDate?.value != null) {
-      json['statusDate'] = statusDate!.value;
+      json['statusDate'] = statusDate!.toJson();
     }
     if (statusDateElement != null) {
       json['_statusDate'] = statusDateElement!.toJson();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
@@ -278,7 +278,7 @@ class MedicinalProductDefinition extends DomainResource {
           route!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
     }
     if (indication?.value != null) {
-      json['indication'] = indication!.value;
+      json['indication'] = indication!.toJson();
     }
     if (indicationElement != null) {
       json['_indication'] = indicationElement!.toJson();
@@ -367,17 +367,21 @@ class MedicinalProductDefinition extends DomainResource {
 
   factory MedicinalProductDefinition.fromJson(Map<String, dynamic> json) {
     return MedicinalProductDefinition(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -412,20 +416,22 @@ class MedicinalProductDefinition extends DomainResource {
       domain: json['domain'] != null
           ? CodeableConcept.fromJson(json['domain'] as Map<String, dynamic>)
           : null,
-      version: json['version'] != null ? FhirString(json['version']) : null,
+      version:
+          json['version'] != null ? FhirString.fromJson(json['version']) : null,
       versionElement: json['_version'] != null
           ? Element.fromJson(json['_version'] as Map<String, dynamic>)
           : null,
       status: json['status'] != null
           ? CodeableConcept.fromJson(json['status'] as Map<String, dynamic>)
           : null,
-      statusDate:
-          json['statusDate'] != null ? FhirDateTime(json['statusDate']) : null,
+      statusDate: json['statusDate'] != null
+          ? FhirDateTime.fromJson(json['statusDate'])
+          : null,
       statusDateElement: json['_statusDate'] != null
           ? Element.fromJson(json['_statusDate'] as Map<String, dynamic>)
           : null,
       description: json['description'] != null
-          ? FhirMarkdown(json['description'])
+          ? FhirMarkdown.fromJson(json['description'])
           : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
@@ -441,8 +447,9 @@ class MedicinalProductDefinition extends DomainResource {
                   CodeableConcept.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      indication:
-          json['indication'] != null ? FhirMarkdown(json['indication']) : null,
+      indication: json['indication'] != null
+          ? FhirMarkdown.fromJson(json['indication'])
+          : null,
       indicationElement: json['_indication'] != null
           ? Element.fromJson(json['_indication'] as Map<String, dynamic>)
           : null,
@@ -736,7 +743,7 @@ class MedicinalProductDefinitionContact extends BackboneElement {
   factory MedicinalProductDefinitionContact.fromJson(
       Map<String, dynamic> json) {
     return MedicinalProductDefinitionContact(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -859,7 +866,7 @@ class MedicinalProductDefinitionName extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['productName'] = productName.value;
+    json['productName'] = productName.toJson();
     if (productNameElement != null) {
       json['_productName'] = productNameElement!.toJson();
     }
@@ -882,7 +889,7 @@ class MedicinalProductDefinitionName extends BackboneElement {
 
   factory MedicinalProductDefinitionName.fromJson(Map<String, dynamic> json) {
     return MedicinalProductDefinitionName(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -895,7 +902,7 @@ class MedicinalProductDefinitionName extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      productName: FhirString(json['productName']),
+      productName: FhirString.fromJson(json['productName']),
       productNameElement: json['_productName'] != null
           ? Element.fromJson(json['_productName'] as Map<String, dynamic>)
           : null,
@@ -1020,7 +1027,7 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['part'] = part_.value;
+    json['part'] = part_.toJson();
     if (partElement != null) {
       json['_part'] = partElement!.toJson();
     }
@@ -1031,7 +1038,7 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
   factory MedicinalProductDefinitionNamePart.fromJson(
       Map<String, dynamic> json) {
     return MedicinalProductDefinitionNamePart(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1044,7 +1051,7 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      part_: FhirString(json['part']),
+      part_: FhirString.fromJson(json['part']),
       partElement: json['_part'] != null
           ? Element.fromJson(json['_part'] as Map<String, dynamic>)
           : null,
@@ -1163,7 +1170,7 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
   factory MedicinalProductDefinitionCountryLanguage.fromJson(
       Map<String, dynamic> json) {
     return MedicinalProductDefinitionCountryLanguage(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1298,7 +1305,7 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
   factory MedicinalProductDefinitionCrossReference.fromJson(
       Map<String, dynamic> json) {
     return MedicinalProductDefinitionCrossReference(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1447,7 +1454,7 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
   factory MedicinalProductDefinitionOperation.fromJson(
       Map<String, dynamic> json) {
     return MedicinalProductDefinitionOperation(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1606,13 +1613,13 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
       json['valueQuantity'] = valueQuantity!.toJson();
     }
     if (valueDate?.value != null) {
-      json['valueDate'] = valueDate!.value;
+      json['valueDate'] = valueDate!.toJson();
     }
     if (valueDateElement != null) {
       json['_valueDate'] = valueDateElement!.toJson();
     }
     if (valueBoolean?.value != null) {
-      json['valueBoolean'] = valueBoolean!.value;
+      json['valueBoolean'] = valueBoolean!.toJson();
     }
     if (valueBooleanElement != null) {
       json['_valueBoolean'] = valueBooleanElement!.toJson();
@@ -1626,7 +1633,7 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
   factory MedicinalProductDefinitionCharacteristic.fromJson(
       Map<String, dynamic> json) {
     return MedicinalProductDefinitionCharacteristic(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1647,12 +1654,14 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
       valueQuantity: json['valueQuantity'] != null
           ? Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>)
           : null,
-      valueDate: json['valueDate'] != null ? FhirDate(json['valueDate']) : null,
+      valueDate: json['valueDate'] != null
+          ? FhirDate.fromJson(json['valueDate'])
+          : null,
       valueDateElement: json['_valueDate'] != null
           ? Element.fromJson(json['_valueDate'] as Map<String, dynamic>)
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean(json['valueBoolean'])
+          ? FhirBoolean.fromJson(json['valueBoolean'])
           : null,
       valueBooleanElement: json['_valueBoolean'] != null
           ? Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>)

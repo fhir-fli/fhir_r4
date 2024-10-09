@@ -134,7 +134,7 @@ class DocumentReference extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -180,7 +180,7 @@ class DocumentReference extends DomainResource {
       json['subject'] = subject!.toJson();
     }
     if (date?.value != null) {
-      json['date'] = date!.value;
+      json['date'] = date!.toJson();
     }
     if (dateElement != null) {
       json['_date'] = dateElement!.toJson();
@@ -201,7 +201,7 @@ class DocumentReference extends DomainResource {
           .toList();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
@@ -222,17 +222,21 @@ class DocumentReference extends DomainResource {
 
   factory DocumentReference.fromJson(Map<String, dynamic> json) {
     return DocumentReference(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -265,11 +269,15 @@ class DocumentReference extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status: DocumentReferenceStatus.fromJson(
-          json['status'] as Map<String, dynamic>),
+      status: DocumentReferenceStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       docStatus: json['docStatus'] != null
-          ? CompositionStatus.fromJson(
-              json['docStatus'] as Map<String, dynamic>)
+          ? CompositionStatus.fromJson(json['docStatus'])
+          : null,
+      docStatusElement: json['_docStatus'] != null
+          ? Element.fromJson(json['_docStatus'] as Map<String, dynamic>)
           : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
@@ -283,7 +291,7 @@ class DocumentReference extends DomainResource {
       subject: json['subject'] != null
           ? Reference.fromJson(json['subject'] as Map<String, dynamic>)
           : null,
-      date: json['date'] != null ? FhirInstant(json['date']) : null,
+      date: json['date'] != null ? FhirInstant.fromJson(json['date']) : null,
       dateElement: json['_date'] != null
           ? Element.fromJson(json['_date'] as Map<String, dynamic>)
           : null,
@@ -306,8 +314,9 @@ class DocumentReference extends DomainResource {
                       v as Map<String, dynamic>))
               .toList()
           : null,
-      description:
-          json['description'] != null ? FhirString(json['description']) : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
           : null,
@@ -480,7 +489,7 @@ class DocumentReferenceRelatesTo extends BackboneElement {
 
   factory DocumentReferenceRelatesTo.fromJson(Map<String, dynamic> json) {
     return DocumentReferenceRelatesTo(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -493,8 +502,10 @@ class DocumentReferenceRelatesTo extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      code: DocumentRelationshipType.fromJson(
-          json['code'] as Map<String, dynamic>),
+      code: DocumentRelationshipType.fromJson(json['code']),
+      codeElement: json['_code'] != null
+          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
+          : null,
       target: Reference.fromJson(json['target'] as Map<String, dynamic>),
     );
   }
@@ -605,7 +616,7 @@ class DocumentReferenceContent extends BackboneElement {
 
   factory DocumentReferenceContent.fromJson(Map<String, dynamic> json) {
     return DocumentReferenceContent(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -774,7 +785,7 @@ class DocumentReferenceContext extends BackboneElement {
 
   factory DocumentReferenceContext.fromJson(Map<String, dynamic> json) {
     return DocumentReferenceContext(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

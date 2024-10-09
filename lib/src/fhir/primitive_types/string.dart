@@ -41,10 +41,10 @@ class FhirString extends PrimitiveType<String> {
   String toString() => _valueString;
 
   @override
-  dynamic toJson() => _value;
+  String toJson() => _valueString;
 
   @override
-  dynamic toYaml() => _value;
+  String toYaml() => _valueString;
 
   @override
   String toJsonString() => jsonEncode(toJson());

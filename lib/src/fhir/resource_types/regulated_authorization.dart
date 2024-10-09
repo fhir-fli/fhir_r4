@@ -120,7 +120,7 @@ class RegulatedAuthorization extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -156,7 +156,7 @@ class RegulatedAuthorization extends DomainResource {
       json['type'] = type!.toJson();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
@@ -169,7 +169,7 @@ class RegulatedAuthorization extends DomainResource {
       json['status'] = status!.toJson();
     }
     if (statusDate?.value != null) {
-      json['statusDate'] = statusDate!.value;
+      json['statusDate'] = statusDate!.toJson();
     }
     if (statusDateElement != null) {
       json['_statusDate'] = statusDateElement!.toJson();
@@ -201,17 +201,21 @@ class RegulatedAuthorization extends DomainResource {
 
   factory RegulatedAuthorization.fromJson(Map<String, dynamic> json) {
     return RegulatedAuthorization(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -250,7 +254,7 @@ class RegulatedAuthorization extends DomainResource {
           ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
           : null,
       description: json['description'] != null
-          ? FhirMarkdown(json['description'])
+          ? FhirMarkdown.fromJson(json['description'])
           : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
@@ -264,8 +268,9 @@ class RegulatedAuthorization extends DomainResource {
       status: json['status'] != null
           ? CodeableConcept.fromJson(json['status'] as Map<String, dynamic>)
           : null,
-      statusDate:
-          json['statusDate'] != null ? FhirDateTime(json['statusDate']) : null,
+      statusDate: json['statusDate'] != null
+          ? FhirDateTime.fromJson(json['statusDate'])
+          : null,
       statusDateElement: json['_statusDate'] != null
           ? Element.fromJson(json['_statusDate'] as Map<String, dynamic>)
           : null,
@@ -474,7 +479,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
       json['datePeriod'] = datePeriod!.toJson();
     }
     if (dateDateTime?.value != null) {
-      json['dateDateTime'] = dateDateTime!.value;
+      json['dateDateTime'] = dateDateTime!.toJson();
     }
     if (dateDateTimeElement != null) {
       json['_dateDateTime'] = dateDateTimeElement!.toJson();
@@ -489,7 +494,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
 
   factory RegulatedAuthorizationCase.fromJson(Map<String, dynamic> json) {
     return RegulatedAuthorizationCase(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -515,7 +520,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
           ? Period.fromJson(json['datePeriod'] as Map<String, dynamic>)
           : null,
       dateDateTime: json['dateDateTime'] != null
-          ? FhirDateTime(json['dateDateTime'])
+          ? FhirDateTime.fromJson(json['dateDateTime'])
           : null,
       dateDateTimeElement: json['_dateDateTime'] != null
           ? Element.fromJson(json['_dateDateTime'] as Map<String, dynamic>)

@@ -130,7 +130,7 @@ class SubstanceDefinition extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -159,7 +159,7 @@ class SubstanceDefinition extends DomainResource {
           identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
     }
     if (version?.value != null) {
-      json['version'] = version!.value;
+      json['version'] = version!.toJson();
     }
     if (versionElement != null) {
       json['_version'] = versionElement!.toJson();
@@ -180,7 +180,7 @@ class SubstanceDefinition extends DomainResource {
           grade!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
@@ -241,17 +241,21 @@ class SubstanceDefinition extends DomainResource {
 
   factory SubstanceDefinition.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinition(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -280,7 +284,8 @@ class SubstanceDefinition extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      version: json['version'] != null ? FhirString(json['version']) : null,
+      version:
+          json['version'] != null ? FhirString.fromJson(json['version']) : null,
       versionElement: json['_version'] != null
           ? Element.fromJson(json['_version'] as Map<String, dynamic>)
           : null,
@@ -303,7 +308,7 @@ class SubstanceDefinition extends DomainResource {
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown(json['description'])
+          ? FhirMarkdown.fromJson(json['description'])
           : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
@@ -571,7 +576,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
       json['identifier'] = identifier!.toJson();
     }
     if (name?.value != null) {
-      json['name'] = name!.value;
+      json['name'] = name!.toJson();
     }
     if (nameElement != null) {
       json['_name'] = nameElement!.toJson();
@@ -583,7 +588,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
       json['opticalActivity'] = opticalActivity!.toJson();
     }
     if (molecularFormula?.value != null) {
-      json['molecularFormula'] = molecularFormula!.value;
+      json['molecularFormula'] = molecularFormula!.toJson();
     }
     if (molecularFormulaElement != null) {
       json['_molecularFormula'] = molecularFormulaElement!.toJson();
@@ -592,7 +597,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
       json['amountQuantity'] = amountQuantity!.toJson();
     }
     if (amountString?.value != null) {
-      json['amountString'] = amountString!.value;
+      json['amountString'] = amountString!.toJson();
     }
     if (amountStringElement != null) {
       json['_amountString'] = amountStringElement!.toJson();
@@ -605,7 +610,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
 
   factory SubstanceDefinitionMoiety.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinitionMoiety(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -624,7 +629,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
       identifier: json['identifier'] != null
           ? Identifier.fromJson(json['identifier'] as Map<String, dynamic>)
           : null,
-      name: json['name'] != null ? FhirString(json['name']) : null,
+      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
       nameElement: json['_name'] != null
           ? Element.fromJson(json['_name'] as Map<String, dynamic>)
           : null,
@@ -637,7 +642,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
               json['opticalActivity'] as Map<String, dynamic>)
           : null,
       molecularFormula: json['molecularFormula'] != null
-          ? FhirString(json['molecularFormula'])
+          ? FhirString.fromJson(json['molecularFormula'])
           : null,
       molecularFormulaElement: json['_molecularFormula'] != null
           ? Element.fromJson(json['_molecularFormula'] as Map<String, dynamic>)
@@ -646,7 +651,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
           ? Quantity.fromJson(json['amountQuantity'] as Map<String, dynamic>)
           : null,
       amountString: json['amountString'] != null
-          ? FhirString(json['amountString'])
+          ? FhirString.fromJson(json['amountString'])
           : null,
       amountStringElement: json['_amountString'] != null
           ? Element.fromJson(json['_amountString'] as Map<String, dynamic>)
@@ -799,13 +804,13 @@ class SubstanceDefinitionProperty extends BackboneElement {
       json['valueQuantity'] = valueQuantity!.toJson();
     }
     if (valueDate?.value != null) {
-      json['valueDate'] = valueDate!.value;
+      json['valueDate'] = valueDate!.toJson();
     }
     if (valueDateElement != null) {
       json['_valueDate'] = valueDateElement!.toJson();
     }
     if (valueBoolean?.value != null) {
-      json['valueBoolean'] = valueBoolean!.value;
+      json['valueBoolean'] = valueBoolean!.toJson();
     }
     if (valueBooleanElement != null) {
       json['_valueBoolean'] = valueBooleanElement!.toJson();
@@ -818,7 +823,7 @@ class SubstanceDefinitionProperty extends BackboneElement {
 
   factory SubstanceDefinitionProperty.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinitionProperty(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -839,12 +844,14 @@ class SubstanceDefinitionProperty extends BackboneElement {
       valueQuantity: json['valueQuantity'] != null
           ? Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>)
           : null,
-      valueDate: json['valueDate'] != null ? FhirDate(json['valueDate']) : null,
+      valueDate: json['valueDate'] != null
+          ? FhirDate.fromJson(json['valueDate'])
+          : null,
       valueDateElement: json['_valueDate'] != null
           ? Element.fromJson(json['_valueDate'] as Map<String, dynamic>)
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean(json['valueBoolean'])
+          ? FhirBoolean.fromJson(json['valueBoolean'])
           : null,
       valueBooleanElement: json['_valueBoolean'] != null
           ? Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>)
@@ -981,7 +988,7 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
   factory SubstanceDefinitionMolecularWeight.fromJson(
       Map<String, dynamic> json) {
     return SubstanceDefinitionMolecularWeight(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1138,13 +1145,13 @@ class SubstanceDefinitionStructure extends BackboneElement {
       json['opticalActivity'] = opticalActivity!.toJson();
     }
     if (molecularFormula?.value != null) {
-      json['molecularFormula'] = molecularFormula!.value;
+      json['molecularFormula'] = molecularFormula!.toJson();
     }
     if (molecularFormulaElement != null) {
       json['_molecularFormula'] = molecularFormulaElement!.toJson();
     }
     if (molecularFormulaByMoiety?.value != null) {
-      json['molecularFormulaByMoiety'] = molecularFormulaByMoiety!.value;
+      json['molecularFormulaByMoiety'] = molecularFormulaByMoiety!.toJson();
     }
     if (molecularFormulaByMoietyElement != null) {
       json['_molecularFormulaByMoiety'] =
@@ -1171,7 +1178,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
 
   factory SubstanceDefinitionStructure.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinitionStructure(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1193,13 +1200,13 @@ class SubstanceDefinitionStructure extends BackboneElement {
               json['opticalActivity'] as Map<String, dynamic>)
           : null,
       molecularFormula: json['molecularFormula'] != null
-          ? FhirString(json['molecularFormula'])
+          ? FhirString.fromJson(json['molecularFormula'])
           : null,
       molecularFormulaElement: json['_molecularFormula'] != null
           ? Element.fromJson(json['_molecularFormula'] as Map<String, dynamic>)
           : null,
       molecularFormulaByMoiety: json['molecularFormulaByMoiety'] != null
-          ? FhirString(json['molecularFormulaByMoiety'])
+          ? FhirString.fromJson(json['molecularFormulaByMoiety'])
           : null,
       molecularFormulaByMoietyElement: json['_molecularFormulaByMoiety'] != null
           ? Element.fromJson(
@@ -1360,7 +1367,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
       json['type'] = type!.toJson();
     }
     if (representation?.value != null) {
-      json['representation'] = representation!.value;
+      json['representation'] = representation!.toJson();
     }
     if (representationElement != null) {
       json['_representation'] = representationElement!.toJson();
@@ -1377,7 +1384,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
   factory SubstanceDefinitionRepresentation.fromJson(
       Map<String, dynamic> json) {
     return SubstanceDefinitionRepresentation(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1394,7 +1401,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
           ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
           : null,
       representation: json['representation'] != null
-          ? FhirString(json['representation'])
+          ? FhirString.fromJson(json['representation'])
           : null,
       representationElement: json['_representation'] != null
           ? Element.fromJson(json['_representation'] as Map<String, dynamic>)
@@ -1530,7 +1537,7 @@ class SubstanceDefinitionCode extends BackboneElement {
       json['status'] = status!.toJson();
     }
     if (statusDate?.value != null) {
-      json['statusDate'] = statusDate!.value;
+      json['statusDate'] = statusDate!.toJson();
     }
     if (statusDateElement != null) {
       json['_statusDate'] = statusDateElement!.toJson();
@@ -1547,7 +1554,7 @@ class SubstanceDefinitionCode extends BackboneElement {
 
   factory SubstanceDefinitionCode.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinitionCode(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1566,8 +1573,9 @@ class SubstanceDefinitionCode extends BackboneElement {
       status: json['status'] != null
           ? CodeableConcept.fromJson(json['status'] as Map<String, dynamic>)
           : null,
-      statusDate:
-          json['statusDate'] != null ? FhirDateTime(json['statusDate']) : null,
+      statusDate: json['statusDate'] != null
+          ? FhirDateTime.fromJson(json['statusDate'])
+          : null,
       statusDateElement: json['_statusDate'] != null
           ? Element.fromJson(json['_statusDate'] as Map<String, dynamic>)
           : null,
@@ -1727,7 +1735,7 @@ class SubstanceDefinitionName extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['name'] = name.value;
+    json['name'] = name.toJson();
     if (nameElement != null) {
       json['_name'] = nameElement!.toJson();
     }
@@ -1738,7 +1746,7 @@ class SubstanceDefinitionName extends BackboneElement {
       json['status'] = status!.toJson();
     }
     if (preferred?.value != null) {
-      json['preferred'] = preferred!.value;
+      json['preferred'] = preferred!.toJson();
     }
     if (preferredElement != null) {
       json['_preferred'] = preferredElement!.toJson();
@@ -1780,7 +1788,7 @@ class SubstanceDefinitionName extends BackboneElement {
 
   factory SubstanceDefinitionName.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinitionName(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1793,7 +1801,7 @@ class SubstanceDefinitionName extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      name: FhirString(json['name']),
+      name: FhirString.fromJson(json['name']),
       nameElement: json['_name'] != null
           ? Element.fromJson(json['_name'] as Map<String, dynamic>)
           : null,
@@ -1803,8 +1811,9 @@ class SubstanceDefinitionName extends BackboneElement {
       status: json['status'] != null
           ? CodeableConcept.fromJson(json['status'] as Map<String, dynamic>)
           : null,
-      preferred:
-          json['preferred'] != null ? FhirBoolean(json['preferred']) : null,
+      preferred: json['preferred'] != null
+          ? FhirBoolean.fromJson(json['preferred'])
+          : null,
       preferredElement: json['_preferred'] != null
           ? Element.fromJson(json['_preferred'] as Map<String, dynamic>)
           : null,
@@ -1981,7 +1990,7 @@ class SubstanceDefinitionOfficial extends BackboneElement {
       json['status'] = status!.toJson();
     }
     if (date?.value != null) {
-      json['date'] = date!.value;
+      json['date'] = date!.toJson();
     }
     if (dateElement != null) {
       json['_date'] = dateElement!.toJson();
@@ -1991,7 +2000,7 @@ class SubstanceDefinitionOfficial extends BackboneElement {
 
   factory SubstanceDefinitionOfficial.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinitionOfficial(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2010,7 +2019,7 @@ class SubstanceDefinitionOfficial extends BackboneElement {
       status: json['status'] != null
           ? CodeableConcept.fromJson(json['status'] as Map<String, dynamic>)
           : null,
-      date: json['date'] != null ? FhirDateTime(json['date']) : null,
+      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
       dateElement: json['_date'] != null
           ? Element.fromJson(json['_date'] as Map<String, dynamic>)
           : null,
@@ -2172,7 +2181,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     }
     json['type'] = type.toJson();
     if (isDefining?.value != null) {
-      json['isDefining'] = isDefining!.value;
+      json['isDefining'] = isDefining!.toJson();
     }
     if (isDefiningElement != null) {
       json['_isDefining'] = isDefiningElement!.toJson();
@@ -2184,7 +2193,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
       json['amountRatio'] = amountRatio!.toJson();
     }
     if (amountString?.value != null) {
-      json['amountString'] = amountString!.value;
+      json['amountString'] = amountString!.toJson();
     }
     if (amountStringElement != null) {
       json['_amountString'] = amountStringElement!.toJson();
@@ -2204,7 +2213,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
 
   factory SubstanceDefinitionRelationship.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinitionRelationship(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2228,8 +2237,9 @@ class SubstanceDefinitionRelationship extends BackboneElement {
                       as Map<String, dynamic>)
               : null,
       type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
-      isDefining:
-          json['isDefining'] != null ? FhirBoolean(json['isDefining']) : null,
+      isDefining: json['isDefining'] != null
+          ? FhirBoolean.fromJson(json['isDefining'])
+          : null,
       isDefiningElement: json['_isDefining'] != null
           ? Element.fromJson(json['_isDefining'] as Map<String, dynamic>)
           : null,
@@ -2240,7 +2250,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
           ? Ratio.fromJson(json['amountRatio'] as Map<String, dynamic>)
           : null,
       amountString: json['amountString'] != null
-          ? FhirString(json['amountString'])
+          ? FhirString.fromJson(json['amountString'])
           : null,
       amountStringElement: json['_amountString'] != null
           ? Element.fromJson(json['_amountString'] as Map<String, dynamic>)
@@ -2413,7 +2423,7 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
   factory SubstanceDefinitionSourceMaterial.fromJson(
       Map<String, dynamic> json) {
     return SubstanceDefinitionSourceMaterial(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

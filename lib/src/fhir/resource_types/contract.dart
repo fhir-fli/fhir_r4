@@ -246,7 +246,7 @@ class Contract extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -275,13 +275,13 @@ class Contract extends DomainResource {
           identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
     }
     if (url?.value != null) {
-      json['url'] = url!.value;
+      json['url'] = url!.toJson();
     }
     if (urlElement != null) {
       json['_url'] = urlElement!.toJson();
     }
     if (version?.value != null) {
-      json['version'] = version!.value;
+      json['version'] = version!.toJson();
     }
     if (versionElement != null) {
       json['_version'] = versionElement!.toJson();
@@ -296,7 +296,7 @@ class Contract extends DomainResource {
       json['instantiatesCanonical'] = instantiatesCanonical!.toJson();
     }
     if (instantiatesUri?.value != null) {
-      json['instantiatesUri'] = instantiatesUri!.value;
+      json['instantiatesUri'] = instantiatesUri!.toJson();
     }
     if (instantiatesUriElement != null) {
       json['_instantiatesUri'] = instantiatesUriElement!.toJson();
@@ -305,7 +305,7 @@ class Contract extends DomainResource {
       json['contentDerivative'] = contentDerivative!.toJson();
     }
     if (issued?.value != null) {
-      json['issued'] = issued!.value;
+      json['issued'] = issued!.toJson();
     }
     if (issuedElement != null) {
       json['_issued'] = issuedElement!.toJson();
@@ -332,25 +332,25 @@ class Contract extends DomainResource {
       json['site'] = site!.map<dynamic>((Reference v) => v.toJson()).toList();
     }
     if (name?.value != null) {
-      json['name'] = name!.value;
+      json['name'] = name!.toJson();
     }
     if (nameElement != null) {
       json['_name'] = nameElement!.toJson();
     }
     if (title?.value != null) {
-      json['title'] = title!.value;
+      json['title'] = title!.toJson();
     }
     if (titleElement != null) {
       json['_title'] = titleElement!.toJson();
     }
     if (subtitle?.value != null) {
-      json['subtitle'] = subtitle!.value;
+      json['subtitle'] = subtitle!.toJson();
     }
     if (subtitleElement != null) {
       json['_subtitle'] = subtitleElement!.toJson();
     }
     if (alias != null && alias!.isNotEmpty) {
-      json['alias'] = alias!.map((FhirString v) => v.value).toList();
+      json['alias'] = alias!.map((FhirString v) => v.toJson()).toList();
     }
     if (aliasElement != null && aliasElement!.isNotEmpty) {
       json['_alias'] = aliasElement!.map((Element v) => v.toJson()).toList();
@@ -410,17 +410,21 @@ class Contract extends DomainResource {
 
   factory Contract.fromJson(Map<String, dynamic> json) {
     return Contract(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -449,17 +453,20 @@ class Contract extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      url: json['url'] != null ? FhirUri(json['url']) : null,
+      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
       urlElement: json['_url'] != null
           ? Element.fromJson(json['_url'] as Map<String, dynamic>)
           : null,
-      version: json['version'] != null ? FhirString(json['version']) : null,
+      version:
+          json['version'] != null ? FhirString.fromJson(json['version']) : null,
       versionElement: json['_version'] != null
           ? Element.fromJson(json['_version'] as Map<String, dynamic>)
           : null,
       status: json['status'] != null
-          ? ContractResourceStatusCodes.fromJson(
-              json['status'] as Map<String, dynamic>)
+          ? ContractResourceStatusCodes.fromJson(json['status'])
+          : null,
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
           : null,
       legalState: json['legalState'] != null
           ? CodeableConcept.fromJson(json['legalState'] as Map<String, dynamic>)
@@ -469,7 +476,7 @@ class Contract extends DomainResource {
               json['instantiatesCanonical'] as Map<String, dynamic>)
           : null,
       instantiatesUri: json['instantiatesUri'] != null
-          ? FhirUri(json['instantiatesUri'])
+          ? FhirUri.fromJson(json['instantiatesUri'])
           : null,
       instantiatesUriElement: json['_instantiatesUri'] != null
           ? Element.fromJson(json['_instantiatesUri'] as Map<String, dynamic>)
@@ -478,7 +485,8 @@ class Contract extends DomainResource {
           ? CodeableConcept.fromJson(
               json['contentDerivative'] as Map<String, dynamic>)
           : null,
-      issued: json['issued'] != null ? FhirDateTime(json['issued']) : null,
+      issued:
+          json['issued'] != null ? FhirDateTime.fromJson(json['issued']) : null,
       issuedElement: json['_issued'] != null
           ? Element.fromJson(json['_issued'] as Map<String, dynamic>)
           : null,
@@ -513,15 +521,17 @@ class Contract extends DomainResource {
                   (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      name: json['name'] != null ? FhirString(json['name']) : null,
+      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
       nameElement: json['_name'] != null
           ? Element.fromJson(json['_name'] as Map<String, dynamic>)
           : null,
-      title: json['title'] != null ? FhirString(json['title']) : null,
+      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
       titleElement: json['_title'] != null
           ? Element.fromJson(json['_title'] as Map<String, dynamic>)
           : null,
-      subtitle: json['subtitle'] != null ? FhirString(json['subtitle']) : null,
+      subtitle: json['subtitle'] != null
+          ? FhirString.fromJson(json['subtitle'])
+          : null,
       subtitleElement: json['_subtitle'] != null
           ? Element.fromJson(json['_subtitle'] as Map<String, dynamic>)
           : null,
@@ -837,14 +847,14 @@ class ContractContentDefinition extends BackboneElement {
       json['publisher'] = publisher!.toJson();
     }
     if (publicationDate?.value != null) {
-      json['publicationDate'] = publicationDate!.value;
+      json['publicationDate'] = publicationDate!.toJson();
     }
     if (publicationDateElement != null) {
       json['_publicationDate'] = publicationDateElement!.toJson();
     }
     json['publicationStatus'] = publicationStatus.toJson();
     if (copyright?.value != null) {
-      json['copyright'] = copyright!.value;
+      json['copyright'] = copyright!.toJson();
     }
     if (copyrightElement != null) {
       json['_copyright'] = copyrightElement!.toJson();
@@ -854,7 +864,7 @@ class ContractContentDefinition extends BackboneElement {
 
   factory ContractContentDefinition.fromJson(Map<String, dynamic> json) {
     return ContractContentDefinition(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -875,15 +885,19 @@ class ContractContentDefinition extends BackboneElement {
           ? Reference.fromJson(json['publisher'] as Map<String, dynamic>)
           : null,
       publicationDate: json['publicationDate'] != null
-          ? FhirDateTime(json['publicationDate'])
+          ? FhirDateTime.fromJson(json['publicationDate'])
           : null,
       publicationDateElement: json['_publicationDate'] != null
           ? Element.fromJson(json['_publicationDate'] as Map<String, dynamic>)
           : null,
       publicationStatus: ContractResourcePublicationStatusCodes.fromJson(
-          json['publicationStatus'] as Map<String, dynamic>),
-      copyright:
-          json['copyright'] != null ? FhirMarkdown(json['copyright']) : null,
+          json['publicationStatus']),
+      publicationStatusElement: json['_publicationStatus'] != null
+          ? Element.fromJson(json['_publicationStatus'] as Map<String, dynamic>)
+          : null,
+      copyright: json['copyright'] != null
+          ? FhirMarkdown.fromJson(json['copyright'])
+          : null,
       copyrightElement: json['_copyright'] != null
           ? Element.fromJson(json['_copyright'] as Map<String, dynamic>)
           : null,
@@ -1056,7 +1070,7 @@ class ContractTerm extends BackboneElement {
       json['identifier'] = identifier!.toJson();
     }
     if (issued?.value != null) {
-      json['issued'] = issued!.value;
+      json['issued'] = issued!.toJson();
     }
     if (issuedElement != null) {
       json['_issued'] = issuedElement!.toJson();
@@ -1077,7 +1091,7 @@ class ContractTerm extends BackboneElement {
       json['subType'] = subType!.toJson();
     }
     if (text?.value != null) {
-      json['text'] = text!.value;
+      json['text'] = text!.toJson();
     }
     if (textElement != null) {
       json['_text'] = textElement!.toJson();
@@ -1105,7 +1119,7 @@ class ContractTerm extends BackboneElement {
 
   factory ContractTerm.fromJson(Map<String, dynamic> json) {
     return ContractTerm(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1121,7 +1135,8 @@ class ContractTerm extends BackboneElement {
       identifier: json['identifier'] != null
           ? Identifier.fromJson(json['identifier'] as Map<String, dynamic>)
           : null,
-      issued: json['issued'] != null ? FhirDateTime(json['issued']) : null,
+      issued:
+          json['issued'] != null ? FhirDateTime.fromJson(json['issued']) : null,
       issuedElement: json['_issued'] != null
           ? Element.fromJson(json['_issued'] as Map<String, dynamic>)
           : null,
@@ -1141,7 +1156,7 @@ class ContractTerm extends BackboneElement {
       subType: json['subType'] != null
           ? CodeableConcept.fromJson(json['subType'] as Map<String, dynamic>)
           : null,
-      text: json['text'] != null ? FhirString(json['text']) : null,
+      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
       textElement: json['_text'] != null
           ? Element.fromJson(json['_text'] as Map<String, dynamic>)
           : null,
@@ -1307,7 +1322,7 @@ class ContractSecurityLabel extends BackboneElement {
           .toList();
     }
     if (number != null && number!.isNotEmpty) {
-      json['number'] = number!.map((FhirUnsignedInt v) => v.value).toList();
+      json['number'] = number!.map((FhirUnsignedInt v) => v.toJson()).toList();
     }
     if (numberElement != null && numberElement!.isNotEmpty) {
       json['_number'] = numberElement!.map((Element v) => v.toJson()).toList();
@@ -1326,7 +1341,7 @@ class ContractSecurityLabel extends BackboneElement {
 
   factory ContractSecurityLabel.fromJson(Map<String, dynamic> json) {
     return ContractSecurityLabel(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1536,20 +1551,20 @@ class ContractOffer extends BackboneElement {
           answer!.map<dynamic>((ContractAnswer v) => v.toJson()).toList();
     }
     if (text?.value != null) {
-      json['text'] = text!.value;
+      json['text'] = text!.toJson();
     }
     if (textElement != null) {
       json['_text'] = textElement!.toJson();
     }
     if (linkId != null && linkId!.isNotEmpty) {
-      json['linkId'] = linkId!.map((FhirString v) => v.value).toList();
+      json['linkId'] = linkId!.map((FhirString v) => v.toJson()).toList();
     }
     if (linkIdElement != null && linkIdElement!.isNotEmpty) {
       json['_linkId'] = linkIdElement!.map((Element v) => v.toJson()).toList();
     }
     if (securityLabelNumber != null && securityLabelNumber!.isNotEmpty) {
       json['securityLabelNumber'] =
-          securityLabelNumber!.map((FhirUnsignedInt v) => v.value).toList();
+          securityLabelNumber!.map((FhirUnsignedInt v) => v.toJson()).toList();
     }
     if (securityLabelNumberElement != null &&
         securityLabelNumberElement!.isNotEmpty) {
@@ -1561,7 +1576,7 @@ class ContractOffer extends BackboneElement {
 
   factory ContractOffer.fromJson(Map<String, dynamic> json) {
     return ContractOffer(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1607,7 +1622,7 @@ class ContractOffer extends BackboneElement {
                   ContractAnswer.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      text: json['text'] != null ? FhirString(json['text']) : null,
+      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
       textElement: json['_text'] != null
           ? Element.fromJson(json['_text'] as Map<String, dynamic>)
           : null,
@@ -1760,7 +1775,7 @@ class ContractParty extends BackboneElement {
 
   factory ContractParty.fromJson(Map<String, dynamic> json) {
     return ContractParty(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1966,49 +1981,49 @@ class ContractAnswer extends BackboneElement {
           .toList();
     }
     if (valueBoolean?.value != null) {
-      json['valueBoolean'] = valueBoolean!.value;
+      json['valueBoolean'] = valueBoolean!.toJson();
     }
     if (valueBooleanElement != null) {
       json['_valueBoolean'] = valueBooleanElement!.toJson();
     }
     if (valueDecimal?.value != null) {
-      json['valueDecimal'] = valueDecimal!.value;
+      json['valueDecimal'] = valueDecimal!.toJson();
     }
     if (valueDecimalElement != null) {
       json['_valueDecimal'] = valueDecimalElement!.toJson();
     }
     if (valueInteger?.value != null) {
-      json['valueInteger'] = valueInteger!.value;
+      json['valueInteger'] = valueInteger!.toJson();
     }
     if (valueIntegerElement != null) {
       json['_valueInteger'] = valueIntegerElement!.toJson();
     }
     if (valueDate?.value != null) {
-      json['valueDate'] = valueDate!.value;
+      json['valueDate'] = valueDate!.toJson();
     }
     if (valueDateElement != null) {
       json['_valueDate'] = valueDateElement!.toJson();
     }
     if (valueDateTime?.value != null) {
-      json['valueDateTime'] = valueDateTime!.value;
+      json['valueDateTime'] = valueDateTime!.toJson();
     }
     if (valueDateTimeElement != null) {
       json['_valueDateTime'] = valueDateTimeElement!.toJson();
     }
     if (valueTime?.value != null) {
-      json['valueTime'] = valueTime!.value;
+      json['valueTime'] = valueTime!.toJson();
     }
     if (valueTimeElement != null) {
       json['_valueTime'] = valueTimeElement!.toJson();
     }
     if (valueString?.value != null) {
-      json['valueString'] = valueString!.value;
+      json['valueString'] = valueString!.toJson();
     }
     if (valueStringElement != null) {
       json['_valueString'] = valueStringElement!.toJson();
     }
     if (valueUri?.value != null) {
-      json['valueUri'] = valueUri!.value;
+      json['valueUri'] = valueUri!.toJson();
     }
     if (valueUriElement != null) {
       json['_valueUri'] = valueUriElement!.toJson();
@@ -2030,7 +2045,7 @@ class ContractAnswer extends BackboneElement {
 
   factory ContractAnswer.fromJson(Map<String, dynamic> json) {
     return ContractAnswer(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2044,43 +2059,49 @@ class ContractAnswer extends BackboneElement {
               .toList()
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean(json['valueBoolean'])
+          ? FhirBoolean.fromJson(json['valueBoolean'])
           : null,
       valueBooleanElement: json['_valueBoolean'] != null
           ? Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>)
           : null,
       valueDecimal: json['valueDecimal'] != null
-          ? FhirDecimal(json['valueDecimal'])
+          ? FhirDecimal.fromJson(json['valueDecimal'])
           : null,
       valueDecimalElement: json['_valueDecimal'] != null
           ? Element.fromJson(json['_valueDecimal'] as Map<String, dynamic>)
           : null,
       valueInteger: json['valueInteger'] != null
-          ? FhirInteger(json['valueInteger'])
+          ? FhirInteger.fromJson(json['valueInteger'])
           : null,
       valueIntegerElement: json['_valueInteger'] != null
           ? Element.fromJson(json['_valueInteger'] as Map<String, dynamic>)
           : null,
-      valueDate: json['valueDate'] != null ? FhirDate(json['valueDate']) : null,
+      valueDate: json['valueDate'] != null
+          ? FhirDate.fromJson(json['valueDate'])
+          : null,
       valueDateElement: json['_valueDate'] != null
           ? Element.fromJson(json['_valueDate'] as Map<String, dynamic>)
           : null,
       valueDateTime: json['valueDateTime'] != null
-          ? FhirDateTime(json['valueDateTime'])
+          ? FhirDateTime.fromJson(json['valueDateTime'])
           : null,
       valueDateTimeElement: json['_valueDateTime'] != null
           ? Element.fromJson(json['_valueDateTime'] as Map<String, dynamic>)
           : null,
-      valueTime: json['valueTime'] != null ? FhirTime(json['valueTime']) : null,
+      valueTime: json['valueTime'] != null
+          ? FhirTime.fromJson(json['valueTime'])
+          : null,
       valueTimeElement: json['_valueTime'] != null
           ? Element.fromJson(json['_valueTime'] as Map<String, dynamic>)
           : null,
-      valueString:
-          json['valueString'] != null ? FhirString(json['valueString']) : null,
+      valueString: json['valueString'] != null
+          ? FhirString.fromJson(json['valueString'])
+          : null,
       valueStringElement: json['_valueString'] != null
           ? Element.fromJson(json['_valueString'] as Map<String, dynamic>)
           : null,
-      valueUri: json['valueUri'] != null ? FhirUri(json['valueUri']) : null,
+      valueUri:
+          json['valueUri'] != null ? FhirUri.fromJson(json['valueUri']) : null,
       valueUriElement: json['_valueUri'] != null
           ? Element.fromJson(json['_valueUri'] as Map<String, dynamic>)
           : null,
@@ -2316,7 +2337,7 @@ class ContractAsset extends BackboneElement {
           context!.map<dynamic>((ContractContext v) => v.toJson()).toList();
     }
     if (condition?.value != null) {
-      json['condition'] = condition!.value;
+      json['condition'] = condition!.toJson();
     }
     if (conditionElement != null) {
       json['_condition'] = conditionElement!.toJson();
@@ -2333,13 +2354,13 @@ class ContractAsset extends BackboneElement {
           usePeriod!.map<dynamic>((Period v) => v.toJson()).toList();
     }
     if (text?.value != null) {
-      json['text'] = text!.value;
+      json['text'] = text!.toJson();
     }
     if (textElement != null) {
       json['_text'] = textElement!.toJson();
     }
     if (linkId != null && linkId!.isNotEmpty) {
-      json['linkId'] = linkId!.map((FhirString v) => v.value).toList();
+      json['linkId'] = linkId!.map((FhirString v) => v.toJson()).toList();
     }
     if (linkIdElement != null && linkIdElement!.isNotEmpty) {
       json['_linkId'] = linkIdElement!.map((Element v) => v.toJson()).toList();
@@ -2350,7 +2371,7 @@ class ContractAsset extends BackboneElement {
     }
     if (securityLabelNumber != null && securityLabelNumber!.isNotEmpty) {
       json['securityLabelNumber'] =
-          securityLabelNumber!.map((FhirUnsignedInt v) => v.value).toList();
+          securityLabelNumber!.map((FhirUnsignedInt v) => v.toJson()).toList();
     }
     if (securityLabelNumberElement != null &&
         securityLabelNumberElement!.isNotEmpty) {
@@ -2367,7 +2388,7 @@ class ContractAsset extends BackboneElement {
 
   factory ContractAsset.fromJson(Map<String, dynamic> json) {
     return ContractAsset(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2410,8 +2431,9 @@ class ContractAsset extends BackboneElement {
                   ContractContext.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      condition:
-          json['condition'] != null ? FhirString(json['condition']) : null,
+      condition: json['condition'] != null
+          ? FhirString.fromJson(json['condition'])
+          : null,
       conditionElement: json['_condition'] != null
           ? Element.fromJson(json['_condition'] as Map<String, dynamic>)
           : null,
@@ -2433,7 +2455,7 @@ class ContractAsset extends BackboneElement {
                   (dynamic v) => Period.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      text: json['text'] != null ? FhirString(json['text']) : null,
+      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
       textElement: json['_text'] != null
           ? Element.fromJson(json['_text'] as Map<String, dynamic>)
           : null,
@@ -2619,7 +2641,7 @@ class ContractContext extends BackboneElement {
           code!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
     }
     if (text?.value != null) {
-      json['text'] = text!.value;
+      json['text'] = text!.toJson();
     }
     if (textElement != null) {
       json['_text'] = textElement!.toJson();
@@ -2629,7 +2651,7 @@ class ContractContext extends BackboneElement {
 
   factory ContractContext.fromJson(Map<String, dynamic> json) {
     return ContractContext(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2651,7 +2673,7 @@ class ContractContext extends BackboneElement {
                   CodeableConcept.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      text: json['text'] != null ? FhirString(json['text']) : null,
+      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
       textElement: json['_text'] != null
           ? Element.fromJson(json['_text'] as Map<String, dynamic>)
           : null,
@@ -2843,7 +2865,7 @@ class ContractValuedItem extends BackboneElement {
       json['identifier'] = identifier!.toJson();
     }
     if (effectiveTime?.value != null) {
-      json['effectiveTime'] = effectiveTime!.value;
+      json['effectiveTime'] = effectiveTime!.toJson();
     }
     if (effectiveTimeElement != null) {
       json['_effectiveTime'] = effectiveTimeElement!.toJson();
@@ -2855,13 +2877,13 @@ class ContractValuedItem extends BackboneElement {
       json['unitPrice'] = unitPrice!.toJson();
     }
     if (factor?.value != null) {
-      json['factor'] = factor!.value;
+      json['factor'] = factor!.toJson();
     }
     if (factorElement != null) {
       json['_factor'] = factorElement!.toJson();
     }
     if (points?.value != null) {
-      json['points'] = points!.value;
+      json['points'] = points!.toJson();
     }
     if (pointsElement != null) {
       json['_points'] = pointsElement!.toJson();
@@ -2870,13 +2892,13 @@ class ContractValuedItem extends BackboneElement {
       json['net'] = net!.toJson();
     }
     if (payment?.value != null) {
-      json['payment'] = payment!.value;
+      json['payment'] = payment!.toJson();
     }
     if (paymentElement != null) {
       json['_payment'] = paymentElement!.toJson();
     }
     if (paymentDate?.value != null) {
-      json['paymentDate'] = paymentDate!.value;
+      json['paymentDate'] = paymentDate!.toJson();
     }
     if (paymentDateElement != null) {
       json['_paymentDate'] = paymentDateElement!.toJson();
@@ -2888,14 +2910,14 @@ class ContractValuedItem extends BackboneElement {
       json['recipient'] = recipient!.toJson();
     }
     if (linkId != null && linkId!.isNotEmpty) {
-      json['linkId'] = linkId!.map((FhirString v) => v.value).toList();
+      json['linkId'] = linkId!.map((FhirString v) => v.toJson()).toList();
     }
     if (linkIdElement != null && linkIdElement!.isNotEmpty) {
       json['_linkId'] = linkIdElement!.map((Element v) => v.toJson()).toList();
     }
     if (securityLabelNumber != null && securityLabelNumber!.isNotEmpty) {
       json['securityLabelNumber'] =
-          securityLabelNumber!.map((FhirUnsignedInt v) => v.value).toList();
+          securityLabelNumber!.map((FhirUnsignedInt v) => v.toJson()).toList();
     }
     if (securityLabelNumberElement != null &&
         securityLabelNumberElement!.isNotEmpty) {
@@ -2907,7 +2929,7 @@ class ContractValuedItem extends BackboneElement {
 
   factory ContractValuedItem.fromJson(Map<String, dynamic> json) {
     return ContractValuedItem(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2931,7 +2953,7 @@ class ContractValuedItem extends BackboneElement {
           ? Identifier.fromJson(json['identifier'] as Map<String, dynamic>)
           : null,
       effectiveTime: json['effectiveTime'] != null
-          ? FhirDateTime(json['effectiveTime'])
+          ? FhirDateTime.fromJson(json['effectiveTime'])
           : null,
       effectiveTimeElement: json['_effectiveTime'] != null
           ? Element.fromJson(json['_effectiveTime'] as Map<String, dynamic>)
@@ -2942,23 +2964,26 @@ class ContractValuedItem extends BackboneElement {
       unitPrice: json['unitPrice'] != null
           ? Money.fromJson(json['unitPrice'] as Map<String, dynamic>)
           : null,
-      factor: json['factor'] != null ? FhirDecimal(json['factor']) : null,
+      factor:
+          json['factor'] != null ? FhirDecimal.fromJson(json['factor']) : null,
       factorElement: json['_factor'] != null
           ? Element.fromJson(json['_factor'] as Map<String, dynamic>)
           : null,
-      points: json['points'] != null ? FhirDecimal(json['points']) : null,
+      points:
+          json['points'] != null ? FhirDecimal.fromJson(json['points']) : null,
       pointsElement: json['_points'] != null
           ? Element.fromJson(json['_points'] as Map<String, dynamic>)
           : null,
       net: json['net'] != null
           ? Money.fromJson(json['net'] as Map<String, dynamic>)
           : null,
-      payment: json['payment'] != null ? FhirString(json['payment']) : null,
+      payment:
+          json['payment'] != null ? FhirString.fromJson(json['payment']) : null,
       paymentElement: json['_payment'] != null
           ? Element.fromJson(json['_payment'] as Map<String, dynamic>)
           : null,
       paymentDate: json['paymentDate'] != null
-          ? FhirDateTime(json['paymentDate'])
+          ? FhirDateTime.fromJson(json['paymentDate'])
           : null,
       paymentDateElement: json['_paymentDate'] != null
           ? Element.fromJson(json['_paymentDate'] as Map<String, dynamic>)
@@ -3247,7 +3272,7 @@ class ContractAction extends BackboneElement {
           .toList();
     }
     if (doNotPerform?.value != null) {
-      json['doNotPerform'] = doNotPerform!.value;
+      json['doNotPerform'] = doNotPerform!.toJson();
     }
     if (doNotPerformElement != null) {
       json['_doNotPerform'] = doNotPerformElement!.toJson();
@@ -3259,7 +3284,7 @@ class ContractAction extends BackboneElement {
     }
     json['intent'] = intent.toJson();
     if (linkId != null && linkId!.isNotEmpty) {
-      json['linkId'] = linkId!.map((FhirString v) => v.value).toList();
+      json['linkId'] = linkId!.map((FhirString v) => v.toJson()).toList();
     }
     if (linkIdElement != null && linkIdElement!.isNotEmpty) {
       json['_linkId'] = linkIdElement!.map((Element v) => v.toJson()).toList();
@@ -3270,14 +3295,14 @@ class ContractAction extends BackboneElement {
     }
     if (contextLinkId != null && contextLinkId!.isNotEmpty) {
       json['contextLinkId'] =
-          contextLinkId!.map((FhirString v) => v.value).toList();
+          contextLinkId!.map((FhirString v) => v.toJson()).toList();
     }
     if (contextLinkIdElement != null && contextLinkIdElement!.isNotEmpty) {
       json['_contextLinkId'] =
           contextLinkIdElement!.map((Element v) => v.toJson()).toList();
     }
     if (occurrenceDateTime?.value != null) {
-      json['occurrenceDateTime'] = occurrenceDateTime!.value;
+      json['occurrenceDateTime'] = occurrenceDateTime!.toJson();
     }
     if (occurrenceDateTimeElement != null) {
       json['_occurrenceDateTime'] = occurrenceDateTimeElement!.toJson();
@@ -3294,7 +3319,7 @@ class ContractAction extends BackboneElement {
     }
     if (requesterLinkId != null && requesterLinkId!.isNotEmpty) {
       json['requesterLinkId'] =
-          requesterLinkId!.map((FhirString v) => v.value).toList();
+          requesterLinkId!.map((FhirString v) => v.toJson()).toList();
     }
     if (requesterLinkIdElement != null && requesterLinkIdElement!.isNotEmpty) {
       json['_requesterLinkId'] =
@@ -3313,7 +3338,7 @@ class ContractAction extends BackboneElement {
     }
     if (performerLinkId != null && performerLinkId!.isNotEmpty) {
       json['performerLinkId'] =
-          performerLinkId!.map((FhirString v) => v.value).toList();
+          performerLinkId!.map((FhirString v) => v.toJson()).toList();
     }
     if (performerLinkIdElement != null && performerLinkIdElement!.isNotEmpty) {
       json['_performerLinkId'] =
@@ -3328,14 +3353,14 @@ class ContractAction extends BackboneElement {
           reasonReference!.map<dynamic>((Reference v) => v.toJson()).toList();
     }
     if (reason != null && reason!.isNotEmpty) {
-      json['reason'] = reason!.map((FhirString v) => v.value).toList();
+      json['reason'] = reason!.map((FhirString v) => v.toJson()).toList();
     }
     if (reasonElement != null && reasonElement!.isNotEmpty) {
       json['_reason'] = reasonElement!.map((Element v) => v.toJson()).toList();
     }
     if (reasonLinkId != null && reasonLinkId!.isNotEmpty) {
       json['reasonLinkId'] =
-          reasonLinkId!.map((FhirString v) => v.value).toList();
+          reasonLinkId!.map((FhirString v) => v.toJson()).toList();
     }
     if (reasonLinkIdElement != null && reasonLinkIdElement!.isNotEmpty) {
       json['_reasonLinkId'] =
@@ -3346,7 +3371,7 @@ class ContractAction extends BackboneElement {
     }
     if (securityLabelNumber != null && securityLabelNumber!.isNotEmpty) {
       json['securityLabelNumber'] =
-          securityLabelNumber!.map((FhirUnsignedInt v) => v.value).toList();
+          securityLabelNumber!.map((FhirUnsignedInt v) => v.toJson()).toList();
     }
     if (securityLabelNumberElement != null &&
         securityLabelNumberElement!.isNotEmpty) {
@@ -3358,7 +3383,7 @@ class ContractAction extends BackboneElement {
 
   factory ContractAction.fromJson(Map<String, dynamic> json) {
     return ContractAction(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -3372,7 +3397,7 @@ class ContractAction extends BackboneElement {
               .toList()
           : null,
       doNotPerform: json['doNotPerform'] != null
-          ? FhirBoolean(json['doNotPerform'])
+          ? FhirBoolean.fromJson(json['doNotPerform'])
           : null,
       doNotPerformElement: json['_doNotPerform'] != null
           ? Element.fromJson(json['_doNotPerform'] as Map<String, dynamic>)
@@ -3412,7 +3437,7 @@ class ContractAction extends BackboneElement {
               .toList()
           : null,
       occurrenceDateTime: json['occurrenceDateTime'] != null
-          ? FhirDateTime(json['occurrenceDateTime'])
+          ? FhirDateTime.fromJson(json['occurrenceDateTime'])
           : null,
       occurrenceDateTimeElement: json['_occurrenceDateTime'] != null
           ? Element.fromJson(
@@ -3686,7 +3711,7 @@ class ContractSubject extends BackboneElement {
 
   factory ContractSubject.fromJson(Map<String, dynamic> json) {
     return ContractSubject(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -3817,7 +3842,7 @@ class ContractSigner extends BackboneElement {
 
   factory ContractSigner.fromJson(Map<String, dynamic> json) {
     return ContractSigner(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -3952,7 +3977,7 @@ class ContractFriendly extends BackboneElement {
 
   factory ContractFriendly.fromJson(Map<String, dynamic> json) {
     return ContractFriendly(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -4098,7 +4123,7 @@ class ContractLegal extends BackboneElement {
 
   factory ContractLegal.fromJson(Map<String, dynamic> json) {
     return ContractLegal(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -4240,7 +4265,7 @@ class ContractRule extends BackboneElement {
 
   factory ContractRule.fromJson(Map<String, dynamic> json) {
     return ContractRule(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

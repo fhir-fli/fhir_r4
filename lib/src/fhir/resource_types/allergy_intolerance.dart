@@ -167,7 +167,7 @@ class AllergyIntolerance extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -220,7 +220,7 @@ class AllergyIntolerance extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
     if (onsetDateTime?.value != null) {
-      json['onsetDateTime'] = onsetDateTime!.value;
+      json['onsetDateTime'] = onsetDateTime!.toJson();
     }
     if (onsetDateTimeElement != null) {
       json['_onsetDateTime'] = onsetDateTimeElement!.toJson();
@@ -235,13 +235,13 @@ class AllergyIntolerance extends DomainResource {
       json['onsetRange'] = onsetRange!.toJson();
     }
     if (onsetString?.value != null) {
-      json['onsetString'] = onsetString!.value;
+      json['onsetString'] = onsetString!.toJson();
     }
     if (onsetStringElement != null) {
       json['_onsetString'] = onsetStringElement!.toJson();
     }
     if (recordedDate?.value != null) {
-      json['recordedDate'] = recordedDate!.value;
+      json['recordedDate'] = recordedDate!.toJson();
     }
     if (recordedDateElement != null) {
       json['_recordedDate'] = recordedDateElement!.toJson();
@@ -253,7 +253,7 @@ class AllergyIntolerance extends DomainResource {
       json['asserter'] = asserter!.toJson();
     }
     if (lastOccurrence?.value != null) {
-      json['lastOccurrence'] = lastOccurrence!.value;
+      json['lastOccurrence'] = lastOccurrence!.toJson();
     }
     if (lastOccurrenceElement != null) {
       json['_lastOccurrence'] = lastOccurrenceElement!.toJson();
@@ -271,17 +271,21 @@ class AllergyIntolerance extends DomainResource {
 
   factory AllergyIntolerance.fromJson(Map<String, dynamic> json) {
     return AllergyIntolerance(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -319,19 +323,28 @@ class AllergyIntolerance extends DomainResource {
               json['verificationStatus'] as Map<String, dynamic>)
           : null,
       type: json['type'] != null
-          ? AllergyIntoleranceType.fromJson(
-              json['type'] as Map<String, dynamic>)
+          ? AllergyIntoleranceType.fromJson(json['type'])
+          : null,
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
           : null,
       category: json['category'] != null
           ? (json['category'] as List<dynamic>)
               .map<AllergyIntoleranceCategory>((dynamic v) =>
-                  AllergyIntoleranceCategory.fromJson(
-                      v as Map<String, dynamic>))
+                  AllergyIntoleranceCategory.fromJson(v as dynamic))
+              .toList()
+          : null,
+      categoryElement: json['_category'] != null
+          ? (json['_category'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
       criticality: json['criticality'] != null
-          ? AllergyIntoleranceCriticality.fromJson(
-              json['criticality'] as Map<String, dynamic>)
+          ? AllergyIntoleranceCriticality.fromJson(json['criticality'])
+          : null,
+      criticalityElement: json['_criticality'] != null
+          ? Element.fromJson(json['_criticality'] as Map<String, dynamic>)
           : null,
       code: json['code'] != null
           ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
@@ -341,7 +354,7 @@ class AllergyIntolerance extends DomainResource {
           ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
           : null,
       onsetDateTime: json['onsetDateTime'] != null
-          ? FhirDateTime(json['onsetDateTime'])
+          ? FhirDateTime.fromJson(json['onsetDateTime'])
           : null,
       onsetDateTimeElement: json['_onsetDateTime'] != null
           ? Element.fromJson(json['_onsetDateTime'] as Map<String, dynamic>)
@@ -355,13 +368,14 @@ class AllergyIntolerance extends DomainResource {
       onsetRange: json['onsetRange'] != null
           ? Range.fromJson(json['onsetRange'] as Map<String, dynamic>)
           : null,
-      onsetString:
-          json['onsetString'] != null ? FhirString(json['onsetString']) : null,
+      onsetString: json['onsetString'] != null
+          ? FhirString.fromJson(json['onsetString'])
+          : null,
       onsetStringElement: json['_onsetString'] != null
           ? Element.fromJson(json['_onsetString'] as Map<String, dynamic>)
           : null,
       recordedDate: json['recordedDate'] != null
-          ? FhirDateTime(json['recordedDate'])
+          ? FhirDateTime.fromJson(json['recordedDate'])
           : null,
       recordedDateElement: json['_recordedDate'] != null
           ? Element.fromJson(json['_recordedDate'] as Map<String, dynamic>)
@@ -373,7 +387,7 @@ class AllergyIntolerance extends DomainResource {
           ? Reference.fromJson(json['asserter'] as Map<String, dynamic>)
           : null,
       lastOccurrence: json['lastOccurrence'] != null
-          ? FhirDateTime(json['lastOccurrence'])
+          ? FhirDateTime.fromJson(json['lastOccurrence'])
           : null,
       lastOccurrenceElement: json['_lastOccurrence'] != null
           ? Element.fromJson(json['_lastOccurrence'] as Map<String, dynamic>)
@@ -599,13 +613,13 @@ class AllergyIntoleranceReaction extends BackboneElement {
     json['manifestation'] =
         manifestation.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
     }
     if (onset?.value != null) {
-      json['onset'] = onset!.value;
+      json['onset'] = onset!.toJson();
     }
     if (onsetElement != null) {
       json['_onset'] = onsetElement!.toJson();
@@ -624,7 +638,7 @@ class AllergyIntoleranceReaction extends BackboneElement {
 
   factory AllergyIntoleranceReaction.fromJson(Map<String, dynamic> json) {
     return AllergyIntoleranceReaction(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -644,18 +658,22 @@ class AllergyIntoleranceReaction extends BackboneElement {
           .map<CodeableConcept>((dynamic v) =>
               CodeableConcept.fromJson(v as Map<String, dynamic>))
           .toList(),
-      description:
-          json['description'] != null ? FhirString(json['description']) : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
           : null,
-      onset: json['onset'] != null ? FhirDateTime(json['onset']) : null,
+      onset:
+          json['onset'] != null ? FhirDateTime.fromJson(json['onset']) : null,
       onsetElement: json['_onset'] != null
           ? Element.fromJson(json['_onset'] as Map<String, dynamic>)
           : null,
       severity: json['severity'] != null
-          ? AllergyIntoleranceSeverity.fromJson(
-              json['severity'] as Map<String, dynamic>)
+          ? AllergyIntoleranceSeverity.fromJson(json['severity'])
+          : null,
+      severityElement: json['_severity'] != null
+          ? Element.fromJson(json['_severity'] as Map<String, dynamic>)
           : null,
       exposureRoute: json['exposureRoute'] != null
           ? CodeableConcept.fromJson(

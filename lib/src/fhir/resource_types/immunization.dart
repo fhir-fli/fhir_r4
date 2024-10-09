@@ -188,7 +188,7 @@ class Immunization extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -226,25 +226,25 @@ class Immunization extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
     if (occurrenceDateTime?.value != null) {
-      json['occurrenceDateTime'] = occurrenceDateTime!.value;
+      json['occurrenceDateTime'] = occurrenceDateTime!.toJson();
     }
     if (occurrenceDateTimeElement != null) {
       json['_occurrenceDateTime'] = occurrenceDateTimeElement!.toJson();
     }
     if (occurrenceString?.value != null) {
-      json['occurrenceString'] = occurrenceString!.value;
+      json['occurrenceString'] = occurrenceString!.toJson();
     }
     if (occurrenceStringElement != null) {
       json['_occurrenceString'] = occurrenceStringElement!.toJson();
     }
     if (recorded?.value != null) {
-      json['recorded'] = recorded!.value;
+      json['recorded'] = recorded!.toJson();
     }
     if (recordedElement != null) {
       json['_recorded'] = recordedElement!.toJson();
     }
     if (primarySource?.value != null) {
-      json['primarySource'] = primarySource!.value;
+      json['primarySource'] = primarySource!.toJson();
     }
     if (primarySourceElement != null) {
       json['_primarySource'] = primarySourceElement!.toJson();
@@ -259,13 +259,13 @@ class Immunization extends DomainResource {
       json['manufacturer'] = manufacturer!.toJson();
     }
     if (lotNumber?.value != null) {
-      json['lotNumber'] = lotNumber!.value;
+      json['lotNumber'] = lotNumber!.toJson();
     }
     if (lotNumberElement != null) {
       json['_lotNumber'] = lotNumberElement!.toJson();
     }
     if (expirationDate?.value != null) {
-      json['expirationDate'] = expirationDate!.value;
+      json['expirationDate'] = expirationDate!.toJson();
     }
     if (expirationDateElement != null) {
       json['_expirationDate'] = expirationDateElement!.toJson();
@@ -296,7 +296,7 @@ class Immunization extends DomainResource {
           reasonReference!.map<dynamic>((Reference v) => v.toJson()).toList();
     }
     if (isSubpotent?.value != null) {
-      json['isSubpotent'] = isSubpotent!.value;
+      json['isSubpotent'] = isSubpotent!.toJson();
     }
     if (isSubpotentElement != null) {
       json['_isSubpotent'] = isSubpotentElement!.toJson();
@@ -334,17 +334,21 @@ class Immunization extends DomainResource {
 
   factory Immunization.fromJson(Map<String, dynamic> json) {
     return Immunization(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -373,8 +377,10 @@ class Immunization extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status: ImmunizationStatusCodes.fromJson(
-          json['status'] as Map<String, dynamic>),
+      status: ImmunizationStatusCodes.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       statusReason: json['statusReason'] != null
           ? CodeableConcept.fromJson(
               json['statusReason'] as Map<String, dynamic>)
@@ -386,25 +392,26 @@ class Immunization extends DomainResource {
           ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
           : null,
       occurrenceDateTime: json['occurrenceDateTime'] != null
-          ? FhirDateTime(json['occurrenceDateTime'])
+          ? FhirDateTime.fromJson(json['occurrenceDateTime'])
           : null,
       occurrenceDateTimeElement: json['_occurrenceDateTime'] != null
           ? Element.fromJson(
               json['_occurrenceDateTime'] as Map<String, dynamic>)
           : null,
       occurrenceString: json['occurrenceString'] != null
-          ? FhirString(json['occurrenceString'])
+          ? FhirString.fromJson(json['occurrenceString'])
           : null,
       occurrenceStringElement: json['_occurrenceString'] != null
           ? Element.fromJson(json['_occurrenceString'] as Map<String, dynamic>)
           : null,
-      recorded:
-          json['recorded'] != null ? FhirDateTime(json['recorded']) : null,
+      recorded: json['recorded'] != null
+          ? FhirDateTime.fromJson(json['recorded'])
+          : null,
       recordedElement: json['_recorded'] != null
           ? Element.fromJson(json['_recorded'] as Map<String, dynamic>)
           : null,
       primarySource: json['primarySource'] != null
-          ? FhirBoolean(json['primarySource'])
+          ? FhirBoolean.fromJson(json['primarySource'])
           : null,
       primarySourceElement: json['_primarySource'] != null
           ? Element.fromJson(json['_primarySource'] as Map<String, dynamic>)
@@ -419,13 +426,14 @@ class Immunization extends DomainResource {
       manufacturer: json['manufacturer'] != null
           ? Reference.fromJson(json['manufacturer'] as Map<String, dynamic>)
           : null,
-      lotNumber:
-          json['lotNumber'] != null ? FhirString(json['lotNumber']) : null,
+      lotNumber: json['lotNumber'] != null
+          ? FhirString.fromJson(json['lotNumber'])
+          : null,
       lotNumberElement: json['_lotNumber'] != null
           ? Element.fromJson(json['_lotNumber'] as Map<String, dynamic>)
           : null,
       expirationDate: json['expirationDate'] != null
-          ? FhirDate(json['expirationDate'])
+          ? FhirDate.fromJson(json['expirationDate'])
           : null,
       expirationDateElement: json['_expirationDate'] != null
           ? Element.fromJson(json['_expirationDate'] as Map<String, dynamic>)
@@ -463,8 +471,9 @@ class Immunization extends DomainResource {
                   (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      isSubpotent:
-          json['isSubpotent'] != null ? FhirBoolean(json['isSubpotent']) : null,
+      isSubpotent: json['isSubpotent'] != null
+          ? FhirBoolean.fromJson(json['isSubpotent'])
+          : null,
       isSubpotentElement: json['_isSubpotent'] != null
           ? Element.fromJson(json['_isSubpotent'] as Map<String, dynamic>)
           : null,
@@ -695,7 +704,7 @@ class ImmunizationPerformer extends BackboneElement {
 
   factory ImmunizationPerformer.fromJson(Map<String, dynamic> json) {
     return ImmunizationPerformer(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -826,25 +835,25 @@ class ImmunizationEducation extends BackboneElement {
           .toList();
     }
     if (documentType?.value != null) {
-      json['documentType'] = documentType!.value;
+      json['documentType'] = documentType!.toJson();
     }
     if (documentTypeElement != null) {
       json['_documentType'] = documentTypeElement!.toJson();
     }
     if (reference?.value != null) {
-      json['reference'] = reference!.value;
+      json['reference'] = reference!.toJson();
     }
     if (referenceElement != null) {
       json['_reference'] = referenceElement!.toJson();
     }
     if (publicationDate?.value != null) {
-      json['publicationDate'] = publicationDate!.value;
+      json['publicationDate'] = publicationDate!.toJson();
     }
     if (publicationDateElement != null) {
       json['_publicationDate'] = publicationDateElement!.toJson();
     }
     if (presentationDate?.value != null) {
-      json['presentationDate'] = presentationDate!.value;
+      json['presentationDate'] = presentationDate!.toJson();
     }
     if (presentationDateElement != null) {
       json['_presentationDate'] = presentationDateElement!.toJson();
@@ -854,7 +863,7 @@ class ImmunizationEducation extends BackboneElement {
 
   factory ImmunizationEducation.fromJson(Map<String, dynamic> json) {
     return ImmunizationEducation(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -868,23 +877,25 @@ class ImmunizationEducation extends BackboneElement {
               .toList()
           : null,
       documentType: json['documentType'] != null
-          ? FhirString(json['documentType'])
+          ? FhirString.fromJson(json['documentType'])
           : null,
       documentTypeElement: json['_documentType'] != null
           ? Element.fromJson(json['_documentType'] as Map<String, dynamic>)
           : null,
-      reference: json['reference'] != null ? FhirUri(json['reference']) : null,
+      reference: json['reference'] != null
+          ? FhirUri.fromJson(json['reference'])
+          : null,
       referenceElement: json['_reference'] != null
           ? Element.fromJson(json['_reference'] as Map<String, dynamic>)
           : null,
       publicationDate: json['publicationDate'] != null
-          ? FhirDateTime(json['publicationDate'])
+          ? FhirDateTime.fromJson(json['publicationDate'])
           : null,
       publicationDateElement: json['_publicationDate'] != null
           ? Element.fromJson(json['_publicationDate'] as Map<String, dynamic>)
           : null,
       presentationDate: json['presentationDate'] != null
-          ? FhirDateTime(json['presentationDate'])
+          ? FhirDateTime.fromJson(json['presentationDate'])
           : null,
       presentationDateElement: json['_presentationDate'] != null
           ? Element.fromJson(json['_presentationDate'] as Map<String, dynamic>)
@@ -1008,7 +1019,7 @@ class ImmunizationReaction extends BackboneElement {
           .toList();
     }
     if (date?.value != null) {
-      json['date'] = date!.value;
+      json['date'] = date!.toJson();
     }
     if (dateElement != null) {
       json['_date'] = dateElement!.toJson();
@@ -1017,7 +1028,7 @@ class ImmunizationReaction extends BackboneElement {
       json['detail'] = detail!.toJson();
     }
     if (reported?.value != null) {
-      json['reported'] = reported!.value;
+      json['reported'] = reported!.toJson();
     }
     if (reportedElement != null) {
       json['_reported'] = reportedElement!.toJson();
@@ -1027,7 +1038,7 @@ class ImmunizationReaction extends BackboneElement {
 
   factory ImmunizationReaction.fromJson(Map<String, dynamic> json) {
     return ImmunizationReaction(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1040,14 +1051,16 @@ class ImmunizationReaction extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      date: json['date'] != null ? FhirDateTime(json['date']) : null,
+      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
       dateElement: json['_date'] != null
           ? Element.fromJson(json['_date'] as Map<String, dynamic>)
           : null,
       detail: json['detail'] != null
           ? Reference.fromJson(json['detail'] as Map<String, dynamic>)
           : null,
-      reported: json['reported'] != null ? FhirBoolean(json['reported']) : null,
+      reported: json['reported'] != null
+          ? FhirBoolean.fromJson(json['reported'])
+          : null,
       reportedElement: json['_reported'] != null
           ? Element.fromJson(json['_reported'] as Map<String, dynamic>)
           : null,
@@ -1186,7 +1199,7 @@ class ImmunizationProtocolApplied extends BackboneElement {
           .toList();
     }
     if (series?.value != null) {
-      json['series'] = series!.value;
+      json['series'] = series!.toJson();
     }
     if (seriesElement != null) {
       json['_series'] = seriesElement!.toJson();
@@ -1200,25 +1213,25 @@ class ImmunizationProtocolApplied extends BackboneElement {
           .toList();
     }
     if (doseNumberPositiveInt?.value != null) {
-      json['doseNumberPositiveInt'] = doseNumberPositiveInt!.value;
+      json['doseNumberPositiveInt'] = doseNumberPositiveInt!.toJson();
     }
     if (doseNumberPositiveIntElement != null) {
       json['_doseNumberPositiveInt'] = doseNumberPositiveIntElement!.toJson();
     }
     if (doseNumberString?.value != null) {
-      json['doseNumberString'] = doseNumberString!.value;
+      json['doseNumberString'] = doseNumberString!.toJson();
     }
     if (doseNumberStringElement != null) {
       json['_doseNumberString'] = doseNumberStringElement!.toJson();
     }
     if (seriesDosesPositiveInt?.value != null) {
-      json['seriesDosesPositiveInt'] = seriesDosesPositiveInt!.value;
+      json['seriesDosesPositiveInt'] = seriesDosesPositiveInt!.toJson();
     }
     if (seriesDosesPositiveIntElement != null) {
       json['_seriesDosesPositiveInt'] = seriesDosesPositiveIntElement!.toJson();
     }
     if (seriesDosesString?.value != null) {
-      json['seriesDosesString'] = seriesDosesString!.value;
+      json['seriesDosesString'] = seriesDosesString!.toJson();
     }
     if (seriesDosesStringElement != null) {
       json['_seriesDosesString'] = seriesDosesStringElement!.toJson();
@@ -1228,7 +1241,7 @@ class ImmunizationProtocolApplied extends BackboneElement {
 
   factory ImmunizationProtocolApplied.fromJson(Map<String, dynamic> json) {
     return ImmunizationProtocolApplied(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1241,7 +1254,8 @@ class ImmunizationProtocolApplied extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      series: json['series'] != null ? FhirString(json['series']) : null,
+      series:
+          json['series'] != null ? FhirString.fromJson(json['series']) : null,
       seriesElement: json['_series'] != null
           ? Element.fromJson(json['_series'] as Map<String, dynamic>)
           : null,
@@ -1255,27 +1269,27 @@ class ImmunizationProtocolApplied extends BackboneElement {
               .toList()
           : null,
       doseNumberPositiveInt: json['doseNumberPositiveInt'] != null
-          ? FhirPositiveInt(json['doseNumberPositiveInt'])
+          ? FhirPositiveInt.fromJson(json['doseNumberPositiveInt'])
           : null,
       doseNumberPositiveIntElement: json['_doseNumberPositiveInt'] != null
           ? Element.fromJson(
               json['_doseNumberPositiveInt'] as Map<String, dynamic>)
           : null,
       doseNumberString: json['doseNumberString'] != null
-          ? FhirString(json['doseNumberString'])
+          ? FhirString.fromJson(json['doseNumberString'])
           : null,
       doseNumberStringElement: json['_doseNumberString'] != null
           ? Element.fromJson(json['_doseNumberString'] as Map<String, dynamic>)
           : null,
       seriesDosesPositiveInt: json['seriesDosesPositiveInt'] != null
-          ? FhirPositiveInt(json['seriesDosesPositiveInt'])
+          ? FhirPositiveInt.fromJson(json['seriesDosesPositiveInt'])
           : null,
       seriesDosesPositiveIntElement: json['_seriesDosesPositiveInt'] != null
           ? Element.fromJson(
               json['_seriesDosesPositiveInt'] as Map<String, dynamic>)
           : null,
       seriesDosesString: json['seriesDosesString'] != null
-          ? FhirString(json['seriesDosesString'])
+          ? FhirString.fromJson(json['seriesDosesString'])
           : null,
       seriesDosesStringElement: json['_seriesDosesString'] != null
           ? Element.fromJson(json['_seriesDosesString'] as Map<String, dynamic>)

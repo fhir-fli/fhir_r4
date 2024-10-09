@@ -82,31 +82,31 @@ class HumanName extends DataType {
       json['use'] = use!.toJson();
     }
     if (text?.value != null) {
-      json['text'] = text!.value;
+      json['text'] = text!.toJson();
     }
     if (textElement != null) {
       json['_text'] = textElement!.toJson();
     }
     if (family?.value != null) {
-      json['family'] = family!.value;
+      json['family'] = family!.toJson();
     }
     if (familyElement != null) {
       json['_family'] = familyElement!.toJson();
     }
     if (given != null && given!.isNotEmpty) {
-      json['given'] = given!.map((FhirString v) => v.value).toList();
+      json['given'] = given!.map((FhirString v) => v.toJson()).toList();
     }
     if (givenElement != null && givenElement!.isNotEmpty) {
       json['_given'] = givenElement!.map((Element v) => v.toJson()).toList();
     }
     if (prefix != null && prefix!.isNotEmpty) {
-      json['prefix'] = prefix!.map((FhirString v) => v.value).toList();
+      json['prefix'] = prefix!.map((FhirString v) => v.toJson()).toList();
     }
     if (prefixElement != null && prefixElement!.isNotEmpty) {
       json['_prefix'] = prefixElement!.map((Element v) => v.toJson()).toList();
     }
     if (suffix != null && suffix!.isNotEmpty) {
-      json['suffix'] = suffix!.map((FhirString v) => v.value).toList();
+      json['suffix'] = suffix!.map((FhirString v) => v.toJson()).toList();
     }
     if (suffixElement != null && suffixElement!.isNotEmpty) {
       json['_suffix'] = suffixElement!.map((Element v) => v.toJson()).toList();
@@ -119,21 +119,23 @@ class HumanName extends DataType {
 
   factory HumanName.fromJson(Map<String, dynamic> json) {
     return HumanName(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      use: json['use'] != null
-          ? NameUse.fromJson(json['use'] as Map<String, dynamic>)
+      use: json['use'] != null ? NameUse.fromJson(json['use']) : null,
+      useElement: json['_use'] != null
+          ? Element.fromJson(json['_use'] as Map<String, dynamic>)
           : null,
-      text: json['text'] != null ? FhirString(json['text']) : null,
+      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
       textElement: json['_text'] != null
           ? Element.fromJson(json['_text'] as Map<String, dynamic>)
           : null,
-      family: json['family'] != null ? FhirString(json['family']) : null,
+      family:
+          json['family'] != null ? FhirString.fromJson(json['family']) : null,
       familyElement: json['_family'] != null
           ? Element.fromJson(json['_family'] as Map<String, dynamic>)
           : null,

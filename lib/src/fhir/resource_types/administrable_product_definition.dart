@@ -119,7 +119,7 @@ class AdministrableProductDefinition extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -184,17 +184,21 @@ class AdministrableProductDefinition extends DomainResource {
 
   factory AdministrableProductDefinition.fromJson(Map<String, dynamic> json) {
     return AdministrableProductDefinition(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -223,8 +227,10 @@ class AdministrableProductDefinition extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status:
-          PublicationStatus.fromJson(json['status'] as Map<String, dynamic>),
+      status: PublicationStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       formOf: json['formOf'] != null
           ? (json['formOf'] as List<dynamic>)
               .map<Reference>(
@@ -430,13 +436,13 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
       json['valueQuantity'] = valueQuantity!.toJson();
     }
     if (valueDate?.value != null) {
-      json['valueDate'] = valueDate!.value;
+      json['valueDate'] = valueDate!.toJson();
     }
     if (valueDateElement != null) {
       json['_valueDate'] = valueDateElement!.toJson();
     }
     if (valueBoolean?.value != null) {
-      json['valueBoolean'] = valueBoolean!.value;
+      json['valueBoolean'] = valueBoolean!.toJson();
     }
     if (valueBooleanElement != null) {
       json['_valueBoolean'] = valueBooleanElement!.toJson();
@@ -453,7 +459,7 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
   factory AdministrableProductDefinitionProperty.fromJson(
       Map<String, dynamic> json) {
     return AdministrableProductDefinitionProperty(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -474,12 +480,14 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
       valueQuantity: json['valueQuantity'] != null
           ? Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>)
           : null,
-      valueDate: json['valueDate'] != null ? FhirDate(json['valueDate']) : null,
+      valueDate: json['valueDate'] != null
+          ? FhirDate.fromJson(json['valueDate'])
+          : null,
       valueDateElement: json['_valueDate'] != null
           ? Element.fromJson(json['_valueDate'] as Map<String, dynamic>)
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean(json['valueBoolean'])
+          ? FhirBoolean.fromJson(json['valueBoolean'])
           : null,
       valueBooleanElement: json['_valueBoolean'] != null
           ? Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>)
@@ -655,7 +663,7 @@ class AdministrableProductDefinitionRouteOfAdministration
   factory AdministrableProductDefinitionRouteOfAdministration.fromJson(
       Map<String, dynamic> json) {
     return AdministrableProductDefinitionRouteOfAdministration(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -817,7 +825,7 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
   factory AdministrableProductDefinitionTargetSpecies.fromJson(
       Map<String, dynamic> json) {
     return AdministrableProductDefinitionTargetSpecies(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -948,7 +956,7 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
     json['tissue'] = tissue.toJson();
     json['value'] = value.toJson();
     if (supportingInformation?.value != null) {
-      json['supportingInformation'] = supportingInformation!.value;
+      json['supportingInformation'] = supportingInformation!.toJson();
     }
     if (supportingInformationElement != null) {
       json['_supportingInformation'] = supportingInformationElement!.toJson();
@@ -959,7 +967,7 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
   factory AdministrableProductDefinitionWithdrawalPeriod.fromJson(
       Map<String, dynamic> json) {
     return AdministrableProductDefinitionWithdrawalPeriod(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -975,7 +983,7 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
       tissue: CodeableConcept.fromJson(json['tissue'] as Map<String, dynamic>),
       value: Quantity.fromJson(json['value'] as Map<String, dynamic>),
       supportingInformation: json['supportingInformation'] != null
-          ? FhirString(json['supportingInformation'])
+          ? FhirString.fromJson(json['supportingInformation'])
           : null,
       supportingInformationElement: json['_supportingInformation'] != null
           ? Element.fromJson(

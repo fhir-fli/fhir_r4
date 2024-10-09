@@ -179,7 +179,7 @@ class ClaimResponse extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -214,7 +214,7 @@ class ClaimResponse extends DomainResource {
     }
     json['use'] = use.toJson();
     json['patient'] = patient.toJson();
-    json['created'] = created.value;
+    json['created'] = created.toJson();
     if (createdElement != null) {
       json['_created'] = createdElement!.toJson();
     }
@@ -227,13 +227,13 @@ class ClaimResponse extends DomainResource {
     }
     json['outcome'] = outcome.toJson();
     if (disposition?.value != null) {
-      json['disposition'] = disposition!.value;
+      json['disposition'] = disposition!.toJson();
     }
     if (dispositionElement != null) {
       json['_disposition'] = dispositionElement!.toJson();
     }
     if (preAuthRef?.value != null) {
-      json['preAuthRef'] = preAuthRef!.value;
+      json['preAuthRef'] = preAuthRef!.toJson();
     }
     if (preAuthRefElement != null) {
       json['_preAuthRef'] = preAuthRefElement!.toJson();
@@ -298,17 +298,21 @@ class ClaimResponse extends DomainResource {
 
   factory ClaimResponse.fromJson(Map<String, dynamic> json) {
     return ClaimResponse(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -337,15 +341,20 @@ class ClaimResponse extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status: FinancialResourceStatusCodes.fromJson(
-          json['status'] as Map<String, dynamic>),
+      status: FinancialResourceStatusCodes.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       subType: json['subType'] != null
           ? CodeableConcept.fromJson(json['subType'] as Map<String, dynamic>)
           : null,
-      use: Use.fromJson(json['use'] as Map<String, dynamic>),
+      use: Use.fromJson(json['use']),
+      useElement: json['_use'] != null
+          ? Element.fromJson(json['_use'] as Map<String, dynamic>)
+          : null,
       patient: Reference.fromJson(json['patient'] as Map<String, dynamic>),
-      created: FhirDateTime(json['created']),
+      created: FhirDateTime.fromJson(json['created']),
       createdElement: json['_created'] != null
           ? Element.fromJson(json['_created'] as Map<String, dynamic>)
           : null,
@@ -356,15 +365,19 @@ class ClaimResponse extends DomainResource {
       request: json['request'] != null
           ? Reference.fromJson(json['request'] as Map<String, dynamic>)
           : null,
-      outcome:
-          RemittanceOutcome.fromJson(json['outcome'] as Map<String, dynamic>),
-      disposition:
-          json['disposition'] != null ? FhirString(json['disposition']) : null,
+      outcome: RemittanceOutcome.fromJson(json['outcome']),
+      outcomeElement: json['_outcome'] != null
+          ? Element.fromJson(json['_outcome'] as Map<String, dynamic>)
+          : null,
+      disposition: json['disposition'] != null
+          ? FhirString.fromJson(json['disposition'])
+          : null,
       dispositionElement: json['_disposition'] != null
           ? Element.fromJson(json['_disposition'] as Map<String, dynamic>)
           : null,
-      preAuthRef:
-          json['preAuthRef'] != null ? FhirString(json['preAuthRef']) : null,
+      preAuthRef: json['preAuthRef'] != null
+          ? FhirString.fromJson(json['preAuthRef'])
+          : null,
       preAuthRefElement: json['_preAuthRef'] != null
           ? Element.fromJson(json['_preAuthRef'] as Map<String, dynamic>)
           : null,
@@ -624,13 +637,13 @@ class ClaimResponseItem extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['itemSequence'] = itemSequence.value;
+    json['itemSequence'] = itemSequence.toJson();
     if (itemSequenceElement != null) {
       json['_itemSequence'] = itemSequenceElement!.toJson();
     }
     if (noteNumber != null && noteNumber!.isNotEmpty) {
       json['noteNumber'] =
-          noteNumber!.map((FhirPositiveInt v) => v.value).toList();
+          noteNumber!.map((FhirPositiveInt v) => v.toJson()).toList();
     }
     if (noteNumberElement != null && noteNumberElement!.isNotEmpty) {
       json['_noteNumber'] =
@@ -648,7 +661,7 @@ class ClaimResponseItem extends BackboneElement {
 
   factory ClaimResponseItem.fromJson(Map<String, dynamic> json) {
     return ClaimResponseItem(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -661,7 +674,7 @@ class ClaimResponseItem extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      itemSequence: FhirPositiveInt(json['itemSequence']),
+      itemSequence: FhirPositiveInt.fromJson(json['itemSequence']),
       itemSequenceElement: json['_itemSequence'] != null
           ? Element.fromJson(json['_itemSequence'] as Map<String, dynamic>)
           : null,
@@ -816,7 +829,7 @@ class ClaimResponseAdjudication extends BackboneElement {
       json['amount'] = amount!.toJson();
     }
     if (value?.value != null) {
-      json['value'] = value!.value;
+      json['value'] = value!.toJson();
     }
     if (valueElement != null) {
       json['_value'] = valueElement!.toJson();
@@ -826,7 +839,7 @@ class ClaimResponseAdjudication extends BackboneElement {
 
   factory ClaimResponseAdjudication.fromJson(Map<String, dynamic> json) {
     return ClaimResponseAdjudication(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -847,7 +860,7 @@ class ClaimResponseAdjudication extends BackboneElement {
       amount: json['amount'] != null
           ? Money.fromJson(json['amount'] as Map<String, dynamic>)
           : null,
-      value: json['value'] != null ? FhirDecimal(json['value']) : null,
+      value: json['value'] != null ? FhirDecimal.fromJson(json['value']) : null,
       valueElement: json['_value'] != null
           ? Element.fromJson(json['_value'] as Map<String, dynamic>)
           : null,
@@ -966,13 +979,13 @@ class ClaimResponseDetail extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['detailSequence'] = detailSequence.value;
+    json['detailSequence'] = detailSequence.toJson();
     if (detailSequenceElement != null) {
       json['_detailSequence'] = detailSequenceElement!.toJson();
     }
     if (noteNumber != null && noteNumber!.isNotEmpty) {
       json['noteNumber'] =
-          noteNumber!.map((FhirPositiveInt v) => v.value).toList();
+          noteNumber!.map((FhirPositiveInt v) => v.toJson()).toList();
     }
     if (noteNumberElement != null && noteNumberElement!.isNotEmpty) {
       json['_noteNumber'] =
@@ -991,7 +1004,7 @@ class ClaimResponseDetail extends BackboneElement {
 
   factory ClaimResponseDetail.fromJson(Map<String, dynamic> json) {
     return ClaimResponseDetail(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1004,7 +1017,7 @@ class ClaimResponseDetail extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      detailSequence: FhirPositiveInt(json['detailSequence']),
+      detailSequence: FhirPositiveInt.fromJson(json['detailSequence']),
       detailSequenceElement: json['_detailSequence'] != null
           ? Element.fromJson(json['_detailSequence'] as Map<String, dynamic>)
           : null,
@@ -1143,13 +1156,13 @@ class ClaimResponseSubDetail extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['subDetailSequence'] = subDetailSequence.value;
+    json['subDetailSequence'] = subDetailSequence.toJson();
     if (subDetailSequenceElement != null) {
       json['_subDetailSequence'] = subDetailSequenceElement!.toJson();
     }
     if (noteNumber != null && noteNumber!.isNotEmpty) {
       json['noteNumber'] =
-          noteNumber!.map((FhirPositiveInt v) => v.value).toList();
+          noteNumber!.map((FhirPositiveInt v) => v.toJson()).toList();
     }
     if (noteNumberElement != null && noteNumberElement!.isNotEmpty) {
       json['_noteNumber'] =
@@ -1165,7 +1178,7 @@ class ClaimResponseSubDetail extends BackboneElement {
 
   factory ClaimResponseSubDetail.fromJson(Map<String, dynamic> json) {
     return ClaimResponseSubDetail(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1178,7 +1191,7 @@ class ClaimResponseSubDetail extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      subDetailSequence: FhirPositiveInt(json['subDetailSequence']),
+      subDetailSequence: FhirPositiveInt.fromJson(json['subDetailSequence']),
       subDetailSequenceElement: json['_subDetailSequence'] != null
           ? Element.fromJson(json['_subDetailSequence'] as Map<String, dynamic>)
           : null,
@@ -1406,7 +1419,7 @@ class ClaimResponseAddItem extends BackboneElement {
     }
     if (itemSequence != null && itemSequence!.isNotEmpty) {
       json['itemSequence'] =
-          itemSequence!.map((FhirPositiveInt v) => v.value).toList();
+          itemSequence!.map((FhirPositiveInt v) => v.toJson()).toList();
     }
     if (itemSequenceElement != null && itemSequenceElement!.isNotEmpty) {
       json['_itemSequence'] =
@@ -1414,7 +1427,7 @@ class ClaimResponseAddItem extends BackboneElement {
     }
     if (detailSequence != null && detailSequence!.isNotEmpty) {
       json['detailSequence'] =
-          detailSequence!.map((FhirPositiveInt v) => v.value).toList();
+          detailSequence!.map((FhirPositiveInt v) => v.toJson()).toList();
     }
     if (detailSequenceElement != null && detailSequenceElement!.isNotEmpty) {
       json['_detailSequence'] =
@@ -1422,7 +1435,7 @@ class ClaimResponseAddItem extends BackboneElement {
     }
     if (subdetailSequence != null && subdetailSequence!.isNotEmpty) {
       json['subdetailSequence'] =
-          subdetailSequence!.map((FhirPositiveInt v) => v.value).toList();
+          subdetailSequence!.map((FhirPositiveInt v) => v.toJson()).toList();
     }
     if (subdetailSequenceElement != null &&
         subdetailSequenceElement!.isNotEmpty) {
@@ -1443,7 +1456,7 @@ class ClaimResponseAddItem extends BackboneElement {
           programCode!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
     }
     if (servicedDate?.value != null) {
-      json['servicedDate'] = servicedDate!.value;
+      json['servicedDate'] = servicedDate!.toJson();
     }
     if (servicedDateElement != null) {
       json['_servicedDate'] = servicedDateElement!.toJson();
@@ -1467,7 +1480,7 @@ class ClaimResponseAddItem extends BackboneElement {
       json['unitPrice'] = unitPrice!.toJson();
     }
     if (factor?.value != null) {
-      json['factor'] = factor!.value;
+      json['factor'] = factor!.toJson();
     }
     if (factorElement != null) {
       json['_factor'] = factorElement!.toJson();
@@ -1484,7 +1497,7 @@ class ClaimResponseAddItem extends BackboneElement {
     }
     if (noteNumber != null && noteNumber!.isNotEmpty) {
       json['noteNumber'] =
-          noteNumber!.map((FhirPositiveInt v) => v.value).toList();
+          noteNumber!.map((FhirPositiveInt v) => v.toJson()).toList();
     }
     if (noteNumberElement != null && noteNumberElement!.isNotEmpty) {
       json['_noteNumber'] =
@@ -1502,7 +1515,7 @@ class ClaimResponseAddItem extends BackboneElement {
 
   factory ClaimResponseAddItem.fromJson(Map<String, dynamic> json) {
     return ClaimResponseAddItem(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1571,8 +1584,9 @@ class ClaimResponseAddItem extends BackboneElement {
                   CodeableConcept.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      servicedDate:
-          json['servicedDate'] != null ? FhirDate(json['servicedDate']) : null,
+      servicedDate: json['servicedDate'] != null
+          ? FhirDate.fromJson(json['servicedDate'])
+          : null,
       servicedDateElement: json['_servicedDate'] != null
           ? Element.fromJson(json['_servicedDate'] as Map<String, dynamic>)
           : null,
@@ -1596,7 +1610,8 @@ class ClaimResponseAddItem extends BackboneElement {
       unitPrice: json['unitPrice'] != null
           ? Money.fromJson(json['unitPrice'] as Map<String, dynamic>)
           : null,
-      factor: json['factor'] != null ? FhirDecimal(json['factor']) : null,
+      factor:
+          json['factor'] != null ? FhirDecimal.fromJson(json['factor']) : null,
       factorElement: json['_factor'] != null
           ? Element.fromJson(json['_factor'] as Map<String, dynamic>)
           : null,
@@ -1835,7 +1850,7 @@ class ClaimResponseDetail1 extends BackboneElement {
       json['unitPrice'] = unitPrice!.toJson();
     }
     if (factor?.value != null) {
-      json['factor'] = factor!.value;
+      json['factor'] = factor!.toJson();
     }
     if (factorElement != null) {
       json['_factor'] = factorElement!.toJson();
@@ -1845,7 +1860,7 @@ class ClaimResponseDetail1 extends BackboneElement {
     }
     if (noteNumber != null && noteNumber!.isNotEmpty) {
       json['noteNumber'] =
-          noteNumber!.map((FhirPositiveInt v) => v.value).toList();
+          noteNumber!.map((FhirPositiveInt v) => v.toJson()).toList();
     }
     if (noteNumberElement != null && noteNumberElement!.isNotEmpty) {
       json['_noteNumber'] =
@@ -1864,7 +1879,7 @@ class ClaimResponseDetail1 extends BackboneElement {
 
   factory ClaimResponseDetail1.fromJson(Map<String, dynamic> json) {
     return ClaimResponseDetail1(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1891,7 +1906,8 @@ class ClaimResponseDetail1 extends BackboneElement {
       unitPrice: json['unitPrice'] != null
           ? Money.fromJson(json['unitPrice'] as Map<String, dynamic>)
           : null,
-      factor: json['factor'] != null ? FhirDecimal(json['factor']) : null,
+      factor:
+          json['factor'] != null ? FhirDecimal.fromJson(json['factor']) : null,
       factorElement: json['_factor'] != null
           ? Element.fromJson(json['_factor'] as Map<String, dynamic>)
           : null,
@@ -2082,7 +2098,7 @@ class ClaimResponseSubDetail1 extends BackboneElement {
       json['unitPrice'] = unitPrice!.toJson();
     }
     if (factor?.value != null) {
-      json['factor'] = factor!.value;
+      json['factor'] = factor!.toJson();
     }
     if (factorElement != null) {
       json['_factor'] = factorElement!.toJson();
@@ -2092,7 +2108,7 @@ class ClaimResponseSubDetail1 extends BackboneElement {
     }
     if (noteNumber != null && noteNumber!.isNotEmpty) {
       json['noteNumber'] =
-          noteNumber!.map((FhirPositiveInt v) => v.value).toList();
+          noteNumber!.map((FhirPositiveInt v) => v.toJson()).toList();
     }
     if (noteNumberElement != null && noteNumberElement!.isNotEmpty) {
       json['_noteNumber'] =
@@ -2106,7 +2122,7 @@ class ClaimResponseSubDetail1 extends BackboneElement {
 
   factory ClaimResponseSubDetail1.fromJson(Map<String, dynamic> json) {
     return ClaimResponseSubDetail1(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2133,7 +2149,8 @@ class ClaimResponseSubDetail1 extends BackboneElement {
       unitPrice: json['unitPrice'] != null
           ? Money.fromJson(json['unitPrice'] as Map<String, dynamic>)
           : null,
-      factor: json['factor'] != null ? FhirDecimal(json['factor']) : null,
+      factor:
+          json['factor'] != null ? FhirDecimal.fromJson(json['factor']) : null,
       factorElement: json['_factor'] != null
           ? Element.fromJson(json['_factor'] as Map<String, dynamic>)
           : null,
@@ -2278,7 +2295,7 @@ class ClaimResponseTotal extends BackboneElement {
 
   factory ClaimResponseTotal.fromJson(Map<String, dynamic> json) {
     return ClaimResponseTotal(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2418,7 +2435,7 @@ class ClaimResponsePayment extends BackboneElement {
       json['adjustmentReason'] = adjustmentReason!.toJson();
     }
     if (date?.value != null) {
-      json['date'] = date!.value;
+      json['date'] = date!.toJson();
     }
     if (dateElement != null) {
       json['_date'] = dateElement!.toJson();
@@ -2432,7 +2449,7 @@ class ClaimResponsePayment extends BackboneElement {
 
   factory ClaimResponsePayment.fromJson(Map<String, dynamic> json) {
     return ClaimResponsePayment(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2453,7 +2470,7 @@ class ClaimResponsePayment extends BackboneElement {
           ? CodeableConcept.fromJson(
               json['adjustmentReason'] as Map<String, dynamic>)
           : null,
-      date: json['date'] != null ? FhirDate(json['date']) : null,
+      date: json['date'] != null ? FhirDate.fromJson(json['date']) : null,
       dateElement: json['_date'] != null
           ? Element.fromJson(json['_date'] as Map<String, dynamic>)
           : null,
@@ -2582,7 +2599,7 @@ class ClaimResponseProcessNote extends BackboneElement {
           .toList();
     }
     if (number?.value != null) {
-      json['number'] = number!.value;
+      json['number'] = number!.toJson();
     }
     if (numberElement != null) {
       json['_number'] = numberElement!.toJson();
@@ -2590,7 +2607,7 @@ class ClaimResponseProcessNote extends BackboneElement {
     if (type != null) {
       json['type'] = type!.toJson();
     }
-    json['text'] = text.value;
+    json['text'] = text.toJson();
     if (textElement != null) {
       json['_text'] = textElement!.toJson();
     }
@@ -2602,7 +2619,7 @@ class ClaimResponseProcessNote extends BackboneElement {
 
   factory ClaimResponseProcessNote.fromJson(Map<String, dynamic> json) {
     return ClaimResponseProcessNote(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2615,14 +2632,17 @@ class ClaimResponseProcessNote extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      number: json['number'] != null ? FhirPositiveInt(json['number']) : null,
+      number: json['number'] != null
+          ? FhirPositiveInt.fromJson(json['number'])
+          : null,
       numberElement: json['_number'] != null
           ? Element.fromJson(json['_number'] as Map<String, dynamic>)
           : null,
-      type: json['type'] != null
-          ? NoteType.fromJson(json['type'] as Map<String, dynamic>)
+      type: json['type'] != null ? NoteType.fromJson(json['type']) : null,
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
           : null,
-      text: FhirString(json['text']),
+      text: FhirString.fromJson(json['text']),
       textElement: json['_text'] != null
           ? Element.fromJson(json['_text'] as Map<String, dynamic>)
           : null,
@@ -2759,17 +2779,17 @@ class ClaimResponseInsurance extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['sequence'] = sequence.value;
+    json['sequence'] = sequence.toJson();
     if (sequenceElement != null) {
       json['_sequence'] = sequenceElement!.toJson();
     }
-    json['focal'] = focal.value;
+    json['focal'] = focal.toJson();
     if (focalElement != null) {
       json['_focal'] = focalElement!.toJson();
     }
     json['coverage'] = coverage.toJson();
     if (businessArrangement?.value != null) {
-      json['businessArrangement'] = businessArrangement!.value;
+      json['businessArrangement'] = businessArrangement!.toJson();
     }
     if (businessArrangementElement != null) {
       json['_businessArrangement'] = businessArrangementElement!.toJson();
@@ -2782,7 +2802,7 @@ class ClaimResponseInsurance extends BackboneElement {
 
   factory ClaimResponseInsurance.fromJson(Map<String, dynamic> json) {
     return ClaimResponseInsurance(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2795,17 +2815,17 @@ class ClaimResponseInsurance extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      sequence: FhirPositiveInt(json['sequence']),
+      sequence: FhirPositiveInt.fromJson(json['sequence']),
       sequenceElement: json['_sequence'] != null
           ? Element.fromJson(json['_sequence'] as Map<String, dynamic>)
           : null,
-      focal: FhirBoolean(json['focal']),
+      focal: FhirBoolean.fromJson(json['focal']),
       focalElement: json['_focal'] != null
           ? Element.fromJson(json['_focal'] as Map<String, dynamic>)
           : null,
       coverage: Reference.fromJson(json['coverage'] as Map<String, dynamic>),
       businessArrangement: json['businessArrangement'] != null
-          ? FhirString(json['businessArrangement'])
+          ? FhirString.fromJson(json['businessArrangement'])
           : null,
       businessArrangementElement: json['_businessArrangement'] != null
           ? Element.fromJson(
@@ -2943,19 +2963,19 @@ class ClaimResponseError extends BackboneElement {
           .toList();
     }
     if (itemSequence?.value != null) {
-      json['itemSequence'] = itemSequence!.value;
+      json['itemSequence'] = itemSequence!.toJson();
     }
     if (itemSequenceElement != null) {
       json['_itemSequence'] = itemSequenceElement!.toJson();
     }
     if (detailSequence?.value != null) {
-      json['detailSequence'] = detailSequence!.value;
+      json['detailSequence'] = detailSequence!.toJson();
     }
     if (detailSequenceElement != null) {
       json['_detailSequence'] = detailSequenceElement!.toJson();
     }
     if (subDetailSequence?.value != null) {
-      json['subDetailSequence'] = subDetailSequence!.value;
+      json['subDetailSequence'] = subDetailSequence!.toJson();
     }
     if (subDetailSequenceElement != null) {
       json['_subDetailSequence'] = subDetailSequenceElement!.toJson();
@@ -2966,7 +2986,7 @@ class ClaimResponseError extends BackboneElement {
 
   factory ClaimResponseError.fromJson(Map<String, dynamic> json) {
     return ClaimResponseError(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2980,19 +3000,19 @@ class ClaimResponseError extends BackboneElement {
               .toList()
           : null,
       itemSequence: json['itemSequence'] != null
-          ? FhirPositiveInt(json['itemSequence'])
+          ? FhirPositiveInt.fromJson(json['itemSequence'])
           : null,
       itemSequenceElement: json['_itemSequence'] != null
           ? Element.fromJson(json['_itemSequence'] as Map<String, dynamic>)
           : null,
       detailSequence: json['detailSequence'] != null
-          ? FhirPositiveInt(json['detailSequence'])
+          ? FhirPositiveInt.fromJson(json['detailSequence'])
           : null,
       detailSequenceElement: json['_detailSequence'] != null
           ? Element.fromJson(json['_detailSequence'] as Map<String, dynamic>)
           : null,
       subDetailSequence: json['subDetailSequence'] != null
-          ? FhirPositiveInt(json['subDetailSequence'])
+          ? FhirPositiveInt.fromJson(json['subDetailSequence'])
           : null,
       subDetailSequenceElement: json['_subDetailSequence'] != null
           ? Element.fromJson(json['_subDetailSequence'] as Map<String, dynamic>)

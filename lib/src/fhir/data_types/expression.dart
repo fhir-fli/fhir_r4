@@ -67,26 +67,26 @@ class FhirExpression extends DataType {
           extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
     }
     if (name?.value != null) {
-      json['name'] = name!.value;
+      json['name'] = name!.toJson();
     }
     if (nameElement != null) {
       json['_name'] = nameElement!.toJson();
     }
     json['language'] = language.toJson();
     if (expression?.value != null) {
-      json['expression'] = expression!.value;
+      json['expression'] = expression!.toJson();
     }
     if (expressionElement != null) {
       json['_expression'] = expressionElement!.toJson();
     }
     if (reference?.value != null) {
-      json['reference'] = reference!.value;
+      json['reference'] = reference!.toJson();
     }
     if (referenceElement != null) {
       json['_reference'] = referenceElement!.toJson();
@@ -96,30 +96,36 @@ class FhirExpression extends DataType {
 
   factory FhirExpression.fromJson(Map<String, dynamic> json) {
     return FhirExpression(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      description:
-          json['description'] != null ? FhirString(json['description']) : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
           : null,
-      name: json['name'] != null ? FhirId(json['name']) : null,
+      name: json['name'] != null ? FhirId.fromJson(json['name']) : null,
       nameElement: json['_name'] != null
           ? Element.fromJson(json['_name'] as Map<String, dynamic>)
           : null,
-      language:
-          ExpressionLanguage.fromJson(json['language'] as Map<String, dynamic>),
-      expression:
-          json['expression'] != null ? FhirString(json['expression']) : null,
+      language: ExpressionLanguage.fromJson(json['language']),
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
+          : null,
+      expression: json['expression'] != null
+          ? FhirString.fromJson(json['expression'])
+          : null,
       expressionElement: json['_expression'] != null
           ? Element.fromJson(json['_expression'] as Map<String, dynamic>)
           : null,
-      reference: json['reference'] != null ? FhirUri(json['reference']) : null,
+      reference: json['reference'] != null
+          ? FhirUri.fromJson(json['reference'])
+          : null,
       referenceElement: json['_reference'] != null
           ? Element.fromJson(json['_reference'] as Map<String, dynamic>)
           : null,

@@ -77,7 +77,7 @@ class Bundle extends Resource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -90,13 +90,13 @@ class Bundle extends Resource {
     }
     json['type'] = type.toJson();
     if (timestamp?.value != null) {
-      json['timestamp'] = timestamp!.value;
+      json['timestamp'] = timestamp!.toJson();
     }
     if (timestampElement != null) {
       json['_timestamp'] = timestampElement!.toJson();
     }
     if (total?.value != null) {
-      json['total'] = total!.value;
+      json['total'] = total!.toJson();
     }
     if (totalElement != null) {
       json['_total'] = totalElement!.toJson();
@@ -116,28 +116,38 @@ class Bundle extends Resource {
 
   factory Bundle.fromJson(Map<String, dynamic> json) {
     return Bundle(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       identifier: json['identifier'] != null
           ? Identifier.fromJson(json['identifier'] as Map<String, dynamic>)
           : null,
-      type: BundleType.fromJson(json['type'] as Map<String, dynamic>),
-      timestamp:
-          json['timestamp'] != null ? FhirInstant(json['timestamp']) : null,
+      type: BundleType.fromJson(json['type']),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
+          : null,
+      timestamp: json['timestamp'] != null
+          ? FhirInstant.fromJson(json['timestamp'])
+          : null,
       timestampElement: json['_timestamp'] != null
           ? Element.fromJson(json['_timestamp'] as Map<String, dynamic>)
           : null,
-      total: json['total'] != null ? FhirUnsignedInt(json['total']) : null,
+      total: json['total'] != null
+          ? FhirUnsignedInt.fromJson(json['total'])
+          : null,
       totalElement: json['_total'] != null
           ? Element.fromJson(json['_total'] as Map<String, dynamic>)
           : null,
@@ -278,11 +288,11 @@ class BundleLink extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['relation'] = relation.value;
+    json['relation'] = relation.toJson();
     if (relationElement != null) {
       json['_relation'] = relationElement!.toJson();
     }
-    json['url'] = url.value;
+    json['url'] = url.toJson();
     if (urlElement != null) {
       json['_url'] = urlElement!.toJson();
     }
@@ -291,7 +301,7 @@ class BundleLink extends BackboneElement {
 
   factory BundleLink.fromJson(Map<String, dynamic> json) {
     return BundleLink(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -304,11 +314,11 @@ class BundleLink extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      relation: FhirString(json['relation']),
+      relation: FhirString.fromJson(json['relation']),
       relationElement: json['_relation'] != null
           ? Element.fromJson(json['_relation'] as Map<String, dynamic>)
           : null,
-      url: FhirUri(json['url']),
+      url: FhirUri.fromJson(json['url']),
       urlElement: json['_url'] != null
           ? Element.fromJson(json['_url'] as Map<String, dynamic>)
           : null,
@@ -447,7 +457,7 @@ class BundleEntry extends BackboneElement {
       json['link'] = link!.map<dynamic>((BundleLink v) => v.toJson()).toList();
     }
     if (fullUrl?.value != null) {
-      json['fullUrl'] = fullUrl!.value;
+      json['fullUrl'] = fullUrl!.toJson();
     }
     if (fullUrlElement != null) {
       json['_fullUrl'] = fullUrlElement!.toJson();
@@ -469,7 +479,7 @@ class BundleEntry extends BackboneElement {
 
   factory BundleEntry.fromJson(Map<String, dynamic> json) {
     return BundleEntry(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -488,7 +498,8 @@ class BundleEntry extends BackboneElement {
                   (dynamic v) => BundleLink.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      fullUrl: json['fullUrl'] != null ? FhirUri(json['fullUrl']) : null,
+      fullUrl:
+          json['fullUrl'] != null ? FhirUri.fromJson(json['fullUrl']) : null,
       fullUrlElement: json['_fullUrl'] != null
           ? Element.fromJson(json['_fullUrl'] as Map<String, dynamic>)
           : null,
@@ -620,7 +631,7 @@ class BundleSearch extends BackboneElement {
       json['mode'] = mode!.toJson();
     }
     if (score?.value != null) {
-      json['score'] = score!.value;
+      json['score'] = score!.toJson();
     }
     if (scoreElement != null) {
       json['_score'] = scoreElement!.toJson();
@@ -630,7 +641,7 @@ class BundleSearch extends BackboneElement {
 
   factory BundleSearch.fromJson(Map<String, dynamic> json) {
     return BundleSearch(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -643,10 +654,12 @@ class BundleSearch extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      mode: json['mode'] != null
-          ? SearchEntryMode.fromJson(json['mode'] as Map<String, dynamic>)
+      mode:
+          json['mode'] != null ? SearchEntryMode.fromJson(json['mode']) : null,
+      modeElement: json['_mode'] != null
+          ? Element.fromJson(json['_mode'] as Map<String, dynamic>)
           : null,
-      score: json['score'] != null ? FhirDecimal(json['score']) : null,
+      score: json['score'] != null ? FhirDecimal.fromJson(json['score']) : null,
       scoreElement: json['_score'] != null
           ? Element.fromJson(json['_score'] as Map<String, dynamic>)
           : null,
@@ -789,30 +802,30 @@ class BundleRequest extends BackboneElement {
           .toList();
     }
     json['method'] = method.toJson();
-    json['url'] = url.value;
+    json['url'] = url.toJson();
     if (urlElement != null) {
       json['_url'] = urlElement!.toJson();
     }
     if (ifNoneMatch?.value != null) {
-      json['ifNoneMatch'] = ifNoneMatch!.value;
+      json['ifNoneMatch'] = ifNoneMatch!.toJson();
     }
     if (ifNoneMatchElement != null) {
       json['_ifNoneMatch'] = ifNoneMatchElement!.toJson();
     }
     if (ifModifiedSince?.value != null) {
-      json['ifModifiedSince'] = ifModifiedSince!.value;
+      json['ifModifiedSince'] = ifModifiedSince!.toJson();
     }
     if (ifModifiedSinceElement != null) {
       json['_ifModifiedSince'] = ifModifiedSinceElement!.toJson();
     }
     if (ifMatch?.value != null) {
-      json['ifMatch'] = ifMatch!.value;
+      json['ifMatch'] = ifMatch!.toJson();
     }
     if (ifMatchElement != null) {
       json['_ifMatch'] = ifMatchElement!.toJson();
     }
     if (ifNoneExist?.value != null) {
-      json['ifNoneExist'] = ifNoneExist!.value;
+      json['ifNoneExist'] = ifNoneExist!.toJson();
     }
     if (ifNoneExistElement != null) {
       json['_ifNoneExist'] = ifNoneExistElement!.toJson();
@@ -822,7 +835,7 @@ class BundleRequest extends BackboneElement {
 
   factory BundleRequest.fromJson(Map<String, dynamic> json) {
     return BundleRequest(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -835,28 +848,34 @@ class BundleRequest extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      method: HTTPVerb.fromJson(json['method'] as Map<String, dynamic>),
-      url: FhirUri(json['url']),
+      method: HTTPVerb.fromJson(json['method']),
+      methodElement: json['_method'] != null
+          ? Element.fromJson(json['_method'] as Map<String, dynamic>)
+          : null,
+      url: FhirUri.fromJson(json['url']),
       urlElement: json['_url'] != null
           ? Element.fromJson(json['_url'] as Map<String, dynamic>)
           : null,
-      ifNoneMatch:
-          json['ifNoneMatch'] != null ? FhirString(json['ifNoneMatch']) : null,
+      ifNoneMatch: json['ifNoneMatch'] != null
+          ? FhirString.fromJson(json['ifNoneMatch'])
+          : null,
       ifNoneMatchElement: json['_ifNoneMatch'] != null
           ? Element.fromJson(json['_ifNoneMatch'] as Map<String, dynamic>)
           : null,
       ifModifiedSince: json['ifModifiedSince'] != null
-          ? FhirInstant(json['ifModifiedSince'])
+          ? FhirInstant.fromJson(json['ifModifiedSince'])
           : null,
       ifModifiedSinceElement: json['_ifModifiedSince'] != null
           ? Element.fromJson(json['_ifModifiedSince'] as Map<String, dynamic>)
           : null,
-      ifMatch: json['ifMatch'] != null ? FhirString(json['ifMatch']) : null,
+      ifMatch:
+          json['ifMatch'] != null ? FhirString.fromJson(json['ifMatch']) : null,
       ifMatchElement: json['_ifMatch'] != null
           ? Element.fromJson(json['_ifMatch'] as Map<String, dynamic>)
           : null,
-      ifNoneExist:
-          json['ifNoneExist'] != null ? FhirString(json['ifNoneExist']) : null,
+      ifNoneExist: json['ifNoneExist'] != null
+          ? FhirString.fromJson(json['ifNoneExist'])
+          : null,
       ifNoneExistElement: json['_ifNoneExist'] != null
           ? Element.fromJson(json['_ifNoneExist'] as Map<String, dynamic>)
           : null,
@@ -1005,24 +1024,24 @@ class BundleResponse extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['status'] = status.value;
+    json['status'] = status.toJson();
     if (statusElement != null) {
       json['_status'] = statusElement!.toJson();
     }
     if (location?.value != null) {
-      json['location'] = location!.value;
+      json['location'] = location!.toJson();
     }
     if (locationElement != null) {
       json['_location'] = locationElement!.toJson();
     }
     if (etag?.value != null) {
-      json['etag'] = etag!.value;
+      json['etag'] = etag!.toJson();
     }
     if (etagElement != null) {
       json['_etag'] = etagElement!.toJson();
     }
     if (lastModified?.value != null) {
-      json['lastModified'] = lastModified!.value;
+      json['lastModified'] = lastModified!.toJson();
     }
     if (lastModifiedElement != null) {
       json['_lastModified'] = lastModifiedElement!.toJson();
@@ -1035,7 +1054,7 @@ class BundleResponse extends BackboneElement {
 
   factory BundleResponse.fromJson(Map<String, dynamic> json) {
     return BundleResponse(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1048,20 +1067,21 @@ class BundleResponse extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status: FhirString(json['status']),
+      status: FhirString.fromJson(json['status']),
       statusElement: json['_status'] != null
           ? Element.fromJson(json['_status'] as Map<String, dynamic>)
           : null,
-      location: json['location'] != null ? FhirUri(json['location']) : null,
+      location:
+          json['location'] != null ? FhirUri.fromJson(json['location']) : null,
       locationElement: json['_location'] != null
           ? Element.fromJson(json['_location'] as Map<String, dynamic>)
           : null,
-      etag: json['etag'] != null ? FhirString(json['etag']) : null,
+      etag: json['etag'] != null ? FhirString.fromJson(json['etag']) : null,
       etagElement: json['_etag'] != null
           ? Element.fromJson(json['_etag'] as Map<String, dynamic>)
           : null,
       lastModified: json['lastModified'] != null
-          ? FhirInstant(json['lastModified'])
+          ? FhirInstant.fromJson(json['lastModified'])
           : null,
       lastModifiedElement: json['_lastModified'] != null
           ? Element.fromJson(json['_lastModified'] as Map<String, dynamic>)

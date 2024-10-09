@@ -43,7 +43,7 @@ class FhirDuration extends Quantity {
           extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
     }
     if (value?.value != null) {
-      json['value'] = value!.value;
+      json['value'] = value!.toJson();
     }
     if (valueElement != null) {
       json['_value'] = valueElement!.toJson();
@@ -52,19 +52,19 @@ class FhirDuration extends Quantity {
       json['comparator'] = comparator!.toJson();
     }
     if (unit?.value != null) {
-      json['unit'] = unit!.value;
+      json['unit'] = unit!.toJson();
     }
     if (unitElement != null) {
       json['_unit'] = unitElement!.toJson();
     }
     if (system?.value != null) {
-      json['system'] = system!.value;
+      json['system'] = system!.toJson();
     }
     if (systemElement != null) {
       json['_system'] = systemElement!.toJson();
     }
     if (code?.value != null) {
-      json['code'] = code!.value;
+      json['code'] = code!.toJson();
     }
     if (codeElement != null) {
       json['_code'] = codeElement!.toJson();
@@ -74,30 +74,32 @@ class FhirDuration extends Quantity {
 
   factory FhirDuration.fromJson(Map<String, dynamic> json) {
     return FhirDuration(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      value: json['value'] != null ? FhirDecimal(json['value']) : null,
+      value: json['value'] != null ? FhirDecimal.fromJson(json['value']) : null,
       valueElement: json['_value'] != null
           ? Element.fromJson(json['_value'] as Map<String, dynamic>)
           : null,
       comparator: json['comparator'] != null
-          ? QuantityComparator.fromJson(
-              json['comparator'] as Map<String, dynamic>)
+          ? QuantityComparator.fromJson(json['comparator'])
           : null,
-      unit: json['unit'] != null ? FhirString(json['unit']) : null,
+      comparatorElement: json['_comparator'] != null
+          ? Element.fromJson(json['_comparator'] as Map<String, dynamic>)
+          : null,
+      unit: json['unit'] != null ? FhirString.fromJson(json['unit']) : null,
       unitElement: json['_unit'] != null
           ? Element.fromJson(json['_unit'] as Map<String, dynamic>)
           : null,
-      system: json['system'] != null ? FhirUri(json['system']) : null,
+      system: json['system'] != null ? FhirUri.fromJson(json['system']) : null,
       systemElement: json['_system'] != null
           ? Element.fromJson(json['_system'] as Map<String, dynamic>)
           : null,
-      code: json['code'] != null ? FhirCode(json['code']) : null,
+      code: json['code'] != null ? FhirCode.fromJson(json['code']) : null,
       codeElement: json['_code'] != null
           ? Element.fromJson(json['_code'] as Map<String, dynamic>)
           : null,

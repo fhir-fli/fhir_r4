@@ -83,34 +83,34 @@ class SampledData extends DataType {
           extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
     }
     json['origin'] = origin.toJson();
-    json['period'] = period.value;
+    json['period'] = period.toJson();
     if (periodElement != null) {
       json['_period'] = periodElement!.toJson();
     }
     if (factor?.value != null) {
-      json['factor'] = factor!.value;
+      json['factor'] = factor!.toJson();
     }
     if (factorElement != null) {
       json['_factor'] = factorElement!.toJson();
     }
     if (lowerLimit?.value != null) {
-      json['lowerLimit'] = lowerLimit!.value;
+      json['lowerLimit'] = lowerLimit!.toJson();
     }
     if (lowerLimitElement != null) {
       json['_lowerLimit'] = lowerLimitElement!.toJson();
     }
     if (upperLimit?.value != null) {
-      json['upperLimit'] = upperLimit!.value;
+      json['upperLimit'] = upperLimit!.toJson();
     }
     if (upperLimitElement != null) {
       json['_upperLimit'] = upperLimitElement!.toJson();
     }
-    json['dimensions'] = dimensions.value;
+    json['dimensions'] = dimensions.toJson();
     if (dimensionsElement != null) {
       json['_dimensions'] = dimensionsElement!.toJson();
     }
     if (data?.value != null) {
-      json['data'] = data!.value;
+      json['data'] = data!.toJson();
     }
     if (dataElement != null) {
       json['_data'] = dataElement!.toJson();
@@ -120,7 +120,7 @@ class SampledData extends DataType {
 
   factory SampledData.fromJson(Map<String, dynamic> json) {
     return SampledData(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -128,29 +128,32 @@ class SampledData extends DataType {
               .toList()
           : null,
       origin: Quantity.fromJson(json['origin'] as Map<String, dynamic>),
-      period: FhirDecimal(json['period']),
+      period: FhirDecimal.fromJson(json['period']),
       periodElement: json['_period'] != null
           ? Element.fromJson(json['_period'] as Map<String, dynamic>)
           : null,
-      factor: json['factor'] != null ? FhirDecimal(json['factor']) : null,
+      factor:
+          json['factor'] != null ? FhirDecimal.fromJson(json['factor']) : null,
       factorElement: json['_factor'] != null
           ? Element.fromJson(json['_factor'] as Map<String, dynamic>)
           : null,
-      lowerLimit:
-          json['lowerLimit'] != null ? FhirDecimal(json['lowerLimit']) : null,
+      lowerLimit: json['lowerLimit'] != null
+          ? FhirDecimal.fromJson(json['lowerLimit'])
+          : null,
       lowerLimitElement: json['_lowerLimit'] != null
           ? Element.fromJson(json['_lowerLimit'] as Map<String, dynamic>)
           : null,
-      upperLimit:
-          json['upperLimit'] != null ? FhirDecimal(json['upperLimit']) : null,
+      upperLimit: json['upperLimit'] != null
+          ? FhirDecimal.fromJson(json['upperLimit'])
+          : null,
       upperLimitElement: json['_upperLimit'] != null
           ? Element.fromJson(json['_upperLimit'] as Map<String, dynamic>)
           : null,
-      dimensions: FhirPositiveInt(json['dimensions']),
+      dimensions: FhirPositiveInt.fromJson(json['dimensions']),
       dimensionsElement: json['_dimensions'] != null
           ? Element.fromJson(json['_dimensions'] as Map<String, dynamic>)
           : null,
-      data: json['data'] != null ? FhirString(json['data']) : null,
+      data: json['data'] != null ? FhirString.fromJson(json['data']) : null,
       dataElement: json['_data'] != null
           ? Element.fromJson(json['_data'] as Map<String, dynamic>)
           : null,

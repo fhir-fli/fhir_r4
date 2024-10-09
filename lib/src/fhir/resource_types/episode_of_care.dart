@@ -103,7 +103,7 @@ class EpisodeOfCare extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -172,17 +172,21 @@ class EpisodeOfCare extends DomainResource {
 
   factory EpisodeOfCare.fromJson(Map<String, dynamic> json) {
     return EpisodeOfCare(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -211,8 +215,10 @@ class EpisodeOfCare extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status:
-          EpisodeOfCareStatus.fromJson(json['status'] as Map<String, dynamic>),
+      status: EpisodeOfCareStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       statusHistory: json['statusHistory'] != null
           ? (json['statusHistory'] as List<dynamic>)
               .map<EpisodeOfCareStatusHistory>((dynamic v) =>
@@ -402,7 +408,7 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
 
   factory EpisodeOfCareStatusHistory.fromJson(Map<String, dynamic> json) {
     return EpisodeOfCareStatusHistory(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -415,8 +421,10 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status:
-          EpisodeOfCareStatus.fromJson(json['status'] as Map<String, dynamic>),
+      status: EpisodeOfCareStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       period: Period.fromJson(json['period'] as Map<String, dynamic>),
     );
   }
@@ -528,7 +536,7 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
       json['role'] = role!.toJson();
     }
     if (rank?.value != null) {
-      json['rank'] = rank!.value;
+      json['rank'] = rank!.toJson();
     }
     if (rankElement != null) {
       json['_rank'] = rankElement!.toJson();
@@ -538,7 +546,7 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
 
   factory EpisodeOfCareDiagnosis.fromJson(Map<String, dynamic> json) {
     return EpisodeOfCareDiagnosis(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -555,7 +563,8 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
       role: json['role'] != null
           ? CodeableConcept.fromJson(json['role'] as Map<String, dynamic>)
           : null,
-      rank: json['rank'] != null ? FhirPositiveInt(json['rank']) : null,
+      rank:
+          json['rank'] != null ? FhirPositiveInt.fromJson(json['rank']) : null,
       rankElement: json['_rank'] != null
           ? Element.fromJson(json['_rank'] as Map<String, dynamic>)
           : null,

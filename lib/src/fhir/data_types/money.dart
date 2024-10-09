@@ -45,13 +45,13 @@ class Money extends DataType {
           extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
     }
     if (value?.value != null) {
-      json['value'] = value!.value;
+      json['value'] = value!.toJson();
     }
     if (valueElement != null) {
       json['_value'] = valueElement!.toJson();
     }
     if (currency?.value != null) {
-      json['currency'] = currency!.value;
+      json['currency'] = currency!.toJson();
     }
     if (currencyElement != null) {
       json['_currency'] = currencyElement!.toJson();
@@ -61,18 +61,19 @@ class Money extends DataType {
 
   factory Money.fromJson(Map<String, dynamic> json) {
     return Money(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      value: json['value'] != null ? FhirDecimal(json['value']) : null,
+      value: json['value'] != null ? FhirDecimal.fromJson(json['value']) : null,
       valueElement: json['_value'] != null
           ? Element.fromJson(json['_value'] as Map<String, dynamic>)
           : null,
-      currency: json['currency'] != null ? FhirCode(json['currency']) : null,
+      currency:
+          json['currency'] != null ? FhirCode.fromJson(json['currency']) : null,
       currencyElement: json['_currency'] != null
           ? Element.fromJson(json['_currency'] as Map<String, dynamic>)
           : null,

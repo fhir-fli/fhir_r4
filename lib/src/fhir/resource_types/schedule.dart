@@ -87,7 +87,7 @@ class Schedule extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -116,7 +116,7 @@ class Schedule extends DomainResource {
           identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
     }
     if (active?.value != null) {
-      json['active'] = active!.value;
+      json['active'] = active!.toJson();
     }
     if (activeElement != null) {
       json['_active'] = activeElement!.toJson();
@@ -139,7 +139,7 @@ class Schedule extends DomainResource {
       json['planningHorizon'] = planningHorizon!.toJson();
     }
     if (comment?.value != null) {
-      json['comment'] = comment!.value;
+      json['comment'] = comment!.toJson();
     }
     if (commentElement != null) {
       json['_comment'] = commentElement!.toJson();
@@ -149,17 +149,21 @@ class Schedule extends DomainResource {
 
   factory Schedule.fromJson(Map<String, dynamic> json) {
     return Schedule(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -188,7 +192,8 @@ class Schedule extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      active: json['active'] != null ? FhirBoolean(json['active']) : null,
+      active:
+          json['active'] != null ? FhirBoolean.fromJson(json['active']) : null,
       activeElement: json['_active'] != null
           ? Element.fromJson(json['_active'] as Map<String, dynamic>)
           : null,
@@ -217,7 +222,8 @@ class Schedule extends DomainResource {
       planningHorizon: json['planningHorizon'] != null
           ? Period.fromJson(json['planningHorizon'] as Map<String, dynamic>)
           : null,
-      comment: json['comment'] != null ? FhirString(json['comment']) : null,
+      comment:
+          json['comment'] != null ? FhirString.fromJson(json['comment']) : null,
       commentElement: json['_comment'] != null
           ? Element.fromJson(json['_comment'] as Map<String, dynamic>)
           : null,

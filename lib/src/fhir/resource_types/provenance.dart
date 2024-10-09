@@ -108,7 +108,7 @@ class Provenance extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -137,17 +137,17 @@ class Provenance extends DomainResource {
       json['occurredPeriod'] = occurredPeriod!.toJson();
     }
     if (occurredDateTime?.value != null) {
-      json['occurredDateTime'] = occurredDateTime!.value;
+      json['occurredDateTime'] = occurredDateTime!.toJson();
     }
     if (occurredDateTimeElement != null) {
       json['_occurredDateTime'] = occurredDateTimeElement!.toJson();
     }
-    json['recorded'] = recorded.value;
+    json['recorded'] = recorded.toJson();
     if (recordedElement != null) {
       json['_recorded'] = recordedElement!.toJson();
     }
     if (policy != null && policy!.isNotEmpty) {
-      json['policy'] = policy!.map((FhirUri v) => v.value).toList();
+      json['policy'] = policy!.map((FhirUri v) => v.toJson()).toList();
     }
     if (policyElement != null && policyElement!.isNotEmpty) {
       json['_policy'] = policyElement!.map((Element v) => v.toJson()).toList();
@@ -177,17 +177,21 @@ class Provenance extends DomainResource {
 
   factory Provenance.fromJson(Map<String, dynamic> json) {
     return Provenance(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -218,12 +222,12 @@ class Provenance extends DomainResource {
           ? Period.fromJson(json['occurredPeriod'] as Map<String, dynamic>)
           : null,
       occurredDateTime: json['occurredDateTime'] != null
-          ? FhirDateTime(json['occurredDateTime'])
+          ? FhirDateTime.fromJson(json['occurredDateTime'])
           : null,
       occurredDateTimeElement: json['_occurredDateTime'] != null
           ? Element.fromJson(json['_occurredDateTime'] as Map<String, dynamic>)
           : null,
-      recorded: FhirInstant(json['recorded']),
+      recorded: FhirInstant.fromJson(json['recorded']),
       recordedElement: json['_recorded'] != null
           ? Element.fromJson(json['_recorded'] as Map<String, dynamic>)
           : null,
@@ -426,7 +430,7 @@ class ProvenanceAgent extends BackboneElement {
 
   factory ProvenanceAgent.fromJson(Map<String, dynamic> json) {
     return ProvenanceAgent(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -572,7 +576,7 @@ class ProvenanceEntity extends BackboneElement {
 
   factory ProvenanceEntity.fromJson(Map<String, dynamic> json) {
     return ProvenanceEntity(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -585,7 +589,10 @@ class ProvenanceEntity extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      role: ProvenanceEntityRole.fromJson(json['role'] as Map<String, dynamic>),
+      role: ProvenanceEntityRole.fromJson(json['role']),
+      roleElement: json['_role'] != null
+          ? Element.fromJson(json['_role'] as Map<String, dynamic>)
+          : null,
       what: Reference.fromJson(json['what'] as Map<String, dynamic>),
       agent: json['agent'] != null
           ? (json['agent'] as List<dynamic>)

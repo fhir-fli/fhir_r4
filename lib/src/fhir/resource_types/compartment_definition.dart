@@ -148,7 +148,7 @@ class CompartmentDefinition extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -172,35 +172,35 @@ class CompartmentDefinition extends DomainResource {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['url'] = url.value;
+    json['url'] = url.toJson();
     if (urlElement != null) {
       json['_url'] = urlElement!.toJson();
     }
     if (version?.value != null) {
-      json['version'] = version!.value;
+      json['version'] = version!.toJson();
     }
     if (versionElement != null) {
       json['_version'] = versionElement!.toJson();
     }
-    json['name'] = name.value;
+    json['name'] = name.toJson();
     if (nameElement != null) {
       json['_name'] = nameElement!.toJson();
     }
     json['status'] = status.toJson();
     if (experimental?.value != null) {
-      json['experimental'] = experimental!.value;
+      json['experimental'] = experimental!.toJson();
     }
     if (experimentalElement != null) {
       json['_experimental'] = experimentalElement!.toJson();
     }
     if (date?.value != null) {
-      json['date'] = date!.value;
+      json['date'] = date!.toJson();
     }
     if (dateElement != null) {
       json['_date'] = dateElement!.toJson();
     }
     if (publisher?.value != null) {
-      json['publisher'] = publisher!.value;
+      json['publisher'] = publisher!.toJson();
     }
     if (publisherElement != null) {
       json['_publisher'] = publisherElement!.toJson();
@@ -210,7 +210,7 @@ class CompartmentDefinition extends DomainResource {
           contact!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
@@ -220,13 +220,13 @@ class CompartmentDefinition extends DomainResource {
           useContext!.map<dynamic>((UsageContext v) => v.toJson()).toList();
     }
     if (purpose?.value != null) {
-      json['purpose'] = purpose!.value;
+      json['purpose'] = purpose!.toJson();
     }
     if (purposeElement != null) {
       json['_purpose'] = purposeElement!.toJson();
     }
     json['code'] = code.toJson();
-    json['search'] = search.value;
+    json['search'] = search.toJson();
     if (searchElement != null) {
       json['_search'] = searchElement!.toJson();
     }
@@ -240,17 +240,21 @@ class CompartmentDefinition extends DomainResource {
 
   factory CompartmentDefinition.fromJson(Map<String, dynamic> json) {
     return CompartmentDefinition(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -273,32 +277,36 @@ class CompartmentDefinition extends DomainResource {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      url: FhirUri(json['url']),
+      url: FhirUri.fromJson(json['url']),
       urlElement: json['_url'] != null
           ? Element.fromJson(json['_url'] as Map<String, dynamic>)
           : null,
-      version: json['version'] != null ? FhirString(json['version']) : null,
+      version:
+          json['version'] != null ? FhirString.fromJson(json['version']) : null,
       versionElement: json['_version'] != null
           ? Element.fromJson(json['_version'] as Map<String, dynamic>)
           : null,
-      name: FhirString(json['name']),
+      name: FhirString.fromJson(json['name']),
       nameElement: json['_name'] != null
           ? Element.fromJson(json['_name'] as Map<String, dynamic>)
           : null,
-      status:
-          PublicationStatus.fromJson(json['status'] as Map<String, dynamic>),
+      status: PublicationStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       experimental: json['experimental'] != null
-          ? FhirBoolean(json['experimental'])
+          ? FhirBoolean.fromJson(json['experimental'])
           : null,
       experimentalElement: json['_experimental'] != null
           ? Element.fromJson(json['_experimental'] as Map<String, dynamic>)
           : null,
-      date: json['date'] != null ? FhirDateTime(json['date']) : null,
+      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
       dateElement: json['_date'] != null
           ? Element.fromJson(json['_date'] as Map<String, dynamic>)
           : null,
-      publisher:
-          json['publisher'] != null ? FhirString(json['publisher']) : null,
+      publisher: json['publisher'] != null
+          ? FhirString.fromJson(json['publisher'])
+          : null,
       publisherElement: json['_publisher'] != null
           ? Element.fromJson(json['_publisher'] as Map<String, dynamic>)
           : null,
@@ -309,7 +317,7 @@ class CompartmentDefinition extends DomainResource {
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown(json['description'])
+          ? FhirMarkdown.fromJson(json['description'])
           : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
@@ -320,12 +328,17 @@ class CompartmentDefinition extends DomainResource {
                   UsageContext.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      purpose: json['purpose'] != null ? FhirMarkdown(json['purpose']) : null,
+      purpose: json['purpose'] != null
+          ? FhirMarkdown.fromJson(json['purpose'])
+          : null,
       purposeElement: json['_purpose'] != null
           ? Element.fromJson(json['_purpose'] as Map<String, dynamic>)
           : null,
-      code: CompartmentType.fromJson(json['code'] as Map<String, dynamic>),
-      search: FhirBoolean(json['search']),
+      code: CompartmentType.fromJson(json['code']),
+      codeElement: json['_code'] != null
+          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
+          : null,
+      search: FhirBoolean.fromJson(json['search']),
       searchElement: json['_search'] != null
           ? Element.fromJson(json['_search'] as Map<String, dynamic>)
           : null,
@@ -503,18 +516,18 @@ class CompartmentDefinitionResource extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['code'] = code.value;
+    json['code'] = code.toJson();
     if (codeElement != null) {
       json['_code'] = codeElement!.toJson();
     }
     if (param != null && param!.isNotEmpty) {
-      json['param'] = param!.map((FhirString v) => v.value).toList();
+      json['param'] = param!.map((FhirString v) => v.toJson()).toList();
     }
     if (paramElement != null && paramElement!.isNotEmpty) {
       json['_param'] = paramElement!.map((Element v) => v.toJson()).toList();
     }
     if (documentation?.value != null) {
-      json['documentation'] = documentation!.value;
+      json['documentation'] = documentation!.toJson();
     }
     if (documentationElement != null) {
       json['_documentation'] = documentationElement!.toJson();
@@ -524,7 +537,7 @@ class CompartmentDefinitionResource extends BackboneElement {
 
   factory CompartmentDefinitionResource.fromJson(Map<String, dynamic> json) {
     return CompartmentDefinitionResource(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -537,7 +550,7 @@ class CompartmentDefinitionResource extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      code: FhirCode(json['code']),
+      code: FhirCode.fromJson(json['code']),
       codeElement: json['_code'] != null
           ? Element.fromJson(json['_code'] as Map<String, dynamic>)
           : null,
@@ -553,7 +566,7 @@ class CompartmentDefinitionResource extends BackboneElement {
               .toList()
           : null,
       documentation: json['documentation'] != null
-          ? FhirString(json['documentation'])
+          ? FhirString.fromJson(json['documentation'])
           : null,
       documentationElement: json['_documentation'] != null
           ? Element.fromJson(json['_documentation'] as Map<String, dynamic>)

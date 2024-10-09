@@ -167,7 +167,7 @@ class Encounter extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -278,17 +278,21 @@ class Encounter extends DomainResource {
 
   factory Encounter.fromJson(Map<String, dynamic> json) {
     return Encounter(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -317,7 +321,10 @@ class Encounter extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status: EncounterStatus.fromJson(json['status'] as Map<String, dynamic>),
+      status: EncounterStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       statusHistory: json['statusHistory'] != null
           ? (json['statusHistory'] as List<dynamic>)
               .map<EncounterStatusHistory>((dynamic v) =>
@@ -582,7 +589,7 @@ class EncounterStatusHistory extends BackboneElement {
 
   factory EncounterStatusHistory.fromJson(Map<String, dynamic> json) {
     return EncounterStatusHistory(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -595,7 +602,10 @@ class EncounterStatusHistory extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status: EncounterStatus.fromJson(json['status'] as Map<String, dynamic>),
+      status: EncounterStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       period: Period.fromJson(json['period'] as Map<String, dynamic>),
     );
   }
@@ -707,7 +717,7 @@ class EncounterClassHistory extends BackboneElement {
 
   factory EncounterClassHistory.fromJson(Map<String, dynamic> json) {
     return EncounterClassHistory(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -838,7 +848,7 @@ class EncounterParticipant extends BackboneElement {
 
   factory EncounterParticipant.fromJson(Map<String, dynamic> json) {
     return EncounterParticipant(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -975,7 +985,7 @@ class EncounterDiagnosis extends BackboneElement {
       json['use'] = use!.toJson();
     }
     if (rank?.value != null) {
-      json['rank'] = rank!.value;
+      json['rank'] = rank!.toJson();
     }
     if (rankElement != null) {
       json['_rank'] = rankElement!.toJson();
@@ -985,7 +995,7 @@ class EncounterDiagnosis extends BackboneElement {
 
   factory EncounterDiagnosis.fromJson(Map<String, dynamic> json) {
     return EncounterDiagnosis(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1002,7 +1012,8 @@ class EncounterDiagnosis extends BackboneElement {
       use: json['use'] != null
           ? CodeableConcept.fromJson(json['use'] as Map<String, dynamic>)
           : null,
-      rank: json['rank'] != null ? FhirPositiveInt(json['rank']) : null,
+      rank:
+          json['rank'] != null ? FhirPositiveInt.fromJson(json['rank']) : null,
       rankElement: json['_rank'] != null
           ? Element.fromJson(json['_rank'] as Map<String, dynamic>)
           : null,
@@ -1172,7 +1183,7 @@ class EncounterHospitalization extends BackboneElement {
 
   factory EncounterHospitalization.fromJson(Map<String, dynamic> json) {
     return EncounterHospitalization(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1363,7 +1374,7 @@ class EncounterLocation extends BackboneElement {
 
   factory EncounterLocation.fromJson(Map<String, dynamic> json) {
     return EncounterLocation(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1378,8 +1389,10 @@ class EncounterLocation extends BackboneElement {
           : null,
       location: Reference.fromJson(json['location'] as Map<String, dynamic>),
       status: json['status'] != null
-          ? EncounterLocationStatus.fromJson(
-              json['status'] as Map<String, dynamic>)
+          ? EncounterLocationStatus.fromJson(json['status'])
+          : null,
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
           : null,
       physicalType: json['physicalType'] != null
           ? CodeableConcept.fromJson(

@@ -82,7 +82,7 @@ class Signature extends DataType {
           extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
     }
     json['type'] = type.map<dynamic>((Coding v) => v.toJson()).toList();
-    json['when'] = when.value;
+    json['when'] = when.toJson();
     if (whenElement != null) {
       json['_when'] = whenElement!.toJson();
     }
@@ -91,19 +91,19 @@ class Signature extends DataType {
       json['onBehalfOf'] = onBehalfOf!.toJson();
     }
     if (targetFormat?.value != null) {
-      json['targetFormat'] = targetFormat!.value;
+      json['targetFormat'] = targetFormat!.toJson();
     }
     if (targetFormatElement != null) {
       json['_targetFormat'] = targetFormatElement!.toJson();
     }
     if (sigFormat?.value != null) {
-      json['sigFormat'] = sigFormat!.value;
+      json['sigFormat'] = sigFormat!.toJson();
     }
     if (sigFormatElement != null) {
       json['_sigFormat'] = sigFormatElement!.toJson();
     }
     if (data?.value != null) {
-      json['data'] = data!.value;
+      json['data'] = data!.toJson();
     }
     if (dataElement != null) {
       json['_data'] = dataElement!.toJson();
@@ -113,7 +113,7 @@ class Signature extends DataType {
 
   factory Signature.fromJson(Map<String, dynamic> json) {
     return Signature(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -124,7 +124,7 @@ class Signature extends DataType {
           .map<Coding>(
               (dynamic v) => Coding.fromJson(v as Map<String, dynamic>))
           .toList(),
-      when: FhirInstant(json['when']),
+      when: FhirInstant.fromJson(json['when']),
       whenElement: json['_when'] != null
           ? Element.fromJson(json['_when'] as Map<String, dynamic>)
           : null,
@@ -132,16 +132,20 @@ class Signature extends DataType {
       onBehalfOf: json['onBehalfOf'] != null
           ? Reference.fromJson(json['onBehalfOf'] as Map<String, dynamic>)
           : null,
-      targetFormat:
-          json['targetFormat'] != null ? FhirCode(json['targetFormat']) : null,
+      targetFormat: json['targetFormat'] != null
+          ? FhirCode.fromJson(json['targetFormat'])
+          : null,
       targetFormatElement: json['_targetFormat'] != null
           ? Element.fromJson(json['_targetFormat'] as Map<String, dynamic>)
           : null,
-      sigFormat: json['sigFormat'] != null ? FhirCode(json['sigFormat']) : null,
+      sigFormat: json['sigFormat'] != null
+          ? FhirCode.fromJson(json['sigFormat'])
+          : null,
       sigFormatElement: json['_sigFormat'] != null
           ? Element.fromJson(json['_sigFormat'] as Map<String, dynamic>)
           : null,
-      data: json['data'] != null ? FhirBase64Binary(json['data']) : null,
+      data:
+          json['data'] != null ? FhirBase64Binary.fromJson(json['data']) : null,
       dataElement: json['_data'] != null
           ? Element.fromJson(json['_data'] as Map<String, dynamic>)
           : null,

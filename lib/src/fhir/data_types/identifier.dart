@@ -73,13 +73,13 @@ class Identifier extends DataType {
       json['type'] = type!.toJson();
     }
     if (system?.value != null) {
-      json['system'] = system!.value;
+      json['system'] = system!.toJson();
     }
     if (systemElement != null) {
       json['_system'] = systemElement!.toJson();
     }
     if (value?.value != null) {
-      json['value'] = value!.value;
+      json['value'] = value!.toJson();
     }
     if (valueElement != null) {
       json['_value'] = valueElement!.toJson();
@@ -95,24 +95,25 @@ class Identifier extends DataType {
 
   factory Identifier.fromJson(Map<String, dynamic> json) {
     return Identifier(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      use: json['use'] != null
-          ? IdentifierUse.fromJson(json['use'] as Map<String, dynamic>)
+      use: json['use'] != null ? IdentifierUse.fromJson(json['use']) : null,
+      useElement: json['_use'] != null
+          ? Element.fromJson(json['_use'] as Map<String, dynamic>)
           : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
           : null,
-      system: json['system'] != null ? FhirUri(json['system']) : null,
+      system: json['system'] != null ? FhirUri.fromJson(json['system']) : null,
       systemElement: json['_system'] != null
           ? Element.fromJson(json['_system'] as Map<String, dynamic>)
           : null,
-      value: json['value'] != null ? FhirString(json['value']) : null,
+      value: json['value'] != null ? FhirString.fromJson(json['value']) : null,
       valueElement: json['_value'] != null
           ? Element.fromJson(json['_value'] as Map<String, dynamic>)
           : null,

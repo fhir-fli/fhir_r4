@@ -132,7 +132,7 @@ class Composition extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -171,17 +171,17 @@ class Composition extends DomainResource {
     if (encounter != null) {
       json['encounter'] = encounter!.toJson();
     }
-    json['date'] = date.value;
+    json['date'] = date.toJson();
     if (dateElement != null) {
       json['_date'] = dateElement!.toJson();
     }
     json['author'] = author.map<dynamic>((Reference v) => v.toJson()).toList();
-    json['title'] = title.value;
+    json['title'] = title.toJson();
     if (titleElement != null) {
       json['_title'] = titleElement!.toJson();
     }
     if (confidentiality?.value != null) {
-      json['confidentiality'] = confidentiality!.value;
+      json['confidentiality'] = confidentiality!.toJson();
     }
     if (confidentialityElement != null) {
       json['_confidentiality'] = confidentialityElement!.toJson();
@@ -212,17 +212,21 @@ class Composition extends DomainResource {
 
   factory Composition.fromJson(Map<String, dynamic> json) {
     return Composition(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -248,8 +252,10 @@ class Composition extends DomainResource {
       identifier: json['identifier'] != null
           ? Identifier.fromJson(json['identifier'] as Map<String, dynamic>)
           : null,
-      status:
-          CompositionStatus.fromJson(json['status'] as Map<String, dynamic>),
+      status: CompositionStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       category: json['category'] != null
           ? (json['category'] as List<dynamic>)
@@ -263,7 +269,7 @@ class Composition extends DomainResource {
       encounter: json['encounter'] != null
           ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
           : null,
-      date: FhirDateTime(json['date']),
+      date: FhirDateTime.fromJson(json['date']),
       dateElement: json['_date'] != null
           ? Element.fromJson(json['_date'] as Map<String, dynamic>)
           : null,
@@ -271,12 +277,12 @@ class Composition extends DomainResource {
           .map<Reference>(
               (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
           .toList(),
-      title: FhirString(json['title']),
+      title: FhirString.fromJson(json['title']),
       titleElement: json['_title'] != null
           ? Element.fromJson(json['_title'] as Map<String, dynamic>)
           : null,
       confidentiality: json['confidentiality'] != null
-          ? FhirCode(json['confidentiality'])
+          ? FhirCode.fromJson(json['confidentiality'])
           : null,
       confidentialityElement: json['_confidentiality'] != null
           ? Element.fromJson(json['_confidentiality'] as Map<String, dynamic>)
@@ -462,7 +468,7 @@ class CompositionAttester extends BackboneElement {
     }
     json['mode'] = mode.toJson();
     if (time?.value != null) {
-      json['time'] = time!.value;
+      json['time'] = time!.toJson();
     }
     if (timeElement != null) {
       json['_time'] = timeElement!.toJson();
@@ -475,7 +481,7 @@ class CompositionAttester extends BackboneElement {
 
   factory CompositionAttester.fromJson(Map<String, dynamic> json) {
     return CompositionAttester(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -488,9 +494,11 @@ class CompositionAttester extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      mode: CompositionAttestationMode.fromJson(
-          json['mode'] as Map<String, dynamic>),
-      time: json['time'] != null ? FhirDateTime(json['time']) : null,
+      mode: CompositionAttestationMode.fromJson(json['mode']),
+      modeElement: json['_mode'] != null
+          ? Element.fromJson(json['_mode'] as Map<String, dynamic>)
+          : null,
+      time: json['time'] != null ? FhirDateTime.fromJson(json['time']) : null,
       timeElement: json['_time'] != null
           ? Element.fromJson(json['_time'] as Map<String, dynamic>)
           : null,
@@ -618,7 +626,7 @@ class CompositionRelatesTo extends BackboneElement {
 
   factory CompositionRelatesTo.fromJson(Map<String, dynamic> json) {
     return CompositionRelatesTo(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -631,8 +639,10 @@ class CompositionRelatesTo extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      code: DocumentRelationshipType.fromJson(
-          json['code'] as Map<String, dynamic>),
+      code: DocumentRelationshipType.fromJson(json['code']),
+      codeElement: json['_code'] != null
+          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
+          : null,
       targetIdentifier: json['targetIdentifier'] != null
           ? Identifier.fromJson(
               json['targetIdentifier'] as Map<String, dynamic>)
@@ -767,7 +777,7 @@ class CompositionEvent extends BackboneElement {
 
   factory CompositionEvent.fromJson(Map<String, dynamic> json) {
     return CompositionEvent(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -948,7 +958,7 @@ class CompositionSection extends BackboneElement {
           .toList();
     }
     if (title?.value != null) {
-      json['title'] = title!.value;
+      json['title'] = title!.toJson();
     }
     if (titleElement != null) {
       json['_title'] = titleElement!.toJson();
@@ -987,7 +997,7 @@ class CompositionSection extends BackboneElement {
 
   factory CompositionSection.fromJson(Map<String, dynamic> json) {
     return CompositionSection(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1000,7 +1010,7 @@ class CompositionSection extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      title: json['title'] != null ? FhirString(json['title']) : null,
+      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
       titleElement: json['_title'] != null
           ? Element.fromJson(json['_title'] as Map<String, dynamic>)
           : null,
@@ -1019,8 +1029,9 @@ class CompositionSection extends BackboneElement {
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
           : null,
-      mode: json['mode'] != null
-          ? ListMode.fromJson(json['mode'] as Map<String, dynamic>)
+      mode: json['mode'] != null ? ListMode.fromJson(json['mode']) : null,
+      modeElement: json['_mode'] != null
+          ? Element.fromJson(json['_mode'] as Map<String, dynamic>)
           : null,
       orderedBy: json['orderedBy'] != null
           ? CodeableConcept.fromJson(json['orderedBy'] as Map<String, dynamic>)

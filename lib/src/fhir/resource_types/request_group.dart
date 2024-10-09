@@ -136,7 +136,7 @@ class RequestGroup extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -166,7 +166,7 @@ class RequestGroup extends DomainResource {
     }
     if (instantiatesCanonical != null && instantiatesCanonical!.isNotEmpty) {
       json['instantiatesCanonical'] =
-          instantiatesCanonical!.map((FhirCanonical v) => v.value).toList();
+          instantiatesCanonical!.map((FhirCanonical v) => v.toJson()).toList();
     }
     if (instantiatesCanonicalElement != null &&
         instantiatesCanonicalElement!.isNotEmpty) {
@@ -175,7 +175,7 @@ class RequestGroup extends DomainResource {
     }
     if (instantiatesUri != null && instantiatesUri!.isNotEmpty) {
       json['instantiatesUri'] =
-          instantiatesUri!.map((FhirUri v) => v.value).toList();
+          instantiatesUri!.map((FhirUri v) => v.toJson()).toList();
     }
     if (instantiatesUriElement != null && instantiatesUriElement!.isNotEmpty) {
       json['_instantiatesUri'] =
@@ -207,7 +207,7 @@ class RequestGroup extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
     if (authoredOn?.value != null) {
-      json['authoredOn'] = authoredOn!.value;
+      json['authoredOn'] = authoredOn!.toJson();
     }
     if (authoredOnElement != null) {
       json['_authoredOn'] = authoredOnElement!.toJson();
@@ -235,17 +235,21 @@ class RequestGroup extends DomainResource {
 
   factory RequestGroup.fromJson(Map<String, dynamic> json) {
     return RequestGroup(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -312,10 +316,19 @@ class RequestGroup extends DomainResource {
       groupIdentifier: json['groupIdentifier'] != null
           ? Identifier.fromJson(json['groupIdentifier'] as Map<String, dynamic>)
           : null,
-      status: RequestStatus.fromJson(json['status'] as Map<String, dynamic>),
-      intent: RequestIntent.fromJson(json['intent'] as Map<String, dynamic>),
+      status: RequestStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
+      intent: RequestIntent.fromJson(json['intent']),
+      intentElement: json['_intent'] != null
+          ? Element.fromJson(json['_intent'] as Map<String, dynamic>)
+          : null,
       priority: json['priority'] != null
-          ? RequestPriority.fromJson(json['priority'] as Map<String, dynamic>)
+          ? RequestPriority.fromJson(json['priority'])
+          : null,
+      priorityElement: json['_priority'] != null
+          ? Element.fromJson(json['_priority'] as Map<String, dynamic>)
           : null,
       code: json['code'] != null
           ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
@@ -326,8 +339,9 @@ class RequestGroup extends DomainResource {
       encounter: json['encounter'] != null
           ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
           : null,
-      authoredOn:
-          json['authoredOn'] != null ? FhirDateTime(json['authoredOn']) : null,
+      authoredOn: json['authoredOn'] != null
+          ? FhirDateTime.fromJson(json['authoredOn'])
+          : null,
       authoredOnElement: json['_authoredOn'] != null
           ? Element.fromJson(json['_authoredOn'] as Map<String, dynamic>)
           : null,
@@ -635,25 +649,25 @@ class RequestGroupAction extends BackboneElement {
           .toList();
     }
     if (prefix?.value != null) {
-      json['prefix'] = prefix!.value;
+      json['prefix'] = prefix!.toJson();
     }
     if (prefixElement != null) {
       json['_prefix'] = prefixElement!.toJson();
     }
     if (title?.value != null) {
-      json['title'] = title!.value;
+      json['title'] = title!.toJson();
     }
     if (titleElement != null) {
       json['_title'] = titleElement!.toJson();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
     }
     if (textEquivalent?.value != null) {
-      json['textEquivalent'] = textEquivalent!.value;
+      json['textEquivalent'] = textEquivalent!.toJson();
     }
     if (textEquivalentElement != null) {
       json['_textEquivalent'] = textEquivalentElement!.toJson();
@@ -681,7 +695,7 @@ class RequestGroupAction extends BackboneElement {
           .toList();
     }
     if (timingDateTime?.value != null) {
-      json['timingDateTime'] = timingDateTime!.value;
+      json['timingDateTime'] = timingDateTime!.toJson();
     }
     if (timingDateTimeElement != null) {
       json['_timingDateTime'] = timingDateTimeElement!.toJson();
@@ -735,7 +749,7 @@ class RequestGroupAction extends BackboneElement {
 
   factory RequestGroupAction.fromJson(Map<String, dynamic> json) {
     return RequestGroupAction(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -748,27 +762,32 @@ class RequestGroupAction extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      prefix: json['prefix'] != null ? FhirString(json['prefix']) : null,
+      prefix:
+          json['prefix'] != null ? FhirString.fromJson(json['prefix']) : null,
       prefixElement: json['_prefix'] != null
           ? Element.fromJson(json['_prefix'] as Map<String, dynamic>)
           : null,
-      title: json['title'] != null ? FhirString(json['title']) : null,
+      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
       titleElement: json['_title'] != null
           ? Element.fromJson(json['_title'] as Map<String, dynamic>)
           : null,
-      description:
-          json['description'] != null ? FhirString(json['description']) : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
           : null,
       textEquivalent: json['textEquivalent'] != null
-          ? FhirString(json['textEquivalent'])
+          ? FhirString.fromJson(json['textEquivalent'])
           : null,
       textEquivalentElement: json['_textEquivalent'] != null
           ? Element.fromJson(json['_textEquivalent'] as Map<String, dynamic>)
           : null,
       priority: json['priority'] != null
-          ? RequestPriority.fromJson(json['priority'] as Map<String, dynamic>)
+          ? RequestPriority.fromJson(json['priority'])
+          : null,
+      priorityElement: json['_priority'] != null
+          ? Element.fromJson(json['_priority'] as Map<String, dynamic>)
           : null,
       code: json['code'] != null
           ? (json['code'] as List<dynamic>)
@@ -795,7 +814,7 @@ class RequestGroupAction extends BackboneElement {
               .toList()
           : null,
       timingDateTime: json['timingDateTime'] != null
-          ? FhirDateTime(json['timingDateTime'])
+          ? FhirDateTime.fromJson(json['timingDateTime'])
           : null,
       timingDateTimeElement: json['_timingDateTime'] != null
           ? Element.fromJson(json['_timingDateTime'] as Map<String, dynamic>)
@@ -826,24 +845,35 @@ class RequestGroupAction extends BackboneElement {
           ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
           : null,
       groupingBehavior: json['groupingBehavior'] != null
-          ? ActionGroupingBehavior.fromJson(
-              json['groupingBehavior'] as Map<String, dynamic>)
+          ? ActionGroupingBehavior.fromJson(json['groupingBehavior'])
+          : null,
+      groupingBehaviorElement: json['_groupingBehavior'] != null
+          ? Element.fromJson(json['_groupingBehavior'] as Map<String, dynamic>)
           : null,
       selectionBehavior: json['selectionBehavior'] != null
-          ? ActionSelectionBehavior.fromJson(
-              json['selectionBehavior'] as Map<String, dynamic>)
+          ? ActionSelectionBehavior.fromJson(json['selectionBehavior'])
+          : null,
+      selectionBehaviorElement: json['_selectionBehavior'] != null
+          ? Element.fromJson(json['_selectionBehavior'] as Map<String, dynamic>)
           : null,
       requiredBehavior: json['requiredBehavior'] != null
-          ? ActionRequiredBehavior.fromJson(
-              json['requiredBehavior'] as Map<String, dynamic>)
+          ? ActionRequiredBehavior.fromJson(json['requiredBehavior'])
+          : null,
+      requiredBehaviorElement: json['_requiredBehavior'] != null
+          ? Element.fromJson(json['_requiredBehavior'] as Map<String, dynamic>)
           : null,
       precheckBehavior: json['precheckBehavior'] != null
-          ? ActionPrecheckBehavior.fromJson(
-              json['precheckBehavior'] as Map<String, dynamic>)
+          ? ActionPrecheckBehavior.fromJson(json['precheckBehavior'])
+          : null,
+      precheckBehaviorElement: json['_precheckBehavior'] != null
+          ? Element.fromJson(json['_precheckBehavior'] as Map<String, dynamic>)
           : null,
       cardinalityBehavior: json['cardinalityBehavior'] != null
-          ? ActionCardinalityBehavior.fromJson(
-              json['cardinalityBehavior'] as Map<String, dynamic>)
+          ? ActionCardinalityBehavior.fromJson(json['cardinalityBehavior'])
+          : null,
+      cardinalityBehaviorElement: json['_cardinalityBehavior'] != null
+          ? Element.fromJson(
+              json['_cardinalityBehavior'] as Map<String, dynamic>)
           : null,
       resource: json['resource'] != null
           ? Reference.fromJson(json['resource'] as Map<String, dynamic>)
@@ -1035,7 +1065,7 @@ class RequestGroupCondition extends BackboneElement {
 
   factory RequestGroupCondition.fromJson(Map<String, dynamic> json) {
     return RequestGroupCondition(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1048,7 +1078,10 @@ class RequestGroupCondition extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      kind: ActionConditionKind.fromJson(json['kind'] as Map<String, dynamic>),
+      kind: ActionConditionKind.fromJson(json['kind']),
+      kindElement: json['_kind'] != null
+          ? Element.fromJson(json['_kind'] as Map<String, dynamic>)
+          : null,
       expression: json['expression'] != null
           ? FhirExpression.fromJson(json['expression'] as Map<String, dynamic>)
           : null,
@@ -1164,7 +1197,7 @@ class RequestGroupRelatedAction extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['actionId'] = actionId.value;
+    json['actionId'] = actionId.toJson();
     if (actionIdElement != null) {
       json['_actionId'] = actionIdElement!.toJson();
     }
@@ -1180,7 +1213,7 @@ class RequestGroupRelatedAction extends BackboneElement {
 
   factory RequestGroupRelatedAction.fromJson(Map<String, dynamic> json) {
     return RequestGroupRelatedAction(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1193,12 +1226,14 @@ class RequestGroupRelatedAction extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      actionId: FhirId(json['actionId']),
+      actionId: FhirId.fromJson(json['actionId']),
       actionIdElement: json['_actionId'] != null
           ? Element.fromJson(json['_actionId'] as Map<String, dynamic>)
           : null,
-      relationship: ActionRelationshipType.fromJson(
-          json['relationship'] as Map<String, dynamic>),
+      relationship: ActionRelationshipType.fromJson(json['relationship']),
+      relationshipElement: json['_relationship'] != null
+          ? Element.fromJson(json['_relationship'] as Map<String, dynamic>)
+          : null,
       offsetDuration: json['offsetDuration'] != null
           ? FhirDuration.fromJson(
               json['offsetDuration'] as Map<String, dynamic>)

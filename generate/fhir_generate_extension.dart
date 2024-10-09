@@ -55,7 +55,7 @@ extension FhirGenerate on String {
         'unsignedint': 'FhirUnsignedInt',
         'uuid': 'FhirUuid',
         'duration': 'FhirDuration',
-        'xhtml': 'FhirMarkdown',
+        'xhtml': 'FhirXhtml',
         'meta': 'FhirMeta',
         'expression': 'FhirExpression',
         'list': 'FhirList',
@@ -122,6 +122,8 @@ extension FhirGenerate on String {
         'fhirurl',
         'uuid',
         'fhiruuid',
+        'xhtml',
+        'fhirxhtml',
       ].contains(toLowerCase());
 
   bool get isDataType {

@@ -104,7 +104,7 @@ class SupplyDelivery extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -153,7 +153,7 @@ class SupplyDelivery extends DomainResource {
       json['suppliedItem'] = suppliedItem!.toJson();
     }
     if (occurrenceDateTime?.value != null) {
-      json['occurrenceDateTime'] = occurrenceDateTime!.value;
+      json['occurrenceDateTime'] = occurrenceDateTime!.toJson();
     }
     if (occurrenceDateTimeElement != null) {
       json['_occurrenceDateTime'] = occurrenceDateTimeElement!.toJson();
@@ -179,17 +179,21 @@ class SupplyDelivery extends DomainResource {
 
   factory SupplyDelivery.fromJson(Map<String, dynamic> json) {
     return SupplyDelivery(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -231,8 +235,10 @@ class SupplyDelivery extends DomainResource {
               .toList()
           : null,
       status: json['status'] != null
-          ? SupplyDeliveryStatus.fromJson(
-              json['status'] as Map<String, dynamic>)
+          ? SupplyDeliveryStatus.fromJson(json['status'])
+          : null,
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
           : null,
       patient: json['patient'] != null
           ? Reference.fromJson(json['patient'] as Map<String, dynamic>)
@@ -245,7 +251,7 @@ class SupplyDelivery extends DomainResource {
               json['suppliedItem'] as Map<String, dynamic>)
           : null,
       occurrenceDateTime: json['occurrenceDateTime'] != null
-          ? FhirDateTime(json['occurrenceDateTime'])
+          ? FhirDateTime.fromJson(json['occurrenceDateTime'])
           : null,
       occurrenceDateTimeElement: json['_occurrenceDateTime'] != null
           ? Element.fromJson(
@@ -427,7 +433,7 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
 
   factory SupplyDeliverySuppliedItem.fromJson(Map<String, dynamic> json) {
     return SupplyDeliverySuppliedItem(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

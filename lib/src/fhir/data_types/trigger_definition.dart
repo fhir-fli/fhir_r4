@@ -81,7 +81,7 @@ class TriggerDefinition extends DataType {
     }
     json['type'] = type.toJson();
     if (name?.value != null) {
-      json['name'] = name!.value;
+      json['name'] = name!.toJson();
     }
     if (nameElement != null) {
       json['_name'] = nameElement!.toJson();
@@ -93,13 +93,13 @@ class TriggerDefinition extends DataType {
       json['timingReference'] = timingReference!.toJson();
     }
     if (timingDate?.value != null) {
-      json['timingDate'] = timingDate!.value;
+      json['timingDate'] = timingDate!.toJson();
     }
     if (timingDateElement != null) {
       json['_timingDate'] = timingDateElement!.toJson();
     }
     if (timingDateTime?.value != null) {
-      json['timingDateTime'] = timingDateTime!.value;
+      json['timingDateTime'] = timingDateTime!.toJson();
     }
     if (timingDateTimeElement != null) {
       json['_timingDateTime'] = timingDateTimeElement!.toJson();
@@ -116,15 +116,18 @@ class TriggerDefinition extends DataType {
 
   factory TriggerDefinition.fromJson(Map<String, dynamic> json) {
     return TriggerDefinition(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      type: TriggerType.fromJson(json['type'] as Map<String, dynamic>),
-      name: json['name'] != null ? FhirString(json['name']) : null,
+      type: TriggerType.fromJson(json['type']),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
+          : null,
+      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
       nameElement: json['_name'] != null
           ? Element.fromJson(json['_name'] as Map<String, dynamic>)
           : null,
@@ -134,13 +137,14 @@ class TriggerDefinition extends DataType {
       timingReference: json['timingReference'] != null
           ? Reference.fromJson(json['timingReference'] as Map<String, dynamic>)
           : null,
-      timingDate:
-          json['timingDate'] != null ? FhirDate(json['timingDate']) : null,
+      timingDate: json['timingDate'] != null
+          ? FhirDate.fromJson(json['timingDate'])
+          : null,
       timingDateElement: json['_timingDate'] != null
           ? Element.fromJson(json['_timingDate'] as Map<String, dynamic>)
           : null,
       timingDateTime: json['timingDateTime'] != null
-          ? FhirDateTime(json['timingDateTime'])
+          ? FhirDateTime.fromJson(json['timingDateTime'])
           : null,
       timingDateTimeElement: json['_timingDateTime'] != null
           ? Element.fromJson(json['_timingDateTime'] as Map<String, dynamic>)

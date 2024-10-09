@@ -116,7 +116,7 @@ class Consent extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -152,7 +152,7 @@ class Consent extends DomainResource {
       json['patient'] = patient!.toJson();
     }
     if (dateTime?.value != null) {
-      json['dateTime'] = dateTime!.value;
+      json['dateTime'] = dateTime!.toJson();
     }
     if (dateTimeElement != null) {
       json['_dateTime'] = dateTimeElement!.toJson();
@@ -188,17 +188,21 @@ class Consent extends DomainResource {
 
   factory Consent.fromJson(Map<String, dynamic> json) {
     return Consent(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -227,7 +231,10 @@ class Consent extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status: ConsentState.fromJson(json['status'] as Map<String, dynamic>),
+      status: ConsentState.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       scope: CodeableConcept.fromJson(json['scope'] as Map<String, dynamic>),
       category: (json['category'] as List<dynamic>)
           .map<CodeableConcept>((dynamic v) =>
@@ -236,8 +243,9 @@ class Consent extends DomainResource {
       patient: json['patient'] != null
           ? Reference.fromJson(json['patient'] as Map<String, dynamic>)
           : null,
-      dateTime:
-          json['dateTime'] != null ? FhirDateTime(json['dateTime']) : null,
+      dateTime: json['dateTime'] != null
+          ? FhirDateTime.fromJson(json['dateTime'])
+          : null,
       dateTimeElement: json['_dateTime'] != null
           ? Element.fromJson(json['_dateTime'] as Map<String, dynamic>)
           : null,
@@ -424,13 +432,13 @@ class ConsentPolicy extends BackboneElement {
           .toList();
     }
     if (authority?.value != null) {
-      json['authority'] = authority!.value;
+      json['authority'] = authority!.toJson();
     }
     if (authorityElement != null) {
       json['_authority'] = authorityElement!.toJson();
     }
     if (uri?.value != null) {
-      json['uri'] = uri!.value;
+      json['uri'] = uri!.toJson();
     }
     if (uriElement != null) {
       json['_uri'] = uriElement!.toJson();
@@ -443,7 +451,7 @@ class ConsentPolicy extends BackboneElement {
 
   factory ConsentPolicy.fromJson(Map<String, dynamic> json) {
     return ConsentPolicy(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -456,11 +464,13 @@ class ConsentPolicy extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      authority: json['authority'] != null ? FhirUri(json['authority']) : null,
+      authority: json['authority'] != null
+          ? FhirUri.fromJson(json['authority'])
+          : null,
       authorityElement: json['_authority'] != null
           ? Element.fromJson(json['_authority'] as Map<String, dynamic>)
           : null,
-      uri: json['uri'] != null ? FhirUri(json['uri']) : null,
+      uri: json['uri'] != null ? FhirUri.fromJson(json['uri']) : null,
       uriElement: json['_uri'] != null
           ? Element.fromJson(json['_uri'] as Map<String, dynamic>)
           : null,
@@ -578,7 +588,7 @@ class ConsentVerification extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['verified'] = verified.value;
+    json['verified'] = verified.toJson();
     if (verifiedElement != null) {
       json['_verified'] = verifiedElement!.toJson();
     }
@@ -586,7 +596,7 @@ class ConsentVerification extends BackboneElement {
       json['verifiedWith'] = verifiedWith!.toJson();
     }
     if (verificationDate?.value != null) {
-      json['verificationDate'] = verificationDate!.value;
+      json['verificationDate'] = verificationDate!.toJson();
     }
     if (verificationDateElement != null) {
       json['_verificationDate'] = verificationDateElement!.toJson();
@@ -596,7 +606,7 @@ class ConsentVerification extends BackboneElement {
 
   factory ConsentVerification.fromJson(Map<String, dynamic> json) {
     return ConsentVerification(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -609,7 +619,7 @@ class ConsentVerification extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      verified: FhirBoolean(json['verified']),
+      verified: FhirBoolean.fromJson(json['verified']),
       verifiedElement: json['_verified'] != null
           ? Element.fromJson(json['_verified'] as Map<String, dynamic>)
           : null,
@@ -617,7 +627,7 @@ class ConsentVerification extends BackboneElement {
           ? Reference.fromJson(json['verifiedWith'] as Map<String, dynamic>)
           : null,
       verificationDate: json['verificationDate'] != null
-          ? FhirDateTime(json['verificationDate'])
+          ? FhirDateTime.fromJson(json['verificationDate'])
           : null,
       verificationDateElement: json['_verificationDate'] != null
           ? Element.fromJson(json['_verificationDate'] as Map<String, dynamic>)
@@ -814,7 +824,7 @@ class ConsentProvision extends BackboneElement {
 
   factory ConsentProvision.fromJson(Map<String, dynamic> json) {
     return ConsentProvision(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -828,7 +838,10 @@ class ConsentProvision extends BackboneElement {
               .toList()
           : null,
       type: json['type'] != null
-          ? ConsentProvisionType.fromJson(json['type'] as Map<String, dynamic>)
+          ? ConsentProvisionType.fromJson(json['type'])
+          : null,
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
           : null,
       period: json['period'] != null
           ? Period.fromJson(json['period'] as Map<String, dynamic>)
@@ -1010,7 +1023,7 @@ class ConsentActor extends BackboneElement {
 
   factory ConsentActor.fromJson(Map<String, dynamic> json) {
     return ConsentActor(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1131,7 +1144,7 @@ class ConsentData extends BackboneElement {
 
   factory ConsentData.fromJson(Map<String, dynamic> json) {
     return ConsentData(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1144,8 +1157,10 @@ class ConsentData extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      meaning:
-          ConsentDataMeaning.fromJson(json['meaning'] as Map<String, dynamic>),
+      meaning: ConsentDataMeaning.fromJson(json['meaning']),
+      meaningElement: json['_meaning'] != null
+          ? Element.fromJson(json['_meaning'] as Map<String, dynamic>)
+          : null,
       reference: Reference.fromJson(json['reference'] as Map<String, dynamic>),
     );
   }

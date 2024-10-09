@@ -80,25 +80,25 @@ class RelatedArtifact extends DataType {
     }
     json['type'] = type.toJson();
     if (label?.value != null) {
-      json['label'] = label!.value;
+      json['label'] = label!.toJson();
     }
     if (labelElement != null) {
       json['_label'] = labelElement!.toJson();
     }
     if (display?.value != null) {
-      json['display'] = display!.value;
+      json['display'] = display!.toJson();
     }
     if (displayElement != null) {
       json['_display'] = displayElement!.toJson();
     }
     if (citation?.value != null) {
-      json['citation'] = citation!.value;
+      json['citation'] = citation!.toJson();
     }
     if (citationElement != null) {
       json['_citation'] = citationElement!.toJson();
     }
     if (url?.value != null) {
-      json['url'] = url!.value;
+      json['url'] = url!.toJson();
     }
     if (urlElement != null) {
       json['_url'] = urlElement!.toJson();
@@ -107,7 +107,7 @@ class RelatedArtifact extends DataType {
       json['document'] = document!.toJson();
     }
     if (resource?.value != null) {
-      json['resource'] = resource!.value;
+      json['resource'] = resource!.toJson();
     }
     if (resourceElement != null) {
       json['_resource'] = resourceElement!.toJson();
@@ -117,36 +117,42 @@ class RelatedArtifact extends DataType {
 
   factory RelatedArtifact.fromJson(Map<String, dynamic> json) {
     return RelatedArtifact(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      type: RelatedArtifactType.fromJson(json['type'] as Map<String, dynamic>),
-      label: json['label'] != null ? FhirString(json['label']) : null,
+      type: RelatedArtifactType.fromJson(json['type']),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
+          : null,
+      label: json['label'] != null ? FhirString.fromJson(json['label']) : null,
       labelElement: json['_label'] != null
           ? Element.fromJson(json['_label'] as Map<String, dynamic>)
           : null,
-      display: json['display'] != null ? FhirString(json['display']) : null,
+      display:
+          json['display'] != null ? FhirString.fromJson(json['display']) : null,
       displayElement: json['_display'] != null
           ? Element.fromJson(json['_display'] as Map<String, dynamic>)
           : null,
-      citation:
-          json['citation'] != null ? FhirMarkdown(json['citation']) : null,
+      citation: json['citation'] != null
+          ? FhirMarkdown.fromJson(json['citation'])
+          : null,
       citationElement: json['_citation'] != null
           ? Element.fromJson(json['_citation'] as Map<String, dynamic>)
           : null,
-      url: json['url'] != null ? FhirUrl(json['url']) : null,
+      url: json['url'] != null ? FhirUrl.fromJson(json['url']) : null,
       urlElement: json['_url'] != null
           ? Element.fromJson(json['_url'] as Map<String, dynamic>)
           : null,
       document: json['document'] != null
           ? Attachment.fromJson(json['document'] as Map<String, dynamic>)
           : null,
-      resource:
-          json['resource'] != null ? FhirCanonical(json['resource']) : null,
+      resource: json['resource'] != null
+          ? FhirCanonical.fromJson(json['resource'])
+          : null,
       resourceElement: json['_resource'] != null
           ? Element.fromJson(json['_resource'] as Map<String, dynamic>)
           : null,

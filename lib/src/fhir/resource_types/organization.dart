@@ -93,7 +93,7 @@ class Organization extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -122,7 +122,7 @@ class Organization extends DomainResource {
           identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
     }
     if (active?.value != null) {
-      json['active'] = active!.value;
+      json['active'] = active!.toJson();
     }
     if (activeElement != null) {
       json['_active'] = activeElement!.toJson();
@@ -132,13 +132,13 @@ class Organization extends DomainResource {
           type!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
     }
     if (name?.value != null) {
-      json['name'] = name!.value;
+      json['name'] = name!.toJson();
     }
     if (nameElement != null) {
       json['_name'] = nameElement!.toJson();
     }
     if (alias != null && alias!.isNotEmpty) {
-      json['alias'] = alias!.map((FhirString v) => v.value).toList();
+      json['alias'] = alias!.map((FhirString v) => v.toJson()).toList();
     }
     if (aliasElement != null && aliasElement!.isNotEmpty) {
       json['_alias'] = aliasElement!.map((Element v) => v.toJson()).toList();
@@ -167,17 +167,21 @@ class Organization extends DomainResource {
 
   factory Organization.fromJson(Map<String, dynamic> json) {
     return Organization(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -206,7 +210,8 @@ class Organization extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      active: json['active'] != null ? FhirBoolean(json['active']) : null,
+      active:
+          json['active'] != null ? FhirBoolean.fromJson(json['active']) : null,
       activeElement: json['_active'] != null
           ? Element.fromJson(json['_active'] as Map<String, dynamic>)
           : null,
@@ -216,7 +221,7 @@ class Organization extends DomainResource {
                   CodeableConcept.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      name: json['name'] != null ? FhirString(json['name']) : null,
+      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
       nameElement: json['_name'] != null
           ? Element.fromJson(json['_name'] as Map<String, dynamic>)
           : null,
@@ -416,7 +421,7 @@ class OrganizationContact extends BackboneElement {
 
   factory OrganizationContact.fromJson(Map<String, dynamic> json) {
     return OrganizationContact(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

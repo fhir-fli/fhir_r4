@@ -75,7 +75,7 @@ class EnrollmentRequest extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -107,7 +107,7 @@ class EnrollmentRequest extends DomainResource {
       json['status'] = status!.toJson();
     }
     if (created?.value != null) {
-      json['created'] = created!.value;
+      json['created'] = created!.toJson();
     }
     if (createdElement != null) {
       json['_created'] = createdElement!.toJson();
@@ -129,17 +129,21 @@ class EnrollmentRequest extends DomainResource {
 
   factory EnrollmentRequest.fromJson(Map<String, dynamic> json) {
     return EnrollmentRequest(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -169,10 +173,14 @@ class EnrollmentRequest extends DomainResource {
               .toList()
           : null,
       status: json['status'] != null
-          ? FinancialResourceStatusCodes.fromJson(
-              json['status'] as Map<String, dynamic>)
+          ? FinancialResourceStatusCodes.fromJson(json['status'])
           : null,
-      created: json['created'] != null ? FhirDateTime(json['created']) : null,
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
+      created: json['created'] != null
+          ? FhirDateTime.fromJson(json['created'])
+          : null,
       createdElement: json['_created'] != null
           ? Element.fromJson(json['_created'] as Map<String, dynamic>)
           : null,

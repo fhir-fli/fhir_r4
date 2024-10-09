@@ -138,7 +138,7 @@ class Location extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -173,19 +173,19 @@ class Location extends DomainResource {
       json['operationalStatus'] = operationalStatus!.toJson();
     }
     if (name?.value != null) {
-      json['name'] = name!.value;
+      json['name'] = name!.toJson();
     }
     if (nameElement != null) {
       json['_name'] = nameElement!.toJson();
     }
     if (alias != null && alias!.isNotEmpty) {
-      json['alias'] = alias!.map((FhirString v) => v.value).toList();
+      json['alias'] = alias!.map((FhirString v) => v.toJson()).toList();
     }
     if (aliasElement != null && aliasElement!.isNotEmpty) {
       json['_alias'] = aliasElement!.map((Element v) => v.toJson()).toList();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
@@ -222,7 +222,7 @@ class Location extends DomainResource {
           .toList();
     }
     if (availabilityExceptions?.value != null) {
-      json['availabilityExceptions'] = availabilityExceptions!.value;
+      json['availabilityExceptions'] = availabilityExceptions!.toJson();
     }
     if (availabilityExceptionsElement != null) {
       json['_availabilityExceptions'] = availabilityExceptionsElement!.toJson();
@@ -236,17 +236,21 @@ class Location extends DomainResource {
 
   factory Location.fromJson(Map<String, dynamic> json) {
     return Location(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -276,12 +280,15 @@ class Location extends DomainResource {
               .toList()
           : null,
       status: json['status'] != null
-          ? LocationStatus.fromJson(json['status'] as Map<String, dynamic>)
+          ? LocationStatus.fromJson(json['status'])
+          : null,
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
           : null,
       operationalStatus: json['operationalStatus'] != null
           ? Coding.fromJson(json['operationalStatus'] as Map<String, dynamic>)
           : null,
-      name: json['name'] != null ? FhirString(json['name']) : null,
+      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
       nameElement: json['_name'] != null
           ? Element.fromJson(json['_name'] as Map<String, dynamic>)
           : null,
@@ -296,13 +303,15 @@ class Location extends DomainResource {
                   (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      description:
-          json['description'] != null ? FhirString(json['description']) : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
           : null,
-      mode: json['mode'] != null
-          ? LocationMode.fromJson(json['mode'] as Map<String, dynamic>)
+      mode: json['mode'] != null ? LocationMode.fromJson(json['mode']) : null,
+      modeElement: json['_mode'] != null
+          ? Element.fromJson(json['_mode'] as Map<String, dynamic>)
           : null,
       type: json['type'] != null
           ? (json['type'] as List<dynamic>)
@@ -340,7 +349,7 @@ class Location extends DomainResource {
               .toList()
           : null,
       availabilityExceptions: json['availabilityExceptions'] != null
-          ? FhirString(json['availabilityExceptions'])
+          ? FhirString.fromJson(json['availabilityExceptions'])
           : null,
       availabilityExceptionsElement: json['_availabilityExceptions'] != null
           ? Element.fromJson(
@@ -519,16 +528,16 @@ class LocationPosition extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['longitude'] = longitude.value;
+    json['longitude'] = longitude.toJson();
     if (longitudeElement != null) {
       json['_longitude'] = longitudeElement!.toJson();
     }
-    json['latitude'] = latitude.value;
+    json['latitude'] = latitude.toJson();
     if (latitudeElement != null) {
       json['_latitude'] = latitudeElement!.toJson();
     }
     if (altitude?.value != null) {
-      json['altitude'] = altitude!.value;
+      json['altitude'] = altitude!.toJson();
     }
     if (altitudeElement != null) {
       json['_altitude'] = altitudeElement!.toJson();
@@ -538,7 +547,7 @@ class LocationPosition extends BackboneElement {
 
   factory LocationPosition.fromJson(Map<String, dynamic> json) {
     return LocationPosition(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -551,15 +560,17 @@ class LocationPosition extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      longitude: FhirDecimal(json['longitude']),
+      longitude: FhirDecimal.fromJson(json['longitude']),
       longitudeElement: json['_longitude'] != null
           ? Element.fromJson(json['_longitude'] as Map<String, dynamic>)
           : null,
-      latitude: FhirDecimal(json['latitude']),
+      latitude: FhirDecimal.fromJson(json['latitude']),
       latitudeElement: json['_latitude'] != null
           ? Element.fromJson(json['_latitude'] as Map<String, dynamic>)
           : null,
-      altitude: json['altitude'] != null ? FhirDecimal(json['altitude']) : null,
+      altitude: json['altitude'] != null
+          ? FhirDecimal.fromJson(json['altitude'])
+          : null,
       altitudeElement: json['_altitude'] != null
           ? Element.fromJson(json['_altitude'] as Map<String, dynamic>)
           : null,
@@ -688,19 +699,19 @@ class LocationHoursOfOperation extends BackboneElement {
           daysOfWeek!.map<dynamic>((DaysOfWeek v) => v.toJson()).toList();
     }
     if (allDay?.value != null) {
-      json['allDay'] = allDay!.value;
+      json['allDay'] = allDay!.toJson();
     }
     if (allDayElement != null) {
       json['_allDay'] = allDayElement!.toJson();
     }
     if (openingTime?.value != null) {
-      json['openingTime'] = openingTime!.value;
+      json['openingTime'] = openingTime!.toJson();
     }
     if (openingTimeElement != null) {
       json['_openingTime'] = openingTimeElement!.toJson();
     }
     if (closingTime?.value != null) {
-      json['closingTime'] = closingTime!.value;
+      json['closingTime'] = closingTime!.toJson();
     }
     if (closingTimeElement != null) {
       json['_closingTime'] = closingTimeElement!.toJson();
@@ -710,7 +721,7 @@ class LocationHoursOfOperation extends BackboneElement {
 
   factory LocationHoursOfOperation.fromJson(Map<String, dynamic> json) {
     return LocationHoursOfOperation(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -725,21 +736,29 @@ class LocationHoursOfOperation extends BackboneElement {
           : null,
       daysOfWeek: json['daysOfWeek'] != null
           ? (json['daysOfWeek'] as List<dynamic>)
-              .map<DaysOfWeek>(
-                  (dynamic v) => DaysOfWeek.fromJson(v as Map<String, dynamic>))
+              .map<DaysOfWeek>((dynamic v) => DaysOfWeek.fromJson(v as dynamic))
               .toList()
           : null,
-      allDay: json['allDay'] != null ? FhirBoolean(json['allDay']) : null,
+      daysOfWeekElement: json['_daysOfWeek'] != null
+          ? (json['_daysOfWeek'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      allDay:
+          json['allDay'] != null ? FhirBoolean.fromJson(json['allDay']) : null,
       allDayElement: json['_allDay'] != null
           ? Element.fromJson(json['_allDay'] as Map<String, dynamic>)
           : null,
-      openingTime:
-          json['openingTime'] != null ? FhirTime(json['openingTime']) : null,
+      openingTime: json['openingTime'] != null
+          ? FhirTime.fromJson(json['openingTime'])
+          : null,
       openingTimeElement: json['_openingTime'] != null
           ? Element.fromJson(json['_openingTime'] as Map<String, dynamic>)
           : null,
-      closingTime:
-          json['closingTime'] != null ? FhirTime(json['closingTime']) : null,
+      closingTime: json['closingTime'] != null
+          ? FhirTime.fromJson(json['closingTime'])
+          : null,
       closingTimeElement: json['_closingTime'] != null
           ? Element.fromJson(json['_closingTime'] as Map<String, dynamic>)
           : null,

@@ -47,7 +47,7 @@ class OperationOutcome extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -78,17 +78,21 @@ class OperationOutcome extends DomainResource {
 
   factory OperationOutcome.fromJson(Map<String, dynamic> json) {
     return OperationOutcome(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -268,20 +272,21 @@ class OperationOutcomeIssue extends BackboneElement {
       json['details'] = details!.toJson();
     }
     if (diagnostics?.value != null) {
-      json['diagnostics'] = diagnostics!.value;
+      json['diagnostics'] = diagnostics!.toJson();
     }
     if (diagnosticsElement != null) {
       json['_diagnostics'] = diagnosticsElement!.toJson();
     }
     if (location != null && location!.isNotEmpty) {
-      json['location'] = location!.map((FhirString v) => v.value).toList();
+      json['location'] = location!.map((FhirString v) => v.toJson()).toList();
     }
     if (locationElement != null && locationElement!.isNotEmpty) {
       json['_location'] =
           locationElement!.map((Element v) => v.toJson()).toList();
     }
     if (expression != null && expression!.isNotEmpty) {
-      json['expression'] = expression!.map((FhirString v) => v.value).toList();
+      json['expression'] =
+          expression!.map((FhirString v) => v.toJson()).toList();
     }
     if (expressionElement != null && expressionElement!.isNotEmpty) {
       json['_expression'] =
@@ -292,7 +297,7 @@ class OperationOutcomeIssue extends BackboneElement {
 
   factory OperationOutcomeIssue.fromJson(Map<String, dynamic> json) {
     return OperationOutcomeIssue(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -305,14 +310,20 @@ class OperationOutcomeIssue extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      severity:
-          IssueSeverity.fromJson(json['severity'] as Map<String, dynamic>),
-      code: IssueType.fromJson(json['code'] as Map<String, dynamic>),
+      severity: IssueSeverity.fromJson(json['severity']),
+      severityElement: json['_severity'] != null
+          ? Element.fromJson(json['_severity'] as Map<String, dynamic>)
+          : null,
+      code: IssueType.fromJson(json['code']),
+      codeElement: json['_code'] != null
+          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
+          : null,
       details: json['details'] != null
           ? CodeableConcept.fromJson(json['details'] as Map<String, dynamic>)
           : null,
-      diagnostics:
-          json['diagnostics'] != null ? FhirString(json['diagnostics']) : null,
+      diagnostics: json['diagnostics'] != null
+          ? FhirString.fromJson(json['diagnostics'])
+          : null,
       diagnosticsElement: json['_diagnostics'] != null
           ? Element.fromJson(json['_diagnostics'] as Map<String, dynamic>)
           : null,

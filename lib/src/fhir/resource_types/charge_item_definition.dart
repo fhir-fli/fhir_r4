@@ -208,7 +208,7 @@ class ChargeItemDefinition extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -232,7 +232,7 @@ class ChargeItemDefinition extends DomainResource {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['url'] = url.value;
+    json['url'] = url.toJson();
     if (urlElement != null) {
       json['_url'] = urlElement!.toJson();
     }
@@ -241,33 +241,34 @@ class ChargeItemDefinition extends DomainResource {
           identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
     }
     if (version?.value != null) {
-      json['version'] = version!.value;
+      json['version'] = version!.toJson();
     }
     if (versionElement != null) {
       json['_version'] = versionElement!.toJson();
     }
     if (title?.value != null) {
-      json['title'] = title!.value;
+      json['title'] = title!.toJson();
     }
     if (titleElement != null) {
       json['_title'] = titleElement!.toJson();
     }
     if (derivedFromUri != null && derivedFromUri!.isNotEmpty) {
       json['derivedFromUri'] =
-          derivedFromUri!.map((FhirUri v) => v.value).toList();
+          derivedFromUri!.map((FhirUri v) => v.toJson()).toList();
     }
     if (derivedFromUriElement != null && derivedFromUriElement!.isNotEmpty) {
       json['_derivedFromUri'] =
           derivedFromUriElement!.map((Element v) => v.toJson()).toList();
     }
     if (partOf != null && partOf!.isNotEmpty) {
-      json['partOf'] = partOf!.map((FhirCanonical v) => v.value).toList();
+      json['partOf'] = partOf!.map((FhirCanonical v) => v.toJson()).toList();
     }
     if (partOfElement != null && partOfElement!.isNotEmpty) {
       json['_partOf'] = partOfElement!.map((Element v) => v.toJson()).toList();
     }
     if (replaces != null && replaces!.isNotEmpty) {
-      json['replaces'] = replaces!.map((FhirCanonical v) => v.value).toList();
+      json['replaces'] =
+          replaces!.map((FhirCanonical v) => v.toJson()).toList();
     }
     if (replacesElement != null && replacesElement!.isNotEmpty) {
       json['_replaces'] =
@@ -275,19 +276,19 @@ class ChargeItemDefinition extends DomainResource {
     }
     json['status'] = status.toJson();
     if (experimental?.value != null) {
-      json['experimental'] = experimental!.value;
+      json['experimental'] = experimental!.toJson();
     }
     if (experimentalElement != null) {
       json['_experimental'] = experimentalElement!.toJson();
     }
     if (date?.value != null) {
-      json['date'] = date!.value;
+      json['date'] = date!.toJson();
     }
     if (dateElement != null) {
       json['_date'] = dateElement!.toJson();
     }
     if (publisher?.value != null) {
-      json['publisher'] = publisher!.value;
+      json['publisher'] = publisher!.toJson();
     }
     if (publisherElement != null) {
       json['_publisher'] = publisherElement!.toJson();
@@ -297,7 +298,7 @@ class ChargeItemDefinition extends DomainResource {
           contact!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
@@ -312,19 +313,19 @@ class ChargeItemDefinition extends DomainResource {
           .toList();
     }
     if (copyright?.value != null) {
-      json['copyright'] = copyright!.value;
+      json['copyright'] = copyright!.toJson();
     }
     if (copyrightElement != null) {
       json['_copyright'] = copyrightElement!.toJson();
     }
     if (approvalDate?.value != null) {
-      json['approvalDate'] = approvalDate!.value;
+      json['approvalDate'] = approvalDate!.toJson();
     }
     if (approvalDateElement != null) {
       json['_approvalDate'] = approvalDateElement!.toJson();
     }
     if (lastReviewDate?.value != null) {
-      json['lastReviewDate'] = lastReviewDate!.value;
+      json['lastReviewDate'] = lastReviewDate!.toJson();
     }
     if (lastReviewDateElement != null) {
       json['_lastReviewDate'] = lastReviewDateElement!.toJson();
@@ -354,17 +355,21 @@ class ChargeItemDefinition extends DomainResource {
 
   factory ChargeItemDefinition.fromJson(Map<String, dynamic> json) {
     return ChargeItemDefinition(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -387,7 +392,7 @@ class ChargeItemDefinition extends DomainResource {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      url: FhirUri(json['url']),
+      url: FhirUri.fromJson(json['url']),
       urlElement: json['_url'] != null
           ? Element.fromJson(json['_url'] as Map<String, dynamic>)
           : null,
@@ -397,11 +402,12 @@ class ChargeItemDefinition extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      version: json['version'] != null ? FhirString(json['version']) : null,
+      version:
+          json['version'] != null ? FhirString.fromJson(json['version']) : null,
       versionElement: json['_version'] != null
           ? Element.fromJson(json['_version'] as Map<String, dynamic>)
           : null,
-      title: json['title'] != null ? FhirString(json['title']) : null,
+      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
       titleElement: json['_title'] != null
           ? Element.fromJson(json['_title'] as Map<String, dynamic>)
           : null,
@@ -440,20 +446,23 @@ class ChargeItemDefinition extends DomainResource {
                   (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status:
-          PublicationStatus.fromJson(json['status'] as Map<String, dynamic>),
+      status: PublicationStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       experimental: json['experimental'] != null
-          ? FhirBoolean(json['experimental'])
+          ? FhirBoolean.fromJson(json['experimental'])
           : null,
       experimentalElement: json['_experimental'] != null
           ? Element.fromJson(json['_experimental'] as Map<String, dynamic>)
           : null,
-      date: json['date'] != null ? FhirDateTime(json['date']) : null,
+      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
       dateElement: json['_date'] != null
           ? Element.fromJson(json['_date'] as Map<String, dynamic>)
           : null,
-      publisher:
-          json['publisher'] != null ? FhirString(json['publisher']) : null,
+      publisher: json['publisher'] != null
+          ? FhirString.fromJson(json['publisher'])
+          : null,
       publisherElement: json['_publisher'] != null
           ? Element.fromJson(json['_publisher'] as Map<String, dynamic>)
           : null,
@@ -464,7 +473,7 @@ class ChargeItemDefinition extends DomainResource {
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown(json['description'])
+          ? FhirMarkdown.fromJson(json['description'])
           : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
@@ -481,18 +490,20 @@ class ChargeItemDefinition extends DomainResource {
                   CodeableConcept.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      copyright:
-          json['copyright'] != null ? FhirMarkdown(json['copyright']) : null,
+      copyright: json['copyright'] != null
+          ? FhirMarkdown.fromJson(json['copyright'])
+          : null,
       copyrightElement: json['_copyright'] != null
           ? Element.fromJson(json['_copyright'] as Map<String, dynamic>)
           : null,
-      approvalDate:
-          json['approvalDate'] != null ? FhirDate(json['approvalDate']) : null,
+      approvalDate: json['approvalDate'] != null
+          ? FhirDate.fromJson(json['approvalDate'])
+          : null,
       approvalDateElement: json['_approvalDate'] != null
           ? Element.fromJson(json['_approvalDate'] as Map<String, dynamic>)
           : null,
       lastReviewDate: json['lastReviewDate'] != null
-          ? FhirDate(json['lastReviewDate'])
+          ? FhirDate.fromJson(json['lastReviewDate'])
           : null,
       lastReviewDateElement: json['_lastReviewDate'] != null
           ? Element.fromJson(json['_lastReviewDate'] as Map<String, dynamic>)
@@ -721,19 +732,19 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
           .toList();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
     }
     if (language?.value != null) {
-      json['language'] = language!.value;
+      json['language'] = language!.toJson();
     }
     if (languageElement != null) {
       json['_language'] = languageElement!.toJson();
     }
     if (expression?.value != null) {
-      json['expression'] = expression!.value;
+      json['expression'] = expression!.toJson();
     }
     if (expressionElement != null) {
       json['_expression'] = expressionElement!.toJson();
@@ -744,7 +755,7 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
   factory ChargeItemDefinitionApplicability.fromJson(
       Map<String, dynamic> json) {
     return ChargeItemDefinitionApplicability(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -757,17 +768,21 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      description:
-          json['description'] != null ? FhirString(json['description']) : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
           : null,
-      language: json['language'] != null ? FhirString(json['language']) : null,
+      language: json['language'] != null
+          ? FhirString.fromJson(json['language'])
+          : null,
       languageElement: json['_language'] != null
           ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
-      expression:
-          json['expression'] != null ? FhirString(json['expression']) : null,
+      expression: json['expression'] != null
+          ? FhirString.fromJson(json['expression'])
+          : null,
       expressionElement: json['_expression'] != null
           ? Element.fromJson(json['_expression'] as Map<String, dynamic>)
           : null,
@@ -898,7 +913,7 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
   factory ChargeItemDefinitionPropertyGroup.fromJson(
       Map<String, dynamic> json) {
     return ChargeItemDefinitionPropertyGroup(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1045,7 +1060,7 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
       json['code'] = code!.toJson();
     }
     if (factor?.value != null) {
-      json['factor'] = factor!.value;
+      json['factor'] = factor!.toJson();
     }
     if (factorElement != null) {
       json['_factor'] = factorElement!.toJson();
@@ -1059,7 +1074,7 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
   factory ChargeItemDefinitionPriceComponent.fromJson(
       Map<String, dynamic> json) {
     return ChargeItemDefinitionPriceComponent(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1072,12 +1087,15 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      type: InvoicePriceComponentType.fromJson(
-          json['type'] as Map<String, dynamic>),
+      type: InvoicePriceComponentType.fromJson(json['type']),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
+          : null,
       code: json['code'] != null
           ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
           : null,
-      factor: json['factor'] != null ? FhirDecimal(json['factor']) : null,
+      factor:
+          json['factor'] != null ? FhirDecimal.fromJson(json['factor']) : null,
       factorElement: json['_factor'] != null
           ? Element.fromJson(json['_factor'] as Map<String, dynamic>)
           : null,

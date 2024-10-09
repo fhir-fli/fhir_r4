@@ -48,13 +48,13 @@ class Period extends DataType {
           extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
     }
     if (start?.value != null) {
-      json['start'] = start!.value;
+      json['start'] = start!.toJson();
     }
     if (startElement != null) {
       json['_start'] = startElement!.toJson();
     }
     if (end?.value != null) {
-      json['end'] = end!.value;
+      json['end'] = end!.toJson();
     }
     if (endElement != null) {
       json['_end'] = endElement!.toJson();
@@ -64,18 +64,19 @@ class Period extends DataType {
 
   factory Period.fromJson(Map<String, dynamic> json) {
     return Period(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      start: json['start'] != null ? FhirDateTime(json['start']) : null,
+      start:
+          json['start'] != null ? FhirDateTime.fromJson(json['start']) : null,
       startElement: json['_start'] != null
           ? Element.fromJson(json['_start'] as Map<String, dynamic>)
           : null,
-      end: json['end'] != null ? FhirDateTime(json['end']) : null,
+      end: json['end'] != null ? FhirDateTime.fromJson(json['end']) : null,
       endElement: json['_end'] != null
           ? Element.fromJson(json['_end'] as Map<String, dynamic>)
           : null,

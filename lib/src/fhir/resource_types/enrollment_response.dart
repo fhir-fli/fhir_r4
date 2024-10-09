@@ -83,7 +83,7 @@ class EnrollmentResponse extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -121,13 +121,13 @@ class EnrollmentResponse extends DomainResource {
       json['outcome'] = outcome!.toJson();
     }
     if (disposition?.value != null) {
-      json['disposition'] = disposition!.value;
+      json['disposition'] = disposition!.toJson();
     }
     if (dispositionElement != null) {
       json['_disposition'] = dispositionElement!.toJson();
     }
     if (created?.value != null) {
-      json['created'] = created!.value;
+      json['created'] = created!.toJson();
     }
     if (createdElement != null) {
       json['_created'] = createdElement!.toJson();
@@ -143,17 +143,21 @@ class EnrollmentResponse extends DomainResource {
 
   factory EnrollmentResponse.fromJson(Map<String, dynamic> json) {
     return EnrollmentResponse(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -183,21 +187,29 @@ class EnrollmentResponse extends DomainResource {
               .toList()
           : null,
       status: json['status'] != null
-          ? FinancialResourceStatusCodes.fromJson(
-              json['status'] as Map<String, dynamic>)
+          ? FinancialResourceStatusCodes.fromJson(json['status'])
+          : null,
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
           : null,
       request: json['request'] != null
           ? Reference.fromJson(json['request'] as Map<String, dynamic>)
           : null,
       outcome: json['outcome'] != null
-          ? RemittanceOutcome.fromJson(json['outcome'] as Map<String, dynamic>)
+          ? RemittanceOutcome.fromJson(json['outcome'])
           : null,
-      disposition:
-          json['disposition'] != null ? FhirString(json['disposition']) : null,
+      outcomeElement: json['_outcome'] != null
+          ? Element.fromJson(json['_outcome'] as Map<String, dynamic>)
+          : null,
+      disposition: json['disposition'] != null
+          ? FhirString.fromJson(json['disposition'])
+          : null,
       dispositionElement: json['_disposition'] != null
           ? Element.fromJson(json['_disposition'] as Map<String, dynamic>)
           : null,
-      created: json['created'] != null ? FhirDateTime(json['created']) : null,
+      created: json['created'] != null
+          ? FhirDateTime.fromJson(json['created'])
+          : null,
       createdElement: json['_created'] != null
           ? Element.fromJson(json['_created'] as Map<String, dynamic>)
           : null,

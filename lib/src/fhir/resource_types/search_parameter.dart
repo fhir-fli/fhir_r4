@@ -235,7 +235,7 @@ class SearchParameter extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -259,41 +259,41 @@ class SearchParameter extends DomainResource {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['url'] = url.value;
+    json['url'] = url.toJson();
     if (urlElement != null) {
       json['_url'] = urlElement!.toJson();
     }
     if (version?.value != null) {
-      json['version'] = version!.value;
+      json['version'] = version!.toJson();
     }
     if (versionElement != null) {
       json['_version'] = versionElement!.toJson();
     }
-    json['name'] = name.value;
+    json['name'] = name.toJson();
     if (nameElement != null) {
       json['_name'] = nameElement!.toJson();
     }
     if (derivedFrom?.value != null) {
-      json['derivedFrom'] = derivedFrom!.value;
+      json['derivedFrom'] = derivedFrom!.toJson();
     }
     if (derivedFromElement != null) {
       json['_derivedFrom'] = derivedFromElement!.toJson();
     }
     json['status'] = status.toJson();
     if (experimental?.value != null) {
-      json['experimental'] = experimental!.value;
+      json['experimental'] = experimental!.toJson();
     }
     if (experimentalElement != null) {
       json['_experimental'] = experimentalElement!.toJson();
     }
     if (date?.value != null) {
-      json['date'] = date!.value;
+      json['date'] = date!.toJson();
     }
     if (dateElement != null) {
       json['_date'] = dateElement!.toJson();
     }
     if (publisher?.value != null) {
-      json['publisher'] = publisher!.value;
+      json['publisher'] = publisher!.toJson();
     }
     if (publisherElement != null) {
       json['_publisher'] = publisherElement!.toJson();
@@ -302,7 +302,7 @@ class SearchParameter extends DomainResource {
       json['contact'] =
           contact!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
     }
-    json['description'] = description.value;
+    json['description'] = description.toJson();
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
     }
@@ -316,28 +316,28 @@ class SearchParameter extends DomainResource {
           .toList();
     }
     if (purpose?.value != null) {
-      json['purpose'] = purpose!.value;
+      json['purpose'] = purpose!.toJson();
     }
     if (purposeElement != null) {
       json['_purpose'] = purposeElement!.toJson();
     }
-    json['code'] = code.value;
+    json['code'] = code.toJson();
     if (codeElement != null) {
       json['_code'] = codeElement!.toJson();
     }
-    json['base'] = base.map((FhirCode v) => v.value).toList();
+    json['base'] = base.map((FhirCode v) => v.toJson()).toList();
     if (baseElement != null && baseElement!.isNotEmpty) {
       json['_base'] = baseElement!.map((Element v) => v.toJson()).toList();
     }
     json['type'] = type.toJson();
     if (expression?.value != null) {
-      json['expression'] = expression!.value;
+      json['expression'] = expression!.toJson();
     }
     if (expressionElement != null) {
       json['_expression'] = expressionElement!.toJson();
     }
     if (xpath?.value != null) {
-      json['xpath'] = xpath!.value;
+      json['xpath'] = xpath!.toJson();
     }
     if (xpathElement != null) {
       json['_xpath'] = xpathElement!.toJson();
@@ -346,19 +346,19 @@ class SearchParameter extends DomainResource {
       json['xpathUsage'] = xpathUsage!.toJson();
     }
     if (target != null && target!.isNotEmpty) {
-      json['target'] = target!.map((FhirCode v) => v.value).toList();
+      json['target'] = target!.map((FhirCode v) => v.toJson()).toList();
     }
     if (targetElement != null && targetElement!.isNotEmpty) {
       json['_target'] = targetElement!.map((Element v) => v.toJson()).toList();
     }
     if (multipleOr?.value != null) {
-      json['multipleOr'] = multipleOr!.value;
+      json['multipleOr'] = multipleOr!.toJson();
     }
     if (multipleOrElement != null) {
       json['_multipleOr'] = multipleOrElement!.toJson();
     }
     if (multipleAnd?.value != null) {
-      json['multipleAnd'] = multipleAnd!.value;
+      json['multipleAnd'] = multipleAnd!.toJson();
     }
     if (multipleAndElement != null) {
       json['_multipleAnd'] = multipleAndElement!.toJson();
@@ -372,7 +372,7 @@ class SearchParameter extends DomainResource {
           modifier!.map<dynamic>((SearchModifierCode v) => v.toJson()).toList();
     }
     if (chain != null && chain!.isNotEmpty) {
-      json['chain'] = chain!.map((FhirString v) => v.value).toList();
+      json['chain'] = chain!.map((FhirString v) => v.toJson()).toList();
     }
     if (chainElement != null && chainElement!.isNotEmpty) {
       json['_chain'] = chainElement!.map((Element v) => v.toJson()).toList();
@@ -387,17 +387,21 @@ class SearchParameter extends DomainResource {
 
   factory SearchParameter.fromJson(Map<String, dynamic> json) {
     return SearchParameter(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -420,38 +424,42 @@ class SearchParameter extends DomainResource {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      url: FhirUri(json['url']),
+      url: FhirUri.fromJson(json['url']),
       urlElement: json['_url'] != null
           ? Element.fromJson(json['_url'] as Map<String, dynamic>)
           : null,
-      version: json['version'] != null ? FhirString(json['version']) : null,
+      version:
+          json['version'] != null ? FhirString.fromJson(json['version']) : null,
       versionElement: json['_version'] != null
           ? Element.fromJson(json['_version'] as Map<String, dynamic>)
           : null,
-      name: FhirString(json['name']),
+      name: FhirString.fromJson(json['name']),
       nameElement: json['_name'] != null
           ? Element.fromJson(json['_name'] as Map<String, dynamic>)
           : null,
       derivedFrom: json['derivedFrom'] != null
-          ? FhirCanonical(json['derivedFrom'])
+          ? FhirCanonical.fromJson(json['derivedFrom'])
           : null,
       derivedFromElement: json['_derivedFrom'] != null
           ? Element.fromJson(json['_derivedFrom'] as Map<String, dynamic>)
           : null,
-      status:
-          PublicationStatus.fromJson(json['status'] as Map<String, dynamic>),
+      status: PublicationStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       experimental: json['experimental'] != null
-          ? FhirBoolean(json['experimental'])
+          ? FhirBoolean.fromJson(json['experimental'])
           : null,
       experimentalElement: json['_experimental'] != null
           ? Element.fromJson(json['_experimental'] as Map<String, dynamic>)
           : null,
-      date: json['date'] != null ? FhirDateTime(json['date']) : null,
+      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
       dateElement: json['_date'] != null
           ? Element.fromJson(json['_date'] as Map<String, dynamic>)
           : null,
-      publisher:
-          json['publisher'] != null ? FhirString(json['publisher']) : null,
+      publisher: json['publisher'] != null
+          ? FhirString.fromJson(json['publisher'])
+          : null,
       publisherElement: json['_publisher'] != null
           ? Element.fromJson(json['_publisher'] as Map<String, dynamic>)
           : null,
@@ -461,7 +469,7 @@ class SearchParameter extends DomainResource {
                   ContactDetail.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      description: FhirMarkdown(json['description']),
+      description: FhirMarkdown.fromJson(json['description']),
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
           : null,
@@ -477,35 +485,42 @@ class SearchParameter extends DomainResource {
                   CodeableConcept.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      purpose: json['purpose'] != null ? FhirMarkdown(json['purpose']) : null,
+      purpose: json['purpose'] != null
+          ? FhirMarkdown.fromJson(json['purpose'])
+          : null,
       purposeElement: json['_purpose'] != null
           ? Element.fromJson(json['_purpose'] as Map<String, dynamic>)
           : null,
-      code: FhirCode(json['code']),
+      code: FhirCode.fromJson(json['code']),
       codeElement: json['_code'] != null
           ? Element.fromJson(json['_code'] as Map<String, dynamic>)
           : null,
       base: (json['base'] as List<dynamic>)
           .map<FhirCode>((dynamic v) => FhirCode.fromJson(v as dynamic))
           .toList(),
-      baseElement: json['_base'] != null
-          ? (json['_base'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
+      baseElement: (json['_base'] as List<dynamic>)
+          .map<Element>(
+              (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+          .toList(),
+      type: SearchParamType.fromJson(json['type']),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
           : null,
-      type: SearchParamType.fromJson(json['type'] as Map<String, dynamic>),
-      expression:
-          json['expression'] != null ? FhirString(json['expression']) : null,
+      expression: json['expression'] != null
+          ? FhirString.fromJson(json['expression'])
+          : null,
       expressionElement: json['_expression'] != null
           ? Element.fromJson(json['_expression'] as Map<String, dynamic>)
           : null,
-      xpath: json['xpath'] != null ? FhirString(json['xpath']) : null,
+      xpath: json['xpath'] != null ? FhirString.fromJson(json['xpath']) : null,
       xpathElement: json['_xpath'] != null
           ? Element.fromJson(json['_xpath'] as Map<String, dynamic>)
           : null,
       xpathUsage: json['xpathUsage'] != null
-          ? XPathUsageType.fromJson(json['xpathUsage'] as Map<String, dynamic>)
+          ? XPathUsageType.fromJson(json['xpathUsage'])
+          : null,
+      xpathUsageElement: json['_xpathUsage'] != null
+          ? Element.fromJson(json['_xpathUsage'] as Map<String, dynamic>)
           : null,
       target: json['target'] != null
           ? (json['target'] as List<dynamic>)
@@ -518,26 +533,40 @@ class SearchParameter extends DomainResource {
                   (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      multipleOr:
-          json['multipleOr'] != null ? FhirBoolean(json['multipleOr']) : null,
+      multipleOr: json['multipleOr'] != null
+          ? FhirBoolean.fromJson(json['multipleOr'])
+          : null,
       multipleOrElement: json['_multipleOr'] != null
           ? Element.fromJson(json['_multipleOr'] as Map<String, dynamic>)
           : null,
-      multipleAnd:
-          json['multipleAnd'] != null ? FhirBoolean(json['multipleAnd']) : null,
+      multipleAnd: json['multipleAnd'] != null
+          ? FhirBoolean.fromJson(json['multipleAnd'])
+          : null,
       multipleAndElement: json['_multipleAnd'] != null
           ? Element.fromJson(json['_multipleAnd'] as Map<String, dynamic>)
           : null,
       comparator: json['comparator'] != null
           ? (json['comparator'] as List<dynamic>)
-              .map<SearchComparator>((dynamic v) =>
-                  SearchComparator.fromJson(v as Map<String, dynamic>))
+              .map<SearchComparator>(
+                  (dynamic v) => SearchComparator.fromJson(v as dynamic))
+              .toList()
+          : null,
+      comparatorElement: json['_comparator'] != null
+          ? (json['_comparator'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
       modifier: json['modifier'] != null
           ? (json['modifier'] as List<dynamic>)
-              .map<SearchModifierCode>((dynamic v) =>
-                  SearchModifierCode.fromJson(v as Map<String, dynamic>))
+              .map<SearchModifierCode>(
+                  (dynamic v) => SearchModifierCode.fromJson(v as dynamic))
+              .toList()
+          : null,
+      modifierElement: json['_modifier'] != null
+          ? (json['_modifier'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
       chain: json['chain'] != null
@@ -763,11 +792,11 @@ class SearchParameterComponent extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['definition'] = definition.value;
+    json['definition'] = definition.toJson();
     if (definitionElement != null) {
       json['_definition'] = definitionElement!.toJson();
     }
-    json['expression'] = expression.value;
+    json['expression'] = expression.toJson();
     if (expressionElement != null) {
       json['_expression'] = expressionElement!.toJson();
     }
@@ -776,7 +805,7 @@ class SearchParameterComponent extends BackboneElement {
 
   factory SearchParameterComponent.fromJson(Map<String, dynamic> json) {
     return SearchParameterComponent(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -789,11 +818,11 @@ class SearchParameterComponent extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      definition: FhirCanonical(json['definition']),
+      definition: FhirCanonical.fromJson(json['definition']),
       definitionElement: json['_definition'] != null
           ? Element.fromJson(json['_definition'] as Map<String, dynamic>)
           : null,
-      expression: FhirString(json['expression']),
+      expression: FhirString.fromJson(json['expression']),
       expressionElement: json['_expression'] != null
           ? Element.fromJson(json['_expression'] as Map<String, dynamic>)
           : null,

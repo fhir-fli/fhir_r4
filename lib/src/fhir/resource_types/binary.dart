@@ -64,7 +64,7 @@ class Binary extends Resource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -72,7 +72,7 @@ class Binary extends Resource {
     if (language != null) {
       json['language'] = language!.toJson();
     }
-    json['contentType'] = contentType.value;
+    json['contentType'] = contentType.toJson();
     if (contentTypeElement != null) {
       json['_contentType'] = contentTypeElement!.toJson();
     }
@@ -80,7 +80,7 @@ class Binary extends Resource {
       json['securityContext'] = securityContext!.toJson();
     }
     if (data?.value != null) {
-      json['data'] = data!.value;
+      json['data'] = data!.toJson();
     }
     if (dataElement != null) {
       json['_data'] = dataElement!.toJson();
@@ -90,26 +90,31 @@ class Binary extends Resource {
 
   factory Binary.fromJson(Map<String, dynamic> json) {
     return Binary(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
           : null,
-      contentType: FhirCode(json['contentType']),
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
+          : null,
+      contentType: FhirCode.fromJson(json['contentType']),
       contentTypeElement: json['_contentType'] != null
           ? Element.fromJson(json['_contentType'] as Map<String, dynamic>)
           : null,
       securityContext: json['securityContext'] != null
           ? Reference.fromJson(json['securityContext'] as Map<String, dynamic>)
           : null,
-      data: json['data'] != null ? FhirBase64Binary(json['data']) : null,
+      data:
+          json['data'] != null ? FhirBase64Binary.fromJson(json['data']) : null,
       dataElement: json['_data'] != null
           ? Element.fromJson(json['_data'] as Map<String, dynamic>)
           : null,

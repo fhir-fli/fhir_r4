@@ -112,7 +112,7 @@ class VerificationResult extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -142,7 +142,7 @@ class VerificationResult extends DomainResource {
     }
     if (targetLocation != null && targetLocation!.isNotEmpty) {
       json['targetLocation'] =
-          targetLocation!.map((FhirString v) => v.value).toList();
+          targetLocation!.map((FhirString v) => v.toJson()).toList();
     }
     if (targetLocationElement != null && targetLocationElement!.isNotEmpty) {
       json['_targetLocation'] =
@@ -153,7 +153,7 @@ class VerificationResult extends DomainResource {
     }
     json['status'] = status.toJson();
     if (statusDate?.value != null) {
-      json['statusDate'] = statusDate!.value;
+      json['statusDate'] = statusDate!.toJson();
     }
     if (statusDateElement != null) {
       json['_statusDate'] = statusDateElement!.toJson();
@@ -170,13 +170,13 @@ class VerificationResult extends DomainResource {
       json['frequency'] = frequency!.toJson();
     }
     if (lastPerformed?.value != null) {
-      json['lastPerformed'] = lastPerformed!.value;
+      json['lastPerformed'] = lastPerformed!.toJson();
     }
     if (lastPerformedElement != null) {
       json['_lastPerformed'] = lastPerformedElement!.toJson();
     }
     if (nextScheduled?.value != null) {
-      json['nextScheduled'] = nextScheduled!.value;
+      json['nextScheduled'] = nextScheduled!.toJson();
     }
     if (nextScheduledElement != null) {
       json['_nextScheduled'] = nextScheduledElement!.toJson();
@@ -202,17 +202,21 @@ class VerificationResult extends DomainResource {
 
   factory VerificationResult.fromJson(Map<String, dynamic> json) {
     return VerificationResult(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -255,9 +259,13 @@ class VerificationResult extends DomainResource {
       need: json['need'] != null
           ? CodeableConcept.fromJson(json['need'] as Map<String, dynamic>)
           : null,
-      status: Status.fromJson(json['status'] as Map<String, dynamic>),
-      statusDate:
-          json['statusDate'] != null ? FhirDateTime(json['statusDate']) : null,
+      status: Status.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
+      statusDate: json['statusDate'] != null
+          ? FhirDateTime.fromJson(json['statusDate'])
+          : null,
       statusDateElement: json['_statusDate'] != null
           ? Element.fromJson(json['_statusDate'] as Map<String, dynamic>)
           : null,
@@ -275,13 +283,13 @@ class VerificationResult extends DomainResource {
           ? Timing.fromJson(json['frequency'] as Map<String, dynamic>)
           : null,
       lastPerformed: json['lastPerformed'] != null
-          ? FhirDateTime(json['lastPerformed'])
+          ? FhirDateTime.fromJson(json['lastPerformed'])
           : null,
       lastPerformedElement: json['_lastPerformed'] != null
           ? Element.fromJson(json['_lastPerformed'] as Map<String, dynamic>)
           : null,
       nextScheduled: json['nextScheduled'] != null
-          ? FhirDate(json['nextScheduled'])
+          ? FhirDate.fromJson(json['nextScheduled'])
           : null,
       nextScheduledElement: json['_nextScheduled'] != null
           ? Element.fromJson(json['_nextScheduled'] as Map<String, dynamic>)
@@ -495,7 +503,7 @@ class VerificationResultPrimarySource extends BackboneElement {
       json['validationStatus'] = validationStatus!.toJson();
     }
     if (validationDate?.value != null) {
-      json['validationDate'] = validationDate!.value;
+      json['validationDate'] = validationDate!.toJson();
     }
     if (validationDateElement != null) {
       json['_validationDate'] = validationDateElement!.toJson();
@@ -513,7 +521,7 @@ class VerificationResultPrimarySource extends BackboneElement {
 
   factory VerificationResultPrimarySource.fromJson(Map<String, dynamic> json) {
     return VerificationResultPrimarySource(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -546,7 +554,7 @@ class VerificationResultPrimarySource extends BackboneElement {
               json['validationStatus'] as Map<String, dynamic>)
           : null,
       validationDate: json['validationDate'] != null
-          ? FhirDateTime(json['validationDate'])
+          ? FhirDateTime.fromJson(json['validationDate'])
           : null,
       validationDateElement: json['_validationDate'] != null
           ? Element.fromJson(json['_validationDate'] as Map<String, dynamic>)
@@ -715,20 +723,20 @@ class VerificationResultAttestation extends BackboneElement {
       json['communicationMethod'] = communicationMethod!.toJson();
     }
     if (date?.value != null) {
-      json['date'] = date!.value;
+      json['date'] = date!.toJson();
     }
     if (dateElement != null) {
       json['_date'] = dateElement!.toJson();
     }
     if (sourceIdentityCertificate?.value != null) {
-      json['sourceIdentityCertificate'] = sourceIdentityCertificate!.value;
+      json['sourceIdentityCertificate'] = sourceIdentityCertificate!.toJson();
     }
     if (sourceIdentityCertificateElement != null) {
       json['_sourceIdentityCertificate'] =
           sourceIdentityCertificateElement!.toJson();
     }
     if (proxyIdentityCertificate?.value != null) {
-      json['proxyIdentityCertificate'] = proxyIdentityCertificate!.value;
+      json['proxyIdentityCertificate'] = proxyIdentityCertificate!.toJson();
     }
     if (proxyIdentityCertificateElement != null) {
       json['_proxyIdentityCertificate'] =
@@ -745,7 +753,7 @@ class VerificationResultAttestation extends BackboneElement {
 
   factory VerificationResultAttestation.fromJson(Map<String, dynamic> json) {
     return VerificationResultAttestation(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -768,12 +776,12 @@ class VerificationResultAttestation extends BackboneElement {
           ? CodeableConcept.fromJson(
               json['communicationMethod'] as Map<String, dynamic>)
           : null,
-      date: json['date'] != null ? FhirDate(json['date']) : null,
+      date: json['date'] != null ? FhirDate.fromJson(json['date']) : null,
       dateElement: json['_date'] != null
           ? Element.fromJson(json['_date'] as Map<String, dynamic>)
           : null,
       sourceIdentityCertificate: json['sourceIdentityCertificate'] != null
-          ? FhirString(json['sourceIdentityCertificate'])
+          ? FhirString.fromJson(json['sourceIdentityCertificate'])
           : null,
       sourceIdentityCertificateElement:
           json['_sourceIdentityCertificate'] != null
@@ -781,7 +789,7 @@ class VerificationResultAttestation extends BackboneElement {
                   json['_sourceIdentityCertificate'] as Map<String, dynamic>)
               : null,
       proxyIdentityCertificate: json['proxyIdentityCertificate'] != null
-          ? FhirString(json['proxyIdentityCertificate'])
+          ? FhirString.fromJson(json['proxyIdentityCertificate'])
           : null,
       proxyIdentityCertificateElement: json['_proxyIdentityCertificate'] != null
           ? Element.fromJson(
@@ -918,7 +926,7 @@ class VerificationResultValidator extends BackboneElement {
     }
     json['organization'] = organization.toJson();
     if (identityCertificate?.value != null) {
-      json['identityCertificate'] = identityCertificate!.value;
+      json['identityCertificate'] = identityCertificate!.toJson();
     }
     if (identityCertificateElement != null) {
       json['_identityCertificate'] = identityCertificateElement!.toJson();
@@ -931,7 +939,7 @@ class VerificationResultValidator extends BackboneElement {
 
   factory VerificationResultValidator.fromJson(Map<String, dynamic> json) {
     return VerificationResultValidator(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -947,7 +955,7 @@ class VerificationResultValidator extends BackboneElement {
       organization:
           Reference.fromJson(json['organization'] as Map<String, dynamic>),
       identityCertificate: json['identityCertificate'] != null
-          ? FhirString(json['identityCertificate'])
+          ? FhirString.fromJson(json['identityCertificate'])
           : null,
       identityCertificateElement: json['_identityCertificate'] != null
           ? Element.fromJson(

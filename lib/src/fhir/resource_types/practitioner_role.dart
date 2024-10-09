@@ -111,7 +111,7 @@ class PractitionerRole extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -140,7 +140,7 @@ class PractitionerRole extends DomainResource {
           identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
     }
     if (active?.value != null) {
-      json['active'] = active!.value;
+      json['active'] = active!.toJson();
     }
     if (activeElement != null) {
       json['_active'] = activeElement!.toJson();
@@ -185,7 +185,7 @@ class PractitionerRole extends DomainResource {
           .toList();
     }
     if (availabilityExceptions?.value != null) {
-      json['availabilityExceptions'] = availabilityExceptions!.value;
+      json['availabilityExceptions'] = availabilityExceptions!.toJson();
     }
     if (availabilityExceptionsElement != null) {
       json['_availabilityExceptions'] = availabilityExceptionsElement!.toJson();
@@ -199,17 +199,21 @@ class PractitionerRole extends DomainResource {
 
   factory PractitionerRole.fromJson(Map<String, dynamic> json) {
     return PractitionerRole(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -238,7 +242,8 @@ class PractitionerRole extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      active: json['active'] != null ? FhirBoolean(json['active']) : null,
+      active:
+          json['active'] != null ? FhirBoolean.fromJson(json['active']) : null,
       activeElement: json['_active'] != null
           ? Element.fromJson(json['_active'] as Map<String, dynamic>)
           : null,
@@ -296,7 +301,7 @@ class PractitionerRole extends DomainResource {
               .toList()
           : null,
       availabilityExceptions: json['availabilityExceptions'] != null
-          ? FhirString(json['availabilityExceptions'])
+          ? FhirString.fromJson(json['availabilityExceptions'])
           : null,
       availabilityExceptionsElement: json['_availabilityExceptions'] != null
           ? Element.fromJson(
@@ -473,19 +478,19 @@ class PractitionerRoleAvailableTime extends BackboneElement {
           daysOfWeek!.map<dynamic>((DaysOfWeek v) => v.toJson()).toList();
     }
     if (allDay?.value != null) {
-      json['allDay'] = allDay!.value;
+      json['allDay'] = allDay!.toJson();
     }
     if (allDayElement != null) {
       json['_allDay'] = allDayElement!.toJson();
     }
     if (availableStartTime?.value != null) {
-      json['availableStartTime'] = availableStartTime!.value;
+      json['availableStartTime'] = availableStartTime!.toJson();
     }
     if (availableStartTimeElement != null) {
       json['_availableStartTime'] = availableStartTimeElement!.toJson();
     }
     if (availableEndTime?.value != null) {
-      json['availableEndTime'] = availableEndTime!.value;
+      json['availableEndTime'] = availableEndTime!.toJson();
     }
     if (availableEndTimeElement != null) {
       json['_availableEndTime'] = availableEndTimeElement!.toJson();
@@ -495,7 +500,7 @@ class PractitionerRoleAvailableTime extends BackboneElement {
 
   factory PractitionerRoleAvailableTime.fromJson(Map<String, dynamic> json) {
     return PractitionerRoleAvailableTime(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -510,23 +515,29 @@ class PractitionerRoleAvailableTime extends BackboneElement {
           : null,
       daysOfWeek: json['daysOfWeek'] != null
           ? (json['daysOfWeek'] as List<dynamic>)
-              .map<DaysOfWeek>(
-                  (dynamic v) => DaysOfWeek.fromJson(v as Map<String, dynamic>))
+              .map<DaysOfWeek>((dynamic v) => DaysOfWeek.fromJson(v as dynamic))
               .toList()
           : null,
-      allDay: json['allDay'] != null ? FhirBoolean(json['allDay']) : null,
+      daysOfWeekElement: json['_daysOfWeek'] != null
+          ? (json['_daysOfWeek'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      allDay:
+          json['allDay'] != null ? FhirBoolean.fromJson(json['allDay']) : null,
       allDayElement: json['_allDay'] != null
           ? Element.fromJson(json['_allDay'] as Map<String, dynamic>)
           : null,
       availableStartTime: json['availableStartTime'] != null
-          ? FhirTime(json['availableStartTime'])
+          ? FhirTime.fromJson(json['availableStartTime'])
           : null,
       availableStartTimeElement: json['_availableStartTime'] != null
           ? Element.fromJson(
               json['_availableStartTime'] as Map<String, dynamic>)
           : null,
       availableEndTime: json['availableEndTime'] != null
-          ? FhirTime(json['availableEndTime'])
+          ? FhirTime.fromJson(json['availableEndTime'])
           : null,
       availableEndTimeElement: json['_availableEndTime'] != null
           ? Element.fromJson(json['_availableEndTime'] as Map<String, dynamic>)
@@ -645,7 +656,7 @@ class PractitionerRoleNotAvailable extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['description'] = description.value;
+    json['description'] = description.toJson();
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
     }
@@ -657,7 +668,7 @@ class PractitionerRoleNotAvailable extends BackboneElement {
 
   factory PractitionerRoleNotAvailable.fromJson(Map<String, dynamic> json) {
     return PractitionerRoleNotAvailable(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -670,7 +681,7 @@ class PractitionerRoleNotAvailable extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      description: FhirString(json['description']),
+      description: FhirString.fromJson(json['description']),
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
           : null,

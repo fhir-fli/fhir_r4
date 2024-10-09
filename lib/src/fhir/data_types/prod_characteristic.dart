@@ -131,19 +131,19 @@ class ProdCharacteristic extends BackboneType {
       json['externalDiameter'] = externalDiameter!.toJson();
     }
     if (shape?.value != null) {
-      json['shape'] = shape!.value;
+      json['shape'] = shape!.toJson();
     }
     if (shapeElement != null) {
       json['_shape'] = shapeElement!.toJson();
     }
     if (color != null && color!.isNotEmpty) {
-      json['color'] = color!.map((FhirString v) => v.value).toList();
+      json['color'] = color!.map((FhirString v) => v.toJson()).toList();
     }
     if (colorElement != null && colorElement!.isNotEmpty) {
       json['_color'] = colorElement!.map((Element v) => v.toJson()).toList();
     }
     if (imprint != null && imprint!.isNotEmpty) {
-      json['imprint'] = imprint!.map((FhirString v) => v.value).toList();
+      json['imprint'] = imprint!.map((FhirString v) => v.toJson()).toList();
     }
     if (imprintElement != null && imprintElement!.isNotEmpty) {
       json['_imprint'] =
@@ -161,7 +161,7 @@ class ProdCharacteristic extends BackboneType {
 
   factory ProdCharacteristic.fromJson(Map<String, dynamic> json) {
     return ProdCharacteristic(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -192,7 +192,7 @@ class ProdCharacteristic extends BackboneType {
       externalDiameter: json['externalDiameter'] != null
           ? Quantity.fromJson(json['externalDiameter'] as Map<String, dynamic>)
           : null,
-      shape: json['shape'] != null ? FhirString(json['shape']) : null,
+      shape: json['shape'] != null ? FhirString.fromJson(json['shape']) : null,
       shapeElement: json['_shape'] != null
           ? Element.fromJson(json['_shape'] as Map<String, dynamic>)
           : null,

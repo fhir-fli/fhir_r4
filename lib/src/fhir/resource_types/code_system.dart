@@ -228,7 +228,7 @@ class CodeSystem extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -253,7 +253,7 @@ class CodeSystem extends DomainResource {
           .toList();
     }
     if (url?.value != null) {
-      json['url'] = url!.value;
+      json['url'] = url!.toJson();
     }
     if (urlElement != null) {
       json['_url'] = urlElement!.toJson();
@@ -263,38 +263,38 @@ class CodeSystem extends DomainResource {
           identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
     }
     if (version?.value != null) {
-      json['version'] = version!.value;
+      json['version'] = version!.toJson();
     }
     if (versionElement != null) {
       json['_version'] = versionElement!.toJson();
     }
     if (name?.value != null) {
-      json['name'] = name!.value;
+      json['name'] = name!.toJson();
     }
     if (nameElement != null) {
       json['_name'] = nameElement!.toJson();
     }
     if (title?.value != null) {
-      json['title'] = title!.value;
+      json['title'] = title!.toJson();
     }
     if (titleElement != null) {
       json['_title'] = titleElement!.toJson();
     }
     json['status'] = status.toJson();
     if (experimental?.value != null) {
-      json['experimental'] = experimental!.value;
+      json['experimental'] = experimental!.toJson();
     }
     if (experimentalElement != null) {
       json['_experimental'] = experimentalElement!.toJson();
     }
     if (date?.value != null) {
-      json['date'] = date!.value;
+      json['date'] = date!.toJson();
     }
     if (dateElement != null) {
       json['_date'] = dateElement!.toJson();
     }
     if (publisher?.value != null) {
-      json['publisher'] = publisher!.value;
+      json['publisher'] = publisher!.toJson();
     }
     if (publisherElement != null) {
       json['_publisher'] = publisherElement!.toJson();
@@ -304,7 +304,7 @@ class CodeSystem extends DomainResource {
           contact!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
@@ -319,25 +319,25 @@ class CodeSystem extends DomainResource {
           .toList();
     }
     if (purpose?.value != null) {
-      json['purpose'] = purpose!.value;
+      json['purpose'] = purpose!.toJson();
     }
     if (purposeElement != null) {
       json['_purpose'] = purposeElement!.toJson();
     }
     if (copyright?.value != null) {
-      json['copyright'] = copyright!.value;
+      json['copyright'] = copyright!.toJson();
     }
     if (copyrightElement != null) {
       json['_copyright'] = copyrightElement!.toJson();
     }
     if (caseSensitive?.value != null) {
-      json['caseSensitive'] = caseSensitive!.value;
+      json['caseSensitive'] = caseSensitive!.toJson();
     }
     if (caseSensitiveElement != null) {
       json['_caseSensitive'] = caseSensitiveElement!.toJson();
     }
     if (valueSet?.value != null) {
-      json['valueSet'] = valueSet!.value;
+      json['valueSet'] = valueSet!.toJson();
     }
     if (valueSetElement != null) {
       json['_valueSet'] = valueSetElement!.toJson();
@@ -346,26 +346,26 @@ class CodeSystem extends DomainResource {
       json['hierarchyMeaning'] = hierarchyMeaning!.toJson();
     }
     if (compositional?.value != null) {
-      json['compositional'] = compositional!.value;
+      json['compositional'] = compositional!.toJson();
     }
     if (compositionalElement != null) {
       json['_compositional'] = compositionalElement!.toJson();
     }
     if (versionNeeded?.value != null) {
-      json['versionNeeded'] = versionNeeded!.value;
+      json['versionNeeded'] = versionNeeded!.toJson();
     }
     if (versionNeededElement != null) {
       json['_versionNeeded'] = versionNeededElement!.toJson();
     }
     json['content'] = content.toJson();
     if (supplements?.value != null) {
-      json['supplements'] = supplements!.value;
+      json['supplements'] = supplements!.toJson();
     }
     if (supplementsElement != null) {
       json['_supplements'] = supplementsElement!.toJson();
     }
     if (count?.value != null) {
-      json['count'] = count!.value;
+      json['count'] = count!.toJson();
     }
     if (countElement != null) {
       json['_count'] = countElement!.toJson();
@@ -387,17 +387,21 @@ class CodeSystem extends DomainResource {
 
   factory CodeSystem.fromJson(Map<String, dynamic> json) {
     return CodeSystem(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -420,7 +424,7 @@ class CodeSystem extends DomainResource {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      url: json['url'] != null ? FhirUri(json['url']) : null,
+      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
       urlElement: json['_url'] != null
           ? Element.fromJson(json['_url'] as Map<String, dynamic>)
           : null,
@@ -430,32 +434,36 @@ class CodeSystem extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      version: json['version'] != null ? FhirString(json['version']) : null,
+      version:
+          json['version'] != null ? FhirString.fromJson(json['version']) : null,
       versionElement: json['_version'] != null
           ? Element.fromJson(json['_version'] as Map<String, dynamic>)
           : null,
-      name: json['name'] != null ? FhirString(json['name']) : null,
+      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
       nameElement: json['_name'] != null
           ? Element.fromJson(json['_name'] as Map<String, dynamic>)
           : null,
-      title: json['title'] != null ? FhirString(json['title']) : null,
+      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
       titleElement: json['_title'] != null
           ? Element.fromJson(json['_title'] as Map<String, dynamic>)
           : null,
-      status:
-          PublicationStatus.fromJson(json['status'] as Map<String, dynamic>),
+      status: PublicationStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       experimental: json['experimental'] != null
-          ? FhirBoolean(json['experimental'])
+          ? FhirBoolean.fromJson(json['experimental'])
           : null,
       experimentalElement: json['_experimental'] != null
           ? Element.fromJson(json['_experimental'] as Map<String, dynamic>)
           : null,
-      date: json['date'] != null ? FhirDateTime(json['date']) : null,
+      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
       dateElement: json['_date'] != null
           ? Element.fromJson(json['_date'] as Map<String, dynamic>)
           : null,
-      publisher:
-          json['publisher'] != null ? FhirString(json['publisher']) : null,
+      publisher: json['publisher'] != null
+          ? FhirString.fromJson(json['publisher'])
+          : null,
       publisherElement: json['_publisher'] != null
           ? Element.fromJson(json['_publisher'] as Map<String, dynamic>)
           : null,
@@ -466,7 +474,7 @@ class CodeSystem extends DomainResource {
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown(json['description'])
+          ? FhirMarkdown.fromJson(json['description'])
           : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
@@ -483,51 +491,61 @@ class CodeSystem extends DomainResource {
                   CodeableConcept.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      purpose: json['purpose'] != null ? FhirMarkdown(json['purpose']) : null,
+      purpose: json['purpose'] != null
+          ? FhirMarkdown.fromJson(json['purpose'])
+          : null,
       purposeElement: json['_purpose'] != null
           ? Element.fromJson(json['_purpose'] as Map<String, dynamic>)
           : null,
-      copyright:
-          json['copyright'] != null ? FhirMarkdown(json['copyright']) : null,
+      copyright: json['copyright'] != null
+          ? FhirMarkdown.fromJson(json['copyright'])
+          : null,
       copyrightElement: json['_copyright'] != null
           ? Element.fromJson(json['_copyright'] as Map<String, dynamic>)
           : null,
       caseSensitive: json['caseSensitive'] != null
-          ? FhirBoolean(json['caseSensitive'])
+          ? FhirBoolean.fromJson(json['caseSensitive'])
           : null,
       caseSensitiveElement: json['_caseSensitive'] != null
           ? Element.fromJson(json['_caseSensitive'] as Map<String, dynamic>)
           : null,
-      valueSet:
-          json['valueSet'] != null ? FhirCanonical(json['valueSet']) : null,
+      valueSet: json['valueSet'] != null
+          ? FhirCanonical.fromJson(json['valueSet'])
+          : null,
       valueSetElement: json['_valueSet'] != null
           ? Element.fromJson(json['_valueSet'] as Map<String, dynamic>)
           : null,
       hierarchyMeaning: json['hierarchyMeaning'] != null
-          ? CodeSystemHierarchyMeaning.fromJson(
-              json['hierarchyMeaning'] as Map<String, dynamic>)
+          ? CodeSystemHierarchyMeaning.fromJson(json['hierarchyMeaning'])
+          : null,
+      hierarchyMeaningElement: json['_hierarchyMeaning'] != null
+          ? Element.fromJson(json['_hierarchyMeaning'] as Map<String, dynamic>)
           : null,
       compositional: json['compositional'] != null
-          ? FhirBoolean(json['compositional'])
+          ? FhirBoolean.fromJson(json['compositional'])
           : null,
       compositionalElement: json['_compositional'] != null
           ? Element.fromJson(json['_compositional'] as Map<String, dynamic>)
           : null,
       versionNeeded: json['versionNeeded'] != null
-          ? FhirBoolean(json['versionNeeded'])
+          ? FhirBoolean.fromJson(json['versionNeeded'])
           : null,
       versionNeededElement: json['_versionNeeded'] != null
           ? Element.fromJson(json['_versionNeeded'] as Map<String, dynamic>)
           : null,
-      content: CodeSystemContentMode.fromJson(
-          json['content'] as Map<String, dynamic>),
+      content: CodeSystemContentMode.fromJson(json['content']),
+      contentElement: json['_content'] != null
+          ? Element.fromJson(json['_content'] as Map<String, dynamic>)
+          : null,
       supplements: json['supplements'] != null
-          ? FhirCanonical(json['supplements'])
+          ? FhirCanonical.fromJson(json['supplements'])
           : null,
       supplementsElement: json['_supplements'] != null
           ? Element.fromJson(json['_supplements'] as Map<String, dynamic>)
           : null,
-      count: json['count'] != null ? FhirUnsignedInt(json['count']) : null,
+      count: json['count'] != null
+          ? FhirUnsignedInt.fromJson(json['count'])
+          : null,
       countElement: json['_count'] != null
           ? Element.fromJson(json['_count'] as Map<String, dynamic>)
           : null,
@@ -763,19 +781,19 @@ class CodeSystemFilter extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['code'] = code.value;
+    json['code'] = code.toJson();
     if (codeElement != null) {
       json['_code'] = codeElement!.toJson();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
     }
     json['operator'] =
         operator_.map<dynamic>((FilterOperator v) => v.toJson()).toList();
-    json['value'] = value.value;
+    json['value'] = value.toJson();
     if (valueElement != null) {
       json['_value'] = valueElement!.toJson();
     }
@@ -784,7 +802,7 @@ class CodeSystemFilter extends BackboneElement {
 
   factory CodeSystemFilter.fromJson(Map<String, dynamic> json) {
     return CodeSystemFilter(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -797,20 +815,25 @@ class CodeSystemFilter extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      code: FhirCode(json['code']),
+      code: FhirCode.fromJson(json['code']),
       codeElement: json['_code'] != null
           ? Element.fromJson(json['_code'] as Map<String, dynamic>)
           : null,
-      description:
-          json['description'] != null ? FhirString(json['description']) : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
           : null,
       operator_: (json['operator'] as List<dynamic>)
           .map<FilterOperator>(
-              (dynamic v) => FilterOperator.fromJson(v as Map<String, dynamic>))
+              (dynamic v) => FilterOperator.fromJson(v as dynamic))
           .toList(),
-      value: FhirString(json['value']),
+      operatorElement: (json['_operator'] as List<dynamic>)
+          .map<Element>(
+              (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+          .toList(),
+      value: FhirString.fromJson(json['value']),
       valueElement: json['_value'] != null
           ? Element.fromJson(json['_value'] as Map<String, dynamic>)
           : null,
@@ -944,18 +967,18 @@ class CodeSystemProperty extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['code'] = code.value;
+    json['code'] = code.toJson();
     if (codeElement != null) {
       json['_code'] = codeElement!.toJson();
     }
     if (uri?.value != null) {
-      json['uri'] = uri!.value;
+      json['uri'] = uri!.toJson();
     }
     if (uriElement != null) {
       json['_uri'] = uriElement!.toJson();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
@@ -966,7 +989,7 @@ class CodeSystemProperty extends BackboneElement {
 
   factory CodeSystemProperty.fromJson(Map<String, dynamic> json) {
     return CodeSystemProperty(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -979,20 +1002,24 @@ class CodeSystemProperty extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      code: FhirCode(json['code']),
+      code: FhirCode.fromJson(json['code']),
       codeElement: json['_code'] != null
           ? Element.fromJson(json['_code'] as Map<String, dynamic>)
           : null,
-      uri: json['uri'] != null ? FhirUri(json['uri']) : null,
+      uri: json['uri'] != null ? FhirUri.fromJson(json['uri']) : null,
       uriElement: json['_uri'] != null
           ? Element.fromJson(json['_uri'] as Map<String, dynamic>)
           : null,
-      description:
-          json['description'] != null ? FhirString(json['description']) : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
           : null,
-      type: PropertyTypeEnum.fromJson(json['type'] as Map<String, dynamic>),
+      type: PropertyTypeEnum.fromJson(json['type']),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
@@ -1132,18 +1159,18 @@ class CodeSystemConcept extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['code'] = code.value;
+    json['code'] = code.toJson();
     if (codeElement != null) {
       json['_code'] = codeElement!.toJson();
     }
     if (display?.value != null) {
-      json['display'] = display!.value;
+      json['display'] = display!.toJson();
     }
     if (displayElement != null) {
       json['_display'] = displayElement!.toJson();
     }
     if (definition?.value != null) {
-      json['definition'] = definition!.value;
+      json['definition'] = definition!.toJson();
     }
     if (definitionElement != null) {
       json['_definition'] = definitionElement!.toJson();
@@ -1166,7 +1193,7 @@ class CodeSystemConcept extends BackboneElement {
 
   factory CodeSystemConcept.fromJson(Map<String, dynamic> json) {
     return CodeSystemConcept(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1179,16 +1206,18 @@ class CodeSystemConcept extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      code: FhirCode(json['code']),
+      code: FhirCode.fromJson(json['code']),
       codeElement: json['_code'] != null
           ? Element.fromJson(json['_code'] as Map<String, dynamic>)
           : null,
-      display: json['display'] != null ? FhirString(json['display']) : null,
+      display:
+          json['display'] != null ? FhirString.fromJson(json['display']) : null,
       displayElement: json['_display'] != null
           ? Element.fromJson(json['_display'] as Map<String, dynamic>)
           : null,
-      definition:
-          json['definition'] != null ? FhirString(json['definition']) : null,
+      definition: json['definition'] != null
+          ? FhirString.fromJson(json['definition'])
+          : null,
       definitionElement: json['_definition'] != null
           ? Element.fromJson(json['_definition'] as Map<String, dynamic>)
           : null,
@@ -1334,7 +1363,7 @@ class CodeSystemDesignation extends BackboneElement {
     if (use != null) {
       json['use'] = use!.toJson();
     }
-    json['value'] = value.value;
+    json['value'] = value.toJson();
     if (valueElement != null) {
       json['_value'] = valueElement!.toJson();
     }
@@ -1343,7 +1372,7 @@ class CodeSystemDesignation extends BackboneElement {
 
   factory CodeSystemDesignation.fromJson(Map<String, dynamic> json) {
     return CodeSystemDesignation(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1357,12 +1386,15 @@ class CodeSystemDesignation extends BackboneElement {
               .toList()
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       use: json['use'] != null
           ? Coding.fromJson(json['use'] as Map<String, dynamic>)
           : null,
-      value: FhirString(json['value']),
+      value: FhirString.fromJson(json['value']),
       valueElement: json['_value'] != null
           ? Element.fromJson(json['_value'] as Map<String, dynamic>)
           : null,
@@ -1505,12 +1537,12 @@ class CodeSystemProperty1 extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['code'] = code.value;
+    json['code'] = code.toJson();
     if (codeElement != null) {
       json['_code'] = codeElement!.toJson();
     }
     if (valueCode?.value != null) {
-      json['valueCode'] = valueCode!.value;
+      json['valueCode'] = valueCode!.toJson();
     }
     if (valueCodeElement != null) {
       json['_valueCode'] = valueCodeElement!.toJson();
@@ -1519,31 +1551,31 @@ class CodeSystemProperty1 extends BackboneElement {
       json['valueCoding'] = valueCoding!.toJson();
     }
     if (valueString?.value != null) {
-      json['valueString'] = valueString!.value;
+      json['valueString'] = valueString!.toJson();
     }
     if (valueStringElement != null) {
       json['_valueString'] = valueStringElement!.toJson();
     }
     if (valueInteger?.value != null) {
-      json['valueInteger'] = valueInteger!.value;
+      json['valueInteger'] = valueInteger!.toJson();
     }
     if (valueIntegerElement != null) {
       json['_valueInteger'] = valueIntegerElement!.toJson();
     }
     if (valueBoolean?.value != null) {
-      json['valueBoolean'] = valueBoolean!.value;
+      json['valueBoolean'] = valueBoolean!.toJson();
     }
     if (valueBooleanElement != null) {
       json['_valueBoolean'] = valueBooleanElement!.toJson();
     }
     if (valueDateTime?.value != null) {
-      json['valueDateTime'] = valueDateTime!.value;
+      json['valueDateTime'] = valueDateTime!.toJson();
     }
     if (valueDateTimeElement != null) {
       json['_valueDateTime'] = valueDateTimeElement!.toJson();
     }
     if (valueDecimal?.value != null) {
-      json['valueDecimal'] = valueDecimal!.value;
+      json['valueDecimal'] = valueDecimal!.toJson();
     }
     if (valueDecimalElement != null) {
       json['_valueDecimal'] = valueDecimalElement!.toJson();
@@ -1553,7 +1585,7 @@ class CodeSystemProperty1 extends BackboneElement {
 
   factory CodeSystemProperty1.fromJson(Map<String, dynamic> json) {
     return CodeSystemProperty1(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1566,42 +1598,45 @@ class CodeSystemProperty1 extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      code: FhirCode(json['code']),
+      code: FhirCode.fromJson(json['code']),
       codeElement: json['_code'] != null
           ? Element.fromJson(json['_code'] as Map<String, dynamic>)
           : null,
-      valueCode: json['valueCode'] != null ? FhirCode(json['valueCode']) : null,
+      valueCode: json['valueCode'] != null
+          ? FhirCode.fromJson(json['valueCode'])
+          : null,
       valueCodeElement: json['_valueCode'] != null
           ? Element.fromJson(json['_valueCode'] as Map<String, dynamic>)
           : null,
       valueCoding: json['valueCoding'] != null
           ? Coding.fromJson(json['valueCoding'] as Map<String, dynamic>)
           : null,
-      valueString:
-          json['valueString'] != null ? FhirString(json['valueString']) : null,
+      valueString: json['valueString'] != null
+          ? FhirString.fromJson(json['valueString'])
+          : null,
       valueStringElement: json['_valueString'] != null
           ? Element.fromJson(json['_valueString'] as Map<String, dynamic>)
           : null,
       valueInteger: json['valueInteger'] != null
-          ? FhirInteger(json['valueInteger'])
+          ? FhirInteger.fromJson(json['valueInteger'])
           : null,
       valueIntegerElement: json['_valueInteger'] != null
           ? Element.fromJson(json['_valueInteger'] as Map<String, dynamic>)
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean(json['valueBoolean'])
+          ? FhirBoolean.fromJson(json['valueBoolean'])
           : null,
       valueBooleanElement: json['_valueBoolean'] != null
           ? Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>)
           : null,
       valueDateTime: json['valueDateTime'] != null
-          ? FhirDateTime(json['valueDateTime'])
+          ? FhirDateTime.fromJson(json['valueDateTime'])
           : null,
       valueDateTimeElement: json['_valueDateTime'] != null
           ? Element.fromJson(json['_valueDateTime'] as Map<String, dynamic>)
           : null,
       valueDecimal: json['valueDecimal'] != null
-          ? FhirDecimal(json['valueDecimal'])
+          ? FhirDecimal.fromJson(json['valueDecimal'])
           : null,
       valueDecimalElement: json['_valueDecimal'] != null
           ? Element.fromJson(json['_valueDecimal'] as Map<String, dynamic>)

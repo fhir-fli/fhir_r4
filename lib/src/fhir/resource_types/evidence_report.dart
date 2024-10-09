@@ -149,7 +149,7 @@ class EvidenceReport extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -174,7 +174,7 @@ class EvidenceReport extends DomainResource {
           .toList();
     }
     if (url?.value != null) {
-      json['url'] = url!.value;
+      json['url'] = url!.toJson();
     }
     if (urlElement != null) {
       json['_url'] = urlElement!.toJson();
@@ -197,7 +197,7 @@ class EvidenceReport extends DomainResource {
       json['citeAsReference'] = citeAsReference!.toJson();
     }
     if (citeAsMarkdown?.value != null) {
-      json['citeAsMarkdown'] = citeAsMarkdown!.value;
+      json['citeAsMarkdown'] = citeAsMarkdown!.toJson();
     }
     if (citeAsMarkdownElement != null) {
       json['_citeAsMarkdown'] = citeAsMarkdownElement!.toJson();
@@ -215,7 +215,7 @@ class EvidenceReport extends DomainResource {
     }
     json['subject'] = subject.toJson();
     if (publisher?.value != null) {
-      json['publisher'] = publisher!.value;
+      json['publisher'] = publisher!.toJson();
     }
     if (publisherElement != null) {
       json['_publisher'] = publisherElement!.toJson();
@@ -255,17 +255,21 @@ class EvidenceReport extends DomainResource {
 
   factory EvidenceReport.fromJson(Map<String, dynamic> json) {
     return EvidenceReport(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -288,12 +292,14 @@ class EvidenceReport extends DomainResource {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      url: json['url'] != null ? FhirUri(json['url']) : null,
+      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
       urlElement: json['_url'] != null
           ? Element.fromJson(json['_url'] as Map<String, dynamic>)
           : null,
-      status:
-          PublicationStatus.fromJson(json['status'] as Map<String, dynamic>),
+      status: PublicationStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       useContext: json['useContext'] != null
           ? (json['useContext'] as List<dynamic>)
               .map<UsageContext>((dynamic v) =>
@@ -316,7 +322,7 @@ class EvidenceReport extends DomainResource {
           ? Reference.fromJson(json['citeAsReference'] as Map<String, dynamic>)
           : null,
       citeAsMarkdown: json['citeAsMarkdown'] != null
-          ? FhirMarkdown(json['citeAsMarkdown'])
+          ? FhirMarkdown.fromJson(json['citeAsMarkdown'])
           : null,
       citeAsMarkdownElement: json['_citeAsMarkdown'] != null
           ? Element.fromJson(json['_citeAsMarkdown'] as Map<String, dynamic>)
@@ -338,8 +344,9 @@ class EvidenceReport extends DomainResource {
           : null,
       subject: EvidenceReportSubject.fromJson(
           json['subject'] as Map<String, dynamic>),
-      publisher:
-          json['publisher'] != null ? FhirString(json['publisher']) : null,
+      publisher: json['publisher'] != null
+          ? FhirString.fromJson(json['publisher'])
+          : null,
       publisherElement: json['_publisher'] != null
           ? Element.fromJson(json['_publisher'] as Map<String, dynamic>)
           : null,
@@ -551,7 +558,7 @@ class EvidenceReportSubject extends BackboneElement {
 
   factory EvidenceReportSubject.fromJson(Map<String, dynamic> json) {
     return EvidenceReportSubject(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -708,7 +715,7 @@ class EvidenceReportCharacteristic extends BackboneElement {
       json['valueCodeableConcept'] = valueCodeableConcept!.toJson();
     }
     if (valueBoolean?.value != null) {
-      json['valueBoolean'] = valueBoolean!.value;
+      json['valueBoolean'] = valueBoolean!.toJson();
     }
     if (valueBooleanElement != null) {
       json['_valueBoolean'] = valueBooleanElement!.toJson();
@@ -720,7 +727,7 @@ class EvidenceReportCharacteristic extends BackboneElement {
       json['valueRange'] = valueRange!.toJson();
     }
     if (exclude?.value != null) {
-      json['exclude'] = exclude!.value;
+      json['exclude'] = exclude!.toJson();
     }
     if (excludeElement != null) {
       json['_exclude'] = excludeElement!.toJson();
@@ -733,7 +740,7 @@ class EvidenceReportCharacteristic extends BackboneElement {
 
   factory EvidenceReportCharacteristic.fromJson(Map<String, dynamic> json) {
     return EvidenceReportCharacteristic(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -755,7 +762,7 @@ class EvidenceReportCharacteristic extends BackboneElement {
               json['valueCodeableConcept'] as Map<String, dynamic>)
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean(json['valueBoolean'])
+          ? FhirBoolean.fromJson(json['valueBoolean'])
           : null,
       valueBooleanElement: json['_valueBoolean'] != null
           ? Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>)
@@ -766,7 +773,9 @@ class EvidenceReportCharacteristic extends BackboneElement {
       valueRange: json['valueRange'] != null
           ? Range.fromJson(json['valueRange'] as Map<String, dynamic>)
           : null,
-      exclude: json['exclude'] != null ? FhirBoolean(json['exclude']) : null,
+      exclude: json['exclude'] != null
+          ? FhirBoolean.fromJson(json['exclude'])
+          : null,
       excludeElement: json['_exclude'] != null
           ? Element.fromJson(json['_exclude'] as Map<String, dynamic>)
           : null,
@@ -904,7 +913,7 @@ class EvidenceReportRelatesTo extends BackboneElement {
 
   factory EvidenceReportRelatesTo.fromJson(Map<String, dynamic> json) {
     return EvidenceReportRelatesTo(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -917,8 +926,10 @@ class EvidenceReportRelatesTo extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      code:
-          ReportRelationshipType.fromJson(json['code'] as Map<String, dynamic>),
+      code: ReportRelationshipType.fromJson(json['code']),
+      codeElement: json['_code'] != null
+          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
+          : null,
       targetIdentifier: json['targetIdentifier'] != null
           ? Identifier.fromJson(
               json['targetIdentifier'] as Map<String, dynamic>)
@@ -1083,7 +1094,7 @@ class EvidenceReportSection extends BackboneElement {
           .toList();
     }
     if (title?.value != null) {
-      json['title'] = title!.value;
+      json['title'] = title!.toJson();
     }
     if (titleElement != null) {
       json['_title'] = titleElement!.toJson();
@@ -1133,7 +1144,7 @@ class EvidenceReportSection extends BackboneElement {
 
   factory EvidenceReportSection.fromJson(Map<String, dynamic> json) {
     return EvidenceReportSection(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1146,7 +1157,7 @@ class EvidenceReportSection extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      title: json['title'] != null ? FhirString(json['title']) : null,
+      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
       titleElement: json['_title'] != null
           ? Element.fromJson(json['_title'] as Map<String, dynamic>)
           : null,
@@ -1165,8 +1176,9 @@ class EvidenceReportSection extends BackboneElement {
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
           : null,
-      mode: json['mode'] != null
-          ? ListMode.fromJson(json['mode'] as Map<String, dynamic>)
+      mode: json['mode'] != null ? ListMode.fromJson(json['mode']) : null,
+      modeElement: json['_mode'] != null
+          ? Element.fromJson(json['_mode'] as Map<String, dynamic>)
           : null,
       orderedBy: json['orderedBy'] != null
           ? CodeableConcept.fromJson(json['orderedBy'] as Map<String, dynamic>)

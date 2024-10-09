@@ -95,7 +95,7 @@ class Practitioner extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -124,7 +124,7 @@ class Practitioner extends DomainResource {
           identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
     }
     if (active?.value != null) {
-      json['active'] = active!.value;
+      json['active'] = active!.toJson();
     }
     if (activeElement != null) {
       json['_active'] = activeElement!.toJson();
@@ -144,7 +144,7 @@ class Practitioner extends DomainResource {
       json['gender'] = gender!.toJson();
     }
     if (birthDate?.value != null) {
-      json['birthDate'] = birthDate!.value;
+      json['birthDate'] = birthDate!.toJson();
     }
     if (birthDateElement != null) {
       json['_birthDate'] = birthDateElement!.toJson();
@@ -168,17 +168,21 @@ class Practitioner extends DomainResource {
 
   factory Practitioner.fromJson(Map<String, dynamic> json) {
     return Practitioner(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -207,7 +211,8 @@ class Practitioner extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      active: json['active'] != null ? FhirBoolean(json['active']) : null,
+      active:
+          json['active'] != null ? FhirBoolean.fromJson(json['active']) : null,
       activeElement: json['_active'] != null
           ? Element.fromJson(json['_active'] as Map<String, dynamic>)
           : null,
@@ -230,10 +235,14 @@ class Practitioner extends DomainResource {
               .toList()
           : null,
       gender: json['gender'] != null
-          ? AdministrativeGender.fromJson(
-              json['gender'] as Map<String, dynamic>)
+          ? AdministrativeGender.fromJson(json['gender'])
           : null,
-      birthDate: json['birthDate'] != null ? FhirDate(json['birthDate']) : null,
+      genderElement: json['_gender'] != null
+          ? Element.fromJson(json['_gender'] as Map<String, dynamic>)
+          : null,
+      birthDate: json['birthDate'] != null
+          ? FhirDate.fromJson(json['birthDate'])
+          : null,
       birthDateElement: json['_birthDate'] != null
           ? Element.fromJson(json['_birthDate'] as Map<String, dynamic>)
           : null,
@@ -413,7 +422,7 @@ class PractitionerQualification extends BackboneElement {
 
   factory PractitionerQualification.fromJson(Map<String, dynamic> json) {
     return PractitionerQualification(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

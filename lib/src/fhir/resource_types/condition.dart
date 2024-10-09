@@ -183,7 +183,7 @@ class Condition extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -236,7 +236,7 @@ class Condition extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
     if (onsetDateTime?.value != null) {
-      json['onsetDateTime'] = onsetDateTime!.value;
+      json['onsetDateTime'] = onsetDateTime!.toJson();
     }
     if (onsetDateTimeElement != null) {
       json['_onsetDateTime'] = onsetDateTimeElement!.toJson();
@@ -251,13 +251,13 @@ class Condition extends DomainResource {
       json['onsetRange'] = onsetRange!.toJson();
     }
     if (onsetString?.value != null) {
-      json['onsetString'] = onsetString!.value;
+      json['onsetString'] = onsetString!.toJson();
     }
     if (onsetStringElement != null) {
       json['_onsetString'] = onsetStringElement!.toJson();
     }
     if (abatementDateTime?.value != null) {
-      json['abatementDateTime'] = abatementDateTime!.value;
+      json['abatementDateTime'] = abatementDateTime!.toJson();
     }
     if (abatementDateTimeElement != null) {
       json['_abatementDateTime'] = abatementDateTimeElement!.toJson();
@@ -272,13 +272,13 @@ class Condition extends DomainResource {
       json['abatementRange'] = abatementRange!.toJson();
     }
     if (abatementString?.value != null) {
-      json['abatementString'] = abatementString!.value;
+      json['abatementString'] = abatementString!.toJson();
     }
     if (abatementStringElement != null) {
       json['_abatementString'] = abatementStringElement!.toJson();
     }
     if (recordedDate?.value != null) {
-      json['recordedDate'] = recordedDate!.value;
+      json['recordedDate'] = recordedDate!.toJson();
     }
     if (recordedDateElement != null) {
       json['_recordedDate'] = recordedDateElement!.toJson();
@@ -305,17 +305,21 @@ class Condition extends DomainResource {
 
   factory Condition.fromJson(Map<String, dynamic> json) {
     return Condition(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -375,7 +379,7 @@ class Condition extends DomainResource {
           ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
           : null,
       onsetDateTime: json['onsetDateTime'] != null
-          ? FhirDateTime(json['onsetDateTime'])
+          ? FhirDateTime.fromJson(json['onsetDateTime'])
           : null,
       onsetDateTimeElement: json['_onsetDateTime'] != null
           ? Element.fromJson(json['_onsetDateTime'] as Map<String, dynamic>)
@@ -389,13 +393,14 @@ class Condition extends DomainResource {
       onsetRange: json['onsetRange'] != null
           ? Range.fromJson(json['onsetRange'] as Map<String, dynamic>)
           : null,
-      onsetString:
-          json['onsetString'] != null ? FhirString(json['onsetString']) : null,
+      onsetString: json['onsetString'] != null
+          ? FhirString.fromJson(json['onsetString'])
+          : null,
       onsetStringElement: json['_onsetString'] != null
           ? Element.fromJson(json['_onsetString'] as Map<String, dynamic>)
           : null,
       abatementDateTime: json['abatementDateTime'] != null
-          ? FhirDateTime(json['abatementDateTime'])
+          ? FhirDateTime.fromJson(json['abatementDateTime'])
           : null,
       abatementDateTimeElement: json['_abatementDateTime'] != null
           ? Element.fromJson(json['_abatementDateTime'] as Map<String, dynamic>)
@@ -410,13 +415,13 @@ class Condition extends DomainResource {
           ? Range.fromJson(json['abatementRange'] as Map<String, dynamic>)
           : null,
       abatementString: json['abatementString'] != null
-          ? FhirString(json['abatementString'])
+          ? FhirString.fromJson(json['abatementString'])
           : null,
       abatementStringElement: json['_abatementString'] != null
           ? Element.fromJson(json['_abatementString'] as Map<String, dynamic>)
           : null,
       recordedDate: json['recordedDate'] != null
-          ? FhirDateTime(json['recordedDate'])
+          ? FhirDateTime.fromJson(json['recordedDate'])
           : null,
       recordedDateElement: json['_recordedDate'] != null
           ? Element.fromJson(json['_recordedDate'] as Map<String, dynamic>)
@@ -634,7 +639,7 @@ class ConditionStage extends BackboneElement {
 
   factory ConditionStage.fromJson(Map<String, dynamic> json) {
     return ConditionStage(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -771,7 +776,7 @@ class ConditionEvidence extends BackboneElement {
 
   factory ConditionEvidence.fromJson(Map<String, dynamic> json) {
     return ConditionEvidence(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

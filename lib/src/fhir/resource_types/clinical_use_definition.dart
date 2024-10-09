@@ -95,7 +95,7 @@ class ClinicalUseDefinition extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -159,17 +159,21 @@ class ClinicalUseDefinition extends DomainResource {
 
   factory ClinicalUseDefinition.fromJson(Map<String, dynamic> json) {
     return ClinicalUseDefinition(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -198,8 +202,10 @@ class ClinicalUseDefinition extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      type: ClinicalUseDefinitionType.fromJson(
-          json['type'] as Map<String, dynamic>),
+      type: ClinicalUseDefinitionType.fromJson(json['type']),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
+          : null,
       category: json['category'] != null
           ? (json['category'] as List<dynamic>)
               .map<CodeableConcept>((dynamic v) =>
@@ -411,7 +417,7 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
   factory ClinicalUseDefinitionContraindication.fromJson(
       Map<String, dynamic> json) {
     return ClinicalUseDefinitionContraindication(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -565,7 +571,7 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
   factory ClinicalUseDefinitionOtherTherapy.fromJson(
       Map<String, dynamic> json) {
     return ClinicalUseDefinitionOtherTherapy(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -732,7 +738,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
       json['durationRange'] = durationRange!.toJson();
     }
     if (durationString?.value != null) {
-      json['durationString'] = durationString!.value;
+      json['durationString'] = durationString!.toJson();
     }
     if (durationStringElement != null) {
       json['_durationString'] = durationStringElement!.toJson();
@@ -751,7 +757,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
 
   factory ClinicalUseDefinitionIndication.fromJson(Map<String, dynamic> json) {
     return ClinicalUseDefinitionIndication(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -786,7 +792,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
           ? Range.fromJson(json['durationRange'] as Map<String, dynamic>)
           : null,
       durationString: json['durationString'] != null
-          ? FhirString(json['durationString'])
+          ? FhirString.fromJson(json['durationString'])
           : null,
       durationStringElement: json['_durationString'] != null
           ? Element.fromJson(json['_durationString'] as Map<String, dynamic>)
@@ -953,7 +959,7 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
 
   factory ClinicalUseDefinitionInteraction.fromJson(Map<String, dynamic> json) {
     return ClinicalUseDefinitionInteraction(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1101,7 +1107,7 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
 
   factory ClinicalUseDefinitionInteractant.fromJson(Map<String, dynamic> json) {
     return ClinicalUseDefinitionInteractant(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1237,7 +1243,7 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
   factory ClinicalUseDefinitionUndesirableEffect.fromJson(
       Map<String, dynamic> json) {
     return ClinicalUseDefinitionUndesirableEffect(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1368,7 +1374,7 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
           .toList();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
@@ -1381,7 +1387,7 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
 
   factory ClinicalUseDefinitionWarning.fromJson(Map<String, dynamic> json) {
     return ClinicalUseDefinitionWarning(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1395,7 +1401,7 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown(json['description'])
+          ? FhirMarkdown.fromJson(json['description'])
           : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)

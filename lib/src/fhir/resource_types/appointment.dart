@@ -188,7 +188,7 @@ class Appointment extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -245,13 +245,13 @@ class Appointment extends DomainResource {
           reasonReference!.map<dynamic>((Reference v) => v.toJson()).toList();
     }
     if (priority?.value != null) {
-      json['priority'] = priority!.value;
+      json['priority'] = priority!.toJson();
     }
     if (priorityElement != null) {
       json['_priority'] = priorityElement!.toJson();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
@@ -262,19 +262,19 @@ class Appointment extends DomainResource {
           .toList();
     }
     if (start?.value != null) {
-      json['start'] = start!.value;
+      json['start'] = start!.toJson();
     }
     if (startElement != null) {
       json['_start'] = startElement!.toJson();
     }
     if (end?.value != null) {
-      json['end'] = end!.value;
+      json['end'] = end!.toJson();
     }
     if (endElement != null) {
       json['_end'] = endElement!.toJson();
     }
     if (minutesDuration?.value != null) {
-      json['minutesDuration'] = minutesDuration!.value;
+      json['minutesDuration'] = minutesDuration!.toJson();
     }
     if (minutesDurationElement != null) {
       json['_minutesDuration'] = minutesDurationElement!.toJson();
@@ -283,19 +283,19 @@ class Appointment extends DomainResource {
       json['slot'] = slot!.map<dynamic>((Reference v) => v.toJson()).toList();
     }
     if (created?.value != null) {
-      json['created'] = created!.value;
+      json['created'] = created!.toJson();
     }
     if (createdElement != null) {
       json['_created'] = createdElement!.toJson();
     }
     if (comment?.value != null) {
-      json['comment'] = comment!.value;
+      json['comment'] = comment!.toJson();
     }
     if (commentElement != null) {
       json['_comment'] = commentElement!.toJson();
     }
     if (patientInstruction?.value != null) {
-      json['patientInstruction'] = patientInstruction!.value;
+      json['patientInstruction'] = patientInstruction!.toJson();
     }
     if (patientInstructionElement != null) {
       json['_patientInstruction'] = patientInstructionElement!.toJson();
@@ -316,17 +316,21 @@ class Appointment extends DomainResource {
 
   factory Appointment.fromJson(Map<String, dynamic> json) {
     return Appointment(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -355,8 +359,10 @@ class Appointment extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status:
-          AppointmentStatus.fromJson(json['status'] as Map<String, dynamic>),
+      status: AppointmentStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       cancelationReason: json['cancelationReason'] != null
           ? CodeableConcept.fromJson(
               json['cancelationReason'] as Map<String, dynamic>)
@@ -395,13 +401,15 @@ class Appointment extends DomainResource {
                   (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      priority:
-          json['priority'] != null ? FhirUnsignedInt(json['priority']) : null,
+      priority: json['priority'] != null
+          ? FhirUnsignedInt.fromJson(json['priority'])
+          : null,
       priorityElement: json['_priority'] != null
           ? Element.fromJson(json['_priority'] as Map<String, dynamic>)
           : null,
-      description:
-          json['description'] != null ? FhirString(json['description']) : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
           : null,
@@ -411,16 +419,16 @@ class Appointment extends DomainResource {
                   (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      start: json['start'] != null ? FhirInstant(json['start']) : null,
+      start: json['start'] != null ? FhirInstant.fromJson(json['start']) : null,
       startElement: json['_start'] != null
           ? Element.fromJson(json['_start'] as Map<String, dynamic>)
           : null,
-      end: json['end'] != null ? FhirInstant(json['end']) : null,
+      end: json['end'] != null ? FhirInstant.fromJson(json['end']) : null,
       endElement: json['_end'] != null
           ? Element.fromJson(json['_end'] as Map<String, dynamic>)
           : null,
       minutesDuration: json['minutesDuration'] != null
-          ? FhirPositiveInt(json['minutesDuration'])
+          ? FhirPositiveInt.fromJson(json['minutesDuration'])
           : null,
       minutesDurationElement: json['_minutesDuration'] != null
           ? Element.fromJson(json['_minutesDuration'] as Map<String, dynamic>)
@@ -431,16 +439,19 @@ class Appointment extends DomainResource {
                   (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      created: json['created'] != null ? FhirDateTime(json['created']) : null,
+      created: json['created'] != null
+          ? FhirDateTime.fromJson(json['created'])
+          : null,
       createdElement: json['_created'] != null
           ? Element.fromJson(json['_created'] as Map<String, dynamic>)
           : null,
-      comment: json['comment'] != null ? FhirString(json['comment']) : null,
+      comment:
+          json['comment'] != null ? FhirString.fromJson(json['comment']) : null,
       commentElement: json['_comment'] != null
           ? Element.fromJson(json['_comment'] as Map<String, dynamic>)
           : null,
       patientInstruction: json['patientInstruction'] != null
-          ? FhirString(json['patientInstruction'])
+          ? FhirString.fromJson(json['patientInstruction'])
           : null,
       patientInstructionElement: json['_patientInstruction'] != null
           ? Element.fromJson(
@@ -670,7 +681,7 @@ class AppointmentParticipant extends BackboneElement {
 
   factory AppointmentParticipant.fromJson(Map<String, dynamic> json) {
     return AppointmentParticipant(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -693,11 +704,15 @@ class AppointmentParticipant extends BackboneElement {
           ? Reference.fromJson(json['actor'] as Map<String, dynamic>)
           : null,
       required_: json['required'] != null
-          ? ParticipantRequired.fromJson(
-              json['required'] as Map<String, dynamic>)
+          ? ParticipantRequired.fromJson(json['required'])
           : null,
-      status:
-          ParticipationStatus.fromJson(json['status'] as Map<String, dynamic>),
+      requiredElement: json['_required'] != null
+          ? Element.fromJson(json['_required'] as Map<String, dynamic>)
+          : null,
+      status: ParticipationStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       period: json['period'] != null
           ? Period.fromJson(json['period'] as Map<String, dynamic>)
           : null,

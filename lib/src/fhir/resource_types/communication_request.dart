@@ -160,7 +160,7 @@ class CommunicationRequest extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -211,7 +211,7 @@ class CommunicationRequest extends DomainResource {
       json['priority'] = priority!.toJson();
     }
     if (doNotPerform?.value != null) {
-      json['doNotPerform'] = doNotPerform!.value;
+      json['doNotPerform'] = doNotPerform!.toJson();
     }
     if (doNotPerformElement != null) {
       json['_doNotPerform'] = doNotPerformElement!.toJson();
@@ -235,7 +235,7 @@ class CommunicationRequest extends DomainResource {
           .toList();
     }
     if (occurrenceDateTime?.value != null) {
-      json['occurrenceDateTime'] = occurrenceDateTime!.value;
+      json['occurrenceDateTime'] = occurrenceDateTime!.toJson();
     }
     if (occurrenceDateTimeElement != null) {
       json['_occurrenceDateTime'] = occurrenceDateTimeElement!.toJson();
@@ -244,7 +244,7 @@ class CommunicationRequest extends DomainResource {
       json['occurrencePeriod'] = occurrencePeriod!.toJson();
     }
     if (authoredOn?.value != null) {
-      json['authoredOn'] = authoredOn!.value;
+      json['authoredOn'] = authoredOn!.toJson();
     }
     if (authoredOnElement != null) {
       json['_authoredOn'] = authoredOnElement!.toJson();
@@ -275,17 +275,21 @@ class CommunicationRequest extends DomainResource {
 
   factory CommunicationRequest.fromJson(Map<String, dynamic> json) {
     return CommunicationRequest(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -329,7 +333,10 @@ class CommunicationRequest extends DomainResource {
       groupIdentifier: json['groupIdentifier'] != null
           ? Identifier.fromJson(json['groupIdentifier'] as Map<String, dynamic>)
           : null,
-      status: RequestStatus.fromJson(json['status'] as Map<String, dynamic>),
+      status: RequestStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       statusReason: json['statusReason'] != null
           ? CodeableConcept.fromJson(
               json['statusReason'] as Map<String, dynamic>)
@@ -341,10 +348,13 @@ class CommunicationRequest extends DomainResource {
               .toList()
           : null,
       priority: json['priority'] != null
-          ? RequestPriority.fromJson(json['priority'] as Map<String, dynamic>)
+          ? RequestPriority.fromJson(json['priority'])
+          : null,
+      priorityElement: json['_priority'] != null
+          ? Element.fromJson(json['_priority'] as Map<String, dynamic>)
           : null,
       doNotPerform: json['doNotPerform'] != null
-          ? FhirBoolean(json['doNotPerform'])
+          ? FhirBoolean.fromJson(json['doNotPerform'])
           : null,
       doNotPerformElement: json['_doNotPerform'] != null
           ? Element.fromJson(json['_doNotPerform'] as Map<String, dynamic>)
@@ -375,7 +385,7 @@ class CommunicationRequest extends DomainResource {
               .toList()
           : null,
       occurrenceDateTime: json['occurrenceDateTime'] != null
-          ? FhirDateTime(json['occurrenceDateTime'])
+          ? FhirDateTime.fromJson(json['occurrenceDateTime'])
           : null,
       occurrenceDateTimeElement: json['_occurrenceDateTime'] != null
           ? Element.fromJson(
@@ -384,8 +394,9 @@ class CommunicationRequest extends DomainResource {
       occurrencePeriod: json['occurrencePeriod'] != null
           ? Period.fromJson(json['occurrencePeriod'] as Map<String, dynamic>)
           : null,
-      authoredOn:
-          json['authoredOn'] != null ? FhirDateTime(json['authoredOn']) : null,
+      authoredOn: json['authoredOn'] != null
+          ? FhirDateTime.fromJson(json['authoredOn'])
+          : null,
       authoredOnElement: json['_authoredOn'] != null
           ? Element.fromJson(json['_authoredOn'] as Map<String, dynamic>)
           : null,
@@ -591,7 +602,7 @@ class CommunicationRequestPayload extends BackboneElement {
           .toList();
     }
     if (contentString?.value != null) {
-      json['contentString'] = contentString!.value;
+      json['contentString'] = contentString!.toJson();
     }
     if (contentStringElement != null) {
       json['_contentString'] = contentStringElement!.toJson();
@@ -607,7 +618,7 @@ class CommunicationRequestPayload extends BackboneElement {
 
   factory CommunicationRequestPayload.fromJson(Map<String, dynamic> json) {
     return CommunicationRequestPayload(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -621,7 +632,7 @@ class CommunicationRequestPayload extends BackboneElement {
               .toList()
           : null,
       contentString: json['contentString'] != null
-          ? FhirString(json['contentString'])
+          ? FhirString.fromJson(json['contentString'])
           : null,
       contentStringElement: json['_contentString'] != null
           ? Element.fromJson(json['_contentString'] as Map<String, dynamic>)

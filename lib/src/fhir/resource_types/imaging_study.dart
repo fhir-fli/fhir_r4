@@ -155,7 +155,7 @@ class ImagingStudy extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -193,7 +193,7 @@ class ImagingStudy extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
     if (started?.value != null) {
-      json['started'] = started!.value;
+      json['started'] = started!.toJson();
     }
     if (startedElement != null) {
       json['_started'] = startedElement!.toJson();
@@ -214,13 +214,13 @@ class ImagingStudy extends DomainResource {
           endpoint!.map<dynamic>((Reference v) => v.toJson()).toList();
     }
     if (numberOfSeries?.value != null) {
-      json['numberOfSeries'] = numberOfSeries!.value;
+      json['numberOfSeries'] = numberOfSeries!.toJson();
     }
     if (numberOfSeriesElement != null) {
       json['_numberOfSeries'] = numberOfSeriesElement!.toJson();
     }
     if (numberOfInstances?.value != null) {
-      json['numberOfInstances'] = numberOfInstances!.value;
+      json['numberOfInstances'] = numberOfInstances!.toJson();
     }
     if (numberOfInstancesElement != null) {
       json['_numberOfInstances'] = numberOfInstancesElement!.toJson();
@@ -248,7 +248,7 @@ class ImagingStudy extends DomainResource {
       json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
@@ -262,17 +262,21 @@ class ImagingStudy extends DomainResource {
 
   factory ImagingStudy.fromJson(Map<String, dynamic> json) {
     return ImagingStudy(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -301,8 +305,10 @@ class ImagingStudy extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status:
-          ImagingStudyStatus.fromJson(json['status'] as Map<String, dynamic>),
+      status: ImagingStudyStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       modality: json['modality'] != null
           ? (json['modality'] as List<dynamic>)
               .map<Coding>(
@@ -313,7 +319,9 @@ class ImagingStudy extends DomainResource {
       encounter: json['encounter'] != null
           ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
           : null,
-      started: json['started'] != null ? FhirDateTime(json['started']) : null,
+      started: json['started'] != null
+          ? FhirDateTime.fromJson(json['started'])
+          : null,
       startedElement: json['_started'] != null
           ? Element.fromJson(json['_started'] as Map<String, dynamic>)
           : null,
@@ -339,13 +347,13 @@ class ImagingStudy extends DomainResource {
               .toList()
           : null,
       numberOfSeries: json['numberOfSeries'] != null
-          ? FhirUnsignedInt(json['numberOfSeries'])
+          ? FhirUnsignedInt.fromJson(json['numberOfSeries'])
           : null,
       numberOfSeriesElement: json['_numberOfSeries'] != null
           ? Element.fromJson(json['_numberOfSeries'] as Map<String, dynamic>)
           : null,
       numberOfInstances: json['numberOfInstances'] != null
-          ? FhirUnsignedInt(json['numberOfInstances'])
+          ? FhirUnsignedInt.fromJson(json['numberOfInstances'])
           : null,
       numberOfInstancesElement: json['_numberOfInstances'] != null
           ? Element.fromJson(json['_numberOfInstances'] as Map<String, dynamic>)
@@ -381,8 +389,9 @@ class ImagingStudy extends DomainResource {
                   (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      description:
-          json['description'] != null ? FhirString(json['description']) : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
           : null,
@@ -613,25 +622,25 @@ class ImagingStudySeries extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['uid'] = uid.value;
+    json['uid'] = uid.toJson();
     if (uidElement != null) {
       json['_uid'] = uidElement!.toJson();
     }
     if (number?.value != null) {
-      json['number'] = number!.value;
+      json['number'] = number!.toJson();
     }
     if (numberElement != null) {
       json['_number'] = numberElement!.toJson();
     }
     json['modality'] = modality.toJson();
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
     }
     if (numberOfInstances?.value != null) {
-      json['numberOfInstances'] = numberOfInstances!.value;
+      json['numberOfInstances'] = numberOfInstances!.toJson();
     }
     if (numberOfInstancesElement != null) {
       json['_numberOfInstances'] = numberOfInstancesElement!.toJson();
@@ -651,7 +660,7 @@ class ImagingStudySeries extends BackboneElement {
           specimen!.map<dynamic>((Reference v) => v.toJson()).toList();
     }
     if (started?.value != null) {
-      json['started'] = started!.value;
+      json['started'] = started!.toJson();
     }
     if (startedElement != null) {
       json['_started'] = startedElement!.toJson();
@@ -671,7 +680,7 @@ class ImagingStudySeries extends BackboneElement {
 
   factory ImagingStudySeries.fromJson(Map<String, dynamic> json) {
     return ImagingStudySeries(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -684,22 +693,25 @@ class ImagingStudySeries extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      uid: FhirId(json['uid']),
+      uid: FhirId.fromJson(json['uid']),
       uidElement: json['_uid'] != null
           ? Element.fromJson(json['_uid'] as Map<String, dynamic>)
           : null,
-      number: json['number'] != null ? FhirUnsignedInt(json['number']) : null,
+      number: json['number'] != null
+          ? FhirUnsignedInt.fromJson(json['number'])
+          : null,
       numberElement: json['_number'] != null
           ? Element.fromJson(json['_number'] as Map<String, dynamic>)
           : null,
       modality: Coding.fromJson(json['modality'] as Map<String, dynamic>),
-      description:
-          json['description'] != null ? FhirString(json['description']) : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
           : null,
       numberOfInstances: json['numberOfInstances'] != null
-          ? FhirUnsignedInt(json['numberOfInstances'])
+          ? FhirUnsignedInt.fromJson(json['numberOfInstances'])
           : null,
       numberOfInstancesElement: json['_numberOfInstances'] != null
           ? Element.fromJson(json['_numberOfInstances'] as Map<String, dynamic>)
@@ -722,7 +734,9 @@ class ImagingStudySeries extends BackboneElement {
                   (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      started: json['started'] != null ? FhirDateTime(json['started']) : null,
+      started: json['started'] != null
+          ? FhirDateTime.fromJson(json['started'])
+          : null,
       startedElement: json['_started'] != null
           ? Element.fromJson(json['_started'] as Map<String, dynamic>)
           : null,
@@ -873,7 +887,7 @@ class ImagingStudyPerformer extends BackboneElement {
 
   factory ImagingStudyPerformer.fromJson(Map<String, dynamic> json) {
     return ImagingStudyPerformer(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1000,19 +1014,19 @@ class ImagingStudyInstance extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['uid'] = uid.value;
+    json['uid'] = uid.toJson();
     if (uidElement != null) {
       json['_uid'] = uidElement!.toJson();
     }
     json['sopClass'] = sopClass.toJson();
     if (number?.value != null) {
-      json['number'] = number!.value;
+      json['number'] = number!.toJson();
     }
     if (numberElement != null) {
       json['_number'] = numberElement!.toJson();
     }
     if (title?.value != null) {
-      json['title'] = title!.value;
+      json['title'] = title!.toJson();
     }
     if (titleElement != null) {
       json['_title'] = titleElement!.toJson();
@@ -1022,7 +1036,7 @@ class ImagingStudyInstance extends BackboneElement {
 
   factory ImagingStudyInstance.fromJson(Map<String, dynamic> json) {
     return ImagingStudyInstance(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1035,16 +1049,18 @@ class ImagingStudyInstance extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      uid: FhirId(json['uid']),
+      uid: FhirId.fromJson(json['uid']),
       uidElement: json['_uid'] != null
           ? Element.fromJson(json['_uid'] as Map<String, dynamic>)
           : null,
       sopClass: Coding.fromJson(json['sopClass'] as Map<String, dynamic>),
-      number: json['number'] != null ? FhirUnsignedInt(json['number']) : null,
+      number: json['number'] != null
+          ? FhirUnsignedInt.fromJson(json['number'])
+          : null,
       numberElement: json['_number'] != null
           ? Element.fromJson(json['_number'] as Map<String, dynamic>)
           : null,
-      title: json['title'] != null ? FhirString(json['title']) : null,
+      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
       titleElement: json['_title'] != null
           ? Element.fromJson(json['_title'] as Map<String, dynamic>)
           : null,

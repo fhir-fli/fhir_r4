@@ -107,7 +107,7 @@ class FhirEndpoint extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -138,7 +138,7 @@ class FhirEndpoint extends DomainResource {
     json['status'] = status.toJson();
     json['connectionType'] = connectionType.toJson();
     if (name?.value != null) {
-      json['name'] = name!.value;
+      json['name'] = name!.toJson();
     }
     if (nameElement != null) {
       json['_name'] = nameElement!.toJson();
@@ -157,18 +157,18 @@ class FhirEndpoint extends DomainResource {
         payloadType.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
     if (payloadMimeType != null && payloadMimeType!.isNotEmpty) {
       json['payloadMimeType'] =
-          payloadMimeType!.map((FhirCode v) => v.value).toList();
+          payloadMimeType!.map((FhirCode v) => v.toJson()).toList();
     }
     if (payloadMimeTypeElement != null && payloadMimeTypeElement!.isNotEmpty) {
       json['_payloadMimeType'] =
           payloadMimeTypeElement!.map((Element v) => v.toJson()).toList();
     }
-    json['address'] = address.value;
+    json['address'] = address.toJson();
     if (addressElement != null) {
       json['_address'] = addressElement!.toJson();
     }
     if (header != null && header!.isNotEmpty) {
-      json['header'] = header!.map((FhirString v) => v.value).toList();
+      json['header'] = header!.map((FhirString v) => v.toJson()).toList();
     }
     if (headerElement != null && headerElement!.isNotEmpty) {
       json['_header'] = headerElement!.map((Element v) => v.toJson()).toList();
@@ -178,17 +178,21 @@ class FhirEndpoint extends DomainResource {
 
   factory FhirEndpoint.fromJson(Map<String, dynamic> json) {
     return FhirEndpoint(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -217,10 +221,13 @@ class FhirEndpoint extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status: EndpointStatus.fromJson(json['status'] as Map<String, dynamic>),
+      status: EndpointStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       connectionType:
           Coding.fromJson(json['connectionType'] as Map<String, dynamic>),
-      name: json['name'] != null ? FhirString(json['name']) : null,
+      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
       nameElement: json['_name'] != null
           ? Element.fromJson(json['_name'] as Map<String, dynamic>)
           : null,
@@ -252,7 +259,7 @@ class FhirEndpoint extends DomainResource {
                   (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      address: FhirUrl(json['address']),
+      address: FhirUrl.fromJson(json['address']),
       addressElement: json['_address'] != null
           ? Element.fromJson(json['_address'] as Map<String, dynamic>)
           : null,

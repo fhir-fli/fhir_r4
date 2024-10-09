@@ -118,7 +118,7 @@ class DeviceUseStatement extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -163,13 +163,13 @@ class DeviceUseStatement extends DomainResource {
       json['timingPeriod'] = timingPeriod!.toJson();
     }
     if (timingDateTime?.value != null) {
-      json['timingDateTime'] = timingDateTime!.value;
+      json['timingDateTime'] = timingDateTime!.toJson();
     }
     if (timingDateTimeElement != null) {
       json['_timingDateTime'] = timingDateTimeElement!.toJson();
     }
     if (recordedOn?.value != null) {
-      json['recordedOn'] = recordedOn!.value;
+      json['recordedOn'] = recordedOn!.toJson();
     }
     if (recordedOnElement != null) {
       json['_recordedOn'] = recordedOnElement!.toJson();
@@ -197,17 +197,21 @@ class DeviceUseStatement extends DomainResource {
 
   factory DeviceUseStatement.fromJson(Map<String, dynamic> json) {
     return DeviceUseStatement(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -242,8 +246,10 @@ class DeviceUseStatement extends DomainResource {
                   (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status: DeviceUseStatementStatus.fromJson(
-          json['status'] as Map<String, dynamic>),
+      status: DeviceUseStatementStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       subject: Reference.fromJson(json['subject'] as Map<String, dynamic>),
       derivedFrom: json['derivedFrom'] != null
           ? (json['derivedFrom'] as List<dynamic>)
@@ -258,13 +264,14 @@ class DeviceUseStatement extends DomainResource {
           ? Period.fromJson(json['timingPeriod'] as Map<String, dynamic>)
           : null,
       timingDateTime: json['timingDateTime'] != null
-          ? FhirDateTime(json['timingDateTime'])
+          ? FhirDateTime.fromJson(json['timingDateTime'])
           : null,
       timingDateTimeElement: json['_timingDateTime'] != null
           ? Element.fromJson(json['_timingDateTime'] as Map<String, dynamic>)
           : null,
-      recordedOn:
-          json['recordedOn'] != null ? FhirDateTime(json['recordedOn']) : null,
+      recordedOn: json['recordedOn'] != null
+          ? FhirDateTime.fromJson(json['recordedOn'])
+          : null,
       recordedOnElement: json['_recordedOn'] != null
           ? Element.fromJson(json['_recordedOn'] as Map<String, dynamic>)
           : null,

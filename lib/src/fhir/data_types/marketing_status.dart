@@ -89,7 +89,7 @@ class MarketingStatus extends BackboneType {
       json['dateRange'] = dateRange!.toJson();
     }
     if (restoreDate?.value != null) {
-      json['restoreDate'] = restoreDate!.value;
+      json['restoreDate'] = restoreDate!.toJson();
     }
     if (restoreDateElement != null) {
       json['_restoreDate'] = restoreDateElement!.toJson();
@@ -99,7 +99,7 @@ class MarketingStatus extends BackboneType {
 
   factory MarketingStatus.fromJson(Map<String, dynamic> json) {
     return MarketingStatus(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -124,7 +124,7 @@ class MarketingStatus extends BackboneType {
           ? Period.fromJson(json['dateRange'] as Map<String, dynamic>)
           : null,
       restoreDate: json['restoreDate'] != null
-          ? FhirDateTime(json['restoreDate'])
+          ? FhirDateTime.fromJson(json['restoreDate'])
           : null,
       restoreDateElement: json['_restoreDate'] != null
           ? Element.fromJson(json['_restoreDate'] as Map<String, dynamic>)

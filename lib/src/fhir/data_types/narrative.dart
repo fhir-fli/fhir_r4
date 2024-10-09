@@ -13,6 +13,7 @@ class Narrative extends DataType {
     required this.status,
     this.statusElement,
     required this.div,
+    this.divElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -34,7 +35,8 @@ class Narrative extends DataType {
   final Element? statusElement;
 
   /// [div] /// The actual narrative content, a stripped down version of XHTML.
-  final FhirMarkdown div;
+  final FhirXhtml div;
+  final Element? divElement;
   @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> json = <String, dynamic>{};
@@ -47,20 +49,29 @@ class Narrative extends DataType {
     }
     json['status'] = status.toJson();
     json['div'] = div.toJson();
+    if (divElement != null) {
+      json['_div'] = divElement!.toJson();
+    }
     return json;
   }
 
   factory Narrative.fromJson(Map<String, dynamic> json) {
     return Narrative(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status: NarrativeStatus.fromJson(json['status'] as Map<String, dynamic>),
-      div: FhirMarkdown.fromJson(json['div'] as Map<String, dynamic>),
+      status: NarrativeStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
+      div: FhirXhtml.fromJson(json['div']),
+      divElement: json['_div'] != null
+          ? Element.fromJson(json['_div'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
@@ -71,7 +82,8 @@ class Narrative extends DataType {
     List<FhirExtension>? extension_,
     NarrativeStatus? status,
     Element? statusElement,
-    FhirMarkdown? div,
+    FhirXhtml? div,
+    Element? divElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -85,6 +97,7 @@ class Narrative extends DataType {
       status: status ?? this.status,
       statusElement: statusElement ?? this.statusElement,
       div: div ?? this.div,
+      divElement: divElement ?? this.divElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

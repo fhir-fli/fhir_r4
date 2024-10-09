@@ -187,7 +187,7 @@ class ChargeItem extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -217,7 +217,7 @@ class ChargeItem extends DomainResource {
     }
     if (definitionUri != null && definitionUri!.isNotEmpty) {
       json['definitionUri'] =
-          definitionUri!.map((FhirUri v) => v.value).toList();
+          definitionUri!.map((FhirUri v) => v.toJson()).toList();
     }
     if (definitionUriElement != null && definitionUriElement!.isNotEmpty) {
       json['_definitionUri'] =
@@ -225,7 +225,7 @@ class ChargeItem extends DomainResource {
     }
     if (definitionCanonical != null && definitionCanonical!.isNotEmpty) {
       json['definitionCanonical'] =
-          definitionCanonical!.map((FhirCanonical v) => v.value).toList();
+          definitionCanonical!.map((FhirCanonical v) => v.toJson()).toList();
     }
     if (definitionCanonicalElement != null &&
         definitionCanonicalElement!.isNotEmpty) {
@@ -243,7 +243,7 @@ class ChargeItem extends DomainResource {
       json['context'] = context!.toJson();
     }
     if (occurrenceDateTime?.value != null) {
-      json['occurrenceDateTime'] = occurrenceDateTime!.value;
+      json['occurrenceDateTime'] = occurrenceDateTime!.toJson();
     }
     if (occurrenceDateTimeElement != null) {
       json['_occurrenceDateTime'] = occurrenceDateTimeElement!.toJson();
@@ -276,7 +276,7 @@ class ChargeItem extends DomainResource {
           bodysite!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
     }
     if (factorOverride?.value != null) {
-      json['factorOverride'] = factorOverride!.value;
+      json['factorOverride'] = factorOverride!.toJson();
     }
     if (factorOverrideElement != null) {
       json['_factorOverride'] = factorOverrideElement!.toJson();
@@ -285,7 +285,7 @@ class ChargeItem extends DomainResource {
       json['priceOverride'] = priceOverride!.toJson();
     }
     if (overrideReason?.value != null) {
-      json['overrideReason'] = overrideReason!.value;
+      json['overrideReason'] = overrideReason!.toJson();
     }
     if (overrideReasonElement != null) {
       json['_overrideReason'] = overrideReasonElement!.toJson();
@@ -294,7 +294,7 @@ class ChargeItem extends DomainResource {
       json['enterer'] = enterer!.toJson();
     }
     if (enteredDate?.value != null) {
-      json['enteredDate'] = enteredDate!.value;
+      json['enteredDate'] = enteredDate!.toJson();
     }
     if (enteredDateElement != null) {
       json['_enteredDate'] = enteredDateElement!.toJson();
@@ -330,17 +330,21 @@ class ChargeItem extends DomainResource {
 
   factory ChargeItem.fromJson(Map<String, dynamic> json) {
     return ChargeItem(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -392,7 +396,10 @@ class ChargeItem extends DomainResource {
                   (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status: ChargeItemStatus.fromJson(json['status'] as Map<String, dynamic>),
+      status: ChargeItemStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       partOf: json['partOf'] != null
           ? (json['partOf'] as List<dynamic>)
               .map<Reference>(
@@ -405,7 +412,7 @@ class ChargeItem extends DomainResource {
           ? Reference.fromJson(json['context'] as Map<String, dynamic>)
           : null,
       occurrenceDateTime: json['occurrenceDateTime'] != null
-          ? FhirDateTime(json['occurrenceDateTime'])
+          ? FhirDateTime.fromJson(json['occurrenceDateTime'])
           : null,
       occurrenceDateTimeElement: json['_occurrenceDateTime'] != null
           ? Element.fromJson(
@@ -444,7 +451,7 @@ class ChargeItem extends DomainResource {
               .toList()
           : null,
       factorOverride: json['factorOverride'] != null
-          ? FhirDecimal(json['factorOverride'])
+          ? FhirDecimal.fromJson(json['factorOverride'])
           : null,
       factorOverrideElement: json['_factorOverride'] != null
           ? Element.fromJson(json['_factorOverride'] as Map<String, dynamic>)
@@ -453,7 +460,7 @@ class ChargeItem extends DomainResource {
           ? Money.fromJson(json['priceOverride'] as Map<String, dynamic>)
           : null,
       overrideReason: json['overrideReason'] != null
-          ? FhirString(json['overrideReason'])
+          ? FhirString.fromJson(json['overrideReason'])
           : null,
       overrideReasonElement: json['_overrideReason'] != null
           ? Element.fromJson(json['_overrideReason'] as Map<String, dynamic>)
@@ -462,7 +469,7 @@ class ChargeItem extends DomainResource {
           ? Reference.fromJson(json['enterer'] as Map<String, dynamic>)
           : null,
       enteredDate: json['enteredDate'] != null
-          ? FhirDateTime(json['enteredDate'])
+          ? FhirDateTime.fromJson(json['enteredDate'])
           : null,
       enteredDateElement: json['_enteredDate'] != null
           ? Element.fromJson(json['_enteredDate'] as Map<String, dynamic>)
@@ -700,7 +707,7 @@ class ChargeItemPerformer extends BackboneElement {
 
   factory ChargeItemPerformer.fromJson(Map<String, dynamic> json) {
     return ChargeItemPerformer(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

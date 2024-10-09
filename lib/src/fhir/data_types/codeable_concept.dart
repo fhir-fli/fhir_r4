@@ -49,7 +49,7 @@ class CodeableConcept extends DataType {
       json['coding'] = coding!.map<dynamic>((Coding v) => v.toJson()).toList();
     }
     if (text?.value != null) {
-      json['text'] = text!.value;
+      json['text'] = text!.toJson();
     }
     if (textElement != null) {
       json['_text'] = textElement!.toJson();
@@ -59,7 +59,7 @@ class CodeableConcept extends DataType {
 
   factory CodeableConcept.fromJson(Map<String, dynamic> json) {
     return CodeableConcept(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -72,7 +72,7 @@ class CodeableConcept extends DataType {
                   (dynamic v) => Coding.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      text: json['text'] != null ? FhirString(json['text']) : null,
+      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
       textElement: json['_text'] != null
           ? Element.fromJson(json['_text'] as Map<String, dynamic>)
           : null,

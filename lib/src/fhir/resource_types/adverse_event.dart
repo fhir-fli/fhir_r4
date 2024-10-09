@@ -149,7 +149,7 @@ class AdverseEvent extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -189,19 +189,19 @@ class AdverseEvent extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
     if (date?.value != null) {
-      json['date'] = date!.value;
+      json['date'] = date!.toJson();
     }
     if (dateElement != null) {
       json['_date'] = dateElement!.toJson();
     }
     if (detected?.value != null) {
-      json['detected'] = detected!.value;
+      json['detected'] = detected!.toJson();
     }
     if (detectedElement != null) {
       json['_detected'] = detectedElement!.toJson();
     }
     if (recordedDate?.value != null) {
-      json['recordedDate'] = recordedDate!.value;
+      json['recordedDate'] = recordedDate!.toJson();
     }
     if (recordedDateElement != null) {
       json['_recordedDate'] = recordedDateElement!.toJson();
@@ -252,17 +252,21 @@ class AdverseEvent extends DomainResource {
 
   factory AdverseEvent.fromJson(Map<String, dynamic> json) {
     return AdverseEvent(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -288,8 +292,10 @@ class AdverseEvent extends DomainResource {
       identifier: json['identifier'] != null
           ? Identifier.fromJson(json['identifier'] as Map<String, dynamic>)
           : null,
-      actuality: AdverseEventActuality.fromJson(
-          json['actuality'] as Map<String, dynamic>),
+      actuality: AdverseEventActuality.fromJson(json['actuality']),
+      actualityElement: json['_actuality'] != null
+          ? Element.fromJson(json['_actuality'] as Map<String, dynamic>)
+          : null,
       category: json['category'] != null
           ? (json['category'] as List<dynamic>)
               .map<CodeableConcept>((dynamic v) =>
@@ -303,17 +309,18 @@ class AdverseEvent extends DomainResource {
       encounter: json['encounter'] != null
           ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
           : null,
-      date: json['date'] != null ? FhirDateTime(json['date']) : null,
+      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
       dateElement: json['_date'] != null
           ? Element.fromJson(json['_date'] as Map<String, dynamic>)
           : null,
-      detected:
-          json['detected'] != null ? FhirDateTime(json['detected']) : null,
+      detected: json['detected'] != null
+          ? FhirDateTime.fromJson(json['detected'])
+          : null,
       detectedElement: json['_detected'] != null
           ? Element.fromJson(json['_detected'] as Map<String, dynamic>)
           : null,
       recordedDate: json['recordedDate'] != null
-          ? FhirDateTime(json['recordedDate'])
+          ? FhirDateTime.fromJson(json['recordedDate'])
           : null,
       recordedDateElement: json['_recordedDate'] != null
           ? Element.fromJson(json['_recordedDate'] as Map<String, dynamic>)
@@ -537,7 +544,7 @@ class AdverseEventSuspectEntity extends BackboneElement {
 
   factory AdverseEventSuspectEntity.fromJson(Map<String, dynamic> json) {
     return AdverseEventSuspectEntity(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -666,7 +673,7 @@ class AdverseEventCausality extends BackboneElement {
       json['assessment'] = assessment!.toJson();
     }
     if (productRelatedness?.value != null) {
-      json['productRelatedness'] = productRelatedness!.value;
+      json['productRelatedness'] = productRelatedness!.toJson();
     }
     if (productRelatednessElement != null) {
       json['_productRelatedness'] = productRelatednessElement!.toJson();
@@ -682,7 +689,7 @@ class AdverseEventCausality extends BackboneElement {
 
   factory AdverseEventCausality.fromJson(Map<String, dynamic> json) {
     return AdverseEventCausality(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -699,7 +706,7 @@ class AdverseEventCausality extends BackboneElement {
           ? CodeableConcept.fromJson(json['assessment'] as Map<String, dynamic>)
           : null,
       productRelatedness: json['productRelatedness'] != null
-          ? FhirString(json['productRelatedness'])
+          ? FhirString.fromJson(json['productRelatedness'])
           : null,
       productRelatednessElement: json['_productRelatedness'] != null
           ? Element.fromJson(

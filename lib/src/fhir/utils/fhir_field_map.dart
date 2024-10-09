@@ -12120,7 +12120,8 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'extension': const FhirField(true, 'FhirExtension'),
     'status': const FhirField(false, 'NarrativeStatus'),
     '_status': const FhirField(false, 'Element'),
-    'div': const FhirField(false, 'FhirMarkdown'),
+    'div': const FhirField(false, 'FhirXhtml'),
+    '_div': const FhirField(false, 'Element'),
   },
   'ParameterDefinition': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),

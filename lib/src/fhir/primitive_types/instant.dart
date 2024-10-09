@@ -38,7 +38,7 @@ class FhirInstant extends FhirDateTimeBase {
               : precision,
           element) as FhirInstant;
 
-  factory FhirInstant.fromJson(String json,
+  factory FhirInstant.fromJson(dynamic json,
           {FhirDateTimePrecision? precision, Element? element}) =>
       FhirInstant(json, precision, element);
 

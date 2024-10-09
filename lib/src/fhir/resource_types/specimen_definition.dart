@@ -67,7 +67,7 @@ class SpecimenDefinition extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -103,7 +103,7 @@ class SpecimenDefinition extends DomainResource {
           .toList();
     }
     if (timeAspect?.value != null) {
-      json['timeAspect'] = timeAspect!.value;
+      json['timeAspect'] = timeAspect!.toJson();
     }
     if (timeAspectElement != null) {
       json['_timeAspect'] = timeAspectElement!.toJson();
@@ -122,17 +122,21 @@ class SpecimenDefinition extends DomainResource {
 
   factory SpecimenDefinition.fromJson(Map<String, dynamic> json) {
     return SpecimenDefinition(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -168,8 +172,9 @@ class SpecimenDefinition extends DomainResource {
                   CodeableConcept.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      timeAspect:
-          json['timeAspect'] != null ? FhirString(json['timeAspect']) : null,
+      timeAspect: json['timeAspect'] != null
+          ? FhirString.fromJson(json['timeAspect'])
+          : null,
       timeAspectElement: json['_timeAspect'] != null
           ? Element.fromJson(json['_timeAspect'] as Map<String, dynamic>)
           : null,
@@ -339,7 +344,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
           .toList();
     }
     if (isDerived?.value != null) {
-      json['isDerived'] = isDerived!.value;
+      json['isDerived'] = isDerived!.toJson();
     }
     if (isDerivedElement != null) {
       json['_isDerived'] = isDerivedElement!.toJson();
@@ -352,7 +357,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
       json['container'] = container!.toJson();
     }
     if (requirement?.value != null) {
-      json['requirement'] = requirement!.value;
+      json['requirement'] = requirement!.toJson();
     }
     if (requirementElement != null) {
       json['_requirement'] = requirementElement!.toJson();
@@ -375,7 +380,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
 
   factory SpecimenDefinitionTypeTested.fromJson(Map<String, dynamic> json) {
     return SpecimenDefinitionTypeTested(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -388,22 +393,26 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      isDerived:
-          json['isDerived'] != null ? FhirBoolean(json['isDerived']) : null,
+      isDerived: json['isDerived'] != null
+          ? FhirBoolean.fromJson(json['isDerived'])
+          : null,
       isDerivedElement: json['_isDerived'] != null
           ? Element.fromJson(json['_isDerived'] as Map<String, dynamic>)
           : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
           : null,
-      preference: SpecimenContainedPreference.fromJson(
-          json['preference'] as Map<String, dynamic>),
+      preference: SpecimenContainedPreference.fromJson(json['preference']),
+      preferenceElement: json['_preference'] != null
+          ? Element.fromJson(json['_preference'] as Map<String, dynamic>)
+          : null,
       container: json['container'] != null
           ? SpecimenDefinitionContainer.fromJson(
               json['container'] as Map<String, dynamic>)
           : null,
-      requirement:
-          json['requirement'] != null ? FhirString(json['requirement']) : null,
+      requirement: json['requirement'] != null
+          ? FhirString.fromJson(json['requirement'])
+          : null,
       requirementElement: json['_requirement'] != null
           ? Element.fromJson(json['_requirement'] as Map<String, dynamic>)
           : null,
@@ -582,7 +591,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
       json['cap'] = cap!.toJson();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
@@ -594,7 +603,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
       json['minimumVolumeQuantity'] = minimumVolumeQuantity!.toJson();
     }
     if (minimumVolumeString?.value != null) {
-      json['minimumVolumeString'] = minimumVolumeString!.value;
+      json['minimumVolumeString'] = minimumVolumeString!.toJson();
     }
     if (minimumVolumeStringElement != null) {
       json['_minimumVolumeString'] = minimumVolumeStringElement!.toJson();
@@ -605,7 +614,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
           .toList();
     }
     if (preparation?.value != null) {
-      json['preparation'] = preparation!.value;
+      json['preparation'] = preparation!.toJson();
     }
     if (preparationElement != null) {
       json['_preparation'] = preparationElement!.toJson();
@@ -615,7 +624,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
 
   factory SpecimenDefinitionContainer.fromJson(Map<String, dynamic> json) {
     return SpecimenDefinitionContainer(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -637,8 +646,9 @@ class SpecimenDefinitionContainer extends BackboneElement {
       cap: json['cap'] != null
           ? CodeableConcept.fromJson(json['cap'] as Map<String, dynamic>)
           : null,
-      description:
-          json['description'] != null ? FhirString(json['description']) : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
           : null,
@@ -650,7 +660,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
               json['minimumVolumeQuantity'] as Map<String, dynamic>)
           : null,
       minimumVolumeString: json['minimumVolumeString'] != null
-          ? FhirString(json['minimumVolumeString'])
+          ? FhirString.fromJson(json['minimumVolumeString'])
           : null,
       minimumVolumeStringElement: json['_minimumVolumeString'] != null
           ? Element.fromJson(
@@ -663,8 +673,9 @@ class SpecimenDefinitionContainer extends BackboneElement {
                       v as Map<String, dynamic>))
               .toList()
           : null,
-      preparation:
-          json['preparation'] != null ? FhirString(json['preparation']) : null,
+      preparation: json['preparation'] != null
+          ? FhirString.fromJson(json['preparation'])
+          : null,
       preparationElement: json['_preparation'] != null
           ? Element.fromJson(json['_preparation'] as Map<String, dynamic>)
           : null,
@@ -799,7 +810,7 @@ class SpecimenDefinitionAdditive extends BackboneElement {
 
   factory SpecimenDefinitionAdditive.fromJson(Map<String, dynamic> json) {
     return SpecimenDefinitionAdditive(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -941,7 +952,7 @@ class SpecimenDefinitionHandling extends BackboneElement {
       json['maxDuration'] = maxDuration!.toJson();
     }
     if (instruction?.value != null) {
-      json['instruction'] = instruction!.value;
+      json['instruction'] = instruction!.toJson();
     }
     if (instructionElement != null) {
       json['_instruction'] = instructionElement!.toJson();
@@ -951,7 +962,7 @@ class SpecimenDefinitionHandling extends BackboneElement {
 
   factory SpecimenDefinitionHandling.fromJson(Map<String, dynamic> json) {
     return SpecimenDefinitionHandling(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -974,8 +985,9 @@ class SpecimenDefinitionHandling extends BackboneElement {
       maxDuration: json['maxDuration'] != null
           ? FhirDuration.fromJson(json['maxDuration'] as Map<String, dynamic>)
           : null,
-      instruction:
-          json['instruction'] != null ? FhirString(json['instruction']) : null,
+      instruction: json['instruction'] != null
+          ? FhirString.fromJson(json['instruction'])
+          : null,
       instructionElement: json['_instruction'] != null
           ? Element.fromJson(json['_instruction'] as Map<String, dynamic>)
           : null,

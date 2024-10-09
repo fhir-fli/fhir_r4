@@ -55,6 +55,7 @@ class Field {
     required this.isList,
     required this.isRequired,
     required this.needsElement,
+    required this.isEnum,
   });
 
   final String name;
@@ -64,6 +65,7 @@ class Field {
   final bool needsElement;
   final bool isList;
   final bool isRequired;
+  final bool isEnum;
   bool isSuper = false;
 
   void setSuperField(WritableClass writableClass) {

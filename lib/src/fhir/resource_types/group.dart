@@ -100,7 +100,7 @@ class FhirGroup extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -129,13 +129,13 @@ class FhirGroup extends DomainResource {
           identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
     }
     if (active?.value != null) {
-      json['active'] = active!.value;
+      json['active'] = active!.toJson();
     }
     if (activeElement != null) {
       json['_active'] = activeElement!.toJson();
     }
     json['type'] = type.toJson();
-    json['actual'] = actual.value;
+    json['actual'] = actual.toJson();
     if (actualElement != null) {
       json['_actual'] = actualElement!.toJson();
     }
@@ -143,13 +143,13 @@ class FhirGroup extends DomainResource {
       json['code'] = code!.toJson();
     }
     if (name?.value != null) {
-      json['name'] = name!.value;
+      json['name'] = name!.toJson();
     }
     if (nameElement != null) {
       json['_name'] = nameElement!.toJson();
     }
     if (quantity?.value != null) {
-      json['quantity'] = quantity!.value;
+      json['quantity'] = quantity!.toJson();
     }
     if (quantityElement != null) {
       json['_quantity'] = quantityElement!.toJson();
@@ -171,17 +171,21 @@ class FhirGroup extends DomainResource {
 
   factory FhirGroup.fromJson(Map<String, dynamic> json) {
     return FhirGroup(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -210,24 +214,29 @@ class FhirGroup extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      active: json['active'] != null ? FhirBoolean(json['active']) : null,
+      active:
+          json['active'] != null ? FhirBoolean.fromJson(json['active']) : null,
       activeElement: json['_active'] != null
           ? Element.fromJson(json['_active'] as Map<String, dynamic>)
           : null,
-      type: GroupType.fromJson(json['type'] as Map<String, dynamic>),
-      actual: FhirBoolean(json['actual']),
+      type: GroupType.fromJson(json['type']),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
+          : null,
+      actual: FhirBoolean.fromJson(json['actual']),
       actualElement: json['_actual'] != null
           ? Element.fromJson(json['_actual'] as Map<String, dynamic>)
           : null,
       code: json['code'] != null
           ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
           : null,
-      name: json['name'] != null ? FhirString(json['name']) : null,
+      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
       nameElement: json['_name'] != null
           ? Element.fromJson(json['_name'] as Map<String, dynamic>)
           : null,
-      quantity:
-          json['quantity'] != null ? FhirUnsignedInt(json['quantity']) : null,
+      quantity: json['quantity'] != null
+          ? FhirUnsignedInt.fromJson(json['quantity'])
+          : null,
       quantityElement: json['_quantity'] != null
           ? Element.fromJson(json['_quantity'] as Map<String, dynamic>)
           : null,
@@ -422,7 +431,7 @@ class GroupCharacteristic extends BackboneElement {
       json['valueCodeableConcept'] = valueCodeableConcept!.toJson();
     }
     if (valueBoolean?.value != null) {
-      json['valueBoolean'] = valueBoolean!.value;
+      json['valueBoolean'] = valueBoolean!.toJson();
     }
     if (valueBooleanElement != null) {
       json['_valueBoolean'] = valueBooleanElement!.toJson();
@@ -436,7 +445,7 @@ class GroupCharacteristic extends BackboneElement {
     if (valueReference != null) {
       json['valueReference'] = valueReference!.toJson();
     }
-    json['exclude'] = exclude.value;
+    json['exclude'] = exclude.toJson();
     if (excludeElement != null) {
       json['_exclude'] = excludeElement!.toJson();
     }
@@ -448,7 +457,7 @@ class GroupCharacteristic extends BackboneElement {
 
   factory GroupCharacteristic.fromJson(Map<String, dynamic> json) {
     return GroupCharacteristic(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -467,7 +476,7 @@ class GroupCharacteristic extends BackboneElement {
               json['valueCodeableConcept'] as Map<String, dynamic>)
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean(json['valueBoolean'])
+          ? FhirBoolean.fromJson(json['valueBoolean'])
           : null,
       valueBooleanElement: json['_valueBoolean'] != null
           ? Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>)
@@ -481,7 +490,7 @@ class GroupCharacteristic extends BackboneElement {
       valueReference: json['valueReference'] != null
           ? Reference.fromJson(json['valueReference'] as Map<String, dynamic>)
           : null,
-      exclude: FhirBoolean(json['exclude']),
+      exclude: FhirBoolean.fromJson(json['exclude']),
       excludeElement: json['_exclude'] != null
           ? Element.fromJson(json['_exclude'] as Map<String, dynamic>)
           : null,
@@ -613,7 +622,7 @@ class GroupMember extends BackboneElement {
       json['period'] = period!.toJson();
     }
     if (inactive?.value != null) {
-      json['inactive'] = inactive!.value;
+      json['inactive'] = inactive!.toJson();
     }
     if (inactiveElement != null) {
       json['_inactive'] = inactiveElement!.toJson();
@@ -623,7 +632,7 @@ class GroupMember extends BackboneElement {
 
   factory GroupMember.fromJson(Map<String, dynamic> json) {
     return GroupMember(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -640,7 +649,9 @@ class GroupMember extends BackboneElement {
       period: json['period'] != null
           ? Period.fromJson(json['period'] as Map<String, dynamic>)
           : null,
-      inactive: json['inactive'] != null ? FhirBoolean(json['inactive']) : null,
+      inactive: json['inactive'] != null
+          ? FhirBoolean.fromJson(json['inactive'])
+          : null,
       inactiveElement: json['_inactive'] != null
           ? Element.fromJson(json['_inactive'] as Map<String, dynamic>)
           : null,

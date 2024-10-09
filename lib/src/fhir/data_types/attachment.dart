@@ -85,7 +85,7 @@ class Attachment extends DataType {
           extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
     }
     if (contentType?.value != null) {
-      json['contentType'] = contentType!.value;
+      json['contentType'] = contentType!.toJson();
     }
     if (contentTypeElement != null) {
       json['_contentType'] = contentTypeElement!.toJson();
@@ -94,37 +94,37 @@ class Attachment extends DataType {
       json['language'] = language!.toJson();
     }
     if (data?.value != null) {
-      json['data'] = data!.value;
+      json['data'] = data!.toJson();
     }
     if (dataElement != null) {
       json['_data'] = dataElement!.toJson();
     }
     if (url?.value != null) {
-      json['url'] = url!.value;
+      json['url'] = url!.toJson();
     }
     if (urlElement != null) {
       json['_url'] = urlElement!.toJson();
     }
     if (size?.value != null) {
-      json['size'] = size!.value;
+      json['size'] = size!.toJson();
     }
     if (sizeElement != null) {
       json['_size'] = sizeElement!.toJson();
     }
     if (hash?.value != null) {
-      json['hash'] = hash!.value;
+      json['hash'] = hash!.toJson();
     }
     if (hashElement != null) {
       json['_hash'] = hashElement!.toJson();
     }
     if (title?.value != null) {
-      json['title'] = title!.value;
+      json['title'] = title!.toJson();
     }
     if (titleElement != null) {
       json['_title'] = titleElement!.toJson();
     }
     if (creation?.value != null) {
-      json['creation'] = creation!.value;
+      json['creation'] = creation!.toJson();
     }
     if (creationElement != null) {
       json['_creation'] = creationElement!.toJson();
@@ -134,43 +134,51 @@ class Attachment extends DataType {
 
   factory Attachment.fromJson(Map<String, dynamic> json) {
     return Attachment(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      contentType:
-          json['contentType'] != null ? FhirCode(json['contentType']) : null,
+      contentType: json['contentType'] != null
+          ? FhirCode.fromJson(json['contentType'])
+          : null,
       contentTypeElement: json['_contentType'] != null
           ? Element.fromJson(json['_contentType'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
           : null,
-      data: json['data'] != null ? FhirBase64Binary(json['data']) : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
+          : null,
+      data:
+          json['data'] != null ? FhirBase64Binary.fromJson(json['data']) : null,
       dataElement: json['_data'] != null
           ? Element.fromJson(json['_data'] as Map<String, dynamic>)
           : null,
-      url: json['url'] != null ? FhirUrl(json['url']) : null,
+      url: json['url'] != null ? FhirUrl.fromJson(json['url']) : null,
       urlElement: json['_url'] != null
           ? Element.fromJson(json['_url'] as Map<String, dynamic>)
           : null,
-      size: json['size'] != null ? FhirUnsignedInt(json['size']) : null,
+      size:
+          json['size'] != null ? FhirUnsignedInt.fromJson(json['size']) : null,
       sizeElement: json['_size'] != null
           ? Element.fromJson(json['_size'] as Map<String, dynamic>)
           : null,
-      hash: json['hash'] != null ? FhirBase64Binary(json['hash']) : null,
+      hash:
+          json['hash'] != null ? FhirBase64Binary.fromJson(json['hash']) : null,
       hashElement: json['_hash'] != null
           ? Element.fromJson(json['_hash'] as Map<String, dynamic>)
           : null,
-      title: json['title'] != null ? FhirString(json['title']) : null,
+      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
       titleElement: json['_title'] != null
           ? Element.fromJson(json['_title'] as Map<String, dynamic>)
           : null,
-      creation:
-          json['creation'] != null ? FhirDateTime(json['creation']) : null,
+      creation: json['creation'] != null
+          ? FhirDateTime.fromJson(json['creation'])
+          : null,
       creationElement: json['_creation'] != null
           ? Element.fromJson(json['_creation'] as Map<String, dynamic>)
           : null,

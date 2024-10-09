@@ -189,7 +189,7 @@ class DeviceRequest extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -219,7 +219,7 @@ class DeviceRequest extends DomainResource {
     }
     if (instantiatesCanonical != null && instantiatesCanonical!.isNotEmpty) {
       json['instantiatesCanonical'] =
-          instantiatesCanonical!.map((FhirCanonical v) => v.value).toList();
+          instantiatesCanonical!.map((FhirCanonical v) => v.toJson()).toList();
     }
     if (instantiatesCanonicalElement != null &&
         instantiatesCanonicalElement!.isNotEmpty) {
@@ -228,7 +228,7 @@ class DeviceRequest extends DomainResource {
     }
     if (instantiatesUri != null && instantiatesUri!.isNotEmpty) {
       json['instantiatesUri'] =
-          instantiatesUri!.map((FhirUri v) => v.value).toList();
+          instantiatesUri!.map((FhirUri v) => v.toJson()).toList();
     }
     if (instantiatesUriElement != null && instantiatesUriElement!.isNotEmpty) {
       json['_instantiatesUri'] =
@@ -268,7 +268,7 @@ class DeviceRequest extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
     if (occurrenceDateTime?.value != null) {
-      json['occurrenceDateTime'] = occurrenceDateTime!.value;
+      json['occurrenceDateTime'] = occurrenceDateTime!.toJson();
     }
     if (occurrenceDateTimeElement != null) {
       json['_occurrenceDateTime'] = occurrenceDateTimeElement!.toJson();
@@ -280,7 +280,7 @@ class DeviceRequest extends DomainResource {
       json['occurrenceTiming'] = occurrenceTiming!.toJson();
     }
     if (authoredOn?.value != null) {
-      json['authoredOn'] = authoredOn!.value;
+      json['authoredOn'] = authoredOn!.toJson();
     }
     if (authoredOnElement != null) {
       json['_authoredOn'] = authoredOnElement!.toJson();
@@ -322,17 +322,21 @@ class DeviceRequest extends DomainResource {
 
   factory DeviceRequest.fromJson(Map<String, dynamic> json) {
     return DeviceRequest(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -400,11 +404,20 @@ class DeviceRequest extends DomainResource {
           ? Identifier.fromJson(json['groupIdentifier'] as Map<String, dynamic>)
           : null,
       status: json['status'] != null
-          ? RequestStatus.fromJson(json['status'] as Map<String, dynamic>)
+          ? RequestStatus.fromJson(json['status'])
           : null,
-      intent: RequestIntent.fromJson(json['intent'] as Map<String, dynamic>),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
+      intent: RequestIntent.fromJson(json['intent']),
+      intentElement: json['_intent'] != null
+          ? Element.fromJson(json['_intent'] as Map<String, dynamic>)
+          : null,
       priority: json['priority'] != null
-          ? RequestPriority.fromJson(json['priority'] as Map<String, dynamic>)
+          ? RequestPriority.fromJson(json['priority'])
+          : null,
+      priorityElement: json['_priority'] != null
+          ? Element.fromJson(json['_priority'] as Map<String, dynamic>)
           : null,
       codeReference: json['codeReference'] != null
           ? Reference.fromJson(json['codeReference'] as Map<String, dynamic>)
@@ -424,7 +437,7 @@ class DeviceRequest extends DomainResource {
           ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
           : null,
       occurrenceDateTime: json['occurrenceDateTime'] != null
-          ? FhirDateTime(json['occurrenceDateTime'])
+          ? FhirDateTime.fromJson(json['occurrenceDateTime'])
           : null,
       occurrenceDateTimeElement: json['_occurrenceDateTime'] != null
           ? Element.fromJson(
@@ -436,8 +449,9 @@ class DeviceRequest extends DomainResource {
       occurrenceTiming: json['occurrenceTiming'] != null
           ? Timing.fromJson(json['occurrenceTiming'] as Map<String, dynamic>)
           : null,
-      authoredOn:
-          json['authoredOn'] != null ? FhirDateTime(json['authoredOn']) : null,
+      authoredOn: json['authoredOn'] != null
+          ? FhirDateTime.fromJson(json['authoredOn'])
+          : null,
       authoredOnElement: json['_authoredOn'] != null
           ? Element.fromJson(json['_authoredOn'] as Map<String, dynamic>)
           : null,
@@ -692,7 +706,7 @@ class DeviceRequestParameter extends BackboneElement {
       json['valueRange'] = valueRange!.toJson();
     }
     if (valueBoolean?.value != null) {
-      json['valueBoolean'] = valueBoolean!.value;
+      json['valueBoolean'] = valueBoolean!.toJson();
     }
     if (valueBooleanElement != null) {
       json['_valueBoolean'] = valueBooleanElement!.toJson();
@@ -702,7 +716,7 @@ class DeviceRequestParameter extends BackboneElement {
 
   factory DeviceRequestParameter.fromJson(Map<String, dynamic> json) {
     return DeviceRequestParameter(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -729,7 +743,7 @@ class DeviceRequestParameter extends BackboneElement {
           ? Range.fromJson(json['valueRange'] as Map<String, dynamic>)
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean(json['valueBoolean'])
+          ? FhirBoolean.fromJson(json['valueBoolean'])
           : null,
       valueBooleanElement: json['_valueBoolean'] != null
           ? Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>)

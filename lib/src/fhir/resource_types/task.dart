@@ -202,7 +202,7 @@ class Task extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -231,13 +231,13 @@ class Task extends DomainResource {
           identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
     }
     if (instantiatesCanonical?.value != null) {
-      json['instantiatesCanonical'] = instantiatesCanonical!.value;
+      json['instantiatesCanonical'] = instantiatesCanonical!.toJson();
     }
     if (instantiatesCanonicalElement != null) {
       json['_instantiatesCanonical'] = instantiatesCanonicalElement!.toJson();
     }
     if (instantiatesUri?.value != null) {
-      json['instantiatesUri'] = instantiatesUri!.value;
+      json['instantiatesUri'] = instantiatesUri!.toJson();
     }
     if (instantiatesUriElement != null) {
       json['_instantiatesUri'] = instantiatesUriElement!.toJson();
@@ -268,7 +268,7 @@ class Task extends DomainResource {
       json['code'] = code!.toJson();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
@@ -286,13 +286,13 @@ class Task extends DomainResource {
       json['executionPeriod'] = executionPeriod!.toJson();
     }
     if (authoredOn?.value != null) {
-      json['authoredOn'] = authoredOn!.value;
+      json['authoredOn'] = authoredOn!.toJson();
     }
     if (authoredOnElement != null) {
       json['_authoredOn'] = authoredOnElement!.toJson();
     }
     if (lastModified?.value != null) {
-      json['lastModified'] = lastModified!.value;
+      json['lastModified'] = lastModified!.toJson();
     }
     if (lastModifiedElement != null) {
       json['_lastModified'] = lastModifiedElement!.toJson();
@@ -343,17 +343,21 @@ class Task extends DomainResource {
 
   factory Task.fromJson(Map<String, dynamic> json) {
     return Task(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -383,14 +387,14 @@ class Task extends DomainResource {
               .toList()
           : null,
       instantiatesCanonical: json['instantiatesCanonical'] != null
-          ? FhirCanonical(json['instantiatesCanonical'])
+          ? FhirCanonical.fromJson(json['instantiatesCanonical'])
           : null,
       instantiatesCanonicalElement: json['_instantiatesCanonical'] != null
           ? Element.fromJson(
               json['_instantiatesCanonical'] as Map<String, dynamic>)
           : null,
       instantiatesUri: json['instantiatesUri'] != null
-          ? FhirUri(json['instantiatesUri'])
+          ? FhirUri.fromJson(json['instantiatesUri'])
           : null,
       instantiatesUriElement: json['_instantiatesUri'] != null
           ? Element.fromJson(json['_instantiatesUri'] as Map<String, dynamic>)
@@ -410,7 +414,10 @@ class Task extends DomainResource {
                   (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status: TaskStatus.fromJson(json['status'] as Map<String, dynamic>),
+      status: TaskStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       statusReason: json['statusReason'] != null
           ? CodeableConcept.fromJson(
               json['statusReason'] as Map<String, dynamic>)
@@ -419,15 +426,22 @@ class Task extends DomainResource {
           ? CodeableConcept.fromJson(
               json['businessStatus'] as Map<String, dynamic>)
           : null,
-      intent: TaskIntent.fromJson(json['intent'] as Map<String, dynamic>),
+      intent: TaskIntent.fromJson(json['intent']),
+      intentElement: json['_intent'] != null
+          ? Element.fromJson(json['_intent'] as Map<String, dynamic>)
+          : null,
       priority: json['priority'] != null
-          ? RequestPriority.fromJson(json['priority'] as Map<String, dynamic>)
+          ? RequestPriority.fromJson(json['priority'])
+          : null,
+      priorityElement: json['_priority'] != null
+          ? Element.fromJson(json['_priority'] as Map<String, dynamic>)
           : null,
       code: json['code'] != null
           ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
           : null,
-      description:
-          json['description'] != null ? FhirString(json['description']) : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
           : null,
@@ -443,13 +457,14 @@ class Task extends DomainResource {
       executionPeriod: json['executionPeriod'] != null
           ? Period.fromJson(json['executionPeriod'] as Map<String, dynamic>)
           : null,
-      authoredOn:
-          json['authoredOn'] != null ? FhirDateTime(json['authoredOn']) : null,
+      authoredOn: json['authoredOn'] != null
+          ? FhirDateTime.fromJson(json['authoredOn'])
+          : null,
       authoredOnElement: json['_authoredOn'] != null
           ? Element.fromJson(json['_authoredOn'] as Map<String, dynamic>)
           : null,
       lastModified: json['lastModified'] != null
-          ? FhirDateTime(json['lastModified'])
+          ? FhirDateTime.fromJson(json['lastModified'])
           : null,
       lastModifiedElement: json['_lastModified'] != null
           ? Element.fromJson(json['_lastModified'] as Map<String, dynamic>)
@@ -704,7 +719,7 @@ class TaskRestriction extends BackboneElement {
           .toList();
     }
     if (repetitions?.value != null) {
-      json['repetitions'] = repetitions!.value;
+      json['repetitions'] = repetitions!.toJson();
     }
     if (repetitionsElement != null) {
       json['_repetitions'] = repetitionsElement!.toJson();
@@ -721,7 +736,7 @@ class TaskRestriction extends BackboneElement {
 
   factory TaskRestriction.fromJson(Map<String, dynamic> json) {
     return TaskRestriction(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -735,7 +750,7 @@ class TaskRestriction extends BackboneElement {
               .toList()
           : null,
       repetitions: json['repetitions'] != null
-          ? FhirPositiveInt(json['repetitions'])
+          ? FhirPositiveInt.fromJson(json['repetitions'])
           : null,
       repetitionsElement: json['_repetitions'] != null
           ? Element.fromJson(json['_repetitions'] as Map<String, dynamic>)
@@ -1085,115 +1100,115 @@ class TaskInput extends BackboneElement {
     }
     json['type'] = type.toJson();
     if (valueBase64Binary?.value != null) {
-      json['valueBase64Binary'] = valueBase64Binary!.value;
+      json['valueBase64Binary'] = valueBase64Binary!.toJson();
     }
     if (valueBase64BinaryElement != null) {
       json['_valueBase64Binary'] = valueBase64BinaryElement!.toJson();
     }
     if (valueBoolean?.value != null) {
-      json['valueBoolean'] = valueBoolean!.value;
+      json['valueBoolean'] = valueBoolean!.toJson();
     }
     if (valueBooleanElement != null) {
       json['_valueBoolean'] = valueBooleanElement!.toJson();
     }
     if (valueCanonical?.value != null) {
-      json['valueCanonical'] = valueCanonical!.value;
+      json['valueCanonical'] = valueCanonical!.toJson();
     }
     if (valueCanonicalElement != null) {
       json['_valueCanonical'] = valueCanonicalElement!.toJson();
     }
     if (valueCode?.value != null) {
-      json['valueCode'] = valueCode!.value;
+      json['valueCode'] = valueCode!.toJson();
     }
     if (valueCodeElement != null) {
       json['_valueCode'] = valueCodeElement!.toJson();
     }
     if (valueDate?.value != null) {
-      json['valueDate'] = valueDate!.value;
+      json['valueDate'] = valueDate!.toJson();
     }
     if (valueDateElement != null) {
       json['_valueDate'] = valueDateElement!.toJson();
     }
     if (valueDateTime?.value != null) {
-      json['valueDateTime'] = valueDateTime!.value;
+      json['valueDateTime'] = valueDateTime!.toJson();
     }
     if (valueDateTimeElement != null) {
       json['_valueDateTime'] = valueDateTimeElement!.toJson();
     }
     if (valueDecimal?.value != null) {
-      json['valueDecimal'] = valueDecimal!.value;
+      json['valueDecimal'] = valueDecimal!.toJson();
     }
     if (valueDecimalElement != null) {
       json['_valueDecimal'] = valueDecimalElement!.toJson();
     }
     if (valueId?.value != null) {
-      json['valueId'] = valueId!.value;
+      json['valueId'] = valueId!.toJson();
     }
     if (valueIdElement != null) {
       json['_valueId'] = valueIdElement!.toJson();
     }
     if (valueInstant?.value != null) {
-      json['valueInstant'] = valueInstant!.value;
+      json['valueInstant'] = valueInstant!.toJson();
     }
     if (valueInstantElement != null) {
       json['_valueInstant'] = valueInstantElement!.toJson();
     }
     if (valueInteger?.value != null) {
-      json['valueInteger'] = valueInteger!.value;
+      json['valueInteger'] = valueInteger!.toJson();
     }
     if (valueIntegerElement != null) {
       json['_valueInteger'] = valueIntegerElement!.toJson();
     }
     if (valueMarkdown?.value != null) {
-      json['valueMarkdown'] = valueMarkdown!.value;
+      json['valueMarkdown'] = valueMarkdown!.toJson();
     }
     if (valueMarkdownElement != null) {
       json['_valueMarkdown'] = valueMarkdownElement!.toJson();
     }
     if (valueOid?.value != null) {
-      json['valueOid'] = valueOid!.value;
+      json['valueOid'] = valueOid!.toJson();
     }
     if (valueOidElement != null) {
       json['_valueOid'] = valueOidElement!.toJson();
     }
     if (valuePositiveInt?.value != null) {
-      json['valuePositiveInt'] = valuePositiveInt!.value;
+      json['valuePositiveInt'] = valuePositiveInt!.toJson();
     }
     if (valuePositiveIntElement != null) {
       json['_valuePositiveInt'] = valuePositiveIntElement!.toJson();
     }
     if (valueString?.value != null) {
-      json['valueString'] = valueString!.value;
+      json['valueString'] = valueString!.toJson();
     }
     if (valueStringElement != null) {
       json['_valueString'] = valueStringElement!.toJson();
     }
     if (valueTime?.value != null) {
-      json['valueTime'] = valueTime!.value;
+      json['valueTime'] = valueTime!.toJson();
     }
     if (valueTimeElement != null) {
       json['_valueTime'] = valueTimeElement!.toJson();
     }
     if (valueUnsignedInt?.value != null) {
-      json['valueUnsignedInt'] = valueUnsignedInt!.value;
+      json['valueUnsignedInt'] = valueUnsignedInt!.toJson();
     }
     if (valueUnsignedIntElement != null) {
       json['_valueUnsignedInt'] = valueUnsignedIntElement!.toJson();
     }
     if (valueUri?.value != null) {
-      json['valueUri'] = valueUri!.value;
+      json['valueUri'] = valueUri!.toJson();
     }
     if (valueUriElement != null) {
       json['_valueUri'] = valueUriElement!.toJson();
     }
     if (valueUrl?.value != null) {
-      json['valueUrl'] = valueUrl!.value;
+      json['valueUrl'] = valueUrl!.toJson();
     }
     if (valueUrlElement != null) {
       json['_valueUrl'] = valueUrlElement!.toJson();
     }
     if (valueUuid?.value != null) {
-      json['valueUuid'] = valueUuid!.value;
+      json['valueUuid'] = valueUuid!.toJson();
     }
     if (valueUuidElement != null) {
       json['_valueUuid'] = valueUuidElement!.toJson();
@@ -1296,7 +1311,7 @@ class TaskInput extends BackboneElement {
 
   factory TaskInput.fromJson(Map<String, dynamic> json) {
     return TaskInput(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1311,99 +1326,112 @@ class TaskInput extends BackboneElement {
           : null,
       type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       valueBase64Binary: json['valueBase64Binary'] != null
-          ? FhirBase64Binary(json['valueBase64Binary'])
+          ? FhirBase64Binary.fromJson(json['valueBase64Binary'])
           : null,
       valueBase64BinaryElement: json['_valueBase64Binary'] != null
           ? Element.fromJson(json['_valueBase64Binary'] as Map<String, dynamic>)
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean(json['valueBoolean'])
+          ? FhirBoolean.fromJson(json['valueBoolean'])
           : null,
       valueBooleanElement: json['_valueBoolean'] != null
           ? Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>)
           : null,
       valueCanonical: json['valueCanonical'] != null
-          ? FhirCanonical(json['valueCanonical'])
+          ? FhirCanonical.fromJson(json['valueCanonical'])
           : null,
       valueCanonicalElement: json['_valueCanonical'] != null
           ? Element.fromJson(json['_valueCanonical'] as Map<String, dynamic>)
           : null,
-      valueCode: json['valueCode'] != null ? FhirCode(json['valueCode']) : null,
+      valueCode: json['valueCode'] != null
+          ? FhirCode.fromJson(json['valueCode'])
+          : null,
       valueCodeElement: json['_valueCode'] != null
           ? Element.fromJson(json['_valueCode'] as Map<String, dynamic>)
           : null,
-      valueDate: json['valueDate'] != null ? FhirDate(json['valueDate']) : null,
+      valueDate: json['valueDate'] != null
+          ? FhirDate.fromJson(json['valueDate'])
+          : null,
       valueDateElement: json['_valueDate'] != null
           ? Element.fromJson(json['_valueDate'] as Map<String, dynamic>)
           : null,
       valueDateTime: json['valueDateTime'] != null
-          ? FhirDateTime(json['valueDateTime'])
+          ? FhirDateTime.fromJson(json['valueDateTime'])
           : null,
       valueDateTimeElement: json['_valueDateTime'] != null
           ? Element.fromJson(json['_valueDateTime'] as Map<String, dynamic>)
           : null,
       valueDecimal: json['valueDecimal'] != null
-          ? FhirDecimal(json['valueDecimal'])
+          ? FhirDecimal.fromJson(json['valueDecimal'])
           : null,
       valueDecimalElement: json['_valueDecimal'] != null
           ? Element.fromJson(json['_valueDecimal'] as Map<String, dynamic>)
           : null,
-      valueId: json['valueId'] != null ? FhirId(json['valueId']) : null,
+      valueId:
+          json['valueId'] != null ? FhirId.fromJson(json['valueId']) : null,
       valueIdElement: json['_valueId'] != null
           ? Element.fromJson(json['_valueId'] as Map<String, dynamic>)
           : null,
       valueInstant: json['valueInstant'] != null
-          ? FhirInstant(json['valueInstant'])
+          ? FhirInstant.fromJson(json['valueInstant'])
           : null,
       valueInstantElement: json['_valueInstant'] != null
           ? Element.fromJson(json['_valueInstant'] as Map<String, dynamic>)
           : null,
       valueInteger: json['valueInteger'] != null
-          ? FhirInteger(json['valueInteger'])
+          ? FhirInteger.fromJson(json['valueInteger'])
           : null,
       valueIntegerElement: json['_valueInteger'] != null
           ? Element.fromJson(json['_valueInteger'] as Map<String, dynamic>)
           : null,
       valueMarkdown: json['valueMarkdown'] != null
-          ? FhirMarkdown(json['valueMarkdown'])
+          ? FhirMarkdown.fromJson(json['valueMarkdown'])
           : null,
       valueMarkdownElement: json['_valueMarkdown'] != null
           ? Element.fromJson(json['_valueMarkdown'] as Map<String, dynamic>)
           : null,
-      valueOid: json['valueOid'] != null ? FhirOid(json['valueOid']) : null,
+      valueOid:
+          json['valueOid'] != null ? FhirOid.fromJson(json['valueOid']) : null,
       valueOidElement: json['_valueOid'] != null
           ? Element.fromJson(json['_valueOid'] as Map<String, dynamic>)
           : null,
       valuePositiveInt: json['valuePositiveInt'] != null
-          ? FhirPositiveInt(json['valuePositiveInt'])
+          ? FhirPositiveInt.fromJson(json['valuePositiveInt'])
           : null,
       valuePositiveIntElement: json['_valuePositiveInt'] != null
           ? Element.fromJson(json['_valuePositiveInt'] as Map<String, dynamic>)
           : null,
-      valueString:
-          json['valueString'] != null ? FhirString(json['valueString']) : null,
+      valueString: json['valueString'] != null
+          ? FhirString.fromJson(json['valueString'])
+          : null,
       valueStringElement: json['_valueString'] != null
           ? Element.fromJson(json['_valueString'] as Map<String, dynamic>)
           : null,
-      valueTime: json['valueTime'] != null ? FhirTime(json['valueTime']) : null,
+      valueTime: json['valueTime'] != null
+          ? FhirTime.fromJson(json['valueTime'])
+          : null,
       valueTimeElement: json['_valueTime'] != null
           ? Element.fromJson(json['_valueTime'] as Map<String, dynamic>)
           : null,
       valueUnsignedInt: json['valueUnsignedInt'] != null
-          ? FhirUnsignedInt(json['valueUnsignedInt'])
+          ? FhirUnsignedInt.fromJson(json['valueUnsignedInt'])
           : null,
       valueUnsignedIntElement: json['_valueUnsignedInt'] != null
           ? Element.fromJson(json['_valueUnsignedInt'] as Map<String, dynamic>)
           : null,
-      valueUri: json['valueUri'] != null ? FhirUri(json['valueUri']) : null,
+      valueUri:
+          json['valueUri'] != null ? FhirUri.fromJson(json['valueUri']) : null,
       valueUriElement: json['_valueUri'] != null
           ? Element.fromJson(json['_valueUri'] as Map<String, dynamic>)
           : null,
-      valueUrl: json['valueUrl'] != null ? FhirUrl(json['valueUrl']) : null,
+      valueUrl:
+          json['valueUrl'] != null ? FhirUrl.fromJson(json['valueUrl']) : null,
       valueUrlElement: json['_valueUrl'] != null
           ? Element.fromJson(json['_valueUrl'] as Map<String, dynamic>)
           : null,
-      valueUuid: json['valueUuid'] != null ? FhirUuid(json['valueUuid']) : null,
+      valueUuid: json['valueUuid'] != null
+          ? FhirUuid.fromJson(json['valueUuid'])
+          : null,
       valueUuidElement: json['_valueUuid'] != null
           ? Element.fromJson(json['_valueUuid'] as Map<String, dynamic>)
           : null,
@@ -1984,115 +2012,115 @@ class TaskOutput extends BackboneElement {
     }
     json['type'] = type.toJson();
     if (valueBase64Binary?.value != null) {
-      json['valueBase64Binary'] = valueBase64Binary!.value;
+      json['valueBase64Binary'] = valueBase64Binary!.toJson();
     }
     if (valueBase64BinaryElement != null) {
       json['_valueBase64Binary'] = valueBase64BinaryElement!.toJson();
     }
     if (valueBoolean?.value != null) {
-      json['valueBoolean'] = valueBoolean!.value;
+      json['valueBoolean'] = valueBoolean!.toJson();
     }
     if (valueBooleanElement != null) {
       json['_valueBoolean'] = valueBooleanElement!.toJson();
     }
     if (valueCanonical?.value != null) {
-      json['valueCanonical'] = valueCanonical!.value;
+      json['valueCanonical'] = valueCanonical!.toJson();
     }
     if (valueCanonicalElement != null) {
       json['_valueCanonical'] = valueCanonicalElement!.toJson();
     }
     if (valueCode?.value != null) {
-      json['valueCode'] = valueCode!.value;
+      json['valueCode'] = valueCode!.toJson();
     }
     if (valueCodeElement != null) {
       json['_valueCode'] = valueCodeElement!.toJson();
     }
     if (valueDate?.value != null) {
-      json['valueDate'] = valueDate!.value;
+      json['valueDate'] = valueDate!.toJson();
     }
     if (valueDateElement != null) {
       json['_valueDate'] = valueDateElement!.toJson();
     }
     if (valueDateTime?.value != null) {
-      json['valueDateTime'] = valueDateTime!.value;
+      json['valueDateTime'] = valueDateTime!.toJson();
     }
     if (valueDateTimeElement != null) {
       json['_valueDateTime'] = valueDateTimeElement!.toJson();
     }
     if (valueDecimal?.value != null) {
-      json['valueDecimal'] = valueDecimal!.value;
+      json['valueDecimal'] = valueDecimal!.toJson();
     }
     if (valueDecimalElement != null) {
       json['_valueDecimal'] = valueDecimalElement!.toJson();
     }
     if (valueId?.value != null) {
-      json['valueId'] = valueId!.value;
+      json['valueId'] = valueId!.toJson();
     }
     if (valueIdElement != null) {
       json['_valueId'] = valueIdElement!.toJson();
     }
     if (valueInstant?.value != null) {
-      json['valueInstant'] = valueInstant!.value;
+      json['valueInstant'] = valueInstant!.toJson();
     }
     if (valueInstantElement != null) {
       json['_valueInstant'] = valueInstantElement!.toJson();
     }
     if (valueInteger?.value != null) {
-      json['valueInteger'] = valueInteger!.value;
+      json['valueInteger'] = valueInteger!.toJson();
     }
     if (valueIntegerElement != null) {
       json['_valueInteger'] = valueIntegerElement!.toJson();
     }
     if (valueMarkdown?.value != null) {
-      json['valueMarkdown'] = valueMarkdown!.value;
+      json['valueMarkdown'] = valueMarkdown!.toJson();
     }
     if (valueMarkdownElement != null) {
       json['_valueMarkdown'] = valueMarkdownElement!.toJson();
     }
     if (valueOid?.value != null) {
-      json['valueOid'] = valueOid!.value;
+      json['valueOid'] = valueOid!.toJson();
     }
     if (valueOidElement != null) {
       json['_valueOid'] = valueOidElement!.toJson();
     }
     if (valuePositiveInt?.value != null) {
-      json['valuePositiveInt'] = valuePositiveInt!.value;
+      json['valuePositiveInt'] = valuePositiveInt!.toJson();
     }
     if (valuePositiveIntElement != null) {
       json['_valuePositiveInt'] = valuePositiveIntElement!.toJson();
     }
     if (valueString?.value != null) {
-      json['valueString'] = valueString!.value;
+      json['valueString'] = valueString!.toJson();
     }
     if (valueStringElement != null) {
       json['_valueString'] = valueStringElement!.toJson();
     }
     if (valueTime?.value != null) {
-      json['valueTime'] = valueTime!.value;
+      json['valueTime'] = valueTime!.toJson();
     }
     if (valueTimeElement != null) {
       json['_valueTime'] = valueTimeElement!.toJson();
     }
     if (valueUnsignedInt?.value != null) {
-      json['valueUnsignedInt'] = valueUnsignedInt!.value;
+      json['valueUnsignedInt'] = valueUnsignedInt!.toJson();
     }
     if (valueUnsignedIntElement != null) {
       json['_valueUnsignedInt'] = valueUnsignedIntElement!.toJson();
     }
     if (valueUri?.value != null) {
-      json['valueUri'] = valueUri!.value;
+      json['valueUri'] = valueUri!.toJson();
     }
     if (valueUriElement != null) {
       json['_valueUri'] = valueUriElement!.toJson();
     }
     if (valueUrl?.value != null) {
-      json['valueUrl'] = valueUrl!.value;
+      json['valueUrl'] = valueUrl!.toJson();
     }
     if (valueUrlElement != null) {
       json['_valueUrl'] = valueUrlElement!.toJson();
     }
     if (valueUuid?.value != null) {
-      json['valueUuid'] = valueUuid!.value;
+      json['valueUuid'] = valueUuid!.toJson();
     }
     if (valueUuidElement != null) {
       json['_valueUuid'] = valueUuidElement!.toJson();
@@ -2195,7 +2223,7 @@ class TaskOutput extends BackboneElement {
 
   factory TaskOutput.fromJson(Map<String, dynamic> json) {
     return TaskOutput(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2210,99 +2238,112 @@ class TaskOutput extends BackboneElement {
           : null,
       type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       valueBase64Binary: json['valueBase64Binary'] != null
-          ? FhirBase64Binary(json['valueBase64Binary'])
+          ? FhirBase64Binary.fromJson(json['valueBase64Binary'])
           : null,
       valueBase64BinaryElement: json['_valueBase64Binary'] != null
           ? Element.fromJson(json['_valueBase64Binary'] as Map<String, dynamic>)
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean(json['valueBoolean'])
+          ? FhirBoolean.fromJson(json['valueBoolean'])
           : null,
       valueBooleanElement: json['_valueBoolean'] != null
           ? Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>)
           : null,
       valueCanonical: json['valueCanonical'] != null
-          ? FhirCanonical(json['valueCanonical'])
+          ? FhirCanonical.fromJson(json['valueCanonical'])
           : null,
       valueCanonicalElement: json['_valueCanonical'] != null
           ? Element.fromJson(json['_valueCanonical'] as Map<String, dynamic>)
           : null,
-      valueCode: json['valueCode'] != null ? FhirCode(json['valueCode']) : null,
+      valueCode: json['valueCode'] != null
+          ? FhirCode.fromJson(json['valueCode'])
+          : null,
       valueCodeElement: json['_valueCode'] != null
           ? Element.fromJson(json['_valueCode'] as Map<String, dynamic>)
           : null,
-      valueDate: json['valueDate'] != null ? FhirDate(json['valueDate']) : null,
+      valueDate: json['valueDate'] != null
+          ? FhirDate.fromJson(json['valueDate'])
+          : null,
       valueDateElement: json['_valueDate'] != null
           ? Element.fromJson(json['_valueDate'] as Map<String, dynamic>)
           : null,
       valueDateTime: json['valueDateTime'] != null
-          ? FhirDateTime(json['valueDateTime'])
+          ? FhirDateTime.fromJson(json['valueDateTime'])
           : null,
       valueDateTimeElement: json['_valueDateTime'] != null
           ? Element.fromJson(json['_valueDateTime'] as Map<String, dynamic>)
           : null,
       valueDecimal: json['valueDecimal'] != null
-          ? FhirDecimal(json['valueDecimal'])
+          ? FhirDecimal.fromJson(json['valueDecimal'])
           : null,
       valueDecimalElement: json['_valueDecimal'] != null
           ? Element.fromJson(json['_valueDecimal'] as Map<String, dynamic>)
           : null,
-      valueId: json['valueId'] != null ? FhirId(json['valueId']) : null,
+      valueId:
+          json['valueId'] != null ? FhirId.fromJson(json['valueId']) : null,
       valueIdElement: json['_valueId'] != null
           ? Element.fromJson(json['_valueId'] as Map<String, dynamic>)
           : null,
       valueInstant: json['valueInstant'] != null
-          ? FhirInstant(json['valueInstant'])
+          ? FhirInstant.fromJson(json['valueInstant'])
           : null,
       valueInstantElement: json['_valueInstant'] != null
           ? Element.fromJson(json['_valueInstant'] as Map<String, dynamic>)
           : null,
       valueInteger: json['valueInteger'] != null
-          ? FhirInteger(json['valueInteger'])
+          ? FhirInteger.fromJson(json['valueInteger'])
           : null,
       valueIntegerElement: json['_valueInteger'] != null
           ? Element.fromJson(json['_valueInteger'] as Map<String, dynamic>)
           : null,
       valueMarkdown: json['valueMarkdown'] != null
-          ? FhirMarkdown(json['valueMarkdown'])
+          ? FhirMarkdown.fromJson(json['valueMarkdown'])
           : null,
       valueMarkdownElement: json['_valueMarkdown'] != null
           ? Element.fromJson(json['_valueMarkdown'] as Map<String, dynamic>)
           : null,
-      valueOid: json['valueOid'] != null ? FhirOid(json['valueOid']) : null,
+      valueOid:
+          json['valueOid'] != null ? FhirOid.fromJson(json['valueOid']) : null,
       valueOidElement: json['_valueOid'] != null
           ? Element.fromJson(json['_valueOid'] as Map<String, dynamic>)
           : null,
       valuePositiveInt: json['valuePositiveInt'] != null
-          ? FhirPositiveInt(json['valuePositiveInt'])
+          ? FhirPositiveInt.fromJson(json['valuePositiveInt'])
           : null,
       valuePositiveIntElement: json['_valuePositiveInt'] != null
           ? Element.fromJson(json['_valuePositiveInt'] as Map<String, dynamic>)
           : null,
-      valueString:
-          json['valueString'] != null ? FhirString(json['valueString']) : null,
+      valueString: json['valueString'] != null
+          ? FhirString.fromJson(json['valueString'])
+          : null,
       valueStringElement: json['_valueString'] != null
           ? Element.fromJson(json['_valueString'] as Map<String, dynamic>)
           : null,
-      valueTime: json['valueTime'] != null ? FhirTime(json['valueTime']) : null,
+      valueTime: json['valueTime'] != null
+          ? FhirTime.fromJson(json['valueTime'])
+          : null,
       valueTimeElement: json['_valueTime'] != null
           ? Element.fromJson(json['_valueTime'] as Map<String, dynamic>)
           : null,
       valueUnsignedInt: json['valueUnsignedInt'] != null
-          ? FhirUnsignedInt(json['valueUnsignedInt'])
+          ? FhirUnsignedInt.fromJson(json['valueUnsignedInt'])
           : null,
       valueUnsignedIntElement: json['_valueUnsignedInt'] != null
           ? Element.fromJson(json['_valueUnsignedInt'] as Map<String, dynamic>)
           : null,
-      valueUri: json['valueUri'] != null ? FhirUri(json['valueUri']) : null,
+      valueUri:
+          json['valueUri'] != null ? FhirUri.fromJson(json['valueUri']) : null,
       valueUriElement: json['_valueUri'] != null
           ? Element.fromJson(json['_valueUri'] as Map<String, dynamic>)
           : null,
-      valueUrl: json['valueUrl'] != null ? FhirUrl(json['valueUrl']) : null,
+      valueUrl:
+          json['valueUrl'] != null ? FhirUrl.fromJson(json['valueUrl']) : null,
       valueUrlElement: json['_valueUrl'] != null
           ? Element.fromJson(json['_valueUrl'] as Map<String, dynamic>)
           : null,
-      valueUuid: json['valueUuid'] != null ? FhirUuid(json['valueUuid']) : null,
+      valueUuid: json['valueUuid'] != null
+          ? FhirUuid.fromJson(json['valueUuid'])
+          : null,
       valueUuidElement: json['_valueUuid'] != null
           ? Element.fromJson(json['_valueUuid'] as Map<String, dynamic>)
           : null,

@@ -16,10 +16,12 @@ class FhirUri extends PrimitiveType<Uri> {
       : super(element: element);
 
   factory FhirUri(dynamic inValue, [Element? element]) {
+    print('Uri: $inValue');
     if (inValue is Uri) {
       return FhirUri._(inValue.toString(), inValue, true, element);
     } else if (inValue is String) {
       final Uri? tempUri = Uri.tryParse(inValue);
+      print(tempUri);
       return FhirUri._(inValue, tempUri, tempUri != null, element);
     }
     throw CannotBeConstructed<FhirUri>(

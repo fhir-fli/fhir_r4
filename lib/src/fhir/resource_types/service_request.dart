@@ -260,7 +260,7 @@ class ServiceRequest extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -290,7 +290,7 @@ class ServiceRequest extends DomainResource {
     }
     if (instantiatesCanonical != null && instantiatesCanonical!.isNotEmpty) {
       json['instantiatesCanonical'] =
-          instantiatesCanonical!.map((FhirCanonical v) => v.value).toList();
+          instantiatesCanonical!.map((FhirCanonical v) => v.toJson()).toList();
     }
     if (instantiatesCanonicalElement != null &&
         instantiatesCanonicalElement!.isNotEmpty) {
@@ -299,7 +299,7 @@ class ServiceRequest extends DomainResource {
     }
     if (instantiatesUri != null && instantiatesUri!.isNotEmpty) {
       json['instantiatesUri'] =
-          instantiatesUri!.map((FhirUri v) => v.value).toList();
+          instantiatesUri!.map((FhirUri v) => v.toJson()).toList();
     }
     if (instantiatesUriElement != null && instantiatesUriElement!.isNotEmpty) {
       json['_instantiatesUri'] =
@@ -326,7 +326,7 @@ class ServiceRequest extends DomainResource {
       json['priority'] = priority!.toJson();
     }
     if (doNotPerform?.value != null) {
-      json['doNotPerform'] = doNotPerform!.value;
+      json['doNotPerform'] = doNotPerform!.toJson();
     }
     if (doNotPerformElement != null) {
       json['_doNotPerform'] = doNotPerformElement!.toJson();
@@ -352,7 +352,7 @@ class ServiceRequest extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
     if (occurrenceDateTime?.value != null) {
-      json['occurrenceDateTime'] = occurrenceDateTime!.value;
+      json['occurrenceDateTime'] = occurrenceDateTime!.toJson();
     }
     if (occurrenceDateTimeElement != null) {
       json['_occurrenceDateTime'] = occurrenceDateTimeElement!.toJson();
@@ -364,7 +364,7 @@ class ServiceRequest extends DomainResource {
       json['occurrenceTiming'] = occurrenceTiming!.toJson();
     }
     if (asNeededBoolean?.value != null) {
-      json['asNeededBoolean'] = asNeededBoolean!.value;
+      json['asNeededBoolean'] = asNeededBoolean!.toJson();
     }
     if (asNeededBooleanElement != null) {
       json['_asNeededBoolean'] = asNeededBooleanElement!.toJson();
@@ -373,7 +373,7 @@ class ServiceRequest extends DomainResource {
       json['asNeededCodeableConcept'] = asNeededCodeableConcept!.toJson();
     }
     if (authoredOn?.value != null) {
-      json['authoredOn'] = authoredOn!.value;
+      json['authoredOn'] = authoredOn!.toJson();
     }
     if (authoredOnElement != null) {
       json['_authoredOn'] = authoredOnElement!.toJson();
@@ -425,7 +425,7 @@ class ServiceRequest extends DomainResource {
       json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
     }
     if (patientInstruction?.value != null) {
-      json['patientInstruction'] = patientInstruction!.value;
+      json['patientInstruction'] = patientInstruction!.toJson();
     }
     if (patientInstructionElement != null) {
       json['_patientInstruction'] = patientInstructionElement!.toJson();
@@ -439,17 +439,21 @@ class ServiceRequest extends DomainResource {
 
   factory ServiceRequest.fromJson(Map<String, dynamic> json) {
     return ServiceRequest(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -516,8 +520,14 @@ class ServiceRequest extends DomainResource {
       requisition: json['requisition'] != null
           ? Identifier.fromJson(json['requisition'] as Map<String, dynamic>)
           : null,
-      status: RequestStatus.fromJson(json['status'] as Map<String, dynamic>),
-      intent: RequestIntent.fromJson(json['intent'] as Map<String, dynamic>),
+      status: RequestStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
+      intent: RequestIntent.fromJson(json['intent']),
+      intentElement: json['_intent'] != null
+          ? Element.fromJson(json['_intent'] as Map<String, dynamic>)
+          : null,
       category: json['category'] != null
           ? (json['category'] as List<dynamic>)
               .map<CodeableConcept>((dynamic v) =>
@@ -525,10 +535,13 @@ class ServiceRequest extends DomainResource {
               .toList()
           : null,
       priority: json['priority'] != null
-          ? RequestPriority.fromJson(json['priority'] as Map<String, dynamic>)
+          ? RequestPriority.fromJson(json['priority'])
+          : null,
+      priorityElement: json['_priority'] != null
+          ? Element.fromJson(json['_priority'] as Map<String, dynamic>)
           : null,
       doNotPerform: json['doNotPerform'] != null
-          ? FhirBoolean(json['doNotPerform'])
+          ? FhirBoolean.fromJson(json['doNotPerform'])
           : null,
       doNotPerformElement: json['_doNotPerform'] != null
           ? Element.fromJson(json['_doNotPerform'] as Map<String, dynamic>)
@@ -556,7 +569,7 @@ class ServiceRequest extends DomainResource {
           ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
           : null,
       occurrenceDateTime: json['occurrenceDateTime'] != null
-          ? FhirDateTime(json['occurrenceDateTime'])
+          ? FhirDateTime.fromJson(json['occurrenceDateTime'])
           : null,
       occurrenceDateTimeElement: json['_occurrenceDateTime'] != null
           ? Element.fromJson(
@@ -569,7 +582,7 @@ class ServiceRequest extends DomainResource {
           ? Timing.fromJson(json['occurrenceTiming'] as Map<String, dynamic>)
           : null,
       asNeededBoolean: json['asNeededBoolean'] != null
-          ? FhirBoolean(json['asNeededBoolean'])
+          ? FhirBoolean.fromJson(json['asNeededBoolean'])
           : null,
       asNeededBooleanElement: json['_asNeededBoolean'] != null
           ? Element.fromJson(json['_asNeededBoolean'] as Map<String, dynamic>)
@@ -578,8 +591,9 @@ class ServiceRequest extends DomainResource {
           ? CodeableConcept.fromJson(
               json['asNeededCodeableConcept'] as Map<String, dynamic>)
           : null,
-      authoredOn:
-          json['authoredOn'] != null ? FhirDateTime(json['authoredOn']) : null,
+      authoredOn: json['authoredOn'] != null
+          ? FhirDateTime.fromJson(json['authoredOn'])
+          : null,
       authoredOnElement: json['_authoredOn'] != null
           ? Element.fromJson(json['_authoredOn'] as Map<String, dynamic>)
           : null,
@@ -651,7 +665,7 @@ class ServiceRequest extends DomainResource {
               .toList()
           : null,
       patientInstruction: json['patientInstruction'] != null
-          ? FhirString(json['patientInstruction'])
+          ? FhirString.fromJson(json['patientInstruction'])
           : null,
       patientInstructionElement: json['_patientInstruction'] != null
           ? Element.fromJson(

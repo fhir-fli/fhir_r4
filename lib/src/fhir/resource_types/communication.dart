@@ -165,7 +165,7 @@ class Communication extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -195,7 +195,7 @@ class Communication extends DomainResource {
     }
     if (instantiatesCanonical != null && instantiatesCanonical!.isNotEmpty) {
       json['instantiatesCanonical'] =
-          instantiatesCanonical!.map((FhirCanonical v) => v.value).toList();
+          instantiatesCanonical!.map((FhirCanonical v) => v.toJson()).toList();
     }
     if (instantiatesCanonicalElement != null &&
         instantiatesCanonicalElement!.isNotEmpty) {
@@ -204,7 +204,7 @@ class Communication extends DomainResource {
     }
     if (instantiatesUri != null && instantiatesUri!.isNotEmpty) {
       json['instantiatesUri'] =
-          instantiatesUri!.map((FhirUri v) => v.value).toList();
+          instantiatesUri!.map((FhirUri v) => v.toJson()).toList();
     }
     if (instantiatesUriElement != null && instantiatesUriElement!.isNotEmpty) {
       json['_instantiatesUri'] =
@@ -250,13 +250,13 @@ class Communication extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
     if (sent?.value != null) {
-      json['sent'] = sent!.value;
+      json['sent'] = sent!.toJson();
     }
     if (sentElement != null) {
       json['_sent'] = sentElement!.toJson();
     }
     if (received?.value != null) {
-      json['received'] = received!.value;
+      json['received'] = received!.toJson();
     }
     if (receivedElement != null) {
       json['_received'] = receivedElement!.toJson();
@@ -289,17 +289,21 @@ class Communication extends DomainResource {
 
   factory Communication.fromJson(Map<String, dynamic> json) {
     return Communication(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -369,7 +373,10 @@ class Communication extends DomainResource {
                   (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status: EventStatus.fromJson(json['status'] as Map<String, dynamic>),
+      status: EventStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       statusReason: json['statusReason'] != null
           ? CodeableConcept.fromJson(
               json['statusReason'] as Map<String, dynamic>)
@@ -381,7 +388,10 @@ class Communication extends DomainResource {
               .toList()
           : null,
       priority: json['priority'] != null
-          ? RequestPriority.fromJson(json['priority'] as Map<String, dynamic>)
+          ? RequestPriority.fromJson(json['priority'])
+          : null,
+      priorityElement: json['_priority'] != null
+          ? Element.fromJson(json['_priority'] as Map<String, dynamic>)
           : null,
       medium: json['medium'] != null
           ? (json['medium'] as List<dynamic>)
@@ -404,12 +414,13 @@ class Communication extends DomainResource {
       encounter: json['encounter'] != null
           ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
           : null,
-      sent: json['sent'] != null ? FhirDateTime(json['sent']) : null,
+      sent: json['sent'] != null ? FhirDateTime.fromJson(json['sent']) : null,
       sentElement: json['_sent'] != null
           ? Element.fromJson(json['_sent'] as Map<String, dynamic>)
           : null,
-      received:
-          json['received'] != null ? FhirDateTime(json['received']) : null,
+      received: json['received'] != null
+          ? FhirDateTime.fromJson(json['received'])
+          : null,
       receivedElement: json['_received'] != null
           ? Element.fromJson(json['_received'] as Map<String, dynamic>)
           : null,
@@ -622,7 +633,7 @@ class CommunicationPayload extends BackboneElement {
           .toList();
     }
     if (contentString?.value != null) {
-      json['contentString'] = contentString!.value;
+      json['contentString'] = contentString!.toJson();
     }
     if (contentStringElement != null) {
       json['_contentString'] = contentStringElement!.toJson();
@@ -638,7 +649,7 @@ class CommunicationPayload extends BackboneElement {
 
   factory CommunicationPayload.fromJson(Map<String, dynamic> json) {
     return CommunicationPayload(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -652,7 +663,7 @@ class CommunicationPayload extends BackboneElement {
               .toList()
           : null,
       contentString: json['contentString'] != null
-          ? FhirString(json['contentString'])
+          ? FhirString.fromJson(json['contentString'])
           : null,
       contentStringElement: json['_contentString'] != null
           ? Element.fromJson(json['_contentString'] as Map<String, dynamic>)

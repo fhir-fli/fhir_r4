@@ -108,43 +108,43 @@ class Address extends DataType {
       json['type'] = type!.toJson();
     }
     if (text?.value != null) {
-      json['text'] = text!.value;
+      json['text'] = text!.toJson();
     }
     if (textElement != null) {
       json['_text'] = textElement!.toJson();
     }
     if (line != null && line!.isNotEmpty) {
-      json['line'] = line!.map((FhirString v) => v.value).toList();
+      json['line'] = line!.map((FhirString v) => v.toJson()).toList();
     }
     if (lineElement != null && lineElement!.isNotEmpty) {
       json['_line'] = lineElement!.map((Element v) => v.toJson()).toList();
     }
     if (city?.value != null) {
-      json['city'] = city!.value;
+      json['city'] = city!.toJson();
     }
     if (cityElement != null) {
       json['_city'] = cityElement!.toJson();
     }
     if (district?.value != null) {
-      json['district'] = district!.value;
+      json['district'] = district!.toJson();
     }
     if (districtElement != null) {
       json['_district'] = districtElement!.toJson();
     }
     if (state?.value != null) {
-      json['state'] = state!.value;
+      json['state'] = state!.toJson();
     }
     if (stateElement != null) {
       json['_state'] = stateElement!.toJson();
     }
     if (postalCode?.value != null) {
-      json['postalCode'] = postalCode!.value;
+      json['postalCode'] = postalCode!.toJson();
     }
     if (postalCodeElement != null) {
       json['_postalCode'] = postalCodeElement!.toJson();
     }
     if (country?.value != null) {
-      json['country'] = country!.value;
+      json['country'] = country!.toJson();
     }
     if (countryElement != null) {
       json['_country'] = countryElement!.toJson();
@@ -157,20 +157,22 @@ class Address extends DataType {
 
   factory Address.fromJson(Map<String, dynamic> json) {
     return Address(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      use: json['use'] != null
-          ? AddressUse.fromJson(json['use'] as Map<String, dynamic>)
+      use: json['use'] != null ? AddressUse.fromJson(json['use']) : null,
+      useElement: json['_use'] != null
+          ? Element.fromJson(json['_use'] as Map<String, dynamic>)
           : null,
-      type: json['type'] != null
-          ? AddressType.fromJson(json['type'] as Map<String, dynamic>)
+      type: json['type'] != null ? AddressType.fromJson(json['type']) : null,
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
           : null,
-      text: json['text'] != null ? FhirString(json['text']) : null,
+      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
       textElement: json['_text'] != null
           ? Element.fromJson(json['_text'] as Map<String, dynamic>)
           : null,
@@ -185,24 +187,28 @@ class Address extends DataType {
                   (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      city: json['city'] != null ? FhirString(json['city']) : null,
+      city: json['city'] != null ? FhirString.fromJson(json['city']) : null,
       cityElement: json['_city'] != null
           ? Element.fromJson(json['_city'] as Map<String, dynamic>)
           : null,
-      district: json['district'] != null ? FhirString(json['district']) : null,
+      district: json['district'] != null
+          ? FhirString.fromJson(json['district'])
+          : null,
       districtElement: json['_district'] != null
           ? Element.fromJson(json['_district'] as Map<String, dynamic>)
           : null,
-      state: json['state'] != null ? FhirString(json['state']) : null,
+      state: json['state'] != null ? FhirString.fromJson(json['state']) : null,
       stateElement: json['_state'] != null
           ? Element.fromJson(json['_state'] as Map<String, dynamic>)
           : null,
-      postalCode:
-          json['postalCode'] != null ? FhirString(json['postalCode']) : null,
+      postalCode: json['postalCode'] != null
+          ? FhirString.fromJson(json['postalCode'])
+          : null,
       postalCodeElement: json['_postalCode'] != null
           ? Element.fromJson(json['_postalCode'] as Map<String, dynamic>)
           : null,
-      country: json['country'] != null ? FhirString(json['country']) : null,
+      country:
+          json['country'] != null ? FhirString.fromJson(json['country']) : null,
       countryElement: json['_country'] != null
           ? Element.fromJson(json['_country'] as Map<String, dynamic>)
           : null,

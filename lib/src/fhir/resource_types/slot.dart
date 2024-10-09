@@ -105,7 +105,7 @@ class Slot extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -151,22 +151,22 @@ class Slot extends DomainResource {
     }
     json['schedule'] = schedule.toJson();
     json['status'] = status.toJson();
-    json['start'] = start.value;
+    json['start'] = start.toJson();
     if (startElement != null) {
       json['_start'] = startElement!.toJson();
     }
-    json['end'] = end.value;
+    json['end'] = end.toJson();
     if (endElement != null) {
       json['_end'] = endElement!.toJson();
     }
     if (overbooked?.value != null) {
-      json['overbooked'] = overbooked!.value;
+      json['overbooked'] = overbooked!.toJson();
     }
     if (overbookedElement != null) {
       json['_overbooked'] = overbookedElement!.toJson();
     }
     if (comment?.value != null) {
-      json['comment'] = comment!.value;
+      json['comment'] = comment!.toJson();
     }
     if (commentElement != null) {
       json['_comment'] = commentElement!.toJson();
@@ -176,17 +176,21 @@ class Slot extends DomainResource {
 
   factory Slot.fromJson(Map<String, dynamic> json) {
     return Slot(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -238,21 +242,26 @@ class Slot extends DomainResource {
               json['appointmentType'] as Map<String, dynamic>)
           : null,
       schedule: Reference.fromJson(json['schedule'] as Map<String, dynamic>),
-      status: SlotStatus.fromJson(json['status'] as Map<String, dynamic>),
-      start: FhirInstant(json['start']),
+      status: SlotStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
+      start: FhirInstant.fromJson(json['start']),
       startElement: json['_start'] != null
           ? Element.fromJson(json['_start'] as Map<String, dynamic>)
           : null,
-      end: FhirInstant(json['end']),
+      end: FhirInstant.fromJson(json['end']),
       endElement: json['_end'] != null
           ? Element.fromJson(json['_end'] as Map<String, dynamic>)
           : null,
-      overbooked:
-          json['overbooked'] != null ? FhirBoolean(json['overbooked']) : null,
+      overbooked: json['overbooked'] != null
+          ? FhirBoolean.fromJson(json['overbooked'])
+          : null,
       overbookedElement: json['_overbooked'] != null
           ? Element.fromJson(json['_overbooked'] as Map<String, dynamic>)
           : null,
-      comment: json['comment'] != null ? FhirString(json['comment']) : null,
+      comment:
+          json['comment'] != null ? FhirString.fromJson(json['comment']) : null,
       commentElement: json['_comment'] != null
           ? Element.fromJson(json['_comment'] as Map<String, dynamic>)
           : null,

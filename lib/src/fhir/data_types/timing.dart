@@ -63,7 +63,7 @@ class Timing extends BackboneType {
           .toList();
     }
     if (event != null && event!.isNotEmpty) {
-      json['event'] = event!.map((FhirDateTime v) => v.value).toList();
+      json['event'] = event!.map((FhirDateTime v) => v.toJson()).toList();
     }
     if (eventElement != null && eventElement!.isNotEmpty) {
       json['_event'] = eventElement!.map((Element v) => v.toJson()).toList();
@@ -79,7 +79,7 @@ class Timing extends BackboneType {
 
   factory Timing.fromJson(Map<String, dynamic> json) {
     return Timing(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -325,25 +325,25 @@ class TimingRepeat extends Element {
       json['boundsPeriod'] = boundsPeriod!.toJson();
     }
     if (count?.value != null) {
-      json['count'] = count!.value;
+      json['count'] = count!.toJson();
     }
     if (countElement != null) {
       json['_count'] = countElement!.toJson();
     }
     if (countMax?.value != null) {
-      json['countMax'] = countMax!.value;
+      json['countMax'] = countMax!.toJson();
     }
     if (countMaxElement != null) {
       json['_countMax'] = countMaxElement!.toJson();
     }
     if (duration?.value != null) {
-      json['duration'] = duration!.value;
+      json['duration'] = duration!.toJson();
     }
     if (durationElement != null) {
       json['_duration'] = durationElement!.toJson();
     }
     if (durationMax?.value != null) {
-      json['durationMax'] = durationMax!.value;
+      json['durationMax'] = durationMax!.toJson();
     }
     if (durationMaxElement != null) {
       json['_durationMax'] = durationMaxElement!.toJson();
@@ -352,25 +352,25 @@ class TimingRepeat extends Element {
       json['durationUnit'] = durationUnit!.toJson();
     }
     if (frequency?.value != null) {
-      json['frequency'] = frequency!.value;
+      json['frequency'] = frequency!.toJson();
     }
     if (frequencyElement != null) {
       json['_frequency'] = frequencyElement!.toJson();
     }
     if (frequencyMax?.value != null) {
-      json['frequencyMax'] = frequencyMax!.value;
+      json['frequencyMax'] = frequencyMax!.toJson();
     }
     if (frequencyMaxElement != null) {
       json['_frequencyMax'] = frequencyMaxElement!.toJson();
     }
     if (period?.value != null) {
-      json['period'] = period!.value;
+      json['period'] = period!.toJson();
     }
     if (periodElement != null) {
       json['_period'] = periodElement!.toJson();
     }
     if (periodMax?.value != null) {
-      json['periodMax'] = periodMax!.value;
+      json['periodMax'] = periodMax!.toJson();
     }
     if (periodMaxElement != null) {
       json['_periodMax'] = periodMaxElement!.toJson();
@@ -383,7 +383,7 @@ class TimingRepeat extends Element {
           dayOfWeek!.map<dynamic>((DaysOfWeek v) => v.toJson()).toList();
     }
     if (timeOfDay != null && timeOfDay!.isNotEmpty) {
-      json['timeOfDay'] = timeOfDay!.map((FhirTime v) => v.value).toList();
+      json['timeOfDay'] = timeOfDay!.map((FhirTime v) => v.toJson()).toList();
     }
     if (timeOfDayElement != null && timeOfDayElement!.isNotEmpty) {
       json['_timeOfDay'] =
@@ -393,7 +393,7 @@ class TimingRepeat extends Element {
       json['when'] = when!.map<dynamic>((EventTiming v) => v.toJson()).toList();
     }
     if (offset?.value != null) {
-      json['offset'] = offset!.value;
+      json['offset'] = offset!.toJson();
     }
     if (offsetElement != null) {
       json['_offset'] = offsetElement!.toJson();
@@ -403,7 +403,7 @@ class TimingRepeat extends Element {
 
   factory TimingRepeat.fromJson(Map<String, dynamic> json) {
     return TimingRepeat(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -420,54 +420,74 @@ class TimingRepeat extends Element {
       boundsPeriod: json['boundsPeriod'] != null
           ? Period.fromJson(json['boundsPeriod'] as Map<String, dynamic>)
           : null,
-      count: json['count'] != null ? FhirPositiveInt(json['count']) : null,
+      count: json['count'] != null
+          ? FhirPositiveInt.fromJson(json['count'])
+          : null,
       countElement: json['_count'] != null
           ? Element.fromJson(json['_count'] as Map<String, dynamic>)
           : null,
-      countMax:
-          json['countMax'] != null ? FhirPositiveInt(json['countMax']) : null,
+      countMax: json['countMax'] != null
+          ? FhirPositiveInt.fromJson(json['countMax'])
+          : null,
       countMaxElement: json['_countMax'] != null
           ? Element.fromJson(json['_countMax'] as Map<String, dynamic>)
           : null,
-      duration: json['duration'] != null ? FhirDecimal(json['duration']) : null,
+      duration: json['duration'] != null
+          ? FhirDecimal.fromJson(json['duration'])
+          : null,
       durationElement: json['_duration'] != null
           ? Element.fromJson(json['_duration'] as Map<String, dynamic>)
           : null,
-      durationMax:
-          json['durationMax'] != null ? FhirDecimal(json['durationMax']) : null,
+      durationMax: json['durationMax'] != null
+          ? FhirDecimal.fromJson(json['durationMax'])
+          : null,
       durationMaxElement: json['_durationMax'] != null
           ? Element.fromJson(json['_durationMax'] as Map<String, dynamic>)
           : null,
       durationUnit: json['durationUnit'] != null
-          ? UnitsOfTime.fromJson(json['durationUnit'] as Map<String, dynamic>)
+          ? UnitsOfTime.fromJson(json['durationUnit'])
           : null,
-      frequency:
-          json['frequency'] != null ? FhirPositiveInt(json['frequency']) : null,
+      durationUnitElement: json['_durationUnit'] != null
+          ? Element.fromJson(json['_durationUnit'] as Map<String, dynamic>)
+          : null,
+      frequency: json['frequency'] != null
+          ? FhirPositiveInt.fromJson(json['frequency'])
+          : null,
       frequencyElement: json['_frequency'] != null
           ? Element.fromJson(json['_frequency'] as Map<String, dynamic>)
           : null,
       frequencyMax: json['frequencyMax'] != null
-          ? FhirPositiveInt(json['frequencyMax'])
+          ? FhirPositiveInt.fromJson(json['frequencyMax'])
           : null,
       frequencyMaxElement: json['_frequencyMax'] != null
           ? Element.fromJson(json['_frequencyMax'] as Map<String, dynamic>)
           : null,
-      period: json['period'] != null ? FhirDecimal(json['period']) : null,
+      period:
+          json['period'] != null ? FhirDecimal.fromJson(json['period']) : null,
       periodElement: json['_period'] != null
           ? Element.fromJson(json['_period'] as Map<String, dynamic>)
           : null,
-      periodMax:
-          json['periodMax'] != null ? FhirDecimal(json['periodMax']) : null,
+      periodMax: json['periodMax'] != null
+          ? FhirDecimal.fromJson(json['periodMax'])
+          : null,
       periodMaxElement: json['_periodMax'] != null
           ? Element.fromJson(json['_periodMax'] as Map<String, dynamic>)
           : null,
       periodUnit: json['periodUnit'] != null
-          ? UnitsOfTime.fromJson(json['periodUnit'] as Map<String, dynamic>)
+          ? UnitsOfTime.fromJson(json['periodUnit'])
+          : null,
+      periodUnitElement: json['_periodUnit'] != null
+          ? Element.fromJson(json['_periodUnit'] as Map<String, dynamic>)
           : null,
       dayOfWeek: json['dayOfWeek'] != null
           ? (json['dayOfWeek'] as List<dynamic>)
-              .map<DaysOfWeek>(
-                  (dynamic v) => DaysOfWeek.fromJson(v as Map<String, dynamic>))
+              .map<DaysOfWeek>((dynamic v) => DaysOfWeek.fromJson(v as dynamic))
+              .toList()
+          : null,
+      dayOfWeekElement: json['_dayOfWeek'] != null
+          ? (json['_dayOfWeek'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
       timeOfDay: json['timeOfDay'] != null
@@ -483,11 +503,19 @@ class TimingRepeat extends Element {
           : null,
       when: json['when'] != null
           ? (json['when'] as List<dynamic>)
-              .map<EventTiming>((dynamic v) =>
-                  EventTiming.fromJson(v as Map<String, dynamic>))
+              .map<EventTiming>(
+                  (dynamic v) => EventTiming.fromJson(v as dynamic))
               .toList()
           : null,
-      offset: json['offset'] != null ? FhirUnsignedInt(json['offset']) : null,
+      whenElement: json['_when'] != null
+          ? (json['_when'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      offset: json['offset'] != null
+          ? FhirUnsignedInt.fromJson(json['offset'])
+          : null,
       offsetElement: json['_offset'] != null
           ? Element.fromJson(json['_offset'] as Map<String, dynamic>)
           : null,

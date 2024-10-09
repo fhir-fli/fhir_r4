@@ -83,33 +83,33 @@ class ParameterDefinition extends DataType {
           extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
     }
     if (name?.value != null) {
-      json['name'] = name!.value;
+      json['name'] = name!.toJson();
     }
     if (nameElement != null) {
       json['_name'] = nameElement!.toJson();
     }
     json['use'] = use.toJson();
     if (min?.value != null) {
-      json['min'] = min!.value;
+      json['min'] = min!.toJson();
     }
     if (minElement != null) {
       json['_min'] = minElement!.toJson();
     }
     if (max?.value != null) {
-      json['max'] = max!.value;
+      json['max'] = max!.toJson();
     }
     if (maxElement != null) {
       json['_max'] = maxElement!.toJson();
     }
     if (documentation?.value != null) {
-      json['documentation'] = documentation!.value;
+      json['documentation'] = documentation!.toJson();
     }
     if (documentationElement != null) {
       json['_documentation'] = documentationElement!.toJson();
     }
     json['type'] = type.toJson();
     if (profile?.value != null) {
-      json['profile'] = profile!.value;
+      json['profile'] = profile!.toJson();
     }
     if (profileElement != null) {
       json['_profile'] = profileElement!.toJson();
@@ -119,34 +119,42 @@ class ParameterDefinition extends DataType {
 
   factory ParameterDefinition.fromJson(Map<String, dynamic> json) {
     return ParameterDefinition(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      name: json['name'] != null ? FhirCode(json['name']) : null,
+      name: json['name'] != null ? FhirCode.fromJson(json['name']) : null,
       nameElement: json['_name'] != null
           ? Element.fromJson(json['_name'] as Map<String, dynamic>)
           : null,
-      use: OperationParameterUse.fromJson(json['use'] as Map<String, dynamic>),
-      min: json['min'] != null ? FhirInteger(json['min']) : null,
+      use: OperationParameterUse.fromJson(json['use']),
+      useElement: json['_use'] != null
+          ? Element.fromJson(json['_use'] as Map<String, dynamic>)
+          : null,
+      min: json['min'] != null ? FhirInteger.fromJson(json['min']) : null,
       minElement: json['_min'] != null
           ? Element.fromJson(json['_min'] as Map<String, dynamic>)
           : null,
-      max: json['max'] != null ? FhirString(json['max']) : null,
+      max: json['max'] != null ? FhirString.fromJson(json['max']) : null,
       maxElement: json['_max'] != null
           ? Element.fromJson(json['_max'] as Map<String, dynamic>)
           : null,
       documentation: json['documentation'] != null
-          ? FhirString(json['documentation'])
+          ? FhirString.fromJson(json['documentation'])
           : null,
       documentationElement: json['_documentation'] != null
           ? Element.fromJson(json['_documentation'] as Map<String, dynamic>)
           : null,
-      type: FHIRAllTypes.fromJson(json['type'] as Map<String, dynamic>),
-      profile: json['profile'] != null ? FhirCanonical(json['profile']) : null,
+      type: FHIRAllTypes.fromJson(json['type']),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
+          : null,
+      profile: json['profile'] != null
+          ? FhirCanonical.fromJson(json['profile'])
+          : null,
       profileElement: json['_profile'] != null
           ? Element.fromJson(json['_profile'] as Map<String, dynamic>)
           : null,

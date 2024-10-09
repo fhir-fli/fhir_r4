@@ -88,7 +88,7 @@ class Subscription extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -118,21 +118,21 @@ class Subscription extends DomainResource {
           contact!.map<dynamic>((ContactPoint v) => v.toJson()).toList();
     }
     if (end?.value != null) {
-      json['end'] = end!.value;
+      json['end'] = end!.toJson();
     }
     if (endElement != null) {
       json['_end'] = endElement!.toJson();
     }
-    json['reason'] = reason.value;
+    json['reason'] = reason.toJson();
     if (reasonElement != null) {
       json['_reason'] = reasonElement!.toJson();
     }
-    json['criteria'] = criteria.value;
+    json['criteria'] = criteria.toJson();
     if (criteriaElement != null) {
       json['_criteria'] = criteriaElement!.toJson();
     }
     if (error?.value != null) {
-      json['error'] = error!.value;
+      json['error'] = error!.toJson();
     }
     if (errorElement != null) {
       json['_error'] = errorElement!.toJson();
@@ -143,17 +143,21 @@ class Subscription extends DomainResource {
 
   factory Subscription.fromJson(Map<String, dynamic> json) {
     return Subscription(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -176,27 +180,29 @@ class Subscription extends DomainResource {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status: SubscriptionStatusCodes.fromJson(
-          json['status'] as Map<String, dynamic>),
+      status: SubscriptionStatusCodes.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       contact: json['contact'] != null
           ? (json['contact'] as List<dynamic>)
               .map<ContactPoint>((dynamic v) =>
                   ContactPoint.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      end: json['end'] != null ? FhirInstant(json['end']) : null,
+      end: json['end'] != null ? FhirInstant.fromJson(json['end']) : null,
       endElement: json['_end'] != null
           ? Element.fromJson(json['_end'] as Map<String, dynamic>)
           : null,
-      reason: FhirString(json['reason']),
+      reason: FhirString.fromJson(json['reason']),
       reasonElement: json['_reason'] != null
           ? Element.fromJson(json['_reason'] as Map<String, dynamic>)
           : null,
-      criteria: FhirString(json['criteria']),
+      criteria: FhirString.fromJson(json['criteria']),
       criteriaElement: json['_criteria'] != null
           ? Element.fromJson(json['_criteria'] as Map<String, dynamic>)
           : null,
-      error: json['error'] != null ? FhirString(json['error']) : null,
+      error: json['error'] != null ? FhirString.fromJson(json['error']) : null,
       errorElement: json['_error'] != null
           ? Element.fromJson(json['_error'] as Map<String, dynamic>)
           : null,
@@ -353,19 +359,19 @@ class SubscriptionChannel extends BackboneElement {
     }
     json['type'] = type.toJson();
     if (endpoint?.value != null) {
-      json['endpoint'] = endpoint!.value;
+      json['endpoint'] = endpoint!.toJson();
     }
     if (endpointElement != null) {
       json['_endpoint'] = endpointElement!.toJson();
     }
     if (payload?.value != null) {
-      json['payload'] = payload!.value;
+      json['payload'] = payload!.toJson();
     }
     if (payloadElement != null) {
       json['_payload'] = payloadElement!.toJson();
     }
     if (header != null && header!.isNotEmpty) {
-      json['header'] = header!.map((FhirString v) => v.value).toList();
+      json['header'] = header!.map((FhirString v) => v.toJson()).toList();
     }
     if (headerElement != null && headerElement!.isNotEmpty) {
       json['_header'] = headerElement!.map((Element v) => v.toJson()).toList();
@@ -375,7 +381,7 @@ class SubscriptionChannel extends BackboneElement {
 
   factory SubscriptionChannel.fromJson(Map<String, dynamic> json) {
     return SubscriptionChannel(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -388,13 +394,17 @@ class SubscriptionChannel extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      type: SubscriptionChannelType.fromJson(
-          json['type'] as Map<String, dynamic>),
-      endpoint: json['endpoint'] != null ? FhirUrl(json['endpoint']) : null,
+      type: SubscriptionChannelType.fromJson(json['type']),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
+          : null,
+      endpoint:
+          json['endpoint'] != null ? FhirUrl.fromJson(json['endpoint']) : null,
       endpointElement: json['_endpoint'] != null
           ? Element.fromJson(json['_endpoint'] as Map<String, dynamic>)
           : null,
-      payload: json['payload'] != null ? FhirCode(json['payload']) : null,
+      payload:
+          json['payload'] != null ? FhirCode.fromJson(json['payload']) : null,
       payloadElement: json['_payload'] != null
           ? Element.fromJson(json['_payload'] as Map<String, dynamic>)
           : null,

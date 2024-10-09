@@ -86,7 +86,7 @@ class Medication extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -142,17 +142,21 @@ class Medication extends DomainResource {
 
   factory Medication.fromJson(Map<String, dynamic> json) {
     return Medication(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -185,8 +189,10 @@ class Medication extends DomainResource {
           ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
           : null,
       status: json['status'] != null
-          ? MedicationStatusCodes.fromJson(
-              json['status'] as Map<String, dynamic>)
+          ? MedicationStatusCodes.fromJson(json['status'])
+          : null,
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
           : null,
       manufacturer: json['manufacturer'] != null
           ? Reference.fromJson(json['manufacturer'] as Map<String, dynamic>)
@@ -351,7 +357,7 @@ class MedicationIngredient extends BackboneElement {
       json['itemReference'] = itemReference!.toJson();
     }
     if (isActive?.value != null) {
-      json['isActive'] = isActive!.value;
+      json['isActive'] = isActive!.toJson();
     }
     if (isActiveElement != null) {
       json['_isActive'] = isActiveElement!.toJson();
@@ -364,7 +370,7 @@ class MedicationIngredient extends BackboneElement {
 
   factory MedicationIngredient.fromJson(Map<String, dynamic> json) {
     return MedicationIngredient(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -384,7 +390,9 @@ class MedicationIngredient extends BackboneElement {
       itemReference: json['itemReference'] != null
           ? Reference.fromJson(json['itemReference'] as Map<String, dynamic>)
           : null,
-      isActive: json['isActive'] != null ? FhirBoolean(json['isActive']) : null,
+      isActive: json['isActive'] != null
+          ? FhirBoolean.fromJson(json['isActive'])
+          : null,
       isActiveElement: json['_isActive'] != null
           ? Element.fromJson(json['_isActive'] as Map<String, dynamic>)
           : null,
@@ -497,13 +505,13 @@ class MedicationBatch extends BackboneElement {
           .toList();
     }
     if (lotNumber?.value != null) {
-      json['lotNumber'] = lotNumber!.value;
+      json['lotNumber'] = lotNumber!.toJson();
     }
     if (lotNumberElement != null) {
       json['_lotNumber'] = lotNumberElement!.toJson();
     }
     if (expirationDate?.value != null) {
-      json['expirationDate'] = expirationDate!.value;
+      json['expirationDate'] = expirationDate!.toJson();
     }
     if (expirationDateElement != null) {
       json['_expirationDate'] = expirationDateElement!.toJson();
@@ -513,7 +521,7 @@ class MedicationBatch extends BackboneElement {
 
   factory MedicationBatch.fromJson(Map<String, dynamic> json) {
     return MedicationBatch(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -526,13 +534,14 @@ class MedicationBatch extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      lotNumber:
-          json['lotNumber'] != null ? FhirString(json['lotNumber']) : null,
+      lotNumber: json['lotNumber'] != null
+          ? FhirString.fromJson(json['lotNumber'])
+          : null,
       lotNumberElement: json['_lotNumber'] != null
           ? Element.fromJson(json['_lotNumber'] as Map<String, dynamic>)
           : null,
       expirationDate: json['expirationDate'] != null
-          ? FhirDateTime(json['expirationDate'])
+          ? FhirDateTime.fromJson(json['expirationDate'])
           : null,
       expirationDateElement: json['_expirationDate'] != null
           ? Element.fromJson(json['_expirationDate'] as Map<String, dynamic>)

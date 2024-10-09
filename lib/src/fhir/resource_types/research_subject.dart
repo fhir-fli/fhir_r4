@@ -82,7 +82,7 @@ class ResearchSubject extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -117,13 +117,13 @@ class ResearchSubject extends DomainResource {
     json['study'] = study.toJson();
     json['individual'] = individual.toJson();
     if (assignedArm?.value != null) {
-      json['assignedArm'] = assignedArm!.value;
+      json['assignedArm'] = assignedArm!.toJson();
     }
     if (assignedArmElement != null) {
       json['_assignedArm'] = assignedArmElement!.toJson();
     }
     if (actualArm?.value != null) {
-      json['actualArm'] = actualArm!.value;
+      json['actualArm'] = actualArm!.toJson();
     }
     if (actualArmElement != null) {
       json['_actualArm'] = actualArmElement!.toJson();
@@ -136,17 +136,21 @@ class ResearchSubject extends DomainResource {
 
   factory ResearchSubject.fromJson(Map<String, dynamic> json) {
     return ResearchSubject(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -175,21 +179,25 @@ class ResearchSubject extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status: ResearchSubjectStatus.fromJson(
-          json['status'] as Map<String, dynamic>),
+      status: ResearchSubjectStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       period: json['period'] != null
           ? Period.fromJson(json['period'] as Map<String, dynamic>)
           : null,
       study: Reference.fromJson(json['study'] as Map<String, dynamic>),
       individual:
           Reference.fromJson(json['individual'] as Map<String, dynamic>),
-      assignedArm:
-          json['assignedArm'] != null ? FhirString(json['assignedArm']) : null,
+      assignedArm: json['assignedArm'] != null
+          ? FhirString.fromJson(json['assignedArm'])
+          : null,
       assignedArmElement: json['_assignedArm'] != null
           ? Element.fromJson(json['_assignedArm'] as Map<String, dynamic>)
           : null,
-      actualArm:
-          json['actualArm'] != null ? FhirString(json['actualArm']) : null,
+      actualArm: json['actualArm'] != null
+          ? FhirString.fromJson(json['actualArm'])
+          : null,
       actualArmElement: json['_actualArm'] != null
           ? Element.fromJson(json['_actualArm'] as Map<String, dynamic>)
           : null,

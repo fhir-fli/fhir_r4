@@ -170,7 +170,7 @@ class HealthcareService extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -199,7 +199,7 @@ class HealthcareService extends DomainResource {
           identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
     }
     if (active?.value != null) {
-      json['active'] = active!.value;
+      json['active'] = active!.toJson();
     }
     if (activeElement != null) {
       json['_active'] = activeElement!.toJson();
@@ -224,19 +224,19 @@ class HealthcareService extends DomainResource {
           location!.map<dynamic>((Reference v) => v.toJson()).toList();
     }
     if (name?.value != null) {
-      json['name'] = name!.value;
+      json['name'] = name!.toJson();
     }
     if (nameElement != null) {
       json['_name'] = nameElement!.toJson();
     }
     if (comment?.value != null) {
-      json['comment'] = comment!.value;
+      json['comment'] = comment!.toJson();
     }
     if (commentElement != null) {
       json['_comment'] = commentElement!.toJson();
     }
     if (extraDetails?.value != null) {
-      json['extraDetails'] = extraDetails!.value;
+      json['extraDetails'] = extraDetails!.toJson();
     }
     if (extraDetailsElement != null) {
       json['_extraDetails'] = extraDetailsElement!.toJson();
@@ -282,7 +282,7 @@ class HealthcareService extends DomainResource {
           .toList();
     }
     if (appointmentRequired?.value != null) {
-      json['appointmentRequired'] = appointmentRequired!.value;
+      json['appointmentRequired'] = appointmentRequired!.toJson();
     }
     if (appointmentRequiredElement != null) {
       json['_appointmentRequired'] = appointmentRequiredElement!.toJson();
@@ -298,7 +298,7 @@ class HealthcareService extends DomainResource {
           .toList();
     }
     if (availabilityExceptions?.value != null) {
-      json['availabilityExceptions'] = availabilityExceptions!.value;
+      json['availabilityExceptions'] = availabilityExceptions!.toJson();
     }
     if (availabilityExceptionsElement != null) {
       json['_availabilityExceptions'] = availabilityExceptionsElement!.toJson();
@@ -312,17 +312,21 @@ class HealthcareService extends DomainResource {
 
   factory HealthcareService.fromJson(Map<String, dynamic> json) {
     return HealthcareService(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -351,7 +355,8 @@ class HealthcareService extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      active: json['active'] != null ? FhirBoolean(json['active']) : null,
+      active:
+          json['active'] != null ? FhirBoolean.fromJson(json['active']) : null,
       activeElement: json['_active'] != null
           ? Element.fromJson(json['_active'] as Map<String, dynamic>)
           : null,
@@ -382,16 +387,17 @@ class HealthcareService extends DomainResource {
                   (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      name: json['name'] != null ? FhirString(json['name']) : null,
+      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
       nameElement: json['_name'] != null
           ? Element.fromJson(json['_name'] as Map<String, dynamic>)
           : null,
-      comment: json['comment'] != null ? FhirString(json['comment']) : null,
+      comment:
+          json['comment'] != null ? FhirString.fromJson(json['comment']) : null,
       commentElement: json['_comment'] != null
           ? Element.fromJson(json['_comment'] as Map<String, dynamic>)
           : null,
       extraDetails: json['extraDetails'] != null
-          ? FhirMarkdown(json['extraDetails'])
+          ? FhirMarkdown.fromJson(json['extraDetails'])
           : null,
       extraDetailsElement: json['_extraDetails'] != null
           ? Element.fromJson(json['_extraDetails'] as Map<String, dynamic>)
@@ -449,7 +455,7 @@ class HealthcareService extends DomainResource {
               .toList()
           : null,
       appointmentRequired: json['appointmentRequired'] != null
-          ? FhirBoolean(json['appointmentRequired'])
+          ? FhirBoolean.fromJson(json['appointmentRequired'])
           : null,
       appointmentRequiredElement: json['_appointmentRequired'] != null
           ? Element.fromJson(
@@ -470,7 +476,7 @@ class HealthcareService extends DomainResource {
               .toList()
           : null,
       availabilityExceptions: json['availabilityExceptions'] != null
-          ? FhirString(json['availabilityExceptions'])
+          ? FhirString.fromJson(json['availabilityExceptions'])
           : null,
       availabilityExceptionsElement: json['_availabilityExceptions'] != null
           ? Element.fromJson(
@@ -657,7 +663,7 @@ class HealthcareServiceEligibility extends BackboneElement {
       json['code'] = code!.toJson();
     }
     if (comment?.value != null) {
-      json['comment'] = comment!.value;
+      json['comment'] = comment!.toJson();
     }
     if (commentElement != null) {
       json['_comment'] = commentElement!.toJson();
@@ -667,7 +673,7 @@ class HealthcareServiceEligibility extends BackboneElement {
 
   factory HealthcareServiceEligibility.fromJson(Map<String, dynamic> json) {
     return HealthcareServiceEligibility(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -683,7 +689,9 @@ class HealthcareServiceEligibility extends BackboneElement {
       code: json['code'] != null
           ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
           : null,
-      comment: json['comment'] != null ? FhirMarkdown(json['comment']) : null,
+      comment: json['comment'] != null
+          ? FhirMarkdown.fromJson(json['comment'])
+          : null,
       commentElement: json['_comment'] != null
           ? Element.fromJson(json['_comment'] as Map<String, dynamic>)
           : null,
@@ -809,19 +817,19 @@ class HealthcareServiceAvailableTime extends BackboneElement {
           daysOfWeek!.map<dynamic>((DaysOfWeek v) => v.toJson()).toList();
     }
     if (allDay?.value != null) {
-      json['allDay'] = allDay!.value;
+      json['allDay'] = allDay!.toJson();
     }
     if (allDayElement != null) {
       json['_allDay'] = allDayElement!.toJson();
     }
     if (availableStartTime?.value != null) {
-      json['availableStartTime'] = availableStartTime!.value;
+      json['availableStartTime'] = availableStartTime!.toJson();
     }
     if (availableStartTimeElement != null) {
       json['_availableStartTime'] = availableStartTimeElement!.toJson();
     }
     if (availableEndTime?.value != null) {
-      json['availableEndTime'] = availableEndTime!.value;
+      json['availableEndTime'] = availableEndTime!.toJson();
     }
     if (availableEndTimeElement != null) {
       json['_availableEndTime'] = availableEndTimeElement!.toJson();
@@ -831,7 +839,7 @@ class HealthcareServiceAvailableTime extends BackboneElement {
 
   factory HealthcareServiceAvailableTime.fromJson(Map<String, dynamic> json) {
     return HealthcareServiceAvailableTime(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -846,23 +854,29 @@ class HealthcareServiceAvailableTime extends BackboneElement {
           : null,
       daysOfWeek: json['daysOfWeek'] != null
           ? (json['daysOfWeek'] as List<dynamic>)
-              .map<DaysOfWeek>(
-                  (dynamic v) => DaysOfWeek.fromJson(v as Map<String, dynamic>))
+              .map<DaysOfWeek>((dynamic v) => DaysOfWeek.fromJson(v as dynamic))
               .toList()
           : null,
-      allDay: json['allDay'] != null ? FhirBoolean(json['allDay']) : null,
+      daysOfWeekElement: json['_daysOfWeek'] != null
+          ? (json['_daysOfWeek'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      allDay:
+          json['allDay'] != null ? FhirBoolean.fromJson(json['allDay']) : null,
       allDayElement: json['_allDay'] != null
           ? Element.fromJson(json['_allDay'] as Map<String, dynamic>)
           : null,
       availableStartTime: json['availableStartTime'] != null
-          ? FhirTime(json['availableStartTime'])
+          ? FhirTime.fromJson(json['availableStartTime'])
           : null,
       availableStartTimeElement: json['_availableStartTime'] != null
           ? Element.fromJson(
               json['_availableStartTime'] as Map<String, dynamic>)
           : null,
       availableEndTime: json['availableEndTime'] != null
-          ? FhirTime(json['availableEndTime'])
+          ? FhirTime.fromJson(json['availableEndTime'])
           : null,
       availableEndTimeElement: json['_availableEndTime'] != null
           ? Element.fromJson(json['_availableEndTime'] as Map<String, dynamic>)
@@ -982,7 +996,7 @@ class HealthcareServiceNotAvailable extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['description'] = description.value;
+    json['description'] = description.toJson();
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
     }
@@ -994,7 +1008,7 @@ class HealthcareServiceNotAvailable extends BackboneElement {
 
   factory HealthcareServiceNotAvailable.fromJson(Map<String, dynamic> json) {
     return HealthcareServiceNotAvailable(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1007,7 +1021,7 @@ class HealthcareServiceNotAvailable extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      description: FhirString(json['description']),
+      description: FhirString.fromJson(json['description']),
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
           : null,

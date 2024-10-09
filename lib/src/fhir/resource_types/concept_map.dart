@@ -190,7 +190,7 @@ class ConceptMap extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -215,7 +215,7 @@ class ConceptMap extends DomainResource {
           .toList();
     }
     if (url?.value != null) {
-      json['url'] = url!.value;
+      json['url'] = url!.toJson();
     }
     if (urlElement != null) {
       json['_url'] = urlElement!.toJson();
@@ -224,38 +224,38 @@ class ConceptMap extends DomainResource {
       json['identifier'] = identifier!.toJson();
     }
     if (version?.value != null) {
-      json['version'] = version!.value;
+      json['version'] = version!.toJson();
     }
     if (versionElement != null) {
       json['_version'] = versionElement!.toJson();
     }
     if (name?.value != null) {
-      json['name'] = name!.value;
+      json['name'] = name!.toJson();
     }
     if (nameElement != null) {
       json['_name'] = nameElement!.toJson();
     }
     if (title?.value != null) {
-      json['title'] = title!.value;
+      json['title'] = title!.toJson();
     }
     if (titleElement != null) {
       json['_title'] = titleElement!.toJson();
     }
     json['status'] = status.toJson();
     if (experimental?.value != null) {
-      json['experimental'] = experimental!.value;
+      json['experimental'] = experimental!.toJson();
     }
     if (experimentalElement != null) {
       json['_experimental'] = experimentalElement!.toJson();
     }
     if (date?.value != null) {
-      json['date'] = date!.value;
+      json['date'] = date!.toJson();
     }
     if (dateElement != null) {
       json['_date'] = dateElement!.toJson();
     }
     if (publisher?.value != null) {
-      json['publisher'] = publisher!.value;
+      json['publisher'] = publisher!.toJson();
     }
     if (publisherElement != null) {
       json['_publisher'] = publisherElement!.toJson();
@@ -265,7 +265,7 @@ class ConceptMap extends DomainResource {
           contact!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
     }
     if (description?.value != null) {
-      json['description'] = description!.value;
+      json['description'] = description!.toJson();
     }
     if (descriptionElement != null) {
       json['_description'] = descriptionElement!.toJson();
@@ -280,37 +280,37 @@ class ConceptMap extends DomainResource {
           .toList();
     }
     if (purpose?.value != null) {
-      json['purpose'] = purpose!.value;
+      json['purpose'] = purpose!.toJson();
     }
     if (purposeElement != null) {
       json['_purpose'] = purposeElement!.toJson();
     }
     if (copyright?.value != null) {
-      json['copyright'] = copyright!.value;
+      json['copyright'] = copyright!.toJson();
     }
     if (copyrightElement != null) {
       json['_copyright'] = copyrightElement!.toJson();
     }
     if (sourceUri?.value != null) {
-      json['sourceUri'] = sourceUri!.value;
+      json['sourceUri'] = sourceUri!.toJson();
     }
     if (sourceUriElement != null) {
       json['_sourceUri'] = sourceUriElement!.toJson();
     }
     if (sourceCanonical?.value != null) {
-      json['sourceCanonical'] = sourceCanonical!.value;
+      json['sourceCanonical'] = sourceCanonical!.toJson();
     }
     if (sourceCanonicalElement != null) {
       json['_sourceCanonical'] = sourceCanonicalElement!.toJson();
     }
     if (targetUri?.value != null) {
-      json['targetUri'] = targetUri!.value;
+      json['targetUri'] = targetUri!.toJson();
     }
     if (targetUriElement != null) {
       json['_targetUri'] = targetUriElement!.toJson();
     }
     if (targetCanonical?.value != null) {
-      json['targetCanonical'] = targetCanonical!.value;
+      json['targetCanonical'] = targetCanonical!.toJson();
     }
     if (targetCanonicalElement != null) {
       json['_targetCanonical'] = targetCanonicalElement!.toJson();
@@ -324,17 +324,21 @@ class ConceptMap extends DomainResource {
 
   factory ConceptMap.fromJson(Map<String, dynamic> json) {
     return ConceptMap(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -357,39 +361,43 @@ class ConceptMap extends DomainResource {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      url: json['url'] != null ? FhirUri(json['url']) : null,
+      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
       urlElement: json['_url'] != null
           ? Element.fromJson(json['_url'] as Map<String, dynamic>)
           : null,
       identifier: json['identifier'] != null
           ? Identifier.fromJson(json['identifier'] as Map<String, dynamic>)
           : null,
-      version: json['version'] != null ? FhirString(json['version']) : null,
+      version:
+          json['version'] != null ? FhirString.fromJson(json['version']) : null,
       versionElement: json['_version'] != null
           ? Element.fromJson(json['_version'] as Map<String, dynamic>)
           : null,
-      name: json['name'] != null ? FhirString(json['name']) : null,
+      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
       nameElement: json['_name'] != null
           ? Element.fromJson(json['_name'] as Map<String, dynamic>)
           : null,
-      title: json['title'] != null ? FhirString(json['title']) : null,
+      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
       titleElement: json['_title'] != null
           ? Element.fromJson(json['_title'] as Map<String, dynamic>)
           : null,
-      status:
-          PublicationStatus.fromJson(json['status'] as Map<String, dynamic>),
+      status: PublicationStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       experimental: json['experimental'] != null
-          ? FhirBoolean(json['experimental'])
+          ? FhirBoolean.fromJson(json['experimental'])
           : null,
       experimentalElement: json['_experimental'] != null
           ? Element.fromJson(json['_experimental'] as Map<String, dynamic>)
           : null,
-      date: json['date'] != null ? FhirDateTime(json['date']) : null,
+      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
       dateElement: json['_date'] != null
           ? Element.fromJson(json['_date'] as Map<String, dynamic>)
           : null,
-      publisher:
-          json['publisher'] != null ? FhirString(json['publisher']) : null,
+      publisher: json['publisher'] != null
+          ? FhirString.fromJson(json['publisher'])
+          : null,
       publisherElement: json['_publisher'] != null
           ? Element.fromJson(json['_publisher'] as Map<String, dynamic>)
           : null,
@@ -400,7 +408,7 @@ class ConceptMap extends DomainResource {
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown(json['description'])
+          ? FhirMarkdown.fromJson(json['description'])
           : null,
       descriptionElement: json['_description'] != null
           ? Element.fromJson(json['_description'] as Map<String, dynamic>)
@@ -417,31 +425,38 @@ class ConceptMap extends DomainResource {
                   CodeableConcept.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      purpose: json['purpose'] != null ? FhirMarkdown(json['purpose']) : null,
+      purpose: json['purpose'] != null
+          ? FhirMarkdown.fromJson(json['purpose'])
+          : null,
       purposeElement: json['_purpose'] != null
           ? Element.fromJson(json['_purpose'] as Map<String, dynamic>)
           : null,
-      copyright:
-          json['copyright'] != null ? FhirMarkdown(json['copyright']) : null,
+      copyright: json['copyright'] != null
+          ? FhirMarkdown.fromJson(json['copyright'])
+          : null,
       copyrightElement: json['_copyright'] != null
           ? Element.fromJson(json['_copyright'] as Map<String, dynamic>)
           : null,
-      sourceUri: json['sourceUri'] != null ? FhirUri(json['sourceUri']) : null,
+      sourceUri: json['sourceUri'] != null
+          ? FhirUri.fromJson(json['sourceUri'])
+          : null,
       sourceUriElement: json['_sourceUri'] != null
           ? Element.fromJson(json['_sourceUri'] as Map<String, dynamic>)
           : null,
       sourceCanonical: json['sourceCanonical'] != null
-          ? FhirCanonical(json['sourceCanonical'])
+          ? FhirCanonical.fromJson(json['sourceCanonical'])
           : null,
       sourceCanonicalElement: json['_sourceCanonical'] != null
           ? Element.fromJson(json['_sourceCanonical'] as Map<String, dynamic>)
           : null,
-      targetUri: json['targetUri'] != null ? FhirUri(json['targetUri']) : null,
+      targetUri: json['targetUri'] != null
+          ? FhirUri.fromJson(json['targetUri'])
+          : null,
       targetUriElement: json['_targetUri'] != null
           ? Element.fromJson(json['_targetUri'] as Map<String, dynamic>)
           : null,
       targetCanonical: json['targetCanonical'] != null
-          ? FhirCanonical(json['targetCanonical'])
+          ? FhirCanonical.fromJson(json['targetCanonical'])
           : null,
       targetCanonicalElement: json['_targetCanonical'] != null
           ? Element.fromJson(json['_targetCanonical'] as Map<String, dynamic>)
@@ -661,25 +676,25 @@ class ConceptMapGroup extends BackboneElement {
           .toList();
     }
     if (source?.value != null) {
-      json['source'] = source!.value;
+      json['source'] = source!.toJson();
     }
     if (sourceElement != null) {
       json['_source'] = sourceElement!.toJson();
     }
     if (sourceVersion?.value != null) {
-      json['sourceVersion'] = sourceVersion!.value;
+      json['sourceVersion'] = sourceVersion!.toJson();
     }
     if (sourceVersionElement != null) {
       json['_sourceVersion'] = sourceVersionElement!.toJson();
     }
     if (target?.value != null) {
-      json['target'] = target!.value;
+      json['target'] = target!.toJson();
     }
     if (targetElement != null) {
       json['_target'] = targetElement!.toJson();
     }
     if (targetVersion?.value != null) {
-      json['targetVersion'] = targetVersion!.value;
+      json['targetVersion'] = targetVersion!.toJson();
     }
     if (targetVersionElement != null) {
       json['_targetVersion'] = targetVersionElement!.toJson();
@@ -694,7 +709,7 @@ class ConceptMapGroup extends BackboneElement {
 
   factory ConceptMapGroup.fromJson(Map<String, dynamic> json) {
     return ConceptMapGroup(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -707,22 +722,22 @@ class ConceptMapGroup extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      source: json['source'] != null ? FhirUri(json['source']) : null,
+      source: json['source'] != null ? FhirUri.fromJson(json['source']) : null,
       sourceElement: json['_source'] != null
           ? Element.fromJson(json['_source'] as Map<String, dynamic>)
           : null,
       sourceVersion: json['sourceVersion'] != null
-          ? FhirString(json['sourceVersion'])
+          ? FhirString.fromJson(json['sourceVersion'])
           : null,
       sourceVersionElement: json['_sourceVersion'] != null
           ? Element.fromJson(json['_sourceVersion'] as Map<String, dynamic>)
           : null,
-      target: json['target'] != null ? FhirUri(json['target']) : null,
+      target: json['target'] != null ? FhirUri.fromJson(json['target']) : null,
       targetElement: json['_target'] != null
           ? Element.fromJson(json['_target'] as Map<String, dynamic>)
           : null,
       targetVersion: json['targetVersion'] != null
-          ? FhirString(json['targetVersion'])
+          ? FhirString.fromJson(json['targetVersion'])
           : null,
       targetVersionElement: json['_targetVersion'] != null
           ? Element.fromJson(json['_targetVersion'] as Map<String, dynamic>)
@@ -857,13 +872,13 @@ class ConceptMapElement extends BackboneElement {
           .toList();
     }
     if (code?.value != null) {
-      json['code'] = code!.value;
+      json['code'] = code!.toJson();
     }
     if (codeElement != null) {
       json['_code'] = codeElement!.toJson();
     }
     if (display?.value != null) {
-      json['display'] = display!.value;
+      json['display'] = display!.toJson();
     }
     if (displayElement != null) {
       json['_display'] = displayElement!.toJson();
@@ -877,7 +892,7 @@ class ConceptMapElement extends BackboneElement {
 
   factory ConceptMapElement.fromJson(Map<String, dynamic> json) {
     return ConceptMapElement(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -890,11 +905,12 @@ class ConceptMapElement extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      code: json['code'] != null ? FhirCode(json['code']) : null,
+      code: json['code'] != null ? FhirCode.fromJson(json['code']) : null,
       codeElement: json['_code'] != null
           ? Element.fromJson(json['_code'] as Map<String, dynamic>)
           : null,
-      display: json['display'] != null ? FhirString(json['display']) : null,
+      display:
+          json['display'] != null ? FhirString.fromJson(json['display']) : null,
       displayElement: json['_display'] != null
           ? Element.fromJson(json['_display'] as Map<String, dynamic>)
           : null,
@@ -1040,20 +1056,20 @@ class ConceptMapTarget extends BackboneElement {
           .toList();
     }
     if (code?.value != null) {
-      json['code'] = code!.value;
+      json['code'] = code!.toJson();
     }
     if (codeElement != null) {
       json['_code'] = codeElement!.toJson();
     }
     if (display?.value != null) {
-      json['display'] = display!.value;
+      json['display'] = display!.toJson();
     }
     if (displayElement != null) {
       json['_display'] = displayElement!.toJson();
     }
     json['equivalence'] = equivalence.toJson();
     if (comment?.value != null) {
-      json['comment'] = comment!.value;
+      json['comment'] = comment!.toJson();
     }
     if (commentElement != null) {
       json['_comment'] = commentElement!.toJson();
@@ -1072,7 +1088,7 @@ class ConceptMapTarget extends BackboneElement {
 
   factory ConceptMapTarget.fromJson(Map<String, dynamic> json) {
     return ConceptMapTarget(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1085,17 +1101,21 @@ class ConceptMapTarget extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      code: json['code'] != null ? FhirCode(json['code']) : null,
+      code: json['code'] != null ? FhirCode.fromJson(json['code']) : null,
       codeElement: json['_code'] != null
           ? Element.fromJson(json['_code'] as Map<String, dynamic>)
           : null,
-      display: json['display'] != null ? FhirString(json['display']) : null,
+      display:
+          json['display'] != null ? FhirString.fromJson(json['display']) : null,
       displayElement: json['_display'] != null
           ? Element.fromJson(json['_display'] as Map<String, dynamic>)
           : null,
-      equivalence: ConceptMapEquivalence.fromJson(
-          json['equivalence'] as Map<String, dynamic>),
-      comment: json['comment'] != null ? FhirString(json['comment']) : null,
+      equivalence: ConceptMapEquivalence.fromJson(json['equivalence']),
+      equivalenceElement: json['_equivalence'] != null
+          ? Element.fromJson(json['_equivalence'] as Map<String, dynamic>)
+          : null,
+      comment:
+          json['comment'] != null ? FhirString.fromJson(json['comment']) : null,
       commentElement: json['_comment'] != null
           ? Element.fromJson(json['_comment'] as Map<String, dynamic>)
           : null,
@@ -1246,22 +1266,22 @@ class ConceptMapDependsOn extends BackboneElement {
           .map<dynamic>((FhirExtension v) => v.toJson())
           .toList();
     }
-    json['property'] = property.value;
+    json['property'] = property.toJson();
     if (propertyElement != null) {
       json['_property'] = propertyElement!.toJson();
     }
     if (system?.value != null) {
-      json['system'] = system!.value;
+      json['system'] = system!.toJson();
     }
     if (systemElement != null) {
       json['_system'] = systemElement!.toJson();
     }
-    json['value'] = value.value;
+    json['value'] = value.toJson();
     if (valueElement != null) {
       json['_value'] = valueElement!.toJson();
     }
     if (display?.value != null) {
-      json['display'] = display!.value;
+      json['display'] = display!.toJson();
     }
     if (displayElement != null) {
       json['_display'] = displayElement!.toJson();
@@ -1271,7 +1291,7 @@ class ConceptMapDependsOn extends BackboneElement {
 
   factory ConceptMapDependsOn.fromJson(Map<String, dynamic> json) {
     return ConceptMapDependsOn(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1284,19 +1304,22 @@ class ConceptMapDependsOn extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      property: FhirUri(json['property']),
+      property: FhirUri.fromJson(json['property']),
       propertyElement: json['_property'] != null
           ? Element.fromJson(json['_property'] as Map<String, dynamic>)
           : null,
-      system: json['system'] != null ? FhirCanonical(json['system']) : null,
+      system: json['system'] != null
+          ? FhirCanonical.fromJson(json['system'])
+          : null,
       systemElement: json['_system'] != null
           ? Element.fromJson(json['_system'] as Map<String, dynamic>)
           : null,
-      value: FhirString(json['value']),
+      value: FhirString.fromJson(json['value']),
       valueElement: json['_value'] != null
           ? Element.fromJson(json['_value'] as Map<String, dynamic>)
           : null,
-      display: json['display'] != null ? FhirString(json['display']) : null,
+      display:
+          json['display'] != null ? FhirString.fromJson(json['display']) : null,
       displayElement: json['_display'] != null
           ? Element.fromJson(json['_display'] as Map<String, dynamic>)
           : null,
@@ -1436,19 +1459,19 @@ class ConceptMapUnmapped extends BackboneElement {
     }
     json['mode'] = mode.toJson();
     if (code?.value != null) {
-      json['code'] = code!.value;
+      json['code'] = code!.toJson();
     }
     if (codeElement != null) {
       json['_code'] = codeElement!.toJson();
     }
     if (display?.value != null) {
-      json['display'] = display!.value;
+      json['display'] = display!.toJson();
     }
     if (displayElement != null) {
       json['_display'] = displayElement!.toJson();
     }
     if (url?.value != null) {
-      json['url'] = url!.value;
+      json['url'] = url!.toJson();
     }
     if (urlElement != null) {
       json['_url'] = urlElement!.toJson();
@@ -1458,7 +1481,7 @@ class ConceptMapUnmapped extends BackboneElement {
 
   factory ConceptMapUnmapped.fromJson(Map<String, dynamic> json) {
     return ConceptMapUnmapped(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1471,17 +1494,20 @@ class ConceptMapUnmapped extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      mode: ConceptMapGroupUnmappedMode.fromJson(
-          json['mode'] as Map<String, dynamic>),
-      code: json['code'] != null ? FhirCode(json['code']) : null,
+      mode: ConceptMapGroupUnmappedMode.fromJson(json['mode']),
+      modeElement: json['_mode'] != null
+          ? Element.fromJson(json['_mode'] as Map<String, dynamic>)
+          : null,
+      code: json['code'] != null ? FhirCode.fromJson(json['code']) : null,
       codeElement: json['_code'] != null
           ? Element.fromJson(json['_code'] as Map<String, dynamic>)
           : null,
-      display: json['display'] != null ? FhirString(json['display']) : null,
+      display:
+          json['display'] != null ? FhirString.fromJson(json['display']) : null,
       displayElement: json['_display'] != null
           ? Element.fromJson(json['_display'] as Map<String, dynamic>)
           : null,
-      url: json['url'] != null ? FhirCanonical(json['url']) : null,
+      url: json['url'] != null ? FhirCanonical.fromJson(json['url']) : null,
       urlElement: json['_url'] != null
           ? Element.fromJson(json['_url'] as Map<String, dynamic>)
           : null,

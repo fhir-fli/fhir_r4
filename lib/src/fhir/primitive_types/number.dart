@@ -19,9 +19,9 @@ abstract class FhirNumber extends PrimitiveType<num>
   @override
   String toString() => valueString;
   @override
-  dynamic toJson() => valueNumber;
+  num? toJson() => valueNumber;
   @override
-  dynamic toYaml() => valueNumber;
+  num? toYaml() => valueNumber;
   @override
   String toJsonString() => jsonEncode(toJson());
 

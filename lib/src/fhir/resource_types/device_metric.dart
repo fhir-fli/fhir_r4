@@ -113,7 +113,7 @@ class DeviceMetric extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -171,17 +171,21 @@ class DeviceMetric extends DomainResource {
 
   factory DeviceMetric.fromJson(Map<String, dynamic> json) {
     return DeviceMetric(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -221,14 +225,21 @@ class DeviceMetric extends DomainResource {
           ? Reference.fromJson(json['parent'] as Map<String, dynamic>)
           : null,
       operationalStatus: json['operationalStatus'] != null
-          ? DeviceMetricOperationalStatus.fromJson(
-              json['operationalStatus'] as Map<String, dynamic>)
+          ? DeviceMetricOperationalStatus.fromJson(json['operationalStatus'])
+          : null,
+      operationalStatusElement: json['_operationalStatus'] != null
+          ? Element.fromJson(json['_operationalStatus'] as Map<String, dynamic>)
           : null,
       color: json['color'] != null
-          ? DeviceMetricColor.fromJson(json['color'] as Map<String, dynamic>)
+          ? DeviceMetricColor.fromJson(json['color'])
           : null,
-      category: DeviceMetricCategory.fromJson(
-          json['category'] as Map<String, dynamic>),
+      colorElement: json['_color'] != null
+          ? Element.fromJson(json['_color'] as Map<String, dynamic>)
+          : null,
+      category: DeviceMetricCategory.fromJson(json['category']),
+      categoryElement: json['_category'] != null
+          ? Element.fromJson(json['_category'] as Map<String, dynamic>)
+          : null,
       measurementPeriod: json['measurementPeriod'] != null
           ? Timing.fromJson(json['measurementPeriod'] as Map<String, dynamic>)
           : null,
@@ -388,7 +399,7 @@ class DeviceMetricCalibration extends BackboneElement {
       json['state'] = state!.toJson();
     }
     if (time?.value != null) {
-      json['time'] = time!.value;
+      json['time'] = time!.toJson();
     }
     if (timeElement != null) {
       json['_time'] = timeElement!.toJson();
@@ -398,7 +409,7 @@ class DeviceMetricCalibration extends BackboneElement {
 
   factory DeviceMetricCalibration.fromJson(Map<String, dynamic> json) {
     return DeviceMetricCalibration(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -412,14 +423,18 @@ class DeviceMetricCalibration extends BackboneElement {
               .toList()
           : null,
       type: json['type'] != null
-          ? DeviceMetricCalibrationType.fromJson(
-              json['type'] as Map<String, dynamic>)
+          ? DeviceMetricCalibrationType.fromJson(json['type'])
+          : null,
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
           : null,
       state: json['state'] != null
-          ? DeviceMetricCalibrationState.fromJson(
-              json['state'] as Map<String, dynamic>)
+          ? DeviceMetricCalibrationState.fromJson(json['state'])
           : null,
-      time: json['time'] != null ? FhirInstant(json['time']) : null,
+      stateElement: json['_state'] != null
+          ? Element.fromJson(json['_state'] as Map<String, dynamic>)
+          : null,
+      time: json['time'] != null ? FhirInstant.fromJson(json['time']) : null,
       timeElement: json['_time'] != null
           ? Element.fromJson(json['_time'] as Map<String, dynamic>)
           : null,

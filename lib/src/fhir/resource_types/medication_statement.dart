@@ -171,7 +171,7 @@ class MedicationStatement extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -227,7 +227,7 @@ class MedicationStatement extends DomainResource {
       json['context'] = context!.toJson();
     }
     if (effectiveDateTime?.value != null) {
-      json['effectiveDateTime'] = effectiveDateTime!.value;
+      json['effectiveDateTime'] = effectiveDateTime!.toJson();
     }
     if (effectiveDateTimeElement != null) {
       json['_effectiveDateTime'] = effectiveDateTimeElement!.toJson();
@@ -236,7 +236,7 @@ class MedicationStatement extends DomainResource {
       json['effectivePeriod'] = effectivePeriod!.toJson();
     }
     if (dateAsserted?.value != null) {
-      json['dateAsserted'] = dateAsserted!.value;
+      json['dateAsserted'] = dateAsserted!.toJson();
     }
     if (dateAssertedElement != null) {
       json['_dateAsserted'] = dateAssertedElement!.toJson();
@@ -267,17 +267,21 @@ class MedicationStatement extends DomainResource {
 
   factory MedicationStatement.fromJson(Map<String, dynamic> json) {
     return MedicationStatement(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -318,8 +322,10 @@ class MedicationStatement extends DomainResource {
                   (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status: MedicationStatementStatusCodes.fromJson(
-          json['status'] as Map<String, dynamic>),
+      status: MedicationStatementStatusCodes.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       statusReason: json['statusReason'] != null
           ? (json['statusReason'] as List<dynamic>)
               .map<CodeableConcept>((dynamic v) =>
@@ -342,7 +348,7 @@ class MedicationStatement extends DomainResource {
           ? Reference.fromJson(json['context'] as Map<String, dynamic>)
           : null,
       effectiveDateTime: json['effectiveDateTime'] != null
-          ? FhirDateTime(json['effectiveDateTime'])
+          ? FhirDateTime.fromJson(json['effectiveDateTime'])
           : null,
       effectiveDateTimeElement: json['_effectiveDateTime'] != null
           ? Element.fromJson(json['_effectiveDateTime'] as Map<String, dynamic>)
@@ -351,7 +357,7 @@ class MedicationStatement extends DomainResource {
           ? Period.fromJson(json['effectivePeriod'] as Map<String, dynamic>)
           : null,
       dateAsserted: json['dateAsserted'] != null
-          ? FhirDateTime(json['dateAsserted'])
+          ? FhirDateTime.fromJson(json['dateAsserted'])
           : null,
       dateAssertedElement: json['_dateAsserted'] != null
           ? Element.fromJson(json['_dateAsserted'] as Map<String, dynamic>)

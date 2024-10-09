@@ -79,13 +79,13 @@ class Reference extends DataType {
           extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
     }
     if (reference?.value != null) {
-      json['reference'] = reference!.value;
+      json['reference'] = reference!.toJson();
     }
     if (referenceElement != null) {
       json['_reference'] = referenceElement!.toJson();
     }
     if (type?.value != null) {
-      json['type'] = type!.value;
+      json['type'] = type!.toJson();
     }
     if (typeElement != null) {
       json['_type'] = typeElement!.toJson();
@@ -94,7 +94,7 @@ class Reference extends DataType {
       json['identifier'] = identifier!.toJson();
     }
     if (display?.value != null) {
-      json['display'] = display!.value;
+      json['display'] = display!.toJson();
     }
     if (displayElement != null) {
       json['_display'] = displayElement!.toJson();
@@ -104,26 +104,28 @@ class Reference extends DataType {
 
   factory Reference.fromJson(Map<String, dynamic> json) {
     return Reference(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      reference:
-          json['reference'] != null ? FhirString(json['reference']) : null,
+      reference: json['reference'] != null
+          ? FhirString.fromJson(json['reference'])
+          : null,
       referenceElement: json['_reference'] != null
           ? Element.fromJson(json['_reference'] as Map<String, dynamic>)
           : null,
-      type: json['type'] != null ? FhirUri(json['type']) : null,
+      type: json['type'] != null ? FhirUri.fromJson(json['type']) : null,
       typeElement: json['_type'] != null
           ? Element.fromJson(json['_type'] as Map<String, dynamic>)
           : null,
       identifier: json['identifier'] != null
           ? Identifier.fromJson(json['identifier'] as Map<String, dynamic>)
           : null,
-      display: json['display'] != null ? FhirString(json['display']) : null,
+      display:
+          json['display'] != null ? FhirString.fromJson(json['display']) : null,
       displayElement: json['_display'] != null
           ? Element.fromJson(json['_display'] as Map<String, dynamic>)
           : null,

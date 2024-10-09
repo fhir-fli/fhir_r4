@@ -72,31 +72,31 @@ class Coding extends DataType {
           extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
     }
     if (system?.value != null) {
-      json['system'] = system!.value;
+      json['system'] = system!.toJson();
     }
     if (systemElement != null) {
       json['_system'] = systemElement!.toJson();
     }
     if (version?.value != null) {
-      json['version'] = version!.value;
+      json['version'] = version!.toJson();
     }
     if (versionElement != null) {
       json['_version'] = versionElement!.toJson();
     }
     if (code?.value != null) {
-      json['code'] = code!.value;
+      json['code'] = code!.toJson();
     }
     if (codeElement != null) {
       json['_code'] = codeElement!.toJson();
     }
     if (display?.value != null) {
-      json['display'] = display!.value;
+      json['display'] = display!.toJson();
     }
     if (displayElement != null) {
       json['_display'] = displayElement!.toJson();
     }
     if (userSelected?.value != null) {
-      json['userSelected'] = userSelected!.value;
+      json['userSelected'] = userSelected!.toJson();
     }
     if (userSelectedElement != null) {
       json['_userSelected'] = userSelectedElement!.toJson();
@@ -106,31 +106,33 @@ class Coding extends DataType {
 
   factory Coding.fromJson(Map<String, dynamic> json) {
     return Coding(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      system: json['system'] != null ? FhirUri(json['system']) : null,
+      system: json['system'] != null ? FhirUri.fromJson(json['system']) : null,
       systemElement: json['_system'] != null
           ? Element.fromJson(json['_system'] as Map<String, dynamic>)
           : null,
-      version: json['version'] != null ? FhirString(json['version']) : null,
+      version:
+          json['version'] != null ? FhirString.fromJson(json['version']) : null,
       versionElement: json['_version'] != null
           ? Element.fromJson(json['_version'] as Map<String, dynamic>)
           : null,
-      code: json['code'] != null ? FhirCode(json['code']) : null,
+      code: json['code'] != null ? FhirCode.fromJson(json['code']) : null,
       codeElement: json['_code'] != null
           ? Element.fromJson(json['_code'] as Map<String, dynamic>)
           : null,
-      display: json['display'] != null ? FhirString(json['display']) : null,
+      display:
+          json['display'] != null ? FhirString.fromJson(json['display']) : null,
       displayElement: json['_display'] != null
           ? Element.fromJson(json['_display'] as Map<String, dynamic>)
           : null,
       userSelected: json['userSelected'] != null
-          ? FhirBoolean(json['userSelected'])
+          ? FhirBoolean.fromJson(json['userSelected'])
           : null,
       userSelectedElement: json['_userSelected'] != null
           ? Element.fromJson(json['_userSelected'] as Map<String, dynamic>)

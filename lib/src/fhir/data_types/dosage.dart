@@ -112,13 +112,13 @@ class Dosage extends BackboneType {
           .toList();
     }
     if (sequence?.value != null) {
-      json['sequence'] = sequence!.value;
+      json['sequence'] = sequence!.toJson();
     }
     if (sequenceElement != null) {
       json['_sequence'] = sequenceElement!.toJson();
     }
     if (text?.value != null) {
-      json['text'] = text!.value;
+      json['text'] = text!.toJson();
     }
     if (textElement != null) {
       json['_text'] = textElement!.toJson();
@@ -129,7 +129,7 @@ class Dosage extends BackboneType {
           .toList();
     }
     if (patientInstruction?.value != null) {
-      json['patientInstruction'] = patientInstruction!.value;
+      json['patientInstruction'] = patientInstruction!.toJson();
     }
     if (patientInstructionElement != null) {
       json['_patientInstruction'] = patientInstructionElement!.toJson();
@@ -138,7 +138,7 @@ class Dosage extends BackboneType {
       json['timing'] = timing!.toJson();
     }
     if (asNeededBoolean?.value != null) {
-      json['asNeededBoolean'] = asNeededBoolean!.value;
+      json['asNeededBoolean'] = asNeededBoolean!.toJson();
     }
     if (asNeededBooleanElement != null) {
       json['_asNeededBoolean'] = asNeededBooleanElement!.toJson();
@@ -174,7 +174,7 @@ class Dosage extends BackboneType {
 
   factory Dosage.fromJson(Map<String, dynamic> json) {
     return Dosage(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -187,11 +187,13 @@ class Dosage extends BackboneType {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      sequence: json['sequence'] != null ? FhirInteger(json['sequence']) : null,
+      sequence: json['sequence'] != null
+          ? FhirInteger.fromJson(json['sequence'])
+          : null,
       sequenceElement: json['_sequence'] != null
           ? Element.fromJson(json['_sequence'] as Map<String, dynamic>)
           : null,
-      text: json['text'] != null ? FhirString(json['text']) : null,
+      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
       textElement: json['_text'] != null
           ? Element.fromJson(json['_text'] as Map<String, dynamic>)
           : null,
@@ -202,7 +204,7 @@ class Dosage extends BackboneType {
               .toList()
           : null,
       patientInstruction: json['patientInstruction'] != null
-          ? FhirString(json['patientInstruction'])
+          ? FhirString.fromJson(json['patientInstruction'])
           : null,
       patientInstructionElement: json['_patientInstruction'] != null
           ? Element.fromJson(
@@ -212,7 +214,7 @@ class Dosage extends BackboneType {
           ? Timing.fromJson(json['timing'] as Map<String, dynamic>)
           : null,
       asNeededBoolean: json['asNeededBoolean'] != null
-          ? FhirBoolean(json['asNeededBoolean'])
+          ? FhirBoolean.fromJson(json['asNeededBoolean'])
           : null,
       asNeededBooleanElement: json['_asNeededBoolean'] != null
           ? Element.fromJson(json['_asNeededBoolean'] as Map<String, dynamic>)
@@ -412,7 +414,7 @@ class DosageDoseAndRate extends Element {
 
   factory DosageDoseAndRate.fromJson(Map<String, dynamic> json) {
     return DosageDoseAndRate(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

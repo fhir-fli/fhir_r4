@@ -220,7 +220,7 @@ class Procedure extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -250,7 +250,7 @@ class Procedure extends DomainResource {
     }
     if (instantiatesCanonical != null && instantiatesCanonical!.isNotEmpty) {
       json['instantiatesCanonical'] =
-          instantiatesCanonical!.map((FhirCanonical v) => v.value).toList();
+          instantiatesCanonical!.map((FhirCanonical v) => v.toJson()).toList();
     }
     if (instantiatesCanonicalElement != null &&
         instantiatesCanonicalElement!.isNotEmpty) {
@@ -259,7 +259,7 @@ class Procedure extends DomainResource {
     }
     if (instantiatesUri != null && instantiatesUri!.isNotEmpty) {
       json['instantiatesUri'] =
-          instantiatesUri!.map((FhirUri v) => v.value).toList();
+          instantiatesUri!.map((FhirUri v) => v.toJson()).toList();
     }
     if (instantiatesUriElement != null && instantiatesUriElement!.isNotEmpty) {
       json['_instantiatesUri'] =
@@ -288,7 +288,7 @@ class Procedure extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
     if (performedDateTime?.value != null) {
-      json['performedDateTime'] = performedDateTime!.value;
+      json['performedDateTime'] = performedDateTime!.toJson();
     }
     if (performedDateTimeElement != null) {
       json['_performedDateTime'] = performedDateTimeElement!.toJson();
@@ -297,7 +297,7 @@ class Procedure extends DomainResource {
       json['performedPeriod'] = performedPeriod!.toJson();
     }
     if (performedString?.value != null) {
-      json['performedString'] = performedString!.value;
+      json['performedString'] = performedString!.toJson();
     }
     if (performedStringElement != null) {
       json['_performedString'] = performedStringElement!.toJson();
@@ -376,17 +376,21 @@ class Procedure extends DomainResource {
 
   factory Procedure.fromJson(Map<String, dynamic> json) {
     return Procedure(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -450,7 +454,10 @@ class Procedure extends DomainResource {
                   (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status: EventStatus.fromJson(json['status'] as Map<String, dynamic>),
+      status: EventStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       statusReason: json['statusReason'] != null
           ? CodeableConcept.fromJson(
               json['statusReason'] as Map<String, dynamic>)
@@ -466,7 +473,7 @@ class Procedure extends DomainResource {
           ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
           : null,
       performedDateTime: json['performedDateTime'] != null
-          ? FhirDateTime(json['performedDateTime'])
+          ? FhirDateTime.fromJson(json['performedDateTime'])
           : null,
       performedDateTimeElement: json['_performedDateTime'] != null
           ? Element.fromJson(json['_performedDateTime'] as Map<String, dynamic>)
@@ -475,7 +482,7 @@ class Procedure extends DomainResource {
           ? Period.fromJson(json['performedPeriod'] as Map<String, dynamic>)
           : null,
       performedString: json['performedString'] != null
-          ? FhirString(json['performedString'])
+          ? FhirString.fromJson(json['performedString'])
           : null,
       performedStringElement: json['_performedString'] != null
           ? Element.fromJson(json['_performedString'] as Map<String, dynamic>)
@@ -771,7 +778,7 @@ class ProcedurePerformer extends BackboneElement {
 
   factory ProcedurePerformer.fromJson(Map<String, dynamic> json) {
     return ProcedurePerformer(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -899,7 +906,7 @@ class ProcedureFocalDevice extends BackboneElement {
 
   factory ProcedureFocalDevice.fromJson(Map<String, dynamic> json) {
     return ProcedureFocalDevice(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

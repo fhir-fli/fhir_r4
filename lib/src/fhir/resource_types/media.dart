@@ -166,7 +166,7 @@ class Media extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -219,7 +219,7 @@ class Media extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
     if (createdDateTime?.value != null) {
-      json['createdDateTime'] = createdDateTime!.value;
+      json['createdDateTime'] = createdDateTime!.toJson();
     }
     if (createdDateTimeElement != null) {
       json['_createdDateTime'] = createdDateTimeElement!.toJson();
@@ -228,7 +228,7 @@ class Media extends DomainResource {
       json['createdPeriod'] = createdPeriod!.toJson();
     }
     if (issued?.value != null) {
-      json['issued'] = issued!.value;
+      json['issued'] = issued!.toJson();
     }
     if (issuedElement != null) {
       json['_issued'] = issuedElement!.toJson();
@@ -244,7 +244,7 @@ class Media extends DomainResource {
       json['bodySite'] = bodySite!.toJson();
     }
     if (deviceName?.value != null) {
-      json['deviceName'] = deviceName!.value;
+      json['deviceName'] = deviceName!.toJson();
     }
     if (deviceNameElement != null) {
       json['_deviceName'] = deviceNameElement!.toJson();
@@ -253,25 +253,25 @@ class Media extends DomainResource {
       json['device'] = device!.toJson();
     }
     if (height?.value != null) {
-      json['height'] = height!.value;
+      json['height'] = height!.toJson();
     }
     if (heightElement != null) {
       json['_height'] = heightElement!.toJson();
     }
     if (width?.value != null) {
-      json['width'] = width!.value;
+      json['width'] = width!.toJson();
     }
     if (widthElement != null) {
       json['_width'] = widthElement!.toJson();
     }
     if (frames?.value != null) {
-      json['frames'] = frames!.value;
+      json['frames'] = frames!.toJson();
     }
     if (framesElement != null) {
       json['_frames'] = framesElement!.toJson();
     }
     if (duration?.value != null) {
-      json['duration'] = duration!.value;
+      json['duration'] = duration!.toJson();
     }
     if (durationElement != null) {
       json['_duration'] = durationElement!.toJson();
@@ -285,17 +285,21 @@ class Media extends DomainResource {
 
   factory Media.fromJson(Map<String, dynamic> json) {
     return Media(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -336,7 +340,10 @@ class Media extends DomainResource {
                   (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status: EventStatus.fromJson(json['status'] as Map<String, dynamic>),
+      status: EventStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
           : null,
@@ -353,7 +360,7 @@ class Media extends DomainResource {
           ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
           : null,
       createdDateTime: json['createdDateTime'] != null
-          ? FhirDateTime(json['createdDateTime'])
+          ? FhirDateTime.fromJson(json['createdDateTime'])
           : null,
       createdDateTimeElement: json['_createdDateTime'] != null
           ? Element.fromJson(json['_createdDateTime'] as Map<String, dynamic>)
@@ -361,7 +368,8 @@ class Media extends DomainResource {
       createdPeriod: json['createdPeriod'] != null
           ? Period.fromJson(json['createdPeriod'] as Map<String, dynamic>)
           : null,
-      issued: json['issued'] != null ? FhirInstant(json['issued']) : null,
+      issued:
+          json['issued'] != null ? FhirInstant.fromJson(json['issued']) : null,
       issuedElement: json['_issued'] != null
           ? Element.fromJson(json['_issued'] as Map<String, dynamic>)
           : null,
@@ -377,27 +385,36 @@ class Media extends DomainResource {
       bodySite: json['bodySite'] != null
           ? CodeableConcept.fromJson(json['bodySite'] as Map<String, dynamic>)
           : null,
-      deviceName:
-          json['deviceName'] != null ? FhirString(json['deviceName']) : null,
+      deviceName: json['deviceName'] != null
+          ? FhirString.fromJson(json['deviceName'])
+          : null,
       deviceNameElement: json['_deviceName'] != null
           ? Element.fromJson(json['_deviceName'] as Map<String, dynamic>)
           : null,
       device: json['device'] != null
           ? Reference.fromJson(json['device'] as Map<String, dynamic>)
           : null,
-      height: json['height'] != null ? FhirPositiveInt(json['height']) : null,
+      height: json['height'] != null
+          ? FhirPositiveInt.fromJson(json['height'])
+          : null,
       heightElement: json['_height'] != null
           ? Element.fromJson(json['_height'] as Map<String, dynamic>)
           : null,
-      width: json['width'] != null ? FhirPositiveInt(json['width']) : null,
+      width: json['width'] != null
+          ? FhirPositiveInt.fromJson(json['width'])
+          : null,
       widthElement: json['_width'] != null
           ? Element.fromJson(json['_width'] as Map<String, dynamic>)
           : null,
-      frames: json['frames'] != null ? FhirPositiveInt(json['frames']) : null,
+      frames: json['frames'] != null
+          ? FhirPositiveInt.fromJson(json['frames'])
+          : null,
       framesElement: json['_frames'] != null
           ? Element.fromJson(json['_frames'] as Map<String, dynamic>)
           : null,
-      duration: json['duration'] != null ? FhirDecimal(json['duration']) : null,
+      duration: json['duration'] != null
+          ? FhirDecimal.fromJson(json['duration'])
+          : null,
       durationElement: json['_duration'] != null
           ? Element.fromJson(json['_duration'] as Map<String, dynamic>)
           : null,

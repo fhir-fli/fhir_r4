@@ -115,7 +115,7 @@ class PaymentReconciliation extends DomainResource {
       json['meta'] = meta!.toJson();
     }
     if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.value;
+      json['implicitRules'] = implicitRules!.toJson();
     }
     if (implicitRulesElement != null) {
       json['_implicitRules'] = implicitRulesElement!.toJson();
@@ -147,7 +147,7 @@ class PaymentReconciliation extends DomainResource {
     if (period != null) {
       json['period'] = period!.toJson();
     }
-    json['created'] = created.value;
+    json['created'] = created.toJson();
     if (createdElement != null) {
       json['_created'] = createdElement!.toJson();
     }
@@ -164,12 +164,12 @@ class PaymentReconciliation extends DomainResource {
       json['outcome'] = outcome!.toJson();
     }
     if (disposition?.value != null) {
-      json['disposition'] = disposition!.value;
+      json['disposition'] = disposition!.toJson();
     }
     if (dispositionElement != null) {
       json['_disposition'] = dispositionElement!.toJson();
     }
-    json['paymentDate'] = paymentDate.value;
+    json['paymentDate'] = paymentDate.toJson();
     if (paymentDateElement != null) {
       json['_paymentDate'] = paymentDateElement!.toJson();
     }
@@ -195,17 +195,21 @@ class PaymentReconciliation extends DomainResource {
 
   factory PaymentReconciliation.fromJson(Map<String, dynamic> json) {
     return PaymentReconciliation(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
-      implicitRules:
-          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
       implicitRulesElement: json['_implicitRules'] != null
           ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
@@ -234,12 +238,14 @@ class PaymentReconciliation extends DomainResource {
                   (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      status: FinancialResourceStatusCodes.fromJson(
-          json['status'] as Map<String, dynamic>),
+      status: FinancialResourceStatusCodes.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       period: json['period'] != null
           ? Period.fromJson(json['period'] as Map<String, dynamic>)
           : null,
-      created: FhirDateTime(json['created']),
+      created: FhirDateTime.fromJson(json['created']),
       createdElement: json['_created'] != null
           ? Element.fromJson(json['_created'] as Map<String, dynamic>)
           : null,
@@ -253,14 +259,18 @@ class PaymentReconciliation extends DomainResource {
           ? Reference.fromJson(json['requestor'] as Map<String, dynamic>)
           : null,
       outcome: json['outcome'] != null
-          ? RemittanceOutcome.fromJson(json['outcome'] as Map<String, dynamic>)
+          ? RemittanceOutcome.fromJson(json['outcome'])
           : null,
-      disposition:
-          json['disposition'] != null ? FhirString(json['disposition']) : null,
+      outcomeElement: json['_outcome'] != null
+          ? Element.fromJson(json['_outcome'] as Map<String, dynamic>)
+          : null,
+      disposition: json['disposition'] != null
+          ? FhirString.fromJson(json['disposition'])
+          : null,
       dispositionElement: json['_disposition'] != null
           ? Element.fromJson(json['_disposition'] as Map<String, dynamic>)
           : null,
-      paymentDate: FhirDate(json['paymentDate']),
+      paymentDate: FhirDate.fromJson(json['paymentDate']),
       paymentDateElement: json['_paymentDate'] != null
           ? Element.fromJson(json['_paymentDate'] as Map<String, dynamic>)
           : null,
@@ -485,7 +495,7 @@ class PaymentReconciliationDetail extends BackboneElement {
       json['response'] = response!.toJson();
     }
     if (date?.value != null) {
-      json['date'] = date!.value;
+      json['date'] = date!.toJson();
     }
     if (dateElement != null) {
       json['_date'] = dateElement!.toJson();
@@ -504,7 +514,7 @@ class PaymentReconciliationDetail extends BackboneElement {
 
   factory PaymentReconciliationDetail.fromJson(Map<String, dynamic> json) {
     return PaymentReconciliationDetail(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -533,7 +543,7 @@ class PaymentReconciliationDetail extends BackboneElement {
       response: json['response'] != null
           ? Reference.fromJson(json['response'] as Map<String, dynamic>)
           : null,
-      date: json['date'] != null ? FhirDate(json['date']) : null,
+      date: json['date'] != null ? FhirDate.fromJson(json['date']) : null,
       dateElement: json['_date'] != null
           ? Element.fromJson(json['_date'] as Map<String, dynamic>)
           : null,
@@ -667,7 +677,7 @@ class PaymentReconciliationProcessNote extends BackboneElement {
       json['type'] = type!.toJson();
     }
     if (text?.value != null) {
-      json['text'] = text!.value;
+      json['text'] = text!.toJson();
     }
     if (textElement != null) {
       json['_text'] = textElement!.toJson();
@@ -677,7 +687,7 @@ class PaymentReconciliationProcessNote extends BackboneElement {
 
   factory PaymentReconciliationProcessNote.fromJson(Map<String, dynamic> json) {
     return PaymentReconciliationProcessNote(
-      id: json['id'] != null ? FhirString(json['id']) : null,
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -690,10 +700,11 @@ class PaymentReconciliationProcessNote extends BackboneElement {
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      type: json['type'] != null
-          ? NoteType.fromJson(json['type'] as Map<String, dynamic>)
+      type: json['type'] != null ? NoteType.fromJson(json['type']) : null,
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
           : null,
-      text: json['text'] != null ? FhirString(json['text']) : null,
+      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
       textElement: json['_text'] != null
           ? Element.fromJson(json['_text'] as Map<String, dynamic>)
           : null,
