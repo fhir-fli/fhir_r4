@@ -98,7 +98,7 @@ class Device extends DomainResource {
 
   /// [statusReason] /// Reason for the dtatus of the Device availability.
   @JsonKey(name: 'statusReason')
-  final List<FHIRDeviceStatusReason>? statusReason;
+  final List<CodeableConcept>? statusReason;
 
   /// [distinctIdentifier] /// The distinct identification string as required by regulation for a human
   /// cell, tissue, or cellular and tissue-based product.
@@ -237,7 +237,7 @@ class Device extends DomainResource {
     List<DeviceUdiCarrier>? udiCarrier,
     FHIRDeviceStatus? status,
     Element? statusElement,
-    List<FHIRDeviceStatusReason>? statusReason,
+    List<CodeableConcept>? statusReason,
     FhirString? distinctIdentifier,
     Element? distinctIdentifierElement,
     FhirString? manufacturer,

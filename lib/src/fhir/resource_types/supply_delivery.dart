@@ -80,7 +80,7 @@ class SupplyDelivery extends DomainResource {
   /// Trial Fill, Completion of Trial, Partial Fill, Emergency Fill, Samples,
   /// etc.
   @JsonKey(name: 'type')
-  final SupplyItemType? type;
+  final CodeableConcept? type;
 
   /// [suppliedItem] /// The item that is being delivered or has been supplied.
   @JsonKey(name: 'suppliedItem')
@@ -139,7 +139,7 @@ class SupplyDelivery extends DomainResource {
     SupplyDeliveryStatus? status,
     Element? statusElement,
     Reference? patient,
-    SupplyItemType? type,
+    CodeableConcept? type,
     SupplyDeliverySuppliedItem? suppliedItem,
     FhirDateTime? occurrenceDateTime,
     Element? occurrenceDateTimeElement,

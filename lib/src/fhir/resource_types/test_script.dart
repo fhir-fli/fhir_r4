@@ -396,7 +396,7 @@ class TestScriptOrigin extends BackboneElement {
 
   /// [profile] /// The type of origin profile the test system supports.
   @JsonKey(name: 'profile')
-  final TestScriptProfileOriginType profile;
+  final Coding profile;
   factory TestScriptOrigin.fromJson(Map<String, dynamic> json) =>
       _$TestScriptOriginFromJson(json);
 
@@ -412,7 +412,7 @@ class TestScriptOrigin extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirInteger? index,
     Element? indexElement,
-    TestScriptProfileOriginType? profile,
+    Coding? profile,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -489,7 +489,7 @@ class TestScriptDestination extends BackboneElement {
 
   /// [profile] /// The type of destination profile the test system supports.
   @JsonKey(name: 'profile')
-  final TestScriptProfileDestinationType profile;
+  final Coding profile;
   factory TestScriptDestination.fromJson(Map<String, dynamic> json) =>
       _$TestScriptDestinationFromJson(json);
 
@@ -505,7 +505,7 @@ class TestScriptDestination extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirInteger? index,
     Element? indexElement,
-    TestScriptProfileDestinationType? profile,
+    Coding? profile,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1403,7 +1403,7 @@ class TestScriptOperation extends BackboneElement {
 
   /// [type] /// Server interaction or operation type.
   @JsonKey(name: 'type')
-  final TestScriptOperationCode? type;
+  final Coding? type;
 
   /// [resource] /// The type of the resource. See http://build.fhir.org/resourcelist.html.
   @JsonKey(name: 'resource')
@@ -1519,7 +1519,7 @@ class TestScriptOperation extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    TestScriptOperationCode? type,
+    Coding? type,
     FHIRDefinedType? resource,
     Element? resourceElement,
     FhirString? label,

@@ -127,7 +127,9 @@ ChargeItemDefinition _$ChargeItemDefinitionFromJson(
       effectivePeriod: json['effectivePeriod'] == null
           ? null
           : Period.fromJson(json['effectivePeriod'] as Map<String, dynamic>),
-      code: $enumDecodeNullable(_$ChargeItemCodeEnumMap, json['code']),
+      code: json['code'] == null
+          ? null
+          : CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       instance: (json['instance'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -302,12 +304,6 @@ const _$PublicationStatusEnumMap = {
   PublicationStatus.unknown: 'unknown',
 };
 
-const _$ChargeItemCodeEnumMap = {
-  ChargeItemCode.value1100: '1100',
-  ChargeItemCode.value1210: '1210',
-  ChargeItemCode.value1320: '1320',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -457,7 +453,7 @@ ChargeItemDefinitionApplicability _$ChargeItemDefinitionApplicabilityFromJson(
         Map<String, dynamic> json) =>
     ChargeItemDefinitionApplicability(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -515,7 +511,7 @@ Map<String, dynamic> _$ChargeItemDefinitionApplicabilityToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('description', instance.description?.toJson());
@@ -531,7 +527,7 @@ ChargeItemDefinitionPropertyGroup _$ChargeItemDefinitionPropertyGroupFromJson(
         Map<String, dynamic> json) =>
     ChargeItemDefinitionPropertyGroup(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -579,7 +575,7 @@ Map<String, dynamic> _$ChargeItemDefinitionPropertyGroupToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull(
@@ -593,7 +589,7 @@ ChargeItemDefinitionPriceComponent _$ChargeItemDefinitionPriceComponentFromJson(
         Map<String, dynamic> json) =>
     ChargeItemDefinitionPriceComponent(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -648,7 +644,7 @@ Map<String, dynamic> _$ChargeItemDefinitionPriceComponentToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();

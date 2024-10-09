@@ -81,12 +81,12 @@ class Claim extends DomainResource {
   /// [type] /// The category of claim, e.g. oral, pharmacy, vision, institutional,
   /// professional.
   @JsonKey(name: 'type')
-  final ClaimTypeCodes type;
+  final CodeableConcept type;
 
   /// [subType] /// A finer grained suite of claim type codes which may convey additional
   /// information such as Inpatient vs Outpatient and/or a specialty service.
   @JsonKey(name: 'subType')
-  final ExampleClaimSubTypeCodes? subType;
+  final CodeableConcept? subType;
 
   /// [use] /// A code to indicate whether the nature of the request is: to request
   /// adjudication of products and services previously rendered; or requesting
@@ -130,12 +130,12 @@ class Claim extends DomainResource {
   /// [priority] /// The provider-required urgency of processing the request. Typical values
   /// include: stat, routine deferred.
   @JsonKey(name: 'priority')
-  final ProcessPriorityCodes priority;
+  final CodeableConcept priority;
 
   /// [fundsReserve] /// A code to indicate whether and for whom funds are to be reserved for future
   /// claims.
   @JsonKey(name: 'fundsReserve')
-  final FundsReservationCodes? fundsReserve;
+  final CodeableConcept? fundsReserve;
 
   /// [related] /// Other claims which are related to this claim such as prior submissions or
   /// claims for related services or for the same event.
@@ -223,8 +223,8 @@ class Claim extends DomainResource {
     List<Identifier>? identifier,
     FinancialResourceStatusCodes? status,
     Element? statusElement,
-    ClaimTypeCodes? type,
-    ExampleClaimSubTypeCodes? subType,
+    CodeableConcept? type,
+    CodeableConcept? subType,
     Use? use,
     Element? useElement,
     Reference? patient,
@@ -234,8 +234,8 @@ class Claim extends DomainResource {
     Reference? enterer,
     Reference? insurer,
     Reference? provider,
-    ProcessPriorityCodes? priority,
-    FundsReservationCodes? fundsReserve,
+    CodeableConcept? priority,
+    CodeableConcept? fundsReserve,
     List<ClaimRelated>? related,
     Reference? prescription,
     Reference? originalPrescription,
@@ -356,7 +356,7 @@ class ClaimRelated extends BackboneElement {
 
   /// [relationship] /// A code to convey how the claims are related.
   @JsonKey(name: 'relationship')
-  final ExampleRelatedClaimRelationshipCodes? relationship;
+  final CodeableConcept? relationship;
 
   /// [reference] /// An alternate organizational reference to the case or file to which this
   /// particular claim pertains.
@@ -376,7 +376,7 @@ class ClaimRelated extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Reference? claim,
-    ExampleRelatedClaimRelationshipCodes? relationship,
+    CodeableConcept? relationship,
     Identifier? reference,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -446,7 +446,7 @@ class ClaimPayee extends BackboneElement {
 
   /// [type] /// Type of Party to be reimbursed: subscriber, provider, other.
   @JsonKey(name: 'type')
-  final ClaimPayeeTypeCodes type;
+  final CodeableConcept type;
 
   /// [party] /// Reference to the individual or organization to whom any payment will be
   /// made.
@@ -465,7 +465,7 @@ class ClaimPayee extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ClaimPayeeTypeCodes? type,
+    CodeableConcept? type,
     Reference? party,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -556,11 +556,11 @@ class ClaimCareTeam extends BackboneElement {
   /// [role] /// The lead, assisting or supervising practitioner and their discipline if a
   /// multidisciplinary team.
   @JsonKey(name: 'role')
-  final ClaimCareTeamRoleCodes? role;
+  final CodeableConcept? role;
 
   /// [qualification] /// The qualification of the practitioner which is applicable for this service.
   @JsonKey(name: 'qualification')
-  final ExampleProviderQualificationCodes? qualification;
+  final CodeableConcept? qualification;
   factory ClaimCareTeam.fromJson(Map<String, dynamic> json) =>
       _$ClaimCareTeamFromJson(json);
 
@@ -579,8 +579,8 @@ class ClaimCareTeam extends BackboneElement {
     Reference? provider,
     FhirBoolean? responsible,
     Element? responsibleElement,
-    ClaimCareTeamRoleCodes? role,
-    ExampleProviderQualificationCodes? qualification,
+    CodeableConcept? role,
+    CodeableConcept? qualification,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -673,13 +673,13 @@ class ClaimSupportingInfo extends BackboneElement {
   /// [category] /// The general class of the information supplied: information; exception;
   /// accident, employment; onset, etc.
   @JsonKey(name: 'category')
-  final ClaimInformationCategoryCodes category;
+  final CodeableConcept category;
 
   /// [code] /// System and code pertaining to the specific information regarding special
   /// conditions relating to the setting, treatment or patient for which care is
   /// sought.
   @JsonKey(name: 'code')
-  final ExceptionCodes? code;
+  final CodeableConcept? code;
 
   /// [timingDate] /// The date when or period to which this information refers.
   @JsonKey(name: 'timingDate')
@@ -723,7 +723,7 @@ class ClaimSupportingInfo extends BackboneElement {
   /// [reason] /// Provides the reason in the situation where a reason code is required in
   /// addition to the content.
   @JsonKey(name: 'reason')
-  final MissingToothReasonCodes? reason;
+  final CodeableConcept? reason;
   factory ClaimSupportingInfo.fromJson(Map<String, dynamic> json) =>
       _$ClaimSupportingInfoFromJson(json);
 
@@ -739,8 +739,8 @@ class ClaimSupportingInfo extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirPositiveInt? sequence,
     Element? sequenceElement,
-    ClaimInformationCategoryCodes? category,
-    ExceptionCodes? code,
+    CodeableConcept? category,
+    CodeableConcept? code,
     FhirDate? timingDate,
     Element? timingDateElement,
     Period? timingPeriod,
@@ -751,7 +751,7 @@ class ClaimSupportingInfo extends BackboneElement {
     Quantity? valueQuantity,
     Attachment? valueAttachment,
     Reference? valueReference,
-    MissingToothReasonCodes? reason,
+    CodeableConcept? reason,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -852,17 +852,17 @@ class ClaimDiagnosis extends BackboneElement {
 
   /// [type] /// When the condition was observed or the relative ranking.
   @JsonKey(name: 'type')
-  final List<ExampleDiagnosisTypeCodes>? type;
+  final List<CodeableConcept>? type;
 
   /// [onAdmission] /// Indication of whether the diagnosis was present on admission to a facility.
   @JsonKey(name: 'onAdmission')
-  final ExampleDiagnosisOnAdmissionCodes? onAdmission;
+  final CodeableConcept? onAdmission;
 
   /// [packageCode] /// A package billing code or bundle code used to group products and services
   /// to a particular health condition (such as heart attack) which is based on a
   /// predetermined grouping code system.
   @JsonKey(name: 'packageCode')
-  final ExampleDiagnosisRelatedGroupCodes? packageCode;
+  final CodeableConcept? packageCode;
   factory ClaimDiagnosis.fromJson(Map<String, dynamic> json) =>
       _$ClaimDiagnosisFromJson(json);
 
@@ -880,9 +880,9 @@ class ClaimDiagnosis extends BackboneElement {
     Element? sequenceElement,
     CodeableConcept? diagnosisCodeableConcept,
     Reference? diagnosisReference,
-    List<ExampleDiagnosisTypeCodes>? type,
-    ExampleDiagnosisOnAdmissionCodes? onAdmission,
-    ExampleDiagnosisRelatedGroupCodes? packageCode,
+    List<CodeableConcept>? type,
+    CodeableConcept? onAdmission,
+    CodeableConcept? packageCode,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -968,7 +968,7 @@ class ClaimProcedure extends BackboneElement {
 
   /// [type] /// When the condition was observed or the relative ranking.
   @JsonKey(name: 'type')
-  final List<ExampleProcedureTypeCodes>? type;
+  final List<CodeableConcept>? type;
 
   /// [date] /// Date and optionally time the procedure was performed.
   @JsonKey(name: 'date')
@@ -979,12 +979,12 @@ class ClaimProcedure extends BackboneElement {
   /// [procedureCodeableConcept] /// The code or reference to a Procedure resource which identifies the clinical
   /// intervention performed.
   @JsonKey(name: 'procedureCodeableConcept')
-  final ICD10ProcedureCodes procedureCodeableConcept;
+  final CodeableConcept procedureCodeableConcept;
 
   /// [procedureReference] /// The code or reference to a Procedure resource which identifies the clinical
   /// intervention performed.
   @JsonKey(name: 'procedureReference')
-  final ICD10ProcedureCodes procedureReference;
+  final Reference procedureReference;
 
   /// [udi] /// Unique Device Identifiers associated with this line item.
   @JsonKey(name: 'udi')
@@ -1004,11 +1004,11 @@ class ClaimProcedure extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirPositiveInt? sequence,
     Element? sequenceElement,
-    List<ExampleProcedureTypeCodes>? type,
+    List<CodeableConcept>? type,
     FhirDateTime? date,
     Element? dateElement,
-    ICD10ProcedureCodes? procedureCodeableConcept,
-    ICD10ProcedureCodes? procedureReference,
+    CodeableConcept? procedureCodeableConcept,
+    Reference? procedureReference,
     List<Reference>? udi,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1405,27 +1405,27 @@ class ClaimItem extends BackboneElement {
 
   /// [revenue] /// The type of revenue or cost center providing the product and/or service.
   @JsonKey(name: 'revenue')
-  final ExampleRevenueCenterCodes? revenue;
+  final CodeableConcept? revenue;
 
   /// [category] /// Code to identify the general type of benefits under which products and
   /// services are provided.
   @JsonKey(name: 'category')
-  final BenefitCategoryCodes? category;
+  final CodeableConcept? category;
 
   /// [productOrService] /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or other
   /// billing code for the item.
   @JsonKey(name: 'productOrService')
-  final USCLSCodes productOrService;
+  final CodeableConcept productOrService;
 
   /// [modifier] /// Item typification or modifiers codes to convey additional context for the
   /// product or service.
   @JsonKey(name: 'modifier')
-  final List<ModifierTypeCodes>? modifier;
+  final List<CodeableConcept>? modifier;
 
   /// [programCode] /// Identifies the program under which this may be recovered.
   @JsonKey(name: 'programCode')
-  final List<ExampleProgramReasonCodes>? programCode;
+  final List<CodeableConcept>? programCode;
 
   /// [servicedDate] /// The date or dates when the service or product was supplied, performed or
   /// completed.
@@ -1441,15 +1441,15 @@ class ClaimItem extends BackboneElement {
 
   /// [locationCodeableConcept] /// Where the product or service was provided.
   @JsonKey(name: 'locationCodeableConcept')
-  final ExampleServicePlaceCodes? locationCodeableConcept;
+  final CodeableConcept? locationCodeableConcept;
 
   /// [locationAddress] /// Where the product or service was provided.
   @JsonKey(name: 'locationAddress')
-  final ExampleServicePlaceCodes? locationAddress;
+  final Address? locationAddress;
 
   /// [locationReference] /// Where the product or service was provided.
   @JsonKey(name: 'locationReference')
-  final ExampleServicePlaceCodes? locationReference;
+  final Reference? locationReference;
 
   /// [quantity] /// The number of repetitions of a service or product.
   @JsonKey(name: 'quantity')
@@ -1480,11 +1480,11 @@ class ClaimItem extends BackboneElement {
 
   /// [bodySite] /// Physical service site on the patient (limb, tooth, etc.).
   @JsonKey(name: 'bodySite')
-  final OralSiteCodes? bodySite;
+  final CodeableConcept? bodySite;
 
   /// [subSite] /// A region or surface of the bodySite, e.g. limb region or tooth surface(s).
   @JsonKey(name: 'subSite')
-  final List<SurfaceCodes>? subSite;
+  final List<CodeableConcept>? subSite;
 
   /// [encounter] /// The Encounters during which this Claim was created or to which the creation
   /// of this record is tightly associated.
@@ -1518,25 +1518,25 @@ class ClaimItem extends BackboneElement {
     List<Element>? procedureSequenceElement,
     List<FhirPositiveInt>? informationSequence,
     List<Element>? informationSequenceElement,
-    ExampleRevenueCenterCodes? revenue,
-    BenefitCategoryCodes? category,
-    USCLSCodes? productOrService,
-    List<ModifierTypeCodes>? modifier,
-    List<ExampleProgramReasonCodes>? programCode,
+    CodeableConcept? revenue,
+    CodeableConcept? category,
+    CodeableConcept? productOrService,
+    List<CodeableConcept>? modifier,
+    List<CodeableConcept>? programCode,
     FhirDate? servicedDate,
     Element? servicedDateElement,
     Period? servicedPeriod,
-    ExampleServicePlaceCodes? locationCodeableConcept,
-    ExampleServicePlaceCodes? locationAddress,
-    ExampleServicePlaceCodes? locationReference,
+    CodeableConcept? locationCodeableConcept,
+    Address? locationAddress,
+    Reference? locationReference,
     Quantity? quantity,
     Money? unitPrice,
     FhirDecimal? factor,
     Element? factorElement,
     Money? net,
     List<Reference>? udi,
-    OralSiteCodes? bodySite,
-    List<SurfaceCodes>? subSite,
+    CodeableConcept? bodySite,
+    List<CodeableConcept>? subSite,
     List<Reference>? encounter,
     List<ClaimDetail>? detail,
     Map<String, Object?>? userData,
@@ -1658,27 +1658,27 @@ class ClaimDetail extends BackboneElement {
 
   /// [revenue] /// The type of revenue or cost center providing the product and/or service.
   @JsonKey(name: 'revenue')
-  final ExampleRevenueCenterCodes? revenue;
+  final CodeableConcept? revenue;
 
   /// [category] /// Code to identify the general type of benefits under which products and
   /// services are provided.
   @JsonKey(name: 'category')
-  final BenefitCategoryCodes? category;
+  final CodeableConcept? category;
 
   /// [productOrService] /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or other
   /// billing code for the item.
   @JsonKey(name: 'productOrService')
-  final USCLSCodes productOrService;
+  final CodeableConcept productOrService;
 
   /// [modifier] /// Item typification or modifiers codes to convey additional context for the
   /// product or service.
   @JsonKey(name: 'modifier')
-  final List<ModifierTypeCodes>? modifier;
+  final List<CodeableConcept>? modifier;
 
   /// [programCode] /// Identifies the program under which this may be recovered.
   @JsonKey(name: 'programCode')
-  final List<ExampleProgramReasonCodes>? programCode;
+  final List<CodeableConcept>? programCode;
 
   /// [quantity] /// The number of repetitions of a service or product.
   @JsonKey(name: 'quantity')
@@ -1726,11 +1726,11 @@ class ClaimDetail extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirPositiveInt? sequence,
     Element? sequenceElement,
-    ExampleRevenueCenterCodes? revenue,
-    BenefitCategoryCodes? category,
-    USCLSCodes? productOrService,
-    List<ModifierTypeCodes>? modifier,
-    List<ExampleProgramReasonCodes>? programCode,
+    CodeableConcept? revenue,
+    CodeableConcept? category,
+    CodeableConcept? productOrService,
+    List<CodeableConcept>? modifier,
+    List<CodeableConcept>? programCode,
     Quantity? quantity,
     Money? unitPrice,
     FhirDecimal? factor,
@@ -1834,27 +1834,27 @@ class ClaimSubDetail extends BackboneElement {
 
   /// [revenue] /// The type of revenue or cost center providing the product and/or service.
   @JsonKey(name: 'revenue')
-  final ExampleRevenueCenterCodes? revenue;
+  final CodeableConcept? revenue;
 
   /// [category] /// Code to identify the general type of benefits under which products and
   /// services are provided.
   @JsonKey(name: 'category')
-  final BenefitCategoryCodes? category;
+  final CodeableConcept? category;
 
   /// [productOrService] /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or other
   /// billing code for the item.
   @JsonKey(name: 'productOrService')
-  final USCLSCodes productOrService;
+  final CodeableConcept productOrService;
 
   /// [modifier] /// Item typification or modifiers codes to convey additional context for the
   /// product or service.
   @JsonKey(name: 'modifier')
-  final List<ModifierTypeCodes>? modifier;
+  final List<CodeableConcept>? modifier;
 
   /// [programCode] /// Identifies the program under which this may be recovered.
   @JsonKey(name: 'programCode')
-  final List<ExampleProgramReasonCodes>? programCode;
+  final List<CodeableConcept>? programCode;
 
   /// [quantity] /// The number of repetitions of a service or product.
   @JsonKey(name: 'quantity')
@@ -1897,11 +1897,11 @@ class ClaimSubDetail extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirPositiveInt? sequence,
     Element? sequenceElement,
-    ExampleRevenueCenterCodes? revenue,
-    BenefitCategoryCodes? category,
-    USCLSCodes? productOrService,
-    List<ModifierTypeCodes>? modifier,
-    List<ExampleProgramReasonCodes>? programCode,
+    CodeableConcept? revenue,
+    CodeableConcept? category,
+    CodeableConcept? productOrService,
+    List<CodeableConcept>? modifier,
+    List<CodeableConcept>? programCode,
     Quantity? quantity,
     Money? unitPrice,
     FhirDecimal? factor,

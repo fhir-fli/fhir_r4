@@ -43,9 +43,9 @@ Ingredient _$IngredientFromJson(Map<String, dynamic> json) => Ingredient(
       for_: (json['for'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
-      role: $enumDecode(_$IngredientRoleEnumMap, json['role']),
+      role: CodeableConcept.fromJson(json['role'] as Map<String, dynamic>),
       function_: (json['function'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$IngredientFunctionEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       allergenicIndicator: json['allergenicIndicator'] == null
           ? null
@@ -186,23 +186,6 @@ const _$PublicationStatusEnumMap = {
   PublicationStatus.active: 'active',
   PublicationStatus.retired: 'retired',
   PublicationStatus.unknown: 'unknown',
-};
-
-const _$IngredientRoleEnumMap = {
-  IngredientRole.value100000072072: '100000072072',
-  IngredientRole.value100000072073: '100000072073',
-  IngredientRole.value100000072082: '100000072082',
-  IngredientRole.value100000136065: '100000136065',
-  IngredientRole.value100000136066: '100000136066',
-  IngredientRole.value100000136178: '100000136178',
-  IngredientRole.value100000136179: '100000136179',
-  IngredientRole.value100000136561: '100000136561',
-  IngredientRole.value200000003427: '200000003427',
-};
-
-const _$IngredientFunctionEnumMap = {
-  IngredientFunction.Antioxidant: 'Antioxidant',
-  IngredientFunction.AlkalizingAgent: 'AlkalizingAgent',
 };
 
 const _$R4ResourceTypeEnumMap = {
@@ -354,7 +337,7 @@ IngredientManufacturer _$IngredientManufacturerFromJson(
         Map<String, dynamic> json) =>
     IngredientManufacturer(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -401,7 +384,7 @@ Map<String, dynamic> _$IngredientManufacturerToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('role', instance.role?.toJson());
@@ -419,7 +402,7 @@ const _$IngredientManufacturerRoleEnumMap = {
 IngredientSubstance _$IngredientSubstanceFromJson(Map<String, dynamic> json) =>
     IngredientSubstance(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -462,7 +445,7 @@ Map<String, dynamic> _$IngredientSubstanceToJson(IngredientSubstance instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['code'] = instance.code.toJson();
@@ -473,7 +456,7 @@ Map<String, dynamic> _$IngredientSubstanceToJson(IngredientSubstance instance) {
 IngredientStrength _$IngredientStrengthFromJson(Map<String, dynamic> json) =>
     IngredientStrength(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -552,7 +535,7 @@ Map<String, dynamic> _$IngredientStrengthToJson(IngredientStrength instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('presentationRatio', instance.presentationRatio?.toJson());
@@ -578,7 +561,7 @@ IngredientReferenceStrength _$IngredientReferenceStrengthFromJson(
         Map<String, dynamic> json) =>
     IngredientReferenceStrength(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -635,7 +618,7 @@ Map<String, dynamic> _$IngredientReferenceStrengthToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('substance', instance.substance?.toJson());

@@ -225,7 +225,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   /// [product] /// Identifies the type of vision correction product which is required for the
   /// patient.
   @JsonKey(name: 'product')
-  final ExampleVisionPrescriptionProductCodes product;
+  final CodeableConcept product;
 
   /// [eye] /// The eye for which the lens specification applies.
   @JsonKey(name: 'eye')
@@ -313,7 +313,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ExampleVisionPrescriptionProductCodes? product,
+    CodeableConcept? product,
     VisionEyes? eye,
     Element? eyeElement,
     FhirDecimal? sphere,

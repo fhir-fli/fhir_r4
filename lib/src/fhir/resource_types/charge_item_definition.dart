@@ -223,7 +223,7 @@ class ChargeItemDefinition extends DomainResource {
   /// [code] /// The defined billing details in this resource pertain to the given billing
   /// code.
   @JsonKey(name: 'code')
-  final ChargeItemCode? code;
+  final CodeableConcept? code;
 
   /// [instance] /// The defined billing details in this resource pertain to the given product
   /// instance(s).
@@ -292,7 +292,7 @@ class ChargeItemDefinition extends DomainResource {
     FhirDate? lastReviewDate,
     Element? lastReviewDateElement,
     Period? effectivePeriod,
-    ChargeItemCode? code,
+    CodeableConcept? code,
     List<Reference>? instance,
     List<ChargeItemDefinitionApplicability>? applicability,
     List<ChargeItemDefinitionPropertyGroup>? propertyGroup,

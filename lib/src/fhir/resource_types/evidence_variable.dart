@@ -453,7 +453,7 @@ class EvidenceVariableCharacteristic extends BackboneElement {
 
   /// [method] /// Method used for describing characteristic.
   @JsonKey(name: 'method')
-  final CharacteristicMethod? method;
+  final CodeableConcept? method;
 
   /// [device] /// Device used for determining characteristic.
   @JsonKey(name: 'device')
@@ -495,7 +495,7 @@ class EvidenceVariableCharacteristic extends BackboneElement {
     Element? definitionCanonicalElement,
     CodeableConcept? definitionCodeableConcept,
     FhirExpression? definitionExpression,
-    CharacteristicMethod? method,
+    CodeableConcept? method,
     Reference? device,
     FhirBoolean? exclude,
     Element? excludeElement,

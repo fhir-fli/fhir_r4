@@ -194,7 +194,7 @@ class ActivityDefinition extends DomainResource {
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
   @JsonKey(name: 'subjectCodeableConcept')
-  final SubjectType? subjectCodeableConcept;
+  final CodeableConcept? subjectCodeableConcept;
 
   /// [subjectReference] /// A code, group definition, or canonical reference that describes or
   /// identifies the intended subject of the activity being defined. Canonical
@@ -204,7 +204,7 @@ class ActivityDefinition extends DomainResource {
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
   @JsonKey(name: 'subjectReference')
-  final SubjectType? subjectReference;
+  final Reference? subjectReference;
 
   /// [subjectCanonical] /// A code, group definition, or canonical reference that describes or
   /// identifies the intended subject of the activity being defined. Canonical
@@ -304,7 +304,7 @@ class ActivityDefinition extends DomainResource {
   /// high-level categorization of the activity that can be useful for filtering
   /// and searching.
   @JsonKey(name: 'topic')
-  final List<DefinitionTopic>? topic;
+  final List<CodeableConcept>? topic;
 
   /// [author] /// An individiual or organization primarily involved in the creation and
   /// maintenance of the content.
@@ -512,8 +512,8 @@ class ActivityDefinition extends DomainResource {
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
-    SubjectType? subjectCodeableConcept,
-    SubjectType? subjectReference,
+    CodeableConcept? subjectCodeableConcept,
+    Reference? subjectReference,
     SubjectType? subjectCanonical,
     Element? subjectCanonicalElement,
     FhirDateTime? date,
@@ -536,7 +536,7 @@ class ActivityDefinition extends DomainResource {
     FhirDate? lastReviewDate,
     Element? lastReviewDateElement,
     Period? effectivePeriod,
-    List<DefinitionTopic>? topic,
+    List<CodeableConcept>? topic,
     List<ContactDetail>? author,
     List<ContactDetail>? editor,
     List<ContactDetail>? reviewer,

@@ -9,7 +9,7 @@ part of 'expression.dart';
 FhirExpression _$FhirExpressionFromJson(Map<String, dynamic> json) =>
     FhirExpression(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       description: json['description'] == null
@@ -71,7 +71,7 @@ Map<String, dynamic> _$FhirExpressionToJson(FhirExpression instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('description', instance.description?.toJson());
   writeNotNull('_description', instance.descriptionElement?.toJson());
   writeNotNull('name', instance.name?.toJson());

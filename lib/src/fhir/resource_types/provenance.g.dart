@@ -60,8 +60,9 @@ Provenance _$ProvenanceFromJson(Map<String, dynamic> json) => Provenance(
       reason: (json['reason'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
-      activity: $enumDecodeNullable(
-          _$ProvenanceActivityTypeEnumMap, json['activity']),
+      activity: json['activity'] == null
+          ? null
+          : CodeableConcept.fromJson(json['activity'] as Map<String, dynamic>),
       agent: (json['agent'] as List<dynamic>)
           .map((e) => ProvenanceAgent.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -194,20 +195,6 @@ const _$CommonLanguagesEnumMap = {
   CommonLanguages.zh_HK: 'zh-HK',
   CommonLanguages.zh_SG: 'zh-SG',
   CommonLanguages.zh_TW: 'zh-TW',
-};
-
-const _$ProvenanceActivityTypeEnumMap = {
-  ProvenanceActivityType.LA: 'LA',
-  ProvenanceActivityType.ANONY: 'ANONY',
-  ProvenanceActivityType.DEID: 'DEID',
-  ProvenanceActivityType.MASK: 'MASK',
-  ProvenanceActivityType.LABEL: 'LABEL',
-  ProvenanceActivityType.PSEUD: 'PSEUD',
-  ProvenanceActivityType.CREATE: 'CREATE',
-  ProvenanceActivityType.DELETE: 'DELETE',
-  ProvenanceActivityType.UPDATE: 'UPDATE',
-  ProvenanceActivityType.APPEND: 'APPEND',
-  ProvenanceActivityType.NULLIFY: 'NULLIFY',
 };
 
 const _$R4ResourceTypeEnumMap = {
@@ -358,16 +345,17 @@ const _$R4ResourceTypeEnumMap = {
 ProvenanceAgent _$ProvenanceAgentFromJson(Map<String, dynamic> json) =>
     ProvenanceAgent(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type:
-          $enumDecodeNullable(_$ProvenanceParticipantTypeEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       role: (json['role'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$SecurityRoleTypeEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       who: Reference.fromJson(json['who'] as Map<String, dynamic>),
       onBehalfOf: json['onBehalfOf'] == null
@@ -406,7 +394,7 @@ Map<String, dynamic> _$ProvenanceAgentToJson(ProvenanceAgent instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.toJson());
@@ -416,92 +404,10 @@ Map<String, dynamic> _$ProvenanceAgentToJson(ProvenanceAgent instance) {
   return val;
 }
 
-const _$ProvenanceParticipantTypeEnumMap = {
-  ProvenanceParticipantType.enterer: 'enterer',
-  ProvenanceParticipantType.performer: 'performer',
-  ProvenanceParticipantType.author: 'author',
-  ProvenanceParticipantType.verifier: 'verifier',
-  ProvenanceParticipantType.attester: 'attester',
-  ProvenanceParticipantType.informant: 'informant',
-  ProvenanceParticipantType.custodian: 'custodian',
-  ProvenanceParticipantType.assembler: 'assembler',
-  ProvenanceParticipantType.composer: 'composer',
-};
-
-const _$SecurityRoleTypeEnumMap = {
-  SecurityRoleType.AMENDER: 'AMENDER',
-  SecurityRoleType.COAUTH: 'COAUTH',
-  SecurityRoleType.CONT: 'CONT',
-  SecurityRoleType.EVTWIT: 'EVTWIT',
-  SecurityRoleType.PRIMAUTH: 'PRIMAUTH',
-  SecurityRoleType.REVIEWER: 'REVIEWER',
-  SecurityRoleType.SOURCE: 'SOURCE',
-  SecurityRoleType.TRANS: 'TRANS',
-  SecurityRoleType.VALID: 'VALID',
-  SecurityRoleType.VERF: 'VERF',
-  SecurityRoleType.AFFL: 'AFFL',
-  SecurityRoleType.AGNT: 'AGNT',
-  SecurityRoleType.ASSIGNED: 'ASSIGNED',
-  SecurityRoleType.CLAIM: 'CLAIM',
-  SecurityRoleType.COVPTY: 'COVPTY',
-  SecurityRoleType.DEPEN: 'DEPEN',
-  SecurityRoleType.ECON: 'ECON',
-  SecurityRoleType.EMP: 'EMP',
-  SecurityRoleType.GUARD: 'GUARD',
-  SecurityRoleType.INVSBJ: 'INVSBJ',
-  SecurityRoleType.NAMED: 'NAMED',
-  SecurityRoleType.NOK: 'NOK',
-  SecurityRoleType.PAT: 'PAT',
-  SecurityRoleType.PROV: 'PROV',
-  SecurityRoleType.NOT: 'NOT',
-  SecurityRoleType.CLASSIFIER: 'CLASSIFIER',
-  SecurityRoleType.CONSENTER: 'CONSENTER',
-  SecurityRoleType.CONSWIT: 'CONSWIT',
-  SecurityRoleType.COPART: 'COPART',
-  SecurityRoleType.DECLASSIFIER: 'DECLASSIFIER',
-  SecurityRoleType.DELEGATEE: 'DELEGATEE',
-  SecurityRoleType.DELEGATOR: 'DELEGATOR',
-  SecurityRoleType.DOWNGRDER: 'DOWNGRDER',
-  SecurityRoleType.DPOWATT: 'DPOWATT',
-  SecurityRoleType.EXCEST: 'EXCEST',
-  SecurityRoleType.GRANTEE: 'GRANTEE',
-  SecurityRoleType.GRANTOR: 'GRANTOR',
-  SecurityRoleType.GT: 'GT',
-  SecurityRoleType.GUADLTM: 'GUADLTM',
-  SecurityRoleType.HPOWATT: 'HPOWATT',
-  SecurityRoleType.INTPRTER: 'INTPRTER',
-  SecurityRoleType.POWATT: 'POWATT',
-  SecurityRoleType.RESPRSN: 'RESPRSN',
-  SecurityRoleType.SPOWATT: 'SPOWATT',
-  SecurityRoleType.AUCG: 'AUCG',
-  SecurityRoleType.AULR: 'AULR',
-  SecurityRoleType.AUTM: 'AUTM',
-  SecurityRoleType.AUWA: 'AUWA',
-  SecurityRoleType.PROMSK: 'PROMSK',
-  SecurityRoleType.AUT: 'AUT',
-  SecurityRoleType.CST: 'CST',
-  SecurityRoleType.INF: 'INF',
-  SecurityRoleType.IRCP: 'IRCP',
-  SecurityRoleType.LA: 'LA',
-  SecurityRoleType.TRC: 'TRC',
-  SecurityRoleType.WIT: 'WIT',
-  SecurityRoleType.authserver: 'authserver',
-  SecurityRoleType.datacollector: 'datacollector',
-  SecurityRoleType.dataprocessor: 'dataprocessor',
-  SecurityRoleType.datasubject: 'datasubject',
-  SecurityRoleType.humanuser: 'humanuser',
-  SecurityRoleType.value110150: '110150',
-  SecurityRoleType.value110151: '110151',
-  SecurityRoleType.value110152: '110152',
-  SecurityRoleType.value110153: '110153',
-  SecurityRoleType.value110154: '110154',
-  SecurityRoleType.value110155: '110155',
-};
-
 ProvenanceEntity _$ProvenanceEntityFromJson(Map<String, dynamic> json) =>
     ProvenanceEntity(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -548,7 +454,7 @@ Map<String, dynamic> _$ProvenanceEntityToJson(ProvenanceEntity instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['role'] = instance.role.toJson();

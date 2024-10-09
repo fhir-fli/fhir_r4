@@ -381,7 +381,7 @@ class ImagingStudySeries extends BackboneElement {
   /// consistent with any laterality information indicated in
   /// ImagingStudy.series.bodySite.
   @JsonKey(name: 'laterality')
-  final Laterality? laterality;
+  final Coding? laterality;
 
   /// [specimen] /// The specimen imaged, e.g., for whole slide imaging of a biopsy.
   @JsonKey(name: 'specimen')
@@ -425,7 +425,7 @@ class ImagingStudySeries extends BackboneElement {
     Element? numberOfInstancesElement,
     List<Reference>? endpoint,
     Coding? bodySite,
-    Laterality? laterality,
+    Coding? laterality,
     List<Reference>? specimen,
     FhirDateTime? started,
     Element? startedElement,
@@ -513,7 +513,7 @@ class ImagingStudyPerformer extends BackboneElement {
 
   /// [function_] /// Distinguishes the type of involvement of the performer in the series.
   @JsonKey(name: 'function')
-  final ImagingStudySeriesPerformerFunction? function_;
+  final CodeableConcept? function_;
 
   /// [actor] /// Indicates who or what performed the series.
   @JsonKey(name: 'actor')
@@ -531,7 +531,7 @@ class ImagingStudyPerformer extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ImagingStudySeriesPerformerFunction? function_,
+    CodeableConcept? function_,
     Reference? actor,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

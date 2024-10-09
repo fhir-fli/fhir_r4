@@ -104,7 +104,7 @@ class MessageHeader extends DomainResource {
   /// [reason] /// Coded indication of the cause for the event - indicates a reason for the
   /// occurrence of the event that is a focus of this message.
   @JsonKey(name: 'reason')
-  final ExampleMessageReasonCodes? reason;
+  final CodeableConcept? reason;
 
   /// [response] /// Information about the message that this message is a response to. Only
   /// present if this message is a response.
@@ -150,7 +150,7 @@ class MessageHeader extends DomainResource {
     Reference? author,
     MessageHeaderSource? source,
     Reference? responsible,
-    ExampleMessageReasonCodes? reason,
+    CodeableConcept? reason,
     MessageHeaderResponse? response,
     List<Reference>? focus,
     FhirCanonical? definition,

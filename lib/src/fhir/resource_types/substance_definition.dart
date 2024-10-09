@@ -70,7 +70,7 @@ class SubstanceDefinition extends DomainResource {
 
   /// [status] /// Status of substance within the catalogue e.g. active, retired.
   @JsonKey(name: 'status')
-  final PublicationStatus? status;
+  final CodeableConcept? status;
 
   /// [classification] /// A high level categorization, e.g. polymer or nucleic acid, or food,
   /// chemical, biological, or a lower level such as the general types of polymer
@@ -81,12 +81,12 @@ class SubstanceDefinition extends DomainResource {
 
   /// [domain] /// If the substance applies to human or veterinary use.
   @JsonKey(name: 'domain')
-  final MedicinalProductDomain? domain;
+  final CodeableConcept? domain;
 
   /// [grade] /// The quality standard, established benchmark, to which substance complies
   /// (e.g. USP/NF, Ph. Eur, JP, BP, Company Standard).
   @JsonKey(name: 'grade')
-  final List<SubstanceGrade>? grade;
+  final List<CodeableConcept>? grade;
 
   /// [description] /// Textual description of the substance.
   @JsonKey(name: 'description')
@@ -168,10 +168,10 @@ class SubstanceDefinition extends DomainResource {
     List<Identifier>? identifier,
     FhirString? version,
     Element? versionElement,
-    PublicationStatus? status,
+    CodeableConcept? status,
     List<CodeableConcept>? classification,
-    MedicinalProductDomain? domain,
-    List<SubstanceGrade>? grade,
+    CodeableConcept? domain,
+    List<CodeableConcept>? grade,
     FhirMarkdown? description,
     Element? descriptionElement,
     List<Reference>? informationSource,
@@ -302,11 +302,11 @@ class SubstanceDefinitionMoiety extends BackboneElement {
 
   /// [stereochemistry] /// Stereochemistry type.
   @JsonKey(name: 'stereochemistry')
-  final Stereochemistry? stereochemistry;
+  final CodeableConcept? stereochemistry;
 
   /// [opticalActivity] /// Optical activity type.
   @JsonKey(name: 'opticalActivity')
-  final OpticalActivity? opticalActivity;
+  final CodeableConcept? opticalActivity;
 
   /// [molecularFormula] /// Molecular formula for this moiety of this substance, typically using the
   /// Hill system.
@@ -330,7 +330,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   /// to indicate whether the amount refers to, for example, a mole ratio or
   /// weight ratio.
   @JsonKey(name: 'measurementType')
-  final SubstanceAmountType? measurementType;
+  final CodeableConcept? measurementType;
   factory SubstanceDefinitionMoiety.fromJson(Map<String, dynamic> json) =>
       _$SubstanceDefinitionMoietyFromJson(json);
 
@@ -348,14 +348,14 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     Identifier? identifier,
     FhirString? name,
     Element? nameElement,
-    Stereochemistry? stereochemistry,
-    OpticalActivity? opticalActivity,
+    CodeableConcept? stereochemistry,
+    CodeableConcept? opticalActivity,
     FhirString? molecularFormula,
     Element? molecularFormulaElement,
     Quantity? amountQuantity,
     FhirString? amountString,
     Element? amountStringElement,
-    SubstanceAmountType? measurementType,
+    CodeableConcept? measurementType,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -559,12 +559,12 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
 
   /// [method] /// The method by which the molecular weight was determined.
   @JsonKey(name: 'method')
-  final WeightMethod? method;
+  final CodeableConcept? method;
 
   /// [type] /// Type of molecular weight such as exact, average (also known as. number
   /// average), weight average.
   @JsonKey(name: 'type')
-  final WeightType? type;
+  final CodeableConcept? type;
 
   /// [amount] /// Used to capture quantitative values for a variety of elements. If only
   /// limits are given, the arithmetic mean would be the average. If only a
@@ -587,8 +587,8 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    WeightMethod? method,
-    WeightType? type,
+    CodeableConcept? method,
+    CodeableConcept? type,
     Quantity? amount,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -666,11 +666,11 @@ class SubstanceDefinitionStructure extends BackboneElement {
 
   /// [stereochemistry] /// Stereochemistry type.
   @JsonKey(name: 'stereochemistry')
-  final Stereochemistry? stereochemistry;
+  final CodeableConcept? stereochemistry;
 
   /// [opticalActivity] /// Optical activity type.
   @JsonKey(name: 'opticalActivity')
-  final OpticalActivity? opticalActivity;
+  final CodeableConcept? opticalActivity;
 
   /// [molecularFormula] /// Molecular formula of this substance, typically using the Hill system.
   @JsonKey(name: 'molecularFormula')
@@ -694,7 +694,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
   /// substance. Examples: X-ray, HPLC, NMR, Peptide mapping, Ligand binding
   /// assay.
   @JsonKey(name: 'technique')
-  final List<StructureTechnique>? technique;
+  final List<CodeableConcept>? technique;
 
   /// [sourceDocument] /// The source of information about the structure.
   @JsonKey(name: 'sourceDocument')
@@ -716,14 +716,14 @@ class SubstanceDefinitionStructure extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Stereochemistry? stereochemistry,
-    OpticalActivity? opticalActivity,
+    CodeableConcept? stereochemistry,
+    CodeableConcept? opticalActivity,
     FhirString? molecularFormula,
     Element? molecularFormulaElement,
     FhirString? molecularFormulaByMoiety,
     Element? molecularFormulaByMoietyElement,
     SubstanceDefinitionMolecularWeight? molecularWeight,
-    List<StructureTechnique>? technique,
+    List<CodeableConcept>? technique,
     List<Reference>? sourceDocument,
     List<SubstanceDefinitionRepresentation>? representation,
     Map<String, Object?>? userData,
@@ -806,7 +806,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
 
   /// [type] /// The kind of structural representation (e.g. full, partial).
   @JsonKey(name: 'type')
-  final SubstanceRepresentationType? type;
+  final CodeableConcept? type;
 
   /// [representation] /// The structural representation or characterization as a text string in a
   /// standard format.
@@ -819,7 +819,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
   /// PDB, mmCIF. The logical content type rather than the physical file format
   /// of a document.
   @JsonKey(name: 'format')
-  final SubstanceRepresentationFormat? format;
+  final CodeableConcept? format;
 
   /// [document] /// An attached file with the structural representation or characterization
   /// e.g. a molecular structure graphic of the substance, a JCAMP or AnIML file.
@@ -840,10 +840,10 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    SubstanceRepresentationType? type,
+    CodeableConcept? type,
     FhirString? representation,
     Element? representationElement,
-    SubstanceRepresentationFormat? format,
+    CodeableConcept? format,
     Reference? document,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -924,7 +924,7 @@ class SubstanceDefinitionCode extends BackboneElement {
 
   /// [status] /// Status of the code assignment, for example 'provisional', 'approved'.
   @JsonKey(name: 'status')
-  final PublicationStatus? status;
+  final CodeableConcept? status;
 
   /// [statusDate] /// The date at which the code status was changed as part of the terminology
   /// maintenance.
@@ -954,7 +954,7 @@ class SubstanceDefinitionCode extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? code,
-    PublicationStatus? status,
+    CodeableConcept? status,
     FhirDateTime? statusDate,
     Element? statusDateElement,
     List<Annotation>? note,
@@ -1046,11 +1046,11 @@ class SubstanceDefinitionName extends BackboneElement {
 
   /// [type] /// Name type, for example 'systematic', 'scientific, 'brand'.
   @JsonKey(name: 'type')
-  final SubstanceNameType? type;
+  final CodeableConcept? type;
 
   /// [status] /// The status of the name, for example 'current', 'proposed'.
   @JsonKey(name: 'status')
-  final PublicationStatus? status;
+  final CodeableConcept? status;
 
   /// [preferred] /// If this is the preferred name for this substance.
   @JsonKey(name: 'preferred')
@@ -1060,12 +1060,12 @@ class SubstanceDefinitionName extends BackboneElement {
 
   /// [language] /// Human language that the name is written in.
   @JsonKey(name: 'language')
-  final List<CommonLanguages>? language;
+  final List<CodeableConcept>? language;
 
   /// [domain] /// The use context of this name for example if there is a different name a
   /// drug active ingredient as opposed to a food colour additive.
   @JsonKey(name: 'domain')
-  final List<SubstanceNameDomain>? domain;
+  final List<CodeableConcept>? domain;
 
   /// [jurisdiction] /// The jurisdiction where this name applies.
   @JsonKey(name: 'jurisdiction')
@@ -1101,12 +1101,12 @@ class SubstanceDefinitionName extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? name,
     Element? nameElement,
-    SubstanceNameType? type,
-    PublicationStatus? status,
+    CodeableConcept? type,
+    CodeableConcept? status,
     FhirBoolean? preferred,
     Element? preferredElement,
-    List<CommonLanguages>? language,
-    List<SubstanceNameDomain>? domain,
+    List<CodeableConcept>? language,
+    List<CodeableConcept>? domain,
     List<CodeableConcept>? jurisdiction,
     List<SubstanceDefinitionName>? synonym,
     List<SubstanceDefinitionName>? translation,
@@ -1191,11 +1191,11 @@ class SubstanceDefinitionOfficial extends BackboneElement {
 
   /// [authority] /// Which authority uses this official name.
   @JsonKey(name: 'authority')
-  final SubstanceNameAuthority? authority;
+  final CodeableConcept? authority;
 
   /// [status] /// The status of the official name, for example 'draft', 'active', 'retired'.
   @JsonKey(name: 'status')
-  final PublicationStatus? status;
+  final CodeableConcept? status;
 
   /// [date] /// Date of the official name change.
   @JsonKey(name: 'date')
@@ -1215,8 +1215,8 @@ class SubstanceDefinitionOfficial extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    SubstanceNameAuthority? authority,
-    PublicationStatus? status,
+    CodeableConcept? authority,
+    CodeableConcept? status,
     FhirDateTime? date,
     Element? dateElement,
     Map<String, Object?>? userData,
@@ -1309,7 +1309,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
   /// [type] /// For example "salt to parent", "active moiety", "starting material",
   /// "polymorph", "impurity of".
   @JsonKey(name: 'type')
-  final SubstanceRelationshipType type;
+  final CodeableConcept type;
 
   /// [isDefining] /// For example where an enzyme strongly bonds with a particular substance,
   /// this is a defining relationship for that enzyme, out of several possible
@@ -1346,7 +1346,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
   /// [comparator] /// An operator for the amount, for example "average", "approximately", "less
   /// than".
   @JsonKey(name: 'comparator')
-  final SubstanceAmountType? comparator;
+  final CodeableConcept? comparator;
 
   /// [source] /// Supporting literature.
   @JsonKey(name: 'source')
@@ -1367,7 +1367,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Reference? substanceDefinitionReference,
     CodeableConcept? substanceDefinitionCodeableConcept,
-    SubstanceRelationshipType? type,
+    CodeableConcept? type,
     FhirBoolean? isDefining,
     Element? isDefiningElement,
     Quantity? amountQuantity,
@@ -1375,7 +1375,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     FhirString? amountString,
     Element? amountStringElement,
     Ratio? ratioHighLimitAmount,
-    SubstanceAmountType? comparator,
+    CodeableConcept? comparator,
     List<Reference>? source,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1460,21 +1460,21 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
   /// [type] /// A classification that provides the origin of the raw material. Example: cat
   /// hair would be an Animal source type.
   @JsonKey(name: 'type')
-  final SourceMaterialType? type;
+  final CodeableConcept? type;
 
   /// [genus] /// The genus of an organism, typically referring to the Latin epithet of the
   /// genus element of the plant/animal scientific name.
   @JsonKey(name: 'genus')
-  final SourceMaterialGenus? genus;
+  final CodeableConcept? genus;
 
   /// [species] /// The species of an organism, typically referring to the Latin epithet of the
   /// species of the plant/animal.
   @JsonKey(name: 'species')
-  final SourceMaterialSpecies? species;
+  final CodeableConcept? species;
 
   /// [part_] /// An anatomical origin of the source material within an organism.
   @JsonKey(name: 'part')
-  final SourceMaterialPart? part_;
+  final CodeableConcept? part_;
 
   /// [countryOfOrigin] /// The country or countries where the material is harvested.
   @JsonKey(name: 'countryOfOrigin')
@@ -1494,10 +1494,10 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    SourceMaterialType? type,
-    SourceMaterialGenus? genus,
-    SourceMaterialSpecies? species,
-    SourceMaterialPart? part_,
+    CodeableConcept? type,
+    CodeableConcept? genus,
+    CodeableConcept? species,
+    CodeableConcept? part_,
     List<CodeableConcept>? countryOfOrigin,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

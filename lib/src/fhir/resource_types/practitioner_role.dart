@@ -84,7 +84,7 @@ class PractitionerRole extends DomainResource {
 
   /// [specialty] /// Specific specialty of the practitioner.
   @JsonKey(name: 'specialty')
-  final List<PracticeSettingCodeValueSet>? specialty;
+  final List<CodeableConcept>? specialty;
 
   /// [location] /// The location(s) at which this practitioner provides care.
   @JsonKey(name: 'location')
@@ -148,7 +148,7 @@ class PractitionerRole extends DomainResource {
     Reference? practitioner,
     Reference? organization,
     List<CodeableConcept>? code,
-    List<PracticeSettingCodeValueSet>? specialty,
+    List<CodeableConcept>? specialty,
     List<Reference>? location,
     List<Reference>? healthcareService,
     List<ContactPoint>? telecom,

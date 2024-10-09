@@ -60,19 +60,19 @@ class Slot extends DomainResource {
   /// [serviceCategory] /// A broad categorization of the service that is to be performed during this
   /// appointment.
   @JsonKey(name: 'serviceCategory')
-  final List<ServiceCategory>? serviceCategory;
+  final List<CodeableConcept>? serviceCategory;
 
   /// [serviceType] /// The type of appointments that can be booked into this slot (ideally this
   /// would be an identifiable service - which is at a location, rather than the
   /// location itself). If provided then this overrides the value provided on the
   /// availability resource.
   @JsonKey(name: 'serviceType')
-  final List<ServiceType>? serviceType;
+  final List<CodeableConcept>? serviceType;
 
   /// [specialty] /// The specialty of a practitioner that would be required to perform the
   /// service requested in this appointment.
   @JsonKey(name: 'specialty')
-  final List<PracticeSettingCodeValueSet>? specialty;
+  final List<CodeableConcept>? specialty;
 
   /// [appointmentType] /// The style of appointment or patient that may be booked in the slot (not
   /// service type).
@@ -135,9 +135,9 @@ class Slot extends DomainResource {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    List<ServiceCategory>? serviceCategory,
-    List<ServiceType>? serviceType,
-    List<PracticeSettingCodeValueSet>? specialty,
+    List<CodeableConcept>? serviceCategory,
+    List<CodeableConcept>? serviceType,
+    List<CodeableConcept>? specialty,
     CodeableConcept? appointmentType,
     Reference? schedule,
     SlotStatus? status,

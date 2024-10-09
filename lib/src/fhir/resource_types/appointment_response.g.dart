@@ -52,7 +52,7 @@ AppointmentResponse _$AppointmentResponseFromJson(Map<String, dynamic> json) =>
           ? null
           : Element.fromJson(json['_end'] as Map<String, dynamic>),
       participantType: (json['participantType'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ParticipantTypeEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       actor: json['actor'] == null
           ? null
@@ -190,14 +190,6 @@ const _$CommonLanguagesEnumMap = {
   CommonLanguages.zh_HK: 'zh-HK',
   CommonLanguages.zh_SG: 'zh-SG',
   CommonLanguages.zh_TW: 'zh-TW',
-};
-
-const _$ParticipantTypeEnumMap = {
-  ParticipantType.SPRF: 'SPRF',
-  ParticipantType.PPRF: 'PPRF',
-  ParticipantType.PART: 'PART',
-  ParticipantType.translator: 'translator',
-  ParticipantType.emergency: 'emergency',
 };
 
 const _$ParticipationStatusEnumMap = {

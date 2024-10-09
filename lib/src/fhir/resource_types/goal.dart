@@ -75,16 +75,16 @@ class Goal extends DomainResource {
   /// [achievementStatus] /// Describes the progression, or lack thereof, towards the goal against the
   /// target.
   @JsonKey(name: 'achievementStatus')
-  final GoalAchievementStatus? achievementStatus;
+  final CodeableConcept? achievementStatus;
 
   /// [category] /// Indicates a category the goal falls within.
   @JsonKey(name: 'category')
-  final List<GoalCategory>? category;
+  final List<CodeableConcept>? category;
 
   /// [priority] /// Identifies the mutually agreed level of importance associated with
   /// reaching/sustaining the goal.
   @JsonKey(name: 'priority')
-  final GoalPriority? priority;
+  final CodeableConcept? priority;
 
   /// [description] /// Human-readable and/or coded description of a specific desired objective of
   /// care, such as "control blood pressure" or "negotiate an obstacle course" or
@@ -105,7 +105,7 @@ class Goal extends DomainResource {
 
   /// [startCodeableConcept] /// The date or event after which the goal should begin being pursued.
   @JsonKey(name: 'startCodeableConcept')
-  final GoalStartEvent? startCodeableConcept;
+  final CodeableConcept? startCodeableConcept;
 
   /// [target] /// Indicates what should be done by when.
   @JsonKey(name: 'target')
@@ -167,14 +167,14 @@ class Goal extends DomainResource {
     List<Identifier>? identifier,
     GoalLifecycleStatus? lifecycleStatus,
     Element? lifecycleStatusElement,
-    GoalAchievementStatus? achievementStatus,
-    List<GoalCategory>? category,
-    GoalPriority? priority,
+    CodeableConcept? achievementStatus,
+    List<CodeableConcept>? category,
+    CodeableConcept? priority,
     CodeableConcept? description,
     Reference? subject,
     GoalStartEvent? startDate,
     Element? startDateElement,
-    GoalStartEvent? startCodeableConcept,
+    CodeableConcept? startCodeableConcept,
     List<GoalTarget>? target,
     FhirDate? statusDate,
     Element? statusDateElement,

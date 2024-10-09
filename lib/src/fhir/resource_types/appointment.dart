@@ -88,21 +88,21 @@ class Appointment extends DomainResource {
   /// reporting/billing/futher processing to determine if further actions are
   /// required, or specific fees apply.
   @JsonKey(name: 'cancelationReason')
-  final AppointmentCancellationReason? cancelationReason;
+  final CodeableConcept? cancelationReason;
 
   /// [serviceCategory] /// A broad categorization of the service that is to be performed during this
   /// appointment.
   @JsonKey(name: 'serviceCategory')
-  final List<ServiceCategory>? serviceCategory;
+  final List<CodeableConcept>? serviceCategory;
 
   /// [serviceType] /// The specific service that is to be performed during this appointment.
   @JsonKey(name: 'serviceType')
-  final List<ServiceType>? serviceType;
+  final List<CodeableConcept>? serviceType;
 
   /// [specialty] /// The specialty of a practitioner that would be required to perform the
   /// service requested in this appointment.
   @JsonKey(name: 'specialty')
-  final List<PracticeSettingCodeValueSet>? specialty;
+  final List<CodeableConcept>? specialty;
 
   /// [appointmentType] /// The style of appointment or patient that has been booked in the slot (not
   /// service type).
@@ -236,10 +236,10 @@ class Appointment extends DomainResource {
     List<Identifier>? identifier,
     AppointmentStatus? status,
     Element? statusElement,
-    AppointmentCancellationReason? cancelationReason,
-    List<ServiceCategory>? serviceCategory,
-    List<ServiceType>? serviceType,
-    List<PracticeSettingCodeValueSet>? specialty,
+    CodeableConcept? cancelationReason,
+    List<CodeableConcept>? serviceCategory,
+    List<CodeableConcept>? serviceType,
+    List<CodeableConcept>? specialty,
     CodeableConcept? appointmentType,
     List<CodeableConcept>? reasonCode,
     List<Reference>? reasonReference,
@@ -374,7 +374,7 @@ class AppointmentParticipant extends BackboneElement {
 
   /// [type] /// Role of participant in the appointment.
   @JsonKey(name: 'type')
-  final List<ParticipantType>? type;
+  final List<CodeableConcept>? type;
 
   /// [actor] /// A Person, Location/HealthcareService or Device that is participating in the
   /// appointment.
@@ -411,7 +411,7 @@ class AppointmentParticipant extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    List<ParticipantType>? type,
+    List<CodeableConcept>? type,
     Reference? actor,
     ParticipantRequired? required_,
     Element? requiredElement,

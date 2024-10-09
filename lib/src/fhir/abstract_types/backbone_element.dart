@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
 /// Base class for elements inside a resource but not those in a data type.
+@JsonSerializable()
 abstract class BackboneElement extends DataType {
   /// Constructor for BackboneElement
   const BackboneElement({
@@ -21,6 +23,7 @@ abstract class BackboneElement extends DataType {
   String get fhirType => 'BackboneElement';
 
   /// List of modifier extensions for additional, non-core information
+  @JsonKey(name: 'modifierExtension')
   final List<FhirExtension>? modifierExtension;
 
   /// Method to check if there are any modifier extensions
@@ -73,7 +76,7 @@ abstract class BackboneElement extends DataType {
       json['id'] = id?.value;
     }
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['_extension'] =
+      json['extension'] =
           extension_!.map((FhirExtension e) => e.toJson()).toList();
     }
     if (modifierExtension?.isNotEmpty ?? false) {

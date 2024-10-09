@@ -8,7 +8,7 @@ part of 'sampled_data.dart';
 
 SampledData _$SampledDataFromJson(Map<String, dynamic> json) => SampledData(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       origin: Quantity.fromJson(json['origin'] as Map<String, dynamic>),
@@ -74,7 +74,7 @@ Map<String, dynamic> _$SampledDataToJson(SampledData instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   val['origin'] = instance.origin.toJson();
   val['period'] = instance.period.toJson();
   writeNotNull('_period', instance.periodElement?.toJson());

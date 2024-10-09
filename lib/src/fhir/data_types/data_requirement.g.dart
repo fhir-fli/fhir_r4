@@ -9,7 +9,7 @@ part of 'data_requirement.dart';
 DataRequirement _$DataRequirementFromJson(Map<String, dynamic> json) =>
     DataRequirement(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       type: $enumDecode(_$FHIRAllTypesEnumMap, json['type']),
@@ -22,10 +22,14 @@ DataRequirement _$DataRequirementFromJson(Map<String, dynamic> json) =>
       profileElement: (json['_profile'] as List<dynamic>?)
           ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
           .toList(),
-      subjectCodeableConcept: $enumDecodeNullable(
-          _$SubjectTypeEnumMap, json['subjectCodeableConcept']),
-      subjectReference:
-          $enumDecodeNullable(_$SubjectTypeEnumMap, json['subjectReference']),
+      subjectCodeableConcept: json['subjectCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['subjectCodeableConcept'] as Map<String, dynamic>),
+      subjectReference: json['subjectReference'] == null
+          ? null
+          : Reference.fromJson(
+              json['subjectReference'] as Map<String, dynamic>),
       mustSupport: (json['mustSupport'] as List<dynamic>?)
           ?.map(FhirString.fromJson)
           .toList(),
@@ -82,7 +86,7 @@ Map<String, dynamic> _$DataRequirementToJson(DataRequirement instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();
   writeNotNull('_type', instance.typeElement?.toJson());
   writeNotNull('profile', instance.profile?.map((e) => e.toJson()).toList());
@@ -175,19 +179,11 @@ const _$FHIRAllTypesEnumMap = {
   FHIRAllTypes.Any: 'Any',
 };
 
-const _$SubjectTypeEnumMap = {
-  SubjectType.Patient: 'Patient',
-  SubjectType.Practitioner: 'Practitioner',
-  SubjectType.Organization: 'Organization',
-  SubjectType.Location: 'Location',
-  SubjectType.Device: 'Device',
-};
-
 DataRequirementCodeFilter _$DataRequirementCodeFilterFromJson(
         Map<String, dynamic> json) =>
     DataRequirementCodeFilter(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       path: json['path'] == null ? null : FhirString.fromJson(json['path']),
@@ -243,7 +239,7 @@ Map<String, dynamic> _$DataRequirementCodeFilterToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('path', instance.path?.toJson());
   writeNotNull('_path', instance.pathElement?.toJson());
   writeNotNull('searchParam', instance.searchParam?.toJson());
@@ -258,7 +254,7 @@ DataRequirementDateFilter _$DataRequirementDateFilterFromJson(
         Map<String, dynamic> json) =>
     DataRequirementDateFilter(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       path: json['path'] == null ? null : FhirString.fromJson(json['path']),
@@ -318,7 +314,7 @@ Map<String, dynamic> _$DataRequirementDateFilterToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('path', instance.path?.toJson());
   writeNotNull('_path', instance.pathElement?.toJson());
   writeNotNull('searchParam', instance.searchParam?.toJson());
@@ -333,7 +329,7 @@ Map<String, dynamic> _$DataRequirementDateFilterToJson(
 DataRequirementSort _$DataRequirementSortFromJson(Map<String, dynamic> json) =>
     DataRequirementSort(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       path: FhirString.fromJson(json['path']),
@@ -377,7 +373,7 @@ Map<String, dynamic> _$DataRequirementSortToJson(DataRequirementSort instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   val['path'] = instance.path.toJson();
   writeNotNull('_path', instance.pathElement?.toJson());
   val['direction'] = instance.direction.toJson();

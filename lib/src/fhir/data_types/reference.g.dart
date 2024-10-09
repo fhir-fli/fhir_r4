@@ -8,7 +8,7 @@ part of 'reference.dart';
 
 Reference _$ReferenceFromJson(Map<String, dynamic> json) => Reference(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       reference: json['reference'] == null
@@ -62,7 +62,7 @@ Map<String, dynamic> _$ReferenceToJson(Reference instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('reference', instance.reference?.toJson());
   writeNotNull('_reference', instance.referenceElement?.toJson());
   writeNotNull('type', instance.type?.toJson());

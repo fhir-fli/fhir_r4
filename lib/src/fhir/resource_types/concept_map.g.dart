@@ -430,7 +430,7 @@ const _$R4ResourceTypeEnumMap = {
 ConceptMapGroup _$ConceptMapGroupFromJson(Map<String, dynamic> json) =>
     ConceptMapGroup(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -496,7 +496,7 @@ Map<String, dynamic> _$ConceptMapGroupToJson(ConceptMapGroup instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('source', instance.source?.toJson());
@@ -515,7 +515,7 @@ Map<String, dynamic> _$ConceptMapGroupToJson(ConceptMapGroup instance) {
 ConceptMapElement _$ConceptMapElementFromJson(Map<String, dynamic> json) =>
     ConceptMapElement(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -566,7 +566,7 @@ Map<String, dynamic> _$ConceptMapElementToJson(ConceptMapElement instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('code', instance.code?.toJson());
@@ -580,7 +580,7 @@ Map<String, dynamic> _$ConceptMapElementToJson(ConceptMapElement instance) {
 ConceptMapTarget _$ConceptMapTargetFromJson(Map<String, dynamic> json) =>
     ConceptMapTarget(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -644,7 +644,7 @@ Map<String, dynamic> _$ConceptMapTargetToJson(ConceptMapTarget instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('code', instance.code?.toJson());
@@ -669,7 +669,7 @@ const _$ConceptMapEquivalenceEnumMap = {
 ConceptMapDependsOn _$ConceptMapDependsOnFromJson(Map<String, dynamic> json) =>
     ConceptMapDependsOn(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -727,7 +727,7 @@ Map<String, dynamic> _$ConceptMapDependsOnToJson(ConceptMapDependsOn instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['property'] = instance.property.toJson();
@@ -744,7 +744,7 @@ Map<String, dynamic> _$ConceptMapDependsOnToJson(ConceptMapDependsOn instance) {
 ConceptMapUnmapped _$ConceptMapUnmappedFromJson(Map<String, dynamic> json) =>
     ConceptMapUnmapped(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -800,7 +800,7 @@ Map<String, dynamic> _$ConceptMapUnmappedToJson(ConceptMapUnmapped instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['mode'] = instance.mode.toJson();

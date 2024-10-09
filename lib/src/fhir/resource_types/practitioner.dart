@@ -101,7 +101,7 @@ class Practitioner extends DomainResource {
 
   /// [communication] /// A language the practitioner can use in patient communication.
   @JsonKey(name: 'communication')
-  final List<CommonLanguages>? communication;
+  final List<CodeableConcept>? communication;
   factory Practitioner.fromJson(Map<String, dynamic> json) =>
       _$PractitionerFromJson(json);
 
@@ -134,7 +134,7 @@ class Practitioner extends DomainResource {
     Element? birthDateElement,
     List<Attachment>? photo,
     List<PractitionerQualification>? qualification,
-    List<CommonLanguages>? communication,
+    List<CodeableConcept>? communication,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

@@ -8,14 +8,16 @@ part of 'identifier.dart';
 
 Identifier _$IdentifierFromJson(Map<String, dynamic> json) => Identifier(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       use: $enumDecodeNullable(_$IdentifierUseEnumMap, json['use']),
       useElement: json['_use'] == null
           ? null
           : Element.fromJson(json['_use'] as Map<String, dynamic>),
-      type: $enumDecodeNullable(_$IdentifierTypeCodesEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       system: json['system'] == null ? null : FhirUri.fromJson(json['system']),
       systemElement: json['_system'] == null
           ? null
@@ -63,7 +65,7 @@ Map<String, dynamic> _$IdentifierToJson(Identifier instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('use', instance.use?.toJson());
   writeNotNull('_use', instance.useElement?.toJson());
   writeNotNull('type', instance.type?.toJson());
@@ -82,25 +84,4 @@ const _$IdentifierUseEnumMap = {
   IdentifierUse.temp: 'temp',
   IdentifierUse.secondary: 'secondary',
   IdentifierUse.old: 'old',
-};
-
-const _$IdentifierTypeCodesEnumMap = {
-  IdentifierTypeCodes.DL: 'DL',
-  IdentifierTypeCodes.PPN: 'PPN',
-  IdentifierTypeCodes.BRN: 'BRN',
-  IdentifierTypeCodes.MR: 'MR',
-  IdentifierTypeCodes.MCN: 'MCN',
-  IdentifierTypeCodes.EN: 'EN',
-  IdentifierTypeCodes.TAX: 'TAX',
-  IdentifierTypeCodes.NIIP: 'NIIP',
-  IdentifierTypeCodes.PRN: 'PRN',
-  IdentifierTypeCodes.MD: 'MD',
-  IdentifierTypeCodes.DR: 'DR',
-  IdentifierTypeCodes.ACSN: 'ACSN',
-  IdentifierTypeCodes.UDI: 'UDI',
-  IdentifierTypeCodes.SNO: 'SNO',
-  IdentifierTypeCodes.SB: 'SB',
-  IdentifierTypeCodes.PLAC: 'PLAC',
-  IdentifierTypeCodes.FILL: 'FILL',
-  IdentifierTypeCodes.JHN: 'JHN',
 };

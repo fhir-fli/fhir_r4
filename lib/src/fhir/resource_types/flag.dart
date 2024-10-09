@@ -62,7 +62,7 @@ class Flag extends DomainResource {
   /// administrative etc. Intended to be used as a means of filtering which flags
   /// are displayed to particular user or in a given context.
   @JsonKey(name: 'category')
-  final List<FlagCategory>? category;
+  final List<CodeableConcept>? category;
 
   /// [code] /// The coded value or textual component of the flag to display to the user.
   @JsonKey(name: 'code')
@@ -107,7 +107,7 @@ class Flag extends DomainResource {
     List<Identifier>? identifier,
     FlagStatus? status,
     Element? statusElement,
-    List<FlagCategory>? category,
+    List<CodeableConcept>? category,
     CodeableConcept? code,
     Reference? subject,
     Period? period,

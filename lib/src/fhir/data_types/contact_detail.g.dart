@@ -9,7 +9,7 @@ part of 'contact_detail.dart';
 ContactDetail _$ContactDetailFromJson(Map<String, dynamic> json) =>
     ContactDetail(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       name: json['name'] == null ? null : FhirString.fromJson(json['name']),
@@ -52,7 +52,7 @@ Map<String, dynamic> _$ContactDetailToJson(ContactDetail instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('name', instance.name?.toJson());
   writeNotNull('_name', instance.nameElement?.toJson());
   writeNotNull('telecom', instance.telecom?.map((e) => e.toJson()).toList());

@@ -847,7 +847,7 @@ class CodeSystemDesignation extends BackboneElement {
 
   /// [use] /// A code that details how this designation would be used.
   @JsonKey(name: 'use')
-  final DesignationUse? use;
+  final Coding? use;
 
   /// [value] /// The text value for this designation.
   @JsonKey(name: 'value')
@@ -869,7 +869,7 @@ class CodeSystemDesignation extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CommonLanguages? language,
     Element? languageElement,
-    DesignationUse? use,
+    Coding? use,
     FhirString? value,
     Element? valueElement,
     Map<String, Object?>? userData,

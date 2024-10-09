@@ -88,7 +88,7 @@ class ImmunizationEvaluation extends DomainResource {
 
   /// [targetDisease] /// The vaccine preventable disease the dose is being evaluated against.
   @JsonKey(name: 'targetDisease')
-  final ImmunizationEvaluationTargetDiseaseCodes targetDisease;
+  final CodeableConcept targetDisease;
 
   /// [immunizationEvent] /// The vaccine administration event being evaluated.
   @JsonKey(name: 'immunizationEvent')
@@ -97,12 +97,12 @@ class ImmunizationEvaluation extends DomainResource {
   /// [doseStatus] /// Indicates if the dose is valid or not valid with respect to the published
   /// recommendations.
   @JsonKey(name: 'doseStatus')
-  final ImmunizationEvaluationDoseStatusCodes doseStatus;
+  final CodeableConcept doseStatus;
 
   /// [doseStatusReason] /// Provides an explanation as to why the vaccine administration event is valid
   /// or not relative to the published recommendations.
   @JsonKey(name: 'doseStatusReason')
-  final List<ImmunizationEvaluationDoseStatusReasonCodes>? doseStatusReason;
+  final List<CodeableConcept>? doseStatusReason;
 
   /// [description] /// Additional information about the evaluation.
   @JsonKey(name: 'description')
@@ -167,10 +167,10 @@ class ImmunizationEvaluation extends DomainResource {
     FhirDateTime? date,
     Element? dateElement,
     Reference? authority,
-    ImmunizationEvaluationTargetDiseaseCodes? targetDisease,
+    CodeableConcept? targetDisease,
     Reference? immunizationEvent,
-    ImmunizationEvaluationDoseStatusCodes? doseStatus,
-    List<ImmunizationEvaluationDoseStatusReasonCodes>? doseStatusReason,
+    CodeableConcept? doseStatus,
+    List<CodeableConcept>? doseStatusReason,
     FhirString? description,
     Element? descriptionElement,
     FhirString? series,

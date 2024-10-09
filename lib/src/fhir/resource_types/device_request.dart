@@ -190,7 +190,7 @@ class DeviceRequest extends DomainResource {
 
   /// [reasonCode] /// Reason or justification for the use of this device.
   @JsonKey(name: 'reasonCode')
-  final List<ConditionProblemDiagnosisCodes>? reasonCode;
+  final List<CodeableConcept>? reasonCode;
 
   /// [reasonReference] /// Reason or justification for the use of this device.
   @JsonKey(name: 'reasonReference')
@@ -265,7 +265,7 @@ class DeviceRequest extends DomainResource {
     Reference? requester,
     CodeableConcept? performerType,
     Reference? performer,
-    List<ConditionProblemDiagnosisCodes>? reasonCode,
+    List<CodeableConcept>? reasonCode,
     List<Reference>? reasonReference,
     List<Reference>? insurance,
     List<Reference>? supportingInfo,

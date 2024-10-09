@@ -86,6 +86,7 @@ Future<List<String>> r4Validation({required bool isYaml}) async {
       final dynamic errorContents = jsonDecode(contents);
       print(
           'Error with file $file\nResource: ${errorContents["resourceType"]}/${errorContents["id"]} Error: $e');
+      rethrow;
     }
   }
   return errors;

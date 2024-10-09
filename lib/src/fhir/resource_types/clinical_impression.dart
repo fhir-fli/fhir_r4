@@ -334,7 +334,7 @@ class ClinicalImpressionInvestigation extends BackboneElement {
   /// list is not constrained, and others such groups such as
   /// (exposure|family|travel|nutritional) history may be used.
   @JsonKey(name: 'code')
-  final InvestigationType code;
+  final CodeableConcept code;
 
   /// [item] /// A record of a specific investigation that was undertaken.
   @JsonKey(name: 'item')
@@ -353,7 +353,7 @@ class ClinicalImpressionInvestigation extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    InvestigationType? code,
+    CodeableConcept? code,
     List<Reference>? item,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -426,7 +426,7 @@ class ClinicalImpressionFinding extends BackboneElement {
   /// [itemCodeableConcept] /// Specific text or code for finding or diagnosis, which may include ruled-out
   /// or resolved conditions.
   @JsonKey(name: 'itemCodeableConcept')
-  final ConditionProblemDiagnosisCodes? itemCodeableConcept;
+  final CodeableConcept? itemCodeableConcept;
 
   /// [itemReference] /// Specific reference for finding or diagnosis, which may include ruled-out or
   /// resolved conditions.
@@ -451,7 +451,7 @@ class ClinicalImpressionFinding extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ConditionProblemDiagnosisCodes? itemCodeableConcept,
+    CodeableConcept? itemCodeableConcept,
     Reference? itemReference,
     FhirString? basis,
     Element? basisElement,

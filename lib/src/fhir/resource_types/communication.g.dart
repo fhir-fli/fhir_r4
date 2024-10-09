@@ -63,10 +63,12 @@ Communication _$CommunicationFromJson(Map<String, dynamic> json) =>
       statusElement: json['_status'] == null
           ? null
           : Element.fromJson(json['_status'] as Map<String, dynamic>),
-      statusReason: $enumDecodeNullable(
-          _$CommunicationNotDoneReasonEnumMap, json['statusReason']),
+      statusReason: json['statusReason'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['statusReason'] as Map<String, dynamic>),
       category: (json['category'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$CommunicationCategoryEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       priority: $enumDecodeNullable(_$RequestPriorityEnumMap, json['priority']),
       priorityElement: json['_priority'] == null
@@ -78,7 +80,9 @@ Communication _$CommunicationFromJson(Map<String, dynamic> json) =>
       subject: json['subject'] == null
           ? null
           : Reference.fromJson(json['subject'] as Map<String, dynamic>),
-      topic: $enumDecodeNullable(_$CommunicationTopicEnumMap, json['topic']),
+      topic: json['topic'] == null
+          ? null
+          : CodeableConcept.fromJson(json['topic'] as Map<String, dynamic>),
       about: (json['about'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -273,36 +277,11 @@ const _$EventStatusEnumMap = {
   EventStatus.unknown: 'unknown',
 };
 
-const _$CommunicationNotDoneReasonEnumMap = {
-  CommunicationNotDoneReason.unknown: 'unknown',
-  CommunicationNotDoneReason.system_error: 'system-error',
-  CommunicationNotDoneReason.invalid_phone_number: 'invalid-phone-number',
-  CommunicationNotDoneReason.recipient_unavailable: 'recipient-unavailable',
-  CommunicationNotDoneReason.family_objection: 'family-objection',
-  CommunicationNotDoneReason.patient_objection: 'patient-objection',
-};
-
-const _$CommunicationCategoryEnumMap = {
-  CommunicationCategory.alert: 'alert',
-  CommunicationCategory.notification: 'notification',
-  CommunicationCategory.reminder: 'reminder',
-  CommunicationCategory.instruction: 'instruction',
-};
-
 const _$RequestPriorityEnumMap = {
   RequestPriority.routine: 'routine',
   RequestPriority.urgent: 'urgent',
   RequestPriority.asap: 'asap',
   RequestPriority.stat: 'stat',
-};
-
-const _$CommunicationTopicEnumMap = {
-  CommunicationTopic.prescription_refill_request: 'prescription-refill-request',
-  CommunicationTopic.progress_update: 'progress-update',
-  CommunicationTopic.report_labs: 'report-labs',
-  CommunicationTopic.appointment_reminder: 'appointment-reminder',
-  CommunicationTopic.phone_consult: 'phone-consult',
-  CommunicationTopic.summary_report: 'summary-report',
 };
 
 const _$R4ResourceTypeEnumMap = {
@@ -454,7 +433,7 @@ CommunicationPayload _$CommunicationPayloadFromJson(
         Map<String, dynamic> json) =>
     CommunicationPayload(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -502,7 +481,7 @@ Map<String, dynamic> _$CommunicationPayloadToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['contentString'] = instance.contentString.toJson();

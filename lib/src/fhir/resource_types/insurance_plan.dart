@@ -248,7 +248,7 @@ class InsurancePlanContact extends BackboneElement {
 
   /// [purpose] /// Indicates a purpose for which the contact can be reached.
   @JsonKey(name: 'purpose')
-  final ContactEntityType? purpose;
+  final CodeableConcept? purpose;
 
   /// [name] /// A name associated with the contact.
   @JsonKey(name: 'name')
@@ -275,7 +275,7 @@ class InsurancePlanContact extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ContactEntityType? purpose,
+    CodeableConcept? purpose,
     HumanName? name,
     List<ContactPoint>? telecom,
     Address? address,

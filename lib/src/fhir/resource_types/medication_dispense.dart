@@ -89,17 +89,17 @@ class MedicationDispense extends DomainResource {
 
   /// [statusReasonCodeableConcept] /// Indicates the reason why a dispense was not performed.
   @JsonKey(name: 'statusReasonCodeableConcept')
-  final MedicationDispenseStatusReasonCodes? statusReasonCodeableConcept;
+  final CodeableConcept? statusReasonCodeableConcept;
 
   /// [statusReasonReference] /// Indicates the reason why a dispense was not performed.
   @JsonKey(name: 'statusReasonReference')
-  final MedicationDispenseStatusReasonCodes? statusReasonReference;
+  final Reference? statusReasonReference;
 
   /// [category] /// Indicates the type of medication dispense (for example, where the
   /// medication is expected to be consumed or administered (i.e. inpatient or
   /// outpatient)).
   @JsonKey(name: 'category')
-  final MedicationDispenseCategoryCodes? category;
+  final CodeableConcept? category;
 
   /// [medicationCodeableConcept] /// Identifies the medication being administered. This is either a link to a
   /// resource representing the details of the medication or a simple attribute
@@ -230,9 +230,9 @@ class MedicationDispense extends DomainResource {
     List<Reference>? partOf,
     MedicationDispenseStatusCodes? status,
     Element? statusElement,
-    MedicationDispenseStatusReasonCodes? statusReasonCodeableConcept,
-    MedicationDispenseStatusReasonCodes? statusReasonReference,
-    MedicationDispenseCategoryCodes? category,
+    CodeableConcept? statusReasonCodeableConcept,
+    Reference? statusReasonReference,
+    CodeableConcept? category,
     CodeableConcept? medicationCodeableConcept,
     Reference? medicationReference,
     Reference? subject,
@@ -362,7 +362,7 @@ class MedicationDispensePerformer extends BackboneElement {
   /// [function_] /// Distinguishes the type of performer in the dispense. For example, date
   /// enterer, packager, final checker.
   @JsonKey(name: 'function')
-  final MedicationDispensePerformerFunctionCodes? function_;
+  final CodeableConcept? function_;
 
   /// [actor] /// The device, practitioner, etc. who performed the action. It should be
   /// assumed that the actor is the dispenser of the medication.
@@ -381,7 +381,7 @@ class MedicationDispensePerformer extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    MedicationDispensePerformerFunctionCodes? function_,
+    CodeableConcept? function_,
     Reference? actor,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

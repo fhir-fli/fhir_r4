@@ -38,15 +38,20 @@ MedicinalProductDefinition _$MedicinalProductDefinitionFromJson(
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map((e) => Identifier.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecodeNullable(_$MedicinalProductTypeEnumMap, json['type']),
-      domain:
-          $enumDecodeNullable(_$MedicinalProductDomainEnumMap, json['domain']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      domain: json['domain'] == null
+          ? null
+          : CodeableConcept.fromJson(json['domain'] as Map<String, dynamic>),
       version:
           json['version'] == null ? null : FhirString.fromJson(json['version']),
       versionElement: json['_version'] == null
           ? null
           : Element.fromJson(json['_version'] as Map<String, dynamic>),
-      status: $enumDecodeNullable(_$PublicationStatusEnumMap, json['status']),
+      status: json['status'] == null
+          ? null
+          : CodeableConcept.fromJson(json['status'] as Map<String, dynamic>),
       statusDate: json['statusDate'] == null
           ? null
           : FhirDateTime.fromJson(json['statusDate'] as String),
@@ -59,8 +64,11 @@ MedicinalProductDefinition _$MedicinalProductDefinitionFromJson(
       descriptionElement: json['_description'] == null
           ? null
           : Element.fromJson(json['_description'] as Map<String, dynamic>),
-      combinedPharmaceuticalDoseForm: $enumDecodeNullable(
-          _$CombinedDoseFormEnumMap, json['combinedPharmaceuticalDoseForm']),
+      combinedPharmaceuticalDoseForm: json['combinedPharmaceuticalDoseForm'] ==
+              null
+          ? null
+          : CodeableConcept.fromJson(
+              json['combinedPharmaceuticalDoseForm'] as Map<String, dynamic>),
       route: (json['route'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -70,15 +78,22 @@ MedicinalProductDefinition _$MedicinalProductDefinitionFromJson(
       indicationElement: json['_indication'] == null
           ? null
           : Element.fromJson(json['_indication'] as Map<String, dynamic>),
-      legalStatusOfSupply: $enumDecodeNullable(
-          _$LegalStatusOfSupplyEnumMap, json['legalStatusOfSupply']),
-      additionalMonitoringIndicator: $enumDecodeNullable(
-          _$AdditionalMonitoringEnumMap, json['additionalMonitoringIndicator']),
+      legalStatusOfSupply: json['legalStatusOfSupply'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['legalStatusOfSupply'] as Map<String, dynamic>),
+      additionalMonitoringIndicator: json['additionalMonitoringIndicator'] ==
+              null
+          ? null
+          : CodeableConcept.fromJson(
+              json['additionalMonitoringIndicator'] as Map<String, dynamic>),
       specialMeasures: (json['specialMeasures'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$SpecialMeasuresEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
-      pediatricUseIndicator: $enumDecodeNullable(
-          _$PediatricUseEnumMap, json['pediatricUseIndicator']),
+      pediatricUseIndicator: json['pediatricUseIndicator'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['pediatricUseIndicator'] as Map<String, dynamic>),
       classification: (json['classification'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -87,7 +102,7 @@ MedicinalProductDefinition _$MedicinalProductDefinitionFromJson(
           .toList(),
       packagedMedicinalProduct:
           (json['packagedMedicinalProduct'] as List<dynamic>?)
-              ?.map((e) => $enumDecode(_$MedicinalProductPackageTypeEnumMap, e))
+              ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
               .toList(),
       ingredient: (json['ingredient'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
@@ -284,155 +299,6 @@ const _$CommonLanguagesEnumMap = {
   CommonLanguages.zh_TW: 'zh-TW',
 };
 
-const _$MedicinalProductTypeEnumMap = {
-  MedicinalProductType.MedicinalProduct: 'MedicinalProduct',
-  MedicinalProductType.InvestigationalProduct: 'InvestigationalProduct',
-};
-
-const _$MedicinalProductDomainEnumMap = {
-  MedicinalProductDomain.Human: 'Human',
-  MedicinalProductDomain.Veterinary: 'Veterinary',
-  MedicinalProductDomain.HumanAndVeterinary: 'HumanAndVeterinary',
-};
-
-const _$PublicationStatusEnumMap = {
-  PublicationStatus.draft: 'draft',
-  PublicationStatus.active: 'active',
-  PublicationStatus.retired: 'retired',
-  PublicationStatus.unknown: 'unknown',
-};
-
-const _$CombinedDoseFormEnumMap = {
-  CombinedDoseForm.value100000073366: '100000073366',
-  CombinedDoseForm.value100000073651: '100000073651',
-  CombinedDoseForm.value100000073774: '100000073774',
-  CombinedDoseForm.value100000073781: '100000073781',
-  CombinedDoseForm.value100000073801: '100000073801',
-  CombinedDoseForm.value100000073860: '100000073860',
-  CombinedDoseForm.value100000073868: '100000073868',
-  CombinedDoseForm.value100000073869: '100000073869',
-  CombinedDoseForm.value100000073884: '100000073884',
-  CombinedDoseForm.value100000073891: '100000073891',
-  CombinedDoseForm.value100000073892: '100000073892',
-  CombinedDoseForm.value100000073941: '100000073941',
-  CombinedDoseForm.value100000073972: '100000073972',
-  CombinedDoseForm.value100000073973: '100000073973',
-  CombinedDoseForm.value100000073974: '100000073974',
-  CombinedDoseForm.value100000073975: '100000073975',
-  CombinedDoseForm.value100000073987: '100000073987',
-  CombinedDoseForm.value100000073988: '100000073988',
-  CombinedDoseForm.value100000073989: '100000073989',
-  CombinedDoseForm.value100000073990: '100000073990',
-  CombinedDoseForm.value100000073999: '100000073999',
-  CombinedDoseForm.value100000074015: '100000074015',
-  CombinedDoseForm.value100000074016: '100000074016',
-  CombinedDoseForm.value100000074017: '100000074017',
-  CombinedDoseForm.value100000074018: '100000074018',
-  CombinedDoseForm.value100000074030: '100000074030',
-  CombinedDoseForm.value100000074031: '100000074031',
-  CombinedDoseForm.value100000074032: '100000074032',
-  CombinedDoseForm.value100000074048: '100000074048',
-  CombinedDoseForm.value100000074051: '100000074051',
-  CombinedDoseForm.value100000074053: '100000074053',
-  CombinedDoseForm.value100000074056: '100000074056',
-  CombinedDoseForm.value100000074057: '100000074057',
-  CombinedDoseForm.value100000074061: '100000074061',
-  CombinedDoseForm.value100000074064: '100000074064',
-  CombinedDoseForm.value100000075580: '100000075580',
-  CombinedDoseForm.value100000075584: '100000075584',
-  CombinedDoseForm.value100000075587: '100000075587',
-  CombinedDoseForm.value100000116137: '100000116137',
-  CombinedDoseForm.value100000116141: '100000116141',
-  CombinedDoseForm.value100000116155: '100000116155',
-  CombinedDoseForm.value100000116160: '100000116160',
-  CombinedDoseForm.value100000116172: '100000116172',
-  CombinedDoseForm.value100000116173: '100000116173',
-  CombinedDoseForm.value100000116174: '100000116174',
-  CombinedDoseForm.value100000116175: '100000116175',
-  CombinedDoseForm.value100000116176: '100000116176',
-  CombinedDoseForm.value100000116177: '100000116177',
-  CombinedDoseForm.value100000116179: '100000116179',
-  CombinedDoseForm.value100000125746: '100000125746',
-  CombinedDoseForm.value100000125747: '100000125747',
-  CombinedDoseForm.value100000125777: '100000125777',
-  CombinedDoseForm.value100000136318: '100000136318',
-  CombinedDoseForm.value100000136325: '100000136325',
-  CombinedDoseForm.value100000136558: '100000136558',
-  CombinedDoseForm.value100000136560: '100000136560',
-  CombinedDoseForm.value100000136907: '100000136907',
-  CombinedDoseForm.value100000143502: '100000143502',
-  CombinedDoseForm.value100000143546: '100000143546',
-  CombinedDoseForm.value100000143552: '100000143552',
-  CombinedDoseForm.value100000156068: '100000156068',
-  CombinedDoseForm.value100000157796: '100000157796',
-  CombinedDoseForm.value100000164467: '100000164467',
-  CombinedDoseForm.value100000169997: '100000169997',
-  CombinedDoseForm.value100000170588: '100000170588',
-  CombinedDoseForm.value100000171127: '100000171127',
-  CombinedDoseForm.value100000171193: '100000171193',
-  CombinedDoseForm.value100000171238: '100000171238',
-  CombinedDoseForm.value100000171935: '100000171935',
-  CombinedDoseForm.value100000174065: '100000174065',
-  CombinedDoseForm.value200000002161: '200000002161',
-  CombinedDoseForm.value200000002287: '200000002287',
-  CombinedDoseForm.value200000004201: '200000004201',
-  CombinedDoseForm.value200000004819: '200000004819',
-  CombinedDoseForm.value200000004820: '200000004820',
-  CombinedDoseForm.value200000005547: '200000005547',
-  CombinedDoseForm.value200000010382: '200000010382',
-};
-
-const _$LegalStatusOfSupplyEnumMap = {
-  LegalStatusOfSupply.value100000072076: '100000072076',
-  LegalStatusOfSupply.value100000072077: '100000072077',
-  LegalStatusOfSupply.value100000072078: '100000072078',
-  LegalStatusOfSupply.value100000072079: '100000072079',
-  LegalStatusOfSupply.value100000072084: '100000072084',
-  LegalStatusOfSupply.value100000072085: '100000072085',
-  LegalStatusOfSupply.value100000072086: '100000072086',
-  LegalStatusOfSupply.value100000157313: '100000157313',
-};
-
-const _$AdditionalMonitoringEnumMap = {
-  AdditionalMonitoring.BlackTriangleMonitoring: 'BlackTriangleMonitoring',
-};
-
-const _$SpecialMeasuresEnumMap = {
-  SpecialMeasures.Post_authorisationStudies: 'Post-authorisationStudies',
-};
-
-const _$PediatricUseEnumMap = {
-  PediatricUse.InUtero: 'InUtero',
-  PediatricUse.PretermNewborn: 'PretermNewborn',
-  PediatricUse.TermNewborn: 'TermNewborn',
-  PediatricUse.Infants: 'Infants',
-  PediatricUse.Children: 'Children',
-  PediatricUse.Adolescents: 'Adolescents',
-  PediatricUse.Adults: 'Adults',
-  PediatricUse.Elderly: 'Elderly',
-  PediatricUse.Neonate: 'Neonate',
-  PediatricUse.PediatricPopulation: 'PediatricPopulation',
-  PediatricUse.All: 'All',
-  PediatricUse.Prepubertal: 'Prepubertal',
-  PediatricUse.AdultsAndElderly: 'AdultsAndElderly',
-  PediatricUse.PubertalAndPostpubertal: 'PubertalAndPostpubertal',
-};
-
-const _$MedicinalProductPackageTypeEnumMap = {
-  MedicinalProductPackageType.value100000073490: '100000073490',
-  MedicinalProductPackageType.value100000073491: '100000073491',
-  MedicinalProductPackageType.value100000073492: '100000073492',
-  MedicinalProductPackageType.value100000073493: '100000073493',
-  MedicinalProductPackageType.value100000073494: '100000073494',
-  MedicinalProductPackageType.value100000073495: '100000073495',
-  MedicinalProductPackageType.value100000073496: '100000073496',
-  MedicinalProductPackageType.value100000073497: '100000073497',
-  MedicinalProductPackageType.value100000073498: '100000073498',
-  MedicinalProductPackageType.value100000073547: '100000073547',
-  MedicinalProductPackageType.value100000073563: '100000073563',
-  MedicinalProductPackageType.value100000143555: '100000143555',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -582,13 +448,15 @@ MedicinalProductDefinitionContact _$MedicinalProductDefinitionContactFromJson(
         Map<String, dynamic> json) =>
     MedicinalProductDefinitionContact(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecodeNullable(_$ProductContactTypeEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       contact: Reference.fromJson(json['contact'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
@@ -624,7 +492,7 @@ Map<String, dynamic> _$MedicinalProductDefinitionContactToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.toJson());
@@ -632,19 +500,11 @@ Map<String, dynamic> _$MedicinalProductDefinitionContactToJson(
   return val;
 }
 
-const _$ProductContactTypeEnumMap = {
-  ProductContactType.ProposedMAH: 'ProposedMAH',
-  ProductContactType.ProcedureContactDuring: 'ProcedureContactDuring',
-  ProductContactType.ProcedureContactAfter: 'ProcedureContactAfter',
-  ProductContactType.QPPV: 'QPPV',
-  ProductContactType.PVEnquiries: 'PVEnquiries',
-};
-
 MedicinalProductDefinitionName _$MedicinalProductDefinitionNameFromJson(
         Map<String, dynamic> json) =>
     MedicinalProductDefinitionName(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -654,7 +514,9 @@ MedicinalProductDefinitionName _$MedicinalProductDefinitionNameFromJson(
       productNameElement: json['_productName'] == null
           ? null
           : Element.fromJson(json['_productName'] as Map<String, dynamic>),
-      type: $enumDecodeNullable(_$ProductNameTypeEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       namePart: (json['namePart'] as List<dynamic>?)
           ?.map((e) => MedicinalProductDefinitionNamePart.fromJson(
               e as Map<String, dynamic>))
@@ -697,7 +559,7 @@ Map<String, dynamic> _$MedicinalProductDefinitionNameToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['productName'] = instance.productName.toJson();
@@ -709,19 +571,11 @@ Map<String, dynamic> _$MedicinalProductDefinitionNameToJson(
   return val;
 }
 
-const _$ProductNameTypeEnumMap = {
-  ProductNameType.BAN: 'BAN',
-  ProductNameType.INN: 'INN',
-  ProductNameType.INNM: 'INNM',
-  ProductNameType.pINN: 'pINN',
-  ProductNameType.rINN: 'rINN',
-};
-
 MedicinalProductDefinitionNamePart _$MedicinalProductDefinitionNamePartFromJson(
         Map<String, dynamic> json) =>
     MedicinalProductDefinitionNamePart(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -731,7 +585,7 @@ MedicinalProductDefinitionNamePart _$MedicinalProductDefinitionNamePartFromJson(
       partElement: json['_part'] == null
           ? null
           : Element.fromJson(json['_part'] as Map<String, dynamic>),
-      type: $enumDecode(_$ProductNamePartTypeEnumMap, json['type']),
+      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -766,7 +620,7 @@ Map<String, dynamic> _$MedicinalProductDefinitionNamePartToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['part'] = instance.part_.toJson();
@@ -775,31 +629,12 @@ Map<String, dynamic> _$MedicinalProductDefinitionNamePartToJson(
   return val;
 }
 
-const _$ProductNamePartTypeEnumMap = {
-  ProductNamePartType.FullName: 'FullName',
-  ProductNamePartType.InventedNamePart: 'InventedNamePart',
-  ProductNamePartType.ScientificNamePart: 'ScientificNamePart',
-  ProductNamePartType.StrengthPart: 'StrengthPart',
-  ProductNamePartType.DoseFormPart: 'DoseFormPart',
-  ProductNamePartType.FormulationPart: 'FormulationPart',
-  ProductNamePartType.IntendedUsePart: 'IntendedUsePart',
-  ProductNamePartType.PopulationPart: 'PopulationPart',
-  ProductNamePartType.ContainerPart: 'ContainerPart',
-  ProductNamePartType.DevicePart: 'DevicePart',
-  ProductNamePartType.TrademarkOrCompanyPart: 'TrademarkOrCompanyPart',
-  ProductNamePartType.TimeOrPeriodPart: 'TimeOrPeriodPart',
-  ProductNamePartType.FlavorPart: 'FlavorPart',
-  ProductNamePartType.DelimiterPart: 'DelimiterPart',
-  ProductNamePartType.LegacyNamePart: 'LegacyNamePart',
-  ProductNamePartType.SpeciesNamePart: 'SpeciesNamePart',
-};
-
 MedicinalProductDefinitionCountryLanguage
     _$MedicinalProductDefinitionCountryLanguageFromJson(
             Map<String, dynamic> json) =>
         MedicinalProductDefinitionCountryLanguage(
           id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-          extension_: (json['extension_'] as List<dynamic>?)
+          extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
           modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -811,7 +646,8 @@ MedicinalProductDefinitionCountryLanguage
               ? null
               : CodeableConcept.fromJson(
                   json['jurisdiction'] as Map<String, dynamic>),
-          language: $enumDecode(_$CommonLanguagesEnumMap, json['language']),
+          language: CodeableConcept.fromJson(
+              json['language'] as Map<String, dynamic>),
           userData: json['userData'] as Map<String, dynamic>?,
           formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
               ?.map((e) => e as String)
@@ -847,7 +683,7 @@ Map<String, dynamic> _$MedicinalProductDefinitionCountryLanguageToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['country'] = instance.country.toJson();
@@ -861,7 +697,7 @@ MedicinalProductDefinitionCrossReference
             Map<String, dynamic> json) =>
         MedicinalProductDefinitionCrossReference(
           id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-          extension_: (json['extension_'] as List<dynamic>?)
+          extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
           modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -869,8 +705,9 @@ MedicinalProductDefinitionCrossReference
               .toList(),
           product: CodeableReference.fromJson(
               json['product'] as Map<String, dynamic>),
-          type: $enumDecodeNullable(
-              _$ProductCrossReferenceTypeEnumMap, json['type']),
+          type: json['type'] == null
+              ? null
+              : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
           userData: json['userData'] as Map<String, dynamic>?,
           formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
               ?.map((e) => e as String)
@@ -906,7 +743,7 @@ Map<String, dynamic> _$MedicinalProductDefinitionCrossReferenceToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['product'] = instance.product.toJson();
@@ -914,20 +751,11 @@ Map<String, dynamic> _$MedicinalProductDefinitionCrossReferenceToJson(
   return val;
 }
 
-const _$ProductCrossReferenceTypeEnumMap = {
-  ProductCrossReferenceType.InvestigationalProduct: 'InvestigationalProduct',
-  ProductCrossReferenceType.VirtualProduct: 'VirtualProduct',
-  ProductCrossReferenceType.ActualProduct: 'ActualProduct',
-  ProductCrossReferenceType.BrandedProduct: 'BrandedProduct',
-  ProductCrossReferenceType.GenericProduct: 'GenericProduct',
-  ProductCrossReferenceType.Parallel: 'Parallel',
-};
-
 MedicinalProductDefinitionOperation
     _$MedicinalProductDefinitionOperationFromJson(Map<String, dynamic> json) =>
         MedicinalProductDefinitionOperation(
           id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-          extension_: (json['extension_'] as List<dynamic>?)
+          extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
           modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -943,9 +771,10 @@ MedicinalProductDefinitionOperation
           organization: (json['organization'] as List<dynamic>?)
               ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
               .toList(),
-          confidentialityIndicator: $enumDecodeNullable(
-              _$ProductConfidentialityEnumMap,
-              json['confidentialityIndicator']),
+          confidentialityIndicator: json['confidentialityIndicator'] == null
+              ? null
+              : CodeableConcept.fromJson(
+                  json['confidentialityIndicator'] as Map<String, dynamic>),
           userData: json['userData'] as Map<String, dynamic>?,
           formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
               ?.map((e) => e as String)
@@ -981,7 +810,7 @@ Map<String, dynamic> _$MedicinalProductDefinitionOperationToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.toJson());
@@ -993,17 +822,12 @@ Map<String, dynamic> _$MedicinalProductDefinitionOperationToJson(
   return val;
 }
 
-const _$ProductConfidentialityEnumMap = {
-  ProductConfidentiality.CommerciallySensitive: 'CommerciallySensitive',
-  ProductConfidentiality.NotCommerciallySensitive: 'NotCommerciallySensitive',
-};
-
 MedicinalProductDefinitionCharacteristic
     _$MedicinalProductDefinitionCharacteristicFromJson(
             Map<String, dynamic> json) =>
         MedicinalProductDefinitionCharacteristic(
           id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-          extension_: (json['extension_'] as List<dynamic>?)
+          extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
           modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1069,7 +893,7 @@ Map<String, dynamic> _$MedicinalProductDefinitionCharacteristicToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();

@@ -236,7 +236,7 @@ class RelatedPersonCommunication extends BackboneElement {
   /// upper case; e.g. "en" for English, or "en-US" for American English versus
   /// "en-EN" for England English.
   @JsonKey(name: 'language')
-  final CommonLanguages language;
+  final CodeableConcept language;
 
   /// [preferred] /// Indicates whether or not the patient prefers this language (over other
   /// languages he masters up a certain level).
@@ -257,7 +257,7 @@ class RelatedPersonCommunication extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CommonLanguages? language,
+    CodeableConcept? language,
     FhirBoolean? preferred,
     Element? preferredElement,
     Map<String, Object?>? userData,

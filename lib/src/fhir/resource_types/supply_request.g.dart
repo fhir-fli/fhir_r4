@@ -41,7 +41,9 @@ SupplyRequest _$SupplyRequestFromJson(Map<String, dynamic> json) =>
       statusElement: json['_status'] == null
           ? null
           : Element.fromJson(json['_status'] as Map<String, dynamic>),
-      category: $enumDecodeNullable(_$SupplyTypeEnumMap, json['category']),
+      category: json['category'] == null
+          ? null
+          : CodeableConcept.fromJson(json['category'] as Map<String, dynamic>),
       priority: $enumDecodeNullable(_$RequestPriorityEnumMap, json['priority']),
       priorityElement: json['_priority'] == null
           ? null
@@ -81,7 +83,7 @@ SupplyRequest _$SupplyRequestFromJson(Map<String, dynamic> json) =>
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$SupplyRequestReasonEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
@@ -238,21 +240,11 @@ const _$SupplyRequestStatusEnumMap = {
   SupplyRequestStatus.unknown: 'unknown',
 };
 
-const _$SupplyTypeEnumMap = {
-  SupplyType.central: 'central',
-  SupplyType.nonstock: 'nonstock',
-};
-
 const _$RequestPriorityEnumMap = {
   RequestPriority.routine: 'routine',
   RequestPriority.urgent: 'urgent',
   RequestPriority.asap: 'asap',
   RequestPriority.stat: 'stat',
-};
-
-const _$SupplyRequestReasonEnumMap = {
-  SupplyRequestReason.patient_care: 'patient-care',
-  SupplyRequestReason.ward_stock: 'ward-stock',
 };
 
 const _$R4ResourceTypeEnumMap = {
@@ -404,7 +396,7 @@ SupplyRequestParameter _$SupplyRequestParameterFromJson(
         Map<String, dynamic> json) =>
     SupplyRequestParameter(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -463,7 +455,7 @@ Map<String, dynamic> _$SupplyRequestParameterToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('code', instance.code?.toJson());

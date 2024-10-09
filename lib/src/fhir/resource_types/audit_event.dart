@@ -57,11 +57,11 @@ class AuditEvent extends DomainResource {
   /// rule, policy, function code, application name or URL. It identifies the
   /// performed function.
   @JsonKey(name: 'type')
-  final AuditEventID type;
+  final Coding type;
 
   /// [subtype] /// Identifier for the category of event.
   @JsonKey(name: 'subtype')
-  final List<AuditEventSubType>? subtype;
+  final List<Coding>? subtype;
 
   /// [action] /// Indicator for type of action performed during the event that generated the
   /// audit.
@@ -127,8 +127,8 @@ class AuditEvent extends DomainResource {
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    AuditEventID? type,
-    List<AuditEventSubType>? subtype,
+    Coding? type,
+    List<Coding>? subtype,
     AuditEventAction? action,
     Element? actionElement,
     Period? period,
@@ -242,13 +242,13 @@ class AuditEventAgent extends BackboneElement {
   /// [type] /// Specification of the participation type the user plays when performing the
   /// event.
   @JsonKey(name: 'type')
-  final ParticipationRoleType? type;
+  final CodeableConcept? type;
 
   /// [role] /// The security role that the user was acting under, that come from local
   /// codes defined by the access control security system (e.g. RBAC, ABAC) used
   /// in the local context.
   @JsonKey(name: 'role')
-  final List<SecurityRoleType>? role;
+  final List<CodeableConcept>? role;
 
   /// [who] /// Reference to who this agent is that was involved in the event.
   @JsonKey(name: 'who')
@@ -291,7 +291,7 @@ class AuditEventAgent extends BackboneElement {
   /// [media] /// Type of media involved. Used when the event is about exporting/importing
   /// onto media.
   @JsonKey(name: 'media')
-  final MediaTypeCode? media;
+  final Coding? media;
 
   /// [network] /// Logical network location for application activity, if the activity has a
   /// network location.
@@ -315,8 +315,8 @@ class AuditEventAgent extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ParticipationRoleType? type,
-    List<SecurityRoleType>? role,
+    CodeableConcept? type,
+    List<CodeableConcept>? role,
     Reference? who,
     FhirString? altId,
     Element? altIdElement,
@@ -327,7 +327,7 @@ class AuditEventAgent extends BackboneElement {
     Reference? location,
     List<FhirUri>? policy,
     List<Element>? policyElement,
-    MediaTypeCode? media,
+    Coding? media,
     AuditEventNetwork? network,
     List<CodeableConcept>? purposeOfUse,
     Map<String, Object?>? userData,
@@ -522,7 +522,7 @@ class AuditEventSource extends BackboneElement {
 
   /// [type] /// Code specifying the type of source where event originated.
   @JsonKey(name: 'type')
-  final List<AuditEventSourceType>? type;
+  final List<Coding>? type;
   factory AuditEventSource.fromJson(Map<String, dynamic> json) =>
       _$AuditEventSourceFromJson(json);
 
@@ -539,7 +539,7 @@ class AuditEventSource extends BackboneElement {
     FhirString? site,
     Element? siteElement,
     Reference? observer,
-    List<AuditEventSourceType>? type,
+    List<Coding>? type,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -623,15 +623,15 @@ class AuditEventEntity extends BackboneElement {
 
   /// [type] /// The type of the object that was involved in this audit event.
   @JsonKey(name: 'type')
-  final AuditEventEntityType? type;
+  final Coding? type;
 
   /// [role] /// Code representing the role the entity played in the event being audited.
   @JsonKey(name: 'role')
-  final AuditEventEntityRole? role;
+  final Coding? role;
 
   /// [lifecycle] /// Identifier for the data life-cycle stage for the entity.
   @JsonKey(name: 'lifecycle')
-  final ObjectLifecycleEvents? lifecycle;
+  final Coding? lifecycle;
 
   /// [securityLabel] /// Security labels for the identified entity.
   @JsonKey(name: 'securityLabel')
@@ -672,9 +672,9 @@ class AuditEventEntity extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Reference? what,
-    AuditEventEntityType? type,
-    AuditEventEntityRole? role,
-    ObjectLifecycleEvents? lifecycle,
+    Coding? type,
+    Coding? role,
+    Coding? lifecycle,
     List<Coding>? securityLabel,
     FhirString? name,
     Element? nameElement,

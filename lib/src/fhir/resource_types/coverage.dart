@@ -105,7 +105,7 @@ class Coverage extends DomainResource {
 
   /// [relationship] /// The relationship of beneficiary (patient) to the subscriber.
   @JsonKey(name: 'relationship')
-  final SubscriberRelationshipCodes? relationship;
+  final CodeableConcept? relationship;
 
   /// [period] /// Time period during which the coverage is in force. A missing start date
   /// indicates the start date isn't known, a missing end date means the coverage
@@ -187,7 +187,7 @@ class Coverage extends DomainResource {
     Reference? beneficiary,
     FhirString? dependent,
     Element? dependentElement,
-    SubscriberRelationshipCodes? relationship,
+    CodeableConcept? relationship,
     Period? period,
     List<Reference>? payor,
     List<CoverageClass>? class_,
@@ -298,7 +298,7 @@ class CoverageClass extends BackboneElement {
   /// number and optional name is provided, for example may be used to identify a
   /// class of coverage or employer group, Policy, Plan.
   @JsonKey(name: 'type')
-  final CoverageClassCodes type;
+  final CodeableConcept type;
 
   /// [value] /// The alphanumeric string value associated with the insurer issued label.
   @JsonKey(name: 'value')
@@ -324,7 +324,7 @@ class CoverageClass extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CoverageClassCodes? type,
+    CodeableConcept? type,
     FhirString? value,
     Element? valueElement,
     FhirString? name,
@@ -402,7 +402,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
 
   /// [type] /// The category of patient centric costs associated with treatment.
   @JsonKey(name: 'type')
-  final CoverageCopayTypeCodes? type;
+  final CodeableConcept? type;
 
   /// [valueQuantity] /// The amount due from the patient for the cost category.
   @JsonKey(name: 'valueQuantity')
@@ -429,7 +429,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CoverageCopayTypeCodes? type,
+    CodeableConcept? type,
     Quantity? valueQuantity,
     Money? valueMoney,
     List<CoverageException>? exception,
@@ -502,7 +502,7 @@ class CoverageException extends BackboneElement {
 
   /// [type] /// The code for the specific exception.
   @JsonKey(name: 'type')
-  final ExampleCoverageFinancialExceptionCodes type;
+  final CodeableConcept type;
 
   /// [period] /// The timeframe during when the exception is in force.
   @JsonKey(name: 'period')
@@ -520,7 +520,7 @@ class CoverageException extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ExampleCoverageFinancialExceptionCodes? type,
+    CodeableConcept? type,
     Period? period,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

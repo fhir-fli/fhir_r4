@@ -69,7 +69,7 @@ Practitioner _$PractitionerFromJson(Map<String, dynamic> json) => Practitioner(
               PractitionerQualification.fromJson(e as Map<String, dynamic>))
           .toList(),
       communication: (json['communication'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$CommonLanguagesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
@@ -352,7 +352,7 @@ PractitionerQualification _$PractitionerQualificationFromJson(
         Map<String, dynamic> json) =>
     PractitionerQualification(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -402,7 +402,7 @@ Map<String, dynamic> _$PractitionerQualificationToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull(

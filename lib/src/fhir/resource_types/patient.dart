@@ -120,7 +120,7 @@ class Patient extends DomainResource {
 
   /// [maritalStatus] /// This field contains a patient's most recent marital (civil) status.
   @JsonKey(name: 'maritalStatus')
-  final MaritalStatusCodes? maritalStatus;
+  final CodeableConcept? maritalStatus;
 
   /// [multipleBirthBoolean] /// Indicates whether the patient is part of a multiple (boolean) or indicates
   /// the actual birth order (integer).
@@ -194,7 +194,7 @@ class Patient extends DomainResource {
     FhirDateTime? deceasedDateTime,
     Element? deceasedDateTimeElement,
     List<Address>? address,
-    MaritalStatusCodes? maritalStatus,
+    CodeableConcept? maritalStatus,
     FhirBoolean? multipleBirthBoolean,
     Element? multipleBirthBooleanElement,
     FhirInteger? multipleBirthInteger,
@@ -440,7 +440,7 @@ class PatientCommunication extends BackboneElement {
   /// upper case; e.g. "en" for English, or "en-US" for American English versus
   /// "en-EN" for England English.
   @JsonKey(name: 'language')
-  final CommonLanguages language;
+  final CodeableConcept language;
 
   /// [preferred] /// Indicates whether or not the patient prefers this language (over other
   /// languages he masters up a certain level).
@@ -461,7 +461,7 @@ class PatientCommunication extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CommonLanguages? language,
+    CodeableConcept? language,
     FhirBoolean? preferred,
     Element? preferredElement,
     Map<String, Object?>? userData,

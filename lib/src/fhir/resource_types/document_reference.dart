@@ -93,7 +93,7 @@ class DocumentReference extends DomainResource {
   /// and searching. This may be implied by or derived from the code specified in
   /// the DocumentReference.type.
   @JsonKey(name: 'category')
-  final List<DocumentClassValueSet>? category;
+  final List<CodeableConcept>? category;
 
   /// [subject] /// Who or what the document is about. The document can be about a person,
   /// (patient or healthcare practitioner), a device (e.g. a machine) or even a
@@ -175,7 +175,7 @@ class DocumentReference extends DomainResource {
     CompositionStatus? docStatus,
     Element? docStatusElement,
     CodeableConcept? type,
-    List<DocumentClassValueSet>? category,
+    List<CodeableConcept>? category,
     Reference? subject,
     FhirInstant? date,
     Element? dateElement,
@@ -482,12 +482,12 @@ class DocumentReferenceContext extends BackboneElement {
 
   /// [facilityType] /// The kind of facility where the patient was seen.
   @JsonKey(name: 'facilityType')
-  final FacilityTypeCodeValueSet? facilityType;
+  final CodeableConcept? facilityType;
 
   /// [practiceSetting] /// This property may convey specifics about the practice setting where the
   /// content was created, often reflecting the clinical specialty.
   @JsonKey(name: 'practiceSetting')
-  final PracticeSettingCodeValueSet? practiceSetting;
+  final CodeableConcept? practiceSetting;
 
   /// [sourcePatientInfo] /// The Patient Information as known when the document was published. May be a
   /// reference to a version specific, or contained.
@@ -513,8 +513,8 @@ class DocumentReferenceContext extends BackboneElement {
     List<Reference>? encounter,
     List<CodeableConcept>? event,
     Period? period,
-    FacilityTypeCodeValueSet? facilityType,
-    PracticeSettingCodeValueSet? practiceSetting,
+    CodeableConcept? facilityType,
+    CodeableConcept? practiceSetting,
     Reference? sourcePatientInfo,
     List<Reference>? related,
     Map<String, Object?>? userData,

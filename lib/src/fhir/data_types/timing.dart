@@ -53,7 +53,7 @@ class Timing extends BackboneType {
   /// exception that .repeat.bounds still applies over the code (and is not
   /// contained in the code).
   @JsonKey(name: 'code')
-  final TimingAbbreviation? code;
+  final CodeableConcept? code;
   factory Timing.fromJson(Map<String, dynamic> json) => _$TimingFromJson(json);
 
   @override
@@ -69,7 +69,7 @@ class Timing extends BackboneType {
     List<FhirDateTime>? event,
     List<Element>? eventElement,
     TimingRepeat? repeat,
-    TimingAbbreviation? code,
+    CodeableConcept? code,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

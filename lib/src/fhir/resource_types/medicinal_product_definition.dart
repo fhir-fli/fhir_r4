@@ -83,11 +83,11 @@ class MedicinalProductDefinition extends DomainResource {
 
   /// [type] /// Regulatory type, e.g. Investigational or Authorized.
   @JsonKey(name: 'type')
-  final MedicinalProductType? type;
+  final CodeableConcept? type;
 
   /// [domain] /// If this medicine applies to human or veterinary uses.
   @JsonKey(name: 'domain')
-  final MedicinalProductDomain? domain;
+  final CodeableConcept? domain;
 
   /// [version] /// A business identifier relating to a specific version of the product, this
   /// is commonly used to support revisions to an existing product.
@@ -100,7 +100,7 @@ class MedicinalProductDefinition extends DomainResource {
   /// status, this is not intended to duplicate details carried elsewhere such as
   /// legal status, or authorization status.
   @JsonKey(name: 'status')
-  final PublicationStatus? status;
+  final CodeableConcept? status;
 
   /// [statusDate] /// The date at which the given status became applicable.
   @JsonKey(name: 'statusDate')
@@ -120,7 +120,7 @@ class MedicinalProductDefinition extends DomainResource {
   /// be necessary, for which see
   /// (AdministrableProductDefinition.administrableDoseForm).
   @JsonKey(name: 'combinedPharmaceuticalDoseForm')
-  final CombinedDoseForm? combinedPharmaceuticalDoseForm;
+  final CodeableConcept? combinedPharmaceuticalDoseForm;
 
   /// [route] /// The path by which the product is taken into or makes contact with the body.
   /// In some regions this is referred to as the licenced or approved route. See
@@ -144,21 +144,21 @@ class MedicinalProductDefinition extends DomainResource {
   /// [legalStatusOfSupply] /// The legal status of supply of the medicinal product as classified by the
   /// regulator.
   @JsonKey(name: 'legalStatusOfSupply')
-  final LegalStatusOfSupply? legalStatusOfSupply;
+  final CodeableConcept? legalStatusOfSupply;
 
   /// [additionalMonitoringIndicator] /// Whether the Medicinal Product is subject to additional monitoring for
   /// regulatory reasons, such as heightened reporting requirements.
   @JsonKey(name: 'additionalMonitoringIndicator')
-  final AdditionalMonitoring? additionalMonitoringIndicator;
+  final CodeableConcept? additionalMonitoringIndicator;
 
   /// [specialMeasures] /// Whether the Medicinal Product is subject to special measures for regulatory
   /// reasons, such as a requirement to conduct post-authorisation studies.
   @JsonKey(name: 'specialMeasures')
-  final List<SpecialMeasures>? specialMeasures;
+  final List<CodeableConcept>? specialMeasures;
 
   /// [pediatricUseIndicator] /// If authorised for use in children, or infants, neonates etc.
   @JsonKey(name: 'pediatricUseIndicator')
-  final PediatricUse? pediatricUseIndicator;
+  final CodeableConcept? pediatricUseIndicator;
 
   /// [classification] /// Allows the product to be classified by various systems, commonly WHO ATC.
   @JsonKey(name: 'classification')
@@ -173,7 +173,7 @@ class MedicinalProductDefinition extends DomainResource {
   /// [packagedMedicinalProduct] /// Package type for the product. See also the PackagedProductDefinition
   /// resource.
   @JsonKey(name: 'packagedMedicinalProduct')
-  final List<MedicinalProductPackageType>? packagedMedicinalProduct;
+  final List<CodeableConcept>? packagedMedicinalProduct;
 
   /// [ingredient] /// The ingredients of this medicinal product - when not detailed in other
   /// resources. This is only needed if the ingredients are not specified by
@@ -261,26 +261,26 @@ class MedicinalProductDefinition extends DomainResource {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    MedicinalProductType? type,
-    MedicinalProductDomain? domain,
+    CodeableConcept? type,
+    CodeableConcept? domain,
     FhirString? version,
     Element? versionElement,
-    PublicationStatus? status,
+    CodeableConcept? status,
     FhirDateTime? statusDate,
     Element? statusDateElement,
     FhirMarkdown? description,
     Element? descriptionElement,
-    CombinedDoseForm? combinedPharmaceuticalDoseForm,
+    CodeableConcept? combinedPharmaceuticalDoseForm,
     List<CodeableConcept>? route,
     FhirMarkdown? indication,
     Element? indicationElement,
-    LegalStatusOfSupply? legalStatusOfSupply,
-    AdditionalMonitoring? additionalMonitoringIndicator,
-    List<SpecialMeasures>? specialMeasures,
-    PediatricUse? pediatricUseIndicator,
+    CodeableConcept? legalStatusOfSupply,
+    CodeableConcept? additionalMonitoringIndicator,
+    List<CodeableConcept>? specialMeasures,
+    CodeableConcept? pediatricUseIndicator,
     List<CodeableConcept>? classification,
     List<MarketingStatus>? marketingStatus,
-    List<MedicinalProductPackageType>? packagedMedicinalProduct,
+    List<CodeableConcept>? packagedMedicinalProduct,
     List<CodeableConcept>? ingredient,
     List<CodeableReference>? impurity,
     List<Reference>? attachedDocument,
@@ -400,7 +400,7 @@ class MedicinalProductDefinitionContact extends BackboneElement {
   /// [type] /// Allows the contact to be classified, for example QPPV, Pharmacovigilance
   /// Enquiry Information.
   @JsonKey(name: 'type')
-  final ProductContactType? type;
+  final CodeableConcept? type;
 
   /// [contact] /// A product specific contact, person (in a role), or an organization.
   @JsonKey(name: 'contact')
@@ -420,7 +420,7 @@ class MedicinalProductDefinitionContact extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ProductContactType? type,
+    CodeableConcept? type,
     Reference? contact,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -498,7 +498,7 @@ class MedicinalProductDefinitionName extends BackboneElement {
 
   /// [type] /// Type of product name, such as rINN, BAN, Proprietary, Non-Proprietary.
   @JsonKey(name: 'type')
-  final ProductNameType? type;
+  final CodeableConcept? type;
 
   /// [namePart] /// Coding words or phrases of the name.
   @JsonKey(name: 'namePart')
@@ -522,7 +522,7 @@ class MedicinalProductDefinitionName extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? productName,
     Element? productNameElement,
-    ProductNameType? type,
+    CodeableConcept? type,
     List<MedicinalProductDefinitionNamePart>? namePart,
     List<MedicinalProductDefinitionCountryLanguage>? countryLanguage,
     Map<String, Object?>? userData,
@@ -602,7 +602,7 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
 
   /// [type] /// Identifying type for this part of the name (e.g. strength part).
   @JsonKey(name: 'type')
-  final ProductNamePartType type;
+  final CodeableConcept type;
   factory MedicinalProductDefinitionNamePart.fromJson(
           Map<String, dynamic> json) =>
       _$MedicinalProductDefinitionNamePartFromJson(json);
@@ -620,7 +620,7 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? part_,
     Element? partElement,
-    ProductNamePartType? type,
+    CodeableConcept? type,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -699,7 +699,7 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
 
   /// [language] /// Language code for this name.
   @JsonKey(name: 'language')
-  final CommonLanguages language;
+  final CodeableConcept language;
   factory MedicinalProductDefinitionCountryLanguage.fromJson(
           Map<String, dynamic> json) =>
       _$MedicinalProductDefinitionCountryLanguageFromJson(json);
@@ -718,7 +718,7 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? country,
     CodeableConcept? jurisdiction,
-    CommonLanguages? language,
+    CodeableConcept? language,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -796,7 +796,7 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
   /// actual product, product to development product (investigational), parallel
   /// import version.
   @JsonKey(name: 'type')
-  final ProductCrossReferenceType? type;
+  final CodeableConcept? type;
   factory MedicinalProductDefinitionCrossReference.fromJson(
           Map<String, dynamic> json) =>
       _$MedicinalProductDefinitionCrossReferenceFromJson(json);
@@ -814,7 +814,7 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableReference? product,
-    ProductCrossReferenceType? type,
+    CodeableConcept? type,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -903,7 +903,7 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
   /// [confidentialityIndicator] /// Specifies whether this particular business or manufacturing process is
   /// considered proprietary or confidential.
   @JsonKey(name: 'confidentialityIndicator')
-  final ProductConfidentiality? confidentialityIndicator;
+  final CodeableConcept? confidentialityIndicator;
   factory MedicinalProductDefinitionOperation.fromJson(
           Map<String, dynamic> json) =>
       _$MedicinalProductDefinitionOperationFromJson(json);
@@ -922,7 +922,7 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
     CodeableReference? type,
     Period? effectiveDate,
     List<Reference>? organization,
-    ProductConfidentiality? confidentialityIndicator,
+    CodeableConcept? confidentialityIndicator,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

@@ -428,7 +428,7 @@ const _$R4ResourceTypeEnumMap = {
 CarePlanActivity _$CarePlanActivityFromJson(Map<String, dynamic> json) =>
     CarePlanActivity(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -482,7 +482,7 @@ Map<String, dynamic> _$CarePlanActivityToJson(CarePlanActivity instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('outcomeCodeableConcept',
@@ -498,7 +498,7 @@ Map<String, dynamic> _$CarePlanActivityToJson(CarePlanActivity instance) {
 CarePlanDetail _$CarePlanDetailFromJson(Map<String, dynamic> json) =>
     CarePlanDetail(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -618,7 +618,7 @@ Map<String, dynamic> _$CarePlanDetailToJson(CarePlanDetail instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('kind', instance.kind?.toJson());

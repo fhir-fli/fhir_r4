@@ -1204,7 +1204,7 @@ class MedicationKnowledgePackaging extends BackboneElement {
   /// [type] /// A code that defines the specific type of packaging that the medication can
   /// be found in (e.g. blister sleeve, tube, bottle).
   @JsonKey(name: 'type')
-  final MedicationKnowledgePackageTypeCodes? type;
+  final CodeableConcept? type;
 
   /// [quantity] /// The number of product units the package would contain if fully loaded.
   @JsonKey(name: 'quantity')
@@ -1222,7 +1222,7 @@ class MedicationKnowledgePackaging extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    MedicationKnowledgePackageTypeCodes? type,
+    CodeableConcept? type,
     Quantity? quantity,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1297,7 +1297,7 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
   /// [type] /// A code specifying which characteristic of the medicine is being described
   /// (for example, colour, shape, imprint).
   @JsonKey(name: 'type')
-  final MedicationKnowledgeCharacteristicCodes? type;
+  final CodeableConcept? type;
 
   /// [valueCodeableConcept] /// Description of the characteristic.
   @JsonKey(name: 'valueCodeableConcept')
@@ -1333,7 +1333,7 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    MedicationKnowledgeCharacteristicCodes? type,
+    CodeableConcept? type,
     CodeableConcept? valueCodeableConcept,
     FhirString? valueString,
     Element? valueStringElement,

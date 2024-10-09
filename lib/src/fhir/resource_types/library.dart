@@ -158,17 +158,17 @@ class Library extends DomainResource {
   /// [type] /// Identifies the type of library such as a Logic Library, Model Definition,
   /// Asset Collection, or Module Definition.
   @JsonKey(name: 'type')
-  final LibraryType type;
+  final CodeableConcept type;
 
   /// [subjectCodeableConcept] /// A code or group definition that describes the intended subject of the
   /// contents of the library.
   @JsonKey(name: 'subjectCodeableConcept')
-  final SubjectType? subjectCodeableConcept;
+  final CodeableConcept? subjectCodeableConcept;
 
   /// [subjectReference] /// A code or group definition that describes the intended subject of the
   /// contents of the library.
   @JsonKey(name: 'subjectReference')
-  final SubjectType? subjectReference;
+  final Reference? subjectReference;
 
   /// [date] /// The date (and optionally time) when the library was published. The date
   /// must change when the business version changes and it must change if the
@@ -254,7 +254,7 @@ class Library extends DomainResource {
   /// high-level categorization of the library that can be useful for filtering
   /// and searching.
   @JsonKey(name: 'topic')
-  final List<DefinitionTopic>? topic;
+  final List<CodeableConcept>? topic;
 
   /// [author] /// An individiual or organization primarily involved in the creation and
   /// maintenance of the content.
@@ -330,9 +330,9 @@ class Library extends DomainResource {
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
-    LibraryType? type,
-    SubjectType? subjectCodeableConcept,
-    SubjectType? subjectReference,
+    CodeableConcept? type,
+    CodeableConcept? subjectCodeableConcept,
+    Reference? subjectReference,
     FhirDateTime? date,
     Element? dateElement,
     FhirString? publisher,
@@ -353,7 +353,7 @@ class Library extends DomainResource {
     FhirDate? lastReviewDate,
     Element? lastReviewDateElement,
     Period? effectivePeriod,
-    List<DefinitionTopic>? topic,
+    List<CodeableConcept>? topic,
     List<ContactDetail>? author,
     List<ContactDetail>? editor,
     List<ContactDetail>? reviewer,

@@ -51,8 +51,9 @@ MedicationStatement _$MedicationStatementFromJson(Map<String, dynamic> json) =>
       statusReason: (json['statusReason'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
-      category: $enumDecodeNullable(
-          _$MedicationUsageCategoryCodesEnumMap, json['category']),
+      category: json['category'] == null
+          ? null
+          : CodeableConcept.fromJson(json['category'] as Map<String, dynamic>),
       medicationCodeableConcept: CodeableConcept.fromJson(
           json['medicationCodeableConcept'] as Map<String, dynamic>),
       medicationReference: Reference.fromJson(
@@ -85,7 +86,7 @@ MedicationStatement _$MedicationStatementFromJson(Map<String, dynamic> json) =>
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ConditionProblemDiagnosisCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
@@ -243,17 +244,6 @@ const _$MedicationStatementStatusCodesEnumMap = {
   MedicationStatementStatusCodes.on_hold: 'on-hold',
   MedicationStatementStatusCodes.unknown: 'unknown',
   MedicationStatementStatusCodes.not_taken: 'not-taken',
-};
-
-const _$MedicationUsageCategoryCodesEnumMap = {
-  MedicationUsageCategoryCodes.inpatient: 'inpatient',
-  MedicationUsageCategoryCodes.outpatient: 'outpatient',
-  MedicationUsageCategoryCodes.community: 'community',
-  MedicationUsageCategoryCodes.patientspecified: 'patientspecified',
-};
-
-const _$ConditionProblemDiagnosisCodesEnumMap = {
-  ConditionProblemDiagnosisCodes.value160245001: '160245001',
 };
 
 const _$R4ResourceTypeEnumMap = {

@@ -54,8 +54,10 @@ FamilyMemberHistory _$FamilyMemberHistoryFromJson(Map<String, dynamic> json) =>
       statusElement: json['_status'] == null
           ? null
           : Element.fromJson(json['_status'] as Map<String, dynamic>),
-      dataAbsentReason: $enumDecodeNullable(
-          _$FamilyHistoryAbsentReasonEnumMap, json['dataAbsentReason']),
+      dataAbsentReason: json['dataAbsentReason'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['dataAbsentReason'] as Map<String, dynamic>),
       patient: Reference.fromJson(json['patient'] as Map<String, dynamic>),
       date: json['date'] == null
           ? null
@@ -69,7 +71,9 @@ FamilyMemberHistory _$FamilyMemberHistoryFromJson(Map<String, dynamic> json) =>
           : Element.fromJson(json['_name'] as Map<String, dynamic>),
       relationship: CodeableConcept.fromJson(
           json['relationship'] as Map<String, dynamic>),
-      sex: $enumDecodeNullable(_$AdministrativeGenderEnumMap, json['sex']),
+      sex: json['sex'] == null
+          ? null
+          : CodeableConcept.fromJson(json['sex'] as Map<String, dynamic>),
       bornPeriod: json['bornPeriod'] == null
           ? null
           : Period.fromJson(json['bornPeriod'] as Map<String, dynamic>),
@@ -302,20 +306,6 @@ const _$FamilyHistoryStatusEnumMap = {
   FamilyHistoryStatus.health_unknown: 'health-unknown',
 };
 
-const _$FamilyHistoryAbsentReasonEnumMap = {
-  FamilyHistoryAbsentReason.subject_unknown: 'subject-unknown',
-  FamilyHistoryAbsentReason.withheld: 'withheld',
-  FamilyHistoryAbsentReason.unable_to_obtain: 'unable-to-obtain',
-  FamilyHistoryAbsentReason.deferred_: 'deferred',
-};
-
-const _$AdministrativeGenderEnumMap = {
-  AdministrativeGender.male: 'male',
-  AdministrativeGender.female: 'female',
-  AdministrativeGender.other: 'other',
-  AdministrativeGender.unknown: 'unknown',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -465,13 +455,13 @@ FamilyMemberHistoryCondition _$FamilyMemberHistoryConditionFromJson(
         Map<String, dynamic> json) =>
     FamilyMemberHistoryCondition(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      code: $enumDecode(_$ConditionProblemDiagnosisCodesEnumMap, json['code']),
+      code: CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       outcome: json['outcome'] == null
           ? null
           : CodeableConcept.fromJson(json['outcome'] as Map<String, dynamic>),
@@ -534,7 +524,7 @@ Map<String, dynamic> _$FamilyMemberHistoryConditionToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['code'] = instance.code.toJson();
@@ -550,7 +540,3 @@ Map<String, dynamic> _$FamilyMemberHistoryConditionToJson(
   writeNotNull('note', instance.note?.map((e) => e.toJson()).toList());
   return val;
 }
-
-const _$ConditionProblemDiagnosisCodesEnumMap = {
-  ConditionProblemDiagnosisCodes.value160245001: '160245001',
-};

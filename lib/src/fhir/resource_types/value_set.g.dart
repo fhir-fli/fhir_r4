@@ -412,7 +412,7 @@ const _$R4ResourceTypeEnumMap = {
 ValueSetCompose _$ValueSetComposeFromJson(Map<String, dynamic> json) =>
     ValueSetCompose(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -469,7 +469,7 @@ Map<String, dynamic> _$ValueSetComposeToJson(ValueSetCompose instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('lockedDate', instance.lockedDate?.toJson());
@@ -484,7 +484,7 @@ Map<String, dynamic> _$ValueSetComposeToJson(ValueSetCompose instance) {
 ValueSetInclude _$ValueSetIncludeFromJson(Map<String, dynamic> json) =>
     ValueSetInclude(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -544,7 +544,7 @@ Map<String, dynamic> _$ValueSetIncludeToJson(ValueSetInclude instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('system', instance.system?.toJson());
@@ -562,7 +562,7 @@ Map<String, dynamic> _$ValueSetIncludeToJson(ValueSetInclude instance) {
 ValueSetConcept _$ValueSetConceptFromJson(Map<String, dynamic> json) =>
     ValueSetConcept(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -613,7 +613,7 @@ Map<String, dynamic> _$ValueSetConceptToJson(ValueSetConcept instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['code'] = instance.code.toJson();
@@ -628,7 +628,7 @@ Map<String, dynamic> _$ValueSetConceptToJson(ValueSetConcept instance) {
 ValueSetDesignation _$ValueSetDesignationFromJson(Map<String, dynamic> json) =>
     ValueSetDesignation(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -638,7 +638,9 @@ ValueSetDesignation _$ValueSetDesignationFromJson(Map<String, dynamic> json) =>
       languageElement: json['_language'] == null
           ? null
           : Element.fromJson(json['_language'] as Map<String, dynamic>),
-      use: $enumDecodeNullable(_$DesignationUseEnumMap, json['use']),
+      use: json['use'] == null
+          ? null
+          : Coding.fromJson(json['use'] as Map<String, dynamic>),
       value: FhirString.fromJson(json['value']),
       valueElement: json['_value'] == null
           ? null
@@ -676,7 +678,7 @@ Map<String, dynamic> _$ValueSetDesignationToJson(ValueSetDesignation instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('language', instance.language?.toJson());
@@ -687,15 +689,10 @@ Map<String, dynamic> _$ValueSetDesignationToJson(ValueSetDesignation instance) {
   return val;
 }
 
-const _$DesignationUseEnumMap = {
-  DesignationUse.value900000000000003001: '900000000000003001',
-  DesignationUse.value900000000000013009: '900000000000013009',
-};
-
 ValueSetFilter _$ValueSetFilterFromJson(Map<String, dynamic> json) =>
     ValueSetFilter(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -746,7 +743,7 @@ Map<String, dynamic> _$ValueSetFilterToJson(ValueSetFilter instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['property'] = instance.property.toJson();
@@ -773,7 +770,7 @@ const _$FilterOperatorEnumMap = {
 ValueSetExpansion _$ValueSetExpansionFromJson(Map<String, dynamic> json) =>
     ValueSetExpansion(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -837,7 +834,7 @@ Map<String, dynamic> _$ValueSetExpansionToJson(ValueSetExpansion instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('identifier', instance.identifier?.toJson());
@@ -857,7 +854,7 @@ Map<String, dynamic> _$ValueSetExpansionToJson(ValueSetExpansion instance) {
 ValueSetParameter _$ValueSetParameterFromJson(Map<String, dynamic> json) =>
     ValueSetParameter(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -941,7 +938,7 @@ Map<String, dynamic> _$ValueSetParameterToJson(ValueSetParameter instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['name'] = instance.name.toJson();
@@ -966,7 +963,7 @@ Map<String, dynamic> _$ValueSetParameterToJson(ValueSetParameter instance) {
 ValueSetContains _$ValueSetContainsFromJson(Map<String, dynamic> json) =>
     ValueSetContains(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1041,7 +1038,7 @@ Map<String, dynamic> _$ValueSetContainsToJson(ValueSetContains instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('system', instance.system?.toJson());

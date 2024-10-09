@@ -42,9 +42,10 @@ ClaimResponse _$ClaimResponseFromJson(Map<String, dynamic> json) =>
       statusElement: json['_status'] == null
           ? null
           : Element.fromJson(json['_status'] as Map<String, dynamic>),
-      type: $enumDecode(_$ClaimTypeCodesEnumMap, json['type']),
-      subType: $enumDecodeNullable(
-          _$ExampleClaimSubTypeCodesEnumMap, json['subType']),
+      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      subType: json['subType'] == null
+          ? null
+          : CodeableConcept.fromJson(json['subType'] as Map<String, dynamic>),
       use: $enumDecode(_$UseEnumMap, json['use']),
       useElement: json['_use'] == null
           ? null
@@ -80,8 +81,9 @@ ClaimResponse _$ClaimResponseFromJson(Map<String, dynamic> json) =>
       preAuthPeriod: json['preAuthPeriod'] == null
           ? null
           : Period.fromJson(json['preAuthPeriod'] as Map<String, dynamic>),
-      payeeType:
-          $enumDecodeNullable(_$ClaimPayeeTypeCodesEnumMap, json['payeeType']),
+      payeeType: json['payeeType'] == null
+          ? null
+          : CodeableConcept.fromJson(json['payeeType'] as Map<String, dynamic>),
       item: (json['item'] as List<dynamic>?)
           ?.map((e) => ClaimResponseItem.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -99,9 +101,13 @@ ClaimResponse _$ClaimResponseFromJson(Map<String, dynamic> json) =>
           ? null
           : ClaimResponsePayment.fromJson(
               json['payment'] as Map<String, dynamic>),
-      fundsReserve: $enumDecodeNullable(
-          _$FundsReservationCodesEnumMap, json['fundsReserve']),
-      formCode: $enumDecodeNullable(_$FormCodesEnumMap, json['formCode']),
+      fundsReserve: json['fundsReserve'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['fundsReserve'] as Map<String, dynamic>),
+      formCode: json['formCode'] == null
+          ? null
+          : CodeableConcept.fromJson(json['formCode'] as Map<String, dynamic>),
       form: json['form'] == null
           ? null
           : Attachment.fromJson(json['form'] as Map<String, dynamic>),
@@ -273,19 +279,6 @@ const _$FinancialResourceStatusCodesEnumMap = {
   FinancialResourceStatusCodes.entered_in_error: 'entered-in-error',
 };
 
-const _$ClaimTypeCodesEnumMap = {
-  ClaimTypeCodes.institutional: 'institutional',
-  ClaimTypeCodes.oral: 'oral',
-  ClaimTypeCodes.pharmacy: 'pharmacy',
-  ClaimTypeCodes.professional: 'professional',
-  ClaimTypeCodes.vision: 'vision',
-};
-
-const _$ExampleClaimSubTypeCodesEnumMap = {
-  ExampleClaimSubTypeCodes.ortho: 'ortho',
-  ExampleClaimSubTypeCodes.emergency: 'emergency',
-};
-
 const _$UseEnumMap = {
   Use.claim: 'claim',
   Use.preauthorization: 'preauthorization',
@@ -297,23 +290,6 @@ const _$RemittanceOutcomeEnumMap = {
   RemittanceOutcome.complete: 'complete',
   RemittanceOutcome.error: 'error',
   RemittanceOutcome.partial: 'partial',
-};
-
-const _$ClaimPayeeTypeCodesEnumMap = {
-  ClaimPayeeTypeCodes.subscriber: 'subscriber',
-  ClaimPayeeTypeCodes.provider: 'provider',
-  ClaimPayeeTypeCodes.other: 'other',
-};
-
-const _$FundsReservationCodesEnumMap = {
-  FundsReservationCodes.patient: 'patient',
-  FundsReservationCodes.provider: 'provider',
-  FundsReservationCodes.none: 'none',
-};
-
-const _$FormCodesEnumMap = {
-  FormCodes.value1: '1',
-  FormCodes.value2: '2',
 };
 
 const _$R4ResourceTypeEnumMap = {
@@ -464,7 +440,7 @@ const _$R4ResourceTypeEnumMap = {
 ClaimResponseItem _$ClaimResponseItemFromJson(Map<String, dynamic> json) =>
     ClaimResponseItem(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -520,7 +496,7 @@ Map<String, dynamic> _$ClaimResponseItemToJson(ClaimResponseItem instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['itemSequence'] = instance.itemSequence.toJson();
@@ -538,15 +514,17 @@ ClaimResponseAdjudication _$ClaimResponseAdjudicationFromJson(
         Map<String, dynamic> json) =>
     ClaimResponseAdjudication(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      category: $enumDecode(_$AdjudicationValueCodesEnumMap, json['category']),
-      reason:
-          $enumDecodeNullable(_$AdjudicationReasonCodesEnumMap, json['reason']),
+      category:
+          CodeableConcept.fromJson(json['category'] as Map<String, dynamic>),
+      reason: json['reason'] == null
+          ? null
+          : CodeableConcept.fromJson(json['reason'] as Map<String, dynamic>),
       amount: json['amount'] == null
           ? null
           : Money.fromJson(json['amount'] as Map<String, dynamic>),
@@ -588,7 +566,7 @@ Map<String, dynamic> _$ClaimResponseAdjudicationToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['category'] = instance.category.toJson();
@@ -599,26 +577,10 @@ Map<String, dynamic> _$ClaimResponseAdjudicationToJson(
   return val;
 }
 
-const _$AdjudicationValueCodesEnumMap = {
-  AdjudicationValueCodes.submitted: 'submitted',
-  AdjudicationValueCodes.copay: 'copay',
-  AdjudicationValueCodes.eligible: 'eligible',
-  AdjudicationValueCodes.deductible: 'deductible',
-  AdjudicationValueCodes.unallocdeduct: 'unallocdeduct',
-  AdjudicationValueCodes.eligpercent: 'eligpercent',
-  AdjudicationValueCodes.tax: 'tax',
-  AdjudicationValueCodes.benefit: 'benefit',
-};
-
-const _$AdjudicationReasonCodesEnumMap = {
-  AdjudicationReasonCodes.ar001: 'ar001',
-  AdjudicationReasonCodes.ar002: 'ar002',
-};
-
 ClaimResponseDetail _$ClaimResponseDetailFromJson(Map<String, dynamic> json) =>
     ClaimResponseDetail(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -675,7 +637,7 @@ Map<String, dynamic> _$ClaimResponseDetailToJson(ClaimResponseDetail instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['detailSequence'] = instance.detailSequence.toJson();
@@ -694,7 +656,7 @@ ClaimResponseSubDetail _$ClaimResponseSubDetailFromJson(
         Map<String, dynamic> json) =>
     ClaimResponseSubDetail(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -749,7 +711,7 @@ Map<String, dynamic> _$ClaimResponseSubDetailToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['subDetailSequence'] = instance.subDetailSequence.toJson();
@@ -768,7 +730,7 @@ ClaimResponseAddItem _$ClaimResponseAddItemFromJson(
         Map<String, dynamic> json) =>
     ClaimResponseAddItem(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -795,13 +757,13 @@ ClaimResponseAddItem _$ClaimResponseAddItemFromJson(
       provider: (json['provider'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
-      productOrService:
-          $enumDecode(_$USCLSCodesEnumMap, json['productOrService']),
+      productOrService: CodeableConcept.fromJson(
+          json['productOrService'] as Map<String, dynamic>),
       modifier: (json['modifier'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ModifierTypeCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       programCode: (json['programCode'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ExampleProgramReasonCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       servicedDate: json['servicedDate'] == null
           ? null
@@ -812,12 +774,17 @@ ClaimResponseAddItem _$ClaimResponseAddItemFromJson(
       servicedPeriod: json['servicedPeriod'] == null
           ? null
           : Period.fromJson(json['servicedPeriod'] as Map<String, dynamic>),
-      locationCodeableConcept: $enumDecodeNullable(
-          _$ExampleServicePlaceCodesEnumMap, json['locationCodeableConcept']),
-      locationAddress: $enumDecodeNullable(
-          _$ExampleServicePlaceCodesEnumMap, json['locationAddress']),
-      locationReference: $enumDecodeNullable(
-          _$ExampleServicePlaceCodesEnumMap, json['locationReference']),
+      locationCodeableConcept: json['locationCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['locationCodeableConcept'] as Map<String, dynamic>),
+      locationAddress: json['locationAddress'] == null
+          ? null
+          : Address.fromJson(json['locationAddress'] as Map<String, dynamic>),
+      locationReference: json['locationReference'] == null
+          ? null
+          : Reference.fromJson(
+              json['locationReference'] as Map<String, dynamic>),
       quantity: json['quantity'] == null
           ? null
           : Quantity.fromJson(json['quantity'] as Map<String, dynamic>),
@@ -832,9 +799,11 @@ ClaimResponseAddItem _$ClaimResponseAddItemFromJson(
       net: json['net'] == null
           ? null
           : Money.fromJson(json['net'] as Map<String, dynamic>),
-      bodySite: $enumDecodeNullable(_$OralSiteCodesEnumMap, json['bodySite']),
+      bodySite: json['bodySite'] == null
+          ? null
+          : CodeableConcept.fromJson(json['bodySite'] as Map<String, dynamic>),
       subSite: (json['subSite'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$SurfaceCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       noteNumber: (json['noteNumber'] as List<dynamic>?)
           ?.map(FhirPositiveInt.fromJson)
@@ -883,7 +852,7 @@ Map<String, dynamic> _$ClaimResponseAddItemToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull(
@@ -926,137 +895,20 @@ Map<String, dynamic> _$ClaimResponseAddItemToJson(
   return val;
 }
 
-const _$USCLSCodesEnumMap = {
-  USCLSCodes.value1101: '1101',
-  USCLSCodes.value1102: '1102',
-  USCLSCodes.value1103: '1103',
-  USCLSCodes.value1201: '1201',
-  USCLSCodes.value1205: '1205',
-  USCLSCodes.value2101: '2101',
-  USCLSCodes.value2102: '2102',
-  USCLSCodes.value2141: '2141',
-  USCLSCodes.value2601: '2601',
-  USCLSCodes.value11101: '11101',
-  USCLSCodes.value11102: '11102',
-  USCLSCodes.value11103: '11103',
-  USCLSCodes.value11104: '11104',
-  USCLSCodes.value21211: '21211',
-  USCLSCodes.value21212: '21212',
-  USCLSCodes.value27211: '27211',
-  USCLSCodes.value67211: '67211',
-  USCLSCodes.value99111: '99111',
-  USCLSCodes.value99333: '99333',
-  USCLSCodes.value99555: '99555',
-};
-
-const _$ModifierTypeCodesEnumMap = {
-  ModifierTypeCodes.a: 'a',
-  ModifierTypeCodes.b: 'b',
-  ModifierTypeCodes.c: 'c',
-  ModifierTypeCodes.e: 'e',
-  ModifierTypeCodes.rooh: 'rooh',
-  ModifierTypeCodes.x: 'x',
-};
-
-const _$ExampleProgramReasonCodesEnumMap = {
-  ExampleProgramReasonCodes.as_: 'as',
-  ExampleProgramReasonCodes.hd: 'hd',
-  ExampleProgramReasonCodes.auscr: 'auscr',
-  ExampleProgramReasonCodes.none: 'none',
-};
-
-const _$ExampleServicePlaceCodesEnumMap = {
-  ExampleServicePlaceCodes.value01: '01',
-  ExampleServicePlaceCodes.value03: '03',
-  ExampleServicePlaceCodes.value04: '04',
-  ExampleServicePlaceCodes.value05: '05',
-  ExampleServicePlaceCodes.value06: '06',
-  ExampleServicePlaceCodes.value07: '07',
-  ExampleServicePlaceCodes.value08: '08',
-  ExampleServicePlaceCodes.value09: '09',
-  ExampleServicePlaceCodes.value11: '11',
-  ExampleServicePlaceCodes.value12: '12',
-  ExampleServicePlaceCodes.value13: '13',
-  ExampleServicePlaceCodes.value14: '14',
-  ExampleServicePlaceCodes.value15: '15',
-  ExampleServicePlaceCodes.value19: '19',
-  ExampleServicePlaceCodes.value20: '20',
-  ExampleServicePlaceCodes.value21: '21',
-  ExampleServicePlaceCodes.value41: '41',
-};
-
-const _$OralSiteCodesEnumMap = {
-  OralSiteCodes.value0: '0',
-  OralSiteCodes.value1: '1',
-  OralSiteCodes.value2: '2',
-  OralSiteCodes.value3: '3',
-  OralSiteCodes.value4: '4',
-  OralSiteCodes.value5: '5',
-  OralSiteCodes.value6: '6',
-  OralSiteCodes.value7: '7',
-  OralSiteCodes.value8: '8',
-  OralSiteCodes.value11: '11',
-  OralSiteCodes.value12: '12',
-  OralSiteCodes.value13: '13',
-  OralSiteCodes.value14: '14',
-  OralSiteCodes.value15: '15',
-  OralSiteCodes.value16: '16',
-  OralSiteCodes.value17: '17',
-  OralSiteCodes.value18: '18',
-  OralSiteCodes.value21: '21',
-  OralSiteCodes.value22: '22',
-  OralSiteCodes.value23: '23',
-  OralSiteCodes.value24: '24',
-  OralSiteCodes.value25: '25',
-  OralSiteCodes.value26: '26',
-  OralSiteCodes.value27: '27',
-  OralSiteCodes.value28: '28',
-  OralSiteCodes.value31: '31',
-  OralSiteCodes.value32: '32',
-  OralSiteCodes.value33: '33',
-  OralSiteCodes.value34: '34',
-  OralSiteCodes.value35: '35',
-  OralSiteCodes.value36: '36',
-  OralSiteCodes.value37: '37',
-  OralSiteCodes.value38: '38',
-  OralSiteCodes.value41: '41',
-  OralSiteCodes.value42: '42',
-  OralSiteCodes.value43: '43',
-  OralSiteCodes.value44: '44',
-  OralSiteCodes.value45: '45',
-  OralSiteCodes.value46: '46',
-  OralSiteCodes.value47: '47',
-  OralSiteCodes.value48: '48',
-};
-
-const _$SurfaceCodesEnumMap = {
-  SurfaceCodes.M: 'M',
-  SurfaceCodes.O: 'O',
-  SurfaceCodes.I: 'I',
-  SurfaceCodes.D: 'D',
-  SurfaceCodes.B: 'B',
-  SurfaceCodes.V: 'V',
-  SurfaceCodes.L: 'L',
-  SurfaceCodes.MO: 'MO',
-  SurfaceCodes.DO: 'DO',
-  SurfaceCodes.DI: 'DI',
-  SurfaceCodes.MOD: 'MOD',
-};
-
 ClaimResponseDetail1 _$ClaimResponseDetail1FromJson(
         Map<String, dynamic> json) =>
     ClaimResponseDetail1(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      productOrService:
-          $enumDecode(_$USCLSCodesEnumMap, json['productOrService']),
+      productOrService: CodeableConcept.fromJson(
+          json['productOrService'] as Map<String, dynamic>),
       modifier: (json['modifier'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ModifierTypeCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       quantity: json['quantity'] == null
           ? null
@@ -1120,7 +972,7 @@ Map<String, dynamic> _$ClaimResponseDetail1ToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['productOrService'] = instance.productOrService.toJson();
@@ -1144,16 +996,16 @@ ClaimResponseSubDetail1 _$ClaimResponseSubDetail1FromJson(
         Map<String, dynamic> json) =>
     ClaimResponseSubDetail1(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      productOrService:
-          $enumDecode(_$USCLSCodesEnumMap, json['productOrService']),
+      productOrService: CodeableConcept.fromJson(
+          json['productOrService'] as Map<String, dynamic>),
       modifier: (json['modifier'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ModifierTypeCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       quantity: json['quantity'] == null
           ? null
@@ -1213,7 +1065,7 @@ Map<String, dynamic> _$ClaimResponseSubDetail1ToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['productOrService'] = instance.productOrService.toJson();
@@ -1234,13 +1086,14 @@ Map<String, dynamic> _$ClaimResponseSubDetail1ToJson(
 ClaimResponseTotal _$ClaimResponseTotalFromJson(Map<String, dynamic> json) =>
     ClaimResponseTotal(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      category: $enumDecode(_$AdjudicationValueCodesEnumMap, json['category']),
+      category:
+          CodeableConcept.fromJson(json['category'] as Map<String, dynamic>),
       amount: Money.fromJson(json['amount'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
@@ -1275,7 +1128,7 @@ Map<String, dynamic> _$ClaimResponseTotalToJson(ClaimResponseTotal instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['category'] = instance.category.toJson();
@@ -1287,18 +1140,20 @@ ClaimResponsePayment _$ClaimResponsePaymentFromJson(
         Map<String, dynamic> json) =>
     ClaimResponsePayment(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecode(_$ExamplePaymentTypeCodesEnumMap, json['type']),
+      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       adjustment: json['adjustment'] == null
           ? null
           : Money.fromJson(json['adjustment'] as Map<String, dynamic>),
-      adjustmentReason: $enumDecodeNullable(
-          _$PaymentAdjustmentReasonCodesEnumMap, json['adjustmentReason']),
+      adjustmentReason: json['adjustmentReason'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['adjustmentReason'] as Map<String, dynamic>),
       date: json['date'] == null
           ? null
           : FhirDate.fromJson(json['date'] as String),
@@ -1343,7 +1198,7 @@ Map<String, dynamic> _$ClaimResponsePaymentToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();
@@ -1356,21 +1211,11 @@ Map<String, dynamic> _$ClaimResponsePaymentToJson(
   return val;
 }
 
-const _$ExamplePaymentTypeCodesEnumMap = {
-  ExamplePaymentTypeCodes.complete: 'complete',
-  ExamplePaymentTypeCodes.partial: 'partial',
-};
-
-const _$PaymentAdjustmentReasonCodesEnumMap = {
-  PaymentAdjustmentReasonCodes.a001: 'a001',
-  PaymentAdjustmentReasonCodes.a002: 'a002',
-};
-
 ClaimResponseProcessNote _$ClaimResponseProcessNoteFromJson(
         Map<String, dynamic> json) =>
     ClaimResponseProcessNote(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1390,7 +1235,9 @@ ClaimResponseProcessNote _$ClaimResponseProcessNoteFromJson(
       textElement: json['_text'] == null
           ? null
           : Element.fromJson(json['_text'] as Map<String, dynamic>),
-      language: $enumDecodeNullable(_$CommonLanguagesEnumMap, json['language']),
+      language: json['language'] == null
+          ? null
+          : CodeableConcept.fromJson(json['language'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -1425,7 +1272,7 @@ Map<String, dynamic> _$ClaimResponseProcessNoteToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('number', instance.number?.toJson());
@@ -1448,7 +1295,7 @@ ClaimResponseInsurance _$ClaimResponseInsuranceFromJson(
         Map<String, dynamic> json) =>
     ClaimResponseInsurance(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1507,7 +1354,7 @@ Map<String, dynamic> _$ClaimResponseInsuranceToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['sequence'] = instance.sequence.toJson();
@@ -1525,7 +1372,7 @@ Map<String, dynamic> _$ClaimResponseInsuranceToJson(
 ClaimResponseError _$ClaimResponseErrorFromJson(Map<String, dynamic> json) =>
     ClaimResponseError(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1550,7 +1397,7 @@ ClaimResponseError _$ClaimResponseErrorFromJson(Map<String, dynamic> json) =>
           ? null
           : Element.fromJson(
               json['_subDetailSequence'] as Map<String, dynamic>),
-      code: $enumDecode(_$AdjudicationErrorCodesEnumMap, json['code']),
+      code: CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -1584,7 +1431,7 @@ Map<String, dynamic> _$ClaimResponseErrorToJson(ClaimResponseError instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('itemSequence', instance.itemSequence?.toJson());
@@ -1597,8 +1444,3 @@ Map<String, dynamic> _$ClaimResponseErrorToJson(ClaimResponseError instance) {
   val['code'] = instance.code.toJson();
   return val;
 }
-
-const _$AdjudicationErrorCodesEnumMap = {
-  AdjudicationErrorCodes.a001: 'a001',
-  AdjudicationErrorCodes.a002: 'a002',
-};

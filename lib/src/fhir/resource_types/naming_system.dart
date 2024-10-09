@@ -112,7 +112,7 @@ class NamingSystem extends DomainResource {
   /// [type] /// Categorizes a naming system for easier search by grouping related naming
   /// systems.
   @JsonKey(name: 'type')
-  final IdentifierTypeCodes? type;
+  final CodeableConcept? type;
 
   /// [description] /// A free text natural language description of the naming system from a
   /// consumer's perspective. Details about what the namespace identifies
@@ -179,7 +179,7 @@ class NamingSystem extends DomainResource {
     List<ContactDetail>? contact,
     FhirString? responsible,
     Element? responsibleElement,
-    IdentifierTypeCodes? type,
+    CodeableConcept? type,
     FhirMarkdown? description,
     Element? descriptionElement,
     List<UsageContext>? useContext,

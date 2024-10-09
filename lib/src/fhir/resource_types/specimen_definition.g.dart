@@ -51,7 +51,7 @@ SpecimenDefinition _$SpecimenDefinitionFromJson(Map<String, dynamic> json) =>
           ? null
           : Element.fromJson(json['_timeAspect'] as Map<String, dynamic>),
       collection: (json['collection'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$SpecimenCollectionEnumEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       typeTested: (json['typeTested'] as List<dynamic>?)
           ?.map((e) =>
@@ -174,19 +174,6 @@ const _$CommonLanguagesEnumMap = {
   CommonLanguages.zh_HK: 'zh-HK',
   CommonLanguages.zh_SG: 'zh-SG',
   CommonLanguages.zh_TW: 'zh-TW',
-};
-
-const _$SpecimenCollectionEnumEnumMap = {
-  SpecimenCollectionEnum.value129316008: '129316008',
-  SpecimenCollectionEnum.value129314006: '129314006',
-  SpecimenCollectionEnum.value129300006: '129300006',
-  SpecimenCollectionEnum.value129304002: '129304002',
-  SpecimenCollectionEnum.value129323009: '129323009',
-  SpecimenCollectionEnum.value73416001: '73416001',
-  SpecimenCollectionEnum.value225113003: '225113003',
-  SpecimenCollectionEnum.value70777001: '70777001',
-  SpecimenCollectionEnum.value386089008: '386089008',
-  SpecimenCollectionEnum.value278450005: '278450005',
 };
 
 const _$R4ResourceTypeEnumMap = {
@@ -338,7 +325,7 @@ SpecimenDefinitionTypeTested _$SpecimenDefinitionTypeTestedFromJson(
         Map<String, dynamic> json) =>
     SpecimenDefinitionTypeTested(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -373,7 +360,7 @@ SpecimenDefinitionTypeTested _$SpecimenDefinitionTypeTestedFromJson(
           : FhirDuration.fromJson(
               json['retentionTime'] as Map<String, dynamic>),
       rejectionCriterion: (json['rejectionCriterion'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$RejectionCriterionEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       handling: (json['handling'] as List<dynamic>?)
           ?.map((e) =>
@@ -413,7 +400,7 @@ Map<String, dynamic> _$SpecimenDefinitionTypeTestedToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('isDerived', instance.isDerived?.toJson());
@@ -436,30 +423,25 @@ const _$SpecimenContainedPreferenceEnumMap = {
   SpecimenContainedPreference.alternate: 'alternate',
 };
 
-const _$RejectionCriterionEnumMap = {
-  RejectionCriterion.hemolized: 'hemolized',
-  RejectionCriterion.insufficient: 'insufficient',
-  RejectionCriterion.broken: 'broken',
-  RejectionCriterion.clotted: 'clotted',
-  RejectionCriterion.wrong_temperature: 'wrong-temperature',
-};
-
 SpecimenDefinitionContainer _$SpecimenDefinitionContainerFromJson(
         Map<String, dynamic> json) =>
     SpecimenDefinitionContainer(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      material:
-          $enumDecodeNullable(_$ContainerMaterialsEnumMap, json['material']),
+      material: json['material'] == null
+          ? null
+          : CodeableConcept.fromJson(json['material'] as Map<String, dynamic>),
       type: json['type'] == null
           ? null
           : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
-      cap: $enumDecodeNullable(_$ContainerCapEnumMap, json['cap']),
+      cap: json['cap'] == null
+          ? null
+          : CodeableConcept.fromJson(json['cap'] as Map<String, dynamic>),
       description: json['description'] == null
           ? null
           : FhirString.fromJson(json['description']),
@@ -524,7 +506,7 @@ Map<String, dynamic> _$SpecimenDefinitionContainerToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('material', instance.material?.toJson());
@@ -544,32 +526,11 @@ Map<String, dynamic> _$SpecimenDefinitionContainerToJson(
   return val;
 }
 
-const _$ContainerMaterialsEnumMap = {
-  ContainerMaterials.value32039001: '32039001',
-  ContainerMaterials.value61088005: '61088005',
-  ContainerMaterials.value425620007: '425620007',
-};
-
-const _$ContainerCapEnumMap = {
-  ContainerCap.red: 'red',
-  ContainerCap.yellow: 'yellow',
-  ContainerCap.dark_yellow: 'dark-yellow',
-  ContainerCap.grey: 'grey',
-  ContainerCap.light_blue: 'light-blue',
-  ContainerCap.black: 'black',
-  ContainerCap.green: 'green',
-  ContainerCap.light_green: 'light-green',
-  ContainerCap.lavender: 'lavender',
-  ContainerCap.brown: 'brown',
-  ContainerCap.white: 'white',
-  ContainerCap.pink: 'pink',
-};
-
 SpecimenDefinitionAdditive _$SpecimenDefinitionAdditiveFromJson(
         Map<String, dynamic> json) =>
     SpecimenDefinitionAdditive(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -613,7 +574,7 @@ Map<String, dynamic> _$SpecimenDefinitionAdditiveToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['additiveCodeableConcept'] = instance.additiveCodeableConcept.toJson();
@@ -625,14 +586,16 @@ SpecimenDefinitionHandling _$SpecimenDefinitionHandlingFromJson(
         Map<String, dynamic> json) =>
     SpecimenDefinitionHandling(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      temperatureQualifier: $enumDecodeNullable(
-          _$HandlingConditionSetEnumMap, json['temperatureQualifier']),
+      temperatureQualifier: json['temperatureQualifier'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['temperatureQualifier'] as Map<String, dynamic>),
       temperatureRange: json['temperatureRange'] == null
           ? null
           : Range.fromJson(json['temperatureRange'] as Map<String, dynamic>),
@@ -679,7 +642,7 @@ Map<String, dynamic> _$SpecimenDefinitionHandlingToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('temperatureQualifier', instance.temperatureQualifier?.toJson());
@@ -689,9 +652,3 @@ Map<String, dynamic> _$SpecimenDefinitionHandlingToJson(
   writeNotNull('_instruction', instance.instructionElement?.toJson());
   return val;
 }
-
-const _$HandlingConditionSetEnumMap = {
-  HandlingConditionSet.room: 'room',
-  HandlingConditionSet.refrigerated: 'refrigerated',
-  HandlingConditionSet.frozen: 'frozen',
-};

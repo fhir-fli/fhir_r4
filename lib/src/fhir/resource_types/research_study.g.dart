@@ -51,9 +51,13 @@ ResearchStudy _$ResearchStudyFromJson(Map<String, dynamic> json) =>
       statusElement: json['_status'] == null
           ? null
           : Element.fromJson(json['_status'] as Map<String, dynamic>),
-      primaryPurposeType: $enumDecodeNullable(
-          _$ResearchStudyPrimaryPurposeTypeEnumMap, json['primaryPurposeType']),
-      phase: $enumDecodeNullable(_$ResearchStudyPhaseEnumMap, json['phase']),
+      primaryPurposeType: json['primaryPurposeType'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['primaryPurposeType'] as Map<String, dynamic>),
+      phase: json['phase'] == null
+          ? null
+          : CodeableConcept.fromJson(json['phase'] as Map<String, dynamic>),
       category: (json['category'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -61,7 +65,7 @@ ResearchStudy _$ResearchStudyFromJson(Map<String, dynamic> json) =>
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       condition: (json['condition'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ConditionProblemDiagnosisCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       contact: (json['contact'] as List<dynamic>?)
           ?.map((e) => ContactDetail.fromJson(e as Map<String, dynamic>))
@@ -97,8 +101,10 @@ ResearchStudy _$ResearchStudyFromJson(Map<String, dynamic> json) =>
       site: (json['site'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
-      reasonStopped: $enumDecodeNullable(
-          _$ResearchStudyReasonStoppedEnumMap, json['reasonStopped']),
+      reasonStopped: json['reasonStopped'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['reasonStopped'] as Map<String, dynamic>),
       note: (json['note'] as List<dynamic>?)
           ?.map((e) => Annotation.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -268,42 +274,6 @@ const _$ResearchStudyStatusEnumMap = {
   ResearchStudyStatus.withdrawn: 'withdrawn',
 };
 
-const _$ResearchStudyPrimaryPurposeTypeEnumMap = {
-  ResearchStudyPrimaryPurposeType.treatment: 'treatment',
-  ResearchStudyPrimaryPurposeType.prevention: 'prevention',
-  ResearchStudyPrimaryPurposeType.diagnostic: 'diagnostic',
-  ResearchStudyPrimaryPurposeType.supportive_care: 'supportive-care',
-  ResearchStudyPrimaryPurposeType.screening: 'screening',
-  ResearchStudyPrimaryPurposeType.health_services_research:
-      'health-services-research',
-  ResearchStudyPrimaryPurposeType.basic_science: 'basic-science',
-  ResearchStudyPrimaryPurposeType.device_feasibility: 'device-feasibility',
-};
-
-const _$ResearchStudyPhaseEnumMap = {
-  ResearchStudyPhase.n_a: 'n-a',
-  ResearchStudyPhase.early_phase_1: 'early-phase-1',
-  ResearchStudyPhase.phase_1: 'phase-1',
-  ResearchStudyPhase.phase_1_phase_2: 'phase-1-phase-2',
-  ResearchStudyPhase.phase_2: 'phase-2',
-  ResearchStudyPhase.phase_2_phase_3: 'phase-2-phase-3',
-  ResearchStudyPhase.phase_3: 'phase-3',
-  ResearchStudyPhase.phase_4: 'phase-4',
-};
-
-const _$ConditionProblemDiagnosisCodesEnumMap = {
-  ConditionProblemDiagnosisCodes.value160245001: '160245001',
-};
-
-const _$ResearchStudyReasonStoppedEnumMap = {
-  ResearchStudyReasonStopped.accrual_goal_met: 'accrual-goal-met',
-  ResearchStudyReasonStopped.closed_due_to_toxicity: 'closed-due-to-toxicity',
-  ResearchStudyReasonStopped.closed_due_to_lack_of_study_progress:
-      'closed-due-to-lack-of-study-progress',
-  ResearchStudyReasonStopped.temporarily_closed_per_study_design:
-      'temporarily-closed-per-study-design',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -452,7 +422,7 @@ const _$R4ResourceTypeEnumMap = {
 ResearchStudyArm _$ResearchStudyArmFromJson(Map<String, dynamic> json) =>
     ResearchStudyArm(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -504,7 +474,7 @@ Map<String, dynamic> _$ResearchStudyArmToJson(ResearchStudyArm instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['name'] = instance.name.toJson();
@@ -519,7 +489,7 @@ ResearchStudyObjective _$ResearchStudyObjectiveFromJson(
         Map<String, dynamic> json) =>
     ResearchStudyObjective(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -529,8 +499,9 @@ ResearchStudyObjective _$ResearchStudyObjectiveFromJson(
       nameElement: json['_name'] == null
           ? null
           : Element.fromJson(json['_name'] as Map<String, dynamic>),
-      type: $enumDecodeNullable(
-          _$ResearchStudyObjectiveTypeEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -565,7 +536,7 @@ Map<String, dynamic> _$ResearchStudyObjectiveToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('name', instance.name?.toJson());
@@ -573,9 +544,3 @@ Map<String, dynamic> _$ResearchStudyObjectiveToJson(
   writeNotNull('type', instance.type?.toJson());
   return val;
 }
-
-const _$ResearchStudyObjectiveTypeEnumMap = {
-  ResearchStudyObjectiveType.primary: 'primary',
-  ResearchStudyObjectiveType.secondary: 'secondary',
-  ResearchStudyObjectiveType.exploratory: 'exploratory',
-};

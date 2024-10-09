@@ -81,7 +81,7 @@ class FhirList extends DomainResource {
 
   /// [code] /// This code defines the purpose of the list - why it was created.
   @JsonKey(name: 'code')
-  final ExampleUseCodesForList? code;
+  final CodeableConcept? code;
 
   /// [subject] /// The common subject (or patient) of the resources that are in the list if
   /// there is one.
@@ -106,7 +106,7 @@ class FhirList extends DomainResource {
 
   /// [orderedBy] /// What order applies to the items in the list.
   @JsonKey(name: 'orderedBy')
-  final ListOrderCodes? orderedBy;
+  final CodeableConcept? orderedBy;
 
   /// [note] /// Comments that apply to the overall list.
   @JsonKey(name: 'note')
@@ -118,7 +118,7 @@ class FhirList extends DomainResource {
 
   /// [emptyReason] /// If the list is empty, why the list is empty.
   @JsonKey(name: 'emptyReason')
-  final ListEmptyReasons? emptyReason;
+  final CodeableConcept? emptyReason;
   factory FhirList.fromJson(Map<String, dynamic> json) =>
       _$FhirListFromJson(json);
 
@@ -146,16 +146,16 @@ class FhirList extends DomainResource {
     Element? modeElement,
     FhirString? title,
     Element? titleElement,
-    ExampleUseCodesForList? code,
+    CodeableConcept? code,
     Reference? subject,
     Reference? encounter,
     FhirDateTime? date,
     Element? dateElement,
     Reference? source,
-    ListOrderCodes? orderedBy,
+    CodeableConcept? orderedBy,
     List<Annotation>? note,
     List<ListEntry>? entry,
-    ListEmptyReasons? emptyReason,
+    CodeableConcept? emptyReason,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -249,7 +249,7 @@ class ListEntry extends BackboneElement {
   /// [flag] /// The flag allows the system constructing the list to indicate the role and
   /// significance of the item in the list.
   @JsonKey(name: 'flag')
-  final PatientMedicineChangeTypes? flag;
+  final CodeableConcept? flag;
 
   /// [deleted] /// True if this item is marked as deleted in the list.
   @JsonKey(name: 'deleted')
@@ -279,7 +279,7 @@ class ListEntry extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    PatientMedicineChangeTypes? flag,
+    CodeableConcept? flag,
     FhirBoolean? deleted,
     Element? deletedElement,
     FhirDateTime? date,

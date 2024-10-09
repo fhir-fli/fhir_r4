@@ -51,7 +51,9 @@ SupplyDelivery _$SupplyDeliveryFromJson(Map<String, dynamic> json) =>
       patient: json['patient'] == null
           ? null
           : Reference.fromJson(json['patient'] as Map<String, dynamic>),
-      type: $enumDecodeNullable(_$SupplyItemTypeEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       suppliedItem: json['suppliedItem'] == null
           ? null
           : SupplyDeliverySuppliedItem.fromJson(
@@ -211,11 +213,6 @@ const _$SupplyDeliveryStatusEnumMap = {
   SupplyDeliveryStatus.entered_in_error: 'entered-in-error',
 };
 
-const _$SupplyItemTypeEnumMap = {
-  SupplyItemType.medication: 'medication',
-  SupplyItemType.device: 'device',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -365,7 +362,7 @@ SupplyDeliverySuppliedItem _$SupplyDeliverySuppliedItemFromJson(
         Map<String, dynamic> json) =>
     SupplyDeliverySuppliedItem(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -415,7 +412,7 @@ Map<String, dynamic> _$SupplyDeliverySuppliedItemToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('quantity', instance.quantity?.toJson());

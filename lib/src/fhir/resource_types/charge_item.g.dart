@@ -56,7 +56,7 @@ ChargeItem _$ChargeItemFromJson(Map<String, dynamic> json) => ChargeItem(
       partOf: (json['partOf'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
-      code: $enumDecode(_$ChargeItemCodeEnumMap, json['code']),
+      code: CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       subject: Reference.fromJson(json['subject'] as Map<String, dynamic>),
       context: json['context'] == null
           ? null
@@ -307,12 +307,6 @@ const _$ChargeItemStatusEnumMap = {
   ChargeItemStatus.unknown: 'unknown',
 };
 
-const _$ChargeItemCodeEnumMap = {
-  ChargeItemCode.value1100: '1100',
-  ChargeItemCode.value1210: '1210',
-  ChargeItemCode.value1320: '1320',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -461,7 +455,7 @@ const _$R4ResourceTypeEnumMap = {
 ChargeItemPerformer _$ChargeItemPerformerFromJson(Map<String, dynamic> json) =>
     ChargeItemPerformer(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -504,7 +498,7 @@ Map<String, dynamic> _$ChargeItemPerformerToJson(ChargeItemPerformer instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('function', instance.function_?.toJson());

@@ -8,7 +8,7 @@ part of 'count.dart';
 
 Count _$CountFromJson(Map<String, dynamic> json) => Count(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       value: json['value'] == null ? null : FhirDecimal.fromJson(json['value']),
@@ -65,7 +65,7 @@ Map<String, dynamic> _$CountToJson(Count instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('value', instance.value?.toJson());
   writeNotNull('_value', instance.valueElement?.toJson());
   writeNotNull('comparator', instance.comparator?.toJson());

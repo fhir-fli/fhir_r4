@@ -269,7 +269,7 @@ class SpecimenCollection extends BackboneElement {
   /// [method] /// A coded value specifying the technique that is used to perform the
   /// procedure.
   @JsonKey(name: 'method')
-  final FHIRSpecimenCollectionMethod? method;
+  final CodeableConcept? method;
 
   /// [bodySite] /// Anatomical location from which the specimen was collected (if subject is a
   /// patient). This is the target site. This element is not used for
@@ -305,7 +305,7 @@ class SpecimenCollection extends BackboneElement {
     Period? collectedPeriod,
     FhirDuration? duration,
     Quantity? quantity,
-    FHIRSpecimenCollectionMethod? method,
+    CodeableConcept? method,
     CodeableConcept? bodySite,
     CodeableConcept? fastingStatusCodeableConcept,
     FhirDuration? fastingStatusDuration,

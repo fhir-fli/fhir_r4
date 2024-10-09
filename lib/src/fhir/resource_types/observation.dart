@@ -106,7 +106,7 @@ class Observation extends DomainResource {
 
   /// [category] /// A code that classifies the general type of observation being made.
   @JsonKey(name: 'category')
-  final List<ObservationCategoryCodes>? category;
+  final List<CodeableConcept>? category;
 
   /// [code] /// Describes what was observed. Sometimes this is called the observation
   /// "name".
@@ -253,7 +253,7 @@ class Observation extends DomainResource {
   /// [dataAbsentReason] /// Provides a reason why the expected value in the element
   /// Observation.value[x] is missing.
   @JsonKey(name: 'dataAbsentReason')
-  final DataAbsentReason? dataAbsentReason;
+  final CodeableConcept? dataAbsentReason;
 
   /// [interpretation] /// A categorical assessment of an observation value. For example, high, low,
   /// normal.
@@ -332,7 +332,7 @@ class Observation extends DomainResource {
     List<Reference>? partOf,
     ObservationStatus? status,
     Element? statusElement,
-    List<ObservationCategoryCodes>? category,
+    List<CodeableConcept>? category,
     CodeableConcept? code,
     Reference? subject,
     List<Reference>? focus,
@@ -362,7 +362,7 @@ class Observation extends DomainResource {
     FhirDateTime? valueDateTime,
     Element? valueDateTimeElement,
     Period? valuePeriod,
-    DataAbsentReason? dataAbsentReason,
+    CodeableConcept? dataAbsentReason,
     List<CodeableConcept>? interpretation,
     List<Annotation>? note,
     CodeableConcept? bodySite,
@@ -515,7 +515,7 @@ class ObservationReferenceRange extends BackboneElement {
   /// [type] /// Codes to indicate the what part of the targeted reference population it
   /// applies to. For example, the normal or therapeutic range.
   @JsonKey(name: 'type')
-  final ObservationReferenceRangeMeaningCodes? type;
+  final CodeableConcept? type;
 
   /// [appliesTo] /// Codes to indicate the target population this reference range applies to.
   /// For example, a reference range may be based on the normal population or a
@@ -524,7 +524,7 @@ class ObservationReferenceRange extends BackboneElement {
   /// African American females, both a code of female and a code for African
   /// American would be used.
   @JsonKey(name: 'appliesTo')
-  final List<ObservationReferenceRangeAppliesToCodes>? appliesTo;
+  final List<CodeableConcept>? appliesTo;
 
   /// [age] /// The age at which this reference range is applicable. This is a neonatal age
   /// (e.g. number of weeks at term) if the meaning says so.
@@ -553,8 +553,8 @@ class ObservationReferenceRange extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Quantity? low,
     Quantity? high,
-    ObservationReferenceRangeMeaningCodes? type,
-    List<ObservationReferenceRangeAppliesToCodes>? appliesTo,
+    CodeableConcept? type,
+    List<CodeableConcept>? appliesTo,
     Range? age,
     FhirString? text,
     Element? textElement,
@@ -722,7 +722,7 @@ class ObservationComponent extends BackboneElement {
   /// [dataAbsentReason] /// Provides a reason why the expected value in the element
   /// Observation.component.value[x] is missing.
   @JsonKey(name: 'dataAbsentReason')
-  final DataAbsentReason? dataAbsentReason;
+  final CodeableConcept? dataAbsentReason;
 
   /// [interpretation] /// A categorical assessment of an observation value. For example, high, low,
   /// normal.
@@ -763,7 +763,7 @@ class ObservationComponent extends BackboneElement {
     FhirDateTime? valueDateTime,
     Element? valueDateTimeElement,
     Period? valuePeriod,
-    DataAbsentReason? dataAbsentReason,
+    CodeableConcept? dataAbsentReason,
     List<CodeableConcept>? interpretation,
     List<ObservationReferenceRange>? referenceRange,
     Map<String, Object?>? userData,

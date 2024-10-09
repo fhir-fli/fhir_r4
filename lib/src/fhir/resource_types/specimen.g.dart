@@ -361,7 +361,7 @@ const _$R4ResourceTypeEnumMap = {
 SpecimenCollection _$SpecimenCollectionFromJson(Map<String, dynamic> json) =>
     SpecimenCollection(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -386,8 +386,9 @@ SpecimenCollection _$SpecimenCollectionFromJson(Map<String, dynamic> json) =>
       quantity: json['quantity'] == null
           ? null
           : Quantity.fromJson(json['quantity'] as Map<String, dynamic>),
-      method: $enumDecodeNullable(
-          _$FHIRSpecimenCollectionMethodEnumMap, json['method']),
+      method: json['method'] == null
+          ? null
+          : CodeableConcept.fromJson(json['method'] as Map<String, dynamic>),
       bodySite: json['bodySite'] == null
           ? null
           : CodeableConcept.fromJson(json['bodySite'] as Map<String, dynamic>),
@@ -432,7 +433,7 @@ Map<String, dynamic> _$SpecimenCollectionToJson(SpecimenCollection instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('collector', instance.collector?.toJson());
@@ -451,23 +452,10 @@ Map<String, dynamic> _$SpecimenCollectionToJson(SpecimenCollection instance) {
   return val;
 }
 
-const _$FHIRSpecimenCollectionMethodEnumMap = {
-  FHIRSpecimenCollectionMethod.value129316008: '129316008',
-  FHIRSpecimenCollectionMethod.value129314006: '129314006',
-  FHIRSpecimenCollectionMethod.value129300006: '129300006',
-  FHIRSpecimenCollectionMethod.value129304002: '129304002',
-  FHIRSpecimenCollectionMethod.value129323009: '129323009',
-  FHIRSpecimenCollectionMethod.value73416001: '73416001',
-  FHIRSpecimenCollectionMethod.value225113003: '225113003',
-  FHIRSpecimenCollectionMethod.value70777001: '70777001',
-  FHIRSpecimenCollectionMethod.value386089008: '386089008',
-  FHIRSpecimenCollectionMethod.value278450005: '278450005',
-};
-
 SpecimenProcessing _$SpecimenProcessingFromJson(Map<String, dynamic> json) =>
     SpecimenProcessing(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -527,7 +515,7 @@ Map<String, dynamic> _$SpecimenProcessingToJson(SpecimenProcessing instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('description', instance.description?.toJson());
@@ -543,7 +531,7 @@ Map<String, dynamic> _$SpecimenProcessingToJson(SpecimenProcessing instance) {
 SpecimenContainer _$SpecimenContainerFromJson(Map<String, dynamic> json) =>
     SpecimenContainer(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -608,7 +596,7 @@ Map<String, dynamic> _$SpecimenContainerToJson(SpecimenContainer instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull(

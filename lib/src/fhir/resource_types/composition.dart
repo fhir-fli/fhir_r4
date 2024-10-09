@@ -597,7 +597,7 @@ class CompositionSection extends BackboneElement {
   /// [code] /// A code identifying the kind of content contained within the section. This
   /// must be consistent with the section title.
   @JsonKey(name: 'code')
-  final DocumentSectionCodes? code;
+  final CodeableConcept? code;
 
   /// [author] /// Identifies who is responsible for the information in this section, not
   /// necessarily who typed it in.
@@ -634,7 +634,7 @@ class CompositionSection extends BackboneElement {
 
   /// [orderedBy] /// Specifies the order applied to the items in the section entries.
   @JsonKey(name: 'orderedBy')
-  final ListOrderCodes? orderedBy;
+  final CodeableConcept? orderedBy;
 
   /// [entry] /// A reference to the actual resource from which the narrative in the section
   /// is derived.
@@ -644,7 +644,7 @@ class CompositionSection extends BackboneElement {
   /// [emptyReason] /// If the section is empty, why the list is empty. An empty section typically
   /// has some text explaining the empty reason.
   @JsonKey(name: 'emptyReason')
-  final ListEmptyReasons? emptyReason;
+  final CodeableConcept? emptyReason;
 
   /// [section] /// A nested sub-section within this section.
   @JsonKey(name: 'section')
@@ -664,15 +664,15 @@ class CompositionSection extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? title,
     Element? titleElement,
-    DocumentSectionCodes? code,
+    CodeableConcept? code,
     List<Reference>? author,
     Reference? focus,
     Narrative? text,
     ListMode? mode,
     Element? modeElement,
-    ListOrderCodes? orderedBy,
+    CodeableConcept? orderedBy,
     List<Reference>? entry,
-    ListEmptyReasons? emptyReason,
+    CodeableConcept? emptyReason,
     List<CompositionSection>? section,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

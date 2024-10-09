@@ -42,11 +42,15 @@ PackagedProductDefinition _$PackagedProductDefinitionFromJson(
       nameElement: json['_name'] == null
           ? null
           : Element.fromJson(json['_name'] as Map<String, dynamic>),
-      type: $enumDecodeNullable(_$PackageTypeEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       packageFor: (json['packageFor'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
-      status: $enumDecodeNullable(_$PublicationStatusEnumMap, json['status']),
+      status: json['status'] == null
+          ? null
+          : CodeableConcept.fromJson(json['status'] as Map<String, dynamic>),
       statusDate: json['statusDate'] == null
           ? null
           : FhirDateTime.fromJson(json['statusDate'] as String),
@@ -70,7 +74,7 @@ PackagedProductDefinition _$PackagedProductDefinitionFromJson(
           ?.map((e) => MarketingStatus.fromJson(e as Map<String, dynamic>))
           .toList(),
       characteristic: (json['characteristic'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$PackageCharacteristicEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       copackagedIndicator: json['copackagedIndicator'] == null
           ? null
@@ -220,25 +224,6 @@ const _$CommonLanguagesEnumMap = {
   CommonLanguages.zh_HK: 'zh-HK',
   CommonLanguages.zh_SG: 'zh-SG',
   CommonLanguages.zh_TW: 'zh-TW',
-};
-
-const _$PackageTypeEnumMap = {
-  PackageType.MedicinalProductPack: 'MedicinalProductPack',
-  PackageType.RawMaterialPackage: 'RawMaterialPackage',
-  PackageType.Shipping_TransportContainer: 'Shipping-TransportContainer',
-};
-
-const _$PublicationStatusEnumMap = {
-  PublicationStatus.draft: 'draft',
-  PublicationStatus.active: 'active',
-  PublicationStatus.retired: 'retired',
-  PublicationStatus.unknown: 'unknown',
-};
-
-const _$PackageCharacteristicEnumMap = {
-  PackageCharacteristic.HospitalPack: 'HospitalPack',
-  PackageCharacteristic.NursePrescribable: 'NursePrescribable',
-  PackageCharacteristic.CalendarPack: 'CalendarPack',
 };
 
 const _$R4ResourceTypeEnumMap = {
@@ -391,13 +376,15 @@ PackagedProductDefinitionLegalStatusOfSupply
             Map<String, dynamic> json) =>
         PackagedProductDefinitionLegalStatusOfSupply(
           id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-          extension_: (json['extension_'] as List<dynamic>?)
+          extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
           modifierExtension: (json['modifierExtension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
-          code: $enumDecodeNullable(_$LegalStatusOfSupplyEnumMap, json['code']),
+          code: json['code'] == null
+              ? null
+              : CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
           jurisdiction: json['jurisdiction'] == null
               ? null
               : CodeableConcept.fromJson(
@@ -437,7 +424,7 @@ Map<String, dynamic> _$PackagedProductDefinitionLegalStatusOfSupplyToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('code', instance.code?.toJson());
@@ -445,22 +432,11 @@ Map<String, dynamic> _$PackagedProductDefinitionLegalStatusOfSupplyToJson(
   return val;
 }
 
-const _$LegalStatusOfSupplyEnumMap = {
-  LegalStatusOfSupply.value100000072076: '100000072076',
-  LegalStatusOfSupply.value100000072077: '100000072077',
-  LegalStatusOfSupply.value100000072078: '100000072078',
-  LegalStatusOfSupply.value100000072079: '100000072079',
-  LegalStatusOfSupply.value100000072084: '100000072084',
-  LegalStatusOfSupply.value100000072085: '100000072085',
-  LegalStatusOfSupply.value100000072086: '100000072086',
-  LegalStatusOfSupply.value100000157313: '100000157313',
-};
-
 PackagedProductDefinitionPackage _$PackagedProductDefinitionPackageFromJson(
         Map<String, dynamic> json) =>
     PackagedProductDefinitionPackage(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -469,7 +445,9 @@ PackagedProductDefinitionPackage _$PackagedProductDefinitionPackageFromJson(
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map((e) => Identifier.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecodeNullable(_$PackagingTypeEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       quantity: json['quantity'] == null
           ? null
           : FhirInteger.fromJson(json['quantity']),
@@ -477,10 +455,10 @@ PackagedProductDefinitionPackage _$PackagedProductDefinitionPackageFromJson(
           ? null
           : Element.fromJson(json['_quantity'] as Map<String, dynamic>),
       material: (json['material'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$PackageMaterialEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       alternateMaterial: (json['alternateMaterial'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$PackageMaterialEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       shelfLifeStorage: (json['shelfLifeStorage'] as List<dynamic>?)
           ?.map((e) => PackagedProductDefinitionShelfLifeStorage.fromJson(
@@ -535,7 +513,7 @@ Map<String, dynamic> _$PackagedProductDefinitionPackageToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull(
@@ -557,163 +535,12 @@ Map<String, dynamic> _$PackagedProductDefinitionPackageToJson(
   return val;
 }
 
-const _$PackagingTypeEnumMap = {
-  PackagingType.value100000073490: '100000073490',
-  PackagingType.value100000073491: '100000073491',
-  PackagingType.value100000073492: '100000073492',
-  PackagingType.value100000073493: '100000073493',
-  PackagingType.value100000073494: '100000073494',
-  PackagingType.value100000073495: '100000073495',
-  PackagingType.value100000073496: '100000073496',
-  PackagingType.value100000073497: '100000073497',
-  PackagingType.value100000073498: '100000073498',
-  PackagingType.value100000073499: '100000073499',
-  PackagingType.value100000073500: '100000073500',
-  PackagingType.value100000073501: '100000073501',
-  PackagingType.value100000073502: '100000073502',
-  PackagingType.value100000073503: '100000073503',
-  PackagingType.value100000073504: '100000073504',
-  PackagingType.value100000073505: '100000073505',
-  PackagingType.value100000073506: '100000073506',
-  PackagingType.value100000073507: '100000073507',
-  PackagingType.value100000073508: '100000073508',
-  PackagingType.value100000073509: '100000073509',
-  PackagingType.value100000073510: '100000073510',
-  PackagingType.value100000073511: '100000073511',
-  PackagingType.value100000073512: '100000073512',
-  PackagingType.value100000073513: '100000073513',
-  PackagingType.value100000073514: '100000073514',
-  PackagingType.value100000073515: '100000073515',
-  PackagingType.value100000073516: '100000073516',
-  PackagingType.value100000073517: '100000073517',
-  PackagingType.value100000073518: '100000073518',
-  PackagingType.value100000073519: '100000073519',
-  PackagingType.value100000073520: '100000073520',
-  PackagingType.value100000073521: '100000073521',
-  PackagingType.value100000073522: '100000073522',
-  PackagingType.value100000073523: '100000073523',
-  PackagingType.value100000073524: '100000073524',
-  PackagingType.value100000073525: '100000073525',
-  PackagingType.value100000073526: '100000073526',
-  PackagingType.value100000073527: '100000073527',
-  PackagingType.value100000073528: '100000073528',
-  PackagingType.value100000073529: '100000073529',
-  PackagingType.value100000073530: '100000073530',
-  PackagingType.value100000073531: '100000073531',
-  PackagingType.value100000073532: '100000073532',
-  PackagingType.value100000073533: '100000073533',
-  PackagingType.value100000073534: '100000073534',
-  PackagingType.value100000073535: '100000073535',
-  PackagingType.value100000073536: '100000073536',
-  PackagingType.value100000073537: '100000073537',
-  PackagingType.value100000073538: '100000073538',
-  PackagingType.value100000073539: '100000073539',
-  PackagingType.value100000073540: '100000073540',
-  PackagingType.value100000073541: '100000073541',
-  PackagingType.value100000073542: '100000073542',
-  PackagingType.value100000073543: '100000073543',
-  PackagingType.value100000073544: '100000073544',
-  PackagingType.value100000073545: '100000073545',
-  PackagingType.value100000073546: '100000073546',
-  PackagingType.value100000073547: '100000073547',
-  PackagingType.value100000073548: '100000073548',
-  PackagingType.value100000073549: '100000073549',
-  PackagingType.value100000073550: '100000073550',
-  PackagingType.value100000073551: '100000073551',
-  PackagingType.value100000073552: '100000073552',
-  PackagingType.value100000073553: '100000073553',
-  PackagingType.value100000073554: '100000073554',
-  PackagingType.value100000073555: '100000073555',
-  PackagingType.value100000073556: '100000073556',
-  PackagingType.value100000073557: '100000073557',
-  PackagingType.value100000073558: '100000073558',
-  PackagingType.value100000073559: '100000073559',
-  PackagingType.value100000073560: '100000073560',
-  PackagingType.value100000073561: '100000073561',
-  PackagingType.value100000073562: '100000073562',
-  PackagingType.value100000073563: '100000073563',
-  PackagingType.value100000075664: '100000075664',
-  PackagingType.value100000116195: '100000116195',
-  PackagingType.value100000116196: '100000116196',
-  PackagingType.value100000116197: '100000116197',
-  PackagingType.value100000125779: '100000125779',
-  PackagingType.value100000137702: '100000137702',
-  PackagingType.value100000137703: '100000137703',
-  PackagingType.value100000143554: '100000143554',
-  PackagingType.value100000143555: '100000143555',
-  PackagingType.value100000163233: '100000163233',
-  PackagingType.value100000163234: '100000163234',
-  PackagingType.value100000164143: '100000164143',
-  PackagingType.value100000166980: '100000166980',
-  PackagingType.value100000169899: '100000169899',
-  PackagingType.value100000173982: '100000173982',
-  PackagingType.value100000173983: '100000173983',
-  PackagingType.value100000174066: '100000174066',
-  PackagingType.value100000174067: '100000174067',
-  PackagingType.value100000174068: '100000174068',
-  PackagingType.value100000174069: '100000174069',
-  PackagingType.value100000174070: '100000174070',
-  PackagingType.value200000005068: '200000005068',
-  PackagingType.value200000005585: '200000005585',
-  PackagingType.value200000010647: '200000010647',
-  PackagingType.value200000011726: '200000011726',
-  PackagingType.value200000012539: '200000012539',
-  PackagingType.value200000013191: '200000013191',
-  PackagingType.value200000024874: '200000024874',
-};
-
-const _$PackageMaterialEnumMap = {
-  PackageMaterial.value200000003200: '200000003200',
-  PackageMaterial.value200000003201: '200000003201',
-  PackageMaterial.value200000003202: '200000003202',
-  PackageMaterial.value200000003203: '200000003203',
-  PackageMaterial.value200000003204: '200000003204',
-  PackageMaterial.value200000003205: '200000003205',
-  PackageMaterial.value200000003206: '200000003206',
-  PackageMaterial.value200000003207: '200000003207',
-  PackageMaterial.value200000003208: '200000003208',
-  PackageMaterial.value200000003209: '200000003209',
-  PackageMaterial.value200000003210: '200000003210',
-  PackageMaterial.value200000003211: '200000003211',
-  PackageMaterial.value200000003212: '200000003212',
-  PackageMaterial.value200000003213: '200000003213',
-  PackageMaterial.value200000003214: '200000003214',
-  PackageMaterial.value200000003215: '200000003215',
-  PackageMaterial.value200000003216: '200000003216',
-  PackageMaterial.value200000003217: '200000003217',
-  PackageMaterial.value200000003218: '200000003218',
-  PackageMaterial.value200000003219: '200000003219',
-  PackageMaterial.value200000003220: '200000003220',
-  PackageMaterial.value200000003221: '200000003221',
-  PackageMaterial.value200000003222: '200000003222',
-  PackageMaterial.value200000003223: '200000003223',
-  PackageMaterial.value200000003224: '200000003224',
-  PackageMaterial.value200000003225: '200000003225',
-  PackageMaterial.value200000003226: '200000003226',
-  PackageMaterial.value200000003227: '200000003227',
-  PackageMaterial.value200000003228: '200000003228',
-  PackageMaterial.value200000003229: '200000003229',
-  PackageMaterial.value200000003529: '200000003529',
-  PackageMaterial.value200000012514: '200000012514',
-  PackageMaterial.value200000012515: '200000012515',
-  PackageMaterial.value200000012521: '200000012521',
-  PackageMaterial.value200000012522: '200000012522',
-  PackageMaterial.value200000012523: '200000012523',
-  PackageMaterial.value200000012524: '200000012524',
-  PackageMaterial.value200000012538: '200000012538',
-  PackageMaterial.value200000015521: '200000015521',
-  PackageMaterial.value200000023330: '200000023330',
-  PackageMaterial.value200000023332: '200000023332',
-  PackageMaterial.value200000025255: '200000025255',
-  PackageMaterial.value200000025257: '200000025257',
-};
-
 PackagedProductDefinitionShelfLifeStorage
     _$PackagedProductDefinitionShelfLifeStorageFromJson(
             Map<String, dynamic> json) =>
         PackagedProductDefinitionShelfLifeStorage(
           id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-          extension_: (json['extension_'] as List<dynamic>?)
+          extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
           modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -771,7 +598,7 @@ Map<String, dynamic> _$PackagedProductDefinitionShelfLifeStorageToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.toJson());
@@ -787,7 +614,7 @@ PackagedProductDefinitionProperty _$PackagedProductDefinitionPropertyFromJson(
         Map<String, dynamic> json) =>
     PackagedProductDefinitionProperty(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -851,7 +678,7 @@ Map<String, dynamic> _$PackagedProductDefinitionPropertyToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();
@@ -870,7 +697,7 @@ PackagedProductDefinitionContainedItem
             Map<String, dynamic> json) =>
         PackagedProductDefinitionContainedItem(
           id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-          extension_: (json['extension_'] as List<dynamic>?)
+          extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
           modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -916,7 +743,7 @@ Map<String, dynamic> _$PackagedProductDefinitionContainedItemToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['item'] = instance.item.toJson();

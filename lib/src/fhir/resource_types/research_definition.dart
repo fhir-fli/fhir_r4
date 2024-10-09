@@ -173,13 +173,13 @@ class ResearchDefinition extends DomainResource {
   /// provided, a Patient subject is assumed, but the subject of the
   /// ResearchDefinition can be anything.
   @JsonKey(name: 'subjectCodeableConcept')
-  final SubjectType? subjectCodeableConcept;
+  final CodeableConcept? subjectCodeableConcept;
 
   /// [subjectReference] /// The intended subjects for the ResearchDefinition. If this element is not
   /// provided, a Patient subject is assumed, but the subject of the
   /// ResearchDefinition can be anything.
   @JsonKey(name: 'subjectReference')
-  final SubjectType? subjectReference;
+  final Reference? subjectReference;
 
   /// [date] /// The date (and optionally time) when the research definition was published.
   /// The date must change when the business version changes and it must change
@@ -273,7 +273,7 @@ class ResearchDefinition extends DomainResource {
   /// provide a high-level categorization grouping types of ResearchDefinitions
   /// that can be useful for filtering and searching.
   @JsonKey(name: 'topic')
-  final List<DefinitionTopic>? topic;
+  final List<CodeableConcept>? topic;
 
   /// [author] /// An individiual or organization primarily involved in the creation and
   /// maintenance of the content.
@@ -363,8 +363,8 @@ class ResearchDefinition extends DomainResource {
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
-    SubjectType? subjectCodeableConcept,
-    SubjectType? subjectReference,
+    CodeableConcept? subjectCodeableConcept,
+    Reference? subjectReference,
     FhirDateTime? date,
     Element? dateElement,
     FhirString? publisher,
@@ -387,7 +387,7 @@ class ResearchDefinition extends DomainResource {
     FhirDate? lastReviewDate,
     Element? lastReviewDateElement,
     Period? effectivePeriod,
-    List<DefinitionTopic>? topic,
+    List<CodeableConcept>? topic,
     List<ContactDetail>? author,
     List<ContactDetail>? editor,
     List<ContactDetail>? reviewer,

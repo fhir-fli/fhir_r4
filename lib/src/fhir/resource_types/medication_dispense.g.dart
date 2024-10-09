@@ -45,14 +45,17 @@ MedicationDispense _$MedicationDispenseFromJson(Map<String, dynamic> json) =>
       statusElement: json['_status'] == null
           ? null
           : Element.fromJson(json['_status'] as Map<String, dynamic>),
-      statusReasonCodeableConcept: $enumDecodeNullable(
-          _$MedicationDispenseStatusReasonCodesEnumMap,
-          json['statusReasonCodeableConcept']),
-      statusReasonReference: $enumDecodeNullable(
-          _$MedicationDispenseStatusReasonCodesEnumMap,
-          json['statusReasonReference']),
-      category: $enumDecodeNullable(
-          _$MedicationDispenseCategoryCodesEnumMap, json['category']),
+      statusReasonCodeableConcept: json['statusReasonCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['statusReasonCodeableConcept'] as Map<String, dynamic>),
+      statusReasonReference: json['statusReasonReference'] == null
+          ? null
+          : Reference.fromJson(
+              json['statusReasonReference'] as Map<String, dynamic>),
+      category: json['category'] == null
+          ? null
+          : CodeableConcept.fromJson(json['category'] as Map<String, dynamic>),
       medicationCodeableConcept: CodeableConcept.fromJson(
           json['medicationCodeableConcept'] as Map<String, dynamic>),
       medicationReference: Reference.fromJson(
@@ -280,37 +283,6 @@ const _$MedicationDispenseStatusCodesEnumMap = {
   MedicationDispenseStatusCodes.unknown: 'unknown',
 };
 
-const _$MedicationDispenseStatusReasonCodesEnumMap = {
-  MedicationDispenseStatusReasonCodes.frr01: 'frr01',
-  MedicationDispenseStatusReasonCodes.frr02: 'frr02',
-  MedicationDispenseStatusReasonCodes.frr03: 'frr03',
-  MedicationDispenseStatusReasonCodes.frr04: 'frr04',
-  MedicationDispenseStatusReasonCodes.frr05: 'frr05',
-  MedicationDispenseStatusReasonCodes.frr06: 'frr06',
-  MedicationDispenseStatusReasonCodes.altchoice: 'altchoice',
-  MedicationDispenseStatusReasonCodes.clarif: 'clarif',
-  MedicationDispenseStatusReasonCodes.drughigh: 'drughigh',
-  MedicationDispenseStatusReasonCodes.hospadm: 'hospadm',
-  MedicationDispenseStatusReasonCodes.labint: 'labint',
-  MedicationDispenseStatusReasonCodes.non_avail: 'non-avail',
-  MedicationDispenseStatusReasonCodes.preg: 'preg',
-  MedicationDispenseStatusReasonCodes.saig: 'saig',
-  MedicationDispenseStatusReasonCodes.sddi: 'sddi',
-  MedicationDispenseStatusReasonCodes.sdupther: 'sdupther',
-  MedicationDispenseStatusReasonCodes.sintol: 'sintol',
-  MedicationDispenseStatusReasonCodes.surg: 'surg',
-  MedicationDispenseStatusReasonCodes.washout: 'washout',
-  MedicationDispenseStatusReasonCodes.outofstock: 'outofstock',
-  MedicationDispenseStatusReasonCodes.offmarket: 'offmarket',
-};
-
-const _$MedicationDispenseCategoryCodesEnumMap = {
-  MedicationDispenseCategoryCodes.inpatient: 'inpatient',
-  MedicationDispenseCategoryCodes.outpatient: 'outpatient',
-  MedicationDispenseCategoryCodes.community: 'community',
-  MedicationDispenseCategoryCodes.discharge: 'discharge',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -460,14 +432,15 @@ MedicationDispensePerformer _$MedicationDispensePerformerFromJson(
         Map<String, dynamic> json) =>
     MedicationDispensePerformer(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      function_: $enumDecodeNullable(
-          _$MedicationDispensePerformerFunctionCodesEnumMap, json['function']),
+      function_: json['function'] == null
+          ? null
+          : CodeableConcept.fromJson(json['function'] as Map<String, dynamic>),
       actor: Reference.fromJson(json['actor'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
@@ -503,7 +476,7 @@ Map<String, dynamic> _$MedicationDispensePerformerToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('function', instance.function_?.toJson());
@@ -511,18 +484,11 @@ Map<String, dynamic> _$MedicationDispensePerformerToJson(
   return val;
 }
 
-const _$MedicationDispensePerformerFunctionCodesEnumMap = {
-  MedicationDispensePerformerFunctionCodes.dataenterer: 'dataenterer',
-  MedicationDispensePerformerFunctionCodes.packager: 'packager',
-  MedicationDispensePerformerFunctionCodes.checker: 'checker',
-  MedicationDispensePerformerFunctionCodes.finalchecker: 'finalchecker',
-};
-
 MedicationDispenseSubstitution _$MedicationDispenseSubstitutionFromJson(
         Map<String, dynamic> json) =>
     MedicationDispenseSubstitution(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -575,7 +541,7 @@ Map<String, dynamic> _$MedicationDispenseSubstitutionToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['wasSubstituted'] = instance.wasSubstituted.toJson();

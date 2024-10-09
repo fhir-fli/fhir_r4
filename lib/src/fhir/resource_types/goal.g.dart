@@ -41,12 +41,16 @@ Goal _$GoalFromJson(Map<String, dynamic> json) => Goal(
       lifecycleStatusElement: json['_lifecycleStatus'] == null
           ? null
           : Element.fromJson(json['_lifecycleStatus'] as Map<String, dynamic>),
-      achievementStatus: $enumDecodeNullable(
-          _$GoalAchievementStatusEnumMap, json['achievementStatus']),
+      achievementStatus: json['achievementStatus'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['achievementStatus'] as Map<String, dynamic>),
       category: (json['category'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$GoalCategoryEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
-      priority: $enumDecodeNullable(_$GoalPriorityEnumMap, json['priority']),
+      priority: json['priority'] == null
+          ? null
+          : CodeableConcept.fromJson(json['priority'] as Map<String, dynamic>),
       description:
           CodeableConcept.fromJson(json['description'] as Map<String, dynamic>),
       subject: Reference.fromJson(json['subject'] as Map<String, dynamic>),
@@ -55,8 +59,10 @@ Goal _$GoalFromJson(Map<String, dynamic> json) => Goal(
       startDateElement: json['_startDate'] == null
           ? null
           : Element.fromJson(json['_startDate'] as Map<String, dynamic>),
-      startCodeableConcept: $enumDecodeNullable(
-          _$GoalStartEventEnumMap, json['startCodeableConcept']),
+      startCodeableConcept: json['startCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['startCodeableConcept'] as Map<String, dynamic>),
       target: (json['target'] as List<dynamic>?)
           ?.map((e) => GoalTarget.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -230,26 +236,6 @@ const _$GoalLifecycleStatusEnumMap = {
   GoalLifecycleStatus.rejected: 'rejected',
 };
 
-const _$GoalAchievementStatusEnumMap = {
-  GoalAchievementStatus.in_progress: 'in-progress',
-  GoalAchievementStatus.achieved: 'achieved',
-  GoalAchievementStatus.not_achieved: 'not-achieved',
-};
-
-const _$GoalCategoryEnumMap = {
-  GoalCategory.dietary: 'dietary',
-  GoalCategory.safety: 'safety',
-  GoalCategory.behavioral: 'behavioral',
-  GoalCategory.nursing: 'nursing',
-  GoalCategory.physiotherapy: 'physiotherapy',
-};
-
-const _$GoalPriorityEnumMap = {
-  GoalPriority.high_priority: 'high-priority',
-  GoalPriority.medium_priority: 'medium-priority',
-  GoalPriority.low_priority: 'low-priority',
-};
-
 const _$GoalStartEventEnumMap = {
   GoalStartEvent.value32485007: '32485007',
   GoalStartEvent.value308283009: '308283009',
@@ -404,7 +390,7 @@ const _$R4ResourceTypeEnumMap = {
 
 GoalTarget _$GoalTargetFromJson(Map<String, dynamic> json) => GoalTarget(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -486,7 +472,7 @@ Map<String, dynamic> _$GoalTargetToJson(GoalTarget instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('measure', instance.measure?.toJson());

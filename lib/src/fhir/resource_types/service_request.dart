@@ -136,7 +136,7 @@ class ServiceRequest extends DomainResource {
   /// [category] /// A code that classifies the service for searching, sorting and display
   /// purposes (e.g. "Surgical Procedure").
   @JsonKey(name: 'category')
-  final List<ServiceRequestCategoryCodes>? category;
+  final List<CodeableConcept>? category;
 
   /// [priority] /// Indicates how quickly the ServiceRequest should be addressed with respect
   /// to other requests.
@@ -163,7 +163,7 @@ class ServiceRequest extends DomainResource {
   /// may require additional instructions specifying how the bandage should be
   /// applied.
   @JsonKey(name: 'orderDetail')
-  final List<ServiceRequestOrderDetailsCodes>? orderDetail;
+  final List<CodeableConcept>? orderDetail;
 
   /// [quantityQuantity] /// An amount of service being requested which can be a quantity ( for example
   /// $1,500 home modification), a ratio ( for example, 20 half day visits per
@@ -334,13 +334,13 @@ class ServiceRequest extends DomainResource {
     Element? statusElement,
     RequestIntent? intent,
     Element? intentElement,
-    List<ServiceRequestCategoryCodes>? category,
+    List<CodeableConcept>? category,
     RequestPriority? priority,
     Element? priorityElement,
     FhirBoolean? doNotPerform,
     Element? doNotPerformElement,
     CodeableConcept? code,
-    List<ServiceRequestOrderDetailsCodes>? orderDetail,
+    List<CodeableConcept>? orderDetail,
     Quantity? quantityQuantity,
     Ratio? quantityRatio,
     Range? quantityRange,

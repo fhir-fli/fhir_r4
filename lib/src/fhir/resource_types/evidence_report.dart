@@ -111,7 +111,7 @@ class EvidenceReport extends DomainResource {
   /// [type] /// Specifies the kind of report, such as grouping of classifiers, search
   /// results, or human-compiled expression.
   @JsonKey(name: 'type')
-  final EvidenceReportType? type;
+  final CodeableConcept? type;
 
   /// [note] /// Used for footnotes and annotations.
   @JsonKey(name: 'note')
@@ -196,7 +196,7 @@ class EvidenceReport extends DomainResource {
     Reference? citeAsReference,
     FhirMarkdown? citeAsMarkdown,
     Element? citeAsMarkdownElement,
-    EvidenceReportType? type,
+    CodeableConcept? type,
     List<Annotation>? note,
     List<RelatedArtifact>? relatedArtifact,
     EvidenceReportSubject? subject,
@@ -399,7 +399,7 @@ class EvidenceReportCharacteristic extends BackboneElement {
 
   /// [code] /// Characteristic code.
   @JsonKey(name: 'code')
-  final FocusCharacteristicCode code;
+  final CodeableConcept code;
 
   /// [valueReference] /// Characteristic value.
   @JsonKey(name: 'valueReference')
@@ -445,7 +445,7 @@ class EvidenceReportCharacteristic extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FocusCharacteristicCode? code,
+    CodeableConcept? code,
     Reference? valueReference,
     CodeableConcept? valueCodeableConcept,
     FhirBoolean? valueBoolean,
@@ -649,7 +649,7 @@ class EvidenceReportSection extends BackboneElement {
   /// [focus] /// A code identifying the kind of content contained within the section. This
   /// should be consistent with the section title.
   @JsonKey(name: 'focus')
-  final ReportSectionType? focus;
+  final CodeableConcept? focus;
 
   /// [focusReference] /// A definitional Resource identifying the kind of content contained within
   /// the section. This should be consistent with the section title.
@@ -680,11 +680,11 @@ class EvidenceReportSection extends BackboneElement {
 
   /// [orderedBy] /// Specifies the order applied to the items in the section entries.
   @JsonKey(name: 'orderedBy')
-  final ListOrderCodes? orderedBy;
+  final CodeableConcept? orderedBy;
 
   /// [entryClassifier] /// Specifies any type of classification of the evidence report.
   @JsonKey(name: 'entryClassifier')
-  final List<EvidenceClassifier>? entryClassifier;
+  final List<CodeableConcept>? entryClassifier;
 
   /// [entryReference] /// A reference to the actual resource from which the narrative in the section
   /// is derived.
@@ -698,7 +698,7 @@ class EvidenceReportSection extends BackboneElement {
   /// [emptyReason] /// If the section is empty, why the list is empty. An empty section typically
   /// has some text explaining the empty reason.
   @JsonKey(name: 'emptyReason')
-  final ListEmptyReasons? emptyReason;
+  final CodeableConcept? emptyReason;
 
   /// [section] /// A nested sub-section within this section.
   @JsonKey(name: 'section')
@@ -718,17 +718,17 @@ class EvidenceReportSection extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? title,
     Element? titleElement,
-    ReportSectionType? focus,
+    CodeableConcept? focus,
     Reference? focusReference,
     List<Reference>? author,
     Narrative? text,
     ListMode? mode,
     Element? modeElement,
-    ListOrderCodes? orderedBy,
-    List<EvidenceClassifier>? entryClassifier,
+    CodeableConcept? orderedBy,
+    List<CodeableConcept>? entryClassifier,
     List<Reference>? entryReference,
     List<Quantity>? entryQuantity,
-    ListEmptyReasons? emptyReason,
+    CodeableConcept? emptyReason,
     List<EvidenceReportSection>? section,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

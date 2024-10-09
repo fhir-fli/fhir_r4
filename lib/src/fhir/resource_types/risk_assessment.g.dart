@@ -389,7 +389,7 @@ RiskAssessmentPrediction _$RiskAssessmentPredictionFromJson(
         Map<String, dynamic> json) =>
     RiskAssessmentPrediction(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -408,8 +408,10 @@ RiskAssessmentPrediction _$RiskAssessmentPredictionFromJson(
       probabilityRange: json['probabilityRange'] == null
           ? null
           : Range.fromJson(json['probabilityRange'] as Map<String, dynamic>),
-      qualitativeRisk: $enumDecodeNullable(
-          _$RiskProbabilityEnumMap, json['qualitativeRisk']),
+      qualitativeRisk: json['qualitativeRisk'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['qualitativeRisk'] as Map<String, dynamic>),
       relativeRisk: json['relativeRisk'] == null
           ? null
           : FhirDecimal.fromJson(json['relativeRisk']),
@@ -462,7 +464,7 @@ Map<String, dynamic> _$RiskAssessmentPredictionToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('outcome', instance.outcome?.toJson());
@@ -479,11 +481,3 @@ Map<String, dynamic> _$RiskAssessmentPredictionToJson(
   writeNotNull('_rationale', instance.rationaleElement?.toJson());
   return val;
 }
-
-const _$RiskProbabilityEnumMap = {
-  RiskProbability.negligible: 'negligible',
-  RiskProbability.low: 'low',
-  RiskProbability.moderate: 'moderate',
-  RiskProbability.high: 'high',
-  RiskProbability.certain: 'certain',
-};

@@ -83,7 +83,9 @@ PaymentReconciliation _$PaymentReconciliationFromJson(
           ?.map((e) =>
               PaymentReconciliationDetail.fromJson(e as Map<String, dynamic>))
           .toList(),
-      formCode: $enumDecodeNullable(_$FormCodesEnumMap, json['formCode']),
+      formCode: json['formCode'] == null
+          ? null
+          : CodeableConcept.fromJson(json['formCode'] as Map<String, dynamic>),
       processNote: (json['processNote'] as List<dynamic>?)
           ?.map((e) => PaymentReconciliationProcessNote.fromJson(
               e as Map<String, dynamic>))
@@ -232,11 +234,6 @@ const _$RemittanceOutcomeEnumMap = {
   RemittanceOutcome.complete: 'complete',
   RemittanceOutcome.error: 'error',
   RemittanceOutcome.partial: 'partial',
-};
-
-const _$FormCodesEnumMap = {
-  FormCodes.value1: '1',
-  FormCodes.value2: '2',
 };
 
 const _$R4ResourceTypeEnumMap = {
@@ -388,7 +385,7 @@ PaymentReconciliationDetail _$PaymentReconciliationDetailFromJson(
         Map<String, dynamic> json) =>
     PaymentReconciliationDetail(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -400,7 +397,7 @@ PaymentReconciliationDetail _$PaymentReconciliationDetailFromJson(
       predecessor: json['predecessor'] == null
           ? null
           : Identifier.fromJson(json['predecessor'] as Map<String, dynamic>),
-      type: $enumDecode(_$PaymentTypeCodesEnumMap, json['type']),
+      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       request: json['request'] == null
           ? null
           : Reference.fromJson(json['request'] as Map<String, dynamic>),
@@ -459,7 +456,7 @@ Map<String, dynamic> _$PaymentReconciliationDetailToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('identifier', instance.identifier?.toJson());
@@ -476,17 +473,11 @@ Map<String, dynamic> _$PaymentReconciliationDetailToJson(
   return val;
 }
 
-const _$PaymentTypeCodesEnumMap = {
-  PaymentTypeCodes.payment: 'payment',
-  PaymentTypeCodes.adjustment: 'adjustment',
-  PaymentTypeCodes.advance: 'advance',
-};
-
 PaymentReconciliationProcessNote _$PaymentReconciliationProcessNoteFromJson(
         Map<String, dynamic> json) =>
     PaymentReconciliationProcessNote(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -534,7 +525,7 @@ Map<String, dynamic> _$PaymentReconciliationProcessNoteToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.toJson());

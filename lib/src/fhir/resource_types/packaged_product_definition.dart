@@ -70,7 +70,7 @@ class PackagedProductDefinition extends DomainResource {
   /// [type] /// A high level category e.g. medicinal product, raw material,
   /// shipping/transport container, etc.
   @JsonKey(name: 'type')
-  final PackageType? type;
+  final CodeableConcept? type;
 
   /// [packageFor] /// The product that this is a pack for.
   @JsonKey(name: 'packageFor')
@@ -80,7 +80,7 @@ class PackagedProductDefinition extends DomainResource {
   /// not intended to duplicate details carried elsewhere such as legal status,
   /// or authorization or marketing status.
   @JsonKey(name: 'status')
-  final PublicationStatus? status;
+  final CodeableConcept? status;
 
   /// [statusDate] /// The date at which the given status became applicable.
   @JsonKey(name: 'statusDate')
@@ -124,7 +124,7 @@ class PackagedProductDefinition extends DomainResource {
   /// [characteristic] /// Allows the key features to be recorded, such as "hospital pack", "nurse
   /// prescribable", "calendar pack".
   @JsonKey(name: 'characteristic')
-  final List<PackageCharacteristic>? characteristic;
+  final List<CodeableConcept>? characteristic;
 
   /// [copackagedIndicator] /// States whether a drug product is supplied with another item such as a
   /// diluent or adjuvant.
@@ -166,9 +166,9 @@ class PackagedProductDefinition extends DomainResource {
     List<Identifier>? identifier,
     FhirString? name,
     Element? nameElement,
-    PackageType? type,
+    CodeableConcept? type,
     List<Reference>? packageFor,
-    PublicationStatus? status,
+    CodeableConcept? status,
     FhirDateTime? statusDate,
     Element? statusDateElement,
     List<Quantity>? containedItemQuantity,
@@ -176,7 +176,7 @@ class PackagedProductDefinition extends DomainResource {
     Element? descriptionElement,
     List<PackagedProductDefinitionLegalStatusOfSupply>? legalStatusOfSupply,
     List<MarketingStatus>? marketingStatus,
-    List<PackageCharacteristic>? characteristic,
+    List<CodeableConcept>? characteristic,
     FhirBoolean? copackagedIndicator,
     Element? copackagedIndicatorElement,
     List<Reference>? manufacturer,
@@ -274,7 +274,7 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
   /// [code] /// The actual status of supply. Conveys in what situation this package type
   /// may be supplied for use.
   @JsonKey(name: 'code')
-  final LegalStatusOfSupply? code;
+  final CodeableConcept? code;
 
   /// [jurisdiction] /// The place where the legal status of supply applies. When not specified,
   /// this indicates it is unknown in this context.
@@ -296,7 +296,7 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    LegalStatusOfSupply? code,
+    CodeableConcept? code,
     CodeableConcept? jurisdiction,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -382,7 +382,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
 
   /// [type] /// The physical type of the container of the items.
   @JsonKey(name: 'type')
-  final PackagingType? type;
+  final CodeableConcept? type;
 
   /// [quantity] /// The quantity of this level of packaging in the package that contains it. If
   /// specified, the outermost level is always 1.
@@ -393,13 +393,13 @@ class PackagedProductDefinitionPackage extends BackboneElement {
 
   /// [material] /// Material type of the package item.
   @JsonKey(name: 'material')
-  final List<PackageMaterial>? material;
+  final List<CodeableConcept>? material;
 
   /// [alternateMaterial] /// A possible alternate material for this part of the packaging, that is
   /// allowed to be used instead of the usual material (e.g. different types of
   /// plastic for a blister sleeve).
   @JsonKey(name: 'alternateMaterial')
-  final List<PackageMaterial>? alternateMaterial;
+  final List<CodeableConcept>? alternateMaterial;
 
   /// [shelfLifeStorage] /// Shelf Life and storage information.
   @JsonKey(name: 'shelfLifeStorage')
@@ -439,11 +439,11 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    PackagingType? type,
+    CodeableConcept? type,
     FhirInteger? quantity,
     Element? quantityElement,
-    List<PackageMaterial>? material,
-    List<PackageMaterial>? alternateMaterial,
+    List<CodeableConcept>? material,
+    List<CodeableConcept>? alternateMaterial,
     List<PackagedProductDefinitionShelfLifeStorage>? shelfLifeStorage,
     List<Reference>? manufacturer,
     List<PackagedProductDefinitionProperty>? property,

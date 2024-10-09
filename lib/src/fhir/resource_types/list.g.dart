@@ -48,7 +48,9 @@ FhirList _$FhirListFromJson(Map<String, dynamic> json) => FhirList(
       titleElement: json['_title'] == null
           ? null
           : Element.fromJson(json['_title'] as Map<String, dynamic>),
-      code: $enumDecodeNullable(_$ExampleUseCodesForListEnumMap, json['code']),
+      code: json['code'] == null
+          ? null
+          : CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       subject: json['subject'] == null
           ? null
           : Reference.fromJson(json['subject'] as Map<String, dynamic>),
@@ -64,16 +66,19 @@ FhirList _$FhirListFromJson(Map<String, dynamic> json) => FhirList(
       source: json['source'] == null
           ? null
           : Reference.fromJson(json['source'] as Map<String, dynamic>),
-      orderedBy:
-          $enumDecodeNullable(_$ListOrderCodesEnumMap, json['orderedBy']),
+      orderedBy: json['orderedBy'] == null
+          ? null
+          : CodeableConcept.fromJson(json['orderedBy'] as Map<String, dynamic>),
       note: (json['note'] as List<dynamic>?)
           ?.map((e) => Annotation.fromJson(e as Map<String, dynamic>))
           .toList(),
       entry: (json['entry'] as List<dynamic>?)
           ?.map((e) => ListEntry.fromJson(e as Map<String, dynamic>))
           .toList(),
-      emptyReason:
-          $enumDecodeNullable(_$ListEmptyReasonsEnumMap, json['emptyReason']),
+      emptyReason: json['emptyReason'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['emptyReason'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -211,38 +216,6 @@ const _$ListModeEnumMap = {
   ListMode.working: 'working',
   ListMode.snapshot: 'snapshot',
   ListMode.changes: 'changes',
-};
-
-const _$ExampleUseCodesForListEnumMap = {
-  ExampleUseCodesForList.alerts: 'alerts',
-  ExampleUseCodesForList.adverserxns: 'adverserxns',
-  ExampleUseCodesForList.allergies: 'allergies',
-  ExampleUseCodesForList.medications: 'medications',
-  ExampleUseCodesForList.problems: 'problems',
-  ExampleUseCodesForList.worklist: 'worklist',
-  ExampleUseCodesForList.waiting: 'waiting',
-  ExampleUseCodesForList.protocols: 'protocols',
-  ExampleUseCodesForList.plans: 'plans',
-};
-
-const _$ListOrderCodesEnumMap = {
-  ListOrderCodes.user: 'user',
-  ListOrderCodes.system: 'system',
-  ListOrderCodes.event_date: 'event-date',
-  ListOrderCodes.entry_date: 'entry-date',
-  ListOrderCodes.priority: 'priority',
-  ListOrderCodes.alphabetic: 'alphabetic',
-  ListOrderCodes.category: 'category',
-  ListOrderCodes.patient: 'patient',
-};
-
-const _$ListEmptyReasonsEnumMap = {
-  ListEmptyReasons.nilknown: 'nilknown',
-  ListEmptyReasons.notasked: 'notasked',
-  ListEmptyReasons.withheld: 'withheld',
-  ListEmptyReasons.unavailable: 'unavailable',
-  ListEmptyReasons.notstarted: 'notstarted',
-  ListEmptyReasons.closed: 'closed',
 };
 
 const _$R4ResourceTypeEnumMap = {
@@ -392,14 +365,15 @@ const _$R4ResourceTypeEnumMap = {
 
 ListEntry _$ListEntryFromJson(Map<String, dynamic> json) => ListEntry(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      flag: $enumDecodeNullable(
-          _$PatientMedicineChangeTypesEnumMap, json['flag']),
+      flag: json['flag'] == null
+          ? null
+          : CodeableConcept.fromJson(json['flag'] as Map<String, dynamic>),
       deleted: json['deleted'] == null
           ? null
           : FhirBoolean.fromJson(json['deleted']),
@@ -446,7 +420,7 @@ Map<String, dynamic> _$ListEntryToJson(ListEntry instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('flag', instance.flag?.toJson());
@@ -457,12 +431,3 @@ Map<String, dynamic> _$ListEntryToJson(ListEntry instance) {
   val['item'] = instance.item.toJson();
   return val;
 }
-
-const _$PatientMedicineChangeTypesEnumMap = {
-  PatientMedicineChangeTypes.value01: '01',
-  PatientMedicineChangeTypes.value02: '02',
-  PatientMedicineChangeTypes.value03: '03',
-  PatientMedicineChangeTypes.value04: '04',
-  PatientMedicineChangeTypes.value05: '05',
-  PatientMedicineChangeTypes.value06: '06',
-};

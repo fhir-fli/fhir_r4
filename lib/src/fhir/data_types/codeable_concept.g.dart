@@ -9,7 +9,7 @@ part of 'codeable_concept.dart';
 CodeableConcept _$CodeableConceptFromJson(Map<String, dynamic> json) =>
     CodeableConcept(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       coding: (json['coding'] as List<dynamic>?)
@@ -52,7 +52,7 @@ Map<String, dynamic> _$CodeableConceptToJson(CodeableConcept instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('coding', instance.coding?.map((e) => e.toJson()).toList());
   writeNotNull('text', instance.text?.toJson());
   writeNotNull('_text', instance.textElement?.toJson());

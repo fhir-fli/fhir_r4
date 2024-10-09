@@ -70,10 +70,14 @@ EventDefinition _$EventDefinitionFromJson(Map<String, dynamic> json) =>
       experimentalElement: json['_experimental'] == null
           ? null
           : Element.fromJson(json['_experimental'] as Map<String, dynamic>),
-      subjectCodeableConcept: $enumDecodeNullable(
-          _$SubjectTypeEnumMap, json['subjectCodeableConcept']),
-      subjectReference:
-          $enumDecodeNullable(_$SubjectTypeEnumMap, json['subjectReference']),
+      subjectCodeableConcept: json['subjectCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['subjectCodeableConcept'] as Map<String, dynamic>),
+      subjectReference: json['subjectReference'] == null
+          ? null
+          : Reference.fromJson(
+              json['subjectReference'] as Map<String, dynamic>),
       date: json['date'] == null
           ? null
           : FhirDateTime.fromJson(json['date'] as String),
@@ -133,7 +137,7 @@ EventDefinition _$EventDefinitionFromJson(Map<String, dynamic> json) =>
           ? null
           : Period.fromJson(json['effectivePeriod'] as Map<String, dynamic>),
       topic: (json['topic'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$DefinitionTopicEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       author: (json['author'] as List<dynamic>?)
           ?.map((e) => ContactDetail.fromJson(e as Map<String, dynamic>))
@@ -316,20 +320,6 @@ const _$PublicationStatusEnumMap = {
   PublicationStatus.active: 'active',
   PublicationStatus.retired: 'retired',
   PublicationStatus.unknown: 'unknown',
-};
-
-const _$SubjectTypeEnumMap = {
-  SubjectType.Patient: 'Patient',
-  SubjectType.Practitioner: 'Practitioner',
-  SubjectType.Organization: 'Organization',
-  SubjectType.Location: 'Location',
-  SubjectType.Device: 'Device',
-};
-
-const _$DefinitionTopicEnumMap = {
-  DefinitionTopic.treatment: 'treatment',
-  DefinitionTopic.education: 'education',
-  DefinitionTopic.assessment: 'assessment',
 };
 
 const _$R4ResourceTypeEnumMap = {

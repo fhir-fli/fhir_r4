@@ -8,7 +8,7 @@ part of 'coding.dart';
 
 Coding _$CodingFromJson(Map<String, dynamic> json) => Coding(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       system: json['system'] == null ? null : FhirUri.fromJson(json['system']),
@@ -68,7 +68,7 @@ Map<String, dynamic> _$CodingToJson(Coding instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('system', instance.system?.toJson());
   writeNotNull('_system', instance.systemElement?.toJson());
   writeNotNull('version', instance.version?.toJson());

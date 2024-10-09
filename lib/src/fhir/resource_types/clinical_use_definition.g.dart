@@ -43,12 +43,14 @@ ClinicalUseDefinition _$ClinicalUseDefinitionFromJson(
           ? null
           : Element.fromJson(json['_type'] as Map<String, dynamic>),
       category: (json['category'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ClinicalUseDefinitionCategoryEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       subject: (json['subject'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
-      status: $enumDecodeNullable(_$PublicationStatusEnumMap, json['status']),
+      status: json['status'] == null
+          ? null
+          : CodeableConcept.fromJson(json['status'] as Map<String, dynamic>),
       contraindication: json['contraindication'] == null
           ? null
           : ClinicalUseDefinitionContraindication.fromJson(
@@ -204,19 +206,6 @@ const _$ClinicalUseDefinitionTypeEnumMap = {
   ClinicalUseDefinitionType.warning: 'warning',
 };
 
-const _$ClinicalUseDefinitionCategoryEnumMap = {
-  ClinicalUseDefinitionCategory.Pregnancy: 'Pregnancy',
-  ClinicalUseDefinitionCategory.Overdose: 'Overdose',
-  ClinicalUseDefinitionCategory.DriveAndMachines: 'DriveAndMachines',
-};
-
-const _$PublicationStatusEnumMap = {
-  PublicationStatus.draft: 'draft',
-  PublicationStatus.active: 'active',
-  PublicationStatus.retired: 'retired',
-  PublicationStatus.unknown: 'unknown',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -367,7 +356,7 @@ ClinicalUseDefinitionContraindication
             Map<String, dynamic> json) =>
         ClinicalUseDefinitionContraindication(
           id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-          extension_: (json['extension_'] as List<dynamic>?)
+          extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
           modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -427,7 +416,7 @@ Map<String, dynamic> _$ClinicalUseDefinitionContraindicationToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull(
@@ -446,14 +435,14 @@ ClinicalUseDefinitionOtherTherapy _$ClinicalUseDefinitionOtherTherapyFromJson(
         Map<String, dynamic> json) =>
     ClinicalUseDefinitionOtherTherapy(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      relationshipType: $enumDecode(
-          _$TherapyRelationshipTypeEnumMap, json['relationshipType']),
+      relationshipType: CodeableConcept.fromJson(
+          json['relationshipType'] as Map<String, dynamic>),
       therapy:
           CodeableReference.fromJson(json['therapy'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
@@ -490,7 +479,7 @@ Map<String, dynamic> _$ClinicalUseDefinitionOtherTherapyToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['relationshipType'] = instance.relationshipType.toJson();
@@ -498,28 +487,11 @@ Map<String, dynamic> _$ClinicalUseDefinitionOtherTherapyToJson(
   return val;
 }
 
-const _$TherapyRelationshipTypeEnumMap = {
-  TherapyRelationshipType.contraindicated_only_with:
-      'contraindicated-only-with',
-  TherapyRelationshipType.contraindicated_except_with:
-      'contraindicated-except-with',
-  TherapyRelationshipType.indicated_only_with: 'indicated-only-with',
-  TherapyRelationshipType.indicated_except_with: 'indicated-except-with',
-  TherapyRelationshipType.indicated_only_before: 'indicated-only-before',
-  TherapyRelationshipType.replace_other_therapy: 'replace-other-therapy',
-  TherapyRelationshipType.replace_other_therapy_contraindicated:
-      'replace-other-therapy-contraindicated',
-  TherapyRelationshipType.replace_other_therapy_not_tolerated:
-      'replace-other-therapy-not-tolerated',
-  TherapyRelationshipType.replace_other_therapy_not_effective:
-      'replace-other-therapy-not-effective',
-};
-
 ClinicalUseDefinitionIndication _$ClinicalUseDefinitionIndicationFromJson(
         Map<String, dynamic> json) =>
     ClinicalUseDefinitionIndication(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -536,8 +508,10 @@ ClinicalUseDefinitionIndication _$ClinicalUseDefinitionIndicationFromJson(
       comorbidity: (json['comorbidity'] as List<dynamic>?)
           ?.map((e) => CodeableReference.fromJson(e as Map<String, dynamic>))
           .toList(),
-      intendedEffect: $enumDecodeNullable(
-          _$ProductIntendedUseEnumMap, json['intendedEffect']),
+      intendedEffect: json['intendedEffect'] == null
+          ? null
+          : CodeableReference.fromJson(
+              json['intendedEffect'] as Map<String, dynamic>),
       durationRange: json['durationRange'] == null
           ? null
           : Range.fromJson(json['durationRange'] as Map<String, dynamic>),
@@ -588,7 +562,7 @@ Map<String, dynamic> _$ClinicalUseDefinitionIndicationToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull(
@@ -607,19 +581,11 @@ Map<String, dynamic> _$ClinicalUseDefinitionIndicationToJson(
   return val;
 }
 
-const _$ProductIntendedUseEnumMap = {
-  ProductIntendedUse.Prevention: 'Prevention',
-  ProductIntendedUse.Treatment: 'Treatment',
-  ProductIntendedUse.Alleviation: 'Alleviation',
-  ProductIntendedUse.Diagnosis: 'Diagnosis',
-  ProductIntendedUse.Monitoring: 'Monitoring',
-};
-
 ClinicalUseDefinitionInteraction _$ClinicalUseDefinitionInteractionFromJson(
         Map<String, dynamic> json) =>
     ClinicalUseDefinitionInteraction(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -629,12 +595,15 @@ ClinicalUseDefinitionInteraction _$ClinicalUseDefinitionInteractionFromJson(
           ?.map((e) => ClinicalUseDefinitionInteractant.fromJson(
               e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecodeNullable(_$InteractionTypeEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       effect: json['effect'] == null
           ? null
           : CodeableReference.fromJson(json['effect'] as Map<String, dynamic>),
-      incidence:
-          $enumDecodeNullable(_$InteractionIncidenceEnumMap, json['incidence']),
+      incidence: json['incidence'] == null
+          ? null
+          : CodeableConcept.fromJson(json['incidence'] as Map<String, dynamic>),
       management: (json['management'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -672,7 +641,7 @@ Map<String, dynamic> _$ClinicalUseDefinitionInteractionToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull(
@@ -685,23 +654,11 @@ Map<String, dynamic> _$ClinicalUseDefinitionInteractionToJson(
   return val;
 }
 
-const _$InteractionTypeEnumMap = {
-  InteractionType.drug_drug: 'drug-drug',
-  InteractionType.drug_food: 'drug-food',
-  InteractionType.drug_test: 'drug-test',
-  InteractionType.other: 'other',
-};
-
-const _$InteractionIncidenceEnumMap = {
-  InteractionIncidence.Theoretical: 'Theoretical',
-  InteractionIncidence.Observed: 'Observed',
-};
-
 ClinicalUseDefinitionInteractant _$ClinicalUseDefinitionInteractantFromJson(
         Map<String, dynamic> json) =>
     ClinicalUseDefinitionInteractant(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -745,7 +702,7 @@ Map<String, dynamic> _$ClinicalUseDefinitionInteractantToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['itemReference'] = instance.itemReference.toJson();
@@ -758,7 +715,7 @@ ClinicalUseDefinitionUndesirableEffect
             Map<String, dynamic> json) =>
         ClinicalUseDefinitionUndesirableEffect(
           id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-          extension_: (json['extension_'] as List<dynamic>?)
+          extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
           modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -772,9 +729,10 @@ ClinicalUseDefinitionUndesirableEffect
               ? null
               : CodeableConcept.fromJson(
                   json['classification'] as Map<String, dynamic>),
-          frequencyOfOccurrence: $enumDecodeNullable(
-              _$UndesirablEffectFrequencyEnumMap,
-              json['frequencyOfOccurrence']),
+          frequencyOfOccurrence: json['frequencyOfOccurrence'] == null
+              ? null
+              : CodeableConcept.fromJson(
+                  json['frequencyOfOccurrence'] as Map<String, dynamic>),
           userData: json['userData'] as Map<String, dynamic>?,
           formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
               ?.map((e) => e as String)
@@ -810,7 +768,7 @@ Map<String, dynamic> _$ClinicalUseDefinitionUndesirableEffectToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull(
@@ -821,17 +779,11 @@ Map<String, dynamic> _$ClinicalUseDefinitionUndesirableEffectToJson(
   return val;
 }
 
-const _$UndesirablEffectFrequencyEnumMap = {
-  UndesirablEffectFrequency.Common: 'Common',
-  UndesirablEffectFrequency.Uncommon: 'Uncommon',
-  UndesirablEffectFrequency.Rare: 'Rare',
-};
-
 ClinicalUseDefinitionWarning _$ClinicalUseDefinitionWarningFromJson(
         Map<String, dynamic> json) =>
     ClinicalUseDefinitionWarning(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -843,7 +795,9 @@ ClinicalUseDefinitionWarning _$ClinicalUseDefinitionWarningFromJson(
       descriptionElement: json['_description'] == null
           ? null
           : Element.fromJson(json['_description'] as Map<String, dynamic>),
-      code: $enumDecodeNullable(_$WarningTypeEnumMap, json['code']),
+      code: json['code'] == null
+          ? null
+          : CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -878,7 +832,7 @@ Map<String, dynamic> _$ClinicalUseDefinitionWarningToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('description', instance.description?.toJson());
@@ -886,16 +840,3 @@ Map<String, dynamic> _$ClinicalUseDefinitionWarningToJson(
   writeNotNull('code', instance.code?.toJson());
   return val;
 }
-
-const _$WarningTypeEnumMap = {
-  WarningType.P313: 'P313',
-  WarningType.P314: 'P314',
-  WarningType.P315: 'P315',
-  WarningType.P320: 'P320',
-  WarningType.P321: 'P321',
-  WarningType.P322: 'P322',
-  WarningType.P330: 'P330',
-  WarningType.P331: 'P331',
-  WarningType.P361: 'P361',
-  WarningType.P363: 'P363',
-};

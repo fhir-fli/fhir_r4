@@ -46,8 +46,12 @@ Media _$MediaFromJson(Map<String, dynamic> json) => Media(
       statusElement: json['_status'] == null
           ? null
           : Element.fromJson(json['_status'] as Map<String, dynamic>),
-      type: $enumDecodeNullable(_$MediaTypeEnumMap, json['type']),
-      modality: $enumDecodeNullable(_$MediaModalityEnumMap, json['modality']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      modality: json['modality'] == null
+          ? null
+          : CodeableConcept.fromJson(json['modality'] as Map<String, dynamic>),
       view: json['view'] == null
           ? null
           : CodeableConcept.fromJson(json['view'] as Map<String, dynamic>),
@@ -269,23 +273,6 @@ const _$EventStatusEnumMap = {
   EventStatus.completed: 'completed',
   EventStatus.entered_in_error: 'entered-in-error',
   EventStatus.unknown: 'unknown',
-};
-
-const _$MediaTypeEnumMap = {
-  MediaType.image: 'image',
-  MediaType.video: 'video',
-  MediaType.audio: 'audio',
-};
-
-const _$MediaModalityEnumMap = {
-  MediaModality.diagram: 'diagram',
-  MediaModality.fax: 'fax',
-  MediaModality.scan: 'scan',
-  MediaModality.retina: 'retina',
-  MediaModality.fingerprint: 'fingerprint',
-  MediaModality.iris: 'iris',
-  MediaModality.palm: 'palm',
-  MediaModality.face: 'face',
 };
 
 const _$R4ResourceTypeEnumMap = {

@@ -124,7 +124,7 @@ class PaymentReconciliation extends DomainResource {
 
   /// [formCode] /// A code for the form to be used for printing the content.
   @JsonKey(name: 'formCode')
-  final FormCodes? formCode;
+  final CodeableConcept? formCode;
 
   /// [processNote] /// A note that describes or explains the processing in a human readable form.
   @JsonKey(name: 'processNote')
@@ -167,7 +167,7 @@ class PaymentReconciliation extends DomainResource {
     Money? paymentAmount,
     Identifier? paymentIdentifier,
     List<PaymentReconciliationDetail>? detail,
-    FormCodes? formCode,
+    CodeableConcept? formCode,
     List<PaymentReconciliationProcessNote>? processNote,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -277,7 +277,7 @@ class PaymentReconciliationDetail extends BackboneElement {
 
   /// [type] /// Code to indicate the nature of the payment.
   @JsonKey(name: 'type')
-  final PaymentTypeCodes type;
+  final CodeableConcept type;
 
   /// [request] /// A resource, such as a Claim, the evaluation of which could lead to payment.
   @JsonKey(name: 'request')
@@ -325,7 +325,7 @@ class PaymentReconciliationDetail extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Identifier? identifier,
     Identifier? predecessor,
-    PaymentTypeCodes? type,
+    CodeableConcept? type,
     Reference? request,
     Reference? submitter,
     Reference? response,

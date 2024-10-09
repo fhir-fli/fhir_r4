@@ -8,11 +8,11 @@ part of 'signature.dart';
 
 Signature _$SignatureFromJson(Map<String, dynamic> json) => Signature(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       type: (json['type'] as List<dynamic>)
-          .map((e) => $enumDecode(_$SignatureTypeCodesEnumMap, e))
+          .map((e) => Coding.fromJson(e as Map<String, dynamic>))
           .toList(),
       when: FhirInstant.fromJson(json['when'] as String),
       whenElement: json['_when'] == null
@@ -72,7 +72,7 @@ Map<String, dynamic> _$SignatureToJson(Signature instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.map((e) => e.toJson()).toList();
   val['when'] = instance.when.toJson();
   writeNotNull('_when', instance.whenElement?.toJson());
@@ -86,24 +86,3 @@ Map<String, dynamic> _$SignatureToJson(Signature instance) {
   writeNotNull('_data', instance.dataElement?.toJson());
   return val;
 }
-
-const _$SignatureTypeCodesEnumMap = {
-  SignatureTypeCodes.value1_2_840_10065_1_12_1_1: '1.2.840.10065.1.12.1.1',
-  SignatureTypeCodes.value1_2_840_10065_1_12_1_2: '1.2.840.10065.1.12.1.2',
-  SignatureTypeCodes.value1_2_840_10065_1_12_1_3: '1.2.840.10065.1.12.1.3',
-  SignatureTypeCodes.value1_2_840_10065_1_12_1_4: '1.2.840.10065.1.12.1.4',
-  SignatureTypeCodes.value1_2_840_10065_1_12_1_5: '1.2.840.10065.1.12.1.5',
-  SignatureTypeCodes.value1_2_840_10065_1_12_1_6: '1.2.840.10065.1.12.1.6',
-  SignatureTypeCodes.value1_2_840_10065_1_12_1_7: '1.2.840.10065.1.12.1.7',
-  SignatureTypeCodes.value1_2_840_10065_1_12_1_8: '1.2.840.10065.1.12.1.8',
-  SignatureTypeCodes.value1_2_840_10065_1_12_1_9: '1.2.840.10065.1.12.1.9',
-  SignatureTypeCodes.value1_2_840_10065_1_12_1_10: '1.2.840.10065.1.12.1.10',
-  SignatureTypeCodes.value1_2_840_10065_1_12_1_11: '1.2.840.10065.1.12.1.11',
-  SignatureTypeCodes.value1_2_840_10065_1_12_1_12: '1.2.840.10065.1.12.1.12',
-  SignatureTypeCodes.value1_2_840_10065_1_12_1_13: '1.2.840.10065.1.12.1.13',
-  SignatureTypeCodes.value1_2_840_10065_1_12_1_14: '1.2.840.10065.1.12.1.14',
-  SignatureTypeCodes.value1_2_840_10065_1_12_1_15: '1.2.840.10065.1.12.1.15',
-  SignatureTypeCodes.value1_2_840_10065_1_12_1_16: '1.2.840.10065.1.12.1.16',
-  SignatureTypeCodes.value1_2_840_10065_1_12_1_17: '1.2.840.10065.1.12.1.17',
-  SignatureTypeCodes.value1_2_840_10065_1_12_1_18: '1.2.840.10065.1.12.1.18',
-};

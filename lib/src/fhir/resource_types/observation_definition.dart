@@ -55,7 +55,7 @@ class ObservationDefinition extends DomainResource {
 
   /// [category] /// A code that classifies the general type of observation.
   @JsonKey(name: 'category')
-  final List<ObservationCategoryCodes>? category;
+  final List<CodeableConcept>? category;
 
   /// [code] /// Describes what will be observed. Sometimes this is called the observation
   /// "name".
@@ -139,7 +139,7 @@ class ObservationDefinition extends DomainResource {
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    List<ObservationCategoryCodes>? category,
+    List<CodeableConcept>? category,
     CodeableConcept? code,
     List<Identifier>? identifier,
     List<ObservationDataType>? permittedDataType,
@@ -392,11 +392,11 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
   /// [context] /// Codes to indicate the health context the range applies to. For example, the
   /// normal or therapeutic range.
   @JsonKey(name: 'context')
-  final ObservationReferenceRangeMeaningCodes? context;
+  final CodeableConcept? context;
 
   /// [appliesTo] /// Codes to indicate the target population this reference range applies to.
   @JsonKey(name: 'appliesTo')
-  final List<ObservationReferenceRangeAppliesToCodes>? appliesTo;
+  final List<CodeableConcept>? appliesTo;
 
   /// [gender] /// Sex of the population the range applies to.
   @JsonKey(name: 'gender')
@@ -437,8 +437,8 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
     ObservationRangeCategory? category,
     Element? categoryElement,
     Range? range,
-    ObservationReferenceRangeMeaningCodes? context,
-    List<ObservationReferenceRangeAppliesToCodes>? appliesTo,
+    CodeableConcept? context,
+    List<CodeableConcept>? appliesTo,
     AdministrativeGender? gender,
     Element? genderElement,
     Range? age,

@@ -483,7 +483,7 @@ const _$R4ResourceTypeEnumMap = {
 CodeSystemFilter _$CodeSystemFilterFromJson(Map<String, dynamic> json) =>
     CodeSystemFilter(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -542,7 +542,7 @@ Map<String, dynamic> _$CodeSystemFilterToJson(CodeSystemFilter instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['code'] = instance.code.toJson();
@@ -572,7 +572,7 @@ const _$FilterOperatorEnumMap = {
 CodeSystemProperty _$CodeSystemPropertyFromJson(Map<String, dynamic> json) =>
     CodeSystemProperty(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -629,7 +629,7 @@ Map<String, dynamic> _$CodeSystemPropertyToJson(CodeSystemProperty instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['code'] = instance.code.toJson();
@@ -656,7 +656,7 @@ const _$PropertyTypeEnumEnumMap = {
 CodeSystemConcept _$CodeSystemConceptFromJson(Map<String, dynamic> json) =>
     CodeSystemConcept(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -720,7 +720,7 @@ Map<String, dynamic> _$CodeSystemConceptToJson(CodeSystemConcept instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['code'] = instance.code.toJson();
@@ -740,7 +740,7 @@ CodeSystemDesignation _$CodeSystemDesignationFromJson(
         Map<String, dynamic> json) =>
     CodeSystemDesignation(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -750,7 +750,9 @@ CodeSystemDesignation _$CodeSystemDesignationFromJson(
       languageElement: json['_language'] == null
           ? null
           : Element.fromJson(json['_language'] as Map<String, dynamic>),
-      use: $enumDecodeNullable(_$DesignationUseEnumMap, json['use']),
+      use: json['use'] == null
+          ? null
+          : Coding.fromJson(json['use'] as Map<String, dynamic>),
       value: FhirString.fromJson(json['value']),
       valueElement: json['_value'] == null
           ? null
@@ -789,7 +791,7 @@ Map<String, dynamic> _$CodeSystemDesignationToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('language', instance.language?.toJson());
@@ -800,15 +802,10 @@ Map<String, dynamic> _$CodeSystemDesignationToJson(
   return val;
 }
 
-const _$DesignationUseEnumMap = {
-  DesignationUse.value900000000000003001: '900000000000003001',
-  DesignationUse.value900000000000013009: '900000000000013009',
-};
-
 CodeSystemProperty1 _$CodeSystemProperty1FromJson(Map<String, dynamic> json) =>
     CodeSystemProperty1(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -876,7 +873,7 @@ Map<String, dynamic> _$CodeSystemProperty1ToJson(CodeSystemProperty1 instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['code'] = instance.code.toJson();

@@ -412,13 +412,13 @@ ClinicalImpressionInvestigation _$ClinicalImpressionInvestigationFromJson(
         Map<String, dynamic> json) =>
     ClinicalImpressionInvestigation(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      code: $enumDecode(_$InvestigationTypeEnumMap, json['code']),
+      code: CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       item: (json['item'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -456,7 +456,7 @@ Map<String, dynamic> _$ClinicalImpressionInvestigationToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['code'] = instance.code.toJson();
@@ -464,23 +464,20 @@ Map<String, dynamic> _$ClinicalImpressionInvestigationToJson(
   return val;
 }
 
-const _$InvestigationTypeEnumMap = {
-  InvestigationType.value271336007: '271336007',
-  InvestigationType.value160237006: '160237006',
-};
-
 ClinicalImpressionFinding _$ClinicalImpressionFindingFromJson(
         Map<String, dynamic> json) =>
     ClinicalImpressionFinding(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      itemCodeableConcept: $enumDecodeNullable(
-          _$ConditionProblemDiagnosisCodesEnumMap, json['itemCodeableConcept']),
+      itemCodeableConcept: json['itemCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['itemCodeableConcept'] as Map<String, dynamic>),
       itemReference: json['itemReference'] == null
           ? null
           : Reference.fromJson(json['itemReference'] as Map<String, dynamic>),
@@ -522,7 +519,7 @@ Map<String, dynamic> _$ClinicalImpressionFindingToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('itemCodeableConcept', instance.itemCodeableConcept?.toJson());
@@ -531,7 +528,3 @@ Map<String, dynamic> _$ClinicalImpressionFindingToJson(
   writeNotNull('_basis', instance.basisElement?.toJson());
   return val;
 }
-
-const _$ConditionProblemDiagnosisCodesEnumMap = {
-  ConditionProblemDiagnosisCodes.value160245001: '160245001',
-};

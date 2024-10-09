@@ -839,7 +839,7 @@ class CapabilityStatementSecurity extends BackboneElement {
 
   /// [service] /// Types of security services that are supported/required by the system.
   @JsonKey(name: 'service')
-  final List<RestfulSecurityService>? service;
+  final List<CodeableConcept>? service;
 
   /// [description] /// General description of how security works.
   @JsonKey(name: 'description')
@@ -861,7 +861,7 @@ class CapabilityStatementSecurity extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirBoolean? cors,
     Element? corsElement,
-    List<RestfulSecurityService>? service,
+    List<CodeableConcept>? service,
     FhirMarkdown? description,
     Element? descriptionElement,
     Map<String, Object?>? userData,
@@ -1795,7 +1795,7 @@ class CapabilityStatementEndpoint extends BackboneElement {
   /// [protocol] /// A list of the messaging transport protocol(s) identifiers, supported by
   /// this endpoint.
   @JsonKey(name: 'protocol')
-  final MessageTransport protocol;
+  final Coding protocol;
 
   /// [address] /// The network address of the endpoint. For solutions that do not use network
   /// addresses for routing, it can be just an identifier.
@@ -1816,7 +1816,7 @@ class CapabilityStatementEndpoint extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    MessageTransport? protocol,
+    Coding? protocol,
     FhirUrl? address,
     Element? addressElement,
     Map<String, Object?>? userData,

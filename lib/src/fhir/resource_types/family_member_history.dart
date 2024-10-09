@@ -106,7 +106,7 @@ class FamilyMemberHistory extends DomainResource {
 
   /// [dataAbsentReason] /// Describes why the family member's history is not available.
   @JsonKey(name: 'dataAbsentReason')
-  final FamilyHistoryAbsentReason? dataAbsentReason;
+  final CodeableConcept? dataAbsentReason;
 
   /// [patient] /// The person who this history concerns.
   @JsonKey(name: 'patient')
@@ -133,7 +133,7 @@ class FamilyMemberHistory extends DomainResource {
 
   /// [sex] /// The birth sex of the family member.
   @JsonKey(name: 'sex')
-  final AdministrativeGender? sex;
+  final CodeableConcept? sex;
 
   /// [bornPeriod] /// The actual or approximate date of birth of the relative.
   @JsonKey(name: 'bornPeriod')
@@ -250,14 +250,14 @@ class FamilyMemberHistory extends DomainResource {
     List<Element>? instantiatesUriElement,
     FamilyHistoryStatus? status,
     Element? statusElement,
-    FamilyHistoryAbsentReason? dataAbsentReason,
+    CodeableConcept? dataAbsentReason,
     Reference? patient,
     FhirDateTime? date,
     Element? dateElement,
     FhirString? name,
     Element? nameElement,
     CodeableConcept? relationship,
-    AdministrativeGender? sex,
+    CodeableConcept? sex,
     Period? bornPeriod,
     FhirDate? bornDate,
     Element? bornDateElement,
@@ -408,7 +408,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
   /// Diabetes) or a less specific string like 'cancer' depending on how much is
   /// known about the condition and the capabilities of the creating system.
   @JsonKey(name: 'code')
-  final ConditionProblemDiagnosisCodes code;
+  final CodeableConcept code;
 
   /// [outcome] /// Indicates what happened following the condition. If the condition resulted
   /// in death, deceased date is captured on the relation.
@@ -464,7 +464,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ConditionProblemDiagnosisCodes? code,
+    CodeableConcept? code,
     CodeableConcept? outcome,
     FhirBoolean? contributedToDeath,
     Element? contributedToDeathElement,

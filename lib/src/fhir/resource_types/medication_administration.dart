@@ -99,7 +99,7 @@ class MedicationAdministration extends DomainResource {
 
   /// [category] /// Indicates where the medication is expected to be consumed or administered.
   @JsonKey(name: 'category')
-  final MedicationAdministrationCategoryCodes? category;
+  final CodeableConcept? category;
 
   /// [medicationCodeableConcept] /// Identifies the medication that was administered. This is either a link to a
   /// resource representing the details of the medication or a simple attribute
@@ -152,7 +152,7 @@ class MedicationAdministration extends DomainResource {
 
   /// [reasonCode] /// A code indicating why the medication was given.
   @JsonKey(name: 'reasonCode')
-  final List<ReasonMedicationGivenCodes>? reasonCode;
+  final List<CodeableConcept>? reasonCode;
 
   /// [reasonReference] /// Condition or observation that supports why the medication was administered.
   @JsonKey(name: 'reasonReference')
@@ -209,7 +209,7 @@ class MedicationAdministration extends DomainResource {
     MedicationAdministrationStatusCodes? status,
     Element? statusElement,
     List<CodeableConcept>? statusReason,
-    MedicationAdministrationCategoryCodes? category,
+    CodeableConcept? category,
     CodeableConcept? medicationCodeableConcept,
     Reference? medicationReference,
     Reference? subject,
@@ -219,7 +219,7 @@ class MedicationAdministration extends DomainResource {
     Element? effectiveDateTimeElement,
     Period? effectivePeriod,
     List<MedicationAdministrationPerformer>? performer,
-    List<ReasonMedicationGivenCodes>? reasonCode,
+    List<CodeableConcept>? reasonCode,
     List<Reference>? reasonReference,
     Reference? request,
     List<Reference>? device,
@@ -326,7 +326,7 @@ class MedicationAdministrationPerformer extends BackboneElement {
   /// [function_] /// Distinguishes the type of involvement of the performer in the medication
   /// administration.
   @JsonKey(name: 'function')
-  final MedicationAdministrationPerformerFunctionCodes? function_;
+  final CodeableConcept? function_;
 
   /// [actor] /// Indicates who or what performed the medication administration.
   @JsonKey(name: 'actor')
@@ -346,7 +346,7 @@ class MedicationAdministrationPerformer extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    MedicationAdministrationPerformerFunctionCodes? function_,
+    CodeableConcept? function_,
     Reference? actor,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

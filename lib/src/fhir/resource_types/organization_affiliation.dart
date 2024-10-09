@@ -85,12 +85,12 @@ class OrganizationAffiliation extends DomainResource {
   /// [code] /// Definition of the role the participatingOrganization plays in the
   /// association.
   @JsonKey(name: 'code')
-  final List<OrganizationAffiliationRole>? code;
+  final List<CodeableConcept>? code;
 
   /// [specialty] /// Specific specialty of the participatingOrganization in the context of the
   /// role.
   @JsonKey(name: 'specialty')
-  final List<PracticeSettingCodeValueSet>? specialty;
+  final List<CodeableConcept>? specialty;
 
   /// [location] /// The location(s) at which the role occurs.
   @JsonKey(name: 'location')
@@ -135,8 +135,8 @@ class OrganizationAffiliation extends DomainResource {
     Reference? organization,
     Reference? participatingOrganization,
     List<Reference>? network,
-    List<OrganizationAffiliationRole>? code,
-    List<PracticeSettingCodeValueSet>? specialty,
+    List<CodeableConcept>? code,
+    List<CodeableConcept>? specialty,
     List<Reference>? location,
     List<Reference>? healthcareService,
     List<ContactPoint>? telecom,

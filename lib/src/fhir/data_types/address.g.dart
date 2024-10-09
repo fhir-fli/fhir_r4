@@ -8,7 +8,7 @@ part of 'address.dart';
 
 Address _$AddressFromJson(Map<String, dynamic> json) => Address(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       use: $enumDecodeNullable(_$AddressUseEnumMap, json['use']),
@@ -88,7 +88,7 @@ Map<String, dynamic> _$AddressToJson(Address instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('use', instance.use?.toJson());
   writeNotNull('_use', instance.useElement?.toJson());
   writeNotNull('type', instance.type?.toJson());

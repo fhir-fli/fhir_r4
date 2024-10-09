@@ -107,7 +107,7 @@ class ChargeItem extends DomainResource {
 
   /// [code] /// A code that identifies the charge, like a billing code.
   @JsonKey(name: 'code')
-  final ChargeItemCode code;
+  final CodeableConcept code;
 
   /// [subject] /// The individual or set of individuals the action is being or was performed
   /// on.
@@ -245,7 +245,7 @@ class ChargeItem extends DomainResource {
     ChargeItemStatus? status,
     Element? statusElement,
     List<Reference>? partOf,
-    ChargeItemCode? code,
+    CodeableConcept? code,
     Reference? subject,
     Reference? context,
     FhirDateTime? occurrenceDateTime,

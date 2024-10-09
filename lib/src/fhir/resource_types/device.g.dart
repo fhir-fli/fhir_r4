@@ -47,7 +47,7 @@ Device _$DeviceFromJson(Map<String, dynamic> json) => Device(
           ? null
           : Element.fromJson(json['_status'] as Map<String, dynamic>),
       statusReason: (json['statusReason'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$FHIRDeviceStatusReasonEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       distinctIdentifier: json['distinctIdentifier'] == null
           ? null
@@ -296,17 +296,6 @@ const _$FHIRDeviceStatusEnumMap = {
   FHIRDeviceStatus.unknown: 'unknown',
 };
 
-const _$FHIRDeviceStatusReasonEnumMap = {
-  FHIRDeviceStatusReason.online: 'online',
-  FHIRDeviceStatusReason.paused: 'paused',
-  FHIRDeviceStatusReason.standby: 'standby',
-  FHIRDeviceStatusReason.offline: 'offline',
-  FHIRDeviceStatusReason.not_ready: 'not-ready',
-  FHIRDeviceStatusReason.transduc_discon: 'transduc-discon',
-  FHIRDeviceStatusReason.hw_discon: 'hw-discon',
-  FHIRDeviceStatusReason.off: 'off',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -455,7 +444,7 @@ const _$R4ResourceTypeEnumMap = {
 DeviceUdiCarrier _$DeviceUdiCarrierFromJson(Map<String, dynamic> json) =>
     DeviceUdiCarrier(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -526,7 +515,7 @@ Map<String, dynamic> _$DeviceUdiCarrierToJson(DeviceUdiCarrier instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('deviceIdentifier', instance.deviceIdentifier?.toJson());
@@ -556,7 +545,7 @@ const _$UDIEntryTypeEnumMap = {
 DeviceDeviceName _$DeviceDeviceNameFromJson(Map<String, dynamic> json) =>
     DeviceDeviceName(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -603,7 +592,7 @@ Map<String, dynamic> _$DeviceDeviceNameToJson(DeviceDeviceName instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['name'] = instance.name.toJson();
@@ -626,7 +615,7 @@ DeviceSpecialization _$DeviceSpecializationFromJson(
         Map<String, dynamic> json) =>
     DeviceSpecialization(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -673,7 +662,7 @@ Map<String, dynamic> _$DeviceSpecializationToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['systemType'] = instance.systemType.toJson();
@@ -685,7 +674,7 @@ Map<String, dynamic> _$DeviceSpecializationToJson(
 DeviceVersion _$DeviceVersionFromJson(Map<String, dynamic> json) =>
     DeviceVersion(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -734,7 +723,7 @@ Map<String, dynamic> _$DeviceVersionToJson(DeviceVersion instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.toJson());
@@ -747,7 +736,7 @@ Map<String, dynamic> _$DeviceVersionToJson(DeviceVersion instance) {
 DeviceProperty _$DevicePropertyFromJson(Map<String, dynamic> json) =>
     DeviceProperty(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -793,7 +782,7 @@ Map<String, dynamic> _$DevicePropertyToJson(DeviceProperty instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();

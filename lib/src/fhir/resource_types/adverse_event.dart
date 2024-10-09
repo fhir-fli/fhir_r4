@@ -79,7 +79,7 @@ class AdverseEvent extends DomainResource {
 
   /// [category] /// The overall type of event, intended for search and filtering purposes.
   @JsonKey(name: 'category')
-  final List<AdverseEventCategory>? category;
+  final List<CodeableConcept>? category;
 
   /// [event] /// This element defines the specific type of event that occurred or that was
   /// prevented from occurring.
@@ -125,17 +125,17 @@ class AdverseEvent extends DomainResource {
 
   /// [seriousness] /// Assessment whether this event was of real importance.
   @JsonKey(name: 'seriousness')
-  final AdverseEventSeriousness? seriousness;
+  final CodeableConcept? seriousness;
 
   /// [severity] /// Describes the severity of the adverse event, in relation to the subject.
   /// Contrast to AdverseEvent.seriousness - a severe rash might not be serious,
   /// but a mild heart problem is.
   @JsonKey(name: 'severity')
-  final AdverseEventSeverity? severity;
+  final CodeableConcept? severity;
 
   /// [outcome] /// Describes the type of outcome from the adverse event.
   @JsonKey(name: 'outcome')
-  final AdverseEventOutcome? outcome;
+  final CodeableConcept? outcome;
 
   /// [recorder] /// Information on who recorded the adverse event. May be the patient or a
   /// practitioner.
@@ -190,7 +190,7 @@ class AdverseEvent extends DomainResource {
     Identifier? identifier,
     AdverseEventActuality? actuality,
     Element? actualityElement,
-    List<AdverseEventCategory>? category,
+    List<CodeableConcept>? category,
     CodeableConcept? event,
     Reference? subject,
     Reference? encounter,
@@ -202,9 +202,9 @@ class AdverseEvent extends DomainResource {
     Element? recordedDateElement,
     List<Reference>? resultingCondition,
     Reference? location,
-    AdverseEventSeriousness? seriousness,
-    AdverseEventSeverity? severity,
-    AdverseEventOutcome? outcome,
+    CodeableConcept? seriousness,
+    CodeableConcept? severity,
+    CodeableConcept? outcome,
     Reference? recorder,
     List<Reference>? contributor,
     List<AdverseEventSuspectEntity>? suspectEntity,
@@ -398,7 +398,7 @@ class AdverseEventCausality extends BackboneElement {
 
   /// [assessment] /// Assessment of if the entity caused the event.
   @JsonKey(name: 'assessment')
-  final AdverseEventCausalityAssessment? assessment;
+  final CodeableConcept? assessment;
 
   /// [productRelatedness] /// AdverseEvent.suspectEntity.causalityProductRelatedness.
   @JsonKey(name: 'productRelatedness')
@@ -412,7 +412,7 @@ class AdverseEventCausality extends BackboneElement {
 
   /// [method] /// ProbabilityScale | Bayesian | Checklist.
   @JsonKey(name: 'method')
-  final AdverseEventCausalityMethod? method;
+  final CodeableConcept? method;
   factory AdverseEventCausality.fromJson(Map<String, dynamic> json) =>
       _$AdverseEventCausalityFromJson(json);
 
@@ -426,11 +426,11 @@ class AdverseEventCausality extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    AdverseEventCausalityAssessment? assessment,
+    CodeableConcept? assessment,
     FhirString? productRelatedness,
     Element? productRelatednessElement,
     Reference? author,
-    AdverseEventCausalityMethod? method,
+    CodeableConcept? method,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

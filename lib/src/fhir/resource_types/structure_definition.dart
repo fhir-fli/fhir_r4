@@ -200,7 +200,7 @@ class StructureDefinition extends DomainResource {
   /// assist with indexing and searching of templates nby describing the use of
   /// this structure definition, or the content it describes.
   @JsonKey(name: 'keyword')
-  final List<DefinitionUseCodes>? keyword;
+  final List<Coding>? keyword;
 
   /// [fhirVersion] /// The version of the FHIR specification on which this StructureDefinition is
   /// based - this is the formal version of the specification, without the
@@ -316,7 +316,7 @@ class StructureDefinition extends DomainResource {
     Element? purposeElement,
     FhirMarkdown? copyright,
     Element? copyrightElement,
-    List<DefinitionUseCodes>? keyword,
+    List<Coding>? keyword,
     FHIRVersion? fhirVersion,
     Element? fhirVersionElement,
     List<StructureDefinitionMapping>? mapping,

@@ -63,8 +63,9 @@ Procedure _$ProcedureFromJson(Map<String, dynamic> json) => Procedure(
           ? null
           : CodeableConcept.fromJson(
               json['statusReason'] as Map<String, dynamic>),
-      category: $enumDecodeNullable(
-          _$ProcedureCategoryCodesSNOMEDCTEnumMap, json['category']),
+      category: json['category'] == null
+          ? null
+          : CodeableConcept.fromJson(json['category'] as Map<String, dynamic>),
       code: json['code'] == null
           ? null
           : CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
@@ -115,19 +116,20 @@ Procedure _$ProcedureFromJson(Map<String, dynamic> json) => Procedure(
       bodySite: (json['bodySite'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
-      outcome: $enumDecodeNullable(
-          _$ProcedureOutcomeCodesSNOMEDCTEnumMap, json['outcome']),
+      outcome: json['outcome'] == null
+          ? null
+          : CodeableConcept.fromJson(json['outcome'] as Map<String, dynamic>),
       report: (json['report'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
       complication: (json['complication'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ConditionProblemDiagnosisCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       complicationDetail: (json['complicationDetail'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
       followUp: (json['followUp'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ProcedureFollowUpCodesSNOMEDCTEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       note: (json['note'] as List<dynamic>?)
           ?.map((e) => Annotation.fromJson(e as Map<String, dynamic>))
@@ -311,39 +313,6 @@ const _$EventStatusEnumMap = {
   EventStatus.unknown: 'unknown',
 };
 
-const _$ProcedureCategoryCodesSNOMEDCTEnumMap = {
-  ProcedureCategoryCodesSNOMEDCT.value24642003: '24642003',
-  ProcedureCategoryCodesSNOMEDCT.value409063005: '409063005',
-  ProcedureCategoryCodesSNOMEDCT.value409073007: '409073007',
-  ProcedureCategoryCodesSNOMEDCT.value387713003: '387713003',
-  ProcedureCategoryCodesSNOMEDCT.value103693007: '103693007',
-  ProcedureCategoryCodesSNOMEDCT.value46947000: '46947000',
-  ProcedureCategoryCodesSNOMEDCT.value410606002: '410606002',
-};
-
-const _$ProcedureOutcomeCodesSNOMEDCTEnumMap = {
-  ProcedureOutcomeCodesSNOMEDCT.value385669000: '385669000',
-  ProcedureOutcomeCodesSNOMEDCT.value385671000: '385671000',
-  ProcedureOutcomeCodesSNOMEDCT.value385670004: '385670004',
-};
-
-const _$ConditionProblemDiagnosisCodesEnumMap = {
-  ConditionProblemDiagnosisCodes.value160245001: '160245001',
-};
-
-const _$ProcedureFollowUpCodesSNOMEDCTEnumMap = {
-  ProcedureFollowUpCodesSNOMEDCT.value18949003: '18949003',
-  ProcedureFollowUpCodesSNOMEDCT.value30549001: '30549001',
-  ProcedureFollowUpCodesSNOMEDCT.value241031001: '241031001',
-  ProcedureFollowUpCodesSNOMEDCT.value35963001: '35963001',
-  ProcedureFollowUpCodesSNOMEDCT.value225164002: '225164002',
-  ProcedureFollowUpCodesSNOMEDCT.value447346005: '447346005',
-  ProcedureFollowUpCodesSNOMEDCT.value229506003: '229506003',
-  ProcedureFollowUpCodesSNOMEDCT.value274441001: '274441001',
-  ProcedureFollowUpCodesSNOMEDCT.value394725008: '394725008',
-  ProcedureFollowUpCodesSNOMEDCT.value359825008: '359825008',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -492,7 +461,7 @@ const _$R4ResourceTypeEnumMap = {
 ProcedurePerformer _$ProcedurePerformerFromJson(Map<String, dynamic> json) =>
     ProcedurePerformer(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -538,7 +507,7 @@ Map<String, dynamic> _$ProcedurePerformerToJson(ProcedurePerformer instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('function', instance.function_?.toJson());
@@ -551,7 +520,7 @@ ProcedureFocalDevice _$ProcedureFocalDeviceFromJson(
         Map<String, dynamic> json) =>
     ProcedureFocalDevice(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -596,7 +565,7 @@ Map<String, dynamic> _$ProcedureFocalDeviceToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('action', instance.action?.toJson());

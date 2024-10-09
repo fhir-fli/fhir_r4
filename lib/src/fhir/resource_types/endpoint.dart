@@ -69,7 +69,7 @@ class FhirEndpoint extends DomainResource {
   /// endpoint, such as what WSDLs should be used in what way. (e.g.
   /// XDS.b/DICOM/cds-hook).
   @JsonKey(name: 'connectionType')
-  final EndpointConnectionType connectionType;
+  final Coding connectionType;
 
   /// [name] /// A friendly name that this endpoint can be referred to with.
   @JsonKey(name: 'name')
@@ -95,7 +95,7 @@ class FhirEndpoint extends DomainResource {
   /// [payloadType] /// The payload type describes the acceptable content that can be communicated
   /// on the endpoint.
   @JsonKey(name: 'payloadType')
-  final List<EndpointPayloadType> payloadType;
+  final List<CodeableConcept> payloadType;
 
   /// [payloadMimeType] /// The mime type to send the payload in - e.g. application/fhir+xml,
   /// application/fhir+json. If the mime type is not specified, then the sender
@@ -140,13 +140,13 @@ class FhirEndpoint extends DomainResource {
     List<Identifier>? identifier,
     EndpointStatus? status,
     Element? statusElement,
-    EndpointConnectionType? connectionType,
+    Coding? connectionType,
     FhirString? name,
     Element? nameElement,
     Reference? managingOrganization,
     List<ContactPoint>? contact,
     Period? period,
-    List<EndpointPayloadType>? payloadType,
+    List<CodeableConcept>? payloadType,
     List<FhirCode>? payloadMimeType,
     List<Element>? payloadMimeTypeElement,
     FhirUrl? address,

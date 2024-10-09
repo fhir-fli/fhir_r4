@@ -132,7 +132,7 @@ class NutritionOrder extends DomainResource {
   /// applies to the entire nutrition order inclusive of the oral diet,
   /// nutritional supplements and enteral formula feedings.
   @JsonKey(name: 'foodPreferenceModifier')
-  final List<Diet>? foodPreferenceModifier;
+  final List<CodeableConcept>? foodPreferenceModifier;
 
   /// [excludeFoodModifier] /// This modifier is used to convey Order-specific modifier about the type of
   /// oral food or oral fluids that should not be given. These can be derived
@@ -202,7 +202,7 @@ class NutritionOrder extends DomainResource {
     Element? dateTimeElement,
     Reference? orderer,
     List<Reference>? allergyIntolerance,
-    List<Diet>? foodPreferenceModifier,
+    List<CodeableConcept>? foodPreferenceModifier,
     List<CodeableConcept>? excludeFoodModifier,
     NutritionOrderOralDiet? oralDiet,
     List<NutritionOrderSupplement>? supplement,
@@ -333,7 +333,7 @@ class NutritionOrderOralDiet extends BackboneElement {
   /// [fluidConsistencyType] /// The required consistency (e.g. honey-thick, nectar-thick, thin, thickened.)
   /// of liquids or fluids served to the patient.
   @JsonKey(name: 'fluidConsistencyType')
-  final List<FluidConsistencyTypeCodes>? fluidConsistencyType;
+  final List<CodeableConcept>? fluidConsistencyType;
 
   /// [instruction] /// Free text or additional instructions or information pertaining to the oral
   /// diet.
@@ -358,7 +358,7 @@ class NutritionOrderOralDiet extends BackboneElement {
     List<Timing>? schedule,
     List<NutritionOrderNutrient>? nutrient,
     List<NutritionOrderTexture>? texture,
-    List<FluidConsistencyTypeCodes>? fluidConsistencyType,
+    List<CodeableConcept>? fluidConsistencyType,
     FhirString? instruction,
     Element? instructionElement,
     Map<String, Object?>? userData,
@@ -433,7 +433,7 @@ class NutritionOrderNutrient extends BackboneElement {
 
   /// [modifier] /// The nutrient that is being modified such as carbohydrate or sodium.
   @JsonKey(name: 'modifier')
-  final NutrientModifierCodes? modifier;
+  final CodeableConcept? modifier;
 
   /// [amount] /// The quantity of the specified nutrient to include in diet.
   @JsonKey(name: 'amount')
@@ -451,7 +451,7 @@ class NutritionOrderNutrient extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    NutrientModifierCodes? modifier,
+    CodeableConcept? modifier,
     Quantity? amount,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -521,12 +521,12 @@ class NutritionOrderTexture extends BackboneElement {
   /// [modifier] /// Any texture modifications (for solid foods) that should be made, e.g. easy
   /// to chew, chopped, ground, and pureed.
   @JsonKey(name: 'modifier')
-  final TextureModifierCodes? modifier;
+  final CodeableConcept? modifier;
 
   /// [foodType] /// The food type(s) (e.g. meats, all foods) that the texture modification
   /// applies to. This could be all foods types.
   @JsonKey(name: 'foodType')
-  final TextureModifiedFoodTypeCodes? foodType;
+  final CodeableConcept? foodType;
   factory NutritionOrderTexture.fromJson(Map<String, dynamic> json) =>
       _$NutritionOrderTextureFromJson(json);
 
@@ -540,8 +540,8 @@ class NutritionOrderTexture extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    TextureModifierCodes? modifier,
-    TextureModifiedFoodTypeCodes? foodType,
+    CodeableConcept? modifier,
+    CodeableConcept? foodType,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -615,7 +615,7 @@ class NutritionOrderSupplement extends BackboneElement {
   /// [type] /// The kind of nutritional supplement product required such as a high protein
   /// or pediatric clear liquid supplement.
   @JsonKey(name: 'type')
-  final SupplementTypeCodes? type;
+  final CodeableConcept? type;
 
   /// [productName] /// The product or brand name of the nutritional supplement such as "Acme
   /// Protein Shake".
@@ -653,7 +653,7 @@ class NutritionOrderSupplement extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    SupplementTypeCodes? type,
+    CodeableConcept? type,
     FhirString? productName,
     Element? productNameElement,
     List<Timing>? schedule,
@@ -741,7 +741,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
   /// [baseFormulaType] /// The type of enteral or infant formula such as an adult standard formula
   /// with fiber or a soy-based infant formula.
   @JsonKey(name: 'baseFormulaType')
-  final EnteralFormulaTypeCodes? baseFormulaType;
+  final CodeableConcept? baseFormulaType;
 
   /// [baseFormulaProductName] /// The product or brand name of the enteral or infant formula product such as
   /// "ACME Adult Standard Formula".
@@ -753,7 +753,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
   /// [additiveType] /// Indicates the type of modular component such as protein, carbohydrate, fat
   /// or fiber to be provided in addition to or mixed with the base formula.
   @JsonKey(name: 'additiveType')
-  final EnteralFormulaAdditiveTypeCode? additiveType;
+  final CodeableConcept? additiveType;
 
   /// [additiveProductName] /// The product or brand name of the type of modular component to be added to
   /// the formula.
@@ -773,7 +773,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
   /// gastrointestinal tract for purposes of providing the formula feeding, e.g.
   /// nasogastric tube.
   @JsonKey(name: 'routeofAdministration')
-  final EnteralRouteCodes? routeofAdministration;
+  final CodeableConcept? routeofAdministration;
 
   /// [administration] /// Formula administration instructions as structured data. This repeating
   /// structure allows for changing the administration rate or volume over time
@@ -799,14 +799,14 @@ class NutritionOrderEnteralFormula extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    EnteralFormulaTypeCodes? baseFormulaType,
+    CodeableConcept? baseFormulaType,
     FhirString? baseFormulaProductName,
     Element? baseFormulaProductNameElement,
-    EnteralFormulaAdditiveTypeCode? additiveType,
+    CodeableConcept? additiveType,
     FhirString? additiveProductName,
     Element? additiveProductNameElement,
     Quantity? caloricDensity,
-    EnteralRouteCodes? routeofAdministration,
+    CodeableConcept? routeofAdministration,
     List<NutritionOrderAdministration>? administration,
     Quantity? maxVolumeToDeliver,
     Map<String, Object?>? userData,

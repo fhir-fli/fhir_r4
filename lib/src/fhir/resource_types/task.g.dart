@@ -79,7 +79,9 @@ Task _$TaskFromJson(Map<String, dynamic> json) => Task(
       priorityElement: json['_priority'] == null
           ? null
           : Element.fromJson(json['_priority'] as Map<String, dynamic>),
-      code: $enumDecodeNullable(_$TaskCodeEnumMap, json['code']),
+      code: json['code'] == null
+          ? null
+          : CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       description: json['description'] == null
           ? null
           : FhirString.fromJson(json['description']),
@@ -336,16 +338,6 @@ const _$RequestPriorityEnumMap = {
   RequestPriority.stat: 'stat',
 };
 
-const _$TaskCodeEnumMap = {
-  TaskCode.approve: 'approve',
-  TaskCode.fulfill: 'fulfill',
-  TaskCode.abort: 'abort',
-  TaskCode.replace: 'replace',
-  TaskCode.change: 'change',
-  TaskCode.suspend: 'suspend',
-  TaskCode.resume: 'resume',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -494,7 +486,7 @@ const _$R4ResourceTypeEnumMap = {
 TaskRestriction _$TaskRestrictionFromJson(Map<String, dynamic> json) =>
     TaskRestriction(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -545,7 +537,7 @@ Map<String, dynamic> _$TaskRestrictionToJson(TaskRestriction instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('repetitions', instance.repetitions?.toJson());
@@ -558,7 +550,7 @@ Map<String, dynamic> _$TaskRestrictionToJson(TaskRestriction instance) {
 
 TaskInput _$TaskInputFromJson(Map<String, dynamic> json) => TaskInput(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -727,7 +719,7 @@ Map<String, dynamic> _$TaskInputToJson(TaskInput instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();
@@ -806,7 +798,7 @@ Map<String, dynamic> _$TaskInputToJson(TaskInput instance) {
 
 TaskOutput _$TaskOutputFromJson(Map<String, dynamic> json) => TaskOutput(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -975,7 +967,7 @@ Map<String, dynamic> _$TaskOutputToJson(TaskOutput instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();

@@ -75,24 +75,24 @@ class Condition extends DomainResource {
 
   /// [clinicalStatus] /// The clinical status of the condition.
   @JsonKey(name: 'clinicalStatus')
-  final ConditionClinicalStatusCodes? clinicalStatus;
+  final CodeableConcept? clinicalStatus;
 
   /// [verificationStatus] /// The verification status to support the clinical status of the condition.
   @JsonKey(name: 'verificationStatus')
-  final ConditionVerificationStatus? verificationStatus;
+  final CodeableConcept? verificationStatus;
 
   /// [category] /// A category assigned to the condition.
   @JsonKey(name: 'category')
-  final List<ConditionCategoryCodes>? category;
+  final List<CodeableConcept>? category;
 
   /// [severity] /// A subjective assessment of the severity of the condition as evaluated by
   /// the clinician.
   @JsonKey(name: 'severity')
-  final ConditionDiagnosisSeverity? severity;
+  final CodeableConcept? severity;
 
   /// [code] /// Identification of the condition, problem or diagnosis.
   @JsonKey(name: 'code')
-  final ConditionProblemDiagnosisCodes? code;
+  final CodeableConcept? code;
 
   /// [bodySite] /// The anatomical location where this condition manifests itself.
   @JsonKey(name: 'bodySite')
@@ -228,11 +228,11 @@ class Condition extends DomainResource {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    ConditionClinicalStatusCodes? clinicalStatus,
-    ConditionVerificationStatus? verificationStatus,
-    List<ConditionCategoryCodes>? category,
-    ConditionDiagnosisSeverity? severity,
-    ConditionProblemDiagnosisCodes? code,
+    CodeableConcept? clinicalStatus,
+    CodeableConcept? verificationStatus,
+    List<CodeableConcept>? category,
+    CodeableConcept? severity,
+    CodeableConcept? code,
     List<CodeableConcept>? bodySite,
     Reference? subject,
     Reference? encounter,
@@ -372,7 +372,7 @@ class ConditionStage extends BackboneElement {
 
   /// [type] /// The kind of staging, such as pathological or clinical staging.
   @JsonKey(name: 'type')
-  final ConditionStageType? type;
+  final CodeableConcept? type;
   factory ConditionStage.fromJson(Map<String, dynamic> json) =>
       _$ConditionStageFromJson(json);
 
@@ -388,7 +388,7 @@ class ConditionStage extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? summary,
     List<Reference>? assessment,
-    ConditionStageType? type,
+    CodeableConcept? type,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

@@ -63,7 +63,7 @@ class SpecimenDefinition extends DomainResource {
 
   /// [collection] /// The action to be performed for collecting the specimen.
   @JsonKey(name: 'collection')
-  final List<SpecimenCollectionEnum>? collection;
+  final List<CodeableConcept>? collection;
 
   /// [typeTested] /// Specimen conditioned in a container as expected by the testing laboratory.
   @JsonKey(name: 'typeTested')
@@ -93,7 +93,7 @@ class SpecimenDefinition extends DomainResource {
     List<CodeableConcept>? patientPreparation,
     FhirString? timeAspect,
     Element? timeAspectElement,
-    List<SpecimenCollectionEnum>? collection,
+    List<CodeableConcept>? collection,
     List<SpecimenDefinitionTypeTested>? typeTested,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -214,7 +214,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
 
   /// [rejectionCriterion] /// Criterion for rejection of the specimen in its container by the laboratory.
   @JsonKey(name: 'rejectionCriterion')
-  final List<RejectionCriterion>? rejectionCriterion;
+  final List<CodeableConcept>? rejectionCriterion;
 
   /// [handling] /// Set of instructions for preservation/transport of the specimen at a defined
   /// temperature interval, prior the testing process.
@@ -242,7 +242,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     FhirString? requirement,
     Element? requirementElement,
     FhirDuration? retentionTime,
-    List<RejectionCriterion>? rejectionCriterion,
+    List<CodeableConcept>? rejectionCriterion,
     List<SpecimenDefinitionHandling>? handling,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -329,7 +329,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
 
   /// [material] /// The type of material of the container.
   @JsonKey(name: 'material')
-  final ContainerMaterials? material;
+  final CodeableConcept? material;
 
   /// [type] /// The type of container used to contain this kind of specimen.
   @JsonKey(name: 'type')
@@ -337,7 +337,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
 
   /// [cap] /// Color of container cap.
   @JsonKey(name: 'cap')
-  final ContainerCap? cap;
+  final CodeableConcept? cap;
 
   /// [description] /// The textual description of the kind of container.
   @JsonKey(name: 'description')
@@ -383,9 +383,9 @@ class SpecimenDefinitionContainer extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ContainerMaterials? material,
+    CodeableConcept? material,
     CodeableConcept? type,
-    ContainerCap? cap,
+    CodeableConcept? cap,
     FhirString? description,
     Element? descriptionElement,
     Quantity? capacity,
@@ -569,7 +569,7 @@ class SpecimenDefinitionHandling extends BackboneElement {
   /// of handling. Conditions that are not related to temperature may be handled
   /// in the instruction element.
   @JsonKey(name: 'temperatureQualifier')
-  final HandlingConditionSet? temperatureQualifier;
+  final CodeableConcept? temperatureQualifier;
 
   /// [temperatureRange] /// The temperature interval for this set of handling instructions.
   @JsonKey(name: 'temperatureRange')
@@ -599,7 +599,7 @@ class SpecimenDefinitionHandling extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    HandlingConditionSet? temperatureQualifier,
+    CodeableConcept? temperatureQualifier,
     Range? temperatureRange,
     FhirDuration? maxDuration,
     FhirString? instruction,

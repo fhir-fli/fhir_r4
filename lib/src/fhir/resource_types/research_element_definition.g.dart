@@ -77,10 +77,14 @@ ResearchElementDefinition _$ResearchElementDefinitionFromJson(
       experimentalElement: json['_experimental'] == null
           ? null
           : Element.fromJson(json['_experimental'] as Map<String, dynamic>),
-      subjectCodeableConcept: $enumDecodeNullable(
-          _$SubjectTypeEnumMap, json['subjectCodeableConcept']),
-      subjectReference:
-          $enumDecodeNullable(_$SubjectTypeEnumMap, json['subjectReference']),
+      subjectCodeableConcept: json['subjectCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['subjectCodeableConcept'] as Map<String, dynamic>),
+      subjectReference: json['subjectReference'] == null
+          ? null
+          : Reference.fromJson(
+              json['subjectReference'] as Map<String, dynamic>),
       date: json['date'] == null
           ? null
           : FhirDateTime.fromJson(json['date'] as String),
@@ -146,7 +150,7 @@ ResearchElementDefinition _$ResearchElementDefinitionFromJson(
           ? null
           : Period.fromJson(json['effectivePeriod'] as Map<String, dynamic>),
       topic: (json['topic'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$DefinitionTopicEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       author: (json['author'] as List<dynamic>?)
           ?.map((e) => ContactDetail.fromJson(e as Map<String, dynamic>))
@@ -361,20 +365,6 @@ const _$PublicationStatusEnumMap = {
   PublicationStatus.unknown: 'unknown',
 };
 
-const _$SubjectTypeEnumMap = {
-  SubjectType.Patient: 'Patient',
-  SubjectType.Practitioner: 'Practitioner',
-  SubjectType.Organization: 'Organization',
-  SubjectType.Location: 'Location',
-  SubjectType.Device: 'Device',
-};
-
-const _$DefinitionTopicEnumMap = {
-  DefinitionTopic.treatment: 'treatment',
-  DefinitionTopic.education: 'education',
-  DefinitionTopic.assessment: 'assessment',
-};
-
 const _$ResearchElementTypeEnumMap = {
   ResearchElementType.population: 'population',
   ResearchElementType.exposure: 'exposure',
@@ -537,7 +527,7 @@ ResearchElementDefinitionCharacteristic
             Map<String, dynamic> json) =>
         ResearchElementDefinitionCharacteristic(
           id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-          extension_: (json['extension_'] as List<dynamic>?)
+          extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
           modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -688,7 +678,7 @@ Map<String, dynamic> _$ResearchElementDefinitionCharacteristicToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['definitionCodeableConcept'] =

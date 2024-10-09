@@ -106,7 +106,7 @@ class PaymentNotice extends DomainResource {
 
   /// [paymentStatus] /// A code indicating whether payment has been sent or cleared.
   @JsonKey(name: 'paymentStatus')
-  final PaymentStatusCodes? paymentStatus;
+  final CodeableConcept? paymentStatus;
   factory PaymentNotice.fromJson(Map<String, dynamic> json) =>
       _$PaymentNoticeFromJson(json);
 
@@ -141,7 +141,7 @@ class PaymentNotice extends DomainResource {
     Reference? payee,
     Reference? recipient,
     Money? amount,
-    PaymentStatusCodes? paymentStatus,
+    CodeableConcept? paymentStatus,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

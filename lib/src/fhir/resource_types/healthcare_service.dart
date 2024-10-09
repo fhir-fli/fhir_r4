@@ -84,16 +84,16 @@ class HealthcareService extends DomainResource {
 
   /// [category] /// Identifies the broad category of service being performed or delivered.
   @JsonKey(name: 'category')
-  final List<ServiceCategory>? category;
+  final List<CodeableConcept>? category;
 
   /// [type] /// The specific type of service that may be delivered or performed.
   @JsonKey(name: 'type')
-  final List<ServiceType>? type;
+  final List<CodeableConcept>? type;
 
   /// [specialty] /// Collection of specialties handled by the service site. This is more of a
   /// medical term.
   @JsonKey(name: 'specialty')
-  final List<PracticeSettingCodeValueSet>? specialty;
+  final List<CodeableConcept>? specialty;
 
   /// [location] /// The location(s) where this healthcare service may be provided.
   @JsonKey(name: 'location')
@@ -138,7 +138,7 @@ class HealthcareService extends DomainResource {
   /// [serviceProvisionCode] /// The code(s) that detail the conditions under which the healthcare service
   /// is available/offered.
   @JsonKey(name: 'serviceProvisionCode')
-  final List<ServiceProvisionConditions>? serviceProvisionCode;
+  final List<CodeableConcept>? serviceProvisionCode;
 
   /// [eligibility] /// Does this service have specific eligibility requirements that need to be
   /// met in order to use the service?
@@ -147,7 +147,7 @@ class HealthcareService extends DomainResource {
 
   /// [program] /// Programs that this service is applicable to.
   @JsonKey(name: 'program')
-  final List<Program>? program;
+  final List<CodeableConcept>? program;
 
   /// [characteristic] /// Collection of characteristics (attributes).
   @JsonKey(name: 'characteristic')
@@ -158,12 +158,12 @@ class HealthcareService extends DomainResource {
   /// Typically this is only provided where a service operates in communities
   /// with mixed languages used.
   @JsonKey(name: 'communication')
-  final List<CommonLanguages>? communication;
+  final List<CodeableConcept>? communication;
 
   /// [referralMethod] /// Ways that the service accepts referrals, if this is not provided then it is
   /// implied that no referral is required.
   @JsonKey(name: 'referralMethod')
-  final List<ReferralMethod>? referralMethod;
+  final List<CodeableConcept>? referralMethod;
 
   /// [appointmentRequired] /// Indicates whether or not a prospective consumer will require an appointment
   /// for a particular service at a site to be provided by the Organization.
@@ -218,9 +218,9 @@ class HealthcareService extends DomainResource {
     FhirBoolean? active,
     Element? activeElement,
     Reference? providedBy,
-    List<ServiceCategory>? category,
-    List<ServiceType>? type,
-    List<PracticeSettingCodeValueSet>? specialty,
+    List<CodeableConcept>? category,
+    List<CodeableConcept>? type,
+    List<CodeableConcept>? specialty,
     List<Reference>? location,
     FhirString? name,
     Element? nameElement,
@@ -231,12 +231,12 @@ class HealthcareService extends DomainResource {
     Attachment? photo,
     List<ContactPoint>? telecom,
     List<Reference>? coverageArea,
-    List<ServiceProvisionConditions>? serviceProvisionCode,
+    List<CodeableConcept>? serviceProvisionCode,
     List<HealthcareServiceEligibility>? eligibility,
-    List<Program>? program,
+    List<CodeableConcept>? program,
     List<CodeableConcept>? characteristic,
-    List<CommonLanguages>? communication,
-    List<ReferralMethod>? referralMethod,
+    List<CodeableConcept>? communication,
+    List<CodeableConcept>? referralMethod,
     FhirBoolean? appointmentRequired,
     Element? appointmentRequiredElement,
     List<HealthcareServiceAvailableTime>? availableTime,

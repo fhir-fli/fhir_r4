@@ -104,7 +104,7 @@ StructureDefinition _$StructureDefinitionFromJson(Map<String, dynamic> json) =>
           ? null
           : Element.fromJson(json['_copyright'] as Map<String, dynamic>),
       keyword: (json['keyword'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$DefinitionUseCodesEnumMap, e))
+          ?.map((e) => Coding.fromJson(e as Map<String, dynamic>))
           .toList(),
       fhirVersion:
           $enumDecodeNullable(_$FHIRVersionEnumMap, json['fhirVersion']),
@@ -310,15 +310,6 @@ const _$PublicationStatusEnumMap = {
   PublicationStatus.active: 'active',
   PublicationStatus.retired: 'retired',
   PublicationStatus.unknown: 'unknown',
-};
-
-const _$DefinitionUseCodesEnumMap = {
-  DefinitionUseCodes.fhir_structure: 'fhir-structure',
-  DefinitionUseCodes.custom_resource: 'custom-resource',
-  DefinitionUseCodes.dam: 'dam',
-  DefinitionUseCodes.wire_format: 'wire-format',
-  DefinitionUseCodes.archetype: 'archetype',
-  DefinitionUseCodes.template: 'template',
 };
 
 const _$FHIRVersionEnumMap = {
@@ -580,7 +571,7 @@ StructureDefinitionMapping _$StructureDefinitionMappingFromJson(
         Map<String, dynamic> json) =>
     StructureDefinitionMapping(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -637,7 +628,7 @@ Map<String, dynamic> _$StructureDefinitionMappingToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['identity'] = instance.identity.toJson();
@@ -655,7 +646,7 @@ StructureDefinitionContext _$StructureDefinitionContextFromJson(
         Map<String, dynamic> json) =>
     StructureDefinitionContext(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -709,7 +700,7 @@ Map<String, dynamic> _$StructureDefinitionContextToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();
@@ -733,7 +724,7 @@ StructureDefinitionSnapshot _$StructureDefinitionSnapshotFromJson(
         Map<String, dynamic> json) =>
     StructureDefinitionSnapshot(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -776,7 +767,7 @@ Map<String, dynamic> _$StructureDefinitionSnapshotToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['element'] = instance.element.map((e) => e.toJson()).toList();
@@ -787,7 +778,7 @@ StructureDefinitionDifferential _$StructureDefinitionDifferentialFromJson(
         Map<String, dynamic> json) =>
     StructureDefinitionDifferential(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -830,7 +821,7 @@ Map<String, dynamic> _$StructureDefinitionDifferentialToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['element'] = instance.element.map((e) => e.toJson()).toList();

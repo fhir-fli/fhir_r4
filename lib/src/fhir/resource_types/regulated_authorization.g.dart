@@ -41,8 +41,9 @@ RegulatedAuthorization _$RegulatedAuthorizationFromJson(
       subject: (json['subject'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecodeNullable(
-          _$RegulatedAuthorizationTypeEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       description: json['description'] == null
           ? null
           : FhirMarkdown.fromJson(json['description']),
@@ -52,7 +53,9 @@ RegulatedAuthorization _$RegulatedAuthorizationFromJson(
       region: (json['region'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
-      status: $enumDecodeNullable(_$PublicationStatusEnumMap, json['status']),
+      status: json['status'] == null
+          ? null
+          : CodeableConcept.fromJson(json['status'] as Map<String, dynamic>),
       statusDate: json['statusDate'] == null
           ? null
           : FhirDateTime.fromJson(json['statusDate'] as String),
@@ -66,10 +69,12 @@ RegulatedAuthorization _$RegulatedAuthorizationFromJson(
           ? null
           : CodeableReference.fromJson(
               json['indication'] as Map<String, dynamic>),
-      intendedUse:
-          $enumDecodeNullable(_$ProductIntendedUseEnumMap, json['intendedUse']),
+      intendedUse: json['intendedUse'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['intendedUse'] as Map<String, dynamic>),
       basis: (json['basis'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$RegulatedAuthorizationBasisEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       holder: json['holder'] == null
           ? null
@@ -206,40 +211,6 @@ const _$CommonLanguagesEnumMap = {
   CommonLanguages.zh_HK: 'zh-HK',
   CommonLanguages.zh_SG: 'zh-SG',
   CommonLanguages.zh_TW: 'zh-TW',
-};
-
-const _$RegulatedAuthorizationTypeEnumMap = {
-  RegulatedAuthorizationType.MarketingAuth: 'MarketingAuth',
-  RegulatedAuthorizationType.Orphan: 'Orphan',
-  RegulatedAuthorizationType.Pediatric: 'Pediatric',
-};
-
-const _$PublicationStatusEnumMap = {
-  PublicationStatus.draft: 'draft',
-  PublicationStatus.active: 'active',
-  PublicationStatus.retired: 'retired',
-  PublicationStatus.unknown: 'unknown',
-};
-
-const _$ProductIntendedUseEnumMap = {
-  ProductIntendedUse.Prevention: 'Prevention',
-  ProductIntendedUse.Treatment: 'Treatment',
-  ProductIntendedUse.Alleviation: 'Alleviation',
-  ProductIntendedUse.Diagnosis: 'Diagnosis',
-  ProductIntendedUse.Monitoring: 'Monitoring',
-};
-
-const _$RegulatedAuthorizationBasisEnumMap = {
-  RegulatedAuthorizationBasis.Full: 'Full',
-  RegulatedAuthorizationBasis.NewSubstance: 'NewSubstance',
-  RegulatedAuthorizationBasis.KnownSubstance: 'KnownSubstance',
-  RegulatedAuthorizationBasis.SimilarBiological: 'SimilarBiological',
-  RegulatedAuthorizationBasis.Well_establishedUse: 'Well-establishedUse',
-  RegulatedAuthorizationBasis.TraditionalUse: 'TraditionalUse',
-  RegulatedAuthorizationBasis.Bibliographical: 'Bibliographical',
-  RegulatedAuthorizationBasis.KnownHumanBlood: 'KnownHumanBlood',
-  RegulatedAuthorizationBasis.TemporaryUse: 'TemporaryUse',
-  RegulatedAuthorizationBasis.ParallelTrade: 'ParallelTrade',
 };
 
 const _$R4ResourceTypeEnumMap = {
@@ -391,7 +362,7 @@ RegulatedAuthorizationCase _$RegulatedAuthorizationCaseFromJson(
         Map<String, dynamic> json) =>
     RegulatedAuthorizationCase(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -400,9 +371,12 @@ RegulatedAuthorizationCase _$RegulatedAuthorizationCaseFromJson(
       identifier: json['identifier'] == null
           ? null
           : Identifier.fromJson(json['identifier'] as Map<String, dynamic>),
-      type: $enumDecodeNullable(
-          _$RegulatedAuthorizationCaseTypeEnumMap, json['type']),
-      status: $enumDecodeNullable(_$PublicationStatusEnumMap, json['status']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      status: json['status'] == null
+          ? null
+          : CodeableConcept.fromJson(json['status'] as Map<String, dynamic>),
       datePeriod: json['datePeriod'] == null
           ? null
           : Period.fromJson(json['datePeriod'] as Map<String, dynamic>),
@@ -450,7 +424,7 @@ Map<String, dynamic> _$RegulatedAuthorizationCaseToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('identifier', instance.identifier?.toJson());
@@ -463,30 +437,3 @@ Map<String, dynamic> _$RegulatedAuthorizationCaseToJson(
       'application', instance.application?.map((e) => e.toJson()).toList());
   return val;
 }
-
-const _$RegulatedAuthorizationCaseTypeEnumMap = {
-  RegulatedAuthorizationCaseType.InitialMAA: 'InitialMAA',
-  RegulatedAuthorizationCaseType.Variation: 'Variation',
-  RegulatedAuthorizationCaseType.LineExtension: 'LineExtension',
-  RegulatedAuthorizationCaseType.PSUR: 'PSUR',
-  RegulatedAuthorizationCaseType.Renewal: 'Renewal',
-  RegulatedAuthorizationCaseType.Follow_up: 'Follow-up',
-  RegulatedAuthorizationCaseType.value100000155699: '100000155699',
-  RegulatedAuthorizationCaseType.AnnualReassessment: 'AnnualReassessment',
-  RegulatedAuthorizationCaseType.UrgentSafetyRestriction:
-      'UrgentSafetyRestriction',
-  RegulatedAuthorizationCaseType.PaediatricSubmission: 'PaediatricSubmission',
-  RegulatedAuthorizationCaseType.TransferMA: 'TransferMA',
-  RegulatedAuthorizationCaseType.LiftingSuspension: 'LiftingSuspension',
-  RegulatedAuthorizationCaseType.Withdrawal: 'Withdrawal',
-  RegulatedAuthorizationCaseType.Reformatting: 'Reformatting',
-  RegulatedAuthorizationCaseType.RMP: 'RMP',
-  RegulatedAuthorizationCaseType.ReviewSuspension: 'ReviewSuspension',
-  RegulatedAuthorizationCaseType.SupplementalInformation:
-      'SupplementalInformation',
-  RegulatedAuthorizationCaseType.RepeatUse: 'RepeatUse',
-  RegulatedAuthorizationCaseType.SignalDetection: 'SignalDetection',
-  RegulatedAuthorizationCaseType.FLU: 'FLU',
-  RegulatedAuthorizationCaseType.PANDEMIC: 'PANDEMIC',
-  RegulatedAuthorizationCaseType.Orphan: 'Orphan',
-};

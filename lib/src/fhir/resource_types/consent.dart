@@ -66,12 +66,12 @@ class Consent extends DomainResource {
   /// [scope] /// A selector of the type of consent being presented: ADR, Privacy, Treatment,
   /// Research. This list is now extensible.
   @JsonKey(name: 'scope')
-  final ConsentScopeCodes scope;
+  final CodeableConcept scope;
 
   /// [category] /// A classification of the type of consents found in the statement. This
   /// element supports indexing and retrieval of consent statements.
   @JsonKey(name: 'category')
-  final List<ConsentCategoryCodes> category;
+  final List<CodeableConcept> category;
 
   /// [patient] /// The patient/healthcare consumer to whom this consent applies.
   @JsonKey(name: 'patient')
@@ -148,8 +148,8 @@ class Consent extends DomainResource {
     List<Identifier>? identifier,
     ConsentState? status,
     Element? statusElement,
-    ConsentScopeCodes? scope,
-    List<ConsentCategoryCodes>? category,
+    CodeableConcept? scope,
+    List<CodeableConcept>? category,
     Reference? patient,
     FhirDateTime? dateTime,
     Element? dateTimeElement,
@@ -266,7 +266,7 @@ class ConsentPolicy extends BackboneElement {
 
   /// [policyRule] /// A reference to the specific base computable regulation or policy.
   @JsonKey(name: 'policyRule')
-  final ConsentPolicyRuleCodes? policyRule;
+  final CodeableConcept? policyRule;
   factory ConsentPolicy.fromJson(Map<String, dynamic> json) =>
       _$ConsentPolicyFromJson(json);
 
@@ -284,7 +284,7 @@ class ConsentPolicy extends BackboneElement {
     Element? authorityElement,
     FhirUri? uri,
     Element? uriElement,
-    ConsentPolicyRuleCodes? policyRule,
+    CodeableConcept? policyRule,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -487,7 +487,7 @@ class ConsentProvision extends BackboneElement {
 
   /// [action] /// Actions controlled by this Rule.
   @JsonKey(name: 'action')
-  final List<ConsentActionCodes>? action;
+  final List<CodeableConcept>? action;
 
   /// [securityLabel] /// A security label, comprised of 0..* security label fields (Privacy tags),
   /// which define which resources are controlled by this exception.
@@ -503,7 +503,7 @@ class ConsentProvision extends BackboneElement {
   /// resource type, a profile on a type, or a CDA document, or some other type
   /// that indicates what sort of information the consent relates to.
   @JsonKey(name: 'class')
-  final List<ConsentContentClass>? class_;
+  final List<Coding>? class_;
 
   /// [code] /// If this code is found in an instance, then the rule applies.
   @JsonKey(name: 'code')
@@ -538,10 +538,10 @@ class ConsentProvision extends BackboneElement {
     Element? typeElement,
     Period? period,
     List<ConsentActor>? actor,
-    List<ConsentActionCodes>? action,
+    List<CodeableConcept>? action,
     List<Coding>? securityLabel,
     List<Coding>? purpose,
-    List<ConsentContentClass>? class_,
+    List<Coding>? class_,
     List<CodeableConcept>? code,
     Period? dataPeriod,
     List<ConsentData>? data,
@@ -624,7 +624,7 @@ class ConsentActor extends BackboneElement {
   /// [role] /// How the individual is involved in the resources content that is described
   /// in the exception.
   @JsonKey(name: 'role')
-  final SecurityRoleType role;
+  final CodeableConcept role;
 
   /// [reference] /// The resource that identifies the actor. To identify actors by type, use
   /// group to identify a set of actors by some property they share (e.g.
@@ -644,7 +644,7 @@ class ConsentActor extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    SecurityRoleType? role,
+    CodeableConcept? role,
     Reference? reference,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

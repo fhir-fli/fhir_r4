@@ -338,14 +338,14 @@ VisionPrescriptionLensSpecification
     _$VisionPrescriptionLensSpecificationFromJson(Map<String, dynamic> json) =>
         VisionPrescriptionLensSpecification(
           id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-          extension_: (json['extension_'] as List<dynamic>?)
+          extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
           modifierExtension: (json['modifierExtension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
-          product: $enumDecode(
-              _$ExampleVisionPrescriptionProductCodesEnumMap, json['product']),
+          product:
+              CodeableConcept.fromJson(json['product'] as Map<String, dynamic>),
           eye: $enumDecode(_$VisionEyesEnumMap, json['eye']),
           eyeElement: json['_eye'] == null
               ? null
@@ -444,7 +444,7 @@ Map<String, dynamic> _$VisionPrescriptionLensSpecificationToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['product'] = instance.product.toJson();
@@ -474,11 +474,6 @@ Map<String, dynamic> _$VisionPrescriptionLensSpecificationToJson(
   return val;
 }
 
-const _$ExampleVisionPrescriptionProductCodesEnumMap = {
-  ExampleVisionPrescriptionProductCodes.lens: 'lens',
-  ExampleVisionPrescriptionProductCodes.contact: 'contact',
-};
-
 const _$VisionEyesEnumMap = {
   VisionEyes.right: 'right',
   VisionEyes.left: 'left',
@@ -488,7 +483,7 @@ VisionPrescriptionPrism _$VisionPrescriptionPrismFromJson(
         Map<String, dynamic> json) =>
     VisionPrescriptionPrism(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -536,7 +531,7 @@ Map<String, dynamic> _$VisionPrescriptionPrismToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['amount'] = instance.amount.toJson();

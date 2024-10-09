@@ -83,12 +83,12 @@ class ClaimResponse extends DomainResource {
   /// [type] /// A finer grained suite of claim type codes which may convey additional
   /// information such as Inpatient vs Outpatient and/or a specialty service.
   @JsonKey(name: 'type')
-  final ClaimTypeCodes type;
+  final CodeableConcept type;
 
   /// [subType] /// A finer grained suite of claim type codes which may convey additional
   /// information such as Inpatient vs Outpatient and/or a specialty service.
   @JsonKey(name: 'subType')
-  final ExampleClaimSubTypeCodes? subType;
+  final CodeableConcept? subType;
 
   /// [use] /// A code to indicate whether the nature of the request is: to request
   /// adjudication of products and services previously rendered; or requesting
@@ -150,7 +150,7 @@ class ClaimResponse extends DomainResource {
 
   /// [payeeType] /// Type of Party to be reimbursed: subscriber, provider, other.
   @JsonKey(name: 'payeeType')
-  final ClaimPayeeTypeCodes? payeeType;
+  final CodeableConcept? payeeType;
 
   /// [item] /// A claim line. Either a simple (a product or service) or a 'group' of
   /// details which can also be a simple items or groups of sub-details.
@@ -178,11 +178,11 @@ class ClaimResponse extends DomainResource {
   /// [fundsReserve] /// A code, used only on a response to a preauthorization, to indicate whether
   /// the benefits payable have been reserved and for whom.
   @JsonKey(name: 'fundsReserve')
-  final FundsReservationCodes? fundsReserve;
+  final CodeableConcept? fundsReserve;
 
   /// [formCode] /// A code for the form to be used for printing the content.
   @JsonKey(name: 'formCode')
-  final FormCodes? formCode;
+  final CodeableConcept? formCode;
 
   /// [form] /// The actual form, by reference or inclusion, for printing the content or an
   /// EOB.
@@ -229,8 +229,8 @@ class ClaimResponse extends DomainResource {
     List<Identifier>? identifier,
     FinancialResourceStatusCodes? status,
     Element? statusElement,
-    ClaimTypeCodes? type,
-    ExampleClaimSubTypeCodes? subType,
+    CodeableConcept? type,
+    CodeableConcept? subType,
     Use? use,
     Element? useElement,
     Reference? patient,
@@ -246,14 +246,14 @@ class ClaimResponse extends DomainResource {
     FhirString? preAuthRef,
     Element? preAuthRefElement,
     Period? preAuthPeriod,
-    ClaimPayeeTypeCodes? payeeType,
+    CodeableConcept? payeeType,
     List<ClaimResponseItem>? item,
     List<ClaimResponseAddItem>? addItem,
     List<ClaimResponseAdjudication>? adjudication,
     List<ClaimResponseTotal>? total,
     ClaimResponsePayment? payment,
-    FundsReservationCodes? fundsReserve,
-    FormCodes? formCode,
+    CodeableConcept? fundsReserve,
+    CodeableConcept? formCode,
     Attachment? form,
     List<ClaimResponseProcessNote>? processNote,
     List<Reference>? communicationRequest,
@@ -487,12 +487,12 @@ class ClaimResponseAdjudication extends BackboneElement {
   /// responsible for in aggregate or pertaining to this item; amounts paid by
   /// other coverages; and, the benefit payable for this item.
   @JsonKey(name: 'category')
-  final AdjudicationValueCodes category;
+  final CodeableConcept category;
 
   /// [reason] /// A code supporting the understanding of the adjudication result and
   /// explaining variance from expected amount.
   @JsonKey(name: 'reason')
-  final AdjudicationReasonCodes? reason;
+  final CodeableConcept? reason;
 
   /// [amount] /// Monetary amount associated with the category.
   @JsonKey(name: 'amount')
@@ -517,8 +517,8 @@ class ClaimResponseAdjudication extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    AdjudicationValueCodes? category,
-    AdjudicationReasonCodes? reason,
+    CodeableConcept? category,
+    CodeableConcept? reason,
     Money? amount,
     FhirDecimal? value,
     Element? valueElement,
@@ -861,16 +861,16 @@ class ClaimResponseAddItem extends BackboneElement {
   /// claim details, otherwise this contains the product, service, drug or other
   /// billing code for the item.
   @JsonKey(name: 'productOrService')
-  final USCLSCodes productOrService;
+  final CodeableConcept productOrService;
 
   /// [modifier] /// Item typification or modifiers codes to convey additional context for the
   /// product or service.
   @JsonKey(name: 'modifier')
-  final List<ModifierTypeCodes>? modifier;
+  final List<CodeableConcept>? modifier;
 
   /// [programCode] /// Identifies the program under which this may be recovered.
   @JsonKey(name: 'programCode')
-  final List<ExampleProgramReasonCodes>? programCode;
+  final List<CodeableConcept>? programCode;
 
   /// [servicedDate] /// The date or dates when the service or product was supplied, performed or
   /// completed.
@@ -886,15 +886,15 @@ class ClaimResponseAddItem extends BackboneElement {
 
   /// [locationCodeableConcept] /// Where the product or service was provided.
   @JsonKey(name: 'locationCodeableConcept')
-  final ExampleServicePlaceCodes? locationCodeableConcept;
+  final CodeableConcept? locationCodeableConcept;
 
   /// [locationAddress] /// Where the product or service was provided.
   @JsonKey(name: 'locationAddress')
-  final ExampleServicePlaceCodes? locationAddress;
+  final Address? locationAddress;
 
   /// [locationReference] /// Where the product or service was provided.
   @JsonKey(name: 'locationReference')
-  final ExampleServicePlaceCodes? locationReference;
+  final Reference? locationReference;
 
   /// [quantity] /// The number of repetitions of a service or product.
   @JsonKey(name: 'quantity')
@@ -921,11 +921,11 @@ class ClaimResponseAddItem extends BackboneElement {
 
   /// [bodySite] /// Physical service site on the patient (limb, tooth, etc.).
   @JsonKey(name: 'bodySite')
-  final OralSiteCodes? bodySite;
+  final CodeableConcept? bodySite;
 
   /// [subSite] /// A region or surface of the bodySite, e.g. limb region or tooth surface(s).
   @JsonKey(name: 'subSite')
-  final List<SurfaceCodes>? subSite;
+  final List<CodeableConcept>? subSite;
 
   /// [noteNumber] /// The numbers associated with notes below which apply to the adjudication of
   /// this item.
@@ -961,22 +961,22 @@ class ClaimResponseAddItem extends BackboneElement {
     List<FhirPositiveInt>? subdetailSequence,
     List<Element>? subdetailSequenceElement,
     List<Reference>? provider,
-    USCLSCodes? productOrService,
-    List<ModifierTypeCodes>? modifier,
-    List<ExampleProgramReasonCodes>? programCode,
+    CodeableConcept? productOrService,
+    List<CodeableConcept>? modifier,
+    List<CodeableConcept>? programCode,
     FhirDate? servicedDate,
     Element? servicedDateElement,
     Period? servicedPeriod,
-    ExampleServicePlaceCodes? locationCodeableConcept,
-    ExampleServicePlaceCodes? locationAddress,
-    ExampleServicePlaceCodes? locationReference,
+    CodeableConcept? locationCodeableConcept,
+    Address? locationAddress,
+    Reference? locationReference,
     Quantity? quantity,
     Money? unitPrice,
     FhirDecimal? factor,
     Element? factorElement,
     Money? net,
-    OralSiteCodes? bodySite,
-    List<SurfaceCodes>? subSite,
+    CodeableConcept? bodySite,
+    List<CodeableConcept>? subSite,
     List<FhirPositiveInt>? noteNumber,
     List<Element>? noteNumberElement,
     List<ClaimResponseAdjudication>? adjudication,
@@ -1086,12 +1086,12 @@ class ClaimResponseDetail1 extends BackboneElement {
   /// claim details, otherwise this contains the product, service, drug or other
   /// billing code for the item.
   @JsonKey(name: 'productOrService')
-  final USCLSCodes productOrService;
+  final CodeableConcept productOrService;
 
   /// [modifier] /// Item typification or modifiers codes to convey additional context for the
   /// product or service.
   @JsonKey(name: 'modifier')
-  final List<ModifierTypeCodes>? modifier;
+  final List<CodeableConcept>? modifier;
 
   /// [quantity] /// The number of repetitions of a service or product.
   @JsonKey(name: 'quantity')
@@ -1143,8 +1143,8 @@ class ClaimResponseDetail1 extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    USCLSCodes? productOrService,
-    List<ModifierTypeCodes>? modifier,
+    CodeableConcept? productOrService,
+    List<CodeableConcept>? modifier,
     Quantity? quantity,
     Money? unitPrice,
     FhirDecimal? factor,
@@ -1239,12 +1239,12 @@ class ClaimResponseSubDetail1 extends BackboneElement {
   /// claim details, otherwise this contains the product, service, drug or other
   /// billing code for the item.
   @JsonKey(name: 'productOrService')
-  final USCLSCodes productOrService;
+  final CodeableConcept productOrService;
 
   /// [modifier] /// Item typification or modifiers codes to convey additional context for the
   /// product or service.
   @JsonKey(name: 'modifier')
-  final List<ModifierTypeCodes>? modifier;
+  final List<CodeableConcept>? modifier;
 
   /// [quantity] /// The number of repetitions of a service or product.
   @JsonKey(name: 'quantity')
@@ -1292,8 +1292,8 @@ class ClaimResponseSubDetail1 extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    USCLSCodes? productOrService,
-    List<ModifierTypeCodes>? modifier,
+    CodeableConcept? productOrService,
+    List<CodeableConcept>? modifier,
     Quantity? quantity,
     Money? unitPrice,
     FhirDecimal? factor,
@@ -1380,7 +1380,7 @@ class ClaimResponseTotal extends BackboneElement {
   /// responsible for in aggregate or pertaining to this item, amounts paid by
   /// other coverages, and the benefit payable for this item.
   @JsonKey(name: 'category')
-  final AdjudicationValueCodes category;
+  final CodeableConcept category;
 
   /// [amount] /// Monetary total amount associated with the category.
   @JsonKey(name: 'amount')
@@ -1398,7 +1398,7 @@ class ClaimResponseTotal extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    AdjudicationValueCodes? category,
+    CodeableConcept? category,
     Money? amount,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1472,7 +1472,7 @@ class ClaimResponsePayment extends BackboneElement {
   /// [type] /// Whether this represents partial or complete payment of the benefits
   /// payable.
   @JsonKey(name: 'type')
-  final ExamplePaymentTypeCodes type;
+  final CodeableConcept type;
 
   /// [adjustment] /// Total amount of all adjustments to this payment included in this
   /// transaction which are not related to this claim's adjudication.
@@ -1481,7 +1481,7 @@ class ClaimResponsePayment extends BackboneElement {
 
   /// [adjustmentReason] /// Reason for the payment adjustment.
   @JsonKey(name: 'adjustmentReason')
-  final PaymentAdjustmentReasonCodes? adjustmentReason;
+  final CodeableConcept? adjustmentReason;
 
   /// [date] /// Estimated date the payment will be issued or the actual issue date of
   /// payment.
@@ -1510,9 +1510,9 @@ class ClaimResponsePayment extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ExamplePaymentTypeCodes? type,
+    CodeableConcept? type,
     Money? adjustment,
-    PaymentAdjustmentReasonCodes? adjustmentReason,
+    CodeableConcept? adjustmentReason,
     FhirDate? date,
     Element? dateElement,
     Money? amount,
@@ -1612,7 +1612,7 @@ class ClaimResponseProcessNote extends BackboneElement {
 
   /// [language] /// A code to define the language used in the text of the note.
   @JsonKey(name: 'language')
-  final CommonLanguages? language;
+  final CodeableConcept? language;
   factory ClaimResponseProcessNote.fromJson(Map<String, dynamic> json) =>
       _$ClaimResponseProcessNoteFromJson(json);
 
@@ -1632,7 +1632,7 @@ class ClaimResponseProcessNote extends BackboneElement {
     Element? typeElement,
     FhirString? text,
     Element? textElement,
-    CommonLanguages? language,
+    CodeableConcept? language,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1863,7 +1863,7 @@ class ClaimResponseError extends BackboneElement {
   /// [code] /// An error code, from a specified code system, which details why the claim
   /// could not be adjudicated.
   @JsonKey(name: 'code')
-  final AdjudicationErrorCodes code;
+  final CodeableConcept code;
   factory ClaimResponseError.fromJson(Map<String, dynamic> json) =>
       _$ClaimResponseErrorFromJson(json);
 
@@ -1883,7 +1883,7 @@ class ClaimResponseError extends BackboneElement {
     Element? detailSequenceElement,
     FhirPositiveInt? subDetailSequence,
     Element? subDetailSequenceElement,
-    AdjudicationErrorCodes? code,
+    CodeableConcept? code,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

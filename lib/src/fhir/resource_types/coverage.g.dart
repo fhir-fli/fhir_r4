@@ -64,8 +64,10 @@ Coverage _$CoverageFromJson(Map<String, dynamic> json) => Coverage(
       dependentElement: json['_dependent'] == null
           ? null
           : Element.fromJson(json['_dependent'] as Map<String, dynamic>),
-      relationship: $enumDecodeNullable(
-          _$SubscriberRelationshipCodesEnumMap, json['relationship']),
+      relationship: json['relationship'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['relationship'] as Map<String, dynamic>),
       period: json['period'] == null
           ? null
           : Period.fromJson(json['period'] as Map<String, dynamic>),
@@ -240,16 +242,6 @@ const _$FinancialResourceStatusCodesEnumMap = {
   FinancialResourceStatusCodes.entered_in_error: 'entered-in-error',
 };
 
-const _$SubscriberRelationshipCodesEnumMap = {
-  SubscriberRelationshipCodes.child: 'child',
-  SubscriberRelationshipCodes.parent: 'parent',
-  SubscriberRelationshipCodes.spouse: 'spouse',
-  SubscriberRelationshipCodes.common: 'common',
-  SubscriberRelationshipCodes.other: 'other',
-  SubscriberRelationshipCodes.self: 'self',
-  SubscriberRelationshipCodes.injured: 'injured',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -398,13 +390,13 @@ const _$R4ResourceTypeEnumMap = {
 CoverageClass _$CoverageClassFromJson(Map<String, dynamic> json) =>
     CoverageClass(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecode(_$CoverageClassCodesEnumMap, json['type']),
+      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       value: FhirString.fromJson(json['value']),
       valueElement: json['_value'] == null
           ? null
@@ -446,7 +438,7 @@ Map<String, dynamic> _$CoverageClassToJson(CoverageClass instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();
@@ -457,31 +449,19 @@ Map<String, dynamic> _$CoverageClassToJson(CoverageClass instance) {
   return val;
 }
 
-const _$CoverageClassCodesEnumMap = {
-  CoverageClassCodes.group: 'group',
-  CoverageClassCodes.subgroup: 'subgroup',
-  CoverageClassCodes.plan: 'plan',
-  CoverageClassCodes.subplan: 'subplan',
-  CoverageClassCodes.class_: 'class',
-  CoverageClassCodes.subclass: 'subclass',
-  CoverageClassCodes.sequence: 'sequence',
-  CoverageClassCodes.rxbin: 'rxbin',
-  CoverageClassCodes.rxpcn: 'rxpcn',
-  CoverageClassCodes.rxid: 'rxid',
-  CoverageClassCodes.rxgroup: 'rxgroup',
-};
-
 CoverageCostToBeneficiary _$CoverageCostToBeneficiaryFromJson(
         Map<String, dynamic> json) =>
     CoverageCostToBeneficiary(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecodeNullable(_$CoverageCopayTypeCodesEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       valueQuantity:
           Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>),
       valueMoney: Money.fromJson(json['valueMoney'] as Map<String, dynamic>),
@@ -522,7 +502,7 @@ Map<String, dynamic> _$CoverageCostToBeneficiaryToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.toJson());
@@ -533,30 +513,16 @@ Map<String, dynamic> _$CoverageCostToBeneficiaryToJson(
   return val;
 }
 
-const _$CoverageCopayTypeCodesEnumMap = {
-  CoverageCopayTypeCodes.gpvisit: 'gpvisit',
-  CoverageCopayTypeCodes.spvisit: 'spvisit',
-  CoverageCopayTypeCodes.emergency: 'emergency',
-  CoverageCopayTypeCodes.inpthosp: 'inpthosp',
-  CoverageCopayTypeCodes.televisit: 'televisit',
-  CoverageCopayTypeCodes.urgentcare: 'urgentcare',
-  CoverageCopayTypeCodes.copaypct: 'copaypct',
-  CoverageCopayTypeCodes.copay: 'copay',
-  CoverageCopayTypeCodes.deductible: 'deductible',
-  CoverageCopayTypeCodes.maxoutofpocket: 'maxoutofpocket',
-};
-
 CoverageException _$CoverageExceptionFromJson(Map<String, dynamic> json) =>
     CoverageException(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecode(
-          _$ExampleCoverageFinancialExceptionCodesEnumMap, json['type']),
+      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       period: json['period'] == null
           ? null
           : Period.fromJson(json['period'] as Map<String, dynamic>),
@@ -593,15 +559,10 @@ Map<String, dynamic> _$CoverageExceptionToJson(CoverageException instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();
   writeNotNull('period', instance.period?.toJson());
   return val;
 }
-
-const _$ExampleCoverageFinancialExceptionCodesEnumMap = {
-  ExampleCoverageFinancialExceptionCodes.retired: 'retired',
-  ExampleCoverageFinancialExceptionCodes.foster: 'foster',
-};

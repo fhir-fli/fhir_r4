@@ -8,7 +8,7 @@ part of 'contact_point.dart';
 
 ContactPoint _$ContactPointFromJson(Map<String, dynamic> json) => ContactPoint(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       system: $enumDecodeNullable(_$ContactPointSystemEnumMap, json['system']),
@@ -64,7 +64,7 @@ Map<String, dynamic> _$ContactPointToJson(ContactPoint instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('system', instance.system?.toJson());
   writeNotNull('_system', instance.systemElement?.toJson());
   writeNotNull('value', instance.value?.toJson());

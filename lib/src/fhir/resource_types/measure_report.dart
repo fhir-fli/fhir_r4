@@ -106,7 +106,7 @@ class MeasureReport extends DomainResource {
   /// [improvementNotation] /// Whether improvement in the measure is noted by an increase or decrease in
   /// the measure score.
   @JsonKey(name: 'improvementNotation')
-  final MeasureImprovementNotation? improvementNotation;
+  final CodeableConcept? improvementNotation;
 
   /// [group] /// The results of the calculation, one for each population group in the
   /// measure.
@@ -149,7 +149,7 @@ class MeasureReport extends DomainResource {
     Element? dateElement,
     Reference? reporter,
     Period? period,
-    MeasureImprovementNotation? improvementNotation,
+    CodeableConcept? improvementNotation,
     List<MeasureReportGroup>? group,
     List<Reference>? evaluatedResource,
     Map<String, Object?>? userData,
@@ -241,7 +241,7 @@ class MeasureReportGroup extends BackboneElement {
 
   /// [code] /// The meaning of the population group as defined in the measure definition.
   @JsonKey(name: 'code')
-  final MeasureGroupExample? code;
+  final CodeableConcept? code;
 
   /// [population] /// The populations that make up the population group, one for each type of
   /// population appropriate for the measure.
@@ -271,7 +271,7 @@ class MeasureReportGroup extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    MeasureGroupExample? code,
+    CodeableConcept? code,
     List<MeasureReportPopulation>? population,
     Quantity? measureScore,
     List<MeasureReportStratifier>? stratifier,
@@ -346,7 +346,7 @@ class MeasureReportPopulation extends BackboneElement {
 
   /// [code] /// The type of the population.
   @JsonKey(name: 'code')
-  final MeasurePopulationType? code;
+  final CodeableConcept? code;
 
   /// [count] /// The number of members of the population.
   @JsonKey(name: 'count')
@@ -371,7 +371,7 @@ class MeasureReportPopulation extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    MeasurePopulationType? code,
+    CodeableConcept? code,
     FhirInteger? count,
     Element? countElement,
     Reference? subjectResults,
@@ -444,7 +444,7 @@ class MeasureReportStratifier extends BackboneElement {
 
   /// [code] /// The meaning of this stratifier, as defined in the measure definition.
   @JsonKey(name: 'code')
-  final List<MeasureStratifierExample>? code;
+  final List<CodeableConcept>? code;
 
   /// [stratum] /// This element contains the results for a single stratum within the
   /// stratifier. For example, when stratifying on administrative gender, there
@@ -464,7 +464,7 @@ class MeasureReportStratifier extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    List<MeasureStratifierExample>? code,
+    List<CodeableConcept>? code,
     List<MeasureReportStratum>? stratum,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -538,7 +538,7 @@ class MeasureReportStratum extends BackboneElement {
   /// stratifiers on complex values, the value must be rendered such that the
   /// value for each stratum within the stratifier is unique.
   @JsonKey(name: 'value')
-  final MeasureReportStratifierValueExample? value;
+  final CodeableConcept? value;
 
   /// [component] /// A stratifier component value.
   @JsonKey(name: 'component')
@@ -567,7 +567,7 @@ class MeasureReportStratum extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    MeasureReportStratifierValueExample? value,
+    CodeableConcept? value,
     List<MeasureReportComponent>? component,
     List<MeasureReportPopulation>? population,
     Quantity? measureScore,
@@ -639,11 +639,11 @@ class MeasureReportComponent extends BackboneElement {
 
   /// [code] /// The code for the stratum component value.
   @JsonKey(name: 'code')
-  final MeasureStratifierExample code;
+  final CodeableConcept code;
 
   /// [value] /// The stratum component value.
   @JsonKey(name: 'value')
-  final MeasureReportStratifierValueExample value;
+  final CodeableConcept value;
   factory MeasureReportComponent.fromJson(Map<String, dynamic> json) =>
       _$MeasureReportComponentFromJson(json);
 
@@ -657,8 +657,8 @@ class MeasureReportComponent extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    MeasureStratifierExample? code,
-    MeasureReportStratifierValueExample? value,
+    CodeableConcept? code,
+    CodeableConcept? value,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -728,7 +728,7 @@ class MeasureReportPopulation1 extends BackboneElement {
 
   /// [code] /// The type of the population.
   @JsonKey(name: 'code')
-  final MeasurePopulationType? code;
+  final CodeableConcept? code;
 
   /// [count] /// The number of members of the population in this stratum.
   @JsonKey(name: 'count')
@@ -753,7 +753,7 @@ class MeasureReportPopulation1 extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    MeasurePopulationType? code,
+    CodeableConcept? code,
     FhirInteger? count,
     Element? countElement,
     Reference? subjectResults,

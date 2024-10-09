@@ -8,7 +8,7 @@ part of 'timing.dart';
 
 Timing _$TimingFromJson(Map<String, dynamic> json) => Timing(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -23,7 +23,9 @@ Timing _$TimingFromJson(Map<String, dynamic> json) => Timing(
       repeat: json['repeat'] == null
           ? null
           : TimingRepeat.fromJson(json['repeat'] as Map<String, dynamic>),
-      code: $enumDecodeNullable(_$TimingAbbreviationEnumMap, json['code']),
+      code: json['code'] == null
+          ? null
+          : CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -57,7 +59,7 @@ Map<String, dynamic> _$TimingToJson(Timing instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('event', instance.event?.map((e) => e.toJson()).toList());
@@ -68,28 +70,9 @@ Map<String, dynamic> _$TimingToJson(Timing instance) {
   return val;
 }
 
-const _$TimingAbbreviationEnumMap = {
-  TimingAbbreviation.BID: 'BID',
-  TimingAbbreviation.TID: 'TID',
-  TimingAbbreviation.QID: 'QID',
-  TimingAbbreviation.AM: 'AM',
-  TimingAbbreviation.PM: 'PM',
-  TimingAbbreviation.QD: 'QD',
-  TimingAbbreviation.QOD: 'QOD',
-  TimingAbbreviation.Q1H: 'Q1H',
-  TimingAbbreviation.Q2H: 'Q2H',
-  TimingAbbreviation.Q3H: 'Q3H',
-  TimingAbbreviation.Q4H: 'Q4H',
-  TimingAbbreviation.Q6H: 'Q6H',
-  TimingAbbreviation.Q8H: 'Q8H',
-  TimingAbbreviation.BED: 'BED',
-  TimingAbbreviation.WK: 'WK',
-  TimingAbbreviation.MO: 'MO',
-};
-
 TimingRepeat _$TimingRepeatFromJson(Map<String, dynamic> json) => TimingRepeat(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       boundsDuration: json['boundsDuration'] == null
@@ -215,7 +198,7 @@ Map<String, dynamic> _$TimingRepeatToJson(TimingRepeat instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('boundsDuration', instance.boundsDuration?.toJson());
   writeNotNull('boundsRange', instance.boundsRange?.toJson());
   writeNotNull('boundsPeriod', instance.boundsPeriod?.toJson());

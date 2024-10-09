@@ -44,8 +44,10 @@ ManufacturedItemDefinition _$ManufacturedItemDefinitionFromJson(
           : Element.fromJson(json['_status'] as Map<String, dynamic>),
       manufacturedDoseForm: CodeableConcept.fromJson(
           json['manufacturedDoseForm'] as Map<String, dynamic>),
-      unitOfPresentation: $enumDecodeNullable(
-          _$UnitOfPresentationEnumMap, json['unitOfPresentation']),
+      unitOfPresentation: json['unitOfPresentation'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['unitOfPresentation'] as Map<String, dynamic>),
       manufacturer: (json['manufacturer'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -182,65 +184,6 @@ const _$PublicationStatusEnumMap = {
   PublicationStatus.active: 'active',
   PublicationStatus.retired: 'retired',
   PublicationStatus.unknown: 'unknown',
-};
-
-const _$UnitOfPresentationEnumMap = {
-  UnitOfPresentation.value200000002108: '200000002108',
-  UnitOfPresentation.value200000002109: '200000002109',
-  UnitOfPresentation.value200000002110: '200000002110',
-  UnitOfPresentation.value200000002111: '200000002111',
-  UnitOfPresentation.value200000002112: '200000002112',
-  UnitOfPresentation.value200000002113: '200000002113',
-  UnitOfPresentation.value200000002114: '200000002114',
-  UnitOfPresentation.value200000002115: '200000002115',
-  UnitOfPresentation.value200000002116: '200000002116',
-  UnitOfPresentation.value200000002117: '200000002117',
-  UnitOfPresentation.value200000002118: '200000002118',
-  UnitOfPresentation.value200000002119: '200000002119',
-  UnitOfPresentation.value200000002120: '200000002120',
-  UnitOfPresentation.value200000002121: '200000002121',
-  UnitOfPresentation.value200000002122: '200000002122',
-  UnitOfPresentation.value200000002123: '200000002123',
-  UnitOfPresentation.value200000002124: '200000002124',
-  UnitOfPresentation.value200000002125: '200000002125',
-  UnitOfPresentation.value200000002126: '200000002126',
-  UnitOfPresentation.value200000002127: '200000002127',
-  UnitOfPresentation.value200000002128: '200000002128',
-  UnitOfPresentation.value200000002129: '200000002129',
-  UnitOfPresentation.value200000002130: '200000002130',
-  UnitOfPresentation.value200000002131: '200000002131',
-  UnitOfPresentation.value200000002132: '200000002132',
-  UnitOfPresentation.value200000002133: '200000002133',
-  UnitOfPresentation.value200000002134: '200000002134',
-  UnitOfPresentation.value200000002135: '200000002135',
-  UnitOfPresentation.value200000002136: '200000002136',
-  UnitOfPresentation.value200000002137: '200000002137',
-  UnitOfPresentation.value200000002138: '200000002138',
-  UnitOfPresentation.value200000002139: '200000002139',
-  UnitOfPresentation.value200000002140: '200000002140',
-  UnitOfPresentation.value200000002141: '200000002141',
-  UnitOfPresentation.value200000002142: '200000002142',
-  UnitOfPresentation.value200000002143: '200000002143',
-  UnitOfPresentation.value200000002144: '200000002144',
-  UnitOfPresentation.value200000002145: '200000002145',
-  UnitOfPresentation.value200000002146: '200000002146',
-  UnitOfPresentation.value200000002147: '200000002147',
-  UnitOfPresentation.value200000002148: '200000002148',
-  UnitOfPresentation.value200000002149: '200000002149',
-  UnitOfPresentation.value200000002150: '200000002150',
-  UnitOfPresentation.value200000002151: '200000002151',
-  UnitOfPresentation.value200000002152: '200000002152',
-  UnitOfPresentation.value200000002153: '200000002153',
-  UnitOfPresentation.value200000002154: '200000002154',
-  UnitOfPresentation.value200000002155: '200000002155',
-  UnitOfPresentation.value200000002156: '200000002156',
-  UnitOfPresentation.value200000002157: '200000002157',
-  UnitOfPresentation.value200000002158: '200000002158',
-  UnitOfPresentation.value200000002159: '200000002159',
-  UnitOfPresentation.value200000002163: '200000002163',
-  UnitOfPresentation.value200000002164: '200000002164',
-  UnitOfPresentation.value200000002165: '200000002165',
-  UnitOfPresentation.value200000002166: '200000002166',
 };
 
 const _$R4ResourceTypeEnumMap = {
@@ -392,7 +335,7 @@ ManufacturedItemDefinitionProperty _$ManufacturedItemDefinitionPropertyFromJson(
         Map<String, dynamic> json) =>
     ManufacturedItemDefinitionProperty(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -456,7 +399,7 @@ Map<String, dynamic> _$ManufacturedItemDefinitionPropertyToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();

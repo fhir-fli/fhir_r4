@@ -42,14 +42,17 @@ SubstanceDefinition _$SubstanceDefinitionFromJson(Map<String, dynamic> json) =>
       versionElement: json['_version'] == null
           ? null
           : Element.fromJson(json['_version'] as Map<String, dynamic>),
-      status: $enumDecodeNullable(_$PublicationStatusEnumMap, json['status']),
+      status: json['status'] == null
+          ? null
+          : CodeableConcept.fromJson(json['status'] as Map<String, dynamic>),
       classification: (json['classification'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
-      domain:
-          $enumDecodeNullable(_$MedicinalProductDomainEnumMap, json['domain']),
+      domain: json['domain'] == null
+          ? null
+          : CodeableConcept.fromJson(json['domain'] as Map<String, dynamic>),
       grade: (json['grade'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$SubstanceGradeEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       description: json['description'] == null
           ? null
@@ -237,27 +240,6 @@ const _$CommonLanguagesEnumMap = {
   CommonLanguages.zh_TW: 'zh-TW',
 };
 
-const _$PublicationStatusEnumMap = {
-  PublicationStatus.draft: 'draft',
-  PublicationStatus.active: 'active',
-  PublicationStatus.retired: 'retired',
-  PublicationStatus.unknown: 'unknown',
-};
-
-const _$MedicinalProductDomainEnumMap = {
-  MedicinalProductDomain.Human: 'Human',
-  MedicinalProductDomain.Veterinary: 'Veterinary',
-  MedicinalProductDomain.HumanAndVeterinary: 'HumanAndVeterinary',
-};
-
-const _$SubstanceGradeEnumMap = {
-  SubstanceGrade.USP_NF: 'USP-NF',
-  SubstanceGrade.Ph_Eur: 'Ph.Eur',
-  SubstanceGrade.JP: 'JP',
-  SubstanceGrade.BP: 'BP',
-  SubstanceGrade.CompanyStandard: 'CompanyStandard',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -407,7 +389,7 @@ SubstanceDefinitionMoiety _$SubstanceDefinitionMoietyFromJson(
         Map<String, dynamic> json) =>
     SubstanceDefinitionMoiety(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -423,10 +405,14 @@ SubstanceDefinitionMoiety _$SubstanceDefinitionMoietyFromJson(
       nameElement: json['_name'] == null
           ? null
           : Element.fromJson(json['_name'] as Map<String, dynamic>),
-      stereochemistry: $enumDecodeNullable(
-          _$StereochemistryEnumMap, json['stereochemistry']),
-      opticalActivity: $enumDecodeNullable(
-          _$OpticalActivityEnumMap, json['opticalActivity']),
+      stereochemistry: json['stereochemistry'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['stereochemistry'] as Map<String, dynamic>),
+      opticalActivity: json['opticalActivity'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['opticalActivity'] as Map<String, dynamic>),
       molecularFormula: json['molecularFormula'] == null
           ? null
           : FhirString.fromJson(json['molecularFormula']),
@@ -442,8 +428,10 @@ SubstanceDefinitionMoiety _$SubstanceDefinitionMoietyFromJson(
       amountStringElement: json['_amountString'] == null
           ? null
           : Element.fromJson(json['_amountString'] as Map<String, dynamic>),
-      measurementType: $enumDecodeNullable(
-          _$SubstanceAmountTypeEnumMap, json['measurementType']),
+      measurementType: json['measurementType'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['measurementType'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -478,7 +466,7 @@ Map<String, dynamic> _$SubstanceDefinitionMoietyToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('role', instance.role?.toJson());
@@ -496,29 +484,11 @@ Map<String, dynamic> _$SubstanceDefinitionMoietyToJson(
   return val;
 }
 
-const _$StereochemistryEnumMap = {
-  Stereochemistry.ConstitutionalIsomer: 'ConstitutionalIsomer',
-  Stereochemistry.Stereoisomer: 'Stereoisomer',
-  Stereochemistry.Enantiomer: 'Enantiomer',
-};
-
-const _$OpticalActivityEnumMap = {
-  OpticalActivity.plus: '+',
-  OpticalActivity.minus: '-',
-};
-
-const _$SubstanceAmountTypeEnumMap = {
-  SubstanceAmountType.Average: 'Average',
-  SubstanceAmountType.Approximately: 'Approximately',
-  SubstanceAmountType.LessThan: 'LessThan',
-  SubstanceAmountType.MoreThan: 'MoreThan',
-};
-
 SubstanceDefinitionProperty _$SubstanceDefinitionPropertyFromJson(
         Map<String, dynamic> json) =>
     SubstanceDefinitionProperty(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -582,7 +552,7 @@ Map<String, dynamic> _$SubstanceDefinitionPropertyToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();
@@ -600,14 +570,18 @@ SubstanceDefinitionMolecularWeight _$SubstanceDefinitionMolecularWeightFromJson(
         Map<String, dynamic> json) =>
     SubstanceDefinitionMolecularWeight(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      method: $enumDecodeNullable(_$WeightMethodEnumMap, json['method']),
-      type: $enumDecodeNullable(_$WeightTypeEnumMap, json['type']),
+      method: json['method'] == null
+          ? null
+          : CodeableConcept.fromJson(json['method'] as Map<String, dynamic>),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       amount: Quantity.fromJson(json['amount'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
@@ -643,7 +617,7 @@ Map<String, dynamic> _$SubstanceDefinitionMolecularWeightToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('method', instance.method?.toJson());
@@ -652,37 +626,24 @@ Map<String, dynamic> _$SubstanceDefinitionMolecularWeightToJson(
   return val;
 }
 
-const _$WeightMethodEnumMap = {
-  WeightMethod.SDS_PAGE: 'SDS-PAGE',
-  WeightMethod.Calculated: 'Calculated',
-  WeightMethod.LighScattering: 'LighScattering',
-  WeightMethod.Viscosity: 'Viscosity',
-  WeightMethod.GelPermeationCentrifugation: 'GelPermeationCentrifugation',
-  WeightMethod.End_groupAnalysis: 'End-groupAnalysis',
-  WeightMethod.End_groupTitration: 'End-groupTitration',
-  WeightMethod.Size_ExclusionChromatography: 'Size-ExclusionChromatography',
-};
-
-const _$WeightTypeEnumMap = {
-  WeightType.Exact: 'Exact',
-  WeightType.Average: 'Average',
-  WeightType.WeightAverage: 'WeightAverage',
-};
-
 SubstanceDefinitionStructure _$SubstanceDefinitionStructureFromJson(
         Map<String, dynamic> json) =>
     SubstanceDefinitionStructure(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      stereochemistry: $enumDecodeNullable(
-          _$StereochemistryEnumMap, json['stereochemistry']),
-      opticalActivity: $enumDecodeNullable(
-          _$OpticalActivityEnumMap, json['opticalActivity']),
+      stereochemistry: json['stereochemistry'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['stereochemistry'] as Map<String, dynamic>),
+      opticalActivity: json['opticalActivity'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['opticalActivity'] as Map<String, dynamic>),
       molecularFormula: json['molecularFormula'] == null
           ? null
           : FhirString.fromJson(json['molecularFormula']),
@@ -701,7 +662,7 @@ SubstanceDefinitionStructure _$SubstanceDefinitionStructureFromJson(
           : SubstanceDefinitionMolecularWeight.fromJson(
               json['molecularWeight'] as Map<String, dynamic>),
       technique: (json['technique'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$StructureTechniqueEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       sourceDocument: (json['sourceDocument'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
@@ -744,7 +705,7 @@ Map<String, dynamic> _$SubstanceDefinitionStructureToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('stereochemistry', instance.stereochemistry?.toJson());
@@ -765,34 +726,28 @@ Map<String, dynamic> _$SubstanceDefinitionStructureToJson(
   return val;
 }
 
-const _$StructureTechniqueEnumMap = {
-  StructureTechnique.X_Ray: 'X-Ray',
-  StructureTechnique.HPLC: 'HPLC',
-  StructureTechnique.NMR: 'NMR',
-  StructureTechnique.PeptideMapping: 'PeptideMapping',
-  StructureTechnique.LigandBindingAssay: 'LigandBindingAssay',
-};
-
 SubstanceDefinitionRepresentation _$SubstanceDefinitionRepresentationFromJson(
         Map<String, dynamic> json) =>
     SubstanceDefinitionRepresentation(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecodeNullable(
-          _$SubstanceRepresentationTypeEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       representation: json['representation'] == null
           ? null
           : FhirString.fromJson(json['representation']),
       representationElement: json['_representation'] == null
           ? null
           : Element.fromJson(json['_representation'] as Map<String, dynamic>),
-      format: $enumDecodeNullable(
-          _$SubstanceRepresentationFormatEnumMap, json['format']),
+      format: json['format'] == null
+          ? null
+          : CodeableConcept.fromJson(json['format'] as Map<String, dynamic>),
       document: json['document'] == null
           ? null
           : Reference.fromJson(json['document'] as Map<String, dynamic>),
@@ -830,7 +785,7 @@ Map<String, dynamic> _$SubstanceDefinitionRepresentationToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.toJson());
@@ -841,27 +796,11 @@ Map<String, dynamic> _$SubstanceDefinitionRepresentationToJson(
   return val;
 }
 
-const _$SubstanceRepresentationTypeEnumMap = {
-  SubstanceRepresentationType.Systematic: 'Systematic',
-  SubstanceRepresentationType.Scientific: 'Scientific',
-  SubstanceRepresentationType.Brand: 'Brand',
-};
-
-const _$SubstanceRepresentationFormatEnumMap = {
-  SubstanceRepresentationFormat.InChI: 'InChI',
-  SubstanceRepresentationFormat.SMILES: 'SMILES',
-  SubstanceRepresentationFormat.MOLFILE: 'MOLFILE',
-  SubstanceRepresentationFormat.CDX: 'CDX',
-  SubstanceRepresentationFormat.SDF: 'SDF',
-  SubstanceRepresentationFormat.PDB: 'PDB',
-  SubstanceRepresentationFormat.mmCIF: 'mmCIF',
-};
-
 SubstanceDefinitionCode _$SubstanceDefinitionCodeFromJson(
         Map<String, dynamic> json) =>
     SubstanceDefinitionCode(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -870,7 +809,9 @@ SubstanceDefinitionCode _$SubstanceDefinitionCodeFromJson(
       code: json['code'] == null
           ? null
           : CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
-      status: $enumDecodeNullable(_$PublicationStatusEnumMap, json['status']),
+      status: json['status'] == null
+          ? null
+          : CodeableConcept.fromJson(json['status'] as Map<String, dynamic>),
       statusDate: json['statusDate'] == null
           ? null
           : FhirDateTime.fromJson(json['statusDate'] as String),
@@ -917,7 +858,7 @@ Map<String, dynamic> _$SubstanceDefinitionCodeToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('code', instance.code?.toJson());
@@ -933,7 +874,7 @@ SubstanceDefinitionName _$SubstanceDefinitionNameFromJson(
         Map<String, dynamic> json) =>
     SubstanceDefinitionName(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -943,8 +884,12 @@ SubstanceDefinitionName _$SubstanceDefinitionNameFromJson(
       nameElement: json['_name'] == null
           ? null
           : Element.fromJson(json['_name'] as Map<String, dynamic>),
-      type: $enumDecodeNullable(_$SubstanceNameTypeEnumMap, json['type']),
-      status: $enumDecodeNullable(_$PublicationStatusEnumMap, json['status']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      status: json['status'] == null
+          ? null
+          : CodeableConcept.fromJson(json['status'] as Map<String, dynamic>),
       preferred: json['preferred'] == null
           ? null
           : FhirBoolean.fromJson(json['preferred']),
@@ -952,10 +897,10 @@ SubstanceDefinitionName _$SubstanceDefinitionNameFromJson(
           ? null
           : Element.fromJson(json['_preferred'] as Map<String, dynamic>),
       language: (json['language'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$CommonLanguagesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       domain: (json['domain'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$SubstanceNameDomainEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       jurisdiction: (json['jurisdiction'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
@@ -1009,7 +954,7 @@ Map<String, dynamic> _$SubstanceDefinitionNameToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['name'] = instance.name.toJson();
@@ -1030,30 +975,22 @@ Map<String, dynamic> _$SubstanceDefinitionNameToJson(
   return val;
 }
 
-const _$SubstanceNameTypeEnumMap = {
-  SubstanceNameType.Systematic: 'Systematic',
-  SubstanceNameType.Scientific: 'Scientific',
-  SubstanceNameType.Brand: 'Brand',
-};
-
-const _$SubstanceNameDomainEnumMap = {
-  SubstanceNameDomain.ActiveIngredient: 'ActiveIngredient',
-  SubstanceNameDomain.FoodColorAdditive: 'FoodColorAdditive',
-};
-
 SubstanceDefinitionOfficial _$SubstanceDefinitionOfficialFromJson(
         Map<String, dynamic> json) =>
     SubstanceDefinitionOfficial(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      authority: $enumDecodeNullable(
-          _$SubstanceNameAuthorityEnumMap, json['authority']),
-      status: $enumDecodeNullable(_$PublicationStatusEnumMap, json['status']),
+      authority: json['authority'] == null
+          ? null
+          : CodeableConcept.fromJson(json['authority'] as Map<String, dynamic>),
+      status: json['status'] == null
+          ? null
+          : CodeableConcept.fromJson(json['status'] as Map<String, dynamic>),
       date: json['date'] == null
           ? null
           : FhirDateTime.fromJson(json['date'] as String),
@@ -1094,7 +1031,7 @@ Map<String, dynamic> _$SubstanceDefinitionOfficialToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('authority', instance.authority?.toJson());
@@ -1104,29 +1041,11 @@ Map<String, dynamic> _$SubstanceDefinitionOfficialToJson(
   return val;
 }
 
-const _$SubstanceNameAuthorityEnumMap = {
-  SubstanceNameAuthority.BAN: 'BAN',
-  SubstanceNameAuthority.COSING: 'COSING',
-  SubstanceNameAuthority.Ph_Eur_: 'Ph.Eur.',
-  SubstanceNameAuthority.FCC: 'FCC',
-  SubstanceNameAuthority.INCI: 'INCI',
-  SubstanceNameAuthority.INN: 'INN',
-  SubstanceNameAuthority.JAN: 'JAN',
-  SubstanceNameAuthority.JECFA: 'JECFA',
-  SubstanceNameAuthority.MARTINDALE: 'MARTINDALE',
-  SubstanceNameAuthority.USAN: 'USAN',
-  SubstanceNameAuthority.USP: 'USP',
-  SubstanceNameAuthority.PHF: 'PHF',
-  SubstanceNameAuthority.HAB: 'HAB',
-  SubstanceNameAuthority.PhF: 'PhF',
-  SubstanceNameAuthority.IUIS: 'IUIS',
-};
-
 SubstanceDefinitionRelationship _$SubstanceDefinitionRelationshipFromJson(
         Map<String, dynamic> json) =>
     SubstanceDefinitionRelationship(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1142,7 +1061,7 @@ SubstanceDefinitionRelationship _$SubstanceDefinitionRelationshipFromJson(
               : CodeableConcept.fromJson(
                   json['substanceDefinitionCodeableConcept']
                       as Map<String, dynamic>),
-      type: $enumDecode(_$SubstanceRelationshipTypeEnumMap, json['type']),
+      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       isDefining: json['isDefining'] == null
           ? null
           : FhirBoolean.fromJson(json['isDefining']),
@@ -1165,8 +1084,10 @@ SubstanceDefinitionRelationship _$SubstanceDefinitionRelationshipFromJson(
           ? null
           : Ratio.fromJson(
               json['ratioHighLimitAmount'] as Map<String, dynamic>),
-      comparator:
-          $enumDecodeNullable(_$SubstanceAmountTypeEnumMap, json['comparator']),
+      comparator: json['comparator'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['comparator'] as Map<String, dynamic>),
       source: (json['source'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -1204,7 +1125,7 @@ Map<String, dynamic> _$SubstanceDefinitionRelationshipToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('substanceDefinitionReference',
@@ -1224,29 +1145,28 @@ Map<String, dynamic> _$SubstanceDefinitionRelationshipToJson(
   return val;
 }
 
-const _$SubstanceRelationshipTypeEnumMap = {
-  SubstanceRelationshipType.Salt: 'Salt',
-  SubstanceRelationshipType.ActiveMoiety: 'ActiveMoiety',
-  SubstanceRelationshipType.StartingMaterial: 'StartingMaterial',
-  SubstanceRelationshipType.Polymorph: 'Polymorph',
-  SubstanceRelationshipType.Impurity: 'Impurity',
-};
-
 SubstanceDefinitionSourceMaterial _$SubstanceDefinitionSourceMaterialFromJson(
         Map<String, dynamic> json) =>
     SubstanceDefinitionSourceMaterial(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecodeNullable(_$SourceMaterialTypeEnumMap, json['type']),
-      genus: $enumDecodeNullable(_$SourceMaterialGenusEnumMap, json['genus']),
-      species:
-          $enumDecodeNullable(_$SourceMaterialSpeciesEnumMap, json['species']),
-      part_: $enumDecodeNullable(_$SourceMaterialPartEnumMap, json['part']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      genus: json['genus'] == null
+          ? null
+          : CodeableConcept.fromJson(json['genus'] as Map<String, dynamic>),
+      species: json['species'] == null
+          ? null
+          : CodeableConcept.fromJson(json['species'] as Map<String, dynamic>),
+      part_: json['part'] == null
+          ? null
+          : CodeableConcept.fromJson(json['part'] as Map<String, dynamic>),
       countryOfOrigin: (json['countryOfOrigin'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -1284,7 +1204,7 @@ Map<String, dynamic> _$SubstanceDefinitionSourceMaterialToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.toJson());
@@ -1295,26 +1215,3 @@ Map<String, dynamic> _$SubstanceDefinitionSourceMaterialToJson(
       instance.countryOfOrigin?.map((e) => e.toJson()).toList());
   return val;
 }
-
-const _$SourceMaterialTypeEnumMap = {
-  SourceMaterialType.Animal: 'Animal',
-  SourceMaterialType.Plant: 'Plant',
-  SourceMaterialType.Mineral: 'Mineral',
-};
-
-const _$SourceMaterialGenusEnumMap = {
-  SourceMaterialGenus.Mycobacterium: 'Mycobacterium',
-  SourceMaterialGenus.InfluenzavirusA: 'InfluenzavirusA',
-  SourceMaterialGenus.Ginkgo: 'Ginkgo',
-};
-
-const _$SourceMaterialSpeciesEnumMap = {
-  SourceMaterialSpecies.GinkgoBiloba: 'GinkgoBiloba',
-  SourceMaterialSpecies.OleaEuropaea: 'OleaEuropaea',
-};
-
-const _$SourceMaterialPartEnumMap = {
-  SourceMaterialPart.Animal: 'Animal',
-  SourceMaterialPart.Plant: 'Plant',
-  SourceMaterialPart.Mineral: 'Mineral',
-};

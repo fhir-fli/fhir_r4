@@ -189,7 +189,7 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
 
   /// [targetDisease] /// The targeted disease for the recommendation.
   @JsonKey(name: 'targetDisease')
-  final ImmunizationRecommendationTargetDiseaseCodes? targetDisease;
+  final CodeableConcept? targetDisease;
 
   /// [contraindicatedVaccineCode] /// Vaccine(s) which should not be used to fulfill the recommendation.
   @JsonKey(name: 'contraindicatedVaccineCode')
@@ -198,11 +198,11 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
   /// [forecastStatus] /// Indicates the patient status with respect to the path to immunity for the
   /// target disease.
   @JsonKey(name: 'forecastStatus')
-  final ImmunizationRecommendationStatusCodes forecastStatus;
+  final CodeableConcept forecastStatus;
 
   /// [forecastReason] /// The reason for the assigned forecast status.
   @JsonKey(name: 'forecastReason')
-  final List<ImmunizationRecommendationReasonCodes>? forecastReason;
+  final List<CodeableConcept>? forecastReason;
 
   /// [dateCriterion] /// Vaccine date recommendations. For example, earliest date to administer,
   /// latest date to administer, etc.
@@ -276,10 +276,10 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<CodeableConcept>? vaccineCode,
-    ImmunizationRecommendationTargetDiseaseCodes? targetDisease,
+    CodeableConcept? targetDisease,
     List<CodeableConcept>? contraindicatedVaccineCode,
-    ImmunizationRecommendationStatusCodes? forecastStatus,
-    List<ImmunizationRecommendationReasonCodes>? forecastReason,
+    CodeableConcept? forecastStatus,
+    List<CodeableConcept>? forecastReason,
     List<ImmunizationRecommendationDateCriterion>? dateCriterion,
     FhirString? description,
     Element? descriptionElement,
@@ -393,7 +393,7 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
   /// [code] /// Date classification of recommendation. For example, earliest date to give,
   /// latest date to give, etc.
   @JsonKey(name: 'code')
-  final ImmunizationRecommendationDateCriterionCodes code;
+  final CodeableConcept code;
 
   /// [value] /// The date whose meaning is specified by dateCriterion.code.
   @JsonKey(name: 'value')
@@ -415,7 +415,7 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ImmunizationRecommendationDateCriterionCodes? code,
+    CodeableConcept? code,
     FhirDateTime? value,
     Element? valueElement,
     Map<String, Object?>? userData,

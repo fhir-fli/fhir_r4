@@ -63,7 +63,7 @@ class ManufacturedItemDefinition extends DomainResource {
   /// [unitOfPresentation] /// The “real world” units in which the quantity of the manufactured item is
   /// described.
   @JsonKey(name: 'unitOfPresentation')
-  final UnitOfPresentation? unitOfPresentation;
+  final CodeableConcept? unitOfPresentation;
 
   /// [manufacturer] /// Manufacturer of the item (Note that this should be named "manufacturer" but
   /// it currently causes technical issues).
@@ -103,7 +103,7 @@ class ManufacturedItemDefinition extends DomainResource {
     PublicationStatus? status,
     Element? statusElement,
     CodeableConcept? manufacturedDoseForm,
-    UnitOfPresentation? unitOfPresentation,
+    CodeableConcept? unitOfPresentation,
     List<Reference>? manufacturer,
     List<CodeableConcept>? ingredient,
     List<ManufacturedItemDefinitionProperty>? property,

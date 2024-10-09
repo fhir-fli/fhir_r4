@@ -8,10 +8,10 @@ part of 'usage_context.dart';
 
 UsageContext _$UsageContextFromJson(Map<String, dynamic> json) => UsageContext(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      code: $enumDecode(_$UsageContextTypeEnumMap, json['code']),
+      code: Coding.fromJson(json['code'] as Map<String, dynamic>),
       valueCodeableConcept: CodeableConcept.fromJson(
           json['valueCodeableConcept'] as Map<String, dynamic>),
       valueQuantity:
@@ -52,7 +52,7 @@ Map<String, dynamic> _$UsageContextToJson(UsageContext instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   val['code'] = instance.code.toJson();
   val['valueCodeableConcept'] = instance.valueCodeableConcept.toJson();
   val['valueQuantity'] = instance.valueQuantity.toJson();
@@ -60,15 +60,3 @@ Map<String, dynamic> _$UsageContextToJson(UsageContext instance) {
   val['valueReference'] = instance.valueReference.toJson();
   return val;
 }
-
-const _$UsageContextTypeEnumMap = {
-  UsageContextType.gender: 'gender',
-  UsageContextType.age: 'age',
-  UsageContextType.focus: 'focus',
-  UsageContextType.user: 'user',
-  UsageContextType.workflow: 'workflow',
-  UsageContextType.task: 'task',
-  UsageContextType.venue: 'venue',
-  UsageContextType.species: 'species',
-  UsageContextType.program: 'program',
-};

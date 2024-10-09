@@ -143,7 +143,7 @@ class Task extends DomainResource {
 
   /// [code] /// A name or code (or both) briefly describing what the task involves.
   @JsonKey(name: 'code')
-  final TaskCode? code;
+  final CodeableConcept? code;
 
   /// [description] /// A free-text description of what is to be performed.
   @JsonKey(name: 'description')
@@ -270,7 +270,7 @@ class Task extends DomainResource {
     Element? intentElement,
     RequestPriority? priority,
     Element? priorityElement,
-    TaskCode? code,
+    CodeableConcept? code,
     FhirString? description,
     Element? descriptionElement,
     Reference? focus,

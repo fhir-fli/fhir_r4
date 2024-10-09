@@ -299,7 +299,7 @@ class RiskAssessmentPrediction extends BackboneElement {
   /// [qualitativeRisk] /// Indicates how likely the outcome is (in the specified timeframe), expressed
   /// as a qualitative value (e.g. low, medium, or high).
   @JsonKey(name: 'qualitativeRisk')
-  final RiskProbability? qualitativeRisk;
+  final CodeableConcept? qualitativeRisk;
 
   /// [relativeRisk] /// Indicates the risk for this particular subject (with their specific
   /// characteristics) divided by the risk of the population in general. (Numbers
@@ -342,7 +342,7 @@ class RiskAssessmentPrediction extends BackboneElement {
     FhirDecimal? probabilityDecimal,
     Element? probabilityDecimalElement,
     Range? probabilityRange,
-    RiskProbability? qualitativeRisk,
+    CodeableConcept? qualitativeRisk,
     FhirDecimal? relativeRisk,
     Element? relativeRiskElement,
     Period? whenPeriod,

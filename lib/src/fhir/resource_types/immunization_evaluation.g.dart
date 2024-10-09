@@ -53,16 +53,14 @@ ImmunizationEvaluation _$ImmunizationEvaluationFromJson(
       authority: json['authority'] == null
           ? null
           : Reference.fromJson(json['authority'] as Map<String, dynamic>),
-      targetDisease: $enumDecode(
-          _$ImmunizationEvaluationTargetDiseaseCodesEnumMap,
-          json['targetDisease']),
+      targetDisease: CodeableConcept.fromJson(
+          json['targetDisease'] as Map<String, dynamic>),
       immunizationEvent:
           Reference.fromJson(json['immunizationEvent'] as Map<String, dynamic>),
-      doseStatus: $enumDecode(
-          _$ImmunizationEvaluationDoseStatusCodesEnumMap, json['doseStatus']),
+      doseStatus:
+          CodeableConcept.fromJson(json['doseStatus'] as Map<String, dynamic>),
       doseStatusReason: (json['doseStatusReason'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(
-              _$ImmunizationEvaluationDoseStatusReasonCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       description: json['description'] == null
           ? null
@@ -245,31 +243,6 @@ const _$CommonLanguagesEnumMap = {
 const _$ImmunizationEvaluationStatusCodesEnumMap = {
   ImmunizationEvaluationStatusCodes.completed: 'completed',
   ImmunizationEvaluationStatusCodes.entered_in_error: 'entered-in-error',
-};
-
-const _$ImmunizationEvaluationTargetDiseaseCodesEnumMap = {
-  ImmunizationEvaluationTargetDiseaseCodes.value1857005: '1857005',
-  ImmunizationEvaluationTargetDiseaseCodes.value397430003: '397430003',
-  ImmunizationEvaluationTargetDiseaseCodes.value14189004: '14189004',
-  ImmunizationEvaluationTargetDiseaseCodes.value36989005: '36989005',
-  ImmunizationEvaluationTargetDiseaseCodes.value36653000: '36653000',
-  ImmunizationEvaluationTargetDiseaseCodes.value76902006: '76902006',
-  ImmunizationEvaluationTargetDiseaseCodes.value709410003: '709410003',
-  ImmunizationEvaluationTargetDiseaseCodes.value27836007: '27836007',
-  ImmunizationEvaluationTargetDiseaseCodes.value398102009: '398102009',
-};
-
-const _$ImmunizationEvaluationDoseStatusCodesEnumMap = {
-  ImmunizationEvaluationDoseStatusCodes.valid: 'valid',
-  ImmunizationEvaluationDoseStatusCodes.notvalid: 'notvalid',
-};
-
-const _$ImmunizationEvaluationDoseStatusReasonCodesEnumMap = {
-  ImmunizationEvaluationDoseStatusReasonCodes.advstorage: 'advstorage',
-  ImmunizationEvaluationDoseStatusReasonCodes.coldchbrk: 'coldchbrk',
-  ImmunizationEvaluationDoseStatusReasonCodes.explot: 'explot',
-  ImmunizationEvaluationDoseStatusReasonCodes.outsidesched: 'outsidesched',
-  ImmunizationEvaluationDoseStatusReasonCodes.prodrecall: 'prodrecall',
 };
 
 const _$R4ResourceTypeEnumMap = {

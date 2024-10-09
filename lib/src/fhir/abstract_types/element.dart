@@ -1,9 +1,11 @@
 import 'dart:convert';
 
+import 'package:json_annotation/json_annotation.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
+@JsonSerializable()
 class Element extends FhirBase {
   // Constructor for Element with optional id and extension_s
   const Element({
@@ -21,9 +23,11 @@ class Element extends FhirBase {
   String get fhirType => 'Element';
 
   // Unique id for the element within a resource
+  @JsonKey(name: 'id')
   final FhirString? id;
 
   // List of extensions for additional information
+  @JsonKey(name: 'extension')
   final List<FhirExtension>? extension_;
 
   // Method to copy the current Element with modifications
@@ -185,7 +189,7 @@ class Element extends FhirBase {
       json['id'] = id?.value;
     }
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['_extension'] =
+      json['extension'] =
           extension_!.map((FhirExtension e) => e.toJson()).toList();
     }
     return json;
@@ -204,9 +208,9 @@ class Element extends FhirBase {
   factory Element.fromJson(Map<String, Object?> json) {
     return Element(
       id: (json['id'] as String?)?.toFhirString,
-      extension_: json['_extension'] == null
+      extension_: json['extension'] == null
           ? <FhirExtension>[]
-          : List<FhirExtension>.from((json['_extension']! as List<dynamic>).map(
+          : List<FhirExtension>.from((json['extension']! as List<dynamic>).map(
               (dynamic e) =>
                   FhirExtension.fromJson(e as Map<String, Object?>))),
     );

@@ -366,7 +366,7 @@ const _$R4ResourceTypeEnumMap = {
 CompositionAttester _$CompositionAttesterFromJson(Map<String, dynamic> json) =>
     CompositionAttester(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -418,7 +418,7 @@ Map<String, dynamic> _$CompositionAttesterToJson(CompositionAttester instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['mode'] = instance.mode.toJson();
@@ -440,7 +440,7 @@ CompositionRelatesTo _$CompositionRelatesToFromJson(
         Map<String, dynamic> json) =>
     CompositionRelatesTo(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -488,7 +488,7 @@ Map<String, dynamic> _$CompositionRelatesToToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['code'] = instance.code.toJson();
@@ -508,7 +508,7 @@ const _$DocumentRelationshipTypeEnumMap = {
 CompositionEvent _$CompositionEventFromJson(Map<String, dynamic> json) =>
     CompositionEvent(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -556,7 +556,7 @@ Map<String, dynamic> _$CompositionEventToJson(CompositionEvent instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('code', instance.code?.map((e) => e.toJson()).toList());
@@ -568,7 +568,7 @@ Map<String, dynamic> _$CompositionEventToJson(CompositionEvent instance) {
 CompositionSection _$CompositionSectionFromJson(Map<String, dynamic> json) =>
     CompositionSection(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -578,7 +578,9 @@ CompositionSection _$CompositionSectionFromJson(Map<String, dynamic> json) =>
       titleElement: json['_title'] == null
           ? null
           : Element.fromJson(json['_title'] as Map<String, dynamic>),
-      code: $enumDecodeNullable(_$DocumentSectionCodesEnumMap, json['code']),
+      code: json['code'] == null
+          ? null
+          : CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       author: (json['author'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -592,13 +594,16 @@ CompositionSection _$CompositionSectionFromJson(Map<String, dynamic> json) =>
       modeElement: json['_mode'] == null
           ? null
           : Element.fromJson(json['_mode'] as Map<String, dynamic>),
-      orderedBy:
-          $enumDecodeNullable(_$ListOrderCodesEnumMap, json['orderedBy']),
+      orderedBy: json['orderedBy'] == null
+          ? null
+          : CodeableConcept.fromJson(json['orderedBy'] as Map<String, dynamic>),
       entry: (json['entry'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
-      emptyReason:
-          $enumDecodeNullable(_$ListEmptyReasonsEnumMap, json['emptyReason']),
+      emptyReason: json['emptyReason'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['emptyReason'] as Map<String, dynamic>),
       section: (json['section'] as List<dynamic>?)
           ?.map((e) => CompositionSection.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -635,7 +640,7 @@ Map<String, dynamic> _$CompositionSectionToJson(CompositionSection instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('title', instance.title?.toJson());
@@ -653,86 +658,8 @@ Map<String, dynamic> _$CompositionSectionToJson(CompositionSection instance) {
   return val;
 }
 
-const _$DocumentSectionCodesEnumMap = {
-  DocumentSectionCodes.value10154_3: '10154-3',
-  DocumentSectionCodes.value10157_6: '10157-6',
-  DocumentSectionCodes.value10160_0: '10160-0',
-  DocumentSectionCodes.value10164_2: '10164-2',
-  DocumentSectionCodes.value10183_2: '10183-2',
-  DocumentSectionCodes.value10184_0: '10184-0',
-  DocumentSectionCodes.value10187_3: '10187-3',
-  DocumentSectionCodes.value10210_3: '10210-3',
-  DocumentSectionCodes.value10216_0: '10216-0',
-  DocumentSectionCodes.value10218_6: '10218-6',
-  DocumentSectionCodes.value10223_6: '10223-6',
-  DocumentSectionCodes.value10222_8: '10222-8',
-  DocumentSectionCodes.value11329_0: '11329-0',
-  DocumentSectionCodes.value11348_0: '11348-0',
-  DocumentSectionCodes.value11369_6: '11369-6',
-  DocumentSectionCodes.value57852_6: '57852-6',
-  DocumentSectionCodes.value11493_4: '11493-4',
-  DocumentSectionCodes.value11535_2: '11535-2',
-  DocumentSectionCodes.value11537_8: '11537-8',
-  DocumentSectionCodes.value18776_5: '18776-5',
-  DocumentSectionCodes.value18841_7: '18841-7',
-  DocumentSectionCodes.value29299_5: '29299-5',
-  DocumentSectionCodes.value29545_1: '29545-1',
-  DocumentSectionCodes.value29549_3: '29549-3',
-  DocumentSectionCodes.value29554_3: '29554-3',
-  DocumentSectionCodes.value29762_2: '29762-2',
-  DocumentSectionCodes.value30954_2: '30954-2',
-  DocumentSectionCodes.value42344_2: '42344-2',
-  DocumentSectionCodes.value42346_7: '42346-7',
-  DocumentSectionCodes.value42348_3: '42348-3',
-  DocumentSectionCodes.value42349_1: '42349-1',
-  DocumentSectionCodes.value46240_8: '46240-8',
-  DocumentSectionCodes.value46241_6: '46241-6',
-  DocumentSectionCodes.value46264_8: '46264-8',
-  DocumentSectionCodes.value47420_5: '47420-5',
-  DocumentSectionCodes.value47519_4: '47519-4',
-  DocumentSectionCodes.value48765_2: '48765-2',
-  DocumentSectionCodes.value48768_6: '48768-6',
-  DocumentSectionCodes.value51848_0: '51848-0',
-  DocumentSectionCodes.value55109_3: '55109-3',
-  DocumentSectionCodes.value55122_6: '55122-6',
-  DocumentSectionCodes.value59768_2: '59768-2',
-  DocumentSectionCodes.value59769_0: '59769-0',
-  DocumentSectionCodes.value59770_8: '59770-8',
-  DocumentSectionCodes.value59771_6: '59771-6',
-  DocumentSectionCodes.value59772_4: '59772-4',
-  DocumentSectionCodes.value59773_2: '59773-2',
-  DocumentSectionCodes.value59775_7: '59775-7',
-  DocumentSectionCodes.value59776_5: '59776-5',
-  DocumentSectionCodes.value61149_1: '61149-1',
-  DocumentSectionCodes.value61150_9: '61150-9',
-  DocumentSectionCodes.value69730_0: '69730-0',
-  DocumentSectionCodes.value8648_8: '8648-8',
-  DocumentSectionCodes.value8653_8: '8653-8',
-  DocumentSectionCodes.value8716_3: '8716-3',
-};
-
 const _$ListModeEnumMap = {
   ListMode.working: 'working',
   ListMode.snapshot: 'snapshot',
   ListMode.changes: 'changes',
-};
-
-const _$ListOrderCodesEnumMap = {
-  ListOrderCodes.user: 'user',
-  ListOrderCodes.system: 'system',
-  ListOrderCodes.event_date: 'event-date',
-  ListOrderCodes.entry_date: 'entry-date',
-  ListOrderCodes.priority: 'priority',
-  ListOrderCodes.alphabetic: 'alphabetic',
-  ListOrderCodes.category: 'category',
-  ListOrderCodes.patient: 'patient',
-};
-
-const _$ListEmptyReasonsEnumMap = {
-  ListEmptyReasons.nilknown: 'nilknown',
-  ListEmptyReasons.notasked: 'notasked',
-  ListEmptyReasons.withheld: 'withheld',
-  ListEmptyReasons.unavailable: 'unavailable',
-  ListEmptyReasons.notstarted: 'notstarted',
-  ListEmptyReasons.closed: 'closed',
 };

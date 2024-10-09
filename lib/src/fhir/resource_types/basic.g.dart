@@ -36,7 +36,7 @@ Basic _$BasicFromJson(Map<String, dynamic> json) => Basic(
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map((e) => Identifier.fromJson(e as Map<String, dynamic>))
           .toList(),
-      code: $enumDecode(_$BasicResourceTypesEnumMap, json['code']),
+      code: CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       subject: json['subject'] == null
           ? null
           : Reference.fromJson(json['subject'] as Map<String, dynamic>),
@@ -163,25 +163,6 @@ const _$CommonLanguagesEnumMap = {
   CommonLanguages.zh_HK: 'zh-HK',
   CommonLanguages.zh_SG: 'zh-SG',
   CommonLanguages.zh_TW: 'zh-TW',
-};
-
-const _$BasicResourceTypesEnumMap = {
-  BasicResourceTypes.consent: 'consent',
-  BasicResourceTypes.referral: 'referral',
-  BasicResourceTypes.advevent: 'advevent',
-  BasicResourceTypes.aptmtreq: 'aptmtreq',
-  BasicResourceTypes.transfer: 'transfer',
-  BasicResourceTypes.diet: 'diet',
-  BasicResourceTypes.adminact: 'adminact',
-  BasicResourceTypes.exposure: 'exposure',
-  BasicResourceTypes.investigation: 'investigation',
-  BasicResourceTypes.account: 'account',
-  BasicResourceTypes.invoice: 'invoice',
-  BasicResourceTypes.adjudicat: 'adjudicat',
-  BasicResourceTypes.predetreq: 'predetreq',
-  BasicResourceTypes.predetermine: 'predetermine',
-  BasicResourceTypes.study: 'study',
-  BasicResourceTypes.protocol: 'protocol',
 };
 
 const _$R4ResourceTypeEnumMap = {

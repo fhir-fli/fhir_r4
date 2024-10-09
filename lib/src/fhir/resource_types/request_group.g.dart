@@ -414,7 +414,7 @@ const _$R4ResourceTypeEnumMap = {
 RequestGroupAction _$RequestGroupActionFromJson(Map<String, dynamic> json) =>
     RequestGroupAction(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -484,7 +484,9 @@ RequestGroupAction _$RequestGroupActionFromJson(Map<String, dynamic> json) =>
       participant: (json['participant'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecodeNullable(_$ActionTypeEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       groupingBehavior: $enumDecodeNullable(
           _$ActionGroupingBehaviorEnumMap, json['groupingBehavior']),
       groupingBehaviorElement: json['_groupingBehavior'] == null
@@ -551,7 +553,7 @@ Map<String, dynamic> _$RequestGroupActionToJson(RequestGroupAction instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('prefix', instance.prefix?.toJson());
@@ -598,13 +600,6 @@ Map<String, dynamic> _$RequestGroupActionToJson(RequestGroupAction instance) {
   return val;
 }
 
-const _$ActionTypeEnumMap = {
-  ActionType.create: 'create',
-  ActionType.update: 'update',
-  ActionType.remove: 'remove',
-  ActionType.fire_event: 'fire-event',
-};
-
 const _$ActionGroupingBehaviorEnumMap = {
   ActionGroupingBehavior.visual_group: 'visual-group',
   ActionGroupingBehavior.logical_group: 'logical-group',
@@ -640,7 +635,7 @@ RequestGroupCondition _$RequestGroupConditionFromJson(
         Map<String, dynamic> json) =>
     RequestGroupCondition(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -687,7 +682,7 @@ Map<String, dynamic> _$RequestGroupConditionToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['kind'] = instance.kind.toJson();
@@ -706,7 +701,7 @@ RequestGroupRelatedAction _$RequestGroupRelatedActionFromJson(
         Map<String, dynamic> json) =>
     RequestGroupRelatedAction(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -762,7 +757,7 @@ Map<String, dynamic> _$RequestGroupRelatedActionToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['actionId'] = instance.actionId.toJson();

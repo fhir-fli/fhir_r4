@@ -33,9 +33,9 @@ AuditEvent _$AuditEventFromJson(Map<String, dynamic> json) => AuditEvent(
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecode(_$AuditEventIDEnumMap, json['type']),
+      type: Coding.fromJson(json['type'] as Map<String, dynamic>),
       subtype: (json['subtype'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$AuditEventSubTypeEnumMap, e))
+          ?.map((e) => Coding.fromJson(e as Map<String, dynamic>))
           .toList(),
       action: $enumDecodeNullable(_$AuditEventActionEnumMap, json['action']),
       actionElement: json['_action'] == null
@@ -191,90 +191,6 @@ const _$CommonLanguagesEnumMap = {
   CommonLanguages.zh_HK: 'zh-HK',
   CommonLanguages.zh_SG: 'zh-SG',
   CommonLanguages.zh_TW: 'zh-TW',
-};
-
-const _$AuditEventIDEnumMap = {
-  AuditEventID.value110100: '110100',
-  AuditEventID.value110101: '110101',
-  AuditEventID.value110102: '110102',
-  AuditEventID.value110103: '110103',
-  AuditEventID.value110104: '110104',
-  AuditEventID.value110105: '110105',
-  AuditEventID.value110106: '110106',
-  AuditEventID.value110107: '110107',
-  AuditEventID.value110108: '110108',
-  AuditEventID.value110109: '110109',
-  AuditEventID.value110110: '110110',
-  AuditEventID.value110111: '110111',
-  AuditEventID.value110112: '110112',
-  AuditEventID.value110113: '110113',
-  AuditEventID.value110114: '110114',
-  AuditEventID.rest: 'rest',
-  AuditEventID.access: 'access',
-  AuditEventID.hold: 'hold',
-  AuditEventID.amend: 'amend',
-  AuditEventID.archive: 'archive',
-  AuditEventID.attest: 'attest',
-  AuditEventID.decrypt: 'decrypt',
-  AuditEventID.deidentify: 'deidentify',
-  AuditEventID.deprecate: 'deprecate',
-  AuditEventID.destroy: 'destroy',
-  AuditEventID.disclose: 'disclose',
-  AuditEventID.encrypt: 'encrypt',
-  AuditEventID.extract: 'extract',
-  AuditEventID.link: 'link',
-  AuditEventID.merge: 'merge',
-  AuditEventID.originate: 'originate',
-  AuditEventID.pseudonymize: 'pseudonymize',
-  AuditEventID.reactivate: 'reactivate',
-  AuditEventID.receive: 'receive',
-  AuditEventID.reidentify: 'reidentify',
-  AuditEventID.unhold: 'unhold',
-  AuditEventID.report: 'report',
-  AuditEventID.restore: 'restore',
-  AuditEventID.transform: 'transform',
-  AuditEventID.transmit: 'transmit',
-  AuditEventID.unlink: 'unlink',
-  AuditEventID.unmerge: 'unmerge',
-  AuditEventID.verify: 'verify',
-};
-
-const _$AuditEventSubTypeEnumMap = {
-  AuditEventSubType.value110120: '110120',
-  AuditEventSubType.value110121: '110121',
-  AuditEventSubType.value110122: '110122',
-  AuditEventSubType.value110123: '110123',
-  AuditEventSubType.value110124: '110124',
-  AuditEventSubType.value110125: '110125',
-  AuditEventSubType.value110126: '110126',
-  AuditEventSubType.value110127: '110127',
-  AuditEventSubType.value110128: '110128',
-  AuditEventSubType.value110129: '110129',
-  AuditEventSubType.value110130: '110130',
-  AuditEventSubType.value110131: '110131',
-  AuditEventSubType.value110132: '110132',
-  AuditEventSubType.value110133: '110133',
-  AuditEventSubType.value110134: '110134',
-  AuditEventSubType.value110135: '110135',
-  AuditEventSubType.value110136: '110136',
-  AuditEventSubType.value110137: '110137',
-  AuditEventSubType.value110138: '110138',
-  AuditEventSubType.value110139: '110139',
-  AuditEventSubType.value110140: '110140',
-  AuditEventSubType.value110141: '110141',
-  AuditEventSubType.value110142: '110142',
-  AuditEventSubType.read: 'read',
-  AuditEventSubType.vread: 'vread',
-  AuditEventSubType.update: 'update',
-  AuditEventSubType.patch: 'patch',
-  AuditEventSubType.delete: 'delete',
-  AuditEventSubType.history: 'history',
-  AuditEventSubType.create: 'create',
-  AuditEventSubType.search: 'search',
-  AuditEventSubType.capabilities: 'capabilities',
-  AuditEventSubType.transaction: 'transaction',
-  AuditEventSubType.batch: 'batch',
-  AuditEventSubType.operation: 'operation',
 };
 
 const _$AuditEventActionEnumMap = {
@@ -440,15 +356,17 @@ const _$R4ResourceTypeEnumMap = {
 AuditEventAgent _$AuditEventAgentFromJson(Map<String, dynamic> json) =>
     AuditEventAgent(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecodeNullable(_$ParticipationRoleTypeEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       role: (json['role'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$SecurityRoleTypeEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       who: json['who'] == null
           ? null
@@ -473,7 +391,9 @@ AuditEventAgent _$AuditEventAgentFromJson(Map<String, dynamic> json) =>
       policyElement: (json['_policy'] as List<dynamic>?)
           ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
           .toList(),
-      media: $enumDecodeNullable(_$MediaTypeCodeEnumMap, json['media']),
+      media: json['media'] == null
+          ? null
+          : Coding.fromJson(json['media'] as Map<String, dynamic>),
       network: json['network'] == null
           ? null
           : AuditEventNetwork.fromJson(json['network'] as Map<String, dynamic>),
@@ -513,7 +433,7 @@ Map<String, dynamic> _$AuditEventAgentToJson(AuditEventAgent instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.toJson());
@@ -536,163 +456,10 @@ Map<String, dynamic> _$AuditEventAgentToJson(AuditEventAgent instance) {
   return val;
 }
 
-const _$ParticipationRoleTypeEnumMap = {
-  ParticipationRoleType.AMENDER: 'AMENDER',
-  ParticipationRoleType.COAUTH: 'COAUTH',
-  ParticipationRoleType.CONT: 'CONT',
-  ParticipationRoleType.EVTWIT: 'EVTWIT',
-  ParticipationRoleType.PRIMAUTH: 'PRIMAUTH',
-  ParticipationRoleType.REVIEWER: 'REVIEWER',
-  ParticipationRoleType.SOURCE: 'SOURCE',
-  ParticipationRoleType.TRANS: 'TRANS',
-  ParticipationRoleType.VALID: 'VALID',
-  ParticipationRoleType.VERF: 'VERF',
-  ParticipationRoleType.AFFL: 'AFFL',
-  ParticipationRoleType.AGNT: 'AGNT',
-  ParticipationRoleType.ASSIGNED: 'ASSIGNED',
-  ParticipationRoleType.CLAIM: 'CLAIM',
-  ParticipationRoleType.COVPTY: 'COVPTY',
-  ParticipationRoleType.DEPEN: 'DEPEN',
-  ParticipationRoleType.ECON: 'ECON',
-  ParticipationRoleType.EMP: 'EMP',
-  ParticipationRoleType.GUARD: 'GUARD',
-  ParticipationRoleType.INVSBJ: 'INVSBJ',
-  ParticipationRoleType.NAMED: 'NAMED',
-  ParticipationRoleType.NOK: 'NOK',
-  ParticipationRoleType.PAT: 'PAT',
-  ParticipationRoleType.PROV: 'PROV',
-  ParticipationRoleType.NOT: 'NOT',
-  ParticipationRoleType.CLASSIFIER: 'CLASSIFIER',
-  ParticipationRoleType.CONSENTER: 'CONSENTER',
-  ParticipationRoleType.CONSWIT: 'CONSWIT',
-  ParticipationRoleType.COPART: 'COPART',
-  ParticipationRoleType.DECLASSIFIER: 'DECLASSIFIER',
-  ParticipationRoleType.DELEGATEE: 'DELEGATEE',
-  ParticipationRoleType.DELEGATOR: 'DELEGATOR',
-  ParticipationRoleType.DOWNGRDER: 'DOWNGRDER',
-  ParticipationRoleType.DPOWATT: 'DPOWATT',
-  ParticipationRoleType.EXCEST: 'EXCEST',
-  ParticipationRoleType.GRANTEE: 'GRANTEE',
-  ParticipationRoleType.GRANTOR: 'GRANTOR',
-  ParticipationRoleType.GT: 'GT',
-  ParticipationRoleType.GUADLTM: 'GUADLTM',
-  ParticipationRoleType.HPOWATT: 'HPOWATT',
-  ParticipationRoleType.INTPRTER: 'INTPRTER',
-  ParticipationRoleType.POWATT: 'POWATT',
-  ParticipationRoleType.RESPRSN: 'RESPRSN',
-  ParticipationRoleType.SPOWATT: 'SPOWATT',
-  ParticipationRoleType.AUCG: 'AUCG',
-  ParticipationRoleType.AULR: 'AULR',
-  ParticipationRoleType.AUTM: 'AUTM',
-  ParticipationRoleType.AUWA: 'AUWA',
-  ParticipationRoleType.PROMSK: 'PROMSK',
-  ParticipationRoleType.AUT: 'AUT',
-  ParticipationRoleType.CST: 'CST',
-  ParticipationRoleType.INF: 'INF',
-  ParticipationRoleType.IRCP: 'IRCP',
-  ParticipationRoleType.LA: 'LA',
-  ParticipationRoleType.TRC: 'TRC',
-  ParticipationRoleType.WIT: 'WIT',
-  ParticipationRoleType.authserver: 'authserver',
-  ParticipationRoleType.datacollector: 'datacollector',
-  ParticipationRoleType.dataprocessor: 'dataprocessor',
-  ParticipationRoleType.datasubject: 'datasubject',
-  ParticipationRoleType.humanuser: 'humanuser',
-  ParticipationRoleType.value110150: '110150',
-  ParticipationRoleType.value110151: '110151',
-  ParticipationRoleType.value110152: '110152',
-  ParticipationRoleType.value110153: '110153',
-  ParticipationRoleType.value110154: '110154',
-  ParticipationRoleType.value110155: '110155',
-};
-
-const _$SecurityRoleTypeEnumMap = {
-  SecurityRoleType.AMENDER: 'AMENDER',
-  SecurityRoleType.COAUTH: 'COAUTH',
-  SecurityRoleType.CONT: 'CONT',
-  SecurityRoleType.EVTWIT: 'EVTWIT',
-  SecurityRoleType.PRIMAUTH: 'PRIMAUTH',
-  SecurityRoleType.REVIEWER: 'REVIEWER',
-  SecurityRoleType.SOURCE: 'SOURCE',
-  SecurityRoleType.TRANS: 'TRANS',
-  SecurityRoleType.VALID: 'VALID',
-  SecurityRoleType.VERF: 'VERF',
-  SecurityRoleType.AFFL: 'AFFL',
-  SecurityRoleType.AGNT: 'AGNT',
-  SecurityRoleType.ASSIGNED: 'ASSIGNED',
-  SecurityRoleType.CLAIM: 'CLAIM',
-  SecurityRoleType.COVPTY: 'COVPTY',
-  SecurityRoleType.DEPEN: 'DEPEN',
-  SecurityRoleType.ECON: 'ECON',
-  SecurityRoleType.EMP: 'EMP',
-  SecurityRoleType.GUARD: 'GUARD',
-  SecurityRoleType.INVSBJ: 'INVSBJ',
-  SecurityRoleType.NAMED: 'NAMED',
-  SecurityRoleType.NOK: 'NOK',
-  SecurityRoleType.PAT: 'PAT',
-  SecurityRoleType.PROV: 'PROV',
-  SecurityRoleType.NOT: 'NOT',
-  SecurityRoleType.CLASSIFIER: 'CLASSIFIER',
-  SecurityRoleType.CONSENTER: 'CONSENTER',
-  SecurityRoleType.CONSWIT: 'CONSWIT',
-  SecurityRoleType.COPART: 'COPART',
-  SecurityRoleType.DECLASSIFIER: 'DECLASSIFIER',
-  SecurityRoleType.DELEGATEE: 'DELEGATEE',
-  SecurityRoleType.DELEGATOR: 'DELEGATOR',
-  SecurityRoleType.DOWNGRDER: 'DOWNGRDER',
-  SecurityRoleType.DPOWATT: 'DPOWATT',
-  SecurityRoleType.EXCEST: 'EXCEST',
-  SecurityRoleType.GRANTEE: 'GRANTEE',
-  SecurityRoleType.GRANTOR: 'GRANTOR',
-  SecurityRoleType.GT: 'GT',
-  SecurityRoleType.GUADLTM: 'GUADLTM',
-  SecurityRoleType.HPOWATT: 'HPOWATT',
-  SecurityRoleType.INTPRTER: 'INTPRTER',
-  SecurityRoleType.POWATT: 'POWATT',
-  SecurityRoleType.RESPRSN: 'RESPRSN',
-  SecurityRoleType.SPOWATT: 'SPOWATT',
-  SecurityRoleType.AUCG: 'AUCG',
-  SecurityRoleType.AULR: 'AULR',
-  SecurityRoleType.AUTM: 'AUTM',
-  SecurityRoleType.AUWA: 'AUWA',
-  SecurityRoleType.PROMSK: 'PROMSK',
-  SecurityRoleType.AUT: 'AUT',
-  SecurityRoleType.CST: 'CST',
-  SecurityRoleType.INF: 'INF',
-  SecurityRoleType.IRCP: 'IRCP',
-  SecurityRoleType.LA: 'LA',
-  SecurityRoleType.TRC: 'TRC',
-  SecurityRoleType.WIT: 'WIT',
-  SecurityRoleType.authserver: 'authserver',
-  SecurityRoleType.datacollector: 'datacollector',
-  SecurityRoleType.dataprocessor: 'dataprocessor',
-  SecurityRoleType.datasubject: 'datasubject',
-  SecurityRoleType.humanuser: 'humanuser',
-  SecurityRoleType.value110150: '110150',
-  SecurityRoleType.value110151: '110151',
-  SecurityRoleType.value110152: '110152',
-  SecurityRoleType.value110153: '110153',
-  SecurityRoleType.value110154: '110154',
-  SecurityRoleType.value110155: '110155',
-};
-
-const _$MediaTypeCodeEnumMap = {
-  MediaTypeCode.value110030: '110030',
-  MediaTypeCode.value110031: '110031',
-  MediaTypeCode.value110032: '110032',
-  MediaTypeCode.value110033: '110033',
-  MediaTypeCode.value110034: '110034',
-  MediaTypeCode.value110035: '110035',
-  MediaTypeCode.value110036: '110036',
-  MediaTypeCode.value110037: '110037',
-  MediaTypeCode.value110010: '110010',
-  MediaTypeCode.value110038: '110038',
-};
-
 AuditEventNetwork _$AuditEventNetworkFromJson(Map<String, dynamic> json) =>
     AuditEventNetwork(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -741,7 +508,7 @@ Map<String, dynamic> _$AuditEventNetworkToJson(AuditEventNetwork instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('address', instance.address?.toJson());
@@ -762,7 +529,7 @@ const _$AuditEventAgentNetworkTypeEnumMap = {
 AuditEventSource _$AuditEventSourceFromJson(Map<String, dynamic> json) =>
     AuditEventSource(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -774,7 +541,7 @@ AuditEventSource _$AuditEventSourceFromJson(Map<String, dynamic> json) =>
           : Element.fromJson(json['_site'] as Map<String, dynamic>),
       observer: Reference.fromJson(json['observer'] as Map<String, dynamic>),
       type: (json['type'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$AuditEventSourceTypeEnumMap, e))
+          ?.map((e) => Coding.fromJson(e as Map<String, dynamic>))
           .toList(),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
@@ -809,7 +576,7 @@ Map<String, dynamic> _$AuditEventSourceToJson(AuditEventSource instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('site', instance.site?.toJson());
@@ -819,22 +586,10 @@ Map<String, dynamic> _$AuditEventSourceToJson(AuditEventSource instance) {
   return val;
 }
 
-const _$AuditEventSourceTypeEnumMap = {
-  AuditEventSourceType.value1: '1',
-  AuditEventSourceType.value2: '2',
-  AuditEventSourceType.value3: '3',
-  AuditEventSourceType.value4: '4',
-  AuditEventSourceType.value5: '5',
-  AuditEventSourceType.value6: '6',
-  AuditEventSourceType.value7: '7',
-  AuditEventSourceType.value8: '8',
-  AuditEventSourceType.value9: '9',
-};
-
 AuditEventEntity _$AuditEventEntityFromJson(Map<String, dynamic> json) =>
     AuditEventEntity(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -843,10 +598,15 @@ AuditEventEntity _$AuditEventEntityFromJson(Map<String, dynamic> json) =>
       what: json['what'] == null
           ? null
           : Reference.fromJson(json['what'] as Map<String, dynamic>),
-      type: $enumDecodeNullable(_$AuditEventEntityTypeEnumMap, json['type']),
-      role: $enumDecodeNullable(_$AuditEventEntityRoleEnumMap, json['role']),
-      lifecycle: $enumDecodeNullable(
-          _$ObjectLifecycleEventsEnumMap, json['lifecycle']),
+      type: json['type'] == null
+          ? null
+          : Coding.fromJson(json['type'] as Map<String, dynamic>),
+      role: json['role'] == null
+          ? null
+          : Coding.fromJson(json['role'] as Map<String, dynamic>),
+      lifecycle: json['lifecycle'] == null
+          ? null
+          : Coding.fromJson(json['lifecycle'] as Map<String, dynamic>),
       securityLabel: (json['securityLabel'] as List<dynamic>?)
           ?.map((e) => Coding.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -902,7 +662,7 @@ Map<String, dynamic> _$AuditEventEntityToJson(AuditEventEntity instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('what', instance.what?.toJson());
@@ -921,90 +681,10 @@ Map<String, dynamic> _$AuditEventEntityToJson(AuditEventEntity instance) {
   return val;
 }
 
-const _$AuditEventEntityTypeEnumMap = {
-  AuditEventEntityType.value1: '1',
-  AuditEventEntityType.value2: '2',
-  AuditEventEntityType.value3: '3',
-  AuditEventEntityType.value4: '4',
-  AuditEventEntityType.Resource: 'Resource',
-};
-
-const _$AuditEventEntityRoleEnumMap = {
-  AuditEventEntityRole.value1: '1',
-  AuditEventEntityRole.value2: '2',
-  AuditEventEntityRole.value3: '3',
-  AuditEventEntityRole.value4: '4',
-  AuditEventEntityRole.value5: '5',
-  AuditEventEntityRole.value6: '6',
-  AuditEventEntityRole.value7: '7',
-  AuditEventEntityRole.value8: '8',
-  AuditEventEntityRole.value9: '9',
-  AuditEventEntityRole.value10: '10',
-  AuditEventEntityRole.value11: '11',
-  AuditEventEntityRole.value12: '12',
-  AuditEventEntityRole.value13: '13',
-  AuditEventEntityRole.value14: '14',
-  AuditEventEntityRole.value15: '15',
-  AuditEventEntityRole.value16: '16',
-  AuditEventEntityRole.value17: '17',
-  AuditEventEntityRole.value18: '18',
-  AuditEventEntityRole.value19: '19',
-  AuditEventEntityRole.value20: '20',
-  AuditEventEntityRole.value21: '21',
-  AuditEventEntityRole.value22: '22',
-  AuditEventEntityRole.value23: '23',
-  AuditEventEntityRole.value24: '24',
-};
-
-const _$ObjectLifecycleEventsEnumMap = {
-  ObjectLifecycleEvents.value1: '1',
-  ObjectLifecycleEvents.value2: '2',
-  ObjectLifecycleEvents.value3: '3',
-  ObjectLifecycleEvents.value4: '4',
-  ObjectLifecycleEvents.value5: '5',
-  ObjectLifecycleEvents.value6: '6',
-  ObjectLifecycleEvents.value7: '7',
-  ObjectLifecycleEvents.value8: '8',
-  ObjectLifecycleEvents.value9: '9',
-  ObjectLifecycleEvents.value10: '10',
-  ObjectLifecycleEvents.value11: '11',
-  ObjectLifecycleEvents.value12: '12',
-  ObjectLifecycleEvents.value13: '13',
-  ObjectLifecycleEvents.value14: '14',
-  ObjectLifecycleEvents.value15: '15',
-  ObjectLifecycleEvents.access: 'access',
-  ObjectLifecycleEvents.hold: 'hold',
-  ObjectLifecycleEvents.amend: 'amend',
-  ObjectLifecycleEvents.archive: 'archive',
-  ObjectLifecycleEvents.attest: 'attest',
-  ObjectLifecycleEvents.decrypt: 'decrypt',
-  ObjectLifecycleEvents.deidentify: 'deidentify',
-  ObjectLifecycleEvents.deprecate: 'deprecate',
-  ObjectLifecycleEvents.destroy: 'destroy',
-  ObjectLifecycleEvents.disclose: 'disclose',
-  ObjectLifecycleEvents.encrypt: 'encrypt',
-  ObjectLifecycleEvents.extract: 'extract',
-  ObjectLifecycleEvents.link: 'link',
-  ObjectLifecycleEvents.merge: 'merge',
-  ObjectLifecycleEvents.originate: 'originate',
-  ObjectLifecycleEvents.pseudonymize: 'pseudonymize',
-  ObjectLifecycleEvents.reactivate: 'reactivate',
-  ObjectLifecycleEvents.receive: 'receive',
-  ObjectLifecycleEvents.reidentify: 'reidentify',
-  ObjectLifecycleEvents.unhold: 'unhold',
-  ObjectLifecycleEvents.report: 'report',
-  ObjectLifecycleEvents.restore: 'restore',
-  ObjectLifecycleEvents.transform: 'transform',
-  ObjectLifecycleEvents.transmit: 'transmit',
-  ObjectLifecycleEvents.unlink: 'unlink',
-  ObjectLifecycleEvents.unmerge: 'unmerge',
-  ObjectLifecycleEvents.verify: 'verify',
-};
-
 AuditEventDetail _$AuditEventDetailFromJson(Map<String, dynamic> json) =>
     AuditEventDetail(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1056,7 +736,7 @@ Map<String, dynamic> _$AuditEventDetailToJson(AuditEventDetail instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();

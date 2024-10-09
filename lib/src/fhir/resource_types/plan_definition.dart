@@ -148,7 +148,7 @@ class PlanDefinition extends DomainResource {
   /// [type] /// A high-level category for the plan definition that distinguishes the kinds
   /// of systems that would be interested in the plan definition.
   @JsonKey(name: 'type')
-  final PlanDefinitionType? type;
+  final CodeableConcept? type;
 
   /// [status] /// The status of this plan definition. Enables tracking the life-cycle of the
   /// content.
@@ -173,7 +173,7 @@ class PlanDefinition extends DomainResource {
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
   @JsonKey(name: 'subjectCodeableConcept')
-  final SubjectType? subjectCodeableConcept;
+  final CodeableConcept? subjectCodeableConcept;
 
   /// [subjectReference] /// A code, group definition, or canonical reference that describes or
   /// identifies the intended subject of the plan definition. Canonical
@@ -183,7 +183,7 @@ class PlanDefinition extends DomainResource {
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
   @JsonKey(name: 'subjectReference')
-  final SubjectType? subjectReference;
+  final Reference? subjectReference;
 
   /// [subjectCanonical] /// A code, group definition, or canonical reference that describes or
   /// identifies the intended subject of the plan definition. Canonical
@@ -283,7 +283,7 @@ class PlanDefinition extends DomainResource {
   /// provide a high-level categorization of the definition that can be useful
   /// for filtering and searching.
   @JsonKey(name: 'topic')
-  final List<DefinitionTopic>? topic;
+  final List<CodeableConcept>? topic;
 
   /// [author] /// An individiual or organization primarily involved in the creation and
   /// maintenance of the content.
@@ -363,13 +363,13 @@ class PlanDefinition extends DomainResource {
     Element? titleElement,
     FhirString? subtitle,
     Element? subtitleElement,
-    PlanDefinitionType? type,
+    CodeableConcept? type,
     PublicationStatus? status,
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
-    SubjectType? subjectCodeableConcept,
-    SubjectType? subjectReference,
+    CodeableConcept? subjectCodeableConcept,
+    Reference? subjectReference,
     SubjectType? subjectCanonical,
     Element? subjectCanonicalElement,
     FhirDateTime? date,
@@ -392,7 +392,7 @@ class PlanDefinition extends DomainResource {
     FhirDate? lastReviewDate,
     Element? lastReviewDateElement,
     Period? effectivePeriod,
-    List<DefinitionTopic>? topic,
+    List<CodeableConcept>? topic,
     List<ContactDetail>? author,
     List<ContactDetail>? editor,
     List<ContactDetail>? reviewer,
@@ -535,7 +535,7 @@ class PlanDefinitionGoal extends BackboneElement {
 
   /// [category] /// Indicates a category the goal falls within.
   @JsonKey(name: 'category')
-  final GoalCategory? category;
+  final CodeableConcept? category;
 
   /// [description] /// Human-readable and/or coded description of a specific desired objective of
   /// care, such as "control blood pressure" or "negotiate an obstacle course" or
@@ -546,16 +546,16 @@ class PlanDefinitionGoal extends BackboneElement {
   /// [priority] /// Identifies the expected level of importance associated with
   /// reaching/sustaining the defined goal.
   @JsonKey(name: 'priority')
-  final GoalPriority? priority;
+  final CodeableConcept? priority;
 
   /// [start] /// The event after which the goal should begin being pursued.
   @JsonKey(name: 'start')
-  final GoalStartEvent? start;
+  final CodeableConcept? start;
 
   /// [addresses] /// Identifies problems, conditions, issues, or concerns the goal is intended
   /// to address.
   @JsonKey(name: 'addresses')
-  final List<ConditionProblemDiagnosisCodes>? addresses;
+  final List<CodeableConcept>? addresses;
 
   /// [documentation] /// Didactic or other informational resources associated with the goal that
   /// provide further supporting information about the goal. Information
@@ -579,11 +579,11 @@ class PlanDefinitionGoal extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    GoalCategory? category,
+    CodeableConcept? category,
     CodeableConcept? description,
-    GoalPriority? priority,
-    GoalStartEvent? start,
-    List<ConditionProblemDiagnosisCodes>? addresses,
+    CodeableConcept? priority,
+    CodeableConcept? start,
+    List<CodeableConcept>? addresses,
     List<RelatedArtifact>? documentation,
     List<PlanDefinitionTarget>? target,
     Map<String, Object?>? userData,
@@ -878,11 +878,11 @@ class PlanDefinitionAction extends BackboneElement {
   /// section of a documentation template. In pharmaceutical quality, an action
   /// (Test) such as pH could be classified as a physical property.
   @JsonKey(name: 'code')
-  final List<ActionCode>? code;
+  final List<CodeableConcept>? code;
 
   /// [reason] /// A description of why this action is necessary or appropriate.
   @JsonKey(name: 'reason')
-  final List<ActionReasonCode>? reason;
+  final List<CodeableConcept>? reason;
 
   /// [documentation] /// Didactic or other informational resources associated with the action that
   /// can be provided to the CDS recipient. Information resources can include
@@ -908,7 +908,7 @@ class PlanDefinitionAction extends BackboneElement {
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
   @JsonKey(name: 'subjectCodeableConcept')
-  final SubjectType? subjectCodeableConcept;
+  final CodeableConcept? subjectCodeableConcept;
 
   /// [subjectReference] /// A code, group definition, or canonical reference that describes the
   /// intended subject of the action and its children, if any. Canonical
@@ -918,7 +918,7 @@ class PlanDefinitionAction extends BackboneElement {
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
   @JsonKey(name: 'subjectReference')
-  final SubjectType? subjectReference;
+  final Reference? subjectReference;
 
   /// [subjectCanonical] /// A code, group definition, or canonical reference that describes the
   /// intended subject of the action and its children, if any. Canonical
@@ -986,7 +986,7 @@ class PlanDefinitionAction extends BackboneElement {
 
   /// [type] /// The type of action to perform (create, update, remove).
   @JsonKey(name: 'type')
-  final ActionType? type;
+  final CodeableConcept? type;
 
   /// [groupingBehavior] /// Defines the grouping behavior for the action and its children.
   @JsonKey(name: 'groupingBehavior')
@@ -1079,13 +1079,13 @@ class PlanDefinitionAction extends BackboneElement {
     Element? textEquivalentElement,
     RequestPriority? priority,
     Element? priorityElement,
-    List<ActionCode>? code,
-    List<ActionReasonCode>? reason,
+    List<CodeableConcept>? code,
+    List<CodeableConcept>? reason,
     List<RelatedArtifact>? documentation,
     List<FhirId>? goalId,
     List<Element>? goalIdElement,
-    SubjectType? subjectCodeableConcept,
-    SubjectType? subjectReference,
+    CodeableConcept? subjectCodeableConcept,
+    Reference? subjectReference,
     SubjectType? subjectCanonical,
     Element? subjectCanonicalElement,
     List<TriggerDefinition>? trigger,
@@ -1101,7 +1101,7 @@ class PlanDefinitionAction extends BackboneElement {
     Range? timingRange,
     Timing? timingTiming,
     List<PlanDefinitionParticipant>? participant,
-    ActionType? type,
+    CodeableConcept? type,
     ActionGroupingBehavior? groupingBehavior,
     Element? groupingBehaviorElement,
     ActionSelectionBehavior? selectionBehavior,

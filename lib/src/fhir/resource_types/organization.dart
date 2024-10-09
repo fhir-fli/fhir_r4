@@ -65,7 +65,7 @@ class Organization extends DomainResource {
 
   /// [type] /// The kind(s) of organization that this is.
   @JsonKey(name: 'type')
-  final List<OrganizationType>? type;
+  final List<CodeableConcept>? type;
 
   /// [name] /// A name associated with the organization.
   @JsonKey(name: 'name')
@@ -123,7 +123,7 @@ class Organization extends DomainResource {
     List<Identifier>? identifier,
     FhirBoolean? active,
     Element? activeElement,
-    List<OrganizationType>? type,
+    List<CodeableConcept>? type,
     FhirString? name,
     Element? nameElement,
     List<FhirString>? alias,
@@ -219,7 +219,7 @@ class OrganizationContact extends BackboneElement {
 
   /// [purpose] /// Indicates a purpose for which the contact can be reached.
   @JsonKey(name: 'purpose')
-  final ContactEntityType? purpose;
+  final CodeableConcept? purpose;
 
   /// [name] /// A name associated with the contact.
   @JsonKey(name: 'name')
@@ -246,7 +246,7 @@ class OrganizationContact extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ContactEntityType? purpose,
+    CodeableConcept? purpose,
     HumanName? name,
     List<ContactPoint>? telecom,
     Address? address,

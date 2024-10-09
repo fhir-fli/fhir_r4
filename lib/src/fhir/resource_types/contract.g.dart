@@ -50,8 +50,10 @@ Contract _$ContractFromJson(Map<String, dynamic> json) => Contract(
       statusElement: json['_status'] == null
           ? null
           : Element.fromJson(json['_status'] as Map<String, dynamic>),
-      legalState: $enumDecodeNullable(
-          _$ContractResourceLegalStateCodesEnumMap, json['legalState']),
+      legalState: json['legalState'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['legalState'] as Map<String, dynamic>),
       instantiatesCanonical: json['instantiatesCanonical'] == null
           ? null
           : Reference.fromJson(
@@ -75,8 +77,10 @@ Contract _$ContractFromJson(Map<String, dynamic> json) => Contract(
       applies: json['applies'] == null
           ? null
           : Period.fromJson(json['applies'] as Map<String, dynamic>),
-      expirationType: $enumDecodeNullable(
-          _$ContractResourceExpirationTypeCodesEnumMap, json['expirationType']),
+      expirationType: json['expirationType'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['expirationType'] as Map<String, dynamic>),
       subject: (json['subject'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -111,8 +115,9 @@ Contract _$ContractFromJson(Map<String, dynamic> json) => Contract(
       author: json['author'] == null
           ? null
           : Reference.fromJson(json['author'] as Map<String, dynamic>),
-      scope: $enumDecodeNullable(
-          _$ContractResourceScopeCodesEnumMap, json['scope']),
+      scope: json['scope'] == null
+          ? null
+          : CodeableConcept.fromJson(json['scope'] as Map<String, dynamic>),
       topicCodeableConcept: json['topicCodeableConcept'] == null
           ? null
           : CodeableConcept.fromJson(
@@ -326,32 +331,6 @@ const _$ContractResourceStatusCodesEnumMap = {
   ContractResourceStatusCodes.terminated: 'terminated',
 };
 
-const _$ContractResourceLegalStateCodesEnumMap = {
-  ContractResourceLegalStateCodes.amended: 'amended',
-  ContractResourceLegalStateCodes.appended: 'appended',
-  ContractResourceLegalStateCodes.cancelled: 'cancelled',
-  ContractResourceLegalStateCodes.disputed: 'disputed',
-  ContractResourceLegalStateCodes.entered_in_error: 'entered-in-error',
-  ContractResourceLegalStateCodes.executable: 'executable',
-  ContractResourceLegalStateCodes.executed: 'executed',
-  ContractResourceLegalStateCodes.negotiable: 'negotiable',
-  ContractResourceLegalStateCodes.offered: 'offered',
-  ContractResourceLegalStateCodes.policy: 'policy',
-  ContractResourceLegalStateCodes.rejected: 'rejected',
-  ContractResourceLegalStateCodes.renewed: 'renewed',
-  ContractResourceLegalStateCodes.revoked: 'revoked',
-  ContractResourceLegalStateCodes.resolved: 'resolved',
-  ContractResourceLegalStateCodes.terminated: 'terminated',
-};
-
-const _$ContractResourceExpirationTypeCodesEnumMap = {
-  ContractResourceExpirationTypeCodes.breach: 'breach',
-};
-
-const _$ContractResourceScopeCodesEnumMap = {
-  ContractResourceScopeCodes.policy: 'policy',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -501,16 +480,16 @@ ContractContentDefinition _$ContractContentDefinitionFromJson(
         Map<String, dynamic> json) =>
     ContractContentDefinition(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecode(
-          _$ContractResourceDefinitionTypeCodesEnumMap, json['type']),
-      subType: $enumDecodeNullable(
-          _$ContractResourceDefinitionSubtypeCodesEnumMap, json['subType']),
+      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      subType: json['subType'] == null
+          ? null
+          : CodeableConcept.fromJson(json['subType'] as Map<String, dynamic>),
       publisher: json['publisher'] == null
           ? null
           : Reference.fromJson(json['publisher'] as Map<String, dynamic>),
@@ -567,7 +546,7 @@ Map<String, dynamic> _$ContractContentDefinitionToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();
@@ -582,14 +561,6 @@ Map<String, dynamic> _$ContractContentDefinitionToJson(
   writeNotNull('_copyright', instance.copyrightElement?.toJson());
   return val;
 }
-
-const _$ContractResourceDefinitionTypeCodesEnumMap = {
-  ContractResourceDefinitionTypeCodes.temp: 'temp',
-};
-
-const _$ContractResourceDefinitionSubtypeCodesEnumMap = {
-  ContractResourceDefinitionSubtypeCodes.temp: 'temp',
-};
 
 const _$ContractResourcePublicationStatusCodesEnumMap = {
   ContractResourcePublicationStatusCodes.amended: 'amended',
@@ -611,7 +582,7 @@ const _$ContractResourcePublicationStatusCodesEnumMap = {
 
 ContractTerm _$ContractTermFromJson(Map<String, dynamic> json) => ContractTerm(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -693,7 +664,7 @@ Map<String, dynamic> _$ContractTermToJson(ContractTerm instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('identifier', instance.identifier?.toJson());
@@ -719,7 +690,7 @@ ContractSecurityLabel _$ContractSecurityLabelFromJson(
         Map<String, dynamic> json) =>
     ContractSecurityLabel(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -731,14 +702,13 @@ ContractSecurityLabel _$ContractSecurityLabelFromJson(
       numberElement: (json['_number'] as List<dynamic>?)
           ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
           .toList(),
-      classification: $enumDecode(
-          _$ContractResourceScopeCodesEnumMap, json['classification']),
+      classification:
+          Coding.fromJson(json['classification'] as Map<String, dynamic>),
       category: (json['category'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ContractResourceScopeCodesEnumMap, e))
+          ?.map((e) => Coding.fromJson(e as Map<String, dynamic>))
           .toList(),
       control: (json['control'] as List<dynamic>?)
-          ?.map((e) =>
-              $enumDecode(_$ContractResourceSecurityControlCodesEnumMap, e))
+          ?.map((e) => Coding.fromJson(e as Map<String, dynamic>))
           .toList(),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
@@ -774,7 +744,7 @@ Map<String, dynamic> _$ContractSecurityLabelToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('number', instance.number?.map((e) => e.toJson()).toList());
@@ -786,14 +756,10 @@ Map<String, dynamic> _$ContractSecurityLabelToJson(
   return val;
 }
 
-const _$ContractResourceSecurityControlCodesEnumMap = {
-  ContractResourceSecurityControlCodes.policy: 'policy',
-};
-
 ContractOffer _$ContractOfferFromJson(Map<String, dynamic> json) =>
     ContractOffer(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -815,8 +781,7 @@ ContractOffer _$ContractOfferFromJson(Map<String, dynamic> json) =>
           ? null
           : CodeableConcept.fromJson(json['decision'] as Map<String, dynamic>),
       decisionMode: (json['decisionMode'] as List<dynamic>?)
-          ?.map(
-              (e) => $enumDecode(_$ContractResourceDecisionModeCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       answer: (json['answer'] as List<dynamic>?)
           ?.map((e) => ContractAnswer.fromJson(e as Map<String, dynamic>))
@@ -870,7 +835,7 @@ Map<String, dynamic> _$ContractOfferToJson(ContractOffer instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull(
@@ -894,14 +859,10 @@ Map<String, dynamic> _$ContractOfferToJson(ContractOffer instance) {
   return val;
 }
 
-const _$ContractResourceDecisionModeCodesEnumMap = {
-  ContractResourceDecisionModeCodes.policy: 'policy',
-};
-
 ContractParty _$ContractPartyFromJson(Map<String, dynamic> json) =>
     ContractParty(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -910,7 +871,7 @@ ContractParty _$ContractPartyFromJson(Map<String, dynamic> json) =>
       reference: (json['reference'] as List<dynamic>)
           .map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
-      role: $enumDecode(_$ContractResourcePartyRoleCodesEnumMap, json['role']),
+      role: CodeableConcept.fromJson(json['role'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -944,7 +905,7 @@ Map<String, dynamic> _$ContractPartyToJson(ContractParty instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['reference'] = instance.reference.map((e) => e.toJson()).toList();
@@ -952,14 +913,10 @@ Map<String, dynamic> _$ContractPartyToJson(ContractParty instance) {
   return val;
 }
 
-const _$ContractResourcePartyRoleCodesEnumMap = {
-  ContractResourcePartyRoleCodes.flunky: 'flunky',
-};
-
 ContractAnswer _$ContractAnswerFromJson(Map<String, dynamic> json) =>
     ContractAnswer(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1037,7 +994,7 @@ Map<String, dynamic> _$ContractAnswerToJson(ContractAnswer instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['valueBoolean'] = instance.valueBoolean.toJson();
@@ -1066,26 +1023,27 @@ Map<String, dynamic> _$ContractAnswerToJson(ContractAnswer instance) {
 ContractAsset _$ContractAssetFromJson(Map<String, dynamic> json) =>
     ContractAsset(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      scope: $enumDecodeNullable(
-          _$ContractResourceAssetScopeCodesEnumMap, json['scope']),
+      scope: json['scope'] == null
+          ? null
+          : CodeableConcept.fromJson(json['scope'] as Map<String, dynamic>),
       type: (json['type'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ContractResourceAssetTypeCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       typeReference: (json['typeReference'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
       subtype: (json['subtype'] as List<dynamic>?)
-          ?.map(
-              (e) => $enumDecode(_$ContractResourceAssetSubTypeCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
-      relationship: $enumDecodeNullable(
-          _$ConsentContentClassEnumMap, json['relationship']),
+      relationship: json['relationship'] == null
+          ? null
+          : Coding.fromJson(json['relationship'] as Map<String, dynamic>),
       context: (json['context'] as List<dynamic>?)
           ?.map((e) => ContractContext.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -1096,8 +1054,7 @@ ContractAsset _$ContractAssetFromJson(Map<String, dynamic> json) =>
           ? null
           : Element.fromJson(json['_condition'] as Map<String, dynamic>),
       periodType: (json['periodType'] as List<dynamic>?)
-          ?.map((e) =>
-              $enumDecode(_$ContractResourceAssetAvailiabilityCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       period: (json['period'] as List<dynamic>?)
           ?.map((e) => Period.fromJson(e as Map<String, dynamic>))
@@ -1160,7 +1117,7 @@ Map<String, dynamic> _$ContractAssetToJson(ContractAsset instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('scope', instance.scope?.toJson());
@@ -1192,33 +1149,10 @@ Map<String, dynamic> _$ContractAssetToJson(ContractAsset instance) {
   return val;
 }
 
-const _$ContractResourceAssetScopeCodesEnumMap = {
-  ContractResourceAssetScopeCodes.thing: 'thing',
-};
-
-const _$ContractResourceAssetTypeCodesEnumMap = {
-  ContractResourceAssetTypeCodes.participation: 'participation',
-};
-
-const _$ContractResourceAssetSubTypeCodesEnumMap = {
-  ContractResourceAssetSubTypeCodes.participation: 'participation',
-};
-
-const _$ConsentContentClassEnumMap = {
-  ConsentContentClass.Resource: 'Resource',
-  ConsentContentClass.hl7_org_fhir_StructureDefinition_lipidprofile:
-      'http://hl7.org/fhir/StructureDefinition/lipidprofile',
-  ConsentContentClass.application_hl7_cda_xml: 'application/hl7-cda+xml',
-};
-
-const _$ContractResourceAssetAvailiabilityCodesEnumMap = {
-  ContractResourceAssetAvailiabilityCodes.lease: 'lease',
-};
-
 ContractContext _$ContractContextFromJson(Map<String, dynamic> json) =>
     ContractContext(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1228,8 +1162,7 @@ ContractContext _$ContractContextFromJson(Map<String, dynamic> json) =>
           ? null
           : Reference.fromJson(json['reference'] as Map<String, dynamic>),
       code: (json['code'] as List<dynamic>?)
-          ?.map(
-              (e) => $enumDecode(_$ContractResourceAssetContextCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       text: json['text'] == null ? null : FhirString.fromJson(json['text']),
       textElement: json['_text'] == null
@@ -1268,7 +1201,7 @@ Map<String, dynamic> _$ContractContextToJson(ContractContext instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('reference', instance.reference?.toJson());
@@ -1278,14 +1211,10 @@ Map<String, dynamic> _$ContractContextToJson(ContractContext instance) {
   return val;
 }
 
-const _$ContractResourceAssetContextCodesEnumMap = {
-  ContractResourceAssetContextCodes.custodian: 'custodian',
-};
-
 ContractValuedItem _$ContractValuedItemFromJson(Map<String, dynamic> json) =>
     ContractValuedItem(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1388,7 +1317,7 @@ Map<String, dynamic> _$ContractValuedItemToJson(ContractValuedItem instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull(
@@ -1423,7 +1352,7 @@ Map<String, dynamic> _$ContractValuedItemToJson(ContractValuedItem instance) {
 ContractAction _$ContractActionFromJson(Map<String, dynamic> json) =>
     ContractAction(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1445,8 +1374,7 @@ ContractAction _$ContractActionFromJson(Map<String, dynamic> json) =>
       linkIdElement: (json['_linkId'] as List<dynamic>?)
           ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
           .toList(),
-      status: $enumDecode(
-          _$ContractResourceActionStatusCodesEnumMap, json['status']),
+      status: CodeableConcept.fromJson(json['status'] as Map<String, dynamic>),
       context: json['context'] == null
           ? null
           : Reference.fromJson(json['context'] as Map<String, dynamic>),
@@ -1479,10 +1407,12 @@ ContractAction _$ContractActionFromJson(Map<String, dynamic> json) =>
           ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
           .toList(),
       performerType: (json['performerType'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ProvenanceParticipantTypeEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
-      performerRole: $enumDecodeNullable(
-          _$ProvenanceParticipantRoleEnumMap, json['performerRole']),
+      performerRole: json['performerRole'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['performerRole'] as Map<String, dynamic>),
       performer: json['performer'] == null
           ? null
           : Reference.fromJson(json['performer'] as Map<String, dynamic>),
@@ -1552,7 +1482,7 @@ Map<String, dynamic> _$ContractActionToJson(ContractAction instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('doNotPerform', instance.doNotPerform?.toJson());
@@ -1607,38 +1537,10 @@ Map<String, dynamic> _$ContractActionToJson(ContractAction instance) {
   return val;
 }
 
-const _$ContractResourceActionStatusCodesEnumMap = {
-  ContractResourceActionStatusCodes.complete: 'complete',
-};
-
-const _$ProvenanceParticipantTypeEnumMap = {
-  ProvenanceParticipantType.enterer: 'enterer',
-  ProvenanceParticipantType.performer: 'performer',
-  ProvenanceParticipantType.author: 'author',
-  ProvenanceParticipantType.verifier: 'verifier',
-  ProvenanceParticipantType.attester: 'attester',
-  ProvenanceParticipantType.informant: 'informant',
-  ProvenanceParticipantType.custodian: 'custodian',
-  ProvenanceParticipantType.assembler: 'assembler',
-  ProvenanceParticipantType.composer: 'composer',
-};
-
-const _$ProvenanceParticipantRoleEnumMap = {
-  ProvenanceParticipantRole.enterer: 'enterer',
-  ProvenanceParticipantRole.performer: 'performer',
-  ProvenanceParticipantRole.author: 'author',
-  ProvenanceParticipantRole.verifier: 'verifier',
-  ProvenanceParticipantRole.attester: 'attester',
-  ProvenanceParticipantRole.informant: 'informant',
-  ProvenanceParticipantRole.custodian: 'custodian',
-  ProvenanceParticipantRole.assembler: 'assembler',
-  ProvenanceParticipantRole.composer: 'composer',
-};
-
 ContractSubject _$ContractSubjectFromJson(Map<String, dynamic> json) =>
     ContractSubject(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1683,7 +1585,7 @@ Map<String, dynamic> _$ContractSubjectToJson(ContractSubject instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['reference'] = instance.reference.map((e) => e.toJson()).toList();
@@ -1694,7 +1596,7 @@ Map<String, dynamic> _$ContractSubjectToJson(ContractSubject instance) {
 ContractSigner _$ContractSignerFromJson(Map<String, dynamic> json) =>
     ContractSigner(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1738,7 +1640,7 @@ Map<String, dynamic> _$ContractSignerToJson(ContractSigner instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();
@@ -1750,7 +1652,7 @@ Map<String, dynamic> _$ContractSignerToJson(ContractSigner instance) {
 ContractFriendly _$ContractFriendlyFromJson(Map<String, dynamic> json) =>
     ContractFriendly(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1793,7 +1695,7 @@ Map<String, dynamic> _$ContractFriendlyToJson(ContractFriendly instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['contentAttachment'] = instance.contentAttachment.toJson();
@@ -1804,7 +1706,7 @@ Map<String, dynamic> _$ContractFriendlyToJson(ContractFriendly instance) {
 ContractLegal _$ContractLegalFromJson(Map<String, dynamic> json) =>
     ContractLegal(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1855,7 +1757,7 @@ Map<String, dynamic> _$ContractLegalToJson(ContractLegal instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['contentAttachment'] = instance.contentAttachment.toJson();
@@ -1869,7 +1771,7 @@ Map<String, dynamic> _$ContractLegalToJson(ContractLegal instance) {
 
 ContractRule _$ContractRuleFromJson(Map<String, dynamic> json) => ContractRule(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1912,7 +1814,7 @@ Map<String, dynamic> _$ContractRuleToJson(ContractRule instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['contentAttachment'] = instance.contentAttachment.toJson();

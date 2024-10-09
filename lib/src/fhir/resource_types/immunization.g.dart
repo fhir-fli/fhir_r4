@@ -40,8 +40,10 @@ Immunization _$ImmunizationFromJson(Map<String, dynamic> json) => Immunization(
       statusElement: json['_status'] == null
           ? null
           : Element.fromJson(json['_status'] as Map<String, dynamic>),
-      statusReason: $enumDecodeNullable(
-          _$ImmunizationStatusReasonCodesEnumMap, json['statusReason']),
+      statusReason: json['statusReason'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['statusReason'] as Map<String, dynamic>),
       vaccineCode:
           CodeableConcept.fromJson(json['vaccineCode'] as Map<String, dynamic>),
       patient: Reference.fromJson(json['patient'] as Map<String, dynamic>),
@@ -70,8 +72,10 @@ Immunization _$ImmunizationFromJson(Map<String, dynamic> json) => Immunization(
       primarySourceElement: json['_primarySource'] == null
           ? null
           : Element.fromJson(json['_primarySource'] as Map<String, dynamic>),
-      reportOrigin: $enumDecodeNullable(
-          _$ImmunizationOriginCodesEnumMap, json['reportOrigin']),
+      reportOrigin: json['reportOrigin'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['reportOrigin'] as Map<String, dynamic>),
       location: json['location'] == null
           ? null
           : Reference.fromJson(json['location'] as Map<String, dynamic>),
@@ -90,10 +94,12 @@ Immunization _$ImmunizationFromJson(Map<String, dynamic> json) => Immunization(
       expirationDateElement: json['_expirationDate'] == null
           ? null
           : Element.fromJson(json['_expirationDate'] as Map<String, dynamic>),
-      site: $enumDecodeNullable(
-          _$CodesForImmunizationSiteOfAdministrationEnumMap, json['site']),
-      route:
-          $enumDecodeNullable(_$ImmunizationRouteCodesEnumMap, json['route']),
+      site: json['site'] == null
+          ? null
+          : CodeableConcept.fromJson(json['site'] as Map<String, dynamic>),
+      route: json['route'] == null
+          ? null
+          : CodeableConcept.fromJson(json['route'] as Map<String, dynamic>),
       doseQuantity: json['doseQuantity'] == null
           ? null
           : Quantity.fromJson(json['doseQuantity'] as Map<String, dynamic>),
@@ -105,7 +111,7 @@ Immunization _$ImmunizationFromJson(Map<String, dynamic> json) => Immunization(
           ?.map((e) => Annotation.fromJson(e as Map<String, dynamic>))
           .toList(),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ImmunizationReasonCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
@@ -117,17 +123,19 @@ Immunization _$ImmunizationFromJson(Map<String, dynamic> json) => Immunization(
           ? null
           : Element.fromJson(json['_isSubpotent'] as Map<String, dynamic>),
       subpotentReason: (json['subpotentReason'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ImmunizationSubpotentReasonEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       education: (json['education'] as List<dynamic>?)
           ?.map(
               (e) => ImmunizationEducation.fromJson(e as Map<String, dynamic>))
           .toList(),
       programEligibility: (json['programEligibility'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ImmunizationProgramEligibilityEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
-      fundingSource: $enumDecodeNullable(
-          _$ImmunizationFundingSourceEnumMap, json['fundingSource']),
+      fundingSource: json['fundingSource'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['fundingSource'] as Map<String, dynamic>),
       reaction: (json['reaction'] as List<dynamic>?)
           ?.map((e) => ImmunizationReaction.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -296,56 +304,6 @@ const _$ImmunizationStatusCodesEnumMap = {
   ImmunizationStatusCodes.not_done: 'not-done',
 };
 
-const _$ImmunizationStatusReasonCodesEnumMap = {
-  ImmunizationStatusReasonCodes.IMMUNE: 'IMMUNE',
-  ImmunizationStatusReasonCodes.MEDPREC: 'MEDPREC',
-  ImmunizationStatusReasonCodes.OSTOCK: 'OSTOCK',
-  ImmunizationStatusReasonCodes.PATOBJ: 'PATOBJ',
-};
-
-const _$ImmunizationOriginCodesEnumMap = {
-  ImmunizationOriginCodes.provider: 'provider',
-  ImmunizationOriginCodes.record: 'record',
-  ImmunizationOriginCodes.recall: 'recall',
-  ImmunizationOriginCodes.school: 'school',
-};
-
-const _$CodesForImmunizationSiteOfAdministrationEnumMap = {
-  CodesForImmunizationSiteOfAdministration.LA: 'LA',
-  CodesForImmunizationSiteOfAdministration.RA: 'RA',
-};
-
-const _$ImmunizationRouteCodesEnumMap = {
-  ImmunizationRouteCodes.IDINJ: 'IDINJ',
-  ImmunizationRouteCodes.IM: 'IM',
-  ImmunizationRouteCodes.NASINHLC: 'NASINHLC',
-  ImmunizationRouteCodes.IVINJ: 'IVINJ',
-  ImmunizationRouteCodes.PO: 'PO',
-  ImmunizationRouteCodes.SQ: 'SQ',
-  ImmunizationRouteCodes.TRNSDERM: 'TRNSDERM',
-};
-
-const _$ImmunizationReasonCodesEnumMap = {
-  ImmunizationReasonCodes.value429060002: '429060002',
-  ImmunizationReasonCodes.value281657000: '281657000',
-};
-
-const _$ImmunizationSubpotentReasonEnumMap = {
-  ImmunizationSubpotentReason.partial: 'partial',
-  ImmunizationSubpotentReason.coldchainbreak: 'coldchainbreak',
-  ImmunizationSubpotentReason.recall: 'recall',
-};
-
-const _$ImmunizationProgramEligibilityEnumMap = {
-  ImmunizationProgramEligibility.ineligible: 'ineligible',
-  ImmunizationProgramEligibility.uninsured: 'uninsured',
-};
-
-const _$ImmunizationFundingSourceEnumMap = {
-  ImmunizationFundingSource.private: 'private',
-  ImmunizationFundingSource.public: 'public',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -495,14 +453,15 @@ ImmunizationPerformer _$ImmunizationPerformerFromJson(
         Map<String, dynamic> json) =>
     ImmunizationPerformer(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      function_: $enumDecodeNullable(
-          _$ImmunizationFunctionCodesEnumMap, json['function']),
+      function_: json['function'] == null
+          ? null
+          : CodeableConcept.fromJson(json['function'] as Map<String, dynamic>),
       actor: Reference.fromJson(json['actor'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
@@ -538,7 +497,7 @@ Map<String, dynamic> _$ImmunizationPerformerToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('function', instance.function_?.toJson());
@@ -546,16 +505,11 @@ Map<String, dynamic> _$ImmunizationPerformerToJson(
   return val;
 }
 
-const _$ImmunizationFunctionCodesEnumMap = {
-  ImmunizationFunctionCodes.OP: 'OP',
-  ImmunizationFunctionCodes.AP: 'AP',
-};
-
 ImmunizationEducation _$ImmunizationEducationFromJson(
         Map<String, dynamic> json) =>
     ImmunizationEducation(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -619,7 +573,7 @@ Map<String, dynamic> _$ImmunizationEducationToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('documentType', instance.documentType?.toJson());
@@ -637,7 +591,7 @@ ImmunizationReaction _$ImmunizationReactionFromJson(
         Map<String, dynamic> json) =>
     ImmunizationReaction(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -692,7 +646,7 @@ Map<String, dynamic> _$ImmunizationReactionToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('date', instance.date?.toJson());
@@ -707,7 +661,7 @@ ImmunizationProtocolApplied _$ImmunizationProtocolAppliedFromJson(
         Map<String, dynamic> json) =>
     ImmunizationProtocolApplied(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -722,7 +676,7 @@ ImmunizationProtocolApplied _$ImmunizationProtocolAppliedFromJson(
           ? null
           : Reference.fromJson(json['authority'] as Map<String, dynamic>),
       targetDisease: (json['targetDisease'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ImmunizationTargetDiseaseCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       doseNumberPositiveInt:
           FhirPositiveInt.fromJson(json['doseNumberPositiveInt']),
@@ -782,7 +736,7 @@ Map<String, dynamic> _$ImmunizationProtocolAppliedToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('series', instance.series?.toJson());
@@ -804,15 +758,3 @@ Map<String, dynamic> _$ImmunizationProtocolAppliedToJson(
       '_seriesDosesString', instance.seriesDosesStringElement?.toJson());
   return val;
 }
-
-const _$ImmunizationTargetDiseaseCodesEnumMap = {
-  ImmunizationTargetDiseaseCodes.value1857005: '1857005',
-  ImmunizationTargetDiseaseCodes.value397430003: '397430003',
-  ImmunizationTargetDiseaseCodes.value14189004: '14189004',
-  ImmunizationTargetDiseaseCodes.value36989005: '36989005',
-  ImmunizationTargetDiseaseCodes.value36653000: '36653000',
-  ImmunizationTargetDiseaseCodes.value76902006: '76902006',
-  ImmunizationTargetDiseaseCodes.value709410003: '709410003',
-  ImmunizationTargetDiseaseCodes.value27836007: '27836007',
-  ImmunizationTargetDiseaseCodes.value398102009: '398102009',
-};

@@ -9,7 +9,7 @@ part of 'trigger_definition.dart';
 TriggerDefinition _$TriggerDefinitionFromJson(Map<String, dynamic> json) =>
     TriggerDefinition(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       type: $enumDecode(_$TriggerTypeEnumMap, json['type']),
@@ -77,7 +77,7 @@ Map<String, dynamic> _$TriggerDefinitionToJson(TriggerDefinition instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();
   writeNotNull('_type', instance.typeElement?.toJson());
   writeNotNull('name', instance.name?.toJson());

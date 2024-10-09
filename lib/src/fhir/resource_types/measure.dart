@@ -171,12 +171,12 @@ class Measure extends DomainResource {
   /// [subjectCodeableConcept] /// The intended subjects for the measure. If this element is not provided, a
   /// Patient subject is assumed, but the subject of the measure can be anything.
   @JsonKey(name: 'subjectCodeableConcept')
-  final SubjectType? subjectCodeableConcept;
+  final CodeableConcept? subjectCodeableConcept;
 
   /// [subjectReference] /// The intended subjects for the measure. If this element is not provided, a
   /// Patient subject is assumed, but the subject of the measure can be anything.
   @JsonKey(name: 'subjectReference')
-  final SubjectType? subjectReference;
+  final Reference? subjectReference;
 
   /// [date] /// The date (and optionally time) when the measure was published. The date
   /// must change when the business version changes and it must change if the
@@ -262,7 +262,7 @@ class Measure extends DomainResource {
   /// high-level categorization grouping types of measures that can be useful for
   /// filtering and searching.
   @JsonKey(name: 'topic')
-  final List<DefinitionTopic>? topic;
+  final List<CodeableConcept>? topic;
 
   /// [author] /// An individiual or organization primarily involved in the creation and
   /// maintenance of the content.
@@ -307,18 +307,18 @@ class Measure extends DomainResource {
   /// proportion, ratio, continuous-variable, and cohort. The value set is
   /// extensible, allowing additional measure scoring types to be represented.
   @JsonKey(name: 'scoring')
-  final MeasureScoring? scoring;
+  final CodeableConcept? scoring;
 
   /// [compositeScoring] /// If this is a composite measure, the scoring method used to combine the
   /// component measures to determine the composite score.
   @JsonKey(name: 'compositeScoring')
-  final CompositeMeasureScoring? compositeScoring;
+  final CodeableConcept? compositeScoring;
 
   /// [type] /// Indicates whether the measure is used to examine a process, an outcome over
   /// time, a patient-reported outcome, or a structure measure such as
   /// utilization.
   @JsonKey(name: 'type')
-  final List<MeasureType>? type;
+  final List<CodeableConcept>? type;
 
   /// [riskAdjustment] /// A description of the risk adjustment factors that may impact the resulting
   /// score for the measure and how they may be accounted for when computing and
@@ -354,7 +354,7 @@ class Measure extends DomainResource {
   /// result (e.g., a higher score indicates better quality OR a lower score
   /// indicates better quality OR quality is within a range).
   @JsonKey(name: 'improvementNotation')
-  final MeasureImprovementNotation? improvementNotation;
+  final CodeableConcept? improvementNotation;
 
   /// [definition] /// Provides a description of an individual term used within the measure.
   @JsonKey(name: 'definition')
@@ -413,8 +413,8 @@ class Measure extends DomainResource {
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
-    SubjectType? subjectCodeableConcept,
-    SubjectType? subjectReference,
+    CodeableConcept? subjectCodeableConcept,
+    Reference? subjectReference,
     FhirDateTime? date,
     Element? dateElement,
     FhirString? publisher,
@@ -435,7 +435,7 @@ class Measure extends DomainResource {
     FhirDate? lastReviewDate,
     Element? lastReviewDateElement,
     Period? effectivePeriod,
-    List<DefinitionTopic>? topic,
+    List<CodeableConcept>? topic,
     List<ContactDetail>? author,
     List<ContactDetail>? editor,
     List<ContactDetail>? reviewer,
@@ -445,9 +445,9 @@ class Measure extends DomainResource {
     List<Element>? libraryElement,
     FhirMarkdown? disclaimer,
     Element? disclaimerElement,
-    MeasureScoring? scoring,
-    CompositeMeasureScoring? compositeScoring,
-    List<MeasureType>? type,
+    CodeableConcept? scoring,
+    CodeableConcept? compositeScoring,
+    List<CodeableConcept>? type,
     FhirString? riskAdjustment,
     Element? riskAdjustmentElement,
     FhirString? rateAggregation,
@@ -456,7 +456,7 @@ class Measure extends DomainResource {
     Element? rationaleElement,
     FhirMarkdown? clinicalRecommendationStatement,
     Element? clinicalRecommendationStatementElement,
-    MeasureImprovementNotation? improvementNotation,
+    CodeableConcept? improvementNotation,
     List<FhirMarkdown>? definition,
     List<Element>? definitionElement,
     FhirMarkdown? guidance,
@@ -611,7 +611,7 @@ class MeasureGroup extends BackboneElement {
   /// identifier, or it can establish meaning in a broader context by drawing
   /// from a terminology, allowing groups to be correlated across measures.
   @JsonKey(name: 'code')
-  final MeasureGroupExample? code;
+  final CodeableConcept? code;
 
   /// [description] /// The human readable description of this population group.
   @JsonKey(name: 'description')
@@ -641,7 +641,7 @@ class MeasureGroup extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    MeasureGroupExample? code,
+    CodeableConcept? code,
     FhirString? description,
     Element? descriptionElement,
     List<MeasurePopulation>? population,
@@ -717,7 +717,7 @@ class MeasurePopulation extends BackboneElement {
 
   /// [code] /// The type of population criteria.
   @JsonKey(name: 'code')
-  final MeasurePopulationType? code;
+  final CodeableConcept? code;
 
   /// [description] /// The human readable description of this population criteria.
   @JsonKey(name: 'description')
@@ -742,7 +742,7 @@ class MeasurePopulation extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    MeasurePopulationType? code,
+    CodeableConcept? code,
     FhirString? description,
     Element? descriptionElement,
     FhirExpression? criteria,
@@ -821,7 +821,7 @@ class MeasureStratifier extends BackboneElement {
   /// identifier, or it can establish meaning in a broader context by drawing
   /// from a terminology, allowing stratifiers to be correlated across measures.
   @JsonKey(name: 'code')
-  final MeasureStratifierExample? code;
+  final CodeableConcept? code;
 
   /// [description] /// The human readable description of this stratifier criteria.
   @JsonKey(name: 'description')
@@ -853,7 +853,7 @@ class MeasureStratifier extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    MeasureStratifierExample? code,
+    CodeableConcept? code,
     FhirString? description,
     Element? descriptionElement,
     FhirExpression? criteria,
@@ -934,7 +934,7 @@ class MeasureComponent extends BackboneElement {
   /// drawing from a terminology, allowing stratifiers to be correlated across
   /// measures.
   @JsonKey(name: 'code')
-  final MeasureStratifierExample? code;
+  final CodeableConcept? code;
 
   /// [description] /// The human readable description of this stratifier criteria component.
   @JsonKey(name: 'description')
@@ -960,7 +960,7 @@ class MeasureComponent extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    MeasureStratifierExample? code,
+    CodeableConcept? code,
     FhirString? description,
     Element? descriptionElement,
     FhirExpression? criteria,
@@ -1040,7 +1040,7 @@ class MeasureSupplementalData extends BackboneElement {
   /// drawing from a terminology, allowing supplemental data to be correlated
   /// across measures.
   @JsonKey(name: 'code')
-  final MeasureSupplementalDataExample? code;
+  final CodeableConcept? code;
 
   /// [usage] /// An indicator of the intended usage for the supplemental data element.
   /// Supplemental data indicates the data is additional information requested to
@@ -1048,7 +1048,7 @@ class MeasureSupplementalData extends BackboneElement {
   /// is additional information used to calculate risk adjustment factors when
   /// applying a risk model to the measure calculation.
   @JsonKey(name: 'usage')
-  final List<MeasureDataUsage>? usage;
+  final List<CodeableConcept>? usage;
 
   /// [description] /// The human readable description of this supplemental data.
   @JsonKey(name: 'description')
@@ -1075,8 +1075,8 @@ class MeasureSupplementalData extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    MeasureSupplementalDataExample? code,
-    List<MeasureDataUsage>? usage,
+    CodeableConcept? code,
+    List<CodeableConcept>? usage,
     FhirString? description,
     Element? descriptionElement,
     FhirExpression? criteria,

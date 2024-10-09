@@ -366,13 +366,15 @@ InsurancePlanContact _$InsurancePlanContactFromJson(
         Map<String, dynamic> json) =>
     InsurancePlanContact(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      purpose: $enumDecodeNullable(_$ContactEntityTypeEnumMap, json['purpose']),
+      purpose: json['purpose'] == null
+          ? null
+          : CodeableConcept.fromJson(json['purpose'] as Map<String, dynamic>),
       name: json['name'] == null
           ? null
           : HumanName.fromJson(json['name'] as Map<String, dynamic>),
@@ -416,7 +418,7 @@ Map<String, dynamic> _$InsurancePlanContactToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('purpose', instance.purpose?.toJson());
@@ -426,20 +428,11 @@ Map<String, dynamic> _$InsurancePlanContactToJson(
   return val;
 }
 
-const _$ContactEntityTypeEnumMap = {
-  ContactEntityType.BILL: 'BILL',
-  ContactEntityType.ADMIN: 'ADMIN',
-  ContactEntityType.HR: 'HR',
-  ContactEntityType.PAYOR: 'PAYOR',
-  ContactEntityType.PATINF: 'PATINF',
-  ContactEntityType.PRESS: 'PRESS',
-};
-
 InsurancePlanCoverage _$InsurancePlanCoverageFromJson(
         Map<String, dynamic> json) =>
     InsurancePlanCoverage(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -486,7 +479,7 @@ Map<String, dynamic> _$InsurancePlanCoverageToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();
@@ -499,7 +492,7 @@ InsurancePlanBenefit _$InsurancePlanBenefitFromJson(
         Map<String, dynamic> json) =>
     InsurancePlanBenefit(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -549,7 +542,7 @@ Map<String, dynamic> _$InsurancePlanBenefitToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();
@@ -562,7 +555,7 @@ Map<String, dynamic> _$InsurancePlanBenefitToJson(
 InsurancePlanLimit _$InsurancePlanLimitFromJson(Map<String, dynamic> json) =>
     InsurancePlanLimit(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -607,7 +600,7 @@ Map<String, dynamic> _$InsurancePlanLimitToJson(InsurancePlanLimit instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('value', instance.value?.toJson());
@@ -618,7 +611,7 @@ Map<String, dynamic> _$InsurancePlanLimitToJson(InsurancePlanLimit instance) {
 InsurancePlanPlan _$InsurancePlanPlanFromJson(Map<String, dynamic> json) =>
     InsurancePlanPlan(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -677,7 +670,7 @@ Map<String, dynamic> _$InsurancePlanPlanToJson(InsurancePlanPlan instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull(
@@ -697,7 +690,7 @@ InsurancePlanGeneralCost _$InsurancePlanGeneralCostFromJson(
         Map<String, dynamic> json) =>
     InsurancePlanGeneralCost(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -754,7 +747,7 @@ Map<String, dynamic> _$InsurancePlanGeneralCostToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.toJson());
@@ -770,7 +763,7 @@ InsurancePlanSpecificCost _$InsurancePlanSpecificCostFromJson(
         Map<String, dynamic> json) =>
     InsurancePlanSpecificCost(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -815,7 +808,7 @@ Map<String, dynamic> _$InsurancePlanSpecificCostToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['category'] = instance.category.toJson();
@@ -827,7 +820,7 @@ InsurancePlanBenefit1 _$InsurancePlanBenefit1FromJson(
         Map<String, dynamic> json) =>
     InsurancePlanBenefit1(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -871,7 +864,7 @@ Map<String, dynamic> _$InsurancePlanBenefit1ToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();
@@ -882,7 +875,7 @@ Map<String, dynamic> _$InsurancePlanBenefit1ToJson(
 InsurancePlanCost _$InsurancePlanCostFromJson(Map<String, dynamic> json) =>
     InsurancePlanCost(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -932,7 +925,7 @@ Map<String, dynamic> _$InsurancePlanCostToJson(InsurancePlanCost instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();

@@ -66,13 +66,13 @@ class Ingredient extends DomainResource {
   /// [role] /// A classification of the ingredient identifying its purpose within the
   /// product, e.g. active, inactive.
   @JsonKey(name: 'role')
-  final IngredientRole role;
+  final CodeableConcept role;
 
   /// [function_] /// A classification of the ingredient identifying its precise purpose(s) in
   /// the drug product. This extends the Ingredient.role to add more detail.
   /// Example: antioxidant, alkalizing agent.
   @JsonKey(name: 'function')
-  final List<IngredientFunction>? function_;
+  final List<CodeableConcept>? function_;
 
   /// [allergenicIndicator] /// If the ingredient is a known or suspected allergen. Note that this is a
   /// property of the substance, so if a reference to a SubstanceDefinition is
@@ -118,8 +118,8 @@ class Ingredient extends DomainResource {
     PublicationStatus? status,
     Element? statusElement,
     List<Reference>? for_,
-    IngredientRole? role,
-    List<IngredientFunction>? function_,
+    CodeableConcept? role,
+    List<CodeableConcept>? function_,
     FhirBoolean? allergenicIndicator,
     Element? allergenicIndicatorElement,
     List<IngredientManufacturer>? manufacturer,

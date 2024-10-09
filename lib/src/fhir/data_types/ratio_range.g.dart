@@ -8,7 +8,7 @@ part of 'ratio_range.dart';
 
 RatioRange _$RatioRangeFromJson(Map<String, dynamic> json) => RatioRange(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       lowNumerator: json['lowNumerator'] == null
@@ -53,7 +53,7 @@ Map<String, dynamic> _$RatioRangeToJson(RatioRange instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('lowNumerator', instance.lowNumerator?.toJson());
   writeNotNull('highNumerator', instance.highNumerator?.toJson());
   writeNotNull('denominator', instance.denominator?.toJson());

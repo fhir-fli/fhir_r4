@@ -41,7 +41,7 @@ Flag _$FlagFromJson(Map<String, dynamic> json) => Flag(
           ? null
           : Element.fromJson(json['_status'] as Map<String, dynamic>),
       category: (json['category'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$FlagCategoryEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       code: CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       subject: Reference.fromJson(json['subject'] as Map<String, dynamic>),
@@ -177,19 +177,6 @@ const _$FlagStatusEnumMap = {
   FlagStatus.active: 'active',
   FlagStatus.inactive: 'inactive',
   FlagStatus.entered_in_error: 'entered-in-error',
-};
-
-const _$FlagCategoryEnumMap = {
-  FlagCategory.diet: 'diet',
-  FlagCategory.drug: 'drug',
-  FlagCategory.lab: 'lab',
-  FlagCategory.admin: 'admin',
-  FlagCategory.contact: 'contact',
-  FlagCategory.clinical: 'clinical',
-  FlagCategory.behavioral: 'behavioral',
-  FlagCategory.research: 'research',
-  FlagCategory.advance_directive: 'advance-directive',
-  FlagCategory.safety: 'safety',
 };
 
 const _$R4ResourceTypeEnumMap = {

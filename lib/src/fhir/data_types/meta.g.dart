@@ -8,7 +8,7 @@ part of 'meta.dart';
 
 FhirMeta _$FhirMetaFromJson(Map<String, dynamic> json) => FhirMeta(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       versionId:
@@ -36,7 +36,7 @@ FhirMeta _$FhirMetaFromJson(Map<String, dynamic> json) => FhirMeta(
           ?.map((e) => Coding.fromJson(e as Map<String, dynamic>))
           .toList(),
       tag: (json['tag'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$CommonTagsEnumMap, e))
+          ?.map((e) => Coding.fromJson(e as Map<String, dynamic>))
           .toList(),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
@@ -71,7 +71,7 @@ Map<String, dynamic> _$FhirMetaToJson(FhirMeta instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('versionId', instance.versionId?.toJson());
   writeNotNull('_versionId', instance.versionIdElement?.toJson());
   writeNotNull('lastUpdated', instance.lastUpdated?.toJson());
@@ -85,7 +85,3 @@ Map<String, dynamic> _$FhirMetaToJson(FhirMeta instance) {
   writeNotNull('tag', instance.tag?.map((e) => e.toJson()).toList());
   return val;
 }
-
-const _$CommonTagsEnumMap = {
-  CommonTags.actionable: 'actionable',
-};

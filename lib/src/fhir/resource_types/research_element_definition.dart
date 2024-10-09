@@ -173,13 +173,13 @@ class ResearchElementDefinition extends DomainResource {
   /// not provided, a Patient subject is assumed, but the subject of the
   /// ResearchElementDefinition can be anything.
   @JsonKey(name: 'subjectCodeableConcept')
-  final SubjectType? subjectCodeableConcept;
+  final CodeableConcept? subjectCodeableConcept;
 
   /// [subjectReference] /// The intended subjects for the ResearchElementDefinition. If this element is
   /// not provided, a Patient subject is assumed, but the subject of the
   /// ResearchElementDefinition can be anything.
   @JsonKey(name: 'subjectReference')
-  final SubjectType? subjectReference;
+  final Reference? subjectReference;
 
   /// [date] /// The date (and optionally time) when the research element definition was
   /// published. The date must change when the business version changes and it
@@ -273,7 +273,7 @@ class ResearchElementDefinition extends DomainResource {
   /// Topics provide a high-level categorization grouping types of
   /// ResearchElementDefinitions that can be useful for filtering and searching.
   @JsonKey(name: 'topic')
-  final List<DefinitionTopic>? topic;
+  final List<CodeableConcept>? topic;
 
   /// [author] /// An individiual or organization primarily involved in the creation and
   /// maintenance of the content.
@@ -360,8 +360,8 @@ class ResearchElementDefinition extends DomainResource {
     Element? statusElement,
     FhirBoolean? experimental,
     Element? experimentalElement,
-    SubjectType? subjectCodeableConcept,
-    SubjectType? subjectReference,
+    CodeableConcept? subjectCodeableConcept,
+    Reference? subjectReference,
     FhirDateTime? date,
     Element? dateElement,
     FhirString? publisher,
@@ -384,7 +384,7 @@ class ResearchElementDefinition extends DomainResource {
     FhirDate? lastReviewDate,
     Element? lastReviewDateElement,
     Period? effectivePeriod,
-    List<DefinitionTopic>? topic,
+    List<CodeableConcept>? topic,
     List<ContactDetail>? author,
     List<ContactDetail>? editor,
     List<ContactDetail>? reviewer,

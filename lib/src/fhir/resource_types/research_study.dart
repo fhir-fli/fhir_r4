@@ -98,12 +98,12 @@ class ResearchStudy extends DomainResource {
   /// [primaryPurposeType] /// The type of study based upon the intent of the study's activities. A
   /// classification of the intent of the study.
   @JsonKey(name: 'primaryPurposeType')
-  final ResearchStudyPrimaryPurposeType? primaryPurposeType;
+  final CodeableConcept? primaryPurposeType;
 
   /// [phase] /// The stage in the progression of a therapy from initial experimental use in
   /// humans in clinical trials to post-market evaluation.
   @JsonKey(name: 'phase')
-  final ResearchStudyPhase? phase;
+  final CodeableConcept? phase;
 
   /// [category] /// Codes categorizing the type of study such as investigational vs.
   /// observational, type of blinding, type of randomization, safety vs.
@@ -121,7 +121,7 @@ class ResearchStudy extends DomainResource {
   /// "healthy volunteer", but the target condition code would be a Lupus SNOMED
   /// code.
   @JsonKey(name: 'condition')
-  final List<ConditionProblemDiagnosisCodes>? condition;
+  final List<CodeableConcept>? condition;
 
   /// [contact] /// Contact details to assist a user in learning more about or engaging with
   /// the study.
@@ -176,7 +176,7 @@ class ResearchStudy extends DomainResource {
   /// [reasonStopped] /// A description and/or code explaining the premature termination of the
   /// study.
   @JsonKey(name: 'reasonStopped')
-  final ResearchStudyReasonStopped? reasonStopped;
+  final CodeableConcept? reasonStopped;
 
   /// [note] /// Comments made about the study by the performer, subject or other
   /// participants.
@@ -220,11 +220,11 @@ class ResearchStudy extends DomainResource {
     List<Reference>? partOf,
     ResearchStudyStatus? status,
     Element? statusElement,
-    ResearchStudyPrimaryPurposeType? primaryPurposeType,
-    ResearchStudyPhase? phase,
+    CodeableConcept? primaryPurposeType,
+    CodeableConcept? phase,
     List<CodeableConcept>? category,
     List<CodeableConcept>? focus,
-    List<ConditionProblemDiagnosisCodes>? condition,
+    List<CodeableConcept>? condition,
     List<ContactDetail>? contact,
     List<RelatedArtifact>? relatedArtifact,
     List<CodeableConcept>? keyword,
@@ -236,7 +236,7 @@ class ResearchStudy extends DomainResource {
     Reference? sponsor,
     Reference? principalInvestigator,
     List<Reference>? site,
-    ResearchStudyReasonStopped? reasonStopped,
+    CodeableConcept? reasonStopped,
     List<Annotation>? note,
     List<ResearchStudyArm>? arm,
     List<ResearchStudyObjective>? objective,
@@ -454,7 +454,7 @@ class ResearchStudyObjective extends BackboneElement {
 
   /// [type] /// The kind of study objective.
   @JsonKey(name: 'type')
-  final ResearchStudyObjectiveType? type;
+  final CodeableConcept? type;
   factory ResearchStudyObjective.fromJson(Map<String, dynamic> json) =>
       _$ResearchStudyObjectiveFromJson(json);
 
@@ -470,7 +470,7 @@ class ResearchStudyObjective extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? name,
     Element? nameElement,
-    ResearchStudyObjectiveType? type,
+    CodeableConcept? type,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

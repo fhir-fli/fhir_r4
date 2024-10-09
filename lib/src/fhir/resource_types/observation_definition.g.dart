@@ -36,7 +36,7 @@ ObservationDefinition _$ObservationDefinitionFromJson(
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       category: (json['category'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ObservationCategoryCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       code: CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       identifier: (json['identifier'] as List<dynamic>?)
@@ -224,18 +224,6 @@ const _$CommonLanguagesEnumMap = {
   CommonLanguages.zh_TW: 'zh-TW',
 };
 
-const _$ObservationCategoryCodesEnumMap = {
-  ObservationCategoryCodes.social_history: 'social-history',
-  ObservationCategoryCodes.vital_signs: 'vital-signs',
-  ObservationCategoryCodes.imaging: 'imaging',
-  ObservationCategoryCodes.laboratory: 'laboratory',
-  ObservationCategoryCodes.procedure: 'procedure',
-  ObservationCategoryCodes.survey: 'survey',
-  ObservationCategoryCodes.exam: 'exam',
-  ObservationCategoryCodes.therapy: 'therapy',
-  ObservationCategoryCodes.activity: 'activity',
-};
-
 const _$ObservationDataTypeEnumMap = {
   ObservationDataType.Quantity: 'Quantity',
   ObservationDataType.CodeableConcept: 'CodeableConcept',
@@ -400,7 +388,7 @@ ObservationDefinitionQuantitativeDetails
             Map<String, dynamic> json) =>
         ObservationDefinitionQuantitativeDetails(
           id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-          extension_: (json['extension_'] as List<dynamic>?)
+          extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
           modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -462,7 +450,7 @@ Map<String, dynamic> _$ObservationDefinitionQuantitativeDetailsToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('customaryUnit', instance.customaryUnit?.toJson());
@@ -479,7 +467,7 @@ ObservationDefinitionQualifiedInterval
             Map<String, dynamic> json) =>
         ObservationDefinitionQualifiedInterval(
           id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-          extension_: (json['extension_'] as List<dynamic>?)
+          extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
           modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -493,11 +481,12 @@ ObservationDefinitionQualifiedInterval
           range: json['range'] == null
               ? null
               : Range.fromJson(json['range'] as Map<String, dynamic>),
-          context: $enumDecodeNullable(
-              _$ObservationReferenceRangeMeaningCodesEnumMap, json['context']),
+          context: json['context'] == null
+              ? null
+              : CodeableConcept.fromJson(
+                  json['context'] as Map<String, dynamic>),
           appliesTo: (json['appliesTo'] as List<dynamic>?)
-              ?.map((e) => $enumDecode(
-                  _$ObservationReferenceRangeAppliesToCodesEnumMap, e))
+              ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
               .toList(),
           gender: $enumDecodeNullable(
               _$AdministrativeGenderEnumMap, json['gender']),
@@ -551,7 +540,7 @@ Map<String, dynamic> _$ObservationDefinitionQualifiedIntervalToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('category', instance.category?.toJson());
@@ -573,17 +562,6 @@ const _$ObservationRangeCategoryEnumMap = {
   ObservationRangeCategory.reference: 'reference',
   ObservationRangeCategory.critical: 'critical',
   ObservationRangeCategory.absolute: 'absolute',
-};
-
-const _$ObservationReferenceRangeMeaningCodesEnumMap = {
-  ObservationReferenceRangeMeaningCodes.type: 'type',
-  ObservationReferenceRangeMeaningCodes.endocrine: 'endocrine',
-};
-
-const _$ObservationReferenceRangeAppliesToCodesEnumMap = {
-  ObservationReferenceRangeAppliesToCodes.value248153007: '248153007',
-  ObservationReferenceRangeAppliesToCodes.value248152002: '248152002',
-  ObservationReferenceRangeAppliesToCodes.value77386006: '77386006',
 };
 
 const _$AdministrativeGenderEnumMap = {

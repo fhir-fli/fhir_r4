@@ -93,13 +93,13 @@ class Media extends DomainResource {
   /// [type] /// A code that classifies whether the media is an image, video or audio
   /// recording or some other media category.
   @JsonKey(name: 'type')
-  final MediaType? type;
+  final CodeableConcept? type;
 
   /// [modality] /// Details of the type of the media - usually, how it was acquired (what type
   /// of device). If images sourced from a DICOM system, are wrapped in a Media
   /// resource, then this is the modality.
   @JsonKey(name: 'modality')
-  final MediaModality? modality;
+  final CodeableConcept? modality;
 
   /// [view] /// The name of the imaging view e.g. Lateral or Antero-posterior (AP).
   @JsonKey(name: 'view')
@@ -215,8 +215,8 @@ class Media extends DomainResource {
     List<Reference>? partOf,
     EventStatus? status,
     Element? statusElement,
-    MediaType? type,
-    MediaModality? modality,
+    CodeableConcept? type,
+    CodeableConcept? modality,
     CodeableConcept? view,
     Reference? subject,
     Reference? encounter,

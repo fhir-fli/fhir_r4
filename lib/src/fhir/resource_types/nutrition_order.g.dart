@@ -79,7 +79,7 @@ NutritionOrder _$NutritionOrderFromJson(Map<String, dynamic> json) =>
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
       foodPreferenceModifier: (json['foodPreferenceModifier'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$DietEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       excludeFoodModifier: (json['excludeFoodModifier'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
@@ -260,16 +260,6 @@ const _$RequestIntentEnumMap = {
   RequestIntent.option: 'option',
 };
 
-const _$DietEnumMap = {
-  Diet.vegetarian: 'vegetarian',
-  Diet.dairy_free: 'dairy-free',
-  Diet.nut_free: 'nut-free',
-  Diet.gluten_free: 'gluten-free',
-  Diet.vegan: 'vegan',
-  Diet.halal: 'halal',
-  Diet.kosher: 'kosher',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -419,7 +409,7 @@ NutritionOrderOralDiet _$NutritionOrderOralDietFromJson(
         Map<String, dynamic> json) =>
     NutritionOrderOralDiet(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -440,7 +430,7 @@ NutritionOrderOralDiet _$NutritionOrderOralDietFromJson(
               (e) => NutritionOrderTexture.fromJson(e as Map<String, dynamic>))
           .toList(),
       fluidConsistencyType: (json['fluidConsistencyType'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$FluidConsistencyTypeCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       instruction: json['instruction'] == null
           ? null
@@ -482,7 +472,7 @@ Map<String, dynamic> _$NutritionOrderOralDietToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.map((e) => e.toJson()).toList());
@@ -496,25 +486,19 @@ Map<String, dynamic> _$NutritionOrderOralDietToJson(
   return val;
 }
 
-const _$FluidConsistencyTypeCodesEnumMap = {
-  FluidConsistencyTypeCodes.value439031000124108: '439031000124108',
-  FluidConsistencyTypeCodes.value439021000124105: '439021000124105',
-  FluidConsistencyTypeCodes.value439041000124103: '439041000124103',
-  FluidConsistencyTypeCodes.value439081000124109: '439081000124109',
-};
-
 NutritionOrderNutrient _$NutritionOrderNutrientFromJson(
         Map<String, dynamic> json) =>
     NutritionOrderNutrient(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      modifier:
-          $enumDecodeNullable(_$NutrientModifierCodesEnumMap, json['modifier']),
+      modifier: json['modifier'] == null
+          ? null
+          : CodeableConcept.fromJson(json['modifier'] as Map<String, dynamic>),
       amount: json['amount'] == null
           ? null
           : Quantity.fromJson(json['amount'] as Map<String, dynamic>),
@@ -552,7 +536,7 @@ Map<String, dynamic> _$NutritionOrderNutrientToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('modifier', instance.modifier?.toJson());
@@ -560,26 +544,22 @@ Map<String, dynamic> _$NutritionOrderNutrientToJson(
   return val;
 }
 
-const _$NutrientModifierCodesEnumMap = {
-  NutrientModifierCodes.value33463005: '33463005',
-  NutrientModifierCodes.value39972003: '39972003',
-  NutrientModifierCodes.value88480006: '88480006',
-};
-
 NutritionOrderTexture _$NutritionOrderTextureFromJson(
         Map<String, dynamic> json) =>
     NutritionOrderTexture(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      modifier:
-          $enumDecodeNullable(_$TextureModifierCodesEnumMap, json['modifier']),
-      foodType: $enumDecodeNullable(
-          _$TextureModifiedFoodTypeCodesEnumMap, json['foodType']),
+      modifier: json['modifier'] == null
+          ? null
+          : CodeableConcept.fromJson(json['modifier'] as Map<String, dynamic>),
+      foodType: json['foodType'] == null
+          ? null
+          : CodeableConcept.fromJson(json['foodType'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -614,7 +594,7 @@ Map<String, dynamic> _$NutritionOrderTextureToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('modifier', instance.modifier?.toJson());
@@ -622,51 +602,19 @@ Map<String, dynamic> _$NutritionOrderTextureToJson(
   return val;
 }
 
-const _$TextureModifierCodesEnumMap = {
-  TextureModifierCodes.value228053002: '228053002',
-  TextureModifierCodes.value439091000124107: '439091000124107',
-  TextureModifierCodes.value228049004: '228049004',
-  TextureModifierCodes.value441881000124103: '441881000124103',
-  TextureModifierCodes.value441761000124103: '441761000124103',
-  TextureModifierCodes.value441751000124100: '441751000124100',
-  TextureModifierCodes.value228059003: '228059003',
-  TextureModifierCodes.value441791000124106: '441791000124106',
-  TextureModifierCodes.value228055009: '228055009',
-  TextureModifierCodes.value228056005: '228056005',
-  TextureModifierCodes.value441771000124105: '441771000124105',
-  TextureModifierCodes.value228057001: '228057001',
-  TextureModifierCodes.value228058006: '228058006',
-  TextureModifierCodes.value228060008: '228060008',
-};
-
-const _$TextureModifiedFoodTypeCodesEnumMap = {
-  TextureModifiedFoodTypeCodes.value255620007: '255620007',
-  TextureModifiedFoodTypeCodes.value28647000: '28647000',
-  TextureModifiedFoodTypeCodes.value22836000: '22836000',
-  TextureModifiedFoodTypeCodes.value72511004: '72511004',
-  TextureModifiedFoodTypeCodes.value226760005: '226760005',
-  TextureModifiedFoodTypeCodes.value226887002: '226887002',
-  TextureModifiedFoodTypeCodes.value102263004: '102263004',
-  TextureModifiedFoodTypeCodes.value74242007: '74242007',
-  TextureModifiedFoodTypeCodes.value227415002: '227415002',
-  TextureModifiedFoodTypeCodes.value264331002: '264331002',
-  TextureModifiedFoodTypeCodes.value227518002: '227518002',
-  TextureModifiedFoodTypeCodes.value44027008: '44027008',
-  TextureModifiedFoodTypeCodes.value226529007: '226529007',
-  TextureModifiedFoodTypeCodes.value227210005: '227210005',
-};
-
 NutritionOrderSupplement _$NutritionOrderSupplementFromJson(
         Map<String, dynamic> json) =>
     NutritionOrderSupplement(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecodeNullable(_$SupplementTypeCodesEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       productName: json['productName'] == null
           ? null
           : FhirString.fromJson(json['productName']),
@@ -719,7 +667,7 @@ Map<String, dynamic> _$NutritionOrderSupplementToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.toJson());
@@ -732,66 +680,20 @@ Map<String, dynamic> _$NutritionOrderSupplementToJson(
   return val;
 }
 
-const _$SupplementTypeCodesEnumMap = {
-  SupplementTypeCodes.value442901000124106: '442901000124106',
-  SupplementTypeCodes.value443031000124106: '443031000124106',
-  SupplementTypeCodes.value443051000124104: '443051000124104',
-  SupplementTypeCodes.value442911000124109: '442911000124109',
-  SupplementTypeCodes.value443021000124108: '443021000124108',
-  SupplementTypeCodes.value442971000124100: '442971000124100',
-  SupplementTypeCodes.value442981000124102: '442981000124102',
-  SupplementTypeCodes.value442991000124104: '442991000124104',
-  SupplementTypeCodes.value443011000124100: '443011000124100',
-  SupplementTypeCodes.value442961000124107: '442961000124107',
-  SupplementTypeCodes.value442951000124105: '442951000124105',
-  SupplementTypeCodes.value442941000124108: '442941000124108',
-  SupplementTypeCodes.value442921000124101: '442921000124101',
-  SupplementTypeCodes.value442931000124103: '442931000124103',
-  SupplementTypeCodes.value444331000124106: '444331000124106',
-  SupplementTypeCodes.value443361000124100: '443361000124100',
-  SupplementTypeCodes.value443391000124108: '443391000124108',
-  SupplementTypeCodes.value443401000124105: '443401000124105',
-  SupplementTypeCodes.value443491000124103: '443491000124103',
-  SupplementTypeCodes.value443501000124106: '443501000124106',
-  SupplementTypeCodes.value443421000124100: '443421000124100',
-  SupplementTypeCodes.value443471000124104: '443471000124104',
-  SupplementTypeCodes.value444431000124104: '444431000124104',
-  SupplementTypeCodes.value443451000124109: '443451000124109',
-  SupplementTypeCodes.value444321000124108: '444321000124108',
-  SupplementTypeCodes.value441561000124106: '441561000124106',
-  SupplementTypeCodes.value443461000124106: '443461000124106',
-  SupplementTypeCodes.value441531000124102: '441531000124102',
-  SupplementTypeCodes.value443561000124107: '443561000124107',
-  SupplementTypeCodes.value443481000124101: '443481000124101',
-  SupplementTypeCodes.value441571000124104: '441571000124104',
-  SupplementTypeCodes.value441591000124103: '441591000124103',
-  SupplementTypeCodes.value441601000124106: '441601000124106',
-  SupplementTypeCodes.value443351000124102: '443351000124102',
-  SupplementTypeCodes.value443771000124106: '443771000124106',
-  SupplementTypeCodes.value441671000124100: '441671000124100',
-  SupplementTypeCodes.value443111000124101: '443111000124101',
-  SupplementTypeCodes.value443431000124102: '443431000124102',
-  SupplementTypeCodes.value443411000124108: '443411000124108',
-  SupplementTypeCodes.value444361000124102: '444361000124102',
-  SupplementTypeCodes.value444401000124107: '444401000124107',
-  SupplementTypeCodes.value444381000124107: '444381000124107',
-  SupplementTypeCodes.value444371000124109: '444371000124109',
-  SupplementTypeCodes.value443441000124107: '443441000124107',
-  SupplementTypeCodes.value442651000124102: '442651000124102',
-};
-
 NutritionOrderEnteralFormula _$NutritionOrderEnteralFormulaFromJson(
         Map<String, dynamic> json) =>
     NutritionOrderEnteralFormula(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      baseFormulaType: $enumDecodeNullable(
-          _$EnteralFormulaTypeCodesEnumMap, json['baseFormulaType']),
+      baseFormulaType: json['baseFormulaType'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['baseFormulaType'] as Map<String, dynamic>),
       baseFormulaProductName: json['baseFormulaProductName'] == null
           ? null
           : FhirString.fromJson(json['baseFormulaProductName']),
@@ -799,8 +701,10 @@ NutritionOrderEnteralFormula _$NutritionOrderEnteralFormulaFromJson(
           ? null
           : Element.fromJson(
               json['_baseFormulaProductName'] as Map<String, dynamic>),
-      additiveType: $enumDecodeNullable(
-          _$EnteralFormulaAdditiveTypeCodeEnumMap, json['additiveType']),
+      additiveType: json['additiveType'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['additiveType'] as Map<String, dynamic>),
       additiveProductName: json['additiveProductName'] == null
           ? null
           : FhirString.fromJson(json['additiveProductName']),
@@ -811,8 +715,10 @@ NutritionOrderEnteralFormula _$NutritionOrderEnteralFormulaFromJson(
       caloricDensity: json['caloricDensity'] == null
           ? null
           : Quantity.fromJson(json['caloricDensity'] as Map<String, dynamic>),
-      routeofAdministration: $enumDecodeNullable(
-          _$EnteralRouteCodesEnumMap, json['routeofAdministration']),
+      routeofAdministration: json['routeofAdministration'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['routeofAdministration'] as Map<String, dynamic>),
       administration: (json['administration'] as List<dynamic>?)
           ?.map((e) =>
               NutritionOrderAdministration.fromJson(e as Map<String, dynamic>))
@@ -855,7 +761,7 @@ Map<String, dynamic> _$NutritionOrderEnteralFormulaToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('baseFormulaType', instance.baseFormulaType?.toJson());
@@ -876,70 +782,11 @@ Map<String, dynamic> _$NutritionOrderEnteralFormulaToJson(
   return val;
 }
 
-const _$EnteralFormulaTypeCodesEnumMap = {
-  EnteralFormulaTypeCodes.value443031000124106: '443031000124106',
-  EnteralFormulaTypeCodes.value443051000124104: '443051000124104',
-  EnteralFormulaTypeCodes.value442911000124109: '442911000124109',
-  EnteralFormulaTypeCodes.value443021000124108: '443021000124108',
-  EnteralFormulaTypeCodes.value442971000124100: '442971000124100',
-  EnteralFormulaTypeCodes.value442981000124102: '442981000124102',
-  EnteralFormulaTypeCodes.value442991000124104: '442991000124104',
-  EnteralFormulaTypeCodes.value443011000124100: '443011000124100',
-  EnteralFormulaTypeCodes.value442961000124107: '442961000124107',
-  EnteralFormulaTypeCodes.value442951000124105: '442951000124105',
-  EnteralFormulaTypeCodes.value442941000124108: '442941000124108',
-  EnteralFormulaTypeCodes.value442921000124101: '442921000124101',
-  EnteralFormulaTypeCodes.value442931000124103: '442931000124103',
-  EnteralFormulaTypeCodes.value443361000124100: '443361000124100',
-  EnteralFormulaTypeCodes.value443401000124105: '443401000124105',
-  EnteralFormulaTypeCodes.value443491000124103: '443491000124103',
-  EnteralFormulaTypeCodes.value443501000124106: '443501000124106',
-  EnteralFormulaTypeCodes.value443421000124100: '443421000124100',
-  EnteralFormulaTypeCodes.value443471000124104: '443471000124104',
-  EnteralFormulaTypeCodes.value444431000124104: '444431000124104',
-  EnteralFormulaTypeCodes.value443451000124109: '443451000124109',
-  EnteralFormulaTypeCodes.value441561000124106: '441561000124106',
-  EnteralFormulaTypeCodes.value443461000124106: '443461000124106',
-  EnteralFormulaTypeCodes.value441531000124102: '441531000124102',
-  EnteralFormulaTypeCodes.value443561000124107: '443561000124107',
-  EnteralFormulaTypeCodes.value443481000124101: '443481000124101',
-  EnteralFormulaTypeCodes.value441571000124104: '441571000124104',
-  EnteralFormulaTypeCodes.value441591000124103: '441591000124103',
-  EnteralFormulaTypeCodes.value441601000124106: '441601000124106',
-  EnteralFormulaTypeCodes.value443351000124102: '443351000124102',
-  EnteralFormulaTypeCodes.value443771000124106: '443771000124106',
-  EnteralFormulaTypeCodes.value441671000124100: '441671000124100',
-  EnteralFormulaTypeCodes.value443111000124101: '443111000124101',
-  EnteralFormulaTypeCodes.value443431000124102: '443431000124102',
-  EnteralFormulaTypeCodes.value443411000124108: '443411000124108',
-  EnteralFormulaTypeCodes.value442651000124102: '442651000124102',
-};
-
-const _$EnteralFormulaAdditiveTypeCodeEnumMap = {
-  EnteralFormulaAdditiveTypeCode.lipid: 'lipid',
-  EnteralFormulaAdditiveTypeCode.protein: 'protein',
-  EnteralFormulaAdditiveTypeCode.carbohydrate: 'carbohydrate',
-  EnteralFormulaAdditiveTypeCode.fiber: 'fiber',
-  EnteralFormulaAdditiveTypeCode.water: 'water',
-};
-
-const _$EnteralRouteCodesEnumMap = {
-  EnteralRouteCodes.PO: 'PO',
-  EnteralRouteCodes.EFT: 'EFT',
-  EnteralRouteCodes.ENTINSTL: 'ENTINSTL',
-  EnteralRouteCodes.GT: 'GT',
-  EnteralRouteCodes.NGT: 'NGT',
-  EnteralRouteCodes.OGT: 'OGT',
-  EnteralRouteCodes.GJT: 'GJT',
-  EnteralRouteCodes.JJTINSTL: 'JJTINSTL',
-  EnteralRouteCodes.OJJ: 'OJJ',
-};
-
 NutritionOrderAdministration _$NutritionOrderAdministrationFromJson(
         Map<String, dynamic> json) =>
     NutritionOrderAdministration(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -999,7 +846,7 @@ Map<String, dynamic> _$NutritionOrderAdministrationToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('schedule', instance.schedule?.toJson());

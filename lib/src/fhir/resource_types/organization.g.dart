@@ -42,7 +42,7 @@ Organization _$OrganizationFromJson(Map<String, dynamic> json) => Organization(
           ? null
           : Element.fromJson(json['_active'] as Map<String, dynamic>),
       type: (json['type'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$OrganizationTypeEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       name: json['name'] == null ? null : FhirString.fromJson(json['name']),
       nameElement: json['_name'] == null
@@ -190,21 +190,6 @@ const _$CommonLanguagesEnumMap = {
   CommonLanguages.zh_HK: 'zh-HK',
   CommonLanguages.zh_SG: 'zh-SG',
   CommonLanguages.zh_TW: 'zh-TW',
-};
-
-const _$OrganizationTypeEnumMap = {
-  OrganizationType.prov: 'prov',
-  OrganizationType.dept: 'dept',
-  OrganizationType.team: 'team',
-  OrganizationType.govt: 'govt',
-  OrganizationType.ins: 'ins',
-  OrganizationType.pay: 'pay',
-  OrganizationType.edu: 'edu',
-  OrganizationType.reli: 'reli',
-  OrganizationType.crs: 'crs',
-  OrganizationType.cg: 'cg',
-  OrganizationType.bus: 'bus',
-  OrganizationType.other: 'other',
 };
 
 const _$R4ResourceTypeEnumMap = {
@@ -355,13 +340,15 @@ const _$R4ResourceTypeEnumMap = {
 OrganizationContact _$OrganizationContactFromJson(Map<String, dynamic> json) =>
     OrganizationContact(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      purpose: $enumDecodeNullable(_$ContactEntityTypeEnumMap, json['purpose']),
+      purpose: json['purpose'] == null
+          ? null
+          : CodeableConcept.fromJson(json['purpose'] as Map<String, dynamic>),
       name: json['name'] == null
           ? null
           : HumanName.fromJson(json['name'] as Map<String, dynamic>),
@@ -404,7 +391,7 @@ Map<String, dynamic> _$OrganizationContactToJson(OrganizationContact instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('purpose', instance.purpose?.toJson());
@@ -413,12 +400,3 @@ Map<String, dynamic> _$OrganizationContactToJson(OrganizationContact instance) {
   writeNotNull('address', instance.address?.toJson());
   return val;
 }
-
-const _$ContactEntityTypeEnumMap = {
-  ContactEntityType.BILL: 'BILL',
-  ContactEntityType.ADMIN: 'ADMIN',
-  ContactEntityType.HR: 'HR',
-  ContactEntityType.PAYOR: 'PAYOR',
-  ContactEntityType.PATINF: 'PATINF',
-  ContactEntityType.PRESS: 'PRESS',
-};

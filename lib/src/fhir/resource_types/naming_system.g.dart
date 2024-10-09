@@ -64,7 +64,9 @@ NamingSystem _$NamingSystemFromJson(Map<String, dynamic> json) => NamingSystem(
       responsibleElement: json['_responsible'] == null
           ? null
           : Element.fromJson(json['_responsible'] as Map<String, dynamic>),
-      type: $enumDecodeNullable(_$IdentifierTypeCodesEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       description: json['description'] == null
           ? null
           : FhirMarkdown.fromJson(json['description']),
@@ -229,27 +231,6 @@ const _$NamingSystemTypeEnumMap = {
   NamingSystemType.root: 'root',
 };
 
-const _$IdentifierTypeCodesEnumMap = {
-  IdentifierTypeCodes.DL: 'DL',
-  IdentifierTypeCodes.PPN: 'PPN',
-  IdentifierTypeCodes.BRN: 'BRN',
-  IdentifierTypeCodes.MR: 'MR',
-  IdentifierTypeCodes.MCN: 'MCN',
-  IdentifierTypeCodes.EN: 'EN',
-  IdentifierTypeCodes.TAX: 'TAX',
-  IdentifierTypeCodes.NIIP: 'NIIP',
-  IdentifierTypeCodes.PRN: 'PRN',
-  IdentifierTypeCodes.MD: 'MD',
-  IdentifierTypeCodes.DR: 'DR',
-  IdentifierTypeCodes.ACSN: 'ACSN',
-  IdentifierTypeCodes.UDI: 'UDI',
-  IdentifierTypeCodes.SNO: 'SNO',
-  IdentifierTypeCodes.SB: 'SB',
-  IdentifierTypeCodes.PLAC: 'PLAC',
-  IdentifierTypeCodes.FILL: 'FILL',
-  IdentifierTypeCodes.JHN: 'JHN',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -399,7 +380,7 @@ NamingSystemUniqueId _$NamingSystemUniqueIdFromJson(
         Map<String, dynamic> json) =>
     NamingSystemUniqueId(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -461,7 +442,7 @@ Map<String, dynamic> _$NamingSystemUniqueIdToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();

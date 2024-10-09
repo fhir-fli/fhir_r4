@@ -290,7 +290,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
   /// origins of replication
   /// ([SO:0000340](http://www.sequenceontology.org/browser/current_svn/term/SO:0000340)).
   @JsonKey(name: 'chromosome')
-  final ChromosomeHuman? chromosome;
+  final CodeableConcept? chromosome;
 
   /// [genomeBuild] /// The Genome Build used for reference, following GRCh build versions e.g.
   /// 'GRCh 37'. Version number must be included if a versioned release of a
@@ -361,7 +361,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ChromosomeHuman? chromosome,
+    CodeableConcept? chromosome,
     FhirString? genomeBuild,
     Element? genomeBuildElement,
     OrientationType? orientation,

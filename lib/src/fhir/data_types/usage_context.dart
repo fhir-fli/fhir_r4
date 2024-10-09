@@ -37,7 +37,7 @@ class UsageContext extends DataType {
   /// [code] /// A code that identifies the type of context being specified by this usage
   /// context.
   @JsonKey(name: 'code')
-  final UsageContextType code;
+  final Coding code;
 
   /// [valueCodeableConcept] /// A value that defines the context specified in this context of use. The
   /// interpretation of the value is defined by the code.
@@ -70,7 +70,7 @@ class UsageContext extends DataType {
   UsageContext copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
-    UsageContextType? code,
+    Coding? code,
     CodeableConcept? valueCodeableConcept,
     Quantity? valueQuantity,
     Range? valueRange,

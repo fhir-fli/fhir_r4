@@ -140,7 +140,7 @@ Citation _$CitationFromJson(Map<String, dynamic> json) => Citation(
           ?.map((e) => Annotation.fromJson(e as Map<String, dynamic>))
           .toList(),
       currentState: (json['currentState'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$CitationStatusTypeEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       statusDate: (json['statusDate'] as List<dynamic>?)
           ?.map((e) => CitationStatusDate.fromJson(e as Map<String, dynamic>))
@@ -317,42 +317,6 @@ const _$PublicationStatusEnumMap = {
   PublicationStatus.unknown: 'unknown',
 };
 
-const _$CitationStatusTypeEnumMap = {
-  CitationStatusType.pubmed_pubstatus_received: 'pubmed-pubstatus-received',
-  CitationStatusType.pubmed_pubstatus_accepted: 'pubmed-pubstatus-accepted',
-  CitationStatusType.pubmed_pubstatus_epublish: 'pubmed-pubstatus-epublish',
-  CitationStatusType.pubmed_pubstatus_ppublish: 'pubmed-pubstatus-ppublish',
-  CitationStatusType.pubmed_pubstatus_revised: 'pubmed-pubstatus-revised',
-  CitationStatusType.pubmed_pubstatus_aheadofprint:
-      'pubmed-pubstatus-aheadofprint',
-  CitationStatusType.pubmed_pubstatus_retracted: 'pubmed-pubstatus-retracted',
-  CitationStatusType.pubmed_pubstatus_ecollection:
-      'pubmed-pubstatus-ecollection',
-  CitationStatusType.pubmed_pubstatus_pmc: 'pubmed-pubstatus-pmc',
-  CitationStatusType.pubmed_pubstatus_pmcr: 'pubmed-pubstatus-pmcr',
-  CitationStatusType.pubmed_pubstatus_pubmed: 'pubmed-pubstatus-pubmed',
-  CitationStatusType.pubmed_pubstatus_pubmedr: 'pubmed-pubstatus-pubmedr',
-  CitationStatusType.pubmed_pubstatus_premedline: 'pubmed-pubstatus-premedline',
-  CitationStatusType.pubmed_pubstatus_medline: 'pubmed-pubstatus-medline',
-  CitationStatusType.pubmed_pubstatus_medliner: 'pubmed-pubstatus-medliner',
-  CitationStatusType.pubmed_pubstatus_entrez: 'pubmed-pubstatus-entrez',
-  CitationStatusType.pubmed_pubstatus_pmc_release:
-      'pubmed-pubstatus-pmc-release',
-  CitationStatusType.medline_completed: 'medline-completed',
-  CitationStatusType.medline_in_process: 'medline-in-process',
-  CitationStatusType.medline_pubmed_not_medline: 'medline-pubmed-not-medline',
-  CitationStatusType.medline_in_data_review: 'medline-in-data-review',
-  CitationStatusType.medline_publisher: 'medline-publisher',
-  CitationStatusType.medline_medline: 'medline-medline',
-  CitationStatusType.medline_oldmedline: 'medline-oldmedline',
-  CitationStatusType.pubmed_publication_status_ppublish:
-      'pubmed-publication-status-ppublish',
-  CitationStatusType.pubmed_publication_status_epublish:
-      'pubmed-publication-status-epublish',
-  CitationStatusType.pubmed_publication_status_aheadofprint:
-      'pubmed-publication-status-aheadofprint',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -501,13 +465,15 @@ const _$R4ResourceTypeEnumMap = {
 CitationSummary _$CitationSummaryFromJson(Map<String, dynamic> json) =>
     CitationSummary(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      style: $enumDecodeNullable(_$CitationSummaryStyleEnumMap, json['style']),
+      style: json['style'] == null
+          ? null
+          : CodeableConcept.fromJson(json['style'] as Map<String, dynamic>),
       text: FhirMarkdown.fromJson(json['text']),
       textElement: json['_text'] == null
           ? null
@@ -545,7 +511,7 @@ Map<String, dynamic> _$CitationSummaryToJson(CitationSummary instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('style', instance.style?.toJson());
@@ -554,37 +520,21 @@ Map<String, dynamic> _$CitationSummaryToJson(CitationSummary instance) {
   return val;
 }
 
-const _$CitationSummaryStyleEnumMap = {
-  CitationSummaryStyle.vancouver: 'vancouver',
-  CitationSummaryStyle.ama11: 'ama11',
-  CitationSummaryStyle.apa7: 'apa7',
-  CitationSummaryStyle.apa6: 'apa6',
-  CitationSummaryStyle.asa6: 'asa6',
-  CitationSummaryStyle.mla8: 'mla8',
-  CitationSummaryStyle.cochrane: 'cochrane',
-  CitationSummaryStyle.elsevier_harvard: 'elsevier-harvard',
-  CitationSummaryStyle.nature: 'nature',
-  CitationSummaryStyle.acs: 'acs',
-  CitationSummaryStyle.chicago_a_17: 'chicago-a-17',
-  CitationSummaryStyle.chicago_b_17: 'chicago-b-17',
-  CitationSummaryStyle.ieee: 'ieee',
-  CitationSummaryStyle.comppub: 'comppub',
-};
-
 CitationClassification _$CitationClassificationFromJson(
         Map<String, dynamic> json) =>
     CitationClassification(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecodeNullable(
-          _$CitationClassificationTypeEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       classifier: (json['classifier'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$CitationArtifactClassifierEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
@@ -620,7 +570,7 @@ Map<String, dynamic> _$CitationClassificationToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.toJson());
@@ -629,49 +579,17 @@ Map<String, dynamic> _$CitationClassificationToJson(
   return val;
 }
 
-const _$CitationClassificationTypeEnumMap = {
-  CitationClassificationType.citation_source: 'citation-source',
-  CitationClassificationType.medline_owner: 'medline-owner',
-  CitationClassificationType.fevir_platform_use: 'fevir-platform-use',
-};
-
-const _$CitationArtifactClassifierEnumMap = {
-  CitationArtifactClassifier.webpage: 'webpage',
-  CitationArtifactClassifier.D016428: 'D016428',
-  CitationArtifactClassifier.D016422: 'D016422',
-  CitationArtifactClassifier.D016420: 'D016420',
-  CitationArtifactClassifier.D016425: 'D016425',
-  CitationArtifactClassifier.executable_app: 'executable-app',
-  CitationArtifactClassifier.D000076942: 'D000076942',
-  CitationArtifactClassifier.D019991: 'D019991',
-  CitationArtifactClassifier.D001877: 'D001877',
-  CitationArtifactClassifier.D064886: 'D064886',
-  CitationArtifactClassifier.value68059040: '68059040',
-  CitationArtifactClassifier.audio: 'audio',
-  CitationArtifactClassifier.image: 'image',
-  CitationArtifactClassifier.machine_code: 'machine-code',
-  CitationArtifactClassifier.protocol: 'protocol',
-  CitationArtifactClassifier.fhir_resource: 'fhir-resource',
-  CitationArtifactClassifier.Print: 'Print',
-  CitationArtifactClassifier.Print_Electronic: 'Print-Electronic',
-  CitationArtifactClassifier.Electronic: 'Electronic',
-  CitationArtifactClassifier.Electronic_Print: 'Electronic-Print',
-  CitationArtifactClassifier.Electronic_eCollection: 'Electronic-eCollection',
-  CitationArtifactClassifier.medline_base: 'medline-base',
-  CitationArtifactClassifier.common_share: 'common-share',
-  CitationArtifactClassifier.project_specific: 'project-specific',
-};
-
 CitationStatusDate _$CitationStatusDateFromJson(Map<String, dynamic> json) =>
     CitationStatusDate(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      activity: $enumDecode(_$CitationStatusTypeEnumMap, json['activity']),
+      activity:
+          CodeableConcept.fromJson(json['activity'] as Map<String, dynamic>),
       actual:
           json['actual'] == null ? null : FhirBoolean.fromJson(json['actual']),
       actualElement: json['_actual'] == null
@@ -711,7 +629,7 @@ Map<String, dynamic> _$CitationStatusDateToJson(CitationStatusDate instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['activity'] = instance.activity.toJson();
@@ -724,16 +642,16 @@ Map<String, dynamic> _$CitationStatusDateToJson(CitationStatusDate instance) {
 CitationRelatesTo _$CitationRelatesToFromJson(Map<String, dynamic> json) =>
     CitationRelatesTo(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      relationshipType: $enumDecode(
-          _$ArtifactRelationshipTypeEnumMap, json['relationshipType']),
+      relationshipType: CodeableConcept.fromJson(
+          json['relationshipType'] as Map<String, dynamic>),
       targetClassifier: (json['targetClassifier'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$CitationArtifactClassifierEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       targetUri: FhirUri.fromJson(json['targetUri']),
       targetUriElement: json['_targetUri'] == null
@@ -778,7 +696,7 @@ Map<String, dynamic> _$CitationRelatesToToJson(CitationRelatesTo instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['relationshipType'] = instance.relationshipType.toJson();
@@ -792,38 +710,11 @@ Map<String, dynamic> _$CitationRelatesToToJson(CitationRelatesTo instance) {
   return val;
 }
 
-const _$ArtifactRelationshipTypeEnumMap = {
-  ArtifactRelationshipType.replaces: 'replaces',
-  ArtifactRelationshipType.amends: 'amends',
-  ArtifactRelationshipType.appends: 'appends',
-  ArtifactRelationshipType.transforms: 'transforms',
-  ArtifactRelationshipType.replaced_with: 'replaced-with',
-  ArtifactRelationshipType.amended_with: 'amended-with',
-  ArtifactRelationshipType.appended_with: 'appended-with',
-  ArtifactRelationshipType.transformed_with: 'transformed-with',
-  ArtifactRelationshipType.derived_from: 'derived-from',
-  ArtifactRelationshipType.transformed_into: 'transformed-into',
-  ArtifactRelationshipType.composed_of: 'composed-of',
-  ArtifactRelationshipType.part_of: 'part-of',
-  ArtifactRelationshipType.supports: 'supports',
-  ArtifactRelationshipType.supported_with: 'supported-with',
-  ArtifactRelationshipType.depends_on: 'depends-on',
-  ArtifactRelationshipType.similar_to: 'similar-to',
-  ArtifactRelationshipType.cites: 'cites',
-  ArtifactRelationshipType.cited_by: 'cited-by',
-  ArtifactRelationshipType.retracts: 'retracts',
-  ArtifactRelationshipType.retracted_by: 'retracted-by',
-  ArtifactRelationshipType.comments_on: 'comments-on',
-  ArtifactRelationshipType.comment_in: 'comment-in',
-  ArtifactRelationshipType.corrects: 'corrects',
-  ArtifactRelationshipType.correction_in: 'correction-in',
-};
-
 CitationCitedArtifact _$CitationCitedArtifactFromJson(
         Map<String, dynamic> json) =>
     CitationCitedArtifact(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -845,7 +736,7 @@ CitationCitedArtifact _$CitationCitedArtifactFromJson(
           ? null
           : CitationVersion.fromJson(json['version'] as Map<String, dynamic>),
       currentState: (json['currentState'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$CitedArtifactStatusTypeEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       statusDate: (json['statusDate'] as List<dynamic>?)
           ?.map((e) => CitationStatusDate.fromJson(e as Map<String, dynamic>))
@@ -914,7 +805,7 @@ Map<String, dynamic> _$CitationCitedArtifactToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull(
@@ -944,29 +835,10 @@ Map<String, dynamic> _$CitationCitedArtifactToJson(
   return val;
 }
 
-const _$CitedArtifactStatusTypeEnumMap = {
-  CitedArtifactStatusType.created: 'created',
-  CitedArtifactStatusType.submitted: 'submitted',
-  CitedArtifactStatusType.withdrawn: 'withdrawn',
-  CitedArtifactStatusType.pre_review: 'pre-review',
-  CitedArtifactStatusType.under_review: 'under-review',
-  CitedArtifactStatusType.post_review_pre_published:
-      'post-review-pre-published',
-  CitedArtifactStatusType.rejected: 'rejected',
-  CitedArtifactStatusType.published_early_form: 'published-early-form',
-  CitedArtifactStatusType.published_final_form: 'published-final-form',
-  CitedArtifactStatusType.accepted: 'accepted',
-  CitedArtifactStatusType.archived: 'archived',
-  CitedArtifactStatusType.retracted: 'retracted',
-  CitedArtifactStatusType.draft: 'draft',
-  CitedArtifactStatusType.active: 'active',
-  CitedArtifactStatusType.approved: 'approved',
-};
-
 CitationVersion _$CitationVersionFromJson(Map<String, dynamic> json) =>
     CitationVersion(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1012,7 +884,7 @@ Map<String, dynamic> _$CitationVersionToJson(CitationVersion instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['value'] = instance.value.toJson();
@@ -1024,13 +896,14 @@ Map<String, dynamic> _$CitationVersionToJson(CitationVersion instance) {
 CitationStatusDate1 _$CitationStatusDate1FromJson(Map<String, dynamic> json) =>
     CitationStatusDate1(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      activity: $enumDecode(_$CitedArtifactStatusTypeEnumMap, json['activity']),
+      activity:
+          CodeableConcept.fromJson(json['activity'] as Map<String, dynamic>),
       actual:
           json['actual'] == null ? null : FhirBoolean.fromJson(json['actual']),
       actualElement: json['_actual'] == null
@@ -1070,7 +943,7 @@ Map<String, dynamic> _$CitationStatusDate1ToJson(CitationStatusDate1 instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['activity'] = instance.activity.toJson();
@@ -1083,16 +956,18 @@ Map<String, dynamic> _$CitationStatusDate1ToJson(CitationStatusDate1 instance) {
 CitationTitle _$CitationTitleFromJson(Map<String, dynamic> json) =>
     CitationTitle(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       type: (json['type'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$TitleTypeEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
-      language: $enumDecodeNullable(_$CommonLanguagesEnumMap, json['language']),
+      language: json['language'] == null
+          ? null
+          : CodeableConcept.fromJson(json['language'] as Map<String, dynamic>),
       text: FhirMarkdown.fromJson(json['text']),
       textElement: json['_text'] == null
           ? null
@@ -1130,7 +1005,7 @@ Map<String, dynamic> _$CitationTitleToJson(CitationTitle instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.map((e) => e.toJson()).toList());
@@ -1140,34 +1015,21 @@ Map<String, dynamic> _$CitationTitleToJson(CitationTitle instance) {
   return val;
 }
 
-const _$TitleTypeEnumMap = {
-  TitleType.primary: 'primary',
-  TitleType.official: 'official',
-  TitleType.scientific: 'scientific',
-  TitleType.plain_language: 'plain-language',
-  TitleType.subtitle: 'subtitle',
-  TitleType.short_title: 'short-title',
-  TitleType.acronym: 'acronym',
-  TitleType.earlier_title: 'earlier-title',
-  TitleType.language: 'language',
-  TitleType.autotranslated: 'autotranslated',
-  TitleType.human_use: 'human-use',
-  TitleType.machine_use: 'machine-use',
-  TitleType.duplicate_uid: 'duplicate-uid',
-};
-
 CitationAbstract _$CitationAbstractFromJson(Map<String, dynamic> json) =>
     CitationAbstract(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type:
-          $enumDecodeNullable(_$CitedArtifactAbstractTypeEnumMap, json['type']),
-      language: $enumDecodeNullable(_$CommonLanguagesEnumMap, json['language']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      language: json['language'] == null
+          ? null
+          : CodeableConcept.fromJson(json['language'] as Map<String, dynamic>),
       text: FhirMarkdown.fromJson(json['text']),
       textElement: json['_text'] == null
           ? null
@@ -1211,7 +1073,7 @@ Map<String, dynamic> _$CitationAbstractToJson(CitationAbstract instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.toJson());
@@ -1223,29 +1085,17 @@ Map<String, dynamic> _$CitationAbstractToJson(CitationAbstract instance) {
   return val;
 }
 
-const _$CitedArtifactAbstractTypeEnumMap = {
-  CitedArtifactAbstractType.primary_human_use: 'primary-human-use',
-  CitedArtifactAbstractType.primary_machine_use: 'primary-machine-use',
-  CitedArtifactAbstractType.truncated: 'truncated',
-  CitedArtifactAbstractType.short_abstract: 'short-abstract',
-  CitedArtifactAbstractType.long_abstract: 'long-abstract',
-  CitedArtifactAbstractType.plain_language: 'plain-language',
-  CitedArtifactAbstractType.different_publisher: 'different-publisher',
-  CitedArtifactAbstractType.language: 'language',
-  CitedArtifactAbstractType.autotranslated: 'autotranslated',
-  CitedArtifactAbstractType.duplicate_pmid: 'duplicate-pmid',
-  CitedArtifactAbstractType.earlier_abstract: 'earlier-abstract',
-};
-
 CitationPart _$CitationPartFromJson(Map<String, dynamic> json) => CitationPart(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecodeNullable(_$CitedArtifactPartTypeEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       value: json['value'] == null ? null : FhirString.fromJson(json['value']),
       valueElement: json['_value'] == null
           ? null
@@ -1286,7 +1136,7 @@ Map<String, dynamic> _$CitationPartToJson(CitationPart instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.toJson());
@@ -1296,31 +1146,19 @@ Map<String, dynamic> _$CitationPartToJson(CitationPart instance) {
   return val;
 }
 
-const _$CitedArtifactPartTypeEnumMap = {
-  CitedArtifactPartType.pages: 'pages',
-  CitedArtifactPartType.sections: 'sections',
-  CitedArtifactPartType.paragraphs: 'paragraphs',
-  CitedArtifactPartType.lines: 'lines',
-  CitedArtifactPartType.tables: 'tables',
-  CitedArtifactPartType.figures: 'figures',
-  CitedArtifactPartType.supplement: 'supplement',
-  CitedArtifactPartType.supplement_subpart: 'supplement-subpart',
-  CitedArtifactPartType.article_set: 'article-set',
-};
-
 CitationRelatesTo1 _$CitationRelatesTo1FromJson(Map<String, dynamic> json) =>
     CitationRelatesTo1(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      relationshipType: $enumDecode(
-          _$ArtifactRelationshipTypeEnumMap, json['relationshipType']),
+      relationshipType: CodeableConcept.fromJson(
+          json['relationshipType'] as Map<String, dynamic>),
       targetClassifier: (json['targetClassifier'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$CitationArtifactClassifierEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       targetUri: FhirUri.fromJson(json['targetUri']),
       targetUriElement: json['_targetUri'] == null
@@ -1365,7 +1203,7 @@ Map<String, dynamic> _$CitationRelatesTo1ToJson(CitationRelatesTo1 instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['relationshipType'] = instance.relationshipType.toJson();
@@ -1383,7 +1221,7 @@ CitationPublicationForm _$CitationPublicationFormFromJson(
         Map<String, dynamic> json) =>
     CitationPublicationForm(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1410,7 +1248,7 @@ CitationPublicationForm _$CitationPublicationFormFromJson(
           ? null
           : Element.fromJson(json['_lastRevisionDate'] as Map<String, dynamic>),
       language: (json['language'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$CommonLanguagesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       accessionNumber: json['accessionNumber'] == null
           ? null
@@ -1482,7 +1320,7 @@ Map<String, dynamic> _$CitationPublicationFormToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('publishedIn', instance.publishedIn?.toJson());
@@ -1510,13 +1348,15 @@ Map<String, dynamic> _$CitationPublicationFormToJson(
 CitationPublishedIn _$CitationPublishedInFromJson(Map<String, dynamic> json) =>
     CitationPublishedIn(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecodeNullable(_$PublishedInTypeEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map((e) => Identifier.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -1567,7 +1407,7 @@ Map<String, dynamic> _$CitationPublishedInToJson(CitationPublishedIn instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.toJson());
@@ -1582,25 +1422,20 @@ Map<String, dynamic> _$CitationPublishedInToJson(CitationPublishedIn instance) {
   return val;
 }
 
-const _$PublishedInTypeEnumMap = {
-  PublishedInType.D020492: 'D020492',
-  PublishedInType.D019991: 'D019991',
-  PublishedInType.D001877: 'D001877',
-  PublishedInType.D064886: 'D064886',
-};
-
 CitationPeriodicRelease _$CitationPeriodicReleaseFromJson(
         Map<String, dynamic> json) =>
     CitationPeriodicRelease(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      citedMedium:
-          $enumDecodeNullable(_$CitedMediumEnumMap, json['citedMedium']),
+      citedMedium: json['citedMedium'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['citedMedium'] as Map<String, dynamic>),
       volume:
           json['volume'] == null ? null : FhirString.fromJson(json['volume']),
       volumeElement: json['_volume'] == null
@@ -1648,7 +1483,7 @@ Map<String, dynamic> _$CitationPeriodicReleaseToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('citedMedium', instance.citedMedium?.toJson());
@@ -1660,21 +1495,11 @@ Map<String, dynamic> _$CitationPeriodicReleaseToJson(
   return val;
 }
 
-const _$CitedMediumEnumMap = {
-  CitedMedium.internet: 'internet',
-  CitedMedium.print: 'print',
-  CitedMedium.offline_digital_storage: 'offline-digital-storage',
-  CitedMedium.internet_without_issue: 'internet-without-issue',
-  CitedMedium.print_without_issue: 'print-without-issue',
-  CitedMedium.offline_digital_storage_without_issue:
-      'offline-digital-storage-without-issue',
-};
-
 CitationDateOfPublication _$CitationDateOfPublicationFromJson(
         Map<String, dynamic> json) =>
     CitationDateOfPublication(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1741,7 +1566,7 @@ Map<String, dynamic> _$CitationDateOfPublicationToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('date', instance.date?.toJson());
@@ -1762,13 +1587,15 @@ Map<String, dynamic> _$CitationDateOfPublicationToJson(
 CitationWebLocation _$CitationWebLocationFromJson(Map<String, dynamic> json) =>
     CitationWebLocation(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecodeNullable(_$ArticleUrlTypeEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       url: json['url'] == null ? null : FhirUri.fromJson(json['url']),
       urlElement: json['_url'] == null
           ? null
@@ -1806,7 +1633,7 @@ Map<String, dynamic> _$CitationWebLocationToJson(CitationWebLocation instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.toJson());
@@ -1815,39 +1642,21 @@ Map<String, dynamic> _$CitationWebLocationToJson(CitationWebLocation instance) {
   return val;
 }
 
-const _$ArticleUrlTypeEnumMap = {
-  ArticleUrlType.abstract_: 'abstract',
-  ArticleUrlType.abstract_version: 'abstract-version',
-  ArticleUrlType.doi_based: 'doi-based',
-  ArticleUrlType.full_text: 'full-text',
-  ArticleUrlType.full_text_version: 'full-text-version',
-  ArticleUrlType.pdf: 'pdf',
-  ArticleUrlType.pdf_version: 'pdf-version',
-  ArticleUrlType.webpage: 'webpage',
-  ArticleUrlType.not_specified: 'not-specified',
-  ArticleUrlType.json: 'json',
-  ArticleUrlType.json_version: 'json-version',
-  ArticleUrlType.xml: 'xml',
-  ArticleUrlType.xml_version: 'xml-version',
-  ArticleUrlType.supplement: 'supplement',
-  ArticleUrlType.supplementary_file_directory: 'supplementary-file-directory',
-  ArticleUrlType.compressed_file: 'compressed-file',
-};
-
 CitationClassification1 _$CitationClassification1FromJson(
         Map<String, dynamic> json) =>
     CitationClassification1(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecodeNullable(
-          _$CitedArtifactClassificationTypeEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       classifier: (json['classifier'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$CitationArtifactClassifierEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       whoClassified: json['whoClassified'] == null
           ? null
@@ -1887,7 +1696,7 @@ Map<String, dynamic> _$CitationClassification1ToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.toJson());
@@ -1897,29 +1706,11 @@ Map<String, dynamic> _$CitationClassification1ToJson(
   return val;
 }
 
-const _$CitedArtifactClassificationTypeEnumMap = {
-  CitedArtifactClassificationType.publication_type: 'publication-type',
-  CitedArtifactClassificationType.mesh_heading: 'mesh-heading',
-  CitedArtifactClassificationType.supplemental_mesh_protocol:
-      'supplemental-mesh-protocol',
-  CitedArtifactClassificationType.supplemental_mesh_disease:
-      'supplemental-mesh-disease',
-  CitedArtifactClassificationType.supplemental_mesh_organism:
-      'supplemental-mesh-organism',
-  CitedArtifactClassificationType.keyword: 'keyword',
-  CitedArtifactClassificationType.citation_subset: 'citation-subset',
-  CitedArtifactClassificationType.chemical: 'chemical',
-  CitedArtifactClassificationType.publishing_model: 'publishing-model',
-  CitedArtifactClassificationType.knowledge_artifact_type:
-      'knowledge-artifact-type',
-  CitedArtifactClassificationType.coverage: 'coverage',
-};
-
 CitationWhoClassified _$CitationWhoClassifiedFromJson(
         Map<String, dynamic> json) =>
     CitationWhoClassified(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1981,7 +1772,7 @@ Map<String, dynamic> _$CitationWhoClassifiedToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('person', instance.person?.toJson());
@@ -1999,7 +1790,7 @@ CitationContributorship _$CitationContributorshipFromJson(
         Map<String, dynamic> json) =>
     CitationContributorship(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -2051,7 +1842,7 @@ Map<String, dynamic> _$CitationContributorshipToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('complete', instance.complete?.toJson());
@@ -2064,7 +1855,7 @@ Map<String, dynamic> _$CitationContributorshipToJson(
 CitationEntry _$CitationEntryFromJson(Map<String, dynamic> json) =>
     CitationEntry(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -2099,9 +1890,11 @@ CitationEntry _$CitationEntryFromJson(Map<String, dynamic> json) =>
           ?.map((e) => ContactPoint.fromJson(e as Map<String, dynamic>))
           .toList(),
       contributionType: (json['contributionType'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ArtifactContributionTypeEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
-      role: $enumDecodeNullable(_$ContributorRoleEnumMap, json['role']),
+      role: json['role'] == null
+          ? null
+          : CodeableConcept.fromJson(json['role'] as Map<String, dynamic>),
       contributionInstance: (json['contributionInstance'] as List<dynamic>?)
           ?.map((e) =>
               CitationContributionInstance.fromJson(e as Map<String, dynamic>))
@@ -2152,7 +1945,7 @@ Map<String, dynamic> _$CitationEntryToJson(CitationEntry instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('name', instance.name?.toJson());
@@ -2179,38 +1972,11 @@ Map<String, dynamic> _$CitationEntryToJson(CitationEntry instance) {
   return val;
 }
 
-const _$ArtifactContributionTypeEnumMap = {
-  ArtifactContributionType.conceptualization: 'conceptualization',
-  ArtifactContributionType.data_curation: 'data-curation',
-  ArtifactContributionType.formal_analysis: 'formal-analysis',
-  ArtifactContributionType.funding_acquisition: 'funding-acquisition',
-  ArtifactContributionType.investigation: 'investigation',
-  ArtifactContributionType.methodology: 'methodology',
-  ArtifactContributionType.project_administration: 'project-administration',
-  ArtifactContributionType.resources: 'resources',
-  ArtifactContributionType.software: 'software',
-  ArtifactContributionType.supervision: 'supervision',
-  ArtifactContributionType.validation: 'validation',
-  ArtifactContributionType.visualization: 'visualization',
-  ArtifactContributionType.writing_original_draft: 'writing-original-draft',
-  ArtifactContributionType.writing_review_editing: 'writing-review-editing',
-};
-
-const _$ContributorRoleEnumMap = {
-  ContributorRole.publisher: 'publisher',
-  ContributorRole.author: 'author',
-  ContributorRole.reviewer: 'reviewer',
-  ContributorRole.endorser: 'endorser',
-  ContributorRole.editor: 'editor',
-  ContributorRole.informant: 'informant',
-  ContributorRole.funder: 'funder',
-};
-
 CitationAffiliationInfo _$CitationAffiliationInfoFromJson(
         Map<String, dynamic> json) =>
     CitationAffiliationInfo(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -2263,7 +2029,7 @@ Map<String, dynamic> _$CitationAffiliationInfoToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('affiliation', instance.affiliation?.toJson());
@@ -2279,14 +2045,13 @@ CitationContributionInstance _$CitationContributionInstanceFromJson(
         Map<String, dynamic> json) =>
     CitationContributionInstance(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type:
-          $enumDecode(_$ArtifactContributionInstanceTypeEnumMap, json['type']),
+      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       time: json['time'] == null
           ? null
           : FhirDateTime.fromJson(json['time'] as String),
@@ -2327,7 +2092,7 @@ Map<String, dynamic> _$CitationContributionInstanceToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();
@@ -2336,26 +2101,24 @@ Map<String, dynamic> _$CitationContributionInstanceToJson(
   return val;
 }
 
-const _$ArtifactContributionInstanceTypeEnumMap = {
-  ArtifactContributionInstanceType.reviewed: 'reviewed',
-  ArtifactContributionInstanceType.approved: 'approved',
-  ArtifactContributionInstanceType.edited: 'edited',
-};
-
 CitationSummary1 _$CitationSummary1FromJson(Map<String, dynamic> json) =>
     CitationSummary1(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecodeNullable(_$ContributorSummaryTypeEnumMap, json['type']),
-      style:
-          $enumDecodeNullable(_$ContributorSummaryStyleEnumMap, json['style']),
-      source: $enumDecodeNullable(
-          _$ContributorSummarySourceEnumMap, json['source']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      style: json['style'] == null
+          ? null
+          : CodeableConcept.fromJson(json['style'] as Map<String, dynamic>),
+      source: json['source'] == null
+          ? null
+          : CodeableConcept.fromJson(json['source'] as Map<String, dynamic>),
       value: FhirMarkdown.fromJson(json['value']),
       valueElement: json['_value'] == null
           ? null
@@ -2393,7 +2156,7 @@ Map<String, dynamic> _$CitationSummary1ToJson(CitationSummary1 instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.toJson());
@@ -2403,40 +2166,3 @@ Map<String, dynamic> _$CitationSummary1ToJson(CitationSummary1 instance) {
   writeNotNull('_value', instance.valueElement?.toJson());
   return val;
 }
-
-const _$ContributorSummaryTypeEnumMap = {
-  ContributorSummaryType.author_string: 'author-string',
-  ContributorSummaryType.contributorship_list: 'contributorship-list',
-  ContributorSummaryType.contributorship_statement: 'contributorship-statement',
-  ContributorSummaryType.acknowledgement_list: 'acknowledgement-list',
-  ContributorSummaryType.acknowledgment_statement: 'acknowledgment-statement',
-  ContributorSummaryType.funding_statement: 'funding-statement',
-  ContributorSummaryType.competing_interests_statement:
-      'competing-interests-statement',
-};
-
-const _$ContributorSummaryStyleEnumMap = {
-  ContributorSummaryStyle.a1full: 'a1full',
-  ContributorSummaryStyle.a1init: 'a1init',
-  ContributorSummaryStyle.a3full: 'a3full',
-  ContributorSummaryStyle.a3init: 'a3init',
-  ContributorSummaryStyle.a6full: 'a6full',
-  ContributorSummaryStyle.a6init: 'a6init',
-  ContributorSummaryStyle.aallfull: 'aallfull',
-  ContributorSummaryStyle.aallfullwithand: 'aallfullwithand',
-  ContributorSummaryStyle.aallfullwithampersand: 'aallfullwithampersand',
-  ContributorSummaryStyle.aallinit: 'aallinit',
-  ContributorSummaryStyle.aallinitwithand: 'aallinitwithand',
-  ContributorSummaryStyle.aallinitwithampersand: 'aallinitwithampersand',
-  ContributorSummaryStyle.contr_full_by_person: 'contr-full-by-person',
-  ContributorSummaryStyle.contr_init_by_person: 'contr-init-by-person',
-  ContributorSummaryStyle.contr_full_by_contr: 'contr-full-by-contr',
-  ContributorSummaryStyle.contr_init_by_contr: 'contr-init-by-contr',
-};
-
-const _$ContributorSummarySourceEnumMap = {
-  ContributorSummarySource.publisher_data: 'publisher-data',
-  ContributorSummarySource.article_copy: 'article-copy',
-  ContributorSummarySource.citation_manager: 'citation-manager',
-  ContributorSummarySource.custom: 'custom',
-};

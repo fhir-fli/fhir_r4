@@ -114,7 +114,7 @@ DeviceRequest _$DeviceRequestFromJson(Map<String, dynamic> json) =>
           ? null
           : Reference.fromJson(json['performer'] as Map<String, dynamic>),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ConditionProblemDiagnosisCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
@@ -312,10 +312,6 @@ const _$RequestPriorityEnumMap = {
   RequestPriority.stat: 'stat',
 };
 
-const _$ConditionProblemDiagnosisCodesEnumMap = {
-  ConditionProblemDiagnosisCodes.value160245001: '160245001',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -465,7 +461,7 @@ DeviceRequestParameter _$DeviceRequestParameterFromJson(
         Map<String, dynamic> json) =>
     DeviceRequestParameter(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -524,7 +520,7 @@ Map<String, dynamic> _$DeviceRequestParameterToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('code', instance.code?.toJson());

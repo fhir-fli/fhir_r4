@@ -719,7 +719,7 @@ class ValueSetDesignation extends BackboneElement {
 
   /// [use] /// A code that represents types of uses of designations.
   @JsonKey(name: 'use')
-  final DesignationUse? use;
+  final Coding? use;
 
   /// [value] /// The text value for this designation.
   @JsonKey(name: 'value')
@@ -741,7 +741,7 @@ class ValueSetDesignation extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CommonLanguages? language,
     Element? languageElement,
-    DesignationUse? use,
+    Coding? use,
     FhirString? value,
     Element? valueElement,
     Map<String, Object?>? userData,

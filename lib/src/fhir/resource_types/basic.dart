@@ -52,7 +52,7 @@ class Basic extends DomainResource {
   /// [code] /// Identifies the 'type' of resource - equivalent to the resource name for
   /// other resources.
   @JsonKey(name: 'code')
-  final BasicResourceTypes code;
+  final CodeableConcept code;
 
   /// [subject] /// Identifies the patient, practitioner, device or any other resource that is
   /// the "focus" of this resource.
@@ -88,7 +88,7 @@ class Basic extends DomainResource {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    BasicResourceTypes? code,
+    CodeableConcept? code,
     Reference? subject,
     FhirDate? created,
     Element? createdElement,

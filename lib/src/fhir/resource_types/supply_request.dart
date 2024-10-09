@@ -74,7 +74,7 @@ class SupplyRequest extends DomainResource {
   /// [category] /// Category of supply, e.g. central, non-stock, etc. This is used to support
   /// work flows associated with the supply process.
   @JsonKey(name: 'category')
-  final SupplyType? category;
+  final CodeableConcept? category;
 
   /// [priority] /// Indicates how quickly this SupplyRequest should be addressed with respect
   /// to other requests.
@@ -134,7 +134,7 @@ class SupplyRequest extends DomainResource {
 
   /// [reasonCode] /// The reason why the supply item was requested.
   @JsonKey(name: 'reasonCode')
-  final List<SupplyRequestReason>? reasonCode;
+  final List<CodeableConcept>? reasonCode;
 
   /// [reasonReference] /// The reason why the supply item was requested.
   @JsonKey(name: 'reasonReference')
@@ -170,7 +170,7 @@ class SupplyRequest extends DomainResource {
     List<Identifier>? identifier,
     SupplyRequestStatus? status,
     Element? statusElement,
-    SupplyType? category,
+    CodeableConcept? category,
     RequestPriority? priority,
     Element? priorityElement,
     CodeableConcept? itemCodeableConcept,
@@ -185,7 +185,7 @@ class SupplyRequest extends DomainResource {
     Element? authoredOnElement,
     Reference? requester,
     List<Reference>? supplier,
-    List<SupplyRequestReason>? reasonCode,
+    List<CodeableConcept>? reasonCode,
     List<Reference>? reasonReference,
     Reference? deliverFrom,
     Reference? deliverTo,

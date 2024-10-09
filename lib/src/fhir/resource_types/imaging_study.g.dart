@@ -402,7 +402,7 @@ const _$R4ResourceTypeEnumMap = {
 ImagingStudySeries _$ImagingStudySeriesFromJson(Map<String, dynamic> json) =>
     ImagingStudySeries(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -438,7 +438,9 @@ ImagingStudySeries _$ImagingStudySeriesFromJson(Map<String, dynamic> json) =>
       bodySite: json['bodySite'] == null
           ? null
           : Coding.fromJson(json['bodySite'] as Map<String, dynamic>),
-      laterality: $enumDecodeNullable(_$LateralityEnumMap, json['laterality']),
+      laterality: json['laterality'] == null
+          ? null
+          : Coding.fromJson(json['laterality'] as Map<String, dynamic>),
       specimen: (json['specimen'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -488,7 +490,7 @@ Map<String, dynamic> _$ImagingStudySeriesToJson(ImagingStudySeries instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['uid'] = instance.uid.toJson();
@@ -513,24 +515,19 @@ Map<String, dynamic> _$ImagingStudySeriesToJson(ImagingStudySeries instance) {
   return val;
 }
 
-const _$LateralityEnumMap = {
-  Laterality.value419161000: '419161000',
-  Laterality.value419465000: '419465000',
-  Laterality.value51440002: '51440002',
-};
-
 ImagingStudyPerformer _$ImagingStudyPerformerFromJson(
         Map<String, dynamic> json) =>
     ImagingStudyPerformer(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      function_: $enumDecodeNullable(
-          _$ImagingStudySeriesPerformerFunctionEnumMap, json['function']),
+      function_: json['function'] == null
+          ? null
+          : CodeableConcept.fromJson(json['function'] as Map<String, dynamic>),
       actor: Reference.fromJson(json['actor'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
@@ -566,7 +563,7 @@ Map<String, dynamic> _$ImagingStudyPerformerToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('function', instance.function_?.toJson());
@@ -574,19 +571,11 @@ Map<String, dynamic> _$ImagingStudyPerformerToJson(
   return val;
 }
 
-const _$ImagingStudySeriesPerformerFunctionEnumMap = {
-  ImagingStudySeriesPerformerFunction.CON: 'CON',
-  ImagingStudySeriesPerformerFunction.VRF: 'VRF',
-  ImagingStudySeriesPerformerFunction.PRF: 'PRF',
-  ImagingStudySeriesPerformerFunction.SPRF: 'SPRF',
-  ImagingStudySeriesPerformerFunction.REF: 'REF',
-};
-
 ImagingStudyInstance _$ImagingStudyInstanceFromJson(
         Map<String, dynamic> json) =>
     ImagingStudyInstance(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -641,7 +630,7 @@ Map<String, dynamic> _$ImagingStudyInstanceToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['uid'] = instance.uid.toJson();

@@ -72,13 +72,13 @@ class AllergyIntolerance extends DomainResource {
 
   /// [clinicalStatus] /// The clinical status of the allergy or intolerance.
   @JsonKey(name: 'clinicalStatus')
-  final AllergyIntoleranceClinicalStatusCodes? clinicalStatus;
+  final CodeableConcept? clinicalStatus;
 
   /// [verificationStatus] /// Assertion about certainty associated with the propensity, or potential
   /// risk, of a reaction to the identified substance (including pharmaceutical
   /// product).
   @JsonKey(name: 'verificationStatus')
-  final AllergyIntoleranceVerificationStatusCodes? verificationStatus;
+  final CodeableConcept? verificationStatus;
 
   /// [type] /// Identification of the underlying physiological mechanism for the reaction
   /// risk.
@@ -209,8 +209,8 @@ class AllergyIntolerance extends DomainResource {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
-    AllergyIntoleranceClinicalStatusCodes? clinicalStatus,
-    AllergyIntoleranceVerificationStatusCodes? verificationStatus,
+    CodeableConcept? clinicalStatus,
+    CodeableConcept? verificationStatus,
     AllergyIntoleranceType? type,
     Element? typeElement,
     List<AllergyIntoleranceCategory>? category,

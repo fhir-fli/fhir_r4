@@ -88,7 +88,9 @@ CoverageEligibilityResponse _$CoverageEligibilityResponseFromJson(
       preAuthRefElement: json['_preAuthRef'] == null
           ? null
           : Element.fromJson(json['_preAuthRef'] as Map<String, dynamic>),
-      form: $enumDecodeNullable(_$FormCodesEnumMap, json['form']),
+      form: json['form'] == null
+          ? null
+          : CodeableConcept.fromJson(json['form'] as Map<String, dynamic>),
       error: (json['error'] as List<dynamic>?)
           ?.map((e) => CoverageEligibilityResponseError.fromJson(
               e as Map<String, dynamic>))
@@ -250,11 +252,6 @@ const _$RemittanceOutcomeEnumMap = {
   RemittanceOutcome.partial: 'partial',
 };
 
-const _$FormCodesEnumMap = {
-  FormCodes.value1: '1',
-  FormCodes.value2: '2',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -404,7 +401,7 @@ CoverageEligibilityResponseInsurance
     _$CoverageEligibilityResponseInsuranceFromJson(Map<String, dynamic> json) =>
         CoverageEligibilityResponseInsurance(
           id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-          extension_: (json['extension_'] as List<dynamic>?)
+          extension_: (json['extension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
           modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -460,7 +457,7 @@ Map<String, dynamic> _$CoverageEligibilityResponseInsuranceToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['coverage'] = instance.coverage.toJson();
@@ -475,18 +472,21 @@ CoverageEligibilityResponseItem _$CoverageEligibilityResponseItemFromJson(
         Map<String, dynamic> json) =>
     CoverageEligibilityResponseItem(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      category:
-          $enumDecodeNullable(_$BenefitCategoryCodesEnumMap, json['category']),
-      productOrService:
-          $enumDecodeNullable(_$USCLSCodesEnumMap, json['productOrService']),
+      category: json['category'] == null
+          ? null
+          : CodeableConcept.fromJson(json['category'] as Map<String, dynamic>),
+      productOrService: json['productOrService'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['productOrService'] as Map<String, dynamic>),
       modifier: (json['modifier'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ModifierTypeCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       provider: json['provider'] == null
           ? null
@@ -507,9 +507,15 @@ CoverageEligibilityResponseItem _$CoverageEligibilityResponseItemFromJson(
       descriptionElement: json['_description'] == null
           ? null
           : Element.fromJson(json['_description'] as Map<String, dynamic>),
-      network: $enumDecodeNullable(_$NetworkTypeCodesEnumMap, json['network']),
-      unit: $enumDecodeNullable(_$UnitTypeCodesEnumMap, json['unit']),
-      term: $enumDecodeNullable(_$BenefitTermCodesEnumMap, json['term']),
+      network: json['network'] == null
+          ? null
+          : CodeableConcept.fromJson(json['network'] as Map<String, dynamic>),
+      unit: json['unit'] == null
+          ? null
+          : CodeableConcept.fromJson(json['unit'] as Map<String, dynamic>),
+      term: json['term'] == null
+          ? null
+          : CodeableConcept.fromJson(json['term'] as Map<String, dynamic>),
       benefit: (json['benefit'] as List<dynamic>?)
           ?.map((e) => CoverageEligibilityResponseBenefit.fromJson(
               e as Map<String, dynamic>))
@@ -523,8 +529,7 @@ CoverageEligibilityResponseItem _$CoverageEligibilityResponseItemFromJson(
               json['_authorizationRequired'] as Map<String, dynamic>),
       authorizationSupporting:
           (json['authorizationSupporting'] as List<dynamic>?)
-              ?.map((e) => $enumDecode(
-                  _$CoverageEligibilityResponseAuthSupportCodesEnumMap, e))
+              ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
               .toList(),
       authorizationUrl: json['authorizationUrl'] == null
           ? null
@@ -566,7 +571,7 @@ Map<String, dynamic> _$CoverageEligibilityResponseItemToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('category', instance.category?.toJson());
@@ -594,110 +599,17 @@ Map<String, dynamic> _$CoverageEligibilityResponseItemToJson(
   return val;
 }
 
-const _$BenefitCategoryCodesEnumMap = {
-  BenefitCategoryCodes.value1: '1',
-  BenefitCategoryCodes.value2: '2',
-  BenefitCategoryCodes.value3: '3',
-  BenefitCategoryCodes.value4: '4',
-  BenefitCategoryCodes.value5: '5',
-  BenefitCategoryCodes.value14: '14',
-  BenefitCategoryCodes.value23: '23',
-  BenefitCategoryCodes.value24: '24',
-  BenefitCategoryCodes.value25: '25',
-  BenefitCategoryCodes.value26: '26',
-  BenefitCategoryCodes.value27: '27',
-  BenefitCategoryCodes.value28: '28',
-  BenefitCategoryCodes.value30: '30',
-  BenefitCategoryCodes.value35: '35',
-  BenefitCategoryCodes.value36: '36',
-  BenefitCategoryCodes.value37: '37',
-  BenefitCategoryCodes.value49: '49',
-  BenefitCategoryCodes.value55: '55',
-  BenefitCategoryCodes.value56: '56',
-  BenefitCategoryCodes.value61: '61',
-  BenefitCategoryCodes.value62: '62',
-  BenefitCategoryCodes.value63: '63',
-  BenefitCategoryCodes.value69: '69',
-  BenefitCategoryCodes.value76: '76',
-  BenefitCategoryCodes.F1: 'F1',
-  BenefitCategoryCodes.F3: 'F3',
-  BenefitCategoryCodes.F4: 'F4',
-  BenefitCategoryCodes.F6: 'F6',
-};
-
-const _$USCLSCodesEnumMap = {
-  USCLSCodes.value1101: '1101',
-  USCLSCodes.value1102: '1102',
-  USCLSCodes.value1103: '1103',
-  USCLSCodes.value1201: '1201',
-  USCLSCodes.value1205: '1205',
-  USCLSCodes.value2101: '2101',
-  USCLSCodes.value2102: '2102',
-  USCLSCodes.value2141: '2141',
-  USCLSCodes.value2601: '2601',
-  USCLSCodes.value11101: '11101',
-  USCLSCodes.value11102: '11102',
-  USCLSCodes.value11103: '11103',
-  USCLSCodes.value11104: '11104',
-  USCLSCodes.value21211: '21211',
-  USCLSCodes.value21212: '21212',
-  USCLSCodes.value27211: '27211',
-  USCLSCodes.value67211: '67211',
-  USCLSCodes.value99111: '99111',
-  USCLSCodes.value99333: '99333',
-  USCLSCodes.value99555: '99555',
-};
-
-const _$ModifierTypeCodesEnumMap = {
-  ModifierTypeCodes.a: 'a',
-  ModifierTypeCodes.b: 'b',
-  ModifierTypeCodes.c: 'c',
-  ModifierTypeCodes.e: 'e',
-  ModifierTypeCodes.rooh: 'rooh',
-  ModifierTypeCodes.x: 'x',
-};
-
-const _$NetworkTypeCodesEnumMap = {
-  NetworkTypeCodes.in_: 'in',
-  NetworkTypeCodes.out: 'out',
-};
-
-const _$UnitTypeCodesEnumMap = {
-  UnitTypeCodes.individual: 'individual',
-  UnitTypeCodes.family: 'family',
-};
-
-const _$BenefitTermCodesEnumMap = {
-  BenefitTermCodes.annual: 'annual',
-  BenefitTermCodes.day: 'day',
-  BenefitTermCodes.lifetime: 'lifetime',
-};
-
-const _$CoverageEligibilityResponseAuthSupportCodesEnumMap = {
-  CoverageEligibilityResponseAuthSupportCodes.laborder: 'laborder',
-  CoverageEligibilityResponseAuthSupportCodes.labreport: 'labreport',
-  CoverageEligibilityResponseAuthSupportCodes.diagnosticimageorder:
-      'diagnosticimageorder',
-  CoverageEligibilityResponseAuthSupportCodes.diagnosticimagereport:
-      'diagnosticimagereport',
-  CoverageEligibilityResponseAuthSupportCodes.professionalreport:
-      'professionalreport',
-  CoverageEligibilityResponseAuthSupportCodes.accidentreport: 'accidentreport',
-  CoverageEligibilityResponseAuthSupportCodes.model: 'model',
-  CoverageEligibilityResponseAuthSupportCodes.picture: 'picture',
-};
-
 CoverageEligibilityResponseBenefit _$CoverageEligibilityResponseBenefitFromJson(
         Map<String, dynamic> json) =>
     CoverageEligibilityResponseBenefit(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecode(_$BenefitTypeCodesEnumMap, json['type']),
+      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       allowedUnsignedInt: json['allowedUnsignedInt'] == null
           ? null
           : FhirUnsignedInt.fromJson(json['allowedUnsignedInt']),
@@ -763,7 +675,7 @@ Map<String, dynamic> _$CoverageEligibilityResponseBenefitToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();
@@ -781,32 +693,17 @@ Map<String, dynamic> _$CoverageEligibilityResponseBenefitToJson(
   return val;
 }
 
-const _$BenefitTypeCodesEnumMap = {
-  BenefitTypeCodes.benefit: 'benefit',
-  BenefitTypeCodes.deductible: 'deductible',
-  BenefitTypeCodes.visit: 'visit',
-  BenefitTypeCodes.room: 'room',
-  BenefitTypeCodes.copay: 'copay',
-  BenefitTypeCodes.copay_percent: 'copay-percent',
-  BenefitTypeCodes.copay_maximum: 'copay-maximum',
-  BenefitTypeCodes.vision_exam: 'vision-exam',
-  BenefitTypeCodes.vision_glasses: 'vision-glasses',
-  BenefitTypeCodes.vision_contacts: 'vision-contacts',
-  BenefitTypeCodes.medical_primarycare: 'medical-primarycare',
-  BenefitTypeCodes.pharmacy_dispense: 'pharmacy-dispense',
-};
-
 CoverageEligibilityResponseError _$CoverageEligibilityResponseErrorFromJson(
         Map<String, dynamic> json) =>
     CoverageEligibilityResponseError(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      code: $enumDecode(_$AdjudicationErrorCodesEnumMap, json['code']),
+      code: CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -841,14 +738,9 @@ Map<String, dynamic> _$CoverageEligibilityResponseErrorToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['code'] = instance.code.toJson();
   return val;
 }
-
-const _$AdjudicationErrorCodesEnumMap = {
-  AdjudicationErrorCodes.a001: 'a001',
-  AdjudicationErrorCodes.a002: 'a002',
-};

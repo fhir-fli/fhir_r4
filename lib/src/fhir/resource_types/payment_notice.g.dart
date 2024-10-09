@@ -67,8 +67,10 @@ PaymentNotice _$PaymentNoticeFromJson(Map<String, dynamic> json) =>
           : Reference.fromJson(json['payee'] as Map<String, dynamic>),
       recipient: Reference.fromJson(json['recipient'] as Map<String, dynamic>),
       amount: Money.fromJson(json['amount'] as Map<String, dynamic>),
-      paymentStatus: $enumDecodeNullable(
-          _$PaymentStatusCodesEnumMap, json['paymentStatus']),
+      paymentStatus: json['paymentStatus'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['paymentStatus'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -199,11 +201,6 @@ const _$FinancialResourceStatusCodesEnumMap = {
   FinancialResourceStatusCodes.cancelled: 'cancelled',
   FinancialResourceStatusCodes.draft: 'draft',
   FinancialResourceStatusCodes.entered_in_error: 'entered-in-error',
-};
-
-const _$PaymentStatusCodesEnumMap = {
-  PaymentStatusCodes.paid: 'paid',
-  PaymentStatusCodes.cleared: 'cleared',
 };
 
 const _$R4ResourceTypeEnumMap = {

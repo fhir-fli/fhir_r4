@@ -60,7 +60,9 @@ PlanDefinition _$PlanDefinitionFromJson(Map<String, dynamic> json) =>
       subtitleElement: json['_subtitle'] == null
           ? null
           : Element.fromJson(json['_subtitle'] as Map<String, dynamic>),
-      type: $enumDecodeNullable(_$PlanDefinitionTypeEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       status: $enumDecode(_$PublicationStatusEnumMap, json['status']),
       statusElement: json['_status'] == null
           ? null
@@ -71,10 +73,14 @@ PlanDefinition _$PlanDefinitionFromJson(Map<String, dynamic> json) =>
       experimentalElement: json['_experimental'] == null
           ? null
           : Element.fromJson(json['_experimental'] as Map<String, dynamic>),
-      subjectCodeableConcept: $enumDecodeNullable(
-          _$SubjectTypeEnumMap, json['subjectCodeableConcept']),
-      subjectReference:
-          $enumDecodeNullable(_$SubjectTypeEnumMap, json['subjectReference']),
+      subjectCodeableConcept: json['subjectCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['subjectCodeableConcept'] as Map<String, dynamic>),
+      subjectReference: json['subjectReference'] == null
+          ? null
+          : Reference.fromJson(
+              json['subjectReference'] as Map<String, dynamic>),
       subjectCanonical:
           $enumDecodeNullable(_$SubjectTypeEnumMap, json['subjectCanonical']),
       subjectCanonicalElement: json['_subjectCanonical'] == null
@@ -139,7 +145,7 @@ PlanDefinition _$PlanDefinitionFromJson(Map<String, dynamic> json) =>
           ? null
           : Period.fromJson(json['effectivePeriod'] as Map<String, dynamic>),
       topic: (json['topic'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$DefinitionTopicEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       author: (json['author'] as List<dynamic>?)
           ?.map((e) => ContactDetail.fromJson(e as Map<String, dynamic>))
@@ -333,13 +339,6 @@ const _$CommonLanguagesEnumMap = {
   CommonLanguages.zh_TW: 'zh-TW',
 };
 
-const _$PlanDefinitionTypeEnumMap = {
-  PlanDefinitionType.order_set: 'order-set',
-  PlanDefinitionType.clinical_protocol: 'clinical-protocol',
-  PlanDefinitionType.eca_rule: 'eca-rule',
-  PlanDefinitionType.workflow_definition: 'workflow-definition',
-};
-
 const _$PublicationStatusEnumMap = {
   PublicationStatus.draft: 'draft',
   PublicationStatus.active: 'active',
@@ -353,12 +352,6 @@ const _$SubjectTypeEnumMap = {
   SubjectType.Organization: 'Organization',
   SubjectType.Location: 'Location',
   SubjectType.Device: 'Device',
-};
-
-const _$DefinitionTopicEnumMap = {
-  DefinitionTopic.treatment: 'treatment',
-  DefinitionTopic.education: 'education',
-  DefinitionTopic.assessment: 'assessment',
 };
 
 const _$R4ResourceTypeEnumMap = {
@@ -509,19 +502,25 @@ const _$R4ResourceTypeEnumMap = {
 PlanDefinitionGoal _$PlanDefinitionGoalFromJson(Map<String, dynamic> json) =>
     PlanDefinitionGoal(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      category: $enumDecodeNullable(_$GoalCategoryEnumMap, json['category']),
+      category: json['category'] == null
+          ? null
+          : CodeableConcept.fromJson(json['category'] as Map<String, dynamic>),
       description:
           CodeableConcept.fromJson(json['description'] as Map<String, dynamic>),
-      priority: $enumDecodeNullable(_$GoalPriorityEnumMap, json['priority']),
-      start: $enumDecodeNullable(_$GoalStartEventEnumMap, json['start']),
+      priority: json['priority'] == null
+          ? null
+          : CodeableConcept.fromJson(json['priority'] as Map<String, dynamic>),
+      start: json['start'] == null
+          ? null
+          : CodeableConcept.fromJson(json['start'] as Map<String, dynamic>),
       addresses: (json['addresses'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ConditionProblemDiagnosisCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       documentation: (json['documentation'] as List<dynamic>?)
           ?.map((e) => RelatedArtifact.fromJson(e as Map<String, dynamic>))
@@ -562,7 +561,7 @@ Map<String, dynamic> _$PlanDefinitionGoalToJson(PlanDefinitionGoal instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('category', instance.category?.toJson());
@@ -577,36 +576,11 @@ Map<String, dynamic> _$PlanDefinitionGoalToJson(PlanDefinitionGoal instance) {
   return val;
 }
 
-const _$GoalCategoryEnumMap = {
-  GoalCategory.dietary: 'dietary',
-  GoalCategory.safety: 'safety',
-  GoalCategory.behavioral: 'behavioral',
-  GoalCategory.nursing: 'nursing',
-  GoalCategory.physiotherapy: 'physiotherapy',
-};
-
-const _$GoalPriorityEnumMap = {
-  GoalPriority.high_priority: 'high-priority',
-  GoalPriority.medium_priority: 'medium-priority',
-  GoalPriority.low_priority: 'low-priority',
-};
-
-const _$GoalStartEventEnumMap = {
-  GoalStartEvent.value32485007: '32485007',
-  GoalStartEvent.value308283009: '308283009',
-  GoalStartEvent.value442137000: '442137000',
-  GoalStartEvent.value386216000: '386216000',
-};
-
-const _$ConditionProblemDiagnosisCodesEnumMap = {
-  ConditionProblemDiagnosisCodes.value160245001: '160245001',
-};
-
 PlanDefinitionTarget _$PlanDefinitionTargetFromJson(
         Map<String, dynamic> json) =>
     PlanDefinitionTarget(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -662,7 +636,7 @@ Map<String, dynamic> _$PlanDefinitionTargetToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('measure', instance.measure?.toJson());
@@ -678,7 +652,7 @@ PlanDefinitionAction _$PlanDefinitionActionFromJson(
         Map<String, dynamic> json) =>
     PlanDefinitionAction(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -710,10 +684,10 @@ PlanDefinitionAction _$PlanDefinitionActionFromJson(
           ? null
           : Element.fromJson(json['_priority'] as Map<String, dynamic>),
       code: (json['code'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ActionCodeEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       reason: (json['reason'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ActionReasonCodeEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       documentation: (json['documentation'] as List<dynamic>?)
           ?.map((e) => RelatedArtifact.fromJson(e as Map<String, dynamic>))
@@ -722,10 +696,14 @@ PlanDefinitionAction _$PlanDefinitionActionFromJson(
       goalIdElement: (json['_goalId'] as List<dynamic>?)
           ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
           .toList(),
-      subjectCodeableConcept: $enumDecodeNullable(
-          _$SubjectTypeEnumMap, json['subjectCodeableConcept']),
-      subjectReference:
-          $enumDecodeNullable(_$SubjectTypeEnumMap, json['subjectReference']),
+      subjectCodeableConcept: json['subjectCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['subjectCodeableConcept'] as Map<String, dynamic>),
+      subjectReference: json['subjectReference'] == null
+          ? null
+          : Reference.fromJson(
+              json['subjectReference'] as Map<String, dynamic>),
       subjectCanonical:
           $enumDecodeNullable(_$SubjectTypeEnumMap, json['subjectCanonical']),
       subjectCanonicalElement: json['_subjectCanonical'] == null
@@ -774,7 +752,9 @@ PlanDefinitionAction _$PlanDefinitionActionFromJson(
           ?.map((e) =>
               PlanDefinitionParticipant.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecodeNullable(_$ActionTypeEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       groupingBehavior: $enumDecodeNullable(
           _$ActionGroupingBehaviorEnumMap, json['groupingBehavior']),
       groupingBehaviorElement: json['_groupingBehavior'] == null
@@ -862,7 +842,7 @@ Map<String, dynamic> _$PlanDefinitionActionToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('prefix', instance.prefix?.toJson());
@@ -936,33 +916,6 @@ const _$RequestPriorityEnumMap = {
   RequestPriority.stat: 'stat',
 };
 
-const _$ActionCodeEnumMap = {
-  ActionCode.send_message: 'send-message',
-  ActionCode.collect_information: 'collect-information',
-  ActionCode.prescribe_medication: 'prescribe-medication',
-  ActionCode.recommend_immunization: 'recommend-immunization',
-  ActionCode.order_service: 'order-service',
-  ActionCode.propose_diagnosis: 'propose-diagnosis',
-  ActionCode.record_detected_issue: 'record-detected-issue',
-  ActionCode.record_inference: 'record-inference',
-  ActionCode.report_flag: 'report-flag',
-};
-
-const _$ActionReasonCodeEnumMap = {
-  ActionReasonCode.off_pathway: 'off-pathway',
-  ActionReasonCode.risk_assessment: 'risk-assessment',
-  ActionReasonCode.care_gap: 'care-gap',
-  ActionReasonCode.drug_drug_interaction: 'drug-drug-interaction',
-  ActionReasonCode.quality_measure: 'quality-measure',
-};
-
-const _$ActionTypeEnumMap = {
-  ActionType.create: 'create',
-  ActionType.update: 'update',
-  ActionType.remove: 'remove',
-  ActionType.fire_event: 'fire-event',
-};
-
 const _$ActionGroupingBehaviorEnumMap = {
   ActionGroupingBehavior.visual_group: 'visual-group',
   ActionGroupingBehavior.logical_group: 'logical-group',
@@ -998,7 +951,7 @@ PlanDefinitionCondition _$PlanDefinitionConditionFromJson(
         Map<String, dynamic> json) =>
     PlanDefinitionCondition(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1045,7 +998,7 @@ Map<String, dynamic> _$PlanDefinitionConditionToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['kind'] = instance.kind.toJson();
@@ -1064,7 +1017,7 @@ PlanDefinitionRelatedAction _$PlanDefinitionRelatedActionFromJson(
         Map<String, dynamic> json) =>
     PlanDefinitionRelatedAction(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1120,7 +1073,7 @@ Map<String, dynamic> _$PlanDefinitionRelatedActionToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['actionId'] = instance.actionId.toJson();
@@ -1148,7 +1101,7 @@ PlanDefinitionParticipant _$PlanDefinitionParticipantFromJson(
         Map<String, dynamic> json) =>
     PlanDefinitionParticipant(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1195,7 +1148,7 @@ Map<String, dynamic> _$PlanDefinitionParticipantToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();
@@ -1215,7 +1168,7 @@ PlanDefinitionDynamicValue _$PlanDefinitionDynamicValueFromJson(
         Map<String, dynamic> json) =>
     PlanDefinitionDynamicValue(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -1262,7 +1215,7 @@ Map<String, dynamic> _$PlanDefinitionDynamicValueToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('path', instance.path?.toJson());

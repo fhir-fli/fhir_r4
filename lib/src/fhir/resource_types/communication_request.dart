@@ -100,7 +100,7 @@ class CommunicationRequest extends DomainResource {
   /// [category] /// The type of message to be sent such as alert, notification, reminder,
   /// instruction, etc.
   @JsonKey(name: 'category')
-  final List<CommunicationCategory>? category;
+  final List<CodeableConcept>? category;
 
   /// [priority] /// Characterizes how quickly the proposed act must be initiated. Includes
   /// concepts such as stat, urgent, routine.
@@ -209,7 +209,7 @@ class CommunicationRequest extends DomainResource {
     RequestStatus? status,
     Element? statusElement,
     CodeableConcept? statusReason,
-    List<CommunicationCategory>? category,
+    List<CodeableConcept>? category,
     RequestPriority? priority,
     Element? priorityElement,
     FhirBoolean? doNotPerform,

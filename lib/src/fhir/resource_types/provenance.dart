@@ -101,7 +101,7 @@ class Provenance extends DomainResource {
   /// with entities; it may include consuming, processing, transforming,
   /// modifying, relocating, using, or generating entities.
   @JsonKey(name: 'activity')
-  final ProvenanceActivityType? activity;
+  final CodeableConcept? activity;
 
   /// [agent] /// An actor taking a role in an activity for which it can be assigned some
   /// degree of responsibility for the activity taking place.
@@ -146,7 +146,7 @@ class Provenance extends DomainResource {
     List<Element>? policyElement,
     Reference? location,
     List<CodeableConcept>? reason,
-    ProvenanceActivityType? activity,
+    CodeableConcept? activity,
     List<ProvenanceAgent>? agent,
     List<ProvenanceEntity>? entity,
     List<Signature>? signature,
@@ -239,12 +239,12 @@ class ProvenanceAgent extends BackboneElement {
 
   /// [type] /// The participation the agent had with respect to the activity.
   @JsonKey(name: 'type')
-  final ProvenanceParticipantType? type;
+  final CodeableConcept? type;
 
   /// [role] /// The function of the agent with respect to the activity. The security role
   /// enabling the agent with respect to the activity.
   @JsonKey(name: 'role')
-  final List<SecurityRoleType>? role;
+  final List<CodeableConcept>? role;
 
   /// [who] /// The individual, device or organization that participated in the event.
   @JsonKey(name: 'who')
@@ -266,8 +266,8 @@ class ProvenanceAgent extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    ProvenanceParticipantType? type,
-    List<SecurityRoleType>? role,
+    CodeableConcept? type,
+    List<CodeableConcept>? role,
     Reference? who,
     Reference? onBehalfOf,
     Map<String, Object?>? userData,

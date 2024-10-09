@@ -237,7 +237,9 @@ Map<String, WritableClass> _buildWritableClasses(
         }
         classes[classPath]!.addField(Field(
           name: fieldName,
-          type: enumName ?? referenceFieldType,
+          type: referenceFieldType.isPrimitiveType
+              ? enumName ?? referenceFieldType
+              : referenceFieldType,
           comment: element['definition'] as String? ?? '',
           needsElement: referenceFieldType.isPrimitiveType,
           path: path,
@@ -251,7 +253,8 @@ Map<String, WritableClass> _buildWritableClasses(
             (type as Map<String, dynamic>)['code'] as String;
         classes[classPath]!.addField(Field(
           name: fieldName.replaceAll('[x]', actualType.capitalize),
-          type: enumName ?? actualType,
+          type:
+              actualType.isPrimitiveType ? enumName ?? actualType : actualType,
           comment: element['definition'] as String? ?? '',
           needsElement: actualType.isPrimitiveType,
           path: path,
@@ -271,7 +274,7 @@ Map<String, WritableClass> _buildWritableClasses(
       }
       classes[classPath]!.addField(Field(
         name: fieldName,
-        type: enumName ?? fieldType,
+        type: fieldType.isPrimitiveType ? enumName ?? fieldType : fieldType,
         comment: element['definition'] as String? ?? '',
         needsElement: fieldType.isPrimitiveType,
         path: path,

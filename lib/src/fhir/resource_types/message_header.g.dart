@@ -57,8 +57,9 @@ MessageHeader _$MessageHeaderFromJson(Map<String, dynamic> json) =>
       responsible: json['responsible'] == null
           ? null
           : Reference.fromJson(json['responsible'] as Map<String, dynamic>),
-      reason: $enumDecodeNullable(
-          _$ExampleMessageReasonCodesEnumMap, json['reason']),
+      reason: json['reason'] == null
+          ? null
+          : CodeableConcept.fromJson(json['reason'] as Map<String, dynamic>),
       response: json['response'] == null
           ? null
           : MessageHeaderResponse.fromJson(
@@ -194,15 +195,6 @@ const _$CommonLanguagesEnumMap = {
   CommonLanguages.zh_HK: 'zh-HK',
   CommonLanguages.zh_SG: 'zh-SG',
   CommonLanguages.zh_TW: 'zh-TW',
-};
-
-const _$ExampleMessageReasonCodesEnumMap = {
-  ExampleMessageReasonCodes.admit: 'admit',
-  ExampleMessageReasonCodes.discharge: 'discharge',
-  ExampleMessageReasonCodes.absent: 'absent',
-  ExampleMessageReasonCodes.return_: 'return',
-  ExampleMessageReasonCodes.moved: 'moved',
-  ExampleMessageReasonCodes.edit: 'edit',
 };
 
 const _$R4ResourceTypeEnumMap = {
@@ -354,7 +346,7 @@ MessageHeaderDestination _$MessageHeaderDestinationFromJson(
         Map<String, dynamic> json) =>
     MessageHeaderDestination(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -408,7 +400,7 @@ Map<String, dynamic> _$MessageHeaderDestinationToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('name', instance.name?.toJson());
@@ -423,7 +415,7 @@ Map<String, dynamic> _$MessageHeaderDestinationToJson(
 MessageHeaderSource _$MessageHeaderSourceFromJson(Map<String, dynamic> json) =>
     MessageHeaderSource(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -484,7 +476,7 @@ Map<String, dynamic> _$MessageHeaderSourceToJson(MessageHeaderSource instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('name', instance.name?.toJson());
@@ -503,7 +495,7 @@ MessageHeaderResponse _$MessageHeaderResponseFromJson(
         Map<String, dynamic> json) =>
     MessageHeaderResponse(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -554,7 +546,7 @@ Map<String, dynamic> _$MessageHeaderResponseToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['identifier'] = instance.identifier.toJson();

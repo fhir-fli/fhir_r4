@@ -58,12 +58,12 @@ class DataRequirement extends DataType {
   /// [subjectCodeableConcept] /// The intended subjects of the data requirement. If this element is not
   /// provided, a Patient subject is assumed.
   @JsonKey(name: 'subjectCodeableConcept')
-  final SubjectType? subjectCodeableConcept;
+  final CodeableConcept? subjectCodeableConcept;
 
   /// [subjectReference] /// The intended subjects of the data requirement. If this element is not
   /// provided, a Patient subject is assumed.
   @JsonKey(name: 'subjectReference')
-  final SubjectType? subjectReference;
+  final Reference? subjectReference;
 
   /// [mustSupport] /// Indicates that specific elements of the type are referenced by the
   /// knowledge module and must be supported by the consumer in order to obtain
@@ -119,8 +119,8 @@ class DataRequirement extends DataType {
     Element? typeElement,
     List<FhirCanonical>? profile,
     List<Element>? profileElement,
-    SubjectType? subjectCodeableConcept,
-    SubjectType? subjectReference,
+    CodeableConcept? subjectCodeableConcept,
+    Reference? subjectReference,
     List<FhirString>? mustSupport,
     List<Element>? mustSupportElement,
     List<DataRequirementCodeFilter>? codeFilter,

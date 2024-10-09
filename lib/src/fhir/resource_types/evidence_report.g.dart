@@ -60,7 +60,9 @@ EvidenceReport _$EvidenceReportFromJson(Map<String, dynamic> json) =>
       citeAsMarkdownElement: json['_citeAsMarkdown'] == null
           ? null
           : Element.fromJson(json['_citeAsMarkdown'] as Map<String, dynamic>),
-      type: $enumDecodeNullable(_$EvidenceReportTypeEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       note: (json['note'] as List<dynamic>?)
           ?.map((e) => Annotation.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -242,13 +244,6 @@ const _$PublicationStatusEnumMap = {
   PublicationStatus.unknown: 'unknown',
 };
 
-const _$EvidenceReportTypeEnumMap = {
-  EvidenceReportType.classification: 'classification',
-  EvidenceReportType.search_results: 'search-results',
-  EvidenceReportType.resources_compiled: 'resources-compiled',
-  EvidenceReportType.text_structured: 'text-structured',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -398,7 +393,7 @@ EvidenceReportSubject _$EvidenceReportSubjectFromJson(
         Map<String, dynamic> json) =>
     EvidenceReportSubject(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -445,7 +440,7 @@ Map<String, dynamic> _$EvidenceReportSubjectToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('characteristic',
@@ -458,13 +453,13 @@ EvidenceReportCharacteristic _$EvidenceReportCharacteristicFromJson(
         Map<String, dynamic> json) =>
     EvidenceReportCharacteristic(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      code: $enumDecode(_$FocusCharacteristicCodeEnumMap, json['code']),
+      code: CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       valueReference:
           Reference.fromJson(json['valueReference'] as Map<String, dynamic>),
       valueCodeableConcept: CodeableConcept.fromJson(
@@ -519,7 +514,7 @@ Map<String, dynamic> _$EvidenceReportCharacteristicToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['code'] = instance.code.toJson();
@@ -535,23 +530,11 @@ Map<String, dynamic> _$EvidenceReportCharacteristicToJson(
   return val;
 }
 
-const _$FocusCharacteristicCodeEnumMap = {
-  FocusCharacteristicCode.citation: 'citation',
-  FocusCharacteristicCode.clinical_outcomes_observed:
-      'clinical-outcomes-observed',
-  FocusCharacteristicCode.population: 'population',
-  FocusCharacteristicCode.exposure: 'exposure',
-  FocusCharacteristicCode.comparator: 'comparator',
-  FocusCharacteristicCode.outcome: 'outcome',
-  FocusCharacteristicCode.medication_exposures: 'medication-exposures',
-  FocusCharacteristicCode.study_type: 'study-type',
-};
-
 EvidenceReportRelatesTo _$EvidenceReportRelatesToFromJson(
         Map<String, dynamic> json) =>
     EvidenceReportRelatesTo(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -599,7 +582,7 @@ Map<String, dynamic> _$EvidenceReportRelatesToToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['code'] = instance.code.toJson();
@@ -624,7 +607,7 @@ EvidenceReportSection _$EvidenceReportSectionFromJson(
         Map<String, dynamic> json) =>
     EvidenceReportSection(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -634,7 +617,9 @@ EvidenceReportSection _$EvidenceReportSectionFromJson(
       titleElement: json['_title'] == null
           ? null
           : Element.fromJson(json['_title'] as Map<String, dynamic>),
-      focus: $enumDecodeNullable(_$ReportSectionTypeEnumMap, json['focus']),
+      focus: json['focus'] == null
+          ? null
+          : CodeableConcept.fromJson(json['focus'] as Map<String, dynamic>),
       focusReference: json['focusReference'] == null
           ? null
           : Reference.fromJson(json['focusReference'] as Map<String, dynamic>),
@@ -648,10 +633,11 @@ EvidenceReportSection _$EvidenceReportSectionFromJson(
       modeElement: json['_mode'] == null
           ? null
           : Element.fromJson(json['_mode'] as Map<String, dynamic>),
-      orderedBy:
-          $enumDecodeNullable(_$ListOrderCodesEnumMap, json['orderedBy']),
+      orderedBy: json['orderedBy'] == null
+          ? null
+          : CodeableConcept.fromJson(json['orderedBy'] as Map<String, dynamic>),
       entryClassifier: (json['entryClassifier'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$EvidenceClassifierEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       entryReference: (json['entryReference'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
@@ -659,8 +645,10 @@ EvidenceReportSection _$EvidenceReportSectionFromJson(
       entryQuantity: (json['entryQuantity'] as List<dynamic>?)
           ?.map((e) => Quantity.fromJson(e as Map<String, dynamic>))
           .toList(),
-      emptyReason:
-          $enumDecodeNullable(_$ListEmptyReasonsEnumMap, json['emptyReason']),
+      emptyReason: json['emptyReason'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['emptyReason'] as Map<String, dynamic>),
       section: (json['section'] as List<dynamic>?)
           ?.map(
               (e) => EvidenceReportSection.fromJson(e as Map<String, dynamic>))
@@ -699,7 +687,7 @@ Map<String, dynamic> _$EvidenceReportSectionToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('title', instance.title?.toJson());
@@ -722,98 +710,8 @@ Map<String, dynamic> _$EvidenceReportSectionToJson(
   return val;
 }
 
-const _$ReportSectionTypeEnumMap = {
-  ReportSectionType.Evidence: 'Evidence',
-  ReportSectionType.Intervention_group_alone_Evidence:
-      'Intervention-group-alone-Evidence',
-  ReportSectionType.Intervention_vs_Control_Evidence:
-      'Intervention-vs-Control-Evidence',
-  ReportSectionType.Control_group_alone_Evidence:
-      'Control-group-alone-Evidence',
-  ReportSectionType.EvidenceVariable: 'EvidenceVariable',
-  ReportSectionType.EvidenceVariable_observed: 'EvidenceVariable-observed',
-  ReportSectionType.EvidenceVariable_intended: 'EvidenceVariable-intended',
-  ReportSectionType.EvidenceVariable_population: 'EvidenceVariable-population',
-  ReportSectionType.EvidenceVariable_exposure: 'EvidenceVariable-exposure',
-  ReportSectionType.EvidenceVariable_outcome: 'EvidenceVariable-outcome',
-  ReportSectionType.Efficacy_outcomes: 'Efficacy-outcomes',
-  ReportSectionType.Harms_outcomes: 'Harms-outcomes',
-  ReportSectionType.SampleSize: 'SampleSize',
-  ReportSectionType.References: 'References',
-  ReportSectionType.Assertion: 'Assertion',
-  ReportSectionType.Reasons: 'Reasons',
-  ReportSectionType.Certainty_of_Evidence: 'Certainty-of-Evidence',
-  ReportSectionType.Evidence_Classifier: 'Evidence-Classifier',
-  ReportSectionType.Warnings: 'Warnings',
-  ReportSectionType.Text_Summary: 'Text-Summary',
-  ReportSectionType.SummaryOfBodyOfEvidenceFindings:
-      'SummaryOfBodyOfEvidenceFindings',
-  ReportSectionType.SummaryOfIndividualStudyFindings:
-      'SummaryOfIndividualStudyFindings',
-  ReportSectionType.Header: 'Header',
-  ReportSectionType.Tables: 'Tables',
-  ReportSectionType.Table: 'Table',
-  ReportSectionType.Row_Headers: 'Row-Headers',
-  ReportSectionType.Column_Header: 'Column-Header',
-  ReportSectionType.Column_Headers: 'Column-Headers',
-};
-
 const _$ListModeEnumMap = {
   ListMode.working: 'working',
   ListMode.snapshot: 'snapshot',
   ListMode.changes: 'changes',
-};
-
-const _$ListOrderCodesEnumMap = {
-  ListOrderCodes.user: 'user',
-  ListOrderCodes.system: 'system',
-  ListOrderCodes.event_date: 'event-date',
-  ListOrderCodes.entry_date: 'entry-date',
-  ListOrderCodes.priority: 'priority',
-  ListOrderCodes.alphabetic: 'alphabetic',
-  ListOrderCodes.category: 'category',
-  ListOrderCodes.patient: 'patient',
-};
-
-const _$EvidenceClassifierEnumMap = {
-  EvidenceClassifier.COVID19Specific: 'COVID19Specific',
-  EvidenceClassifier.COVID19Relevant: 'COVID19Relevant',
-  EvidenceClassifier.COVID19HumanResearch: 'COVID19HumanResearch',
-  EvidenceClassifier.OriginalResearch: 'OriginalResearch',
-  EvidenceClassifier.ResearchSynthesis: 'ResearchSynthesis',
-  EvidenceClassifier.Guideline: 'Guideline',
-  EvidenceClassifier.ResearchProtocol: 'ResearchProtocol',
-  EvidenceClassifier.NotResearchNotGuideline: 'NotResearchNotGuideline',
-  EvidenceClassifier.Treatment: 'Treatment',
-  EvidenceClassifier.PreventionAndControl: 'PreventionAndControl',
-  EvidenceClassifier.Diagnosis: 'Diagnosis',
-  EvidenceClassifier.PrognosisPrediction: 'PrognosisPrediction',
-  EvidenceClassifier.RatedAsYes: 'RatedAsYes',
-  EvidenceClassifier.RatedAsNo: 'RatedAsNo',
-  EvidenceClassifier.NotAssessed: 'NotAssessed',
-  EvidenceClassifier.RatedAsRCT: 'RatedAsRCT',
-  EvidenceClassifier.RatedAsControlledTrial: 'RatedAsControlledTrial',
-  EvidenceClassifier.RatedAsComparativeCohort: 'RatedAsComparativeCohort',
-  EvidenceClassifier.RatedAsCaseControl: 'RatedAsCaseControl',
-  EvidenceClassifier.RatedAsUncontrolledSeries: 'RatedAsUncontrolledSeries',
-  EvidenceClassifier.RatedAsMixedMethods: 'RatedAsMixedMethods',
-  EvidenceClassifier.RatedAsOther: 'RatedAsOther',
-  EvidenceClassifier.RiskOfBias: 'RiskOfBias',
-  EvidenceClassifier.NoBlinding: 'NoBlinding',
-  EvidenceClassifier.AllocConcealNotStated: 'AllocConcealNotStated',
-  EvidenceClassifier.EarlyTrialTermination: 'EarlyTrialTermination',
-  EvidenceClassifier.NoITT: 'NoITT',
-  EvidenceClassifier.Preprint: 'Preprint',
-  EvidenceClassifier.PreliminaryAnalysis: 'PreliminaryAnalysis',
-  EvidenceClassifier.BaselineImbalance: 'BaselineImbalance',
-  EvidenceClassifier.SubgroupAnalysis: 'SubgroupAnalysis',
-};
-
-const _$ListEmptyReasonsEnumMap = {
-  ListEmptyReasons.nilknown: 'nilknown',
-  ListEmptyReasons.notasked: 'notasked',
-  ListEmptyReasons.withheld: 'withheld',
-  ListEmptyReasons.unavailable: 'unavailable',
-  ListEmptyReasons.notstarted: 'notstarted',
-  ListEmptyReasons.closed: 'closed',
 };

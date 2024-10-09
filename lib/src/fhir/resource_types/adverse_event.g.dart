@@ -41,7 +41,7 @@ AdverseEvent _$AdverseEventFromJson(Map<String, dynamic> json) => AdverseEvent(
           ? null
           : Element.fromJson(json['_actuality'] as Map<String, dynamic>),
       category: (json['category'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$AdverseEventCategoryEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       event: json['event'] == null
           ? null
@@ -74,12 +74,16 @@ AdverseEvent _$AdverseEventFromJson(Map<String, dynamic> json) => AdverseEvent(
       location: json['location'] == null
           ? null
           : Reference.fromJson(json['location'] as Map<String, dynamic>),
-      seriousness: $enumDecodeNullable(
-          _$AdverseEventSeriousnessEnumMap, json['seriousness']),
-      severity:
-          $enumDecodeNullable(_$AdverseEventSeverityEnumMap, json['severity']),
-      outcome:
-          $enumDecodeNullable(_$AdverseEventOutcomeEnumMap, json['outcome']),
+      seriousness: json['seriousness'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['seriousness'] as Map<String, dynamic>),
+      severity: json['severity'] == null
+          ? null
+          : CodeableConcept.fromJson(json['severity'] as Map<String, dynamic>),
+      outcome: json['outcome'] == null
+          ? null
+          : CodeableConcept.fromJson(json['outcome'] as Map<String, dynamic>),
       recorder: json['recorder'] == null
           ? null
           : Reference.fromJson(json['recorder'] as Map<String, dynamic>),
@@ -242,37 +246,6 @@ const _$AdverseEventActualityEnumMap = {
   AdverseEventActuality.potential: 'potential',
 };
 
-const _$AdverseEventCategoryEnumMap = {
-  AdverseEventCategory.product_problem: 'product-problem',
-  AdverseEventCategory.product_quality: 'product-quality',
-  AdverseEventCategory.product_use_error: 'product-use-error',
-  AdverseEventCategory.medical_device_use_error: 'medical-device-use-error',
-  AdverseEventCategory.problem_different_manufacturer:
-      'problem-different-manufacturer',
-  AdverseEventCategory.unsafe_physical_environment:
-      'unsafe-physical-environment',
-};
-
-const _$AdverseEventSeriousnessEnumMap = {
-  AdverseEventSeriousness.Non_serious: 'Non-serious',
-  AdverseEventSeriousness.Serious: 'Serious',
-};
-
-const _$AdverseEventSeverityEnumMap = {
-  AdverseEventSeverity.mild: 'mild',
-  AdverseEventSeverity.moderate: 'moderate',
-  AdverseEventSeverity.severe: 'severe',
-};
-
-const _$AdverseEventOutcomeEnumMap = {
-  AdverseEventOutcome.resolved: 'resolved',
-  AdverseEventOutcome.recovering: 'recovering',
-  AdverseEventOutcome.ongoing: 'ongoing',
-  AdverseEventOutcome.resolvedWithSequelae: 'resolvedWithSequelae',
-  AdverseEventOutcome.fatal: 'fatal',
-  AdverseEventOutcome.unknown: 'unknown',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -422,7 +395,7 @@ AdverseEventSuspectEntity _$AdverseEventSuspectEntityFromJson(
         Map<String, dynamic> json) =>
     AdverseEventSuspectEntity(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -467,7 +440,7 @@ Map<String, dynamic> _$AdverseEventSuspectEntityToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['instance'] = instance.instance.toJson();
@@ -480,14 +453,16 @@ AdverseEventCausality _$AdverseEventCausalityFromJson(
         Map<String, dynamic> json) =>
     AdverseEventCausality(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      assessment: $enumDecodeNullable(
-          _$AdverseEventCausalityAssessmentEnumMap, json['assessment']),
+      assessment: json['assessment'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['assessment'] as Map<String, dynamic>),
       productRelatedness: json['productRelatedness'] == null
           ? null
           : FhirString.fromJson(json['productRelatedness']),
@@ -498,8 +473,9 @@ AdverseEventCausality _$AdverseEventCausalityFromJson(
       author: json['author'] == null
           ? null
           : Reference.fromJson(json['author'] as Map<String, dynamic>),
-      method: $enumDecodeNullable(
-          _$AdverseEventCausalityMethodEnumMap, json['method']),
+      method: json['method'] == null
+          ? null
+          : CodeableConcept.fromJson(json['method'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -534,7 +510,7 @@ Map<String, dynamic> _$AdverseEventCausalityToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('assessment', instance.assessment?.toJson());
@@ -545,20 +521,3 @@ Map<String, dynamic> _$AdverseEventCausalityToJson(
   writeNotNull('method', instance.method?.toJson());
   return val;
 }
-
-const _$AdverseEventCausalityAssessmentEnumMap = {
-  AdverseEventCausalityAssessment.Certain: 'Certain',
-  AdverseEventCausalityAssessment.Probably_Likely: 'Probably-Likely',
-  AdverseEventCausalityAssessment.Possible: 'Possible',
-  AdverseEventCausalityAssessment.Unlikely: 'Unlikely',
-  AdverseEventCausalityAssessment.Conditional_Classified:
-      'Conditional-Classified',
-  AdverseEventCausalityAssessment.Unassessable_Unclassifiable:
-      'Unassessable-Unclassifiable',
-};
-
-const _$AdverseEventCausalityMethodEnumMap = {
-  AdverseEventCausalityMethod.ProbabilityScale: 'ProbabilityScale',
-  AdverseEventCausalityMethod.Bayesian: 'Bayesian',
-  AdverseEventCausalityMethod.Checklist: 'Checklist',
-};

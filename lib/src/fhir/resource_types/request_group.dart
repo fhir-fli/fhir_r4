@@ -415,7 +415,7 @@ class RequestGroupAction extends BackboneElement {
 
   /// [type] /// The type of action to perform (create, update, remove).
   @JsonKey(name: 'type')
-  final ActionType? type;
+  final CodeableConcept? type;
 
   /// [groupingBehavior] /// Defines the grouping behavior for the action and its children.
   @JsonKey(name: 'groupingBehavior')
@@ -489,7 +489,7 @@ class RequestGroupAction extends BackboneElement {
     Range? timingRange,
     Timing? timingTiming,
     List<Reference>? participant,
-    ActionType? type,
+    CodeableConcept? type,
     ActionGroupingBehavior? groupingBehavior,
     Element? groupingBehaviorElement,
     ActionSelectionBehavior? selectionBehavior,

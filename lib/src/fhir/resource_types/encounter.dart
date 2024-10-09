@@ -98,12 +98,12 @@ class Encounter extends DomainResource {
   /// [type] /// Specific type of encounter (e.g. e-mail consultation, surgical day-care,
   /// skilled nursing, rehabilitation).
   @JsonKey(name: 'type')
-  final List<EncounterType>? type;
+  final List<CodeableConcept>? type;
 
   /// [serviceType] /// Broad categorization of the service that is to be provided (e.g.
   /// cardiology).
   @JsonKey(name: 'serviceType')
-  final ServiceType? serviceType;
+  final CodeableConcept? serviceType;
 
   /// [priority] /// Indicates the urgency of the encounter.
   @JsonKey(name: 'priority')
@@ -211,8 +211,8 @@ class Encounter extends DomainResource {
     List<EncounterStatusHistory>? statusHistory,
     Coding? class_,
     List<EncounterClassHistory>? classHistory,
-    List<EncounterType>? type,
-    ServiceType? serviceType,
+    List<CodeableConcept>? type,
+    CodeableConcept? serviceType,
     CodeableConcept? priority,
     Reference? subject,
     List<Reference>? episodeOfCare,
@@ -511,7 +511,7 @@ class EncounterParticipant extends BackboneElement {
 
   /// [type] /// Role of participant in encounter.
   @JsonKey(name: 'type')
-  final List<ParticipantType>? type;
+  final List<CodeableConcept>? type;
 
   /// [period] /// The period of time that the specified participant participated in the
   /// encounter. These can overlap or be sub-sets of the overall encounter's
@@ -535,7 +535,7 @@ class EncounterParticipant extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    List<ParticipantType>? type,
+    List<CodeableConcept>? type,
     Period? period,
     Reference? individual,
     Map<String, Object?>? userData,
@@ -615,7 +615,7 @@ class EncounterDiagnosis extends BackboneElement {
   /// [use] /// Role that this diagnosis has within the encounter (e.g. admission, billing,
   /// discharge …).
   @JsonKey(name: 'use')
-  final DiagnosisRole? use;
+  final CodeableConcept? use;
 
   /// [rank] /// Ranking of the diagnosis (for each role type).
   @JsonKey(name: 'rank')
@@ -636,7 +636,7 @@ class EncounterDiagnosis extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Reference? condition,
-    DiagnosisRole? use,
+    CodeableConcept? use,
     FhirPositiveInt? rank,
     Element? rankElement,
     Map<String, Object?>? userData,
@@ -722,7 +722,7 @@ class EncounterHospitalization extends BackboneElement {
 
   /// [admitSource] /// From where patient was admitted (physician referral, transfer).
   @JsonKey(name: 'admitSource')
-  final AdmitSource? admitSource;
+  final CodeableConcept? admitSource;
 
   /// [reAdmission] /// Whether this hospitalization is a readmission and why if known.
   @JsonKey(name: 'reAdmission')
@@ -730,16 +730,16 @@ class EncounterHospitalization extends BackboneElement {
 
   /// [dietPreference] /// Diet preferences reported by the patient.
   @JsonKey(name: 'dietPreference')
-  final List<Diet>? dietPreference;
+  final List<CodeableConcept>? dietPreference;
 
   /// [specialCourtesy] /// Special courtesies (VIP, board member).
   @JsonKey(name: 'specialCourtesy')
-  final List<SpecialCourtesy>? specialCourtesy;
+  final List<CodeableConcept>? specialCourtesy;
 
   /// [specialArrangement] /// Any special requests that have been made for this hospitalization
   /// encounter, such as the provision of specific equipment or other things.
   @JsonKey(name: 'specialArrangement')
-  final List<SpecialArrangements>? specialArrangement;
+  final List<CodeableConcept>? specialArrangement;
 
   /// [destination] /// Location/organization to which the patient is discharged.
   @JsonKey(name: 'destination')
@@ -747,7 +747,7 @@ class EncounterHospitalization extends BackboneElement {
 
   /// [dischargeDisposition] /// Category or kind of location after discharge.
   @JsonKey(name: 'dischargeDisposition')
-  final DischargeDisposition? dischargeDisposition;
+  final CodeableConcept? dischargeDisposition;
   factory EncounterHospitalization.fromJson(Map<String, dynamic> json) =>
       _$EncounterHospitalizationFromJson(json);
 
@@ -763,13 +763,13 @@ class EncounterHospitalization extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Identifier? preAdmissionIdentifier,
     Reference? origin,
-    AdmitSource? admitSource,
+    CodeableConcept? admitSource,
     CodeableConcept? reAdmission,
-    List<Diet>? dietPreference,
-    List<SpecialCourtesy>? specialCourtesy,
-    List<SpecialArrangements>? specialArrangement,
+    List<CodeableConcept>? dietPreference,
+    List<CodeableConcept>? specialCourtesy,
+    List<CodeableConcept>? specialArrangement,
     Reference? destination,
-    DischargeDisposition? dischargeDisposition,
+    CodeableConcept? dischargeDisposition,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -860,7 +860,7 @@ class EncounterLocation extends BackboneElement {
   /// [physicalType] /// This will be used to specify the required levels (bed/ward/room/etc.)
   /// desired to be recorded to simplify either messaging or query.
   @JsonKey(name: 'physicalType')
-  final LocationType? physicalType;
+  final CodeableConcept? physicalType;
 
   /// [period] /// Time period during which the patient was present at the location.
   @JsonKey(name: 'period')
@@ -881,7 +881,7 @@ class EncounterLocation extends BackboneElement {
     Reference? location,
     EncounterLocationStatus? status,
     Element? statusElement,
-    LocationType? physicalType,
+    CodeableConcept? physicalType,
     Period? period,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

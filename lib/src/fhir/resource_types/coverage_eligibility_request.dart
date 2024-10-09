@@ -71,7 +71,7 @@ class CoverageEligibilityRequest extends DomainResource {
 
   /// [priority] /// When the requestor expects the processor to complete processing.
   @JsonKey(name: 'priority')
-  final ProcessPriorityCodes? priority;
+  final CodeableConcept? priority;
 
   /// [purpose] /// Code to specify whether requesting: prior authorization requirements for
   /// some service categories or billing codes; benefits for coverages specified
@@ -160,7 +160,7 @@ class CoverageEligibilityRequest extends DomainResource {
     List<Identifier>? identifier,
     FinancialResourceStatusCodes? status,
     Element? statusElement,
-    ProcessPriorityCodes? priority,
+    CodeableConcept? priority,
     List<EligibilityRequestPurpose>? purpose,
     List<Element>? purposeElement,
     Reference? patient,
@@ -507,17 +507,17 @@ class CoverageEligibilityRequestItem extends BackboneElement {
   /// [category] /// Code to identify the general type of benefits under which products and
   /// services are provided.
   @JsonKey(name: 'category')
-  final BenefitCategoryCodes? category;
+  final CodeableConcept? category;
 
   /// [productOrService] /// This contains the product, service, drug or other billing code for the
   /// item.
   @JsonKey(name: 'productOrService')
-  final USCLSCodes? productOrService;
+  final CodeableConcept? productOrService;
 
   /// [modifier] /// Item typification or modifiers codes to convey additional context for the
   /// product or service.
   @JsonKey(name: 'modifier')
-  final List<ModifierTypeCodes>? modifier;
+  final List<CodeableConcept>? modifier;
 
   /// [provider] /// The practitioner who is responsible for the product or service to be
   /// rendered to the patient.
@@ -558,9 +558,9 @@ class CoverageEligibilityRequestItem extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     List<FhirPositiveInt>? supportingInfoSequence,
     List<Element>? supportingInfoSequenceElement,
-    BenefitCategoryCodes? category,
-    USCLSCodes? productOrService,
-    List<ModifierTypeCodes>? modifier,
+    CodeableConcept? category,
+    CodeableConcept? productOrService,
+    List<CodeableConcept>? modifier,
     Reference? provider,
     Quantity? quantity,
     Money? unitPrice,

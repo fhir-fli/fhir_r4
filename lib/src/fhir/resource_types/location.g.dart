@@ -71,8 +71,10 @@ Location _$LocationFromJson(Map<String, dynamic> json) => Location(
       address: json['address'] == null
           ? null
           : Address.fromJson(json['address'] as Map<String, dynamic>),
-      physicalType:
-          $enumDecodeNullable(_$LocationTypeEnumMap, json['physicalType']),
+      physicalType: json['physicalType'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['physicalType'] as Map<String, dynamic>),
       position: json['position'] == null
           ? null
           : LocationPosition.fromJson(json['position'] as Map<String, dynamic>),
@@ -245,23 +247,6 @@ const _$LocationModeEnumMap = {
   LocationMode.kind: 'kind',
 };
 
-const _$LocationTypeEnumMap = {
-  LocationType.si: 'si',
-  LocationType.bu: 'bu',
-  LocationType.wi: 'wi',
-  LocationType.wa: 'wa',
-  LocationType.lvl: 'lvl',
-  LocationType.co: 'co',
-  LocationType.ro: 'ro',
-  LocationType.bd: 'bd',
-  LocationType.ve: 've',
-  LocationType.ho: 'ho',
-  LocationType.ca: 'ca',
-  LocationType.rd: 'rd',
-  LocationType.area: 'area',
-  LocationType.jdn: 'jdn',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -410,7 +395,7 @@ const _$R4ResourceTypeEnumMap = {
 LocationPosition _$LocationPositionFromJson(Map<String, dynamic> json) =>
     LocationPosition(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -463,7 +448,7 @@ Map<String, dynamic> _$LocationPositionToJson(LocationPosition instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['longitude'] = instance.longitude.toJson();
@@ -479,7 +464,7 @@ LocationHoursOfOperation _$LocationHoursOfOperationFromJson(
         Map<String, dynamic> json) =>
     LocationHoursOfOperation(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -542,7 +527,7 @@ Map<String, dynamic> _$LocationHoursOfOperationToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull(

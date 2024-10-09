@@ -37,12 +37,14 @@ AllergyIntolerance _$AllergyIntoleranceFromJson(Map<String, dynamic> json) =>
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map((e) => Identifier.fromJson(e as Map<String, dynamic>))
           .toList(),
-      clinicalStatus: $enumDecodeNullable(
-          _$AllergyIntoleranceClinicalStatusCodesEnumMap,
-          json['clinicalStatus']),
-      verificationStatus: $enumDecodeNullable(
-          _$AllergyIntoleranceVerificationStatusCodesEnumMap,
-          json['verificationStatus']),
+      clinicalStatus: json['clinicalStatus'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['clinicalStatus'] as Map<String, dynamic>),
+      verificationStatus: json['verificationStatus'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['verificationStatus'] as Map<String, dynamic>),
       type: $enumDecodeNullable(_$AllergyIntoleranceTypeEnumMap, json['type']),
       typeElement: json['_type'] == null
           ? null
@@ -249,19 +251,6 @@ const _$CommonLanguagesEnumMap = {
   CommonLanguages.zh_TW: 'zh-TW',
 };
 
-const _$AllergyIntoleranceClinicalStatusCodesEnumMap = {
-  AllergyIntoleranceClinicalStatusCodes.active: 'active',
-  AllergyIntoleranceClinicalStatusCodes.inactive: 'inactive',
-};
-
-const _$AllergyIntoleranceVerificationStatusCodesEnumMap = {
-  AllergyIntoleranceVerificationStatusCodes.unconfirmed: 'unconfirmed',
-  AllergyIntoleranceVerificationStatusCodes.confirmed: 'confirmed',
-  AllergyIntoleranceVerificationStatusCodes.refuted: 'refuted',
-  AllergyIntoleranceVerificationStatusCodes.entered_in_error:
-      'entered-in-error',
-};
-
 const _$AllergyIntoleranceTypeEnumMap = {
   AllergyIntoleranceType.allergy: 'allergy',
   AllergyIntoleranceType.intolerance: 'intolerance',
@@ -429,7 +418,7 @@ AllergyIntoleranceReaction _$AllergyIntoleranceReactionFromJson(
         Map<String, dynamic> json) =>
     AllergyIntoleranceReaction(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -499,7 +488,7 @@ Map<String, dynamic> _$AllergyIntoleranceReactionToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('substance', instance.substance?.toJson());

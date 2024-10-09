@@ -8,7 +8,7 @@ part of 'dosage.dart';
 
 Dosage _$DosageFromJson(Map<String, dynamic> json) => Dosage(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -103,7 +103,7 @@ Map<String, dynamic> _$DosageToJson(Dosage instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('sequence', instance.sequence?.toJson());
@@ -135,10 +135,12 @@ Map<String, dynamic> _$DosageToJson(Dosage instance) {
 DosageDoseAndRate _$DosageDoseAndRateFromJson(Map<String, dynamic> json) =>
     DosageDoseAndRate(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecodeNullable(_$DoseAndRateTypeEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       doseRange: json['doseRange'] == null
           ? null
           : Range.fromJson(json['doseRange'] as Map<String, dynamic>),
@@ -187,7 +189,7 @@ Map<String, dynamic> _$DosageDoseAndRateToJson(DosageDoseAndRate instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.toJson());
   writeNotNull('doseRange', instance.doseRange?.toJson());
   writeNotNull('doseQuantity', instance.doseQuantity?.toJson());
@@ -196,8 +198,3 @@ Map<String, dynamic> _$DosageDoseAndRateToJson(DosageDoseAndRate instance) {
   writeNotNull('rateQuantity', instance.rateQuantity?.toJson());
   return val;
 }
-
-const _$DoseAndRateTypeEnumMap = {
-  DoseAndRateType.calculated: 'calculated',
-  DoseAndRateType.ordered: 'ordered',
-};

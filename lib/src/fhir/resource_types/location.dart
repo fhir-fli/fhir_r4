@@ -123,7 +123,7 @@ class Location extends DomainResource {
 
   /// [physicalType] /// Physical form of the location, e.g. building, room, vehicle, road.
   @JsonKey(name: 'physicalType')
-  final LocationType? physicalType;
+  final CodeableConcept? physicalType;
 
   /// [position] /// The absolute geographic location of the Location, expressed using the WGS84
   /// datum (This is the same co-ordinate system used in KML).
@@ -190,7 +190,7 @@ class Location extends DomainResource {
     List<CodeableConcept>? type,
     List<ContactPoint>? telecom,
     Address? address,
-    LocationType? physicalType,
+    CodeableConcept? physicalType,
     LocationPosition? position,
     Reference? managingOrganization,
     Reference? partOf,

@@ -69,10 +69,14 @@ Measure _$MeasureFromJson(Map<String, dynamic> json) => Measure(
       experimentalElement: json['_experimental'] == null
           ? null
           : Element.fromJson(json['_experimental'] as Map<String, dynamic>),
-      subjectCodeableConcept: $enumDecodeNullable(
-          _$SubjectTypeEnumMap, json['subjectCodeableConcept']),
-      subjectReference:
-          $enumDecodeNullable(_$SubjectTypeEnumMap, json['subjectReference']),
+      subjectCodeableConcept: json['subjectCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['subjectCodeableConcept'] as Map<String, dynamic>),
+      subjectReference: json['subjectReference'] == null
+          ? null
+          : Reference.fromJson(
+              json['subjectReference'] as Map<String, dynamic>),
       date: json['date'] == null
           ? null
           : FhirDateTime.fromJson(json['date'] as String),
@@ -132,7 +136,7 @@ Measure _$MeasureFromJson(Map<String, dynamic> json) => Measure(
           ? null
           : Period.fromJson(json['effectivePeriod'] as Map<String, dynamic>),
       topic: (json['topic'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$DefinitionTopicEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       author: (json['author'] as List<dynamic>?)
           ?.map((e) => ContactDetail.fromJson(e as Map<String, dynamic>))
@@ -161,11 +165,15 @@ Measure _$MeasureFromJson(Map<String, dynamic> json) => Measure(
       disclaimerElement: json['_disclaimer'] == null
           ? null
           : Element.fromJson(json['_disclaimer'] as Map<String, dynamic>),
-      scoring: $enumDecodeNullable(_$MeasureScoringEnumMap, json['scoring']),
-      compositeScoring: $enumDecodeNullable(
-          _$CompositeMeasureScoringEnumMap, json['compositeScoring']),
+      scoring: json['scoring'] == null
+          ? null
+          : CodeableConcept.fromJson(json['scoring'] as Map<String, dynamic>),
+      compositeScoring: json['compositeScoring'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['compositeScoring'] as Map<String, dynamic>),
       type: (json['type'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$MeasureTypeEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       riskAdjustment: json['riskAdjustment'] == null
           ? null
@@ -194,8 +202,10 @@ Measure _$MeasureFromJson(Map<String, dynamic> json) => Measure(
               ? null
               : Element.fromJson(json['_clinicalRecommendationStatement']
                   as Map<String, dynamic>),
-      improvementNotation: $enumDecodeNullable(
-          _$MeasureImprovementNotationEnumMap, json['improvementNotation']),
+      improvementNotation: json['improvementNotation'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['improvementNotation'] as Map<String, dynamic>),
       definition: (json['definition'] as List<dynamic>?)
           ?.map(FhirMarkdown.fromJson)
           .toList(),
@@ -407,47 +417,6 @@ const _$PublicationStatusEnumMap = {
   PublicationStatus.unknown: 'unknown',
 };
 
-const _$SubjectTypeEnumMap = {
-  SubjectType.Patient: 'Patient',
-  SubjectType.Practitioner: 'Practitioner',
-  SubjectType.Organization: 'Organization',
-  SubjectType.Location: 'Location',
-  SubjectType.Device: 'Device',
-};
-
-const _$DefinitionTopicEnumMap = {
-  DefinitionTopic.treatment: 'treatment',
-  DefinitionTopic.education: 'education',
-  DefinitionTopic.assessment: 'assessment',
-};
-
-const _$MeasureScoringEnumMap = {
-  MeasureScoring.proportion: 'proportion',
-  MeasureScoring.ratio: 'ratio',
-  MeasureScoring.continuous_variable: 'continuous-variable',
-  MeasureScoring.cohort: 'cohort',
-};
-
-const _$CompositeMeasureScoringEnumMap = {
-  CompositeMeasureScoring.opportunity: 'opportunity',
-  CompositeMeasureScoring.all_or_nothing: 'all-or-nothing',
-  CompositeMeasureScoring.linear: 'linear',
-  CompositeMeasureScoring.weighted: 'weighted',
-};
-
-const _$MeasureTypeEnumMap = {
-  MeasureType.process: 'process',
-  MeasureType.outcome: 'outcome',
-  MeasureType.structure: 'structure',
-  MeasureType.patient_reported_outcome: 'patient-reported-outcome',
-  MeasureType.composite: 'composite',
-};
-
-const _$MeasureImprovementNotationEnumMap = {
-  MeasureImprovementNotation.increase: 'increase',
-  MeasureImprovementNotation.decrease: 'decrease',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -595,13 +564,15 @@ const _$R4ResourceTypeEnumMap = {
 
 MeasureGroup _$MeasureGroupFromJson(Map<String, dynamic> json) => MeasureGroup(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      code: $enumDecodeNullable(_$MeasureGroupExampleEnumMap, json['code']),
+      code: json['code'] == null
+          ? null
+          : CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       description: json['description'] == null
           ? null
           : FhirString.fromJson(json['description']),
@@ -647,7 +618,7 @@ Map<String, dynamic> _$MeasureGroupToJson(MeasureGroup instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('code', instance.code?.toJson());
@@ -660,21 +631,18 @@ Map<String, dynamic> _$MeasureGroupToJson(MeasureGroup instance) {
   return val;
 }
 
-const _$MeasureGroupExampleEnumMap = {
-  MeasureGroupExample.primary_rate: 'primary-rate',
-  MeasureGroupExample.secondary_rate: 'secondary-rate',
-};
-
 MeasurePopulation _$MeasurePopulationFromJson(Map<String, dynamic> json) =>
     MeasurePopulation(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      code: $enumDecodeNullable(_$MeasurePopulationTypeEnumMap, json['code']),
+      code: json['code'] == null
+          ? null
+          : CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       description: json['description'] == null
           ? null
           : FhirString.fromJson(json['description']),
@@ -716,7 +684,7 @@ Map<String, dynamic> _$MeasurePopulationToJson(MeasurePopulation instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('code', instance.code?.toJson());
@@ -726,30 +694,18 @@ Map<String, dynamic> _$MeasurePopulationToJson(MeasurePopulation instance) {
   return val;
 }
 
-const _$MeasurePopulationTypeEnumMap = {
-  MeasurePopulationType.initial_population: 'initial-population',
-  MeasurePopulationType.numerator: 'numerator',
-  MeasurePopulationType.numerator_exclusion: 'numerator-exclusion',
-  MeasurePopulationType.denominator: 'denominator',
-  MeasurePopulationType.denominator_exclusion: 'denominator-exclusion',
-  MeasurePopulationType.denominator_exception: 'denominator-exception',
-  MeasurePopulationType.measure_population: 'measure-population',
-  MeasurePopulationType.measure_population_exclusion:
-      'measure-population-exclusion',
-  MeasurePopulationType.measure_observation: 'measure-observation',
-};
-
 MeasureStratifier _$MeasureStratifierFromJson(Map<String, dynamic> json) =>
     MeasureStratifier(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      code:
-          $enumDecodeNullable(_$MeasureStratifierExampleEnumMap, json['code']),
+      code: json['code'] == null
+          ? null
+          : CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       description: json['description'] == null
           ? null
           : FhirString.fromJson(json['description']),
@@ -795,7 +751,7 @@ Map<String, dynamic> _$MeasureStratifierToJson(MeasureStratifier instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('code', instance.code?.toJson());
@@ -807,23 +763,18 @@ Map<String, dynamic> _$MeasureStratifierToJson(MeasureStratifier instance) {
   return val;
 }
 
-const _$MeasureStratifierExampleEnumMap = {
-  MeasureStratifierExample.age: 'age',
-  MeasureStratifierExample.gender: 'gender',
-  MeasureStratifierExample.region: 'region',
-};
-
 MeasureComponent _$MeasureComponentFromJson(Map<String, dynamic> json) =>
     MeasureComponent(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      code:
-          $enumDecodeNullable(_$MeasureStratifierExampleEnumMap, json['code']),
+      code: json['code'] == null
+          ? null
+          : CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       description: json['description'] == null
           ? null
           : FhirString.fromJson(json['description']),
@@ -865,7 +816,7 @@ Map<String, dynamic> _$MeasureComponentToJson(MeasureComponent instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('code', instance.code?.toJson());
@@ -879,16 +830,17 @@ MeasureSupplementalData _$MeasureSupplementalDataFromJson(
         Map<String, dynamic> json) =>
     MeasureSupplementalData(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      code: $enumDecodeNullable(
-          _$MeasureSupplementalDataExampleEnumMap, json['code']),
+      code: json['code'] == null
+          ? null
+          : CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       usage: (json['usage'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$MeasureDataUsageEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       description: json['description'] == null
           ? null
@@ -932,7 +884,7 @@ Map<String, dynamic> _$MeasureSupplementalDataToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('code', instance.code?.toJson());
@@ -942,15 +894,3 @@ Map<String, dynamic> _$MeasureSupplementalDataToJson(
   val['criteria'] = instance.criteria.toJson();
   return val;
 }
-
-const _$MeasureSupplementalDataExampleEnumMap = {
-  MeasureSupplementalDataExample.age: 'age',
-  MeasureSupplementalDataExample.gender: 'gender',
-  MeasureSupplementalDataExample.ethnicity: 'ethnicity',
-  MeasureSupplementalDataExample.payer: 'payer',
-};
-
-const _$MeasureDataUsageEnumMap = {
-  MeasureDataUsage.supplemental_data: 'supplemental-data',
-  MeasureDataUsage.risk_adjustment_factor: 'risk-adjustment-factor',
-};

@@ -45,7 +45,7 @@ class Identifier extends DataType {
   /// [type] /// A coded type for the identifier that can be used to determine which
   /// identifier to use for a specific purpose.
   @JsonKey(name: 'type')
-  final IdentifierTypeCodes? type;
+  final CodeableConcept? type;
 
   /// [system] /// Establishes the namespace for the value - that is, a URL that describes a
   /// set values that are unique.
@@ -82,7 +82,7 @@ class Identifier extends DataType {
     List<FhirExtension>? extension_,
     IdentifierUse? use,
     Element? useElement,
-    IdentifierTypeCodes? type,
+    CodeableConcept? type,
     FhirUri? system,
     Element? systemElement,
     FhirString? value,

@@ -68,7 +68,7 @@ ServiceRequest _$ServiceRequestFromJson(Map<String, dynamic> json) =>
           ? null
           : Element.fromJson(json['_intent'] as Map<String, dynamic>),
       category: (json['category'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ServiceRequestCategoryCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       priority: $enumDecodeNullable(_$RequestPriorityEnumMap, json['priority']),
       priorityElement: json['_priority'] == null
@@ -84,7 +84,7 @@ ServiceRequest _$ServiceRequestFromJson(Map<String, dynamic> json) =>
           ? null
           : CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       orderDetail: (json['orderDetail'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ServiceRequestOrderDetailsCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       quantityQuantity: json['quantityQuantity'] == null
           ? null
@@ -367,27 +367,11 @@ const _$RequestIntentEnumMap = {
   RequestIntent.option: 'option',
 };
 
-const _$ServiceRequestCategoryCodesEnumMap = {
-  ServiceRequestCategoryCodes.value108252007: '108252007',
-  ServiceRequestCategoryCodes.value363679005: '363679005',
-  ServiceRequestCategoryCodes.value409063005: '409063005',
-  ServiceRequestCategoryCodes.value409073007: '409073007',
-  ServiceRequestCategoryCodes.value387713003: '387713003',
-};
-
 const _$RequestPriorityEnumMap = {
   RequestPriority.routine: 'routine',
   RequestPriority.urgent: 'urgent',
   RequestPriority.asap: 'asap',
   RequestPriority.stat: 'stat',
-};
-
-const _$ServiceRequestOrderDetailsCodesEnumMap = {
-  ServiceRequestOrderDetailsCodes.value47545007: '47545007',
-  ServiceRequestOrderDetailsCodes.value286812008: '286812008',
-  ServiceRequestOrderDetailsCodes.value243144002: '243144002',
-  ServiceRequestOrderDetailsCodes.value243150007: '243150007',
-  ServiceRequestOrderDetailsCodes.value59427005: '59427005',
 };
 
 const _$R4ResourceTypeEnumMap = {

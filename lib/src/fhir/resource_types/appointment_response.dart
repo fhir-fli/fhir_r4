@@ -76,7 +76,7 @@ class AppointmentResponse extends DomainResource {
 
   /// [participantType] /// Role of participant in the appointment.
   @JsonKey(name: 'participantType')
-  final List<ParticipantType>? participantType;
+  final List<CodeableConcept>? participantType;
 
   /// [actor] /// A Person, Location, HealthcareService, or Device that is participating in
   /// the appointment.
@@ -124,7 +124,7 @@ class AppointmentResponse extends DomainResource {
     Element? startElement,
     FhirInstant? end,
     Element? endElement,
-    List<ParticipantType>? participantType,
+    List<CodeableConcept>? participantType,
     Reference? actor,
     ParticipationStatus? participantStatus,
     Element? participantStatusElement,

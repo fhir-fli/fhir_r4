@@ -36,17 +36,23 @@ Condition _$ConditionFromJson(Map<String, dynamic> json) => Condition(
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map((e) => Identifier.fromJson(e as Map<String, dynamic>))
           .toList(),
-      clinicalStatus: $enumDecodeNullable(
-          _$ConditionClinicalStatusCodesEnumMap, json['clinicalStatus']),
-      verificationStatus: $enumDecodeNullable(
-          _$ConditionVerificationStatusEnumMap, json['verificationStatus']),
+      clinicalStatus: json['clinicalStatus'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['clinicalStatus'] as Map<String, dynamic>),
+      verificationStatus: json['verificationStatus'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['verificationStatus'] as Map<String, dynamic>),
       category: (json['category'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$ConditionCategoryCodesEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
-      severity: $enumDecodeNullable(
-          _$ConditionDiagnosisSeverityEnumMap, json['severity']),
-      code: $enumDecodeNullable(
-          _$ConditionProblemDiagnosisCodesEnumMap, json['code']),
+      severity: json['severity'] == null
+          ? null
+          : CodeableConcept.fromJson(json['severity'] as Map<String, dynamic>),
+      code: json['code'] == null
+          ? null
+          : CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       bodySite: (json['bodySite'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -259,33 +265,6 @@ const _$CommonLanguagesEnumMap = {
   CommonLanguages.zh_TW: 'zh-TW',
 };
 
-const _$ConditionClinicalStatusCodesEnumMap = {
-  ConditionClinicalStatusCodes.active: 'active',
-  ConditionClinicalStatusCodes.inactive: 'inactive',
-};
-
-const _$ConditionVerificationStatusEnumMap = {
-  ConditionVerificationStatus.unconfirmed: 'unconfirmed',
-  ConditionVerificationStatus.confirmed: 'confirmed',
-  ConditionVerificationStatus.refuted: 'refuted',
-  ConditionVerificationStatus.entered_in_error: 'entered-in-error',
-};
-
-const _$ConditionCategoryCodesEnumMap = {
-  ConditionCategoryCodes.problem_list_item: 'problem-list-item',
-  ConditionCategoryCodes.encounter_diagnosis: 'encounter-diagnosis',
-};
-
-const _$ConditionDiagnosisSeverityEnumMap = {
-  ConditionDiagnosisSeverity.value24484000: '24484000',
-  ConditionDiagnosisSeverity.value6736007: '6736007',
-  ConditionDiagnosisSeverity.value255604002: '255604002',
-};
-
-const _$ConditionProblemDiagnosisCodesEnumMap = {
-  ConditionProblemDiagnosisCodes.value160245001: '160245001',
-};
-
 const _$R4ResourceTypeEnumMap = {
   R4ResourceType.Account: 'Account',
   R4ResourceType.ActivityDefinition: 'ActivityDefinition',
@@ -434,7 +413,7 @@ const _$R4ResourceTypeEnumMap = {
 ConditionStage _$ConditionStageFromJson(Map<String, dynamic> json) =>
     ConditionStage(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -446,7 +425,9 @@ ConditionStage _$ConditionStageFromJson(Map<String, dynamic> json) =>
       assessment: (json['assessment'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
-      type: $enumDecodeNullable(_$ConditionStageTypeEnumMap, json['type']),
+      type: json['type'] == null
+          ? null
+          : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -480,7 +461,7 @@ Map<String, dynamic> _$ConditionStageToJson(ConditionStage instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('summary', instance.summary?.toJson());
@@ -490,15 +471,10 @@ Map<String, dynamic> _$ConditionStageToJson(ConditionStage instance) {
   return val;
 }
 
-const _$ConditionStageTypeEnumMap = {
-  ConditionStageType.value261023001: '261023001',
-  ConditionStageType.value260998006: '260998006',
-};
-
 ConditionEvidence _$ConditionEvidenceFromJson(Map<String, dynamic> json) =>
     ConditionEvidence(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -543,7 +519,7 @@ Map<String, dynamic> _$ConditionEvidenceToJson(ConditionEvidence instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('code', instance.code?.map((e) => e.toJson()).toList());

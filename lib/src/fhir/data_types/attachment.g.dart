@@ -8,7 +8,7 @@ part of 'attachment.dart';
 
 Attachment _$AttachmentFromJson(Map<String, dynamic> json) => Attachment(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       contentType: json['contentType'] == null
@@ -83,7 +83,7 @@ Map<String, dynamic> _$AttachmentToJson(Attachment instance) {
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('contentType', instance.contentType?.toJson());
   writeNotNull('_contentType', instance.contentTypeElement?.toJson());
   writeNotNull('language', instance.language?.toJson());

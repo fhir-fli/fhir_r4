@@ -50,7 +50,7 @@ BodyStructure _$BodyStructureFromJson(Map<String, dynamic> json) =>
           ? null
           : CodeableConcept.fromJson(json['location'] as Map<String, dynamic>),
       locationQualifier: (json['locationQualifier'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$BodystructureLocationQualifierEnumMap, e))
+          ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
       description: json['description'] == null
           ? null
@@ -181,21 +181,6 @@ const _$CommonLanguagesEnumMap = {
   CommonLanguages.zh_HK: 'zh-HK',
   CommonLanguages.zh_SG: 'zh-SG',
   CommonLanguages.zh_TW: 'zh-TW',
-};
-
-const _$BodystructureLocationQualifierEnumMap = {
-  BodystructureLocationQualifier.value419161000: '419161000',
-  BodystructureLocationQualifier.value419465000: '419465000',
-  BodystructureLocationQualifier.value51440002: '51440002',
-  BodystructureLocationQualifier.value261183002: '261183002',
-  BodystructureLocationQualifier.value261122009: '261122009',
-  BodystructureLocationQualifier.value255561001: '255561001',
-  BodystructureLocationQualifier.value49370004: '49370004',
-  BodystructureLocationQualifier.value264217000: '264217000',
-  BodystructureLocationQualifier.value261089000: '261089000',
-  BodystructureLocationQualifier.value255551008: '255551008',
-  BodystructureLocationQualifier.value351726001: '351726001',
-  BodystructureLocationQualifier.value352730000: '352730000',
 };
 
 const _$R4ResourceTypeEnumMap = {

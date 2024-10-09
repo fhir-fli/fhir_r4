@@ -458,7 +458,7 @@ EvidenceVariableCharacteristic _$EvidenceVariableCharacteristicFromJson(
         Map<String, dynamic> json) =>
     EvidenceVariableCharacteristic(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -481,8 +481,9 @@ EvidenceVariableCharacteristic _$EvidenceVariableCharacteristicFromJson(
           json['definitionCodeableConcept'] as Map<String, dynamic>),
       definitionExpression: FhirExpression.fromJson(
           json['definitionExpression'] as Map<String, dynamic>),
-      method:
-          $enumDecodeNullable(_$CharacteristicMethodEnumMap, json['method']),
+      method: json['method'] == null
+          ? null
+          : CodeableConcept.fromJson(json['method'] as Map<String, dynamic>),
       device: json['device'] == null
           ? null
           : Reference.fromJson(json['device'] as Map<String, dynamic>),
@@ -535,7 +536,7 @@ Map<String, dynamic> _$EvidenceVariableCharacteristicToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('description', instance.description?.toJson());
@@ -557,10 +558,6 @@ Map<String, dynamic> _$EvidenceVariableCharacteristicToJson(
   return val;
 }
 
-const _$CharacteristicMethodEnumMap = {
-  CharacteristicMethod.Default: 'Default',
-};
-
 const _$GroupMeasureEnumMap = {
   GroupMeasure.mean: 'mean',
   GroupMeasure.median: 'median',
@@ -574,7 +571,7 @@ EvidenceVariableTimeFromStart _$EvidenceVariableTimeFromStartFromJson(
         Map<String, dynamic> json) =>
     EvidenceVariableTimeFromStart(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -629,7 +626,7 @@ Map<String, dynamic> _$EvidenceVariableTimeFromStartToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('description', instance.description?.toJson());
@@ -644,7 +641,7 @@ EvidenceVariableCategory _$EvidenceVariableCategoryFromJson(
         Map<String, dynamic> json) =>
     EvidenceVariableCategory(
       id: json['id'] == null ? null : FhirString.fromJson(json['id']),
-      extension_: (json['extension_'] as List<dynamic>?)
+      extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
@@ -698,7 +695,7 @@ Map<String, dynamic> _$EvidenceVariableCategoryToJson(
       instance.namedChildren?.map((k, e) => MapEntry(k, e.toJson())));
   writeNotNull('id', instance.id?.toJson());
   writeNotNull(
-      'extension_', instance.extension_?.map((e) => e.toJson()).toList());
+      'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('name', instance.name?.toJson());
