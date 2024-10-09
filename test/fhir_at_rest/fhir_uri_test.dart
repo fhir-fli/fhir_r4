@@ -45,6 +45,9 @@ void main() {
         // Test the headers
         final Map<String, String> headers = request.buildHeaders();
         expect(headers['Accept'], 'application/fhir+json');
+
+        final String? body = request.buildBody();
+        print(body);
       });
     }
   });

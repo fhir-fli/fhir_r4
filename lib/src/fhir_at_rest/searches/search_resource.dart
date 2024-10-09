@@ -71,7 +71,7 @@ class SearchResource extends RestfulParameters {
     return this;
   }
 
-  SearchResource source(FhirUri value, {SearchModifier? modifier}) {
+  SearchResource resourceSource(FhirUri value, {SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}_source'] =
         value.toString();
     return this;
@@ -94,7 +94,7 @@ class SearchResource extends RestfulParameters {
     return this;
   }
 
-  SearchResource type(FhirString value,
+  SearchResource resourceType(FhirString value,
       {FhirUri? system, SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}_type'] =
         system != null ? '$system|$value' : '$value';
