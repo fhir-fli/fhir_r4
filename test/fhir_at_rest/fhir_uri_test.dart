@@ -45,11 +45,51 @@ void main() {
         // Test the headers
         final Map<String, String> headers = request.buildHeaders();
         expect(headers['Accept'], 'application/fhir+json');
-
-        final String? body = request.buildBody();
-        print(body);
       });
     }
+
+    test('get patient with pretty, only want to return name', () async {
+      final FhirReadRequest request = FhirReadRequest(
+        base: Uri.parse('http://hapi.fhir.org/baseR4'),
+        resourceType: 'Patient',
+        id: '1227442',
+        pretty: true,
+        elements: <String>['name'],
+        headers: <String, String>{'Accept': 'application/fhir+json'},
+      );
+
+      // Test the generated URI
+      expect(
+        request.buildUri().toString(),
+        'http://hapi.fhir.org/baseR4/Patient/1227442?_pretty=true&_elements=name',
+      );
+
+      // Test the headers
+      final Map<String, String> headers = request.buildHeaders();
+      expect(headers['Accept'], 'application/fhir+json');
+    });
+
+    test('get patient with pretty, only want to return name and gender',
+        () async {
+      final FhirReadRequest request = FhirReadRequest(
+        base: Uri.parse('http://hapi.fhir.org/baseR4'),
+        resourceType: 'Patient',
+        id: '1227442',
+        pretty: true,
+        elements: <String>['name', 'gender'],
+        headers: <String, String>{'Accept': 'application/fhir+json'},
+      );
+
+      // Test the generated URI
+      expect(
+        request.buildUri().toString(),
+        'http://hapi.fhir.org/baseR4/Patient/1227442?_pretty=true&_elements=name,gender',
+      );
+
+      // Test the headers
+      final Map<String, String> headers = request.buildHeaders();
+      expect(headers['Accept'], 'application/fhir+json');
+    });
   });
 
   group('FHIR URI - UPDATE:', () {

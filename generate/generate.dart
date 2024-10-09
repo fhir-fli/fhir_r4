@@ -10,6 +10,7 @@ import 'fhir_generate_extension.dart';
 import 'file_io.dart';
 import 'parse_search_parameters.dart';
 import 'resource_utils.dart';
+import 'utility.dart';
 import 'writable_class.dart';
 import 'write_enums.dart';
 
@@ -45,19 +46,32 @@ void _copyFiles() {
 }
 
 void _classesFromStructureDefinitions() {
-  final List<String> structureDefinitionBundles = <String>[
-    resourceProfilesPath,
-    typeProfilesPath,
-  ];
+  final List<String> definitionBundles = _getStructureDefinitionBundles();
+  final StringBuffer fieldMapBuffer = StringBuffer();
 
-  final StringBuffer fhirFieldMapBuffer = StringBuffer();
-
-  for (final String file in structureDefinitionBundles) {
-    _generateFromBundle(file, fhirFieldMapBuffer);
+  for (final String file in definitionBundles) {
+    _processBundle(file, fieldMapBuffer);
   }
 
-  // After processing all structure definitions, write the fhirFieldMap
-  _writeFhirFieldMap(fhirFieldMapBuffer);
+  _writeFhirFieldMap(fieldMapBuffer);
+}
+
+List<String> _getStructureDefinitionBundles() {
+  return <String>[resourceProfilesPath, typeProfilesPath];
+}
+
+void _processBundle(String file, StringBuffer fieldMapBuffer) {
+  final String content = File(file).readAsStringSync();
+  final Map<String, dynamic> bundle =
+      jsonDecode(content) as Map<String, dynamic>;
+
+  for (final dynamic entry in bundle['entry'] as List<dynamic>) {
+    if (_isValidStructureDefinition(entry)) {
+      _generateFromSd(
+          (entry as Map<String, dynamic>)['resource'] as Map<String, dynamic>,
+          fieldMapBuffer);
+    }
+  }
 }
 
 void _writeFhirFieldMap(StringBuffer fhirFieldMapBuffer) {
@@ -82,20 +96,6 @@ void _writeFhirFieldMap(StringBuffer fhirFieldMapBuffer) {
   // Write the result to a file (e.g., fhir_field_map.dart)
   File('$fhirDirectory/utils/fhir_field_map.dart')
       .writeAsStringSync(finalBuffer.toString());
-}
-
-void _generateFromBundle(String file, StringBuffer fhirFieldMapBuffer) {
-  final String bundleString = File(file).readAsStringSync();
-  final Map<String, dynamic> bundle =
-      jsonDecode(bundleString) as Map<String, dynamic>;
-
-  for (final dynamic entry in bundle['entry'] as List<dynamic>) {
-    if (_isValidStructureDefinition(entry)) {
-      _generateFromSd(
-          (entry as Map<String, dynamic>)['resource'] as Map<String, dynamic>,
-          fhirFieldMapBuffer);
-    }
-  }
 }
 
 void _generateFromSd(Map<String, dynamic> sd, StringBuffer fhirFieldMapBuffer) {
@@ -165,31 +165,8 @@ Map<String, WritableClass> _buildWritableClasses(
         ((elementDefinition['type'] as List<dynamic>).first
                 as Map<String, dynamic>)['code'] ==
             'BackboneElement') {
-      // Generate a base class name
-      final String baseClassName =
-          path.split('.').first + path.split('.').last.capitalize;
-
-      // Check for duplicate class names and add a number if necessary
-      String newClassName = baseClassName;
-      int classCount = 1;
-
-      // Keep checking for existing class names, including those with numbers
-      while (classes.values
-          .any((WritableClass c) => c.className == newClassName)) {
-        // Increment class name with a number to avoid duplication
-        newClassName = baseClassName + classCount.toString();
-        classCount++;
-      }
-
-      // Create the new class
-      classes[path] = WritableClass(
-        className: newClassName == 'EvidenceVariable'
-            ? 'Evidencevariable'
-            : newClassName,
-        classPath: path,
-        comment: element['definition'] as String? ?? '',
-        isBackboneElement: true,
-      );
+      _generateBackboneOrElementTypeClass(
+          classes, path, className, element, true);
     } else if ((className.isDataType ||
             className.isBackboneType ||
             className.isQuantity) &&
@@ -198,29 +175,8 @@ Map<String, WritableClass> _buildWritableClasses(
         ((elementDefinition['type'] as List<dynamic>).first
                 as Map<String, dynamic>)['code'] ==
             'Element') {
-      // Generate a base class name
-      final String baseClassName =
-          path.split('.').first + path.split('.').last.capitalize;
-
-      // Check for duplicate class names and add a number if necessary
-      String newClassName = baseClassName;
-      int classCount = 1;
-
-      // Keep checking for existing class names, including those with numbers
-      while (classes.values
-          .any((WritableClass c) => c.className == newClassName)) {
-        // Increment class name with a number to avoid duplication
-        newClassName = baseClassName + classCount.toString();
-        classCount++;
-      }
-
-      // Create the new class for Element
-      classes[path] = WritableClass(
-        className: newClassName,
-        classPath: path,
-        comment: element['definition'] as String? ?? '',
-        isElement: true,
-      );
+      _generateBackboneOrElementTypeClass(
+          classes, path, className, element, false);
     }
 
     final List<dynamic>? types = elementDefinition['type'] as List<dynamic>?;
@@ -246,8 +202,9 @@ Map<String, WritableClass> _buildWritableClasses(
         }
 
         if (referenceFieldType == null) {
-          throw Exception(
-              'No type found for $path ${elementDefinition['contentReference']}');
+          print(
+              'Warning: No type found for $path ${elementDefinition['contentReference']}');
+          continue; // Skip adding this field if type not found.
         }
         classes[classPath]!.addField(Field(
           name: fieldName,
@@ -301,13 +258,43 @@ Map<String, WritableClass> _buildWritableClasses(
   return classes;
 }
 
+void _generateBackboneOrElementTypeClass(
+    Map<String, WritableClass> classes,
+    String path,
+    String className,
+    Map<String, dynamic> element,
+    bool isBackboneElement) {
+  // Generate a base class name
+  final String baseClassName =
+      path.split('.').first + path.split('.').last.capitalize;
+
+  // Check for duplicate class names and add a number if necessary
+  String newClassName = baseClassName;
+  int classCount = 1;
+
+  // Keep checking for existing class names, including those with numbers
+  while (classes.values.any((WritableClass c) => c.className == newClassName)) {
+    // Increment class name with a number to avoid duplication
+    newClassName = baseClassName + classCount.toString();
+    classCount++;
+  }
+
+  // Create the new class for BackboneElement or Element
+  classes[path] = WritableClass(
+    className:
+        newClassName == 'EvidenceVariable' ? 'Evidencevariable' : newClassName,
+    classPath: path,
+    comment: element['definition'] as String? ?? '',
+    isBackboneElement: isBackboneElement,
+    isElement: !isBackboneElement,
+  );
+}
+
 StringBuffer _generateClassBuffer(
     Map<String, WritableClass> classes, StringBuffer fhirFieldMapBuffer) {
   final StringBuffer buffer = StringBuffer();
 
   buffer.writeln("import 'dart:convert';");
-  // buffer.writeln("import 'package:dataclass/dataclass.dart';");
-  // buffer.writeln("import 'package:json/json.dart';");
   buffer.writeln("import 'package:json_annotation/json_annotation.dart';");
   buffer.writeln("import 'package:objectbox/objectbox.dart';");
   buffer.writeln("import 'package:yaml/yaml.dart';");
@@ -326,6 +313,76 @@ StringBuffer _generateClassBuffer(
   }
 
   return buffer;
+}
+
+Map<String, Map<String, dynamic>> codesAndValueSets(
+  String valueSetPath,
+  String examplesPath,
+) {
+  final Map<String, Map<String, dynamic>> codesAndVS =
+      <String, Map<String, dynamic>>{};
+
+  final String codesString = File(valueSetPath).readAsStringSync();
+  final Map<String, dynamic> bundle =
+      jsonDecode(codesString) as Map<String, dynamic>;
+
+  for (final dynamic entry in bundle['entry'] as List<dynamic>) {
+    if ((entry as Map<String, dynamic>)['resource'] != null &&
+        entry['resource'] is Map<String, dynamic> &&
+        ((entry['resource'] as Map<String, dynamic>)['resourceType'] ==
+                'ValueSet' ||
+            (entry['resource'] as Map<String, dynamic>)['resourceType'] ==
+                'CodeSystem')) {
+      codesAndVS[(entry['resource'] as Map<String, dynamic>)['url'] as String] =
+          entry['resource'] as Map<String, dynamic>;
+      codesAndVS[(entry['fullUrl'] as String).splitOffVersion] =
+          entry['resource'] as Map<String, dynamic>;
+    }
+  }
+
+  final List<File> files = Directory(examplesPath)
+      .listSync(recursive: true)
+      .whereType<File>()
+      .where((File file) =>
+          file.path.endsWith('.json') &&
+          (file.path.toLowerCase().contains('valueset') ||
+              file.path.toLowerCase().contains('codesystem')))
+      .toList();
+  for (final File file in files) {
+    final String examplesString = file.readAsStringSync();
+    final Map<String, dynamic> entry =
+        jsonDecode(examplesString) as Map<String, dynamic>;
+    if ((entry['resourceType'] == 'ValueSet' ||
+            entry['resourceType'] == 'CodeSystem') &&
+        !codesAndVS.containsKey(entry['url'] as String)) {
+      codesAndVS[entry['url'] as String] = entry;
+    }
+  }
+
+  final List<File> ndfiles = Directory(ndJsonExamplesPath)
+      .listSync(recursive: true)
+      .whereType<File>()
+      .where((File file) =>
+          file.path.endsWith('.ndjson') &&
+          (file.path.toLowerCase().contains('valueset') ||
+              file.path.toLowerCase().contains('codesystem')))
+      .toList();
+  for (final File file in ndfiles) {
+    final String examplesString = file.readAsStringSync();
+    final List<String> entries = examplesString.split('\n');
+    for (final String entryString in entries) {
+      final Map<String, dynamic> entry =
+          jsonDecode(entryString) as Map<String, dynamic>;
+      if ((entry['resourceType'] == 'ValueSet' ||
+              entry['resourceType'] == 'CodeSystem') &&
+          (entry['url'] is String) &&
+          !codesAndVS.containsKey(entry['url'] as String)) {
+        codesAndVS[entry['url'] as String] = entry;
+      }
+    }
+  }
+
+  return codesAndVS;
 }
 
 void _writeClassHeader(StringBuffer buffer, WritableClass writableClass,
@@ -566,124 +623,4 @@ bool _isValidStructureDefinition(dynamic entry) {
       entry['resource'] is Map<String, dynamic> &&
       (entry['resource'] as Map<String, dynamic>)['resourceType'] ==
           'StructureDefinition';
-}
-
-void writeToFile(
-    StringBuffer buffer, String className, Map<String, String> nameMap) {
-  String? writeFileName = className.fileNameFromClassName(nameMap);
-  if (writeFileName == null) {
-    print('Not writing: $className');
-    return;
-  }
-
-  writeFileName = writeFileName.properFileName;
-  final String filePath =
-      '$fhirDirectory/${className.isResource ? "resource_types" : "data_types"}/$writeFileName.dart';
-  File(filePath).writeAsStringSync(buffer.toString());
-}
-
-Map<String, Map<String, dynamic>> codesAndValueSets(
-  String valueSetPath,
-  String examplesPath,
-) {
-  final Map<String, Map<String, dynamic>> codesAndVS =
-      <String, Map<String, dynamic>>{};
-
-  final String codesString = File(valueSetPath).readAsStringSync();
-  final Map<String, dynamic> bundle =
-      jsonDecode(codesString) as Map<String, dynamic>;
-
-  for (final dynamic entry in bundle['entry'] as List<dynamic>) {
-    if ((entry as Map<String, dynamic>)['resource'] != null &&
-            entry['resource'] is Map<String, dynamic> &&
-            (entry['resource'] as Map<String, dynamic>)['resourceType'] ==
-                'ValueSet' ||
-        (entry['resource'] as Map<String, dynamic>)['resourceType'] ==
-            'CodeSystem') {
-      codesAndVS[(entry['resource'] as Map<String, dynamic>)['url'] as String] =
-          entry['resource'] as Map<String, dynamic>;
-      codesAndVS[(entry['fullUrl'] as String).splitOffVersion] =
-          entry['resource'] as Map<String, dynamic>;
-    }
-  }
-  final List<File> files = Directory(examplesPath)
-      .listSync(recursive: true)
-      .whereType<File>()
-      .where((File file) =>
-          file.path.endsWith('.json') &&
-          (file.path.toLowerCase().contains('valueset') ||
-              file.path.toLowerCase().contains('codesystem')))
-      .toList();
-  for (final File file in files) {
-    final String examplesString = file.readAsStringSync();
-    final Map<String, dynamic> entry =
-        jsonDecode(examplesString) as Map<String, dynamic>;
-    if ((entry['resourceType'] == 'ValueSet' ||
-            entry['resourceType'] == 'CodeSystem') &&
-        !codesAndVS.keys.contains(entry['url'] as String)) {
-      codesAndVS[entry['url'] as String] = entry;
-    }
-  }
-  final List<File> ndfiles = Directory(ndJsonExamplesPath)
-      .listSync(recursive: true)
-      .whereType<File>()
-      .where((File file) =>
-          file.path.endsWith('.ndjson') &&
-          (file.path.toLowerCase().contains('valueset') ||
-              file.path.toLowerCase().contains('codesystem')))
-      .toList();
-  for (final File file in ndfiles) {
-    final String examplesString = file.readAsStringSync();
-    final List<String> entries = examplesString.split('\n');
-    for (final String entryString in entries) {
-      final Map<String, dynamic> entry =
-          jsonDecode(entryString) as Map<String, dynamic>;
-      if ((entry['resourceType'] == 'ValueSet' ||
-              entry['resourceType'] == 'CodeSystem') &&
-          (entry['url'] is String) &&
-          !codesAndVS.keys.contains(entry['url'] as String)) {
-        codesAndVS[entry['url'] as String] = entry;
-      }
-    }
-  }
-  return codesAndVS;
-}
-
-Map<String, String> populateNameMap(String fhirSchemaPath) {
-  final Map<String, String> nameMap = <String, String>{};
-  final String fileString = File(fhirSchemaPath).readAsStringSync();
-  final Map<String, dynamic> jsonSchema =
-      jsonDecode(fileString) as Map<String, dynamic>;
-
-  final Map<String, dynamic> definitions =
-      jsonSchema['definitions'] as Map<String, dynamic>;
-  definitions.forEach((String key, dynamic value) {
-    nameMap[key.toLowerCase().replaceAll('_', '')] = key;
-  });
-  return nameMap;
-}
-
-String formatComment(String comment) {
-  // Clean up existing comment prefixes
-  comment = comment.replaceAll(RegExp(r'^///\s*'), '').trim();
-
-  // Split into lines, handle line length limits, and add '///' prefix
-  final List<String> commentLines = comment.split('\n').expand((String line) {
-    final List<String> words = line.split(RegExp(r'\s+'));
-    final List<String> formattedLines = <String>[];
-    String currentLine = '/// ';
-
-    for (final String word in words) {
-      if (currentLine.length + word.length + 1 > 80) {
-        formattedLines.add(currentLine.trim());
-        currentLine = '/// $word ';
-      } else {
-        currentLine += '$word ';
-      }
-    }
-    formattedLines.add(currentLine.trim());
-    return formattedLines;
-  }).toList();
-
-  return commentLines.join('\n');
 }
