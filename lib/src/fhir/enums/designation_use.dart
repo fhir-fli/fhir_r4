@@ -1,10 +1,6 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Details of how a designation would be used
 enum DesignationUse {
-  @JsonValue('900000000000003001')
   value900000000000003001,
-  @JsonValue('900000000000013009')
   value900000000000013009,
   ;
 

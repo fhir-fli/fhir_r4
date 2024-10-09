@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The type of participant for the action.
 enum ActionParticipantType {
   /// Display: Patient
   /// Definition: The participant is the patient under evaluation.
-  @JsonValue('patient')
   patient,
 
   /// Display: Practitioner
   /// Definition: The participant is a practitioner involved in the patient's care.
-  @JsonValue('practitioner')
   practitioner,
 
   /// Display: Related Person
   /// Definition: The participant is a person related to the patient.
-  @JsonValue('related-person')
   related_person,
 
   /// Display: Device
   /// Definition: The participant is a system or device used in the care of the patient.
-  @JsonValue('device')
   device,
   ;
 

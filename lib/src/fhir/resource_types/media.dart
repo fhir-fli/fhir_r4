@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [Media] /// A photo, video, or audio recording acquired or used in healthcare. The
 /// actual content may be inline or provided by direct reference.
-@JsonSerializable()
 class Media extends DomainResource {
   Media({
     super.id,
@@ -58,108 +56,84 @@ class Media extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Media);
+
   @override
   String get fhirType => 'Media';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifiers associated with the image - these may include identifiers for
   /// the image itself, identifiers for the context of its collection (e.g.
   /// series ids) and context ids such as accession numbers or other workflow
   /// identifiers.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [basedOn] /// A procedure that is fulfilled in whole or in part by the creation of this
   /// media.
-  @JsonKey(name: 'basedOn')
   final List<Reference>? basedOn;
 
   /// [partOf] /// A larger event of which this particular event is a component or step.
-  @JsonKey(name: 'partOf')
   final List<Reference>? partOf;
 
   /// [status] /// The current state of the {{title}}.
-  @JsonKey(name: 'status')
   final EventStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [type] /// A code that classifies whether the media is an image, video or audio
   /// recording or some other media category.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [modality] /// Details of the type of the media - usually, how it was acquired (what type
   /// of device). If images sourced from a DICOM system, are wrapped in a Media
   /// resource, then this is the modality.
-  @JsonKey(name: 'modality')
   final CodeableConcept? modality;
 
   /// [view] /// The name of the imaging view e.g. Lateral or Antero-posterior (AP).
-  @JsonKey(name: 'view')
   final CodeableConcept? view;
 
   /// [subject] /// Who/What this Media is a record of.
-  @JsonKey(name: 'subject')
   final Reference? subject;
 
   /// [encounter] /// The encounter that establishes the context for this media.
-  @JsonKey(name: 'encounter')
   final Reference? encounter;
 
   /// [createdDateTime] /// The date and time(s) at which the media was collected.
-  @JsonKey(name: 'createdDateTime')
   final FhirDateTime? createdDateTime;
-  @JsonKey(name: '_createdDateTime')
   final Element? createdDateTimeElement;
 
   /// [createdPeriod] /// The date and time(s) at which the media was collected.
-  @JsonKey(name: 'createdPeriod')
   final Period? createdPeriod;
 
   /// [issued] /// The date and time this version of the media was made available to
   /// providers, typically after having been reviewed.
-  @JsonKey(name: 'issued')
   final FhirInstant? issued;
-  @JsonKey(name: '_issued')
   final Element? issuedElement;
 
   /// [operator_] /// The person who administered the collection of the image.
-  @JsonKey(name: 'operator')
   final Reference? operator_;
 
   /// [reasonCode] /// Describes why the event occurred in coded or textual form.
-  @JsonKey(name: 'reasonCode')
   final List<CodeableConcept>? reasonCode;
 
   /// [bodySite] /// Indicates the site on the subject's body where the observation was made
   /// (i.e. the target site).
-  @JsonKey(name: 'bodySite')
   final CodeableConcept? bodySite;
 
   /// [deviceName] /// The name of the device / manufacturer of the device that was used to make
   /// the recording.
-  @JsonKey(name: 'deviceName')
   final FhirString? deviceName;
-  @JsonKey(name: '_deviceName')
   final Element? deviceNameElement;
 
   /// [device] /// The device used to collect the media.
-  @JsonKey(name: 'device')
   final Reference? device;
 
   /// [height] /// Height of the image in pixels (photo/video).
-  @JsonKey(name: 'height')
   final FhirPositiveInt? height;
-  @JsonKey(name: '_height')
   final Element? heightElement;
 
   /// [width] /// Width of the image in pixels (photo/video).
-  @JsonKey(name: 'width')
   final FhirPositiveInt? width;
-  @JsonKey(name: '_width')
   final Element? widthElement;
 
   /// [frames] /// The number of frames in a photo. This is used with a multi-page fax, or an
@@ -167,25 +141,19 @@ class Media extends DomainResource {
   /// or an animated gif. If there is more than one frame, this SHALL have a
   /// value in order to alert interface software that a multi-frame capable
   /// rendering widget is required.
-  @JsonKey(name: 'frames')
   final FhirPositiveInt? frames;
-  @JsonKey(name: '_frames')
   final Element? framesElement;
 
   /// [duration] /// The duration of the recording in seconds - for audio and video.
-  @JsonKey(name: 'duration')
   final FhirDecimal? duration;
-  @JsonKey(name: '_duration')
   final Element? durationElement;
 
   /// [content] /// The actual content of the media - inline or by direct reference to the
   /// media source file.
-  @JsonKey(name: 'content')
   final Attachment content;
 
   /// [note] /// Comments made about the media by the performer, subject or other
   /// participants.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {

@@ -1,195 +1,155 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set defines an example set of codes that can be used to classify groupings of service-types/specialties.
 enum ServiceCategory {
   /// Display: Adoption
   /// Definition: Adoption
-  @JsonValue('1')
   value1,
 
   /// Display: Aged Care
   /// Definition: Aged Care
-  @JsonValue('2')
   value2,
 
   /// Display: Allied Health
   /// Definition: Allied Health
-  @JsonValue('34')
   value34,
 
   /// Display: Alternative/Complementary Therapies
   /// Definition: Alternative & Complementary Therapies
-  @JsonValue('3')
   value3,
 
   /// Display: Child Care /Kindergarten
   /// Definition: Child Care and/or Kindergarten
-  @JsonValue('4')
   value4,
 
   /// Display: Child Development
   /// Definition: Child Development
-  @JsonValue('5')
   value5,
 
   /// Display: Child Protection & Family Services
   /// Definition: Child Protection & Family Services
-  @JsonValue('6')
   value6,
 
   /// Display: Community Health Care
   /// Definition: Community Health Care
-  @JsonValue('7')
   value7,
 
   /// Display: Counselling
   /// Definition: Counselling
-  @JsonValue('8')
   value8,
 
   /// Display: Crisis Line (GPAH use only)
   /// Definition: Crisis Line (GPAH use only)
-  @JsonValue('36')
   value36,
 
   /// Display: Death Services
   /// Definition: Death Services
-  @JsonValue('9')
   value9,
 
   /// Display: Dental
   /// Definition: Dental
-  @JsonValue('10')
   value10,
 
   /// Display: Disability Support
   /// Definition: Disability Support
-  @JsonValue('11')
   value11,
 
   /// Display: Drug/Alcohol
   /// Definition: Drug/Alcohol
-  @JsonValue('12')
   value12,
 
   /// Display: Education & Learning
   /// Definition: Education & Learning
-  @JsonValue('13')
   value13,
 
   /// Display: Emergency Department
   /// Definition: Emergency Department
-  @JsonValue('14')
   value14,
 
   /// Display: Employment
   /// Definition: Employment
-  @JsonValue('15')
   value15,
 
   /// Display: Financial & Material Aid
   /// Definition: Financial & Material aid
-  @JsonValue('16')
   value16,
 
   /// Display: General Practice
   /// Definition: General Practice/GP (doctor)
-  @JsonValue('17')
   value17,
 
   /// Display: Hospital
   /// Definition: Hospital
-  @JsonValue('35')
   value35,
 
   /// Display: Housing/Homelessness
   /// Definition: Housing/Homelessness
-  @JsonValue('18')
   value18,
 
   /// Display: Interpreting
   /// Definition: Interpreting
-  @JsonValue('19')
   value19,
 
   /// Display: Justice
   /// Definition: Justice
-  @JsonValue('20')
   value20,
 
   /// Display: Legal
   /// Definition: Legal
-  @JsonValue('21')
   value21,
 
   /// Display: Mental Health
   /// Definition: Mental Health
-  @JsonValue('22')
   value22,
 
   /// Display: NDIA
   /// Definition: NDIA
-  @JsonValue('38')
   value38,
 
   /// Display: Physical Activity & Recreation
   /// Definition: Physical Activity & Recreation
-  @JsonValue('23')
   value23,
 
   /// Display: Regulation
   /// Definition: Regulation
-  @JsonValue('24')
   value24,
 
   /// Display: Respite/Carer Support
   /// Definition: Respite/Carer Support
-  @JsonValue('25')
   value25,
 
   /// Display: Specialist Clinical Pathology
   /// Definition: Specialist Clinical Pathology - requires referral
-  @JsonValue('26')
   value26,
 
   /// Display: Specialist Medical
   /// Definition: Specialist Medical - requires referral
-  @JsonValue('27')
   value27,
 
   /// Display: Specialist Obstetrics & Gynecology
   /// Definition: Specialist Obstetrics & Gynecology - requires referral
-  @JsonValue('28')
   value28,
 
   /// Display: Specialist Paediatric
   /// Definition: Specialist Paediatric - requires referral
-  @JsonValue('29')
   value29,
 
   /// Display: Specialist Radiology/Imaging
   /// Definition: Specialist Radiology/Imaging - requires referral
-  @JsonValue('30')
   value30,
 
   /// Display: Specialist Surgical
   /// Definition: Specialist Surgical - requires referral
-  @JsonValue('31')
   value31,
 
   /// Display: Support Group/s
   /// Definition: Support group/s
-  @JsonValue('32')
   value32,
 
   /// Display: Test Message (HSD admin)
   /// Definition: Test Message (HSD admin use only)
-  @JsonValue('37')
   value37,
 
   /// Display: Transport
   /// Definition: Transport
-  @JsonValue('33')
   value33,
   ;
 

@@ -1,229 +1,171 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The presentation type in which an administrable medicinal product is given to a patient.
 enum UnitOfPresentation {
   /// Display: Barrel
-  @JsonValue('200000002108')
   value200000002108,
 
   /// Display: Blister
-  @JsonValue('200000002109')
   value200000002109,
 
   /// Display: Block
-  @JsonValue('200000002110')
   value200000002110,
 
   /// Display: Bottle
-  @JsonValue('200000002111')
   value200000002111,
 
   /// Display: Cachet
-  @JsonValue('200000002112')
   value200000002112,
 
   /// Display: Capsule
-  @JsonValue('200000002113')
   value200000002113,
 
   /// Display: Cartridge
-  @JsonValue('200000002114')
   value200000002114,
 
   /// Display: Collar
-  @JsonValue('200000002115')
   value200000002115,
 
   /// Display: Container
-  @JsonValue('200000002116')
   value200000002116,
 
   /// Display: Cup
-  @JsonValue('200000002117')
   value200000002117,
 
   /// Display: Cylinder
-  @JsonValue('200000002118')
   value200000002118,
 
   /// Display: Dart
-  @JsonValue('200000002119')
   value200000002119,
 
   /// Display: Dressing
-  @JsonValue('200000002120')
   value200000002120,
 
   /// Display: Drop
-  @JsonValue('200000002121')
   value200000002121,
 
   /// Display: Film
-  @JsonValue('200000002122')
   value200000002122,
 
   /// Display: Chewing gum
-  @JsonValue('200000002123')
   value200000002123,
 
   /// Display: Implant
-  @JsonValue('200000002124')
   value200000002124,
 
   /// Display: Inhaler
-  @JsonValue('200000002125')
   value200000002125,
 
   /// Display: Insert
-  @JsonValue('200000002126')
   value200000002126,
 
   /// Display: Jar
-  @JsonValue('200000002127')
   value200000002127,
 
   /// Display: Lozenge
-  @JsonValue('200000002128')
   value200000002128,
 
   /// Display: Lyophilisate
-  @JsonValue('200000002129')
   value200000002129,
 
   /// Display: Matrix
-  @JsonValue('200000002130')
   value200000002130,
 
   /// Display: Pad
-  @JsonValue('200000002131')
   value200000002131,
 
   /// Display: Paper
-  @JsonValue('200000002132')
   value200000002132,
 
   /// Display: Pastille
-  @JsonValue('200000002133')
   value200000002133,
 
   /// Display: Patch
-  @JsonValue('200000002134')
   value200000002134,
 
   /// Display: Pen
-  @JsonValue('200000002135')
   value200000002135,
 
   /// Display: Pendant
-  @JsonValue('200000002136')
   value200000002136,
 
   /// Display: Pessary
-  @JsonValue('200000002137')
   value200000002137,
 
   /// Display: Pillule
-  @JsonValue('200000002138')
   value200000002138,
 
   /// Display: Pipette
-  @JsonValue('200000002139')
   value200000002139,
 
   /// Display: Plaster
-  @JsonValue('200000002140')
   value200000002140,
 
   /// Display: Plug
-  @JsonValue('200000002141')
   value200000002141,
 
   /// Display: Pouch
-  @JsonValue('200000002142')
   value200000002142,
 
   /// Display: Sachet
-  @JsonValue('200000002143')
   value200000002143,
 
   /// Display: Sponge
-  @JsonValue('200000002144')
   value200000002144,
 
   /// Display: Spoonful
-  @JsonValue('200000002145')
   value200000002145,
 
   /// Display: Stick
-  @JsonValue('200000002146')
   value200000002146,
 
   /// Display: Straw
-  @JsonValue('200000002147')
   value200000002147,
 
   /// Display: Strip
-  @JsonValue('200000002148')
   value200000002148,
 
   /// Display: Suppository
-  @JsonValue('200000002149')
   value200000002149,
 
   /// Display: Syringe
-  @JsonValue('200000002150')
   value200000002150,
 
   /// Display: System
-  @JsonValue('200000002151')
   value200000002151,
 
   /// Display: Tablet
-  @JsonValue('200000002152')
   value200000002152,
 
   /// Display: Tag
-  @JsonValue('200000002153')
   value200000002153,
 
   /// Display: Tampon
-  @JsonValue('200000002154')
   value200000002154,
 
   /// Display: Thread
-  @JsonValue('200000002155')
   value200000002155,
 
   /// Display: Tube
-  @JsonValue('200000002156')
   value200000002156,
 
   /// Display: Vessel
-  @JsonValue('200000002157')
   value200000002157,
 
   /// Display: Vial
-  @JsonValue('200000002158')
   value200000002158,
 
   /// Display: Puff
-  @JsonValue('200000002159')
   value200000002159,
 
   /// Display: Actuation
-  @JsonValue('200000002163')
   value200000002163,
 
   /// Display: Ampoule
-  @JsonValue('200000002164')
   value200000002164,
 
   /// Display: Applicator
-  @JsonValue('200000002165')
   value200000002165,
 
   /// Display: Bag
-  @JsonValue('200000002166')
   value200000002166,
   ;
 

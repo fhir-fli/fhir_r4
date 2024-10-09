@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The degree to which the server supports the code search parameter on ValueSet, if it is supported.
 enum CodeSearchSupport {
   /// Display: Explicit Codes
   /// Definition: The search for code on ValueSet only includes codes explicitly detailed on includes or expansions.
-  @JsonValue('explicit')
   explicit,
 
   /// Display: Implicit Codes
   /// Definition: The search for code on ValueSet only includes all codes based on the expansion of the value set.
-  @JsonValue('all')
   all,
   ;
 

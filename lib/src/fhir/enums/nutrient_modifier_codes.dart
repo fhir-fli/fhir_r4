@@ -1,17 +1,12 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// NutrientModifier :  Codes for types of nutrients that are being modified such as carbohydrate or sodium.  This value set includes codes from [SNOMED CT](http://snomed.info/sct) where concept is-a 226355009 (Nutrients(substance)), and the concepts for Sodium, Potassium and Fluid. This is provided as a suggestive example.
 enum NutrientModifierCodes {
   /// Display: Fluid
-  @JsonValue('33463005')
   value33463005,
 
   /// Display: Sodium
-  @JsonValue('39972003')
   value39972003,
 
   /// Display: Potassium
-  @JsonValue('88480006')
   value88480006,
   ;
 

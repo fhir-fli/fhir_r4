@@ -1,85 +1,67 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Code the reason for different URLs, eg abstract and full-text.
 enum ArticleUrlType {
   /// Display: Abstract
   /// Definition: URL to reach the abstract for the article.
-  @JsonValue('abstract')
   abstract_,
 
   /// Display: Abstract Version
   /// Definition: URL to reach a specific version of the abstract for the article.
-  @JsonValue('abstract-version')
   abstract_version,
 
   /// Display: DOI Based
   /// Definition: URL derived from DOI.
-  @JsonValue('doi-based')
   doi_based,
 
   /// Display: Full-Text
   /// Definition: URL to reach the full-text of the article.
-  @JsonValue('full-text')
   full_text,
 
   /// Display: Full-Text Version
   /// Definition: URL to reach a specific version of the full-text of the article.
-  @JsonValue('full-text-version')
   full_text_version,
 
   /// Display: PDF
   /// Definition: URL to reach the full-text of the article in PDF form.
-  @JsonValue('pdf')
   pdf,
 
   /// Display: PDF Version
   /// Definition: URL to reach a specific version of the full-text of the article in PDF form.
-  @JsonValue('pdf-version')
   pdf_version,
 
   /// Display: Webpage
   /// Definition: Used when URL type is a webpage, but other codes do not apply.
-  @JsonValue('webpage')
   webpage,
 
   /// Display: Not Specified
   /// Definition: Used when URL type is not specified, commonly when only a single URL is provided.
-  @JsonValue('not-specified')
   not_specified,
 
   /// Display: JSON
   /// Definition: URL to reach computable content in JSON format.
-  @JsonValue('json')
   json,
 
   /// Display: JSON Version
   /// Definition: URL to reach a specific version of computable content in JSON format.
-  @JsonValue('json-version')
   json_version,
 
   /// Display: XML
   /// Definition: URL to reach computable content in XML format.
-  @JsonValue('xml')
   xml,
 
   /// Display: XML
   /// Definition: URL to reach a specific version of computable content in XML format.
-  @JsonValue('xml-version')
   xml_version,
 
   /// Display: Supplement
   /// Definition: Supplement
-  @JsonValue('supplement')
   supplement,
 
   /// Display: Supplementary file directory
   /// Definition: Supplementary file directory
-  @JsonValue('supplementary-file-directory')
   supplementary_file_directory,
 
   /// Display: Compressed file
   /// Definition: Compressed archive file (e.g. a zip file) that contains multiple files
-  @JsonValue('compressed-file')
   compressed_file,
   ;
 

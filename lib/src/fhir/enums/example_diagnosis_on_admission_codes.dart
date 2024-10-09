@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes example Diagnosis on Admission codes.
 enum ExampleDiagnosisOnAdmissionCodes {
   /// Display: Yes
   /// Definition: Diagnosis was present at time of inpatient admission.
-  @JsonValue('y')
   y,
 
   /// Display: No
   /// Definition: Diagnosis was not present at time of inpatient admission.
-  @JsonValue('n')
   n,
 
   /// Display: Unknown
   /// Definition: Documentation insufficient to determine if condition was present at the time of inpatient admission.
-  @JsonValue('u')
   u,
 
   /// Display: Undetermined
   /// Definition: Clinically undetermined. Provider unable to clinically determine whether the condition was present at the time of inpatient admission.
-  @JsonValue('w')
   w,
   ;
 

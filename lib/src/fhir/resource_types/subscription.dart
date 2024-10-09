@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -10,7 +9,6 @@ import '../../../fhir_r4.dart';
 /// server, the server checks every resource that is created or updated, and if
 /// the resource matches the given criteria, it sends a message on the defined
 /// "channel" so that another system can take an appropriate action.
-@JsonSerializable()
 class Subscription extends DomainResource {
   Subscription({
     super.id,
@@ -42,53 +40,42 @@ class Subscription extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Subscription);
+
   @override
   String get fhirType => 'Subscription';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [status] /// The status of the subscription, which marks the server state for managing
   /// the subscription.
-  @JsonKey(name: 'status')
   final SubscriptionStatusCodes status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [contact] /// Contact details for a human to contact about the subscription. The primary
   /// use of this for system administrator troubleshooting.
-  @JsonKey(name: 'contact')
   final List<ContactPoint>? contact;
 
   /// [end] /// The time for the server to turn the subscription off.
-  @JsonKey(name: 'end')
   final FhirInstant? end;
-  @JsonKey(name: '_end')
   final Element? endElement;
 
   /// [reason] /// A description of why this subscription is defined.
-  @JsonKey(name: 'reason')
   final FhirString reason;
-  @JsonKey(name: '_reason')
   final Element? reasonElement;
 
   /// [criteria] /// The rules that the server should use to determine when to generate
   /// notifications for this subscription.
-  @JsonKey(name: 'criteria')
   final FhirString criteria;
-  @JsonKey(name: '_criteria')
   final Element? criteriaElement;
 
   /// [error] /// A record of the last error that occurred when the server processed a
   /// notification.
-  @JsonKey(name: 'error')
   final FhirString? error;
-  @JsonKey(name: '_error')
   final Element? errorElement;
 
   /// [channel] /// Details where to send notifications when resources are received that meet
   /// the criteria.
-  @JsonKey(name: 'channel')
   final SubscriptionChannel channel;
   @override
   Map<String, dynamic> toJson() {
@@ -303,7 +290,6 @@ class Subscription extends DomainResource {
 
 /// [SubscriptionChannel] /// Details where to send notifications when resources are received that meet
 /// the criteria.
-@JsonSerializable()
 class SubscriptionChannel extends BackboneElement {
   SubscriptionChannel({
     super.id,
@@ -324,37 +310,30 @@ class SubscriptionChannel extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'SubscriptionChannel';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The type of channel to send notifications on.
-  @JsonKey(name: 'type')
   final SubscriptionChannelType type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [endpoint] /// The url that describes the actual end-point to send messages to.
-  @JsonKey(name: 'endpoint')
   final FhirUrl? endpoint;
-  @JsonKey(name: '_endpoint')
   final Element? endpointElement;
 
   /// [payload] /// The mime type to send the payload in - either application/fhir+xml, or
   /// application/fhir+json. If the payload is not present, then there is no
   /// payload in the notification, just a notification. The mime type
   /// "text/plain" may also be used for Email and SMS subscriptions.
-  @JsonKey(name: 'payload')
   final FhirCode? payload;
-  @JsonKey(name: '_payload')
   final Element? payloadElement;
 
   /// [header] /// Additional headers / information to send as part of the notification.
-  @JsonKey(name: 'header')
   final List<FhirString>? header;
-  @JsonKey(name: '_header')
   final List<Element>? headerElement;
   @override
   Map<String, dynamic> toJson() {

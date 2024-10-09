@@ -1,30 +1,23 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Codes representing the likelihood of a particular outcome in a risk assessment.
 enum RiskProbability {
   /// Display: Negligible likelihood
   /// Definition: The specified outcome is exceptionally unlikely.
-  @JsonValue('negligible')
   negligible,
 
   /// Display: Low likelihood
   /// Definition: The specified outcome is possible but unlikely.
-  @JsonValue('low')
   low,
 
   /// Display: Moderate likelihood
   /// Definition: The specified outcome has a reasonable likelihood of occurrence.
-  @JsonValue('moderate')
   moderate,
 
   /// Display: High likelihood
   /// Definition: The specified outcome is more likely to occur than not.
-  @JsonValue('high')
   high,
 
   /// Display: Certain
   /// Definition: The specified outcome is effectively guaranteed.
-  @JsonValue('certain')
   certain,
   ;
 

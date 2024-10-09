@@ -1,50 +1,39 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// To describe the reason for the variant citation, such as version number or subpart specification.
 enum CitedArtifactPartType {
   /// Display: pages
   /// Definition: Denotes specific page or pages of an article or artifact.
-  @JsonValue('pages')
   pages,
 
   /// Display: sections
   /// Definition: Denotes specific section or sections of an article or artifact.
-  @JsonValue('sections')
   sections,
 
   /// Display: paragraphs
   /// Definition: Denotes specific paragraph or paragraphs of an article or artifact.
-  @JsonValue('paragraphs')
   paragraphs,
 
   /// Display: lines
   /// Definition: Denotes specific line or lines of an article or artifact.
-  @JsonValue('lines')
   lines,
 
   /// Display: tables
   /// Definition: Denotes specific table or tables of an article or artifact.
-  @JsonValue('tables')
   tables,
 
   /// Display: figures
   /// Definition: Denotes specific figure or figures of an article or artifact.
-  @JsonValue('figures')
   figures,
 
   /// Display: Supplement or Appendix
   /// Definition: Used to denote a supplementary file, appendix, or additional part that is not a subpart of the primary article.
-  @JsonValue('supplement')
   supplement,
 
   /// Display: Supplement or Appendix Subpart
   /// Definition: Used to denote a subpart within a supplementary file or appendix.
-  @JsonValue('supplement-subpart')
   supplement_subpart,
 
   /// Display: Part of an article set
   /// Definition: Used to distinguish an individual article within an article set where the article set is a base citation.
-  @JsonValue('article-set')
   article_set,
   ;
 

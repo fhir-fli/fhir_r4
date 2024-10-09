@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The status of a subscription.
 enum SubscriptionStatusCodes {
   /// Display: Requested
   /// Definition: The client has requested the subscription, and the server has not yet set it up.
-  @JsonValue('requested')
   requested,
 
   /// Display: Active
   /// Definition: The subscription is active.
-  @JsonValue('active')
   active,
 
   /// Display: Error
   /// Definition: The server has an error executing the notification.
-  @JsonValue('error')
   error,
 
   /// Display: Off
   /// Definition: Too many errors have occurred or the subscription has expired.
-  @JsonValue('off')
   off,
   ;
 

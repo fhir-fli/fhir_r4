@@ -1,465 +1,348 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This is the code representing the clinical specialty of the clinician or provider who interacted with, treated, or provided a service to/for the patient. The value set used for clinical specialty has been limited by HITSP to the value set reproduced from HITSP C80 Table 2-149 Clinical Specialty Value Set Definition.
 enum PracticeSettingCodeValueSet {
   /// Display: Adult mental illness
-  @JsonValue('408467006')
   value408467006,
 
   /// Display: Anesthetics
-  @JsonValue('394577000')
   value394577000,
 
   /// Display: Audiological medicine
-  @JsonValue('394578005')
   value394578005,
 
   /// Display: Blood banking and transfusion medicine
-  @JsonValue('421661004')
   value421661004,
 
   /// Display: Burns care
-  @JsonValue('408462000')
   value408462000,
 
   /// Display: Cardiology
-  @JsonValue('394579002')
   value394579002,
 
   /// Display: Clinical cytogenetics and molecular genetics
-  @JsonValue('394804000')
   value394804000,
 
   /// Display: Clinical genetics
-  @JsonValue('394580004')
   value394580004,
 
   /// Display: Clinical hematology
-  @JsonValue('394803006')
   value394803006,
 
   /// Display: Clinical immunology
-  @JsonValue('408480009')
   value408480009,
 
   /// Display: Clinical microbiology
-  @JsonValue('408454008')
   value408454008,
 
   /// Display: Clinical neuro-physiology
-  @JsonValue('394809005')
   value394809005,
 
   /// Display: Clinical oncology
-  @JsonValue('394592004')
   value394592004,
 
   /// Display: Clinical pharmacology
-  @JsonValue('394600006')
   value394600006,
 
   /// Display: Clinical physiology
-  @JsonValue('394601005')
   value394601005,
 
   /// Display: Community medicine
-  @JsonValue('394581000')
   value394581000,
 
   /// Display: Critical care medicine
-  @JsonValue('408478003')
   value408478003,
 
   /// Display: Dental medicine specialties
-  @JsonValue('394812008')
   value394812008,
 
   /// Display: Dental-General dental practice
-  @JsonValue('408444009')
   value408444009,
 
   /// Display: Dermatology
-  @JsonValue('394582007')
   value394582007,
 
   /// Display: Diabetic medicine
-  @JsonValue('408475000')
   value408475000,
 
   /// Display: Dive medicine
-  @JsonValue('410005002')
   value410005002,
 
   /// Display: Endocrinology
-  @JsonValue('394583002')
   value394583002,
 
   /// Display: Family practice
-  @JsonValue('419772000')
   value419772000,
 
   /// Display: Gastroenterology
-  @JsonValue('394584008')
   value394584008,
 
   /// Display: General medical practice
-  @JsonValue('408443003')
   value408443003,
 
   /// Display: General medicine
-  @JsonValue('394802001')
   value394802001,
 
   /// Display: General pathology
-  @JsonValue('394915009')
   value394915009,
 
   /// Display: General practice
-  @JsonValue('394814009')
   value394814009,
 
   /// Display: Genito-urinary medicine
-  @JsonValue('394808002')
   value394808002,
 
   /// Display: Geriatric medicine
-  @JsonValue('394811001')
   value394811001,
 
   /// Display: Gynecological oncology
-  @JsonValue('408446006')
   value408446006,
 
   /// Display: Gynecology
-  @JsonValue('394586005')
   value394586005,
 
   /// Display: Hematopathology
-  @JsonValue('394916005')
   value394916005,
 
   /// Display: Hepatology
-  @JsonValue('408472002')
   value408472002,
 
   /// Display: Histopathology
-  @JsonValue('394597005')
   value394597005,
 
   /// Display: Immunopathology
-  @JsonValue('394598000')
   value394598000,
 
   /// Display: Infectious diseases
-  @JsonValue('394807007')
   value394807007,
 
   /// Display: Internal medicine
-  @JsonValue('419192003')
   value419192003,
 
   /// Display: Learning disability
-  @JsonValue('408468001')
   value408468001,
 
   /// Display: Medical oncology
-  @JsonValue('394593009')
   value394593009,
 
   /// Display: Medical ophthalmology
-  @JsonValue('394813003')
   value394813003,
 
   /// Display: Military medicine
-  @JsonValue('410001006')
   value410001006,
 
   /// Display: Nephrology
-  @JsonValue('394589003')
   value394589003,
 
   /// Display: Neurology
-  @JsonValue('394591006')
   value394591006,
 
   /// Display: Neuropathology
-  @JsonValue('394599008')
   value394599008,
 
   /// Display: Nuclear medicine
-  @JsonValue('394649004')
   value394649004,
 
   /// Display: Obstetrics
-  @JsonValue('408470005')
   value408470005,
 
   /// Display: Obstetrics and gynecology
-  @JsonValue('394585009')
   value394585009,
 
   /// Display: Occupational medicine
-  @JsonValue('394821009')
   value394821009,
 
   /// Display: Ophthalmic surgery
-  @JsonValue('422191005')
   value422191005,
 
   /// Display: Ophthalmology
-  @JsonValue('394594003')
   value394594003,
 
   /// Display: Osteopathic manipulative medicine
-  @JsonValue('416304004')
   value416304004,
 
   /// Display: Otolaryngology
-  @JsonValue('418960008')
   value418960008,
 
   /// Display: Pain management
-  @JsonValue('394882004')
   value394882004,
 
   /// Display: Palliative medicine
-  @JsonValue('394806003')
   value394806003,
 
   /// Display: Pediatric (Child and adolescent) psychiatry
-  @JsonValue('394588006')
   value394588006,
 
   /// Display: Pediatric cardiology
-  @JsonValue('408459003')
   value408459003,
 
   /// Display: Pediatric dentistry
-  @JsonValue('394607009')
   value394607009,
 
   /// Display: Pediatric endocrinology
-  @JsonValue('419610006')
   value419610006,
 
   /// Display: Pediatric gastroenterology
-  @JsonValue('418058008')
   value418058008,
 
   /// Display: Pediatric genetics
-  @JsonValue('420208008')
   value420208008,
 
   /// Display: Pediatric hematology
-  @JsonValue('418652005')
   value418652005,
 
   /// Display: Pediatric immunology
-  @JsonValue('418535003')
   value418535003,
 
   /// Display: Pediatric infectious diseases
-  @JsonValue('418862001')
   value418862001,
 
   /// Display: Pediatric nephrology
-  @JsonValue('419365004')
   value419365004,
 
   /// Display: Pediatric oncology
-  @JsonValue('418002000')
   value418002000,
 
   /// Display: Pediatric ophthalmology
-  @JsonValue('419983000')
   value419983000,
 
   /// Display: Pediatric pulmonology
-  @JsonValue('419170002')
   value419170002,
 
   /// Display: Pediatric rheumatology
-  @JsonValue('419472004')
   value419472004,
 
   /// Display: Pediatric surgery
-  @JsonValue('394539006')
   value394539006,
 
   /// Display: Pediatric surgery-bone marrow transplantation
-  @JsonValue('420112009')
   value420112009,
 
   /// Display: Preventive medicine
-  @JsonValue('409968004')
   value409968004,
 
   /// Display: Psychiatry
-  @JsonValue('394587001')
   value394587001,
 
   /// Display: Psychotherapy
-  @JsonValue('394913002')
   value394913002,
 
   /// Display: Public health medicine
-  @JsonValue('408440000')
   value408440000,
 
   /// Display: Pulmonary medicine
-  @JsonValue('418112009')
   value418112009,
 
   /// Display: Radiation oncology
-  @JsonValue('419815003')
   value419815003,
 
   /// Display: Radiology
-  @JsonValue('394914008')
   value394914008,
 
   /// Display: Radiology-Interventional radiology
-  @JsonValue('408455009')
   value408455009,
 
   /// Display: Rehabilitation
-  @JsonValue('394602003')
   value394602003,
 
   /// Display: Respite care
-  @JsonValue('408447002')
   value408447002,
 
   /// Display: Rheumatology
-  @JsonValue('394810000')
   value394810000,
 
   /// Display: Sleep studies
-  @JsonValue('408450004')
   value408450004,
 
   /// Display: Surgery-Bone and marrow transplantation
-  @JsonValue('408476004')
   value408476004,
 
   /// Display: Surgery-Breast surgery
-  @JsonValue('408469009')
   value408469009,
 
   /// Display: Surgery-Cardiac surgery
-  @JsonValue('408466002')
   value408466002,
 
   /// Display: Surgery-Cardiothoracic transplantation
-  @JsonValue('408471009')
   value408471009,
 
   /// Display: Surgery-Colorectal surgery
-  @JsonValue('408464004')
   value408464004,
 
   /// Display: Surgery-Dental-Endodontics
-  @JsonValue('408441001')
   value408441001,
 
   /// Display: Surgery-Dental-Oral and maxillofacial surgery
-  @JsonValue('408465003')
   value408465003,
 
   /// Display: Surgery-Dental-Oral surgery
-  @JsonValue('394605001')
   value394605001,
 
   /// Display: Surgery-Dental-Orthodontics
-  @JsonValue('394608004')
   value394608004,
 
   /// Display: Surgery-Dental-Periodontal surgery
-  @JsonValue('408461007')
   value408461007,
 
   /// Display: Surgery-Dental-Prosthetic dentistry (Prosthodontics)
-  @JsonValue('408460008')
   value408460008,
 
   /// Display: Surgery-Dentistry-Restorative dentistry
-  @JsonValue('394606000')
   value394606000,
 
   /// Display: Surgery-Dentistry--surgical
-  @JsonValue('408449004')
   value408449004,
 
   /// Display: Surgery-Dermatologic surgery
-  @JsonValue('418018006')
   value418018006,
 
   /// Display: Surgery-Ear, nose and throat surgery
-  @JsonValue('394604002')
   value394604002,
 
   /// Display: Surgery-general
-  @JsonValue('394609007')
   value394609007,
 
   /// Display: Surgery-Hepatobiliary and pancreatic surgery
-  @JsonValue('408474001')
   value408474001,
 
   /// Display: Surgery-Neurosurgery
-  @JsonValue('394610002')
   value394610002,
 
   /// Display: Surgery-Plastic surgery
-  @JsonValue('394611003')
   value394611003,
 
   /// Display: Surgery-Transplantation surgery
-  @JsonValue('408477008')
   value408477008,
 
   /// Display: Surgery-Trauma and orthopedics
-  @JsonValue('394801008')
   value394801008,
 
   /// Display: Surgery-Vascular
-  @JsonValue('408463005')
   value408463005,
 
   /// Display: Surgical oncology
-  @JsonValue('419321007')
   value419321007,
 
   /// Display: Surgical-Accident & emergency
-  @JsonValue('394576009')
   value394576009,
 
   /// Display: Thoracic medicine
-  @JsonValue('394590007')
   value394590007,
 
   /// Display: Toxicology
-  @JsonValue('409967009')
   value409967009,
 
   /// Display: Tropical medicine
-  @JsonValue('408448007')
   value408448007,
 
   /// Display: Urological oncology
-  @JsonValue('419043006')
   value419043006,
 
   /// Display: Urology
-  @JsonValue('394612005')
   value394612005,
 
   /// Display: Medical specialty--OTHER--NOT LISTED
-  @JsonValue('394733009')
   value394733009,
 
   /// Display: Surgical specialty--OTHER-NOT LISTED
-  @JsonValue('394732004')
   value394732004,
   ;
 

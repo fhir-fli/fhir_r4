@@ -1,35 +1,27 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Types of security services used with FHIR.
 enum RestfulSecurityService {
   /// Display: OAuth
   /// Definition: OAuth (unspecified version see oauth.net).
-  @JsonValue('OAuth')
   OAuth,
 
   /// Display: SMART-on-FHIR
   /// Definition: OAuth2 using SMART-on-FHIR profile (see http://docs.smarthealthit.org/).
-  @JsonValue('SMART-on-FHIR')
   SMART_on_FHIR,
 
   /// Display: NTLM
   /// Definition: Microsoft NTLM Authentication.
-  @JsonValue('NTLM')
   NTLM,
 
   /// Display: Basic
   /// Definition: Basic authentication defined in HTTP specification.
-  @JsonValue('Basic')
   Basic,
 
   /// Display: Kerberos
   /// Definition: see http://www.ietf.org/rfc/rfc4120.txt.
-  @JsonValue('Kerberos')
   Kerberos,
 
   /// Display: Certificates
   /// Definition: SSL where client must have a certificate registered with the server.
-  @JsonValue('Certificates')
   Certificates,
   ;
 

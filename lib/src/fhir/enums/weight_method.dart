@@ -1,37 +1,27 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The method by which the substance weight was measured.
 enum WeightMethod {
   /// Display: SDS-PAGE (sodium dodecyl sulfate-polyacrylamide gel electrophoresis)
-  @JsonValue('SDS-PAGE')
   SDS_PAGE,
 
   /// Display: calculated
-  @JsonValue('Calculated')
   Calculated,
 
   /// Display: light scattering
-  @JsonValue('LighScattering')
   LighScattering,
 
   /// Display: viscosity
-  @JsonValue('Viscosity')
   Viscosity,
 
   /// Display: gel permeation centrifugation
-  @JsonValue('GelPermeationCentrifugation')
   GelPermeationCentrifugation,
 
   /// Display: End-group analysis
-  @JsonValue('End-groupAnalysis')
   End_groupAnalysis,
 
   /// Display: End-group titration
-  @JsonValue('End-groupTitration')
   End_groupTitration,
 
   /// Display: Size-exclusion chromatography
-  @JsonValue('Size-ExclusionChromatography')
   Size_ExclusionChromatography,
   ;
 

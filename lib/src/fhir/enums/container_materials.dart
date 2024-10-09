@@ -1,17 +1,12 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes SNOMED CT codes for materials that specimen containers are made of
 enum ContainerMaterials {
   /// Display: glass
-  @JsonValue('32039001')
   value32039001,
 
   /// Display: plastic
-  @JsonValue('61088005')
   value61088005,
 
   /// Display: metal
-  @JsonValue('425620007')
   value425620007,
   ;
 

@@ -1,18 +1,10 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set defines a set of codes that can be used to indicate special courtesies provided to the patient.
 enum SpecialCourtesy {
-  @JsonValue('EXT')
   EXT,
-  @JsonValue('NRM')
   NRM,
-  @JsonValue('PRF')
   PRF,
-  @JsonValue('STF')
   STF,
-  @JsonValue('VIP')
   VIP,
-  @JsonValue('UNK')
   UNK,
   ;
 

@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// How the issue affects the success of the action.
 enum IssueSeverity {
   /// Display: Fatal
   /// Definition: The issue caused the action to fail and no further checking could be performed.
-  @JsonValue('fatal')
   fatal,
 
   /// Display: Error
   /// Definition: The issue is sufficiently important to cause the action to fail.
-  @JsonValue('error')
   error,
 
   /// Display: Warning
   /// Definition: The issue is not important enough to cause the action to fail but may cause it to be performed suboptimally or in a way that is not as desired.
-  @JsonValue('warning')
   warning,
 
   /// Display: Information
   /// Definition: The issue has no relation to the degree of success of the action.
-  @JsonValue('information')
   information,
   ;
 

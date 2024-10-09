@@ -1,30 +1,23 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The current status of the test report.
 enum TestReportStatus {
   /// Display: Completed
   /// Definition: All test operations have completed.
-  @JsonValue('completed')
   completed,
 
   /// Display: In Progress
   /// Definition: A test operations is currently executing.
-  @JsonValue('in-progress')
   in_progress,
 
   /// Display: Waiting
   /// Definition: A test operation is waiting for an external client request.
-  @JsonValue('waiting')
   waiting,
 
   /// Display: Stopped
   /// Definition: The test script execution was manually stopped.
-  @JsonValue('stopped')
   stopped,
 
   /// Display: Entered In Error
   /// Definition: This test report was entered or created in error.
-  @JsonValue('entered-in-error')
   entered_in_error,
   ;
 

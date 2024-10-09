@@ -1,65 +1,51 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Color of the container cap.
 enum ContainerCap {
   /// Display: red cap
   /// Definition: red cap.
-  @JsonValue('red')
   red,
 
   /// Display: yellow cap
   /// Definition: yellow cap.
-  @JsonValue('yellow')
   yellow,
 
   /// Display: dark yellow cap
   /// Definition: dark yellow cap.
-  @JsonValue('dark-yellow')
   dark_yellow,
 
   /// Display: grey cap
   /// Definition: grey cap.
-  @JsonValue('grey')
   grey,
 
   /// Display: light blue cap
   /// Definition: light blue cap.
-  @JsonValue('light-blue')
   light_blue,
 
   /// Display: black cap
   /// Definition: black cap.
-  @JsonValue('black')
   black,
 
   /// Display: green cap
   /// Definition: green cap.
-  @JsonValue('green')
   green,
 
   /// Display: light green cap
   /// Definition: light green cap.
-  @JsonValue('light-green')
   light_green,
 
   /// Display: lavender cap
   /// Definition: lavender cap.
-  @JsonValue('lavender')
   lavender,
 
   /// Display: brown cap
   /// Definition: brown cap.
-  @JsonValue('brown')
   brown,
 
   /// Display: white cap
   /// Definition: white cap.
-  @JsonValue('white')
   white,
 
   /// Display: pink cap
   /// Definition: pink cap.
-  @JsonValue('pink')
   pink,
   ;
 

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,7 +7,6 @@ import '../../../fhir_r4.dart';
 /// [MarketingStatus] /// The marketing status describes the date when a medicinal product is
 /// actually put on the market or the date as of which it is no longer
 /// available.
-@JsonSerializable()
 class MarketingStatus extends BackboneType {
   MarketingStatus({
     super.id,
@@ -27,28 +25,26 @@ class MarketingStatus extends BackboneType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MarketingStatus';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [country] /// The country in which the marketing authorisation has been granted shall be
   /// specified It should be specified using the ISO 3166 ‑ 1 alpha-2 code
   /// elements.
-  @JsonKey(name: 'country')
   final CodeableConcept? country;
 
   /// [jurisdiction] /// Where a Medicines Regulatory Agency has granted a marketing authorisation
   /// for which specific provisions within a jurisdiction apply, the jurisdiction
   /// can be specified using an appropriate controlled terminology The controlled
   /// term and the controlled term identifier shall be specified.
-  @JsonKey(name: 'jurisdiction')
   final CodeableConcept? jurisdiction;
 
   /// [status] /// This attribute provides information on the status of the marketing of the
   /// medicinal product See ISO/TS 20443 for more information and examples.
-  @JsonKey(name: 'status')
   final CodeableConcept status;
 
   /// [dateRange] /// The date when the Medicinal Product is placed on the market by the
@@ -57,7 +53,6 @@ class MarketingStatus extends BackboneType {
   /// provided A complete date consisting of day, month and year shall be
   /// specified using the ISO 8601 date format NOTE “Placed on the market” refers
   /// to the release of the Medicinal Product into the distribution chain.
-  @JsonKey(name: 'dateRange')
   final Period? dateRange;
 
   /// [restoreDate] /// The date when the Medicinal Product is placed on the market by the
@@ -66,9 +61,7 @@ class MarketingStatus extends BackboneType {
   /// provided A complete date consisting of day, month and year shall be
   /// specified using the ISO 8601 date format NOTE “Placed on the market” refers
   /// to the release of the Medicinal Product into the distribution chain.
-  @JsonKey(name: 'restoreDate')
   final FhirDateTime? restoreDate;
-  @JsonKey(name: '_restoreDate')
   final Element? restoreDateElement;
   @override
   Map<String, dynamic> toJson() {

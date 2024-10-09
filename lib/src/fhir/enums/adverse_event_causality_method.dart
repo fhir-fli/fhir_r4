@@ -1,17 +1,12 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// TODO.
 enum AdverseEventCausalityMethod {
   /// Display: Probability Scale
-  @JsonValue('ProbabilityScale')
   ProbabilityScale,
 
   /// Display: Bayesian
-  @JsonValue('Bayesian')
   Bayesian,
 
   /// Display: Checklist
-  @JsonValue('Checklist')
   Checklist,
   ;
 

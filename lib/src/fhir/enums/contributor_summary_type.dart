@@ -1,40 +1,31 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Used to code author list statement, contributorship statement, and such.
 enum ContributorSummaryType {
   /// Display: Author string
   /// Definition: Display of the author list as a complete string.
-  @JsonValue('author-string')
   author_string,
 
   /// Display: Contributorship list
   /// Definition: Display of the list of contributors as a complete string.
-  @JsonValue('contributorship-list')
   contributorship_list,
 
   /// Display: Contributorship statement
   /// Definition: Compiled summary of contributions.
-  @JsonValue('contributorship-statement')
   contributorship_statement,
 
   /// Display: Acknowledgment list
   /// Definition: Display of the list of acknowledged parties as a complete string.
-  @JsonValue('acknowledgement-list')
   acknowledgement_list,
 
   /// Display: Acknowledgment statement
   /// Definition: Statement of acknowledgment of contributions beyond those compiled for formal contributorship statements.
-  @JsonValue('acknowledgment-statement')
   acknowledgment_statement,
 
   /// Display: Funding statement
   /// Definition: Statement of financial support for the creation of the cited artifact.
-  @JsonValue('funding-statement')
   funding_statement,
 
   /// Display: Competing interests statement
   /// Definition: Statement of completing interests related to the creation of the cited artifact. Also called conflicts of interest or declaration of interests.
-  @JsonValue('competing-interests-statement')
   competing_interests_statement,
   ;
 

@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [MolecularSequence] /// Raw data describing a biological sequence.
-@JsonSerializable()
 class MolecularSequence extends DomainResource {
   MolecularSequence({
     super.id,
@@ -46,54 +44,44 @@ class MolecularSequence extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.MolecularSequence);
+
   @override
   String get fhirType => 'MolecularSequence';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// A unique identifier for this particular sequence instance. This is a
   /// FHIR-defined id.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [type] /// Amino Acid Sequence/ DNA Sequence / RNA Sequence.
-  @JsonKey(name: 'type')
   final SequenceType? type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [coordinateSystem] /// Whether the sequence is numbered starting at 0 (0-based numbering or
   /// coordinates, inclusive start, exclusive end) or starting at 1 (1-based
   /// numbering, inclusive start and inclusive end).
-  @JsonKey(name: 'coordinateSystem')
   final FhirInteger coordinateSystem;
-  @JsonKey(name: '_coordinateSystem')
   final Element? coordinateSystemElement;
 
   /// [patient] /// The patient whose sequencing results are described by this resource.
-  @JsonKey(name: 'patient')
   final Reference? patient;
 
   /// [specimen] /// Specimen used for sequencing.
-  @JsonKey(name: 'specimen')
   final Reference? specimen;
 
   /// [device] /// The method for sequencing, for example, chip information.
-  @JsonKey(name: 'device')
   final Reference? device;
 
   /// [performer] /// The organization or lab that should be responsible for this result.
-  @JsonKey(name: 'performer')
   final Reference? performer;
 
   /// [quantity] /// The number of copies of the sequence of interest. (RNASeq).
-  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [referenceSeq] /// A sequence that is used as a reference to describe variants that are
   /// present in a sequence analyzed.
-  @JsonKey(name: 'referenceSeq')
   final MolecularSequenceReferenceSeq? referenceSeq;
 
   /// [variant] /// The definition of variant here originates from Sequence ontology
@@ -101,41 +89,32 @@ class MolecularSequence extends DomainResource {
   /// This element can represent amino acid or nucleic sequence change(including
   /// insertion,deletion,SNP,etc.) It can represent some complex mutation or
   /// segment variation with the assist of CIGAR string.
-  @JsonKey(name: 'variant')
   final List<MolecularSequenceVariant>? variant;
 
   /// [observedSeq] /// Sequence that was observed. It is the result marked by referenceSeq along
   /// with variant records on referenceSeq. This shall start from
   /// referenceSeq.windowStart and end by referenceSeq.windowEnd.
-  @JsonKey(name: 'observedSeq')
   final FhirString? observedSeq;
-  @JsonKey(name: '_observedSeq')
   final Element? observedSeqElement;
 
   /// [quality] /// An experimental feature attribute that defines the quality of the feature
   /// in a quantitative way, such as a phred quality score
   /// ([SO:0001686](http://www.sequenceontology.org/browser/current_svn/term/SO:0001686)).
-  @JsonKey(name: 'quality')
   final List<MolecularSequenceQuality>? quality;
 
   /// [readCoverage] /// Coverage (read depth or depth) is the average number of reads representing
   /// a given nucleotide in the reconstructed sequence.
-  @JsonKey(name: 'readCoverage')
   final FhirInteger? readCoverage;
-  @JsonKey(name: '_readCoverage')
   final Element? readCoverageElement;
 
   /// [repository] /// Configurations of the external repository. The repository shall store
   /// target's observedSeq or records related with target's observedSeq.
-  @JsonKey(name: 'repository')
   final List<MolecularSequenceRepository>? repository;
 
   /// [pointer] /// Pointer to next atomic sequence which at most contains one variant.
-  @JsonKey(name: 'pointer')
   final List<Reference>? pointer;
 
   /// [structureVariant] /// Information about chromosome structure variation.
-  @JsonKey(name: 'structureVariant')
   final List<MolecularSequenceStructureVariant>? structureVariant;
   @override
   Map<String, dynamic> toJson() {
@@ -457,7 +436,6 @@ class MolecularSequence extends DomainResource {
 
 /// [MolecularSequenceReferenceSeq] /// A sequence that is used as a reference to describe variants that are
 /// present in a sequence analyzed.
-@JsonSerializable()
 class MolecularSequenceReferenceSeq extends BackboneElement {
   MolecularSequenceReferenceSeq({
     super.id,
@@ -485,74 +463,60 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MolecularSequenceReferenceSeq';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [chromosome] /// Structural unit composed of a nucleic acid molecule which controls its own
   /// replication through the interaction of specific proteins at one or more
   /// origins of replication
   /// ([SO:0000340](http://www.sequenceontology.org/browser/current_svn/term/SO:0000340)).
-  @JsonKey(name: 'chromosome')
   final CodeableConcept? chromosome;
 
   /// [genomeBuild] /// The Genome Build used for reference, following GRCh build versions e.g.
   /// 'GRCh 37'. Version number must be included if a versioned release of a
   /// primary build was used.
-  @JsonKey(name: 'genomeBuild')
   final FhirString? genomeBuild;
-  @JsonKey(name: '_genomeBuild')
   final Element? genomeBuildElement;
 
   /// [orientation] /// A relative reference to a DNA strand based on gene orientation. The strand
   /// that contains the open reading frame of the gene is the "sense" strand, and
   /// the opposite complementary strand is the "antisense" strand.
-  @JsonKey(name: 'orientation')
   final OrientationType? orientation;
-  @JsonKey(name: '_orientation')
   final Element? orientationElement;
 
   /// [referenceSeqId] /// Reference identifier of reference sequence submitted to NCBI. It must match
   /// the type in the MolecularSequence.type field. For example, the prefix,
   /// “NG_” identifies reference sequence for genes, “NM_” for messenger RNA
   /// transcripts, and “NP_” for amino acid sequences.
-  @JsonKey(name: 'referenceSeqId')
   final CodeableConcept? referenceSeqId;
 
   /// [referenceSeqPointer] /// A pointer to another MolecularSequence entity as reference sequence.
-  @JsonKey(name: 'referenceSeqPointer')
   final Reference? referenceSeqPointer;
 
   /// [referenceSeqString] /// A string like "ACGT".
-  @JsonKey(name: 'referenceSeqString')
   final FhirString? referenceSeqString;
-  @JsonKey(name: '_referenceSeqString')
   final Element? referenceSeqStringElement;
 
   /// [strand] /// An absolute reference to a strand. The Watson strand is the strand whose
   /// 5'-end is on the short arm of the chromosome, and the Crick strand as the
   /// one whose 5'-end is on the long arm.
-  @JsonKey(name: 'strand')
   final StrandType? strand;
-  @JsonKey(name: '_strand')
   final Element? strandElement;
 
   /// [windowStart] /// Start position of the window on the reference sequence. If the coordinate
   /// system is either 0-based or 1-based, then start position is inclusive.
-  @JsonKey(name: 'windowStart')
   final FhirInteger? windowStart;
-  @JsonKey(name: '_windowStart')
   final Element? windowStartElement;
 
   /// [windowEnd] /// End position of the window on the reference sequence. If the coordinate
   /// system is 0-based then end is exclusive and does not include the last
   /// position. If the coordinate system is 1-base, then end is inclusive and
   /// includes the last position.
-  @JsonKey(name: 'windowEnd')
   final FhirInteger? windowEnd;
-  @JsonKey(name: '_windowEnd')
   final Element? windowEndElement;
   @override
   Map<String, dynamic> toJson() {
@@ -753,7 +717,6 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
 /// This element can represent amino acid or nucleic sequence change(including
 /// insertion,deletion,SNP,etc.) It can represent some complex mutation or
 /// segment variation with the assist of CIGAR string.
-@JsonSerializable()
 class MolecularSequenceVariant extends BackboneElement {
   MolecularSequenceVariant({
     super.id,
@@ -777,26 +740,23 @@ class MolecularSequenceVariant extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MolecularSequenceVariant';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [start] /// Start position of the variant on the reference sequence. If the coordinate
   /// system is either 0-based or 1-based, then start position is inclusive.
-  @JsonKey(name: 'start')
   final FhirInteger? start;
-  @JsonKey(name: '_start')
   final Element? startElement;
 
   /// [end] /// End position of the variant on the reference sequence. If the coordinate
   /// system is 0-based then end is exclusive and does not include the last
   /// position. If the coordinate system is 1-base, then end is inclusive and
   /// includes the last position.
-  @JsonKey(name: 'end')
   final FhirInteger? end;
-  @JsonKey(name: '_end')
   final Element? endElement;
 
   /// [observedAllele] /// An allele is one of a set of coexisting sequence variants of a gene
@@ -805,9 +765,7 @@ class MolecularSequenceVariant extends BackboneElement {
   /// of sequence on the positive (+) strand of the observed sequence. When the
   /// sequence type is DNA, it should be the sequence on the positive (+) strand.
   /// This will lay in the range between variant.start and variant.end.
-  @JsonKey(name: 'observedAllele')
   final FhirString? observedAllele;
-  @JsonKey(name: '_observedAllele')
   final Element? observedAlleleElement;
 
   /// [referenceAllele] /// An allele is one of a set of coexisting sequence variants of a gene
@@ -816,21 +774,16 @@ class MolecularSequenceVariant extends BackboneElement {
   /// of sequence on the positive (+) strand of the reference sequence. When the
   /// sequence type is DNA, it should be the sequence on the positive (+) strand.
   /// This will lay in the range between variant.start and variant.end.
-  @JsonKey(name: 'referenceAllele')
   final FhirString? referenceAllele;
-  @JsonKey(name: '_referenceAllele')
   final Element? referenceAlleleElement;
 
   /// [cigar] /// Extended CIGAR string for aligning the sequence with reference bases. See
   /// detailed documentation
   /// [here](http://support.illumina.com/help/SequencingAnalysisWorkflow/Content/Vault/Informatics/Sequencing_Analysis/CASAVA/swSEQ_mCA_ExtendedCIGARFormat.htm).
-  @JsonKey(name: 'cigar')
   final FhirString? cigar;
-  @JsonKey(name: '_cigar')
   final Element? cigarElement;
 
   /// [variantPointer] /// A pointer to an Observation containing variant information.
-  @JsonKey(name: 'variantPointer')
   final Reference? variantPointer;
   @override
   Map<String, dynamic> toJson() {
@@ -1003,7 +956,6 @@ class MolecularSequenceVariant extends BackboneElement {
 /// [MolecularSequenceQuality] /// An experimental feature attribute that defines the quality of the feature
 /// in a quantitative way, such as a phred quality score
 /// ([SO:0001686](http://www.sequenceontology.org/browser/current_svn/term/SO:0001686)).
-@JsonSerializable()
 class MolecularSequenceQuality extends BackboneElement {
   MolecularSequenceQuality({
     super.id,
@@ -1042,62 +994,50 @@ class MolecularSequenceQuality extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MolecularSequenceQuality';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// INDEL / SNP / Undefined variant.
-  @JsonKey(name: 'type')
   final QualityType type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [standardSequence] /// Gold standard sequence used for comparing against.
-  @JsonKey(name: 'standardSequence')
   final CodeableConcept? standardSequence;
 
   /// [start] /// Start position of the sequence. If the coordinate system is either 0-based
   /// or 1-based, then start position is inclusive.
-  @JsonKey(name: 'start')
   final FhirInteger? start;
-  @JsonKey(name: '_start')
   final Element? startElement;
 
   /// [end] /// End position of the sequence. If the coordinate system is 0-based then end
   /// is exclusive and does not include the last position. If the coordinate
   /// system is 1-base, then end is inclusive and includes the last position.
-  @JsonKey(name: 'end')
   final FhirInteger? end;
-  @JsonKey(name: '_end')
   final Element? endElement;
 
   /// [score] /// The score of an experimentally derived feature such as a p-value
   /// ([SO:0001685](http://www.sequenceontology.org/browser/current_svn/term/SO:0001685)).
-  @JsonKey(name: 'score')
   final Quantity? score;
 
   /// [method] /// Which method is used to get sequence quality.
-  @JsonKey(name: 'method')
   final CodeableConcept? method;
 
   /// [truthTP] /// True positives, from the perspective of the truth data, i.e. the number of
   /// sites in the Truth Call Set for which there are paths through the Query
   /// Call Set that are consistent with all of the alleles at this site, and for
   /// which there is an accurate genotype call for the event.
-  @JsonKey(name: 'truthTP')
   final FhirDecimal? truthTP;
-  @JsonKey(name: '_truthTP')
   final Element? truthTPElement;
 
   /// [queryTP] /// True positives, from the perspective of the query data, i.e. the number of
   /// sites in the Query Call Set for which there are paths through the Truth
   /// Call Set that are consistent with all of the alleles at this site, and for
   /// which there is an accurate genotype call for the event.
-  @JsonKey(name: 'queryTP')
   final FhirDecimal? queryTP;
-  @JsonKey(name: '_queryTP')
   final Element? queryTPElement;
 
   /// [truthFN] /// False negatives, i.e. the number of sites in the Truth Call Set for which
@@ -1105,49 +1045,36 @@ class MolecularSequenceQuality extends BackboneElement {
   /// the alleles at this site, or sites for which there is an inaccurate
   /// genotype call for the event. Sites with correct variant but incorrect
   /// genotype are counted here.
-  @JsonKey(name: 'truthFN')
   final FhirDecimal? truthFN;
-  @JsonKey(name: '_truthFN')
   final Element? truthFNElement;
 
   /// [queryFP] /// False positives, i.e. the number of sites in the Query Call Set for which
   /// there is no path through the Truth Call Set that is consistent with this
   /// site. Sites with correct variant but incorrect genotype are counted here.
-  @JsonKey(name: 'queryFP')
   final FhirDecimal? queryFP;
-  @JsonKey(name: '_queryFP')
   final Element? queryFPElement;
 
   /// [gtFP] /// The number of false positives where the non-REF alleles in the Truth and
   /// Query Call Sets match (i.e. cases where the truth is 1/1 and the query is
   /// 0/1 or similar).
-  @JsonKey(name: 'gtFP')
   final FhirDecimal? gtFP;
-  @JsonKey(name: '_gtFP')
   final Element? gtFPElement;
 
   /// [precision] /// QUERY.TP / (QUERY.TP + QUERY.FP).
-  @JsonKey(name: 'precision')
   final FhirDecimal? precision;
-  @JsonKey(name: '_precision')
   final Element? precisionElement;
 
   /// [recall] /// TRUTH.TP / (TRUTH.TP + TRUTH.FN).
-  @JsonKey(name: 'recall')
   final FhirDecimal? recall;
-  @JsonKey(name: '_recall')
   final Element? recallElement;
 
   /// [fScore] /// Harmonic mean of Recall and Precision, computed as: 2 * precision * recall
   /// / (precision + recall).
-  @JsonKey(name: 'fScore')
   final FhirDecimal? fScore;
-  @JsonKey(name: '_fScore')
   final Element? fScoreElement;
 
   /// [roc] /// Receiver Operator Characteristic (ROC) Curve to give
   /// sensitivity/specificity tradeoff.
-  @JsonKey(name: 'roc')
   final MolecularSequenceRoc? roc;
   @override
   Map<String, dynamic> toJson() {
@@ -1415,7 +1342,6 @@ class MolecularSequenceQuality extends BackboneElement {
 
 /// [MolecularSequenceRoc] /// Receiver Operator Characteristic (ROC) Curve to give
 /// sensitivity/specificity tradeoff.
-@JsonSerializable()
 class MolecularSequenceRoc extends BackboneElement {
   MolecularSequenceRoc({
     super.id,
@@ -1442,57 +1368,44 @@ class MolecularSequenceRoc extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MolecularSequenceRoc';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [score] /// Invidual data point representing the GQ (genotype quality) score threshold.
-  @JsonKey(name: 'score')
   final List<FhirInteger>? score;
-  @JsonKey(name: '_score')
   final List<Element>? scoreElement;
 
   /// [numTP] /// The number of true positives if the GQ score threshold was set to "score"
   /// field value.
-  @JsonKey(name: 'numTP')
   final List<FhirInteger>? numTP;
-  @JsonKey(name: '_numTP')
   final List<Element>? numTPElement;
 
   /// [numFP] /// The number of false positives if the GQ score threshold was set to "score"
   /// field value.
-  @JsonKey(name: 'numFP')
   final List<FhirInteger>? numFP;
-  @JsonKey(name: '_numFP')
   final List<Element>? numFPElement;
 
   /// [numFN] /// The number of false negatives if the GQ score threshold was set to "score"
   /// field value.
-  @JsonKey(name: 'numFN')
   final List<FhirInteger>? numFN;
-  @JsonKey(name: '_numFN')
   final List<Element>? numFNElement;
 
   /// [precision] /// Calculated precision if the GQ score threshold was set to "score" field
   /// value.
-  @JsonKey(name: 'precision')
   final List<FhirDecimal>? precision;
-  @JsonKey(name: '_precision')
   final List<Element>? precisionElement;
 
   /// [sensitivity] /// Calculated sensitivity if the GQ score threshold was set to "score" field
   /// value.
-  @JsonKey(name: 'sensitivity')
   final List<FhirDecimal>? sensitivity;
-  @JsonKey(name: '_sensitivity')
   final List<Element>? sensitivityElement;
 
   /// [fMeasure] /// Calculated fScore if the GQ score threshold was set to "score" field value.
-  @JsonKey(name: 'fMeasure')
   final List<FhirDecimal>? fMeasure;
-  @JsonKey(name: '_fMeasure')
   final List<Element>? fMeasureElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1731,7 +1644,6 @@ class MolecularSequenceRoc extends BackboneElement {
 
 /// [MolecularSequenceRepository] /// Configurations of the external repository. The repository shall store
 /// target's observedSeq or records related with target's observedSeq.
-@JsonSerializable()
 class MolecularSequenceRepository extends BackboneElement {
   MolecularSequenceRepository({
     super.id,
@@ -1756,53 +1668,42 @@ class MolecularSequenceRepository extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MolecularSequenceRepository';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Click and see / RESTful API / Need login to see / RESTful API with
   /// authentication / Other ways to see resource.
-  @JsonKey(name: 'type')
   final RepositoryType type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [url] /// URI of an external repository which contains further details about the
   /// genetics data.
-  @JsonKey(name: 'url')
   final FhirUri? url;
-  @JsonKey(name: '_url')
   final Element? urlElement;
 
   /// [name] /// URI of an external repository which contains further details about the
   /// genetics data.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [datasetId] /// Id of the variant in this external repository. The server will understand
   /// how to use this id to call for more info about datasets in external
   /// repository.
-  @JsonKey(name: 'datasetId')
   final FhirString? datasetId;
-  @JsonKey(name: '_datasetId')
   final Element? datasetIdElement;
 
   /// [variantsetId] /// Id of the variantset in this external repository. The server will
   /// understand how to use this id to call for more info about variantsets in
   /// external repository.
-  @JsonKey(name: 'variantsetId')
   final FhirString? variantsetId;
-  @JsonKey(name: '_variantsetId')
   final Element? variantsetIdElement;
 
   /// [readsetId] /// Id of the read in this external repository.
-  @JsonKey(name: 'readsetId')
   final FhirString? readsetId;
-  @JsonKey(name: '_readsetId')
   final Element? readsetIdElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1969,7 +1870,6 @@ class MolecularSequenceRepository extends BackboneElement {
 }
 
 /// [MolecularSequenceStructureVariant] /// Information about chromosome structure variation.
-@JsonSerializable()
 class MolecularSequenceStructureVariant extends BackboneElement {
   MolecularSequenceStructureVariant({
     super.id,
@@ -1989,35 +1889,29 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MolecularSequenceStructureVariant';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [variantType] /// Information about chromosome structure variation DNA change type.
-  @JsonKey(name: 'variantType')
   final CodeableConcept? variantType;
 
   /// [exact] /// Used to indicate if the outer and inner start-end values have the same
   /// meaning.
-  @JsonKey(name: 'exact')
   final FhirBoolean? exact;
-  @JsonKey(name: '_exact')
   final Element? exactElement;
 
   /// [length] /// Length of the variant chromosome.
-  @JsonKey(name: 'length')
   final FhirInteger? length;
-  @JsonKey(name: '_length')
   final Element? lengthElement;
 
   /// [outer] /// Structural variant outer.
-  @JsonKey(name: 'outer')
   final MolecularSequenceOuter? outer;
 
   /// [inner] /// Structural variant inner.
-  @JsonKey(name: 'inner')
   final MolecularSequenceInner? inner;
   @override
   Map<String, dynamic> toJson() {
@@ -2161,7 +2055,6 @@ class MolecularSequenceStructureVariant extends BackboneElement {
 }
 
 /// [MolecularSequenceOuter] /// Structural variant outer.
-@JsonSerializable()
 class MolecularSequenceOuter extends BackboneElement {
   MolecularSequenceOuter({
     super.id,
@@ -2178,25 +2071,22 @@ class MolecularSequenceOuter extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MolecularSequenceOuter';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [start] /// Structural variant outer start. If the coordinate system is either 0-based
   /// or 1-based, then start position is inclusive.
-  @JsonKey(name: 'start')
   final FhirInteger? start;
-  @JsonKey(name: '_start')
   final Element? startElement;
 
   /// [end] /// Structural variant outer end. If the coordinate system is 0-based then end
   /// is exclusive and does not include the last position. If the coordinate
   /// system is 1-base, then end is inclusive and includes the last position.
-  @JsonKey(name: 'end')
   final FhirInteger? end;
-  @JsonKey(name: '_end')
   final Element? endElement;
   @override
   Map<String, dynamic> toJson() {
@@ -2311,7 +2201,6 @@ class MolecularSequenceOuter extends BackboneElement {
 }
 
 /// [MolecularSequenceInner] /// Structural variant inner.
-@JsonSerializable()
 class MolecularSequenceInner extends BackboneElement {
   MolecularSequenceInner({
     super.id,
@@ -2328,25 +2217,22 @@ class MolecularSequenceInner extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MolecularSequenceInner';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [start] /// Structural variant inner start. If the coordinate system is either 0-based
   /// or 1-based, then start position is inclusive.
-  @JsonKey(name: 'start')
   final FhirInteger? start;
-  @JsonKey(name: '_start')
   final Element? startElement;
 
   /// [end] /// Structural variant inner end. If the coordinate system is 0-based then end
   /// is exclusive and does not include the last position. If the coordinate
   /// system is 1-base, then end is inclusive and includes the last position.
-  @JsonKey(name: 'end')
   final FhirInteger? end;
-  @JsonKey(name: '_end')
   final Element? endElement;
   @override
   Map<String, dynamic> toJson() {

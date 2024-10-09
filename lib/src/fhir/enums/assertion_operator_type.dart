@@ -1,60 +1,47 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The type of operator to use for assertion.
 enum AssertionOperatorType {
   /// Display: equals
   /// Definition: Default value. Equals comparison.
-  @JsonValue('equals')
   equals,
 
   /// Display: notEquals
   /// Definition: Not equals comparison.
-  @JsonValue('notEquals')
   notEquals,
 
   /// Display: in
   /// Definition: Compare value within a known set of values.
-  @JsonValue('in')
   in_,
 
   /// Display: notIn
   /// Definition: Compare value not within a known set of values.
-  @JsonValue('notIn')
   notIn,
 
   /// Display: greaterThan
   /// Definition: Compare value to be greater than a known value.
-  @JsonValue('greaterThan')
   greaterThan,
 
   /// Display: lessThan
   /// Definition: Compare value to be less than a known value.
-  @JsonValue('lessThan')
   lessThan,
 
   /// Display: empty
   /// Definition: Compare value is empty.
-  @JsonValue('empty')
   empty,
 
   /// Display: notEmpty
   /// Definition: Compare value is not empty.
-  @JsonValue('notEmpty')
   notEmpty,
 
   /// Display: contains
   /// Definition: Compare value string contains a known value.
-  @JsonValue('contains')
   contains,
 
   /// Display: notContains
   /// Definition: Compare value string does not contain a known value.
-  @JsonValue('notContains')
   notContains,
 
   /// Display: evaluate
   /// Definition: Evaluate the FHIRPath expression as a boolean condition.
-  @JsonValue('eval')
   eval,
   ;
 

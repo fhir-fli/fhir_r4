@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [PaymentReconciliation] /// This resource provides the details including amount of a payment and
 /// allocates the payment items being paid.
-@JsonSerializable()
 class PaymentReconciliation extends DomainResource {
   PaymentReconciliation({
     super.id,
@@ -47,83 +45,64 @@ class PaymentReconciliation extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.PaymentReconciliation);
+
   @override
   String get fhirType => 'PaymentReconciliation';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// A unique identifier assigned to this payment reconciliation.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// The status of the resource instance.
-  @JsonKey(name: 'status')
   final FinancialResourceStatusCodes status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [period] /// The period of time for which payments have been gathered into this bulk
   /// payment for settlement.
-  @JsonKey(name: 'period')
   final Period? period;
 
   /// [created] /// The date when the resource was created.
-  @JsonKey(name: 'created')
   final FhirDateTime created;
-  @JsonKey(name: '_created')
   final Element? createdElement;
 
   /// [paymentIssuer] /// The party who generated the payment.
-  @JsonKey(name: 'paymentIssuer')
   final Reference? paymentIssuer;
 
   /// [request] /// Original request resource reference.
-  @JsonKey(name: 'request')
   final Reference? request;
 
   /// [requestor] /// The practitioner who is responsible for the services rendered to the
   /// patient.
-  @JsonKey(name: 'requestor')
   final Reference? requestor;
 
   /// [outcome] /// The outcome of a request for a reconciliation.
-  @JsonKey(name: 'outcome')
   final RemittanceOutcome? outcome;
-  @JsonKey(name: '_outcome')
   final Element? outcomeElement;
 
   /// [disposition] /// A human readable description of the status of the request for the
   /// reconciliation.
-  @JsonKey(name: 'disposition')
   final FhirString? disposition;
-  @JsonKey(name: '_disposition')
   final Element? dispositionElement;
 
   /// [paymentDate] /// The date of payment as indicated on the financial instrument.
-  @JsonKey(name: 'paymentDate')
   final FhirDate paymentDate;
-  @JsonKey(name: '_paymentDate')
   final Element? paymentDateElement;
 
   /// [paymentAmount] /// Total payment amount as indicated on the financial instrument.
-  @JsonKey(name: 'paymentAmount')
   final Money paymentAmount;
 
   /// [paymentIdentifier] /// Issuer's unique identifier for the payment instrument.
-  @JsonKey(name: 'paymentIdentifier')
   final Identifier? paymentIdentifier;
 
   /// [detail] /// Distribution of the payment amount for a previously acknowledged payable.
-  @JsonKey(name: 'detail')
   final List<PaymentReconciliationDetail>? detail;
 
   /// [formCode] /// A code for the form to be used for printing the content.
-  @JsonKey(name: 'formCode')
   final CodeableConcept? formCode;
 
   /// [processNote] /// A note that describes or explains the processing in a human readable form.
-  @JsonKey(name: 'processNote')
   final List<PaymentReconciliationProcessNote>? processNote;
   @override
   Map<String, dynamic> toJson() {
@@ -412,7 +391,6 @@ class PaymentReconciliation extends DomainResource {
 }
 
 /// [PaymentReconciliationDetail] /// Distribution of the payment amount for a previously acknowledged payable.
-@JsonSerializable()
 class PaymentReconciliationDetail extends BackboneElement {
   PaymentReconciliationDetail({
     super.id,
@@ -436,54 +414,44 @@ class PaymentReconciliationDetail extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'PaymentReconciliationDetail';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Unique identifier for the current payment item for the referenced payable.
-  @JsonKey(name: 'identifier')
   final Identifier? identifier;
 
   /// [predecessor] /// Unique identifier for the prior payment item for the referenced payable.
-  @JsonKey(name: 'predecessor')
   final Identifier? predecessor;
 
   /// [type] /// Code to indicate the nature of the payment.
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [request] /// A resource, such as a Claim, the evaluation of which could lead to payment.
-  @JsonKey(name: 'request')
   final Reference? request;
 
   /// [submitter] /// The party which submitted the claim or financial transaction.
-  @JsonKey(name: 'submitter')
   final Reference? submitter;
 
   /// [response] /// A resource, such as a ClaimResponse, which contains a commitment to
   /// payment.
-  @JsonKey(name: 'response')
   final Reference? response;
 
   /// [date] /// The date from the response resource containing a commitment to pay.
-  @JsonKey(name: 'date')
   final FhirDate? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [responsible] /// A reference to the individual who is responsible for inquiries regarding
   /// the response and its payment.
-  @JsonKey(name: 'responsible')
   final Reference? responsible;
 
   /// [payee] /// The party which is receiving the payment.
-  @JsonKey(name: 'payee')
   final Reference? payee;
 
   /// [amount] /// The monetary amount allocated from the total payment to the payable.
-  @JsonKey(name: 'amount')
   final Money? amount;
   @override
   Map<String, dynamic> toJson() {
@@ -652,7 +620,6 @@ class PaymentReconciliationDetail extends BackboneElement {
 }
 
 /// [PaymentReconciliationProcessNote] /// A note that describes or explains the processing in a human readable form.
-@JsonSerializable()
 class PaymentReconciliationProcessNote extends BackboneElement {
   PaymentReconciliationProcessNote({
     super.id,
@@ -669,22 +636,19 @@ class PaymentReconciliationProcessNote extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'PaymentReconciliationProcessNote';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The business purpose of the note text.
-  @JsonKey(name: 'type')
   final NoteType? type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [text] /// The explanation or description associated with the processing.
-  @JsonKey(name: 'text')
   final FhirString? text;
-  @JsonKey(name: '_text')
   final Element? textElement;
   @override
   Map<String, dynamic> toJson() {

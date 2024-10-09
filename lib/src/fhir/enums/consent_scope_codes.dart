@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes the four Consent scope codes.
 enum ConsentScopeCodes {
   /// Display: Advanced Care Directive
   /// Definition: Actions to be taken if they are no longer able to make decisions for themselves
-  @JsonValue('adr')
   adr,
 
   /// Display: Research
   /// Definition: Consent to participate in research protocol and information sharing required
-  @JsonValue('research')
   research,
 
   /// Display: Privacy Consent
   /// Definition: Agreement to collect, access, use or disclose (share) information
-  @JsonValue('patient-privacy')
   patient_privacy,
 
   /// Display: Treatment
   /// Definition: Consent to undergo a specific treatment
-  @JsonValue('treatment')
   treatment,
   ;
 

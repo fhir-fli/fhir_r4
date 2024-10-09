@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [SpecimenDefinition] /// A kind of specimen with associated set of requirements.
-@JsonSerializable()
 class SpecimenDefinition extends DomainResource {
   SpecimenDefinition({
     super.id,
@@ -33,36 +31,30 @@ class SpecimenDefinition extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.SpecimenDefinition);
+
   @override
   String get fhirType => 'SpecimenDefinition';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// A business identifier associated with the kind of specimen.
-  @JsonKey(name: 'identifier')
   final Identifier? identifier;
 
   /// [typeCollected] /// The kind of material to be collected.
-  @JsonKey(name: 'typeCollected')
   final CodeableConcept? typeCollected;
 
   /// [patientPreparation] /// Preparation of the patient for specimen collection.
-  @JsonKey(name: 'patientPreparation')
   final List<CodeableConcept>? patientPreparation;
 
   /// [timeAspect] /// Time aspect of specimen collection (duration or offset).
-  @JsonKey(name: 'timeAspect')
   final FhirString? timeAspect;
-  @JsonKey(name: '_timeAspect')
   final Element? timeAspectElement;
 
   /// [collection] /// The action to be performed for collecting the specimen.
-  @JsonKey(name: 'collection')
   final List<CodeableConcept>? collection;
 
   /// [typeTested] /// Specimen conditioned in a container as expected by the testing laboratory.
-  @JsonKey(name: 'typeTested')
   final List<SpecimenDefinitionTypeTested>? typeTested;
   @override
   Map<String, dynamic> toJson() {
@@ -274,7 +266,6 @@ class SpecimenDefinition extends DomainResource {
 }
 
 /// [SpecimenDefinitionTypeTested] /// Specimen conditioned in a container as expected by the testing laboratory.
-@JsonSerializable()
 class SpecimenDefinitionTypeTested extends BackboneElement {
   SpecimenDefinitionTypeTested({
     super.id,
@@ -298,51 +289,41 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'SpecimenDefinitionTypeTested';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [isDerived] /// Primary of secondary specimen.
-  @JsonKey(name: 'isDerived')
   final FhirBoolean? isDerived;
-  @JsonKey(name: '_isDerived')
   final Element? isDerivedElement;
 
   /// [type] /// The kind of specimen conditioned for testing expected by lab.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [preference] /// The preference for this type of conditioned specimen.
-  @JsonKey(name: 'preference')
   final SpecimenContainedPreference preference;
-  @JsonKey(name: '_preference')
   final Element? preferenceElement;
 
   /// [container] /// The specimen's container.
-  @JsonKey(name: 'container')
   final SpecimenDefinitionContainer? container;
 
   /// [requirement] /// Requirements for delivery and special handling of this kind of conditioned
   /// specimen.
-  @JsonKey(name: 'requirement')
   final FhirString? requirement;
-  @JsonKey(name: '_requirement')
   final Element? requirementElement;
 
   /// [retentionTime] /// The usual time that a specimen of this kind is retained after the ordered
   /// tests are completed, for the purpose of additional testing.
-  @JsonKey(name: 'retentionTime')
   final FhirDuration? retentionTime;
 
   /// [rejectionCriterion] /// Criterion for rejection of the specimen in its container by the laboratory.
-  @JsonKey(name: 'rejectionCriterion')
   final List<CodeableConcept>? rejectionCriterion;
 
   /// [handling] /// Set of instructions for preservation/transport of the specimen at a defined
   /// temperature interval, prior the testing process.
-  @JsonKey(name: 'handling')
   final List<SpecimenDefinitionHandling>? handling;
   @override
   Map<String, dynamic> toJson() {
@@ -518,7 +499,6 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
 }
 
 /// [SpecimenDefinitionContainer] /// The specimen's container.
-@JsonSerializable()
 class SpecimenDefinitionContainer extends BackboneElement {
   SpecimenDefinitionContainer({
     super.id,
@@ -543,54 +523,43 @@ class SpecimenDefinitionContainer extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'SpecimenDefinitionContainer';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [material] /// The type of material of the container.
-  @JsonKey(name: 'material')
   final CodeableConcept? material;
 
   /// [type] /// The type of container used to contain this kind of specimen.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [cap] /// Color of container cap.
-  @JsonKey(name: 'cap')
   final CodeableConcept? cap;
 
   /// [description] /// The textual description of the kind of container.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [capacity] /// The capacity (volume or other measure) of this kind of container.
-  @JsonKey(name: 'capacity')
   final Quantity? capacity;
 
   /// [minimumVolumeQuantity] /// The minimum volume to be conditioned in the container.
-  @JsonKey(name: 'minimumVolumeQuantity')
   final Quantity? minimumVolumeQuantity;
 
   /// [minimumVolumeString] /// The minimum volume to be conditioned in the container.
-  @JsonKey(name: 'minimumVolumeString')
   final FhirString? minimumVolumeString;
-  @JsonKey(name: '_minimumVolumeString')
   final Element? minimumVolumeStringElement;
 
   /// [additive] /// Substance introduced in the kind of container to preserve, maintain or
   /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
-  @JsonKey(name: 'additive')
   final List<SpecimenDefinitionAdditive>? additive;
 
   /// [preparation] /// Special processing that should be applied to the container for this kind of
   /// specimen.
-  @JsonKey(name: 'preparation')
   final FhirString? preparation;
-  @JsonKey(name: '_preparation')
   final Element? preparationElement;
   @override
   Map<String, dynamic> toJson() {
@@ -782,7 +751,6 @@ class SpecimenDefinitionContainer extends BackboneElement {
 
 /// [SpecimenDefinitionAdditive] /// Substance introduced in the kind of container to preserve, maintain or
 /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
-@JsonSerializable()
 class SpecimenDefinitionAdditive extends BackboneElement {
   SpecimenDefinitionAdditive({
     super.id,
@@ -797,20 +765,19 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'SpecimenDefinitionAdditive';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [additiveCodeableConcept] /// Substance introduced in the kind of container to preserve, maintain or
   /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
-  @JsonKey(name: 'additiveCodeableConcept')
   final CodeableConcept? additiveCodeableConcept;
 
   /// [additiveReference] /// Substance introduced in the kind of container to preserve, maintain or
   /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
-  @JsonKey(name: 'additiveReference')
   final Reference? additiveReference;
   @override
   Map<String, dynamic> toJson() {
@@ -917,7 +884,6 @@ class SpecimenDefinitionAdditive extends BackboneElement {
 
 /// [SpecimenDefinitionHandling] /// Set of instructions for preservation/transport of the specimen at a defined
 /// temperature interval, prior the testing process.
-@JsonSerializable()
 class SpecimenDefinitionHandling extends BackboneElement {
   SpecimenDefinitionHandling({
     super.id,
@@ -935,32 +901,28 @@ class SpecimenDefinitionHandling extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'SpecimenDefinitionHandling';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [temperatureQualifier] /// It qualifies the interval of temperature, which characterizes an occurrence
   /// of handling. Conditions that are not related to temperature may be handled
   /// in the instruction element.
-  @JsonKey(name: 'temperatureQualifier')
   final CodeableConcept? temperatureQualifier;
 
   /// [temperatureRange] /// The temperature interval for this set of handling instructions.
-  @JsonKey(name: 'temperatureRange')
   final Range? temperatureRange;
 
   /// [maxDuration] /// The maximum time interval of preservation of the specimen with these
   /// conditions.
-  @JsonKey(name: 'maxDuration')
   final FhirDuration? maxDuration;
 
   /// [instruction] /// Additional textual instructions for the preservation or transport of the
   /// specimen. For instance, 'Protect from light exposure'.
-  @JsonKey(name: 'instruction')
   final FhirString? instruction;
-  @JsonKey(name: '_instruction')
   final Element? instructionElement;
   @override
   Map<String, dynamic> toJson() {

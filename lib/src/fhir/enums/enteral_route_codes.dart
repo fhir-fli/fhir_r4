@@ -1,24 +1,13 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// EnteralRouteOfAdministration: Codes specifying the route of administration of enteral formula.  This value set is composed of HL7 V3 codes and is provided as a suggestive example.
 enum EnteralRouteCodes {
-  @JsonValue('PO')
   PO,
-  @JsonValue('EFT')
   EFT,
-  @JsonValue('ENTINSTL')
   ENTINSTL,
-  @JsonValue('GT')
   GT,
-  @JsonValue('NGT')
   NGT,
-  @JsonValue('OGT')
   OGT,
-  @JsonValue('GJT')
   GJT,
-  @JsonValue('JJTINSTL')
   JJTINSTL,
-  @JsonValue('OJJ')
   OJJ,
   ;
 

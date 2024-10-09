@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [OperationOutcome] /// A collection of error, warning, or information messages that result from a
 /// system action.
-@JsonSerializable()
 class OperationOutcome extends DomainResource {
   OperationOutcome({
     super.id,
@@ -28,15 +26,15 @@ class OperationOutcome extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.OperationOutcome);
+
   @override
   String get fhirType => 'OperationOutcome';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [issue] /// An error, warning, or information message that results from a system
   /// action.
-  @JsonKey(name: 'issue')
   final List<OperationOutcomeIssue> issue;
   @override
   Map<String, dynamic> toJson() {
@@ -186,7 +184,6 @@ class OperationOutcome extends DomainResource {
 
 /// [OperationOutcomeIssue] /// An error, warning, or information message that results from a system
 /// action.
-@JsonSerializable()
 class OperationOutcomeIssue extends BackboneElement {
   OperationOutcomeIssue({
     super.id,
@@ -210,37 +207,31 @@ class OperationOutcomeIssue extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'OperationOutcomeIssue';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [severity] /// Indicates whether the issue indicates a variation from successful
   /// processing.
-  @JsonKey(name: 'severity')
   final IssueSeverity severity;
-  @JsonKey(name: '_severity')
   final Element? severityElement;
 
   /// [code] /// Describes the type of the issue. The system that creates an
   /// OperationOutcome SHALL choose the most applicable code from the IssueType
   /// value set, and may additional provide its own code for the error in the
   /// details element.
-  @JsonKey(name: 'code')
   final IssueType code;
-  @JsonKey(name: '_code')
   final Element? codeElement;
 
   /// [details] /// Additional details about the error. This may be a text description of the
   /// error or a system code that identifies the error.
-  @JsonKey(name: 'details')
   final CodeableConcept? details;
 
   /// [diagnostics] /// Additional diagnostic information about the issue.
-  @JsonKey(name: 'diagnostics')
   final FhirString? diagnostics;
-  @JsonKey(name: '_diagnostics')
   final Element? diagnosticsElement;
 
   /// [location] /// This element is deprecated because it is XML specific. It is replaced by
@@ -250,17 +241,13 @@ class OperationOutcomeIssue extends BackboneElement {
   /// repetition indicators and the default child accessor that identifies one of
   /// the elements in the resource that caused this issue to be raised. For HTTP
   /// errors, will be "http." + the parameter name.
-  @JsonKey(name: 'location')
   final List<FhirString>? location;
-  @JsonKey(name: '_location')
   final List<Element>? locationElement;
 
   /// [expression] /// A [simple subset of FHIRPath](fhirpath.html#simple) limited to element
   /// names, repetition indicators and the default child accessor that identifies
   /// one of the elements in the resource that caused this issue to be raised.
-  @JsonKey(name: 'expression')
   final List<FhirString>? expression;
-  @JsonKey(name: '_expression')
   final List<Element>? expressionElement;
   @override
   Map<String, dynamic> toJson() {

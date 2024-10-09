@@ -1,17 +1,12 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The genus of an organism, typically referring to the Latin epithet of the genus element of the plant/animal scientific name.
 enum SourceMaterialGenus {
   /// Display: Mycobacterium
-  @JsonValue('Mycobacterium')
   Mycobacterium,
 
   /// Display: Influenza A virus
-  @JsonValue('InfluenzavirusA')
   InfluenzavirusA,
 
   /// Display: Ginkgo
-  @JsonValue('Ginkgo')
   Ginkgo,
   ;
 

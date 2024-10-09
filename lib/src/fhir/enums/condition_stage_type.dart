@@ -1,13 +1,9 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Example value set for the type of stages of cancer and other conditions
 enum ConditionStageType {
   /// Display: Pathological staging (qualifier value)
-  @JsonValue('261023001')
   value261023001,
 
   /// Display: Clinical staging (qualifier value)
-  @JsonValue('260998006')
   value260998006,
   ;
 

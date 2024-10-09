@@ -1,35 +1,27 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The role that the assertion variable plays.
 enum EvidenceVariableRole {
   /// Display: population
   /// Definition: variable represents a population.
-  @JsonValue('population')
   population,
 
   /// Display: subpopulation
   /// Definition: variable represents a subpopulation.
-  @JsonValue('subpopulation')
   subpopulation,
 
   /// Display: exposure
   /// Definition: variable represents an exposure.
-  @JsonValue('exposure')
   exposure,
 
   /// Display: reference exposure
   /// Definition: variable represents a reference exposure.
-  @JsonValue('referenceExposure')
   referenceExposure,
 
   /// Display: measured variable
   /// Definition: variable represents a measured variable.
-  @JsonValue('measuredVariable')
   measuredVariable,
 
   /// Display: confounder
   /// Definition: variable represents a confounder.
-  @JsonValue('confounder')
   confounder,
   ;
 

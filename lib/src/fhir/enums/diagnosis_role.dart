@@ -1,33 +1,24 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set defines a set of codes that can be used to express the role of a diagnosis on the Encounter or EpisodeOfCare record.
 enum DiagnosisRole {
   /// Display: Admission diagnosis
-  @JsonValue('AD')
   AD,
 
   /// Display: Discharge diagnosis
-  @JsonValue('DD')
   DD,
 
   /// Display: Chief complaint
-  @JsonValue('CC')
   CC,
 
   /// Display: Comorbidity diagnosis
-  @JsonValue('CM')
   CM,
 
   /// Display: pre-op diagnosis
-  @JsonValue('pre-op')
   pre_op,
 
   /// Display: post-op diagnosis
-  @JsonValue('post-op')
   post_op,
 
   /// Display: Billing
-  @JsonValue('billing')
   billing,
   ;
 

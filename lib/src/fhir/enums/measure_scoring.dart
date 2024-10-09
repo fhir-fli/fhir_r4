@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The scoring type of the measure.
 enum MeasureScoring {
   /// Display: Proportion
   /// Definition: The measure score is defined using a proportion.
-  @JsonValue('proportion')
   proportion,
 
   /// Display: Ratio
   /// Definition: The measure score is defined using a ratio.
-  @JsonValue('ratio')
   ratio,
 
   /// Display: Continuous Variable
   /// Definition: The score is defined by a calculation of some quantity.
-  @JsonValue('continuous-variable')
   continuous_variable,
 
   /// Display: Cohort
   /// Definition: The measure is a cohort definition.
-  @JsonValue('cohort')
   cohort,
   ;
 

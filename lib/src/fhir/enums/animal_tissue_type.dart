@@ -1,761 +1,570 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// A tissue type of an animal.
 enum AnimalTissueType {
   /// Display: All relevant tissues
-  @JsonValue('100000072091')
   value100000072091,
 
   /// Display: Fat
-  @JsonValue('100000072092')
   value100000072092,
 
   /// Display: Honey
-  @JsonValue('100000072093')
   value100000072093,
 
   /// Display: Liver
-  @JsonValue('100000072094')
   value100000072094,
 
   /// Display: Fresh Milk
-  @JsonValue('100000072095')
   value100000072095,
 
   /// Display: Muscle and skin in natural proportions
-  @JsonValue('100000072096')
   value100000072096,
 
   /// Display: Eggs
-  @JsonValue('100000072104')
   value100000072104,
 
   /// Display: Skin and fat
-  @JsonValue('100000072105')
   value100000072105,
 
   /// Display: Kidney
-  @JsonValue('100000072106')
   value100000072106,
 
   /// Display: Meat and offal
-  @JsonValue('100000072107')
   value100000072107,
 
   /// Display: Muscle
-  @JsonValue('100000072108')
   value100000072108,
 
   /// Display: Unspecified
-  @JsonValue('100000072109')
   value100000072109,
 
   /// Display: Adipose tissue
-  @JsonValue('100000111053')
   value100000111053,
 
   /// Display: Adrenal
-  @JsonValue('100000111054')
   value100000111054,
 
   /// Display: Blood vessels
-  @JsonValue('100000111055')
   value100000111055,
 
   /// Display: Bone
-  @JsonValue('100000111056')
   value100000111056,
 
   /// Display: Bone marrow
-  @JsonValue('100000111057')
   value100000111057,
 
   /// Display: Brain
-  @JsonValue('100000111058')
   value100000111058,
 
   /// Display: Connective tissue
-  @JsonValue('100000111059')
   value100000111059,
 
   /// Display: Cornea
-  @JsonValue('100000111060')
   value100000111060,
 
   /// Display: Dental pulp
-  @JsonValue('100000111061')
   value100000111061,
 
   /// Display: Duodenum
-  @JsonValue('100000111062')
   value100000111062,
 
   /// Display: Dura mater
-  @JsonValue('100000111063')
   value100000111063,
 
   /// Display: Egg, embryonated
-  @JsonValue('100000111064')
   value100000111064,
 
   /// Display: Egg
-  @JsonValue('100000111065')
   value100000111065,
 
   /// Display: Egg white
-  @JsonValue('100000111066')
   value100000111066,
 
   /// Display: Egg yolk
-  @JsonValue('100000111067')
   value100000111067,
 
   /// Display: Embryos
-  @JsonValue('100000111068')
   value100000111068,
 
   /// Display: Enteric plexuses
-  @JsonValue('100000111069')
   value100000111069,
 
   /// Display: Esophagus
-  @JsonValue('100000111070')
   value100000111070,
 
   /// Display: Feathers
-  @JsonValue('100000111071')
   value100000111071,
 
   /// Display: Foetus
-  @JsonValue('100000111072')
   value100000111072,
 
   /// Display: Fore-stomach (ruminants only)
-  @JsonValue('100000111073')
   value100000111073,
 
   /// Display: Gingival tissue
-  @JsonValue('100000111074')
   value100000111074,
 
   /// Display: Hair
-  @JsonValue('100000111075')
   value100000111075,
 
   /// Display: Heart/pericardium
-  @JsonValue('100000111076')
   value100000111076,
 
   /// Display: Hide
-  @JsonValue('100000111077')
   value100000111077,
 
   /// Display: Hooves
-  @JsonValue('100000111078')
   value100000111078,
 
   /// Display: Ileum
-  @JsonValue('100000111079')
   value100000111079,
 
   /// Display: Jejunum
-  @JsonValue('100000111080')
   value100000111080,
 
   /// Display: Kidney
-  @JsonValue('100000111081')
   value100000111081,
 
   /// Display: Lard/lard oil
-  @JsonValue('100000111082')
   value100000111082,
 
   /// Display: Large intestine
-  @JsonValue('100000111083')
   value100000111083,
 
   /// Display: Liver
-  @JsonValue('100000111084')
   value100000111084,
 
   /// Display: Lung
-  @JsonValue('100000111085')
   value100000111085,
 
   /// Display: Lymph nodes
-  @JsonValue('100000111086')
   value100000111086,
 
   /// Display: Mammary gland
-  @JsonValue('100000111087')
   value100000111087,
 
   /// Display: Udder
-  @JsonValue('100000111088')
   value100000111088,
 
   /// Display: Mammary tumour
-  @JsonValue('100000111089')
   value100000111089,
 
   /// Display: Meat extract
-  @JsonValue('100000111090')
   value100000111090,
 
   /// Display: Nasopharyngeal
-  @JsonValue('100000111091')
   value100000111091,
 
   /// Display: Nictitating membrane
-  @JsonValue('100000111092')
   value100000111092,
 
   /// Display: Nasal mucosa
-  @JsonValue('100000111093')
   value100000111093,
 
   /// Display: Ovary
-  @JsonValue('100000111094')
   value100000111094,
 
   /// Display: Pancreas
-  @JsonValue('100000111095')
   value100000111095,
 
   /// Display: Peripheral nerves
-  @JsonValue('100000111096')
   value100000111096,
 
   /// Display: Pituitary gland
-  @JsonValue('100000111097')
   value100000111097,
 
   /// Display: Placenta
-  @JsonValue('100000111098')
   value100000111098,
 
   /// Display: Prostate
-  @JsonValue('100000111099')
   value100000111099,
 
   /// Display: Epididymis
-  @JsonValue('100000111100')
   value100000111100,
 
   /// Display: Seminal vesicle
-  @JsonValue('100000111101')
   value100000111101,
 
   /// Display: Rennet, calf
-  @JsonValue('100000111102')
   value100000111102,
 
   /// Display: Retina
-  @JsonValue('100000111103')
   value100000111103,
 
   /// Display: Optic nerve
-  @JsonValue('100000111104')
   value100000111104,
 
   /// Display: Salivary gland
-  @JsonValue('100000111105')
   value100000111105,
 
   /// Display: Shank
-  @JsonValue('100000111106')
   value100000111106,
 
   /// Display: Skeletal muscle
-  @JsonValue('100000111107')
   value100000111107,
 
   /// Display: Skin
-  @JsonValue('100000111108')
   value100000111108,
 
   /// Display: Spinal ganglia
-  @JsonValue('100000111109')
   value100000111109,
 
   /// Display: Spinal cord
-  @JsonValue('100000111110')
   value100000111110,
 
   /// Display: Spleen
-  @JsonValue('100000111111')
   value100000111111,
 
   /// Display: Stomach
-  @JsonValue('100000111112')
   value100000111112,
 
   /// Display: Abomasum
-  @JsonValue('100000111113')
   value100000111113,
 
   /// Display: Submaxillary glands
-  @JsonValue('100000111114')
   value100000111114,
 
   /// Display: Tallow
-  @JsonValue('100000111115')
   value100000111115,
 
   /// Display: Tendon
-  @JsonValue('100000111116')
   value100000111116,
 
   /// Display: Testis
-  @JsonValue('100000111117')
   value100000111117,
 
   /// Display: Thymus
-  @JsonValue('100000111118')
   value100000111118,
 
   /// Display: Thyroid gland
-  @JsonValue('100000111119')
   value100000111119,
 
   /// Display: Tongue
-  @JsonValue('100000111120')
   value100000111120,
 
   /// Display: Tonsil
-  @JsonValue('100000111121')
   value100000111121,
 
   /// Display: Trachea
-  @JsonValue('100000111122')
   value100000111122,
 
   /// Display: Trigeminal ganglia
-  @JsonValue('100000111123')
   value100000111123,
 
   /// Display: Tripe
-  @JsonValue('100000111124')
   value100000111124,
 
   /// Display: Uterus (Non-gravid)
-  @JsonValue('100000111125')
   value100000111125,
 
   /// Display: Wool
-  @JsonValue('100000111126')
   value100000111126,
 
   /// Display: Ascites fluid
-  @JsonValue('100000111127')
   value100000111127,
 
   /// Display: Bile
-  @JsonValue('100000111128')
   value100000111128,
 
   /// Display: Blood1
-  @JsonValue('100000111129')
   value100000111129,
 
   /// Display: Blood, foetal
-  @JsonValue('100000111130')
   value100000111130,
 
   /// Display: Colostrum
-  @JsonValue('100000111131')
   value100000111131,
 
   /// Display: Cord blood
-  @JsonValue('100000111132')
   value100000111132,
 
   /// Display: CSF
-  @JsonValue('100000111133')
   value100000111133,
 
   /// Display: Faeces
-  @JsonValue('100000111134')
   value100000111134,
 
   /// Display: Milk
-  @JsonValue('100000111135')
   value100000111135,
 
   /// Display: Nasal mucus
-  @JsonValue('100000111136')
   value100000111136,
 
   /// Display: Placenta fluids
-  @JsonValue('100000111137')
   value100000111137,
 
   /// Display: Plasma
-  @JsonValue('100000111138')
   value100000111138,
 
   /// Display: Saliva
-  @JsonValue('100000111139')
   value100000111139,
 
   /// Display: Secretion from bees
-  @JsonValue('100000111140')
   value100000111140,
 
   /// Display: Semen
-  @JsonValue('100000111141')
   value100000111141,
 
   /// Display: Serum, calf
-  @JsonValue('100000111142')
   value100000111142,
 
   /// Display: Serum, donor adult bovine
-  @JsonValue('100000111143')
   value100000111143,
 
   /// Display: Serum, donor calf
-  @JsonValue('100000111144')
   value100000111144,
 
   /// Display: Serum, foetal bovine
-  @JsonValue('100000111145')
   value100000111145,
 
   /// Display: Serum, newborn calf
-  @JsonValue('100000111146')
   value100000111146,
 
   /// Display: Serum/plasma derivate, adult bovine
-  @JsonValue('100000111147')
   value100000111147,
 
   /// Display: Serum/plasma, adult bovine
-  @JsonValue('100000111148')
   value100000111148,
 
   /// Display: Sweat
-  @JsonValue('100000111149')
   value100000111149,
 
   /// Display: Tears
-  @JsonValue('100000111150')
   value100000111150,
 
   /// Display: Urine
-  @JsonValue('100000111151')
   value100000111151,
 
   /// Display: Venom
-  @JsonValue('100000111152')
   value100000111152,
 
   /// Display: Whey
-  @JsonValue('100000111153')
   value100000111153,
 
   /// Display: Casein
-  @JsonValue('100000111154')
   value100000111154,
 
   /// Display: Fermentation products
-  @JsonValue('100000111155')
   value100000111155,
 
   /// Display: Gelatin
-  @JsonValue('100000111156')
   value100000111156,
 
   /// Display: Lactose
-  @JsonValue('100000111157')
   value100000111157,
 
   /// Display: Protein
-  @JsonValue('100000111158')
   value100000111158,
 
   /// Display: Insulin
-  @JsonValue('100000111159')
   value100000111159,
 
   /// Display: Collagen
-  @JsonValue('100000111160')
   value100000111160,
 
   /// Display: Animal Charcoal
-  @JsonValue('100000111161')
   value100000111161,
 
   /// Display: Peptones
-  @JsonValue('100000111162')
   value100000111162,
 
   /// Display: Fatty acids
-  @JsonValue('100000111163')
   value100000111163,
 
   /// Display: Glycerol
-  @JsonValue('100000111164')
   value100000111164,
 
   /// Display: Not applicable
-  @JsonValue('100000125717')
   value100000125717,
 
   /// Display: Meat and offal, milk
-  @JsonValue('100000136180')
   value100000136180,
 
   /// Display: Agar blood
-  @JsonValue('100000136181')
   value100000136181,
 
   /// Display: Casamino acid
-  @JsonValue('100000136182')
   value100000136182,
 
   /// Display: Casein, hydrolysate
-  @JsonValue('100000136183')
   value100000136183,
 
   /// Display: Casein, pancreatic digest
-  @JsonValue('100000136184')
   value100000136184,
 
   /// Display: Casein, peptides N3
-  @JsonValue('100000136185')
   value100000136185,
 
   /// Display: Cells
-  @JsonValue('100000136186')
   value100000136186,
 
   /// Display: Cells, BHK21
-  @JsonValue('100000136187')
   value100000136187,
 
   /// Display: Cells, CHO
-  @JsonValue('100000136188')
   value100000136188,
 
   /// Display: Cells, CRFK
-  @JsonValue('100000136189')
   value100000136189,
 
   /// Display: Cells, embryo SPF
-  @JsonValue('100000136190')
   value100000136190,
 
   /// Display: Cells, IRC5
-  @JsonValue('100000136191')
   value100000136191,
 
   /// Display: Cells, kidney
-  @JsonValue('100000136192')
   value100000136192,
 
   /// Display: Cells, MDCK
-  @JsonValue('100000136193')
   value100000136193,
 
   /// Display: Cells, red blood
-  @JsonValue('100000136194')
   value100000136194,
 
   /// Display: Collagen, hydrolysate
-  @JsonValue('100000136195')
   value100000136195,
 
   /// Display: Cholesterol
-  @JsonValue('100000136196')
   value100000136196,
 
   /// Display: Egg, SPF embryonated
-  @JsonValue('100000136197')
   value100000136197,
 
   /// Display: Enzyme
-  @JsonValue('100000136198')
   value100000136198,
 
   /// Display: Enzyme, pancreatic enzymes
-  @JsonValue('100000136199')
   value100000136199,
 
   /// Display: Enzyme, pancreatin 6NF
-  @JsonValue('100000136200')
   value100000136200,
 
   /// Display: Enzyme, pepsin
-  @JsonValue('100000136201')
   value100000136201,
 
   /// Display: Enzyme, pronase
-  @JsonValue('100000136202')
   value100000136202,
 
   /// Display: Enzyme, trypsin
-  @JsonValue('100000136203')
   value100000136203,
 
   /// Display: Heart, digest
-  @JsonValue('100000136204')
   value100000136204,
 
   /// Display: Heart, extract
-  @JsonValue('100000136205')
   value100000136205,
 
   /// Display: Intestinal mucosae
-  @JsonValue('100000136206')
   value100000136206,
 
   /// Display: Lactalbumin hydrolysate
-  @JsonValue('100000136207')
   value100000136207,
 
   /// Display: Liver, digest
-  @JsonValue('100000136208')
   value100000136208,
 
   /// Display: Lymphocytes
-  @JsonValue('100000136209')
   value100000136209,
 
   /// Display: Meat
-  @JsonValue('100000136210')
   value100000136210,
 
   /// Display: Meat, enzymic hydrolysate
-  @JsonValue('100000136211')
   value100000136211,
 
   /// Display: Medium, cooked meat
-  @JsonValue('100000136212')
   value100000136212,
 
   /// Display: Medium, F10-199 medium
-  @JsonValue('100000136213')
   value100000136213,
 
   /// Display: Medium, FMD culture medium
-  @JsonValue('100000136214')
   value100000136214,
 
   /// Display: Medium, Glasgow MEM culture
-  @JsonValue('100000136215')
   value100000136215,
 
   /// Display: Medium, LB Agar Lennox
-  @JsonValue('100000136216')
   value100000136216,
 
   /// Display: Medium, LB Broth Lennox
-  @JsonValue('100000136217')
   value100000136217,
 
   /// Display: Medium, modified thioglycolate medium
-  @JsonValue('100000136218')
   value100000136218,
 
   /// Display: Medium, trypticase soy broth
-  @JsonValue('100000136219')
   value100000136219,
 
   /// Display: Medium, tryptose phosphate broth
-  @JsonValue('100000136220')
   value100000136220,
 
   /// Display: Milk, skimmed
-  @JsonValue('100000136221')
   value100000136221,
 
   /// Display: Pancreas, extract
-  @JsonValue('100000136222')
   value100000136222,
 
   /// Display: Peptones, casein hydrochloric peptone
-  @JsonValue('100000136223')
   value100000136223,
 
   /// Display: Peptones, casein tryptic peptone
-  @JsonValue('100000136224')
   value100000136224,
 
   /// Display: Pituitary extract
-  @JsonValue('100000136225')
   value100000136225,
 
   /// Display: Rennet
-  @JsonValue('100000136226')
   value100000136226,
 
   /// Display: Medium, nutrient broth
-  @JsonValue('100000136227')
   value100000136227,
 
   /// Display: Medium, NZ-Amine
-  @JsonValue('100000136228')
   value100000136228,
 
   /// Display: Medium, thioglycolate medium
-  @JsonValue('100000136229')
   value100000136229,
 
   /// Display: Peptones, proteose peptone
-  @JsonValue('100000136230')
   value100000136230,
 
   /// Display: Serum
-  @JsonValue('100000136231')
   value100000136231,
 
   /// Display: Serum, albumin
-  @JsonValue('100000136232')
   value100000136232,
 
   /// Display: Serum, Iron fortified calf
-  @JsonValue('100000136233')
   value100000136233,
 
   /// Display: Skin, connective tissue and bone
-  @JsonValue('100000136234')
   value100000136234,
 
   /// Display: Sperm
-  @JsonValue('100000136235')
   value100000136235,
 
   /// Display: Tryptone
-  @JsonValue('100000136236')
   value100000136236,
 
   /// Display: Meat, extract desiccated
-  @JsonValue('100000136237')
   value100000136237,
 
   /// Display: Stomach mucosa
-  @JsonValue('100000136247')
   value100000136247,
 
   /// Display: Transferin
-  @JsonValue('100000136248')
   value100000136248,
 
   /// Display: Non-neural
-  @JsonValue('100000136554')
   value100000136554,
 
   /// Display: Not specified
-  @JsonValue('100000136555')
   value100000136555,
 
   /// Display: Organ tissue
-  @JsonValue('100000136556')
   value100000136556,
 
   /// Display: Skin and fat in natural proportions
-  @JsonValue('100000142485')
   value100000142485,
   ;
 

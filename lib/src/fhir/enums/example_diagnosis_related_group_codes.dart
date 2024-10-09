@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes example Diagnosis Related Group codes.
 enum ExampleDiagnosisRelatedGroupCodes {
   /// Display: Normal Vaginal Delivery
   /// Definition: Normal Vaginal Delivery.
-  @JsonValue('100')
   value100,
 
   /// Display: Appendectomy - uncomplicated
   /// Definition: Appendectomy without rupture or other complications.
-  @JsonValue('101')
   value101,
 
   /// Display: Tooth abscess
   /// Definition: Emergency department treatment of a tooth abscess.
-  @JsonValue('300')
   value300,
 
   /// Display: Head trauma - concussion
   /// Definition: Head trauma - concussion.
-  @JsonValue('400')
   value400,
   ;
 

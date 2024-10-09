@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [Person] /// Demographics and administrative information about a person independent of a
 /// specific health-related context.
-@JsonSerializable()
 class Person extends DomainResource {
   Person({
     super.id,
@@ -40,58 +38,46 @@ class Person extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Person);
+
   @override
   String get fhirType => 'Person';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifier for a person within a particular scope.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [name] /// A name associated with the person.
-  @JsonKey(name: 'name')
   final List<HumanName>? name;
 
   /// [telecom] /// A contact detail for the person, e.g. a telephone number or an email
   /// address.
-  @JsonKey(name: 'telecom')
   final List<ContactPoint>? telecom;
 
   /// [gender] /// Administrative Gender.
-  @JsonKey(name: 'gender')
   final AdministrativeGender? gender;
-  @JsonKey(name: '_gender')
   final Element? genderElement;
 
   /// [birthDate] /// The birth date for the person.
-  @JsonKey(name: 'birthDate')
   final FhirDate? birthDate;
-  @JsonKey(name: '_birthDate')
   final Element? birthDateElement;
 
   /// [address] /// One or more addresses for the person.
-  @JsonKey(name: 'address')
   final List<Address>? address;
 
   /// [photo] /// An image that can be displayed as a thumbnail of the person to enhance the
   /// identification of the individual.
-  @JsonKey(name: 'photo')
   final Attachment? photo;
 
   /// [managingOrganization] /// The organization that is the custodian of the person record.
-  @JsonKey(name: 'managingOrganization')
   final Reference? managingOrganization;
 
   /// [active] /// Whether this person's record is in active use.
-  @JsonKey(name: 'active')
   final FhirBoolean? active;
-  @JsonKey(name: '_active')
   final Element? activeElement;
 
   /// [link] /// Link to a resource that concerns the same actual person.
-  @JsonKey(name: 'link')
   final List<PersonLink>? link;
   @override
   Map<String, dynamic> toJson() {
@@ -346,7 +332,6 @@ class Person extends DomainResource {
 }
 
 /// [PersonLink] /// Link to a resource that concerns the same actual person.
-@JsonSerializable()
 class PersonLink extends BackboneElement {
   PersonLink({
     super.id,
@@ -362,20 +347,18 @@ class PersonLink extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'PersonLink';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [target] /// The resource to which this actual person is associated.
-  @JsonKey(name: 'target')
   final Reference target;
 
   /// [assurance] /// Level of assurance that this link is associated with the target resource.
-  @JsonKey(name: 'assurance')
   final IdentityAssuranceLevel? assurance;
-  @JsonKey(name: '_assurance')
   final Element? assuranceElement;
   @override
   Map<String, dynamic> toJson() {

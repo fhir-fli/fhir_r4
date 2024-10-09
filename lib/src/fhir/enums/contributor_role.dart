@@ -1,40 +1,31 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Used to code the format of the display string.
 enum ContributorRole {
   /// Display: Publisher
   /// Definition: Entity that makes the content available for public use
-  @JsonValue('publisher')
   publisher,
 
   /// Display: Author/Creator
   /// Definition: An entity primarily responsible for making the resource, often called author or creator
-  @JsonValue('author')
   author,
 
   /// Display: Reviewer
   /// Definition: Entity that examines the content, formally or informally, and suggests revisions or comments
-  @JsonValue('reviewer')
   reviewer,
 
   /// Display: Endorser
   /// Definition: Entity that supports, approves, or advocates for the content
-  @JsonValue('endorser')
   endorser,
 
   /// Display: Editor
   /// Definition: Entity that revises or has authority to control the content
-  @JsonValue('editor')
   editor,
 
   /// Display: Informant
   /// Definition: Entity that supplies information
-  @JsonValue('informant')
   informant,
 
   /// Display: Funder
   /// Definition: Entity that supplies financial support
-  @JsonValue('funder')
   funder,
   ;
 

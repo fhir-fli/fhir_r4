@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [CodeableConcept] /// A concept that may be defined by a formal reference to a terminology or
 /// ontology or may be provided by text.
-@JsonSerializable()
 class CodeableConcept extends DataType {
   CodeableConcept({
     super.id,
@@ -22,22 +20,20 @@ class CodeableConcept extends DataType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CodeableConcept';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [coding] /// A reference to a code defined by a terminology system.
-  @JsonKey(name: 'coding')
   final List<Coding>? coding;
 
   /// [text] /// A human language representation of the concept as seen/selected/uttered by
   /// the user who entered the data and/or which represents the intended meaning
   /// of the user.
-  @JsonKey(name: 'text')
   final FhirString? text;
-  @JsonKey(name: '_text')
   final Element? textElement;
   @override
   Map<String, dynamic> toJson() {

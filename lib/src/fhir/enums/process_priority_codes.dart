@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes the financial processing priority codes.
 enum ProcessPriorityCodes {
   /// Display: Immediate
   /// Definition: Immediately in real time.
-  @JsonValue('stat')
   stat,
 
   /// Display: Normal
   /// Definition: With best effort.
-  @JsonValue('normal')
   normal,
 
   /// Display: Deferred
   /// Definition: Later, when possible.
-  @JsonValue('deferred')
   deferred_,
   ;
 

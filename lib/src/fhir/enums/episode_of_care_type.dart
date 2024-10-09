@@ -1,25 +1,18 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This example value set defines a set of codes that can be used to express the usage type of an EpisodeOfCare record.
 enum EpisodeOfCareType {
   /// Display: Home and Community Care
-  @JsonValue('hacc')
   hacc,
 
   /// Display: Post Acute Care
-  @JsonValue('pac')
   pac,
 
   /// Display: Post coordinated diabetes program
-  @JsonValue('diab')
   diab,
 
   /// Display: Drug and alcohol rehabilitation
-  @JsonValue('da')
   da,
 
   /// Display: Community-based aged care
-  @JsonValue('cacp')
   cacp,
   ;
 

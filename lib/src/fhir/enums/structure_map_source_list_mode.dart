@@ -1,30 +1,23 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// If field is a list, how to manage the source.
 enum StructureMapSourceListMode {
   /// Display: First
   /// Definition: Only process this rule for the first in the list.
-  @JsonValue('first')
   first,
 
   /// Display: All but the first
   /// Definition: Process this rule for all but the first.
-  @JsonValue('not_first')
   not_first,
 
   /// Display: Last
   /// Definition: Only process this rule for the last in the list.
-  @JsonValue('last')
   last,
 
   /// Display: All but the last
   /// Definition: Process this rule for all but the last.
-  @JsonValue('not_last')
   not_last,
 
   /// Display: Enforce only one
   /// Definition: Only process this rule is there is only item.
-  @JsonValue('only_one')
   only_one,
   ;
 

@@ -1,15891 +1,12672 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This example FHIR value set is comprised of example Actor Type codes, which can be used to value FHIR agents, actors, and other role         elements such as those specified in financial transactions. The FHIR Actor value set is based on    DICOM Audit Message, C402;   ASTM Standard, E1762-95 [2013]; selected codes and          derived actor roles from HL7 RoleClass OID 2.16.840.1.113883.5.110;    HL7 Role Code 2.16.840.1.113883.5.111, including AgentRoleType;          HL7 ParticipationType OID: 2.16.840.1.113883.5.90; and    HL7 ParticipationFunction codes OID: 2.16.840.1.113883.5.88.           This value set includes, by reference, role codes from external code systems: NUCC Health Care Provider Taxonomy OID: 2.16.840.1.113883.6.101;          North American Industry Classification System [NAICS]OID: 2.16.840.1.113883.6.85; IndustryClassificationSystem 2.16.840.1.113883.1.11.16039;          and US Census Occupation Code OID: 2.16.840.1.113883.6.243 for relevant recipient or custodian codes not included in this value set.            If no source is indicated in the definition comments, then these are example FHIR codes.          It can be extended with appropriate roles described by SNOMED as well as those described in the HL7 Role Based Access Control Catalog and the          HL7 Healthcare (Security and Privacy) Access Control Catalog.            In Role-Based Access Control (RBAC), permissions are operations on an object that a user wishes to access. Permissions are grouped into roles.          A role characterizes the functions a user is allowed to perform. Roles are assigned to users. If the user's role has the appropriate permissions          to access an object, then that user is granted access to the object. FHIR readily enables RBAC, as FHIR Resources are object types and the CRUDE          events (the FHIR equivalent to permissions in the RBAC scheme) are operations on those objects.          In Attribute-Based Access Control (ABAC), a user requests to perform operations on objects. That user's access request is granted or denied          based on a set of access control policies that are specified in terms of attributes and conditions. FHIR readily enables ABAC, as instances of          a Resource in FHIR (again, Resources are object types) can have attributes associated with them. These attributes include security tags,          environment conditions, and a host of user and object characteristics, which are the same attributes as those used in ABAC. Attributes help          define the access control policies that determine the operations a user may perform on a Resource (in FHIR) or object (in ABAC). For example,          a tag (or attribute) may specify that the identified Resource (object) is not to be further disclosed without explicit consent from the patient.
 enum SecurityRoleType {
-  @JsonValue('AMENDER')
   AMENDER,
-  @JsonValue('COAUTH')
   COAUTH,
-  @JsonValue('CONT')
   CONT,
-  @JsonValue('EVTWIT')
   EVTWIT,
-  @JsonValue('PRIMAUTH')
   PRIMAUTH,
-  @JsonValue('REVIEWER')
   REVIEWER,
-  @JsonValue('SOURCE')
   SOURCE,
-  @JsonValue('TRANS')
   TRANS,
-  @JsonValue('VALID')
   VALID,
-  @JsonValue('VERF')
   VERF,
-  @JsonValue('AFFL')
   AFFL,
-  @JsonValue('AGNT')
   AGNT,
-  @JsonValue('ASSIGNED')
   ASSIGNED,
-  @JsonValue('CLAIM')
   CLAIM,
-  @JsonValue('COVPTY')
   COVPTY,
-  @JsonValue('DEPEN')
   DEPEN,
-  @JsonValue('ECON')
   ECON,
-  @JsonValue('EMP')
   EMP,
-  @JsonValue('GUARD')
   GUARD,
-  @JsonValue('INVSBJ')
   INVSBJ,
-  @JsonValue('NAMED')
   NAMED,
-  @JsonValue('NOK')
   NOK,
-  @JsonValue('PAT')
   PAT,
-  @JsonValue('PROV')
   PROV,
-  @JsonValue('NOT')
   NOT,
-  @JsonValue('CLASSIFIER')
   CLASSIFIER,
-  @JsonValue('CONSENTER')
   CONSENTER,
-  @JsonValue('CONSWIT')
   CONSWIT,
-  @JsonValue('COPART')
   COPART,
-  @JsonValue('DECLASSIFIER')
   DECLASSIFIER,
-  @JsonValue('DELEGATEE')
   DELEGATEE,
-  @JsonValue('DELEGATOR')
   DELEGATOR,
-  @JsonValue('DOWNGRDER')
   DOWNGRDER,
-  @JsonValue('DPOWATT')
   DPOWATT,
-  @JsonValue('EXCEST')
   EXCEST,
-  @JsonValue('GRANTEE')
   GRANTEE,
-  @JsonValue('GRANTOR')
   GRANTOR,
-  @JsonValue('GT')
   GT,
-  @JsonValue('GUADLTM')
   GUADLTM,
-  @JsonValue('HPOWATT')
   HPOWATT,
-  @JsonValue('INTPRTER')
   INTPRTER,
-  @JsonValue('POWATT')
   POWATT,
-  @JsonValue('RESPRSN')
   RESPRSN,
-  @JsonValue('SPOWATT')
   SPOWATT,
-  @JsonValue('AUCG')
   AUCG,
-  @JsonValue('AULR')
   AULR,
-  @JsonValue('AUTM')
   AUTM,
-  @JsonValue('AUWA')
   AUWA,
-  @JsonValue('PROMSK')
   PROMSK,
-  @JsonValue('AUT')
   AUT,
-  @JsonValue('CST')
   CST,
-  @JsonValue('INF')
   INF,
-  @JsonValue('IRCP')
   IRCP,
-  @JsonValue('LA')
   LA,
-  @JsonValue('TRC')
   TRC,
-  @JsonValue('WIT')
   WIT,
 
   /// Display: authorization server
   /// Definition: An entity providing authorization services to enable the electronic sharing of health-related information based on resource owner's preapproved permissions. For example, an UMA Authorization Server[UMA]
-  @JsonValue('authserver')
   authserver,
 
   /// Display: data collector
   /// Definition: An entity that collects information over which the data subject may have certain rights under policy or law to control that information's management and distribution by data collectors, including the right to access, retrieve, distribute, or delete that information.
-  @JsonValue('datacollector')
   datacollector,
 
   /// Display: data processor
   /// Definition: An entity that processes collected information over which the data subject may have certain rights under policy or law to control that information's management and distribution by data processors, including the right to access, retrieve, distribute, or delete that information.
-  @JsonValue('dataprocessor')
   dataprocessor,
 
   /// Display: data subject
   /// Definition: A person whose personal information is collected or processed, and who may have certain rights under policy or law to control that information's management and distribution by data collectors or processors, including the right to access, retrieve, distribute, or delete that information.
-  @JsonValue('datasubject')
   datasubject,
 
   /// Display: human user
   /// Definition: The human user that has participated.
-  @JsonValue('humanuser')
   humanuser,
 
   /// Display: Archive
   /// Definition: Archive device
-  @JsonValue('ARCHIVE')
   ARCHIVE,
 
   /// Display: Autorefraction
   /// Definition: Autorefraction device
-  @JsonValue('AR')
   AR,
 
   /// Display: Angioscopy
   /// Definition: Angioscopy device
-  @JsonValue('AS')
   AS,
 
   /// Display: Audio
   /// Definition: Audio object
-  @JsonValue('AU')
   AU,
 
   /// Display: Ultrasound Bone Densitometry
   /// Definition: Ultrasound Bone Densitometry (modality)
-  @JsonValue('BDUS')
   BDUS,
 
   /// Display: Biomagnetic imaging
   /// Definition: Biomagnetic imaging device
-  @JsonValue('BI')
   BI,
 
   /// Display: Bone Mineral Densitometry
   /// Definition: Bone Mineral Densitometry by X-Ray (modality), including dual-energy X-Ray absorptiometry (DXA) and morphometric X-Ray absorptiometry (MXA)
-  @JsonValue('BMD')
   BMD,
 
   /// Display: Computer Assisted Detection/Diagnosis
   /// Definition: Computer Assisted Detection/Diagnosis device
-  @JsonValue('CAD')
   CAD,
 
   /// Display: Image Capture
   /// Definition: Image Capture Device, includes video capture
-  @JsonValue('CAPTURE')
   CAPTURE,
 
   /// Display: Color flow Doppler
   /// Definition: Color flow Doppler
-  @JsonValue('CD')
   CD,
 
   /// Display: Cinefluorography
   /// Definition: Cinefluorography
-  @JsonValue('CF')
   CF,
 
   /// Display: Computation Server
   /// Definition: Computation Server; includes radiotherapy planning
-  @JsonValue('COMP')
   COMP,
 
   /// Display: Culposcopy
   /// Definition: Culposcopy
-  @JsonValue('CP')
   CP,
 
   /// Display: Computed Radiography
   /// Definition: Computed Radiography device
-  @JsonValue('CR')
   CR,
 
   /// Display: Cystoscopy
   /// Definition: Cystoscopy
-  @JsonValue('CS')
   CS,
 
   /// Display: Computed Tomography
   /// Definition: Computed Tomography device
-  @JsonValue('CT')
   CT,
 
   /// Display: Duplex Doppler
   /// Definition: Duplex Doppler
-  @JsonValue('DD')
   DD,
 
   /// Display: Digital fluoroscopy
   /// Definition: Digital fluoroscopy
-  @JsonValue('DF')
   DF,
 
   /// Display: Diaphanography
   /// Definition: Diaphanography device
-  @JsonValue('DG')
   DG,
 
   /// Display: Digital microscopy
   /// Definition: Digital microscopy
-  @JsonValue('DM')
   DM,
 
   /// Display: Document Digitizer Equipment
   /// Definition: Equipment that digitized hardcopy documents and imported them
-  @JsonValue('DOCD')
   DOCD,
 
   /// Display: Digital Subtraction Angiography
   /// Definition: Digital Subtraction Angiography
-  @JsonValue('DS')
   DS,
 
   /// Display: Department System Scheduler
   /// Definition: Department System Scheduler, workflow manager; includes RIS
-  @JsonValue('DSS')
   DSS,
 
   /// Display: Digital Radiography
   /// Definition: Digital Radiography device
-  @JsonValue('DX')
   DX,
 
   /// Display: Echocardiography
   /// Definition: Echocardiography
-  @JsonValue('EC')
   EC,
 
   /// Display: Electrocardiography
   /// Definition: Electrocardiography device
-  @JsonValue('ECG')
   ECG,
 
   /// Display: Cardiac Electrophysiology
   /// Definition: Cardiac Electrophysiology device
-  @JsonValue('EPS')
   EPS,
 
   /// Display: Endoscopy
   /// Definition: Endoscopy device
-  @JsonValue('ES')
   ES,
 
   /// Display: Female
   /// Definition: Female sex
-  @JsonValue('F')
   F,
 
   /// Display: Fluorescein angiography
   /// Definition: Fluorescein angiography
-  @JsonValue('FA')
   FA,
 
   /// Display: Female changed to Male
   /// Definition: Female sex changed to Male sex
-  @JsonValue('FC')
   FC,
 
   /// Display: Film Digitizer
   /// Definition: Film Digitizer
-  @JsonValue('FILMD')
   FILMD,
 
   /// Display: Female Pseudohermaphrodite
   /// Definition: Female Pseudohermaphrodite
-  @JsonValue('FP')
   FP,
 
   /// Display: Fundoscopy
   /// Definition: Fundoscopy
-  @JsonValue('FS')
   FS,
 
   /// Display: General Microscopy
   /// Definition: General Microscopy device
-  @JsonValue('GM')
   GM,
 
   /// Display: Hermaphrodite
   /// Definition: Hermaphrodite
-  @JsonValue('H')
   H,
 
   /// Display: Hard Copy
   /// Definition: Hard Copy
-  @JsonValue('HC')
   HC,
 
   /// Display: Hemodynamic Waveform
   /// Definition: Hemodynamic Waveform acquisition device
-  @JsonValue('HD')
   HD,
 
   /// Display: Intra-oral Radiography
   /// Definition: Intra-oral Radiography device
-  @JsonValue('IO')
   IO,
 
   /// Display: Intravascular Optical Coherence Tomography
   /// Definition: An acquisition device, process or method that performs intravascular optical coherence tomography
-  @JsonValue('IVOCT')
   IVOCT,
 
   /// Display: Intravascular Ultrasound
   /// Definition: Intravascular Ultrasound device
-  @JsonValue('IVUS')
   IVUS,
 
   /// Display: Keratometry
   /// Definition: Keratometry device
-  @JsonValue('KER')
   KER,
 
   /// Display: Key Object Selection
   /// Definition: Key Object Selection object
-  @JsonValue('KO')
   KO,
 
   /// Display: Lensometry
   /// Definition: Lensometry device
-  @JsonValue('LEN')
   LEN,
 
   /// Display: Procedure Logging
   /// Definition: Procedure Logging device; includes cath lab logging
-  @JsonValue('LOG')
   LOG,
 
   /// Display: Laparoscopy
   /// Definition: Laparoscopy
-  @JsonValue('LP')
   LP,
 
   /// Display: Laser surface scan
   /// Definition: Laser surface scan device
-  @JsonValue('LS')
   LS,
 
   /// Display: Male
   /// Definition: Male sex
-  @JsonValue('M')
   M,
 
   /// Display: Magnetic resonance angiography
   /// Definition: Magnetic resonance angiography
-  @JsonValue('MA')
   MA,
 
   /// Display: Male changed to Female
   /// Definition: Male sex changed to Female sex
-  @JsonValue('MC')
   MC,
 
   /// Display: Media Creation Device
   /// Definition: A device that creates DICOM PS3.10 interchange media; e.g. a CD creator that is managed by the Media Creation Management Service Class
-  @JsonValue('MCD')
   MCD,
 
   /// Display: Portable Media Importer Equipment
   /// Definition: Equipment that retrieved and imported objects from interchange Media
-  @JsonValue('MEDIM')
   MEDIM,
 
   /// Display: Mammography
   /// Definition: Mammography device
-  @JsonValue('MG')
   MG,
 
   /// Display: Male Pseudohermaphrodite
   /// Definition: Male Pseudohermaphrodite
-  @JsonValue('MP')
   MP,
 
   /// Display: Magnetic Resonance
   /// Definition: Magnetic Resonance device
-  @JsonValue('MR')
   MR,
 
   /// Display: Magnetic resonance spectroscopy
   /// Definition: Magnetic resonance spectroscopy
-  @JsonValue('MS')
   MS,
 
   /// Display: Nearline
   /// Definition: Instances need to be retrieved from relatively slow media such as optical disk or tape
-  @JsonValue('NEARLINE')
   NEARLINE,
 
   /// Display: Nuclear Medicine
   /// Definition: Nuclear Medicine device
-  @JsonValue('NM')
   NM,
 
   /// Display: Ophthalmic Axial Measurements
   /// Definition: Measurements of the axial length of the eye, which are done by various devices
-  @JsonValue('OAM')
   OAM,
 
   /// Display: Optical Coherence Tomography
   /// Definition: Modality device that uses an interferometric, non-invasive optical tomographic technique to image 2D slices and 3D volumes of tissue using visible and near visible frequencies
-  @JsonValue('OCT')
   OCT,
 
   /// Display: Offline
   /// Definition: Instances need to be retrieved by manual intervention
-  @JsonValue('OFFLINE')
   OFFLINE,
 
   /// Display: Online
   /// Definition: Instances are immediately available
-  @JsonValue('ONLINE')
   ONLINE,
 
   /// Display: Ophthalmic photography
   /// Definition: Ophthalmic photography modality
-  @JsonValue('OP')
   OP,
 
   /// Display: Ophthalmic Mapping
   /// Definition: Modality device that measures corneal topography, corneal or retinal thickness, and other similar parameters that are typically displayed as maps
-  @JsonValue('OPM')
   OPM,
 
   /// Display: Ophthalmic Refraction
   /// Definition: Modality device that measures the refractive characteristics of the eye
-  @JsonValue('OPR')
   OPR,
 
   /// Display: Ophthalmic Tomography
   /// Definition: Tomography of the eye acquired by a modality that is based on light and optical principles. Tomography based on other principles, such as ultrasound, is excluded
-  @JsonValue('OPT')
   OPT,
 
   /// Display: Ophthalmic Visual Field
   /// Definition: Modality device that measures visual fields and perform visual perimetry
-  @JsonValue('OPV')
   OPV,
 
   /// Display: Optical Survace Scanner
   /// Definition: An acquisition device, process or method that performs optical surface scanning
-  @JsonValue('OSS')
   OSS,
 
   /// Display: Other Modality
   /// Definition: Other Modality device
-  @JsonValue('OT')
   OT,
 
   /// Display: Presentation State
   /// Definition: Presentation State object
-  @JsonValue('PR')
   PR,
 
   /// Display: Hard Copy Print Server
   /// Definition: Hard Copy Print Server; includes printers with embedded DICOM print server
-  @JsonValue('PRINT')
   PRINT,
 
   /// Display: Positron emission tomography
   /// Definition: Positron emission tomography (PET) device
-  @JsonValue('PT')
   PT,
 
   /// Display: Panoramic X-Ray
   /// Definition: Panoramic X-Ray device
-  @JsonValue('PX')
   PX,
 
   /// Display: Registration
   /// Definition: Registration
-  @JsonValue('REG')
   REG,
 
   /// Display: Radiofluoroscopy
   /// Definition: Radiofluoroscopy device
-  @JsonValue('RF')
   RF,
 
   /// Display: Radiographic imaging
   /// Definition: Radiographic imaging (conventional film/screen)
-  @JsonValue('RG')
   RG,
 
   /// Display: Radiation Therapy Device
   /// Definition: Radiation Therapy Device; includes linear accelerator, proton therapy
-  @JsonValue('RT')
   RT,
 
   /// Display: Radiotherapy Dose
   /// Definition: Radiotherapy Dose
-  @JsonValue('RTDOSE')
   RTDOSE,
 
   /// Display: Radiotherapy Image
   /// Definition: Radiotherapy Imaging device; includes portal imaging
-  @JsonValue('RTIMAGE')
   RTIMAGE,
 
   /// Display: Radiotherapy Plan
   /// Definition: Radiotherapy Plan
-  @JsonValue('RTPLAN')
   RTPLAN,
 
   /// Display: Radiotherapy Treatment Record
   /// Definition: Radiotherapy Treatment Record
-  @JsonValue('RTRECORD')
   RTRECORD,
 
   /// Display: Radiotherapy Structure Set
   /// Definition: Radiotherapy Structure Set
-  @JsonValue('RTSTRUCT')
   RTSTRUCT,
 
   /// Display: Segmentation
   /// Definition: Segmentation
-  @JsonValue('SEG')
   SEG,
 
   /// Display: Slide Microscopy
   /// Definition: Slide Microscopy
-  @JsonValue('SM')
   SM,
 
   /// Display: Stereometric Relationship
   /// Definition: Stereometric image pairing modality
-  @JsonValue('SMR')
   SMR,
 
   /// Display: Structured Report Document
   /// Definition: Structured Report Document
-  @JsonValue('SR')
   SR,
 
   /// Display: Subjective Refraction
   /// Definition: Subjective Refraction device
-  @JsonValue('SRF')
   SRF,
 
   /// Display: Single-photon emission computed tomography
   /// Definition: Single-photon emission computed tomography (SPECT) device
-  @JsonValue('ST')
   ST,
 
   /// Display: Thermography
   /// Definition: Thermography device
-  @JsonValue('TG')
   TG,
 
   /// Display: Unknown Sex
   /// Definition: Unknown Sex
-  @JsonValue('U')
   U,
 
   /// Display: Unavailable
   /// Definition: Instances cannot be retrieved
-  @JsonValue('UNAVAILABLE')
   UNAVAILABLE,
 
   /// Display: Ultrasound
   /// Definition: Ultrasound device
-  @JsonValue('US')
   US,
 
   /// Display: Visual Acuity
   /// Definition: Visual Acuity device
-  @JsonValue('VA')
   VA,
 
   /// Display: Videofluorography
   /// Definition: Videofluorography
-  @JsonValue('VF')
   VF,
 
   /// Display: Video Tape Digitizer Equipment
   /// Definition: Equipment that digitizes video tape and imports it
-  @JsonValue('VIDD')
   VIDD,
 
   /// Display: Workstation
   /// Definition: Workstation
-  @JsonValue('WSD')
   WSD,
 
   /// Display: X-Ray Angiography
   /// Definition: X-Ray Angiography device
-  @JsonValue('XA')
   XA,
 
   /// Display: External-camera Photography
   /// Definition: External-camera Photography device
-  @JsonValue('XC')
   XC,
 
   /// Display: Digital timecode (NOS)
   /// Definition: A signal transmitted for the purpose of interchange of the current time, not specific to any source or methodology
-  @JsonValue('109001')
   value109001,
 
   /// Display: ECG-based gating signal, processed
   /// Definition: A signal that is generated for each detection of a heart beat
-  @JsonValue('109002')
   value109002,
 
   /// Display: IRIG-B timecode
   /// Definition: A signal transmitted by the Inter-Range Instrumentation Group for the purpose of synchronizing time clocks
-  @JsonValue('109003')
   value109003,
 
   /// Display: X-Ray Fluoroscopy On Signal
   /// Definition: A signal that indicated that X-Ray source has been activated for fluoroscopy use
-  @JsonValue('109004')
   value109004,
 
   /// Display: X-Ray On Trigger
   /// Definition: A signal that indicated that the X-Ray source has been activated for image recording
-  @JsonValue('109005')
   value109005,
 
   /// Display: Differential signal
   /// Definition: An electrical signal derived from two electrodes
-  @JsonValue('109006')
   value109006,
 
   /// Display: His bundle electrogram
   /// Definition: An electrophysiological recording from the HIS nerve bundle
-  @JsonValue('109007')
   value109007,
 
   /// Display: Monopole signal
   /// Definition: An electrical signal from one electrode relative to an indifferent potential
-  @JsonValue('109008')
   value109008,
 
   /// Display: Pacing (electrical) stimulus, voltage
   /// Definition: The voltage stimulus during cardiac pacing
-  @JsonValue('109009')
   value109009,
 
   /// Display: Radio frequency ablation, power
   /// Definition: The power injected during RF ablation procedure
-  @JsonValue('109010')
   value109010,
 
   /// Display: Voltage measurement by basket catheter
   /// Definition: Electrophysiological signals acquired using a multi-splined catheter each equipped with multiple electrodes
-  @JsonValue('109011')
   value109011,
 
   /// Display: Voltage measurement by mapping catheter
   /// Definition: Electrophysiological signals acquired using a steerable catheter
-  @JsonValue('109012')
   value109012,
 
   /// Display: Voltage measurement, NOS
   /// Definition: A voltage measurement not otherwise specified
-  @JsonValue('109013')
   value109013,
 
   /// Display: 35% of thermal CO
   /// Definition: A signal point that is 35% of the peak thermal cardiac output signal
-  @JsonValue('109014')
   value109014,
 
   /// Display: 70% of thermal CO
   /// Definition: A signal point that is 70% of the peak thermal cardiac output signal
-  @JsonValue('109015')
   value109015,
 
   /// Display: A wave peak pressure
   /// Definition: The peak pressure of each heart beat in the atrium caused by the atrial contraction
-  @JsonValue('109016')
   value109016,
 
   /// Display: A wave pressure, average
   /// Definition: The average of several A wave pressure measurements
-  @JsonValue('109017')
   value109017,
 
   /// Display: Beat detected (accepted)
   /// Definition: An identified cardiac beat used in the determination of a measurement
-  @JsonValue('109018')
   value109018,
 
   /// Display: Beat detected (rejected)
   /// Definition: An identified cardiac beat not used in the determination of a measurement
-  @JsonValue('109019')
   value109019,
 
   /// Display: Diastolic pressure, average
   /// Definition: The average of several diastolic pressure measurements
-  @JsonValue('109020')
   value109020,
 
   /// Display: Diastolic pressure nadir
   /// Definition: The lowest pressure value excluding any undershoot artifact
-  @JsonValue('109021')
   value109021,
 
   /// Display: End diastole
   /// Definition: The moment at the end of the diastolic phase of the cardiac cycle
-  @JsonValue('109022')
   value109022,
 
   /// Display: End of expiration
   /// Definition: The moment at the end of respiratory expiration
-  @JsonValue('109023')
   value109023,
 
   /// Display: End of inspiration
   /// Definition: The moment at the end of respiratory inspiration
-  @JsonValue('109024')
   value109024,
 
   /// Display: Max dp/dt
   /// Definition: The maximum positive rate of change of pressure
-  @JsonValue('109025')
   value109025,
 
   /// Display: Max neg dp/dt
   /// Definition: The maximum negative rate of change of pressure
-  @JsonValue('109026')
   value109026,
 
   /// Display: Mean blood pressure
   /// Definition: The average blood pressure value, generally over 2 or more seconds
-  @JsonValue('109027')
   value109027,
 
   /// Display: Peak of thermal cardiac output bolus
   /// Definition: The peak change in blood temperature during a thermal cardiac output measurement
-  @JsonValue('109028')
   value109028,
 
   /// Display: Start of expiration
   /// Definition: The moment respiratory expiration begins
-  @JsonValue('109029')
   value109029,
 
   /// Display: Start of inspiration
   /// Definition: The moment of respiratory inspiration begins
-  @JsonValue('109030')
   value109030,
 
   /// Display: Start of thermal cardiac output bolus
   /// Definition: The first discernible blood temperature change following the injectate during a thermal cardiac output measurement
-  @JsonValue('109031')
   value109031,
 
   /// Display: Systolic pressure, average
   /// Definition: The average of several systolic blood pressure measurements
-  @JsonValue('109032')
   value109032,
 
   /// Display: Systolic peak pressure
   /// Definition: The highest systolic blood pressure value excluding any overshoot artifact
-  @JsonValue('109033')
   value109033,
 
   /// Display: V wave peak pressure
   /// Definition: The peak pressure of each heart beat in the atrium caused by the filling of the atrium
-  @JsonValue('109034')
   value109034,
 
   /// Display: V wave pressure, average
   /// Definition: The average of several V wave pressure measurements
-  @JsonValue('109035')
   value109035,
 
   /// Display: Valve close
   /// Definition: The moment at which a heart valve closes
-  @JsonValue('109036')
   value109036,
 
   /// Display: Valve open
   /// Definition: The moment at which a heart valve opens
-  @JsonValue('109037')
   value109037,
 
   /// Display: Ablation off
   /// Definition: The moment when RF ablation current is turned off
-  @JsonValue('109038')
   value109038,
 
   /// Display: Ablation on
   /// Definition: The moment when RF ablation current is turned on
-  @JsonValue('109039')
   value109039,
 
   /// Display: HIS bundle wave
   /// Definition: The moment in the cardiac cycle when the HIS bundle nerves depolarize
-  @JsonValue('109040')
   value109040,
 
   /// Display: P wave
   /// Definition: The surface electrocardiogram of the atrial contraction
-  @JsonValue('109041')
   value109041,
 
   /// Display: Q wave
   /// Definition: The first negative deflection of the electrocardiogram caused by ventricular depolarization
-  @JsonValue('109042')
   value109042,
 
   /// Display: R wave
   /// Definition: The first positive deflection the electrocardiogram caused by ventricular depolarization
-  @JsonValue('109043')
   value109043,
 
   /// Display: S wave
   /// Definition: The first negative deflection after the R wave
-  @JsonValue('109044')
   value109044,
 
   /// Display: Start of atrial contraction
   /// Definition: The beginning of the atrial contraction
-  @JsonValue('109045')
   value109045,
 
   /// Display: Start of atrial contraction (subsequent)
   /// Definition: The beginning of the second atrial contraction of two consecutive beats
-  @JsonValue('109046')
   value109046,
 
   /// Display: Stimulation at rate 1 interval
   /// Definition: The stimulation interval during cardiac stimulation first used in a pacing train
-  @JsonValue('109047')
   value109047,
 
   /// Display: Stimulation at rate 2 interval
   /// Definition: The stimulation interval different from the first stimulation interval used in a pacing train
-  @JsonValue('109048')
   value109048,
 
   /// Display: Stimulation at rate 3 interval
   /// Definition: A stimulation interval different from and subsequent to the second interval in a pacing train
-  @JsonValue('109049')
   value109049,
 
   /// Display: Stimulation at rate 4 interval
   /// Definition: Describes a stimulation interval different from and subsequent to the third interval in a pacing train
-  @JsonValue('109050')
   value109050,
 
   /// Display: T wave
   /// Definition: The electrocardiogram deflection caused by ventricular repolarization
-  @JsonValue('109051')
   value109051,
 
   /// Display: V wave
   /// Definition: The peak pressure of each heart beat monitored in the atrium caused by the filling of the atrium
-  @JsonValue('109052')
   value109052,
 
   /// Display: V wave of next beat
   /// Definition: The second V wave measurement of two consecutive beats
-  @JsonValue('109053')
   value109053,
 
   /// Display: Patient State
   /// Definition: A description of the physiological condition of the patient
-  @JsonValue('109054')
   value109054,
 
   /// Display: Protocol Stage
   /// Definition: The exercise level during a progressive cardiac stress test
-  @JsonValue('109055')
   value109055,
 
   /// Display: Stress Protocol
   /// Definition: A series of physiological challenges designed to progressively increase the work of the heart
-  @JsonValue('109056')
   value109056,
 
   /// Display: Catheterization Procedure Phase
   /// Definition: A subpart of a cardiac catheterization procedure
-  @JsonValue('109057')
   value109057,
 
   /// Display: Contrast Phase
   /// Definition: The subpart of a cardiac catheterization procedure in which a radio-opaque contrast medium is injected into the patient
-  @JsonValue('109058')
   value109058,
 
   /// Display: Physiological challenges
   /// Definition: Physical changes administered to a patient in order to elicit an physiological response
-  @JsonValue('109059')
   value109059,
 
   /// Display: Procedure Step Number
   /// Definition: Enumeration of a subpart of a catheterization procedure
-  @JsonValue('109060')
   value109060,
 
   /// Display: EP Procedure Phase
   /// Definition: A subpart of an electrophysiological procedure
-  @JsonValue('109061')
   value109061,
 
   /// Display: Pulse train definition
   /// Definition: A means of defining a series of cardiac stimulation pulses
-  @JsonValue('109063')
   value109063,
 
   /// Display: End of systole
   /// Definition: End of the contraction phase of the cardiac cycle
-  @JsonValue('109070')
   value109070,
 
   /// Display: Indicator mean transit time
   /// Definition: Time for a median particle to travel from point of injection to point of detection
-  @JsonValue('109071')
   value109071,
 
   /// Display: Tau
   /// Definition: The time constant of isovolumic pressure fall
-  @JsonValue('109072')
   value109072,
 
   /// Display: V max myocardial
   /// Definition: Maximum velocity of myocardial contractility
-  @JsonValue('109073')
   value109073,
 
   /// Display: Real time acquisition
   /// Definition: Total time for the acquisition is shorter than cardiac cycle, no gating is applied; see Cardiac Synchronization Technique (0018,9037)
-  @JsonValue('109080')
   value109080,
 
   /// Display: Prospective gating
   /// Definition: Certain thresholds have been set for a gating window that defines the acceptance of measurement data during the acquisition; see Cardiac Synchronization Technique (0018,9037)
-  @JsonValue('109081')
   value109081,
 
   /// Display: Retrospective gating
   /// Definition: Certain thresholds have been set for a gating window that defines the acceptance of measurement data after the acquisition; see Cardiac Synchronization Technique (0018,9037)
-  @JsonValue('109082')
   value109082,
 
   /// Display: Paced
   /// Definition: There is a constant RR interval, which makes thresholding not required; see Cardiac Synchronization Technique (0018,9037); e.g. Pacemaker
-  @JsonValue('109083')
   value109083,
 
   /// Display: Cardiac Stress State
   /// Definition: Imaging after injection of tracer during increased cardiac workload or increased myocardial blood flow, achieved by either exercise or pharmacologic means
-  @JsonValue('109091')
   value109091,
 
   /// Display: Reinjection State
   /// Definition: Imaging after injection of additional tracer under resting conditions
-  @JsonValue('109092')
   value109092,
 
   /// Display: Redistribution State
   /// Definition: Imaging after allowing a moderate amount of time for tracer to move from its initial sites of uptake. Example: For Thallium imaging this would correspond to imaging 2-6 hours after injection
-  @JsonValue('109093')
   value109093,
 
   /// Display: Delayed Redistribution State
   /// Definition: Imaging after allowing an extended amount of time for tracer to move from its initial sites of uptake. Example: For Thallium imaging this would correspond to imaging more than 6 hours after injection
-  @JsonValue('109094')
   value109094,
 
   /// Display: Peak stress state
   /// Definition: Peak cardiac stress state
-  @JsonValue('109095')
   value109095,
 
   /// Display: Recovery state
   /// Definition: Recovery from cardiac stress
-  @JsonValue('109096')
   value109096,
 
   /// Display: Acquisition Equipment
   /// Definition: Equipment that originally acquired the data stored within composite instances; e.g. a CT, MR or Ultrasound modality
-  @JsonValue('109101')
   value109101,
 
   /// Display: Processing Equipment
   /// Definition: Equipment that has processed composite instances to create new composite instances; e.g. a 3D Workstation
-  @JsonValue('109102')
   value109102,
 
   /// Display: Modifying Equipment
   /// Definition: Equipment that has modified existing composite instances (without creating new composite instances); e.g. a QA Station or Archive
-  @JsonValue('109103')
   value109103,
 
   /// Display: De-identifying Equipment
   /// Definition: Equipment that has modified an existing composite instance to remove patient identifying information
-  @JsonValue('109104')
   value109104,
 
   /// Display: Frame Extracting Equipment
   /// Definition: Equipment that has processed composite instances to create new composite instances by extracting selected frames from the original instance
-  @JsonValue('109105')
   value109105,
 
   /// Display: Enhanced Multi-frame Conversion Equipment
   /// Definition: Equipment that has processed composite instances to create new composite instances by converting classic single frame images to enhanced multi-frame image, or vice versa and updating other instances to maintain referential integrity
-  @JsonValue('109106')
   value109106,
 
   /// Display: Voice
   /// Definition: The sound of a human's speech, recorded during a procedure
-  @JsonValue('109110')
   value109110,
 
   /// Display: Operator's narrative
   /// Definition: The voice of a device operator, recorded during a procedure
-  @JsonValue('109111')
   value109111,
 
   /// Display: Ambient room environment
   /// Definition: The ambient sound recorded during a procedure, which may or may not include voice and other types of sound
-  @JsonValue('109112')
   value109112,
 
   /// Display: Doppler audio
   /// Definition: The Doppler waveform recorded as an audible signal
-  @JsonValue('109113')
   value109113,
 
   /// Display: Phonocardiogram
   /// Definition: The sound of the human heart beating
-  @JsonValue('109114')
   value109114,
 
   /// Display: Physiological audio signal
   /// Definition: Any sound made by the human body
-  @JsonValue('109115')
   value109115,
 
   /// Display: Arterial Pulse Waveform
   /// Definition: A digitized signal from the patient arterial system collected through pulse oximetry or other means
-  @JsonValue('109116')
   value109116,
 
   /// Display: Respiration Waveform
   /// Definition: A digitized signal from the patient respiratory system representing respiration
-  @JsonValue('109117')
   value109117,
 
   /// Display: On admission to unit
   /// Definition: The occasion on which a procedure was performed on admission to a specialist unit; e.g. intensive care
-  @JsonValue('109120')
   value109120,
 
   /// Display: On discharge
   /// Definition: The occasion on which a procedure was performed on discharge from hospital as an in-patient
-  @JsonValue('109121')
   value109121,
 
   /// Display: On discharge from unit
   /// Definition: The occasion on which a procedure was performed on discharge from a specialist unit; e.g. intensive care
-  @JsonValue('109122')
   value109122,
 
   /// Display: Pre-intervention
   /// Definition: The occasion on which a procedure was performed immediately prior to non-surgical intervention; e.g, percutaneous angioplasty, biopsy
-  @JsonValue('109123')
   value109123,
 
   /// Display: Post-intervention
   /// Definition: The occasion on which a procedure was performed immediately after to non-surgical intervention; e.g, percutaneous angioplasty, biopsy
-  @JsonValue('109124')
   value109124,
 
   /// Display: At last appointment
   /// Definition: The occasion on which a procedure was performed at the most recent outpatient visit
-  @JsonValue('109125')
   value109125,
 
   /// Display: Joint position method
   /// Definition: The active or passive joint positioning during acquisition
-  @JsonValue('109132')
   value109132,
 
   /// Display: Physical force
   /// Definition: A physical force applied during acquisition
-  @JsonValue('109133')
   value109133,
 
   /// Display: Prior to voiding
   /// Definition: Prior to voiding
-  @JsonValue('109134')
   value109134,
 
   /// Display: Post voiding
   /// Definition: Post voiding
-  @JsonValue('109135')
   value109135,
 
   /// Display: Neutral musculoskeletal position
   /// Definition: Neutral musculoskeletal position
-  @JsonValue('109136')
   value109136,
 
   /// Display: America Kennel Club
   /// Definition: America Kennel Club
-  @JsonValue('109200')
   value109200,
 
   /// Display: America's Pet Registry Inc.
   /// Definition: America's Pet Registry Inc
-  @JsonValue('109201')
   value109201,
 
   /// Display: American Canine Association
   /// Definition: American Canine Association
-  @JsonValue('109202')
   value109202,
 
   /// Display: American Purebred Registry
   /// Definition: American Purebred Registry
-  @JsonValue('109203')
   value109203,
 
   /// Display: American Rare Breed Association
   /// Definition: American Rare Breed Association
-  @JsonValue('109204')
   value109204,
 
   /// Display: Animal Registry Unlimited
   /// Definition: Animal Registry Unlimited
-  @JsonValue('109205')
   value109205,
 
   /// Display: Animal Research Foundation
   /// Definition: Animal Research Foundation
-  @JsonValue('109206')
   value109206,
 
   /// Display: Canadian Border Collie Association
   /// Definition: Canadian Border Collie Association
-  @JsonValue('109207')
   value109207,
 
   /// Display: Canadian Kennel Club
   /// Definition: Canadian Kennel Club
-  @JsonValue('109208')
   value109208,
 
   /// Display: Canadian Livestock Records Association
   /// Definition: Canadian Livestock Records Association
-  @JsonValue('109209')
   value109209,
 
   /// Display: Canine Federation of Canada
   /// Definition: Canine Federation of Canada
-  @JsonValue('109210')
   value109210,
 
   /// Display: Continental Kennel Club
   /// Definition: Continental Kennel Club
-  @JsonValue('109211')
   value109211,
 
   /// Display: Dog Registry of America
   /// Definition: Dog Registry of America
-  @JsonValue('109212')
   value109212,
 
   /// Display: Federation of International Canines
   /// Definition: Federation of International Canines
-  @JsonValue('109213')
   value109213,
 
   /// Display: International Progressive Dog Breeders' Alliance
   /// Definition: International Progressive Dog Breeders' Alliance
-  @JsonValue('109214')
   value109214,
 
   /// Display: National Kennel Club
   /// Definition: National Kennel Club
-  @JsonValue('109215')
   value109215,
 
   /// Display: North American Purebred Dog Registry
   /// Definition: North American Purebred Dog Registry
-  @JsonValue('109216')
   value109216,
 
   /// Display: United All Breed Registry
   /// Definition: United All Breed Registry
-  @JsonValue('109217')
   value109217,
 
   /// Display: United Kennel Club
   /// Definition: United Kennel Club
-  @JsonValue('109218')
   value109218,
 
   /// Display: Universal Kennel Club International
   /// Definition: Universal Kennel Club International
-  @JsonValue('109219')
   value109219,
 
   /// Display: Working Canine Association of Canada
   /// Definition: Working Canine Association of Canada
-  @JsonValue('109220')
   value109220,
 
   /// Display: World Kennel Club
   /// Definition: World Kennel Club
-  @JsonValue('109221')
   value109221,
 
   /// Display: World Wide Kennel Club
   /// Definition: World Wide Kennel Club
-  @JsonValue('109222')
   value109222,
 
   /// Display: Overall image quality evaluation
   /// Definition: Evaluation of overall image quality as described in section 7.3.2 of [IEC 62563-1]
-  @JsonValue('109701')
   value109701,
 
   /// Display: Grayscale resolution evaluation
   /// Definition: Visual verification of sufficient grayscale resolution based on 8 and 10-bit markers as described in section 7.3.3 of [IEC 62563-1]
-  @JsonValue('109702')
   value109702,
 
   /// Display: Luminance response evaluation
   /// Definition: Visual evaluation of luminance response using the TG18-CT test pattern as described in section 7.3.4 of [IEC 62563-1]
-  @JsonValue('109703')
   value109703,
 
   /// Display: Luminance uniformity evaluation
   /// Definition: Visual detection of luminance non-uniformities as described in section 7.3.5 of [IEC 62563-1]
-  @JsonValue('109704')
   value109704,
 
   /// Display: Chromaticity evaluation
   /// Definition: Visual verification of color uniformity as described in section 7.3.6 of [IEC 62563-1]
-  @JsonValue('109705')
   value109705,
 
   /// Display: Pixel faults evaluation
   /// Definition: Visual detection of defective pixels on dark (TG18-UN80) and bright (TG18-UN10) images as described in section 7.3.7 of [IEC 62563-1]
-  @JsonValue('109706')
   value109706,
 
   /// Display: Veiling glare evaluation
   /// Definition: Visual evaluation of veiling glare by looking at low contrast objects on 2 test patterns as described in section 7.3.8 of [IEC 62563-1]
-  @JsonValue('109707')
   value109707,
 
   /// Display: Geometrical image evaluation
   /// Definition: Visual evaluation of geometry, phase/clock correction and clipping as described in section 7.3.9 of [IEC 62563-1]
-  @JsonValue('109708')
   value109708,
 
   /// Display: Angular viewing evaluation
   /// Definition: Visual evaluation of viewing angle as described in section 7.3.10 of [IEC 62563-1]
-  @JsonValue('109709')
   value109709,
 
   /// Display: Clinical evaluation
   /// Definition: Visual evaluation of the appearance of clinical images as described in section 7.3.11 of [IEC 62563-1]
-  @JsonValue('109710')
   value109710,
 
   /// Display: TG18-QC Pattern
   /// Definition: AAPM TG18-QC Pattern used for evaluation of resolution, luminance, distortion, artifacts. See [AAPM OR 03]
-  @JsonValue('109801')
   value109801,
 
   /// Display: TG18-BR Pattern
   /// Definition: AAPM TG18-BR Pattern used for the evaluation of the display of low-contrast, fine-detail image structures See [AAPM OR 03]
-  @JsonValue('109802')
   value109802,
 
   /// Display: TG18-PQC Pattern
   /// Definition: AAPM TG18-PQC Pattern used for evaluation of resolution, luminance, contrast transfer for prints. See [AAPM OR 03]
-  @JsonValue('109803')
   value109803,
 
   /// Display: TG18-CT Pattern
   /// Definition: AAPM TG18-CT Pattern used for evaluation of luminance response. See [AAPM OR 03]
-  @JsonValue('109804')
   value109804,
 
   /// Display: TG18-LN8-01 Pattern
   /// Definition: The 1st image in the AAPM TG18-LN8 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109805')
   value109805,
 
   /// Display: TG18-LN8-02 Pattern
   /// Definition: The 2nd image in the AAPM TG18-LN8 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109806')
   value109806,
 
   /// Display: TG18-LN8-03 Pattern
   /// Definition: The 3rd image in the AAPM TG18-LN8 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109807')
   value109807,
 
   /// Display: TG18-LN8-04 Pattern
   /// Definition: The 4th image in the AAPM TG18-LN8 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109808')
   value109808,
 
   /// Display: TG18-LN8-05 Pattern
   /// Definition: The 5th image in the AAPM TG18-LN8 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109809')
   value109809,
 
   /// Display: TG18-LN8-06 Pattern
   /// Definition: The 6th image in the AAPM TG18-LN8 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109810')
   value109810,
 
   /// Display: TG18-LN8-07 Pattern
   /// Definition: The 7th image in the AAPM TG18-LN8 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109811')
   value109811,
 
   /// Display: TG18-LN8-08 Pattern
   /// Definition: The 8th image in the AAPM TG18-LN8 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109812')
   value109812,
 
   /// Display: TG18-LN8-09 Pattern
   /// Definition: The 9th image in the AAPM TG18-LN8 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109813')
   value109813,
 
   /// Display: TG18-LN8-10 Pattern
   /// Definition: The 10th image in the AAPM TG18-LN8 set used for DICOM grayscale calibration series. See [AAPM OR 03]
-  @JsonValue('109814')
   value109814,
 
   /// Display: TG18-LN8-11 Pattern
   /// Definition: The 11th image in the AAPM TG18-LN8 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109815')
   value109815,
 
   /// Display: TG18-LN8-12 Pattern
   /// Definition: The 12th image in the AAPM TG18-LN8 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109816')
   value109816,
 
   /// Display: TG18-LN8-13 Pattern
   /// Definition: The 13th image in the AAPM TG18-LN8 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109817')
   value109817,
 
   /// Display: TG18-LN8-14 Pattern
   /// Definition: The 14th image in the AAPM TG18-LN8 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109818')
   value109818,
 
   /// Display: TG18-LN8-15 Pattern
   /// Definition: The 15th image in the AAPM TG18-LN8 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109819')
   value109819,
 
   /// Display: TG18-LN8-16 Pattern
   /// Definition: The 16th image in the AAPM TG18-LN8 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109820')
   value109820,
 
   /// Display: TG18-LN8-17 Pattern
   /// Definition: The 17th image in the AAPM TG18-LN8 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109821')
   value109821,
 
   /// Display: TG18-LN8-18 Pattern
   /// Definition: The 18th image in the AAPM TG18-LN8- set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109822')
   value109822,
 
   /// Display: TG18-LN12-01 Pattern
   /// Definition: The 1st image in the AAPM TG18-LN12 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109823')
   value109823,
 
   /// Display: TG18-LN12-02 Pattern
   /// Definition: The 2 nd image in the AAPM TG18-LN12 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109824')
   value109824,
 
   /// Display: TG18-LN12-03 Pattern
   /// Definition: The 3rd image in the AAPM TG18-LN12 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109825')
   value109825,
 
   /// Display: TG18-LN12-04 Pattern
   /// Definition: The 4th image in the AAPM TG18-LN12 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109826')
   value109826,
 
   /// Display: TG18-LN12-05 Pattern
   /// Definition: The 5th image in the AAPM TG18-LN12 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109827')
   value109827,
 
   /// Display: TG18-LN12-06 Pattern
   /// Definition: The 6th image in the AAPM TG18-LN12 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109828')
   value109828,
 
   /// Display: TG18-LN12-07 Pattern
   /// Definition: The 7th image in the AAPM TG18-LN12 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109829')
   value109829,
 
   /// Display: TG18-LN12-08 Pattern
   /// Definition: The 8th image in the AAPM TG18-LN12 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109830')
   value109830,
 
   /// Display: TG18-LN12-09 Pattern
   /// Definition: The 9th image in the AAPM TG18-LN12 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109831')
   value109831,
 
   /// Display: TG18-LN12-10 Pattern
   /// Definition: The 10th image in the AAPM TG18-LN12 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109832')
   value109832,
 
   /// Display: TG18-LN12-11 Pattern
   /// Definition: The 11th image in the AAPM TG18-LN12 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109833')
   value109833,
 
   /// Display: TG18-LN12-12 Pattern
   /// Definition: The 12th image in the AAPM TG18-LN12 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109834')
   value109834,
 
   /// Display: TG18-LN12-13 Pattern
   /// Definition: The 13th image in the AAPM TG18-LN12 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109835')
   value109835,
 
   /// Display: TG18-LN12-14 Pattern
   /// Definition: The 14th image in the AAPM TG18-LN12 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109836')
   value109836,
 
   /// Display: TG18-LN12-15 Pattern
   /// Definition: The 15th image in the AAPM TG18-LN12 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109837')
   value109837,
 
   /// Display: TG18-LN12-16 Pattern
   /// Definition: The 16th image in the AAPM TG18-LN12 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109838')
   value109838,
 
   /// Display: TG18-LN12-17 Pattern
   /// Definition: The 17th image in the AAPM TG18-LN12 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109839')
   value109839,
 
   /// Display: TG18-LN12-18 Pattern
   /// Definition: The 18th image in the AAPM TG18-LN12 set used for DICOM grayscale calibration. See [AAPM OR 03]
-  @JsonValue('109840')
   value109840,
 
   /// Display: TG18-UN10 Pattern
   /// Definition: The AAPM TG18-UN10 Pattern used for evaluation of luminance and color uniformity, and angular response. See [AAPM OR 03]
-  @JsonValue('109841')
   value109841,
 
   /// Display: TG18-UN80 Pattern
   /// Definition: The AAPM TG18-UN80 Pattern used for evaluation of luminance and color uniformity, and angular response. See [AAPM OR 03]
-  @JsonValue('109842')
   value109842,
 
   /// Display: TG18-UNL10 Pattern
   /// Definition: The AAPM TG18-UNL10 Pattern is the AAPM TG-18 UN10 Pattern with added defining lines. See [AAPM OR 03]
-  @JsonValue('109843')
   value109843,
 
   /// Display: TG18-UNL80 Pattern
   /// Definition: The AAPM TG18-UNL80 Pattern is the AAPM TG-18 UN80 Pattern with added defining lines. See [AAPM OR 03]
-  @JsonValue('109844')
   value109844,
 
   /// Display: TG18-AD Pattern
   /// Definition: The AAPM TG18-AD Pattern used for visual evaluation of the reflection of ambient light from the display. See [AAPM OR 03]
-  @JsonValue('109845')
   value109845,
 
   /// Display: TG18-MP Pattern
   /// Definition: The AAPM TG18-MP Pattern used for evaluation of Luminance response (bit-depth resolution). See [AAPM OR 03]
-  @JsonValue('109846')
   value109846,
 
   /// Display: TG18-RH10 Pattern
   /// Definition: The AAPM TG18-RH10 Pattern used for LSF-line spectra function-(1k and 2k) evaluation by 5 horizontal lines at 10% luminance level. See [AAPM OR 03]
-  @JsonValue('109847')
   value109847,
 
   /// Display: TG18-RH50 Pattern
   /// Definition: The AAPM TG18-RH50 Pattern used for LSF-line spectra function-(1k and 2k) evaluation by 5 horizontal lines at 50% luminance level. See [AAPM OR 03]
-  @JsonValue('109848')
   value109848,
 
   /// Display: TG18-RH89 Pattern
   /// Definition: The AAPM TG18-RH89 Pattern used for LSF-line spectra function-(1k and 2k) evaluation by 5 horizontal lines at 89% luminance level. See [AAPM OR 03]
-  @JsonValue('109849')
   value109849,
 
   /// Display: TG18-RV10 Pattern
   /// Definition: The AAPM TG18-RV10 Pattern used for LSF-line spectra function-(1k and 2k) evaluation by 5 vertical lines at 10% luminance level. See [AAPM OR 03]
-  @JsonValue('109850')
   value109850,
 
   /// Display: TG18-RV50 Pattern
   /// Definition: The AAPM TG18-RV50 Pattern used for LSF-line spectra function-(1k and 2k) evaluation by 5 vertical lines at 50% luminance level. See [AAPM OR 03]
-  @JsonValue('109851')
   value109851,
 
   /// Display: TG18-RV89 Pattern
   /// Definition: The AAPM TG18-RV89 Pattern used for LSF-line spectra function-(1k and 2k) evaluation by 5 vertical lines at 89% luminance level. See [AAPM OR 03]
-  @JsonValue('109852')
   value109852,
 
   /// Display: TG18-PX Pattern
   /// Definition: The AAPM TG18-PX Pattern used for the assessment of display resolution. See [AAPM OR 03]
-  @JsonValue('109853')
   value109853,
 
   /// Display: TG18-CX Pattern
   /// Definition: The AAPM TG18-CX Pattern used to assess display resolution and resolution uniformity. See [AAPM OR 03]
-  @JsonValue('109854')
   value109854,
 
   /// Display: TG18-LPH10 Pattern
   /// Definition: The AAPM TG18-LPH10 Pattern used to assess display resolution. This pattern has horizontal bars consisting of alternating single-pixel-wide lines across the faceplate of display. The lines have a 12% positive contrast against 10% background level of the maximum pixel value. See [AAPM OR 03]
-  @JsonValue('109855')
   value109855,
 
   /// Display: TG18-LPH50 Pattern
   /// Definition: The AAPM TG18-LPH50 Pattern used to assess display resolution. This pattern has horizontal bars consisting of alternating single-pixel-wide lines across the faceplate of display. The lines have a 50% positive contrast against 10% background level of the maximum pixel value. See [AAPM OR 03]
-  @JsonValue('109856')
   value109856,
 
   /// Display: TG18-LPH89 Pattern
   /// Definition: The AAPM TG18-LPH89 Pattern used to assess display resolution. This pattern has horizontal bars consisting of alternating single-pixel-wide lines across the faceplate of display. The lines have a 12% positive contrast against 89% background level of the maximum pixel value. See [AAPM OR 03]
-  @JsonValue('109857')
   value109857,
 
   /// Display: TG18-LPV10 Pattern
   /// Definition: The AAPM TG18-LPV10 Pattern used to assess display resolution. This pattern has vertical bars consisting of alternating single-pixel-wide lines across the faceplate of display. The lines have a 12% positive contrast against 10% background level of the maximum pixel value. See [AAPM OR 03]
-  @JsonValue('109858')
   value109858,
 
   /// Display: TG18-LPV50 Pattern
   /// Definition: The AAPM TG18-LPV50 Pattern used to assess display resolution. This pattern has vertical bars consisting of alternating single-pixel-wide lines across the faceplate of display. The lines have a 12% positive contrast against 50% background level of the maximum pixel value. See [AAPM OR 03]
-  @JsonValue('109859')
   value109859,
 
   /// Display: TG18-LPV89 Pattern
   /// Definition: The AAPM TG18-LPV89 Pattern used to assess display resolution. This pattern has vertical bars consisting of alternating single-pixel-wide lines across the faceplate of display. The lines have a 12% positive contrast against 89% background level of the maximum pixel value. See [AAPM OR 03]
-  @JsonValue('109860')
   value109860,
 
   /// Display: TG18-AFC Pattern
   /// Definition: The AAPM TG18-AFC Pattern used to assess display noise. See [AAPM OR 03]
-  @JsonValue('109861')
   value109861,
 
   /// Display: TG18-NS10 Pattern
   /// Definition: The AAPM TG18-NS10 Pattern is AAPM TG18-RV10/RH10 with only difference being the absence of the single line at the center of the measurement area. See [AAPM OR 03]
-  @JsonValue('109862')
   value109862,
 
   /// Display: TG18-NS50 Pattern
   /// Definition: The AAPM TG18-NS50 Pattern is AAPM TG18-RV50/RH50 with only difference being the absence of the single line at the center of the measurement area. See [AAPM OR 03]
-  @JsonValue('109863')
   value109863,
 
   /// Display: TG18-NS89 Pattern
   /// Definition: The AAPM TG18-NS89 Pattern is AAPM TG18-RV89/RH89 with only difference being the absence of the single line at the center of the measurement area. See [AAPM OR 03]
-  @JsonValue('109864')
   value109864,
 
   /// Display: TG18-GV Pattern
   /// Definition: The TG18-GV Pattern used to assess display veiling. See [AAPM OR 03]
-  @JsonValue('109865')
   value109865,
 
   /// Display: TG18-GVN Pattern
   /// Definition: The TG18-GVN Pattern used to assess display veiling. This pattern is identical to AAPM TG18-GV Pattern except that the large-diameter white circle is replaced with a black circle, creating a completely black pattern except for the presence of low-contrast targets. See [AAPM OR 03]
-  @JsonValue('109866')
   value109866,
 
   /// Display: TG18-GQ Pattern
   /// Definition: The TG18-GQ Pattern used for quantitative assessment of veiling glare. This pattern is identical to TG18-GV except that is lacks the central low-contrast objects. See [AAPM OR 03]
-  @JsonValue('109867')
   value109867,
 
   /// Display: TG18-GQN Pattern
   /// Definition: TG18-GQN Pattern used for the quantitative assessment of veiling glare. This pattern is identical to AAPM TG18-GQ Pattern except that the large-diameter white circle is replaced with a black circle, creating a completely black pattern except for the presence of low-contrast targets. See [AAPM OR 03]
-  @JsonValue('109868')
   value109868,
 
   /// Display: TG18-GQB Pattern
   /// Definition: The TG18-GQB Pattern used for the quantitative assessment of veiling glare. This pattern is identical to AAPM TG18-GQ Pattern except eliminating the central black circle. See [AAPM OR 03]
-  @JsonValue('109869')
   value109869,
 
   /// Display: TG18-GA03 Pattern
   /// Definition: The TG18-GA03 Pattern used for quantitative assessment of veiling glare. This pattern is identical to TG18-GQ except that the radius of the central black circle is varied as r = 3. See [AAPM OR 03]
-  @JsonValue('109870')
   value109870,
 
   /// Display: TG18-GA05 Pattern
   /// Definition: The TG18-GA05 Pattern This pattern is identical to TG18-GQ except that the radius of the central black circle is varied as r = 5. See [AAPM OR 03]
-  @JsonValue('109871')
   value109871,
 
   /// Display: TG18-GA08 Pattern
   /// Definition: The TG18-GA08 Pattern used for quantitative assessment of veiling glare. This pattern is identical to TG18-GQ except that the radius of the central black circle is varied as r = 8. See [AAPM OR 03]
-  @JsonValue('109872')
   value109872,
 
   /// Display: TG18-GA10 Pattern
   /// Definition: The TG18-GA10 Pattern used for quantitative assessment of veiling glare. This pattern is identical to TG18-GQ except that the radius of the central black circle is varied as r = 10. See [AAPM OR 03]
-  @JsonValue('109873')
   value109873,
 
   /// Display: TG18-GA15 Pattern
   /// Definition: The TG18-GA15 Pattern used for quantitative assessment of veiling glare. This pattern is identical to TG18-GQ except that the radius of the central black circle is varied as r = 15
-  @JsonValue('109874')
   value109874,
 
   /// Display: TG18-GA20 Pattern
   /// Definition: The TG18-GA20 Pattern used for quantitative assessment of veiling glare. This pattern is identical to TG18-GQ except that the radius of the central black circle is varied as r = 20. See [AAPM OR 03]
-  @JsonValue('109875')
   value109875,
 
   /// Display: TG18-GA25 Pattern
   /// Definition: The TG18-GA25 Pattern used for quantitative assessment of veiling glare. This pattern is identical to TG18-GQ except that the radius of the central black circle is varied as r = 25. See [AAPM OR 03]
-  @JsonValue('109876')
   value109876,
 
   /// Display: TG18-GA30 Pattern
   /// Definition: The TG18-GA30 Pattern used for quantitative assessment of veiling glare. This pattern is identical to TG18-GQ except that the radius of the central black circle is varied as r = 30. See [AAPM OR 03]
-  @JsonValue('109877')
   value109877,
 
   /// Display: TG18-CH Image
   /// Definition: The AAPM TG18-CH Image is a reference anatomical PA chest image. See [AAPM OR 03]
-  @JsonValue('109878')
   value109878,
 
   /// Display: TG18-KN Image
   /// Definition: The AAPM TG18-KN Image is a reference anatomical knee image. See [AAPM OR 03]
-  @JsonValue('109879')
   value109879,
 
   /// Display: TG18-MM1 Image
   /// Definition: The AAPM TG18-MM1 Image is a reference anatomical mammogram image. See [AAPM OR 03]
-  @JsonValue('109880')
   value109880,
 
   /// Display: TG18-MM2 Image
   /// Definition: The AAPM TG18-MM2 Image is a reference anatomical mammogram image. See [AAPM OR 03]
-  @JsonValue('109881')
   value109881,
 
   /// Display: OIQ Pattern
   /// Definition: The IEC OIQ Pattern is used as an alternative to the TG18-QC Pattern. See [IEC 62563-1]
-  @JsonValue('109901')
   value109901,
 
   /// Display: ANG Pattern
   /// Definition: The IEC ANG Pattern used for angular viewing evaluation. See [IEC 62563-1]
-  @JsonValue('109902')
   value109902,
 
   /// Display: GD Pattern
   /// Definition: The IEC GD Pattern used for geometrical image evaluation. See [IEC 62563-1]
-  @JsonValue('109903')
   value109903,
 
   /// Display: BN01 Pattern
   /// Definition: The IEC BN01 Pattern is used as analternative to the TG18-LN-01 Pattern, to avoid the use of a cone or baffle with LCDs. See [IEC 62563-1]
-  @JsonValue('109904')
   value109904,
 
   /// Display: BN02 Pattern
   /// Definition: The IEC BN02 Pattern is used as analternative to the TG18-LN-02 Pattern, to avoid the use of a cone or baffle with LCDs. See [IEC 62563-1]
-  @JsonValue('109905')
   value109905,
 
   /// Display: BN03 Pattern
   /// Definition: The IEC BN03 Pattern is used as analternative to the TG18-LN-03 Pattern, to avoid the use of a cone or baffle with LCDs. See [IEC 62563-1]
-  @JsonValue('109906')
   value109906,
 
   /// Display: BN04 Pattern
   /// Definition: The IEC BN04 Pattern is used as analternative to the TG18-LN-04 Pattern, to avoid the use of a cone or baffle with LCDs. See [IEC 62563-1]
-  @JsonValue('109907')
   value109907,
 
   /// Display: BN05 Pattern
   /// Definition: The IEC BN05 Pattern is used as analternative to the TG18-LN-05 Pattern, to avoid the use of a cone or baffle with LCDs. See [IEC 62563-1]
-  @JsonValue('109908')
   value109908,
 
   /// Display: BN06 Pattern
   /// Definition: The IEC BN06 Pattern is used as analternative to the TG18-LN-06 Pattern, to avoid the use of a cone or baffle with LCDs. See [IEC 62563-1]
-  @JsonValue('109909')
   value109909,
 
   /// Display: BN07 Pattern
   /// Definition: The IEC BN07 Pattern is used as analternative to the TG18-LN-07 Pattern, to avoid the use of a cone or baffle with LCDs. See [IEC 62563-1]
-  @JsonValue('109910')
   value109910,
 
   /// Display: BN08 Pattern
   /// Definition: The IEC BN08 Pattern is used as analternative to the TG18-LN-08 Pattern, to avoid the use of a cone or baffle with LCDs. See [IEC 62563-1]
-  @JsonValue('109911')
   value109911,
 
   /// Display: BN09 Pattern
   /// Definition: The IEC BN09 Pattern is used as analternative to the TG18-LN-09 Pattern, to avoid the use of a cone or baffle with LCDs. See [IEC 62563-1]
-  @JsonValue('109912')
   value109912,
 
   /// Display: BN10 Pattern
   /// Definition: The IEC BN10 Pattern is used as analternative to the TG18-LN-10 Pattern, to avoid the use of a cone or baffle with LCDs. See [IEC 62563-1]
-  @JsonValue('109913')
   value109913,
 
   /// Display: BN11 Pattern
   /// Definition: The IEC BN11 Pattern is used as analternative to the TG18-LN-11 Pattern, to avoid the use of a cone or baffle with LCDs. See [IEC 62563-1]
-  @JsonValue('109914')
   value109914,
 
   /// Display: BN12 Pattern
   /// Definition: The IEC BN12 Pattern is used as analternative to the TG18-LN-12 Pattern, to avoid the use of a cone or baffle with LCDs. See [IEC 62563-1]
-  @JsonValue('109915')
   value109915,
 
   /// Display: BN13 Pattern
   /// Definition: The IEC BN13 Pattern is used as analternative to the TG18-LN-13 Pattern, to avoid the use of a cone or baffle with LCDs. See [IEC 62563-1]
-  @JsonValue('109916')
   value109916,
 
   /// Display: BN14 Pattern
   /// Definition: The IEC BN14 Pattern is used as analternative to the TG18-LN-14 Pattern, to avoid the use of a cone or baffle with LCDs. See [IEC 62563-1]
-  @JsonValue('109917')
   value109917,
 
   /// Display: BN15 Pattern
   /// Definition: The IEC BN15 Pattern is used as analternative to the TG18-LN-15 Pattern, to avoid the use of a cone or baffle with LCDs. See [IEC 62563-1]
-  @JsonValue('109918')
   value109918,
 
   /// Display: BN16 Pattern
   /// Definition: The IEC BN16 Pattern is used as analternative to the TG18-LN-16 Pattern, to avoid the use of a cone or baffle with LCDs. See [IEC 62563-1]
-  @JsonValue('109919')
   value109919,
 
   /// Display: BN17 Pattern
   /// Definition: The IEC BN17 Pattern is used as analternative to the TG18-LN-17 Pattern, to avoid the use of a cone or baffle with LCDs. See [IEC 62563-1]
-  @JsonValue('109920')
   value109920,
 
   /// Display: BN18 Pattern
   /// Definition: The IEC BN18 Pattern is used as analternative to the TG18-LN-18 Pattern, to avoid the use of a cone or baffle with LCDs. See [IEC 62563-1]
-  @JsonValue('109921')
   value109921,
 
   /// Display: DIN Grayscale Pattern
   /// Definition: Test image "Bild 2" for the gray-scale reproduction of imaging devices. See [DIN 6868-57]
-  @JsonValue('109931')
   value109931,
 
   /// Display: DIN Geometry Pattern
   /// Definition: Test image "Bild 3" for the geometrical imaging properties of imaging devices. See [DIN 6868-57]
-  @JsonValue('109932')
   value109932,
 
   /// Display: DIN Resolution Pattern
   /// Definition: Test image "Bild 5" for displaying the spatial and contrast resolution as well as the line structure of imaging devices. See [DIN 6868-57]
-  @JsonValue('109933')
   value109933,
 
   /// Display: White Pattern
   /// Definition: An alternative to AAPM TG18-UN80, specified at 100% of maximum pixel value
-  @JsonValue('109941')
   value109941,
 
   /// Display: SMPTE Pattern
   /// Definition: A standard display test pattern. See [SMPTE RP133]. A pattern is available at http://www.dclunie.com/images/smpte.512.512.8.gif
-  @JsonValue('109943')
   value109943,
 
   /// Display: CRT Display
   /// Definition: A Display Device that displays images on a Cathode Ray Tube
-  @JsonValue('109991')
   value109991,
 
   /// Display: Liquid Crystal Display
   /// Definition: A Display Device that displays images on a Liquid Crystal Display
-  @JsonValue('109992')
   value109992,
 
   /// Display: Plasma Display
   /// Definition: A Display Device that displays images on a Plasma Display
-  @JsonValue('109993')
   value109993,
 
   /// Display: OLED
   /// Definition: A Display Device that displays images on an Organic Light Emitting Diode based display
-  @JsonValue('109994')
   value109994,
 
   /// Display: DLP Rear Projection System
   /// Definition: A Display Device that projects images on a surface from behind using a Digital Light Processing Projector
-  @JsonValue('109995')
   value109995,
 
   /// Display: DLP Front Projection System
   /// Definition: A Display Device that projects images on a surface from in front using a Digital Light Processing Projector
-  @JsonValue('109996')
   value109996,
 
   /// Display: CRT Rear Projection System
   /// Definition: A Display Device that projects images on a surface from behind using a Cathode Ray Tube
-  @JsonValue('109997')
   value109997,
 
   /// Display: CRT Front Projection System
   /// Definition: A Display Device that projects images on a surface from in front using a Cathode Ray Tube
-  @JsonValue('109998')
   value109998,
 
   /// Display: Other Projection System
   /// Definition: A Display Device that projects images on a surface from an unspecified direction using an unspecified means
-  @JsonValue('109999')
   value109999,
 
   /// Display: Image Processing
   /// Definition: Image processing work item
-  @JsonValue('110001')
   value110001,
 
   /// Display: Quality Control
   /// Definition: Quality control work item
-  @JsonValue('110002')
   value110002,
 
   /// Display: Computer Aided Diagnosis
   /// Definition: Computer aided diagnosis work item
-  @JsonValue('110003')
   value110003,
 
   /// Display: Computer Aided Detection
   /// Definition: Computer aided detection work item
-  @JsonValue('110004')
   value110004,
 
   /// Display: Interpretation
   /// Definition: Interpretation work item
-  @JsonValue('110005')
   value110005,
 
   /// Display: Transcription
   /// Definition: Transcription work item
-  @JsonValue('110006')
   value110006,
 
   /// Display: Report Verification
   /// Definition: Report verification work item
-  @JsonValue('110007')
   value110007,
 
   /// Display: Print
   /// Definition: Print work item
-  @JsonValue('110008')
   value110008,
 
   /// Display: No subsequent Workitems
   /// Definition: There will be no more work items scheduled
-  @JsonValue('110009')
   value110009,
 
   /// Display: Film
   /// Definition: Film type of output
-  @JsonValue('110010')
   value110010,
 
   /// Display: Dictation
   /// Definition: Dictation type of output
-  @JsonValue('110011')
   value110011,
 
   /// Display: Transcription
   /// Definition: Transcription type of output
-  @JsonValue('110012')
   value110012,
 
   /// Display: Media Import
   /// Definition: The procedure to read DICOM instances from DICOM interchange media, coerce identifying attributes into the local namespace if necessary, and make the instances available
-  @JsonValue('110013')
   value110013,
 
   /// Display: Sheet Film Digitized
   /// Definition: Digitization of Sheet Film
-  @JsonValue('110020')
   value110020,
 
   /// Display: Cine Film Digitized
   /// Definition: Digitization of Cine Film
-  @JsonValue('110021')
   value110021,
 
   /// Display: Video Tape Digitized
   /// Definition: Digitization of Video Tape
-  @JsonValue('110022')
   value110022,
 
   /// Display: Paper Digitized
   /// Definition: Digitization of pages of a paper document (Units may be specified as Pages, Documents)
-  @JsonValue('110023')
   value110023,
 
   /// Display: CD Imported
   /// Definition: Importation of CD
-  @JsonValue('110024')
   value110024,
 
   /// Display: DVD Imported
   /// Definition: Importation of DVD
-  @JsonValue('110025')
   value110025,
 
   /// Display: MOD Imported
   /// Definition: Importation of MOD
-  @JsonValue('110026')
   value110026,
 
   /// Display: Studies Imported
   /// Definition: Importation of DICOM Studies
-  @JsonValue('110027')
   value110027,
 
   /// Display: Instances Imported
   /// Definition: Importation of DICOM Composite Instances
-  @JsonValue('110028')
   value110028,
 
   /// Display: USB Disk Emulation
   /// Definition: A device that connects using the USB hard drive interface. These may be USB-Sticks, portable hard drives, and other technologies
-  @JsonValue('110030')
   value110030,
 
   /// Display: Email
   /// Definition: Email and email attachments used as a media for data transport
-  @JsonValue('110031')
   value110031,
 
   /// Display: CD
   /// Definition: CD-R, CD-ROM, and CD-RW media used for data transport
-  @JsonValue('110032')
   value110032,
 
   /// Display: DVD
   /// Definition: DVD, DVD-RAM, and other DVD formatted media used for data transport
-  @JsonValue('110033')
   value110033,
 
   /// Display: Compact Flash
   /// Definition: Media that comply with the Compact Flash standard
-  @JsonValue('110034')
   value110034,
 
   /// Display: Multi-media Card
   /// Definition: Media that comply with the Multi-media Card standard
-  @JsonValue('110035')
   value110035,
 
   /// Display: Secure Digital Card
   /// Definition: Media that comply with the Secure Digital Card standard
-  @JsonValue('110036')
   value110036,
 
   /// Display: URI
   /// Definition: URI Identifier for network or other resource, see RFC 3968
-  @JsonValue('110037')
   value110037,
 
   /// Display: Paper Document
   /// Definition: Any paper or similar document
-  @JsonValue('110038')
   value110038,
 
   /// Display: Application Activity
   /// Definition: Audit event: Application Activity has taken place
-  @JsonValue('110100')
   value110100,
 
   /// Display: Audit Log Used
   /// Definition: Audit event: Audit Log has been used
-  @JsonValue('110101')
   value110101,
 
   /// Display: Begin Transferring DICOM Instances
   /// Definition: Audit event: Storage of DICOM Instances has begun
-  @JsonValue('110102')
   value110102,
 
   /// Display: DICOM Instances Accessed
   /// Definition: Audit event: DICOM Instances have been created, read, updated, or deleted
-  @JsonValue('110103')
   value110103,
 
   /// Display: DICOM Instances Transferred
   /// Definition: Audit event: Storage of DICOM Instances has been completed
-  @JsonValue('110104')
   value110104,
 
   /// Display: DICOM Study Deleted
   /// Definition: Audit event: Entire Study has been deleted
-  @JsonValue('110105')
   value110105,
 
   /// Display: Export
   /// Definition: Audit event: Data has been exported out of the system
-  @JsonValue('110106')
   value110106,
 
   /// Display: Import
   /// Definition: Audit event: Data has been imported into the system
-  @JsonValue('110107')
   value110107,
 
   /// Display: Network Entry
   /// Definition: Audit event: System has joined or left network
-  @JsonValue('110108')
   value110108,
 
   /// Display: Order Record
   /// Definition: Audit event: Order has been created, read, updated or deleted
-  @JsonValue('110109')
   value110109,
 
   /// Display: Patient Record
   /// Definition: Audit event: Patient Record has been created, read, updated, or deleted
-  @JsonValue('110110')
   value110110,
 
   /// Display: Procedure Record
   /// Definition: Audit event: Procedure Record has been created, read, updated, or deleted
-  @JsonValue('110111')
   value110111,
 
   /// Display: Query
   /// Definition: Audit event: Query has been made
-  @JsonValue('110112')
   value110112,
 
   /// Display: Security Alert
   /// Definition: Audit event: Security Alert has been raised
-  @JsonValue('110113')
   value110113,
 
   /// Display: User Authentication
   /// Definition: Audit event: User Authentication has been attempted
-  @JsonValue('110114')
   value110114,
 
   /// Display: Application Start
   /// Definition: Audit event: Application Entity has started
-  @JsonValue('110120')
   value110120,
 
   /// Display: Application Stop
   /// Definition: Audit event: Application Entity has stopped
-  @JsonValue('110121')
   value110121,
 
   /// Display: Login
   /// Definition: Audit event: User login has been attempted
-  @JsonValue('110122')
   value110122,
 
   /// Display: Logout
   /// Definition: Audit event: User logout has been attempted
-  @JsonValue('110123')
   value110123,
 
   /// Display: Attach
   /// Definition: Audit event: Node has been attached
-  @JsonValue('110124')
   value110124,
 
   /// Display: Detach
   /// Definition: Audit event: Node has been detached
-  @JsonValue('110125')
   value110125,
 
   /// Display: Node Authentication
   /// Definition: Audit event: Node Authentication has been attempted
-  @JsonValue('110126')
   value110126,
 
   /// Display: Emergency Override Started
   /// Definition: Audit event: Emergency Override has started
-  @JsonValue('110127')
   value110127,
 
   /// Display: Network Configuration
   /// Definition: Audit event: Network configuration has been changed
-  @JsonValue('110128')
   value110128,
 
   /// Display: Security Configuration
   /// Definition: Audit event: Security configuration has been changed
-  @JsonValue('110129')
   value110129,
 
   /// Display: Hardware Configuration
   /// Definition: Audit event: Hardware configuration has been changed
-  @JsonValue('110130')
   value110130,
 
   /// Display: Software Configuration
   /// Definition: Audit event: Software configuration has been changed
-  @JsonValue('110131')
   value110131,
 
   /// Display: Use of Restricted Function
   /// Definition: Audit event: A use of a restricted function has been attempted
-  @JsonValue('110132')
   value110132,
 
   /// Display: Audit Recording Stopped
   /// Definition: Audit event: Audit recording has been stopped
-  @JsonValue('110133')
   value110133,
 
   /// Display: Audit Recording Started
   /// Definition: Audit event: Audit recording has been started
-  @JsonValue('110134')
   value110134,
 
   /// Display: Object Security Attributes Changed
   /// Definition: Audit event: Security attributes of an object have been changed
-  @JsonValue('110135')
   value110135,
 
   /// Display: Security Roles Changed
   /// Definition: Audit event: Security roles have been changed
-  @JsonValue('110136')
   value110136,
 
   /// Display: User security Attributes Changed
   /// Definition: Audit event: Security attributes of a user have been changed
-  @JsonValue('110137')
   value110137,
 
   /// Display: Emergency Override Stopped
   /// Definition: Audit event: Emergency Override has Stopped
-  @JsonValue('110138')
   value110138,
 
   /// Display: Remote Service Operation Started
   /// Definition: Audit event: Remote Service Operation has Begun
-  @JsonValue('110139')
   value110139,
 
   /// Display: Remote Service Operation Stopped
   /// Definition: Audit event: Remote Service Operation has Stopped
-  @JsonValue('110140')
   value110140,
 
   /// Display: Local Service Operation Started
   /// Definition: Audit event: Local Service Operation has Begun
-  @JsonValue('110141')
   value110141,
 
   /// Display: Local Service Operation Stopped
   /// Definition: Audit event: Local Service Operation Stopped
-  @JsonValue('110142')
   value110142,
 
   /// Display: Application
   /// Definition: Audit participant role ID of software application
-  @JsonValue('110150')
   value110150,
 
   /// Display: Application Launcher
   /// Definition: Audit participant role ID of software application launcher, i.e., the entity that started or stopped an application
-  @JsonValue('110151')
   value110151,
 
   /// Display: Destination Role ID
   /// Definition: Audit participant role ID of the receiver of data
-  @JsonValue('110152')
   value110152,
 
   /// Display: Source Role ID
   /// Definition: Audit participant role ID of the sender of data
-  @JsonValue('110153')
   value110153,
 
   /// Display: Destination Media
   /// Definition: Audit participant role ID of media receiving data during an export
-  @JsonValue('110154')
   value110154,
 
   /// Display: Source Media
   /// Definition: Audit participant role ID of media providing data during an import
-  @JsonValue('110155')
   value110155,
 
   /// Display: Study Instance UID
   /// Definition: ParticipantObjectID type: Study Instance UID
-  @JsonValue('110180')
   value110180,
 
   /// Display: SOP Class UID
   /// Definition: ParticipantObjectID type: SOP Class UID
-  @JsonValue('110181')
   value110181,
 
   /// Display: Node ID
   /// Definition: ID of a node that is a participant object of an audit message
-  @JsonValue('110182')
   value110182,
 
   /// Display: Issuer of Identifier
   /// Definition: System, organization, agency, or department that has assigned an instance identifier (such as placer or filler number, patient or provider identifier, etc.)
-  @JsonValue('110190')
   value110190,
 
   /// Display: Doctor canceled procedure
   /// Definition: Procedure order canceled by requesting physician or other authorized physician
-  @JsonValue('110500')
   value110500,
 
   /// Display: Equipment failure
   /// Definition: Equipment failure prevented completion of procedure
-  @JsonValue('110501')
   value110501,
 
   /// Display: Incorrect procedure ordered
   /// Definition: Procedure discontinued due to incorrect procedure being ordered
-  @JsonValue('110502')
   value110502,
 
   /// Display: Patient allergic to media/contrast
   /// Definition: Procedure discontinued due to patient allergy to media/contrast (reported or reaction)
-  @JsonValue('110503')
   value110503,
 
   /// Display: Patient died
   /// Definition: Procedure discontinued due to death of Patient
-  @JsonValue('110504')
   value110504,
 
   /// Display: Patient refused to continue procedure
   /// Definition: Procedure discontinued due to patient refusal to continue procedure
-  @JsonValue('110505')
   value110505,
 
   /// Display: Patient taken for treatment or surgery
   /// Definition: Procedure discontinued due to patient being taken for treatment or surgery
-  @JsonValue('110506')
   value110506,
 
   /// Display: Patient did not arrive
   /// Definition: Patient did not arrive for procedure
-  @JsonValue('110507')
   value110507,
 
   /// Display: Patient pregnant
   /// Definition: Procedure discontinued due to patient pregnancy (reported or determined)
-  @JsonValue('110508')
   value110508,
 
   /// Display: Change of procedure for correct charging
   /// Definition: Procedure discontinued to restart with new procedure code for correct charging
-  @JsonValue('110509')
   value110509,
 
   /// Display: Duplicate order
   /// Definition: Procedure discontinued due to duplicate orders received for same procedure
-  @JsonValue('110510')
   value110510,
 
   /// Display: Nursing unit cancel
   /// Definition: Procedure order canceled by nursing unit
-  @JsonValue('110511')
   value110511,
 
   /// Display: Incorrect side ordered
   /// Definition: Procedure discontinued due to incorrect side (laterality) being ordered
-  @JsonValue('110512')
   value110512,
 
   /// Display: Discontinued for unspecified reason
   /// Definition: Procedure discontinued for unspecified reason
-  @JsonValue('110513')
   value110513,
 
   /// Display: Incorrect worklist entry selected
   /// Definition: Procedure discontinued due to incorrect patient or procedure step selected from modality worklist
-  @JsonValue('110514')
   value110514,
 
   /// Display: Patient condition prevented continuing
   /// Definition: Patient condition prevented continuation of procedure
-  @JsonValue('110515')
   value110515,
 
   /// Display: Equipment change
   /// Definition: Procedure step is discontinued to change to other equipment or modality
-  @JsonValue('110516')
   value110516,
 
   /// Display: Patient Movement
   /// Definition: A movement of the patient affecting test quality
-  @JsonValue('110518')
   value110518,
 
   /// Display: Operator Error
   /// Definition: An error of the operator affecting test quality
-  @JsonValue('110519')
   value110519,
 
   /// Display: Objects incorrectly formatted
   /// Definition: One or more of the objects is malformed
-  @JsonValue('110521')
   value110521,
 
   /// Display: Object Types not supported
   /// Definition: Receiving System is unable to accept the object type
-  @JsonValue('110522')
   value110522,
 
   /// Display: Object Set incomplete
   /// Definition: One or more objects associated with the object set is missing
-  @JsonValue('110523')
   value110523,
 
   /// Display: Media Failure
   /// Definition: The contents of the Media could not be accessed properly
-  @JsonValue('110524')
   value110524,
 
   /// Display: Resource pre-empted
   /// Definition: Procedure discontinued due to necessary equipment, staff or other resource becoming (temporarily) unavailable to the procedure
-  @JsonValue('110526')
   value110526,
 
   /// Display: Resource inadequate
   /// Definition: Procedure discontinued due to necessary equipment, staff or other resource being inadequate to complete the procedure
-  @JsonValue('110527')
   value110527,
 
   /// Display: Discontinued Procedure Step rescheduled
   /// Definition: A new Procedure Step has been scheduled to replace the Discontinued Procedure Step
-  @JsonValue('110528')
   value110528,
 
   /// Display: Discontinued Procedure Step rescheduling recommended
   /// Definition: It is recommended that a new Procedure Step be scheduled to replace the Discontinued Procedure Step
-  @JsonValue('110529')
   value110529,
 
   /// Display: Ventral Diencephalon
   /// Definition: Ventral structures of the diencephalon that cannot readily be distinguished on MR imaging, including the hypothalamus, mammillary body, subthalamic nuclei, substantia nigra, red nucleus, lateral geniculate nucleus, medial geniculate nucleus, zona incerta, cerebral peduncle, lenticular fasciculus, medial lemniscus, and optic tract. See http://neuromorphometrics.org:8080/Seg/html/segmentation/ventral%20diencephalon.html
-  @JsonValue('110700')
   value110700,
 
   /// Display: White Matter T1 Hypointensity
   /// Definition: Area(s) of reduced intensity on T1 weighted images relative to the surrounding white matter. These may be indicative of age-related or neurodegenerative white matter lesions, and may be co-located with areas of white matter T2 hyperintensity, but the concept is specifically confined to the MR appearance on T1 weighted images
-  @JsonValue('110701')
   value110701,
 
   /// Display: White Matter T2 Hyperintensity
   /// Definition: Area(s) of increased intensity on T2 weighted images relative to the surrounding white matter. These may be indicative of age-related or neurodegenerative white matter lesions, and may be co-located with areas of white matter T1 hypointensity, but the concept is specifically confined to the MR appearance on T2 weighted images
-  @JsonValue('110702')
   value110702,
 
   /// Display: superior longitudinal fasciculus I
   /// Definition: The dorsal component of the SLF originating from the medial and dorsal parietal cortex and ending in the dorsal and medial part of the frontal lobe. See Makris N, et al. "Segmentation of Subcomponents within the Superior Longitudinal Fascicle in Humans: A Quantitative, In Vivo, DT-MRI Study." Cerebral Cortex 15, no. 6 (June 1, 2005): 854-69. doi:10.1093/cercor/bhh186
-  @JsonValue('110703')
   value110703,
 
   /// Display: superior longitudinal fasciculus II
   /// Definition: The major component of the SLF, derived from the caudal-inferior parietal region corresponding to the angular gyrus in the human and terminating within the dorsolateral frontal region. See Makris N, et al. "Segmentation of Subcomponents within the Superior Longitudinal Fascicle in Humans: A Quantitative, In Vivo, DT-MRI Study." Cerebral Cortex 15, no. 6 (June 1, 2005): 854-69. doi:10.1093/cercor/bhh186
-  @JsonValue('110704')
   value110704,
 
   /// Display: superior longitudinal fasciculus III
   /// Definition: The ventral component of the SLF, originating from the supramarginal gyrus and terminating predominantly in the ventral premotor and prefrontal areas. See Makris N, et al. "Segmentation of Subcomponents within the Superior Longitudinal Fascicle in Humans: A Quantitative, In Vivo, DT-MRI Study." Cerebral Cortex 15, no. 6 (June 1, 2005): 854-69. doi:10.1093/cercor/bhh186
-  @JsonValue('110705')
   value110705,
 
   /// Display: Perilesional White Matter
   /// Definition: White matter that surrounds a lesion of interest; e.g. to identify the otherwise unclassified white matter that surrounds a tumor to be surgically resected
-  @JsonValue('110706')
   value110706,
 
   /// Display: Spin Tagging Perfusion MR Signal Intensity
   /// Definition: Signal intensity of a Spin tagging Perfusion MR image. Spin tagging is a technique for the measurement of blood perfusion, based on magnetically labeled arterial blood water as an endogenous tracer
-  @JsonValue('110800')
   value110800,
 
   /// Display: Contrast Agent Angio MR Signal Intensity
   /// Definition: Signal intensity of a Contrast Agent Angio MR image
-  @JsonValue('110801')
   value110801,
 
   /// Display: Time Of Flight Angio MR Signal Intensity
   /// Definition: Signal intensity of a Time-of-flight (TOF) MR image. Time-of-flight (TOF) is based on the phenomenon of flow-related enhancement of spins entering into an imaging slice. As a result of being unsaturated, these spins give more signal that surrounding stationary spins
-  @JsonValue('110802')
   value110802,
 
   /// Display: Proton Density Weighted MR Signal Intensity
   /// Definition: Signal intensity of a Proton Density Weighted MR image. All MR images have intensity proportional to proton density. Images with very little T1 or T2 weighting are called 'PD-weighted'
-  @JsonValue('110803')
   value110803,
 
   /// Display: T1 Weighted MR Signal Intensity
   /// Definition: Signal intensity of T1 Weighted MR image. A T1 Weighted MR image is created typically by using short TE and TR times
-  @JsonValue('110804')
   value110804,
 
   /// Display: T2 Weighted MR Signal Intensity
   /// Definition: Signal intensity of a T2 Weighted MR image. T2 Weighted image contrast state is approached by imaging with a TR long compared to tissue T1 (to reduce T1 contribution to image contrast) and a TE between the longest and shortest tissue T2s of interest
-  @JsonValue('110805')
   value110805,
 
   /// Display: T2* Weighted MR Signal Intensity
   /// Definition: Signal intensity of a T2* Weighted MR image. The T2* phenomenon results from molecular interactions (spin spin relaxation) and local magnetic field non-uniformities, which cause the protons to precess at slightly different frequencies
-  @JsonValue('110806')
   value110806,
 
   /// Display: Field Map MR Signal Intensity
   /// Definition: Signal intensity of a Field Map MR image. A Field Map MR image provides a direct measure of the B 0 inhomogeneity at each point in the image
-  @JsonValue('110807')
   value110807,
 
   /// Display: Fractional Anisotropy
   /// Definition: Coefficient reflecting the fractional anisotropy of the tissues, derived from a diffusion weighted MR image. Fractional anisotropy is proportional to the square root of the variance of the Eigen values divided by the square root of the sum of the squares of the Eigen values
-  @JsonValue('110808')
   value110808,
 
   /// Display: Relative Anisotropy
   /// Definition: Coefficient reflecting the relative anisotropy of the tissues, derived from a diffusion weighted MR image
-  @JsonValue('110809')
   value110809,
 
   /// Display: Volumetric Diffusion Dxx Component
   /// Definition: Dxx Component of the diffusion tensor, quantifying the molecular mobility along the X axis
-  @JsonValue('110810')
   value110810,
 
   /// Display: Volumetric Diffusion Dxy Component
   /// Definition: Dxy Component of the diffusion tensor, quantifying the correlation of molecular displacements in the X and Y directions
-  @JsonValue('110811')
   value110811,
 
   /// Display: Volumetric Diffusion Dxz Component
   /// Definition: Dxz Component of the diffusion tensor, quantifying the correlation of molecular displacements in the X and Z directions
-  @JsonValue('110812')
   value110812,
 
   /// Display: Volumetric Diffusion Dyy Component
   /// Definition: Dyy Component of the diffusion tensor, quantifying the molecular mobility along the Y axis
-  @JsonValue('110813')
   value110813,
 
   /// Display: Volumetric Diffusion Dyz Component
   /// Definition: Dyz Component of the diffusion tensor, quantifying the correlation of molecular displacements in the Y and Z directions
-  @JsonValue('110814')
   value110814,
 
   /// Display: Volumetric Diffusion Dzz Component
   /// Definition: Dzz Component of the diffusion tensor, quantifying the molecular mobility along the Z axis
-  @JsonValue('110815')
   value110815,
 
   /// Display: T1 Weighted Dynamic Contrast Enhanced MR Signal Intensity
   /// Definition: Signal intensity of a T1 Weighted Dynamic Contrast Enhanced MR image. A T1 Weighted Dynamic Contrast Enhanced MR image reflects the dynamics of diffusion of the exogenous contrast media from the blood pool into the extra vascular extracellular space (EES) of the brain at a rate determined by the blood flow to the tissue, the permeability of the Brain Blood Barrier (BBB), and the surface area of the perfusing vessels
-  @JsonValue('110816')
   value110816,
 
   /// Display: T2 Weighted Dynamic Contrast Enhanced MR Signal Intensity
   /// Definition: Signal intensity of a T2 Weighted Dynamic Contrast Enhanced MR image. A T2 Weighted Dynamic Contrast Enhanced MR image reflects the T2 of tissue decrease as the Gd contrast agent bolus passes through the brain
-  @JsonValue('110817')
   value110817,
 
   /// Display: T2* Weighted Dynamic Contrast Enhanced MR Signal Intensity
   /// Definition: Signal intensity of a T2* Weighted Dynamic Contrast Enhanced MR image. A T2* Weighted Dynamic Contrast Enhanced MR image reflects the T2* of tissue decrease as the Gd contrast agent bolus passes through the brain
-  @JsonValue('110818')
   value110818,
 
   /// Display: Blood Oxygenation Level
   /// Definition: Signal intensity of a Blood Oxygenation Level image. BOLD imaging is sensitive to blood oxygenation (but also to cerebral blood flow and volume). This modality is essentially used for detecting brain activation (functional MR)
-  @JsonValue('110819')
   value110819,
 
   /// Display: Nuclear Medicine Projection Activity
   /// Definition: Accumulated decay event counts in a nuclear medicine projection image
-  @JsonValue('110820')
   value110820,
 
   /// Display: Nuclear Medicine Tomographic Activity
   /// Definition: Accumulated decay event counts in a Nuclear Medicine Tomographic image (including PET)
-  @JsonValue('110821')
   value110821,
 
   /// Display: Spatial Displacement X Component
   /// Definition: Spatial Displacement along axis X of a non-linear deformable spatial registration image. The X axis is defined in reference to the patient's orientation, and is increasing to the left hand side of the patient
-  @JsonValue('110822')
   value110822,
 
   /// Display: Spatial Displacement Y Component
   /// Definition: Spatial Displacement along axis Y of a non-linear deformable spatial registration image. The Y axis is defined in reference to the patient's orientation, and is increasing to the posterior side of the patient
-  @JsonValue('110823')
   value110823,
 
   /// Display: Spatial Displacement Z Component
   /// Definition: Spatial Displacement along axis Z of a non-linear deformable spatial registration image. The Z axis is defined in reference to the patient's orientation, and is increasing toward the head of the patient
-  @JsonValue('110824')
   value110824,
 
   /// Display: Hemodynamic Resistance
   /// Definition: Measured resistance to the flow of blood; e.g. through the vasculature or through a heart value
-  @JsonValue('110825')
   value110825,
 
   /// Display: Indexed Hemodynamic Resistance
   /// Definition: Measured resistance to the flow of blood; e.g. through the vasculature or through a heart value, normalized to a particular indexed scale
-  @JsonValue('110826')
   value110826,
 
   /// Display: Tissue Velocity
   /// Definition: Velocity of tissue based on Doppler measurements
-  @JsonValue('110827')
   value110827,
 
   /// Display: Flow Velocity
   /// Definition: Velocity of blood flow based on Doppler measurements
-  @JsonValue('110828')
   value110828,
 
   /// Display: Flow Variance
   /// Definition: Statistical variance of blood velocity relative to mean
-  @JsonValue('110829')
   value110829,
 
   /// Display: Elasticity
   /// Definition: Scalar value related to the elastic properties of the tissue
-  @JsonValue('110830')
   value110830,
 
   /// Display: Perfusion
   /// Definition: Scalar value related to the volume of blood perfusing into tissue
-  @JsonValue('110831')
   value110831,
 
   /// Display: Speed of sound
   /// Definition: Speed of sound in tissue
-  @JsonValue('110832')
   value110832,
 
   /// Display: Ultrasound Attenuation
   /// Definition: Reduction in strength of ultrasound signal as the wave
-  @JsonValue('110833')
   value110833,
 
   /// Display: RGB R Component
   /// Definition: Red component of a true color image (RGB)
-  @JsonValue('110834')
   value110834,
 
   /// Display: RGB G Component
   /// Definition: Green component of a true color image (RGB)
-  @JsonValue('110835')
   value110835,
 
   /// Display: RGB B Component
   /// Definition: Blue component of a true color image (RGB)
-  @JsonValue('110836')
   value110836,
 
   /// Display: YBR FULL Y Component
   /// Definition: Y (Luminance) component of a YBR FULL image, as defined in JPEG 2000
-  @JsonValue('110837')
   value110837,
 
   /// Display: YBR FULL CB Component
   /// Definition: CB (Blue chrominance) component of a YBR FULL image, as defined in JPEG 2000
-  @JsonValue('110838')
   value110838,
 
   /// Display: YBR FULL CR Component
   /// Definition: CR (Red chrominance) component of a YBR FULL image, as defined in JPEG 2000
-  @JsonValue('110839')
   value110839,
 
   /// Display: YBR PARTIAL Y Component
   /// Definition: Y (Luminance) component of a YBR PARTIAL image, as defined in JPEG 2000
-  @JsonValue('110840')
   value110840,
 
   /// Display: YBR PARTIAL CB Component
   /// Definition: CB (Blue chrominance) component of a YBR PARTIAL image, as defined in JPEG 2000
-  @JsonValue('110841')
   value110841,
 
   /// Display: YBR PARTIAL CR Component
   /// Definition: CR (Red chrominance) component of a YBR PARTIAL image, as defined in JPEG 2000
-  @JsonValue('110842')
   value110842,
 
   /// Display: YBR ICT Y Component
   /// Definition: Y (Luminance) component of a YBR ICT image (Irreversible Color Transform), as defined in JPEG 2000
-  @JsonValue('110843')
   value110843,
 
   /// Display: YBR ICT CB Component
   /// Definition: CB (Blue chrominance) component of a YBR ICT image (Irreversible Color Transform), as defined in JPEG 2000
-  @JsonValue('110844')
   value110844,
 
   /// Display: YBR ICT CR Component
   /// Definition: CR (Red chrominance) component of a YBR ICT image (Irreversible Color Transform), as defined in JPEG 2000
-  @JsonValue('110845')
   value110845,
 
   /// Display: YBR RCT Y Component
   /// Definition: Y (Luminance) component of a YBR RCT image (Reversible Color Transform), as defined in JPEG 2000
-  @JsonValue('110846')
   value110846,
 
   /// Display: YBR RCT CB Component
   /// Definition: CB (Blue chrominance) component of a YBR RCT image (Reversible Color Transform), as defined in JPEG 2000
-  @JsonValue('110847')
   value110847,
 
   /// Display: YBR RCT CR Component
   /// Definition: CR (Red chrominance) component of a YBR RCT image (Reversible Color Transform), as defined in JPEG 2000
-  @JsonValue('110848')
   value110848,
 
   /// Display: Echogenicity
   /// Definition: The ability of a material to create an ultrasound return echo
-  @JsonValue('110849')
   value110849,
 
   /// Display: X-Ray Attenuation
   /// Definition: Decrease in the number of photons in an X-Ray beam due to interactions with the atoms of a material substance. Attenuation is due primarily to two processes, absorption and scattering
-  @JsonValue('110850')
   value110850,
 
   /// Display: X-Ray Attenuation Coefficient
   /// Definition: Coefficient that describes the fraction of a beam of X-Rays or gamma rays that is absorbed or scattered per unit thickness of the absorber. This value basically accounts for the number of atoms in a cubic cm volume of material and the probability of a photon being scattered or absorbed from the nucleus or an electron of one of these atoms
-  @JsonValue('110851')
   value110851,
 
   /// Display: MR signal intensity
   /// Definition: Signal intensity of an MR image, not otherwise specified
-  @JsonValue('110852')
   value110852,
 
   /// Display: Binary Segmentation
   /// Definition: Binary value denoting that the segmented property is present
-  @JsonValue('110853')
   value110853,
 
   /// Display: Fractional Probabilistic Segmentation
   /// Definition: Probability, defined as a percentage, that the segmented property occupies the spatial area defined by the voxel
-  @JsonValue('110854')
   value110854,
 
   /// Display: Fractional Occupancy Segmentation
   /// Definition: Percentage of the voxel area occupied by the segmented property
-  @JsonValue('110855')
   value110855,
 
   /// Display: Linear Displacement
   /// Definition: Spatial dimension, denoting a linear displacement
-  @JsonValue('110856')
   value110856,
 
   /// Display: Photon Energy
   /// Definition: Dimension denoting the energy (frequency or wavelength) of photons
-  @JsonValue('110857')
   value110857,
 
   /// Display: Time
   /// Definition: Dimension used to sequence events, to compare the duration of events and the intervals between events
-  @JsonValue('110858')
   value110858,
 
   /// Display: Angle
   /// Definition: Spatial dimension, denoting an angle
-  @JsonValue('110859')
   value110859,
 
   /// Display: Left-Right Axis
   /// Definition: A spatial dimension axis running along a line between the patient's left and right side
-  @JsonValue('110860')
   value110860,
 
   /// Display: Head-Foot Axis
   /// Definition: A spatial dimension axis running along a line between the patient's head and foot
-  @JsonValue('110861')
   value110861,
 
   /// Display: Anterior-Posterior Axis
   /// Definition: A spatial dimension axis running along a line between the patient's anterior and posterior sides
-  @JsonValue('110862')
   value110862,
 
   /// Display: Apex-Base Axis
   /// Definition: A spatial dimension axis running along a line between the apex and base of an organ, object, or chamber
-  @JsonValue('110863')
   value110863,
 
   /// Display: Anterior-Inferior Axis
   /// Definition: A spatial dimension axis running along a line between the anterior and inferior sides of an organ, object, or chamber
-  @JsonValue('110864')
   value110864,
 
   /// Display: Septum-Wall Axis
   /// Definition: A spatial dimension axis running along a line between the septum and wall of a chamber
-  @JsonValue('110865')
   value110865,
 
   /// Display: Right To Left
   /// Definition: Orientation of a spatial dimension where increasing values run from the right to the left side of the patient
-  @JsonValue('110866')
   value110866,
 
   /// Display: Left To Right
   /// Definition: Orientation of a spatial dimension where increasing values run from the left to the right side of the patient
-  @JsonValue('110867')
   value110867,
 
   /// Display: Head To Foot
   /// Definition: Orientation of a spatial dimension where increasing values run from the head to the foot of the patient
-  @JsonValue('110868')
   value110868,
 
   /// Display: Foot To Head
   /// Definition: Orientation of a spatial dimension where increasing values run from the foot to the head of the patient
-  @JsonValue('110869')
   value110869,
 
   /// Display: Anterior To Posterior
   /// Definition: Orientation of a spatial dimension where increasing values run from the anterior to the posterior side of the patient
-  @JsonValue('110870')
   value110870,
 
   /// Display: Posterior To Anterior
   /// Definition: Orientation of a spatial dimension where increasing values run from the posterior to the anterior side of the patient
-  @JsonValue('110871')
   value110871,
 
   /// Display: Apex To Base
   /// Definition: Orientation of a spatial dimension where increasing values run from the apex to the base
-  @JsonValue('110872')
   value110872,
 
   /// Display: Base To Apex
   /// Definition: Orientation of a spatial dimension where increasing values run from the base to the apex
-  @JsonValue('110873')
   value110873,
 
   /// Display: Anterior To Inferior
   /// Definition: Orientation of a spatial dimension where increasing values run from the anterior to the inferior
-  @JsonValue('110874')
   value110874,
 
   /// Display: Inferior To Anterior
   /// Definition: Orientation of a spatial dimension where increasing values run from the inferior to the anterior
-  @JsonValue('110875')
   value110875,
 
   /// Display: Septum To Wall
   /// Definition: Orientation of a spatial dimension where increasing values run from the septum of a chamber to the opposite wall
-  @JsonValue('110876')
   value110876,
 
   /// Display: Wall To Septum
   /// Definition: Orientation of a spatial dimension where increasing values run from the opposite wall to the septum of a chamber
-  @JsonValue('110877')
   value110877,
 
   /// Display: Image Position (Patient) X
   /// Definition: The x coordinate of the upper left hand corner (center of the first voxel transmitted) of the image, with respect to the patient-based coordinate system
-  @JsonValue('110901')
   value110901,
 
   /// Display: Image Position (Patient) Y
   /// Definition: The y coordinate of the upper left hand corner (center of the first voxel transmitted) of the image, with respect to the patient-based coordinate system
-  @JsonValue('110902')
   value110902,
 
   /// Display: Image Position (Patient) Z
   /// Definition: The z coordinate of the upper left hand corner (center of the first voxel transmitted) of the image, with respect to the patient-based coordinate system
-  @JsonValue('110903')
   value110903,
 
   /// Display: Image Orientation (Patient) Row X
   /// Definition: The x value of the first row direction cosine with respect to the patient, with respect to the patient-based coordinate system
-  @JsonValue('110904')
   value110904,
 
   /// Display: Image Orientation (Patient) Row Y
   /// Definition: The y value of the first row direction cosine with respect to the patient, with respect to the patient-based coordinate system
-  @JsonValue('110905')
   value110905,
 
   /// Display: Image Orientation (Patient) Row Z
   /// Definition: The z value of the first row direction cosine with respect to the patient, with respect to the patient-based coordinate system
-  @JsonValue('110906')
   value110906,
 
   /// Display: Image Orientation (Patient) Column X
   /// Definition: The x value of the first column direction cosine with respect to the patient, with respect to the patient-based coordinate system
-  @JsonValue('110907')
   value110907,
 
   /// Display: Image Orientation (Patient) Column Y
   /// Definition: The y value of the first column direction cosine with respect to the patient, with respect to the patient-based coordinate system
-  @JsonValue('110908')
   value110908,
 
   /// Display: Image Orientation (Patient) Column Z
   /// Definition: The z value of the first column direction cosine with respect to the patient, with respect to the patient-based coordinate system
-  @JsonValue('110909')
   value110909,
 
   /// Display: Pixel Data Rows
   /// Definition: Number of rows in the pixel data of the image
-  @JsonValue('110910')
   value110910,
 
   /// Display: Pixel Data Columns
   /// Definition: Number of columns in the pixel data of the image
-  @JsonValue('110911')
   value110911,
 
   /// Display: Algorithm Name
   /// Definition: The name assigned by a manufacturer to a specific software algorithm
-  @JsonValue('111001')
   value111001,
 
   /// Display: Algorithm Parameters
   /// Definition: The input parameters used by a manufacturer to configure the behavior of a specific software algorithm
-  @JsonValue('111002')
   value111002,
 
   /// Display: Algorithm Version
   /// Definition: The software version identifier assigned by a manufacturer to a specific software algorithm
-  @JsonValue('111003')
   value111003,
 
   /// Display: Analysis Performed
   /// Definition: The type of correlation applied to detection results; e.g. temporal, spatial
-  @JsonValue('111004')
   value111004,
 
   /// Display: Assessment Category
   /// Definition: Assignment of intermediate or overall interpretation results to a general category
-  @JsonValue('111005')
   value111005,
 
   /// Display: Breast composition
   /// Definition: Assessment of annotating tissues in breast; generally including fatty, mixed or dense
-  @JsonValue('111006')
   value111006,
 
   /// Display: Breast Outline including Pectoral Muscle Tissue
   /// Definition: Purpose of reference for an SCOORD content item that is an outline of the breast that includes the pectoral muscle tissue
-  @JsonValue('111007')
   value111007,
 
   /// Display: Calcification Distribution
   /// Definition: The type of distribution associated with detected calcifications
-  @JsonValue('111008')
   value111008,
 
   /// Display: Calcification Type
   /// Definition: Identification of the morphology of detected calcifications
-  @JsonValue('111009')
   value111009,
 
   /// Display: Center
   /// Definition: Purpose of reference for an SCOORD content item that identifies the central point of a finding or feature
-  @JsonValue('111010')
   value111010,
 
   /// Display: Certainty of Feature
   /// Definition: The likelihood that the feature analyzed is in fact the type of feature identified
-  @JsonValue('111011')
   value111011,
 
   /// Display: Certainty of Finding
   /// Definition: The likelihood that the finding detected is in fact the type of finding identified
-  @JsonValue('111012')
   value111012,
 
   /// Display: Certainty of Impression
   /// Definition: The certainty that a device places on an impression, where 0 equals no certainty and 100 equals certainty
-  @JsonValue('111013')
   value111013,
 
   /// Display: Clockface or region
   /// Definition: A location identifier based on clock-face numbering or anatomic sub-region
-  @JsonValue('111014')
   value111014,
 
   /// Display: Composite Feature
   /// Definition: An item that is an inferred correlation relating two or more individual findings or features
-  @JsonValue('111015')
   value111015,
 
   /// Display: Composite type
   /// Definition: The inferred relationship between the findings or features making up a composite feature
-  @JsonValue('111016')
   value111016,
 
   /// Display: CAD Processing and Findings Summary
   /// Definition: General assessment of whether or not CAD processing was successful, and whether any findings resulted
-  @JsonValue('111017')
   value111017,
 
   /// Display: Content Date
   /// Definition: The date the data creation started
-  @JsonValue('111018')
   value111018,
 
   /// Display: Content Time
   /// Definition: The time the data creation started
-  @JsonValue('111019')
   value111019,
 
   /// Display: Depth
   /// Definition: A location identifier based on a feature's inferred distance from the surface of the associated anatomy
-  @JsonValue('111020')
   value111020,
 
   /// Display: Description of Change
   /// Definition: A textual description of the change that occurred over time in a qualitative characteristic of a feature
-  @JsonValue('111021')
   value111021,
 
   /// Display: Detection Performed
   /// Definition: The type of finding sought after by a specific algorithm applied to one image
-  @JsonValue('111022')
   value111022,
 
   /// Display: Differential Diagnosis/Impression
   /// Definition: A general change that occurred within an imaged area between a prior imaging procedure and the current imaging procedure
-  @JsonValue('111023')
   value111023,
 
   /// Display: Failed Analyses
   /// Definition: A group of analysis algorithms that were attempted, but failed
-  @JsonValue('111024')
   value111024,
 
   /// Display: Failed Detections
   /// Definition: A group of detection algorithms that were attempted, but failed
-  @JsonValue('111025')
   value111025,
 
   /// Display: Horizontal Pixel Spacing
   /// Definition: For projection radiography, the horizontal physical distance measured at the front plane of an Image Receptor housing between the center of each pixel. For tomographic images, the horizontal physical distance in the patient between the center of each pixel
-  @JsonValue('111026')
   value111026,
 
   /// Display: Image Laterality
   /// Definition: Laterality of (possibly paired) body part contained in an image
-  @JsonValue('111027')
   value111027,
 
   /// Display: Image Library
   /// Definition: A container that references all image data used as evidence to produce a report
-  @JsonValue('111028')
   value111028,
 
   /// Display: Image Quality Rating
   /// Definition: A numeric value in the range 0 to 100, inclusive, where 0 is worst quality and 100 is best quality
-  @JsonValue('111029')
   value111029,
 
   /// Display: Image Region
   /// Definition: Purpose of reference for an SCOORD content item that identifies a specific region of interest within an image
-  @JsonValue('111030')
   value111030,
 
   /// Display: Image View
   /// Definition: The projection of the anatomic region of interest on an image receptor
-  @JsonValue('111031')
   value111031,
 
   /// Display: Image View Modifier
   /// Definition: Modifier for Image View
-  @JsonValue('111032')
   value111032,
 
   /// Display: Impression Description
   /// Definition: Free-form text describing the overall or an individual impression
-  @JsonValue('111033')
   value111033,
 
   /// Display: Individual Impression/Recommendation
   /// Definition: A container for a group of related results from interpretation of one or more images and associated clinical information
-  @JsonValue('111034')
   value111034,
 
   /// Display: Lesion Density
   /// Definition: The X-Ray attenuation of a lesion relative to the expected attenuation of an equal volume of fibroglandular breast tissue
-  @JsonValue('111035')
   value111035,
 
   /// Display: Mammography CAD Report
   /// Definition: A structured report containing the results of computer-aided detection or diagnosis applied to breast imaging and associated clinical information
-  @JsonValue('111036')
   value111036,
 
   /// Display: Margins
   /// Definition: The characteristic of the boundary, edges or border of a detected lesion
-  @JsonValue('111037')
   value111037,
 
   /// Display: Number of calcifications
   /// Definition: The quantity of calcifications detected within an identified group or cluster
-  @JsonValue('111038')
   value111038,
 
   /// Display: Object type
   /// Definition: A non-lesion object identified within one or more images
-  @JsonValue('111039')
   value111039,
 
   /// Display: Original Source
   /// Definition: Purpose of reference for a COMPOSITE content item that identifies it as the original source of evidence for another content item in the report
-  @JsonValue('111040')
   value111040,
 
   /// Display: Outline
   /// Definition: Purpose of reference for an SCOORD content item that identifies the outline or bounding region of a finding or feature
-  @JsonValue('111041')
   value111041,
 
   /// Display: Pathology
   /// Definition: The inferred type of disease associated with an identified feature
-  @JsonValue('111042')
   value111042,
 
   /// Display: Patient Orientation Column
   /// Definition: The patient orientation relative to the image plane, specified by a value that designates the anatomical direction of the positive column axis (top to bottom)
-  @JsonValue('111043')
   value111043,
 
   /// Display: Patient Orientation Row
   /// Definition: The patient orientation relative to the image plane, specified by a value that designates the anatomical direction of the positive row axis (left to right)
-  @JsonValue('111044')
   value111044,
 
   /// Display: Pectoral Muscle Outline
   /// Definition: Purpose of reference for an SCOORD content item that is an outline of the pectoral muscle tissue only
-  @JsonValue('111045')
   value111045,
 
   /// Display: Percent Fibroglandular Tissue
   /// Definition: Percent of breast area that is mammographically dense, excluding pectoralis muscle
-  @JsonValue('111046')
   value111046,
 
   /// Display: Probability of cancer
   /// Definition: The likelihood that an identified finding or feature is cancerous
-  @JsonValue('111047')
   value111047,
 
   /// Display: Quadrant location
   /// Definition: A location identifier based on the division of an area into four regions
-  @JsonValue('111048')
   value111048,
 
   /// Display: Qualitative Difference
   /// Definition: A qualitative characteristic of a feature that has changed over time
-  @JsonValue('111049')
   value111049,
 
   /// Display: Quality Assessment
   /// Definition: The effect of the quality of an image on its usability
-  @JsonValue('111050')
   value111050,
 
   /// Display: Quality Control Standard
   /// Definition: The quality control standard used to make a quality assessment
-  @JsonValue('111051')
   value111051,
 
   /// Display: Quality Finding
   /// Definition: A specific quality related deficiency detected within an image
-  @JsonValue('111052')
   value111052,
 
   /// Display: Recommended Follow-up
   /// Definition: Recommended type of follow-up to an imaging procedure, based on interpreted results
-  @JsonValue('111053')
   value111053,
 
   /// Display: Recommended Follow-up Date
   /// Definition: Recommended follow-up date to an imaging procedure, based on interpreted results
-  @JsonValue('111054')
   value111054,
 
   /// Display: Recommended Follow-up Interval
   /// Definition: Recommended follow-up interval to an imaging procedure, based on interpreted results
-  @JsonValue('111055')
   value111055,
 
   /// Display: Rendering Intent
   /// Definition: The recommendation of the producer of a content item regarding presentation of the content item by recipients of the report
-  @JsonValue('111056')
   value111056,
 
   /// Display: Scope of Feature
   /// Definition: An indication of how widespread the detection of a feature is within the analyzed image data set
-  @JsonValue('111057')
   value111057,
 
   /// Display: Selected Region Description
   /// Definition: A textual description of the contents of a selected region identified within an image
-  @JsonValue('111058')
   value111058,
 
   /// Display: Single Image Finding
   /// Definition: An item that was detected on one image
-  @JsonValue('111059')
   value111059,
 
   /// Display: Study Date
   /// Definition: Date on which the acquisition of the study information was started
-  @JsonValue('111060')
   value111060,
 
   /// Display: Study Time
   /// Definition: Time at which the acquisition of the study information was started
-  @JsonValue('111061')
   value111061,
 
   /// Display: Successful Analyses
   /// Definition: A group of analysis algorithms that were attempted and completed successfully
-  @JsonValue('111062')
   value111062,
 
   /// Display: Successful Detections
   /// Definition: A group of detection algorithms that were attempted and completed successfully
-  @JsonValue('111063')
   value111063,
 
   /// Display: Summary of Detections
   /// Definition: An overall indication of whether the CAD detection algorithms applied were completed successfully
-  @JsonValue('111064')
   value111064,
 
   /// Display: Summary of Analyses
   /// Definition: An overall indication of whether the CAD analysis algorithms applied were completed successfully
-  @JsonValue('111065')
   value111065,
 
   /// Display: Vertical Pixel Spacing
   /// Definition: For projection radiography, the vertical physical distance measured at the front plane of an Image Receptor housing between the center of each pixel. For tomographic images, the vertical physical distance in the patient between the center of each pixel
-  @JsonValue('111066')
   value111066,
 
   /// Display: Crosstable
   /// Definition: A radiographic projection that has been with the patient lying on a table with the X-Ray source on one side of the table and the detector on the other; e.g. may describe a cross-table cervical spine, chest or pelvis X-Ray image
-  @JsonValue('111069')
   value111069,
 
   /// Display: CAD Operating Point
   /// Definition: One of a number of discrete points on the Receiver-Operator Characteristics (ROC) curve that reflects the expected sensitivity and specificity of a CAD algorithm, where zero indicates the highest specificity, lowest sensitivity operating point. The value should not exceed the Maximum CAD Operating Point
-  @JsonValue('111071')
   value111071,
 
   /// Display: Maximum CAD Operating Point
   /// Definition: The maximum value of CAD Operating Point for the specific CAD algorithm used
-  @JsonValue('111072')
   value111072,
 
   /// Display: CAD Operating Point Description
   /// Definition: The intended interpretation of a CAD Operating Point
-  @JsonValue('111081')
   value111081,
 
   /// Display: False Markers per Image
   /// Definition: The number of false CAD markers per image. Correlates to inverse of Image Specificity
-  @JsonValue('111086')
   value111086,
 
   /// Display: False Markers per Case
   /// Definition: The number of false markers per collection of images that are CAD processed as a group. Correlates to inverse of Case Specificity
-  @JsonValue('111087')
   value111087,
 
   /// Display: Case Sensitivity
   /// Definition: The percentage of cancers that should be detected by a CAD algorithm where CAD marks the cancers in at least one view
-  @JsonValue('111088')
   value111088,
 
   /// Display: Lesion Sensitivity
   /// Definition: The percentage of cancers that should be detected by a CAD algorithm where CAD marks the cancers in each view
-  @JsonValue('111089')
   value111089,
 
   /// Display: Case Specificity
   /// Definition: The percentage of cases (collections of images CAD processed as a group) without cancer that have no CAD findings whatsoever. Correlates to inverse of False Markers per Case
-  @JsonValue('111090')
   value111090,
 
   /// Display: Image Specificity
   /// Definition: The percentage of images without cancer that have no CAD findings whatsoever. Correlates to inverse of False Markers per Image
-  @JsonValue('111091')
   value111091,
 
   /// Display: Recommended CAD Operating Point
   /// Definition: The CAD operating point that is recommended for initial display by the creator of the structured report
-  @JsonValue('111092')
   value111092,
 
   /// Display: CAD Operating Point Table
   /// Definition: A list of CAD operating points including their corresponding characteristics
-  @JsonValue('111093')
   value111093,
 
   /// Display: Selected region
   /// Definition: A specific area of interest noted within an image
-  @JsonValue('111099')
   value111099,
 
   /// Display: Breast geometry
   /// Definition: The surface shape of all or a portion of breast related anatomy
-  @JsonValue('111100')
   value111100,
 
   /// Display: Image Quality
   /// Definition: Image quality incorporates the following clinical image evaluation parameters: assessment of positioning, compression, artifacts, exposure, contrast, sharpness, and labeling
-  @JsonValue('111101')
   value111101,
 
   /// Display: Non-lesion
   /// Definition: A finding or feature that is identified as a non-anatomic foreign object
-  @JsonValue('111102')
   value111102,
 
   /// Display: Density
   /// Definition: A space-occupying lesion identified in a single image or projection
-  @JsonValue('111103')
   value111103,
 
   /// Display: Individual Calcification
   /// Definition: A single identified calcification
-  @JsonValue('111104')
   value111104,
 
   /// Display: Calcification Cluster
   /// Definition: Multiple calcifications identified as occupying a small area of tissue (less than 2 cc)
-  @JsonValue('111105')
   value111105,
 
   /// Display: Cooper's ligament changes
   /// Definition: Straightening or thickening of Cooper's ligaments
-  @JsonValue('111111')
   value111111,
 
   /// Display: Mass in the skin
   /// Definition: An abnormality noted at imaging within the dermis of the breast
-  @JsonValue('111112')
   value111112,
 
   /// Display: Mass on the skin
   /// Definition: An abnormality noted at imaging on the epidermis of the breast
-  @JsonValue('111113')
   value111113,
 
   /// Display: Post Procedure Mammograms for Marker Placement
   /// Definition: An assessment category to indicate that images have been acquired to assess marker placement following a breast interventional procedure
-  @JsonValue('111120')
   value111120,
 
   /// Display: Follow-up post biopsy as directed by clinician
   /// Definition: An indication that the patient should seek post procedural follow-up directives from a clinical health care provider
-  @JsonValue('111121')
   value111121,
 
   /// Display: Known biopsy proven malignancy - take appropriate action
   /// Definition: A recommendation on a patient with known cancer to take steps appropriate to the diagnosis
-  @JsonValue('111122')
   value111122,
 
   /// Display: Marker placement
   /// Definition: Positioning of a radiopaque marker
-  @JsonValue('111123')
   value111123,
 
   /// Display: Personal history of breast cancer with mastectomy
   /// Definition: Patient has previous diagnosis of breast cancer resulting in mastectomy
-  @JsonValue('111124')
   value111124,
 
   /// Display: Known biopsy proven malignancy
   /// Definition: Patient has had biopsy containing proven malignancy
-  @JsonValue('111125')
   value111125,
 
   /// Display: Image detected mass
   /// Definition: Patient has a finding of mass reported on a prior imaging exam
-  @JsonValue('111126')
   value111126,
 
   /// Display: Targeted
   /// Definition: A breast imaging procedure performed on a specific area of the breast
-  @JsonValue('111127')
   value111127,
 
   /// Display: Survey
   /// Definition: A breast imaging procedure performed on the entire breast
-  @JsonValue('111128')
   value111128,
 
   /// Display: Clustered microcysts
   /// Definition: A cluster of tiny anechoic foci each smaller than 2-3 mm in diameter with thin (less than 0.5 mm) intervening septations and no discrete solid components
-  @JsonValue('111129')
   value111129,
 
   /// Display: Complicated cyst
   /// Definition: A fluid filled mass most commonly characterized by homogeneous low-level internal echoes on ultrasound
-  @JsonValue('111130')
   value111130,
 
   /// Display: Additional projections
   /// Definition: Views not inclusive of MLO and CC (BI-RADS®)
-  @JsonValue('111135')
   value111135,
 
   /// Display: Spot magnification view(s)
   /// Definition: A spot or coned down compression of the breast providing a reduction in the thickness and a magnification of the localized area of interest and improved separation of breast tissue
-  @JsonValue('111136')
   value111136,
 
   /// Display: Ultrasound
   /// Definition: Use of sound waves to visualize muscles, tendons, and many internal organs, to capture their size, structure and any pathological lesions with real time tomographic images.
-  @JsonValue('111137')
   value111137,
 
   /// Display: Old films for comparison
   /// Definition: Obtain previous mammography studies to compare to present study
-  @JsonValue('111138')
   value111138,
 
   /// Display: Ductography
   /// Definition: A medical procedure used for the sampling of mammary duct tissue
-  @JsonValue('111139')
   value111139,
 
   /// Display: Normal interval follow-up
   /// Definition: Follow up study at 12 months for women 40 years of age having a prior negative study and no mitigating risk factors for breast cancer
-  @JsonValue('111140')
   value111140,
 
   /// Display: Any decision to biopsy should be based on clinical assessment
   /// Definition: Any decision to perform tissue acquisition should be based on clinical assessment
-  @JsonValue('111141')
   value111141,
 
   /// Display: Follow-up at short interval (1-11 months)
   /// Definition: Follow-up at short interval (1-11 months)
-  @JsonValue('111142')
   value111142,
 
   /// Display: Biopsy should be considered
   /// Definition: Tissue acquisition should be considered
-  @JsonValue('111143')
   value111143,
 
   /// Display: Needle localization and biopsy
   /// Definition: Breast tissue acquisition following the identification of an area of concern with the placement of a needle or needle-wire assembly
-  @JsonValue('111144')
   value111144,
 
   /// Display: Histology using core biopsy
   /// Definition: Pathologic analysis of breast tissue and lesions using core tissue samples
-  @JsonValue('111145')
   value111145,
 
   /// Display: Suggestive of malignancy - take appropriate action
   /// Definition: Lesions that do not have the characteristic morphologies of breast cancer but have a definite probability of being malignant. There is a sufficient concern to urge a biopsy
-  @JsonValue('111146')
   value111146,
 
   /// Display: Cytologic analysis
   /// Definition: Cellular analysis of specimen
-  @JsonValue('111147')
   value111147,
 
   /// Display: Biopsy should be strongly considered
   /// Definition: Tissue acquisition should be strongly considered
-  @JsonValue('111148')
   value111148,
 
   /// Display: Highly suggestive of malignancy - take appropriate action
   /// Definition: Lesions have a high probability of being cancer, which require additional action
-  @JsonValue('111149')
   value111149,
 
   /// Display: Presentation Required: Rendering device is expected to present
   /// Definition: The producer of a report intends for a recipient of the report to present or display the associated content item
-  @JsonValue('111150')
   value111150,
 
   /// Display: Presentation Optional: Rendering device may present
   /// Definition: The producer of a report considers the presentation or display of the associated content item by a recipient to be optional
-  @JsonValue('111151')
   value111151,
 
   /// Display: Not for Presentation: Rendering device expected not to present
   /// Definition: The producer of a report intends for a recipient of the report NOT to present or display the associated content item
-  @JsonValue('111152')
   value111152,
 
   /// Display: Target content items are related temporally
   /// Definition: The associated content items are identified as being the same finding or feature at different points in time
-  @JsonValue('111153')
   value111153,
 
   /// Display: Target content items are related spatially
   /// Definition: The associated content items are identified as being the same finding or feature on different projections taken at the same point in time
-  @JsonValue('111154')
   value111154,
 
   /// Display: Target content items are related contra-laterally
   /// Definition: The associated content items are identified as being related side-to-side
-  @JsonValue('111155')
   value111155,
 
   /// Display: Feature detected on the only image
   /// Definition: There is one image in the interpreted data set
-  @JsonValue('111156')
   value111156,
 
   /// Display: Feature detected on only one of the images
   /// Definition: There is more than one image of the same modality in the interpreted data set
-  @JsonValue('111157')
   value111157,
 
   /// Display: Feature detected on multiple images
   /// Definition: There is more than one image of the same modality in the interpreted data set
-  @JsonValue('111158')
   value111158,
 
   /// Display: Feature detected on images from multiple modalities
   /// Definition: The interpreted data set contains images from multiple modalities
-  @JsonValue('111159')
   value111159,
 
   /// Display: Scar tissue
   /// Definition: The fibrous tissue replacing normal tissues destroyed by disease or injury
-  @JsonValue('111168')
   value111168,
 
   /// Display: J Wire
   /// Definition: A medical appliance used for localization of non palpable breast lesions to insure that the proper area is removed in a surgical biopsy
-  @JsonValue('111170')
   value111170,
 
   /// Display: Pacemaker
   /// Definition: A medical appliance used for regulating cardiac rhythms
-  @JsonValue('111171')
   value111171,
 
   /// Display: Paddle
   /// Definition: A compression device used for obtaining mammographic images
-  @JsonValue('111172')
   value111172,
 
   /// Display: Collimator
   /// Definition: A device used for restricting an X-Ray beam
-  @JsonValue('111173')
   value111173,
 
   /// Display: ID Plate
   /// Definition: An area designated on a radiographic film for facility and patient ID information
-  @JsonValue('111174')
   value111174,
 
   /// Display: Other Marker
   /// Definition: Site specific markers
-  @JsonValue('111175')
   value111175,
 
   /// Display: Unspecified
   /// Definition: The value of the concept is not specified
-  @JsonValue('111176')
   value111176,
 
   /// Display: View and Laterality Marker is missing
   /// Definition: Image quality deficiency according to MQSA
-  @JsonValue('111177')
   value111177,
 
   /// Display: View and Laterality Marker does not have both view and laterality
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111178')
   value111178,
 
   /// Display: View and Laterality Marker does not have approved codes
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111179')
   value111179,
 
   /// Display: View and Laterality Marker is not near the axilla
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111180')
   value111180,
 
   /// Display: View and Laterality Marker overlaps breast tissue
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111181')
   value111181,
 
   /// Display: View and Laterality Marker is partially obscured
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111182')
   value111182,
 
   /// Display: View and Laterality Marker is incorrect
   /// Definition: Image quality deficiency
-  @JsonValue('111183')
   value111183,
 
   /// Display: View and Laterality Marker is off image
   /// Definition: Image quality deficiency
-  @JsonValue('111184')
   value111184,
 
   /// Display: Flash is not near edge of film
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111185')
   value111185,
 
   /// Display: Flash is illigible, does not fit, or is lopsided
   /// Definition: Image quality deficiency according to MQSA
-  @JsonValue('111186')
   value111186,
 
   /// Display: Flash doesn't include patient name and additional patient id
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111187')
   value111187,
 
   /// Display: Flash doesn't include date of examination
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111188')
   value111188,
 
   /// Display: Flash doesn't include facility name and location
   /// Definition: Image quality deficiency according to MQSA
-  @JsonValue('111189')
   value111189,
 
   /// Display: Flash doesn't include technologist identification
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111190')
   value111190,
 
   /// Display: Flash doesn't include cassette/screen/detector identification
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111191')
   value111191,
 
   /// Display: Flash doesn't include mammography unit identification
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111192')
   value111192,
 
   /// Display: Date sticker is missing
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111193')
   value111193,
 
   /// Display: Technical factors missing
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111194')
   value111194,
 
   /// Display: Collimation too close to breast
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111195')
   value111195,
 
   /// Display: Inadequate compression
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111196')
   value111196,
 
   /// Display: MLO Insufficient pectoral muscle
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111197')
   value111197,
 
   /// Display: MLO No fat is visualized posterior to fibroglandular tissues
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111198')
   value111198,
 
   /// Display: MLO Poor separation of deep and superficial breast tissues
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111199')
   value111199,
 
   /// Display: MLO Evidence of motion blur
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111200')
   value111200,
 
   /// Display: MLO Inframammary fold is not open
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111201')
   value111201,
 
   /// Display: CC Not all medial tissue visualized
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111202')
   value111202,
 
   /// Display: CC Nipple not centered on image
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111203')
   value111203,
 
   /// Display: CC Posterior nipple line does not measure within 1 cm of MLO
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111204')
   value111204,
 
   /// Display: Nipple not in profile
   /// Definition: Image quality deficiency
-  @JsonValue('111205')
   value111205,
 
   /// Display: Insufficient implant displacement incorrect
   /// Definition: Image quality deficiency according to MQCM
-  @JsonValue('111206')
   value111206,
 
   /// Display: Image artifact(s)
   /// Definition: Signals that do not faithfully reproduce actual anatomic structures because of distortion or of addition or deletion of information
-  @JsonValue('111207')
   value111207,
 
   /// Display: Grid artifact(s)
   /// Definition: Feature(s) arising from the acquisition unit's anti-scatter grid mechanism. For two-dimensional systems, such features include those of mechanically damaged or incorrectly positioned grids. For moving or Bucky grids, artifacts may result from intentional grid motion that is inadequate in duration or velocity uniformity
-  @JsonValue('111208')
   value111208,
 
   /// Display: Positioning
   /// Definition: Inadequate arrangement of the anatomy of interest with respect to the X-Ray field and image detector sensitive area. Examples: 1) positioning is "cutoff" when the projection of anatomy of interest falls outside the sensitive area of the detector; 2) "cone cut", in which the X-Ray field does not adequately cover the anatomy of interest; 3) detector's sensitive surface is too small to cover the projection of the anatomy of interest; 4) improper angular orientation or "rotation" of anatomy of interest with respect to the X-Ray source, or detector; 5) projection of other anatomy or clothing over the anatomy of interest in the image
-  @JsonValue('111209')
   value111209,
 
   /// Display: Motion blur
   /// Definition: Unacceptable image blur resulting from motion of the anatomy of interest during exposure or the inadequately compensated motion of X-Ray source with respect to the image detector during exposure
-  @JsonValue('111210')
   value111210,
 
   /// Display: Under exposed
   /// Definition: Inadequate number of quanta reached the detector during exposure. Reasons for under exposed images include low kVp, low mAs product, excess Source Image Distance. Under exposed images have inadequate signal and higher noise in the areas of interest
-  @JsonValue('111211')
   value111211,
 
   /// Display: Over exposed
   /// Definition: An excess number of quanta reached the detector during exposure. Reasons for over exposed images include high kVp, high mAs product, short Source Image Distance. Over exposed images have high signal and lower noise in the areas of interest. Over exposed area may demonstrate lack of contrast from over saturation of the detector
-  @JsonValue('111212')
   value111212,
 
   /// Display: No image
   /// Definition: No evidence of a patient exposure
-  @JsonValue('111213')
   value111213,
 
   /// Display: Detector artifact(s)
   /// Definition: Superposed features or flaws of the detector
-  @JsonValue('111214')
   value111214,
 
   /// Display: Artifact(s) other than grid or detector artifact
   /// Definition: Features or discontinuities arising from causes other than the anti-scatter grid and image detector
-  @JsonValue('111215')
   value111215,
 
   /// Display: Mechanical failure
   /// Definition: Failure of the device to operate according to mechanical design specifications
-  @JsonValue('111216')
   value111216,
 
   /// Display: Electrical failure
   /// Definition: Failure of a device to operate according to electrical design specifications
-  @JsonValue('111217')
   value111217,
 
   /// Display: Software failure
   /// Definition: Attributable to software used in generation or handling of image
-  @JsonValue('111218')
   value111218,
 
   /// Display: Inappropriate image processing
   /// Definition: Images processed inappropriately, not following appropriate protocol
-  @JsonValue('111219')
   value111219,
 
   /// Display: Other failure
   /// Definition: Failure that is not mechanical or electrical or otherwise described
-  @JsonValue('111220')
   value111220,
 
   /// Display: Unknown failure
   /// Definition: Unidentified or unknown cause of failure
-  @JsonValue('111221')
   value111221,
 
   /// Display: Succeeded
   /// Definition: The attempted process was completely successful
-  @JsonValue('111222')
   value111222,
 
   /// Display: Partially Succeeded
   /// Definition: The attempted process succeeded in some ways, but failed in others
-  @JsonValue('111223')
   value111223,
 
   /// Display: Failed
   /// Definition: The attempted process completely failed
-  @JsonValue('111224')
   value111224,
 
   /// Display: Not Attempted
   /// Definition: No process was performed
-  @JsonValue('111225')
   value111225,
 
   /// Display: Individual Impression / Recommendation Analysis
   /// Definition: Analysis of a related group of findings or features detected during image data inspection, to produce a summary impression and/or recommendation
-  @JsonValue('111233')
   value111233,
 
   /// Display: Overall Impression / Recommendation Analysis
   /// Definition: Analysis of all groups of findings or features, to produce a single impression and/or recommendation
-  @JsonValue('111234')
   value111234,
 
   /// Display: Unusable - Quality renders image unusable
   /// Definition: The usability of an image for diagnostic interpretation or CAD, based on a quality control standard
-  @JsonValue('111235')
   value111235,
 
   /// Display: Usable - Does not meet the quality control standard
   /// Definition: The usability of an image for diagnostic interpretation or CAD, based on a quality control standard
-  @JsonValue('111236')
   value111236,
 
   /// Display: Usable - Meets the quality control standard
   /// Definition: The usability of an image for diagnostic interpretation or CAD, based on a quality control standard
-  @JsonValue('111237')
   value111237,
 
   /// Display: Mammography Quality Control Manual 1999, ACR
   /// Definition: An image quality control standard specified by the American College of Radiology
-  @JsonValue('111238')
   value111238,
 
   /// Display: Title 21 CFR Section 900, Subpart B
   /// Definition: An image quality control standard in the US Code of Federal Regulations
-  @JsonValue('111239')
   value111239,
 
   /// Display: Institutionally defined quality control standard
   /// Definition: An image quality control standard specified or adopted by the institution responsible for the document
-  @JsonValue('111240')
   value111240,
 
   /// Display: All algorithms succeeded; without findings
   /// Definition: No findings resulted upon successful completion of all attempted computer-aided detection and/or analysis
-  @JsonValue('111241')
   value111241,
 
   /// Display: All algorithms succeeded; with findings
   /// Definition: One or more findings resulted upon successful completion of all attempted computer-aided detection and/or analysis
-  @JsonValue('111242')
   value111242,
 
   /// Display: Not all algorithms succeeded; without findings
   /// Definition: No findings resulted from the attempted computer-aided detection and/or analysis, but one or more failures occurred in the process
-  @JsonValue('111243')
   value111243,
 
   /// Display: Not all algorithms succeeded; with findings
   /// Definition: One or more findings resulted from the attempted computer-aided detection and/or analysis, but one or more failures occurred in the process
-  @JsonValue('111244')
   value111244,
 
   /// Display: No algorithms succeeded; without findings
   /// Definition: All of the attempted computer-aided detection and/or analysis failed, so there could be no findings
-  @JsonValue('111245')
   value111245,
 
   /// Display: Adenolipoma
   /// Definition: A benign tumor having glandular characteristics but composed of fat, with the presence of normal mammary ducts
-  @JsonValue('111248')
   value111248,
 
   /// Display: Ductal hyperplasia
   /// Definition: Hyperplasia is also known as epithelial hyperplasia or proliferative breast disease. It's an overgrowth of the cells that line the ducts or the lobules. Based on how the cells look under a microscope, the hyperplasia is called either ductal hyperplasia (also called duct epithelial hyperplasia) or lobular hyperplasia. Based on the pattern of the cells, hyperplasia may be called usual or atypical. In usual hyperplasia, the pattern of cells is very close to normal. Atypical hyperplasia (or hyperplasia with atypia) is a term used when the cells are more distorted. FROM: http://www.cancer.org/healthy/findcancerearly/womenshealth/non-cancerousbreastconditions/non-cancerous-breast-conditions-hyperplasia
-  @JsonValue('111249')
   value111249,
 
   /// Display: Adenomyoepithelioma
   /// Definition: Neoplasms composed of myoepithelial cells
-  @JsonValue('111250')
   value111250,
 
   /// Display: Normal axillary node
   /// Definition: Axillary node that is normal in appearance with no associated pathology
-  @JsonValue('111251')
   value111251,
 
   /// Display: Axillary node with calcifications
   /// Definition: Axillary node containing calcifications
-  @JsonValue('111252')
   value111252,
 
   /// Display: Axillary node hyperplasia
   /// Definition: Excessive proliferation of normal tissue arrangement of the axillary node
-  @JsonValue('111253')
   value111253,
 
   /// Display: Asynchronous involution
-  @JsonValue('111254')
   value111254,
 
   /// Display: Benign cyst with blood
   /// Definition: Cyst with benign morphology containing blood
-  @JsonValue('111255')
   value111255,
 
   /// Display: Benign Calcifications
   /// Definition: Calcifications having typically benign morphology. They are not of intermediate or high probability of concern for malignancy
-  @JsonValue('111256')
   value111256,
 
   /// Display: Intracystic papilloma
   /// Definition: Growing within a cystic adenoma, filling the cavity with a mass of branching epithelial processes
-  @JsonValue('111257')
   value111257,
 
   /// Display: Ductal adenoma
   /// Definition: Adenoma located in mammary duct, present as discrete sclerotic nodules, solitary or multiple
-  @JsonValue('111258')
   value111258,
 
   /// Display: Diabetic fibrous mastopathy
   /// Definition: The occurrence of fibrous tumor-forming stromal proliferation in patients with diabetes mellitus
-  @JsonValue('111259')
   value111259,
 
   /// Display: Extra abdominal desmoid
   /// Definition: A deep seated firm tumor frequently occurring on the chest consisting of collagenous tissue that infiltrates surround muscle; frequently recurs but does not metastasize
-  @JsonValue('111260')
   value111260,
 
   /// Display: Epidermal inclusion cyst
   /// Definition: A cyst formed of a mass of epithelial cells, as a result of trauma has been pushed beneath the epidermis. The cyst is lined with squamous epithelium and contains concentric layers or keratin
-  @JsonValue('111262')
   value111262,
 
   /// Display: Fibroadenomatoid hyperplasia
   /// Definition: Excessive proliferation of fibroadenoma tissue
-  @JsonValue('111263')
   value111263,
 
   /// Display: Fibroadenolipoma
   /// Definition: A lipoma with an abundant stroma of fibrous tissue
-  @JsonValue('111264')
   value111264,
 
   /// Display: Foreign body (reaction)
-  @JsonValue('111265')
   value111265,
 
   /// Display: Galactocele
   /// Definition: Retention cyst caused by occlusion of a lactiferous duct
-  @JsonValue('111269')
   value111269,
 
   /// Display: Hemangioma - nonparenchymal, subcutaneous
   /// Definition: A congenital anomaly that leads to a proliferation of blood vessels leading to a mass that resembles a neoplasm, not located in parenchymal areas but subcutaneous
-  @JsonValue('111271')
   value111271,
 
   /// Display: Hyperplasia, usual
   /// Definition: Hyperplasia is also known as epithelial hyperplasia or proliferative breast disease. It's an overgrowth of the cells that line the ducts or the lobules. Based on how the cells look under a microscope, the hyperplasia is called either ductal hyperplasia (also called duct epithelial hyperplasia) or lobular hyperplasia. FROM: http://www.cancer.org/healthy/findcancerearly/womenshealth/non-cancerousbreastconditions/non-cancerous-breast-conditions-hyperplasia
-  @JsonValue('111273')
   value111273,
 
   /// Display: Juvenile papillomatosis
   /// Definition: A form of fibrocystic disease in young woman with florid and sclerosing adenosis that microscopically may suggest carcinoma
-  @JsonValue('111277')
   value111277,
 
   /// Display: Lactating adenoma
   /// Definition: Enlarging masses during lactation. A circumscribed benign tumor composed primarily of glandular structures with scanty stroma, with prominent secretory changes in the duct
-  @JsonValue('111278')
   value111278,
 
   /// Display: Lactational change
   /// Definition: Changes related to the process of lactation
-  @JsonValue('111279')
   value111279,
 
   /// Display: Large duct papilloma
   /// Definition: A papilloma pertaining to large mammary duct
-  @JsonValue('111281')
   value111281,
 
   /// Display: Myofibroblastoma
   /// Definition: Solitary or multiple tumors of muscles and fibrous tissues, or tumors composed of myofibroblasts
-  @JsonValue('111283')
   value111283,
 
   /// Display: Microglandular adenosis
   /// Definition: Irregular clusters of small tubules are present in adipose or fibrous tissue, resembling tubular carcinoma but lacking stromal fibroblastic proliferation
-  @JsonValue('111284')
   value111284,
 
   /// Display: Multiple Intraductal Papillomas
   /// Definition: Papilloma typically involving an aggregate of adjacent ducts in the periphery of the breast, likely representing involvement of several foci of one or two duct systems
-  @JsonValue('111285')
   value111285,
 
   /// Display: No abnormality
   /// Definition: No abnormality
-  @JsonValue('111286')
   value111286,
 
   /// Display: Normal breast tissue
   /// Definition: Normal breast tissue
-  @JsonValue('111287')
   value111287,
 
   /// Display: Neurofibromatosis
   /// Definition: Condition in which there are tumors of various sizes on peripheral nerves. They may be neuromas or fibromas
-  @JsonValue('111288')
   value111288,
 
   /// Display: Oil cyst (fat necrosis cyst)
   /// Definition: A cyst resulting from the loss of the epithelial lining of a sebaceous dermoid or lacteal cyst
-  @JsonValue('111290')
   value111290,
 
   /// Display: Post reduction mammoplasty
   /// Definition: Breast tissue with characteristics of a benign nature, following breast reduction surgery
-  @JsonValue('111291')
   value111291,
 
   /// Display: Pseudoangiomatous stromal hyperplasia
   /// Definition: A benign stromal lesion composed of intermixed stromal and epithelial elements. The lobular and duct structures of the breast parenchyma are separated by an increased amount of stroma, non specific proliferative epithelial changes include hyperplasia of duct and lobular epithelium often with accentuation of myoepithelial cells and aprocine metaplasia with or without cyst formation
-  @JsonValue('111292')
   value111292,
 
   /// Display: Radial scar
   /// Definition: An nonencapsulated stellate lesion consisting of a fibroelastic core and radiating bands of fibrous connective tissue containing lobules manifesting adenosis and ducts with papillary or diffuse intraductal hyperplasia
-  @JsonValue('111293')
   value111293,
 
   /// Display: Sclerosing adenosis
   /// Definition: Prominent interductal fibrosis of the terminal ductules
-  @JsonValue('111294')
   value111294,
 
   /// Display: Silicone granuloma
   /// Definition: Nodular inflammatory lesions due to the presence of silicone in the breast tissue
-  @JsonValue('111296')
   value111296,
 
   /// Display: Nipple Characteristic
   /// Definition: The morphologic status of the nipple
-  @JsonValue('111297')
   value111297,
 
   /// Display: Virginal hyperplasia
   /// Definition: Spontaneous excessive proliferation of breast tissue, usually found in younger women
-  @JsonValue('111298')
   value111298,
 
   /// Display: Peripheral duct papillomas
   /// Definition: Papilloma(s) pertaining the peripheral ducts
-  @JsonValue('111299')
   value111299,
 
   /// Display: Axillary node with lymphoma
   /// Definition: Axillary node with lymphoid tissue neoplasm
-  @JsonValue('111300')
   value111300,
 
   /// Display: Axillary nodal metastases
   /// Definition: Metastatic disease to the axillary node
-  @JsonValue('111301')
   value111301,
 
   /// Display: Angiosarcoma
   /// Definition: A malignant neoplasm occurring most often in breast and skin, believed to originate from endothelial cells of blood vessels, microscopically composed of closely packed round or spindle shaped cells, some of which line small spaces resembling vascular clefts
-  @JsonValue('111302')
   value111302,
 
   /// Display: Blood vessel (vascular) invasion
   /// Definition: Histological changes to the vascular system related to an invasive process
-  @JsonValue('111303')
   value111303,
 
   /// Display: Carcinoma in children
   /// Definition: Carcinoma of the breast found in patients less than 20 years of age
-  @JsonValue('111304')
   value111304,
 
   /// Display: Carcinoma in ectopic breast
   /// Definition: A carcinoma found in supernumerary breasts and aberrant breast tissue
-  @JsonValue('111305')
   value111305,
 
   /// Display: Carcinoma with endocrine differentiation
   /// Definition: A carcinoma that synthesizes substances, including hormones, not considered to be normal products of the breast
-  @JsonValue('111306')
   value111306,
 
   /// Display: Basal cell carcinoma of nipple
   /// Definition: A basal cell carcinoma that arises in the nipple of the breast
-  @JsonValue('111307')
   value111307,
 
   /// Display: Carcinoma with metaplasia
   /// Definition: Metaplastic carcinoma is cancer that begins in cells that have changed into another cell type (for example, a squamous cell of the esophagus changing to resemble a cell of the stomach). In some cases, metaplastic changes alone may mean there is an increased chance of cancer developing at the site. Metaplastic carcinoma is a relatively uncommon type of cancer with treatment generally similar to that of invasive ductal carcinoma of no special type.[1] FROM: https://en.wikipedia.org/wiki/Metaplastic_carcinoma
-  @JsonValue('111308')
   value111308,
 
   /// Display: Cartilaginous and osseous change
   /// Definition: Tissue changes to bones and cartilage
-  @JsonValue('111309')
   value111309,
 
   /// Display: Carcinoma in pregnancy and lactation
   /// Definition: Carcinoma of the breast presenting during pregnancy or lactation
-  @JsonValue('111310')
   value111310,
 
   /// Display: Carcinosarcoma
   /// Definition: A malignant neoplasm that contains elements of carcinoma and sarcoma, so extensively intermixed as to indicate neoplasia of epithelial and mesenchymal tissue
-  @JsonValue('111311')
   value111311,
 
   /// Display: Intraductal comedocarcinoma with necrosis
   /// Definition: Comedocarcinoma of a duct with areas of necrotic tissue
-  @JsonValue('111312')
   value111312,
 
   /// Display: Intraductal carcinoma, low grade
   /// Definition: A non-invasive carcinoma restricted to the glandular lumen characterized by less aggressive malignant cytologic features and behavior
-  @JsonValue('111313')
   value111313,
 
   /// Display: Intraductal carcinoma micro-papillary
   /// Definition: Papillary and micropapillary Ductal Carcinoma In Situ (DCIS): the cancer cells arrange themselves in a fern-like pattern within the affected breast ducts; micropapillary DCIS cells are smaller than papillary DCIS cells. FROM: http://www.imaginis.com/breast-cancer-diagnosis/ductal-carcinoma-in-situ-dcis-3
-  @JsonValue('111314')
   value111314,
 
   /// Display: Intracystic papillary carcinoma
   /// Definition: A malignant neoplasm characterized by the formation of numerous, irregular, finger-like projections of fibrous stroma that is covered with a surface layer of neoplastic epithelial cells found in a cyst
-  @JsonValue('111315')
   value111315,
 
   /// Display: Invasive and in-situ carcinoma
   /// Definition: Carcinoma with both characteristics of localized and spreading disease
-  @JsonValue('111316')
   value111316,
 
   /// Display: Invasive lobular carcinoma
   /// Definition: Invasive lobular carcinoma is a type of breast cancer that begins in the milk-producing glands (lobules) of the breast. Invasive cancer means the cancer cells have broken out of the lobule where they began and have the potential to spread to the lymph nodes and other areas of the body. Invasive lobular carcinoma typically doesn't form a lump, which is common in breast cancer. Instead, there is a change in the breast that feels like a thickening or fullness in one part of the breast and is different from the surrounding breast tissue. FROM: http://www.mayoclinic.org/diseases-conditions/invasive-lobular-carcinoma/basics/definition/con-20033968
-  @JsonValue('111317')
   value111317,
 
   /// Display: Leukemic infiltration
   /// Definition: Mammary infiltrates as a secondary manifestation in patients with established leukemia
-  @JsonValue('111318')
   value111318,
 
   /// Display: Lympathic vessel invasion
   /// Definition: Histological changes to the lymphatic system related to an invasive process
-  @JsonValue('111320')
   value111320,
 
   /// Display: Lymphoma
   /// Definition: A heterogeneous group of neoplasms arising in the reticuloendoethelial and lymphatic systems
-  @JsonValue('111321')
   value111321,
 
   /// Display: Occult carcinoma presenting with axillary lymph node metastases
   /// Definition: A small carcinoma, either asymptomatic or giving rise to metastases without symptoms due to the primary carcinoma presenting with metastatic disease in the axillary lymph nodes
-  @JsonValue('111322')
   value111322,
 
   /// Display: Metastatic cancer to the breast
   /// Definition: A malignant lesion in the breast with morphologic patterns not typical of breast carcinoma arising from a non-mammary malignant neoplasm
-  @JsonValue('111323')
   value111323,
 
   /// Display: Metastatic cancer to the breast from the colon
   /// Definition: A malignant lesion in the breast with morphologic patterns not typical of breast carcinoma arising from a neoplasm in the colon
-  @JsonValue('111324')
   value111324,
 
   /// Display: Metastatic cancer to the breast from the lung
   /// Definition: A malignant lesion in the breast with morphologic patterns not typical of breast carcinoma arising from a neoplasm in the lung
-  @JsonValue('111325')
   value111325,
 
   /// Display: Metastatic melanoma to the breast
   /// Definition: A malignant lesion in the breast with morphologic patterns not typical of breast carcinoma arising from a melanoma
-  @JsonValue('111326')
   value111326,
 
   /// Display: Metastatic cancer to the breast from the ovary
   /// Definition: A malignant lesion in the breast with morphologic patterns not typical of breast carcinoma arising from a neoplasm in the ovary
-  @JsonValue('111327')
   value111327,
 
   /// Display: Metastatic sarcoma to the breast
   /// Definition: A malignant lesion in the breast with morphologic patterns not typical of breast carcinoma arising from a sarcoma
-  @JsonValue('111328')
   value111328,
 
   /// Display: Multifocal intraductal carcinoma
   /// Definition: Multiple foci of non-invasive carcinoma restricted to the glandular lumen
-  @JsonValue('111329')
   value111329,
 
   /// Display: Metastatic disease to axillary node
   /// Definition: A malignant lesion in an axillary node arising from a non-axillary neoplasm
-  @JsonValue('111330')
   value111330,
 
   /// Display: Malignant fibrous histiocytoma
   /// Definition: Pleomorphic undifferentiated sarcoma (abbreviated PUS), also undifferentiated pleomorphic sarcoma and previously malignant fibrous histiocytoma (abbreviated MFH), is a type of soft tissue sarcoma. FROM: https://en.wikipedia.org/wiki/Pleomorphic_undifferentiated_sarcoma
-  @JsonValue('111331')
   value111331,
 
   /// Display: Multifocal invasive ductal carcinoma
   /// Definition: Multiple sites of ductal carcinoma
-  @JsonValue('111332')
   value111332,
 
   /// Display: Metastasis to an intramammary lymph node
   /// Definition: A malignant lesion in a intramammary lymph node arising from a non-intramammary lymph node neoplasm
-  @JsonValue('111333')
   value111333,
 
   /// Display: Malignant melanoma of nipple
   /// Definition: A malignant melanoma of the skin that arises in the nipple of the breast
-  @JsonValue('111334')
   value111334,
 
   /// Display: Neoplasm of the mammary skin
-  @JsonValue('111335')
   value111335,
 
   /// Display: Papillary carcinoma in-situ
   /// Definition: Papillary and micropapillary Ductal Carcinoma In Situ (DCIS): the cancer cells arrange themselves in a fern-like pattern within the affected breast ducts; micropapillary DCIS cells are smaller than papillary DCIS cells. FROM: http://www.imaginis.com/breast-cancer-diagnosis/ductal-carcinoma-in-situ-dcis-3
-  @JsonValue('111336')
   value111336,
 
   /// Display: Recurrent malignancy
   /// Definition: Recurrent malignancy
-  @JsonValue('111338')
   value111338,
 
   /// Display: Squamous cell carcinoma of the nipple
   /// Definition: Squamous cell carcinoma to the terminal portion of the alveolar
-  @JsonValue('111340')
   value111340,
 
   /// Display: Intraductal carcinoma, high grade
   /// Definition: A non-invasive carcinoma restricted to the glandular lumen characterized by more aggressive malignant cytologic features and behavior
-  @JsonValue('111341')
   value111341,
 
   /// Display: Invasive cribriform carcinoma
   /// Definition: Invasive tumor with cribriform pattern similar to cribriform DCIS. Low grade, cribriform appearance (well defined spaces formed by arches of cells) similar to cribriform DCIS but with larger cells, more cytoplasm and more vesicular nuclei: Tumor cells are small, often have apical snouts, mild/moderate nuclear pleomorphism; Also stromal invasion by islands of cells, often angulated; May have predominantly solid appearance; Associated with cribriform DCIS; Often mixed with tubular carcinoma. FROM: http://www.pathologyoutlines.com/topic/breastmalignantcribriform.html
-  @JsonValue('111342')
   value111342,
 
   /// Display: Angular margins
   /// Definition: An indication that some or all of the margin of a lesion has sharp corners, often forming acute angles
-  @JsonValue('111343')
   value111343,
 
   /// Display: Fine pleomorphic calcification
   /// Definition: Calcifications that vary in sizes and shapes and are usually smaller than0.5 mm in diameter
-  @JsonValue('111344')
   value111344,
 
   /// Display: Macrocalcifications
   /// Definition: Coarse calcifications that are 0.5 mm or greater in size
-  @JsonValue('111345')
   value111345,
 
   /// Display: Calcifications within a mass
   /// Definition: An indicator that calcifications are imbedded within a mass
-  @JsonValue('111346')
   value111346,
 
   /// Display: Calcifications outside of a mass
   /// Definition: An indicator that calcifications are imaged outside of a mass finding
-  @JsonValue('111347')
   value111347,
 
   /// Display: Breast background echotexture
   /// Definition: Tissue composition of the breast noted on sonography
-  @JsonValue('111350')
   value111350,
 
   /// Display: Homogeneous fat echotexture
   /// Definition: Fat lobules and uniformly echogenic bands of supporting structures comprise the bulk of breast tissue
-  @JsonValue('111351')
   value111351,
 
   /// Display: Homogeneous fibroglandular echotexture
   /// Definition: A uniformly echogenic layer of fibroglandular tissue is seen beneath a thin layer of subcutaneous fat
-  @JsonValue('111352')
   value111352,
 
   /// Display: Heterogeneous echotexture
   /// Definition: The breast texture is characterized by multiple small areas of increased and decreased echogenicity
-  @JsonValue('111353')
   value111353,
 
   /// Display: Orientation
   /// Definition: Referential relationship of the finding to the imaging device as noted on sonography
-  @JsonValue('111354')
   value111354,
 
   /// Display: Parallel
   /// Definition: The long axis of a lesion parallels the skin line ("wider-than-tall" or in a horizontal orientation)
-  @JsonValue('111355')
   value111355,
 
   /// Display: Not parallel
   /// Definition: The anterior-posterior or vertical dimension is greater than the transverse or horizontal dimension
-  @JsonValue('111356')
   value111356,
 
   /// Display: Lesion boundary
   /// Definition: The lesion boundary describes the transition zone between themas and the surrounding tissue
-  @JsonValue('111357')
   value111357,
 
   /// Display: Abrupt interface
   /// Definition: The sharp demarcation between the lesion and surrounding tissue can be imperceptible or a distinct well-defined echogenic rim of any thickness
-  @JsonValue('111358')
   value111358,
 
   /// Display: Echogenic halo
   /// Definition: There is no sharp demarcation between the mass and the surrounding tissue, which is bridged by an echogenic transition zone
-  @JsonValue('111359')
   value111359,
 
   /// Display: Echo pattern
   /// Definition: An imaging characteristic of resonance noted during sonography
-  @JsonValue('111360')
   value111360,
 
   /// Display: Anechoic
   /// Definition: Without internal echoes
-  @JsonValue('111361')
   value111361,
 
   /// Display: Hyperechoic
   /// Definition: Having increased echogenicity relative to fat or equal to fibroglandular tissue
-  @JsonValue('111362')
   value111362,
 
   /// Display: Complex
   /// Definition: Mass contains both anechoic and echogenic components
-  @JsonValue('111363')
   value111363,
 
   /// Display: Hypoechoic
   /// Definition: Defined relative to fat; masses are characterized by low-level echoes throughout; e.g. appearance of a complicated cyst or fibroadenoma
-  @JsonValue('111364')
   value111364,
 
   /// Display: Isoechoic
   /// Definition: Having the same echogenicity as fat (a complicated cyst or fibroadenoma may be isoechoic or hypoechoic)
-  @JsonValue('111365')
   value111365,
 
   /// Display: Posterior acoustic features
   /// Definition: The attenuation characteristics of a mass with respect to its acoustic transmission
-  @JsonValue('111366')
   value111366,
 
   /// Display: No posterior acoustic features
   /// Definition: No posterior shadowing or enhancement
-  @JsonValue('111367')
   value111367,
 
   /// Display: Posterior enhancement
   /// Definition: Increased posterior echoes
-  @JsonValue('111368')
   value111368,
 
   /// Display: Posterior shadowing
   /// Definition: Decreased posterior echoes; edge shadows are excluded
-  @JsonValue('111369')
   value111369,
 
   /// Display: Combined posterior enhancement and shadowing
   /// Definition: More than one pattern of posterior attenuation, both shadowing and enhancement
-  @JsonValue('111370')
   value111370,
 
   /// Display: Identifiable effect on surrounding tissues
   /// Definition: Sonographic appearance of adjacent structures relative to a mass finding
-  @JsonValue('111371')
   value111371,
 
   /// Display: Vascularity
   /// Definition: Characterization of vascularization in region of interest
-  @JsonValue('111372')
   value111372,
 
   /// Display: Vascularity not present
   /// Definition: Vascularity not evident, such as on ultrasound
-  @JsonValue('111373')
   value111373,
 
   /// Display: Vascularity not assessed
   /// Definition: Vascularity not evaluated
-  @JsonValue('111374')
   value111374,
 
   /// Display: Vascularity present in lesion
   /// Definition: Vascularity on imaging is seen within a lesion
-  @JsonValue('111375')
   value111375,
 
   /// Display: Vascularity present immediately adjacent to lesion
   /// Definition: Vascularity on imaging is seen immediately adjacent to a lesion
-  @JsonValue('111376')
   value111376,
 
   /// Display: Diffusely increased vascularity in surrounding tissue
   /// Definition: Vascularity on imaging is considered diffusely elevated within the surrounding breast tissue
-  @JsonValue('111377')
   value111377,
 
   /// Display: Correlation to other Findings
   /// Definition: Relationship of the new anomaly to other clinical or imaging anomalies
-  @JsonValue('111380')
   value111380,
 
   /// Display: Correlates to physical exam findings
   /// Definition: An indication that the current imaging finding relates to a finding from a clinical breast exam
-  @JsonValue('111381')
   value111381,
 
   /// Display: Correlates to mammography findings
   /// Definition: An indication that the current imaging finding relates to a finding from a mammography exam
-  @JsonValue('111382')
   value111382,
 
   /// Display: Correlates to MRI findings
   /// Definition: An indication that the current imaging finding relates to a finding from a breast MRI exam
-  @JsonValue('111383')
   value111383,
 
   /// Display: Correlates to ultrasound findings
   /// Definition: An indication that the current imaging finding relates to a finding from a breast ultrasound exam
-  @JsonValue('111384')
   value111384,
 
   /// Display: Correlates to other imaging findings
   /// Definition: An indication that the current imaging finding relates to a finding from an imaging exam
-  @JsonValue('111385')
   value111385,
 
   /// Display: No correlation to other imaging findings
   /// Definition: An indication that the current imaging finding has no relation to findings from any other imaging exam
-  @JsonValue('111386')
   value111386,
 
   /// Display: No correlation to clinical findings
   /// Definition: An indication that the current imaging finding has no relation to any other clinical findings
-  @JsonValue('111387')
   value111387,
 
   /// Display: Malignancy Type
   /// Definition: Classification of the cancer as invasive, DCIS, or other
-  @JsonValue('111388')
   value111388,
 
   /// Display: Invasive breast carcinoma
   /// Definition: A malignancy that has spread beyond an area of focus
-  @JsonValue('111389')
   value111389,
 
   /// Display: Other malignancy type
   /// Definition: A breast cancer with malignant pathology findings that are not classified as invasive or in situ
-  @JsonValue('111390')
   value111390,
 
   /// Display: Menstrual Cycle Phase
   /// Definition: A specific timeframe during menses
-  @JsonValue('111391')
   value111391,
 
   /// Display: 1st week
   /// Definition: In the first week of the menstrual cycle phase, that is, one week following menses
-  @JsonValue('111392')
   value111392,
 
   /// Display: 2nd week
   /// Definition: In the second week of the menstrual cycle phase, that is, two weeks following menses
-  @JsonValue('111393')
   value111393,
 
   /// Display: 3rd week
   /// Definition: In the third week of the menstrual cycle phase, that is, three weeks following menses
-  @JsonValue('111394')
   value111394,
 
   /// Display: Estimated Timeframe
   /// Definition: An estimated period of time
-  @JsonValue('111395')
   value111395,
 
   /// Display: < 3 months ago
   /// Definition: An event occurred less than 3 months ago
-  @JsonValue('111396')
   value111396,
 
   /// Display: 4 months to 1 year ago
   /// Definition: An event occurred between 4 months and 1 year ago
-  @JsonValue('111397')
   value111397,
 
   /// Display: > 1 year ago
   /// Definition: An event occurred longer than 1 year ago
-  @JsonValue('111398')
   value111398,
 
   /// Display: Timeframe uncertain
   /// Definition: The timing of an event is not recalled
-  @JsonValue('111399')
   value111399,
 
   /// Display: Breast Imaging Report
   /// Definition: Report title for the diagnostic report for one or more breast imaging or intervention procedures
-  @JsonValue('111400')
   value111400,
 
   /// Display: Reason for procedure
   /// Definition: Concept name for the description of why a procedure has been performed
-  @JsonValue('111401')
   value111401,
 
   /// Display: Clinical Finding
   /// Definition: A finding during clinical examination (i.e., history and physical examination) such as pain, palpable mass or discharge
-  @JsonValue('111402')
   value111402,
 
   /// Display: Baseline screening mammogram
   /// Definition: First screening mammogram taken for patient that is used as a comparison baseline for further examinations
-  @JsonValue('111403')
   value111403,
 
   /// Display: First mammogram ever
   /// Definition: First mammogram taken for a patient without regard to whether it was for screening or a diagnostic procedure
-  @JsonValue('111404')
   value111404,
 
   /// Display: Implant type
   /// Definition: Concept name for the material of which a breast prosthetic device is constructed
-  @JsonValue('111405')
   value111405,
 
   /// Display: Number of similar findings
   /// Definition: A numeric count of findings classified as similar in nature
-  @JsonValue('111406')
   value111406,
 
   /// Display: Implant finding
   /// Definition: Concept name for the status of a breast prosthetic device as noted by imaging
-  @JsonValue('111407')
   value111407,
 
   /// Display: Film Screen Mammography
   /// Definition: Mammogram using traditional X-Ray film
-  @JsonValue('111408')
   value111408,
 
   /// Display: Digital Mammography
   /// Definition: Mammogram using a digital image acquisition system
-  @JsonValue('111409')
   value111409,
 
   /// Display: Surgical consult
   /// Definition: Referred for evaluation by a surgeon
-  @JsonValue('111410')
   value111410,
 
   /// Display: Mammography CAD
   /// Definition: Computer aided detection and/or computer aided diagnosis for mammography
-  @JsonValue('111411')
   value111411,
 
   /// Display: Narrative Summary
   /// Definition: Concept name for a text-based section of a report
-  @JsonValue('111412')
   value111412,
 
   /// Display: Overall Assessment
   /// Definition: A title for a report section that summarizes all interpretation results for a report with one overriding assessment; e.g. benign or negative
-  @JsonValue('111413')
   value111413,
 
   /// Display: Supplementary Data
   /// Definition: Concept name for a collection of supporting evidence for a report
-  @JsonValue('111414')
   value111414,
 
   /// Display: Additional evaluation requested from prior study
   /// Definition: Prior study indicates that additional imaging be performed to further evaluate a suspicious or questionable anatomic region
-  @JsonValue('111415')
   value111415,
 
   /// Display: Follow-up at short interval from prior study
   /// Definition: The prior study recommended a follow-up breast imaging exam in 1 to 11 months (generally in 6 months)
-  @JsonValue('111416')
   value111416,
 
   /// Display: History of breast augmentation, asymptomatic
   /// Definition: Prior breast augmentation (breast enlargement) and is not presenting with any symptoms
-  @JsonValue('111417')
   value111417,
 
   /// Display: Review of an outside study
   /// Definition: Review or second opinion made on an image performed outside of the facility
-  @JsonValue('111418')
   value111418,
 
   /// Display: Additional evaluation requested from abnormal screening exam
   /// Definition: Additional breast imaging performed at the time of the patient's screening mammogram
-  @JsonValue('111419')
   value111419,
 
   /// Display: History of benign breast biopsy
   /// Definition: Patient has had previous benign breast biopsies
-  @JsonValue('111420')
   value111420,
 
   /// Display: Personal history of breast cancer with breast conservation therapy
   /// Definition: Patient has had a prior surgery such as a lumpectomy or quadrantectomy to remove malignant breast tissue, but breast tissue remains
-  @JsonValue('111421')
   value111421,
 
   /// Display: Physical Examination Results
   /// Definition: The results of a physical examination performed on the patient, possibly including the results of inspection, palpation, auscultation, or percussion
-  @JsonValue('111423')
   value111423,
 
   /// Display: Comparison to previous findings
   /// Definition: The result of assessing the current imaging exam in comparison to previous imaging exams
-  @JsonValue('111424')
   value111424,
 
   /// Display: Intraluminal filling defect
   /// Definition: An abnormality observed during ductography where the ductal system within the breast fills in an abnormal pattern. Ductography is an imaging exam in which a radio opaque contrast media is introduced into the ductal system of the breast through the nipple and images of the ductal system are obtained
-  @JsonValue('111425')
   value111425,
 
   /// Display: Multiple filling defect
   /// Definition: During ductography an observation of more than one filling abnormality within the breast ductal system
-  @JsonValue('111426')
   value111426,
 
   /// Display: Abrupt duct termination
   /// Definition: An abnormality observed during ductography where the ductal system within the breast terminates in an unusual fashion
-  @JsonValue('111427')
   value111427,
 
   /// Display: Extravasation
   /// Definition: Abnormal flowage of contrast media within the breast noted on ductography
-  @JsonValue('111428')
   value111428,
 
   /// Display: Duct narrowing
   /// Definition: An abnormality observed during ductography where the ductal system within the breast appears narrow
-  @JsonValue('111429')
   value111429,
 
   /// Display: Cyst fill
   /// Definition: During ductography an observation of the contrast media filling a cyst within the breast
-  @JsonValue('111430')
   value111430,
 
   /// Display: Instrument Approach
   /// Definition: The area and line within the anatomy through which a needle or instrument passes during an interventional procedure
-  @JsonValue('111431')
   value111431,
 
   /// Display: Inferolateral to superomedial
   /// Definition: The line within the anatomy from the lower outer to the upper inner aspect; e.g. through which a needle or instrument passes in an interventional procedure
-  @JsonValue('111432')
   value111432,
 
   /// Display: Inferomedial to superolateral
   /// Definition: The line within the anatomy from the lower inner to the upper outer aspect; e.g. through which a needle or instrument passes in an interventional procedure
-  @JsonValue('111433')
   value111433,
 
   /// Display: Superolateral to inferomedial
   /// Definition: The line within the anatomy from the upper outer to the lower inner aspect; e.g. through which a needle or instrument passes in an interventional procedure
-  @JsonValue('111434')
   value111434,
 
   /// Display: Superomedial to inferolateral
   /// Definition: The line within the anatomy from the upper inner to the lower outer aspect; e.g. through which a needle or instrument passes in an interventional procedure
-  @JsonValue('111435')
   value111435,
 
   /// Display: Number of passes
   /// Definition: The number of times a biopsy instrument is passed through an area of interest
-  @JsonValue('111436')
   value111436,
 
   /// Display: Number of specimens
   /// Definition: The number of biopsy specimens obtained from an interventional procedure
-  @JsonValue('111437')
   value111437,
 
   /// Display: Needle in target
   /// Definition: An indicator of whether or not a biopsy or localizing needle in an interventional procedure is seen to be in the area of interest
-  @JsonValue('111438')
   value111438,
 
   /// Display: Number of needles around target
   /// Definition: The number of localizing needles placed around the area of interest in an interventional procedure
-  @JsonValue('111439')
   value111439,
 
   /// Display: Incision made
   /// Definition: An indicator of whether or not an incision was made in the anatomy during an interventional procedure
-  @JsonValue('111440')
   value111440,
 
   /// Display: Microclip placed
   /// Definition: An indicator of whether or not a radio opaque microclip was placed in the anatomy during an interventional procedure
-  @JsonValue('111441')
   value111441,
 
   /// Display: Confirmation of target
   /// Definition: An indicator of the degree of success of an interventional procedure
-  @JsonValue('111442')
   value111442,
 
   /// Display: Target completely contained in the specimen
   /// Definition: An indicator that during an interventional procedure the area of interest was fully excised and is noted in the resultant biopsy specimen
-  @JsonValue('111443')
   value111443,
 
   /// Display: Target partially obtained in the specimen
   /// Definition: An indicator that during an interventional procedure the area of interest was partially excised and is noted in the resultant biopsy specimen
-  @JsonValue('111444')
   value111444,
 
   /// Display: Target not in the specimen
   /// Definition: An indicator that following an interventional procedure the area of interest is not seen in the resultant biopsy specimen
-  @JsonValue('111445')
   value111445,
 
   /// Display: Calcifications seen in the core
   /// Definition: An indicator that following an interventional procedure the targeted calcifications are noted in the resultant biopsy specimen
-  @JsonValue('111446')
   value111446,
 
   /// Display: Lesion completely removed
   /// Definition: An indicator that during an interventional procedure the area of interest was fully excised and is noted in the resultant biopsy specimen
-  @JsonValue('111447')
   value111447,
 
   /// Display: Lesion partially removed
   /// Definition: An indicator that during an interventional procedure the area of interest was partially excised and is noted in the resultant biopsy specimen
-  @JsonValue('111448')
   value111448,
 
   /// Display: Fluid obtained
   /// Definition: An indicator that during an interventional procedure fluid was successfully aspirated
-  @JsonValue('111449')
   value111449,
 
   /// Display: Light brown color
   /// Definition: Color that is a light shade of brown
-  @JsonValue('111450')
   value111450,
 
   /// Display: Dark red color
   /// Definition: Color that is a dark shade of red
-  @JsonValue('111451')
   value111451,
 
   /// Display: Dark brown color
   /// Definition: Color that is a dark shade of brown
-  @JsonValue('111452')
   value111452,
 
   /// Display: Bright red color
   /// Definition: Color that is a bright shade of red
-  @JsonValue('111453')
   value111453,
 
   /// Display: Blood tinged color
   /// Definition: Color that is tinged with the color of blood
-  @JsonValue('111454')
   value111454,
 
   /// Display: Occult blood test result
   /// Definition: An indicator of whether or not the fluid obtained during an interventional procedure contains red blood cells
-  @JsonValue('111455')
   value111455,
 
   /// Display: Action on fluid
   /// Definition: An indicator of whether or not fluid during an interventional procedure was sent for cytological analysis or simply discarded
-  @JsonValue('111456')
   value111456,
 
   /// Display: Sent for analysis
   /// Definition: An indicator that fluid obtained during an interventional procedure was sent to a laboratory for analysis
-  @JsonValue('111457')
   value111457,
 
   /// Display: Discarded
   /// Definition: An indicator that fluid obtained during an interventional procedure was discarded
-  @JsonValue('111458')
   value111458,
 
   /// Display: Mass with calcifications
   /// Definition: A radiopaque density noted during diagnostic imaging that has associated calcific densities
-  @JsonValue('111459')
   value111459,
 
   /// Display: Complex cyst
   /// Definition: A fluid-filled sac with greater than normal characteristics
-  @JsonValue('111460')
   value111460,
 
   /// Display: Intracystic lesion
   /// Definition: A tumor within a cyst
-  @JsonValue('111461')
   value111461,
 
   /// Display: Solid mass
   /// Definition: A tumor or lesion
-  @JsonValue('111462')
   value111462,
 
   /// Display: Supplementary Data for Intervention
   /// Definition: Supporting evidence for interpretation results of an interventional procedure
-  @JsonValue('111463')
   value111463,
 
   /// Display: Procedure Modifier
   /// Definition: A descriptor that further qualifies or characterizes a type of procedure
-  @JsonValue('111464')
   value111464,
 
   /// Display: Needle Gauge
   /// Definition: Needle size (diameter) characterization; e.g. of a biopsy needle
-  @JsonValue('111465')
   value111465,
 
   /// Display: Severity of Complication
   /// Definition: An indicator of the gravity of a problem experienced by a patient, related to a procedure that was performed
-  @JsonValue('111466')
   value111466,
 
   /// Display: Needle Length
   /// Definition: Distance from the hub or bushing to the tip of the needle
-  @JsonValue('111467')
   value111467,
 
   /// Display: Pathology Results
   /// Definition: The collection of observations and findings from pathologic analysis
-  @JsonValue('111468')
   value111468,
 
   /// Display: Sampling DateTime
   /// Definition: The date and time that the sample was collected from the patient
-  @JsonValue('111469')
   value111469,
 
   /// Display: Uninvolved
   /// Definition: Indicates that the margin of the biopsy specimen was not involved with the tumor
-  @JsonValue('111470')
   value111470,
 
   /// Display: Involved
   /// Definition: Indicates that the margin of the biopsy specimen was involved with the tumor
-  @JsonValue('111471')
   value111471,
 
   /// Display: Nipple involved
   /// Definition: Indicates whether the nipple was involved in an interventional procedure or pathologic analysis
-  @JsonValue('111472')
   value111472,
 
   /// Display: Number of nodes removed
   /// Definition: Indicates the number of lymph nodes removed
-  @JsonValue('111473')
   value111473,
 
   /// Display: Number of nodes positive
   /// Definition: Indicates the number of lymph nodes removed that contain cancer cells
-  @JsonValue('111474')
   value111474,
 
   /// Display: Estrogen receptor
   /// Definition: The result of a test for the presence of a protein that binds with estrogen
-  @JsonValue('111475')
   value111475,
 
   /// Display: Progesterone receptor
   /// Definition: The result of a test for the presence of a protein that binds with progesterone
-  @JsonValue('111476')
   value111476,
 
   /// Display: S Phase
   /// Definition: Indicates the percentage of cells in S phase. Cell division is defined by phases; the S phase is the stage during which DNA replicates
-  @JsonValue('111477')
   value111477,
 
   /// Display: Non-bloody discharge (from nipple)
   /// Definition: The visible emission of non-bloody fluid from the nipple
-  @JsonValue('111478')
   value111478,
 
   /// Display: Difficult physical/clinical examination
   /// Definition: The inability to discern normal versus abnormal breast tissue during palpation
-  @JsonValue('111479')
   value111479,
 
   /// Display: Cancer elsewhere
   /// Definition: An indication that a patient has or had a malignant occurrence in an area of the body other than the breast
-  @JsonValue('111480')
   value111480,
 
   /// Display: Saline implant
   /// Definition: A salt water filled prosthetic device implanted in the breast
-  @JsonValue('111481')
   value111481,
 
   /// Display: Polyurethane implant
   /// Definition: A polymer based (plastic) prosthetic device implanted in the breast
-  @JsonValue('111482')
   value111482,
 
   /// Display: Percutaneous silicone injection
   /// Definition: The introduction of polymeric organic silicon based material through the skin, as for breast augmentation or reconstruction
-  @JsonValue('111483')
   value111483,
 
   /// Display: Combination implant
   /// Definition: A prosthetic device that contains more than one material implanted in the breast
-  @JsonValue('111484')
   value111484,
 
   /// Display: Pre-pectoral implant
   /// Definition: A breast implant placed in front of the pectoralis major muscle
-  @JsonValue('111485')
   value111485,
 
   /// Display: Retro-pectoral implant
   /// Definition: A breast implant placed behind the pectoralis major muscle
-  @JsonValue('111486')
   value111486,
 
   /// Display: Mammographic (crosshair)
   /// Definition: Using X-Ray technique and a superimposed set of crossed lines for detection or placement
-  @JsonValue('111487')
   value111487,
 
   /// Display: Mammographic (grid)
   /// Definition: Using X-Ray technique and a superimposed aperture for detection or placement
-  @JsonValue('111488')
   value111488,
 
   /// Display: Palpation guided
   /// Definition: Using physical touch for detection or placement
-  @JsonValue('111489')
   value111489,
 
   /// Display: Vacuum assisted
   /// Definition: The performance of a biopsy procedure using a vacuum device attached to the biopsy needle
-  @JsonValue('111490')
   value111490,
 
   /// Display: Abnormal discharge
   /// Definition: Unusual or unexpected emission of fluid
-  @JsonValue('111491')
   value111491,
 
   /// Display: No complications
   /// Definition: Having experienced no adverse medical conditions related to or resulting from an interventional procedure
-  @JsonValue('111492')
   value111492,
 
   /// Display: Stage 0
   /// Definition: TNM grouping of tumor stage, from AJCC, where primary tumor is Tis, regional lymph node is N0, and distant metastasis is M0
-  @JsonValue('111494')
   value111494,
 
   /// Display: Stage I
   /// Definition: TNM grouping of tumor stage, from AJCC, where primary tumor is T1, regional lymph node is N0, and distant metastasis is M0
-  @JsonValue('111495')
   value111495,
 
   /// Display: Stage IIA
   /// Definition: TNM grouping of tumor stage, from AJCC, where primary tumor is T0 or T1, with regional lymph node N1 and distant metastasis is M0, or T2 with N0 and M0
-  @JsonValue('111496')
   value111496,
 
   /// Display: Stage IIB
   /// Definition: TNM grouping of tumor stage, from AJCC, where primary tumor is T2, with regional lymph node N1 and distant metastasis is M0, or T3 with N0 and M0
-  @JsonValue('111497')
   value111497,
 
   /// Display: Stage IIIA
   /// Definition: TNM grouping of tumor stage, from AJCC, where primary tumor is T0, T1 or T2, with regional lymph node N2 and distant metastasis is M0, or T3 with N1 or N2 and M0
-  @JsonValue('111498')
   value111498,
 
   /// Display: Stage IIIB
   /// Definition: TNM grouping of tumor stage, from AJCC, where primary tumor is T4, regional lymph node is N0, N1 or N2, and distant metastasis is M0
-  @JsonValue('111499')
   value111499,
 
   /// Display: Stage IIIC
   /// Definition: TNM grouping of tumor stage, from AJCC, where primary tumor is any T value, regional lymph node is N3, and distant metastasis is M0
-  @JsonValue('111500')
   value111500,
 
   /// Display: Stage IV
   /// Definition: TNM grouping of tumor stage, from AJCC, where primary tumor is any T value, regional lymph node is any N value, and distant metastasis is M1
-  @JsonValue('111501')
   value111501,
 
   /// Display: Bloom-Richardson Grade
   /// Definition: Histologic tumor grade (sometimes called Scarff-Bloom-Richardson grade) is based on the arrangement of the cells in relation to each other -- whether they form tubules, how closely they resemble normal breast cells (nuclear grade) and how many of the cancer cells are in the process of dividing (mitotic count)
-  @JsonValue('111502')
   value111502,
 
   /// Display: Normal implants
   /// Definition: Breast prosthetic devices are intact, not leaking, and are in a normal shape and form
-  @JsonValue('111503')
   value111503,
 
   /// Display: Asymmetric implants
   /// Definition: Breast prosthetic devices are not symmetric, equal, corresponding in form, or are in one breast (unilateral)
-  @JsonValue('111504')
   value111504,
 
   /// Display: Calcified implant
   /// Definition: Fibrous or calcific contracture of the tissue capsule that forms around a breast prosthetic device
-  @JsonValue('111505')
   value111505,
 
   /// Display: Distorted implant
   /// Definition: Breast prosthetic device is twisted out of normal shape or form
-  @JsonValue('111506')
   value111506,
 
   /// Display: Silicone-laden lymph nodes
   /// Definition: Silicone from breast prosthetic device found in lymphatic tissue
-  @JsonValue('111507')
   value111507,
 
   /// Display: Free silicone
   /// Definition: Silicone found in breast tissue outside of the prosthetic capsule or implant membrane
-  @JsonValue('111508')
   value111508,
 
   /// Display: Herniated implant
   /// Definition: Protrusion of part of the structure normally encapsulating the content of the breast prosthetic device
-  @JsonValue('111509')
   value111509,
 
   /// Display: Explantation
   /// Definition: Evidence of removal of a breast prosthetic device
-  @JsonValue('111510')
   value111510,
 
   /// Display: Relevant Patient Information for Breast Imaging
   /// Definition: Historical patient health information of interest to the breast health clinician
-  @JsonValue('111511')
   value111511,
 
   /// Display: Medication History
   /// Definition: Information regarding usage by the patient of certain medications, such as hormones
-  @JsonValue('111512')
   value111512,
 
   /// Display: Relevant Previous Procedures
   /// Definition: Interventional or non-interventional procedures previously performed on the patient, such as breast biopsies
-  @JsonValue('111513')
   value111513,
 
   /// Display: Relevant Indicated Problems
   /// Definition: Abnormal conditions experienced by the patient that serve as the reason for performing a procedure, such as a breast exam
-  @JsonValue('111514')
   value111514,
 
   /// Display: Relevant Risk Factors
   /// Definition: Personal, familial, and other health factors that may indicate an increase in the patient's chances of developing a health condition or disease, such as breast cancer
-  @JsonValue('111515')
   value111515,
 
   /// Display: Medication Type
   /// Definition: A classification of a medicinal substance, such as hormonal contraceptive or antibiotic
-  @JsonValue('111516')
   value111516,
 
   /// Display: Relevant Patient Information
   /// Definition: Historical patient health information for general purpose use
-  @JsonValue('111517')
   value111517,
 
   /// Display: Age when first menstrual period occurred
   /// Definition: The age of the patient at the first occurrence of menses
-  @JsonValue('111518')
   value111518,
 
   /// Display: Age at First Full Term Pregnancy
   /// Definition: The age of the patient at the time of her first full term pregnancy
-  @JsonValue('111519')
   value111519,
 
   /// Display: Age at Menopause
   /// Definition: The age of the patient at the cessation of menses
-  @JsonValue('111520')
   value111520,
 
   /// Display: Age when hysterectomy performed
   /// Definition: The age of the patient at the time her uterus was removed
-  @JsonValue('111521')
   value111521,
 
   /// Display: Age when left ovary removed
   /// Definition: The age of the patient at the time she had her left ovary removed
-  @JsonValue('111522')
   value111522,
 
   /// Display: Age when right ovary removed
   /// Definition: The age of the patient at the time she had her right ovary removed
-  @JsonValue('111523')
   value111523,
 
   /// Display: Age Started
   /// Definition: The age of a patient on the first occurrence of an event, such as the first use of a medication
-  @JsonValue('111524')
   value111524,
 
   /// Display: Age Ended
   /// Definition: The age of a patient on the last occurrence of an event, such as the last use of a medication
-  @JsonValue('111525')
   value111525,
 
   /// Display: DateTime Started
   /// Definition: The date and time of the first occurrence of an event, such as the first use of a medication
-  @JsonValue('111526')
   value111526,
 
   /// Display: DateTime Ended
   /// Definition: The date and time of the last occurrence of an event, such as the last use of a medication
-  @JsonValue('111527')
   value111527,
 
   /// Display: Ongoing
   /// Definition: An indicator of whether an event is still in progress, such as the use of a medication or substance, or environmental exposure
-  @JsonValue('111528')
   value111528,
 
   /// Display: Brand Name
   /// Definition: Product name of a device or substance, such as medication, to identify it as the product of a single firm or manufacturer
-  @JsonValue('111529')
   value111529,
 
   /// Display: Risk Factor modifier
   /// Definition: A descriptor that further qualifies or characterizes a risk factor
-  @JsonValue('111530')
   value111530,
 
   /// Display: Previous Procedure
   /// Definition: A prior non-interventional exam or interventional procedure performed on a patient
-  @JsonValue('111531')
   value111531,
 
   /// Display: Pregnancy Status
   /// Definition: Describes the pregnancy state of a referenced subject
-  @JsonValue('111532')
   value111532,
 
   /// Display: Indicated Problem
   /// Definition: A symptom experienced by a patient that is used as the reason for performing an exam or procedure
-  @JsonValue('111533')
   value111533,
 
   /// Display: Role of person reporting
   /// Definition: The function of the individual who is reporting information on a patient, which could be a specific health care related profession, the patient him/herself, or a relative or friend
-  @JsonValue('111534')
   value111534,
 
   /// Display: DateTime problem observed
   /// Definition: The date and time that a symptom was noted
-  @JsonValue('111535')
   value111535,
 
   /// Display: DateTime of last evaluation
   /// Definition: The date and time of the most recent evaluation of an indicated problem
-  @JsonValue('111536')
   value111536,
 
   /// Display: Family Member with Risk Factor
   /// Definition: A patient's biological relative who exhibits a health factor that may indicate an increase in the patient's chances of developing a particular disease or medical problem
-  @JsonValue('111537')
   value111537,
 
   /// Display: Age at Occurrence
   /// Definition: The age at which an individual experienced a specific event, such as breast cancer
-  @JsonValue('111538')
   value111538,
 
   /// Display: Menopausal phase
   /// Definition: The current stage of an individual in her gynecological development
-  @JsonValue('111539')
   value111539,
 
   /// Display: Side of Family
   /// Definition: An indicator of paternal or maternal relationship
-  @JsonValue('111540')
   value111540,
 
   /// Display: Maternal
   /// Definition: Relating to biological female parentage
-  @JsonValue('111541')
   value111541,
 
   /// Display: Unspecified gynecological hormone
   /// Definition: A gynecological hormone for which the specific type is not specified; e.g. contraceptive, estrogen, Tamoxifen
-  @JsonValue('111542')
   value111542,
 
   /// Display: Breast feeding history
   /// Definition: An indicator of whether or not a patient ever provided breast milk to her offspring
-  @JsonValue('111543')
   value111543,
 
   /// Display: Average breast feeding period
   /// Definition: The average length of time that a patient provided breast milk to her offspring
-  @JsonValue('111544')
   value111544,
 
   /// Display: Substance Use History
   /// Definition: Information regarding usage by the patient of certain legal or illicit substances
-  @JsonValue('111545')
   value111545,
 
   /// Display: Used Substance Type
   /// Definition: A classification of a substance, such as alcohol or a legal or illicit drug
-  @JsonValue('111546')
   value111546,
 
   /// Display: Environmental Exposure History
   /// Definition: Information regarding exposure of the patient to potentially harmful environmental factors
-  @JsonValue('111547')
   value111547,
 
   /// Display: Environmental Factor
   /// Definition: A classification of a potentially harmful substance or gas in a subject's environment, such as asbestos, lead, or carcinogens
-  @JsonValue('111548')
   value111548,
 
   /// Display: Previous Reports
   /// Definition: Previous Structured Reports that could have relevant information for a current imaging service request
-  @JsonValue('111549')
   value111549,
 
   /// Display: Personal breast cancer history
   /// Definition: An indication that a patient has had a previous malignancy of the breast
-  @JsonValue('111550')
   value111550,
 
   /// Display: History of endometrial cancer
   /// Definition: Indicates a previous occurrence of cancer of the lining of the uterus
-  @JsonValue('111551')
   value111551,
 
   /// Display: History of ovarian cancer
   /// Definition: Indicates a previous occurrence of cancer of the lining of the ovary
-  @JsonValue('111552')
   value111552,
 
   /// Display: History of high risk lesion on previous biopsy
   /// Definition: Indicates a prior diagnosis of pre-cancerous cells or tissue removed for pathologic evaluation
-  @JsonValue('111553')
   value111553,
 
   /// Display: Post menopausal patient
   /// Definition: A female patient whose menstrual periods have ceased
-  @JsonValue('111554')
   value111554,
 
   /// Display: Late child bearing (after 30)
   /// Definition: A female patient whose first child was born after the patient was 30 years old
-  @JsonValue('111555')
   value111555,
 
   /// Display: BRCA1 breast cancer gene
   /// Definition: The first level genetic marker indicating risk for breast cancer
-  @JsonValue('111556')
   value111556,
 
   /// Display: BRCA2 breast cancer gene
   /// Definition: The second level genetic marker indicating risk for breast cancer
-  @JsonValue('111557')
   value111557,
 
   /// Display: BRCA3 breast cancer gene
   /// Definition: The third level genetic marker indicating risk for breast cancer
-  @JsonValue('111558')
   value111558,
 
   /// Display: Weak family history of breast cancer
   /// Definition: A patient's biological aunt, grandmother, or female cousin was diagnosed with breast cancer. Definition from BI-RADS®
-  @JsonValue('111559')
   value111559,
 
   /// Display: Intermediate family history of breast cancer
   /// Definition: A patient's biological mother or sister was diagnosed with breast cancer after they had gone through menopause. Definition from BI-RADS®
-  @JsonValue('111560')
   value111560,
 
   /// Display: Very strong family history of breast cancer
   /// Definition: A patient's biological mother or sister was diagnosed with breast cancer before they had gone through menopause, or more than one of the patient's first-degree relatives (biological mother or sister) were diagnosed with breast cancer after they had gone through menopause. Definition from BI-RADS®
-  @JsonValue('111561')
   value111561,
 
   /// Display: Family history of prostate cancer
   /// Definition: Previous diagnosis of a malignancy of the prostate gland in a biological relative
-  @JsonValue('111562')
   value111562,
 
   /// Display: Family history unknown
   /// Definition: The health record of a patient's biological relatives is not known
-  @JsonValue('111563')
   value111563,
 
   /// Display: Nipple discharge cytology
   /// Definition: The study of cells obtained from fluid emitted from the breast
-  @JsonValue('111564')
   value111564,
 
   /// Display: Uterine malformations
   /// Definition: A developmental abnormality resulting in an abnormal shape of the uterus
-  @JsonValue('111565')
   value111565,
 
   /// Display: Spontaneous Abortion
   /// Definition: A naturally occurring premature expulsion from the uterus of the products of conception - the embryo or a nonviable fetus
-  @JsonValue('111566')
   value111566,
 
   /// Display: Gynecologic condition
   /// Definition: An ailment/abnormality or state of the female reproductive tract
-  @JsonValue('111567')
   value111567,
 
   /// Display: Gynecologic surgery
   /// Definition: A surgical operation performed on any portion of the female reproductive tract
-  @JsonValue('111568')
   value111568,
 
   /// Display: Previous LBW or IUGR birth
   /// Definition: Prior pregnancy with a low birth weight baby or a fetus with Intrauterine Growth Restriction or Retardation
-  @JsonValue('111569')
   value111569,
 
   /// Display: Previous fetal malformation/syndrome
   /// Definition: History of at least one prior pregnancy with fetal anatomic abnormality(s)
-  @JsonValue('111570')
   value111570,
 
   /// Display: Previous RH negative or blood dyscrasia at birth
   /// Definition: History of delivering a Rhesis Isoimmunization affected child(ren) or a child(ren) with another blood disorder
-  @JsonValue('111571')
   value111571,
 
   /// Display: History of multiple fetuses
   /// Definition: History of at least one pregnancy that contained more than one fetus; e.g. twins, triplets, etc.
-  @JsonValue('111572')
   value111572,
 
   /// Display: Current pregnancy, known or suspected malformations/syndromes
   /// Definition: At least one fetus of this pregnancy has an anatomic abnormality(s) that is known to exist, or a "marker" is present that suggests the abnormality(s) may be present
-  @JsonValue('111573')
   value111573,
 
   /// Display: Family history, fetal malformation/syndrome
   /// Definition: Biological relatives have previously conceived a fetus with an anatomic abnormality(s)
-  @JsonValue('111574')
   value111574,
 
   /// Display: High
   /// Definition: A subjective descriptor for an elevated amount of exposure, use, or dosage, incurring high risk of adverse effects
-  @JsonValue('111575')
   value111575,
 
   /// Display: Medium
   /// Definition: A subjective descriptor for a moderate amount of exposure, use, or dosage, incurring medium risk of adverse effects
-  @JsonValue('111576')
   value111576,
 
   /// Display: Low
   /// Definition: A subjective descriptor for a limited amount of exposure, use, or dosage, incurring low risk of adverse effects
-  @JsonValue('111577')
   value111577,
 
   /// Display: Dose frequency
   /// Definition: A measurement of the rate of occurrence of which a patient takes a certain medication
-  @JsonValue('111578')
   value111578,
 
   /// Display: Rate of exposure
   /// Definition: The quantity per unit of time that a patient was or is being exposed to an environmental irritant
-  @JsonValue('111579')
   value111579,
 
   /// Display: Volume of use
   /// Definition: The quantity per unit of time that a medication or substance was or is being used
-  @JsonValue('111580')
   value111580,
 
   /// Display: Relative dose amount
   /// Definition: A qualitative descriptor for the amount of a medication that was or is being taken
-  @JsonValue('111581')
   value111581,
 
   /// Display: Relative amount of exposure
   /// Definition: A qualitative descriptor for the amount of present or past exposure to an environmental irritant
-  @JsonValue('111582')
   value111582,
 
   /// Display: Relative amount of use
   /// Definition: A qualitative descriptor for the amount of a medication or substance that was or is being used
-  @JsonValue('111583')
   value111583,
 
   /// Display: Relative dose frequency
   /// Definition: A qualitative descriptor for the frequency with which a medication was or is being taken
-  @JsonValue('111584')
   value111584,
 
   /// Display: Relative frequency of exposure
   /// Definition: A qualitative descriptor for the frequency of present or past exposure to an environmental irritant
-  @JsonValue('111585')
   value111585,
 
   /// Display: Relative frequency of use
   /// Definition: A qualitative descriptor for the frequency with which a medication or substance was or is being used
-  @JsonValue('111586')
   value111586,
 
   /// Display: No known exposure
   /// Definition: Patient is not known to have been exposed to or used the substance or medication
-  @JsonValue('111587')
   value111587,
 
   /// Display: Recall for technical reasons
   /// Definition: Patient returns for additional images to improve the quality of the most recent exam
-  @JsonValue('111590')
   value111590,
 
   /// Display: Recall for imaging findings
   /// Definition: Patient returns for additional images to clarify findings from the most recent exam
-  @JsonValue('111591')
   value111591,
 
   /// Display: Recall for patient symptoms/ clinical findings
   /// Definition: Patient returns for additional images to clarify symptoms or signs reported by the patient or a healthcare professional at the time of the most recent exam
-  @JsonValue('111592')
   value111592,
 
   /// Display: LBW or IUGR
   /// Definition: Number of births with low birth weight or intrauterine growth restriction
-  @JsonValue('111593')
   value111593,
 
   /// Display: Green filter
   /// Definition: Filter that transmits green light while blocking the other colors, typically centered at 510-540 nm
-  @JsonValue('111601')
   value111601,
 
   /// Display: Red filter
   /// Definition: Filter that transmits red light while blocking the other colors, typically centered at 630-680 nm
-  @JsonValue('111602')
   value111602,
 
   /// Display: Blue filter
   /// Definition: Filter that transmits blue while blocking the other colors, typically centered at 460-480 nm
-  @JsonValue('111603')
   value111603,
 
   /// Display: Yellow-green filter
   /// Definition: A filter of 560nm that is used for retinal imaging and can provide good contrast and good visibility of the retinal vasculature
-  @JsonValue('111604')
   value111604,
 
   /// Display: Blue-green filter
   /// Definition: A filter of 490nm that is used for retinal imaging because of excessive scattering of some retinal structures at very short wavelengths
-  @JsonValue('111605')
   value111605,
 
   /// Display: Infrared filter
   /// Definition: Filter that transmits the infrared spectrum, which is light that lies outside of the visible spectrum, with wavelengths longer than those of red light, while blocking visible light
-  @JsonValue('111606')
   value111606,
 
   /// Display: Polarizing filter
   /// Definition: A filter that reduces reflections from non-metallic surfaces such as glass or water by blocking light waves that are vibrating at selected angles to the filter
-  @JsonValue('111607')
   value111607,
 
   /// Display: No filter
   /// Definition: No filter used
-  @JsonValue('111609')
   value111609,
 
   /// Display: Field 1 for Joslin 3 field
   /// Definition: Joslin NM-1 is a 45 degree field focused centrally between the temporal margin of optic disc and the center of the macula: Center the camera on the papillomacular bundle midway between the temporal margin of the optic disc and the center of the macula. The horizontal centerline of the image should pass directly through the center of the disc
-  @JsonValue('111621')
   value111621,
 
   /// Display: Field 2 for Joslin 3 field
   /// Definition: Joslin NM-2 is a 45 degree field focused superior temporal to the optic disc: Center the camera laterally approximately one-half disc diameter temporal to the center of the macula. The lower edge of the field is tangent to a horizontal line passing through the upper edge of the optic disc. The image is taken temporal to the macula but includes more retinal nasal and superior to the macula than standard field 2
-  @JsonValue('111622')
   value111622,
 
   /// Display: Field 3 for Joslin 3 field
   /// Definition: Joslin NM-3 is a 45 degree field focused nasal to the optic disc: This field is nasal to the optic disc and may include part of the optic disc. The horizontal centerline of the image should pass tangent to the lower edge of the optic disc
-  @JsonValue('111623')
   value111623,
 
   /// Display: Diffuse direct illumination
   /// Definition: A broad or "soft" light supplied from a single source
-  @JsonValue('111625')
   value111625,
 
   /// Display: Scheimpflug Camera
   /// Definition: A slit reflected light microscope, which has the ability to form an image of the back scattered light from the eye in a sagittal plane. Scheimpflug cameras are able to achieve a wide depth of focus by employing the "Sheimpflug principle" where the lens and image planes are not parallel with each other. Rotating Sheimplug cameras are able to generate three-dimensional images and calculate measurements of the anterior chamber of the eye
-  @JsonValue('111626')
   value111626,
 
   /// Display: Scotopic light
   /// Definition: Lighting condition approximately 0.04 lux
-  @JsonValue('111627')
   value111627,
 
   /// Display: Mesopic light
   /// Definition: Lighting condition approximately 4 lux
-  @JsonValue('111628')
   value111628,
 
   /// Display: Photopic light
   /// Definition: Lighting condition approximately 40 lux
-  @JsonValue('111629')
   value111629,
 
   /// Display: Dynamic light
   /// Definition: Acquisition preceded by intense light
-  @JsonValue('111630')
   value111630,
 
   /// Display: Average Glandular Dose
   /// Definition: Calculated from values of entrance exposure in air, the X-Ray beam quality (half-value layer), and compressed breast thickness, is the energy deposited per unit mass of glandular tissue averaged over all the glandular tissue in the breast
-  @JsonValue('111631')
   value111631,
 
   /// Display: Anode Target Material
   /// Definition: The primary material in the anode of an X-Ray source
-  @JsonValue('111632')
   value111632,
 
   /// Display: Compression Thickness
   /// Definition: The average thickness of the body part examined when compressed, if compression has been applied during X-Ray exposure
-  @JsonValue('111633')
   value111633,
 
   /// Display: Half Value Layer
   /// Definition: Thickness of Aluminum required to reduce the X-Ray output at the patient entrance surface by a factor of two
-  @JsonValue('111634')
   value111634,
 
   /// Display: X-Ray Grid
   /// Definition: An anti-scatter device based on radiation absorbing strips above the detector; e.g. in the patient support
-  @JsonValue('111635')
   value111635,
 
   /// Display: Entrance Exposure at RP
   /// Definition: Exposure measurement in air at the reference point that does not include back scatter, according to MQCM 1999
-  @JsonValue('111636')
   value111636,
 
   /// Display: Accumulated Average Glandular Dose
   /// Definition: Average Glandular Dose to a single breast accumulated over multiple images
-  @JsonValue('111637')
   value111637,
 
   /// Display: Patient Equivalent Thickness
   /// Definition: Value of the control variable used to parametrize the Automatic Exposure Control (AEC) closed loop; e.g. "Water Value"
-  @JsonValue('111638')
   value111638,
 
   /// Display: Fixed grid
   /// Definition: An X-Ray Grid that does not move during exposure
-  @JsonValue('111641')
   value111641,
 
   /// Display: Focused grid
   /// Definition: An X-Ray Grid with radiation absorbing strips that are focused toward the focal spot, to eliminate grid cutoff
-  @JsonValue('111642')
   value111642,
 
   /// Display: Reciprocating grid
   /// Definition: An X-Ray Grid that is designed to move during exposure, to eliminate the appearance of grid lines on the image
-  @JsonValue('111643')
   value111643,
 
   /// Display: Parallel grid
   /// Definition: An X-Ray Grid with radiation absorbing strips that are parallel to each other and that is used only with long source to image distances
-  @JsonValue('111644')
   value111644,
 
   /// Display: Crossed grid
   /// Definition: An X-Ray Grid with crossed radiation absorbing strips used for more complete cleanup of scatter radiation
-  @JsonValue('111645')
   value111645,
 
   /// Display: No grid
   /// Definition: No X-Ray Grid was used due to low scatter conditions
-  @JsonValue('111646')
   value111646,
 
   /// Display: Spectacle Prescription Report
   /// Definition: The spectacle prescription for a patient
-  @JsonValue('111671')
   value111671,
 
   /// Display: Add Near
   /// Definition: Refractive measurements of the eye to correct for inability to focus at near while wearing the distance prescription
-  @JsonValue('111672')
   value111672,
 
   /// Display: Add Intermediate
   /// Definition: Refractive measurements of the eye to correct for inability to focus at intermediate distance while wearing the distance prescription
-  @JsonValue('111673')
   value111673,
 
   /// Display: Add Other
   /// Definition: Refractive measurements of the eye to correct for inability to focus at the specified distance while wearing the distance prescription
-  @JsonValue('111674')
   value111674,
 
   /// Display: Horizontal Prism Power
   /// Definition: The power of a prism to bend light in the horizontal direction, in prism diopters
-  @JsonValue('111675')
   value111675,
 
   /// Display: Horizontal Prism Base
   /// Definition: Direction of the base of a horizontal prism -- either in (toward the nose), or out (away from the nose)
-  @JsonValue('111676')
   value111676,
 
   /// Display: Vertical Prism Power
   /// Definition: The power of a prism to bend light in the vertical direction, in prism diopters
-  @JsonValue('111677')
   value111677,
 
   /// Display: Vertical Prism Base
   /// Definition: Direction of the base of a vertical prism -- either up, or down
-  @JsonValue('111678')
   value111678,
 
   /// Display: Distance Pupillary Distance
   /// Definition: Distance in mm between the pupils when the patient's object of regard is in the distance
-  @JsonValue('111679')
   value111679,
 
   /// Display: Near Pupillary Distance
   /// Definition: Distance in mm between the pupils when the patient's object of regard is at near
-  @JsonValue('111680')
   value111680,
 
   /// Display: Autorefraction Visual Acuity
   /// Definition: A patient's vision with the correction measured by an autorefractor in place
-  @JsonValue('111685')
   value111685,
 
   /// Display: Habitual Visual Acuity
   /// Definition: A patient's vision with whichever vision correction the patient customarily wears
-  @JsonValue('111686')
   value111686,
 
   /// Display: Prescription Visual Acuity
   /// Definition: A patient's vision with the final spectacle prescription in place
-  @JsonValue('111687')
   value111687,
 
   /// Display: Right Eye Rx
   /// Definition: The spectacle prescription for the right eye
-  @JsonValue('111688')
   value111688,
 
   /// Display: Left Eye Rx
   /// Definition: The spectacle prescription for the left eye
-  @JsonValue('111689')
   value111689,
 
   /// Display: Macular Grid Thickness and Volume Report
   /// Definition: A macular grid thickness and volume report for a patient. The macular grid is an analytic tool described in PS3.1
-  @JsonValue('111690')
   value111690,
 
   /// Display: Number of Images Used for Macular Measurements
   /// Definition: Number of images used for the macular grid measurement
-  @JsonValue('111691')
   value111691,
 
   /// Display: Number of Samples Used per Image
   /// Definition: Number of samples used per Image for analysis
-  @JsonValue('111692')
   value111692,
 
   /// Display: Analysis Quality Rating
   /// Definition: A numeric rating of the quality of the entire analysis with respect to grading and diagnostic purposes. Higher numbers indicate greater quality
-  @JsonValue('111693')
   value111693,
 
   /// Display: Image Set Quality Rating
   /// Definition: A numeric rating of the quality of an entire image set with respect to grading and diagnostic purposes. Higher numbers indicate greater quality
-  @JsonValue('111694')
   value111694,
 
   /// Display: Interfering Tears or Drops
   /// Definition: Tear film or drops affecting test quality
-  @JsonValue('111695')
   value111695,
 
   /// Display: Visual Fixation Quality During Acquisition
   /// Definition: The assessment of the centricity and persistence of the visual fixation (direction of gaze) during the acquisition
-  @JsonValue('111696')
   value111696,
 
   /// Display: Visual Fixation Quality Problem
   /// Definition: The reason why the patient's visual fixation was not steady or was indeterminate
-  @JsonValue('111697')
   value111697,
 
   /// Display: Ophthalmic Macular Grid Problem
   /// Definition: The reason why the macular grid measurements may be questionable
-  @JsonValue('111698')
   value111698,
 
   /// Display: Specimen Container Identifier
   /// Definition: Identifier of container (box, block, microscope slide, etc.) for the specimen under observation
-  @JsonValue('111700')
   value111700,
 
   /// Display: Processing type
   /// Definition: Type of processing that tissue specimen underwent
-  @JsonValue('111701')
   value111701,
 
   /// Display: DateTime of processing
   /// Definition: Date and time of processing step
-  @JsonValue('111702')
   value111702,
 
   /// Display: Processing step description
   /// Definition: Description of the individual step in the tissue processing sequence
-  @JsonValue('111703')
   value111703,
 
   /// Display: Sampling Method
   /// Definition: Method of sampling used to derive specimen from its parent
-  @JsonValue('111704')
   value111704,
 
   /// Display: Parent Specimen Identifier
   /// Definition: Identifier of the parent specimen that gave rise to the current specimen
-  @JsonValue('111705')
   value111705,
 
   /// Display: Issuer of Parent Specimen Identifier
   /// Definition: Assigning authority for parent specimen's identifier
-  @JsonValue('111706')
   value111706,
 
   /// Display: Parent specimen type
   /// Definition: Parent specimen type that gave rise to current specimen
-  @JsonValue('111707')
   value111707,
 
   /// Display: Position Frame of Reference
   /// Definition: Description of coordinate system and origin reference point on parent specimen, or parent specimen container, or image used for localizing the sampling site or location within container or image
-  @JsonValue('111708')
   value111708,
 
   /// Display: Location of sampling site
   /// Definition: Reference to image of parent specimen localizing the sampling site; may include referenced Presentation State object
-  @JsonValue('111709')
   value111709,
 
   /// Display: Location of sampling site X offset
   /// Definition: Location of sampling site of specimen (nominal center) relative to the Position Frame of Reference in the X dimension
-  @JsonValue('111710')
   value111710,
 
   /// Display: Location of sampling site Y offset
   /// Definition: Location of sampling site of specimen (nominal center) relative to the Position Frame of Reference in the Y dimension
-  @JsonValue('111711')
   value111711,
 
   /// Display: Location of sampling site Z offset
   /// Definition: Location of sampling site of specimen (nominal center) relative to the Position Frame of Reference in the Z dimension
-  @JsonValue('111712')
   value111712,
 
   /// Display: Location of Specimen
   /// Definition: Description of specimen location, either in absolute terms or relative to the Position Frame of Reference
-  @JsonValue('111718')
   value111718,
 
   /// Display: Location of Specimen X offset
   /// Definition: Location of specimen (nominal center) relative to the Position Frame of Reference in the X dimension
-  @JsonValue('111719')
   value111719,
 
   /// Display: Location of Specimen Y offset
   /// Definition: Location of specimen (nominal center) relative to the Position Frame of Reference in the Y dimension
-  @JsonValue('111720')
   value111720,
 
   /// Display: Location of Specimen Z offset
   /// Definition: Location of specimen (nominal center) relative to the Position Frame of Reference in the Z dimension
-  @JsonValue('111721')
   value111721,
 
   /// Display: Visual Marking of Specimen
   /// Definition: Description of visual distinguishing identifiers; e.g. ink, or a particular shape of the specimen
-  @JsonValue('111723')
   value111723,
 
   /// Display: Issuer of Specimen Identifier
   /// Definition: Assigning authority for specimen identifier
-  @JsonValue('111724')
   value111724,
 
   /// Display: Dissection with entire specimen submission
   /// Definition: Dissection of specimen with submission of all its sections for further processing or examination
-  @JsonValue('111726')
   value111726,
 
   /// Display: Dissection with representative sections submission
   /// Definition: Dissection of specimen with submission of representative sections for further processing or examination
-  @JsonValue('111727')
   value111727,
 
   /// Display: Specimen storage
   /// Definition: A workflow step, during which tissue specimens are stored in a climate-controlled environment
-  @JsonValue('111729')
   value111729,
 
   /// Display: Transmission illumination
   /// Definition: Transmission illumination method for specimen microscopy
-  @JsonValue('111741')
   value111741,
 
   /// Display: Reflection illumination
   /// Definition: Reflection illumination method for specimen microscopy
-  @JsonValue('111742')
   value111742,
 
   /// Display: Epifluorescence illumination
   /// Definition: Epifluorescence illumination method for specimen microscopy
-  @JsonValue('111743')
   value111743,
 
   /// Display: Brightfield illumination
   /// Definition: Brightfield illumination method for specimen microscopy
-  @JsonValue('111744')
   value111744,
 
   /// Display: Darkfield illumination
   /// Definition: Darkfield illumination method for specimen microscopy
-  @JsonValue('111745')
   value111745,
 
   /// Display: Oblique illumination
   /// Definition: Oblique illumination method for specimen microscopy
-  @JsonValue('111746')
   value111746,
 
   /// Display: Phase contrast illumination
   /// Definition: Phase contrast illumination method for specimen microscopy
-  @JsonValue('111747')
   value111747,
 
   /// Display: Differential interference contrast
   /// Definition: Differential interference contrast method for specimen microscopy
-  @JsonValue('111748')
   value111748,
 
   /// Display: Total internal reflection fluorescence
   /// Definition: Total internal reflection fluorescence method for specimen microscopy
-  @JsonValue('111749')
   value111749,
 
   /// Display: Ultrasound Contact
   /// Definition: A method of obtaining ophthalmic axial measurements that uses ultrasound, and that requires applanation of the cornea
-  @JsonValue('111750')
   value111750,
 
   /// Display: Ultrasound Immersion
   /// Definition: A method of obtaining ophthalmic axial measurements that uses ultrasound, and that requires immersion of the patient's eye in fluid as he lies in a supine position
-  @JsonValue('111751')
   value111751,
 
   /// Display: Optical
   /// Definition: A method of obtaining ophthalmic axial measurements that uses light
-  @JsonValue('111752')
   value111752,
 
   /// Display: Manual Keratometry
   /// Definition: Measurements taken of the corneal curvature using a manual keratometer
-  @JsonValue('111753')
   value111753,
 
   /// Display: Auto Keratometry
   /// Definition: Measurements taken of the corneal curvature using an automated keratometer
-  @JsonValue('111754')
   value111754,
 
   /// Display: Simulated Keratometry
   /// Definition: Simulated Keratometry measurements derived from corneal topography
-  @JsonValue('111755')
   value111755,
 
   /// Display: Equivalent K-reading
   /// Definition: Corneal power measurements using Scheimpflug camera
-  @JsonValue('111756')
   value111756,
 
   /// Display: Haigis
   /// Definition: The Haigis IOL calculation formula. Haigis W, Lege B, Miller N, Schneider B. Comparison of immersion ultrasound biometry and partial coherence interferometry for intraocular lens calculation according to Haigis. Graefes Arch Clin Exp Ophthalmol 2000;238:765-73
-  @JsonValue('111760')
   value111760,
 
   /// Display: Haigis-L
   /// Definition: The Haigis-L IOL calculation formula. Haigis W. Intraocular lens calculation after refractive surgery for myopia: Haigis-L formula. J Cataract Refract Surg. 2008 Oct;34(10):1658-63
-  @JsonValue('111761')
   value111761,
 
   /// Display: Holladay 1
   /// Definition: The Holladay 1 IOL calculation formula. Holladay JT, Prager TC, Chandler TY, Musgrove KH, Lewis JW, Ruiz RS. A three-part system for refining intraocular lens power calculations. J Cataract Refract Surg. 1988; 14:17-24
-  @JsonValue('111762')
   value111762,
 
   /// Display: Holladay 2
   /// Definition: The Holladay 2 IOL calculation formula
-  @JsonValue('111763')
   value111763,
 
   /// Display: Hoffer Q
   /// Definition: The Hoffer Q IOL calculation formula. Hoffer KJ. The Hoffer Q formula: a comparison of theoretic and regression formulas. J Cataract Refract Surg 1993;19:700-12. Errata. J Cataract Refract Surg 1994;20:677 and 2007;33:2-3
-  @JsonValue('111764')
   value111764,
 
   /// Display: Olsen
   /// Definition: The Olsen IOL calculation formula. Olsen T. Calculation of intraocular lens power: a review. Acta Ophthalmol. Scand. 2007: 85: 472-485
-  @JsonValue('111765')
   value111765,
 
   /// Display: SRKII
   /// Definition: The SRKII IOL calculation formula. Sanders DR, Retzlaff J, Kraff MC. Comparison of the SRK II formula and other second generation formulas. J Cataract Refract Surg. 1988 Mar;14(2):136-41
-  @JsonValue('111766')
   value111766,
 
   /// Display: SRK-T
   /// Definition: The SRK-T IOL calculation formula. Retzlaff JA, Sanders DR, Kraff MC. Development of the SRK/T intraocular lens implant power calculation formula. J Cataract Refract Surg 1990;16:333-40. Erratum 1990;16:528
-  @JsonValue('111767')
   value111767,
 
   /// Display: ACD Constant
   /// Definition: The "ACD Constant" used in IOL calculation
-  @JsonValue('111768')
   value111768,
 
   /// Display: Haigis a0
   /// Definition: The "Haigis a0" constant used in IOL calculation
-  @JsonValue('111769')
   value111769,
 
   /// Display: Haigis a1
   /// Definition: The "Haigis a1" constant used in IOL calculation
-  @JsonValue('111770')
   value111770,
 
   /// Display: Haigis a2
   /// Definition: The "Haigis a2" constant used in IOL calculation
-  @JsonValue('111771')
   value111771,
 
   /// Display: Hoffer pACD Constant
   /// Definition: The "Hoffer pACD Constant" used in IOL calculation
-  @JsonValue('111772')
   value111772,
 
   /// Display: Surgeon Factor
   /// Definition: The "Surgeon Factor" constant used in IOL calculation
-  @JsonValue('111773')
   value111773,
 
   /// Display: Front Of Cornea To Front Of Lens
   /// Definition: Anterior chamber depth defined as the front of the cornea to the front of the lens
-  @JsonValue('111776')
   value111776,
 
   /// Display: Back Of Cornea To Front Of Lens
   /// Definition: Anterior chamber depth defined as the back of the cornea to the front of the lens
-  @JsonValue('111777')
   value111777,
 
   /// Display: Single or Anterior Lens
   /// Definition: Refers to the anterior lens when there are two lenses in the eye. The distance, in mm, from the anterior surface of the lens to the posterior surface of the lens
-  @JsonValue('111778')
   value111778,
 
   /// Display: Posterior Lens
   /// Definition: Refers to the posterior lens when there are two lenses in the eye. The distance, in mm, from the anterior surface of the lens to the posterior surface of the lens
-  @JsonValue('111779')
   value111779,
 
   /// Display: Measurement From This Device
   /// Definition: Value obtained from measurements taken by the device creating this SOP Instance
-  @JsonValue('111780')
   value111780,
 
   /// Display: External Data Source
   /// Definition: Value obtained by data transfer from an external source - not from measurements taken by the device providing the value
-  @JsonValue('111781')
   value111781,
 
   /// Display: Axial Measurements SOP Instance
   /// Definition: Axial Measurements DICOM SOP Instance
-  @JsonValue('111782')
   value111782,
 
   /// Display: Refractive Measurements SOP Instance
   /// Definition: Refractive Measurements DICOM SOP Instance
-  @JsonValue('111783')
   value111783,
 
   /// Display: Standard Deviation of measurements used
   /// Definition: Standard Deviation is a simple measure of the variability of a data set
-  @JsonValue('111786')
   value111786,
 
   /// Display: Signal to Noise Ratio
   /// Definition: Signal to Noise Ratio of the data samples taken to create a measurement
-  @JsonValue('111787')
   value111787,
 
   /// Display: Spherical projection
   /// Definition: Projection from 2D image pixels to 3D Cartesian coordinates based on a spherical mathematical model
-  @JsonValue('111791')
   value111791,
 
   /// Display: Surface contour mapping
   /// Definition: Mapping from 2D image pixels to 3D Cartesian coordinates based on measurements of the retinal surface; e.g. of the retina, derived via a measurement technology such as Optical Coherence Tomography, Ultrasound etc.
-  @JsonValue('111792')
   value111792,
 
   /// Display: Visual Field 24-2 Test Pattern
   /// Definition: Test pattern, nominally covering an area within 24° of fixation. Consists of 54 test points a minimum of 3° from each meridian and placed 6° apart. The "-2" distinguishes this from another 24° pattern (no longer supported)
-  @JsonValue('111800')
   value111800,
 
   /// Display: Visual Field 10-2 Test Pattern
   /// Definition: Test pattern, nominally covering an area within 10° of fixation. Consists of 68 test points a minimum of 1° from each meridian and placed 2° apart. The "-2" in this case indicates its point layout to be similar to the 30-2 and 24-2
-  @JsonValue('111801')
   value111801,
 
   /// Display: Visual Field 30-2 Test Pattern
   /// Definition: Test pattern consisting of test point locations within 30° of fixation. Consists of 76 test points a minimum of 3° from each meridian and placed 6° apart. The "-2" distinguishes this from another 30° pattern (no longer supported)
-  @JsonValue('111802')
   value111802,
 
   /// Display: Visual Field 60-4 Test Pattern
   /// Definition: Test pattern consisting of 60 test point locations between 30° and 60° of fixation a minimum of 6° from each meridian and placed 12° apart. The "-4" distinguishes this from a similar 60° pattern having 4 additional points
-  @JsonValue('111803')
   value111803,
 
   /// Display: Visual Field Macula Test Pattern
   /// Definition: Test pattern consisting of 16 test point locations within 10° of fixation a minimum of 1° from each meridian and placed 2° apart
-  @JsonValue('111804')
   value111804,
 
   /// Display: Visual Field Central 40 Point Test Pattern
   /// Definition: Test pattern consisting of 40 test point locations within 30° of fixation that spread out radially from fixation
-  @JsonValue('111805')
   value111805,
 
   /// Display: Visual Field Central 76 Point Test Pattern
   /// Definition: Test pattern consisting of 76 test point locations within 30° of fixation a minimum of 3° from each meridian and placed 6° apart
-  @JsonValue('111806')
   value111806,
 
   /// Display: Visual Field Peripheral 60 Point Test Pattern
   /// Definition: Test pattern consisting of 60 test point locations between 30° and 60° of fixation a minimum of 6° from each meridian and placed 12° apart
-  @JsonValue('111807')
   value111807,
 
   /// Display: Visual Field Full Field 81 Point Test Pattern
   /// Definition: Test pattern consisting of 81 test point locations within 60° of fixation that spread out radially from fixation
-  @JsonValue('111808')
   value111808,
 
   /// Display: Visual Field Full Field 120 Point Test Pattern
   /// Definition: Test pattern consisting of 120 test point locations within 60° of fixation that spread out radially from fixation, concentrated in the nasal hemisphere
-  @JsonValue('111809')
   value111809,
 
   /// Display: Visual Field G Test Pattern
   /// Definition: Test pattern for Glaucoma and general visual field assessment with 59 test locations of which 16 test locations are in the macular area (up to 10° eccentricity) and where the density of test location is reduced with eccentricity. The test can be extended with the inclusion of 14 test locations between 30° and 60° eccentricity, 6 of which are located at the nasal step
-  @JsonValue('111810')
   value111810,
 
   /// Display: Visual Field M Test Pattern
   /// Definition: Test pattern for the macular area. Orthogonal test pattern with 0.7° spacing within the central 4° of eccentricity and reduced density of test locations between 4 and 10, 5° of eccentricity. 81 test locations over all. The test can be extended to include the test locations of the Visual Field G Test Pattern between 10, 5° and 60°
-  @JsonValue('111811')
   value111811,
 
   /// Display: Visual Field 07 Test Pattern
   /// Definition: Full field test pattern with 48 test locations from 0-30° and 82 test locations from 30-70°. Reduced test point density with increased eccentricity. Can be combined with screening and threshold strategies
-  @JsonValue('111812')
   value111812,
 
   /// Display: Visual Field LVC Test Pattern
   /// Definition: Low Vision Central. Orthogonal off-center test pattern with 6° spacing. 75 test locations within the central 30°. Corresponds with the 32/30-2 excluding the 2 locations at the blind spot, including a macular test location. The LVC is linked with a staircase threshold strategy starting at 0 dB intensity and applies stimulus area V
-  @JsonValue('111813')
   value111813,
 
   /// Display: Visual Field Central Test Pattern
   /// Definition: General test corresponding to the 30-2 but excluding the 2 test locations in the blind spot area, hence with 74 instead of 76 test locations
-  @JsonValue('111814')
   value111814,
 
   /// Display: Visual Field SITA-Standard Test Strategy
   /// Definition: Swedish Interactive Thresholding Algorithm (SITA). Strategy gains testing efficiency through use of visual field and information theory models. In: Bengtsson B, Olsson J, Heijl A, Rootzen H. A new generation of algorithms for computerized threshold perimetry, SITA. Acta Ophthalmologica Scandinavica, 1997, 75: 368-375
-  @JsonValue('111815')
   value111815,
 
   /// Display: Visual Field SITA-SWAP Test Strategy
   /// Definition: Adaptation of SITA testing methods to Blue-Yellow testing
-  @JsonValue('111816')
   value111816,
 
   /// Display: Visual Field SITA-Fast Test Strategy
   /// Definition: Similar to SITA-Standard but with less strict criteria for closing test points. Intended for patients who must be tested in the shortest possible time. In: Bengtsson B, Hejl A. SITA Fast, a new rapid perimetric threshold test. Description of methods and evaluation in patients with manifest and suspect glaucoma. Acta Ophthalmologica Scandinavica, 1998, 76: 431-437
-  @JsonValue('111817')
   value111817,
 
   /// Display: Visual Field Full Threshold Test Strategy
   /// Definition: Threshold test algorithm that determines a patient's sensitivity at each test point in the threshold test pattern by adjusting intensity by 4 dB steps until the patient changes their response, and then adjusts the intensity in the opposite direction by 2 dB steps until the patient changes their response again. The last stimulus seen by the patient is recognized as the threshold for that point. The starting values are determined by first thresholding a "primary" point in each quadrant then using the results of each primary point to determine the starting values for neighboring points
-  @JsonValue('111818')
   value111818,
 
   /// Display: Visual Field FastPac Test Strategy
   /// Definition: Similar to the Full Threshold algorithm except that it steps by 3 dB and only crosses the threshold only once. In: Flanagan JG, Wild JM, Trope GE. Evaluation of FASTPAC, a new strategy for threshold estimation with the Humphrey Field Analyzer, in a glaucomatous population. Ophthalmology, 1993, 100: 949-954
-  @JsonValue('111819')
   value111819,
 
   /// Display: Visual Field Full From Prior Test Strategy
   /// Definition: Identical to Full Threshold except that starting values are determined by the results of a previous test performed using the same test pattern and the Full Threshold test strategy
-  @JsonValue('111820')
   value111820,
 
   /// Display: Visual Field Optima Test Strategy
   /// Definition: Similar to FastPac except that the steps are pseudo-dynamic (differ based on the intensity of the last presentation)
-  @JsonValue('111821')
   value111821,
 
   /// Display: Visual Field Two-Zone Test Strategy
   /// Definition: Suprathreshold testing strategy, in which each point is initially tested using stimulus that is 6 dB brighter than the expected hill of vision. If the patient does not respond, the stimulus is presented a second time at the same brightness. If the patient sees either presentation, the point is marked as "seen"; otherwise it is marked as "not seen"
-  @JsonValue('111822')
   value111822,
 
   /// Display: Visual Field Three-Zone Test Strategy
   /// Definition: An extension of the two-zone strategy in which test points where the second stimulus is not seen are presented with a third stimulus at maximum brightness
-  @JsonValue('111823')
   value111823,
 
   /// Display: Visual Field Quantify-Defects Test Strategy
   /// Definition: An extension of the two-zone strategy, in which test points where the second stimulus is not seen receive threshold testing to quantify the depth of any detected scotomas
-  @JsonValue('111824')
   value111824,
 
   /// Display: Visual Field TOP Test Strategy
   /// Definition: Tendency Oriented Perimetry. Fast thresholding algorithm. Test strategy makes use of the interaction between neighboring test locations to reduce the test time compared to normal full threshold strategy by 60-80%. In: Morales J, Weitzman ML, Gonzalez de la Rosa M. Comparison between Tendency-Oriented Perimetry (TOP) and octopus threshold perimetry. Ophthalmology, 2000, 107: 134-142
-  @JsonValue('111825')
   value111825,
 
   /// Display: Visual Field Dynamic Test Strategy
   /// Definition: Dynamic strategy is a fast thresholding strategy reducing test duration by adapting the dB step sizes according to the frequency-of-seeing curve of the threshold. Reduction of test time compared to normal full threshold strategy 30-50%
-  @JsonValue('111826')
   value111826,
 
   /// Display: Visual Field Normal Test Strategy
   /// Definition: Traditional full threshold staircase strategy. Initial intensities are presented, based on anchor point sensitivities in each quadrant and based on already known neighboring sensitivities. In a first run, thresholds are changed in 4dB steps until the first response reversal. Then the threshold is changed in 2 dB steps until the second response reversal. The threshold is calculated as the average between the last seen and last not-seen stimulus, supposed to correspond with the 50% point in the frequency-of-seeing curve
-  @JsonValue('111827')
   value111827,
 
   /// Display: Visual Field 1-LT Test Strategy
   /// Definition: One level screening test: Each test location is tested with a single intensity. The result is shown as seen or not-seen. The intensity can either be a 0 dB stimulus or a predefined intensity
-  @JsonValue('111828')
   value111828,
 
   /// Display: Visual Field 2-LT Test Strategy
   /// Definition: Two level screening test: Each test location is initially tested 6 dB brighter than the age corrected normal value
-  @JsonValue('111829')
   value111829,
 
   /// Display: Visual Field LVS Test Strategy
   /// Definition: Low Vision Strategy is a full threshold normal strategy with the exception that it starts at 0 dB intensity and applies stimulus area V
-  @JsonValue('111830')
   value111830,
 
   /// Display: Visual Field GATE Test Strategy
   /// Definition: German Adaptive Threshold Estimation is a fast strategy based on a modified 4-2 staircase algorithm, using prior visual fields to calculate the starting intensity. In: Chiefer U, Pascual JP, Edmunds B, Feudner E, Hoffmann EM, Johnson CA, Lagreze WA, Pfeiffer N, Sample PA, Staubach F, Weleber RG, Vonthein R, Krapp E, Paetzold J. Comparison of the new perimetric GATE strategy with conventional full-threshold and SITA standard strategies. Investigative Ophthalmology and Visual Science, 2009, 51: 488-494
-  @JsonValue('111831')
   value111831,
 
   /// Display: Visual Field GATEi Test Strategy
   /// Definition: Similar to GATE. The i stands for initial. If there was no prior visual field test to calculate the starting values, an anchor point method is used to define the local start values
-  @JsonValue('111832')
   value111832,
 
   /// Display: Visual Field 2LT-Dynamic Test Strategy
   /// Definition: A test started as two level screening test. In the course of the test, the threshold of relative defects and/or normal test locations has been quantified using the dynamic threshold strategy
-  @JsonValue('111833')
   value111833,
 
   /// Display: Visual Field 2LT-Normal Test Strategy
   /// Definition: A test started as two level screening test. In the course of the test, the threshold of relative defects and/or normal test locations has been quantified using the normal full threshold strategy
-  @JsonValue('111834')
   value111834,
 
   /// Display: Visual Field Fast Threshold Test Strategy
   /// Definition: Takes neighborhood test point results into account and offers stimuli with an adapted value to save time
-  @JsonValue('111835')
   value111835,
 
   /// Display: Visual Field CLIP Test Strategy
   /// Definition: Continuous Luminance Incremental Perimetry, which measures at first the individual reaction time of the patient and threshold values in every quadrant. The starting value for the main test is slightly below in individual threshold
-  @JsonValue('111836')
   value111836,
 
   /// Display: Visual Field CLASS Strategy
   /// Definition: A supra threshold screening strategy. The starting stimuli intensities depend on the classification of the patient's visual hill by measuring the central (fovea) or peripheral (15° meridian) threshold. The result of each dot slightly underestimates the sensitivity value (within 5 dB)
-  @JsonValue('111837')
   value111837,
 
   /// Display: Age corrected
   /// Definition: Mode for determining the starting luminance for screening test points - the starting luminance s is chosen based on the age of the patient
-  @JsonValue('111838')
   value111838,
 
   /// Display: Threshold related
   /// Definition: Mode for determining the starting luminance for screening test points - the starting luminance is chosen based on the results of thresholding a set of "primary" test points (one in each quadrant)
-  @JsonValue('111839')
   value111839,
 
   /// Display: Single luminance
   /// Definition: Mode for determining the starting luminance for screening test points - in this case, all starting luminance is set to the same value
-  @JsonValue('111840')
   value111840,
 
   /// Display: Foveal sensitivity related
   /// Definition: Mode for determining the starting luminance for screening test points - the starting luminance is chosen based on the result of the foveal threshold value
-  @JsonValue('111841')
   value111841,
 
   /// Display: Related to non macular sensitivity
   /// Definition: Mode for determining the starting luminance for screening test points - the starting luminance is chosen based on the result of four threshold values measured near the 15° meridian (one in each quadrant)
-  @JsonValue('111842')
   value111842,
 
   /// Display: Automated Optical
   /// Definition: Real time evaluation of the camera image to recognize blinks and fixation losses with influence on the test procedure. Blinks that interfere with stimuli presentation cause the automated repetition of such stimulus presentations. Fixation losses can be used to delay the stimulus presentation until correct fixation is regained
-  @JsonValue('111843')
   value111843,
 
   /// Display: Blind Spot Monitoring
   /// Definition: A method of monitoring the patient's fixation by periodically presenting stimulus in a location on the background surface that corresponds to the patient's blind spot
-  @JsonValue('111844')
   value111844,
 
   /// Display: Macular Fixation Testing
   /// Definition: A method of monitoring the patient's fixation by presenting the stimulus to the patient's macula
-  @JsonValue('111845')
   value111845,
 
   /// Display: Observation by Examiner
   /// Definition: A method of monitoring the patient's fixation by observation from the examiner of the patient
-  @JsonValue('111846')
   value111846,
 
   /// Display: Outside normal limits
   /// Definition: Analysis Results are outside normal limits
-  @JsonValue('111847')
   value111847,
 
   /// Display: Borderline
   /// Definition: Analysis Results are borderline
-  @JsonValue('111848')
   value111848,
 
   /// Display: Abnormally high sensitivity
   /// Definition: Analysis Results identify abnormally high sensitivity
-  @JsonValue('111849')
   value111849,
 
   /// Display: General reduction in sensitivity
   /// Definition: Analysis Results identify general reduction in sensitivity
-  @JsonValue('111850')
   value111850,
 
   /// Display: Borderline and general reduction in sensitivity
   /// Definition: Analysis Results identify Borderline and general reduction in sensitivity
-  @JsonValue('111851')
   value111851,
 
   /// Display: Visual Field Index
   /// Definition: Index of a patient's remaining visual field normalized for both age and generalized defect
-  @JsonValue('111852')
   value111852,
 
   /// Display: Visual Field Loss Due to Diffuse Defect
   /// Definition: Estimate of the portion of a patient's visual field loss that is diffuse (i.e., spread evenly across all portions of the visual field)
-  @JsonValue('111853')
   value111853,
 
   /// Display: Visual Field Loss Due to Local Defect
   /// Definition: Estimate of the portion of a patient's visual field loss that is local (i.e., not spread evenly across all portions of the visual field)
-  @JsonValue('111854')
   value111854,
 
   /// Display: Glaucoma Hemifield Test Analysis
   /// Definition: An analysis of asymmetry between zones of the superior and inferior visual field. It is designed to be specific for defects due to glaucoma
-  @JsonValue('111855')
   value111855,
 
   /// Display: Optical Fixation Measurements
   /// Definition: The data output of an optical fixation monitoring process, consisting of a list of positive and negative numbers indicating the quality of patient fixation over the course of a visual field test. The value 0 represents the initial fixation. Negative numbers indicate a measuring error (i.e., the patient blinked). Positive numbers quantify the degree of eccentricity from initial fixation
-  @JsonValue('111856')
   value111856,
 
   /// Display: Macula centered
   /// Definition: An image of at least 15° angular subtend that is centered on the macula; see Section U.1.8 "Relative Image Position Definitions" in PS3.17
-  @JsonValue('111900')
   value111900,
 
   /// Display: Disc centered
   /// Definition: An image of at least 15° angular subtend that is centered on the optic disc; see Section U.1.8 "Relative Image Position Definitions" in PS3.17
-  @JsonValue('111901')
   value111901,
 
   /// Display: Lesion centered
   /// Definition: An image of any angular subtend that is centered on a lesion located in any region of the fundus; see Section U.1.8 "Relative Image Position Definitions" in PS3.17
-  @JsonValue('111902')
   value111902,
 
   /// Display: Disc-macula centered
   /// Definition: An image of at least 15° angular subtend centered midway between the disc and macula and containing at least a portion of the disc and both the disc and the macula; see Section U.1.8 "Relative Image Position Definitions" in PS3.17
-  @JsonValue('111903')
   value111903,
 
   /// Display: Mid-peripheral-superior
   /// Definition: An image of at least 15° angular subtend positioned between the central zone and the equator, and spanning both the superior-temporal and superior-nasal quadrants of the fundus; see Section U.1.8 "Relative Image Position Definitions" in PS3.17
-  @JsonValue('111904')
   value111904,
 
   /// Display: Mid-peripheral-superior temporal
   /// Definition: An image of at least 15° angular subtend positioned between the central zone and the equator in the superior-temporal quadrant of the fundus; see Section U.1.8 "Relative Image Position Definitions" in PS3.17
-  @JsonValue('111905')
   value111905,
 
   /// Display: Mid-peripheral-temporal
   /// Definition: An image of at least 15° angular subtend positioned between the central zone and the equator, and spanning both the superior-temporal and inferior-temporal quadrants of the fundus; see Section U.1.8 "Relative Image Position Definitions" in PS3.17
-  @JsonValue('111906')
   value111906,
 
   /// Display: Mid-peripheral-inferior temporal
   /// Definition: An image of at least 15° angular subtend positioned between the central zone and the equator in the inferior-temporal quadrant of the fundus; see Section U.1.8 "Relative Image Position Definitions" in PS3.17
-  @JsonValue('111907')
   value111907,
 
   /// Display: Mid-peripheral-inferior
   /// Definition: An image of at least 15° angular subtend positioned between the central zone and the equator, and spanning both the inferior-temporal and inferior-nasal quadrants of the fundus; see Section U.1.8 "Relative Image Position Definitions" in PS3.17
-  @JsonValue('111908')
   value111908,
 
   /// Display: Mid-peripheral-inferior nasal
   /// Definition: An image of at least 15° angular subtend positioned between the central zone and the equator in the inferior-nasal quadrant of the fundus; see Section U.1.8 "Relative Image Position Definitions" in PS3.17
-  @JsonValue('111909')
   value111909,
 
   /// Display: Mid-peripheral-nasal
   /// Definition: An image of at least 15° angular subtend positioned between the central zone and the equator, and spanning both the superior-nasal and inferior-nasal quadrants of the fundus; see Section U.1.8 "Relative Image Position Definitions" in PS3.17
-  @JsonValue('111910')
   value111910,
 
   /// Display: Mid-peripheral-superior nasal
   /// Definition: An image of at least 15° angular subtend positioned between the central zone and the equator in the superior-nasal quadrant of the fundus; see Section U.1.8 "Relative Image Position Definitions" in PS3.17
-  @JsonValue('111911')
   value111911,
 
   /// Display: Peripheral-superior
   /// Definition: An image of at least 15° angular subtend positioned between the equator and the ora serrata, and spanning both the superior temporal and superior nasal quadrants of the fundus; see Section U.1.8 "Relative Image Position Definitions" in PS3.17
-  @JsonValue('111912')
   value111912,
 
   /// Display: Peripheral-superior temporal
   /// Definition: An image of at least 15° angular subtend positioned between the equator and ora serrata in the superior-temporal quadrant of the fundus; see Section U.1.8 "Relative Image Position Definitions" in PS3.17
-  @JsonValue('111913')
   value111913,
 
   /// Display: Peripheral-temporal
   /// Definition: An image of at least 15° angular subtend positioned between the equator and ora serrata, and spanning both the superior-temporal and inferior-temporal quadrants of the fundus; see Section U.1.8 "Relative Image Position Definitions" in PS3.17
-  @JsonValue('111914')
   value111914,
 
   /// Display: Peripheral-inferior temporal
   /// Definition: An image of at least 15° angular subtend positioned between the equator and ora serrata in the inferior-temporal quadrant of the fundus; see Section U.1.8 "Relative Image Position Definitions" in PS3.17
-  @JsonValue('111915')
   value111915,
 
   /// Display: Peripheral-inferior
   /// Definition: An image of at least 15° angular subtend positioned between the equator and ora serrata, and spanning both the inferior-temporal and inferior-nasal quadrants of the fundus; see Section U.1.8 "Relative Image Position Definitions" in PS3.17
-  @JsonValue('111916')
   value111916,
 
   /// Display: Peripheral-inferior nasal
   /// Definition: An image of at least 15° angular subtend positioned between the equator and ora serrata in the inferior-nasal quadrant of the fundus; see Section U.1.8 "Relative Image Position Definitions" in PS3.17
-  @JsonValue('111917')
   value111917,
 
   /// Display: Peripheral-nasal
   /// Definition: An image of at least 15° angular subtend positioned between the equator and ora serrata, and spanning both the superior-nasal and inferior-nasal quadrants of the fundus; see Section U.1.8 "Relative Image Position Definitions" in PS3.17
-  @JsonValue('111918')
   value111918,
 
   /// Display: Peripheral-superior nasal
   /// Definition: An image of at least 15° angular subtend positioned between the equator and ora serrata in the superior-nasal quadrant of the fundus; see Section U.1.8 "Relative Image Position Definitions" in PS3.17
-  @JsonValue('111919')
   value111919,
 
   /// Display: Time domain
   /// Definition: Identifies the use of physical signals with respect to time to capture information
-  @JsonValue('111920')
   value111920,
 
   /// Display: Spectral domain
   /// Definition: Identifies the use of physical signals with respect to multiple frequencies to capture information
-  @JsonValue('111921')
   value111921,
 
   /// Display: No corneal compensation
   /// Definition: No compensation algorithm for corneal birefringence
-  @JsonValue('111922')
   value111922,
 
   /// Display: Corneal birefringence compensation
   /// Definition: Algorithm to compensate for variability in corneal birefringence
-  @JsonValue('111923')
   value111923,
 
   /// Display: Retinal topography
   /// Definition: Measurement of the retinal surface contour relative to an assigned datum plane
-  @JsonValue('111924')
   value111924,
 
   /// Display: Retinal nerve fiber layer thickness
   /// Definition: Measurement approximating the distance related to the structure between the internal limiting membrane (ILM) and the outer boarder of the retinal nerve fiber layer (RNFL); see Section III.6 "Retinal Thickness Definition" in PS3.17
-  @JsonValue('111925')
   value111925,
 
   /// Display: Ganglion cell complex thickness
   /// Definition: Measurement approximating the distance related to the structure between the ILM and the outer border of the inner plexiform layer (IPL), called the ganglion cell complex (GCC); see Section III.6 "Retinal Thickness Definition" in PS3.17
-  @JsonValue('111926')
   value111926,
 
   /// Display: Total retinal thickness (ILM to IS-OS)
   /// Definition: Measurement approximating the distance related to the structure between the ILM and the inner-outer segment junction (IS-OS); see Section III.6 "Retinal Thickness Definition" in PS3.17
-  @JsonValue('111927')
   value111927,
 
   /// Display: Total retinal thickness (ILM to RPE)
   /// Definition: Measurement approximating the distance related to the structure between the ILM and the retinal pigment epithelium (RPE); see Section III.6 "Retinal Thickness Definition" in PS3.17
-  @JsonValue('111928')
   value111928,
 
   /// Display: Total retinal thickness (ILM to BM)
   /// Definition: Measurement approximating the distance related to the structure between the ILM and the Bruch's membrane (BM); see Section III.6 "Retinal Thickness Definition" in PS3.17
-  @JsonValue('111929')
   value111929,
 
   /// Display: Absolute ophthalmic thickness
   /// Definition: Thickness of a component of the posterior segment of the eye; e.g. thickness of retina, choroid, etc.
-  @JsonValue('111930')
   value111930,
 
   /// Display: Thickness deviation category from normative data
   /// Definition: Ophthalmic Thickness map based upon statistical significance category (such as percentile) from a normative data set
-  @JsonValue('111931')
   value111931,
 
   /// Display: Thickness deviation from normative data
   /// Definition: Ophthalmic Thickness map based upon deviation (such as microns) from a normative data set
-  @JsonValue('111932')
   value111932,
 
   /// Display: Related ophthalmic thickness map
   /// Definition: Ophthalmic Thickness Map related to another Ophthalmic Thickness Map or another SOP Instance
-  @JsonValue('111933')
   value111933,
 
   /// Display: Disc-Fovea
   /// Definition: An anatomic point centered midway between the disc and fovea centralis
-  @JsonValue('111934')
   value111934,
 
   /// Display: p>5%
   /// Definition: Assuming the null hypothesis is true, the conditional percent probability of observing this result is not statistically significant
-  @JsonValue('111935')
   value111935,
 
   /// Display: p<5%
   /// Definition: Assuming the null hypothesis is true, the conditional percent probability of observing this result is statistically significant, 95% unlikely to happen by chance
-  @JsonValue('111936')
   value111936,
 
   /// Display: p<2%
   /// Definition: Assuming the null hypothesis is true, the conditional percent probability of observing this result is statistically significant, 98% unlikely to happen by chance
-  @JsonValue('111937')
   value111937,
 
   /// Display: p<1%
   /// Definition: Assuming the null hypothesis is true, the conditional percent probability of observing this result is statistically significant, 99% unlikely to happen by chance
-  @JsonValue('111938')
   value111938,
 
   /// Display: p<0.5%
   /// Definition: Assuming the null hypothesis is true, the conditional percent probability of observing this result is statistically significant, 99.5% unlikely to happen by chance
-  @JsonValue('111939')
   value111939,
 
   /// Display: Corneal axial power map
   /// Definition: A two dimensional representation of the axial curvature of the cornea. Axial curvature is calculated from the reciprocal of the distance from a point on a meridian normal at the point to the corneal topographer axis. Also known as sagittal curvature
-  @JsonValue('111940')
   value111940,
 
   /// Display: Corneal instantaneous power map
   /// Definition: A two dimensional representation of the instantaneous curvature of the cornea. Instantaneous curvature is calculated from the reciprocal of the distance from a point on a meridian normal at the point to the center of curvature of that point. Also called tangential curvature
-  @JsonValue('111941')
   value111941,
 
   /// Display: Corneal refractive power map
   /// Definition: A two dimensional representation of the refractive power of the cornea. Corneal refractive power is calculated using Snell's Law
-  @JsonValue('111942')
   value111942,
 
   /// Display: Corneal elevation map
   /// Definition: A two dimensional representation of the elevation of the cornea. Elevation is calculated as the distance from a point on the corneal surface to a point on a reference surface along a line parallel to the corneal topographer axis. For the purpose of visualization the reference surface is usually a sphere or an ellipse
-  @JsonValue('111943')
   value111943,
 
   /// Display: Corneal wavefront map
   /// Definition: A two dimensional representation of a wavefront aberration surface of the cornea. Wavefront aberration surface is calculated from the corneal elevation data fit with either the Zernike polynomial series or the Fourier Series. Maps generally display total aberrations and selectable higher order aberrations
-  @JsonValue('111944')
   value111944,
 
   /// Display: Elevation-based corneal tomographer
   /// Definition: A device that measures corneal anterior surface shape using elevation-based methods (stereographic and light slit-based). Rasterstereography images a grid pattern illuminating the fluorescein dyed tear film with 2 cameras to produce 3D. Slit-based devices scan the cornea, usually by rotation about the instrument axis centered on the cornea vertex
-  @JsonValue('111945')
   value111945,
 
   /// Display: Reflection-based corneal topographer
   /// Definition: A reflection-based device that projects a pattern of light onto the cornea and an image of the reflection of that pattern from the tear film is recorded in one video frame. Light patterns include the circular mire pattern (Placido disc) and spot matrix patterns. Sequential scanning of light spots reflected from the corneal surface is also used requiring multiple video frames for recording
-  @JsonValue('111946')
   value111946,
 
   /// Display: Interferometry-based corneal tomographer
   /// Definition: An Interference-based device that projects a beam of light onto and through the cornea. Light reflected from within the cornea is combined with a reference beam giving rise to an interference pattern. Appropriately scanned, this imaging is used to construct 3-dimensional images of the cornea from anterior to posterior surfaces; e.g. swept source OCT
-  @JsonValue('111947')
   value111947,
 
   /// Display: Chest CAD Report
   /// Definition: A structured report containing the results of computer-aided detection or diagnosis applied to chest imaging and associated clinical information
-  @JsonValue('112000')
   value112000,
 
   /// Display: Opacity
   /// Definition: The shadow of an absorber that attenuates the X-Ray beam more effectively than do surrounding absorbers. In a radiograph, any circumscribed area that appears more nearly white (of lesser photometric density) than its surround [Fraser and Pare]
-  @JsonValue('112001')
   value112001,
 
   /// Display: Series Instance UID
   /// Definition: A unique identifier for a series of DICOM SOP instances
-  @JsonValue('112002')
   value112002,
 
   /// Display: Associated Chest Component
   /// Definition: A named anatomic region within the chest cavity
-  @JsonValue('112003')
   value112003,
 
   /// Display: Abnormal interstitial pattern
   /// Definition: A collection of opacities detected within the continuum of loose connective tissue throughout the lung, that is not expected in a diagnostically normal radiograph
-  @JsonValue('112004')
   value112004,
 
   /// Display: Radiographic anatomy
   /// Definition: A type of anatomy that is expected to be detectable on a radiographic (X-Ray based) image
-  @JsonValue('112005')
   value112005,
 
   /// Display: Distribution Descriptor
   /// Definition: Characteristic of the extent of spreading of a finding or feature
-  @JsonValue('112006')
   value112006,
 
   /// Display: Border definition
   /// Definition: Characteristic of the clarity of the boundary or edges of a finding or feature
-  @JsonValue('112007')
   value112007,
 
   /// Display: Site involvement
   /// Definition: The part(s) of the anatomy affected or encompassed by a finding or feature
-  @JsonValue('112008')
   value112008,
 
   /// Display: Type of Content
   /// Definition: Characteristic of the matter or substance within a finding or feature
-  @JsonValue('112009')
   value112009,
 
   /// Display: Texture Descriptor
   /// Definition: Characteristic of the surface or consistency of a finding or feature
-  @JsonValue('112010')
   value112010,
 
   /// Display: Positioner Primary Angle
   /// Definition: Position of the X-Ray beam about the patient from the RAO to LAO direction where movement from RAO to vertical is positive
-  @JsonValue('112011')
   value112011,
 
   /// Display: Positioner Secondary Angle
   /// Definition: Position of the X-Ray beam about the patient from the caudal to cranial direction where movement from caudal to vertical is positive
-  @JsonValue('112012')
   value112012,
 
   /// Display: Location in Chest
   /// Definition: The zone, lobe or segment within the chest cavity in which a finding or feature is situated
-  @JsonValue('112013')
   value112013,
 
   /// Display: Orientation Descriptor
   /// Definition: Vertical refers to orientation parallel to the superior-inferior (cephalad-caudad) axis of the body, with horizontal being perpendicular to this, and an oblique orientation having projections in both the horizontal and vertical
-  @JsonValue('112014')
   value112014,
 
   /// Display: Border shape
   /// Definition: Characteristic of the shape formed by the boundary or edges of a finding or feature
-  @JsonValue('112015')
   value112015,
 
   /// Display: Baseline Category
   /// Definition: Indicates whether a finding was considered a target lesion, non-target lesion, or non-lesion during evaluation of a baseline series, according to a method such as RECIST
-  @JsonValue('112016')
   value112016,
 
   /// Display: Cavity extent as percent of volume
   /// Definition: The extent of a detected cavity, represented as the percent of the surrounding volume that it occupies
-  @JsonValue('112017')
   value112017,
 
   /// Display: Calcification extent as percent of surface
   /// Definition: The extent of a detected calcification, represented as the percent of the surrounding surface that it occupies
-  @JsonValue('112018')
   value112018,
 
   /// Display: Calcification extent as percent of volume
   /// Definition: The extent of a detected calcification, represented as the percent of the surrounding volume that it occupies
-  @JsonValue('112019')
   value112019,
 
   /// Display: Response Evaluation
   /// Definition: A heading for the reporting of response evaluation for treatment of solid tumors
-  @JsonValue('112020')
   value112020,
 
   /// Display: Response Evaluation Method
   /// Definition: The system applied in the reporting of response evaluation for treatment of solid tumors
-  @JsonValue('112021')
   value112021,
 
   /// Display: RECIST
   /// Definition: Response Evaluation Criteria In Solid Tumors; see Normative References
-  @JsonValue('112022')
   value112022,
 
   /// Display: Composite Feature Modifier
   /// Definition: A term that further specifies the name of an item that is an inferred correlation relating two or more individual findings or features
-  @JsonValue('112023')
   value112023,
 
   /// Display: Single Image Finding Modifier
   /// Definition: A term that further specifies the name of an item that was detected on one image
-  @JsonValue('112024')
   value112024,
 
   /// Display: Size Descriptor
   /// Definition: A qualitative descriptor for the extent of a finding or feature
-  @JsonValue('112025')
   value112025,
 
   /// Display: Width Descriptor
   /// Definition: A qualitative descriptor for the thickness of tubular structures, such as blood vessels
-  @JsonValue('112026')
   value112026,
 
   /// Display: Opacity Descriptor
   /// Definition: A characteristic that further describes the nature of an opacity
-  @JsonValue('112027')
   value112027,
 
   /// Display: Abnormal Distribution of Anatomic Structure
   /// Definition: The type of adverse affect that a finding or feature is having on the surrounding anatomy
-  @JsonValue('112028')
   value112028,
 
   /// Display: WHO
   /// Definition: Response evaluation method as defined in chapter 5, "Reporting of Response" of the WHO Handbook for Reporting Results for Cancer Treatment; see Normative References
-  @JsonValue('112029')
   value112029,
 
   /// Display: Calcification Descriptor
   /// Definition: Identification of the morphology of detected calcifications
-  @JsonValue('112030')
   value112030,
 
   /// Display: Attenuation Coefficient
   /// Definition: A quantitative numerical statement of the relative attenuation of the X-Ray beam at a specified point. Coefficient that describes the fraction of a beam of X-Rays or gamma rays that is absorbed or scattered per unit thickness of the absorber. This value basically accounts for the number of atoms in a cubic cm volume of material and the probability of a photon being scattered or absorbed from the nucleus or an electron of one of these atoms. Usually expressed in Hounsfield units [referred to as CT Number in Fraser and Pare]
-  @JsonValue('112031')
   value112031,
 
   /// Display: Threshold Attenuation Coefficient
   /// Definition: An X-Ray attenuation coefficient that is used as a threshold; e.g. in calcium scoring
-  @JsonValue('112032')
   value112032,
 
   /// Display: Abnormal opacity
   /// Definition: An opacity that is not expected in a diagnostically normal radiograph
-  @JsonValue('112033')
   value112033,
 
   /// Display: Calculation Description
   /// Definition: A textual description of the mathematical method of calculation that resulted in a calculated value
-  @JsonValue('112034')
   value112034,
 
   /// Display: Performance of Pediatric and Adult Chest Radiography, ACR
   /// Definition: American College of Radiology. ACR Standard for the Performance of Pediatric and Adult Chest Radiography. In: Standards. Reston, Va: 2001:95-98
-  @JsonValue('112035')
   value112035,
 
   /// Display: ACR Position Statement
   /// Definition: American College of Radiology. ACR Position Statement for Quality Control and Improvement, Safety, Infection Control, and Patient Concerns. In: Practice Guidelines and Technical Standards. Reston, Va: 2001:iv
-  @JsonValue('112036')
   value112036,
 
   /// Display: Non-lesion Modifier
   /// Definition: A descriptor for a non-lesion object finding or feature, used to indicate whether the object was detected as being internal or external to the patient's body
-  @JsonValue('112037')
   value112037,
 
   /// Display: Osseous Modifier
   /// Definition: A concept modifier for an Osseous Anatomy, or bone related, finding
-  @JsonValue('112038')
   value112038,
 
   /// Display: Tracking Identifier
   /// Definition: A text label used for tracking a finding or feature, potentially across multiple reporting objects, over time. This label shall be unique within the domain in which it is used
-  @JsonValue('112039')
   value112039,
 
   /// Display: Tracking Unique Identifier
   /// Definition: A unique identifier used for tracking a finding or feature, potentially across multiple reporting objects, over time
-  @JsonValue('112040')
   value112040,
 
   /// Display: Target Lesion Complete Response
   /// Definition: Disappearance of all target lesions
-  @JsonValue('112041')
   value112041,
 
   /// Display: Target Lesion Partial Response
   /// Definition: At least a 30% decrease in the sum of the Longest Diameter of target lesions, taking as reference the baseline sum Longest Diameter
-  @JsonValue('112042')
   value112042,
 
   /// Display: Target Lesion Progressive Disease
   /// Definition: At least a 20% increase in the sum of the Longest Diameter of target lesions, taking as reference the smallest sum Longest Diameter recorded since the treatment started, or the appearance of one or more new lesions
-  @JsonValue('112043')
   value112043,
 
   /// Display: Target Lesion Stable Disease
   /// Definition: Neither sufficient shrinkage to qualify for Partial Response nor sufficient increase to qualify for Progressive Disease, taking as reference the smallest sum Longest Diameter since the treatment started
-  @JsonValue('112044')
   value112044,
 
   /// Display: Non-Target Lesion Complete Response
   /// Definition: Disappearance of all non-target lesions and normalization of tumor marker level
-  @JsonValue('112045')
   value112045,
 
   /// Display: Non-Target Lesion Incomplete Response or Stable Disease
   /// Definition: Persistence of one or more non-target lesions and/or maintenance of tumor marker level above the normal limits
-  @JsonValue('112046')
   value112046,
 
   /// Display: Non-Target Lesion Progressive Disease
   /// Definition: Appearance of one or more new lesions and/or unequivocal progression of existing non-target lesions
-  @JsonValue('112047')
   value112047,
 
   /// Display: Current Response
   /// Definition: The current response evaluation for treatment of solid tumors, according to a method such as RECIST
-  @JsonValue('112048')
   value112048,
 
   /// Display: Best Overall Response
   /// Definition: Best response recorded from the start of the treatment until disease progression/recurrence, taking as reference for Progressive Disease the smallest measurements recorded since the treatment started, according to a method such as RECIST
-  @JsonValue('112049')
   value112049,
 
   /// Display: Anatomic Identifier
   /// Definition: A text identifier of an anatomic feature when a multiplicity of features of that type may be present, such as "Rib 1", "Rib 2" or thoracic vertebrae "T1" or "T2"
-  @JsonValue('112050')
   value112050,
 
   /// Display: Measurement of Response
   /// Definition: A measured or calculated evaluation of response; e.g. according to a method such as RECIST, the value would be the calculated sum of the lengths of the longest axes of a set of target lesions
-  @JsonValue('112051')
   value112051,
 
   /// Display: Bronchovascular
   /// Definition: Of or relating to a bronchial (lung) specific channel for the conveyance of a body fluid
-  @JsonValue('112052')
   value112052,
 
   /// Display: Osseous
   /// Definition: Of, relating to, or composed of bone
-  @JsonValue('112053')
   value112053,
 
   /// Display: Secondary pulmonary lobule
   /// Definition: The smallest unit of lung surrounded by connective tissue septa; the unit of lung subtended by any bronchiole that gives off three to five terminal bronchioles [Fraser and Pare]
-  @JsonValue('112054')
   value112054,
 
   /// Display: Agatston scoring method
   /// Definition: A method of calculating an overall calcium score, reflecting the calcification of coronary arteries, based on the maximum X-Ray attenuation coefficient and the area of calcium deposits
-  @JsonValue('112055')
   value112055,
 
   /// Display: Volume scoring method
   /// Definition: A method of calculating an overall calcium score, reflecting the calcification of coronary arteries, based on the volume of each calcification, typically expressed in mm3
-  @JsonValue('112056')
   value112056,
 
   /// Display: Mass scoring method
   /// Definition: A method of calculating an overall calcium score, reflecting the calcification of coronary arteries, based on the total mass of calcification, typically expressed in mg
-  @JsonValue('112057')
   value112057,
 
   /// Display: Calcium score
   /// Definition: A measure often arrived at through calculation of findings from CT examination, which is a common predictor of significant stenosis of the coronary arteries
-  @JsonValue('112058')
   value112058,
 
   /// Display: Primary complex
   /// Definition: The combination of a focus of pneumonia due to a primary infection with granulomas in the draining hilar or mediastinal lymph nodes [Fraser and Pare]
-  @JsonValue('112059')
   value112059,
 
   /// Display: Oligemia
   /// Definition: General or local decrease in the apparent width of visible pulmonary vessels, suggesting less than normal blood flow (reduced blood flow) [Fraser and Pare]
-  @JsonValue('112060')
   value112060,
 
   /// Display: Abnormal lines (1D)
   /// Definition: Linear opacity of very fine width, i.e., a nearly one dimensional opacity
-  @JsonValue('112061')
   value112061,
 
   /// Display: Abnormal lucency
   /// Definition: Area of abnormal very low X-Ray attenuation, typically lower than aerated lung when occurring in or projecting over lung, or lower than soft tissue when occurring in or projecting over soft tissue
-  @JsonValue('112062')
   value112062,
 
   /// Display: Abnormal calcifications
   /// Definition: A calcific opacity within the lung that may be organized, but does not display the trabecular organization of true bone [Fraser and Pare]
-  @JsonValue('112063')
   value112063,
 
   /// Display: Abnormal texture
   /// Definition: Relatively homogeneous, extended, pattern of abnormal opacity in the lung, typically low in contrast
-  @JsonValue('112064')
   value112064,
 
   /// Display: Reticulonodular pattern
   /// Definition: A collection of innumerable small, linear, and nodular opacities that together produce a composite appearance resembling a net with small superimposed nodules. The reticular and nodular elements are dimensionally of similar magnitude [Fraser and Pare]
-  @JsonValue('112065')
   value112065,
 
   /// Display: Beaded septum sign
   /// Definition: Irregular septal thickening that suggests the appearance of a row of beads; usually a sign of lymphangitic carcinomatosis, but may also occur rarely in sarcoidosis [Fraser and Pare]
-  @JsonValue('112066')
   value112066,
 
   /// Display: Nodular pattern
   /// Definition: A collection of innumerable, small discrete opacities ranging in diameter from 2-10 mm, generally uniform in size and widespread in distribution, and without marginal spiculation [Fraser and Pare]
-  @JsonValue('112067')
   value112067,
 
   /// Display: Pseudoplaque
   /// Definition: An irregular band of peripheral pulmonary opacity adjacent to visceral pleura that simulates the appearance of a pleural plaque and is formed by coalescence of small nodules [Fraser and Pare]
-  @JsonValue('112068')
   value112068,
 
   /// Display: Signet-ring sign
   /// Definition: A ring of opacities (usually representing a dilated, thick-walled bronchus) in association with a smaller, round, soft tissue opacity (the adjacent pulmonary artery) suggesting a "signet ring" [Fraser and Pare]
-  @JsonValue('112069')
   value112069,
 
   /// Display: Air bronchiologram
   /// Definition: Equivalent of air bronchogram, but in airways assumed to be bronchioles because of peripheral location and diameter [Fraser and Pare]
-  @JsonValue('112070')
   value112070,
 
   /// Display: Air bronchogram
   /// Definition: Radiographic shadow of an air-containing bronchus; presumed to represent an air-containing segment of the bronchial tree (identity often inferred) [Fraser and Pare]
-  @JsonValue('112071')
   value112071,
 
   /// Display: Air crescent
   /// Definition: Air in a crescentic shape in a nodule or mass, in which the air separates the outer wall of the lesion from an inner sequestrum, which most commonly is a fungus ball of Aspergillusspecies [Fraser and Pare]
-  @JsonValue('112072')
   value112072,
 
   /// Display: Halo sign
   /// Definition: Ground-glass opacity surrounding the circumference of a nodule or mass. May be a sign of invasive aspergillosis or hemorrhage of various causes [Fraser and Pare]
-  @JsonValue('112073')
   value112073,
 
   /// Display: Target Lesion at Baseline
   /// Definition: Flag denoting that this lesion was identified, at baseline, as a target lesion intended for tracking over time [RECIST]
-  @JsonValue('112074')
   value112074,
 
   /// Display: Non-Target Lesion at Baseline
   /// Definition: Flag denoting that this lesion was not identified, at baseline, as a target lesion, and was not intended for tracking over time [RECIST]
-  @JsonValue('112075')
   value112075,
 
   /// Display: Non-Lesion at Baseline
   /// Definition: Flag denoting that this finding was identified, at baseline, as a category other than a lesion, and was not intended for tracking over time [RECIST]
-  @JsonValue('112076')
   value112076,
 
   /// Display: Vasoconstriction
   /// Definition: Local or general reduction in the caliber of visible pulmonary vessels, presumed to result from decreased flow occasioned by contraction of muscular pulmonary arteries [Fraser and Pare]
-  @JsonValue('112077')
   value112077,
 
   /// Display: Vasodilation
   /// Definition: Local or general increase in the width of visible pulmonary vessels resulting from increased pulmonary blood flow [Fraser and Pare]
-  @JsonValue('112078')
   value112078,
 
   /// Display: Architectural distortion
   /// Definition: A manifestation of lung disease in which bronchi, pulmonary vessels, a fissure or fissures, or septa of secondary pulmonary lobules are abnormally displaced [Fraser and Pare]
-  @JsonValue('112079')
   value112079,
 
   /// Display: Mosaic perfusion
   /// Definition: A patchwork of regions of varied attenuation, interpreted as secondary to regional differences in perfusion [Fraser and Pare]
-  @JsonValue('112080')
   value112080,
 
   /// Display: Pleonemia
   /// Definition: Increased blood flow to the lungs or a portion thereof, manifested by a general or local increase in the width of visible pulmonary vessels [Fraser and Pare]
-  @JsonValue('112081')
   value112081,
 
   /// Display: Interface
   /// Definition: The common boundary between the shadows of two juxtaposed structures or tissues of different texture or opacity (edge, border) [Fraser and Pare]
-  @JsonValue('112082')
   value112082,
 
   /// Display: Line
   /// Definition: A longitudinal opacity no greater than 2 mm in width [Fraser and Pare]
-  @JsonValue('112083')
   value112083,
 
   /// Display: Lucency
   /// Definition: The shadow of an absorber that attenuates the primary X-Ray beam less effectively than do surrounding absorbers. In a radiograph, any circumscribed area that appears more nearly black (of greater photometric density) than its surround [Fraser and Pare]
-  @JsonValue('112084')
   value112084,
 
   /// Display: Midlung window
   /// Definition: A midlung region, characterized by the absence of large blood vessels and by a paucity of small blood vessels, that corresponds to the minor fissure and adjacent peripheral lung [Fraser and Pare]
-  @JsonValue('112085')
   value112085,
 
   /// Display: Carina angle
   /// Definition: The angle formed by the right and left main bronchi at the tracheal bifurcation [Fraser and Pare]
-  @JsonValue('112086')
   value112086,
 
   /// Display: Centrilobular structures
   /// Definition: The pulmonary artery and its immediate branches in a secondary lobule; HRCT depicts these vessels in certain cases; a.k.a. core structures or lobular core structures [Fraser and Pare]
-  @JsonValue('112087')
   value112087,
 
   /// Display: Anterior junction line
   /// Definition: A vertically oriented linear or curvilinear opacity approximately 1-2 mm wide, commonly projected on the tracheal air shadow [Fraser and Pare]
-  @JsonValue('112088')
   value112088,
 
   /// Display: Posterior junction line
   /// Definition: A vertically oriented, linear or curvilinear opacity approximately 2 mm wide, commonly projected on the tracheal air shadow, and usually slightly concave to the right [Fraser and Pare]
-  @JsonValue('112089')
   value112089,
 
   /// Display: Azygoesophageal recess interface
   /// Definition: A space in the right side of the mediastinum into which the medial edge of the right lower lobe extends [Fraser and Pare]
-  @JsonValue('112090')
   value112090,
 
   /// Display: Paraspinal line
   /// Definition: A vertically oriented interface usually seen in a frontal chest radiograph to the left of the thoracic vertebral column [Fraser and Pare]
-  @JsonValue('112091')
   value112091,
 
   /// Display: Posterior tracheal stripe
   /// Definition: A vertically oriented linear opacity ranging in width from 2-5 mm, extending from the thoracic inlet to the bifurcation of the trachea, and visible only on lateral radiographs of the chest [Fraser and Pare]
-  @JsonValue('112092')
   value112092,
 
   /// Display: Right tracheal stripe
   /// Definition: A vertically oriented linear opacity approximately 2-3 mm wide extending from the thoracic inlet to the right tracheobronchial angle [Fraser and Pare]
-  @JsonValue('112093')
   value112093,
 
   /// Display: Stripe
   /// Definition: A longitudinal composite opacity measuring 2-5 mm in width; acceptable when limited to anatomic structures within the mediastinum [Fraser and Pare]
-  @JsonValue('112094')
   value112094,
 
   /// Display: Hiatus
   /// Definition: A gap or passage through an anatomical part or organ; especially : a gap through which another part or organ passes
-  @JsonValue('112095')
   value112095,
 
   /// Display: Rib Scalene Tubercle
   /// Definition: A small rounded elevation or eminence on the first rib for the attachment of the scalenus anterior
-  @JsonValue('112096')
   value112096,
 
   /// Display: Vertebral Intervertebral Notch
   /// Definition: A groove that serves for the transmission of the vertebral artery
-  @JsonValue('112097')
   value112097,
 
   /// Display: Subscapular Fossa
   /// Definition: The concave depression of the anterior surface of the scapula
-  @JsonValue('112098')
   value112098,
 
   /// Display: Scapular Spine
   /// Definition: A sloping ridge dividing the dorsal surface of the scapula into the supraspinatous fossa (above), and the infraspinatous fossa (below)
-  @JsonValue('112099')
   value112099,
 
   /// Display: Scapular Supraspinatus Fossa
   /// Definition: The portion of the dorsal surface of the scapula above the scapular spine
-  @JsonValue('112100')
   value112100,
 
   /// Display: Scapular Infraspinatus Fossa
   /// Definition: The portion of the dorsal surface of the scapula below the scapular spine
-  @JsonValue('112101')
   value112101,
 
   /// Display: Aortic knob
   /// Definition: The portion of the aortic arch that defines the transition between its ascending and descending limbs
-  @JsonValue('112102')
   value112102,
 
   /// Display: Arch of the Azygos vein
   /// Definition: Section of Azygos vein near the fourth thoracic vertebra, where it arches forward over the root of the right lung, and ends in the superior vena cava, just before that vessel pierces the pericardium
-  @JsonValue('112103')
   value112103,
 
   /// Display: Air-fluid level
   /// Definition: A local collection of gas and liquid that, when traversed by a horizontal X-Ray beam, creates a shadow characterized by a sharp horizontal interface between gas density above and liquid density below [Fraser and Pare]
-  @JsonValue('112104')
   value112104,
 
   /// Display: Corona radiata
   /// Definition: A circumferential pattern of fine linear spicules, approximately 5 mm long, extending outward from the margin of a solitary pulmonary nodule through a zone of relative lucency [Fraser and Pare]
-  @JsonValue('112105')
   value112105,
 
   /// Display: Honeycomb pattern
   /// Definition: A number of closely approximated ring shadows representing air spaces 5-10 mm in diameter with walls 2-3 mm thick that resemble a true honeycomb; implies "end-stage" lung [Fraser and Pare]
-  @JsonValue('112106')
   value112106,
 
   /// Display: Fleischner's line(s)
   /// Definition: A straight, curved, or irregular linear opacity that is visible in multiple projections; usually situated in the lower half of the lung; vary markedly in length and width [Fraser and Pare]
-  @JsonValue('112107')
   value112107,
 
   /// Display: Intralobular lines
   /// Definition: Fine linear opacities present in a lobule when the intralobular interstitium is thickened. When numerous, they may appear as a fine reticular pattern [Fraser and Pare]
-  @JsonValue('112108')
   value112108,
 
   /// Display: Kerley A line
   /// Definition: Essentially straight linear opacity 2-6 cm in length and 1-3 mm in width, usually in an upper lung zone [Fraser and Pare]
-  @JsonValue('112109')
   value112109,
 
   /// Display: Kerley B line
   /// Definition: A straight linear opacity 1.5-2 cm in length and 1-2 mm in width, usually at the lung base [Fraser and Pare]
-  @JsonValue('112110')
   value112110,
 
   /// Display: Kerley C lines
   /// Definition: A group of branching, linear opacities producing the appearing of a fine net, at the lung base [Fraser and Pare]
-  @JsonValue('112111')
   value112111,
 
   /// Display: Parenchymal band
   /// Definition: Elongated opacity, usually several millimeters wide and up to about 5 cm long, often extending to the pleura, which may be thickened and retracted at the site of contact [Fraser and Pare]
-  @JsonValue('112112')
   value112112,
 
   /// Display: Reticular pattern
   /// Definition: A collection of innumerable small linear opacities that together produce an appearance resembling a net [Fraser and Pare]
-  @JsonValue('112113')
   value112113,
 
   /// Display: Septal line(s)
   /// Definition: Usually used in the plural, a generic term for linear opacities of varied distribution produced when the interstitium between pulmonary lobules is thickened [Fraser and Pare]
-  @JsonValue('112114')
   value112114,
 
   /// Display: Subpleural line
   /// Definition: A thin curvilinear opacity, a few millimeters or less in thickness, usually less than 1 cm from the pleural surface and paralleling the pleura [Fraser and Pare]
-  @JsonValue('112115')
   value112115,
 
   /// Display: Tramline shadow
   /// Definition: Parallel or slightly convergent linear opacities that suggest the planar projection of tubular structures and that correspond in location and orientation to elements of the bronchial tree [Fraser and Pare]
-  @JsonValue('112116')
   value112116,
 
   /// Display: Tubular shadow
   /// Definition: Paired, parallel, or slightly convergent linear opacities presumed to represent the walls of a tubular structure seen en face; used if the anatomic nature of a shadow is obscure [Fraser and Pare]
-  @JsonValue('112117')
   value112117,
 
   /// Display: Density
   /// Definition: The opacity of a radiographic shadow to visible light; film blackening; the term should never be used to mean an "opacity" or "radiopacity" [Fraser and Pare]
-  @JsonValue('112118')
   value112118,
 
   /// Display: Dependent opacity
   /// Definition: Subpleural increased attenuation in dependent lung. The increased attenuation disappears when the region of lung is nondependent; a.k.a. dependent increased attenuation [Fraser and Pare]
-  @JsonValue('112119')
   value112119,
 
   /// Display: Ground glass opacity
   /// Definition: Hazy increased attenuation of lung, but with preservation of bronchial and vascular margins; caused by partial filling of air spaces, interstitial thickening, partial collapse of alveoli, normal expiration, or increased capillary blood volume [Fraser and Pare]
-  @JsonValue('112120')
   value112120,
 
   /// Display: Infiltrate
   /// Definition: Any ill-defined opacity in the lung [Fraser and Pare]
-  @JsonValue('112121')
   value112121,
 
   /// Display: Micronodule
   /// Definition: Discrete, small, round, focal opacity of at least soft tissue attenuation and with a diameter no greater than 7 mm [Fraser and Pare]
-  @JsonValue('112122')
   value112122,
 
   /// Display: Phantom tumor (pseudotumor)
   /// Definition: A shadow produced by a local collection of fluid in one of the interlobar fissures, usually elliptic in one radiographic projection and rounded in the other, resembling a tumor [Fraser and Pare]
-  @JsonValue('112123')
   value112123,
 
   /// Display: Shadow
   /// Definition: Any perceptible discontinuity in film blackening attributed to the attenuation of the X-Ray beam by a specific anatomic absorber or lesion on or within the body of the patient; to be employed only when more specific identification is not possible [Fraser and Pare]
-  @JsonValue('112124')
   value112124,
 
   /// Display: Small irregular opacities
   /// Definition: Term used to define a reticular pattern specific to pneumoconioses [Fraser and Pare]
-  @JsonValue('112125')
   value112125,
 
   /// Display: Small rounded opacities
   /// Definition: Term used to define a nodular pattern specific to pneumoconioses [Fraser and Pare]
-  @JsonValue('112126')
   value112126,
 
   /// Display: Tree-in-bud sign
   /// Definition: Nodular dilation of centrilobular branching structures that resembles a budding tree and represents exudative bronchiolar dilation [Fraser and Pare]
-  @JsonValue('112127')
   value112127,
 
   /// Display: Granular pattern
   /// Definition: Any extended, finely granular pattern of pulmonary opacity within which normal anatomic details are partly obscured [Fraser and Pare]
-  @JsonValue('112128')
   value112128,
 
   /// Display: Miliary pattern
   /// Definition: A collection of tiny discrete opacities in the lungs, each measuring 2 mm or less in diameter, generally uniform in size and widespread in distribution [Fraser and Pare]
-  @JsonValue('112129')
   value112129,
 
   /// Display: Mosaic pattern
   /// Definition: Generalized pattern of relatively well defined areas in the lung having different X-Ray attenuations due to a longstanding underlying pulmonary disease
-  @JsonValue('112130')
   value112130,
 
   /// Display: Extremely small
   /// Definition: A qualitative descriptor of a size that is dramatically less than typical
-  @JsonValue('112131')
   value112131,
 
   /// Display: Very small
   /// Definition: A qualitative descriptor of a size that is considerably less than typical
-  @JsonValue('112132')
   value112132,
 
   /// Display: Too small
   /// Definition: A qualitative descriptor of a size that is so small as to be abnormal versus expected size
-  @JsonValue('112133')
   value112133,
 
   /// Display: Elliptic
   /// Definition: Shaped like an ellipse (oval)
-  @JsonValue('112134')
   value112134,
 
   /// Display: Lobulated
   /// Definition: A border shape that is made up of, provided with, or divided into lobules (small lobes, curved or rounded projections or divisions)
-  @JsonValue('112135')
   value112135,
 
   /// Display: Spiculated
   /// Definition: Radially orientated border shape
-  @JsonValue('112136')
   value112136,
 
   /// Display: Sharply defined
   /// Definition: The border of a shadow (opacity) is sharply defined [Fraser and Pare]
-  @JsonValue('112137')
   value112137,
 
   /// Display: Distinctly defined
   /// Definition: The border of a shadow (opacity) is distinctly defined [Fraser and Pare]
-  @JsonValue('112138')
   value112138,
 
   /// Display: Well demarcated
   /// Definition: The border of a shadow (opacity) is well distinct from adjacent structures [Fraser and Pare]
-  @JsonValue('112139')
   value112139,
 
   /// Display: Sharply demarcated
   /// Definition: The border of a shadow (opacity) is sharply distinct from adjacent structures [Fraser and Pare]
-  @JsonValue('112140')
   value112140,
 
   /// Display: Poorly demarcated
   /// Definition: The border of a shadow (opacity) is poorly distinct from adjacent structures [Fraser and Pare]
-  @JsonValue('112141')
   value112141,
 
   /// Display: Circumscribed
   /// Definition: A shadow (opacity) possessing a complete or nearly complete visible border [Fraser and Pare]
-  @JsonValue('112142')
   value112142,
 
   /// Display: Air
   /// Definition: Inspired atmospheric gas. The word is sometimes used to describe gas within the body regardless of its composition or site [Fraser and Pare]
-  @JsonValue('112143')
   value112143,
 
   /// Display: Soft tissue
   /// Definition: Material having X-Ray attenuation properties similar to muscle
-  @JsonValue('112144')
   value112144,
 
   /// Display: Calcium
   /// Definition: Material having X-Ray attenuation properties similar to calcium, a silver-white bivalent metallic element occurring in plants and animals
-  @JsonValue('112145')
   value112145,
 
   /// Display: Acinar
   /// Definition: A pulmonary opacity 4-8 mm in diameter, presumed to represent anatomic acinus, or a collection of opacities in the lung, each measuring 4-8 mm in diameter, and together producing an extended, homogeneous shadow [Fraser and Pare]
-  @JsonValue('112146')
   value112146,
 
   /// Display: Air space
   /// Definition: The gas-containing portion of the lung parenchyma, including the acini and excluding the interstitium [Fraser and Pare]
-  @JsonValue('112147')
   value112147,
 
   /// Display: Fibronodular
   /// Definition: Sharply defined, approximately circular opacities occurring singly or in clusters, usually in the upper lobes [Fraser and Pare]
-  @JsonValue('112148')
   value112148,
 
   /// Display: Fluffy
   /// Definition: A shadow (opacity) that is ill-defined, lacking clear-cut margins [Fraser and Pare]
-  @JsonValue('112149')
   value112149,
 
   /// Display: Linear
   /// Definition: A shadow resembling a line; any elongated opacity of approximately uniform width [Fraser and Pare]
-  @JsonValue('112150')
   value112150,
 
   /// Display: Profusion
   /// Definition: The number of small opacities per unit area or zone of lung. In the International Labor Organization (ILO) classification of radiographs of the pneumoconioses, the qualifiers 0 through 3 subdivide the profusion into 4 categories. The profusion categories may be further subdivided by employing a 12-point scale [Fraser and Pare]
-  @JsonValue('112151')
   value112151,
 
   /// Display: Silhouette sign
   /// Definition: The effacement of an anatomic soft tissue border by either a normal anatomic structure or a pathologic state such as airlessness of adjacent lung or accumulation of fluid in the contiguous pleural space; useful in detecting and localizing an opacity along the axis of the X-Ray beam [Fraser and Pare]
-  @JsonValue('112152')
   value112152,
 
   /// Display: Subpleural
   /// Definition: Situated or occurring between the pleura and the body wall
-  @JsonValue('112153')
   value112153,
 
   /// Display: Bat's wing distribution
   /// Definition: Spatial arrangement of opacities that bears vague resemblance to the shape of a bat in flight; bilaterally symmetric [Fraser and Pare]
-  @JsonValue('112154')
   value112154,
 
   /// Display: Butterfly distribution
   /// Definition: Spatial arrangement of opacities that bears vague resemblance to the shape of a butterfly in flight; bilaterally symmetric [Fraser and Pare]
-  @JsonValue('112155')
   value112155,
 
   /// Display: Centrilobular
   /// Definition: Referring to the region of the bronchioloarteriolar core of a secondary pulmonary lobule [Fraser and Pare]
-  @JsonValue('112156')
   value112156,
 
   /// Display: Coalescent
   /// Definition: The joining together of a number of opacities into a single opacity [Fraser and Pare]
-  @JsonValue('112157')
   value112157,
 
   /// Display: Lobar
   /// Definition: Of or relating to a lobe (a curved or rounded projection or division); e.g. involving an entire lobe of the lung
-  @JsonValue('112158')
   value112158,
 
   /// Display: Hyper-acute
   /// Definition: Extremely or excessively acute, as a qualitative measure of severity
-  @JsonValue('112159')
   value112159,
 
   /// Display: Homogeneous (uniform opacity)
   /// Definition: Of uniform opacity or texture throughout [Fraser and Pare]
-  @JsonValue('112160')
   value112160,
 
   /// Display: Inhomogeneous
   /// Definition: Lack of homogeneity in opacity or texture
-  @JsonValue('112161')
   value112161,
 
   /// Display: Target
   /// Definition: Discrete opacity centrally within a larger opacity, as a calcification descriptor
-  @JsonValue('112162')
   value112162,
 
   /// Display: Fibrocalcific
   /// Definition: Pertaining to sharply defined, linear, and/or nodular opacities containing calcification(s) [Fraser and Pare]
-  @JsonValue('112163')
   value112163,
 
   /// Display: Flocculent
   /// Definition: Calcifications made up of loosely aggregated particles, resembling wool
-  @JsonValue('112164')
   value112164,
 
   /// Display: Difference in border shape
   /// Definition: A change in the shape formed by the boundary or edges of a finding or feature
-  @JsonValue('112165')
   value112165,
 
   /// Display: Difference in border definition
   /// Definition: A change in the clarity of the boundary or edges of a finding or feature
-  @JsonValue('112166')
   value112166,
 
   /// Display: Difference in distribution
   /// Definition: A change in the extent of spreading of a finding or feature
-  @JsonValue('112167')
   value112167,
 
   /// Display: Difference in site involvement
   /// Definition: A change in the part(s) of the anatomy affected or encompassed by a finding or feature
-  @JsonValue('112168')
   value112168,
 
   /// Display: Difference in Type of Content
   /// Definition: A change in the matter or substance within a finding or feature
-  @JsonValue('112169')
   value112169,
 
   /// Display: Difference in Texture
   /// Definition: A change in the surface or consistency of a finding or feature
-  @JsonValue('112170')
   value112170,
 
   /// Display: Fiducial mark
   /// Definition: A location in image space, which may or may not correspond to an anatomical reference, which is often used for registering data sets
-  @JsonValue('112171')
   value112171,
 
   /// Display: Portacath
   /// Definition: Connected to an injection chamber placed under the skin in the upper part of the chest. When it is necessary to inject some drug, a specific needle is put in the chamber through the skin and a silicon membrane. The advantage of a portacath is that it may be left in place several months contrarily of "classical" catheters
-  @JsonValue('112172')
   value112172,
 
   /// Display: Chest tube
   /// Definition: A tube inserted into the chest wall from outside the body, for drainage. Sometimes used for collapsed lung. Usually connected to a receptor placed lower than the insertion site
-  @JsonValue('112173')
   value112173,
 
   /// Display: Central line
   /// Definition: A tube placed into the subclavian vein to deliver medication directly into the venous system
-  @JsonValue('112174')
   value112174,
 
   /// Display: Kidney stent
   /// Definition: A stent is a tube inserted into another tube. Kidney stent is a tube that is inserted into the kidney, ureter, and bladder, to help drain urine. Usually inserted through a scoping device presented through the urethra
-  @JsonValue('112175')
   value112175,
 
   /// Display: Pancreatic stent
   /// Definition: A stent is a tube inserted into another tube. Pancreatic stent is inserted through the common bile duct to the pancreatic duct, to drain bile
-  @JsonValue('112176')
   value112176,
 
   /// Display: Nipple ring
   /// Definition: A non-lesion object that appears to be a circular band, attached to the body via pierced nipple
-  @JsonValue('112177')
   value112177,
 
   /// Display: Coin
   /// Definition: A non-lesion object that appears to be a flat round piece of metal
-  @JsonValue('112178')
   value112178,
 
   /// Display: Minimum Attenuation Coefficient
   /// Definition: The least quantity assignable, admissible, or possible; the least of a set of X-Ray attenuation coefficients
-  @JsonValue('112179')
   value112179,
 
   /// Display: Maximum Attenuation Coefficient
   /// Definition: The greatest quantity or value attainable or attained; the largest of a set of X-Ray attenuation coefficients
-  @JsonValue('112180')
   value112180,
 
   /// Display: Mean Attenuation Coefficient
   /// Definition: The value that is computed by dividing the sum of a set of X-Ray attenuation coefficients by the number of values
-  @JsonValue('112181')
   value112181,
 
   /// Display: Median Attenuation Coefficient
   /// Definition: The value in an ordered set of X-Ray attenuation coefficients, below and above which there is an equal number of values
-  @JsonValue('112182')
   value112182,
 
   /// Display: Standard Deviation of Attenuation Coefficient
   /// Definition: For a set of X-Ray attenuation coefficients: 1) a measure of the dispersion of a frequency distribution that is the square root of the arithmetic mean of the squares of the deviation of each of the class frequencies from the arithmetic mean of the frequency distribution; 2) a parameter that indicates the way in which a probability function or a probability density function is centered around its mean and that is equal to the square root of the moment in which the deviation from the mean is squared
-  @JsonValue('112183')
   value112183,
 
   /// Display: Performance of Pediatric and Adult Thoracic CT
   /// Definition: American College of Radiology. ACR Standard for the Performance of Pediatric and Adult Thoracic Computed Tomography (CT). In: Standards. Reston, Va: 2001:103-107
-  @JsonValue('112184')
   value112184,
 
   /// Display: Performance of CT for Detection of Pulmonary Embolism in Adults
   /// Definition: American College of Radiology. ACR Standard for the Performance of Computed Tomography for the Detection of Pulmonary Embolism in Adults. In: Standards. Reston, Va: 2001:109-113
-  @JsonValue('112185')
   value112185,
 
   /// Display: Performance of High-Resolution CT of the Lungs in Adults
   /// Definition: American College of Radiology. ACR Standard for the Performance of High-Resolution Computed Tomography (HRCT) of the Lungs in Adults. In: Standards. Reston, Va: 2001:115-118
-  @JsonValue('112186')
   value112186,
 
   /// Display: Unspecified method of calculation
   /// Definition: The method of calculation of a measurement or other type of numeric value is not specified
-  @JsonValue('112187')
   value112187,
 
   /// Display: Two-dimensional method
   /// Definition: The calculation method was performed in two-dimensional space
-  @JsonValue('112188')
   value112188,
 
   /// Display: Three-dimensional method
   /// Definition: The calculation method was performed in three-dimensional space
-  @JsonValue('112189')
   value112189,
 
   /// Display: Breast tissue density
   /// Definition: The relative density of parenchymal tissue as a proportion of breast volume
-  @JsonValue('112191')
   value112191,
 
   /// Display: Volume of parenchymal tissue
   /// Definition: The volume of parenchymal tissue
-  @JsonValue('112192')
   value112192,
 
   /// Display: Volume of breast
   /// Definition: The volume of the breast
-  @JsonValue('112193')
   value112193,
 
   /// Display: Mass of parenchymal tissue
   /// Definition: The mass of parenchymal tissue
-  @JsonValue('112194')
   value112194,
 
   /// Display: Mass of breast
   /// Definition: The mass of the breast
-  @JsonValue('112195')
   value112195,
 
   /// Display: Area of Vascular Calcification
   /// Definition: A measured or calculated area of vascular calcification
-  @JsonValue('112196')
   value112196,
 
   /// Display: Volume of Vascular Calcification
   /// Definition: A measured or calculated volume of vascular calcification
-  @JsonValue('112197')
   value112197,
 
   /// Display: Percentage of Vascular Calcification
   /// Definition: A measured or calculated percentage of vascular calcification
-  @JsonValue('112198')
   value112198,
 
   /// Display: Mass of Vascular Calcification
   /// Definition: A measured or calculated mass of vascular calcification
-  @JsonValue('112199')
   value112199,
 
   /// Display: Average calcification distance in a calcification cluster
   /// Definition: The average nearest neighbor distance of all individual microcalcifications in a cluster
-  @JsonValue('112200')
   value112200,
 
   /// Display: Standard deviation distance of calcifications in a cluster
   /// Definition: The standard deviation of nearest neighbor distance of all individual microcalcifications in a cluster
-  @JsonValue('112201')
   value112201,
 
   /// Display: Colon CAD Report
   /// Definition: A structured report containing the results of computer-aided detection or diagnosis applied to colon imaging and associated clinical information
-  @JsonValue('112220')
   value112220,
 
   /// Display: Colon Overall Assessment
   /// Definition: Overall interpretation of the colon using C-RADS categorization system
-  @JsonValue('112222')
   value112222,
 
   /// Display: Image Set Properties
   /// Definition: Characteristics of a set of images
-  @JsonValue('112224')
   value112224,
 
   /// Display: Slice Thickness
   /// Definition: Nominal slice thickness, in mm
-  @JsonValue('112225')
   value112225,
 
   /// Display: Spacing between slices
   /// Definition: Distance between contiguous images, measured from the center-to-center of each image
-  @JsonValue('112226')
   value112226,
 
   /// Display: Frame of Reference UID
   /// Definition: Uniquely identifies groups of composite instances that have the same coordinate system that conveys spatial and/or temporal information
-  @JsonValue('112227')
   value112227,
 
   /// Display: Recumbent Patient Position with respect to gravity
   /// Definition: Patient orientation with respect to downward direction (gravity)
-  @JsonValue('112228')
   value112228,
 
   /// Display: Identifying Segment
   /// Definition: Distinguishes a part of a segmentation
-  @JsonValue('112229')
   value112229,
 
   /// Display: Polyp stalk width
   /// Definition: The diameter of a polyp stalk measured perpendicular to the axis of the stalk
-  @JsonValue('112232')
   value112232,
 
   /// Display: Distance from anus
   /// Definition: The length of the path following the centerline of the colon from the anus to the area of interest
-  @JsonValue('112233')
   value112233,
 
   /// Display: Anatomic non-colon
   /// Definition: A location in the body that is outside the colon
-  @JsonValue('112238')
   value112238,
 
   /// Display: C0 - Inadequate Study/Awaiting Prior Comparisons
   /// Definition: An inadequate study or a study that is awaiting prior comparisons. The study may have inadequate preparation and cannot exclude lesions greater than or equal to ten millimeters owing to presence of fluid or feces. The study may have inadequate insufflation where one or more colonic segments collapsed on both views. Based on "CT Colonography Reporting and Data System: A Consensus Proposal", Radiology, July 2005; 236:3-9
-  @JsonValue('112240')
   value112240,
 
   /// Display: C1 - Normal Colon or Benign Lesion
   /// Definition: The study has a normal colon or benign lesion, with the recommendation to continue routine screening. The study has no visible abnormalities of the colon. The study has no polyps greater than six millimeters. The study may have lipoma, inverted diverticulum, or nonneoplastic findings, such as colonic diverticula. Based on "CT Colonography Reporting and Data System: A Consensus Proposal", Radiology, July 2005; 236:3-9
-  @JsonValue('112241')
   value112241,
 
   /// Display: C2 - Intermediate Polyp or Indeterminate Finding
   /// Definition: The study has an intermediate polyp or indeterminate finding and surveillance or colonoscopy is recommended. There may be intermediate polyps between six and nine millimeters and there are less than three in number. The study may have an intermediate finding and cannot exclude a polyp that is greater than or equal to six millimeters in a technically adequate exam. Based on "CT Colonography Reporting and Data System: A Consensus Proposal", Radiology, July 2005; 236:3-9
-  @JsonValue('112242')
   value112242,
 
   /// Display: C3 - Polyp, Possibly Advanced Adenoma
   /// Definition: The study has a polyp, possibly advanced adenoma, and a follow-up colonoscopy is recommended. The study has a polyp greater than or equal to ten millimeters or the study has three or more polyps that are each between six to nine millimeters. Based on "CT Colonography Reporting and Data System: A Consensus Proposal", Radiology, July 2005; 236:3-9
-  @JsonValue('112243')
   value112243,
 
   /// Display: C4 - Colonic Mass, Likely Malignant
   /// Definition: The study has a colonic mass, likely malignant, and surgical consultation is recommended. The lesion compromises bowel lumen and demonstrates extracolonic invasion. Based on "CT Colonography Reporting and Data System: A Consensus Proposal", Radiology, July 2005; 236:3-9
-  @JsonValue('112244')
   value112244,
 
   /// Display: ACR Guideline, Performance of Adult CT Colonography
   /// Definition: American College of Radiology Practice Guideline for the Performance of Computed Tomography (CT) Colonography in Adults. In: Practice Guidelines and Technical Standards.Reston, Va: American College of Radiology;2006:371-376
-  @JsonValue('112248')
   value112248,
 
   /// Display: ACR Standard, CT medical physics performance monitoring
   /// Definition: American College of Radiology Technical Standard for Diagnostic Medical Physics Performance Monitoring of Computed Tomography (CT) Equipment. In: Practice Guidelines and Technical Standards.Reston, Va: American College of Radiology;2006:945-948
-  @JsonValue('112249')
   value112249,
 
   /// Display: AP+45
   /// Definition: View Orientation Modifier indicates that the view orientation of the imaging plane is rotated +45° along the cranial-caudal axis
-  @JsonValue('112300')
   value112300,
 
   /// Display: AP-45
   /// Definition: View Orientation Modifier indicates that the view orientation of the imaging plane is rotated -45° along the cranial-caudal axis
-  @JsonValue('112301')
   value112301,
 
   /// Display: Anatomical axis of femur
   /// Definition: The axis following the shaft of the femur
-  @JsonValue('112302')
   value112302,
 
   /// Display: Acetabular Center of Rotation
   /// Definition: Center of Rotation of the natural Acetabulum
-  @JsonValue('112303')
   value112303,
 
   /// Display: Femur Head Center of Rotation
   /// Definition: Center of Rotation of the natural femur head
-  @JsonValue('112304')
   value112304,
 
   /// Display: Acetabular Cup Shell
   /// Definition: Prosthetic component implanted into the acetabulum. Provides hold for the insert that is mounted inside the cup
-  @JsonValue('112305')
   value112305,
 
   /// Display: Acetabular Cup Insert
   /// Definition: Prosthetic pelvic joint component. Inserted into the cup, takes in the femoral head replacement
-  @JsonValue('112306')
   value112306,
 
   /// Display: Acetabular Cup Monoblock
   /// Definition: Prosthetic pelvic joint cup including insert
-  @JsonValue('112307')
   value112307,
 
   /// Display: Femoral Head Ball Component
   /// Definition: Component for Femoral Head Prosthesis where the conic intake for the stem neck can be exchanged. Combined with a Femoral Head Cone Taper Component
-  @JsonValue('112308')
   value112308,
 
   /// Display: Femoral Head Cone Taper Component
   /// Definition: Exchangeable neck intake for composite femoral head prosthesis. Combined with a Femoral Head Ball Component
-  @JsonValue('112309')
   value112309,
 
   /// Display: Femoral Stem
   /// Definition: Prosthesis Implanted into the femoral bone to provide force transmission between joint replacement and bone. On the proximal end a conic neck holds the femoral head replacement
-  @JsonValue('112310')
   value112310,
 
   /// Display: Femoral Stem Distal Component
   /// Definition: Distal half of a modular stem prosthesis system. Combined with a Stem Proximal Component
-  @JsonValue('112311')
   value112311,
 
   /// Display: Femoral Stem Proximal Component
   /// Definition: Proximal half of a modular stem prosthesis system. Combined with a Stem Distal Component
-  @JsonValue('112312')
   value112312,
 
   /// Display: Femoral Stem Component
   /// Definition: Stem prosthetic component with a modular insert for an exchangeable neck component. Combined with a Neck Component
-  @JsonValue('112313')
   value112313,
 
   /// Display: Neck Component
   /// Definition: Prosthetic Neck to be combined with a Stem Component
-  @JsonValue('112314')
   value112314,
 
   /// Display: Monoblock Stem
   /// Definition: Prosthetic Stem and Femoral Head in one piece
-  @JsonValue('112315')
   value112315,
 
   /// Display: Prosthetic Shaft Augment
   /// Definition: A proximal attachment to the shaft used to compensate for bone deficiencies or bone loss
-  @JsonValue('112316')
   value112316,
 
   /// Display: Femoral Head Resurfacing Component
   /// Definition: Artificial femur head surface needed for the partial replacement of the femoral head where only the surface is replaced
-  @JsonValue('112317')
   value112317,
 
   /// Display: Pinning
   /// Definition: Fixation using a pin
-  @JsonValue('112318')
   value112318,
 
   /// Display: Sewing
   /// Definition: Fixation sewing several objects together
-  @JsonValue('112319')
   value112319,
 
   /// Display: Bolting
   /// Definition: Fixation using a bolt
-  @JsonValue('112320')
   value112320,
 
   /// Display: Wedging
   /// Definition: Fixation due to forcing an object into a narrow space
-  @JsonValue('112321')
   value112321,
 
   /// Display: Distal Centralizer
   /// Definition: Attachment to the distal end of a cemented stem assuring that the stem is in a central position inside the drilled femoral canal before cementation
-  @JsonValue('112325')
   value112325,
 
   /// Display: Generic 2D Planning
   /// Definition: Planning by an unspecified 2D method
-  @JsonValue('112340')
   value112340,
 
   /// Display: Generic 3D Planning
   /// Definition: Planning by an unspecified 3D method
-  @JsonValue('112341')
   value112341,
 
   /// Display: Generic Planning for Hip Replacement
   /// Definition: Planning of a Hip Replacement, by an unspecified method
-  @JsonValue('112342')
   value112342,
 
   /// Display: Generic Planning for Knee Replacement
   /// Definition: Planning of Knee Replacement, by an unspecified method
-  @JsonValue('112343')
   value112343,
 
   /// Display: Müller Method Planning for Hip Replacement
   /// Definition: Planning of Hip Replacement according to the procedure of M. E. Müller [Eggli et. al.1998]
-  @JsonValue('112344')
   value112344,
 
   /// Display: Implantation Plan
   /// Definition: A Report containing the results of an Implantation Planning Activity
-  @JsonValue('112345')
   value112345,
 
   /// Display: Selected Implant Component
   /// Definition: A selection of one Implant Component
-  @JsonValue('112346')
   value112346,
 
   /// Display: Component ID
   /// Definition: Identification ID of an Implant Component
-  @JsonValue('112347')
   value112347,
 
   /// Display: Implant Template
   /// Definition: An implant template describing the properties (2D/3D geometry and other data) of one Implant Component
-  @JsonValue('112348')
   value112348,
 
   /// Display: Component Connection
   /// Definition: A connection of two Connected Implantation Plan Components
-  @JsonValue('112350')
   value112350,
 
   /// Display: Mating Feature Set ID
   /// Definition: ID of a Mating Feature Set in an Implant Component
-  @JsonValue('112351')
   value112351,
 
   /// Display: Mating Feature ID
   /// Definition: ID of the Mating Feature in a Mating Feature Set in an Implant Component
-  @JsonValue('112352')
   value112352,
 
   /// Display: Spatial Registration
   /// Definition: The Spatial Registration of one or more Implant Components
-  @JsonValue('112353')
   value112353,
 
   /// Display: Patient Image
   /// Definition: Patient Images used for an implantation planning activity
-  @JsonValue('112354')
   value112354,
 
   /// Display: Assembly
   /// Definition: A collection of Component Connections of Implant Components
-  @JsonValue('112355')
   value112355,
 
   /// Display: User Selected Fiducial
   /// Definition: Fiducials that are selected by the user and may or may not belong to anatomical landmarks
-  @JsonValue('112356')
   value112356,
 
   /// Display: Derived Fiducial
   /// Definition: Fiducials that represent geometric characteristics, such as center of rotation, and are derived from other fiducials
-  @JsonValue('112357')
   value112357,
 
   /// Display: Information used for planning
   /// Definition: All parameters and data that were used for the planning activity
-  @JsonValue('112358')
   value112358,
 
   /// Display: Supporting Information
   /// Definition: A description of the plan as encapsulated PDF SOP Instance
-  @JsonValue('112359')
   value112359,
 
   /// Display: Implant Component List
   /// Definition: A list of all Implant Components selected for an implantation
-  @JsonValue('112360')
   value112360,
 
   /// Display: Patient Data Used During Planning
   /// Definition: Reference to objects containing patient data that is used for planning
-  @JsonValue('112361')
   value112361,
 
   /// Display: Degrees of Freedom Specification
   /// Definition: A specification of the values from one or more Degrees of Freedom
-  @JsonValue('112362')
   value112362,
 
   /// Display: Degree of Freedom ID
   /// Definition: ID of one Degree of Freedom
-  @JsonValue('112363')
   value112363,
 
   /// Display: Related Patient Data Not Used During Planning
   /// Definition: Reference to objects containing patient data that were not used for planning but are somehow related
-  @JsonValue('112364')
   value112364,
 
   /// Display: Related Implantation Reports
   /// Definition: Implantation Reports that are somehow related; e.g. contemporaneous implantations that are independent
-  @JsonValue('112365')
   value112365,
 
   /// Display: Implant Assembly Template
   /// Definition: Implant Assembly Template
-  @JsonValue('112366')
   value112366,
 
   /// Display: Planning Information for Intraoperative Usage
   /// Definition: Information that is intended to be used intra-operatively
-  @JsonValue('112367')
   value112367,
 
   /// Display: Implantation Patient Positioning
   /// Definition: Position of the patient on the operating room table
-  @JsonValue('112368')
   value112368,
 
   /// Display: Fiducial Intent
   /// Definition: Intended use of the fiducial
-  @JsonValue('112369')
   value112369,
 
   /// Display: Component Type
   /// Definition: Type of an Implant Component
-  @JsonValue('112370')
   value112370,
 
   /// Display: Manufacturer Implant Template
   /// Definition: Implant Template released by the Manufacturer
-  @JsonValue('112371')
   value112371,
 
   /// Display: Derived Planning Images
   /// Definition: Images that are created by a planning application
-  @JsonValue('112372')
   value112372,
 
   /// Display: Other Derived Planning Data
   /// Definition: Data that is created by a planning application
-  @JsonValue('112373')
   value112373,
 
   /// Display: Connected Implantation Plan Component
   /// Definition: One Implant Component that is connected to another Implant Component
-  @JsonValue('112374')
   value112374,
 
   /// Display: Planning Method
   /// Definition: The method used for planning
-  @JsonValue('112375')
   value112375,
 
   /// Display: Degree of Freedom Exact Translational Value
   /// Definition: Defines the exact value that was planned for translation
-  @JsonValue('112376')
   value112376,
 
   /// Display: Degree of Freedom Minimum Translational Value
   /// Definition: Defines the minimum value that was planned for translation
-  @JsonValue('112377')
   value112377,
 
   /// Display: Degree of Freedom Maximum Translational Value
   /// Definition: Defines the maximum value that was planned for translation
-  @JsonValue('112378')
   value112378,
 
   /// Display: Degree of Freedom Exact Rotational Translation Value
   /// Definition: Defines the exact value that was planned for rotation
-  @JsonValue('112379')
   value112379,
 
   /// Display: Degree of Freedom Minimum Rotational Value
   /// Definition: Defines the minimum value that was planned for rotation
-  @JsonValue('112380')
   value112380,
 
   /// Display: Degree of Freedom Maximum Rotational Value
   /// Definition: Defines the maximum value that was planned for rotation
-  @JsonValue('112381')
   value112381,
 
   /// Display: Peri-operative Photographic Imaging
   /// Definition: Procedure step protocol for photographic imaging of surgical procedures, including photography of specimens collected
-  @JsonValue('112700')
   value112700,
 
   /// Display: Gross Specimen Imaging
   /// Definition: Procedure step protocol for imaging gross specimens, typically with a photographic camera (modality XC), and planning further dissection
-  @JsonValue('112701')
   value112701,
 
   /// Display: Slide Microscopy
   /// Definition: Procedure step protocol for imaging slide specimens
-  @JsonValue('112702')
   value112702,
 
   /// Display: Whole Slide Imaging
   /// Definition: Procedure step protocol for imaging slide specimens using a whole slide scanner
-  @JsonValue('112703')
   value112703,
 
   /// Display: WSI 20X RGB
   /// Definition: Procedure step protocol for imaging slide specimens using a whole slide scanner with a 20X nominal objective lens, in full color, with a single imaging focal plane across the image
-  @JsonValue('112704')
   value112704,
 
   /// Display: WSI 40X RGB
   /// Definition: Procedure step protocol for imaging slide specimens using a whole slide scanner with a 40X nominal objective lens, in full color, with a single imaging focal plane across the image
-  @JsonValue('112705')
   value112705,
 
   /// Display: Illumination Method
   /// Definition: Technique of illuminating specimen
-  @JsonValue('112706')
   value112706,
 
   /// Display: Number of focal planes
   /// Definition: Number of focal planes for a microscopy image acquisition
-  @JsonValue('112707')
   value112707,
 
   /// Display: Focal plane Z offset
   /// Definition: Nominal distance above a reference plane (typically a slide glass substrate top surface) of the focal plane
-  @JsonValue('112708')
   value112708,
 
   /// Display: Magnification selection
   /// Definition: Microscope magnification based on nominal objective lens power
-  @JsonValue('112709')
   value112709,
 
   /// Display: Illumination wavelength
   /// Definition: Nominal center wavelength for an imaging spectral band
-  @JsonValue('112710')
   value112710,
 
   /// Display: Illumination spectral band
   /// Definition: Name (coded) for an imaging spectral band
-  @JsonValue('112711')
   value112711,
 
   /// Display: Optical filter type
   /// Definition: Type of filter inserted into the optical imaging path
-  @JsonValue('112712')
   value112712,
 
   /// Display: Tissue selection method
   /// Definition: Technique for identifying tissue to be imaged versus area of slide not to be imaged
-  @JsonValue('112713')
   value112713,
 
   /// Display: Multiple planes
   /// Definition: Imaging performed at multiple imaging (focal) planes
-  @JsonValue('112714')
   value112714,
 
   /// Display: 5X
   /// Definition: Nominal 5 power objective lens, resulting in a digital image at approximately 2 um/pixel spacing
-  @JsonValue('112715')
   value112715,
 
   /// Display: 10X
   /// Definition: Nominal 10 power objective lens, resulting in a digital image at approximately 1 um/pixel spacing
-  @JsonValue('112716')
   value112716,
 
   /// Display: 20X
   /// Definition: Nominal 20 power microscope objective lens, resulting in a digital image at approximately 0.5 um/pixel spacing
-  @JsonValue('112717')
   value112717,
 
   /// Display: 40X
   /// Definition: Nominal 40 power microscope objective lens, with a combined condenser and objective lens numerical aperture of approximately 1.3, resulting in a digital image at approximately 0.25 um/pixel spacing
-  @JsonValue('112718')
   value112718,
 
   /// Display: Nominal empty tile suppression
   /// Definition: Equipment-specific nominal or default method for identifying tiles without tissue imaged for suppression from inclusion in image object
-  @JsonValue('112719')
   value112719,
 
   /// Display: High threshold empty tile suppression
   /// Definition: Equipment-specific high threshold method for identifying tiles without tissue imaged for suppression from inclusion in image object
-  @JsonValue('112720')
   value112720,
 
   /// Display: No empty tile suppression
   /// Definition: Tiles without tissue imaged are not suppressed from inclusion in image object
-  @JsonValue('112721')
   value112721,
 
   /// Display: Of Interest
   /// Definition: Of Interest
-  @JsonValue('113000')
   value113000,
 
   /// Display: Rejected for Quality Reasons
   /// Definition: Rejected for Quality Reasons
-  @JsonValue('113001')
   value113001,
 
   /// Display: For Referring Provider
   /// Definition: For Referring Provider
-  @JsonValue('113002')
   value113002,
 
   /// Display: For Surgery
   /// Definition: For Surgery
-  @JsonValue('113003')
   value113003,
 
   /// Display: For Teaching
   /// Definition: For Teaching
-  @JsonValue('113004')
   value113004,
 
   /// Display: For Conference
   /// Definition: For Conference
-  @JsonValue('113005')
   value113005,
 
   /// Display: For Therapy
   /// Definition: For Therapy
-  @JsonValue('113006')
   value113006,
 
   /// Display: For Patient
   /// Definition: For Patient
-  @JsonValue('113007')
   value113007,
 
   /// Display: For Peer Review
   /// Definition: For Peer Review
-  @JsonValue('113008')
   value113008,
 
   /// Display: For Research
   /// Definition: For Research
-  @JsonValue('113009')
   value113009,
 
   /// Display: Quality Issue
   /// Definition: Quality Issue
-  @JsonValue('113010')
   value113010,
 
   /// Display: Document Title Modifier
   /// Definition: Document Title Modifier
-  @JsonValue('113011')
   value113011,
 
   /// Display: Key Object Description
   /// Definition: Key Object Description
-  @JsonValue('113012')
   value113012,
 
   /// Display: Best In Set
   /// Definition: A selection that represents the "best" chosen from a larger set of items; e.g. the best images within a Study or Series. The criteria against which "best" is measured is not defined. Contrast this with the more specific term "Best illustration of finding"
-  @JsonValue('113013')
   value113013,
 
   /// Display: Study
   /// Definition: A study is a collection of one or more series of medical images, presentation states, and/or SR documents that are logically related for the purpose of diagnosing a patient. A study may include composite instances that are created by a single modality, multiple modalities or by multiple devices of the same modality. [From Section A.1.2.2 "Study IE" in PS3.3 ]
-  @JsonValue('113014')
   value113014,
 
   /// Display: Series
   /// Definition: A distinct logical set used to group composite instances. All instances within a Series are of the same modality, in the same Frame of Reference (if any), and created by the same equipment. [See Section A.1.2.3 "Series IE" in PS3.3 ]
-  @JsonValue('113015')
   value113015,
 
   /// Display: Performed Procedure Step
   /// Definition: An arbitrarily defined unit of service that has actually been performed (not just scheduled). [From Section 7.3.1.9 "Modality Performed Procedure Step" in PS3.3 ]
-  @JsonValue('113016')
   value113016,
 
   /// Display: Stage-View
   /// Definition: An image or set of images illustrating a specific stage (phase in a stress echo exam protocol) and view (combination of the transducer position and orientation at the time of image acquisition)
-  @JsonValue('113017')
   value113017,
 
   /// Display: For Printing
   /// Definition: For Printing
-  @JsonValue('113018')
   value113018,
 
   /// Display: For Report Attachment
   /// Definition: Selection of information objects for attachment to the clinical report of the Current Requested Procedure
-  @JsonValue('113020')
   value113020,
 
   /// Display: For Litigation
   /// Definition: List of objects that are related to litigation and should be specially handled; e.g. may apply if a complaint has been received regarding a patient, or a specific set of images has been the subject of a subpoena, and needs to be sequestered or excluded from automatic purging according to retention policy
-  @JsonValue('113021')
   value113021,
 
   /// Display: Double exposure
   /// Definition: Double exposure
-  @JsonValue('113026')
   value113026,
 
   /// Display: Manifest
   /// Definition: A list of objects that have been exported out of one organizational domain into another domain. Typically, the first domain has no direct control over what the second domain will do with the objects
-  @JsonValue('113030')
   value113030,
 
   /// Display: Signed Manifest
   /// Definition: A signed list of objects that have been exported out of one organizational domain into another domain, referenced securely with either Digital Signatures or MACs. Typically, the first domain has no direct control over what the second domain will do with the objects
-  @JsonValue('113031')
   value113031,
 
   /// Display: Complete Study Content
   /// Definition: The list of objects that constitute a study at the time that the list was created
-  @JsonValue('113032')
   value113032,
 
   /// Display: Signed Complete Study Content
   /// Definition: The signed list of objects that constitute a study at the time that the list was created, referenced securely with either Digital Signatures or MACs
-  @JsonValue('113033')
   value113033,
 
   /// Display: Complete Acquisition Content
   /// Definition: The list of objects that were generated in a single procedure step
-  @JsonValue('113034')
   value113034,
 
   /// Display: Signed Complete Acquisition Content
   /// Definition: The signed list of objects that were generated in a single procedure step, referenced securely with either Digital Signatures or MACs
-  @JsonValue('113035')
   value113035,
 
   /// Display: Group of Frames for Display
   /// Definition: A list of frames or single-frame or entire multi-frame instances that together constitute a set for some purpose, such as might be displayed together in the same viewport, as distinct from another set that might be displayed in a separate viewport
-  @JsonValue('113036')
   value113036,
 
   /// Display: Rejected for Patient Safety Reasons
   /// Definition: List of objects whose use is potentially harmful to the patient; e.g. an improperly labeled image could lead to dangerous surgical decisions
-  @JsonValue('113037')
   value113037,
 
   /// Display: Incorrect Modality Worklist Entry
   /// Definition: List of objects that were acquired using an incorrect modality worklist entry, and that should not be used, since they may be incorrectly identified
-  @JsonValue('113038')
   value113038,
 
   /// Display: Data Retention Policy Expired
   /// Definition: List of objects that have expired according to a defined data retention policy
-  @JsonValue('113039')
   value113039,
 
   /// Display: Lossy Compression
   /// Definition: Lossy compression has been applied to an image
-  @JsonValue('113040')
   value113040,
 
   /// Display: Apparent Diffusion Coefficient
   /// Definition: Values are derived by calculation of the apparent diffusion coefficient
-  @JsonValue('113041')
   value113041,
 
   /// Display: Pixel by pixel addition
   /// Definition: Values are derived by the pixel by pixel addition of two images
-  @JsonValue('113042')
   value113042,
 
   /// Display: Diffusion weighted
   /// Definition: Values are derived by calculation of the diffusion weighting
-  @JsonValue('113043')
   value113043,
 
   /// Display: Diffusion Anisotropy
   /// Definition: Values are derived by calculation of the diffusion anisotropy
-  @JsonValue('113044')
   value113044,
 
   /// Display: Diffusion Attenuated
   /// Definition: Values are derived by calculation of the diffusion attenuation
-  @JsonValue('113045')
   value113045,
 
   /// Display: Pixel by pixel division
   /// Definition: Values are derived by the pixel by pixel division of two images
-  @JsonValue('113046')
   value113046,
 
   /// Display: Pixel by pixel mask
   /// Definition: Values are derived by the pixel by pixel masking of one image by another
-  @JsonValue('113047')
   value113047,
 
   /// Display: Pixel by pixel Maximum
   /// Definition: Values are derived by calculating the pixel by pixel maximum of two or more images
-  @JsonValue('113048')
   value113048,
 
   /// Display: Pixel by pixel mean
   /// Definition: Values are derived by calculating the pixel by pixel mean of two or more images
-  @JsonValue('113049')
   value113049,
 
   /// Display: Metabolite Maps from spectroscopy data
   /// Definition: Values are derived by calculating from spectroscopy data pixel values localized in two dimensional space based on the concentration of specific metabolites (i.e, at specific frequencies)
-  @JsonValue('113050')
   value113050,
 
   /// Display: Pixel by pixel Minimum
   /// Definition: Values are derived by calculating the pixel by pixel minimum of two or more images
-  @JsonValue('113051')
   value113051,
 
   /// Display: Mean Transit Time
   /// Definition: The time required for blood to pass through a region of tissue
-  @JsonValue('113052')
   value113052,
 
   /// Display: Pixel by pixel multiplication
   /// Definition: Values are derived by the pixel by pixel multiplication of two images
-  @JsonValue('113053')
   value113053,
 
   /// Display: Negative Enhancement Integral
   /// Definition: Values are derived by calculating negative enhancement integral values
-  @JsonValue('113054')
   value113054,
 
   /// Display: Regional Cerebral Blood Flow
   /// Definition: The flow rate of blood perfusing a region of the brain as volume per mass per unit of time
-  @JsonValue('113055')
   value113055,
 
   /// Display: Regional Cerebral Blood Volume
   /// Definition: The volume of blood perfusing a region of brain as volume per mass
-  @JsonValue('113056')
   value113056,
 
   /// Display: R-Coefficient
   /// Definition: Correlation Coefficient, r
-  @JsonValue('113057')
   value113057,
 
   /// Display: Proton Density
   /// Definition: Values are derived by calculating proton density values
-  @JsonValue('113058')
   value113058,
 
   /// Display: Signal Change
   /// Definition: Values are derived by calculating signal change values
-  @JsonValue('113059')
   value113059,
 
   /// Display: Signal to Noise
   /// Definition: Values are derived by calculating the signal to noise ratio
-  @JsonValue('113060')
   value113060,
 
   /// Display: Standard Deviation
   /// Definition: Values are derived by calculating the standard deviation of two or more images
-  @JsonValue('113061')
   value113061,
 
   /// Display: Pixel by pixel subtraction
   /// Definition: Values are derived by the pixel by pixel subtraction of two images
-  @JsonValue('113062')
   value113062,
 
   /// Display: T1
   /// Definition: Values are derived by calculating T1 values
-  @JsonValue('113063')
   value113063,
 
   /// Display: T2*
   /// Definition: Values are derived by calculating T2* values
-  @JsonValue('113064')
   value113064,
 
   /// Display: T2
   /// Definition: Values are derived by calculating T2 values
-  @JsonValue('113065')
   value113065,
 
   /// Display: Time Course of Signal
   /// Definition: Values are derived by calculating values based on the time course of signal
-  @JsonValue('113066')
   value113066,
 
   /// Display: Temperature encoded
   /// Definition: Values are derived by calculating values based on temperature encoding
-  @JsonValue('113067')
   value113067,
 
   /// Display: Student's T-Test
   /// Definition: Values are derived by calculating the value of the Student's T-Test statistic from multiple image samples
-  @JsonValue('113068')
   value113068,
 
   /// Display: Time To Peak
   /// Definition: The time from the start of the contrast agent injection to the maximum enhancement value
-  @JsonValue('113069')
   value113069,
 
   /// Display: Velocity encoded
   /// Definition: Values are derived by calculating values based on velocity encoded; e.g. phase contrast
-  @JsonValue('113070')
   value113070,
 
   /// Display: Z-Score
   /// Definition: Values are derived by calculating the value of the Z-Score statistic from multiple image samples
-  @JsonValue('113071')
   value113071,
 
   /// Display: Multiplanar reformatting
   /// Definition: Values are derived by reformatting in a flat plane other than that originally acquired
-  @JsonValue('113072')
   value113072,
 
   /// Display: Curved multiplanar reformatting
   /// Definition: Values are derived by reformatting in a curve plane other than that originally acquired
-  @JsonValue('113073')
   value113073,
 
   /// Display: Volume rendering
   /// Definition: Values are derived by volume rendering of acquired data
-  @JsonValue('113074')
   value113074,
 
   /// Display: Surface rendering
   /// Definition: Values are derived by surface rendering of acquired data
-  @JsonValue('113075')
   value113075,
 
   /// Display: Segmentation
   /// Definition: Values are derived by segmentation (classification into tissue types) of acquired data
-  @JsonValue('113076')
   value113076,
 
   /// Display: Volume editing
   /// Definition: Values are derived by selectively editing acquired data (removing values from the volume), such as in order to remove obscuring structures or noise
-  @JsonValue('113077')
   value113077,
 
   /// Display: Maximum intensity projection
   /// Definition: Values are derived by maximum intensity projection of acquired data
-  @JsonValue('113078')
   value113078,
 
   /// Display: Minimum intensity projection
   /// Definition: Values are derived by minimum intensity projection of acquired data
-  @JsonValue('113079')
   value113079,
 
   /// Display: Glutamate and glutamine
   /// Definition: For single-proton MR spectroscopy, the resonance peak corresponding to glutamate and glutamine
-  @JsonValue('113080')
   value113080,
 
   /// Display: Choline/Creatine Ratio
   /// Definition: For single-proton MR spectroscopy, the ratio between the Choline and Creatine resonance peaks
-  @JsonValue('113081')
   value113081,
 
   /// Display: N-acetylaspartate /Creatine Ratio
   /// Definition: For single-proton MR spectroscopy, the ratio between the N-acetylaspartate and Creatine resonance peaks
-  @JsonValue('113082')
   value113082,
 
   /// Display: N-acetylaspartate /Choline Ratio
   /// Definition: For single-proton MR spectroscopy, the ratio between the N-acetylaspartate and Choline resonance peaks
-  @JsonValue('113083')
   value113083,
 
   /// Display: Spatial resampling
   /// Definition: Values are derived by spatial resampling of acquired data
-  @JsonValue('113085')
   value113085,
 
   /// Display: Edge enhancement
   /// Definition: Values are derived by edge enhancement
-  @JsonValue('113086')
   value113086,
 
   /// Display: Smoothing
   /// Definition: Values are derived by smoothing
-  @JsonValue('113087')
   value113087,
 
   /// Display: Gaussian blur
   /// Definition: Values are derived by Gaussian blurring
-  @JsonValue('113088')
   value113088,
 
   /// Display: Unsharp mask
   /// Definition: Values are derived by unsharp masking
-  @JsonValue('113089')
   value113089,
 
   /// Display: Image stitching
   /// Definition: Values are derived by stitching two or more images together
-  @JsonValue('113090')
   value113090,
 
   /// Display: Spatially-related frames extracted from the volume
   /// Definition: Spatially-related frames in this image are representative frames from the referenced 3D volume data set
-  @JsonValue('113091')
   value113091,
 
   /// Display: Temporally-related frames extracted from the set of volumes
   /// Definition: Temporally-related frames in this image are representative frames from the referenced 3D volume data set
-  @JsonValue('113092')
   value113092,
 
   /// Display: Polar to Rectangular Scan Conversion
   /// Definition: Conversion of a polar coordinate image to rectangular (Cartesian) coordinate image
-  @JsonValue('113093')
   value113093,
 
   /// Display: Creatine and Choline
   /// Definition: For single-proton MR spectroscopy, the resonance peak corresponding to creatine and choline
-  @JsonValue('113094')
   value113094,
 
   /// Display: Lipid and Lactate
   /// Definition: For single-proton MR spectroscopy, the resonance peak corresponding to lipid and lactate
-  @JsonValue('113095')
   value113095,
 
   /// Display: Creatine+Choline/ Citrate Ratio
   /// Definition: For single-proton MR spectroscopy, the ratio between the Choline and Creatine resonance peak and the Citrate resonance peak
-  @JsonValue('113096')
   value113096,
 
   /// Display: Multi-energy proportional weighting
   /// Definition: Image pixels created through proportional weighting of multiple acquisitions at distinct X-Ray energies
-  @JsonValue('113097')
   value113097,
 
   /// Display: Basic Application Confidentiality Profile
   /// Definition: De-identification using a profile defined in PS3.15 that requires removing all information related to the identity and demographic characteristics of the patient, any responsible parties or family members, any personnel involved in the procedure, the organizations involved in ordering or performing the procedure, additional information that could be used to match instances if given access to the originals, such as UIDs, dates and times, and private attributes, when that information is present in the non-Pixel Data Attributes, including graphics or overlays
-  @JsonValue('113100')
   value113100,
 
   /// Display: Clean Pixel Data Option
   /// Definition: Additional de-identification according to an option defined in PS3.15 that requires any information burned in to the Pixel Data corresponding to the Attribute information specified to be removed by the Profile and any other Options specified also be removed
-  @JsonValue('113101')
   value113101,
 
   /// Display: Clean Recognizable Visual Features Option
   /// Definition: Additional de-identification according to an option defined in PS3.15 that requires that sufficient removal or distortion of the Pixel Data shall be applied to prevent recognition of an individual from the instances themselves or a reconstruction of a set of instances
-  @JsonValue('113102')
   value113102,
 
   /// Display: Clean Graphics Option
   /// Definition: Additional de-identification according to an option defined in PS3.15 that requires that any information encoded in graphics, text annotations or overlays corresponding to the Attribute information specified to be removed by the Profile and any other Options specified also be removed
-  @JsonValue('113103')
   value113103,
 
   /// Display: Clean Structured Content Option
   /// Definition: Additional de-identification according to an option defined in PS3.15 that requires that any information encoded in SR Content Items or Acquisition Context Sequence Items corresponding to the Attribute information specified to be removed by the Profile and any other Options specified also be removed
-  @JsonValue('113104')
   value113104,
 
   /// Display: Clean Descriptors Option
   /// Definition: Additional de-identification according to an option defined in PS3.15 that requires that any information that is embedded in text or string Attributes corresponding to the Attribute information specified to be removed by the Profile and any other Options specified also be removed
-  @JsonValue('113105')
   value113105,
 
   /// Display: Retain Longitudinal Temporal Information Full Dates Option
   /// Definition: Retention of information that would otherwise be removed during de-identification according to an option defined in PS3.15 that requires that any dates and times be retained,
-  @JsonValue('113106')
   value113106,
 
   /// Display: Retain Longitudinal Temporal Information Modified Dates Option
   /// Definition: Retention of information that would otherwise be removed during de-identification according to an option defined in PS3.15 that requires that any dates and times be modified in a manner that preserves temporal relationships; e.g. Study Date and Time
-  @JsonValue('113107')
   value113107,
 
   /// Display: Retain Patient Characteristics Option
   /// Definition: Retention of information that would otherwise be removed during de-identification according to an option defined in PS3.15 that requires that any physical characteristics of the patient, which are descriptive rather than identifying information per se, be retained; e.g. Patient's Age, Sex, Size (height) and Weight
-  @JsonValue('113108')
   value113108,
 
   /// Display: Retain Device Identity Option
   /// Definition: Retention of information that would otherwise be removed during de-identification according to an option defined in PS3.15 that requires that any information that identifies a device be retained; e.g. Device Serial Number
-  @JsonValue('113109')
   value113109,
 
   /// Display: Retain UIDs Option
   /// Definition: Retention of information that would otherwise be removed during de-identification according to an option defined in PS3.15 that requires that UIDs be retained; e.g. SOP Instance UID
-  @JsonValue('113110')
   value113110,
 
   /// Display: Retain Safe Private Option
   /// Definition: Retention of information that would otherwise be removed during de-identification according to an option defined in PS3.15 that requires that private attributes that are known not to contain identity information be retained; e.g. private SUV scale factor
-  @JsonValue('113111')
   value113111,
 
   /// Display: Radiopharmaceutical Radiation Dose Report
   /// Definition: The procedure report is a Radiopharmaceutical Radiation Dose report
-  @JsonValue('113500')
   value113500,
 
   /// Display: Radiopharmaceutical Administration
   /// Definition: Information pertaining to the administration of a radiopharmaceutical
-  @JsonValue('113502')
   value113502,
 
   /// Display: Radiopharmaceutical Administration Event UID
   /// Definition: Unique identification of a single radiopharmaceutical administration event
-  @JsonValue('113503')
   value113503,
 
   /// Display: Intravenous Extravasation Symptoms
   /// Definition: Initial signs or symptoms of extravasation
-  @JsonValue('113505')
   value113505,
 
   /// Display: Estimated Extravasation Activity
   /// Definition: The estimated percentage of administered activity lost at the injection site. The estimation includes extravasation, paravenous administration and leakage at the injection site
-  @JsonValue('113506')
   value113506,
 
   /// Display: Administered activity
   /// Definition: The calculated activity at the Radiopharmaceutical Start Time when the radiopharmaceutical is administered to the patient. The residual activity (i.e. radiopharmaceutical not administered) , if measured, is reflected in the calculated value. The estimated extravasation is not reflected in the calculated value
-  @JsonValue('113507')
   value113507,
 
   /// Display: Pre-Administration Measured Activity
   /// Definition: Radioactivity measurement of radiopharmaceutical before or during the administration
-  @JsonValue('113508')
   value113508,
 
   /// Display: Post-Administration Measured Activity
   /// Definition: Radioactivity measurement of radiopharmaceutical after the administration
-  @JsonValue('113509')
   value113509,
 
   /// Display: Drug Product Identifier
   /// Definition: Registered drug establishment code for product, coding scheme example is NDC or RxNorm
-  @JsonValue('113510')
   value113510,
 
   /// Display: Radiopharmaceutical Dispense Unit Identifier
   /// Definition: The human readable identification of the specific radiopharmaceutical dispensed quantity or dose ("dose" as unit of medication delivery, not radiation dose measure) to be administered to the patient
-  @JsonValue('113511')
   value113511,
 
   /// Display: Radiopharmaceutical Lot Identifier
   /// Definition: Identifies the vial, batch or lot number from which the individual dispense radiopharmaceutical quantity (dose) is produced. The Radiopharmaceutical Dispense Unit Identifier records the identification for each individual dose
-  @JsonValue('113512')
   value113512,
 
   /// Display: Reagent Vial Identifier
   /// Definition: Identifies the lot or unit serial number for the reagent component for the radiopharmaceutical
-  @JsonValue('113513')
   value113513,
 
   /// Display: Radionuclide Vial Identifier
   /// Definition: Identifies the lot or unit serial number for the radionuclide component for the radiopharmaceutical
-  @JsonValue('113514')
   value113514,
 
   /// Display: Prescription Identifier
   /// Definition: Administered Product's Prescription Number
-  @JsonValue('113516')
   value113516,
 
   /// Display: Organ Dose Information
   /// Definition: Information pertaining to the estimated absorbed radiation dose to an organ
-  @JsonValue('113517')
   value113517,
 
   /// Display: Organ Dose
   /// Definition: The absorbed radiation dose to organ
-  @JsonValue('113518')
   value113518,
 
   /// Display: MIRD Pamphlet 1
   /// Definition: Reference authority MIRD Pamphlet No.1 (rev) ,Society of Nuclear Medicine, 1976
-  @JsonValue('113520')
   value113520,
 
   /// Display: ICRP Publication 53
   /// Definition: Reference authority ICRP, 1988. Radiation Dose to Patients from Radiopharmaceuticals. ICRP Publication 53. Ann. ICRP 18 (1-4)
-  @JsonValue('113521')
   value113521,
 
   /// Display: ICRP Publication 80
   /// Definition: Reference authority ICRP, 1998. Radiation Dose to Patients from Radiopharmaceuticals (Addendum to ICRP Publication 53). ICRP Publication 80. Ann. ICRP 28 (3)
-  @JsonValue('113522')
   value113522,
 
   /// Display: ICRP Publication 106
   /// Definition: Reference authority ICRP, 2008. Radiation Dose to Patients from Radiopharmaceuticals - Addendum 3 to ICRP Publication 53. ICRP Publication 106. Ann. ICRP 38 (1-2)
-  @JsonValue('113523')
   value113523,
 
   /// Display: MIRDOSE
   /// Definition: Reference authority Stabin MG, Sparks RB, Crowe E (1994) MIRDOSE: personal computer software for internal dose assessment in nuclear medicine [Computer program]
-  @JsonValue('113526')
   value113526,
 
   /// Display: OLINDA-EXM
   /// Definition: Reference authority Stabin MG, Sparks RB, Crowe E (2005) OLINDA/EXM: The Second-Generation Personal Computer Software for Internal Dose Assessment in Nuclear Medicine [Computer program]
-  @JsonValue('113527')
   value113527,
 
   /// Display: Package Insert
   /// Definition: Reference authority The reported organ dose is based on radiopharmaceutical's package insert
-  @JsonValue('113528')
   value113528,
 
   /// Display: Institutionally Approved Estimates
   /// Definition: Reference authority The reported organ dose is based on Institutionally approved estimates from the Radioactive Drug Research Committee (RDRC) of the institution itself
-  @JsonValue('113529')
   value113529,
 
   /// Display: Investigational New Drug
   /// Definition: Reference authority The reported organ dose is based on an Investigation new drug
-  @JsonValue('113530')
   value113530,
 
   /// Display: Activity Measurement Device
   /// Definition: The type of device that performed the activity measurement
-  @JsonValue('113540')
   value113540,
 
   /// Display: Dose Calibrator
   /// Definition: The device that measures the radiation activity of the radiopharmaceutical
-  @JsonValue('113541')
   value113541,
 
   /// Display: Infusion System
   /// Definition: Radiopharmaceutical Infusion System
-  @JsonValue('113542')
   value113542,
 
   /// Display: Generator
   /// Definition: Radioisotope Generator
-  @JsonValue('113543')
   value113543,
 
   /// Display: Fasting Duration
   /// Definition: The number hours the patient has gone without food
-  @JsonValue('113550')
   value113550,
 
   /// Display: Hydration Volume
   /// Definition: The amount of fluids the patient has consumed before the procedure
-  @JsonValue('113551')
   value113551,
 
   /// Display: Recent Physical Activity
   /// Definition: A description of physical activity the patient performed before the start of the procedure, such as that which may affect imaging agent biodistribution
-  @JsonValue('113552')
   value113552,
 
   /// Display: Acute unilateral renal blockage
   /// Definition: Blockage in one of the tubes (ureters) that drain urine from the kidneys
-  @JsonValue('113560')
   value113560,
 
   /// Display: Low Thyroid Uptake
   /// Definition: 5% or less Thyroid Uptake of Iodine
-  @JsonValue('113561')
   value113561,
 
   /// Display: High Thyroid Uptake
   /// Definition: 25% or higher Thyroid Uptake of Iodine
-  @JsonValue('113562')
   value113562,
 
   /// Display: Severely Jaundiced
   /// Definition: The patient exhibits symptoms severe of jaundice and/or has a Bilirubin >10 mg/dL
-  @JsonValue('113563')
   value113563,
 
   /// Display: Extravasation visible in image
   /// Definition: Extravasation or paravenous administration of the product is visible in the images
-  @JsonValue('113568')
   value113568,
 
   /// Display: Cockroft-Gault Formula estimation of GFR
   /// Definition: The measurement method of the Glomerular Filtration Rate is Cockroft-Gault Formula
-  @JsonValue('113570')
   value113570,
 
   /// Display: CKD-EPI Formula estimation of GFR
   /// Definition: The measurement method of the Glomerular Filtration Rate is CKD-EPI Formula
-  @JsonValue('113571')
   value113571,
 
   /// Display: Glomerular Filtration Rate (MDRD)
   /// Definition: The measurement method of the Glomerular Filtration Rate is MDRD
-  @JsonValue('113572')
   value113572,
 
   /// Display: Glomerular Filtration Rate non-black (MDRD)
   /// Definition: The measurement method of the Glomerular Filtration Rate is non-black MDRD
-  @JsonValue('113573')
   value113573,
 
   /// Display: Glomerular Filtration Rate black (MDRD)
   /// Definition: The measurement method of the Glomerular Filtration Rate is black (MDRD)
-  @JsonValue('113574')
   value113574,
 
   /// Display: Glomerular Filtration Rate female (MDRD)
   /// Definition: The measurement method of the Glomerular Filtration Rate is female (MDRD)
-  @JsonValue('113575')
   value113575,
 
   /// Display: Glomerular Filtration Rate Cystatin-based formula
   /// Definition: The measurement method of the Glomerular Filtration Rate is Cystatin-based formula
-  @JsonValue('113576')
   value113576,
 
   /// Display: Glomerular Filtration Rate Creatinine-based formula (Schwartz)
   /// Definition: The measurement method of the Glomerular Filtration Rate is Creatinine-based formula (Schwartz)
-  @JsonValue('113577')
   value113577,
 
   /// Display: Small: < 32.0 cm lateral thickness
   /// Definition: Small body thickness for calcium scoring adjustment. Lateral thickness is measured from skin-to-skin, at the level of the proximal ascending aorta, from an A/P localizer image
-  @JsonValue('113601')
   value113601,
 
   /// Display: Medium: 32.0-38.0 cm lateral thickness
   /// Definition: Medium body thickness for calcium scoring adjustment. Lateral thickness is measured from skin-to-skin, at the level of the proximal ascending aorta, from an A/P localizer image
-  @JsonValue('113602')
   value113602,
 
   /// Display: Large: > 38.0 cm lateral thickness
   /// Definition: Large body thickness for calcium scoring adjustment. Lateral thickness is measured from skin-to-skin, at the level of the proximal ascending aorta, from an A/P localizer image
-  @JsonValue('113603')
   value113603,
 
   /// Display: Irradiation Event Label
   /// Definition: A human-readable label identifying an irradiation event
-  @JsonValue('113605')
   value113605,
 
   /// Display: Label Type
   /// Definition: The type of a human-readable label
-  @JsonValue('113606')
   value113606,
 
   /// Display: Series Number
   /// Definition: A number that identifies a Series. Corresponds to (0020,0011) in PS3.3
-  @JsonValue('113607')
   value113607,
 
   /// Display: Acquisition Number
   /// Definition: A number that identifies an Acquisition. Corresponds to (0020,0012) in PS3.3
-  @JsonValue('113608')
   value113608,
 
   /// Display: Instance Number
   /// Definition: A number that identifies an Instance. Corresponds to (0020,0013) in PS3.3
-  @JsonValue('113609')
   value113609,
 
   /// Display: Stationary Acquisition
   /// Definition: Acquisition where the X-Ray source does not move in relation to the patient
-  @JsonValue('113611')
   value113611,
 
   /// Display: Stepping Acquisition
   /// Definition: Acquisition where the X-Ray source moves laterally in relation to the patient
-  @JsonValue('113612')
   value113612,
 
   /// Display: Rotational Acquisition
   /// Definition: Acquisition where the X-Ray source moves angularly in relation to the patient
-  @JsonValue('113613')
   value113613,
 
   /// Display: Plane A
   /// Definition: Primary plane of a Biplane acquisition equipment
-  @JsonValue('113620')
   value113620,
 
   /// Display: Plane B
   /// Definition: Secondary plane of a Biplane acquisition equipment
-  @JsonValue('113621')
   value113621,
 
   /// Display: Single Plane
   /// Definition: Single plane acquisition equipment
-  @JsonValue('113622')
   value113622,
 
   /// Display: Continuous
   /// Definition: Continuous X-Ray radiation is applied during an irradiation event
-  @JsonValue('113630')
   value113630,
 
   /// Display: Pulsed
   /// Definition: Pulsed X-Ray radiation is applied during an irradiation event
-  @JsonValue('113631')
   value113631,
 
   /// Display: Strip filter
   /// Definition: Filter with uniform thickness
-  @JsonValue('113650')
   value113650,
 
   /// Display: Wedge filter
   /// Definition: Filter with variation in thickness from one edge to the opposite edge
-  @JsonValue('113651')
   value113651,
 
   /// Display: Butterfly filter
   /// Definition: Filter with two triangular sections
-  @JsonValue('113652')
   value113652,
 
   /// Display: Flat filter
   /// Definition: Filter with uniform thickness that is for spectral filtering only; e.g. filter out low energy portion of the X-Ray that would only contribute to skin dose, but not to image
-  @JsonValue('113653')
   value113653,
 
   /// Display: Outline of lobulations
   /// Definition: A polyline defining the outline of a lobulated finding
-  @JsonValue('113661')
   value113661,
 
   /// Display: Inner limits of fuzzy margin
   /// Definition: A polyline defining the inner limits of a finding with fuzzy margin
-  @JsonValue('113662')
   value113662,
 
   /// Display: Outer limits of fuzzy margin
   /// Definition: A polyline defining the outer limits of a finding with fuzzy margin
-  @JsonValue('113663')
   value113663,
 
   /// Display: Outline of spiculations
   /// Definition: A polyline defining the outline of the spiculations of a finding
-  @JsonValue('113664')
   value113664,
 
   /// Display: Linear spiculation
   /// Definition: A polyline segment graphically indicating the location and direction of a spiculation of a finding
-  @JsonValue('113665')
   value113665,
 
   /// Display: Pixelated spiculations
   /// Definition: A collection of points indicating the pixel locations of the spiculations of a finding
-  @JsonValue('113666')
   value113666,
 
   /// Display: Orthogonal location arc
   /// Definition: Connected line segments indicating the center of location of a finding on an orthogonal view
-  @JsonValue('113669')
   value113669,
 
   /// Display: Orthogonal location arc inner margin
   /// Definition: Connected line segments indicating the inner margin of the location of a finding on an orthogonal view
-  @JsonValue('113670')
   value113670,
 
   /// Display: Orthogonal location arc outer margin
   /// Definition: Connected line segments indicating the outer location of a finding on an orthogonal view
-  @JsonValue('113671')
   value113671,
 
   /// Display: Quality Control Intent
   /// Definition: This procedure is intended to gather data that is used for calibration or other quality control purposes
-  @JsonValue('113680')
   value113680,
 
   /// Display: Phantom
   /// Definition: An artificial subject of an imaging study
-  @JsonValue('113681')
   value113681,
 
   /// Display: ACR Accreditation Phantom - CT
   /// Definition: A phantom acceptable for the ACR Computed Tomography Accreditation program
-  @JsonValue('113682')
   value113682,
 
   /// Display: ACR Accreditation Phantom - MR
   /// Definition: A phantom acceptable for the ACR Magnetic Resonance Imaging Accreditation program
-  @JsonValue('113683')
   value113683,
 
   /// Display: ACR Accreditation Phantom - Mammography
   /// Definition: A phantom acceptable for the ACR Mammography Accreditation program
-  @JsonValue('113684')
   value113684,
 
   /// Display: ACR Accreditation Phantom - Stereotactic Breast Biopsy
   /// Definition: A phantom acceptable for the ACR Stereotactic Breast Biopsy Accreditation program
-  @JsonValue('113685')
   value113685,
 
   /// Display: ACR Accreditation Phantom - ECT
   /// Definition: A phantom acceptable for the ACR SPECT Accreditation program (but not for PET)
-  @JsonValue('113686')
   value113686,
 
   /// Display: ACR Accreditation Phantom - PET
   /// Definition: A phantom acceptable for the ACR PET Accreditation program (but not for SPECT)
-  @JsonValue('113687')
   value113687,
 
   /// Display: ACR Accreditation Phantom - ECT/PET
   /// Definition: A SPECT phantom with a PET faceplate acceptable for both the ACR SPECT and PET Accreditation programs
-  @JsonValue('113688')
   value113688,
 
   /// Display: ACR Accreditation Phantom - PET Faceplate
   /// Definition: A PET faceplate (made to fit an existing flangeless or flanged ECT phantom) acceptable for the ACR PET Accreditation program
-  @JsonValue('113689')
   value113689,
 
   /// Display: IEC Head Dosimetry Phantom
   /// Definition: A phantom used for CTDI measurement in head modes according to IEC 60601-2-44, Ed.2.1 (Head 16 cm diameter Polymethyl methacrylate PMMA)
-  @JsonValue('113690')
   value113690,
 
   /// Display: IEC Body Dosimetry Phantom
   /// Definition: A phantom used for CTDI measurement in body modes according to IEC 60601-2-44, Ed.2.1 (Body 32cm diameter Polymethyl methacrylate PMMA)
-  @JsonValue('113691')
   value113691,
 
   /// Display: NEMA XR21-2000 Phantom
   /// Definition: A phantom in accordance with NEMA standard XR-21-2000
-  @JsonValue('113692')
   value113692,
 
   /// Display: X-Ray Radiation Dose Report
   /// Definition: X-Ray Radiation Dose Report
-  @JsonValue('113701')
   value113701,
 
   /// Display: Accumulated X-Ray Dose Data
   /// Definition: X-Ray dose data accumulated over multiple irradiation events; e.g. for a study or a performed procedure step
-  @JsonValue('113702')
   value113702,
 
   /// Display: Projection X-Ray
   /// Definition: Imaging using a point X-Ray source with a diverging beam projected onto a 2 dimensional detector
-  @JsonValue('113704')
   value113704,
 
   /// Display: Scope of Accumulation
   /// Definition: Entity over which dose accumulation values are integrated
-  @JsonValue('113705')
   value113705,
 
   /// Display: Irradiation Event X-Ray Data
   /// Definition: X-Ray dose data for a single Irradiation Event
-  @JsonValue('113706')
   value113706,
 
   /// Display: Niobium or Niobium compound
   /// Definition: Material containing Niobium or a Niobium compound
-  @JsonValue('113710')
   value113710,
 
   /// Display: Europium or Europium compound
   /// Definition: Material containing Europium or a Europium compound
-  @JsonValue('113711')
   value113711,
 
   /// Display: Calibration Protocol
   /// Definition: Describes the method used to derive the calibration factor
-  @JsonValue('113720')
   value113720,
 
   /// Display: Irradiation Event Type
   /// Definition: Denotes the type of irradiation event recorded
-  @JsonValue('113721')
   value113721,
 
   /// Display: Dose Area Product Total
   /// Definition: Total calculated Dose Area Product (in the scope of the including report)
-  @JsonValue('113722')
   value113722,
 
   /// Display: Calibration Date
   /// Definition: Last calibration Date for the integrated dose meter or dose calculation
-  @JsonValue('113723')
   value113723,
 
   /// Display: Calibration Responsible Party
   /// Definition: Individual or organization responsible for calibration
-  @JsonValue('113724')
   value113724,
 
   /// Display: Dose (RP) Total
   /// Definition: Total Dose related to Reference Point (RP). (in the scope of the including report)
-  @JsonValue('113725')
   value113725,
 
   /// Display: Fluoro Dose Area Product Total
   /// Definition: Total calculated Dose Area Product applied in Fluoroscopy Modes (in the scope of the including report)
-  @JsonValue('113726')
   value113726,
 
   /// Display: Acquisition Dose Area Product Total
   /// Definition: Total calculated Dose Area Product applied in Acquisition Modes (in the scope of the including report)
-  @JsonValue('113727')
   value113727,
 
   /// Display: Fluoro Dose (RP) Total
   /// Definition: Dose applied in Fluoroscopy Modes, related to Reference Point (RP). (in the scope of the including report)
-  @JsonValue('113728')
   value113728,
 
   /// Display: Acquisition Dose (RP) Total
   /// Definition: Dose applied in Acquisition Modes, related to Reference Point (RP). (in the scope of the including report)
-  @JsonValue('113729')
   value113729,
 
   /// Display: Total Fluoro Time
   /// Definition: Total accumulated clock time of Fluoroscopy in the scope of the including report (i.e., the sum of the Irradiation Duration values for accumulated fluoroscopy irradiation events)
-  @JsonValue('113730')
   value113730,
 
   /// Display: Total Number of Radiographic Frames
   /// Definition: Accumulated Count of exposure pulses (single or multi-frame encoded) created from irradiation events performed with high dose (acquisition)
-  @JsonValue('113731')
   value113731,
 
   /// Display: Fluoro Mode
   /// Definition: Mode of application of X-Rays during Fluoroscopy
-  @JsonValue('113732')
   value113732,
 
   /// Display: KVP
   /// Definition: Applied X-Ray Tube voltage at peak of X-Ray generation, in kilovolts; Mean value if measured over multiple peaks (pulses)
-  @JsonValue('113733')
   value113733,
 
   /// Display: X-Ray Tube Current
   /// Definition: Mean value of applied Tube Current
-  @JsonValue('113734')
   value113734,
 
   /// Display: Exposure Time
   /// Definition: Cumulative time the patient has received X-Ray exposure during the irradiation event
-  @JsonValue('113735')
   value113735,
 
   /// Display: Exposure
   /// Definition: Mean value of X-Ray Current Time product
-  @JsonValue('113736')
   value113736,
 
   /// Display: Distance Source to Reference Point
   /// Definition: Distance to the Reference Point (RP) defined according to IEC 60601-2-43 or equipment defined
-  @JsonValue('113737')
   value113737,
 
   /// Display: Dose (RP)
   /// Definition: Dose applied at the Reference Point (RP)
-  @JsonValue('113738')
   value113738,
 
   /// Display: Positioner Primary End Angle
   /// Definition: Positioner Primary Angle at the end of an irradiation event. For further definition see (112011, DCM, "Positioner Primary Angle")
-  @JsonValue('113739')
   value113739,
 
   /// Display: Positioner Secondary End Angle
   /// Definition: Positioner Secondary Angle at the end of an irradiation event. For further definition see (112012, DCM, "Positioner Secondary Angle")
-  @JsonValue('113740')
   value113740,
 
   /// Display: Irradiation Duration
   /// Definition: Clock time from the start of loading time of the first pulse until the loading time trailing edge of the final pulse in the same irradiation event. Note Loading time is defined in IEC 60601-1-3:2008, 3.37, and described in IEC 60601-2-54:2009, 203.4.101.3
-  @JsonValue('113742')
   value113742,
 
   /// Display: Patient Orientation
   /// Definition: Orientation of the Patient with respect to Gravity
-  @JsonValue('113743')
   value113743,
 
   /// Display: Patient Orientation Modifier
   /// Definition: Enhances or modifies the Patient orientation specified in Patient Orientation
-  @JsonValue('113744')
   value113744,
 
   /// Display: Patient Table Relationship
   /// Definition: Orientation of the Patient with respect to the Head of the Table
-  @JsonValue('113745')
   value113745,
 
   /// Display: Distance Source to Isocenter
   /// Definition: Distance from the X-Ray Source to the Equipment C-Arm Isocenter.(Center of Rotation)
-  @JsonValue('113748')
   value113748,
 
   /// Display: Distance Source to Detector
   /// Definition: Measured or calculated distance from the X-Ray source to the detector plane in the center of the beam
-  @JsonValue('113750')
   value113750,
 
   /// Display: Table Longitudinal Position
   /// Definition: Table Longitudinal Position with respect to an arbitrary chosen reference by the equipment. Table motion towards LAO is positive assuming that the patient is positioned supine and its head is in normal position
-  @JsonValue('113751')
   value113751,
 
   /// Display: Table Lateral Position
   /// Definition: Table Lateral Position with respect to an arbitrary chosen reference by the equipment. Table motion towards CRA is positive assuming that the patient is positioned supine and its head is in normal position
-  @JsonValue('113752')
   value113752,
 
   /// Display: Table Height Position
   /// Definition: Table Height Position with respect to an arbitrary chosen reference by the equipment in (mm). Table motion downwards is positive
-  @JsonValue('113753')
   value113753,
 
   /// Display: Table Head Tilt Angle
   /// Definition: Angle of the head-feet axis of the table in degrees relative to the horizontal plane. Positive values indicate that the head of the table is upwards
-  @JsonValue('113754')
   value113754,
 
   /// Display: Table Horizontal Rotation Angle
   /// Definition: Rotation of the table in the horizontal plane (clockwise when looking from above the table)
-  @JsonValue('113755')
   value113755,
 
   /// Display: Table Cradle Tilt Angle
   /// Definition: Angle of the left-right axis of the table in degrees relative to the horizontal plane. Positive values indicate that the left of the table is upwards
-  @JsonValue('113756')
   value113756,
 
   /// Display: X-Ray Filter Material
   /// Definition: X-Ray absorbing material used in the filter
-  @JsonValue('113757')
   value113757,
 
   /// Display: X-Ray Filter Thickness Minimum
   /// Definition: The minimum thickness of the X-Ray absorbing material used in the filters
-  @JsonValue('113758')
   value113758,
 
   /// Display: Table Longitudinal End Position
   /// Definition: Table Longitudinal Position at the end of an irradiation event; see (113751, DCM, "Table Longitudinal Position")
-  @JsonValue('113759')
   value113759,
 
   /// Display: Table Lateral End Position
   /// Definition: Table Lateral Position at the end of an irradiation event; see (113752, DCM, "Table Lateral Position")
-  @JsonValue('113760')
   value113760,
 
   /// Display: Table Height End Position
   /// Definition: Table Height Position at the end of an irradiation event; see (113753, DCM, "Table Height Position")
-  @JsonValue('113761')
   value113761,
 
   /// Display: Calibration Uncertainty
   /// Definition: Uncertainty of the 'actual' value
-  @JsonValue('113763')
   value113763,
 
   /// Display: Acquisition Plane
   /// Definition: Identification of Acquisition Plane with Biplane systems
-  @JsonValue('113764')
   value113764,
 
   /// Display: Focal Spot Size
   /// Definition: Nominal Size of Focal Spot of X-Ray Tube
-  @JsonValue('113766')
   value113766,
 
   /// Display: Average X-Ray Tube Current
   /// Definition: Average X-Ray Tube Current averaged over time for pulse or for continuous Fluoroscopy
-  @JsonValue('113767')
   value113767,
 
   /// Display: Number of Pulses
   /// Definition: Number of pulses applied by X-Ray systems during an irradiation event (acquisition run or pulsed fluoro)
-  @JsonValue('113768')
   value113768,
 
   /// Display: Irradiation Event UID
   /// Definition: Unique identification of a single irradiation event
-  @JsonValue('113769')
   value113769,
 
   /// Display: Column Angulation
   /// Definition: Angle of the X-Ray beam in degree relative to an orthogonal axis to the detector plane
-  @JsonValue('113770')
   value113770,
 
   /// Display: X-Ray Filters
   /// Definition: Devices used to modify the energy or energy distribution of X-Rays
-  @JsonValue('113771')
   value113771,
 
   /// Display: X-Ray Filter Type
   /// Definition: Type of filter(s) inserted into the X-Ray beam; e.g. wedges
-  @JsonValue('113772')
   value113772,
 
   /// Display: X-Ray Filter Thickness Maximum
   /// Definition: The maximum thickness of the X-Ray absorbing material used in the filters
-  @JsonValue('113773')
   value113773,
 
   /// Display: Reference Point Definition
   /// Definition: System provided definition of the Reference Point used for Dose calculations
-  @JsonValue('113780')
   value113780,
 
   /// Display: Collimated Field Height
   /// Definition: Distance between the collimator blades in pixel column direction as projected at the detector plane
-  @JsonValue('113788')
   value113788,
 
   /// Display: Collimated Field Width
   /// Definition: Distance between the collimator blades in pixel row direction as projected at the detector plane
-  @JsonValue('113789')
   value113789,
 
   /// Display: Collimated Field Area
   /// Definition: Collimated field area at image receptor. Area for compatibility with IEC 60601-2-43
-  @JsonValue('113790')
   value113790,
 
   /// Display: Pulse Rate
   /// Definition: Pulse rate applied by equipment during Fluoroscopy
-  @JsonValue('113791')
   value113791,
 
   /// Display: Distance Source to Table Plane
   /// Definition: Measured or calculated distance from the X-Ray source to the table plane in the center of the beam
-  @JsonValue('113792')
   value113792,
 
   /// Display: Pulse Width
   /// Definition: (Average) X-Ray pulse width
-  @JsonValue('113793')
   value113793,
 
   /// Display: Dose Measurement Device
   /// Definition: Calibrated device to perform dose measurements
-  @JsonValue('113794')
   value113794,
 
   /// Display: Acquired Image
   /// Definition: Image acquired during a specified event
-  @JsonValue('113795')
   value113795,
 
   /// Display: DLP to E conversion via MC computation
   /// Definition: Effective Dose evaluation from the product of Dose Length Product (DLP) and the Effective Dose Conversion Factor (E/DLP in units of mSv/mGy-cm), where the ratio is derived by means of Monte Carlo computations
-  @JsonValue('113800')
   value113800,
 
   /// Display: CTDIfreeair to E conversion via MC computation
   /// Definition: Effective Dose evaluation from the product of the Mean CTDIfreeair and the ratio E/CTDIfreeair (mSv/mGy), where the ratio is derived by means of Monte Carlo computations
-  @JsonValue('113801')
   value113801,
 
   /// Display: DLP to E conversion via measurement
   /// Definition: Effective Dose evaluation from the product of Dose Length Product (DLP) and the Effective Dose Conversion Factor (E/DLP in units of mSv/mGy-cm), where the ratio is derived by means of dosimetric measurements with an anthropomorphic phantom
-  @JsonValue('113802')
   value113802,
 
   /// Display: CTDIfreeair to E conversion via measurement
   /// Definition: Effective Dose evaluation from the product of the Mean CTDIfreeair and the ratio E/CTDIfreeair (mSv/mGy), where the ratio is derived by means of dosimetric measurements with an anthropomorphic phantom
-  @JsonValue('113803')
   value113803,
 
   /// Display: Sequenced Acquisition
   /// Definition: The CT acquisition was performed by acquiring single or multi detector data while rotating the source about the gantry while the table is not moving. Additional slices are acquired by incrementing the table position and again rotating the source about the gantry while the table is not moving
-  @JsonValue('113804')
   value113804,
 
   /// Display: Constant Angle Acquisition
   /// Definition: The CT acquisition was performed by holding the source at a constant angle and moving the table to obtain a projection image; e.g. localizer
-  @JsonValue('113805')
   value113805,
 
   /// Display: Stationary Acquisition
   /// Definition: The CT acquisition was performed by holding the table at a constant position and acquiring multiple slices over time at the same location
-  @JsonValue('113806')
   value113806,
 
   /// Display: Free Acquisition
   /// Definition: The CT acquisition was performed while rotating the source about the gantry while the table movement is under direct control of a human operator or under the control of an analysis application; e.g. fluoro
-  @JsonValue('113807')
   value113807,
 
   /// Display: ICRP Pub 60
   /// Definition: Reference authority 1990 Recommendations of the International Commission on Radiological Protection (ICRP Publication 60, published as the Annals of the ICRP Vol. 21, No. 1-3, Pergamon Press,1991)
-  @JsonValue('113808')
   value113808,
 
   /// Display: Start of X-Ray Irradiation
   /// Definition: Start, DateTime of the first X-Ray Irradiation Event of the accumulation within a Study
-  @JsonValue('113809')
   value113809,
 
   /// Display: End of X-Ray Irradiation
   /// Definition: End, DateTime of the last X-Ray Irradiation Event of the accumulation within a Study
-  @JsonValue('113810')
   value113810,
 
   /// Display: CT Accumulated Dose Data
   /// Definition: X-Ray dose accumulated over multiple CT irradiation events; e.g. for a study or a performed procedure step
-  @JsonValue('113811')
   value113811,
 
   /// Display: Total Number of Irradiation Events
   /// Definition: Total number of events during the defined scope of accumulation
-  @JsonValue('113812')
   value113812,
 
   /// Display: CT Dose Length Product Total
   /// Definition: The total dose length product defined scope of accumulation
-  @JsonValue('113813')
   value113813,
 
   /// Display: CT Effective Dose Total
   /// Definition: The total Effective Dose at the defined scope of accumulation
-  @JsonValue('113814')
   value113814,
 
   /// Display: Patient Model
   /// Definition: Identification of the reference-patient model used when Effective Dose is evaluated via Monte Carlo calculations or from a Dose Length Product conversion factor based on Monte Carlo calculations
-  @JsonValue('113815')
   value113815,
 
   /// Display: Condition Effective Dose measured
   /// Definition: References the physical phantom and the type of dosimeter used when measurements are done to establish Effective Dose Conversion Factors (E/DLP) or ratios E/CTDIfreeair
-  @JsonValue('113816')
   value113816,
 
   /// Display: Effective Dose Phantom Type
   /// Definition: Type of Effective Dose phantom used
-  @JsonValue('113817')
   value113817,
 
   /// Display: Dosimeter Type
   /// Definition: Type of dosimeter used
-  @JsonValue('113818')
   value113818,
 
   /// Display: CT Acquisition
   /// Definition: General description of the CT Irradiation event
-  @JsonValue('113819')
   value113819,
 
   /// Display: CT Acquisition Type
   /// Definition: Method of the CT acquisition
-  @JsonValue('113820')
   value113820,
 
   /// Display: X-Ray Filter Aluminum Equivalent
   /// Definition: Thickness of an equivalent filter in mm in Aluminum
-  @JsonValue('113821')
   value113821,
 
   /// Display: CT Acquisition Parameters
   /// Definition: General description of the acquisition parameters
-  @JsonValue('113822')
   value113822,
 
   /// Display: Number of X-Ray Sources
   /// Definition: Number of X-Ray sources
-  @JsonValue('113823')
   value113823,
 
   /// Display: Exposure Time
   /// Definition: Total time the patient has received X-Ray exposure during the irradiation event
-  @JsonValue('113824')
   value113824,
 
   /// Display: Scanning Length
   /// Definition: Length of the table travel during the entire tube loading, according to IEC 60601-2-44 Note Scanning Length might be longer than the programmed acquisition length (Length of Reconstructable Volume)
-  @JsonValue('113825')
   value113825,
 
   /// Display: Nominal Single Collimation Width
   /// Definition: The value of the nominal width referenced to the location of the isocenter along the z axis of a single row of acquired data in mm
-  @JsonValue('113826')
   value113826,
 
   /// Display: Nominal Total Collimation Width
   /// Definition: The value of the nominal width referenced to the location of the isocenter along the z axis of the total collimation in mm over the area of active X-Ray detection
-  @JsonValue('113827')
   value113827,
 
   /// Display: Pitch Factor
   /// Definition: For Spiral scanning: Pitch Factor = (Table Feed per Rotation (mm)) /(Nominal Total Collimation Width (mm)) For Sequenced scanning: Pitch Factor = (Table Feed per single Sequenced scan (mm)) /(Nominal Total Collimation Width (mm))
-  @JsonValue('113828')
   value113828,
 
   /// Display: CT Dose
   /// Definition: General description of CT dose values
-  @JsonValue('113829')
   value113829,
 
   /// Display: Mean CTDIvol
   /// Definition: "Mean CTDIvol" refers to the average value of the CTDIvol associated with this acquisition
-  @JsonValue('113830')
   value113830,
 
   /// Display: CT X-Ray Source Parameters
   /// Definition: Identification, tube-potential, tube-current, and exposure-time parameters associated with an X-Ray source during an acquisition
-  @JsonValue('113831')
   value113831,
 
   /// Display: Identification of the X-Ray Source
   /// Definition: Identifies the particular X-Ray source (in a multi-source CT system) for which the set of X-Ray source parameter values is reported
-  @JsonValue('113832')
   value113832,
 
   /// Display: Maximum X-Ray Tube Current
   /// Definition: Maximum X-Ray tube current
-  @JsonValue('113833')
   value113833,
 
   /// Display: Exposure Time per Rotation
   /// Definition: The exposure time for one rotation of the source around the object in s
-  @JsonValue('113834')
   value113834,
 
   /// Display: CTDIw Phantom Type
   /// Definition: A label describing the type of phantom used for CTDIW measurement according to IEC 60601-2-44 (Head 16 cm diameter PMMA, Body 32 cm diameter PMMA)
-  @JsonValue('113835')
   value113835,
 
   /// Display: CTDIfreeair Calculation Factor
   /// Definition: The CTDIfreeair Calculation Factor is the CTDIfreeair per mAs, expressed in units of mGy/mAs. The CTDIfreeair Calculation Factor may be used in one method calculating Dose
-  @JsonValue('113836')
   value113836,
 
   /// Display: Mean CTDIfreeair
   /// Definition: The average value of the free-in-air CTDI associated with this acquisition
-  @JsonValue('113837')
   value113837,
 
   /// Display: DLP
   /// Definition: Dose Length Product (DLP), expressed in mGy-cm, is an index characterizing the product of the CTDIvol and the length scanned. For Spiral scanning, DLP = CTDIvol x Scanning Length. For Sequenced scanning, DLP = CTDIvol x Nominal Total Collimation Width x Cumulative Exposure Time / Exposure Time per Rotation. For Stationary and Free scanning, DLP = CTDIvol x Nominal Total Collimation Width
-  @JsonValue('113838')
   value113838,
 
   /// Display: Effective Dose
   /// Definition: Effective dose in mSv
-  @JsonValue('113839')
   value113839,
 
   /// Display: Effective Dose Conversion Factor
   /// Definition: Effective Dose per DLP, reference value for Effective Dose calculation, expressed in mSv/mGY.cm
-  @JsonValue('113840')
   value113840,
 
   /// Display: ICRP Pub 103
   /// Definition: Effective Dose Reference authority 2007 Recommendations of the International Commission on Radiological Protection (ICRP Publication 103, published as the Annals of the ICRP Vol. 37, No. 2-4, Elsevier, 2007)
-  @JsonValue('113841')
   value113841,
 
   /// Display: X-Ray Modulation Type
   /// Definition: The type of exposure modulation used for the purpose of limiting the dose
-  @JsonValue('113842')
   value113842,
 
   /// Display: Exposure Index
   /// Definition: Measure of the detector response to radiation in the relevant image region of an image acquired with a digital X-Ray imaging system as defined in IEC 62494-1; see PS3.3 definition of Exposure Index Macro
-  @JsonValue('113845')
   value113845,
 
   /// Display: Target Exposure Index
   /// Definition: The target value used to calculate the Deviation Index as defined in IEC 62494-1; see PS3.3 definition of Exposure Index Macro
-  @JsonValue('113846')
   value113846,
 
   /// Display: Deviation Index
   /// Definition: A scaled representation of the accuracy of the Exposure Index compared to the Target Exposure Index as defined in IEC 62494-1; see PS3.3 definition of Exposure Index Macro
-  @JsonValue('113847')
   value113847,
 
   /// Display: Irradiation Authorizing
   /// Definition: The clinician responsible for determining that the irradiating procedure was appropriate for the indications
-  @JsonValue('113850')
   value113850,
 
   /// Display: Irradiation Administering
   /// Definition: The person responsible for the administration of radiation
-  @JsonValue('113851')
   value113851,
 
   /// Display: Irradiation Event
   /// Definition: An irradiation event is the loading of X-Ray equipment caused by a single continuous actuation of the equipment's irradiation switch, from the start of the loading time of the first pulse until the loading time trailing edge of the final pulse. Any automatic on-off switching of the irradiation source during the event is not treated as separate events, rather the event includes the time between start and stop of irradiation as triggered by the user; e.g. a pulsed fluoro X-Ray acquisition shall be treated as a single irradiation event
-  @JsonValue('113852')
   value113852,
 
   /// Display: Irradiation Event UID
   /// Definition: Unique Identifier of an Irradiation Event
-  @JsonValue('113853')
   value113853,
 
   /// Display: Source of Dose Information
   /// Definition: Method by which dose-related details of an Irradiation Event were obtained
-  @JsonValue('113854')
   value113854,
 
   /// Display: Total Acquisition Time
   /// Definition: Total accumulated acquisition clock time in the scope of the including report (i.e., the sum of the Irradiation Duration values for accumulated acquisition irradiation events)
-  @JsonValue('113855')
   value113855,
 
   /// Display: Automated Data Collection
   /// Definition: Direct recording of data by a relevant system
-  @JsonValue('113856')
   value113856,
 
   /// Display: Manual Entry
   /// Definition: Recording of data by a human operator, including manual transcription of electronic data
-  @JsonValue('113857')
   value113857,
 
   /// Display: MPPS Content
   /// Definition: The data is taken from an MPPS SOP Instance
-  @JsonValue('113858')
   value113858,
 
   /// Display: Irradiating Device
   /// Definition: A device exposing a patient to ionizing radiation
-  @JsonValue('113859')
   value113859,
 
   /// Display: 15cm from Isocenter toward Source
   /// Definition: 15cm from the isocenter towards the X-Ray source; See IEC 60601-2-43
-  @JsonValue('113860')
   value113860,
 
   /// Display: 30cm in Front of Image Input Surface
   /// Definition: 30cm in front (towards the tube) of the input surface of the image receptor; See FDA Federal Performance Standard for Diagnostic X-Ray Systems §1020.32(d) (7)
-  @JsonValue('113861')
   value113861,
 
   /// Display: 1cm above Tabletop
   /// Definition: 1cm above the patient tabletop or cradle; See FDA Federal Performance Standard for Diagnostic X-Ray Systems §1020.32(d) (7)
-  @JsonValue('113862')
   value113862,
 
   /// Display: 30cm above Tabletop
   /// Definition: 30cm above the patient tabletop of cradle; See FDA Federal Performance Standard for Diagnostic X-Ray Systems §1020.32(d) (7)
-  @JsonValue('113863')
   value113863,
 
   /// Display: 15cm from Table Centerline
   /// Definition: 15cm from the centerline of the X-Ray table and in the direction of the X-Ray source; See FDA Federal Performance Standard for Diagnostic X-Ray Systems §1020.32(d) (7)
-  @JsonValue('113864')
   value113864,
 
   /// Display: Entrance exposure to a 4.2 cm breast thickness
   /// Definition: Standard breast means a 4.2 centimeter (cm) thick compressed breast consisting of 50 percent glandular and 50 percent adipose tissue. See Department of Health and Human Services, Food and Drug Administration. Mammography quality standards; final rule. Federal Register. Oct. 28, 1997; 68(208):55852-55994; see 900.2(uu)
-  @JsonValue('113865')
   value113865,
 
   /// Display: Copied From Image Attributes
   /// Definition: The data is copied from information present in the image attributes; e.g. dose attributes such as CTDIvol (0018,9345)
-  @JsonValue('113866')
   value113866,
 
   /// Display: Computed From Image Attributes
   /// Definition: The data is computed from information present in the image attributes; e.g. by using dosimetry information for the specific irradiating device make and model, applied to technique information such as KVP and mAs
-  @JsonValue('113867')
   value113867,
 
   /// Display: Derived From Human-Readable Reports
   /// Definition: The data is derived from human-readable reports; e.g. by natural language parsing of text reports, or optical character recognition from reports saved as images by the irradiating device
-  @JsonValue('113868')
   value113868,
 
   /// Display: Person Name
   /// Definition: The name of a specific person
-  @JsonValue('113870')
   value113870,
 
   /// Display: Person ID
   /// Definition: An identification number or code for a specific person
-  @JsonValue('113871')
   value113871,
 
   /// Display: Person ID Issuer
   /// Definition: The organization that issued a Person ID
-  @JsonValue('113872')
   value113872,
 
   /// Display: Organization Name
   /// Definition: The name of an organization
-  @JsonValue('113873')
   value113873,
 
   /// Display: Person Role in Organization
   /// Definition: The role played by a person in an organization
-  @JsonValue('113874')
   value113874,
 
   /// Display: Person Role in Procedure
   /// Definition: The role played by a person in a procedure
-  @JsonValue('113875')
   value113875,
 
   /// Display: Device Role in Procedure
   /// Definition: The role played by a device in a procedure
-  @JsonValue('113876')
   value113876,
 
   /// Display: Device Name
   /// Definition: The name used to refer to a device; usually locally unique
-  @JsonValue('113877')
   value113877,
 
   /// Display: Device Manufacturer
   /// Definition: Manufacturer of a device
-  @JsonValue('113878')
   value113878,
 
   /// Display: Device Model Name
   /// Definition: Model Name of a device
-  @JsonValue('113879')
   value113879,
 
   /// Display: Device Serial Number
   /// Definition: Serial Number of a device
-  @JsonValue('113880')
   value113880,
 
   /// Display: All Planes
   /// Definition: All planes of a multi-plane acquisition equipment
-  @JsonValue('113890')
   value113890,
 
   /// Display: Length of Reconstructable Volume
   /// Definition: The length from which images may be reconstructed (i.e., excluding any overranging performed in a spiral acquisition that is required for data interpolation). Value is distinct from (1113825, DCM, "Scanning Length"), which is the actual length of the table travel during the entire tube loading, according to IEC 60601-2-44, and includes overranging. Also distinct from any actual Reconstructed Volume, which may depend on the slice thickness chosen for a particular reconstruction
-  @JsonValue('113893')
   value113893,
 
   /// Display: Top Z Location of Reconstructable Volume
   /// Definition: The Z location that is the top (highest Z value) of the Reconstructable Volume. Specified as the Z component within the Patient Coordinate System defined by a specified Frame of Reference
-  @JsonValue('113895')
   value113895,
 
   /// Display: Bottom Z Location of Reconstructable Volume
   /// Definition: The Z location that is the bottom (lowest Z value) of the Reconstructable Volume. Specified as the Z component within the Patient Coordinate System defined by a specified Frame of Reference
-  @JsonValue('113896')
   value113896,
 
   /// Display: Top Z Location of Scanning Length
   /// Definition: The Z location that is the top (highest Z value) of the scanning length. Specified as the Z component within the Patient Coordinate System defined by a specified Frame of Reference
-  @JsonValue('113897')
   value113897,
 
   /// Display: Bottom Z Location of Scanning Length
   /// Definition: The Z location that is the bottom (lowest Z value) of the scanning length. Specified as the Z component within the Patient Coordinate System defined by a specified Frame of Reference
-  @JsonValue('113898')
   value113898,
 
   /// Display: Exposed Range
   /// Definition: The range along the z axis of the total volume irradiated, per IEC 60601-2-44, Ed. 3, 203.115(b). The start and stop of loading corresponding to the outer edge of the full width half maximum of the free-in-air dose profile for the beam collimation used
-  @JsonValue('113899')
   value113899,
 
   /// Display: Dose Check Alert Details
   /// Definition: Report section about cumulative dose alerts during an examination
-  @JsonValue('113900')
   value113900,
 
   /// Display: DLP Alert Value Configured
   /// Definition: Flag denoting whether a DLP Alert Value was configured
-  @JsonValue('113901')
   value113901,
 
   /// Display: CTDIvol Alert Value Configured
   /// Definition: Flag denoting whether a CTDIvol Alert Value was configured
-  @JsonValue('113902')
   value113902,
 
   /// Display: DLP Alert Value
   /// Definition: Cumulative Dose Length Product value configured to trigger an alert; see NEMA XR 25-2010 Dose Check Standard
-  @JsonValue('113903')
   value113903,
 
   /// Display: CTDIvol Alert Value
   /// Definition: Cumulative CTDIvol value configured to trigger an alert; see NEMA XR 25-2010 Dose Check Standard
-  @JsonValue('113904')
   value113904,
 
   /// Display: Accumulated DLP Forward Estimate
   /// Definition: A forward estimate of the accumulated DLP plus the estimated DLP for the next Protocol Element Group; see NEMA XR 25-2010 Dose Check Standard
-  @JsonValue('113905')
   value113905,
 
   /// Display: Accumulated CTDIvol Forward Estimate
   /// Definition: A forward estimate at a given location of the accumulated CTDIvol plus the estimated CTDIvol for the next Protocol Element Group; see NEMA XR 25-2010 Dose Check Standard
-  @JsonValue('113906')
   value113906,
 
   /// Display: Reason for Proceeding
   /// Definition: Reason provided for proceeding with a procedure that is projected to exceed a configured dose value
-  @JsonValue('113907')
   value113907,
 
   /// Display: Dose Check Notification Details
   /// Definition: Report section about dose notifications during a protocol element
-  @JsonValue('113908')
   value113908,
 
   /// Display: DLP Notification Value Configured
   /// Definition: Flag denoting whether a DLP Notification Value was configured
-  @JsonValue('113909')
   value113909,
 
   /// Display: CTDIvol Notification Value Configured
   /// Definition: Flag denoting whether a CTDIvol Notification Value was configured
-  @JsonValue('113910')
   value113910,
 
   /// Display: DLP Notification Value
   /// Definition: Dose Length Product value configured to trigger a notification for a given protocol element
-  @JsonValue('113911')
   value113911,
 
   /// Display: CTDIvol Notification Value
   /// Definition: CTDIvol value configured to trigger a notification for a given protocol element
-  @JsonValue('113912')
   value113912,
 
   /// Display: DLP Forward Estimate
   /// Definition: A forward estimate of the DLP for the next Protocol Element Group; see NEMA XR 25-2010 Dose Check Standard
-  @JsonValue('113913')
   value113913,
 
   /// Display: CTDIvol Forward Estimate
   /// Definition: A forward estimate of the CTDIvol for the next Protocol Element Group; see NEMA XR 25-2010 Dose Check Standard
-  @JsonValue('113914')
   value113914,
 
   /// Display: Radiation Exposure
   /// Definition: The amount of ionizing radiation to which the patient was exposed
-  @JsonValue('113921')
   value113921,
 
   /// Display: Radioactive Substance Administered
   /// Definition: Type, amount and route of radioactive substance administered
-  @JsonValue('113922')
   value113922,
 
   /// Display: Radiation Exposure and Protection Information
   /// Definition: Exposure to ionizing radiation and associated preventive measures used to reduce the exposure of parts of the body like lead apron or eye, thyroid gland or gonad protection
-  @JsonValue('113923')
   value113923,
 
   /// Display: Size Specific Dose Estimation
   /// Definition: The Size-Specific Dose Estimate is a patient dose estimate that takes into account the size of the patient, such as described in AAPM Report 204 by using linear dimensions measured on the patient or patient images or estimated from patient age
-  @JsonValue('113930')
   value113930,
 
   /// Display: Measured Lateral Dimension
   /// Definition: The side-to-side (left to right) dimension of the body part being scanned (per AAPM Report 204)
-  @JsonValue('113931')
   value113931,
 
   /// Display: Measured AP Dimension
   /// Definition: The thickness of the body part being scanned, in the antero-posterior dimension (per AAPM Report 204)
-  @JsonValue('113932')
   value113932,
 
   /// Display: Derived Effective Diameter
   /// Definition: The diameter of the patient at a given location along the Z-axis of the patient, assuming that the patient has a circular cross-section (per AAPM Report 204)
-  @JsonValue('113933')
   value113933,
 
   /// Display: AAPM 204 Lateral Dimension
   /// Definition: The Size Specific Dose Estimation is computed using Table 1B (32cm phantom) or Table 2B (16cm phantom) of AAPM Report 204
-  @JsonValue('113934')
   value113934,
 
   /// Display: AAPM 204 AP Dimension
   /// Definition: The Size Specific Dose Estimation is computed using Table 1C (32cm phantom) or Table 2C (16cm phantom) of AAPM Report 204
-  @JsonValue('113935')
   value113935,
 
   /// Display: AAPM 204 Sum of Lateral and AP Dimension
   /// Definition: The Size Specific Dose Estimation is computed using Table 1A (32cm phantom) or Table 2A (16cm phantom) of AAPM Report 204
-  @JsonValue('113936')
   value113936,
 
   /// Display: AAPM 204 Effective Diameter Estimated From Patient Age
   /// Definition: The Size Specific Dose Estimation is computed using Table 1D (32cm phantom) or Table 2D (16cm phantom) using an effective diameter estimated from the patient's age using Table 3 of AAPM Report 204
-  @JsonValue('113937')
   value113937,
 
   /// Display: System Calculated
   /// Definition: Values calculated from other existing parameters
-  @JsonValue('113940')
   value113940,
 
   /// Display: In Detector Plane
   /// Definition: A segmented region of the detector surface within the irradiated area (but might not be near the center of the detector)
-  @JsonValue('113941')
   value113941,
 
   /// Display: X-Ray Reading Device
   /// Definition: A device that creates digital images from X-Ray detectors (Direct, Indirect or Storage)
-  @JsonValue('113942')
   value113942,
 
   /// Display: X-Ray Source Data Available
   /// Definition: Parameters related to the X-Ray source (generator, tube, etc.) are available to the recording application
-  @JsonValue('113943')
   value113943,
 
   /// Display: X-Ray Mechanical Data Available
   /// Definition: Parameters related to the X-Ray Mechanical System (Stand, Table) are available to the recording application
-  @JsonValue('113944')
   value113944,
 
   /// Display: X-Ray Detector Data Available
   /// Definition: Parameters related to the X-Ray Detector are available to the recording application
-  @JsonValue('113945')
   value113945,
 
   /// Display: Projection Eponymous Name
   /// Definition: Describes the radiographic method of patient, tube and detector positioning to achieve a well described projection or view
-  @JsonValue('113946')
   value113946,
 
   /// Display: Detector Type
   /// Definition: Type of Detector used to acquire data; e.g. Images
-  @JsonValue('113947')
   value113947,
 
   /// Display: Direct Detector
   /// Definition: Detector that directly transforms the input signal to pixel values
-  @JsonValue('113948')
   value113948,
 
   /// Display: Indirect Detector
   /// Definition: Detector that transforms an intermediate signal into pixel values; e.g. a scintillator-based detector
-  @JsonValue('113949')
   value113949,
 
   /// Display: Storage Detector
   /// Definition: Storage detector that stores a signal that is later transformed by a reader into pixel values; e.g. a phosphor-based detector
-  @JsonValue('113950')
   value113950,
 
   /// Display: Film
   /// Definition: Film that is scanned to create pixel values
-  @JsonValue('113951')
   value113951,
 
   /// Display: Table Mount
   /// Definition: The cassette/detector is mounted in the patient table
-  @JsonValue('113952')
   value113952,
 
   /// Display: Unmounted Detector
   /// Definition: The cassette/detector is not mounted.; e.g. a cassette placed underneath the patient
-  @JsonValue('113953')
   value113953,
 
   /// Display: Upright Stand Mount
   /// Definition: The cassette/detector is mounted in an upright stand
-  @JsonValue('113954')
   value113954,
 
   /// Display: C-Arm Mount
   /// Definition: The cassette/detector is mounted on a c-arm
-  @JsonValue('113955')
   value113955,
 
   /// Display: CR/DR Mechanical Configuration
   /// Definition: Method of mounting or positioning a CR/DR cassette or detector
-  @JsonValue('113956')
   value113956,
 
   /// Display: Fluoroscopy-Guided Projection Radiography System
   /// Definition: An integrated projection radiography system capable of fluoroscopy
-  @JsonValue('113957')
   value113957,
 
   /// Display: Integrated Projection Radiography System
   /// Definition: A projection radiography system where the X-Ray detector, X-Ray Source and gantry components are integrated and the managing system is able to access details of each component
-  @JsonValue('113958')
   value113958,
 
   /// Display: Cassette-based Projection Radiography System
   /// Definition: A projection radiography system where the X-Ray detector, X-Ray Source and gantry components are not integrated; e.g. cassette-based CR and DR systems
-  @JsonValue('113959')
   value113959,
 
   /// Display: Reconstruction Algorithm
   /// Definition: Description of the algorithm used when reconstructing the image from the data acquired during the acquisition process
-  @JsonValue('113961')
   value113961,
 
   /// Display: Filtered Back Projection
   /// Definition: An algorithm for reconstructing an image from multiple projections by back-projecting the measured values along the line of the projection and filtering the result to reduce blurring
-  @JsonValue('113962')
   value113962,
 
   /// Display: Iterative Reconstruction
   /// Definition: An algorithm for reconstructing an image from multiple projections by starting with an assumed reconstructed image, computing projections from the image, comparing the original projection data and updating the reconstructed image based upon the difference between the calculated and the actual projections
-  @JsonValue('113963')
   value113963,
 
   /// Display: Procedure Step To This Point
   /// Definition: The period of time from the start of a Procedure Step until the time point established by the context of the reference
-  @JsonValue('113970')
   value113970,
 
   /// Display: Not a number
   /// Definition: Measurement not available: Not a number (per IEEE 754)
-  @JsonValue('114000')
   value114000,
 
   /// Display: Negative Infinity
   /// Definition: Measurement not available: Negative Infinity (per IEEE 754)
-  @JsonValue('114001')
   value114001,
 
   /// Display: Positive Infinity
   /// Definition: Measurement not available: Positive Infinity (per IEEE 754)
-  @JsonValue('114002')
   value114002,
 
   /// Display: Divide by zero
   /// Definition: Measurement not available: Divide by zero (per IEEE 754)
-  @JsonValue('114003')
   value114003,
 
   /// Display: Underflow
   /// Definition: Measurement not available: Underflow (per IEEE 754)
-  @JsonValue('114004')
   value114004,
 
   /// Display: Overflow
   /// Definition: Measurement not available: Overflow (per IEEE 754)
-  @JsonValue('114005')
   value114005,
 
   /// Display: Measurement failure
   /// Definition: Measurement not available: Measurement failure
-  @JsonValue('114006')
   value114006,
 
   /// Display: Measurement not attempted
   /// Definition: Measurement not available: Measurement not attempted
-  @JsonValue('114007')
   value114007,
 
   /// Display: Calculation failure
   /// Definition: Measurement not available: Calculation failure
-  @JsonValue('114008')
   value114008,
 
   /// Display: Value out of range
   /// Definition: Measurement not available: Value out of range
-  @JsonValue('114009')
   value114009,
 
   /// Display: Value unknown
   /// Definition: Measurement not available: Value unknown
-  @JsonValue('114010')
   value114010,
 
   /// Display: Value indeterminate
   /// Definition: Measurement not available: Value indeterminate
-  @JsonValue('114011')
   value114011,
 
   /// Display: Time of flight
   /// Definition: Measures the time-of-flight of a light signal between the camera and the subject for each point of the image
-  @JsonValue('114201')
   value114201,
 
   /// Display: Interferometry
   /// Definition: Interferometry is a family of techniques in which waves are superimposed in order to extract depth information about the scanned object
-  @JsonValue('114202')
   value114202,
 
   /// Display: Laser scanning
   /// Definition: Laser scanning describes the general method to sample or scan a surface using laser technology
-  @JsonValue('114203')
   value114203,
 
   /// Display: Pattern projection
   /// Definition: Projecting a narrow band of light onto a three-dimensionally shaped surface produces a line of illumination that appears distorted from other perspectives than that of the projector. It can be used for an exact geometric reconstruction of the surface shape
-  @JsonValue('114204')
   value114204,
 
   /// Display: Shape from shading
   /// Definition: A technique for estimating the surface normal of an object by observing that object under different lighting conditions
-  @JsonValue('114205')
   value114205,
 
   /// Display: Shape from motion
   /// Definition: A technique for estimating the surface normal of an object by observing that object under different motions
-  @JsonValue('114206')
   value114206,
 
   /// Display: Confocal imaging
   /// Definition: An optical imaging technique used to increase optical resolution and contrast of a micrograph by using point illumination and a spatial pinhole to eliminate out-of-focus light in specimens that are thicker than the focal plane. It enables the reconstruction of 3D structures from the obtained images
-  @JsonValue('114207')
   value114207,
 
   /// Display: Point Cloud Algorithmic
   /// Definition: Point cloud that was calculated by an algorithm
-  @JsonValue('114208')
   value114208,
 
   /// Display: Turntable Scan Method
   /// Definition: Scanning the object from different views by placing it on a rotating table
-  @JsonValue('114209')
   value114209,
 
   /// Display: High resolution
   /// Definition: Higher resolution with a longer acquisition time
-  @JsonValue('114210')
   value114210,
 
   /// Display: Fast mode
   /// Definition: Lower resolution with a shorter acquisition time
-  @JsonValue('114211')
   value114211,
 
   /// Display: Iterative Closest Point
   /// Definition: An algorithm employed to minimize the difference between two clouds of points. It iteratively revises the transformation (translation, rotation) needed to minimize the distance between the points of two point clouds
-  @JsonValue('114213')
   value114213,
 
   /// Display: Freehand
   /// Definition: Human controlled minimization of the distance between the points of two point clouds
-  @JsonValue('114215')
   value114215,
 
   /// Display: Checkerboard
   /// Definition: Scanning the object from different views by placing it in front of a checkerboard pattern
-  @JsonValue('114216')
   value114216,
 
   /// Display: Quotation Mode
   /// Definition: Type of source for observations quoted from an external source
-  @JsonValue('121001')
   value121001,
 
   /// Display: Quoted Source
   /// Definition: Reference to external source of quoted observations
-  @JsonValue('121002')
   value121002,
 
   /// Display: Document
   /// Definition: Documentary source of quoted observations
-  @JsonValue('121003')
   value121003,
 
   /// Display: Verbal
   /// Definition: Verbal source of quoted observations
-  @JsonValue('121004')
   value121004,
 
   /// Display: Observer Type
   /// Definition: Type of observer that created the observations
-  @JsonValue('121005')
   value121005,
 
   /// Display: Person
   /// Definition: Human observer created the observations
-  @JsonValue('121006')
   value121006,
 
   /// Display: Device
   /// Definition: Automated device created the observations
-  @JsonValue('121007')
   value121007,
 
   /// Display: Person Observer Name
   /// Definition: Name of human observer that created the observations
-  @JsonValue('121008')
   value121008,
 
   /// Display: Person Observer's Organization Name
   /// Definition: Organization or institution with which the human observer is affiliated for the context of the current observation
-  @JsonValue('121009')
   value121009,
 
   /// Display: Person Observer's Role in the Organization
   /// Definition: Organizational role of human observer for the context of the current observation
-  @JsonValue('121010')
   value121010,
 
   /// Display: Person Observer's Role in this Procedure
   /// Definition: Procedural role of human observer for the context of the current observation
-  @JsonValue('121011')
   value121011,
 
   /// Display: Device Observer UID
   /// Definition: Unique identifier of automated device that created the observations
-  @JsonValue('121012')
   value121012,
 
   /// Display: Device Observer Name
   /// Definition: Institution-provided identifier of automated device that created the observations
-  @JsonValue('121013')
   value121013,
 
   /// Display: Device Observer Manufacturer
   /// Definition: Manufacturer of automated device that created the observations
-  @JsonValue('121014')
   value121014,
 
   /// Display: Device Observer Model Name
   /// Definition: Manufacturer-provided model name of automated device that created the observations
-  @JsonValue('121015')
   value121015,
 
   /// Display: Device Observer Serial Number
   /// Definition: Manufacturer-provided serial number of automated device that created the observations
-  @JsonValue('121016')
   value121016,
 
   /// Display: Device Observer Physical Location During Observation
   /// Definition: Location of automated device that created the observations whilst the observations were being made
-  @JsonValue('121017')
   value121017,
 
   /// Display: Procedure Study Instance UID
   /// Definition: Unique identifier for the Study or Requested Procedure
-  @JsonValue('121018')
   value121018,
 
   /// Display: Procedure Study Component UID
   /// Definition: Unique identifier for the Performed Procedure Step
-  @JsonValue('121019')
   value121019,
 
   /// Display: Placer Number
   /// Definition: Identifier for the Order (or Service Request) assigned by the order placer system
-  @JsonValue('121020')
   value121020,
 
   /// Display: Filler Number
   /// Definition: Identifier for the Order (or Service Request) assigned by the order filler system
-  @JsonValue('121021')
   value121021,
 
   /// Display: Accession Number
   /// Definition: Identifier for the Order (or Service Request) assigned by the department information system
-  @JsonValue('121022')
   value121022,
 
   /// Display: Procedure Code
   /// Definition: Type of procedure scheduled or performed
-  @JsonValue('121023')
   value121023,
 
   /// Display: Subject Class
   /// Definition: Type of observation subject
-  @JsonValue('121024')
   value121024,
 
   /// Display: Patient
   /// Definition: A patient is the subject of observations
-  @JsonValue('121025')
   value121025,
 
   /// Display: Fetus
   /// Definition: Fetus of patient is the subject of observations
-  @JsonValue('121026')
   value121026,
 
   /// Display: Specimen
   /// Definition: Specimen is the subject of observations
-  @JsonValue('121027')
   value121027,
 
   /// Display: Subject UID
   /// Definition: Unique Identifier of patient or fetus who is the subject of observations
-  @JsonValue('121028')
   value121028,
 
   /// Display: Subject Name
   /// Definition: Name of patient who is the subject of observations
-  @JsonValue('121029')
   value121029,
 
   /// Display: Subject ID
   /// Definition: Identifier of patient or fetus who is the subject of observations
-  @JsonValue('121030')
   value121030,
 
   /// Display: Subject Birth Date
   /// Definition: Birth Date of patient who is the subject of observations
-  @JsonValue('121031')
   value121031,
 
   /// Display: Subject Sex
   /// Definition: Sex of patient who is the subject of observations
-  @JsonValue('121032')
   value121032,
 
   /// Display: Subject Age
   /// Definition: Age of patient who is the subject of observations
-  @JsonValue('121033')
   value121033,
 
   /// Display: Subject Species
   /// Definition: Species of patient who is the subject of observations
-  @JsonValue('121034')
   value121034,
 
   /// Display: Subject Breed
   /// Definition: The breed of the subject
-  @JsonValue('121035')
   value121035,
 
   /// Display: Mother of fetus
   /// Definition: Name of mother of fetus that is the subject of observations
-  @JsonValue('121036')
   value121036,
 
   /// Display: Fetus number
-  @JsonValue('121037')
   value121037,
 
   /// Display: Number of Fetuses
-  @JsonValue('121038')
   value121038,
 
   /// Display: Specimen UID
   /// Definition: Unique Identifier of specimen that is the subject of observations
-  @JsonValue('121039')
   value121039,
 
   /// Display: Specimen Accession Number
   /// Definition: Accession Number of specimen that is the subject of observations
-  @JsonValue('121040')
   value121040,
 
   /// Display: Specimen Identifier
   /// Definition: Identifier of specimen that is the subject of observations
-  @JsonValue('121041')
   value121041,
 
   /// Display: Specimen Type
   /// Definition: Coded category of specimen that is the subject of observations
-  @JsonValue('121042')
   value121042,
 
   /// Display: Slide Identifier
   /// Definition: Identifier of specimen microscope slide that is the subject of observations
-  @JsonValue('121043')
   value121043,
 
   /// Display: Slide UID
   /// Definition: Unique Identifier of specimen microscope slide that is the subject of observations
-  @JsonValue('121044')
   value121044,
 
   /// Display: Language
   /// Definition: The language of the content, being a language that is primarily used for human communication; e.g. English, French
-  @JsonValue('121045')
   value121045,
 
   /// Display: Country of Language
   /// Definition: The country-specific variant of language; e.g. Canada for Candadian French
-  @JsonValue('121046')
   value121046,
 
   /// Display: Language of Value
   /// Definition: The language of the value component of a name-value pair
-  @JsonValue('121047')
   value121047,
 
   /// Display: Language of Name and Value
   /// Definition: The language of both the name component and the value component of a name-value pair
-  @JsonValue('121048')
   value121048,
 
   /// Display: Language of Content Item and Descendants
   /// Definition: The language of the current content item (node in a tree of content) and all its descendants
-  @JsonValue('121049')
   value121049,
 
   /// Display: Equivalent Meaning of Concept Name
   /// Definition: The human readable meaning of the name component of a name-value pair that is equivalent to the post-coordinated meaning conveyed by the coded name and its concept modifier children
-  @JsonValue('121050')
   value121050,
 
   /// Display: Equivalent Meaning of Value
   /// Definition: The human readable meaning of the value component of a name-value pair that is equivalent to the post-coordinated meaning conveyed by the coded value and its concept modifier children
-  @JsonValue('121051')
   value121051,
 
   /// Display: Presence of property
   /// Definition: Whether or not the property concept being modified is present or absent
-  @JsonValue('121052')
   value121052,
 
   /// Display: Present
-  @JsonValue('121053')
   value121053,
 
   /// Display: Absent
-  @JsonValue('121054')
   value121054,
 
   /// Display: Path
   /// Definition: A set of points on an image, that when connected by line segments, provide a polyline from which a linear measurement was inferred
-  @JsonValue('121055')
   value121055,
 
   /// Display: Area outline
   /// Definition: A set of points on an image, that when connected by line segments, provide a closed polyline that is the border of a defined region from which an area, or two-dimensional measurement, was inferred
-  @JsonValue('121056')
   value121056,
 
   /// Display: Perimeter outline
   /// Definition: A set of points on an image, that when connected by line segments, provide a closed polyline that is a two-dimensional border of a three-dimensional region's intersection with, or projection into the image
-  @JsonValue('121057')
   value121057,
 
   /// Display: Procedure reported
   /// Definition: The imaging procedure whose results are reported
-  @JsonValue('121058')
   value121058,
 
   /// Display: Presence Undetermined
   /// Definition: Presence or absence of a property is undetermined
-  @JsonValue('121059')
   value121059,
 
   /// Display: History
-  @JsonValue('121060')
   value121060,
 
   /// Display: Request
-  @JsonValue('121062')
   value121062,
 
   /// Display: Current Procedure Descriptions
-  @JsonValue('121064')
   value121064,
 
   /// Display: Procedure Description
   /// Definition: A description of the imaging procedure
-  @JsonValue('121065')
   value121065,
 
   /// Display: Prior Procedure Descriptions
-  @JsonValue('121066')
   value121066,
 
   /// Display: Previous Findings
-  @JsonValue('121068')
   value121068,
 
   /// Display: Previous Finding
   /// Definition: An observation found on a prior imaging study
-  @JsonValue('121069')
   value121069,
 
   /// Display: Findings
-  @JsonValue('121070')
   value121070,
 
   /// Display: Finding
   /// Definition: An observation found on an imaging study
-  @JsonValue('121071')
   value121071,
 
   /// Display: Impressions
-  @JsonValue('121072')
   value121072,
 
   /// Display: Impression
   /// Definition: An interpretation in the clinical context of the finding(s) on an imaging study
-  @JsonValue('121073')
   value121073,
 
   /// Display: Recommendations
-  @JsonValue('121074')
   value121074,
 
   /// Display: Recommendation
   /// Definition: A recommendation for management or investigation based on the findings and impressions of an imaging study
-  @JsonValue('121075')
   value121075,
 
   /// Display: Conclusions
-  @JsonValue('121076')
   value121076,
 
   /// Display: Conclusion
   /// Definition: An interpretation in the clinical context of the finding(s) on an imaging study
-  @JsonValue('121077')
   value121077,
 
   /// Display: Addendum
-  @JsonValue('121078')
   value121078,
 
   /// Display: Baseline
   /// Definition: Initial images used to esyablish a beginning condition that is used for comparison over time to look for changes. [Paraphrases NCI-PT (C1442488, UMLS, "Baseline"), which is defined as "An initial measurement that is taken at an early time point to represent a beginning condition, and is used for comparison over time to look for changes. For example, the size of a tumor will be measured before treatment (baseline) and then afterwards to see if the treatment had an effect. A starting point to which things may be compared."]
-  @JsonValue('121079')
   value121079,
 
   /// Display: Best illustration of finding
   /// Definition: A selection of composite instances that best illustrates a particular finding; e.g. an image slice at the location of the largest extent of a tumor
-  @JsonValue('121080')
   value121080,
 
   /// Display: Physician
-  @JsonValue('121081')
   value121081,
 
   /// Display: Nurse
-  @JsonValue('121082')
   value121082,
 
   /// Display: Technologist
-  @JsonValue('121083')
   value121083,
 
   /// Display: Radiographer
-  @JsonValue('121084')
   value121084,
 
   /// Display: Intern
-  @JsonValue('121085')
   value121085,
 
   /// Display: Resident
-  @JsonValue('121086')
   value121086,
 
   /// Display: Registrar
-  @JsonValue('121087')
   value121087,
 
   /// Display: Fellow
   /// Definition: A medical practitioner undergoing sub-specialty training; e.g. during the period after specialty training (residency)
-  @JsonValue('121088')
   value121088,
 
   /// Display: Attending [Consultant]
-  @JsonValue('121089')
   value121089,
 
   /// Display: Scrub nurse
-  @JsonValue('121090')
   value121090,
 
   /// Display: Surgeon
-  @JsonValue('121091')
   value121091,
 
   /// Display: Sonologist
   /// Definition: A medical practitioner with sub-specialty training in Ultrasound
-  @JsonValue('121092')
   value121092,
 
   /// Display: Sonographer
-  @JsonValue('121093')
   value121093,
 
   /// Display: Performing
   /// Definition: The person responsible for performing the procedure
-  @JsonValue('121094')
   value121094,
 
   /// Display: Referring
   /// Definition: The person responsible for referring the patient for the procedure
-  @JsonValue('121095')
   value121095,
 
   /// Display: Requesting
   /// Definition: The person responsible for requesting the procedure
-  @JsonValue('121096')
   value121096,
 
   /// Display: Recording
   /// Definition: The person responsible for recording the procedure or observation
-  @JsonValue('121097')
   value121097,
 
   /// Display: Verifying
   /// Definition: The person responsible for verifying the recorded procedure or observation
-  @JsonValue('121098')
   value121098,
 
   /// Display: Assisting
   /// Definition: The person responsible for assisting with the procedure
-  @JsonValue('121099')
   value121099,
 
   /// Display: Circulating
   /// Definition: The person responsible for making preparations for and monitoring the procedure
-  @JsonValue('121100')
   value121100,
 
   /// Display: Standby
   /// Definition: The person responsible for standing by to assist with the precedure if required
-  @JsonValue('121101')
   value121101,
 
   /// Display: Other sex
   /// Definition: Other sex
-  @JsonValue('121102')
   value121102,
 
   /// Display: Undetermined sex
   /// Definition: Sex of subject undetermined at time of encoding
-  @JsonValue('121103')
   value121103,
 
   /// Display: Ambiguous sex
   /// Definition: Ambiguous sex
-  @JsonValue('121104')
   value121104,
 
   /// Display: Radiation Physicist
   /// Definition: Radiation Physicist
-  @JsonValue('121105')
   value121105,
 
   /// Display: Comment
   /// Definition: Comment
-  @JsonValue('121106')
   value121106,
 
   /// Display: Indications for Procedure
   /// Definition: Indications for Procedure
-  @JsonValue('121109')
   value121109,
 
   /// Display: Patient Presentation
   /// Definition: Patient condition at the beginning of a healthcare encounter
-  @JsonValue('121110')
   value121110,
 
   /// Display: Summary
   /// Definition: Summary of a procedure, including most significant findings
-  @JsonValue('121111')
   value121111,
 
   /// Display: Source of Measurement
   /// Definition: Image or waveform used as source for measurement
-  @JsonValue('121112')
   value121112,
 
   /// Display: Complications
   /// Definition: Complications from a procedure
-  @JsonValue('121113')
   value121113,
 
   /// Display: Performing Physician
   /// Definition: Physician who performed a procedure
-  @JsonValue('121114')
   value121114,
 
   /// Display: Discharge Summary
   /// Definition: Summary of patient condition upon Discharge from a healthcare facility
-  @JsonValue('121115')
   value121115,
 
   /// Display: Proximal Finding Site
   /// Definition: Proximal Anatomic Location for a differential measurement; may be considered subtype of term (G-C0E3, SRT, "Finding Site"); e.g. distance or pressure gradient
-  @JsonValue('121116')
   value121116,
 
   /// Display: Distal Finding Site
   /// Definition: Distal Anatomic Location for a differential measurement; may be considered subtype of term (G-C0E3, SRT, "Finding Site"); e.g. distance or pressure gradient
-  @JsonValue('121117')
   value121117,
 
   /// Display: Patient Characteristics
   /// Definition: Patient Characteristics (findings)
-  @JsonValue('121118')
   value121118,
 
   /// Display: Cath Lab Procedure Log
   /// Definition: Time-stamped record of events that occur during a catheterization procedure
-  @JsonValue('121120')
   value121120,
 
   /// Display: Room identification
   /// Definition: Room identification
-  @JsonValue('121121')
   value121121,
 
   /// Display: Equipment Identification
   /// Definition: Equipment identification
-  @JsonValue('121122')
   value121122,
 
   /// Display: Patient Status or Event
   /// Definition: A recorded Patient Status or an event involving a patient
-  @JsonValue('121123')
   value121123,
 
   /// Display: Procedure Action Item ID
   /// Definition: Identification of a step, action, or phase of a procedure
-  @JsonValue('121124')
   value121124,
 
   /// Display: DateTime of Recording of Log Entry
   /// Definition: DateTime of Recording of an Entry in an Event Log
-  @JsonValue('121125')
   value121125,
 
   /// Display: Performed Procedure Step SOP Instance UID
   /// Definition: SOP Instance UID of a Performed Procedure Step
-  @JsonValue('121126')
   value121126,
 
   /// Display: Performed Procedure Step SOP Class UID
   /// Definition: SOP Class UID of a Performed Procedure Step
-  @JsonValue('121127')
   value121127,
 
   /// Display: Procedure Action Duration
   /// Definition: Duration of a step, action, or phase of a procedure
-  @JsonValue('121128')
   value121128,
 
   /// Display: Start Procedure Action Item
   /// Definition: Beginning of a step, action, or phase of a procedure
-  @JsonValue('121130')
   value121130,
 
   /// Display: End Procedure Action Item
   /// Definition: End of a step, action, or phase of a procedure
-  @JsonValue('121131')
   value121131,
 
   /// Display: Suspend Procedure Action Item
   /// Definition: Suspension of a step, action, or phase of a procedure
-  @JsonValue('121132')
   value121132,
 
   /// Display: Resume Procedure Action Item
   /// Definition: Resumption of a step, action, or phase of a procedure
-  @JsonValue('121133')
   value121133,
 
   /// Display: Observation DateTime Qualifier
   /// Definition: Concept modifier for the DateTime of Recording of an Entry in an Event Log
-  @JsonValue('121135')
   value121135,
 
   /// Display: DateTime Unsynchronized
   /// Definition: Recorded DateTime had its source in a system clock not synchronized to other recorded DateTimes
-  @JsonValue('121136')
   value121136,
 
   /// Display: DateTime Estimated
   /// Definition: Recorded DateTime is estimated
-  @JsonValue('121137')
   value121137,
 
   /// Display: Image Acquired
   /// Definition: Event of the acquisition of an image
-  @JsonValue('121138')
   value121138,
 
   /// Display: Modality
   /// Definition: Type of data acquisition device
-  @JsonValue('121139')
   value121139,
 
   /// Display: Number of Frames
   /// Definition: Number of Frames in a multi-frame image
-  @JsonValue('121140')
   value121140,
 
   /// Display: Image Type
   /// Definition: Descriptor of an Image
-  @JsonValue('121141')
   value121141,
 
   /// Display: Acquisition Duration
   /// Definition: Duration of the acquisition of an image or a waveform
-  @JsonValue('121142')
   value121142,
 
   /// Display: Waveform Acquired
   /// Definition: Event of the acquisition of an image
-  @JsonValue('121143')
   value121143,
 
   /// Display: Document Title
   /// Definition: Document Title
-  @JsonValue('121144')
   value121144,
 
   /// Display: Description of Material
   /// Definition: Description of Material used in a procedure
-  @JsonValue('121145')
   value121145,
 
   /// Display: Quantity of Material
   /// Definition: Quantity of Material used in a procedure
-  @JsonValue('121146')
   value121146,
 
   /// Display: Billing Code
   /// Definition: Billing Code for materials used in a procedure
-  @JsonValue('121147')
   value121147,
 
   /// Display: Unit Serial Identifier
   /// Definition: Unit or Device Serial Identifier
-  @JsonValue('121148')
   value121148,
 
   /// Display: Lot Identifier
   /// Definition: Lot Identifier
-  @JsonValue('121149')
   value121149,
 
   /// Display: Device Code
   /// Definition: Vendor or local coded value identifying a device
-  @JsonValue('121150')
   value121150,
 
   /// Display: Lesion Identifier
   /// Definition: Identification of a Lesion observed during an imaging procedure
-  @JsonValue('121151')
   value121151,
 
   /// Display: Person administering drug/contrast
   /// Definition: Person administering drug/contrast
-  @JsonValue('121152')
   value121152,
 
   /// Display: Lesion Risk
   /// Definition: Assessment of the risk a coronary lesion presents to the health of a patient
-  @JsonValue('121153')
   value121153,
 
   /// Display: Intervention attempt identifier
   /// Definition: Identifier for an attempted Intervention
-  @JsonValue('121154')
   value121154,
 
   /// Display: Deployment
   /// Definition: Use of a device to deploy another device
-  @JsonValue('121155')
   value121155,
 
   /// Display: Percutaneous Entry Action
   /// Definition: Action of a clinical professional at the site of percutaneous access to a patient's cardiovascular system
-  @JsonValue('121156')
   value121156,
 
   /// Display: Begin Circulatory Support
   /// Definition: The action or event of beginning circulatory support for a patient
-  @JsonValue('121157')
   value121157,
 
   /// Display: End Circulatory Support
   /// Definition: The action or event of ending circulatory support for a patient
-  @JsonValue('121158')
   value121158,
 
   /// Display: Oxygen Administration Rate
   /// Definition: Rate of Oxygen Administration
-  @JsonValue('121160')
   value121160,
 
   /// Display: Begin Oxygen Administration
   /// Definition: The action or event of beginning administration of oxygen to a patient
-  @JsonValue('121161')
   value121161,
 
   /// Display: End oxygen administration
   /// Definition: The action or event of ending administration of oxygen to a patient
-  @JsonValue('121162')
   value121162,
 
   /// Display: By ventilator
   /// Definition: Method of administration of oxygen to a patient by ventilator
-  @JsonValue('121163')
   value121163,
 
   /// Display: Patient Assessment Performed
   /// Definition: The action or event of assessing the clinical status of a patient
-  @JsonValue('121165')
   value121165,
 
   /// Display: Begin Pacing
   /// Definition: The action or event of beginning pacing support for a patient
-  @JsonValue('121166')
   value121166,
 
   /// Display: End Pacing
   /// Definition: The action or event of ending pacing support for a patient
-  @JsonValue('121167')
   value121167,
 
   /// Display: Begin Ventilation
   /// Definition: The action or event of beginning ventilation support for a patient
-  @JsonValue('121168')
   value121168,
 
   /// Display: End Ventilation
   /// Definition: The action or event of ending ventilation support for a patient
-  @JsonValue('121169')
   value121169,
 
   /// Display: Tech Note
   /// Definition: Procedural note originated by a technologist
-  @JsonValue('121171')
   value121171,
 
   /// Display: Nursing Note
   /// Definition: Procedural note originated by a nurse
-  @JsonValue('121172')
   value121172,
 
   /// Display: Physician Note
   /// Definition: Procedural note originated by a Physician
-  @JsonValue('121173')
   value121173,
 
   /// Display: Procedure Note
   /// Definition: General procedural note
-  @JsonValue('121174')
   value121174,
 
   /// Display: Key Images
   /// Definition: List of references to images considered significant
-  @JsonValue('121180')
   value121180,
 
   /// Display: DICOM Object Catalog
   /// Definition: List of references to DICOM SOP Instances
-  @JsonValue('121181')
   value121181,
 
   /// Display: Referenced Frames
   /// Definition: Individual frames selected as a subset of a multi-frame image
-  @JsonValue('121190')
   value121190,
 
   /// Display: Referenced Segment
   /// Definition: Segment selected as a subset of a segmentation image, specifically the pixels/voxels identified as belonging to the classification of the identified segment
-  @JsonValue('121191')
   value121191,
 
   /// Display: Device Subject
   /// Definition: A device is the subject of observations
-  @JsonValue('121192')
   value121192,
 
   /// Display: Device Subject Name
   /// Definition: Name or other identifier of a device that is the subject of observations
-  @JsonValue('121193')
   value121193,
 
   /// Display: Device Subject Manufacturer
   /// Definition: Manufacturer of a device that is the subject of observations
-  @JsonValue('121194')
   value121194,
 
   /// Display: Device Subject Model Name
   /// Definition: Model Name of a device that is the subject of observations
-  @JsonValue('121195')
   value121195,
 
   /// Display: Device Subject Serial Number
   /// Definition: Serial Number of a device that is the subject of observations
-  @JsonValue('121196')
   value121196,
 
   /// Display: Device Subject Physical Location during observation
   /// Definition: Physical Location of a device that is the subject of observations during those observations
-  @JsonValue('121197')
   value121197,
 
   /// Display: Device Subject UID
   /// Definition: Unique Identifier of a device that is the subject of observations
-  @JsonValue('121198')
   value121198,
 
   /// Display: Illustration of ROI
   /// Definition: Illustration of a region of interest
-  @JsonValue('121200')
   value121200,
 
   /// Display: Area Outline
-  @JsonValue('121201')
   value121201,
 
   /// Display: Area of Defined Region
-  @JsonValue('121202')
   value121202,
 
   /// Display: Distance
   /// Definition: A one dimensional, or linear, numeric measurement
-  @JsonValue('121206')
   value121206,
 
   /// Display: Height
   /// Definition: Vertical measurement value
-  @JsonValue('121207')
   value121207,
 
   /// Display: Inter-Marker Distance
   /// Definition: Distance between marks on a device of calibrated size; e.g. a ruler
-  @JsonValue('121208')
   value121208,
 
   /// Display: Path
-  @JsonValue('121210')
   value121210,
 
   /// Display: Path length
   /// Definition: A one dimensional, or linear, numeric measurement along a polyline
-  @JsonValue('121211')
   value121211,
 
   /// Display: Perimeter Outline
-  @JsonValue('121213')
   value121213,
 
   /// Display: Referenced Segmentation Frame
   /// Definition: Frame selected from a segmentation image, specifically the pixels/voxels identified as belonging to the classification of the segment encompassing the identified frame
-  @JsonValue('121214')
   value121214,
 
   /// Display: Volume estimated from single 2D region
   /// Definition: A three-dimensional numeric measurement that is approximate, based on a two-dimensional region in a single image
-  @JsonValue('121216')
   value121216,
 
   /// Display: Volume estimated from three or more non-coplanar 2D regions
   /// Definition: A three-dimensional numeric measurement that is approximate, based on three or more non-coplanar two-dimensional image regions
-  @JsonValue('121217')
   value121217,
 
   /// Display: Volume estimated from two non-coplanar 2D regions
   /// Definition: A three-dimensional numeric measurement that is approximate, based on two non-coplanar two-dimensional image regions
-  @JsonValue('121218')
   value121218,
 
   /// Display: Volume of bounding three dimensional region
   /// Definition: A three-dimensional numeric measurement of the bounding region of a three-dimensional region of interest in an image set
-  @JsonValue('121219')
   value121219,
 
   /// Display: Volume of circumscribed sphere
   /// Definition: A three-dimensional numeric measurement of the bounding sphere of a three-dimensional region of interest in an image set
-  @JsonValue('121220')
   value121220,
 
   /// Display: Volume of ellipsoid
   /// Definition: A three-dimensional numeric measurement of an ellipsoid shaped three-dimensional region of interest in an image set
-  @JsonValue('121221')
   value121221,
 
   /// Display: Volume of sphere
   /// Definition: A three-dimensional numeric measurement of a sphere shaped three-dimensional region of interest in an image set
-  @JsonValue('121222')
   value121222,
 
   /// Display: Path Vertex
   /// Definition: Coordinates of a point on a defined path
-  @JsonValue('121230')
   value121230,
 
   /// Display: Volume Surface
   /// Definition: Surface of an identified or measured volume
-  @JsonValue('121231')
   value121231,
 
   /// Display: Source series for segmentation
   /// Definition: Series of image instances used as source data for a segmentation
-  @JsonValue('121232')
   value121232,
 
   /// Display: Source image for segmentation
   /// Definition: Image instances used as source data for a segmentation
-  @JsonValue('121233')
   value121233,
 
   /// Display: Distance from nipple
   /// Definition: Indicates the location of the area of interest as measured from the nipple of the breast
-  @JsonValue('121242')
   value121242,
 
   /// Display: Distance from skin
   /// Definition: Indicates the location of the area of interest as measured from the most direct skin point of the breast
-  @JsonValue('121243')
   value121243,
 
   /// Display: Distance from chest wall
   /// Definition: Indicates the location of the area of interest as measured from the chest wall
-  @JsonValue('121244')
   value121244,
 
   /// Display: Patient exposure to ionizing radiation
   /// Definition: Patient exposure to ionizing radiation (procedure)
-  @JsonValue('121290')
   value121290,
 
   /// Display: Results communicated
   /// Definition: The act of communicating actionable findings to a responsible receiver
-  @JsonValue('121291')
   value121291,
 
   /// Display: Simultaneous Doppler
   /// Definition: Reference is to a Doppler waveform acquired simultaneously with an image
-  @JsonValue('121301')
   value121301,
 
   /// Display: Simultaneous Hemodynamic
   /// Definition: Reference is to a Hemodynamic waveform acquired simultaneously with an image
-  @JsonValue('121302')
   value121302,
 
   /// Display: Simultaneous ECG
   /// Definition: Reference is to a ECG waveform acquired simultaneously with an image
-  @JsonValue('121303')
   value121303,
 
   /// Display: Simultaneous Voice Narrative
   /// Definition: Reference is to a voice narrative recording acquired simultaneously with an image
-  @JsonValue('121304')
   value121304,
 
   /// Display: Simultaneous Respiratory Waveform
   /// Definition: A waveform representing chest expansion and contraction due to respiratory activity, measured simultaneously with the acquisition of this Image
-  @JsonValue('121305')
   value121305,
 
   /// Display: Simultaneous Arterial Pulse Waveform
   /// Definition: Arterial pulse waveform obtained simultaneously with acquisition of a referencing image
-  @JsonValue('121306')
   value121306,
 
   /// Display: Simultaneous Phonocardiographic Waveform
   /// Definition: Phonocardiographic waveform obtained simultaneously with acquisition of a referencing image
-  @JsonValue('121307')
   value121307,
 
   /// Display: Localizer
   /// Definition: Image providing an anatomical reference on the patient under examination, for the purpose of defining the location of the ensuing imaging
-  @JsonValue('121311')
   value121311,
 
   /// Display: Biopsy localizer
   /// Definition: Image providing an anatomical reference on the patient under examination, for the purpose of planning or documenting a biopsy
-  @JsonValue('121312')
   value121312,
 
   /// Display: Other partial views
   /// Definition: Image providing a partial view of the target anatomy, when the target anatomy is too large for a single image
-  @JsonValue('121313')
   value121313,
 
   /// Display: Other image of biplane pair
   /// Definition: Image providing a view of the target anatomy in a different imaging plane, typically from a near perpendicular angle
-  @JsonValue('121314')
   value121314,
 
   /// Display: Other image of stereoscopic pair
   /// Definition: Image providing a view of the target anatomy in a different imaging plane, typically with a small angular difference
-  @JsonValue('121315')
   value121315,
 
   /// Display: Images related to standalone object
   /// Definition: Image related to a non-image information object
-  @JsonValue('121316')
   value121316,
 
   /// Display: Spectroscopy
   /// Definition: Image where signals are identified and separated according to their frequencies; e.g. to identify individual chemicals, or individual nuclei in a chemical compound
-  @JsonValue('121317')
   value121317,
 
   /// Display: Spectroscopy Data for Water Phase Correction
   /// Definition: MR spectroscopy data acquired to correct the phase of the diagnostic data for the phase signal of the Water
-  @JsonValue('121318')
   value121318,
 
   /// Display: Uncompressed predecessor
   /// Definition: An image that has not already been lossy compressed that is used as the source for creation of a lossy compressed image
-  @JsonValue('121320')
   value121320,
 
   /// Display: Mask image for image processing operation
   /// Definition: Image used as the mask for an image processing operation, such as subtraction
-  @JsonValue('121321')
   value121321,
 
   /// Display: Source image for image processing operation
   /// Definition: Image used as the source for an image processing operation
-  @JsonValue('121322')
   value121322,
 
   /// Display: Source series for image processing operation
   /// Definition: Series used as the source for an image processing operation
-  @JsonValue('121323')
   value121323,
 
   /// Display: Source Image
   /// Definition: Image used as the source for a derived or compressed image
-  @JsonValue('121324')
   value121324,
 
   /// Display: Lossy compressed image
   /// Definition: Image encoded with a lossy compression transfer syntax
-  @JsonValue('121325')
   value121325,
 
   /// Display: Alternate SOP Class instance
   /// Definition: SOP Instance encoded with a different SOP Class but otherwise equivalent data
-  @JsonValue('121326')
   value121326,
 
   /// Display: Full fidelity image
   /// Definition: Full fidelity image, uncompressed or lossless compressed
-  @JsonValue('121327')
   value121327,
 
   /// Display: Alternate Photometric Interpretation image
   /// Definition: Image encoded with a different photometric interpretation
-  @JsonValue('121328')
   value121328,
 
   /// Display: Source image for montage
   /// Definition: Image used as a source for a montage (stitched) image
-  @JsonValue('121329')
   value121329,
 
   /// Display: Lossy compressed predecessor
   /// Definition: An image that has previously been lossy compressed that is used as the source for creation of another lossy compressed image
-  @JsonValue('121330')
   value121330,
 
   /// Display: Equivalent CDA Document
   /// Definition: HL7 Document Architecture (CDA) Document that contains clinical content equivalent to the referencing Instance
-  @JsonValue('121331')
   value121331,
 
   /// Display: Complete Rendering for Presentation
   /// Definition: Instance that contains a displayable complete rendering of the referencing Instance
-  @JsonValue('121332')
   value121332,
 
   /// Display: Partial Rendering for Presentation
   /// Definition: Instance that contains a displayable partial rendering of the referencing Instance
-  @JsonValue('121333')
   value121333,
 
   /// Display: Extended Rendering for Presentation
   /// Definition: Instance that contains a displayable complete rendering of the referencing Instance, plus additional content such as inline rendering of referenced images
-  @JsonValue('121334')
   value121334,
 
   /// Display: Source Document
   /// Definition: Document whose content has been wholly or partially transformed to create the referencing document
-  @JsonValue('121335')
   value121335,
 
   /// Display: Anatomic image
   /// Definition: Image showing structural anatomic features
-  @JsonValue('121338')
   value121338,
 
   /// Display: Functional image
   /// Definition: Image showing physical or chemical activity
-  @JsonValue('121339')
   value121339,
 
   /// Display: Spectral filtered image
   /// Definition: Image providing the same view of the target anatomy acquired using only a specific imaging wavelength, frequency or energy
-  @JsonValue('121340')
   value121340,
 
   /// Display: Device localizer
   /// Definition: Image providing an anatomical reference on the patient under examination, for the purpose of documenting the location of device such as a diagnostic or therapeutic catheter
-  @JsonValue('121341')
   value121341,
 
   /// Display: Dose Image
   /// Definition: Image providing a graphic view of the distribution of radiation dose
-  @JsonValue('121342')
   value121342,
 
   /// Display: Acquisition frames corresponding to volume
   /// Definition: The referenced image is the source of spatially-related frames from which the referencing 3D volume data set was derived
-  @JsonValue('121346')
   value121346,
 
   /// Display: Volume corresponding to spatially-related acquisition frames
   /// Definition: 3D Volume containing the spatially-related frames in the referencing instance
-  @JsonValue('121347')
   value121347,
 
   /// Display: Temporal Predecessor
   /// Definition: Instance acquired prior to the referencing instance in a set of consecutively acquired instances
-  @JsonValue('121348')
   value121348,
 
   /// Display: Temporal Successor
   /// Definition: Instance acquired subsequent to the referencing instance in a set of consecutively acquired instances
-  @JsonValue('121349')
   value121349,
 
   /// Display: Same acquisition at lower resolution
   /// Definition: Image of the same target area at lower resolution acquired in the same acquisition process
-  @JsonValue('121350')
   value121350,
 
   /// Display: Same acquisition at higher resolution
   /// Definition: Image of the same target area at higher resolution acquired in the same acquisition process
-  @JsonValue('121351')
   value121351,
 
   /// Display: Same acquisition at different focal depth
   /// Definition: Image of the same target area at different focal depth (Z-plane) acquired in the same acquisition process
-  @JsonValue('121352')
   value121352,
 
   /// Display: Same acquisition at different spectral band
   /// Definition: Image of the same target area at different spectral band acquired in the same acquisition process
-  @JsonValue('121353')
   value121353,
 
   /// Display: Imaged container label
   /// Definition: Image specifically targeting the container label
-  @JsonValue('121354')
   value121354,
 
   /// Display: For Processing predecessor
   /// Definition: Source image from which FOR PRESENTATION images were created
-  @JsonValue('121358')
   value121358,
 
   /// Display: Replaced report
   /// Definition: The reference is to a predecessor report that has been replaced by the current report
-  @JsonValue('121360')
   value121360,
 
   /// Display: Addended report
   /// Definition: The reference is to a predecessor report to which the current report provides and addendum
-  @JsonValue('121361')
   value121361,
 
   /// Display: Preliminary report
   /// Definition: A report that precedes the final report and may contain only limited information; it may be time sensitive, and it is not expected to contain all the reportable findings
-  @JsonValue('121362')
   value121362,
 
   /// Display: Partial report
   /// Definition: A report that is not complete
-  @JsonValue('121363')
   value121363,
 
   /// Display: Composed from prior doses
   /// Definition: The dose object created was calculated by summation of existing, previously calculated, RT Dose instances
-  @JsonValue('121370')
   value121370,
 
   /// Display: Composed from prior doses and current plan
   /// Definition: The dose object created was calculated by summation of existing, previously calculated, RT Dose instances and dose newly calculated by the application. The newly calculated dose may or may not exist as an independent object
-  @JsonValue('121371')
   value121371,
 
   /// Display: Source dose for composing current dose
   /// Definition: RT Dose Instances used as source for calculated dose
-  @JsonValue('121372')
   value121372,
 
   /// Display: Active Ingredient Undiluted Concentration
   /// Definition: Concentration of the chemically or physically interesting (active) ingredient of a drug or contrast agent as delivered in product form from the manufacturer, typically in mg/ml
-  @JsonValue('121380')
   value121380,
 
   /// Display: Contrast/Bolus Ingredient Opaque
   /// Definition: X-Ray absorption of the active ingredient of a contrast agent ingredient is greater than the absorption of water (tissue)
-  @JsonValue('121381')
   value121381,
 
   /// Display: Quantity administered
   /// Definition: Number of units of substance administered to a patient; e.g. tablets
-  @JsonValue('121382')
   value121382,
 
   /// Display: Mass administered
   /// Definition: Mass of substance administered to a patient
-  @JsonValue('121383')
   value121383,
 
   /// Display: Derivation
   /// Definition: Method of deriving or calculating a measured value; e.g. mean, or maximum of set
-  @JsonValue('121401')
   value121401,
 
   /// Display: Normality
   /// Definition: Assessment of a measurement relative to a normal range of values; may be considered subtype of term (G-C0F2, SRT, "has interpretation")
-  @JsonValue('121402')
   value121402,
 
   /// Display: Level of Significance
   /// Definition: Significance of a measurement
-  @JsonValue('121403')
   value121403,
 
   /// Display: Selection Status
   /// Definition: Status of selection of a measurement for further processing or use
-  @JsonValue('121404')
   value121404,
 
   /// Display: Population description
   /// Definition: Description of a population of measurements
-  @JsonValue('121405')
   value121405,
 
   /// Display: Reference Authority
   /// Definition: Bibliographic or clinical reference for a Description of a population of measurements
-  @JsonValue('121406')
   value121406,
 
   /// Display: Normal Range description
   /// Definition: Description of a normal range of values for a measurement concept
-  @JsonValue('121407')
   value121407,
 
   /// Display: Normal Range Authority
   /// Definition: Bibliographic or clinical reference for a Description of a normal range of values
-  @JsonValue('121408')
   value121408,
 
   /// Display: User chosen value
   /// Definition: Observation value selected by user for further processing or use, or as most representative
-  @JsonValue('121410')
   value121410,
 
   /// Display: Most recent value chosen
   /// Definition: Observation value is the recently obtained, and has been selected for further processing or use
-  @JsonValue('121411')
   value121411,
 
   /// Display: Mean value chosen
   /// Definition: Observation value is the mean of several measurements, and has been selected for further processing or use
-  @JsonValue('121412')
   value121412,
 
   /// Display: Standard deviation of population
   /// Definition: Standard deviation of a measurement in a reference population
-  @JsonValue('121414')
   value121414,
 
   /// Display: Percentile Ranking of measurement
   /// Definition: Percentile Ranking of an observation value with respect a reference population
-  @JsonValue('121415')
   value121415,
 
   /// Display: Z-Score of measurement
   /// Definition: Z-score of an observation value with respect a reference population, expressed as the dimensionless quantity (x-m) /s, where (x-m) is the deviation of the observation value (x) from the population mean (m), and s is the standard deviation of the population
-  @JsonValue('121416')
   value121416,
 
   /// Display: 2 Sigma deviation of population
   /// Definition: 2 Sigma deviation of a measurement in a reference population
-  @JsonValue('121417')
   value121417,
 
   /// Display: Equation
   /// Definition: Formula used to compute a derived measurement
-  @JsonValue('121420')
   value121420,
 
   /// Display: Equation Citation
   /// Definition: Bibliographic reference to a formula used to compute a derived measurement; reference may be to a specific equation in a journal article
-  @JsonValue('121421')
   value121421,
 
   /// Display: Table of Values Citation
   /// Definition: Bibliographic reference to a Table of Values used to look up a derived measurement
-  @JsonValue('121422')
   value121422,
 
   /// Display: Method Citation
   /// Definition: Bibliographic reference to a method used to compute a derived measurement
-  @JsonValue('121423')
   value121423,
 
   /// Display: Table of Values
   /// Definition: A Table of Values used to look up a derived measurement
-  @JsonValue('121424')
   value121424,
 
   /// Display: Index
   /// Definition: Factor (divisor or multiplicand) for normalizing a measurement; e.g. body surface area used for normalizing hemodynamic measurements
-  @JsonValue('121425')
   value121425,
 
   /// Display: Estimated
   /// Definition: Measurement obtained by observer estimation, rather than with a measurement tool or by calculation
-  @JsonValue('121427')
   value121427,
 
   /// Display: Calculated
   /// Definition: Measurement obtained by calculation
-  @JsonValue('121428')
   value121428,
 
   /// Display: Concern
   /// Definition: Identified issue about a state or process that has the potential to require intervention or management
-  @JsonValue('121430')
   value121430,
 
   /// Display: DateTime Concern Noted
   /// Definition: DateTime concern noted (noted by whom is determined by context of use)
-  @JsonValue('121431')
   value121431,
 
   /// Display: DateTime Concern Resolved
   /// Definition: DateTime the concern was resolved
-  @JsonValue('121432')
   value121432,
 
   /// Display: DateTime Problem Resolved
   /// Definition: DateTime the problem was resolved
-  @JsonValue('121433')
   value121433,
 
   /// Display: Service Delivery Location
   /// Definition: Place at which healthcare services may be provided
-  @JsonValue('121434')
   value121434,
 
   /// Display: Service Performer
   /// Definition: Identification of a healthcare provider who performed a healthcare service; may be either a person or an organization
-  @JsonValue('121435')
   value121435,
 
   /// Display: Medical Device Used
   /// Definition: Type or identifier of a medical device used on, in, or by a patient
-  @JsonValue('121436')
   value121436,
 
   /// Display: Pharmacologic and exercise stress test
   /// Definition: Cardiac stress test using pharmacologic and exercise stressors
-  @JsonValue('121437')
   value121437,
 
   /// Display: Paced stress test
   /// Definition: Cardiac stress test using an implanted or external cardiac pacing device
-  @JsonValue('121438')
   value121438,
 
   /// Display: Correction of congenital cardiovascular deformity
   /// Definition: Procedure for correction of congenital cardiovascular deformity
-  @JsonValue('121439')
   value121439,
 
   /// Display: RT Patient Setup
   /// Definition: Process of placing patient in the anticipated treatment position, including specification and location of positioning aids, and other treatment delivery accessories
-  @JsonValue('121701')
   value121701,
 
   /// Display: RT Patient Position Acquisition, single plane MV
   /// Definition: Acquisition of patient positioning information prior to treatment delivery, using single-plane megavoltage imaging
-  @JsonValue('121702')
   value121702,
 
   /// Display: RT Patient Position Acquisition, dual plane MV
   /// Definition: Acquisition of patient positioning information prior to treatment delivery, using dual-plane megavoltage imaging
-  @JsonValue('121703')
   value121703,
 
   /// Display: RT Patient Position Acquisition, single plane kV
   /// Definition: Acquisition of patient positioning information prior to treatment delivery, using single-plane kilovoltage imaging
-  @JsonValue('121704')
   value121704,
 
   /// Display: RT Patient Position Acquisition, dual plane kV
   /// Definition: Acquisition of patient positioning information prior to treatment delivery, using dual-plane kilovoltage imaging
-  @JsonValue('121705')
   value121705,
 
   /// Display: RT Patient Position Acquisition, dual plane kV/MV
   /// Definition: Acquisition of patient positioning information prior to treatment delivery, using dual-plane combination kilovoltage and megavoltage imaging
-  @JsonValue('121706')
   value121706,
 
   /// Display: RT Patient Position Acquisition, CT kV
   /// Definition: Acquisition of patient positioning information prior to treatment delivery, using kilovoltage CT imaging
-  @JsonValue('121707')
   value121707,
 
   /// Display: RT Patient Position Acquisition, CT MV
   /// Definition: Acquisition of patient positioning information prior to treatment delivery, using megavoltage CT imaging
-  @JsonValue('121708')
   value121708,
 
   /// Display: RT Patient Position Acquisition, Optical
   /// Definition: Acquisition of patient positioning information prior to treatment delivery, using optical imaging
-  @JsonValue('121709')
   value121709,
 
   /// Display: RT Patient Position Acquisition, Ultrasound
   /// Definition: Acquisition of patient positioning information prior to treatment delivery, using ultrasound imaging
-  @JsonValue('121710')
   value121710,
 
   /// Display: RT Patient Position Acquisition, Spatial Fiducials
   /// Definition: Acquisition of patient positioning information prior to treatment delivery, using spatial fiducials
-  @JsonValue('121711')
   value121711,
 
   /// Display: RT Patient Position Registration, single plane
   /// Definition: Registration of intended and actual patient position prior to treatment delivery, using single-plane images
-  @JsonValue('121712')
   value121712,
 
   /// Display: RT Patient Position Registration, dual plane
   /// Definition: Registration of intended and actual patient position prior to treatment delivery, using dual-plane images
-  @JsonValue('121713')
   value121713,
 
   /// Display: RT Patient Position Registration, 3D CT general
   /// Definition: Registration of intended and actual patient position prior to treatment delivery, using 3D CT images and an unspecified registration approach
-  @JsonValue('121714')
   value121714,
 
   /// Display: RT Patient Position Registration, 3D CT marker-based
   /// Definition: Registration of intended and actual patient position prior to treatment delivery, using 3D CT images and a marker-based registration approach
-  @JsonValue('121715')
   value121715,
 
   /// Display: RT Patient Position Registration, 3D CT volume-based
   /// Definition: Registration of intended and actual patient position prior to treatment delivery, using 3D CT images and a volume-based registration approach
-  @JsonValue('121716')
   value121716,
 
   /// Display: RT Patient Position Registration, 3D on 2D reference
   /// Definition: Registration of intended and actual patient position prior to treatment delivery, using 3D verification images and 2D reference images
-  @JsonValue('121717')
   value121717,
 
   /// Display: RT Patient Position Registration, 2D on 3D reference
   /// Definition: Registration of intended and actual patient position prior to treatment delivery, using 2D verification images and 3D reference images
-  @JsonValue('121718')
   value121718,
 
   /// Display: RT Patient Position Registration, Optical
   /// Definition: Registration of intended and actual patient position prior to treatment delivery, using optical images
-  @JsonValue('121719')
   value121719,
 
   /// Display: RT Patient Position Registration, Ultrasound
   /// Definition: Registration of intended and actual patient position prior to treatment delivery, using ultrasound images
-  @JsonValue('121720')
   value121720,
 
   /// Display: RT Patient Position Registration, Spatial Fiducials
   /// Definition: Registration of intended and actual patient position prior to treatment delivery, using spatial fiducials
-  @JsonValue('121721')
   value121721,
 
   /// Display: RT Patient Position Adjustment
   /// Definition: Adjustment of patient position such that the patient is correctly positioned for treatment
-  @JsonValue('121722')
   value121722,
 
   /// Display: RT Patient Position In-treatment-session Review
   /// Definition: Review of patient positioning information in the process of delivering a treatment session
-  @JsonValue('121723')
   value121723,
 
   /// Display: RT Treatment Simulation with Internal Verification
   /// Definition: Simulated radiotherapy treatment delivery using verification integral to the Treatment Delivery System
-  @JsonValue('121724')
   value121724,
 
   /// Display: RT Treatment Simulation with External Verification
   /// Definition: Simulated radiotherapy treatment delivery using verification by a external Machine Parameter Verifier
-  @JsonValue('121725')
   value121725,
 
   /// Display: RT Treatment with Internal Verification
   /// Definition: Radiotherapy treatment delivery using verification integral to the Treatment Delivery System
-  @JsonValue('121726')
   value121726,
 
   /// Display: RT Treatment with External Verification
   /// Definition: Radiotherapy treatment delivery using verification by an external Machine Parameter Verifier
-  @JsonValue('121727')
   value121727,
 
   /// Display: RT Treatment QA with Internal Verification
   /// Definition: Quality assurance of a radiotherapy treatment delivery using verification integral to the Treatment Delivery System
-  @JsonValue('121728')
   value121728,
 
   /// Display: RT Treatment QA with External Verification
   /// Definition: Quality assurance of a radiotherapy treatment delivery using verification by an external Machine Parameter Verifier
-  @JsonValue('121729')
   value121729,
 
   /// Display: RT Machine QA
   /// Definition: Quality assurance of a Treatment Delivery Device
-  @JsonValue('121730')
   value121730,
 
   /// Display: RT Treatment QA by RT Plan Dose Check
   /// Definition: Perform Quality Assurance on an RT Plan by evaluating dosimetric content of the current RT Plan
-  @JsonValue('121731')
   value121731,
 
   /// Display: RT Treatment QA by RT Plan Difference Check
   /// Definition: Perform Quality Assurance on an RT Plan by comparing the content of previously quality-assessed RT Plans with the current RT Plan
-  @JsonValue('121732')
   value121732,
 
   /// Display: RT Treatment QA by RT Ion Plan Dose Check
   /// Definition: Perform Quality Assurance on an RT Ion Plan by evaluating dosimetric content of the current RT Ion Plan
-  @JsonValue('121733')
   value121733,
 
   /// Display: RT Treatment QA with RT Ion Plan Difference Check
   /// Definition: Perform Quality Assurance on an RT Ion Plan by comparing the content of previously quality-assessed RT Ion Plans with the current RT Ion Plan
-  @JsonValue('121734')
   value121734,
 
   /// Display: Treatment Delivery Type
   /// Definition: Indicates whether the treatment to be delivered is a complete fraction or a continuation of previous incompletely treated fraction
-  @JsonValue('121740')
   value121740,
 
   /// Display: Patient called to procedure room
   /// Definition: Patient called to procedure room
-  @JsonValue('122001')
   value122001,
 
   /// Display: Patient admitted to procedure room
   /// Definition: Patient admitted to procedure room
-  @JsonValue('122002')
   value122002,
 
   /// Display: Patient given pre-procedure instruction
   /// Definition: Patient given pre-procedure instruction
-  @JsonValue('122003')
   value122003,
 
   /// Display: Patient informed consent given
   /// Definition: Patient informed consent given
-  @JsonValue('122004')
   value122004,
 
   /// Display: Patient advance directive given
   /// Definition: Patient advance directive given
-  @JsonValue('122005')
   value122005,
 
   /// Display: Nil Per Os (NPO) status confirmed
   /// Definition: Nil Per Os (NPO) status confirmed
-  @JsonValue('122006')
   value122006,
 
   /// Display: Patient assisted to table
   /// Definition: Patient assisted to table
-  @JsonValue('122007')
   value122007,
 
   /// Display: Patient prepped and draped
   /// Definition: Patient prepped and draped
-  @JsonValue('122008')
   value122008,
 
   /// Display: Patient connected to continuous monitoring
   /// Definition: Patient connected to continuous monitoring
-  @JsonValue('122009')
   value122009,
 
   /// Display: Patient transferred to holding area
   /// Definition: Patient transferred to holding area
-  @JsonValue('122010')
   value122010,
 
   /// Display: Patient transferred to surgery
   /// Definition: Patient transferred to surgery
-  @JsonValue('122011')
   value122011,
 
   /// Display: Patient transferred to CCU
   /// Definition: Patient transferred to CCU
-  @JsonValue('122012')
   value122012,
 
   /// Display: Patient disoriented
   /// Definition: Patient disoriented
-  @JsonValue('122020')
   value122020,
 
   /// Display: Patient reports nausea
   /// Definition: Patient reports nausea
-  @JsonValue('122021')
   value122021,
 
   /// Display: Patient reports discomfort
   /// Definition: Patient reports discomfort
-  @JsonValue('122022')
   value122022,
 
   /// Display: Patient reports chest pain
   /// Definition: Patient reports chest pain
-  @JsonValue('122023')
   value122023,
 
   /// Display: Patient reports no pain
   /// Definition: Patient reports no pain
-  @JsonValue('122024')
   value122024,
 
   /// Display: Patient alert
   /// Definition: Patient alert
-  @JsonValue('122025')
   value122025,
 
   /// Display: Patient restless
   /// Definition: Patient restless
-  @JsonValue('122026')
   value122026,
 
   /// Display: Patient sedated
   /// Definition: Patient sedated
-  @JsonValue('122027')
   value122027,
 
   /// Display: Patient asleep
   /// Definition: Patient asleep
-  @JsonValue('122028')
   value122028,
 
   /// Display: Patient unresponsive
   /// Definition: Patient unresponsive
-  @JsonValue('122029')
   value122029,
 
   /// Display: Patient has respiratory difficulty
   /// Definition: Patient has respiratory difficulty
-  @JsonValue('122030')
   value122030,
 
   /// Display: Patient coughed
   /// Definition: Patient coughed
-  @JsonValue('122031')
   value122031,
 
   /// Display: Patient disconnected from continuous monitoring
   /// Definition: Patient disconnected from continuous monitoring
-  @JsonValue('122032')
   value122032,
 
   /// Display: Hemostasis achieved
   /// Definition: Hemostasis achieved
-  @JsonValue('122033')
   value122033,
 
   /// Display: Hemostasis not achieved - oozing
   /// Definition: Hemostasis not achieved - oozing
-  @JsonValue('122034')
   value122034,
 
   /// Display: Hemostasis not achieved - actively bleeding
   /// Definition: Hemostasis not achieved - actively bleeding
-  @JsonValue('122035')
   value122035,
 
   /// Display: Patient given post-procedure instruction
   /// Definition: Patient given post-procedure instruction
-  @JsonValue('122036')
   value122036,
 
   /// Display: Patient discharged from department
   /// Definition: Patient discharged from department or laboratory
-  @JsonValue('122037')
   value122037,
 
   /// Display: Patient pronounced dead
   /// Definition: Patient pronounced dead
-  @JsonValue('122038')
   value122038,
 
   /// Display: Patient transferred to morgue
   /// Definition: Patient transferred to morgue
-  @JsonValue('122039')
   value122039,
 
   /// Display: Personnel Arrived
   /// Definition: Identified personnel or staff arrived in procedure room
-  @JsonValue('122041')
   value122041,
 
   /// Display: Personnel Departed
   /// Definition: Identified personnel or staff departed procedure room
-  @JsonValue('122042')
   value122042,
 
   /// Display: Page Sent To
   /// Definition: Page sent to identified personnel or staff
-  @JsonValue('122043')
   value122043,
 
   /// Display: Consultation With
   /// Definition: Consultation with identified personnel or staff
-  @JsonValue('122044')
   value122044,
 
   /// Display: Office called
   /// Definition: Office of identified personnel or staff was called
-  @JsonValue('122045')
   value122045,
 
   /// Display: Equipment failure
   /// Definition: Equipment failure
-  @JsonValue('122046')
   value122046,
 
   /// Display: Equipment brought to procedure room
   /// Definition: Equipment brought to procedure room
-  @JsonValue('122047')
   value122047,
 
   /// Display: Equipment ready
   /// Definition: Equipment ready for procedure
-  @JsonValue('122048')
   value122048,
 
   /// Display: Equipment removed
   /// Definition: Equipment removed from procedure room
-  @JsonValue('122049')
   value122049,
 
   /// Display: Bioptome
   /// Definition: Device for obtaining biopsy sample
-  @JsonValue('122052')
   value122052,
 
   /// Display: Valvular Intervention
   /// Definition: Valvular Intervention
-  @JsonValue('122053')
   value122053,
 
   /// Display: Aortic Intervention
   /// Definition: Aortic Intervention
-  @JsonValue('122054')
   value122054,
 
   /// Display: Septal Defect Intervention
   /// Definition: Septal Defect Intervention
-  @JsonValue('122055')
   value122055,
 
   /// Display: Vascular Intervention
   /// Definition: Vascular Intervention
-  @JsonValue('122056')
   value122056,
 
   /// Display: Myocardial biopsy
   /// Definition: Myocardial biopsy
-  @JsonValue('122057')
   value122057,
 
   /// Display: Arterial conduit angiography
   /// Definition: Arterial conduit angiography
-  @JsonValue('122058')
   value122058,
 
   /// Display: Single plane Angiography
   /// Definition: Single plane Angiography
-  @JsonValue('122059')
   value122059,
 
   /// Display: Bi-plane Angiography
   /// Definition: Bi-plane Angiography
-  @JsonValue('122060')
   value122060,
 
   /// Display: Percutaneous Coronary Intervention
   /// Definition: Percutaneous Coronary Intervention
-  @JsonValue('122061')
   value122061,
 
   /// Display: 15-Lead ECG
   /// Definition: 15-Lead electrocardiography
-  @JsonValue('122062')
   value122062,
 
   /// Display: Pre-procedure log
   /// Definition: Log of events occurring prior to the current procedure
-  @JsonValue('122072')
   value122072,
 
   /// Display: Current procedure evidence
   /// Definition: Analysis or measurements for current procedure (purpose of reference to evidence document)
-  @JsonValue('122073')
   value122073,
 
   /// Display: Prior report for current patient
   /// Definition: Prior report for current patient
-  @JsonValue('122075')
   value122075,
 
   /// Display: Consumable taken from inventory
   /// Definition: Identifier of Consumable taken from inventory
-  @JsonValue('122076')
   value122076,
 
   /// Display: Consumable returned to inventory
   /// Definition: Identifier of Consumable returned to inventory
-  @JsonValue('122077')
   value122077,
 
   /// Display: Remaining consumable disposed
   /// Definition: Identifier of consumable whose remaining content has been disposed
-  @JsonValue('122078')
   value122078,
 
   /// Display: Consumable unusable
   /// Definition: Identifier of Consumable determined to be unusable
-  @JsonValue('122079')
   value122079,
 
   /// Display: Drug start
   /// Definition: Identifier of Drug whose administration has started
-  @JsonValue('122081')
   value122081,
 
   /// Display: Drug end
   /// Definition: Identifier of Drug whose administration has ended
-  @JsonValue('122082')
   value122082,
 
   /// Display: Drug administered
   /// Definition: Identifier of Drug administered as part of procedure
-  @JsonValue('122083')
   value122083,
 
   /// Display: Contrast start
   /// Definition: Identifier of Contrast agent whose administration has started
-  @JsonValue('122084')
   value122084,
 
   /// Display: Contrast end
   /// Definition: Identifier of Contrast agent whose administration has ended
-  @JsonValue('122085')
   value122085,
 
   /// Display: Contrast administered
   /// Definition: Identifier of Contrast agent administered
-  @JsonValue('122086')
   value122086,
 
   /// Display: Infusate start
   /// Definition: Identifier of Infusate whose administration has started
-  @JsonValue('122087')
   value122087,
 
   /// Display: Infusate end
   /// Definition: Identifier of Infusate whose administration has ended
-  @JsonValue('122088')
   value122088,
 
   /// Display: Device crossed lesion
   /// Definition: Action of a device traversing a vascular lesion
-  @JsonValue('122089')
   value122089,
 
   /// Display: Intervention Action
   /// Definition: Action of a clinical professional performed on a patient for therapeutic purpose
-  @JsonValue('122090')
   value122090,
 
   /// Display: Volume administered
   /// Definition: Volume of Drug, Contrast agent, or Infusate administered
-  @JsonValue('122091')
   value122091,
 
   /// Display: Undiluted dose administered
   /// Definition: Undiluted dose of Drug, Contrast agent, or Infusate administered
-  @JsonValue('122092')
   value122092,
 
   /// Display: Concentration
   /// Definition: Concentration of Drug, Contrast agent, or Infusate administered
-  @JsonValue('122093')
   value122093,
 
   /// Display: Rate of administration
   /// Definition: Rate of Drug, Contrast agent, or Infusate administration
-  @JsonValue('122094')
   value122094,
 
   /// Display: Duration of administration
   /// Definition: Duration of Drug, Contrast agent, or Infusate administration
-  @JsonValue('122095')
   value122095,
 
   /// Display: Volume unadministered or discarded
   /// Definition: Volume of Drug, Contrast agent, or Infusate unadministered or discarded
-  @JsonValue('122096')
   value122096,
 
   /// Display: Catheter Curve
   /// Definition: Numeric parameter of Curvature of Catheter
-  @JsonValue('122097')
   value122097,
 
   /// Display: Transmit Frequency
   /// Definition: Transmit Frequency
-  @JsonValue('122098')
   value122098,
 
   /// Display: ST change from baseline
   /// Definition: Measured change of patient electrocardiographic ST level relative to baseline measurement
-  @JsonValue('122099')
   value122099,
 
   /// Display: Aneurysm on cited vessel
   /// Definition: Anatomic term modifier indicating aneurysm on cited vessel is the subject of the finding
-  @JsonValue('122101')
   value122101,
 
   /// Display: Graft to cited segment, proximal section
   /// Definition: Anatomic term modifier indicating proximal section of graft to cited vessel is the subject of the finding
-  @JsonValue('122102')
   value122102,
 
   /// Display: Graft to cited segment, mid section
   /// Definition: Anatomic term modifier indicating mid section of graft to cited vessel is the subject of the finding
-  @JsonValue('122103')
   value122103,
 
   /// Display: Graft to cited segment, distal section
   /// Definition: Anatomic term modifier indicating distal section of graft to cited vessel is the subject of the finding
-  @JsonValue('122104')
   value122104,
 
   /// Display: DateTime of Intervention
   /// Definition: DateTime of Intervention
-  @JsonValue('122105')
   value122105,
 
   /// Display: Duration of Intervention
   /// Definition: Duration of Intervention
-  @JsonValue('122106')
   value122106,
 
   /// Display: Baseline Stenosis Measurement
   /// Definition: Lesion stenosis measured prior to any interventional procedure
-  @JsonValue('122107')
   value122107,
 
   /// Display: Post-Intervention Stenosis Measurement
   /// Definition: Lesion stenosis measured after an interventional procedure
-  @JsonValue('122108')
   value122108,
 
   /// Display: Baseline TIMI Flow
   /// Definition: Assessment of perfusion across a coronary lesion measured prior to any interventional procedure
-  @JsonValue('122109')
   value122109,
 
   /// Display: Post-Intervention TIMI Flow
   /// Definition: Assessment of perfusion across a coronary lesion measured after an interventional procedure
-  @JsonValue('122110')
   value122110,
 
   /// Display: Primary Intervention Device
   /// Definition: Indication that device is the primary (first and/or most significant) device used for interventional therapy of a particular pathology; e.g. lesion
-  @JsonValue('122111')
   value122111,
 
   /// Display: Normal Myocardium
   /// Definition: Normal Myocardium
-  @JsonValue('122112')
   value122112,
 
   /// Display: Sacrred Myocardial
   /// Definition: Sacrred Myocardial
-  @JsonValue('122113')
   value122113,
 
   /// Display: Thinning Myocardium
   /// Definition: Thinning Myocardium
-  @JsonValue('122114')
   value122114,
 
   /// Display: Hemodynamics Report
   /// Definition: Hemodynamics Report
-  @JsonValue('122120')
   value122120,
 
   /// Display: Atrial pressure measurements
   /// Definition: Atrial pressure measurements, report section
-  @JsonValue('122121')
   value122121,
 
   /// Display: Ventricular pressure measurements
   /// Definition: Ventricular pressure measurements, report section
-  @JsonValue('122122')
   value122122,
 
   /// Display: Gradient assessment
   /// Definition: Gradient assessment, report section
-  @JsonValue('122123')
   value122123,
 
   /// Display: Blood velocity measurements
   /// Definition: Blood velocity measurements, report section
-  @JsonValue('122124')
   value122124,
 
   /// Display: Blood lab measurements
   /// Definition: Blood lab measurements, report section
-  @JsonValue('122125')
   value122125,
 
   /// Display: Derived Hemodynamic Measurements
   /// Definition: Derived Hemodynamic Measurements, report section
-  @JsonValue('122126')
   value122126,
 
   /// Display: Clinical Context
   /// Definition: Clinical Context, report section
-  @JsonValue('122127')
   value122127,
 
   /// Display: Patient Transferred From
   /// Definition: Location from which the patient was transferred
-  @JsonValue('122128')
   value122128,
 
   /// Display: PCI during this procedure
   /// Definition: Indication that the procedure includes a percutaneous coronary intervention
-  @JsonValue('122129')
   value122129,
 
   /// Display: Dose Area Product
   /// Definition: Radiation dose times area of exposure
-  @JsonValue('122130')
   value122130,
 
   /// Display: Degree of Thrombus
   /// Definition: Finding of probability and/or severity of thrombus
-  @JsonValue('122131')
   value122131,
 
   /// Display: Severity of Calcification
   /// Definition: Severity of Calcification, property of lesion
-  @JsonValue('122132')
   value122132,
 
   /// Display: Lesion Morphology
   /// Definition: Lesion Morphology; form and/or structural properties of lesion
-  @JsonValue('122133')
   value122133,
 
   /// Display: Vessel Morphology
   /// Definition: Vessel Morphology; form and/or structural properties of vessel
-  @JsonValue('122134')
   value122134,
 
   /// Display: Circulatory Support
   /// Definition: Technique (device or procedure) of support for patient circulatory system; hemodynamic support
-  @JsonValue('122138')
   value122138,
 
   /// Display: Reason for Exam
   /// Definition: Reason for Exam
-  @JsonValue('122139')
   value122139,
 
   /// Display: Comparison with Prior Exam Done
   /// Definition: Indication that the current exam data has been compared with prior exam data
-  @JsonValue('122140')
   value122140,
 
   /// Display: Electrode Placement
   /// Definition: Electrocardiographic electrode placement technique
-  @JsonValue('122141')
   value122141,
 
   /// Display: Acquisition Device Type
   /// Definition: Acquisition Device Type
-  @JsonValue('122142')
   value122142,
 
   /// Display: Acquisition Device ID
   /// Definition: Acquisition Device ID
-  @JsonValue('122143')
   value122143,
 
   /// Display: Quantitative Analysis
   /// Definition: Quantitative Analysis, report section
-  @JsonValue('122144')
   value122144,
 
   /// Display: Qualitative Analysis
   /// Definition: Qualitative Analysis, report section
-  @JsonValue('122145')
   value122145,
 
   /// Display: Procedure DateTime
   /// Definition: The date and time on which a procedure was performed on a patient
-  @JsonValue('122146')
   value122146,
 
   /// Display: Clinical Interpretation
   /// Definition: Clinical Interpretation, report section
-  @JsonValue('122147')
   value122147,
 
   /// Display: Lead ID
   /// Definition: ECG Lead Identifier
-  @JsonValue('122148')
   value122148,
 
   /// Display: Beat Number
   /// Definition: Beat Number; ordinal of cardiac cycle within an acquisition
-  @JsonValue('122149')
   value122149,
 
   /// Display: Compound Statement
   /// Definition: Complex coded semantic unit, consisting of several coded components
-  @JsonValue('122150')
   value122150,
 
   /// Display: Trend
   /// Definition: Trend (temporal progression) of a clinical condition, finding, or disease
-  @JsonValue('122151')
   value122151,
 
   /// Display: Statement
   /// Definition: Coded semantic unit
-  @JsonValue('122152')
   value122152,
 
   /// Display: Statement Modifier
   /// Definition: Coded modifier for a semantic unit
-  @JsonValue('122153')
   value122153,
 
   /// Display: Conjunctive Term
   /// Definition: Conjunctive term between semantic units
-  @JsonValue('122154')
   value122154,
 
   /// Display: Probability
   /// Definition: Probability
-  @JsonValue('122157')
   value122157,
 
   /// Display: ECG Global Measurements
   /// Definition: ECG Global Measurements, report section
-  @JsonValue('122158')
   value122158,
 
   /// Display: ECG Lead Measurements
   /// Definition: ECG Lead Measurements, report section
-  @JsonValue('122159')
   value122159,
 
   /// Display: Derived Area, Non-Valve
   /// Definition: Derived cross-sectional area of a vessel or anatomic feature, other than a cardiac valve
-  @JsonValue('122160')
   value122160,
 
   /// Display: Pulmonary Flow
   /// Definition: Rate of blood flow through Pulmonary artery
-  @JsonValue('122161')
   value122161,
 
   /// Display: Systemic Flow
   /// Definition: Rate of blood flow through the aorta
-  @JsonValue('122162')
   value122162,
 
   /// Display: Discharge DateTime
   /// Definition: DateTime of patient discharge from hospital admission
-  @JsonValue('122163')
   value122163,
 
   /// Display: Coronary Artery Bypass During This Admission
   /// Definition: Indication that a Coronary Artery Bypass operation was performed during the current hospital admission
-  @JsonValue('122164')
   value122164,
 
   /// Display: Date of Death
   /// Definition: Date of Death
-  @JsonValue('122165')
   value122165,
 
   /// Display: Death During This Admission
   /// Definition: Indication that the patient died during the current hospital admission
-  @JsonValue('122166')
   value122166,
 
   /// Display: Death During Catheterization
   /// Definition: Indication that the patient died during the current Catheterization procedure
-  @JsonValue('122167')
   value122167,
 
   /// Display: Type of Myocardial Infarction
   /// Definition: Finding of type of Myocardial Infarction
-  @JsonValue('122170')
   value122170,
 
   /// Display: Coronary lesion > = 50% stenosis
   /// Definition: Finding of Coronary lesion with greater than 50% stenosis
-  @JsonValue('122171')
   value122171,
 
   /// Display: Acute MI Present
   /// Definition: Finding of Acute Myocardial Infarction Presence as indication for interventional procedure
-  @JsonValue('122172')
   value122172,
 
   /// Display: ST Elevation Onset DateTime
   /// Definition: DateTime of first determination of elevated ECG ST segment, as indication of Myocardial Infarction
-  @JsonValue('122173')
   value122173,
 
   /// Display: Number of lesion interventions attempted
   /// Definition: Number of lesion interventions attempted during current procedure
-  @JsonValue('122175')
   value122175,
 
   /// Display: Number of lesion interventions successful
   /// Definition: Number of lesion interventions successful during current procedure, where the residual post intervention stenosis is less than or equal to 50% of the arterial luminal diameter, TIMI Flow is 3 and the minimal decrease in stenosis was 20%
-  @JsonValue('122176')
   value122176,
 
   /// Display: Procedure Result
   /// Definition: Overall success of interventional procedure
-  @JsonValue('122177')
   value122177,
 
   /// Display: Lesion Intervention Information
   /// Definition: Lesion Intervention Information, report section
-  @JsonValue('122178')
   value122178,
 
   /// Display: Peri-procedural MI occurred
   /// Definition: Indication that Myocardial Infarction occurred during current procedure
-  @JsonValue('122179')
   value122179,
 
   /// Display: CK-MB baseline
   /// Definition: Creatine Kinase-MB value at baseline (start of procedure)
-  @JsonValue('122180')
   value122180,
 
   /// Display: CK-MB peak
   /// Definition: Creatine Kinase-MB highest value measured during procedure
-  @JsonValue('122181')
   value122181,
 
   /// Display: R-R interval
   /// Definition: Time interval between ECG R-wave peaks in subsequent cardiac cycles
-  @JsonValue('122182')
   value122182,
 
   /// Display: Blood temperature
   /// Definition: Blood temperature
-  @JsonValue('122183')
   value122183,
 
   /// Display: Blood Oxygen content
   /// Definition: Blood Oxygen content
-  @JsonValue('122185')
   value122185,
 
   /// Display: Blood Carbon dioxide saturation
   /// Definition: Blood Carbon dioxide saturation
-  @JsonValue('122187')
   value122187,
 
   /// Display: Pulmonary Arterial Content (FCpa)
   /// Definition: Pulmonary Arterial Content (FCpa)
-  @JsonValue('122188')
   value122188,
 
   /// Display: Pulmonary Venous Content (FCpv)
   /// Definition: Pulmonary Venous Content (FCpv)
-  @JsonValue('122189')
   value122189,
 
   /// Display: Max dp/dt/P
   /// Definition: Max dp/dt/P
-  @JsonValue('122190')
   value122190,
 
   /// Display: Ventricular End Diastolic pressure
   /// Definition: Ventricular End Diastolic pressure
-  @JsonValue('122191')
   value122191,
 
   /// Display: Indicator appearance time
   /// Definition: Elapsed time from injection of an indicator bolus until it is observed at another location
-  @JsonValue('122192')
   value122192,
 
   /// Display: Maximum pressure acceleration
   /// Definition: Maximum pressure acceleration
-  @JsonValue('122193')
   value122193,
 
   /// Display: Ventricular Systolic blood pressure
   /// Definition: Ventricular Systolic blood pressure
-  @JsonValue('122194')
   value122194,
 
   /// Display: Pulse Strength
   /// Definition: Pulse Strength; palpable strength of systolic flow
-  @JsonValue('122195')
   value122195,
 
   /// Display: C wave pressure
   /// Definition: The secondary peak pressure in the atrium during atrial contraction
-  @JsonValue('122196')
   value122196,
 
   /// Display: Gradient pressure, average
   /// Definition: Gradient pressure, average
-  @JsonValue('122197')
   value122197,
 
   /// Display: Gradient pressure, peak
   /// Definition: Gradient pressure, peak
-  @JsonValue('122198')
   value122198,
 
   /// Display: Pressure at dp/dt max
   /// Definition: Pressure at dp/dt max
-  @JsonValue('122199')
   value122199,
 
   /// Display: Diastolic blood velocity, mean
   /// Definition: Diastolic blood velocity, mean
-  @JsonValue('122201')
   value122201,
 
   /// Display: Diastolic blood velocity, peak
   /// Definition: Diastolic blood velocity, peak
-  @JsonValue('122202')
   value122202,
 
   /// Display: Systolic blood velocity, mean
   /// Definition: Systolic blood velocity, mean
-  @JsonValue('122203')
   value122203,
 
   /// Display: Systolic blood velocity, peak
   /// Definition: Systolic blood velocity, peak
-  @JsonValue('122204')
   value122204,
 
   /// Display: Blood velocity, mean
   /// Definition: Blood velocity, mean
-  @JsonValue('122205')
   value122205,
 
   /// Display: Blood velocity, minimum
   /// Definition: Blood velocity, minimum
-  @JsonValue('122206')
   value122206,
 
   /// Display: Blood velocity, peak
   /// Definition: Blood velocity, peak
-  @JsonValue('122207')
   value122207,
 
   /// Display: x-descent pressure
   /// Definition: Venous or atrial pressure minimum during ventricular systole, after A-wave
-  @JsonValue('122208')
   value122208,
 
   /// Display: y-descent pressure
   /// Definition: Venous or atrial pressure minimum when tricuspid valve opens during diastole, after V-wave
-  @JsonValue('122209')
   value122209,
 
   /// Display: z-point pressure
   /// Definition: Atrial pressure upon closure of tricuspid and mitral valves
-  @JsonValue('122210')
   value122210,
 
   /// Display: Left Ventricular ejection time
   /// Definition: Left Ventricular ejection time
-  @JsonValue('122211')
   value122211,
 
   /// Display: Left Ventricular filling time
   /// Definition: Left Ventricular filling time
-  @JsonValue('122212')
   value122212,
 
   /// Display: Right Ventricular ejection time
   /// Definition: Right Ventricular ejection time
-  @JsonValue('122213')
   value122213,
 
   /// Display: Right Ventricular filling time
   /// Definition: Right Ventricular filling time
-  @JsonValue('122214')
   value122214,
 
   /// Display: Total Pulmonary Resistance
   /// Definition: Total Pulmonary Resistance
-  @JsonValue('122215')
   value122215,
 
   /// Display: Total Vascular Resistance
   /// Definition: Total Vascular Resistance
-  @JsonValue('122216')
   value122216,
 
   /// Display: Coronary Flow reserve
   /// Definition: Coronary Flow reserve
-  @JsonValue('122217')
   value122217,
 
   /// Display: Diastolic/Systolic velocity ratio
   /// Definition: Diastolic/Systolic velocity ratio
-  @JsonValue('122218')
   value122218,
 
   /// Display: Hyperemic ratio
   /// Definition: Hyperemic ratio
-  @JsonValue('122219')
   value122219,
 
   /// Display: Hemodynamic Resistance Index
   /// Definition: Hemodynamic Resistance Index
-  @JsonValue('122220')
   value122220,
 
   /// Display: Thorax diameter, sagittal
   /// Definition: Thorax diameter, sagittal
-  @JsonValue('122221')
   value122221,
 
   /// Display: Procedure Environmental Characteristics
   /// Definition: Environmental characteristics in the procedure room
-  @JsonValue('122222')
   value122222,
 
   /// Display: Room oxygen concentration
   /// Definition: Oxygen concentration in the procedure room
-  @JsonValue('122223')
   value122223,
 
   /// Display: Room temperature
   /// Definition: Temperature in the procedure room
-  @JsonValue('122224')
   value122224,
 
   /// Display: Room Barometric pressure
   /// Definition: Barometric pressure in the procedure room
-  @JsonValue('122225')
   value122225,
 
   /// Display: Left to Right Flow
   /// Definition: Left to Right Flow
-  @JsonValue('122227')
   value122227,
 
   /// Display: Right to Left Flow
   /// Definition: Right to Left Flow
-  @JsonValue('122228')
   value122228,
 
   /// Display: Arteriovenous difference
   /// Definition: Arteriovenous oxygen content difference
-  @JsonValue('122229')
   value122229,
 
   /// Display: 10 Year CHD Risk
   /// Definition: Framingham Study 10 Year CHD Risk
-  @JsonValue('122230')
   value122230,
 
   /// Display: Comparative Average10 Year CHD Risk
   /// Definition: Framingham Study Comparative Average10 Year CHD Risk
-  @JsonValue('122231')
   value122231,
 
   /// Display: Comparative Low10 Year CHD Risk
   /// Definition: Framingham Study Comparative Low10 Year CHD Risk
-  @JsonValue('122232')
   value122232,
 
   /// Display: LDL Cholesterol Score Sheet for Men
   /// Definition: Framingham Study LDL Cholesterol Score Sheet for Men
-  @JsonValue('122233')
   value122233,
 
   /// Display: LDL Cholesterol Score Sheet for Women
   /// Definition: Framingham Study LDL Cholesterol Score Sheet for Women
-  @JsonValue('122234')
   value122234,
 
   /// Display: Total Cholesterol Score Sheet for Men
   /// Definition: Framingham Study Total Cholesterol Score Sheet for Men
-  @JsonValue('122235')
   value122235,
 
   /// Display: Total Cholesterol Score Sheet for Women
   /// Definition: Framingham Study Total Cholesterol Score Sheet for Women
-  @JsonValue('122236')
   value122236,
 
   /// Display: Corrected Sinus Node Recovery Time
   /// Definition: Corrected Sinus Node Recovery Time
-  @JsonValue('122237')
   value122237,
 
   /// Display: Max volume normalized to 50mmHg pulse pressure
   /// Definition: Max volume normalized to 50mmHg pulse pressure
-  @JsonValue('122238')
   value122238,
 
   /// Display: Oxygen Consumption
   /// Definition: Oxygen Consumption
-  @JsonValue('122239')
   value122239,
 
   /// Display: BSA = 3.207*WT^(0.7285-0.0188 log (WT)) *HT^0.3
   /// Definition: Body Surface Area computed from patient height and weight: BSA = 3.207*WT[g]^(0.7285-0.0188 log (WT[g])) *HT[cm] ^ 0.3 [Boyd E, The growth of the surface area of the human body. Minneapolis: University of Minnesota Press, 1935, eq. (36) ]
-  @JsonValue('122240')
   value122240,
 
   /// Display: BSA = 0.007184*WT^ 0.425*HT^0.725
   /// Definition: Body Surface Area computed from patient height and weight: BSA = 0.007184* WT[kg] ^ 0.425*HT[cm] ^ 0.725 [Dubois and Dubois, Arch Int Med 1916 17:863-71]
-  @JsonValue('122241')
   value122241,
 
   /// Display: BSA = 0.0235*WT^0.51456*HT^ 0.42246
   /// Definition: Body Surface Area computed from patient height and weight: BSA = 0.0235* WT[kg] ^0.51456*HT[cm]^ 0.42246 [Gehan EA, George SL, 'Estimation of human body surface area from height and weight', Cancer Chemother Rep 1970 54:225-35]
-  @JsonValue('122242')
   value122242,
 
   /// Display: BSA = 0.024265*WT^0.5378*HT^0.3964
   /// Definition: Body Surface Area computed from patient height and weight: BSA = 0.024265 * WT[kg] ^ 0.5378 * HT[cm] ^ 0.3964 [Haycock G.B., Schwartz G.J., Wisotsky D.H. 'Geometric method for measuring body surface area: A height weight formula validated in infants, children and adults.' The Journal of Pediatrics 1978 93:1:62-66]
-  @JsonValue('122243')
   value122243,
 
   /// Display: BSA = (HT * WT/36) ^0.5
   /// Definition: Body Surface Area computed from patient height and weight: BSA = (HT[m] * WT[kg] / 36) ^ 0.5 [Mosteller, R.D. 'Simplified Calculation of Body Surface Area.' N Engl J Med 1987 Oct 22;317(17):1098]
-  @JsonValue('122244')
   value122244,
 
   /// Display: BSA = 1321+0.3433*WT
   /// Definition: Body Surface Area computed from patient weight:BSA = 1321 + 0.3433 * WT[kg] (for pediatrics 3-30 kg) [Current, J.D. 'A Linear Equation For Estimating The Body Surface Area In Infants And Children', The Internet Journal of Anesthesiology. 1998. 2:2]
-  @JsonValue('122245')
   value122245,
 
   /// Display: BSA = 0.0004688 * WT ^ (0.8168 - 0.0154 * log(WT))
   /// Definition: BSA = 0.0004688 * (1000 * WT) ^ (0.8168 - 0.0154 * log(1000 * WT)) Where (WT is weight in kilogram) Units = m2 Boyd, Edith. The Growth of the Surface Area of the Human Body(originally published in 1935 by the University of Minnesota Press), Greenwood Press, Westport, Connecticut, 1975, p. 102.Equation (35)
-  @JsonValue('122246')
   value122246,
 
   /// Display: VO2male = BSA (138.1 - 11.49 * loge(age) + 0.378 * HRf)
   /// Definition: Equation for estimated oxygen consumption: VO2male = BSA (138.1 - 11.49 * loge(age) + 0.378 * HRf)
-  @JsonValue('122247')
   value122247,
 
   /// Display: VO2female = BSA (138.1 - 17.04 * loge(age) + 0.378 * HRf)
   /// Definition: Equation for estimated oxygen consumption: VO2female = BSA (138.1 - 17.04 * loge(age) + 0.378 * HRf)
-  @JsonValue('122248')
   value122248,
 
   /// Display: VO2 = VeSTPD * 10 * (FIO2 - FE02)
   /// Definition: Equation for estimated oxygen consumption: VO2 = VeSTPD * 10 * (FIO2 - FE02)
-  @JsonValue('122249')
   value122249,
 
   /// Display: VO2 = 152 * BSA
   /// Definition: Equation for estimated oxygen consumption: VO2 = 152 * BSA
-  @JsonValue('122250')
   value122250,
 
   /// Display: VO2 = 175 * BSA
   /// Definition: Equation for estimated oxygen consumption: VO2 = 175 * BSA
-  @JsonValue('122251')
   value122251,
 
   /// Display: VO2 = 176 * BSA
   /// Definition: Equation for estimated oxygen consumption: VO2 = 176 * BSA
-  @JsonValue('122252')
   value122252,
 
   /// Display: Robertson & Reid table
   /// Definition: Robertson & Reid Table for estimated oxygen consumption
-  @JsonValue('122253')
   value122253,
 
   /// Display: Fleisch table
   /// Definition: Fleisch table for estimated oxygen consumption
-  @JsonValue('122254')
   value122254,
 
   /// Display: Boothby table
   /// Definition: Boothby table for estimated oxygen consumption
-  @JsonValue('122255')
   value122255,
 
   /// Display: if (prem age< 3days) P50 = 19.9
   /// Definition: Estimate of Oxygen partial pressure at 50% saturation for premature infants less than 3 days old: P50 = 19.9
-  @JsonValue('122256')
   value122256,
 
   /// Display: if (age < 1day) P50 = 21.6
   /// Definition: Estimate of Oxygen partial pressure at 50% saturation for infants less than 1 day old: P50 = 21.6
-  @JsonValue('122257')
   value122257,
 
   /// Display: if (age < 30day) P50 = 24.6
   /// Definition: Estimate of Oxygen partial pressure at 50% saturation for infants less than 30 days old: P50 = 24.6
-  @JsonValue('122258')
   value122258,
 
   /// Display: if (age < 18y) P50 = 27.2
   /// Definition: Estimate of Oxygen partial pressure at 50% saturation for patients less than 18 years old: P50 = 27.2
-  @JsonValue('122259')
   value122259,
 
   /// Display: if (age < 40y) P50 = 27.4
   /// Definition: Estimate of Oxygen partial pressure at 50% saturation for patients less than 40 years old: P50 = 27.4
-  @JsonValue('122260')
   value122260,
 
   /// Display: if (age > 60y) P50 = 29.3
   /// Definition: Estimate of Oxygen partial pressure at 50% saturation for patients more than 60 years old: P50 = 29.3
-  @JsonValue('122261')
   value122261,
 
   /// Display: Area = Flow / 44.5 * sqrt(Gradient[mmHg])
   /// Definition: Cardiac valve area computed from flow and pressure gradient: Area = Flow / 44.5 * sqrt(Gradient[mmHg]) [Gorlin and Gorlin, Am Heart J, 1951]
-  @JsonValue('122262')
   value122262,
 
   /// Display: MVA = Flow / 38.0 * sqrt(Gradient[mmHg])
   /// Definition: Mitral valve area computed from flow and pressure gradient: Mitral valve Area = Flow / 38.0 * sqrt(Gradient[mmHg]) [Gorlin and Gorlin, Am Heart J, 1951]
-  @JsonValue('122263')
   value122263,
 
   /// Display: BMI = Wt / Ht ^ 2
   /// Definition: Body Mass Index computed from weight and height: BMI = Wt/Ht^2
-  @JsonValue('122265')
   value122265,
 
   /// Display: BSA = 0.007358 * WT ^ 0.425 * HT ^ 0.725
   /// Definition: Body Surface Area computed from patient height and weight: BSA = 0.007358 * WT[kg] ^ 0.425 * HT[cm] ^ 0.725 (for East Asian adult, aged 15+ years) [Kanai Izumi, Masamitsu Kanai, 'Clinical examination method summary']
-  @JsonValue('122266')
   value122266,
 
   /// Display: BSA = 0.010265 * WT ^ 0.423 * HT ^ 0.651
   /// Definition: Body Surface Area computed from patient height and weight: BSA = 0.010265 * WT[kg] ^ 0.423 * HT[cm] ^ 0.651 (For East Asian child aged 12-14 years)
-  @JsonValue('122267')
   value122267,
 
   /// Display: BSA = 0.008883 * WT ^ 0.444 * HT ^ 0.663
   /// Definition: Body Surface Area computed from patient height and weight: BSA = 0.008883* WT[kg] ^ 0.444 * HT[cm] ^ 0.663 (For East Asian child aged 6-11 years)
-  @JsonValue('122268')
   value122268,
 
   /// Display: BSA = 0.038189 * WT ^ 0.423 * HT ^ 0.362
   /// Definition: Body Surface Area computed from patient height and weight: BSA = 0.038189 * WT[kg] ^ 0.423 * HT[cm] ^ 0.362 (For East Asian child aged 1-5 years)
-  @JsonValue('122269')
   value122269,
 
   /// Display: BSA = 0.009568 * WT ^ 0.473 * HT ^ 0.655
   /// Definition: Body Surface Area computed from patient height and weight: BSA = 0.009568* WT[kg] ^ 0.473 * HT[cm] ^ 0.655 (For East Asian child aged 0-12 months)
-  @JsonValue('122270')
   value122270,
 
   /// Display: Skin Condition Warm
   /// Definition: Skin Condition Warm
-  @JsonValue('122271')
   value122271,
 
   /// Display: Skin Condition Cool
   /// Definition: Skin Condition Cool
-  @JsonValue('122272')
   value122272,
 
   /// Display: Skin Condition Cold
   /// Definition: Skin Condition Cold
-  @JsonValue('122273')
   value122273,
 
   /// Display: Skin Condition Dry
   /// Definition: Skin Condition Dry
-  @JsonValue('122274')
   value122274,
 
   /// Display: Skin Condition Clammy
   /// Definition: Skin Condition Clammy
-  @JsonValue('122275')
   value122275,
 
   /// Display: Skin Condition Diaphoretic
   /// Definition: Skin Condition Diaphoretic
-  @JsonValue('122276')
   value122276,
 
   /// Display: Skin Condition Flush
   /// Definition: Skin Condition Flush
-  @JsonValue('122277')
   value122277,
 
   /// Display: Skin Condition Mottled
   /// Definition: Skin Condition Mottled
-  @JsonValue('122278')
   value122278,
 
   /// Display: Skin Condition Pale
   /// Definition: Skin Condition Pale
-  @JsonValue('122279')
   value122279,
 
   /// Display: Airway unobstructed
   /// Definition: Airway unobstructed
-  @JsonValue('122281')
   value122281,
 
   /// Display: Airway partially obstructed
   /// Definition: Airway partially obstructed
-  @JsonValue('122282')
   value122282,
 
   /// Display: Airway severely obstructed
   /// Definition: Airway severely obstructed
-  @JsonValue('122283')
   value122283,
 
   /// Display: Not Visualized
   /// Definition: Anatomy could not be visualized for the purpose of evaluation
-  @JsonValue('122288')
   value122288,
 
   /// Display: Quantitative Arteriography Report
   /// Definition: Quantitative Arteriography Report
-  @JsonValue('122291')
   value122291,
 
   /// Display: Quantitative Ventriculography Report
   /// Definition: Quantitative Ventriculography Report
-  @JsonValue('122292')
   value122292,
 
   /// Display: Guidewire crossing lesion unsuccessful
   /// Definition: Guidewire crossing lesion unsuccessful
-  @JsonValue('122301')
   value122301,
 
   /// Display: Guidewire crossing lesion successful
   /// Definition: Guidewire crossing lesion successful
-  @JsonValue('122302')
   value122302,
 
   /// Display: Angioplasty balloon inflated
   /// Definition: Angioplasty balloon inflated
-  @JsonValue('122303')
   value122303,
 
   /// Display: Angioplasty balloon deflated
   /// Definition: Angioplasty balloon deflated
-  @JsonValue('122304')
   value122304,
 
   /// Display: Device deployed
   /// Definition: Device deployed
-  @JsonValue('122305')
   value122305,
 
   /// Display: Stent re-expanded
   /// Definition: Stent re-expanded
-  @JsonValue('122306')
   value122306,
 
   /// Display: Object removed
   /// Definition: Object removed
-  @JsonValue('122307')
   value122307,
 
   /// Display: Radiation applied
   /// Definition: Radiation applied
-  @JsonValue('122308')
   value122308,
 
   /// Display: Radiation removed
   /// Definition: Radiation removed
-  @JsonValue('122309')
   value122309,
 
   /// Display: Interventional device placement unsuccessful
   /// Definition: Interventional device placement unsuccessful
-  @JsonValue('122310')
   value122310,
 
   /// Display: Interventional device placed
   /// Definition: Interventional device placed
-  @JsonValue('122311')
   value122311,
 
   /// Display: Intervention performed
   /// Definition: Intervention performed
-  @JsonValue('122312')
   value122312,
 
   /// Display: Interventional device withdrawn
   /// Definition: Interventional device withdrawn
-  @JsonValue('122313')
   value122313,
 
   /// Display: Catheter Size
   /// Definition: Catheter Size
-  @JsonValue('122319')
   value122319,
 
   /// Display: Injectate Temperature
   /// Definition: Injectate Temperature
-  @JsonValue('122320')
   value122320,
 
   /// Display: Injectate Volume
   /// Definition: Injectate Volume
-  @JsonValue('122321')
   value122321,
 
   /// Display: Calibration Factor
   /// Definition: Factor by which a measured or calculated value is multiplied to obtain the estimated real-world value
-  @JsonValue('122322')
   value122322,
 
   /// Display: IVUS Report
   /// Definition: Intravascular Ultrasound Report
-  @JsonValue('122325')
   value122325,
 
   /// Display: EEM Diameter
   /// Definition: External Elastic Membrane (EEM) diameter measured through the center point of the vessel. Center point of the vessel is defined as the center of gravity of the EEM area. The EEM is a discrete interface at the border between the media and the adventitia
-  @JsonValue('122330')
   value122330,
 
   /// Display: Plaque Plus Media Thickness
   /// Definition: The distance from intimal leading edge to the external elastic membrane along any line passing through the luminal center, which is defined as the center of gravity of the lumen area
-  @JsonValue('122331')
   value122331,
 
   /// Display: Lumen Perimeter
   /// Definition: Planimetered perimeter of the lumen
-  @JsonValue('122332')
   value122332,
 
   /// Display: EEM Cross-Sectional Area
   /// Definition: Vessel area measured at the External Elastic Membrane (EEM), a discrete interface at the border between the media and the adventitia
-  @JsonValue('122333')
   value122333,
 
   /// Display: Plaque plus Media Cross-Sectional Area
   /// Definition: Area within the EEM occupied by atheroma, regardless of lumen compromise. Plaque plus Media Area = EEM cross-sectional area - vessel lumen cross-sectional area
-  @JsonValue('122334')
   value122334,
 
   /// Display: In-Stent Neointimal Cross-Sectional Area
   /// Definition: Measurement of in-stent restenosis. In-Stent Intimal Area = Stent cross-sectional area - vessel lumen cross-sectional area
-  @JsonValue('122335')
   value122335,
 
   /// Display: Vascular Volume measurement length
   /// Definition: Longitudinal extent of the Vascular Volume Measurement. This is the distance from the distal edge to the proximal edge of the Volume measurement
-  @JsonValue('122336')
   value122336,
 
   /// Display: Relative position
   /// Definition: Longitudinal distance from the closest edge of a fiducial feature or reference location to the start of the vascular measurement. This value will be a positive if the measurement is distal to the fiducial feature or reference location, or negative if the measurement is proximal to the fiducial feature or reference location
-  @JsonValue('122337')
   value122337,
 
   /// Display: Stent Volume Obstruction
   /// Definition: In-Stent Neointimal Volume / Stent Volume
-  @JsonValue('122339')
   value122339,
 
   /// Display: Fiducial feature
   /// Definition: Reference, normally anatomical, which is used for locating the position of a measurement
-  @JsonValue('122340')
   value122340,
 
   /// Display: Calcium Length
   /// Definition: Longitudinal calcium length measurement
-  @JsonValue('122341')
   value122341,
 
   /// Display: Lumen Eccentricity Index
   /// Definition: Measurement of vessel lumen eccentricity. Lumen Eccentricity Index = (maximum vessel lumen diameter - minimum vessel lumen diameter) / maximum vessel lumen diameter. Lumen diameters are measured through the center point of the lumen, which is defined as the center of gravity of the lumen area
-  @JsonValue('122343')
   value122343,
 
   /// Display: Plaque plus Media Eccentricity Index
   /// Definition: Plaque plus Media Eccentricity Index = (maximum Plaque plus media thickness - minimum Plaque plus media thickness) / maximum Plaque plus media thickness
-  @JsonValue('122344')
   value122344,
 
   /// Display: Remodeling Index
   /// Definition: Measurement of increase or decrease in EEM area that occurs during the development of atherosclerosis. Remodeling Index = Lesion EEM area / reference EEM area
-  @JsonValue('122345')
   value122345,
 
   /// Display: Stent Symmetry Index
   /// Definition: Measurement of stent circularity. Stent Symmetry Index = (maximum stent diameter - minimum stent diameter) / maximum stent diameter
-  @JsonValue('122346')
   value122346,
 
   /// Display: Stent Expansion Index
   /// Definition: Measurement of stent area relative to the reference lumen area. Stent Expansion Index = Minimum stent area / reference vessel lumen cross-sectional area
-  @JsonValue('122347')
   value122347,
 
   /// Display: Lumen Shape Index
   /// Definition: Measurement of vessel lumen eccentricity. Lumen Shape Index = (2p * sqrt(Vessel lumen cross-sectional area / p) / Lumen Perimeter) 2 Reference: Tobis & Yock, "Intravascular Ultrasound Imaging", Chapter 7
-  @JsonValue('122348')
   value122348,
 
   /// Display: Lumen Diameter Ratio
   /// Definition: Lumen diameter ratio = minimum vessel lumen diameter / maximum vessel lumen diameter, measured at the same cross section in the vessel. Lumen diameters are measured through the center point of the lumen, which is defined as the center of gravity of the lumen area
-  @JsonValue('122350')
   value122350,
 
   /// Display: Stent Diameter Ratio
   /// Definition: Stent diameter ratio = Minimum stent diameter / Maximum stent diameter, measured at the same cross section in the vessel. Stent diameters are measured through the center point of the stent, which is defined as the center of gravity of the stent area
-  @JsonValue('122351')
   value122351,
 
   /// Display: EEM Diameter Ratio
   /// Definition: EEM diameter ratio = minimum EEM diameter / maximum EEM diameter. Measured at the same cross section in the vessel
-  @JsonValue('122352')
   value122352,
 
   /// Display: Plaque Burden
   /// Definition: Fractional area within the External Elastic Membrane (EEM) occupied by atheroma. Plaque Burden = (EEM area - vessel lumen cross-sectional area) / EEM area
-  @JsonValue('122354')
   value122354,
 
   /// Display: Arc of Calcium
   /// Definition: Angular measurement of a Calcium deposit with the apex located at the center of the lumen, which is defined as the center of gravity of the lumen area
-  @JsonValue('122355')
   value122355,
 
   /// Display: Soft plaque
   /// Definition: Plaque characterized by low density or echogenicity
-  @JsonValue('122356')
   value122356,
 
   /// Display: In-Stent Neointima
   /// Definition: Abnormal thickening of the intima within the stented segment
-  @JsonValue('122357')
   value122357,
 
   /// Display: True Lumen
   /// Definition: Lumen surrounded by all three layers of the vessel-intima, media, and adventitia
-  @JsonValue('122360')
   value122360,
 
   /// Display: False Lumen
   /// Definition: A channel, usually parallel to the true lumen, which does not communicate with the true lumen over a portion of its length
-  @JsonValue('122361')
   value122361,
 
   /// Display: Plaque Rupture
   /// Definition: Plaque ulceration with a tear detected in a fibrous cap
-  @JsonValue('122363')
   value122363,
 
   /// Display: Stent Gap
   /// Definition: Length of gap between two consecutive stents
-  @JsonValue('122364')
   value122364,
 
   /// Display: T-1 Worst
   /// Definition: Worst stenosis - the stenosis with the smallest lumen size within a vessel segment
-  @JsonValue('122367')
   value122367,
 
   /// Display: T-2 Secondary
   /// Definition: 2nd most severe stenosis within a vessel segment
-  @JsonValue('122368')
   value122368,
 
   /// Display: T-3 Secondary
   /// Definition: 3rd most severe stenosis within a vessel segment
-  @JsonValue('122369')
   value122369,
 
   /// Display: T-4 Secondary
   /// Definition: 4th most severe stenosis within a vessel segment
-  @JsonValue('122370')
   value122370,
 
   /// Display: EEM Volume
   /// Definition: External Elastic Membrane (EEM) volume measured within a specified region. The EEM is a discrete interface at the border between the media and the Adventitia
-  @JsonValue('122371')
   value122371,
 
   /// Display: Lumen Volume
   /// Definition: Lumen volume measured within a specified region
-  @JsonValue('122372')
   value122372,
 
   /// Display: In-Stent Neointimal Volume
   /// Definition: The amount of plaque between the lumen and stent, within the stent region; In-stent restenosis. In-Stent Neointimal Volume = Stent Volume - Lumen Volume
-  @JsonValue('122374')
   value122374,
 
   /// Display: Native Plaque Volume
   /// Definition: The amount of plaque between the stent and the EEM, within the stent region. Native Plaque Volume = EEM Volume - Stent Volume
-  @JsonValue('122375')
   value122375,
 
   /// Display: Total Plaque Volume
   /// Definition: Total amount of plaque between the EEM and the Lumen, over the entire region that is measured. Total Plaque Volume = EEM Volume - Lumen Volume
-  @JsonValue('122376')
   value122376,
 
   /// Display: Proximal Reference
   /// Definition: Proximal reference segment measurement site. Typically the site with the largest lumen proximal to a stenosis but within the same segment (usually within 10 mm of the stenosis with no major intervening branches)
-  @JsonValue('122380')
   value122380,
 
   /// Display: Distal Reference
   /// Definition: Distal reference segment measurement site. Typically the site with the largest lumen distal to a stenosis but within the same segment (usually within 10 mm of the stenosis with no major intervening branches)
-  @JsonValue('122381')
   value122381,
 
   /// Display: Site of Lumen Minimum
   /// Definition: Site of the smallest lumen in a vessel; e.g. due to a stenotic lesion
-  @JsonValue('122382')
   value122382,
 
   /// Display: Entire Pullback
   /// Definition: Measurement region that encompasses the entire vessel imaged in a single pullback acquisition
-  @JsonValue('122383')
   value122383,
 
   /// Display: Stented Region
   /// Definition: Measurement region occupied by the stent
-  @JsonValue('122384')
   value122384,
 
   /// Display: Proximal Stent Margin
   /// Definition: Region starting at the proximal edge of the Stent and extending several millimeters (usually 5 mm) proximal to the Stent edge
-  @JsonValue('122385')
   value122385,
 
   /// Display: Distal Stent Margin
   /// Definition: Region starting at the distal edge of the Stent and extending several millimeters (usually 5 mm) distal to the Stent edge
-  @JsonValue('122386')
   value122386,
 
   /// Display: Dissection Classification
   /// Definition: Classification of dissections in a vessel
-  @JsonValue('122387')
   value122387,
 
   /// Display: Intra-stent Dissection
   /// Definition: Separation of neointimal hyperplasia from stent struts, usually seen only after treatment of in-stent restenosis
-  @JsonValue('122388')
   value122388,
 
   /// Display: Vulnerable Plaque
   /// Definition: Plaque with a thin cap fibrous atheroma that is at increased risk of rupture and thrombosis (or re-thrombosis) and rapid stenosis progression
-  @JsonValue('122389')
   value122389,
 
   /// Display: Eroded Plaque
   /// Definition: Plaque erosions with no structural defect (beyond endothelial injury) or gap in the plaque
-  @JsonValue('122390')
   value122390,
 
   /// Display: Relative Stenosis Severity
   /// Definition: Stenosis severity classifications of multiple lesions in a vessel
-  @JsonValue('122391')
   value122391,
 
   /// Display: Restenotic Lesion
   /// Definition: A finding of a previously treated lesion in which stenosis has reoccurred
-  @JsonValue('122393')
   value122393,
 
   /// Display: Fibro-Lipidic Plaque
   /// Definition: Loosely packed bundles of collagen fibers with regions of lipid deposition present. Region is cellular and no cholesterol clefts or necrosis are present. Some macrophage infiltration. Increase in extra cellular matrix
-  @JsonValue('122394')
   value122394,
 
   /// Display: Necrotic-Lipidic Plaque
   /// Definition: Area within the plaque with very low echogenicity separated from the lumen and surrounded by more echogenic structures (fibrous cap). Highly lipidic necrotic region with remnants of foam cells and dead lymphocytes present. No collagen fibers are visible and mechanical integrity is poor. Cholesterol clefts and micro calcifications are visible
-  @JsonValue('122395')
   value122395,
 
   /// Display: Intimal Dissection
   /// Definition: Dissection limited to the intima or atheroma, and not extending to the media
-  @JsonValue('122398')
   value122398,
 
   /// Display: Medial Dissection
   /// Definition: Dissection in the arterial Media, extending into the media
-  @JsonValue('122399')
   value122399,
 
   /// Display: Simultaneously Acquired
   /// Definition: The referenced information was acquired simultaneously with the information in the object in which the reference occurs
-  @JsonValue('122400')
   value122400,
 
   /// Display: Same Anatomy
   /// Definition: Information acquired for the same anatomic region
-  @JsonValue('122401')
   value122401,
 
   /// Display: Same Indication
   /// Definition: Information acquired for the same indication; e.g. to elucidate the same diagnostic question
-  @JsonValue('122402')
   value122402,
 
   /// Display: For Attenuation Correction
   /// Definition: The referenced information was used to correct the data for differential attenuation through different anatomic tissue
-  @JsonValue('122403')
   value122403,
 
   /// Display: Reconstructed
   /// Definition: Value estimated for a vessel in the absence of a stenosis
-  @JsonValue('122404')
   value122404,
 
   /// Display: Algorithm Manufacturer
   /// Definition: Manufacturer of application used
-  @JsonValue('122405')
   value122405,
 
   /// Display: Left Atrial Ejection Fraction by Angiography
   /// Definition: Left Atrial Ejection Fraction by Angiography
-  @JsonValue('122406')
   value122406,
 
   /// Display: Left Atrial ED Volume
   /// Definition: Left Atrial End Diastolic Volume
-  @JsonValue('122407')
   value122407,
 
   /// Display: Left Atrial ES Volume
   /// Definition: Left Atrial End Systolic Volume
-  @JsonValue('122408')
   value122408,
 
   /// Display: Contour Realignment
   /// Definition: Contour repositioning of End Diastolic relative to End Systolic contour
-  @JsonValue('122410')
   value122410,
 
   /// Display: Threshold Value
   /// Definition: The minimum standard deviation to define the hypokinesis and hyperkinesis
-  @JsonValue('122411')
   value122411,
 
   /// Display: Regional Abnormal Wall Motion
   /// Definition: Report of differentiation of wall motion compared to normal
-  @JsonValue('122417')
   value122417,
 
   /// Display: Calibration Object
   /// Definition: Object used for Calibration
-  @JsonValue('122421')
   value122421,
 
   /// Display: Calibration Method
   /// Definition: Method used for Calibration
-  @JsonValue('122422')
   value122422,
 
   /// Display: Calibration Object Size
   /// Definition: Size of calibration object
-  @JsonValue('122423')
   value122423,
 
   /// Display: Area Length Method
   /// Definition: Method how long axis is positioned
-  @JsonValue('122428')
   value122428,
 
   /// Display: Volume Method
   /// Definition: Model for cardiac chamber volume calculation
-  @JsonValue('122429')
   value122429,
 
   /// Display: Reference Method
   /// Definition: Method to define original diameter of the artery
-  @JsonValue('122430')
   value122430,
 
   /// Display: Regression Slope ED
   /// Definition: Relation between calculated End Diastolic volume and ventricular End Diastolic volume. The specific meaning is dependent on volume method used
-  @JsonValue('122431')
   value122431,
 
   /// Display: Regression Offset ED
   /// Definition: Correction factor for the calculated End Diastolic volume and ventricular End Diastolic volume. The specific meaning is dependent on volume method used
-  @JsonValue('122432')
   value122432,
 
   /// Display: Regression Slope ES
   /// Definition: Relation between calculated End Systolic volume and ventricular End Systolic volume. The specific meaning is dependent on volume method used
-  @JsonValue('122433')
   value122433,
 
   /// Display: Regression Offset ES
   /// Definition: Correction factor for the calculated End Systolic volume and ventricular End Systolic volume. The specific meaning is dependent on volume method used
-  @JsonValue('122434')
   value122434,
 
   /// Display: Regression Volume Exponent
   /// Definition: Exponent of volume in regression formula
-  @JsonValue('122435')
   value122435,
 
   /// Display: Reference Points
   /// Definition: Container for spatial locations or coordinates used for calculation
-  @JsonValue('122438')
   value122438,
 
   /// Display: Wall Thickness
   /// Definition: Average thickness of the chamber wall in the current view
-  @JsonValue('122445')
   value122445,
 
   /// Display: Wall Volume
   /// Definition: Volume of the chamber wall estimated from the current view
-  @JsonValue('122446')
   value122446,
 
   /// Display: Wall Mass
   /// Definition: Mass of the chamber wall (myocardium)
-  @JsonValue('122447')
   value122447,
 
   /// Display: Wall Stress
   /// Definition: Peak systolic stress of chamber wall
-  @JsonValue('122448')
   value122448,
 
   /// Display: Centerline Wall Motion Analysis
   /// Definition: Method to calculate wall motion [example: Sheehan, 1986]
-  @JsonValue('122449')
   value122449,
 
   /// Display: Normalized Chord Length
   /// Definition: The length between End Diastolic and End Systolic contour perpendicular on the centerline normalized by a method dependent ventricular perimeter length. The centerline is the line equidistant between the End Diastolic and End Systolic contour [example: Sheehan, 1986]
-  @JsonValue('122450')
   value122450,
 
   /// Display: Abnormal Region
   /// Definition: The report of the boundaries of the abnormal (hyperkinetic, hypokinetic, a-kinetic) regions associated with the territory of the artery [example: Sheehan, 1986]
-  @JsonValue('122451')
   value122451,
 
   /// Display: First Chord of Abnormal Region
   /// Definition: The chord number specifying the begin of abnormal region [example: Sheehan, 1986]
-  @JsonValue('122452')
   value122452,
 
   /// Display: Last Chord of Abnormal Region
   /// Definition: The chord number specifying the end of abnormal region [example: Sheehan, 1986]
-  @JsonValue('122453')
   value122453,
 
   /// Display: Territory Region Severity
   /// Definition: Severity at the regional abnormality extent [example: Sheehan, 1986]
-  @JsonValue('122459')
   value122459,
 
   /// Display: Opposite Region Severity
   /// Definition: Severity at the opposite regional abnormality extent [example: Sheehan, 1986]
-  @JsonValue('122461')
   value122461,
 
   /// Display: LAD Region in RAO Projection
   /// Definition: Based on a total number of chords of 100 and RAO project the range of chords belonging to this circumferential extent lies between 5 - 85. [Sheehan, 1986]
-  @JsonValue('122464')
   value122464,
 
   /// Display: RCA Region in ROA Projection
   /// Definition: Based on a total number of chords of 100 and RAO project the range of chords belonging to this circumferential extent lies between 25 - 85. [Sheehan, 1986]
-  @JsonValue('122465')
   value122465,
 
   /// Display: Single LAD Region in RAO Projection
   /// Definition: Based on a total number of chords of 100 and RAO projection the range of chords belonging to this regional extent lies between 10 - 66 (hypokinetic) and 67 - 80 (hyperkinetic). [Sheehan, 1986]
-  @JsonValue('122466')
   value122466,
 
   /// Display: Single RCA Region in RAO Projection
   /// Definition: Based on a total number of chords of 100 and RAO projection the range of chords belonging to this regional extent lies between 51 - 80 (hypokinetic) and 10 - 50 (hyperkinetic). [Sheehan, 1986]
-  @JsonValue('122467')
   value122467,
 
   /// Display: Multiple LAD Region in RAO Projection
   /// Definition: Based on a total number of chords of 100 and RAO projection the range of chords belonging to this regional extent lies between 10 - 58 (hypokinetic) and 59 -80 (hyperkinetic). [Sheehan, 1986]
-  @JsonValue('122468')
   value122468,
 
   /// Display: Multiple RCA Region in RAO Projection
   /// Definition: Based on a total number of chords of 100 and RAO projection the range of chords belonging to this regional extent lies between 59 - 80 (hypokinetic) and 10 - 58 (hyperkinetic). [Sheehan, 1986]
-  @JsonValue('122469')
   value122469,
 
   /// Display: LAD Region in LAO Projection
   /// Definition: Based on a total number of chords of 100 and LAO projection the range of chords belonging to this regional extent lies between 50 -100 (hypokinetic) and 20 - 49 (hyperkinetic). [Sheehan, 1986]
-  @JsonValue('122470')
   value122470,
 
   /// Display: RCA Region in LAO Projection
   /// Definition: Based on a total number of chords of 100 and LAO projection the range of chords belonging to this regional extent lies between 19 - 67 (hypokinetic) and 68 - 100 (hyperkinetic). [Sheehan, 1986]
-  @JsonValue('122471')
   value122471,
 
   /// Display: CFX Region in LAO Projection
   /// Definition: Based on a total number of chords of 100 and LAO projection the range of chords belonging to this regional extent lies between 38 -74 (hypokinetic) and 75 - 100 (hyperkinetic). [Sheehan, 1986]
-  @JsonValue('122472')
   value122472,
 
   /// Display: Circular Method
   /// Definition: Method based on assumption that the image object is circular
-  @JsonValue('122473')
   value122473,
 
   /// Display: Densitometric Method
   /// Definition: Method based on the gray value distribution of the image
-  @JsonValue('122474')
   value122474,
 
   /// Display: Center of Gravity
   /// Definition: End Systolic contour realigned to End Diastolic contour based on the center of gravity
-  @JsonValue('122475')
   value122475,
 
   /// Display: Long Axis Based
   /// Definition: End Systolic contour realigned to End Diastolic contour based on the mid point of the long axis. The long axis end-points are defined as the posterior and apex
-  @JsonValue('122476')
   value122476,
 
   /// Display: No Realignment
   /// Definition: No Contour Realignment applied
-  @JsonValue('122477')
   value122477,
 
   /// Display: Vessel Lumen Cross-Sectional Area
   /// Definition: Calculated Vessel Lumen Cross-Sectional Area based on the referenced method
-  @JsonValue('122480')
   value122480,
 
   /// Display: Contour Start
   /// Definition: Location of the beginning of a contour
-  @JsonValue('122481')
   value122481,
 
   /// Display: Contour End
   /// Definition: Location of the end of a contour
-  @JsonValue('122482')
   value122482,
 
   /// Display: Sphere
   /// Definition: Sphere is used as calibration object
-  @JsonValue('122485')
   value122485,
 
   /// Display: Geometric Isocenter
   /// Definition: Object of interest in isocenter of image and pixel separation is calculated from geometric data
-  @JsonValue('122486')
   value122486,
 
   /// Display: Geometric Non-Isocenter
   /// Definition: Object of interest not in isocenter of image and pixel separation is calculated from geometric data and out of isocenter distances
-  @JsonValue('122487')
   value122487,
 
   /// Display: Calibration Object Used
   /// Definition: Object used for calibration; e.g. sphere
-  @JsonValue('122488')
   value122488,
 
   /// Display: Curve Fitted Reference
   /// Definition: Application dependent method to calculate the reference diameter based on the multiple diameter values
-  @JsonValue('122489')
   value122489,
 
   /// Display: Interpolated Local Reference
   /// Definition: Application dependent method to calculate reference by interpolation, based on the diameter of two or more user defined reference positions
-  @JsonValue('122490')
   value122490,
 
   /// Display: Mean Local Reference
   /// Definition: Application dependent method to calculate by averaging the reference, based on the diameter of one or more user defined reference positions
-  @JsonValue('122491')
   value122491,
 
   /// Display: Radial Based Wall Motion Analysis
   /// Definition: Method to calculate wall motion based on the lengths of the radials in the predefined regions [Ingels]
-  @JsonValue('122493')
   value122493,
 
   /// Display: Regional Contribution to Ejection Fraction
   /// Definition: Contribution of Region to global Ejection factor based on radial or landmark based wall motion method
-  @JsonValue('122495')
   value122495,
 
   /// Display: Radial Shortening
   /// Definition: The reduction of area between End Systolic and End Diastolic based on radial wall motion analysis
-  @JsonValue('122496')
   value122496,
 
   /// Display: Landmark Based Wall Motion Analysis
   /// Definition: Method to calculate wall motion based on the move of landmarks on the wall [Slager]
-  @JsonValue('122497')
   value122497,
 
   /// Display: Slice Contribution to Ejection Fraction
   /// Definition: Contribution to the ejection fraction of a specific slice region [Slager]
-  @JsonValue('122498')
   value122498,
 
   /// Display: Frame to Frame Analysis
   /// Definition: Method to calculate volumes of heart chambers for every image in a range
-  @JsonValue('122499')
   value122499,
 
   /// Display: Area of closed irregular polygon
   /// Definition: The area is derived by considering a set of coordinates as a closed irregular polygon, accounting for inner angles. The exact method, such as by decomposition into triangles or quadrilaterals, is not specified, since it does not affect the numeric result, apart from the effect of numeric precision during computation of intermediate results
-  @JsonValue('122501')
   value122501,
 
   /// Display: Area of a closed NURBS
   /// Definition: The area is derived by using a set of coordinates as control points for a Non Uniform Rational B-Spline (NURBS)
-  @JsonValue('122502')
   value122502,
 
   /// Display: Integration of sum of closed areas on contiguous slices
   /// Definition: The volume derived by integrating the sum of the areas on adjacent slices across the slice interval; each area is defined by a regular planar shape or by considering a set of coordinates as a closed irregular polygon, accounting for inner angles
-  @JsonValue('122503')
   value122503,
 
   /// Display: Calibration
   /// Definition: Procedure used to calibrate measurements or measurement devices
-  @JsonValue('122505')
   value122505,
 
   /// Display: Left Contour
   /// Definition: Left contour of lumen (direction proximal to distal)
-  @JsonValue('122507')
   value122507,
 
   /// Display: Right Contour
   /// Definition: Right contour of lumen (direction proximal to distal)
-  @JsonValue('122508')
   value122508,
 
   /// Display: Diameter Graph
   /// Definition: Ordered set of diameters values derived from contours (direction proximal to distal)
-  @JsonValue('122509')
   value122509,
 
   /// Display: Length Luminal Segment
   /// Definition: Length Luminal Segment
-  @JsonValue('122510')
   value122510,
 
   /// Display: Graph Increment
   /// Definition: Increment value along X-axis in Diameter Graph
-  @JsonValue('122511')
   value122511,
 
   /// Display: Site of Maximum Luminal
   /// Definition: Location of the maximum lumen area in a lesion or vessel
-  @JsonValue('122516')
   value122516,
 
   /// Display: Densitometric Luminal Cross-sectional Area Graph
   /// Definition: Ordered set of cross-sectional Vessel Lumen Cross-Sectional Area values derived from contours (direction proximal to distal) based on densitometric method
-  @JsonValue('122517')
   value122517,
 
   /// Display: Position of Proximal Border
   /// Definition: Position of proximal border of segment relative to the contour start (proximal end of analysis area)
-  @JsonValue('122528')
   value122528,
 
   /// Display: Position of Distal Border
   /// Definition: Position of distal border of segment relative to the contour start (proximal end of analysis area)
-  @JsonValue('122529')
   value122529,
 
   /// Display: Plaque Area
   /// Definition: Longitudinal cross sectional area of plaque
-  @JsonValue('122542')
   value122542,
 
   /// Display: Diameter Symmetry
   /// Definition: Symmetry of stenosis (0 = complete asymmetry, 1 = complete symmetry); see Section T.2 "Definition of Diameter Symmetry with Arterial Plaques" in PS3.17
-  @JsonValue('122544')
   value122544,
 
   /// Display: Area Symmetry
   /// Definition: Symmetry of plaque (0 = complete asymmetry, 1 = complete symmetry); see Section T.2 "Definition of Diameter Symmetry with Arterial Plaques" in PS3.17
-  @JsonValue('122545')
   value122545,
 
   /// Display: Inflow Angle
   /// Definition: The average slope of the diameter function between the position of the minimum luminal diameter and the position of the proximal border of the segment
-  @JsonValue('122546')
   value122546,
 
   /// Display: Outflow Angle
   /// Definition: The average slope of the diameter function between the position of the minimum luminal diameter and the position of the distal border of the segment
-  @JsonValue('122547')
   value122547,
 
   /// Display: Stenotic Flow Reserve
   /// Definition: The relation between coronary pressure and coronary flow
-  @JsonValue('122548')
   value122548,
 
   /// Display: Poiseuille Resistance
   /// Definition: Poiseuille Resistance at the location of the stenosis
-  @JsonValue('122549')
   value122549,
 
   /// Display: Turbulence Resistance
   /// Definition: Turbulence Resistance at the location of the stenosis
-  @JsonValue('122550')
   value122550,
 
   /// Display: Pressure Drop at SFR
   /// Definition: Pressure drop over the stenosis at maximum heart output
-  @JsonValue('122551')
   value122551,
 
   /// Display: Segmentation Method
   /// Definition: Method for selection of vessel sub-segments
-  @JsonValue('122554')
   value122554,
 
   /// Display: Estimated Normal Flow
   /// Definition: Estimate of the volume of blood flow in the absence of stenosis
-  @JsonValue('122555')
   value122555,
 
   /// Display: Area Length Kennedy
   /// Definition: Area Length method defined by Kennedy [Kennedy, 1970]
-  @JsonValue('122558')
   value122558,
 
   /// Display: Area Length Dodge
   /// Definition: Area Length method defined by Dodge [Dodge, 1960]
-  @JsonValue('122559')
   value122559,
 
   /// Display: Area Length Wynne
   /// Definition: Area Length method defined by Wynne [Wynne]
-  @JsonValue('122560')
   value122560,
 
   /// Display: Multiple Slices
   /// Definition: Volume method based on multiple slice
-  @JsonValue('122562')
   value122562,
 
   /// Display: Boak
   /// Definition: Volume method defined by Boak [Boak]
-  @JsonValue('122563')
   value122563,
 
   /// Display: TS Pyramid
   /// Definition: Volume method defined by Ferlinz [Ferlinz]
-  @JsonValue('122564')
   value122564,
 
   /// Display: Two Chamber
   /// Definition: Volume method defined by Graham [Graham]
-  @JsonValue('122565')
   value122565,
 
   /// Display: Parallelepiped
   /// Definition: Volume method defined by Arcilla [Arcilla]
-  @JsonValue('122566')
   value122566,
 
   /// Display: BSA^1.219
   /// Definition: Corrected Body Surface area for indexing the hemodynamic measurements for a pediatric patient
-  @JsonValue('122572')
   value122572,
 
   /// Display: Equidistant method
   /// Definition: Method for selecting sub-segments that are all of the same length
-  @JsonValue('122574')
   value122574,
 
   /// Display: User selected method
   /// Definition: Manually selected start and end of sub-segment
-  @JsonValue('122575')
   value122575,
 
   /// Display: Left ventricular posterobasal segment
   /// Definition: Left ventricular posterobasal segment
-  @JsonValue('122582')
   value122582,
 
   /// Display: Cardiovascular Analysis Report
   /// Definition: Report of a Cardiovascular Analysis, typically from a CT or MR study
-  @JsonValue('122600')
   value122600,
 
   /// Display: Ventricular Analysis
   /// Definition: Ventricular Analysis
-  @JsonValue('122601')
   value122601,
 
   /// Display: Myocardial Perfusion Analysis
   /// Definition: Myocardial Perfusion Analysis
-  @JsonValue('122602')
   value122602,
 
   /// Display: Calcium Scoring Analysis
   /// Definition: Calcium Scoring Analysis
-  @JsonValue('122603')
   value122603,
 
   /// Display: Flow Quantification
   /// Definition: Flow Quantification Analysis
-  @JsonValue('122604')
   value122604,
 
   /// Display: Vascular Morphological Analysis
   /// Definition: Vascular Morphological Analysis
-  @JsonValue('122605')
   value122605,
 
   /// Display: Vascular Functional Analysis
   /// Definition: Vascular Functional Analysis
-  @JsonValue('122606')
   value122606,
 
   /// Display: Thickening Analysis
   /// Definition: Analysis of myocardial wall thickening
-  @JsonValue('122607')
   value122607,
 
   /// Display: Absolute Values Of Ventricular Measurements
   /// Definition: Section Heading for absolute values of ventricular measurements
-  @JsonValue('122608')
   value122608,
 
   /// Display: Normalized Values Of Ventricular Measurements
   /// Definition: Results of normalizing ventricular measurements
-  @JsonValue('122609')
   value122609,
 
   /// Display: Reference Point
   /// Definition: Reference Point of a measurement
-  @JsonValue('122611')
   value122611,
 
   /// Display: Central breathing position
   /// Definition: Central breathing position between inspiration and expiration
-  @JsonValue('122612')
   value122612,
 
   /// Display: Peak Ejection Rate
   /// Definition: Peak of the ventricular ejection rate
-  @JsonValue('122616')
   value122616,
 
   /// Display: Peak Ejection Time
   /// Definition: Time of the peak of ventricular ejection
-  @JsonValue('122617')
   value122617,
 
   /// Display: Peak Filling Rate
   /// Definition: Peak of the fluid filling rate
-  @JsonValue('122618')
   value122618,
 
   /// Display: Peak Filling Time
   /// Definition: Time interval until time of peak filling from a given reference point; e.g. end systole
-  @JsonValue('122619')
   value122619,
 
   /// Display: Papillary Muscle Excluded
   /// Definition: Papillary muscle was excluded from the measurement
-  @JsonValue('122620')
   value122620,
 
   /// Display: Papillary Muscle Included
   /// Definition: Papillary muscle was included in the measurement
-  @JsonValue('122621')
   value122621,
 
   /// Display: Wall Thickness Ratio end-systolic to end-diastolic
   /// Definition: The ratio of the end-systolic wall thickness compared to the end-diastolic wall thickness
-  @JsonValue('122624')
   value122624,
 
   /// Display: Curve Fit Method
   /// Definition: The method to smooth a ventricular volume as a function of time
-  @JsonValue('122627')
   value122627,
 
   /// Display: Baseline Result Correction
   /// Definition: Baseline correction used in the calculation of the results
-  @JsonValue('122628')
   value122628,
 
   /// Display: Signal Earliest Peak Time
   /// Definition: The time in a dynamic set of images at which the first peak of the signal is observed for the analyzed myocardial wall segments
-  @JsonValue('122631')
   value122631,
 
   /// Display: Signal Increase Start Time
   /// Definition: This is the time at which the signal begins to increase
-  @JsonValue('122633')
   value122633,
 
   /// Display: Signal Time to Peak
   /// Definition: Time interval between the beginning of the signal increase to the time at which the signal intensity reaches its first maximum in a dynamic set of images
-  @JsonValue('122634')
   value122634,
 
   /// Display: MR Perfusion Peak
   /// Definition: Peak of the MR perfusion signal
-  @JsonValue('122635')
   value122635,
 
   /// Display: MR Perfusion Slope
   /// Definition: Signal intensity as a function of time. It is the change in the signal intensity divided by the change in the time
-  @JsonValue('122636')
   value122636,
 
   /// Display: MR Perfusion Time Integral
   /// Definition: MR perfusion time integral from baseline (foot time) to earliest peak
-  @JsonValue('122637')
   value122637,
 
   /// Display: Signal Baseline Start
   /// Definition: First time point in a dynamic set of images used in the calculation of the baseline signal intensity for each myocardial wall segment
-  @JsonValue('122638')
   value122638,
 
   /// Display: Signal Baseline End
   /// Definition: Last time point in a dynamic set of images used in the calculation of the baseline signal intensity for each myocardial wall segment
-  @JsonValue('122639')
   value122639,
 
   /// Display: Image Interval
   /// Definition: The time delta between images in a dynamic set of images
-  @JsonValue('122640')
   value122640,
 
   /// Display: Velocity Encoding Minimum Value
   /// Definition: The minimum velocity encoded by the phase encoding gradient
-  @JsonValue('122642')
   value122642,
 
   /// Display: Velocity Encoding Maximum Value
   /// Definition: The maximum velocity encoded by the phase encoding gradient
-  @JsonValue('122643')
   value122643,
 
   /// Display: Net Forward Volume
   /// Definition: Forward volume-reverse volume
-  @JsonValue('122645')
   value122645,
 
   /// Display: Area Based Method
   /// Definition: Area Based Method for estimating volume or area
-  @JsonValue('122650')
   value122650,
 
   /// Display: Diameter Based Method
   /// Definition: Diameter Based Method for estimating volume, area or diameter
-  @JsonValue('122651')
   value122651,
 
   /// Display: Volume Based Method
   /// Definition: Volume Based Method for estimating volume
-  @JsonValue('122652')
   value122652,
 
   /// Display: NASCET
   /// Definition: A method of diameter measurements according to NASCET (North American Symptomatic Carotid Endarterectomy Trial)
-  @JsonValue('122655')
   value122655,
 
   /// Display: ECST
   /// Definition: A method of diameter measurements according to ECST (European Carotid Surgery Trial)
-  @JsonValue('122656')
   value122656,
 
   /// Display: Agatston Score Threshold
   /// Definition: Agatston Score Threshold
-  @JsonValue('122657')
   value122657,
 
   /// Display: Calcium Mass Threshold
   /// Definition: Calcium Mass Threshold
-  @JsonValue('122658')
   value122658,
 
   /// Display: Calcium Scoring Calibration
   /// Definition: Calcium Scoring Calibration
-  @JsonValue('122659')
   value122659,
 
   /// Display: Calcium Volume
   /// Definition: Calcium Volume
-  @JsonValue('122660')
   value122660,
 
   /// Display: Calcium Mass
   /// Definition: Calcium Mass
-  @JsonValue('122661')
   value122661,
 
   /// Display: Late Contrast Enhancement
   /// Definition: Delayed hyperenhancement of a tissue observed in an image acquired after injection of contrast media
-  @JsonValue('122664')
   value122664,
 
   /// Display: Time interval since injection of contrast media
   /// Definition: Time interval since injection of contrast media
-  @JsonValue('122665')
   value122665,
 
   /// Display: Time relative to R-wave peak
   /// Definition: Time relative to R-wave peak
-  @JsonValue('122666')
   value122666,
 
   /// Display: Blood velocity vs. time of cardiac cycle
   /// Definition: Relationship between blood velocity and time relative to R-wave peak
-  @JsonValue('122667')
   value122667,
 
   /// Display: Time interval since detection of contrast bolus
   /// Definition: Time interval since detection of contrast bolus
-  @JsonValue('122668')
   value122668,
 
   /// Display: Papillary Muscle Included/Excluded
   /// Definition: Indicates if the papillary muscle was included or excluded in the measurement
-  @JsonValue('122670')
   value122670,
 
   /// Display: Anterior-Posterior
   /// Definition: Anterior to Posterior direction
-  @JsonValue('122675')
   value122675,
 
   /// Display: endoleak
   /// Definition: Persistent flow of blood into the stent-grafting
-  @JsonValue('122680')
   value122680,
 
   /// Display: Stent Fracture
   /// Definition: Fracture of a stent
-  @JsonValue('122683')
   value122683,
 
   /// Display: Stent Disintegration
   /// Definition: Disintegration of a stent
-  @JsonValue('122684')
   value122684,
 
   /// Display: Stent Composition
   /// Definition: Material that a stent consists of
-  @JsonValue('122685')
   value122685,
 
   /// Display: Parent Vessel Finding
   /// Definition: Finding about the characteristics of the parent vessel of a vessel
-  @JsonValue('122686')
   value122686,
 
   /// Display: Site of Lumen Maximum
   /// Definition: Site of Maximal lumen diameter of a vessel
-  @JsonValue('122687')
   value122687,
 
   /// Display: X-Concept
   /// Definition: The physical domain (time, space, etc.) to the horizontal axis of the graphical presentation
-  @JsonValue('122698')
   value122698,
 
   /// Display: Y-Concept
   /// Definition: The physical domain (time, space, etc.) to the vertical axis of the graphical presentation
-  @JsonValue('122699')
   value122699,
 
   /// Display: Indications for Pharmacological Stress
   /// Definition: Indications for Pharmacological Stress
-  @JsonValue('122700')
   value122700,
 
   /// Display: Procedure time base
   /// Definition: Reference time for measurement of elapsed time in a procedure
-  @JsonValue('122701')
   value122701,
 
   /// Display: Treadmill speed
   /// Definition: Treadmill speed
-  @JsonValue('122702')
   value122702,
 
   /// Display: Treadmill gradient
   /// Definition: Treadmill gradient
-  @JsonValue('122703')
   value122703,
 
   /// Display: Ergometer power
   /// Definition: Ergometer power
-  @JsonValue('122704')
   value122704,
 
   /// Display: Pharmacological Stress Agent Dose Rate
   /// Definition: Pharmacological Stress Agent Dose Rate
-  @JsonValue('122705')
   value122705,
 
   /// Display: Rating of Perceived Exertion
   /// Definition: Rating of Perceived Exertion
-  @JsonValue('122706')
   value122706,
 
   /// Display: Number of Ectopic Beats
   /// Definition: Number of ectopic beats during a period of collection
-  @JsonValue('122707')
   value122707,
 
   /// Display: Double Product
   /// Definition: Heart rate times systolic blood pressure
-  @JsonValue('122708')
   value122708,
 
   /// Display: Activity workload
   /// Definition: Physical activity workload (intensity) measurement
-  @JsonValue('122709')
   value122709,
 
   /// Display: Time since start of stage
   /// Definition: Elapsed time at stage
-  @JsonValue('122710')
   value122710,
 
   /// Display: Exercise duration after stress agent injection
   /// Definition: Exercise duration after stress agent injection
-  @JsonValue('122711')
   value122711,
 
   /// Display: Imaging Start Time
   /// Definition: Imaging Start Time
-  @JsonValue('122712')
   value122712,
 
   /// Display: Attenuation correction method
   /// Definition: Attenuation correction method
-  @JsonValue('122713')
   value122713,
 
   /// Display: Pharmacological Stress Agent Dose
   /// Definition: Pharmacological Stress Agent Dose
-  @JsonValue('122715')
   value122715,
 
   /// Display: Maximum Power Output Achieved
   /// Definition: Maximum power output achieved during course of procedure
-  @JsonValue('122716')
   value122716,
 
   /// Display: Peak activity workload
   /// Definition: Peak physical activity intensity measurement during course of procedure
-  @JsonValue('122717')
   value122717,
 
   /// Display: Peak Double Product
   /// Definition: Peak Double Product measurement during course of procedure
-  @JsonValue('122718')
   value122718,
 
   /// Display: OSEM algorithm
   /// Definition: Ordered subsets expectation maximization reconstruction algorithm
-  @JsonValue('122720')
   value122720,
 
   /// Display: Chang method
   /// Definition: Chang attenuation correction method
-  @JsonValue('122721')
   value122721,
 
   /// Display: Algorithmic attenuation correction
   /// Definition: Attenuation correction not based on image-based attenuation maps
-  @JsonValue('122726')
   value122726,
 
   /// Display: NM transmission attenuation correction
   /// Definition: NM transmission attenuation correction
-  @JsonValue('122727')
   value122727,
 
   /// Display: CT-based attenuation correction
   /// Definition: CT-based attenuation correction
-  @JsonValue('122728')
   value122728,
 
   /// Display: No Attenuation Correction
   /// Definition: No attenuation correction
-  @JsonValue('122729')
   value122729,
 
   /// Display: Bazett QTc Algorithm
   /// Definition: Bazett QT Correction Algorithm; QT/(RR ^ 0.5); Bazett HC. "An analysis of the time-relations of electrocardiograms" Heart7:353-370 (1920)
-  @JsonValue('122730')
   value122730,
 
   /// Display: Hodges QTc Algorithm
   /// Definition: Hodges QT Correction Algorithm; QT + 1.75 (heart rate-60); Hodges M, Salerno Q, Erlien D. "Bazett's QT correction reviewed. Evidence that a linear QT correction for heart rate is better." J Am Coll Cardiol1:694 (1983)
-  @JsonValue('122731')
   value122731,
 
   /// Display: Fridericia QTc Algorithm
   /// Definition: Fridericia QT Correction Algorithm; QT/(RR ^ 0.333); Fridericia LS. "The duration of systole in the electrocardiogram of normal subjects and of patients with heart disease" Acta Med Scand53:469-486 (1920)
-  @JsonValue('122732')
   value122732,
 
   /// Display: Framingham QTc Algorithm
   /// Definition: Framingham QT Correction Algorithm; QT + 0.154 (1- RR); Sagie A, Larson MG, Goldberg RJ, et al. "An improved method for adjusting the QT interval for heart rate (the Framingham Heart Study)." Am J Cardiol70:797-801(1992)
-  @JsonValue('122733')
   value122733,
 
   /// Display: Borg RPE Scale
   /// Definition: Borg Rating of Perceived Exertion Scale, range 6:20
-  @JsonValue('122734')
   value122734,
 
   /// Display: Borg CR10 Scale
   /// Definition: Borg category ratio scale, open ended range with nominal range 0:10
-  @JsonValue('122735')
   value122735,
 
   /// Display: Overall study quality
   /// Definition: Overall study quality
-  @JsonValue('122739')
   value122739,
 
   /// Display: Excellent image quality
   /// Definition: Excellent image quality
-  @JsonValue('122740')
   value122740,
 
   /// Display: Good image quality
   /// Definition: Good image quality
-  @JsonValue('122741')
   value122741,
 
   /// Display: Poor image quality
   /// Definition: Poor image quality
-  @JsonValue('122742')
   value122742,
 
   /// Display: Body habitus attenuation
   /// Definition: Image attenuation due to body physique (overweight)
-  @JsonValue('122743')
   value122743,
 
   /// Display: Breast attenuation
   /// Definition: Image attenuation due to breast tissue
-  @JsonValue('122744')
   value122744,
 
   /// Display: Diaphragmatic attenuation
   /// Definition: Image attenuation due to diaphragm
-  @JsonValue('122745')
   value122745,
 
   /// Display: False positive defect finding
   /// Definition: Finding of a defect is incorrect; e.g. from automated analysis
-  @JsonValue('122748')
   value122748,
 
   /// Display: Non-diagnostic - low heart rate
   /// Definition: ECG is non-diagnostic due to low heart rate
-  @JsonValue('122750')
   value122750,
 
   /// Display: Non-diagnostic - resting ST abnormalities
   /// Definition: ECG is non-diagnostic due to resting ST abnormalities
-  @JsonValue('122751')
   value122751,
 
   /// Display: Non-diagnostic - ventricular pacing or LBBB
   /// Definition: ECG is non-diagnostic due to ventricular pacing or Left Bundle Branch Block
-  @JsonValue('122752')
   value122752,
 
   /// Display: Non-diagnostic ECG
   /// Definition: ECG is non-diagnostic for presence of acute coronary syndrome
-  @JsonValue('122753')
   value122753,
 
   /// Display: Strongly positive
   /// Definition: Strongly positive finding
-  @JsonValue('122755')
   value122755,
 
   /// Display: Strongly positive - ST elevation
   /// Definition: Strongly positive finding - ST elevation
-  @JsonValue('122756')
   value122756,
 
   /// Display: ST Depression - Horizontal
   /// Definition: Finding of ST segment depression with no slope
-  @JsonValue('122757')
   value122757,
 
   /// Display: ST Depression - Upsloping
   /// Definition: Finding of ST segment depression with upslope
-  @JsonValue('122758')
   value122758,
 
   /// Display: ST Depression - Downsloping
   /// Definition: Finding of ST segment depression with downslope
-  @JsonValue('122759')
   value122759,
 
   /// Display: Stress test score
   /// Definition: Stress test score
-  @JsonValue('122760')
   value122760,
 
   /// Display: Number of diseased vessel territories
   /// Definition: Number of diseased vessel territories
-  @JsonValue('122762')
   value122762,
 
   /// Display: Weight exceeds equipment limit
   /// Definition: Patient weight exceeds equipment limit
-  @JsonValue('122764')
   value122764,
 
   /// Display: Difference in Ejection Fraction
   /// Definition: Difference in Ejection Fraction
-  @JsonValue('122768')
   value122768,
 
   /// Display: Difference in ED LV Volume
   /// Definition: Difference in End Diastolic Left Ventricular Volume
-  @JsonValue('122769')
   value122769,
 
   /// Display: Ratio of achieved to predicted maximal oxygen consumption
   /// Definition: Ratio of achieved to predicted maximal oxygen consumption
-  @JsonValue('122770')
   value122770,
 
   /// Display: Ratio of achieved to predicted functional capacity
   /// Definition: Ratio of achieved to predicted functional capacity
-  @JsonValue('122771')
   value122771,
 
   /// Display: Aerobic index
   /// Definition: Workload (Watts) at target heart rate divided by body weight
-  @JsonValue('122772')
   value122772,
 
   /// Display: ST/HR Index
   /// Definition: ST depression at peak exercise divided by the exercise-induced increase in heart rate [Kligfield P, Ameisen O, Okin PM. "Heart rate adjustment of ST segment depression for improved detection of coronary artery disease." Circulation 1989;79:245-55.]
-  @JsonValue('122773')
   value122773,
 
   /// Display: Agreement with prior findings
   /// Definition: Agreement with prior findings
-  @JsonValue('122775')
   value122775,
 
   /// Display: Disagreement with prior findings
   /// Definition: Disagreement with prior findings
-  @JsonValue('122776')
   value122776,
 
   /// Display: Rest thallium/stress technetium procedure
   /// Definition: Nuclear Medicine Rest thallium/stress technetium procedure
-  @JsonValue('122781')
   value122781,
 
   /// Display: Rest technetium/stress technetium 1 day procedure
   /// Definition: Nuclear Medicine Rest technetium/stress technetium 1 day procedure
-  @JsonValue('122782')
   value122782,
 
   /// Display: Rest technetium/stress technetium 2 day procedure
   /// Definition: Nuclear Medicine Rest technetium/stress technetium 2 day procedure
-  @JsonValue('122783')
   value122783,
 
   /// Display: Stress technetium/rest technetium 1 day procedure
   /// Definition: Nuclear Medicine Stress technetium/rest technetium 1 day procedure
-  @JsonValue('122784')
   value122784,
 
   /// Display: NM Myocardial Viability procedure
   /// Definition: Nuclear Medicine Myocardial Viability procedure
-  @JsonValue('122785')
   value122785,
 
   /// Display: PET Myocardial Perfusion, Rest only
   /// Definition: Positron Emission Tomography Perfusion Imaging procedure, rest only
-  @JsonValue('122791')
   value122791,
 
   /// Display: PET Myocardial Perfusion, Stress only
   /// Definition: Positron Emission Tomography Perfusion Imaging procedure, stress only
-  @JsonValue('122792')
   value122792,
 
   /// Display: PET Myocardial Perfusion, Rest and Stress
   /// Definition: Positron Emission Tomography Perfusion Imaging procedure, rest and stress
-  @JsonValue('122793')
   value122793,
 
   /// Display: PET Myocardial Viability, Rest only
   /// Definition: Positron Emission Tomography Myocardial Viability procedure, rest only
-  @JsonValue('122795')
   value122795,
 
   /// Display: PET Myocardial Viability, Stress only
   /// Definition: Positron Emission Tomography Myocardial Viability procedure, stress only
-  @JsonValue('122796')
   value122796,
 
   /// Display: PET Myocardial Viability, Rest and Stress
   /// Definition: Positron Emission Tomography Myocardial Viability procedure, rest and stress
-  @JsonValue('122797')
   value122797,
 
   /// Display: Anginal Equivalent
   /// Definition: Group of symptoms heralding angina pectoris that does not include chest pain (dyspnea, diaphoresis, profuse vomiting in a diabetic patient, or arm or jaw pain)
-  @JsonValue('122799')
   value122799,
 
   /// Display: Radiopharmaceutical
   /// Definition: Active ingredient (molecular) used for radioactive tracing
-  @JsonValue('123001')
   value123001,
 
   /// Display: Radiopharmaceutical Start Time
   /// Definition: Time of radiopharmaceutical administration to the patient for imaging purposes
-  @JsonValue('123003')
   value123003,
 
   /// Display: Radiopharmaceutical Stop Time
   /// Definition: Ending time of radiopharmaceutical administration to the patient for imaging purposes
-  @JsonValue('123004')
   value123004,
 
   /// Display: Radiopharmaceutical Volume
   /// Definition: Volume of radiopharmaceutical administered to the patient
-  @JsonValue('123005')
   value123005,
 
   /// Display: Radionuclide Total Dose
   /// Definition: Total amount of radionuclide administered to the patient at Radiopharmaceutical Start Time
-  @JsonValue('123006')
   value123006,
 
   /// Display: Radiopharmaceutical Specific Activity
   /// Definition: Activity per unit mass of the radiopharmaceutical at Radiopharmaceutical Start Time
-  @JsonValue('123007')
   value123007,
 
   /// Display: Radionuclide Syringe Counts
   /// Definition: Pre-injection syringe acquisition count rate
-  @JsonValue('123009')
   value123009,
 
   /// Display: Radionuclide Residual Syringe Counts
   /// Definition: Syringe acquisition count rate following patient injection
-  @JsonValue('123010')
   value123010,
 
   /// Display: Contrast/Bolus Agent
   /// Definition: Contrast or bolus agent
-  @JsonValue('123011')
   value123011,
 
   /// Display: Pre-Medication
   /// Definition: Medication to be administered at the beginning of the Scheduled Procedure Step
-  @JsonValue('123012')
   value123012,
 
   /// Display: Target Region
   /// Definition: Anatomic Region to be imaged
-  @JsonValue('123014')
   value123014,
 
   /// Display: Imaging Direction
   /// Definition: Direction of imaging (includes view, transducer orientation, patient orientation, and/or projection)
-  @JsonValue('123015')
   value123015,
 
   /// Display: Imaging Conditions
   /// Definition: Imaging condition for refinement of protocol (includes secondary posture, instruction, X-Ray / electron beam energy or nuclide, and ultrasound modes), as used in JJ1017 v3.0
-  @JsonValue('123016')
   value123016,
 
   /// Display: Caudal 10 degree distal-cranioproximal oblique
   /// Definition: Caudal 10 degree distal-cranioproximal oblique radiographic projection, defined per Smallwood et al
-  @JsonValue('123019')
   value123019,
 
   /// Display: Neighborhood Analysis
   /// Definition: Surface processing utilizing predefined weighting factors (i.e., kernels) applied to different data values depending on their location relative to other data values within the data domain. Includes Low Pass, High Pass, Gaussian, Laplacian, etc.
-  @JsonValue('123101')
   value123101,
 
   /// Display: Adaptive Filtering
   /// Definition: Surface processing applied non-uniformly utilizing a priori knowledge of the system and/or relative locations of the data values within the data domain. Example: Neighborhood analysis where weighting factors are modified continuously based on predefined criteria
-  @JsonValue('123102')
   value123102,
 
   /// Display: Edge Detection
   /// Definition: Surface processing through the exploitation of discontinuities in the data values within their domain. Includes Gradient filters
-  @JsonValue('123103')
   value123103,
 
   /// Display: Morphological Operations
   /// Definition: Surface processing based on the connectivity of values based on the shape or structure of the data values within their domain. Includes erode, dilate, etc.
-  @JsonValue('123104')
   value123104,
 
   /// Display: Histogram Analysis
   /// Definition: Surface processing applied to the distribution of the data values. Includes thresholding, Bayesian Classification, etc.
-  @JsonValue('123105')
   value123105,
 
   /// Display: Multi-Scale/Resolution Filtering
   /// Definition: Surface processing accomplished through varying the data domain size. Include deformable models
-  @JsonValue('123106')
   value123106,
 
   /// Display: Cluster Analysis
   /// Definition: Surface processing accomplished by combining data values based on their relative location within their domain or value distribution. Includes K- and C-means, Fuzzy Analysis, Watershed, Seed Growing, etc.
-  @JsonValue('123107')
   value123107,
 
   /// Display: Multispectral Processing
   /// Definition: Surface processing accomplished through the weighted combination of multiple data sets. Includes Principle Component Analysis, linear and non-linear weighed combinations, etc.
-  @JsonValue('123108')
   value123108,
 
   /// Display: Manual Processing
   /// Definition: Surface processing accomplished through human interaction. Region drawing
-  @JsonValue('123109')
   value123109,
 
   /// Display: Artificial Intelligence
   /// Definition: Surface processing using Artificial Intelligence techniques, such as Machine Learning, Neural Networks, etc.
-  @JsonValue('123110')
   value123110,
 
   /// Display: Deformable Models
   /// Definition: Surface processing using Deformable Model techniques, such as Point Distribution Models, Level Sets, Simplex Meshes, etc.
-  @JsonValue('123111')
   value123111,
 
   /// Display: OB-GYN Ultrasound Procedure Report
   /// Definition: Document Title of OB-GYN procedure report
-  @JsonValue('125000')
   value125000,
 
   /// Display: Fetal Biometry Ratios
   /// Definition: Report section for assessment of fetal growth using ratios and indexes
-  @JsonValue('125001')
   value125001,
 
   /// Display: Fetal Biometry
   /// Definition: Report section for assessment of fetal growth
-  @JsonValue('125002')
   value125002,
 
   /// Display: Fetal Long Bones
   /// Definition: Report section for assessment of fetal growth by long bone measurements
-  @JsonValue('125003')
   value125003,
 
   /// Display: Fetal Cranium
   /// Definition: Report section for assessment of fetal cranium growth
-  @JsonValue('125004')
   value125004,
 
   /// Display: Biometry Group
   /// Definition: Biometric assessment of
-  @JsonValue('125005')
   value125005,
 
   /// Display: Biophysical Profile
   /// Definition: Report section for assessment of biophysical observations that evaluate fetal well-being according to Manning, Antepartum Fetal Evaluation: Development of a Fetal Biophysical Profile Score, Am. J Obstet Gynecol, 1980;136:787
-  @JsonValue('125006')
   value125006,
 
   /// Display: Measurement Group
   /// Definition: A grouping of related measurements and calculations that share a common context
-  @JsonValue('125007')
   value125007,
 
   /// Display: Fetus Summary
   /// Definition: Report section for fetus specific procedure summary observations
-  @JsonValue('125008')
   value125008,
 
   /// Display: Early Gestation
   /// Definition: Report section for assessment of early gestation fetus
-  @JsonValue('125009')
   value125009,
 
   /// Display: Identifier
   /// Definition: A name to differentiate between multiple instances of some item
-  @JsonValue('125010')
   value125010,
 
   /// Display: Pelvis and Uterus
   /// Definition: Report section for assessment of pelvis and uterus
-  @JsonValue('125011')
   value125011,
 
   /// Display: Growth Percentile rank
   /// Definition: The rank of a measured growth indicator relative to a normal distribution expressed as a percentage
-  @JsonValue('125012')
   value125012,
 
   /// Display: Growth Z-score
   /// Definition: The rank of a measured growth indicator relative to a normal distribution expressed as the dimensionless quantity z = (x-m) /s where (x-m) is the deviation of the value x, from the distribution mean, m, and s is the standard deviation of the distribution
-  @JsonValue('125013')
   value125013,
 
   /// Display: Fetus Characteristics
   /// Definition: Fetus characteristics (findings section title)
-  @JsonValue('125015')
   value125015,
 
   /// Display: Fetal Measurements
   /// Definition: Fetal Measurements (findings section title)
-  @JsonValue('125016')
   value125016,
 
   /// Display: Frame of Reference Identity
   /// Definition: There is a defined equivalence between the Frame of Reference of the Registration SOP instance and the Frame of Reference of the referenced images
-  @JsonValue('125021')
   value125021,
 
   /// Display: Fiducial Alignment
   /// Definition: The registration is based on fiducials that represent patient or specimen features identified in each data set
-  @JsonValue('125022')
   value125022,
 
   /// Display: Acquisition Equipment Alignment
   /// Definition: Registration based on a-priori knowledge of the acquisition geometry. This is not an object registration as in fiducial registration. Rather, it specifies a known spatial relationship
-  @JsonValue('125023')
   value125023,
 
   /// Display: Image Content-based Alignment
   /// Definition: Computed registration based on global image information
-  @JsonValue('125024')
   value125024,
 
   /// Display: Visual Alignment
   /// Definition: Registration by visually guided manipulation
-  @JsonValue('125025')
   value125025,
 
   /// Display: Inter-Hemispheric Plane
   /// Definition: A plane fiducial that specifies the location of the plane separating the two hemispheres of the brain
-  @JsonValue('125030')
   value125030,
 
   /// Display: Right Hemisphere Most Anterior
   /// Definition: A point fiducial that specifies the location in the plane perpendicular to the Anterior- Posterior-Commissure axis and tangential to the anterior limit of the right brain hemisphere
-  @JsonValue('125031')
   value125031,
 
   /// Display: Right Hemisphere Most Posterior
   /// Definition: A point fiducial that specifies the location in the plane perpendicular to the Anterior- Posterior-Commissure axis and tangential to the posterior limit of the right brain hemisphere
-  @JsonValue('125032')
   value125032,
 
   /// Display: Right Hemisphere Most Superior
   /// Definition: A point fiducial that specifies the location in the plane perpendicular to the Anterior- Posterior-Commissure axis and tangential to the superior limit of the right brain hemisphere
-  @JsonValue('125033')
   value125033,
 
   /// Display: Right Hemisphere Most Inferior
   /// Definition: A point fiducial that specifies the location in the plane perpendicular to the Anterior- Posterior-Commissure axis and tangential to the inferior limit of the Right brain hemisphere
-  @JsonValue('125034')
   value125034,
 
   /// Display: Left Hemisphere Most Anterior
   /// Definition: A point fiducial that specifies the location in the plane perpendicular to the Anterior- Posterior-Commissure axis and tangential to the anterior limit of the left brain hemisphere
-  @JsonValue('125035')
   value125035,
 
   /// Display: Left Hemisphere Most Posterior
   /// Definition: A point fiducial that specifies the location in the plane perpendicular to the Anterior- Posterior-Commissure axis and tangential to the posterior limit of the left brain hemisphere
-  @JsonValue('125036')
   value125036,
 
   /// Display: Left Hemisphere Most Superior
   /// Definition: A point fiducial that specifies the location in the plane perpendicular to the Anterior- Posterior-Commissure axis and tangential to the superior limit of the left brain hemisphere
-  @JsonValue('125037')
   value125037,
 
   /// Display: Left Hemisphere Most Inferior
   /// Definition: A point fiducial that specifies the location in the plane perpendicular to the Anterior- Posterior-Commissure axis and tangential to the inferior limit of the left brain hemisphere
-  @JsonValue('125038')
   value125038,
 
   /// Display: Background
   /// Definition: That which is not part of an object
-  @JsonValue('125040')
   value125040,
 
   /// Display: Registration Input
   /// Definition: A segment for use as an input to an image registration process; e.g. to specify the bounding region for determining a Frame of Reference Transformation Matrix
-  @JsonValue('125041')
   value125041,
 
   /// Display: Vascular Ultrasound Procedure Report
   /// Definition: Root Document Title for ultrasound vascular evidence reports (worksheets)
-  @JsonValue('125100')
   value125100,
 
   /// Display: Vessel Branch
   /// Definition: The particular vessel branch, such as the inferior, medial or lateral
-  @JsonValue('125101')
   value125101,
 
   /// Display: Graft Type
   /// Definition: A descriptor or elaboration of the type of graft
-  @JsonValue('125102')
   value125102,
 
   /// Display: Measurement Orientation
   /// Definition: A modifier to a 2D distance measurement to describe its orientation; e.g. a vascular distance measurement for a vessel plague could have a modifier Transverse or Longitudinal
-  @JsonValue('125105')
   value125105,
 
   /// Display: Doppler Angle
   /// Definition: The angle formed between the Doppler beam line and the direction of blood flow within a region of interest in the body defined by the sample volume
-  @JsonValue('125106')
   value125106,
 
   /// Display: Sample Volume Depth
   /// Definition: The depth of the center of the Doppler sample volume measured from skin line along the Doppler line
-  @JsonValue('125107')
   value125107,
 
   /// Display: Pediatric Cardiac Ultrasound Report
   /// Definition: Pediatric Cardiac Ultrasound Report (document title)
-  @JsonValue('125195')
   value125195,
 
   /// Display: Fetal Cardiac Ultrasound Report
   /// Definition: Fetal Cardiac Ultrasound Report (document title)
-  @JsonValue('125196')
   value125196,
 
   /// Display: Adult Congenital Cardiac Ultrasound Report
   /// Definition: Adult Congenital Cardiac Ultrasound Report (document title)
-  @JsonValue('125197')
   value125197,
 
   /// Display: Adult Echocardiography Procedure Report
   /// Definition: Document title of adult echocardiography procedure (evidence) report
-  @JsonValue('125200')
   value125200,
 
   /// Display: Illustration of Finding
   /// Definition: An image that is a pictorial representation of findings. The concept is typically used as a purpose of reference to an image, such as a depiction of myocardium segments depicting wall motion function
-  @JsonValue('125201')
   value125201,
 
   /// Display: LV Wall Motion Score Index
   /// Definition: The average of all scored (non-zero) Left Ventricle segment wall motion scores
-  @JsonValue('125202')
   value125202,
 
   /// Display: Acquisition Protocol
   /// Definition: A type of clinical acquisition protocol for creating images or image-derived measurements. Acquisition protocols may be specific to a manufacturer's product
-  @JsonValue('125203')
   value125203,
 
   /// Display: Area-length biplane
   /// Definition: Method for calculating left ventricular volume from two orthogonal views containing the true long axis (usually the apical 4 and 2 chamber views). Volume = [pL1 / 6] * [(4A1) ÷ (pL1) ] * [(4A2) ÷ (pL2) ]
-  @JsonValue('125204')
   value125204,
 
   /// Display: Area-Length Single Plane
   /// Definition: Method for calculating left ventricular volume from a view containing the true long axis (usually the apical 4-chamber view). Volume = [8(A)2]÷[3pL]
-  @JsonValue('125205')
   value125205,
 
   /// Display: Cube
   /// Definition: Method (formula) for calculating left ventricle volumes and function derivatives (EF, SV, SI, etc.) that estimates the volume as the cube of diameter
-  @JsonValue('125206')
   value125206,
 
   /// Display: Method of Disks, Biplane
   /// Definition: Method of calculating volume based on the summation of disk volumes. The disk axis is parallel to the left ventricular long axis and using a disk diameter averaged from the two chamber and four chamber views
-  @JsonValue('125207')
   value125207,
 
   /// Display: Method of Disks, Single Plane
   /// Definition: Method of calculating volume based on the summation of disk volumes. The disk axis is parallel to the left ventricular long axis with disk diameter taken from the four-chamber view
-  @JsonValue('125208')
   value125208,
 
   /// Display: Teichholz
   /// Definition: Method (formula) for calculating left ventricle volumes and function derivatives (EF, SV, SI, etc.) Volume = [7.0/(2.4+D) ]*D3
-  @JsonValue('125209')
   value125209,
 
   /// Display: Area by Pressure Half-Time
   /// Definition: Mitral valve area (cm2) by Pressure Half-time = 220 (cm2.ms) / PHT (ms)
-  @JsonValue('125210')
   value125210,
 
   /// Display: Biplane Ellipse
   /// Definition: Area = P/4 X d1 X d2 d1 = anterior/posterior axis d2 = medial/lateral axis Hagen-Ansert, Sandra L., Textbook of Diagnostic Ultrasound, ed. 3, The C.V.Mosby Co., 1989, p. 73.
-  @JsonValue('125211')
   value125211,
 
   /// Display: Continuity Equation
   /// Definition: For conduits in series ("in continuity"), volume flow is equal: A1*V1 = A2*V2. where V is the velocity
-  @JsonValue('125212')
   value125212,
 
   /// Display: Continuity Equation by Mean Velocity
   /// Definition: For conduits in series ("in continuity"), volume flow is equal: A1*V1 = A2*V2. where V is the mean velocity
-  @JsonValue('125213')
   value125213,
 
   /// Display: Continuity Equation by Peak Velocity
   /// Definition: For conduits in series ("in continuity"), volume flow is equal: A1*V1 = A2*V2. where V is the peak velocity
-  @JsonValue('125214')
   value125214,
 
   /// Display: Continuity Equation by Velocity Time Integral
   /// Definition: For conduits in series ("in continuity"), volume flow is equal: A1*V1 = A2*V2. where V is the velocity time integral
-  @JsonValue('125215')
   value125215,
 
   /// Display: Proximal Isovelocity Surface Area
   /// Definition: Utilizes aliasing velocity (by color Doppler) of flow into an orifice (often regurgitant or stenotic) to measure instantaneous flow rate, orifice area, and flow volume. The instantaneous flow rate = (2πr2vav ) * (α / π) where vav is the constant velocity known as aliasing velocity at radius r, vp is the peak velocity at the orifice, and α is the angle in radians of the constant velocity surface. Estimated Orifice area = Flow rate / vp , where vp is the peak velocity at the orifice and the flow rate is the PISA peak flow rate. The volume flow is then the product of the orifice area and Velocity Time Integral
-  @JsonValue('125216')
   value125216,
 
   /// Display: Full Bernoulli
   /// Definition: ΔP = 4*(V12 - V22)
-  @JsonValue('125217')
   value125217,
 
   /// Display: Simplified Bernoulli
   /// Definition: ΔP = 4*V2
-  @JsonValue('125218')
   value125218,
 
   /// Display: Doppler Volume Flow
   /// Definition: Volume flow = Conduit CSA * (Velocity Time Integral)
-  @JsonValue('125219')
   value125219,
 
   /// Display: Planimetry
   /// Definition: Direct measurement of an area by tracing an irregular perimeter
-  @JsonValue('125220')
   value125220,
 
   /// Display: Left Ventricle Mass by M-mode
   /// Definition: Mass = 1.04 * [(ST+LVID+PWT)3 - LVID3] * 0.8+ 0.6. Mass unit is grams and length in cm
-  @JsonValue('125221')
   value125221,
 
   /// Display: Left Ventricle Mass by Truncated Ellipse
   /// Definition: Mass = 1.05P ((b + t)2 X (2/3 (a + t) + d - d3 /3(a + t)2) - b2 (2/3a + d - d3 /3a2)) a = Semi-major axis from widest minor axis radius to apex. b = Short axis radius calculated from short axis cavity area t = Myocardial thickness calculated from short axis epicardial and cavity areas d = Truncated semi-major axis from widest short axis diameter to plane of mitral annulus. Mass unit is grams and length in cm. Schiller NB et al: Recommendations for quantification of the left ventricle by two-dimensional echocardiography, American Society of Echocardiography 2:364, 1989.
-  @JsonValue('125222')
   value125222,
 
   /// Display: 4 Point Segment Finding Scale
   /// Definition: A four point, echocardiographic numeric scoring scheme of myocardium segments based on evaluation of wall motion and ventricle morphology. Recommendations for Quantitation of the Left Ventricle by Two-Dimensional Echocardiography, Journal of the American Society of Echocardiography, 2:358-367, 1989
-  @JsonValue('125223')
   value125223,
 
   /// Display: 5 Point Segment Finding Scale
   /// Definition: A five point, echocardiographic numeric scoring scheme of myocardium segments based on evaluation of wall motion and ventricle morphology. Recommendations for Quantitation of the Left Ventricle by Two-Dimensional Echocardiography, Journal of the American Society of Echocardiography, 2:358-367, 1989
-  @JsonValue('125224')
   value125224,
 
   /// Display: 5 Point Segment Finding Scale With Graded Hypokinesis
   /// Definition: A five point, echocardiographic numeric scoring scheme of myocardium segments based on evaluation of wall motion and ventricle morphology, with severity of hypokinesis graded. Recommendations for Quantitation of the Left Ventricle by Two-Dimensional Echocardiography, Journal of the American Society of Echocardiography, 2:358-367, 1989
-  @JsonValue('125225')
   value125225,
 
   /// Display: Single Plane Ellipse
   /// Definition: Method of estimating volume from a planar ellipse. Equivalent to Biplane Ellipse with an assumption that the ellipse in the orthogonal plane has identical major and minor diameters
-  @JsonValue('125226')
   value125226,
 
   /// Display: Modified Simpson
   /// Definition: Modified Simpson's Method of estimating ventricular volume, based on the method of disks with paired apical views. Schiller NB, et al. "Recommendations for quantitation of the left ventricle by two-dimensional echocardiography. American Society of Echocardiography Committee on Standards, Subcommittee on Quantitation of Two-Dimensional Echocardiograms". J Am Soc Echocardiogr.1989 2(5):358-367. Sep-Oct
-  @JsonValue('125227')
   value125227,
 
   /// Display: Bullet Method
   /// Definition: Bullet method of estimating ventricular volume. Volume = 5/6 * L * S L: Left ventricle long axis length S: Left ventricle area, SAX view at level of Mitral Valve
-  @JsonValue('125228')
   value125228,
 
   /// Display: Power Doppler
   /// Definition: Color coded ultrasound images of blood flow, which depict the amplitude, or power, of Doppler signals
-  @JsonValue('125230')
   value125230,
 
   /// Display: 3D mode
   /// Definition: Volumetric ultrasound imaging
-  @JsonValue('125231')
   value125231,
 
   /// Display: Start of drug dose administration
   /// Definition: Onset of administration of dose of a drug
-  @JsonValue('125233')
   value125233,
 
   /// Display: Start of contrast agent administration
   /// Definition: Onset of contrast agent administration
-  @JsonValue('125234')
   value125234,
 
   /// Display: Destruction of microbubbles
   /// Definition: Destruction of ultrasonic contrast microbubbles by a high-energy ultrasound pulse
-  @JsonValue('125235')
   value125235,
 
   /// Display: Onset of exercise
   /// Definition: Instant at which exercise begins
-  @JsonValue('125236')
   value125236,
 
   /// Display: Cessation of exercise
   /// Definition: Instant at which exercise ends
-  @JsonValue('125237')
   value125237,
 
   /// Display: Onset of stimulation
   /// Definition: Instant at which stimulation begins
-  @JsonValue('125238')
   value125238,
 
   /// Display: Cessation of stimulation
   /// Definition: Instant at which stimulation ends
-  @JsonValue('125239')
   value125239,
 
   /// Display: Line scan pattern
   /// Definition: Ultrasound transducer scan pattern in which information is gathered along a line
-  @JsonValue('125240')
   value125240,
 
   /// Display: Plane scan pattern
   /// Definition: Ultrasound transducer scan pattern in which information is gathered within a plane
-  @JsonValue('125241')
   value125241,
 
   /// Display: Volume scan pattern
   /// Definition: Ultrasound transducer scan pattern in which information is gathered within a volume
-  @JsonValue('125242')
   value125242,
 
   /// Display: Non-imaging Doppler ultrasound transducer geometry
   /// Definition: Ultrasound transducer geometry characterized by a single scan line used for PW or CW Doppler scanning
-  @JsonValue('125251')
   value125251,
 
   /// Display: Linear ultrasound transducer geometry
   /// Definition: Ultrasonic transducer geometry characterized by parallel lines
-  @JsonValue('125252')
   value125252,
 
   /// Display: Curved linear ultrasound transducer geometry
   /// Definition: Ultrasonic transducer geometry characterized by radial lines normal to the outside of a curved surface
-  @JsonValue('125253')
   value125253,
 
   /// Display: Sector ultrasound transducer geometry
   /// Definition: Ultrasonic transducer geometry characterized by lines originating from a common apex
-  @JsonValue('125254')
   value125254,
 
   /// Display: Radial ultrasound transducer geometry
   /// Definition: Ultrasonic transducer geometry characterized by lines emanating radially from a single point
-  @JsonValue('125255')
   value125255,
 
   /// Display: Ring ultrasound transducer geometry
   /// Definition: Ultrasonic transducer geometry characterized by a circular ring of transducer elements
-  @JsonValue('125256')
   value125256,
 
   /// Display: Fixed beam direction
   /// Definition: Ultrasonic steering technique consisting of a single beam normal to the transducer face steered by the orientation of the probe
-  @JsonValue('125257')
   value125257,
 
   /// Display: Mechanical beam steering
   /// Definition: Ultrasonic steering technique consisting of mechanically directing the beam
-  @JsonValue('125258')
   value125258,
 
   /// Display: Phased beam steering
   /// Definition: Ultrasonic steering technique consisting of electronically-steered beams
-  @JsonValue('125259')
   value125259,
 
   /// Display: External Transducer
   /// Definition: Transducer is designed to be placed onto the surface of the subject
-  @JsonValue('125261')
   value125261,
 
   /// Display: Transesophageal Transducer
   /// Definition: Transducer is designed for insertion into the esophagus
-  @JsonValue('125262')
   value125262,
 
   /// Display: Endovaginal Transducer
   /// Definition: Transducer is designed for insertion into the vagina
-  @JsonValue('125263')
   value125263,
 
   /// Display: Endorectal Transducer
   /// Definition: Transducer is designed for insertion into the rectum
-  @JsonValue('125264')
   value125264,
 
   /// Display: Intravascular Transducer
   /// Definition: Transducer is designed for insertion via a catheter
-  @JsonValue('125265')
   value125265,
 
   /// Display: Left Ventricle Mass by Area Length
   /// Definition: method to measure the mass of the Left Ventricle via the ASE area-length method at end diastole. LV Mass = 1.05*(5/6*(A1*(L+t)) - 5/6*(A2*L)) A1 = Left Ventricle epicardial SAX area at the level of the papillary muscle tips at end diastole. A2 = Left Ventricle endocardial SAX area cavity area at the level of the papillary muscle tips at end diastole. L = Left Ventricle apical view long axis length at end diastole. t = Myocardial thickness can be computed as: t = sqrt (A1/3.14) - sqrt (A2/3.14) Reference: 1) Schiller, N.B., et al. "Recommendations for Quantification of the LV by Two-dimensional Echocardiography." J Am Soc Echo, Vol. 2, No. 5: 358-367, Sep-Oct 1989. 2) Reichek, N., et al. "Anatomic Validation of Left Ventricular Mass Estimates from Clinical Two-dimensional Echocardiography: Initial Results." Circulation, Vol. 67, No. 2: 348-52, February 1983
-  @JsonValue('125270')
   value125270,
 
   /// Display: Left Ventricle Mass by M-mode - adjusted by Height
   /// Definition: Equation = Left Ventricle Mass by M-mode (in gram) / (Height (in meter)) ^2.7 Reference: Giovanni De Simone, et al. "Effect of Growth on Variability of Left Ventricular Mass: Assessment of Allometric Signals in Adults and Children and Their Capacity to Predict Cardiovascular Risk". New York, New York and Cincinnati, Ohio
-  @JsonValue('125271')
   value125271,
 
   /// Display: Left Ventricle Mass by Truncated Ellipse - adjusted by Height
   /// Definition: Equation = Left Ventricle Mass by Truncated Ellipse / Height^2.7 Reference: Giovanni De Simone, et al. "Effect of Growth on Variability of Left Ventricular Mass: Assessment of Allometric Signals in Adults and Children and Their Capacity to Predict Cardiovascular Risk". New York, New York and Cincinnati, Ohio
-  @JsonValue('125272')
   value125272,
 
   /// Display: Left Ventricle Mass by Area Length - adjusted by Height
   /// Definition: Equation = Left Ventricle Mass by Area Length / Height^2.7 Reference: Giovanni De Simone, et al. "Effect of Growth on Variability of Left Ventricular Mass: Assessment of Allometric Signals in Adults and Children and Their Capacity to Predict Cardiovascular Risk". New York, New York and Cincinnati, Ohio
-  @JsonValue('125273')
   value125273,
 
   /// Display: CARDIOsphere
   /// Definition: CARDIOsphere ultrasonic contrast agent produced by POINT Biomedical
-  @JsonValue('125901')
   value125901,
 
   /// Display: Echovist
   /// Definition: Echovist® ultrasonic contrast agent produced by Schering AG
-  @JsonValue('125902')
   value125902,
 
   /// Display: Imagify
   /// Definition: Imagify ultrasonic contrast agent produced by Accusphere Inc
-  @JsonValue('125903')
   value125903,
 
   /// Display: Levovist
   /// Definition: Levovist® ultrasonic contrast agent produced by Schering AG
-  @JsonValue('125904')
   value125904,
 
   /// Display: Sonazoid
   /// Definition: Sonazoid ultrasonic contrast agent produced by Daiichi Pharmaceutical / General Electric
-  @JsonValue('125905')
   value125905,
 
   /// Display: SonoVue
   /// Definition: SonoVue ultrasonic contrast agent produced by Bracco Diagnostics
-  @JsonValue('125906')
   value125906,
 
   /// Display: Targestar-B
   /// Definition: Targestar-B ultrasonic contrast agent produced by Targeson LLC
-  @JsonValue('125907')
   value125907,
 
   /// Display: Targestar-P
   /// Definition: Targestar-P ultrasonic contrast agent produced by Targeson LLC
-  @JsonValue('125908')
   value125908,
 
   /// Display: Imaging Measurement Report
   /// Definition: A structured report containing the quantitative results of human or machine analysis of images
-  @JsonValue('126000')
   value126000,
 
   /// Display: Oncology Measurement Report
   /// Definition: A structured report containing the quantitative results of human or machine analysis of images for oncology evaluation
-  @JsonValue('126001')
   value126001,
 
   /// Display: Dynamic Contrast MR Measurement Report
   /// Definition: A structured report containing the quantitative results of human or machine analysis of DCE-MR
-  @JsonValue('126002')
   value126002,
 
   /// Display: PET Measurement Report
   /// Definition: A structured report containing the quantitative results of human or machine analysis of PET images
-  @JsonValue('126003')
   value126003,
 
   /// Display: Imaging Measurements
   /// Definition: Measurements made on images
-  @JsonValue('126010')
   value126010,
 
   /// Display: Derived Imaging Measurements
   /// Definition: Measurements derived from measurements made on images
-  @JsonValue('126011')
   value126011,
 
   /// Display: Multiparametric MRI
   /// Definition: An MRI procedure in which multiple parameters including diffusion, dynamic contrast and T2 are measured
-  @JsonValue('126020')
   value126020,
 
   /// Display: Multiparametric MRI of prostate
   /// Definition: An MRI procedure of the prostate in which multiple parameters including diffusion, dynamic contrast and T2 are measured
-  @JsonValue('126021')
   value126021,
 
   /// Display: Multiparametric MRI of whole body
   /// Definition: An MRI procedure of the whole body in which multiple parameters including diffusion, dynamic contrast and T2 are measured
-  @JsonValue('126022')
   value126022,
 
   /// Display: Sum of segmented voxel volumes
   /// Definition: The volume derived by summing the volumes of all the voxels (and partial voxels if the segment contains partially occupied voxels) included in the segment
-  @JsonValue('126030')
   value126030,
 
   /// Display: Peak Value Within ROI
   /// Definition: Maximum average gray value that is calculated from a 1 cubic centimeter sphere placed within the region of interest. Reference Wahl et al PERCIST article
-  @JsonValue('126031')
   value126031,
 
   /// Display: Metabolic Volume
   /// Definition: The volume of a lesion (e.g. a tumor) ascertained through information about its metabolic activity (e.g. SUV on PET). Abbreviated "MV". Synonymous with Metabolic Tumor Volume (MTV)
-  @JsonValue('126032')
   value126032,
 
   /// Display: Total Lesion Glycolysis
   /// Definition: The total activity of a lesion obtained as the product of its volume and its glycolytic activity (on FDG-PET). The volume may be defined on the same modality (e.g. the MV on FDG-PET by some thresholding or other technique) or on another spatially registered modality (e.g. the lesion outline segmented on CT or MR). Does not apply to other radiopharmaceuticals than those involved in glucose metabolism. Abbreviated TLG. Synonymnous with "Tumor Lesion Glycolysis"
-  @JsonValue('126033')
   value126033,
 
   /// Display: Glycolysis
   /// Definition: The amount glycolytic activity summed across all voxels in a defined region or within a defined range of SUV (on FDG-PET)
-  @JsonValue('126034')
   value126034,
 
   /// Display: Total Lesion Proliferation
   /// Definition: The total activity of a lesion obtained as the product of its volume and its proliferative activity (on FLT-PET). The volume may be defined on the same modality (e.g. the MV on FDG-PET by some thresholding or other technique) or on another spatially registered modality (e.g. the lesion outline segmented on CT or MR). Does not apply to other radiopharmaceuticals than those involved in cellular proliferation. Abbreviated TLP. Synonymnous with "Tumor Lesion Proliferation"
-  @JsonValue('126035')
   value126035,
 
   /// Display: Proliferative Activity
   /// Definition: The amount proliferative activity summed across all voxels in a defined region or within a defined range of SUV (on FLT-PET)
-  @JsonValue('126036')
   value126036,
 
   /// Display: Standardized Added Metabolic Activity (SAM)
   /// Definition: A background-corrected, partial volume independent version of TLG. SAM is calculated by drawing a volume of interest (VOI1) around the tumour and a larger VOI (VOI2) around VOI1. Subtracting the background activity in VOI2-VOI1 from VOI1 yields SAM. See Mertens et al. "Standardized added metabolic activity (SAM): a partial volume independent marker of total lesion glycolysis in liver metastases". Eur J Nucl Med Mol Imaging (2012) 39:1441-1448
-  @JsonValue('126037')
   value126037,
 
   /// Display: Standardized Added Metabolic Activity (SAM) Background
   /// Definition: The background value (VOI2-VOI1) used to calculate Standardized Added Metabolic Activity (SAM). SAM is calculated by drawing a volume of interest (VOI1) around the tumour and a larger VOI (VOI2) around VOI1. Subtracting the background activity in VOI2-VOI1 from VOI1 yields SAM. See Mertens et al. "Standardized added metabolic activity (SAM): a partial volume independent marker of total lesion glycolysis in liver metastases". Eur J Nucl Med Mol Imaging (2012) 39:1441-1448
-  @JsonValue('126038')
   value126038,
 
   /// Display: Lesion to Background SUV Ratio
   /// Definition: The ratio of the SUV within a tumor to the SUV of a pre-defined background region. Need reference(s). A more general concept than Tumor to Background Ratio (TBR)
-  @JsonValue('126039')
   value126039,
 
   /// Display: Background for Lesion to Background SUV Ratio
   /// Definition: The SUV of a pre-defined background region used to compute Lesion to Background SUV Ratio. Need reference(s)
-  @JsonValue('126040')
   value126040,
 
   /// Display: Fractal Dimension
   /// Definition: A statistical index of complexity comparing how detail in a fractal pattern changes with the scale at which it is measured; a ratio of the change in detail to the change in scale
-  @JsonValue('126050')
   value126050,
 
   /// Display: Skewness
   /// Definition: Measure of the asymmetry of the probability distribution of a real-valued random variable about its mean
-  @JsonValue('126051')
   value126051,
 
   /// Display: Kurtosis
   /// Definition: Measure of the peakedness of the probability distribution of a real-valued random variable
-  @JsonValue('126052')
   value126052,
 
   /// Display: Entropy of GLCM
   /// Definition: The zero order entropy of a Gray Level Co-occurrence Matrix (GLCM). A measure of disorder. See http://www.fp.ucalgary.ca/mhallbey/equations.htm
-  @JsonValue('126060')
   value126060,
 
   /// Display: Energy of GLCM
   /// Definition: The energy (uniformity) (square root of the Angular Second Moment (ASM)) of a Gray Level Co-occurrence Matrix (GLCM). A measure of orderliness. See http://www.fp.ucalgary.ca/mhallbey/equations.htm
-  @JsonValue('126061')
   value126061,
 
   /// Display: Homogeneity of GLCM
   /// Definition: The Inverse Difference Moment of a Gray Level Co-occurrence Matrix (GLCM). See http://www.fp.ucalgary.ca/mhallbey/equations.htm
-  @JsonValue('126062')
   value126062,
 
   /// Display: Contrast of GLCM
   /// Definition: The sum of squares variance of a Gray Level Co-occurrence Matrix (GLCM). See http://www.fp.ucalgary.ca/mhallbey/equations.htm
-  @JsonValue('126063')
   value126063,
 
   /// Display: Dissimilarity of GLCM
   /// Definition: The dissimilarity of a Gray Level Co-occurrence Matrix (GLCM). See http://www.fp.ucalgary.ca/mhallbey/equations.htm
-  @JsonValue('126064')
   value126064,
 
   /// Display: ASM of GLCM
   /// Definition: The Angular Second Moment of a Gray Level Co-occurrence Matrix (GLCM). See http://www.fp.ucalgary.ca/mhallbey/equations.htm
-  @JsonValue('126065')
   value126065,
 
   /// Display: Correlation of GLCM
   /// Definition: A measure of the linear dependency of grey levels on those of neighbouring pixels of a Gray Level Co-occurrence Matrix (GLCM). See http://www.fp.ucalgary.ca/mhallbey/equations.htm
-  @JsonValue('126066')
   value126066,
 
   /// Display: Gray Level Co-occurrence Matrix (GLCM)
   /// Definition: A tabulation of how often different combinations of pixel values (grey levels) occur in an image. See http://www.fp.ucalgary.ca/mhallbey/the_glcm.htm
-  @JsonValue('126067')
   value126067,
 
   /// Display: Subject Time Point Identifier
   /// Definition: An identifier of a specific time point in a continuum, which is unique within an appropriate local context (such as an entire organization, system or treatment protocol), which identifies the time point for a specific patient
-  @JsonValue('126070')
   value126070,
 
   /// Display: Protocol Time Point Identifier
   /// Definition: An identifier of a specific time point in a continuum, which is unique within an appropriate local context (such as an entire organization, system or treatment protocol), which identifies the time point "slot" within a treatment protocol using the same value for all patients in the protocol
-  @JsonValue('126071')
   value126071,
 
   /// Display: Time Point Type
   /// Definition: A pre-defined type of a specific time point in a continuum
-  @JsonValue('126072')
   value126072,
 
   /// Display: Time Point Order
   /// Definition: A number indicating the order of a time point relative to other time points in the same continuum
-  @JsonValue('126073')
   value126073,
 
   /// Display: Posttreatment
   /// Definition: The time after the treatment of interest
-  @JsonValue('126074')
   value126074,
 
   /// Display: Eligibility
   /// Definition: For the purpose of determining eligibility for a protocol
-  @JsonValue('126075')
   value126075,
 
   /// Display: RECIST 1.0
   /// Definition: Response Evaluation Criteria in Solid Tumors version 1.0. See [RECIST] in Normative References
-  @JsonValue('126080')
   value126080,
 
   /// Display: RECIST 1.1
   /// Definition: Response Evaluation Criteria in Solid Tumors Version 1.1. See Eisenhauer et al. "New Response Evaluation Criteria in Solid Tumours: Revised RECIST Guideline (version 1.1)." European Journal of Cancer 45, no. 2 (n.d.): 228-47. doi:10.1016/j.ejca.2008.10.026.
-  @JsonValue('126081')
   value126081,
 
   /// Display: Real World Value Map used for measurement
   /// Definition: A reference to the Real World Value Map applied to the stored image pixel values before their use for a measurement
-  @JsonValue('126100')
   value126100,
 
   /// Display: Image Library Group
   /// Definition: A container that groups common information about a set of images used as evidence to produce a report
-  @JsonValue('126200')
   value126200,
 
   /// Display: Acquisition Date
   /// Definition: The date the acquisition of data started
-  @JsonValue('126201')
   value126201,
 
   /// Display: Acquisition Time
   /// Definition: The time the acquisition of data started
-  @JsonValue('126202')
   value126202,
 
   /// Display: PET Radionuclide Incubation Time
   /// Definition: The time between the start of injection of the PET radionuclide and the start of acquisition of the PET data
-  @JsonValue('126203')
   value126203,
 
   /// Display: R2-Coefficient
   /// Definition: Coefficient of determination, R2. An indication of goodness of fit
-  @JsonValue('126220')
   value126220,
 
   /// Display: Perfusion analysis by Stable Xenon CT technique
   /// Definition: Perfusion analysis by Stable Xenon CT technique
-  @JsonValue('126300')
   value126300,
 
   /// Display: Perfusion analysis by IV Iodinated Contrast CT technique
   /// Definition: Perfusion analysis by IV Iodinated Contrast CT technique
-  @JsonValue('126301')
   value126301,
 
   /// Display: Perfusion analysis by Arterial Spin Labeling MR technique
   /// Definition: Perfusion analysis by Arterial Spin Labeling (ASL) MR technique
-  @JsonValue('126302')
   value126302,
 
   /// Display: Perfusion analysis by Susceptibility MR technique
   /// Definition: Perfusion analysis by Susceptibility (T2*) MR technique
-  @JsonValue('126303')
   value126303,
 
   /// Display: Least Mean Square (LMS) deconvolution
   /// Definition: Least Mean Square (LMS) deconvolution
-  @JsonValue('126310')
   value126310,
 
   /// Display: Singular Value Decomposition (SVD) deconvolution
   /// Definition: Singular Value Decomposition (SVD) deconvolution
-  @JsonValue('126311')
   value126311,
 
   /// Display: Ktrans
   /// Definition: Ktrans, the volume transfer constant of a tracer diffusion kinetic model, specifically the volume transfer constant between blood plasma and extravascular extracellular space (EES) See Tofts et al, "Estimating Kinetic Parameters From Dynamic Contrast-Enhanced T1-Weighted MRI of a Diffusable Tracer: Standardized Quantities and Symbols", Journal of Magnetic Resonance Imaging, vol. 10, pp. 223-232, 1999
-  @JsonValue('126312')
   value126312,
 
   /// Display: kep
   /// Definition: kep, the rate constant between extravascular extracellular space (EES) and blood plasma See Tofts et al, "Estimating Kinetic Parameters From Dynamic Contrast-Enhanced T1-Weighted MRI of a Diffusable Tracer: Standardized Quantities and Symbols", Journal of Magnetic Resonance Imaging, vol. 10, pp. 223-232, 1999
-  @JsonValue('126313')
   value126313,
 
   /// Display: ve
   /// Definition: ve, the fractional (not absolute) volume of extravascular extracellular space (EES) per unit volume of tissue See Tofts et al, "Estimating Kinetic Parameters From Dynamic Contrast-Enhanced T1-Weighted MRI of a Diffusable Tracer: Standardized Quantities and Symbols", Journal of Magnetic Resonance Imaging, vol. 10, pp. 223-232, 1999
-  @JsonValue('126314')
   value126314,
 
   /// Display: IAUC
   /// Definition: The intial area under the contrast agent concentration-time curve
-  @JsonValue('126320')
   value126320,
 
   /// Display: IAUC60
   /// Definition: The intial area under the contrast agent concentration-time curve at 60 seconds after the onset time
-  @JsonValue('126321')
   value126321,
 
   /// Display: IAUC90
   /// Definition: The intial area under the contrast agent concentration-time curve at 90 seconds after the onset time
-  @JsonValue('126322')
   value126322,
 
   /// Display: tau_m
   /// Definition: τm. The mean intracellular water lifetime (τi). Used in the Shutter-Speed Model (SSM) of tracer kinetics
-  @JsonValue('126330')
   value126330,
 
   /// Display: vp
   /// Definition: vp. The fractional (not absolute) blood plasma volume per unit volume of tissue. See Tofts et al, "Estimating Kinetic Parameters From Dynamic Contrast-Enhanced T1-Weighted MRI of a Diffusable Tracer: Standardized Quantities and Symbols", Journal of Magnetic Resonance Imaging, vol. 10, pp. 223-232, 1999
-  @JsonValue('126331')
   value126331,
 
   /// Display: Standard Tofts Model
   /// Definition: A tracer diffusion kinetic model in which the permeability is assumed to be isodirectional. See P. Tofts, "Modeling tracer kinetics in dynamic Gd-DTPA MR imaging", Journal of Magnetic Resonance Imaging, vol. 7, pp. 91-101, 1997
-  @JsonValue('126340')
   value126340,
 
   /// Display: Extended Tofts Model
   /// Definition: A tracer diffusion kinetic model in which the permeability is not assumed to be isodirectional, and which includes the contribution of tracer in the blood plasma to the total tissue concentration. See P. Tofts, "Modeling tracer kinetics in dynamic Gd-DTPA MR imaging", Journal of Magnetic Resonance Imaging, vol. 7, pp. 91-101, 1997
-  @JsonValue('126341')
   value126341,
 
   /// Display: Model-free concentration-time quantitification
   /// Definition: A semiquantitative analysis of the contrast-enhancement concentration versus time curve that avoids the use of a pharmacokinetic model; e.g. integration to compute the initial area under the curve
-  @JsonValue('126342')
   value126342,
 
   /// Display: First Pass Leakage Profile (FPLP)
   /// Definition: A tracer diffusion kinetic model that accounts for the tumor leakage profile during the first pass of contrast. See Li, Ka-Loh, Xiao Ping Zhu, John Waterton, and Alan Jackson. "Improved 3D Quantitative Mapping of Blood Volume and Endothelial Permeability in Brain Tumors." Journal of Magnetic Resonance Imaging 12, no. 2 (2000): 347-357. doi:10.1002/1522-2586(200008)12:2<347::AID-JMRI19>3.0.CO;2-7
-  @JsonValue('126343')
   value126343,
 
   /// Display: Shutter-Speed Model (SSM)
   /// Definition: A tracer diffusion kinetic model that does not assume that intercompartmental water molecule exchange is infinitely fast. See Li, Xin, Wei Huang, Thomas E. Yankeelov, Alina Tudorica, William D. Rooney, and Charles S. Springer. "Shutter-Speed Analysis of Contrast Reagent Bolus-Tracking Data: Preliminary Observations in Benign and Malignant Breast Disease." Magnetic Resonance in Medicine 53, no. 3 (2005): 724-29. doi:10.1002/mrm.20405
-  @JsonValue('126344')
   value126344,
 
   /// Display: T1 by Multiple Flip Angles
   /// Definition: T1 measurement by Multiple Flip Angles (MFA) (variable saturation) method
-  @JsonValue('126350')
   value126350,
 
   /// Display: T1 by Inversion Recovery
   /// Definition: T1 measurement by Inversion Recovery (IR) method
-  @JsonValue('126351')
   value126351,
 
   /// Display: T1 by Fixed Value
   /// Definition: Calculation was performed using a fixed value of T1 rather than a measured value. The value could be encoded as the value of (126353, DCM, "T1 Used For Calculation")
-  @JsonValue('126352')
   value126352,
 
   /// Display: T1 Used For Calculation
   /// Definition: The fixed value of T1 used for a calculation
-  @JsonValue('126353')
   value126353,
 
   /// Display: AIF Ignored
   /// Definition: No Arterial Input Function was used
-  @JsonValue('126360')
   value126360,
 
   /// Display: Population Averaged AIF
   /// Definition: A population-averaged Arterial Input Function
-  @JsonValue('126361')
   value126361,
 
   /// Display: User-defined AIF ROI
   /// Definition: An Arterial Input Function computed from a user-defined Region of Interest
-  @JsonValue('126362')
   value126362,
 
   /// Display: Automatically Detected AIF ROI
   /// Definition: An Arterial Input Function computed from an automatically detected Region of Interest
-  @JsonValue('126363')
   value126363,
 
   /// Display: Blind Estimation of AIF
   /// Definition: A data-driven blind source separation (BSS) algorithm that estimates AIF from individuals without any presumed AIF model and initialization. See Lin, Yu-Chun, Tsung-Han Chan, Chong-Yung Chi, Shu-Hang Ng, Hao-Li Liu, Kuo-Chen Wei, Yau-Yau Wai, Chun-Chieh Wang, and Jiun-Jie Wang. "Blind Estimation of the Arterial Input Function in Dynamic Contrast-Enhanced MRI Using Purity Maximization." Magnetic Resonance in Medicine 68, no. 5 (November 1, 2012): 1439-49. doi:10.1002/mrm.24144
-  @JsonValue('126364')
   value126364,
 
   /// Display: Time of Peak Concentration
   /// Definition: The time at which the concentration-time curve achieves its peak for the first time. Used as a concept name for a value or as a method; e.g. used as a method of calculation for BAT. See Shpilfoygel Med Phys 2008. doi: 10.1118/1.1288669
-  @JsonValue('126370')
   value126370,
 
   /// Display: Bolus Arrival Time
   /// Definition: The nominal time at which arrival of a contrast bolus is detected, which is used as a reference point for subsequent calculations. Used as a concept name for a value or as a method. No specific computational method is implied by this general definition. Abbreviated BAT
-  @JsonValue('126371')
   value126371,
 
   /// Display: Time of Leading Half-Peak Concentration
   /// Definition: The time at which the concentration-time curve achieves half of its peak density for the first time. Used as a concept name for a value or as a method; e.g. used as a method of calculation for BAT. See Shpilfoygel Med Phys 2008. doi: 10.1118/1.1288669
-  @JsonValue('126372')
   value126372,
 
   /// Display: Temporal Derivative Exceeds Threshold
   /// Definition: A method of determining BAT that involves computing the temporal derivative of the concentration-time curve and selecting the time when the temporal derivative exceeds a specified threshold. See Shpilfoygel Med Phys 2008. doi: 10.1118/1.1288669
-  @JsonValue('126373')
   value126373,
 
   /// Display: Temporal Derivative Threshold
   /// Definition: A threshold applied to the temporal derivative of the concentration-time curve; e.g. used to establish BAT. See Shpilfoygel Med Phys 2008. doi: 10.1118/1.1288669
-  @JsonValue('126374')
   value126374,
 
   /// Display: Maximum Slope
   /// Definition: The maximum rate of signal intensity change within a measured region of a time-activity curve. See Boonsirikamchai, Piyaporn, Harmeet Kaur, Deborah A. Kuban, Edward Jackson, Ping Hou, and Haesun Choi. "Use of Maximum Slope Images Generated From Dynamic Contrast-Enhanced MRI to Detect Locally Recurrent Prostate Carcinoma After Prostatectomy: A Practical Approach." American Journal of Roentgenology 198, no. 3 (March 1, 2012): W228-W236. doi:10.2214/AJR.10.6387
-  @JsonValue('126375')
   value126375,
 
   /// Display: Maximum Difference
   /// Definition: The maximum degree of signal intensity change within a measured region of a time-activity curve. See Boonsirikamchai, Piyaporn, Harmeet Kaur, Deborah A. Kuban, Edward Jackson, Ping Hou, and Haesun Choi. "Use of Maximum Slope Images Generated From Dynamic Contrast-Enhanced MRI to Detect Locally Recurrent Prostate Carcinoma After Prostatectomy: A Practical Approach." American Journal of Roentgenology 198, no. 3 (March 1, 2012): W228-W236. doi:10.2214/AJR.10.6387
-  @JsonValue('126376')
   value126376,
 
   /// Display: Tracer Concentration
   /// Definition: Tracer concentration in tissue; e.g. in a DCE-MR experiment, the concentration of contrast agent in mmol/l
-  @JsonValue('126377')
   value126377,
 
   /// Display: Contrast Longitudinal Relaxivity
   /// Definition: The degree to which a paramagnetic contrast agent can enhance the proton longitudinal relaxation rate constant (R1, 1/T1), normalized to the concentration of the contrast agent. Also referred to as r1. Typically expressed in units of l/mmol/s
-  @JsonValue('126380')
   value126380,
 
   /// Display: Regional Blood Flow
   /// Definition: The flow rate of blood perfusing a region as volume per mass per unit of time
-  @JsonValue('126390')
   value126390,
 
   /// Display: Regional Blood Volume
   /// Definition: The volume of blood perfusing a region as volume per mass
-  @JsonValue('126391')
   value126391,
 
   /// Display: Oxygen Extraction Fraction
   /// Definition: The percent of the oxygen removed from the blood by tissue during its passage through the capillary network. For example, as measured by blood oxygenation level dependent (BOLD) MR. See He, Xiang, and Dmitriy A. Yablonskiy. "Quantitative BOLD: Mapping of Human Cerebral Deoxygenated Blood Volume and Oxygen Extraction Fraction: Default State." Magnetic Resonance in Medicine 57, no. 1 (2007): 115-26
-  @JsonValue('126392')
   value126392,
 
   /// Display: R1
   /// Definition: The longitiudinal relaxation rate constant. The inverse of longitudinal relaxation time, i.e., R1 = 1/T1
-  @JsonValue('126393')
   value126393,
 
   /// Display: R2
   /// Definition: The transverse relaxation rate constant. The inverse of transverse relaxation time, i.e., R2 = 1/T2
-  @JsonValue('126394')
   value126394,
 
   /// Display: Standardized Uptake Value
   /// Definition: A ratio of locally measured radioactivity concentration versus the injected radioactivity distributed evenly throughout the whole body. This general concept encompasses all specific methods of calculating the whole body volume of distribution, such as using body weight, lean body mass, body surface area, etc.
-  @JsonValue('126400')
   value126400,
 
   /// Display: SUVbw
   /// Definition: Standardized Uptake Value calculated using body weight. The patient size correction factor for males and females is body weight. Defined in Sugawara et al. Reevaluation of the Standardized Uptake Value for FDG: Variations with Body Weight and Methods for Correction.Radiology, 1999 at http://radiology.rsna.org/content/213/2/521
-  @JsonValue('126401')
   value126401,
 
   /// Display: SUVlbm
   /// Definition: Standardized Uptake Value calculated using lean body mass. The patient size correction factor for males is 1.10 * weight - 120 * (weight/height) ^2, and for females is 1.07 * weight - 148 * (weight/height) ^2. Defined in Sugawara et al. Reevaluation of the Standardized Uptake Value for FDG: Variations with Body Weight and Methods for Correction.Radiology, 1999 at http://radiology.rsna.org/content/213/2/521
-  @JsonValue('126402')
   value126402,
 
   /// Display: SUVbsa
   /// Definition: Standardized Uptake Value calculated using body surface area. The patient size correction factor for males and females is weight^ 0.425 * height^0.725 * 0.007184. Defined in Sugawara et al. Reevaluation of the Standardized Uptake Value for FDG: Variations with Body Weight and Methods for Correction.Radiology, 1999 at http://radiology.rsna.org/content/213/2/521
-  @JsonValue('126403')
   value126403,
 
   /// Display: SUVibw
   /// Definition: Standardized Uptake Value calculated using ideal body weight. The patient size correction factor for males is 48.0 + 1.06 * (height - 152) and for females is 45.5 + 0.91 * (height - 152). Defined in Sugawara et al. Reevaluation of the Standardized Uptake Value for FDG: Variations with Body Weight and Methods for Correction.Radiology, 1999 at http://radiology.rsna.org/content/213/2/521
-  @JsonValue('126404')
   value126404,
 
   /// Display: SUV body weight calculation method
   /// Definition: Method of calculating Standardized Uptake Value using body weight. The patient size correction factor for males and females is body weight. Defined in Sugawara et al. Reevaluation of the Standardized Uptake Value for FDG: Variations with Body Weight and Methods for Correction.Radiology, 1999 at http://radiology.rsna.org/content/213/2/521
-  @JsonValue('126410')
   value126410,
 
   /// Display: SUV lean body mass calculation method
   /// Definition: Method of calculating Standardized Uptake Value using lean body mass. The patient size correction factor for males is 1.10 * weight - 120 * (weight/height) ^2, and for females is 1.07 * weight - 148 * (weight/height) ^2. Defined in Sugawara et al. Reevaluation of the Standardized Uptake Value for FDG: Variations with Body Weight and Methods for Correction.Radiology, 1999 at http://radiology.rsna.org/content/213/2/521
-  @JsonValue('126411')
   value126411,
 
   /// Display: SUV body surface area calculation method
   /// Definition: Method of calculating Standardized Uptake Value using body surface area. The patient size correction factor for males and females is weight^ 0.425 * height^0.725 * 0.007184. Defined in Sugawara et al. Reevaluation of the Standardized Uptake Value for FDG: Variations with Body Weight and Methods for Correction.Radiology, 1999 at http://radiology.rsna.org/content/213/2/521
-  @JsonValue('126412')
   value126412,
 
   /// Display: SUV ideal body weight calculation method
   /// Definition: Method of calculating Standardized Uptake Value using ideal body weight. The patient size correction factor for males is 48.0 + 1.06 * (height - 152) and for females is 45.5 + 0.91 * (height - 152). Defined in Sugawara et al. Reevaluation of the Standardized Uptake Value for FDG: Variations with Body Weight and Methods for Correction.Radiology, 1999 at http://radiology.rsna.org/content/213/2/521
-  @JsonValue('126413')
   value126413,
 
   /// Display: Pittsburgh compound B C^11^
   /// Definition: A beta-amyloid PET radiotracer that is an analog of thioflavin T
-  @JsonValue('126500')
   value126500,
 
   /// Display: Florbetaben F^18^
   /// Definition: A beta-amyloid PET radiotracer
-  @JsonValue('126501')
   value126501,
 
   /// Display: T807 F^18^
   /// Definition: A PHF-tau PET radiotracer
-  @JsonValue('126502')
   value126502,
 
   /// Display: Flubatine F^18^
   /// Definition: A nicotinic α4β2 receptor (nAChR) PET radiotracer
-  @JsonValue('126503')
   value126503,
 
   /// Display: Monoclonal Antibody (mAb) ^64^Cu
   /// Definition: A Cu 64 Monoclonal Antibody (mAb) PET Radiotracer
-  @JsonValue('126510')
   value126510,
 
   /// Display: Monoclonal Antibody (mAb) ^89^Zr
   /// Definition: A Zr 89 Monoclonal Antibody (mAb) PET Radiotracer
-  @JsonValue('126511')
   value126511,
 
   /// Display: Trastuzumab ^89^Zr
   /// Definition: A Zr 89 Trastuzumab PET Radiotracer
-  @JsonValue('126512')
   value126512,
 
   /// Display: Cetuximab ^89^Zr
   /// Definition: A Zr 89 Cetuximab PET Radiotracer
-  @JsonValue('126513')
   value126513,
 
   /// Display: J591 ^89^Zr
   /// Definition: A Zr 89 J591 PET Radiotracer
-  @JsonValue('126514')
   value126514,
 
   /// Display: cU36 ^89^Zr
   /// Definition: A Zr 89 cU36 PET Radiotracer
-  @JsonValue('126515')
   value126515,
 
   /// Display: Bevacizumab ^89^Zr
   /// Definition: A Zr 89 Bevacizumab PET Radiotracer
-  @JsonValue('126516')
   value126516,
 
   /// Display: cG250-F(ab')(2) ^89^Zr
   /// Definition: A Zr 89 cG250-F(ab')(2) PET Radiotracer
-  @JsonValue('126517')
   value126517,
 
   /// Display: R1507 ^89^Zr
   /// Definition: A Zr 89 R1507 PET Radiotracer
-  @JsonValue('126518')
   value126518,
 
   /// Display: E4G10 ^89^Zr
   /// Definition: A Zr 89 E4G10 PET Radiotracer
-  @JsonValue('126519')
   value126519,
 
   /// Display: Df-CD45 ^89^Zr
   /// Definition: A Zr 89 Df-CD45 PET Radiotracer
-  @JsonValue('126520')
   value126520,
 
   /// Display: ^44^Scandium
   /// Definition: ^44^Scandium
-  @JsonValue('126600')
   value126600,
 
   /// Display: ^51^Manganese
   /// Definition: ^51^Manganese
-  @JsonValue('126601')
   value126601,
 
   /// Display: ^70^Arsenic
   /// Definition: ^70^Arsenic
-  @JsonValue('126602')
   value126602,
 
   /// Display: ^90^Niobium
   /// Definition: ^90^Niobium
-  @JsonValue('126603')
   value126603,
 
   /// Display: ^191m^Iridium
   /// Definition: ^191m^Iridium
-  @JsonValue('126604')
   value126604,
 
   /// Display: ^43^Scandium
   /// Definition: ^43^Scandium
-  @JsonValue('126605')
   value126605,
 
   /// Display: ^152^Terbium
   /// Definition: ^152^Terbium
-  @JsonValue('126606')
   value126606,
 
   /// Display: ATSM Cu^60^
   /// Definition: A Cu 60 ATSM PET radiotracer
-  @JsonValue('126700')
   value126700,
 
   /// Display: ATSM Cu^61^
   /// Definition: A Cu 61 ATSM PET radiotracer
-  @JsonValue('126701')
   value126701,
 
   /// Display: ATSM Cu^62^
   /// Definition: A Cu 62 ATSM PET radiotracer
-  @JsonValue('126702')
   value126702,
 
   /// Display: Choline C^11^
   /// Definition: A C 11 Choline PET radiotracer
-  @JsonValue('126703')
   value126703,
 
   /// Display: Fallypride C^11^
   /// Definition: A C 11 Fallypride PET radiotracer
-  @JsonValue('126704')
   value126704,
 
   /// Display: Fallypride F^18^
   /// Definition: An F 18 Fallypride PET radiotracer
-  @JsonValue('126705')
   value126705,
 
   /// Display: FLB 457 C^11^
   /// Definition: A C 11 FLB 457 PET radiotracer
-  @JsonValue('126706')
   value126706,
 
   /// Display: Fluorotriopride F^18^
   /// Definition: An F 18 Fluorotriopride PET radiotracer
-  @JsonValue('126707')
   value126707,
 
   /// Display: Fluoromisonidazole (FMISO) F^18^
   /// Definition: An F 18 Fluoromisonidazole PET radiotracer
-  @JsonValue('126708')
   value126708,
 
   /// Display: Glutamine C^11^
   /// Definition: A C 11 Glutamine PET radiotracer
-  @JsonValue('126709')
   value126709,
 
   /// Display: Glutamine C^14^
   /// Definition: A C 14 Glutamine PET radiotracer
-  @JsonValue('126710')
   value126710,
 
   /// Display: Glutamine F^18^
   /// Definition: An F 18 Glutamine PET radiotracer
-  @JsonValue('126711')
   value126711,
 
   /// Display: Flubatine F^18^
   /// Definition: An F 18 Flubatine PET radiotracer
-  @JsonValue('126712')
   value126712,
 
   /// Display: 2FA F^18^
   /// Definition: An F 18 2FA PET radiotracer
-  @JsonValue('126713')
   value126713,
 
   /// Display: Nifene F^18^
   /// Definition: An F 18 Nifene PET radiotracer
-  @JsonValue('126714')
   value126714,
 
   /// Display: CLR1404 I^124^
   /// Definition: An I 124 cancer targeted phospholipid ether PET radiotracer
-  @JsonValue('126715')
   value126715,
 
   /// Display: CLR1404 I^131^
   /// Definition: An I 131 cancer targeted phospholipid ether PET radiotracer
-  @JsonValue('126716')
   value126716,
 
   /// Display: IEC6127 Patient Support Continuous Angle
   /// Definition: Patient Support Continuous Angle in IEC PATIENT SUPPORT Coordinate System [IEC 61217]
-  @JsonValue('126801')
   value126801,
 
   /// Display: IEC6127 Table Top Continuous Pitch Angle
   /// Definition: Table Top Continuous Pitch Angle in the direction of the IEC TABLE TOP Coordinate System [IEC 61217]
-  @JsonValue('126802')
   value126802,
 
   /// Display: IEC6127 Table Top Continuous Roll Angle
   /// Definition: Table Top Continuous Roll Angle in the direction of the IEC TABLE TOP Coordinate System [IEC 61217]
-  @JsonValue('126803')
   value126803,
 
   /// Display: IEC6127 Table Top Eccentric Axis Distance
   /// Definition: Table Top Eccentric Axis Distance [IEC 61217]
-  @JsonValue('126804')
   value126804,
 
   /// Display: IEC6127 Table Top Continuous Eccentric Angle
   /// Definition: Table Top Continuous Eccentric Angle in the direction of the IEC TABLE TOP ECCENTRIC Coordinate System [IEC 61217]
-  @JsonValue('126805')
   value126805,
 
   /// Display: IEC6127 Table Top Lateral Position
   /// Definition: Table Top Lateral Position IEC TABLE TOP Coordinate System [IEC 61217]
-  @JsonValue('126806')
   value126806,
 
   /// Display: IEC6127 Table Top Longitudinal Position
   /// Definition: Table Top Longitudinal Position IEC TABLE TOP Coordinate System [IEC 61217]
-  @JsonValue('126807')
   value126807,
 
   /// Display: IEC6127 Table Top Vertical Position
   /// Definition: Table Top Vertical Position in IEC TABLE TOP Coordinate System [IEC 61217]
-  @JsonValue('126808')
   value126808,
 
   /// Display: IEC6127 Gantry Continuous Roll Angle
   /// Definition: Gantry Continuous Roll Angle in degrees of the radiation source, i.e., the rotation about the Y-axis of the IEC GANTRY coordinate system [IEC 61217]
-  @JsonValue('126809')
   value126809,
 
   /// Display: IEC6127 Gantry Continuous Pitch Angle
   /// Definition: Gantry Pitch Continuous Angle in degrees of the radiation source, i.e., the rotation about the X-axis of the IEC GANTRY coordinate system [IEC 61217]
-  @JsonValue('126810')
   value126810,
 
   /// Display: IEC6127 Gantry Continuous Yaw Angle
   /// Definition: Gantry Yaw Continuous Angle in degrees of the radiation source, i.e., about the Z-axis of the IEC GANTRY coordinate system [IEC 61217]
-  @JsonValue('126811')
   value126811,
   ;
 

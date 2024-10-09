@@ -1,13 +1,9 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Example value set for investigation type.
 enum InvestigationType {
   /// Display: Examination / signs
-  @JsonValue('271336007')
   value271336007,
 
   /// Display: History/symptoms
-  @JsonValue('160237006')
   value160237006,
   ;
 

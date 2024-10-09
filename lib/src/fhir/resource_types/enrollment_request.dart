@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [EnrollmentRequest] /// This resource provides the insurance enrollment details to the insurer
 /// regarding a specified coverage.
-@JsonSerializable()
 class EnrollmentRequest extends DomainResource {
   EnrollmentRequest({
     super.id,
@@ -36,43 +34,35 @@ class EnrollmentRequest extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.EnrollmentRequest);
+
   @override
   String get fhirType => 'EnrollmentRequest';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// The Response business identifier.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// The status of the resource instance.
-  @JsonKey(name: 'status')
   final FinancialResourceStatusCodes? status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [created] /// The date when this resource was created.
-  @JsonKey(name: 'created')
   final FhirDateTime? created;
-  @JsonKey(name: '_created')
   final Element? createdElement;
 
   /// [insurer] /// The Insurer who is target of the request.
-  @JsonKey(name: 'insurer')
   final Reference? insurer;
 
   /// [provider] /// The practitioner who is responsible for the services rendered to the
   /// patient.
-  @JsonKey(name: 'provider')
   final Reference? provider;
 
   /// [candidate] /// Patient Resource.
-  @JsonKey(name: 'candidate')
   final Reference? candidate;
 
   /// [coverage] /// Reference to the program or plan identification, underwriter or payor.
-  @JsonKey(name: 'coverage')
   final Reference? coverage;
   @override
   Map<String, dynamic> toJson() {

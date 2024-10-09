@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [Contract] /// Legally enforceable, formally recorded unilateral or bilateral directive
 /// i.e., a policy or agreement.
-@JsonSerializable()
 class Contract extends DomainResource {
   Contract({
     super.id,
@@ -69,35 +67,29 @@ class Contract extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Contract);
+
   @override
   String get fhirType => 'Contract';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Unique identifier for this Contract or a derivative that references a
   /// Source Contract.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [url] /// Canonical identifier for this contract, represented as a URI (globally
   /// unique).
-  @JsonKey(name: 'url')
   final FhirUri? url;
-  @JsonKey(name: '_url')
   final Element? urlElement;
 
   /// [version] /// An edition identifier used for business purposes to label business
   /// significant variants.
-  @JsonKey(name: 'version')
   final FhirString? version;
-  @JsonKey(name: '_version')
   final Element? versionElement;
 
   /// [status] /// The status of the resource instance.
-  @JsonKey(name: 'status')
   final ContractResourceStatusCodes? status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [legalState] /// Legal states of the formation of a legal instrument, which is a formally
@@ -105,114 +97,89 @@ class Contract extends DomainResource {
   /// records and formally expresses a legally enforceable act, process, or
   /// contractual duty, obligation, or right, and therefore evidences that act,
   /// process, or agreement.
-  @JsonKey(name: 'legalState')
   final CodeableConcept? legalState;
 
   /// [instantiatesCanonical] /// The URL pointing to a FHIR-defined Contract Definition that is adhered to
   /// in whole or part by this Contract.
-  @JsonKey(name: 'instantiatesCanonical')
   final Reference? instantiatesCanonical;
 
   /// [instantiatesUri] /// The URL pointing to an externally maintained definition that is adhered to
   /// in whole or in part by this Contract.
-  @JsonKey(name: 'instantiatesUri')
   final FhirUri? instantiatesUri;
-  @JsonKey(name: '_instantiatesUri')
   final Element? instantiatesUriElement;
 
   /// [contentDerivative] /// The minimal content derived from the basal information source at a specific
   /// stage in its lifecycle.
-  @JsonKey(name: 'contentDerivative')
   final CodeableConcept? contentDerivative;
 
   /// [issued] /// When this Contract was issued.
-  @JsonKey(name: 'issued')
   final FhirDateTime? issued;
-  @JsonKey(name: '_issued')
   final Element? issuedElement;
 
   /// [applies] /// Relevant time or time-period when this Contract is applicable.
-  @JsonKey(name: 'applies')
   final Period? applies;
 
   /// [expirationType] /// Event resulting in discontinuation or termination of this Contract instance
   /// by one or more parties to the contract.
-  @JsonKey(name: 'expirationType')
   final CodeableConcept? expirationType;
 
   /// [subject] /// The target entity impacted by or of interest to parties to the agreement.
-  @JsonKey(name: 'subject')
   final List<Reference>? subject;
 
   /// [authority] /// A formally or informally recognized grouping of people, principals,
   /// organizations, or jurisdictions formed for the purpose of achieving some
   /// form of collective action such as the promulgation, administration and
   /// enforcement of contracts and policies.
-  @JsonKey(name: 'authority')
   final List<Reference>? authority;
 
   /// [domain] /// Recognized governance framework or system operating with a circumscribed
   /// scope in accordance with specified principles, policies, processes or
   /// procedures for managing rights, actions, or behaviors of parties or
   /// principals relative to resources.
-  @JsonKey(name: 'domain')
   final List<Reference>? domain;
 
   /// [site] /// Sites in which the contract is complied with, exercised, or in force.
-  @JsonKey(name: 'site')
   final List<Reference>? site;
 
   /// [name] /// A natural language name identifying this Contract definition, derivative,
   /// or instance in any legal state. Provides additional information about its
   /// content. This name should be usable as an identifier for the module by
   /// machine processing applications such as code generation.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [title] /// A short, descriptive, user-friendly title for this Contract definition,
   /// derivative, or instance in any legal state.t giving additional information
   /// about its content.
-  @JsonKey(name: 'title')
   final FhirString? title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [subtitle] /// An explanatory or alternate user-friendly title for this Contract
   /// definition, derivative, or instance in any legal state.t giving additional
   /// information about its content.
-  @JsonKey(name: 'subtitle')
   final FhirString? subtitle;
-  @JsonKey(name: '_subtitle')
   final Element? subtitleElement;
 
   /// [alias] /// Alternative representation of the title for this Contract definition,
   /// derivative, or instance in any legal state., e.g., a domain specific
   /// contract number related to legislation.
-  @JsonKey(name: 'alias')
   final List<FhirString>? alias;
-  @JsonKey(name: '_alias')
   final List<Element>? aliasElement;
 
   /// [author] /// The individual or organization that authored the Contract definition,
   /// derivative, or instance in any legal state.
-  @JsonKey(name: 'author')
   final Reference? author;
 
   /// [scope] /// A selector of legal concerns for this Contract definition, derivative, or
   /// instance in any legal state.
-  @JsonKey(name: 'scope')
   final CodeableConcept? scope;
 
   /// [topicCodeableConcept] /// Narrows the range of legal concerns to focus on the achievement of specific
   /// contractual objectives.
-  @JsonKey(name: 'topicCodeableConcept')
   final CodeableConcept? topicCodeableConcept;
 
   /// [topicReference] /// Narrows the range of legal concerns to focus on the achievement of specific
   /// contractual objectives.
-  @JsonKey(name: 'topicReference')
   final Reference? topicReference;
 
   /// [type] /// A high-level category for the legal instrument, whether constructed as a
@@ -220,29 +187,24 @@ class Contract extends DomainResource {
   /// additional information about its content within the context of the
   /// Contract's scope to distinguish the kinds of systems that would be
   /// interested in the contract.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [subType] /// Sub-category for the Contract that distinguishes the kinds of systems that
   /// would be interested in the Contract within the context of the Contract's
   /// scope.
-  @JsonKey(name: 'subType')
   final List<CodeableConcept>? subType;
 
   /// [contentDefinition] /// Precusory content developed with a focus and intent of supporting the
   /// formation a Contract instance, which may be associated with and
   /// transformable into a Contract.
-  @JsonKey(name: 'contentDefinition')
   final ContractContentDefinition? contentDefinition;
 
   /// [term] /// One or more Contract Provisions, which may be related and conveyed as a
   /// group, and may contain nested groups.
-  @JsonKey(name: 'term')
   final List<ContractTerm>? term;
 
   /// [supportingInfo] /// Information that may be needed by/relevant to the performer in their
   /// execution of this term action.
-  @JsonKey(name: 'supportingInfo')
   final List<Reference>? supportingInfo;
 
   /// [relevantHistory] /// Links to Provenance records for past versions of this Contract definition,
@@ -251,14 +213,12 @@ class Contract extends DomainResource {
   /// the Contract. The Provence.entity indicates the target that was changed in
   /// the update.
   /// http://build.fhir.org/provenance-definitions.html#Provenance.entity.
-  @JsonKey(name: 'relevantHistory')
   final List<Reference>? relevantHistory;
 
   /// [signer] /// Parties with legal standing in the Contract, including the principal
   /// parties, the grantor(s) and grantee(s), which are any person or
   /// organization bound by the contract, and any ancillary parties, which
   /// facilitate the execution of the contract such as a notary or witness.
-  @JsonKey(name: 'signer')
   final List<ContractSigner>? signer;
 
   /// [friendly] /// The "patient friendly language" versionof the Contract in whole or in
@@ -268,15 +228,12 @@ class Contract extends DomainResource {
   /// communication styles that ensure that those agreeing to or signing the
   /// Contract understand the roles, actions, obligations, responsibilities, and
   /// implication of the agreement.
-  @JsonKey(name: 'friendly')
   final List<ContractFriendly>? friendly;
 
   /// [legal] /// List of Legal expressions or representations of this Contract.
-  @JsonKey(name: 'legal')
   final List<ContractLegal>? legal;
 
   /// [rule] /// List of Computable Policy Rule Language Representations of this Contract.
-  @JsonKey(name: 'rule')
   final List<ContractRule>? rule;
   @override
   Map<String, dynamic> toJson() {
@@ -801,7 +758,6 @@ class Contract extends DomainResource {
 /// [ContractContentDefinition] /// Precusory content developed with a focus and intent of supporting the
 /// formation a Contract instance, which may be associated with and
 /// transformable into a Contract.
-@JsonSerializable()
 class ContractContentDefinition extends BackboneElement {
   ContractContentDefinition({
     super.id,
@@ -823,50 +779,42 @@ class ContractContentDefinition extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ContractContentDefinition';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Precusory content structure and use, i.e., a boilerplate, template,
   /// application for a contract such as an insurance policy or benefits under a
   /// program, e.g., workers compensation.
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [subType] /// Detailed Precusory content type.
-  @JsonKey(name: 'subType')
   final CodeableConcept? subType;
 
   /// [publisher] /// The individual or organization that published the Contract precursor
   /// content.
-  @JsonKey(name: 'publisher')
   final Reference? publisher;
 
   /// [publicationDate] /// The date (and optionally time) when the contract was published. The date
   /// must change when the business version changes and it must change if the
   /// status code changes. In addition, it should change when the substantive
   /// content of the contract changes.
-  @JsonKey(name: 'publicationDate')
   final FhirDateTime? publicationDate;
-  @JsonKey(name: '_publicationDate')
   final Element? publicationDateElement;
 
   /// [publicationStatus] /// amended | appended | cancelled | disputed | entered-in-error | executable |
   /// executed | negotiable | offered | policy | rejected | renewed | revoked |
   /// resolved | terminated.
-  @JsonKey(name: 'publicationStatus')
   final ContractResourcePublicationStatusCodes publicationStatus;
-  @JsonKey(name: '_publicationStatus')
   final Element? publicationStatusElement;
 
   /// [copyright] /// A copyright statement relating to Contract precursor content. Copyright
   /// statements are generally legal restrictions on the use and publishing of
   /// the Contract precursor content.
-  @JsonKey(name: 'copyright')
   final FhirMarkdown? copyright;
-  @JsonKey(name: '_copyright')
   final Element? copyrightElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1014,7 +962,6 @@ class ContractContentDefinition extends BackboneElement {
 
 /// [ContractTerm] /// One or more Contract Provisions, which may be related and conveyed as a
 /// group, and may contain nested groups.
-@JsonSerializable()
 class ContractTerm extends BackboneElement {
   ContractTerm({
     super.id,
@@ -1042,71 +989,57 @@ class ContractTerm extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ContractTerm';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Unique identifier for this particular Contract Provision.
-  @JsonKey(name: 'identifier')
   final Identifier? identifier;
 
   /// [issued] /// When this Contract Provision was issued.
-  @JsonKey(name: 'issued')
   final FhirDateTime? issued;
-  @JsonKey(name: '_issued')
   final Element? issuedElement;
 
   /// [applies] /// Relevant time or time-period when this Contract Provision is applicable.
-  @JsonKey(name: 'applies')
   final Period? applies;
 
   /// [topicCodeableConcept] /// The entity that the term applies to.
-  @JsonKey(name: 'topicCodeableConcept')
   final CodeableConcept? topicCodeableConcept;
 
   /// [topicReference] /// The entity that the term applies to.
-  @JsonKey(name: 'topicReference')
   final Reference? topicReference;
 
   /// [type] /// A legal clause or condition contained within a contract that requires one
   /// or both parties to perform a particular requirement by some specified time
   /// or prevents one or both parties from performing a particular requirement by
   /// some specified time.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [subType] /// A specialized legal clause or condition based on overarching contract type.
-  @JsonKey(name: 'subType')
   final CodeableConcept? subType;
 
   /// [text] /// Statement of a provision in a policy or a contract.
-  @JsonKey(name: 'text')
   final FhirString? text;
-  @JsonKey(name: '_text')
   final Element? textElement;
 
   /// [securityLabel] /// Security labels that protect the handling of information about the term and
   /// its elements, which may be specifically identified..
-  @JsonKey(name: 'securityLabel')
   final List<ContractSecurityLabel>? securityLabel;
 
   /// [offer] /// The matter of concern in the context of this provision of the agrement.
-  @JsonKey(name: 'offer')
   final ContractOffer offer;
 
   /// [asset] /// Contract Term Asset List.
-  @JsonKey(name: 'asset')
   final List<ContractAsset>? asset;
 
   /// [action] /// An actor taking a role in an activity for which it can be assigned some
   /// degree of responsibility for the activity taking place.
-  @JsonKey(name: 'action')
   final List<ContractAction>? action;
 
   /// [group] /// Nested group of Contract Provisions.
-  @JsonKey(name: 'group')
   final List<ContractTerm>? group;
   @override
   Map<String, dynamic> toJson() {
@@ -1324,7 +1257,6 @@ class ContractTerm extends BackboneElement {
 
 /// [ContractSecurityLabel] /// Security labels that protect the handling of information about the term and
 /// its elements, which may be specifically identified..
-@JsonSerializable()
 class ContractSecurityLabel extends BackboneElement {
   ContractSecurityLabel({
     super.id,
@@ -1342,32 +1274,28 @@ class ContractSecurityLabel extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ContractSecurityLabel';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [number] /// Number used to link this term or term element to the applicable Security
   /// Label.
-  @JsonKey(name: 'number')
   final List<FhirUnsignedInt>? number;
-  @JsonKey(name: '_number')
   final List<Element>? numberElement;
 
   /// [classification] /// Security label privacy tag that species the level of confidentiality
   /// protection required for this term and/or term elements.
-  @JsonKey(name: 'classification')
   final Coding classification;
 
   /// [category] /// Security label privacy tag that species the applicable privacy and security
   /// policies governing this term and/or term elements.
-  @JsonKey(name: 'category')
   final List<Coding>? category;
 
   /// [control] /// Security label privacy tag that species the manner in which term and/or
   /// term elements are to be protected.
-  @JsonKey(name: 'control')
   final List<Coding>? control;
   @override
   Map<String, dynamic> toJson() {
@@ -1504,7 +1432,6 @@ class ContractSecurityLabel extends BackboneElement {
 }
 
 /// [ContractOffer] /// The matter of concern in the context of this provision of the agrement.
-@JsonSerializable()
 class ContractOffer extends BackboneElement {
   ContractOffer({
     super.id,
@@ -1530,61 +1457,49 @@ class ContractOffer extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ContractOffer';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Unique identifier for this particular Contract Provision.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [party] /// Offer Recipient.
-  @JsonKey(name: 'party')
   final List<ContractParty>? party;
 
   /// [topic] /// The owner of an asset has the residual control rights over the asset: the
   /// right to decide all usages of the asset in any way not inconsistent with a
   /// prior contract, custom, or law (Hart, 1995, p. 30).
-  @JsonKey(name: 'topic')
   final Reference? topic;
 
   /// [type] /// Type of Contract Provision such as specific requirements, purposes for
   /// actions, obligations, prohibitions, e.g. life time maximum benefit.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [decision] /// Type of choice made by accepting party with respect to an offer made by an
   /// offeror/ grantee.
-  @JsonKey(name: 'decision')
   final CodeableConcept? decision;
 
   /// [decisionMode] /// How the decision about a Contract was conveyed.
-  @JsonKey(name: 'decisionMode')
   final List<CodeableConcept>? decisionMode;
 
   /// [answer] /// Response to offer text.
-  @JsonKey(name: 'answer')
   final List<ContractAnswer>? answer;
 
   /// [text] /// Human readable form of this Contract Offer.
-  @JsonKey(name: 'text')
   final FhirString? text;
-  @JsonKey(name: '_text')
   final Element? textElement;
 
   /// [linkId] /// The id of the clause or question text of the offer in the referenced
   /// questionnaire/response.
-  @JsonKey(name: 'linkId')
   final List<FhirString>? linkId;
-  @JsonKey(name: '_linkId')
   final List<Element>? linkIdElement;
 
   /// [securityLabelNumber] /// Security labels that protects the offer.
-  @JsonKey(name: 'securityLabelNumber')
   final List<FhirUnsignedInt>? securityLabelNumber;
-  @JsonKey(name: '_securityLabelNumber')
   final List<Element>? securityLabelNumberElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1804,7 +1719,6 @@ class ContractOffer extends BackboneElement {
 }
 
 /// [ContractParty] /// Offer Recipient.
-@JsonSerializable()
 class ContractParty extends BackboneElement {
   ContractParty({
     super.id,
@@ -1819,18 +1733,17 @@ class ContractParty extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ContractParty';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [reference] /// Participant in the offer.
-  @JsonKey(name: 'reference')
   final List<Reference> reference;
 
   /// [role] /// How the party participates in the offer.
-  @JsonKey(name: 'role')
   final CodeableConcept role;
   @override
   Map<String, dynamic> toJson() {
@@ -1929,7 +1842,6 @@ class ContractParty extends BackboneElement {
 }
 
 /// [ContractAnswer] /// Response to offer text.
-@JsonSerializable()
 class ContractAnswer extends BackboneElement {
   ContractAnswer({
     super.id,
@@ -1962,110 +1874,91 @@ class ContractAnswer extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ContractAnswer';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [valueBoolean] /// Response to an offer clause or question text, which enables selection of
   /// values to be agreed to, e.g., the period of participation, the date of
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
-  @JsonKey(name: 'valueBoolean')
   final FhirBoolean? valueBoolean;
-  @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
 
   /// [valueDecimal] /// Response to an offer clause or question text, which enables selection of
   /// values to be agreed to, e.g., the period of participation, the date of
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
-  @JsonKey(name: 'valueDecimal')
   final FhirDecimal? valueDecimal;
-  @JsonKey(name: '_valueDecimal')
   final Element? valueDecimalElement;
 
   /// [valueInteger] /// Response to an offer clause or question text, which enables selection of
   /// values to be agreed to, e.g., the period of participation, the date of
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
-  @JsonKey(name: 'valueInteger')
   final FhirInteger? valueInteger;
-  @JsonKey(name: '_valueInteger')
   final Element? valueIntegerElement;
 
   /// [valueDate] /// Response to an offer clause or question text, which enables selection of
   /// values to be agreed to, e.g., the period of participation, the date of
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
-  @JsonKey(name: 'valueDate')
   final FhirDate? valueDate;
-  @JsonKey(name: '_valueDate')
   final Element? valueDateElement;
 
   /// [valueDateTime] /// Response to an offer clause or question text, which enables selection of
   /// values to be agreed to, e.g., the period of participation, the date of
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
-  @JsonKey(name: 'valueDateTime')
   final FhirDateTime? valueDateTime;
-  @JsonKey(name: '_valueDateTime')
   final Element? valueDateTimeElement;
 
   /// [valueTime] /// Response to an offer clause or question text, which enables selection of
   /// values to be agreed to, e.g., the period of participation, the date of
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
-  @JsonKey(name: 'valueTime')
   final FhirTime? valueTime;
-  @JsonKey(name: '_valueTime')
   final Element? valueTimeElement;
 
   /// [valueString] /// Response to an offer clause or question text, which enables selection of
   /// values to be agreed to, e.g., the period of participation, the date of
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
-  @JsonKey(name: 'valueString')
   final FhirString? valueString;
-  @JsonKey(name: '_valueString')
   final Element? valueStringElement;
 
   /// [valueUri] /// Response to an offer clause or question text, which enables selection of
   /// values to be agreed to, e.g., the period of participation, the date of
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
-  @JsonKey(name: 'valueUri')
   final FhirUri? valueUri;
-  @JsonKey(name: '_valueUri')
   final Element? valueUriElement;
 
   /// [valueAttachment] /// Response to an offer clause or question text, which enables selection of
   /// values to be agreed to, e.g., the period of participation, the date of
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
-  @JsonKey(name: 'valueAttachment')
   final Attachment? valueAttachment;
 
   /// [valueCoding] /// Response to an offer clause or question text, which enables selection of
   /// values to be agreed to, e.g., the period of participation, the date of
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
-  @JsonKey(name: 'valueCoding')
   final Coding? valueCoding;
 
   /// [valueQuantity] /// Response to an offer clause or question text, which enables selection of
   /// values to be agreed to, e.g., the period of participation, the date of
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
-  @JsonKey(name: 'valueQuantity')
   final Quantity? valueQuantity;
 
   /// [valueReference] /// Response to an offer clause or question text, which enables selection of
   /// values to be agreed to, e.g., the period of participation, the date of
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
-  @JsonKey(name: 'valueReference')
   final Reference? valueReference;
   @override
   Map<String, dynamic> toJson() {
@@ -2305,7 +2198,6 @@ class ContractAnswer extends BackboneElement {
 }
 
 /// [ContractAsset] /// Contract Term Asset List.
-@JsonSerializable()
 class ContractAsset extends BackboneElement {
   ContractAsset({
     super.id,
@@ -2337,84 +2229,66 @@ class ContractAsset extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ContractAsset';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [scope] /// Differentiates the kind of the asset .
-  @JsonKey(name: 'scope')
   final CodeableConcept? scope;
 
   /// [type] /// Target entity type about which the term may be concerned.
-  @JsonKey(name: 'type')
   final List<CodeableConcept>? type;
 
   /// [typeReference] /// Associated entities.
-  @JsonKey(name: 'typeReference')
   final List<Reference>? typeReference;
 
   /// [subtype] /// May be a subtype or part of an offered asset.
-  @JsonKey(name: 'subtype')
   final List<CodeableConcept>? subtype;
 
   /// [relationship] /// Specifies the applicability of the term to an asset resource instance, and
   /// instances it refers to orinstances that refer to it, and/or are owned by
   /// the offeree.
-  @JsonKey(name: 'relationship')
   final Coding? relationship;
 
   /// [context] /// Circumstance of the asset.
-  @JsonKey(name: 'context')
   final List<ContractContext>? context;
 
   /// [condition] /// Description of the quality and completeness of the asset that imay be a
   /// factor in its valuation.
-  @JsonKey(name: 'condition')
   final FhirString? condition;
-  @JsonKey(name: '_condition')
   final Element? conditionElement;
 
   /// [periodType] /// Type of Asset availability for use or ownership.
-  @JsonKey(name: 'periodType')
   final List<CodeableConcept>? periodType;
 
   /// [period] /// Asset relevant contractual time period.
-  @JsonKey(name: 'period')
   final List<Period>? period;
 
   /// [usePeriod] /// Time period of asset use.
-  @JsonKey(name: 'usePeriod')
   final List<Period>? usePeriod;
 
   /// [text] /// Clause or question text (Prose Object) concerning the asset in a linked
   /// form, such as a QuestionnaireResponse used in the formation of the
   /// contract.
-  @JsonKey(name: 'text')
   final FhirString? text;
-  @JsonKey(name: '_text')
   final Element? textElement;
 
   /// [linkId] /// Id [identifier??] of the clause or question text about the asset in the
   /// referenced form or QuestionnaireResponse.
-  @JsonKey(name: 'linkId')
   final List<FhirString>? linkId;
-  @JsonKey(name: '_linkId')
   final List<Element>? linkIdElement;
 
   /// [answer] /// Response to assets.
-  @JsonKey(name: 'answer')
   final List<ContractAnswer>? answer;
 
   /// [securityLabelNumber] /// Security labels that protects the asset.
-  @JsonKey(name: 'securityLabelNumber')
   final List<FhirUnsignedInt>? securityLabelNumber;
-  @JsonKey(name: '_securityLabelNumber')
   final List<Element>? securityLabelNumberElement;
 
   /// [valuedItem] /// Contract Valued Item List.
-  @JsonKey(name: 'valuedItem')
   final List<ContractValuedItem>? valuedItem;
   @override
   Map<String, dynamic> toJson() {
@@ -2700,7 +2574,6 @@ class ContractAsset extends BackboneElement {
 }
 
 /// [ContractContext] /// Circumstance of the asset.
-@JsonSerializable()
 class ContractContext extends BackboneElement {
   ContractContext({
     super.id,
@@ -2717,27 +2590,24 @@ class ContractContext extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ContractContext';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [reference] /// Asset context reference may include the creator, custodian, or owning
   /// Person or Organization (e.g., bank, repository), location held, e.g.,
   /// building, jurisdiction.
-  @JsonKey(name: 'reference')
   final Reference? reference;
 
   /// [code] /// Coded representation of the context generally or of the Referenced entity,
   /// such as the asset holder type or location.
-  @JsonKey(name: 'code')
   final List<CodeableConcept>? code;
 
   /// [text] /// Context description.
-  @JsonKey(name: 'text')
   final FhirString? text;
-  @JsonKey(name: '_text')
   final Element? textElement;
   @override
   Map<String, dynamic> toJson() {
@@ -2858,7 +2728,6 @@ class ContractContext extends BackboneElement {
 }
 
 /// [ContractValuedItem] /// Contract Valued Item List.
-@JsonSerializable()
 class ContractValuedItem extends BackboneElement {
   ContractValuedItem({
     super.id,
@@ -2893,97 +2762,76 @@ class ContractValuedItem extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ContractValuedItem';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [entityCodeableConcept] /// Specific type of Contract Valued Item that may be priced.
-  @JsonKey(name: 'entityCodeableConcept')
   final CodeableConcept? entityCodeableConcept;
 
   /// [entityReference] /// Specific type of Contract Valued Item that may be priced.
-  @JsonKey(name: 'entityReference')
   final Reference? entityReference;
 
   /// [identifier] /// Identifies a Contract Valued Item instance.
-  @JsonKey(name: 'identifier')
   final Identifier? identifier;
 
   /// [effectiveTime] /// Indicates the time during which this Contract ValuedItem information is
   /// effective.
-  @JsonKey(name: 'effectiveTime')
   final FhirDateTime? effectiveTime;
-  @JsonKey(name: '_effectiveTime')
   final Element? effectiveTimeElement;
 
   /// [quantity] /// Specifies the units by which the Contract Valued Item is measured or
   /// counted, and quantifies the countable or measurable Contract Valued Item
   /// instances.
-  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [unitPrice] /// A Contract Valued Item unit valuation measure.
-  @JsonKey(name: 'unitPrice')
   final Money? unitPrice;
 
   /// [factor] /// A real number that represents a multiplier used in determining the overall
   /// value of the Contract Valued Item delivered. The concept of a Factor allows
   /// for a discount or surcharge multiplier to be applied to a monetary amount.
-  @JsonKey(name: 'factor')
   final FhirDecimal? factor;
-  @JsonKey(name: '_factor')
   final Element? factorElement;
 
   /// [points] /// An amount that expresses the weighting (based on difficulty, cost and/or
   /// resource intensiveness) associated with the Contract Valued Item delivered.
   /// The concept of Points allows for assignment of point values for a Contract
   /// Valued Item, such that a monetary amount can be assigned to each point.
-  @JsonKey(name: 'points')
   final FhirDecimal? points;
-  @JsonKey(name: '_points')
   final Element? pointsElement;
 
   /// [net] /// Expresses the product of the Contract Valued Item unitQuantity and the
   /// unitPriceAmt. For example, the formula: unit Quantity * unit Price (Cost
   /// per Point) * factor Number * points = net Amount. Quantity, factor and
   /// points are assumed to be 1 if not supplied.
-  @JsonKey(name: 'net')
   final Money? net;
 
   /// [payment] /// Terms of valuation.
-  @JsonKey(name: 'payment')
   final FhirString? payment;
-  @JsonKey(name: '_payment')
   final Element? paymentElement;
 
   /// [paymentDate] /// When payment is due.
-  @JsonKey(name: 'paymentDate')
   final FhirDateTime? paymentDate;
-  @JsonKey(name: '_paymentDate')
   final Element? paymentDateElement;
 
   /// [responsible] /// Who will make payment.
-  @JsonKey(name: 'responsible')
   final Reference? responsible;
 
   /// [recipient] /// Who will receive payment.
-  @JsonKey(name: 'recipient')
   final Reference? recipient;
 
   /// [linkId] /// Id of the clause or question text related to the context of this valuedItem
   /// in the referenced form or QuestionnaireResponse.
-  @JsonKey(name: 'linkId')
   final List<FhirString>? linkId;
-  @JsonKey(name: '_linkId')
   final List<Element>? linkIdElement;
 
   /// [securityLabelNumber] /// A set of security labels that define which terms are controlled by this
   /// condition.
-  @JsonKey(name: 'securityLabelNumber')
   final List<FhirUnsignedInt>? securityLabelNumber;
-  @JsonKey(name: '_securityLabelNumber')
   final List<Element>? securityLabelNumberElement;
   @override
   Map<String, dynamic> toJson() {
@@ -3257,7 +3105,6 @@ class ContractValuedItem extends BackboneElement {
 
 /// [ContractAction] /// An actor taking a role in an activity for which it can be assigned some
 /// degree of responsibility for the activity taking place.
-@JsonSerializable()
 class ContractAction extends BackboneElement {
   ContractAction({
     super.id,
@@ -3302,134 +3149,103 @@ class ContractAction extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ContractAction';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [doNotPerform] /// True if the term prohibits the action.
-  @JsonKey(name: 'doNotPerform')
   final FhirBoolean? doNotPerform;
-  @JsonKey(name: '_doNotPerform')
   final Element? doNotPerformElement;
 
   /// [type] /// Activity or service obligation to be done or not done, performed or not
   /// performed, effectuated or not by this Contract term.
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [subject] /// Entity of the action.
-  @JsonKey(name: 'subject')
   final List<ContractSubject>? subject;
 
   /// [intent] /// Reason or purpose for the action stipulated by this Contract Provision.
-  @JsonKey(name: 'intent')
   final CodeableConcept intent;
 
   /// [linkId] /// Id [identifier??] of the clause or question text related to this action in
   /// the referenced form or QuestionnaireResponse.
-  @JsonKey(name: 'linkId')
   final List<FhirString>? linkId;
-  @JsonKey(name: '_linkId')
   final List<Element>? linkIdElement;
 
   /// [status] /// Current state of the term action.
-  @JsonKey(name: 'status')
   final CodeableConcept status;
 
   /// [context] /// Encounter or Episode with primary association to specified term activity.
-  @JsonKey(name: 'context')
   final Reference? context;
 
   /// [contextLinkId] /// Id [identifier??] of the clause or question text related to the requester
   /// of this action in the referenced form or QuestionnaireResponse.
-  @JsonKey(name: 'contextLinkId')
   final List<FhirString>? contextLinkId;
-  @JsonKey(name: '_contextLinkId')
   final List<Element>? contextLinkIdElement;
 
   /// [occurrenceDateTime] /// When action happens.
-  @JsonKey(name: 'occurrenceDateTime')
   final FhirDateTime? occurrenceDateTime;
-  @JsonKey(name: '_occurrenceDateTime')
   final Element? occurrenceDateTimeElement;
 
   /// [occurrencePeriod] /// When action happens.
-  @JsonKey(name: 'occurrencePeriod')
   final Period? occurrencePeriod;
 
   /// [occurrenceTiming] /// When action happens.
-  @JsonKey(name: 'occurrenceTiming')
   final Timing? occurrenceTiming;
 
   /// [requester] /// Who or what initiated the action and has responsibility for its activation.
-  @JsonKey(name: 'requester')
   final List<Reference>? requester;
 
   /// [requesterLinkId] /// Id [identifier??] of the clause or question text related to the requester
   /// of this action in the referenced form or QuestionnaireResponse.
-  @JsonKey(name: 'requesterLinkId')
   final List<FhirString>? requesterLinkId;
-  @JsonKey(name: '_requesterLinkId')
   final List<Element>? requesterLinkIdElement;
 
   /// [performerType] /// The type of individual that is desired or required to perform or not
   /// perform the action.
-  @JsonKey(name: 'performerType')
   final List<CodeableConcept>? performerType;
 
   /// [performerRole] /// The type of role or competency of an individual desired or required to
   /// perform or not perform the action.
-  @JsonKey(name: 'performerRole')
   final CodeableConcept? performerRole;
 
   /// [performer] /// Indicates who or what is being asked to perform (or not perform) the ction.
-  @JsonKey(name: 'performer')
   final Reference? performer;
 
   /// [performerLinkId] /// Id [identifier??] of the clause or question text related to the reason type
   /// or reference of this action in the referenced form or
   /// QuestionnaireResponse.
-  @JsonKey(name: 'performerLinkId')
   final List<FhirString>? performerLinkId;
-  @JsonKey(name: '_performerLinkId')
   final List<Element>? performerLinkIdElement;
 
   /// [reasonCode] /// Rationale for the action to be performed or not performed. Describes why
   /// the action is permitted or prohibited.
-  @JsonKey(name: 'reasonCode')
   final List<CodeableConcept>? reasonCode;
 
   /// [reasonReference] /// Indicates another resource whose existence justifies permitting or not
   /// permitting this action.
-  @JsonKey(name: 'reasonReference')
   final List<Reference>? reasonReference;
 
   /// [reason] /// Describes why the action is to be performed or not performed in textual
   /// form.
-  @JsonKey(name: 'reason')
   final List<FhirString>? reason;
-  @JsonKey(name: '_reason')
   final List<Element>? reasonElement;
 
   /// [reasonLinkId] /// Id [identifier??] of the clause or question text related to the reason type
   /// or reference of this action in the referenced form or
   /// QuestionnaireResponse.
-  @JsonKey(name: 'reasonLinkId')
   final List<FhirString>? reasonLinkId;
-  @JsonKey(name: '_reasonLinkId')
   final List<Element>? reasonLinkIdElement;
 
   /// [note] /// Comments made about the term action made by the requester, performer,
   /// subject or other participants.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [securityLabelNumber] /// Security labels that protects the action.
-  @JsonKey(name: 'securityLabelNumber')
   final List<FhirUnsignedInt>? securityLabelNumber;
-  @JsonKey(name: '_securityLabelNumber')
   final List<Element>? securityLabelNumberElement;
   @override
   Map<String, dynamic> toJson() {
@@ -3836,7 +3652,6 @@ class ContractAction extends BackboneElement {
 }
 
 /// [ContractSubject] /// Entity of the action.
-@JsonSerializable()
 class ContractSubject extends BackboneElement {
   ContractSubject({
     super.id,
@@ -3851,18 +3666,17 @@ class ContractSubject extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ContractSubject';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [reference] /// The entity the action is performed or not performed on or for.
-  @JsonKey(name: 'reference')
   final List<Reference> reference;
 
   /// [role] /// Role type of agent assigned roles in this Contract.
-  @JsonKey(name: 'role')
   final CodeableConcept? role;
   @override
   Map<String, dynamic> toJson() {
@@ -3968,7 +3782,6 @@ class ContractSubject extends BackboneElement {
 /// parties, the grantor(s) and grantee(s), which are any person or
 /// organization bound by the contract, and any ancillary parties, which
 /// facilitate the execution of the contract such as a notary or witness.
-@JsonSerializable()
 class ContractSigner extends BackboneElement {
   ContractSigner({
     super.id,
@@ -3984,22 +3797,20 @@ class ContractSigner extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ContractSigner';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Role of this Contract signer, e.g. notary, grantee.
-  @JsonKey(name: 'type')
   final Coding type;
 
   /// [party] /// Party which is a signator to this Contract.
-  @JsonKey(name: 'party')
   final Reference party;
 
   /// [signature] /// Legally binding Contract DSIG signature contents in Base64.
-  @JsonKey(name: 'signature')
   final List<Signature> signature;
   @override
   Map<String, dynamic> toJson() {
@@ -4108,7 +3919,6 @@ class ContractSigner extends BackboneElement {
 /// communication styles that ensure that those agreeing to or signing the
 /// Contract understand the roles, actions, obligations, responsibilities, and
 /// implication of the agreement.
-@JsonSerializable()
 class ContractFriendly extends BackboneElement {
   ContractFriendly({
     super.id,
@@ -4123,20 +3933,19 @@ class ContractFriendly extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ContractFriendly';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [contentAttachment] /// Human readable rendering of this Contract in a format and representation
   /// intended to enhance comprehension and ensure understandability.
-  @JsonKey(name: 'contentAttachment')
   final Attachment? contentAttachment;
 
   /// [contentReference] /// Human readable rendering of this Contract in a format and representation
   /// intended to enhance comprehension and ensure understandability.
-  @JsonKey(name: 'contentReference')
   final Reference? contentReference;
   @override
   Map<String, dynamic> toJson() {
@@ -4240,7 +4049,6 @@ class ContractFriendly extends BackboneElement {
 }
 
 /// [ContractLegal] /// List of Legal expressions or representations of this Contract.
-@JsonSerializable()
 class ContractLegal extends BackboneElement {
   ContractLegal({
     super.id,
@@ -4257,32 +4065,29 @@ class ContractLegal extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ContractLegal';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [contentAttachment] /// Contract legal text in human renderable form.
-  @JsonKey(name: 'contentAttachment')
   final Attachment? contentAttachment;
 
   /// [contentReference] /// Contract legal text in human renderable form.
-  @JsonKey(name: 'contentReference')
   final Reference? contentReference;
 
   /// [legallyBindingAttachment] /// Legally binding Contract: This is the signed and legally recognized
   /// representation of the Contract, which is considered the "source of truth"
   /// and which would be the basis for legal action related to enforcement of
   /// this Contract.
-  @JsonKey(name: 'legallyBindingAttachment')
   final Attachment? legallyBindingAttachment;
 
   /// [legallyBindingReference] /// Legally binding Contract: This is the signed and legally recognized
   /// representation of the Contract, which is considered the "source of truth"
   /// and which would be the basis for legal action related to enforcement of
   /// this Contract.
-  @JsonKey(name: 'legallyBindingReference')
   final Reference? legallyBindingReference;
   @override
   Map<String, dynamic> toJson() {
@@ -4406,7 +4211,6 @@ class ContractLegal extends BackboneElement {
 }
 
 /// [ContractRule] /// List of Computable Policy Rule Language Representations of this Contract.
-@JsonSerializable()
 class ContractRule extends BackboneElement {
   ContractRule({
     super.id,
@@ -4421,20 +4225,19 @@ class ContractRule extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ContractRule';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [contentAttachment] /// Computable Contract conveyed using a policy rule language (e.g. XACML,
   /// DKAL, SecPal).
-  @JsonKey(name: 'contentAttachment')
   final Attachment? contentAttachment;
 
   /// [contentReference] /// Computable Contract conveyed using a policy rule language (e.g. XACML,
   /// DKAL, SecPal).
-  @JsonKey(name: 'contentReference')
   final Reference? contentReference;
   @override
   Map<String, dynamic> toJson() {

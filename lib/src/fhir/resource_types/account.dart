@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,7 +7,6 @@ import '../../../fhir_r4.dart';
 /// [Account] /// A financial tool for tracking value accrued for a particular purpose. In
 /// the healthcare field, used to track charges for a patient, cost centers,
 /// etc.
-@JsonSerializable()
 class Account extends DomainResource {
   Account({
     super.id,
@@ -42,67 +40,54 @@ class Account extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Account);
+
   @override
   String get fhirType => 'Account';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Unique identifier used to reference the account. Might or might not be
   /// intended for human use (e.g. credit card number).
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// Indicates whether the account is presently used/usable or not.
-  @JsonKey(name: 'status')
   final AccountStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [type] /// Categorizes the account for reporting and searching purposes.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [name] /// Name used for the account when displaying it to humans in reports, etc.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [subject] /// Identifies the entity which incurs the expenses. While the immediate
   /// recipients of services or goods might be entities related to the subject,
   /// the expenses were ultimately incurred by the subject of the Account.
-  @JsonKey(name: 'subject')
   final List<Reference>? subject;
 
   /// [servicePeriod] /// The date range of services associated with this account.
-  @JsonKey(name: 'servicePeriod')
   final Period? servicePeriod;
 
   /// [coverage] /// The party(s) that are responsible for covering the payment of this account,
   /// and what order should they be applied to the account.
-  @JsonKey(name: 'coverage')
   final List<AccountCoverage>? coverage;
 
   /// [owner] /// Indicates the service area, hospital, department, etc. with responsibility
   /// for managing the Account.
-  @JsonKey(name: 'owner')
   final Reference? owner;
 
   /// [description] /// Provides additional information about what the account tracks and how it is
   /// used.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [guarantor] /// The parties responsible for balancing the account if other payment options
   /// fall short.
-  @JsonKey(name: 'guarantor')
   final List<AccountGuarantor>? guarantor;
 
   /// [partOf] /// Reference to a parent Account.
-  @JsonKey(name: 'partOf')
   final Reference? partOf;
   @override
   Map<String, dynamic> toJson() {
@@ -359,7 +344,6 @@ class Account extends DomainResource {
 
 /// [AccountCoverage] /// The party(s) that are responsible for covering the payment of this account,
 /// and what order should they be applied to the account.
-@JsonSerializable()
 class AccountCoverage extends BackboneElement {
   AccountCoverage({
     super.id,
@@ -375,10 +359,11 @@ class AccountCoverage extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'AccountCoverage';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [coverage] /// The party(s) that contribute to payment (or part of) of the charges applied
@@ -387,13 +372,10 @@ class AccountCoverage extends BackboneElement {
   /// A coverage may only be responsible for specific types of charges, and the
   /// sequence of the coverages in the account could be important when processing
   /// billing.
-  @JsonKey(name: 'coverage')
   final Reference coverage;
 
   /// [priority] /// The priority of the coverage in the context of this account.
-  @JsonKey(name: 'priority')
   final FhirPositiveInt? priority;
-  @JsonKey(name: '_priority')
   final Element? priorityElement;
   @override
   Map<String, dynamic> toJson() {
@@ -500,7 +482,6 @@ class AccountCoverage extends BackboneElement {
 
 /// [AccountGuarantor] /// The parties responsible for balancing the account if other payment options
 /// fall short.
-@JsonSerializable()
 class AccountGuarantor extends BackboneElement {
   AccountGuarantor({
     super.id,
@@ -517,26 +498,23 @@ class AccountGuarantor extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'AccountGuarantor';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [party] /// The entity who is responsible.
-  @JsonKey(name: 'party')
   final Reference party;
 
   /// [onHold] /// A guarantor may be placed on credit hold or otherwise have their role
   /// temporarily suspended.
-  @JsonKey(name: 'onHold')
   final FhirBoolean? onHold;
-  @JsonKey(name: '_onHold')
   final Element? onHoldElement;
 
   /// [period] /// The timeframe during which the guarantor accepts responsibility for the
   /// account.
-  @JsonKey(name: 'period')
   final Period? period;
   @override
   Map<String, dynamic> toJson() {

@@ -1,29 +1,21 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Unified Code for Units of Measure (UCUM). This value set includes all UCUM codes
 enum CommonUCUMCodesForAge {
   /// Display: minutes
-  @JsonValue('min')
   min,
 
   /// Display: hours
-  @JsonValue('h')
   h,
 
   /// Display: days
-  @JsonValue('d')
   d,
 
   /// Display: weeks
-  @JsonValue('wk')
   wk,
 
   /// Display: months
-  @JsonValue('mo')
   mo,
 
   /// Display: years
-  @JsonValue('a')
   a,
   ;
 

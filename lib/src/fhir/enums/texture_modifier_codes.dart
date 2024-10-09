@@ -1,61 +1,45 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// TextureModifier: Codes for food consistency types or texture modifications to apply to foods. This value set is composed of SNOMED CT (US Extension and Core) Concepts from SCTID 229961002 Food consistency types (substance) hierarchy and is provided as a suggestive example.
 enum TextureModifierCodes {
   /// Display: Cut-up food
-  @JsonValue('228053002')
   value228053002,
 
   /// Display: Easy to chew food
-  @JsonValue('439091000124107')
   value439091000124107,
 
   /// Display: Chopped food
-  @JsonValue('228049004')
   value228049004,
 
   /// Display: Ground food
-  @JsonValue('441881000124103')
   value441881000124103,
 
   /// Display: Minced food
-  @JsonValue('441761000124103')
   value441761000124103,
 
   /// Display: Mashed food
-  @JsonValue('441751000124100')
   value441751000124100,
 
   /// Display: Soft food
-  @JsonValue('228059003')
   value228059003,
 
   /// Display: Strained food
-  @JsonValue('441791000124106')
   value441791000124106,
 
   /// Display: Liquidized food
-  @JsonValue('228055009')
   value228055009,
 
   /// Display: Lumpy food
-  @JsonValue('228056005')
   value228056005,
 
   /// Display: Moist food
-  @JsonValue('441771000124105')
   value441771000124105,
 
   /// Display: Semi-solid food
-  @JsonValue('228057001')
   value228057001,
 
   /// Display: Single texture food
-  @JsonValue('228058006')
   value228058006,
 
   /// Display: Solid food
-  @JsonValue('228060008')
   value228060008,
   ;
 

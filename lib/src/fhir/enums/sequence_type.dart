@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Type if a sequence -- DNA, RNA, or amino acid sequence.
 enum SequenceType {
   /// Display: AA Sequence
   /// Definition: Amino acid sequence.
-  @JsonValue('aa')
   aa,
 
   /// Display: DNA Sequence
   /// Definition: DNA Sequence.
-  @JsonValue('dna')
   dna,
 
   /// Display: RNA Sequence
   /// Definition: RNA Sequence.
-  @JsonValue('rna')
   rna,
   ;
 

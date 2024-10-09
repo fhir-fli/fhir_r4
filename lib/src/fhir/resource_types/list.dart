@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [FhirList] /// A list is a curated collection of resources.
-@JsonSerializable()
 class FhirList extends DomainResource {
   FhirList({
     super.id,
@@ -43,77 +41,61 @@ class FhirList extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.FhirList);
+
   @override
   String get fhirType => 'FhirList';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifier for the List assigned for business purposes outside the context
   /// of FHIR.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// Indicates the current state of this list.
-  @JsonKey(name: 'status')
   final ListStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [mode] /// How this list was prepared - whether it is a working list that is suitable
   /// for being maintained on an ongoing basis, or if it represents a snapshot of
   /// a list of items from another source, or whether it is a prepared list where
   /// items may be marked as added, modified or deleted.
-  @JsonKey(name: 'mode')
   final ListMode mode;
-  @JsonKey(name: '_mode')
   final Element? modeElement;
 
   /// [title] /// A label for the list assigned by the author.
-  @JsonKey(name: 'title')
   final FhirString? title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [code] /// This code defines the purpose of the list - why it was created.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [subject] /// The common subject (or patient) of the resources that are in the list if
   /// there is one.
-  @JsonKey(name: 'subject')
   final Reference? subject;
 
   /// [encounter] /// The encounter that is the context in which this list was created.
-  @JsonKey(name: 'encounter')
   final Reference? encounter;
 
   /// [date] /// The date that the list was prepared.
-  @JsonKey(name: 'date')
   final FhirDateTime? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [source] /// The entity responsible for deciding what the contents of the list were.
   /// Where the list was created by a human, this is the same as the author of
   /// the list.
-  @JsonKey(name: 'source')
   final Reference? source;
 
   /// [orderedBy] /// What order applies to the items in the list.
-  @JsonKey(name: 'orderedBy')
   final CodeableConcept? orderedBy;
 
   /// [note] /// Comments that apply to the overall list.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [entry] /// Entries in this list.
-  @JsonKey(name: 'entry')
   final List<ListEntry>? entry;
 
   /// [emptyReason] /// If the list is empty, why the list is empty.
-  @JsonKey(name: 'emptyReason')
   final CodeableConcept? emptyReason;
   @override
   Map<String, dynamic> toJson() {
@@ -377,7 +359,6 @@ class FhirList extends DomainResource {
 }
 
 /// [ListEntry] /// Entries in this list.
-@JsonSerializable()
 class ListEntry extends BackboneElement {
   ListEntry({
     super.id,
@@ -396,31 +377,26 @@ class ListEntry extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ListEntry';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [flag] /// The flag allows the system constructing the list to indicate the role and
   /// significance of the item in the list.
-  @JsonKey(name: 'flag')
   final CodeableConcept? flag;
 
   /// [deleted] /// True if this item is marked as deleted in the list.
-  @JsonKey(name: 'deleted')
   final FhirBoolean? deleted;
-  @JsonKey(name: '_deleted')
   final Element? deletedElement;
 
   /// [date] /// When this item was added to the list.
-  @JsonKey(name: 'date')
   final FhirDateTime? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [item] /// A reference to the actual resource from which data was derived.
-  @JsonKey(name: 'item')
   final Reference item;
   @override
   Map<String, dynamic> toJson() {

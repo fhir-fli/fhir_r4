@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [Flag] /// Prospective warnings of potential issues when providing care to the
 /// patient.
-@JsonSerializable()
 class Flag extends DomainResource {
   Flag({
     super.id,
@@ -36,50 +34,42 @@ class Flag extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Flag);
+
   @override
   String get fhirType => 'Flag';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Business identifiers assigned to this flag by the performer or other
   /// systems which remain constant as the resource is updated and propagates
   /// from server to server.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// Supports basic workflow.
-  @JsonKey(name: 'status')
   final FlagStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [category] /// Allows a flag to be divided into different categories like clinical,
   /// administrative etc. Intended to be used as a means of filtering which flags
   /// are displayed to particular user or in a given context.
-  @JsonKey(name: 'category')
   final List<CodeableConcept>? category;
 
   /// [code] /// The coded value or textual component of the flag to display to the user.
-  @JsonKey(name: 'code')
   final CodeableConcept code;
 
   /// [subject] /// The patient, location, group, organization, or practitioner etc. this is
   /// about record this flag is associated with.
-  @JsonKey(name: 'subject')
   final Reference subject;
 
   /// [period] /// The period of time from the activation of the flag to inactivation of the
   /// flag. If the flag is active, the end of the period should be unspecified.
-  @JsonKey(name: 'period')
   final Period? period;
 
   /// [encounter] /// This alert is only relevant during the encounter.
-  @JsonKey(name: 'encounter')
   final Reference? encounter;
 
   /// [author] /// The person, organization or device that created the flag.
-  @JsonKey(name: 'author')
   final Reference? author;
   @override
   Map<String, dynamic> toJson() {

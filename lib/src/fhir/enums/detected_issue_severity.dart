@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Indicates the potential degree of impact of the identified issue on the patient.
 enum DetectedIssueSeverity {
   /// Display: High
   /// Definition: Indicates the issue may be life-threatening or has the potential to cause permanent injury.
-  @JsonValue('high')
   high,
 
   /// Display: Moderate
   /// Definition: Indicates the issue may result in noticeable adverse consequences but is unlikely to be life-threatening or cause permanent injury.
-  @JsonValue('moderate')
   moderate,
 
   /// Display: Low
   /// Definition: Indicates the issue may result in some adverse consequences but is unlikely to substantially affect the situation of the subject.
-  @JsonValue('low')
   low,
   ;
 

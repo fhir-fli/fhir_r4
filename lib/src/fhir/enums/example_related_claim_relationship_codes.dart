@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes sample Related Claim Relationship codes.
 enum ExampleRelatedClaimRelationshipCodes {
   /// Display: Prior Claim
   /// Definition: A prior claim instance for the same intended suite of services.
-  @JsonValue('prior')
   prior,
 
   /// Display: Associated Claim
   /// Definition: A claim for a different suite of services which is related the suite claimed here.
-  @JsonValue('associated')
   associated,
   ;
 

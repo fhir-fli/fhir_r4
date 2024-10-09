@@ -1,25 +1,18 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Unified Code for Units of Measure (UCUM). This value set includes common UCUM codes for units of distance
 enum CommonUCUMCodesForDistance {
   /// Display: nanometers
-  @JsonValue('nm')
   nm,
 
   /// Display: micrometers
-  @JsonValue('um')
   um,
 
   /// Display: millimeters
-  @JsonValue('mm')
   mm,
 
   /// Display: meters
-  @JsonValue('m')
   m,
 
   /// Display: kilometers
-  @JsonValue('km')
   km,
   ;
 

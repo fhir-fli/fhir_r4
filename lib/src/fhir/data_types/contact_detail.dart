@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [ContactDetail] /// Specifies contact information for a person or organization.
-@JsonSerializable()
 class ContactDetail extends DataType {
   ContactDetail({
     super.id,
@@ -21,21 +19,19 @@ class ContactDetail extends DataType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ContactDetail';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [name] /// The name of an individual to contact.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [telecom] /// The contact details for the individual (if a name was provided) or the
   /// organization.
-  @JsonKey(name: 'telecom')
   final List<ContactPoint>? telecom;
   @override
   Map<String, dynamic> toJson() {

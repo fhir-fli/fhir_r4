@@ -1,45 +1,35 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// MedicationStatement Status Codes
 enum MedicationStatementStatusCodes {
   /// Display: Active
   /// Definition: The medication is still being taken.
-  @JsonValue('active')
   active,
 
   /// Display: Completed
   /// Definition: The medication is no longer being taken.
-  @JsonValue('completed')
   completed,
 
   /// Display: Entered in Error
   /// Definition: Some of the actions that are implied by the medication statement may have occurred.  For example, the patient may have taken some of the medication.  Clinical decision support systems should take this status into account.
-  @JsonValue('entered-in-error')
   entered_in_error,
 
   /// Display: Intended
   /// Definition: The medication may be taken at some time in the future.
-  @JsonValue('intended')
   intended,
 
   /// Display: Stopped
   /// Definition: Actions implied by the statement have been permanently halted, before all of them occurred. This should not be used if the statement was entered in error.
-  @JsonValue('stopped')
   stopped,
 
   /// Display: On Hold
   /// Definition: Actions implied by the statement have been temporarily halted, but are expected to continue later. May also be called 'suspended'.
-  @JsonValue('on-hold')
   on_hold,
 
   /// Display: Unknown
   /// Definition: The state of the medication use is not currently known.
-  @JsonValue('unknown')
   unknown,
 
   /// Display: Not Taken
   /// Definition: The medication was not consumed by the patient
-  @JsonValue('not-taken')
   not_taken,
   ;
 

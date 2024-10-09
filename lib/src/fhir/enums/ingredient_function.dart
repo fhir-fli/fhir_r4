@@ -1,13 +1,9 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// A classification of the ingredient identifying its precise purpose(s) in the drug product (beyond e.g. active/inactive).
 enum IngredientFunction {
   /// Display: Antioxidant
-  @JsonValue('Antioxidant')
   Antioxidant,
 
   /// Display: Alkalizing Agent
-  @JsonValue('AlkalizingAgent')
   AlkalizingAgent,
   ;
 

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [Practitioner] /// A person who is directly or indirectly involved in the provisioning of
 /// healthcare.
-@JsonSerializable()
 class Practitioner extends DomainResource {
   Practitioner({
     super.id,
@@ -40,63 +38,51 @@ class Practitioner extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Practitioner);
+
   @override
   String get fhirType => 'Practitioner';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// An identifier that applies to this person in this role.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [active] /// Whether this practitioner's record is in active use.
-  @JsonKey(name: 'active')
   final FhirBoolean? active;
-  @JsonKey(name: '_active')
   final Element? activeElement;
 
   /// [name] /// The name(s) associated with the practitioner.
-  @JsonKey(name: 'name')
   final List<HumanName>? name;
 
   /// [telecom] /// A contact detail for the practitioner, e.g. a telephone number or an email
   /// address.
-  @JsonKey(name: 'telecom')
   final List<ContactPoint>? telecom;
 
   /// [address] /// Address(es) of the practitioner that are not role specific (typically home
   /// address). Work addresses are not typically entered in this property as they
   /// are usually role dependent.
-  @JsonKey(name: 'address')
   final List<Address>? address;
 
   /// [gender] /// Administrative Gender - the gender that the person is considered to have
   /// for administration and record keeping purposes.
-  @JsonKey(name: 'gender')
   final AdministrativeGender? gender;
-  @JsonKey(name: '_gender')
   final Element? genderElement;
 
   /// [birthDate] /// The date of birth for the practitioner.
-  @JsonKey(name: 'birthDate')
   final FhirDate? birthDate;
-  @JsonKey(name: '_birthDate')
   final Element? birthDateElement;
 
   /// [photo] /// Image of the person.
-  @JsonKey(name: 'photo')
   final List<Attachment>? photo;
 
   /// [qualification] /// The official certifications, training, and licenses that authorize or
   /// otherwise pertain to the provision of care by the practitioner. For
   /// example, a medical license issued by a medical board authorizing the
   /// practitioner to practice medicine within a certian locality.
-  @JsonKey(name: 'qualification')
   final List<PractitionerQualification>? qualification;
 
   /// [communication] /// A language the practitioner can use in patient communication.
-  @JsonKey(name: 'communication')
   final List<CodeableConcept>? communication;
   @override
   Map<String, dynamic> toJson() {
@@ -364,7 +350,6 @@ class Practitioner extends DomainResource {
 /// otherwise pertain to the provision of care by the practitioner. For
 /// example, a medical license issued by a medical board authorizing the
 /// practitioner to practice medicine within a certian locality.
-@JsonSerializable()
 class PractitionerQualification extends BackboneElement {
   PractitionerQualification({
     super.id,
@@ -381,26 +366,23 @@ class PractitionerQualification extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'PractitionerQualification';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// An identifier that applies to this person's qualification in this role.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [code] /// Coded representation of the qualification.
-  @JsonKey(name: 'code')
   final CodeableConcept code;
 
   /// [period] /// Period during which the qualification is valid.
-  @JsonKey(name: 'period')
   final Period? period;
 
   /// [issuer] /// Organization that regulates and issues the qualification.
-  @JsonKey(name: 'issuer')
   final Reference? issuer;
   @override
   Map<String, dynamic> toJson() {

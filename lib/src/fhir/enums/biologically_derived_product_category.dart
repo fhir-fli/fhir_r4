@@ -1,30 +1,23 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Biologically Derived Product Category.
 enum BiologicallyDerivedProductCategory {
   /// Display: Organ
   /// Definition: A collection of tissues joined in a structural unit to serve a common function.
-  @JsonValue('organ')
   organ,
 
   /// Display: Tissue
   /// Definition: An ensemble of similar cells and their extracellular matrix from the same origin that together carry out a specific function.
-  @JsonValue('tissue')
   tissue,
 
   /// Display: Fluid
   /// Definition: Body fluid.
-  @JsonValue('fluid')
   fluid,
 
   /// Display: Cells
   /// Definition: Collection of cells.
-  @JsonValue('cells')
   cells,
 
   /// Display: BiologicalAgent
   /// Definition: Biological agent of unspecified type.
-  @JsonValue('biologicalAgent')
   biologicalAgent,
   ;
 

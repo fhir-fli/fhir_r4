@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Supplemental data in a population for measuring purposes.
 enum MeasureSupplementalDataExample {
   /// Display: Age
   /// Definition: Age Supplemental Data.
-  @JsonValue('age')
   age,
 
   /// Display: Gender
   /// Definition: Gender Supplemental Data .
-  @JsonValue('gender')
   gender,
 
   /// Display: Ethnicity
   /// Definition: Ethnicity Supplemental Data .
-  @JsonValue('ethnicity')
   ethnicity,
 
   /// Display: Payer
   /// Definition: Payer Supplemental Data.
-  @JsonValue('payer')
   payer,
   ;
 

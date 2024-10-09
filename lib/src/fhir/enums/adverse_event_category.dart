@@ -1,75 +1,59 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Overall categorization of the event, e.g. product-related or situational.
 enum AdverseEventCategory {
   /// Display: Product Problem
   /// Definition: The adverse event pertains to a product problem.
-  @JsonValue('product-problem')
   product_problem,
 
   /// Display: Product Quality
   /// Definition: The adverse event pertains to product quality.
-  @JsonValue('product-quality')
   product_quality,
 
   /// Display: Product Use Error
   /// Definition: The adverse event pertains to a product use error.
-  @JsonValue('product-use-error')
   product_use_error,
 
   /// Display: Wrong Dose
   /// Definition: The adverse event pertains to a wrong dose.
-  @JsonValue('wrong-dose')
   wrong_dose,
 
   /// Display: Incorrect Prescribing Information
   /// Definition: The adverse event pertains to incorrect perscribing information.
-  @JsonValue('incorrect-prescribing-information')
   incorrect_prescribing_information,
 
   /// Display: Wrong Technique
   /// Definition: The adverse event pertains to a wrong technique.
-  @JsonValue('wrong-technique')
   wrong_technique,
 
   /// Display: Wrong Route of Administration
   /// Definition: The adverse event pertains to a wrong route of administration.
-  @JsonValue('wrong-route-of-administration')
   wrong_route_of_administration,
 
   /// Display: Wrong Rate
   /// Definition: The adverse event pertains to a wrong rate.
-  @JsonValue('wrong-rate')
   wrong_rate,
 
   /// Display: Wrong Duration
   /// Definition: The adverse event pertains to a wrong duration.
-  @JsonValue('wrong-duration')
   wrong_duration,
 
   /// Display: Wrong Time
   /// Definition: The adverse event pertains to a wrong time.
-  @JsonValue('wrong-time')
   wrong_time,
 
   /// Display: Expired Drug
   /// Definition: The adverse event pertains to an expired drug.
-  @JsonValue('expired-drug')
   expired_drug,
 
   /// Display: Medical Device Use Error
   /// Definition: The adverse event pertains to a medical device use error.
-  @JsonValue('medical-device-use-error')
   medical_device_use_error,
 
   /// Display: Problem with Different Manufacturer of Same Medicine
   /// Definition: The adverse event pertains to a problem with a different manufacturer of the same medication.
-  @JsonValue('problem-different-manufacturer')
   problem_different_manufacturer,
 
   /// Display: Unsafe Physical Environment
   /// Definition: The adverse event pertains to an unsafe physical environment.
-  @JsonValue('unsafe-physical-environment')
   unsafe_physical_environment,
   ;
 

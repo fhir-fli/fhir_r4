@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [Slot] /// A slot of time on a schedule that may be available for booking
 /// appointments.
-@JsonSerializable()
 class Slot extends DomainResource {
   Slot({
     super.id,
@@ -43,73 +41,58 @@ class Slot extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Slot);
+
   @override
   String get fhirType => 'Slot';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// External Ids for this item.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [serviceCategory] /// A broad categorization of the service that is to be performed during this
   /// appointment.
-  @JsonKey(name: 'serviceCategory')
   final List<CodeableConcept>? serviceCategory;
 
   /// [serviceType] /// The type of appointments that can be booked into this slot (ideally this
   /// would be an identifiable service - which is at a location, rather than the
   /// location itself). If provided then this overrides the value provided on the
   /// availability resource.
-  @JsonKey(name: 'serviceType')
   final List<CodeableConcept>? serviceType;
 
   /// [specialty] /// The specialty of a practitioner that would be required to perform the
   /// service requested in this appointment.
-  @JsonKey(name: 'specialty')
   final List<CodeableConcept>? specialty;
 
   /// [appointmentType] /// The style of appointment or patient that may be booked in the slot (not
   /// service type).
-  @JsonKey(name: 'appointmentType')
   final CodeableConcept? appointmentType;
 
   /// [schedule] /// The schedule resource that this slot defines an interval of status
   /// information.
-  @JsonKey(name: 'schedule')
   final Reference schedule;
 
   /// [status] /// busy | free | busy-unavailable | busy-tentative | entered-in-error.
-  @JsonKey(name: 'status')
   final SlotStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [start] /// Date/Time that the slot is to begin.
-  @JsonKey(name: 'start')
   final FhirInstant start;
-  @JsonKey(name: '_start')
   final Element? startElement;
 
   /// [end] /// Date/Time that the slot is to conclude.
-  @JsonKey(name: 'end')
   final FhirInstant end;
-  @JsonKey(name: '_end')
   final Element? endElement;
 
   /// [overbooked] /// This slot has already been overbooked, appointments are unlikely to be
   /// accepted for this time.
-  @JsonKey(name: 'overbooked')
   final FhirBoolean? overbooked;
-  @JsonKey(name: '_overbooked')
   final Element? overbookedElement;
 
   /// [comment] /// Comments on the slot to describe any extended information. Such as custom
   /// constraints on the slot.
-  @JsonKey(name: 'comment')
   final FhirString? comment;
-  @JsonKey(name: '_comment')
   final Element? commentElement;
   @override
   Map<String, dynamic> toJson() {

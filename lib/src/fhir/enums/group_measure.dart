@@ -1,35 +1,27 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Possible group measure aggregates (E.g. Mean, Median).
 enum GroupMeasure {
   /// Display: Mean
   /// Definition: Aggregated using Mean of participant values.
-  @JsonValue('mean')
   mean,
 
   /// Display: Median
   /// Definition: Aggregated using Median of participant values.
-  @JsonValue('median')
   median,
 
   /// Display: Mean of Study Means
   /// Definition: Aggregated using Mean of study mean values.
-  @JsonValue('mean-of-mean')
   mean_of_mean,
 
   /// Display: Mean of Study Medins
   /// Definition: Aggregated using Mean of study median values.
-  @JsonValue('mean-of-median')
   mean_of_median,
 
   /// Display: Median of Study Means
   /// Definition: Aggregated using Median of study mean values.
-  @JsonValue('median-of-mean')
   median_of_mean,
 
   /// Display: Median of Study Medians
   /// Definition: Aggregated using Median of study median values.
-  @JsonValue('median-of-median')
   median_of_median,
   ;
 

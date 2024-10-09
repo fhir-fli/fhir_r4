@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// A code specifying the state of the resource instance.
 enum ExplanationOfBenefitStatus {
   /// Display: Active
   /// Definition: The resource instance is currently in-force.
-  @JsonValue('active')
   active,
 
   /// Display: Cancelled
   /// Definition: The resource instance is withdrawn, rescinded or reversed.
-  @JsonValue('cancelled')
   cancelled,
 
   /// Display: Draft
   /// Definition: A new resource instance the contents of which is not complete.
-  @JsonValue('draft')
   draft,
 
   /// Display: Entered In Error
   /// Definition: The resource instance was entered in error.
-  @JsonValue('entered-in-error')
   entered_in_error,
   ;
 

@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Example Measure Groups for the Measure Resource.
 enum MeasureGroupExample {
   /// Display: Primary Rate
   /// Definition: Primary Measure Group.
-  @JsonValue('primary-rate')
   primary_rate,
 
   /// Display: Secondary Rate
   /// Definition: Secondary Measure Group
-  @JsonValue('secondary-rate')
   secondary_rate,
   ;
 

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -10,7 +9,6 @@ import '../../../fhir_r4.dart';
 /// Pair Instances (SOP Instances - images or other data) acquired or produced
 /// in a common context. A series is of only one modality (e.g. X-ray, CT, MR,
 /// ultrasound), but a study may have multiple series of different modalities.
-@JsonSerializable()
 class ImagingStudy extends DomainResource {
   ImagingStudy({
     super.id,
@@ -55,55 +53,45 @@ class ImagingStudy extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.ImagingStudy);
+
   @override
   String get fhirType => 'ImagingStudy';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifiers for the ImagingStudy such as DICOM Study Instance UID, and
   /// Accession Number.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// The current state of the ImagingStudy.
-  @JsonKey(name: 'status')
   final ImagingStudyStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [modality] /// A list of all the series.modality values that are actual acquisition
   /// modalities, i.e. those in the DICOM Context Group 29 (value set OID
   /// 1.2.840.10008.6.1.19).
-  @JsonKey(name: 'modality')
   final List<Coding>? modality;
 
   /// [subject] /// The subject, typically a patient, of the imaging study.
-  @JsonKey(name: 'subject')
   final Reference subject;
 
   /// [encounter] /// The healthcare event (e.g. a patient and healthcare provider interaction)
   /// during which this ImagingStudy is made.
-  @JsonKey(name: 'encounter')
   final Reference? encounter;
 
   /// [started] /// Date and time the study started.
-  @JsonKey(name: 'started')
   final FhirDateTime? started;
-  @JsonKey(name: '_started')
   final Element? startedElement;
 
   /// [basedOn] /// A list of the diagnostic requests that resulted in this imaging study being
   /// performed.
-  @JsonKey(name: 'basedOn')
   final List<Reference>? basedOn;
 
   /// [referrer] /// The requesting/referring physician.
-  @JsonKey(name: 'referrer')
   final Reference? referrer;
 
   /// [interpreter] /// Who read the study and interpreted the images or other content.
-  @JsonKey(name: 'interpreter')
   final List<Reference>? interpreter;
 
   /// [endpoint] /// The network service providing access (e.g., query, view, or retrieval) for
@@ -111,64 +99,50 @@ class ImagingStudy extends DomainResource {
   /// endpoints. A study-level endpoint applies to each series in the study,
   /// unless overridden by a series-level endpoint with the same
   /// Endpoint.connectionType.
-  @JsonKey(name: 'endpoint')
   final List<Reference>? endpoint;
 
   /// [numberOfSeries] /// Number of Series in the Study. This value given may be larger than the
   /// number of series elements this Resource contains due to resource
   /// availability, security, or other factors. This element should be present if
   /// any series elements are present.
-  @JsonKey(name: 'numberOfSeries')
   final FhirUnsignedInt? numberOfSeries;
-  @JsonKey(name: '_numberOfSeries')
   final Element? numberOfSeriesElement;
 
   /// [numberOfInstances] /// Number of SOP Instances in Study. This value given may be larger than the
   /// number of instance elements this resource contains due to resource
   /// availability, security, or other factors. This element should be present if
   /// any instance elements are present.
-  @JsonKey(name: 'numberOfInstances')
   final FhirUnsignedInt? numberOfInstances;
-  @JsonKey(name: '_numberOfInstances')
   final Element? numberOfInstancesElement;
 
   /// [procedureReference] /// The procedure which this ImagingStudy was part of.
-  @JsonKey(name: 'procedureReference')
   final Reference? procedureReference;
 
   /// [procedureCode] /// The code for the performed procedure type.
-  @JsonKey(name: 'procedureCode')
   final List<CodeableConcept>? procedureCode;
 
   /// [location] /// The principal physical location where the ImagingStudy was performed.
-  @JsonKey(name: 'location')
   final Reference? location;
 
   /// [reasonCode] /// Description of clinical condition indicating why the ImagingStudy was
   /// requested.
-  @JsonKey(name: 'reasonCode')
   final List<CodeableConcept>? reasonCode;
 
   /// [reasonReference] /// Indicates another resource whose existence justifies this Study.
-  @JsonKey(name: 'reasonReference')
   final List<Reference>? reasonReference;
 
   /// [note] /// Per the recommended DICOM mapping, this element is derived from the Study
   /// Description attribute (0008,1030). Observations or findings about the
   /// imaging study should be recorded in another resource, e.g. Observation, and
   /// not in this element.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [description] /// The Imaging Manager description of the study. Institution-generated
   /// description or classification of the Study (component) performed.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [series] /// Each study has one or more series of images or other content.
-  @JsonKey(name: 'series')
   final List<ImagingStudySeries>? series;
   @override
   Map<String, dynamic> toJson() {
@@ -536,7 +510,6 @@ class ImagingStudy extends DomainResource {
 }
 
 /// [ImagingStudySeries] /// Each study has one or more series of images or other content.
-@JsonSerializable()
 class ImagingStudySeries extends BackboneElement {
   ImagingStudySeries({
     super.id,
@@ -566,48 +539,39 @@ class ImagingStudySeries extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ImagingStudySeries';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [uid] /// The DICOM Series Instance UID for the series.
-  @JsonKey(name: 'uid')
   final FhirId uid;
-  @JsonKey(name: '_uid')
   final Element? uidElement;
 
   /// [number] /// The numeric identifier of this series in the study.
-  @JsonKey(name: 'number')
   final FhirUnsignedInt? number;
-  @JsonKey(name: '_number')
   final Element? numberElement;
 
   /// [modality] /// The modality of this series sequence.
-  @JsonKey(name: 'modality')
   final Coding modality;
 
   /// [description] /// A description of the series.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [numberOfInstances] /// Number of SOP Instances in the Study. The value given may be larger than
   /// the number of instance elements this resource contains due to resource
   /// availability, security, or other factors. This element should be present if
   /// any instance elements are present.
-  @JsonKey(name: 'numberOfInstances')
   final FhirUnsignedInt? numberOfInstances;
-  @JsonKey(name: '_numberOfInstances')
   final Element? numberOfInstancesElement;
 
   /// [endpoint] /// The network service providing access (e.g., query, view, or retrieval) for
   /// this series. See implementation notes for information about using DICOM
   /// endpoints. A series-level endpoint, if present, has precedence over a
   /// study-level endpoint with the same Endpoint.connectionType.
-  @JsonKey(name: 'endpoint')
   final List<Reference>? endpoint;
 
   /// [bodySite] /// The anatomic structures examined. See DICOM Part 16 Annex L
@@ -615,33 +579,26 @@ class ImagingStudySeries extends BackboneElement {
   /// for DICOM to SNOMED-CT mappings. The bodySite may indicate the laterality
   /// of body part imaged; if so, it shall be consistent with any content of
   /// ImagingStudy.series.laterality.
-  @JsonKey(name: 'bodySite')
   final Coding? bodySite;
 
   /// [laterality] /// The laterality of the (possibly paired) anatomic structures examined. E.g.,
   /// the left knee, both lungs, or unpaired abdomen. If present, shall be
   /// consistent with any laterality information indicated in
   /// ImagingStudy.series.bodySite.
-  @JsonKey(name: 'laterality')
   final Coding? laterality;
 
   /// [specimen] /// The specimen imaged, e.g., for whole slide imaging of a biopsy.
-  @JsonKey(name: 'specimen')
   final List<Reference>? specimen;
 
   /// [started] /// The date and time the series was started.
-  @JsonKey(name: 'started')
   final FhirDateTime? started;
-  @JsonKey(name: '_started')
   final Element? startedElement;
 
   /// [performer] /// Indicates who or what performed the series and how they were involved.
-  @JsonKey(name: 'performer')
   final List<ImagingStudyPerformer>? performer;
 
   /// [instance] /// A single SOP instance within the series, e.g. an image, or presentation
   /// state.
-  @JsonKey(name: 'instance')
   final List<ImagingStudyInstance>? instance;
   @override
   Map<String, dynamic> toJson() {
@@ -868,7 +825,6 @@ class ImagingStudySeries extends BackboneElement {
 }
 
 /// [ImagingStudyPerformer] /// Indicates who or what performed the series and how they were involved.
-@JsonSerializable()
 class ImagingStudyPerformer extends BackboneElement {
   ImagingStudyPerformer({
     super.id,
@@ -883,18 +839,17 @@ class ImagingStudyPerformer extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ImagingStudyPerformer';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [function_] /// Distinguishes the type of involvement of the performer in the series.
-  @JsonKey(name: 'function')
   final CodeableConcept? function_;
 
   /// [actor] /// Indicates who or what performed the series.
-  @JsonKey(name: 'actor')
   final Reference actor;
   @override
   Map<String, dynamic> toJson() {
@@ -994,7 +949,6 @@ class ImagingStudyPerformer extends BackboneElement {
 
 /// [ImagingStudyInstance] /// A single SOP instance within the series, e.g. an image, or presentation
 /// state.
-@JsonSerializable()
 class ImagingStudyInstance extends BackboneElement {
   ImagingStudyInstance({
     super.id,
@@ -1014,32 +968,26 @@ class ImagingStudyInstance extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ImagingStudyInstance';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [uid] /// The DICOM SOP Instance UID for this image or other DICOM content.
-  @JsonKey(name: 'uid')
   final FhirId uid;
-  @JsonKey(name: '_uid')
   final Element? uidElement;
 
   /// [sopClass] /// DICOM instance type.
-  @JsonKey(name: 'sopClass')
   final Coding sopClass;
 
   /// [number] /// The number of instance in the series.
-  @JsonKey(name: 'number')
   final FhirUnsignedInt? number;
-  @JsonKey(name: '_number')
   final Element? numberElement;
 
   /// [title] /// The description of the instance.
-  @JsonKey(name: 'title')
   final FhirString? title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
   @override
   Map<String, dynamic> toJson() {

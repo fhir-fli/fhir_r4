@@ -1,45 +1,35 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes a smattering of Adjudication Value codes which includes codes to indicate the amounts eligible under the plan, the amount of benefit, copays etc.
 enum AdjudicationValueCodes {
   /// Display: Submitted Amount
   /// Definition: The total submitted amount for the claim or group or line item.
-  @JsonValue('submitted')
   submitted,
 
   /// Display: CoPay
   /// Definition: Patient Co-Payment
-  @JsonValue('copay')
   copay,
 
   /// Display: Eligible Amount
   /// Definition: Amount of the change which is considered for adjudication.
-  @JsonValue('eligible')
   eligible,
 
   /// Display: Deductible
   /// Definition: Amount deducted from the eligible amount prior to adjudication.
-  @JsonValue('deductible')
   deductible,
 
   /// Display: Unallocated Deductible
   /// Definition: The amount of deductible which could not allocated to other line items.
-  @JsonValue('unallocdeduct')
   unallocdeduct,
 
   /// Display: Eligible %
   /// Definition: Eligible Percentage.
-  @JsonValue('eligpercent')
   eligpercent,
 
   /// Display: Tax
   /// Definition: The amount of tax.
-  @JsonValue('tax')
   tax,
 
   /// Display: Benefit Amount
   /// Definition: Amount payable under the coverage
-  @JsonValue('benefit')
   benefit,
   ;
 

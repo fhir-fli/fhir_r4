@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [Identifier] /// An identifier - identifies some entity uniquely and unambiguously.
 /// Typically this is used for business identifiers.
-@JsonSerializable()
 class Identifier extends DataType {
   Identifier({
     super.id,
@@ -28,43 +26,35 @@ class Identifier extends DataType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'Identifier';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [use] /// The purpose of this identifier.
-  @JsonKey(name: 'use')
   final IdentifierUse? use;
-  @JsonKey(name: '_use')
   final Element? useElement;
 
   /// [type] /// A coded type for the identifier that can be used to determine which
   /// identifier to use for a specific purpose.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [system] /// Establishes the namespace for the value - that is, a URL that describes a
   /// set values that are unique.
-  @JsonKey(name: 'system')
   final FhirUri? system;
-  @JsonKey(name: '_system')
   final Element? systemElement;
 
   /// [value] /// The portion of the identifier typically relevant to the user and which is
   /// unique within the context of the system.
-  @JsonKey(name: 'value')
   final FhirString? value;
-  @JsonKey(name: '_value')
   final Element? valueElement;
 
   /// [period] /// Time period during which identifier is/was valid for use.
-  @JsonKey(name: 'period')
   final Period? period;
 
   /// [assigner] /// Organization that issued/manages the identifier.
-  @JsonKey(name: 'assigner')
   final Reference? assigner;
   @override
   Map<String, dynamic> toJson() {

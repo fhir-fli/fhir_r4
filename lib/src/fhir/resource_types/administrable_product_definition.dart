@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,7 +7,6 @@ import '../../../fhir_r4.dart';
 /// [AdministrableProductDefinition] /// A medicinal product in the final form which is suitable for administering
 /// to a patient (after any mixing of multiple components, dissolution etc. has
 /// been performed).
-@JsonSerializable()
 class AdministrableProductDefinition extends DomainResource {
   AdministrableProductDefinition({
     super.id,
@@ -39,21 +37,19 @@ class AdministrableProductDefinition extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.AdministrableProductDefinition);
+
   @override
   String get fhirType => 'AdministrableProductDefinition';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// An identifier for the administrable product.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// The status of this administrable product. Enables tracking the life-cycle
   /// of the content.
-  @JsonKey(name: 'status')
   final PublicationStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [formOf] /// References a product from which one or more of the constituent parts of
@@ -64,7 +60,6 @@ class AdministrableProductDefinition extends DomainResource {
   /// from the 'producedFrom' which refers to the specific components of the
   /// product that are used in this preparation, rather than the product as a
   /// whole.
-  @JsonKey(name: 'formOf')
   final List<Reference>? formOf;
 
   /// [administrableDoseForm] /// The dose form of the final product after necessary reconstitution or
@@ -73,13 +68,11 @@ class AdministrableProductDefinition extends DomainResource {
   /// solution for injection', the administrable dose form could be 'solution for
   /// injection' (once mixed with another item having manufactured form 'solvent
   /// for solution for injection').
-  @JsonKey(name: 'administrableDoseForm')
   final CodeableConcept? administrableDoseForm;
 
   /// [unitOfPresentation] /// The presentation type in which this item is given to a patient. e.g. for a
   /// spray - 'puff' (as in 'contains 100 mcg per puff'), or for a liquid -
   /// 'vial' (as in 'contains 5 ml per vial').
-  @JsonKey(name: 'unitOfPresentation')
   final CodeableConcept? unitOfPresentation;
 
   /// [producedFrom] /// Indicates the specific manufactured items that are part of the 'formOf'
@@ -90,7 +83,6 @@ class AdministrableProductDefinition extends DomainResource {
   /// in the overall product. For example, an administrable form might involve
   /// combining a liquid and a powder available as part of an overall product,
   /// but not involve applying the also supplied cream.
-  @JsonKey(name: 'producedFrom')
   final List<Reference>? producedFrom;
 
   /// [ingredient] /// The ingredients of this administrable medicinal product. This is only
@@ -100,24 +92,20 @@ class AdministrableProductDefinition extends DomainResource {
   /// references from the Ingredient resource, to state in detail which
   /// substances exist within this. This element allows a basic coded ingredient
   /// to be used.
-  @JsonKey(name: 'ingredient')
   final List<CodeableConcept>? ingredient;
 
   /// [device] /// A device that is integral to the medicinal product, in effect being
   /// considered as an "ingredient" of the medicinal product. This is not
   /// intended for devices that are just co-packaged.
-  @JsonKey(name: 'device')
   final Reference? device;
 
   /// [property] /// Characteristics e.g. a product's onset of action.
-  @JsonKey(name: 'property')
   final List<AdministrableProductDefinitionProperty>? property;
 
   /// [routeOfAdministration] /// The path by which the product is taken into or makes contact with the body.
   /// In some regions this is referred to as the licenced or approved route.
   /// RouteOfAdministration cannot be used when the 'formOf' product already uses
   /// MedicinalProductDefinition.route (and vice versa).
-  @JsonKey(name: 'routeOfAdministration')
   final List<AdministrableProductDefinitionRouteOfAdministration>
       routeOfAdministration;
   @override
@@ -371,7 +359,6 @@ class AdministrableProductDefinition extends DomainResource {
 }
 
 /// [AdministrableProductDefinitionProperty] /// Characteristics e.g. a product's onset of action.
-@JsonSerializable()
 class AdministrableProductDefinitionProperty extends BackboneElement {
   AdministrableProductDefinitionProperty({
     super.id,
@@ -393,42 +380,34 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'AdministrableProductDefinitionProperty';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// A code expressing the type of characteristic.
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [valueCodeableConcept] /// A value for the characteristic.
-  @JsonKey(name: 'valueCodeableConcept')
   final CodeableConcept? valueCodeableConcept;
 
   /// [valueQuantity] /// A value for the characteristic.
-  @JsonKey(name: 'valueQuantity')
   final Quantity? valueQuantity;
 
   /// [valueDate] /// A value for the characteristic.
-  @JsonKey(name: 'valueDate')
   final FhirDate? valueDate;
-  @JsonKey(name: '_valueDate')
   final Element? valueDateElement;
 
   /// [valueBoolean] /// A value for the characteristic.
-  @JsonKey(name: 'valueBoolean')
   final FhirBoolean? valueBoolean;
-  @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
 
   /// [valueAttachment] /// A value for the characteristic.
-  @JsonKey(name: 'valueAttachment')
   final Attachment? valueAttachment;
 
   /// [status] /// The status of characteristic e.g. assigned or pending.
-  @JsonKey(name: 'status')
   final CodeableConcept? status;
   @override
   Map<String, dynamic> toJson() {
@@ -587,7 +566,6 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
 /// In some regions this is referred to as the licenced or approved route.
 /// RouteOfAdministration cannot be used when the 'formOf' product already uses
 /// MedicinalProductDefinition.route (and vice versa).
-@JsonSerializable()
 class AdministrableProductDefinitionRouteOfAdministration
     extends BackboneElement {
   AdministrableProductDefinitionRouteOfAdministration({
@@ -608,41 +586,35 @@ class AdministrableProductDefinitionRouteOfAdministration
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'AdministrableProductDefinitionRouteOfAdministration';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// Coded expression for the route.
-  @JsonKey(name: 'code')
   final CodeableConcept code;
 
   /// [firstDose] /// The first dose (dose quantity) administered can be specified for the
   /// product, using a numerical value and its unit of measurement.
-  @JsonKey(name: 'firstDose')
   final Quantity? firstDose;
 
   /// [maxSingleDose] /// The maximum single dose that can be administered, specified using a
   /// numerical value and its unit of measurement.
-  @JsonKey(name: 'maxSingleDose')
   final Quantity? maxSingleDose;
 
   /// [maxDosePerDay] /// The maximum dose per day (maximum dose quantity to be administered in any
   /// one 24-h period) that can be administered.
-  @JsonKey(name: 'maxDosePerDay')
   final Quantity? maxDosePerDay;
 
   /// [maxDosePerTreatmentPeriod] /// The maximum dose per treatment period that can be administered.
-  @JsonKey(name: 'maxDosePerTreatmentPeriod')
   final Ratio? maxDosePerTreatmentPeriod;
 
   /// [maxTreatmentPeriod] /// The maximum treatment period during which the product can be administered.
-  @JsonKey(name: 'maxTreatmentPeriod')
   final FhirDuration? maxTreatmentPeriod;
 
   /// [targetSpecies] /// A species for which this route applies.
-  @JsonKey(name: 'targetSpecies')
   final List<AdministrableProductDefinitionTargetSpecies>? targetSpecies;
   @override
   Map<String, dynamic> toJson() {
@@ -796,7 +768,6 @@ class AdministrableProductDefinitionRouteOfAdministration
 }
 
 /// [AdministrableProductDefinitionTargetSpecies] /// A species for which this route applies.
-@JsonSerializable()
 class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
   AdministrableProductDefinitionTargetSpecies({
     super.id,
@@ -811,19 +782,18 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'AdministrableProductDefinitionTargetSpecies';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// Coded expression for the species.
-  @JsonKey(name: 'code')
   final CodeableConcept code;
 
   /// [withdrawalPeriod] /// A species specific time during which consumption of animal product is not
   /// appropriate.
-  @JsonKey(name: 'withdrawalPeriod')
   final List<AdministrableProductDefinitionWithdrawalPeriod>? withdrawalPeriod;
   @override
   Map<String, dynamic> toJson() {
@@ -935,7 +905,6 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
 
 /// [AdministrableProductDefinitionWithdrawalPeriod] /// A species specific time during which consumption of animal product is not
 /// appropriate.
-@JsonSerializable()
 class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
   AdministrableProductDefinitionWithdrawalPeriod({
     super.id,
@@ -952,25 +921,22 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'AdministrableProductDefinitionWithdrawalPeriod';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [tissue] /// Coded expression for the type of tissue for which the withdrawal period
   /// applies, e.g. meat, milk.
-  @JsonKey(name: 'tissue')
   final CodeableConcept tissue;
 
   /// [value] /// A value for the time.
-  @JsonKey(name: 'value')
   final Quantity value;
 
   /// [supportingInformation] /// Extra information about the withdrawal period.
-  @JsonKey(name: 'supportingInformation')
   final FhirString? supportingInformation;
-  @JsonKey(name: '_supportingInformation')
   final Element? supportingInformationElement;
   @override
   Map<String, dynamic> toJson() {

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,7 +7,6 @@ import '../../../fhir_r4.dart';
 /// [DeviceRequest] /// Represents a request for a patient to employ a medical device. The device
 /// may be an implantable device, or an external assistive device, such as a
 /// walker.
-@JsonSerializable()
 class DeviceRequest extends DomainResource {
   DeviceRequest({
     super.id,
@@ -62,156 +60,123 @@ class DeviceRequest extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.DeviceRequest);
+
   @override
   String get fhirType => 'DeviceRequest';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifiers assigned to this order by the orderer or by the receiver.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [instantiatesCanonical] /// The URL pointing to a FHIR-defined protocol, guideline, orderset or other
   /// definition that is adhered to in whole or in part by this DeviceRequest.
-  @JsonKey(name: 'instantiatesCanonical')
   final List<FhirCanonical>? instantiatesCanonical;
-  @JsonKey(name: '_instantiatesCanonical')
   final List<Element>? instantiatesCanonicalElement;
 
   /// [instantiatesUri] /// The URL pointing to an externally maintained protocol, guideline, orderset
   /// or other definition that is adhered to in whole or in part by this
   /// DeviceRequest.
-  @JsonKey(name: 'instantiatesUri')
   final List<FhirUri>? instantiatesUri;
-  @JsonKey(name: '_instantiatesUri')
   final List<Element>? instantiatesUriElement;
 
   /// [basedOn] /// Plan/proposal/order fulfilled by this request.
-  @JsonKey(name: 'basedOn')
   final List<Reference>? basedOn;
 
   /// [priorRequest] /// The request takes the place of the referenced completed or terminated
   /// request(s).
-  @JsonKey(name: 'priorRequest')
   final List<Reference>? priorRequest;
 
   /// [groupIdentifier] /// Composite request this is part of.
-  @JsonKey(name: 'groupIdentifier')
   final Identifier? groupIdentifier;
 
   /// [status] /// The status of the request.
-  @JsonKey(name: 'status')
   final RequestStatus? status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [intent] /// Whether the request is a proposal, plan, an original order or a reflex
   /// order.
-  @JsonKey(name: 'intent')
   final RequestIntent intent;
-  @JsonKey(name: '_intent')
   final Element? intentElement;
 
   /// [priority] /// Indicates how quickly the {{title}} should be addressed with respect to
   /// other requests.
-  @JsonKey(name: 'priority')
   final RequestPriority? priority;
-  @JsonKey(name: '_priority')
   final Element? priorityElement;
 
   /// [codeReference] /// The details of the device to be used.
-  @JsonKey(name: 'codeReference')
   final Reference? codeReference;
 
   /// [codeCodeableConcept] /// The details of the device to be used.
-  @JsonKey(name: 'codeCodeableConcept')
   final CodeableConcept? codeCodeableConcept;
 
   /// [parameter] /// Specific parameters for the ordered item. For example, the prism value for
   /// lenses.
-  @JsonKey(name: 'parameter')
   final List<DeviceRequestParameter>? parameter;
 
   /// [subject] /// The patient who will use the device.
-  @JsonKey(name: 'subject')
   final Reference subject;
 
   /// [encounter] /// An encounter that provides additional context in which this request is
   /// made.
-  @JsonKey(name: 'encounter')
   final Reference? encounter;
 
   /// [occurrenceDateTime] /// The timing schedule for the use of the device. The Schedule data type
   /// allows many different expressions, for example. "Every 8 hours"; "Three
   /// times a day"; "1/2 an hour before breakfast for 10 days from 23-Dec 2011:";
   /// "15 Oct 2013, 17 Oct 2013 and 1 Nov 2013".
-  @JsonKey(name: 'occurrenceDateTime')
   final FhirDateTime? occurrenceDateTime;
-  @JsonKey(name: '_occurrenceDateTime')
   final Element? occurrenceDateTimeElement;
 
   /// [occurrencePeriod] /// The timing schedule for the use of the device. The Schedule data type
   /// allows many different expressions, for example. "Every 8 hours"; "Three
   /// times a day"; "1/2 an hour before breakfast for 10 days from 23-Dec 2011:";
   /// "15 Oct 2013, 17 Oct 2013 and 1 Nov 2013".
-  @JsonKey(name: 'occurrencePeriod')
   final Period? occurrencePeriod;
 
   /// [occurrenceTiming] /// The timing schedule for the use of the device. The Schedule data type
   /// allows many different expressions, for example. "Every 8 hours"; "Three
   /// times a day"; "1/2 an hour before breakfast for 10 days from 23-Dec 2011:";
   /// "15 Oct 2013, 17 Oct 2013 and 1 Nov 2013".
-  @JsonKey(name: 'occurrenceTiming')
   final Timing? occurrenceTiming;
 
   /// [authoredOn] /// When the request transitioned to being actionable.
-  @JsonKey(name: 'authoredOn')
   final FhirDateTime? authoredOn;
-  @JsonKey(name: '_authoredOn')
   final Element? authoredOnElement;
 
   /// [requester] /// The individual who initiated the request and has responsibility for its
   /// activation.
-  @JsonKey(name: 'requester')
   final Reference? requester;
 
   /// [performerType] /// Desired type of performer for doing the diagnostic testing.
-  @JsonKey(name: 'performerType')
   final CodeableConcept? performerType;
 
   /// [performer] /// The desired performer for doing the diagnostic testing.
-  @JsonKey(name: 'performer')
   final Reference? performer;
 
   /// [reasonCode] /// Reason or justification for the use of this device.
-  @JsonKey(name: 'reasonCode')
   final List<CodeableConcept>? reasonCode;
 
   /// [reasonReference] /// Reason or justification for the use of this device.
-  @JsonKey(name: 'reasonReference')
   final List<Reference>? reasonReference;
 
   /// [insurance] /// Insurance plans, coverage extensions, pre-authorizations and/or
   /// pre-determinations that may be required for delivering the requested
   /// service.
-  @JsonKey(name: 'insurance')
   final List<Reference>? insurance;
 
   /// [supportingInfo] /// Additional clinical information about the patient that may influence the
   /// request fulfilment. For example, this may include where on the subject's
   /// body the device will be used (i.e. the target site).
-  @JsonKey(name: 'supportingInfo')
   final List<Reference>? supportingInfo;
 
   /// [note] /// Details about this request that were not represented at all or sufficiently
   /// in one of the attributes provided in a class. These may include for example
   /// a comment, an instruction, or a note associated with the statement.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [relevantHistory] /// Key events in the history of the request.
-  @JsonKey(name: 'relevantHistory')
   final List<Reference>? relevantHistory;
   @override
   Map<String, dynamic> toJson() {
@@ -660,7 +625,6 @@ class DeviceRequest extends DomainResource {
 
 /// [DeviceRequestParameter] /// Specific parameters for the ordered item. For example, the prism value for
 /// lenses.
-@JsonSerializable()
 class DeviceRequestParameter extends BackboneElement {
   DeviceRequestParameter({
     super.id,
@@ -679,32 +643,27 @@ class DeviceRequestParameter extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'DeviceRequestParameter';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// A code or string that identifies the device detail being asserted.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [valueCodeableConcept] /// The value of the device detail.
-  @JsonKey(name: 'valueCodeableConcept')
   final CodeableConcept? valueCodeableConcept;
 
   /// [valueQuantity] /// The value of the device detail.
-  @JsonKey(name: 'valueQuantity')
   final Quantity? valueQuantity;
 
   /// [valueRange] /// The value of the device detail.
-  @JsonKey(name: 'valueRange')
   final Range? valueRange;
 
   /// [valueBoolean] /// The value of the device detail.
-  @JsonKey(name: 'valueBoolean')
   final FhirBoolean? valueBoolean;
-  @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
   @override
   Map<String, dynamic> toJson() {

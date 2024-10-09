@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [DataRequirement] /// Describes a required data item for evaluation in terms of the type of data,
 /// and optional code or date-based filters of the data.
-@JsonSerializable()
 class DataRequirement extends DataType {
   DataRequirement({
     super.id,
@@ -32,35 +30,30 @@ class DataRequirement extends DataType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'DataRequirement';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The type of the required data, specified as the type name of a resource.
   /// For profiles, this value is set to the type of the base resource of the
   /// profile.
-  @JsonKey(name: 'type')
   final FHIRAllTypes type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [profile] /// The profile of the required data, specified as the uri of the profile
   /// definition.
-  @JsonKey(name: 'profile')
   final List<FhirCanonical>? profile;
-  @JsonKey(name: '_profile')
   final List<Element>? profileElement;
 
   /// [subjectCodeableConcept] /// The intended subjects of the data requirement. If this element is not
   /// provided, a Patient subject is assumed.
-  @JsonKey(name: 'subjectCodeableConcept')
   final CodeableConcept? subjectCodeableConcept;
 
   /// [subjectReference] /// The intended subjects of the data requirement. If this element is not
   /// provided, a Patient subject is assumed.
-  @JsonKey(name: 'subjectReference')
   final Reference? subjectReference;
 
   /// [mustSupport] /// Indicates that specific elements of the type are referenced by the
@@ -73,33 +66,26 @@ class DataRequirement extends DataType {
   /// DataRequirement. The path SHALL consist only of identifiers, constant
   /// indexers, and .resolve() (see the [Simple FHIRPath
   /// Profile](fhirpath.html#simple) for full details).
-  @JsonKey(name: 'mustSupport')
   final List<FhirString>? mustSupport;
-  @JsonKey(name: '_mustSupport')
   final List<Element>? mustSupportElement;
 
   /// [codeFilter] /// Code filters specify additional constraints on the data, specifying the
   /// value set of interest for a particular element of the data. Each code
   /// filter defines an additional constraint on the data, i.e. code filters are
   /// AND'ed, not OR'ed.
-  @JsonKey(name: 'codeFilter')
   final List<DataRequirementCodeFilter>? codeFilter;
 
   /// [dateFilter] /// Date filters specify additional constraints on the data in terms of the
   /// applicable date range for specific elements. Each date filter specifies an
   /// additional constraint on the data, i.e. date filters are AND'ed, not OR'ed.
-  @JsonKey(name: 'dateFilter')
   final List<DataRequirementDateFilter>? dateFilter;
 
   /// [limit] /// Specifies a maximum number of results that are required (uses the _count
   /// search parameter).
-  @JsonKey(name: 'limit')
   final FhirPositiveInt? limit;
-  @JsonKey(name: '_limit')
   final Element? limitElement;
 
   /// [sort] /// Specifies the order of the results to be returned.
-  @JsonKey(name: 'sort')
   final List<DataRequirementSort>? sort;
   @override
   Map<String, dynamic> toJson() {
@@ -297,7 +283,6 @@ class DataRequirement extends DataType {
 /// value set of interest for a particular element of the data. Each code
 /// filter defines an additional constraint on the data, i.e. code filters are
 /// AND'ed, not OR'ed.
-@JsonSerializable()
 class DataRequirementCodeFilter extends Element {
   DataRequirementCodeFilter({
     super.id,
@@ -316,10 +301,11 @@ class DataRequirementCodeFilter extends Element {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'DataRequirementCodeFilter';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [path] /// The code-valued attribute of the filter. The specified path SHALL be a
@@ -330,26 +316,20 @@ class DataRequirementCodeFilter extends Element {
   /// [Simple FHIRPath Profile](fhirpath.html#simple) for full details). Note
   /// that the index must be an integer constant. The path must resolve to an
   /// element of type code, Coding, or CodeableConcept.
-  @JsonKey(name: 'path')
   final FhirString? path;
-  @JsonKey(name: '_path')
   final Element? pathElement;
 
   /// [searchParam] /// A token parameter that refers to a search parameter defined on the
   /// specified type of the DataRequirement, and which searches on elements of
   /// type code, Coding, or CodeableConcept.
-  @JsonKey(name: 'searchParam')
   final FhirString? searchParam;
-  @JsonKey(name: '_searchParam')
   final Element? searchParamElement;
 
   /// [valueSet] /// The valueset for the code filter. The valueSet and code elements are
   /// additive. If valueSet is specified, the filter will return only those data
   /// items for which the value of the code-valued element specified in the path
   /// is a member of the specified valueset.
-  @JsonKey(name: 'valueSet')
   final FhirCanonical? valueSet;
-  @JsonKey(name: '_valueSet')
   final Element? valueSetElement;
 
   /// [code] /// The codes for the code filter. If values are given, the filter will return
@@ -357,7 +337,6 @@ class DataRequirementCodeFilter extends Element {
   /// path has a value that is one of the specified codes. If codes are specified
   /// in addition to a value set, the filter returns items matching a code in the
   /// value set or one of the specified codes.
-  @JsonKey(name: 'code')
   final List<Coding>? code;
   @override
   Map<String, dynamic> toJson() {
@@ -488,7 +467,6 @@ class DataRequirementCodeFilter extends Element {
 /// [DataRequirementDateFilter] /// Date filters specify additional constraints on the data in terms of the
 /// applicable date range for specific elements. Each date filter specifies an
 /// additional constraint on the data, i.e. date filters are AND'ed, not OR'ed.
-@JsonSerializable()
 class DataRequirementDateFilter extends Element {
   DataRequirementDateFilter({
     super.id,
@@ -508,10 +486,11 @@ class DataRequirementDateFilter extends Element {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'DataRequirementDateFilter';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [path] /// The date-valued attribute of the filter. The specified path SHALL be a
@@ -522,17 +501,13 @@ class DataRequirementDateFilter extends Element {
   /// [Simple FHIRPath Profile](fhirpath.html#simple) for full details). Note
   /// that the index must be an integer constant. The path must resolve to an
   /// element of type date, dateTime, Period, Schedule, or Timing.
-  @JsonKey(name: 'path')
   final FhirString? path;
-  @JsonKey(name: '_path')
   final Element? pathElement;
 
   /// [searchParam] /// A date parameter that refers to a search parameter defined on the specified
   /// type of the DataRequirement, and which searches on elements of type date,
   /// dateTime, Period, Schedule, or Timing.
-  @JsonKey(name: 'searchParam')
   final FhirString? searchParam;
-  @JsonKey(name: '_searchParam')
   final Element? searchParamElement;
 
   /// [valueDateTime] /// The value of the filter. If period is specified, the filter will return
@@ -541,9 +516,7 @@ class DataRequirementDateFilter extends Element {
   /// will return only those data items that are equal to the specified dateTime.
   /// If a Duration is specified, the filter will return only those data items
   /// that fall within Duration before now.
-  @JsonKey(name: 'valueDateTime')
   final FhirDateTime? valueDateTime;
-  @JsonKey(name: '_valueDateTime')
   final Element? valueDateTimeElement;
 
   /// [valuePeriod] /// The value of the filter. If period is specified, the filter will return
@@ -552,7 +525,6 @@ class DataRequirementDateFilter extends Element {
   /// will return only those data items that are equal to the specified dateTime.
   /// If a Duration is specified, the filter will return only those data items
   /// that fall within Duration before now.
-  @JsonKey(name: 'valuePeriod')
   final Period? valuePeriod;
 
   /// [valueDuration] /// The value of the filter. If period is specified, the filter will return
@@ -561,7 +533,6 @@ class DataRequirementDateFilter extends Element {
   /// will return only those data items that are equal to the specified dateTime.
   /// If a Duration is specified, the filter will return only those data items
   /// that fall within Duration before now.
-  @JsonKey(name: 'valueDuration')
   final FhirDuration? valueDuration;
   @override
   Map<String, dynamic> toJson() {
@@ -696,7 +667,6 @@ class DataRequirementDateFilter extends Element {
 }
 
 /// [DataRequirementSort] /// Specifies the order of the results to be returned.
-@JsonSerializable()
 class DataRequirementSort extends Element {
   DataRequirementSort({
     super.id,
@@ -712,10 +682,11 @@ class DataRequirementSort extends Element {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'DataRequirementSort';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [path] /// The attribute of the sort. The specified path must be resolvable from the
@@ -723,15 +694,11 @@ class DataRequirementSort extends Element {
   /// traverse sub-elements, as well as indexers ([x]) to traverse
   /// multiple-cardinality sub-elements. Note that the index must be an integer
   /// constant.
-  @JsonKey(name: 'path')
   final FhirString path;
-  @JsonKey(name: '_path')
   final Element? pathElement;
 
   /// [direction] /// The direction of the sort, ascending or descending.
-  @JsonKey(name: 'direction')
   final SortDirection direction;
-  @JsonKey(name: '_direction')
   final Element? directionElement;
   @override
   Map<String, dynamic> toJson() {

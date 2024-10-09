@@ -1,30 +1,23 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the status of the patient towards perceived immunity against a vaccine preventable disease. This value set is provided as a suggestive example.
 enum ImmunizationRecommendationStatusCodes {
   /// Display: Due
   /// Definition: The patient is due for their next vaccination.
-  @JsonValue('due')
   due,
 
   /// Display: Overdue
   /// Definition: The patient is considered overdue for their next vaccination.
-  @JsonValue('overdue')
   overdue,
 
   /// Display: Immune
   /// Definition: The patient is immune to the target disease and further immunization against the disease is not likely to provide benefit.
-  @JsonValue('immune')
   immune,
 
   /// Display: Contraindicated
   /// Definition: The patient is contraindicated for futher doses.
-  @JsonValue('contraindicated')
   contraindicated,
 
   /// Display: Complete
   /// Definition: The patient is fully protected and no further doses are recommended.
-  @JsonValue('complete')
   complete,
   ;
 

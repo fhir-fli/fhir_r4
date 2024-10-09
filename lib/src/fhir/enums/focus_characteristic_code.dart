@@ -1,45 +1,35 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Evidence focus characteristic code.
 enum FocusCharacteristicCode {
   /// Display: Citation
   /// Definition: Used to reference a specific article.
-  @JsonValue('citation')
   citation,
 
   /// Display: Observed outcomes are clinical outcomes
   /// Definition: Used to denote a focus on clinical outcomes, ie evidence variable in role of outcome (measured variable) as observed is considered a "clinical outcome" (patient-important outcome such as mortality, symptoms, function or quality of life).
-  @JsonValue('clinical-outcomes-observed')
   clinical_outcomes_observed,
 
   /// Display: Population
   /// Definition: The population of interest.
-  @JsonValue('population')
   population,
 
   /// Display: Exposure
   /// Definition: The exposure of interest, such as an intervention.
-  @JsonValue('exposure')
   exposure,
 
   /// Display: Comparator
   /// Definition: The comparator (intervention or control state) of interest.
-  @JsonValue('comparator')
   comparator,
 
   /// Display: Outcome
   /// Definition: the outcome of interest.
-  @JsonValue('outcome')
   outcome,
 
   /// Display: Medication exposures
   /// Definition: Any medication exposures. A subset of exposures or interventions that are medications.
-  @JsonValue('medication-exposures')
   medication_exposures,
 
   /// Display: Study type
   /// Definition: Type of research study, such as randomized trial or case-control study.
-  @JsonValue('study-type')
   study_type,
   ;
 

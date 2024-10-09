@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [Coding] /// A reference to a code defined by a terminology system.
-@JsonSerializable()
 class Coding extends DataType {
   Coding({
     super.id,
@@ -28,17 +26,16 @@ class Coding extends DataType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'Coding';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [system] /// The identification of the code system that defines the meaning of the
   /// symbol in the code.
-  @JsonKey(name: 'system')
   final FhirUri? system;
-  @JsonKey(name: '_system')
   final Element? systemElement;
 
   /// [version] /// The version of the code system which was used when choosing this code. Note
@@ -46,31 +43,23 @@ class Coding extends DataType {
   /// because the meaning of codes is consistent across versions. However this
   /// cannot consistently be assured, and when the meaning is not guaranteed to
   /// be consistent, the version SHOULD be exchanged.
-  @JsonKey(name: 'version')
   final FhirString? version;
-  @JsonKey(name: '_version')
   final Element? versionElement;
 
   /// [code] /// A symbol in syntax defined by the system. The symbol may be a predefined
   /// code or an expression in a syntax defined by the coding system (e.g.
   /// post-coordination).
-  @JsonKey(name: 'code')
   final FhirCode? code;
-  @JsonKey(name: '_code')
   final Element? codeElement;
 
   /// [display] /// A representation of the meaning of the code in the system, following the
   /// rules of the system.
-  @JsonKey(name: 'display')
   final FhirString? display;
-  @JsonKey(name: '_display')
   final Element? displayElement;
 
   /// [userSelected] /// Indicates that this coding was chosen by a user directly - e.g. off a pick
   /// list of available items (codes or displays).
-  @JsonKey(name: 'userSelected')
   final FhirBoolean? userSelected;
-  @JsonKey(name: '_userSelected')
   final Element? userSelectedElement;
   @override
   Map<String, dynamic> toJson() {

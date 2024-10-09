@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The reason why the supply item was requested.
 enum SupplyRequestReason {
   /// Display: Patient Care
   /// Definition: The supply has been requested for use in direct patient care.
-  @JsonValue('patient-care')
   patient_care,
 
   /// Display: Ward Stock
   /// Definition: The supply has been requested for creating or replenishing ward stock.
-  @JsonValue('ward-stock')
   ward_stock,
   ;
 

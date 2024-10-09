@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes sample Program Reason Span codes.
 enum ExampleProgramReasonCodes {
   /// Display: Child Asthma
   /// Definition: Child Asthma Program
-  @JsonValue('as')
   as_,
 
   /// Display: Hemodialysis
   /// Definition: Hemodialysis Program.
-  @JsonValue('hd')
   hd,
 
   /// Display: Autism Screening
   /// Definition: Autism Screening Program.
-  @JsonValue('auscr')
   auscr,
 
   /// Display: None
   /// Definition: No program code applies.
-  @JsonValue('none')
   none,
   ;
 

@@ -1,21 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// A categorisation for an interaction between two substances.
 enum InteractionType {
   /// Display: drug to drug interaction
-  @JsonValue('drug-drug')
   drug_drug,
 
   /// Display: drug to food interaction
-  @JsonValue('drug-food')
   drug_food,
 
   /// Display: drug to laboratory test interaction
-  @JsonValue('drug-test')
   drug_test,
 
   /// Display: other interaction
-  @JsonValue('other')
   other,
   ;
 

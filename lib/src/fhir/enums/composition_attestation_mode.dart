@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The way in which a person authenticated a composition.
 enum CompositionAttestationMode {
   /// Display: Personal
   /// Definition: The person authenticated the content in their personal capacity.
-  @JsonValue('personal')
   personal,
 
   /// Display: Professional
   /// Definition: The person authenticated the content in their professional capacity.
-  @JsonValue('professional')
   professional,
 
   /// Display: Legal
   /// Definition: The person authenticated the content and accepted legal responsibility for its content.
-  @JsonValue('legal')
   legal,
 
   /// Display: Official
   /// Definition: The organization authenticated the content as consistent with their policies and procedures.
-  @JsonValue('official')
   official,
   ;
 

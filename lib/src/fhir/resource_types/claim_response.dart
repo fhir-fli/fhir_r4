@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [ClaimResponse] /// This resource provides the adjudication details from the processing of a
 /// Claim resource.
-@JsonSerializable()
 class ClaimResponse extends DomainResource {
   ClaimResponse({
     super.id,
@@ -60,30 +58,26 @@ class ClaimResponse extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.ClaimResponse);
+
   @override
   String get fhirType => 'ClaimResponse';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// A unique identifier assigned to this claim response.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// The status of the resource instance.
-  @JsonKey(name: 'status')
   final FinancialResourceStatusCodes status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [type] /// A finer grained suite of claim type codes which may convey additional
   /// information such as Inpatient vs Outpatient and/or a specialty service.
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [subType] /// A finer grained suite of claim type codes which may convey additional
   /// information such as Inpatient vs Outpatient and/or a specialty service.
-  @JsonKey(name: 'subType')
   final CodeableConcept? subType;
 
   /// [use] /// A code to indicate whether the nature of the request is: to request
@@ -91,116 +85,88 @@ class ClaimResponse extends DomainResource {
   /// authorization and adjudication for provision in the future; or requesting
   /// the non-binding adjudication of the listed products and services which
   /// could be provided in the future.
-  @JsonKey(name: 'use')
   final Use use;
-  @JsonKey(name: '_use')
   final Element? useElement;
 
   /// [patient] /// The party to whom the professional services and/or products have been
   /// supplied or are being considered and for whom actual for facast
   /// reimbursement is sought.
-  @JsonKey(name: 'patient')
   final Reference patient;
 
   /// [created] /// The date this resource was created.
-  @JsonKey(name: 'created')
   final FhirDateTime created;
-  @JsonKey(name: '_created')
   final Element? createdElement;
 
   /// [insurer] /// The party responsible for authorization, adjudication and reimbursement.
-  @JsonKey(name: 'insurer')
   final Reference insurer;
 
   /// [requestor] /// The provider which is responsible for the claim, predetermination or
   /// preauthorization.
-  @JsonKey(name: 'requestor')
   final Reference? requestor;
 
   /// [request] /// Original request resource reference.
-  @JsonKey(name: 'request')
   final Reference? request;
 
   /// [outcome] /// The outcome of the claim, predetermination, or preauthorization processing.
-  @JsonKey(name: 'outcome')
   final RemittanceOutcome outcome;
-  @JsonKey(name: '_outcome')
   final Element? outcomeElement;
 
   /// [disposition] /// A human readable description of the status of the adjudication.
-  @JsonKey(name: 'disposition')
   final FhirString? disposition;
-  @JsonKey(name: '_disposition')
   final Element? dispositionElement;
 
   /// [preAuthRef] /// Reference from the Insurer which is used in later communications which
   /// refers to this adjudication.
-  @JsonKey(name: 'preAuthRef')
   final FhirString? preAuthRef;
-  @JsonKey(name: '_preAuthRef')
   final Element? preAuthRefElement;
 
   /// [preAuthPeriod] /// The time frame during which this authorization is effective.
-  @JsonKey(name: 'preAuthPeriod')
   final Period? preAuthPeriod;
 
   /// [payeeType] /// Type of Party to be reimbursed: subscriber, provider, other.
-  @JsonKey(name: 'payeeType')
   final CodeableConcept? payeeType;
 
   /// [item] /// A claim line. Either a simple (a product or service) or a 'group' of
   /// details which can also be a simple items or groups of sub-details.
-  @JsonKey(name: 'item')
   final List<ClaimResponseItem>? item;
 
   /// [addItem] /// The first-tier service adjudications for payor added product or service
   /// lines.
-  @JsonKey(name: 'addItem')
   final List<ClaimResponseAddItem>? addItem;
 
   /// [adjudication] /// The adjudication results which are presented at the header level rather
   /// than at the line-item or add-item levels.
-  @JsonKey(name: 'adjudication')
   final List<ClaimResponseAdjudication>? adjudication;
 
   /// [total] /// Categorized monetary totals for the adjudication.
-  @JsonKey(name: 'total')
   final List<ClaimResponseTotal>? total;
 
   /// [payment] /// Payment details for the adjudication of the claim.
-  @JsonKey(name: 'payment')
   final ClaimResponsePayment? payment;
 
   /// [fundsReserve] /// A code, used only on a response to a preauthorization, to indicate whether
   /// the benefits payable have been reserved and for whom.
-  @JsonKey(name: 'fundsReserve')
   final CodeableConcept? fundsReserve;
 
   /// [formCode] /// A code for the form to be used for printing the content.
-  @JsonKey(name: 'formCode')
   final CodeableConcept? formCode;
 
   /// [form] /// The actual form, by reference or inclusion, for printing the content or an
   /// EOB.
-  @JsonKey(name: 'form')
   final Attachment? form;
 
   /// [processNote] /// A note that describes or explains adjudication results in a human readable
   /// form.
-  @JsonKey(name: 'processNote')
   final List<ClaimResponseProcessNote>? processNote;
 
   /// [communicationRequest] /// Request for additional supporting or authorizing information.
-  @JsonKey(name: 'communicationRequest')
   final List<Reference>? communicationRequest;
 
   /// [insurance] /// Financial instruments for reimbursement for the health care products and
   /// services specified on the claim.
-  @JsonKey(name: 'insurance')
   final List<ClaimResponseInsurance>? insurance;
 
   /// [error] /// Errors encountered during the processing of the adjudication.
-  @JsonKey(name: 'error')
   final List<ClaimResponseError>? error;
   @override
   Map<String, dynamic> toJson() {
@@ -602,7 +568,6 @@ class ClaimResponse extends DomainResource {
 
 /// [ClaimResponseItem] /// A claim line. Either a simple (a product or service) or a 'group' of
 /// details which can also be a simple items or groups of sub-details.
-@JsonSerializable()
 class ClaimResponseItem extends BackboneElement {
   ClaimResponseItem({
     super.id,
@@ -621,34 +586,29 @@ class ClaimResponseItem extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ClaimResponseItem';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [itemSequence] /// A number to uniquely reference the claim item entries.
-  @JsonKey(name: 'itemSequence')
   final FhirPositiveInt itemSequence;
-  @JsonKey(name: '_itemSequence')
   final Element? itemSequenceElement;
 
   /// [noteNumber] /// The numbers associated with notes below which apply to the adjudication of
   /// this item.
-  @JsonKey(name: 'noteNumber')
   final List<FhirPositiveInt>? noteNumber;
-  @JsonKey(name: '_noteNumber')
   final List<Element>? noteNumberElement;
 
   /// [adjudication] /// If this item is a group then the values here are a summary of the
   /// adjudication of the detail items. If this item is a simple product or
   /// service then this is the result of the adjudication of this item.
-  @JsonKey(name: 'adjudication')
   final List<ClaimResponseAdjudication> adjudication;
 
   /// [detail] /// A claim detail. Either a simple (a product or service) or a 'group' of
   /// sub-details which are simple items.
-  @JsonKey(name: 'detail')
   final List<ClaimResponseDetail>? detail;
   @override
   Map<String, dynamic> toJson() {
@@ -792,7 +752,6 @@ class ClaimResponseItem extends BackboneElement {
 /// [ClaimResponseAdjudication] /// If this item is a group then the values here are a summary of the
 /// adjudication of the detail items. If this item is a simple product or
 /// service then this is the result of the adjudication of this item.
-@JsonSerializable()
 class ClaimResponseAdjudication extends BackboneElement {
   ClaimResponseAdjudication({
     super.id,
@@ -810,10 +769,11 @@ class ClaimResponseAdjudication extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ClaimResponseAdjudication';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [category] /// A code to indicate the information type of this adjudication record.
@@ -821,23 +781,18 @@ class ClaimResponseAdjudication extends BackboneElement {
   /// percentages allowed or payable under the plan, amounts that: the patient is
   /// responsible for in aggregate or pertaining to this item; amounts paid by
   /// other coverages; and, the benefit payable for this item.
-  @JsonKey(name: 'category')
   final CodeableConcept category;
 
   /// [reason] /// A code supporting the understanding of the adjudication result and
   /// explaining variance from expected amount.
-  @JsonKey(name: 'reason')
   final CodeableConcept? reason;
 
   /// [amount] /// Monetary amount associated with the category.
-  @JsonKey(name: 'amount')
   final Money? amount;
 
   /// [value] /// A non-monetary value associated with the category. Mutually exclusive to
   /// the amount element above.
-  @JsonKey(name: 'value')
   final FhirDecimal? value;
-  @JsonKey(name: '_value')
   final Element? valueElement;
   @override
   Map<String, dynamic> toJson() {
@@ -960,7 +915,6 @@ class ClaimResponseAdjudication extends BackboneElement {
 
 /// [ClaimResponseDetail] /// A claim detail. Either a simple (a product or service) or a 'group' of
 /// sub-details which are simple items.
-@JsonSerializable()
 class ClaimResponseDetail extends BackboneElement {
   ClaimResponseDetail({
     super.id,
@@ -979,31 +933,26 @@ class ClaimResponseDetail extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ClaimResponseDetail';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [detailSequence] /// A number to uniquely reference the claim detail entry.
-  @JsonKey(name: 'detailSequence')
   final FhirPositiveInt detailSequence;
-  @JsonKey(name: '_detailSequence')
   final Element? detailSequenceElement;
 
   /// [noteNumber] /// The numbers associated with notes below which apply to the adjudication of
   /// this item.
-  @JsonKey(name: 'noteNumber')
   final List<FhirPositiveInt>? noteNumber;
-  @JsonKey(name: '_noteNumber')
   final List<Element>? noteNumberElement;
 
   /// [adjudication] /// The adjudication results.
-  @JsonKey(name: 'adjudication')
   final List<ClaimResponseAdjudication> adjudication;
 
   /// [subDetail] /// A sub-detail adjudication of a simple product or service.
-  @JsonKey(name: 'subDetail')
   final List<ClaimResponseSubDetail>? subDetail;
   @override
   Map<String, dynamic> toJson() {
@@ -1147,7 +1096,6 @@ class ClaimResponseDetail extends BackboneElement {
 }
 
 /// [ClaimResponseSubDetail] /// A sub-detail adjudication of a simple product or service.
-@JsonSerializable()
 class ClaimResponseSubDetail extends BackboneElement {
   ClaimResponseSubDetail({
     super.id,
@@ -1165,27 +1113,23 @@ class ClaimResponseSubDetail extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ClaimResponseSubDetail';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [subDetailSequence] /// A number to uniquely reference the claim sub-detail entry.
-  @JsonKey(name: 'subDetailSequence')
   final FhirPositiveInt subDetailSequence;
-  @JsonKey(name: '_subDetailSequence')
   final Element? subDetailSequenceElement;
 
   /// [noteNumber] /// The numbers associated with notes below which apply to the adjudication of
   /// this item.
-  @JsonKey(name: 'noteNumber')
   final List<FhirPositiveInt>? noteNumber;
-  @JsonKey(name: '_noteNumber')
   final List<Element>? noteNumberElement;
 
   /// [adjudication] /// The adjudication results.
-  @JsonKey(name: 'adjudication')
   final List<ClaimResponseAdjudication>? adjudication;
   @override
   Map<String, dynamic> toJson() {
@@ -1321,7 +1265,6 @@ class ClaimResponseSubDetail extends BackboneElement {
 
 /// [ClaimResponseAddItem] /// The first-tier service adjudications for payor added product or service
 /// lines.
-@JsonSerializable()
 class ClaimResponseAddItem extends BackboneElement {
   ClaimResponseAddItem({
     super.id,
@@ -1361,119 +1304,93 @@ class ClaimResponseAddItem extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ClaimResponseAddItem';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [itemSequence] /// Claim items which this service line is intended to replace.
-  @JsonKey(name: 'itemSequence')
   final List<FhirPositiveInt>? itemSequence;
-  @JsonKey(name: '_itemSequence')
   final List<Element>? itemSequenceElement;
 
   /// [detailSequence] /// The sequence number of the details within the claim item which this line is
   /// intended to replace.
-  @JsonKey(name: 'detailSequence')
   final List<FhirPositiveInt>? detailSequence;
-  @JsonKey(name: '_detailSequence')
   final List<Element>? detailSequenceElement;
 
   /// [subdetailSequence] /// The sequence number of the sub-details within the details within the claim
   /// item which this line is intended to replace.
-  @JsonKey(name: 'subdetailSequence')
   final List<FhirPositiveInt>? subdetailSequence;
-  @JsonKey(name: '_subdetailSequence')
   final List<Element>? subdetailSequenceElement;
 
   /// [provider] /// The providers who are authorized for the services rendered to the patient.
-  @JsonKey(name: 'provider')
   final List<Reference>? provider;
 
   /// [productOrService] /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or other
   /// billing code for the item.
-  @JsonKey(name: 'productOrService')
   final CodeableConcept productOrService;
 
   /// [modifier] /// Item typification or modifiers codes to convey additional context for the
   /// product or service.
-  @JsonKey(name: 'modifier')
   final List<CodeableConcept>? modifier;
 
   /// [programCode] /// Identifies the program under which this may be recovered.
-  @JsonKey(name: 'programCode')
   final List<CodeableConcept>? programCode;
 
   /// [servicedDate] /// The date or dates when the service or product was supplied, performed or
   /// completed.
-  @JsonKey(name: 'servicedDate')
   final FhirDate? servicedDate;
-  @JsonKey(name: '_servicedDate')
   final Element? servicedDateElement;
 
   /// [servicedPeriod] /// The date or dates when the service or product was supplied, performed or
   /// completed.
-  @JsonKey(name: 'servicedPeriod')
   final Period? servicedPeriod;
 
   /// [locationCodeableConcept] /// Where the product or service was provided.
-  @JsonKey(name: 'locationCodeableConcept')
   final CodeableConcept? locationCodeableConcept;
 
   /// [locationAddress] /// Where the product or service was provided.
-  @JsonKey(name: 'locationAddress')
   final Address? locationAddress;
 
   /// [locationReference] /// Where the product or service was provided.
-  @JsonKey(name: 'locationReference')
   final Reference? locationReference;
 
   /// [quantity] /// The number of repetitions of a service or product.
-  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [unitPrice] /// If the item is not a group then this is the fee for the product or service,
   /// otherwise this is the total of the fees for the details of the group.
-  @JsonKey(name: 'unitPrice')
   final Money? unitPrice;
 
   /// [factor] /// A real number that represents a multiplier used in determining the overall
   /// value of services delivered and/or goods received. The concept of a Factor
   /// allows for a discount or surcharge multiplier to be applied to a monetary
   /// amount.
-  @JsonKey(name: 'factor')
   final FhirDecimal? factor;
-  @JsonKey(name: '_factor')
   final Element? factorElement;
 
   /// [net] /// The quantity times the unit price for an additional service or product or
   /// charge.
-  @JsonKey(name: 'net')
   final Money? net;
 
   /// [bodySite] /// Physical service site on the patient (limb, tooth, etc.).
-  @JsonKey(name: 'bodySite')
   final CodeableConcept? bodySite;
 
   /// [subSite] /// A region or surface of the bodySite, e.g. limb region or tooth surface(s).
-  @JsonKey(name: 'subSite')
   final List<CodeableConcept>? subSite;
 
   /// [noteNumber] /// The numbers associated with notes below which apply to the adjudication of
   /// this item.
-  @JsonKey(name: 'noteNumber')
   final List<FhirPositiveInt>? noteNumber;
-  @JsonKey(name: '_noteNumber')
   final List<Element>? noteNumberElement;
 
   /// [adjudication] /// The adjudication results.
-  @JsonKey(name: 'adjudication')
   final List<ClaimResponseAdjudication> adjudication;
 
   /// [detail] /// The second-tier service adjudications for payor added services.
-  @JsonKey(name: 'detail')
   final List<ClaimResponseDetail>? detail;
   @override
   Map<String, dynamic> toJson() {
@@ -1825,7 +1742,6 @@ class ClaimResponseAddItem extends BackboneElement {
 }
 
 /// [ClaimResponseDetail1] /// The second-tier service adjudications for payor added services.
-@JsonSerializable()
 class ClaimResponseDetail1 extends BackboneElement {
   ClaimResponseDetail1({
     super.id,
@@ -1849,59 +1765,49 @@ class ClaimResponseDetail1 extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ClaimResponseDetail1';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [productOrService] /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or other
   /// billing code for the item.
-  @JsonKey(name: 'productOrService')
   final CodeableConcept productOrService;
 
   /// [modifier] /// Item typification or modifiers codes to convey additional context for the
   /// product or service.
-  @JsonKey(name: 'modifier')
   final List<CodeableConcept>? modifier;
 
   /// [quantity] /// The number of repetitions of a service or product.
-  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [unitPrice] /// If the item is not a group then this is the fee for the product or service,
   /// otherwise this is the total of the fees for the details of the group.
-  @JsonKey(name: 'unitPrice')
   final Money? unitPrice;
 
   /// [factor] /// A real number that represents a multiplier used in determining the overall
   /// value of services delivered and/or goods received. The concept of a Factor
   /// allows for a discount or surcharge multiplier to be applied to a monetary
   /// amount.
-  @JsonKey(name: 'factor')
   final FhirDecimal? factor;
-  @JsonKey(name: '_factor')
   final Element? factorElement;
 
   /// [net] /// The quantity times the unit price for an additional service or product or
   /// charge.
-  @JsonKey(name: 'net')
   final Money? net;
 
   /// [noteNumber] /// The numbers associated with notes below which apply to the adjudication of
   /// this item.
-  @JsonKey(name: 'noteNumber')
   final List<FhirPositiveInt>? noteNumber;
-  @JsonKey(name: '_noteNumber')
   final List<Element>? noteNumberElement;
 
   /// [adjudication] /// The adjudication results.
-  @JsonKey(name: 'adjudication')
   final List<ClaimResponseAdjudication> adjudication;
 
   /// [subDetail] /// The third-tier service adjudications for payor added services.
-  @JsonKey(name: 'subDetail')
   final List<ClaimResponseSubDetail>? subDetail;
   @override
   Map<String, dynamic> toJson() {
@@ -2088,7 +1994,6 @@ class ClaimResponseDetail1 extends BackboneElement {
 }
 
 /// [ClaimResponseSubDetail1] /// The third-tier service adjudications for payor added services.
-@JsonSerializable()
 class ClaimResponseSubDetail1 extends BackboneElement {
   ClaimResponseSubDetail1({
     super.id,
@@ -2111,55 +2016,46 @@ class ClaimResponseSubDetail1 extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ClaimResponseSubDetail1';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [productOrService] /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or other
   /// billing code for the item.
-  @JsonKey(name: 'productOrService')
   final CodeableConcept productOrService;
 
   /// [modifier] /// Item typification or modifiers codes to convey additional context for the
   /// product or service.
-  @JsonKey(name: 'modifier')
   final List<CodeableConcept>? modifier;
 
   /// [quantity] /// The number of repetitions of a service or product.
-  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [unitPrice] /// If the item is not a group then this is the fee for the product or service,
   /// otherwise this is the total of the fees for the details of the group.
-  @JsonKey(name: 'unitPrice')
   final Money? unitPrice;
 
   /// [factor] /// A real number that represents a multiplier used in determining the overall
   /// value of services delivered and/or goods received. The concept of a Factor
   /// allows for a discount or surcharge multiplier to be applied to a monetary
   /// amount.
-  @JsonKey(name: 'factor')
   final FhirDecimal? factor;
-  @JsonKey(name: '_factor')
   final Element? factorElement;
 
   /// [net] /// The quantity times the unit price for an additional service or product or
   /// charge.
-  @JsonKey(name: 'net')
   final Money? net;
 
   /// [noteNumber] /// The numbers associated with notes below which apply to the adjudication of
   /// this item.
-  @JsonKey(name: 'noteNumber')
   final List<FhirPositiveInt>? noteNumber;
-  @JsonKey(name: '_noteNumber')
   final List<Element>? noteNumberElement;
 
   /// [adjudication] /// The adjudication results.
-  @JsonKey(name: 'adjudication')
   final List<ClaimResponseAdjudication> adjudication;
   @override
   Map<String, dynamic> toJson() {
@@ -2333,7 +2229,6 @@ class ClaimResponseSubDetail1 extends BackboneElement {
 }
 
 /// [ClaimResponseTotal] /// Categorized monetary totals for the adjudication.
-@JsonSerializable()
 class ClaimResponseTotal extends BackboneElement {
   ClaimResponseTotal({
     super.id,
@@ -2348,10 +2243,11 @@ class ClaimResponseTotal extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ClaimResponseTotal';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [category] /// A code to indicate the information type of this adjudication record.
@@ -2359,11 +2255,9 @@ class ClaimResponseTotal extends BackboneElement {
   /// percentages allowed or payable under the plan, amounts that the patient is
   /// responsible for in aggregate or pertaining to this item, amounts paid by
   /// other coverages, and the benefit payable for this item.
-  @JsonKey(name: 'category')
   final CodeableConcept category;
 
   /// [amount] /// Monetary total amount associated with the category.
-  @JsonKey(name: 'amount')
   final Money amount;
   @override
   Map<String, dynamic> toJson() {
@@ -2459,7 +2353,6 @@ class ClaimResponseTotal extends BackboneElement {
 }
 
 /// [ClaimResponsePayment] /// Payment details for the adjudication of the claim.
-@JsonSerializable()
 class ClaimResponsePayment extends BackboneElement {
   ClaimResponsePayment({
     super.id,
@@ -2479,39 +2372,33 @@ class ClaimResponsePayment extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ClaimResponsePayment';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Whether this represents partial or complete payment of the benefits
   /// payable.
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [adjustment] /// Total amount of all adjustments to this payment included in this
   /// transaction which are not related to this claim's adjudication.
-  @JsonKey(name: 'adjustment')
   final Money? adjustment;
 
   /// [adjustmentReason] /// Reason for the payment adjustment.
-  @JsonKey(name: 'adjustmentReason')
   final CodeableConcept? adjustmentReason;
 
   /// [date] /// Estimated date the payment will be issued or the actual issue date of
   /// payment.
-  @JsonKey(name: 'date')
   final FhirDate? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [amount] /// Benefits payable less any payment adjustment.
-  @JsonKey(name: 'amount')
   final Money amount;
 
   /// [identifier] /// Issuer's unique identifier for the payment instrument.
-  @JsonKey(name: 'identifier')
   final Identifier? identifier;
   @override
   Map<String, dynamic> toJson() {
@@ -2646,7 +2533,6 @@ class ClaimResponsePayment extends BackboneElement {
 
 /// [ClaimResponseProcessNote] /// A note that describes or explains adjudication results in a human readable
 /// form.
-@JsonSerializable()
 class ClaimResponseProcessNote extends BackboneElement {
   ClaimResponseProcessNote({
     super.id,
@@ -2666,32 +2552,26 @@ class ClaimResponseProcessNote extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ClaimResponseProcessNote';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [number] /// A number to uniquely identify a note entry.
-  @JsonKey(name: 'number')
   final FhirPositiveInt? number;
-  @JsonKey(name: '_number')
   final Element? numberElement;
 
   /// [type] /// The business purpose of the note text.
-  @JsonKey(name: 'type')
   final NoteType? type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [text] /// The explanation or description associated with the processing.
-  @JsonKey(name: 'text')
   final FhirString text;
-  @JsonKey(name: '_text')
   final Element? textElement;
 
   /// [language] /// A code to define the language used in the text of the note.
-  @JsonKey(name: 'language')
   final CodeableConcept? language;
   @override
   Map<String, dynamic> toJson() {
@@ -2821,7 +2701,6 @@ class ClaimResponseProcessNote extends BackboneElement {
 
 /// [ClaimResponseInsurance] /// Financial instruments for reimbursement for the health care products and
 /// services specified on the claim.
-@JsonSerializable()
 class ClaimResponseInsurance extends BackboneElement {
   ClaimResponseInsurance({
     super.id,
@@ -2842,42 +2721,35 @@ class ClaimResponseInsurance extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ClaimResponseInsurance';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [sequence] /// A number to uniquely identify insurance entries and provide a sequence of
   /// coverages to convey coordination of benefit order.
-  @JsonKey(name: 'sequence')
   final FhirPositiveInt sequence;
-  @JsonKey(name: '_sequence')
   final Element? sequenceElement;
 
   /// [focal] /// A flag to indicate that this Coverage is to be used for adjudication of
   /// this claim when set to true.
-  @JsonKey(name: 'focal')
   final FhirBoolean focal;
-  @JsonKey(name: '_focal')
   final Element? focalElement;
 
   /// [coverage] /// Reference to the insurance card level information contained in the Coverage
   /// resource. The coverage issuing insurer will use these details to locate the
   /// patient's actual coverage within the insurer's information system.
-  @JsonKey(name: 'coverage')
   final Reference coverage;
 
   /// [businessArrangement] /// A business agreement number established between the provider and the
   /// insurer for special business processing purposes.
-  @JsonKey(name: 'businessArrangement')
   final FhirString? businessArrangement;
-  @JsonKey(name: '_businessArrangement')
   final Element? businessArrangementElement;
 
   /// [claimResponse] /// The result of the adjudication of the line items for the Coverage specified
   /// in this insurance.
-  @JsonKey(name: 'claimResponse')
   final Reference? claimResponse;
   @override
   Map<String, dynamic> toJson() {
@@ -3015,7 +2887,6 @@ class ClaimResponseInsurance extends BackboneElement {
 }
 
 /// [ClaimResponseError] /// Errors encountered during the processing of the adjudication.
-@JsonSerializable()
 class ClaimResponseError extends BackboneElement {
   ClaimResponseError({
     super.id,
@@ -3035,38 +2906,32 @@ class ClaimResponseError extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ClaimResponseError';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [itemSequence] /// The sequence number of the line item submitted which contains the error.
   /// This value is omitted when the error occurs outside of the item structure.
-  @JsonKey(name: 'itemSequence')
   final FhirPositiveInt? itemSequence;
-  @JsonKey(name: '_itemSequence')
   final Element? itemSequenceElement;
 
   /// [detailSequence] /// The sequence number of the detail within the line item submitted which
   /// contains the error. This value is omitted when the error occurs outside of
   /// the item structure.
-  @JsonKey(name: 'detailSequence')
   final FhirPositiveInt? detailSequence;
-  @JsonKey(name: '_detailSequence')
   final Element? detailSequenceElement;
 
   /// [subDetailSequence] /// The sequence number of the sub-detail within the detail within the line
   /// item submitted which contains the error. This value is omitted when the
   /// error occurs outside of the item structure.
-  @JsonKey(name: 'subDetailSequence')
   final FhirPositiveInt? subDetailSequence;
-  @JsonKey(name: '_subDetailSequence')
   final Element? subDetailSequenceElement;
 
   /// [code] /// An error code, from a specified code system, which details why the claim
   /// could not be adjudicated.
-  @JsonKey(name: 'code')
   final CodeableConcept code;
   @override
   Map<String, dynamic> toJson() {

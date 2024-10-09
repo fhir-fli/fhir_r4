@@ -1,17 +1,12 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// An anatomical origin of the source material within an organism.
 enum SourceMaterialPart {
   /// Display: animal
-  @JsonValue('Animal')
   Animal,
 
   /// Display: plant
-  @JsonValue('Plant')
   Plant,
 
   /// Display: mineral
-  @JsonValue('Mineral')
   Mineral,
   ;
 

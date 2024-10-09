@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// If this is the default rule set to apply for the source type, or this combination of types.
 enum StructureMapGroupTypeMode {
   /// Display: Not a Default
   /// Definition: This group is not a default group for the types.
-  @JsonValue('none')
   none,
 
   /// Display: Default for Type Combination
   /// Definition: This group is a default mapping group for the specified types and for the primary source type.
-  @JsonValue('types')
   types,
 
   /// Display: Default for type + combination
   /// Definition: This group is a default mapping group for the specified types.
-  @JsonValue('type-and-types')
   type_and_types,
   ;
 

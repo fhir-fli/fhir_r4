@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [EnrollmentResponse] /// This resource provides enrollment and plan details from the processing of
 /// an EnrollmentRequest resource.
-@JsonSerializable()
 class EnrollmentResponse extends DomainResource {
   EnrollmentResponse({
     super.id,
@@ -39,51 +37,40 @@ class EnrollmentResponse extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.EnrollmentResponse);
+
   @override
   String get fhirType => 'EnrollmentResponse';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// The Response business identifier.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// The status of the resource instance.
-  @JsonKey(name: 'status')
   final FinancialResourceStatusCodes? status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [request] /// Original request resource reference.
-  @JsonKey(name: 'request')
   final Reference? request;
 
   /// [outcome] /// Processing status: error, complete.
-  @JsonKey(name: 'outcome')
   final RemittanceOutcome? outcome;
-  @JsonKey(name: '_outcome')
   final Element? outcomeElement;
 
   /// [disposition] /// A description of the status of the adjudication.
-  @JsonKey(name: 'disposition')
   final FhirString? disposition;
-  @JsonKey(name: '_disposition')
   final Element? dispositionElement;
 
   /// [created] /// The date when the enclosed suite of services were performed or completed.
-  @JsonKey(name: 'created')
   final FhirDateTime? created;
-  @JsonKey(name: '_created')
   final Element? createdElement;
 
   /// [organization] /// The Insurer who produced this adjudicated response.
-  @JsonKey(name: 'organization')
   final Reference? organization;
 
   /// [requestProvider] /// The practitioner who is responsible for the services rendered to the
   /// patient.
-  @JsonKey(name: 'requestProvider')
   final Reference? requestProvider;
   @override
   Map<String, dynamic> toJson() {

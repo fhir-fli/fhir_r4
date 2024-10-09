@@ -1,12 +1,7 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Preferred value set for Condition/Diagnosis severity grading.
 enum ConditionDiagnosisSeverity {
-  @JsonValue('24484000')
   value24484000,
-  @JsonValue('6736007')
   value6736007,
-  @JsonValue('255604002')
   value255604002,
   ;
 

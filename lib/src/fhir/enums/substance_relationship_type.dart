@@ -1,25 +1,18 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The relationship between two substance types.
 enum SubstanceRelationshipType {
   /// Display: Salt to parent
-  @JsonValue('Salt')
   Salt,
 
   /// Display: Active moiety
-  @JsonValue('ActiveMoiety')
   ActiveMoiety,
 
   /// Display: Starting material for
-  @JsonValue('StartingMaterial')
   StartingMaterial,
 
   /// Display: Polymorph of
-  @JsonValue('Polymorph')
   Polymorph,
 
   /// Display: Impurity of
-  @JsonValue('Impurity')
   Impurity,
   ;
 

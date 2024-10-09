@@ -1,25 +1,18 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// An example value set of SNOMED CT concepts that can classify a requested service
 enum ServiceRequestCategoryCodes {
   /// Display: Laboratory procedure
-  @JsonValue('108252007')
   value108252007,
 
   /// Display: Imaging
-  @JsonValue('363679005')
   value363679005,
 
   /// Display: Counselling
-  @JsonValue('409063005')
   value409063005,
 
   /// Display: Education
-  @JsonValue('409073007')
   value409073007,
 
   /// Display: Surgical procedure
-  @JsonValue('387713003')
   value387713003,
   ;
 

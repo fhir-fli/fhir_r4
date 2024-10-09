@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The kind of dose or rate specified.
 enum DoseAndRateType {
   /// Display: Calculated
   /// Definition: The dose specified is calculated by the prescriber or the system.
-  @JsonValue('calculated')
   calculated,
 
   /// Display: Ordered
   /// Definition: The dose specified is as ordered by the prescriber.
-  @JsonValue('ordered')
   ordered,
   ;
 

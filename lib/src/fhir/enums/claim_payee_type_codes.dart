@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes sample Payee Type codes.
 enum ClaimPayeeTypeCodes {
   /// Display: Subscriber
   /// Definition: The subscriber (policy holder) will be reimbursed.
-  @JsonValue('subscriber')
   subscriber,
 
   /// Display: Provider
   /// Definition: Any benefit payable will be paid to the provider (Assignment of Benefit).
-  @JsonValue('provider')
   provider,
 
   /// Display: Provider
   /// Definition: Any benefit payable will be paid to a third party such as a guarrantor.
-  @JsonValue('other')
   other,
   ;
 

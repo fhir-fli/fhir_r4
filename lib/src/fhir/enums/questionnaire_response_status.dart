@@ -1,30 +1,23 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Lifecycle status of the questionnaire response.
 enum QuestionnaireResponseStatus {
   /// Display: In Progress
   /// Definition: This QuestionnaireResponse has been partially filled out with answers but changes or additions are still expected to be made to it.
-  @JsonValue('in-progress')
   in_progress,
 
   /// Display: Completed
   /// Definition: This QuestionnaireResponse has been filled out with answers and the current content is regarded as definitive.
-  @JsonValue('completed')
   completed,
 
   /// Display: Amended
   /// Definition: This QuestionnaireResponse has been filled out with answers, then marked as complete, yet changes or additions have been made to it afterwards.
-  @JsonValue('amended')
   amended,
 
   /// Display: Entered in Error
   /// Definition: This QuestionnaireResponse was entered in error and voided.
-  @JsonValue('entered-in-error')
   entered_in_error,
 
   /// Display: Stopped
   /// Definition: This QuestionnaireResponse has been partially filled out with answers but has been abandoned. It is unknown whether changes or additions are expected to be made to it.
-  @JsonValue('stopped')
   stopped,
   ;
 

@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set is provided as an example. The value set to instantiate this attribute should be drawn from a robust terminology code system that consists of or contains concepts to support the medication process.
 enum ReasonMedicationGivenCodes {
   /// Display: None
   /// Definition: No reason known.
-  @JsonValue('a')
   a,
 
   /// Display: Given as Ordered
   /// Definition: The administration was following an ordered protocol.
-  @JsonValue('b')
   b,
 
   /// Display: Emergency
   /// Definition: The administration was needed to treat an emergency.
-  @JsonValue('c')
   c,
   ;
 

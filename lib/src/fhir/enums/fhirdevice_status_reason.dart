@@ -1,45 +1,35 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The availability status reason of the device.
 enum FHIRDeviceStatusReason {
   /// Display: Online
   /// Definition: The device is off.
-  @JsonValue('online')
   online,
 
   /// Display: Paused
   /// Definition: The device is paused.
-  @JsonValue('paused')
   paused,
 
   /// Display: Standby
   /// Definition: The device is ready but not actively operating.
-  @JsonValue('standby')
   standby,
 
   /// Display: Offline
   /// Definition: The device is offline.
-  @JsonValue('offline')
   offline,
 
   /// Display: Not Ready
   /// Definition: The device is not ready.
-  @JsonValue('not-ready')
   not_ready,
 
   /// Display: Transducer Disconnected
   /// Definition: The device transducer is disconnected.
-  @JsonValue('transduc-discon')
   transduc_discon,
 
   /// Display: Hardware Disconnected
   /// Definition: The device hardware is disconnected.
-  @JsonValue('hw-discon')
   hw_discon,
 
   /// Display: Off
   /// Definition: The device is off.
-  @JsonValue('off')
   off,
   ;
 

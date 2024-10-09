@@ -1,75 +1,59 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes sample Information Category codes.
 enum ClaimInformationCategoryCodes {
   /// Display: Information
   /// Definition: Codes conveying additional situation and condition information.
-  @JsonValue('info')
   info,
 
   /// Display: Discharge
   /// Definition: Discharge status and discharge to locations.
-  @JsonValue('discharge')
   discharge,
 
   /// Display: Onset
   /// Definition: Period, start or end dates of aspects of the Condition.
-  @JsonValue('onset')
   onset,
 
   /// Display: Related Services
   /// Definition: Nature and date of the related event e.g. Last exam, service, X-ray etc.
-  @JsonValue('related')
   related,
 
   /// Display: Exception
   /// Definition: Insurance policy exceptions.
-  @JsonValue('exception')
   exception,
 
   /// Display: Materials Forwarded
   /// Definition: Materials being forwarded, e.g. Models, molds, images, documents.
-  @JsonValue('material')
   material,
 
   /// Display: Attachment
   /// Definition: Materials attached such as images, documents and resources.
-  @JsonValue('attachment')
   attachment,
 
   /// Display: Missing Tooth
   /// Definition: Teeth which are missing for any reason, for example: prior extraction, never developed.
-  @JsonValue('missingtooth')
   missingtooth,
 
   /// Display: Prosthesis
   /// Definition: The type of prosthesis and date of supply if a previously supplied prosthesis.
-  @JsonValue('prosthesis')
   prosthesis,
 
   /// Display: Other
   /// Definition: Other information identified by the type.system.
-  @JsonValue('other')
   other,
 
   /// Display: Hospitalized
   /// Definition: An indication that the patient was hospitalized, the period if known otherwise a Yes/No (boolean).
-  @JsonValue('hospitalized')
   hospitalized,
 
   /// Display: EmploymentImpacted
   /// Definition: An indication that the patient was unable to work, the period if known otherwise a Yes/No (boolean).
-  @JsonValue('employmentimpacted')
   employmentimpacted,
 
   /// Display: External Caause
   /// Definition: The external cause of an illness or injury.
-  @JsonValue('externalcause')
   externalcause,
 
   /// Display: Patient Reason for Visit
   /// Definition: The reason for the patient visit.
-  @JsonValue('patientreasonforvisit')
   patientreasonforvisit,
   ;
 

@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [MedicationKnowledge] /// Information about a medication that is used to support knowledge.
-@JsonSerializable()
 class MedicationKnowledge extends DomainResource {
   MedicationKnowledge({
     super.id,
@@ -51,34 +49,30 @@ class MedicationKnowledge extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.MedicationKnowledge);
+
   @override
   String get fhirType => 'MedicationKnowledge';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// A code that specifies this medication, or a textual description if no code
   /// is available. Usage note: This could be a standard medication code such as
   /// a code from RxNorm, SNOMED CT, IDMP etc. It could also be a national or
   /// local formulary code, optionally with translations to other code systems.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [status] /// A code to indicate if the medication is in active use. The status refers to
   /// the validity about the information of the medication and not to its
   /// medicinal properties.
-  @JsonKey(name: 'status')
   final MedicationKnowledgeStatusCodes? status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [manufacturer] /// Describes the details of the manufacturer of the medication product. This
   /// is not intended to represent the distributor of a medication product.
-  @JsonKey(name: 'manufacturer')
   final Reference? manufacturer;
 
   /// [doseForm] /// Describes the form of the item. Powder; tablets; capsule.
-  @JsonKey(name: 'doseForm')
   final CodeableConcept? doseForm;
 
   /// [amount] /// Specific amount of the drug in the packaged product. For example, when
@@ -86,19 +80,15 @@ class MedicationKnowledge extends DomainResource {
   /// glargine 100 unit per mL solution for injection), this attribute provides
   /// additional clarification of the package amount (For example, 3 mL, 10mL,
   /// etc.).
-  @JsonKey(name: 'amount')
   final Quantity? amount;
 
   /// [synonym] /// Additional names for a medication, for example, the name(s) given to a
   /// medication in different countries. For example, acetaminophen and
   /// paracetamol or salbutamol and albuterol.
-  @JsonKey(name: 'synonym')
   final List<FhirString>? synonym;
-  @JsonKey(name: '_synonym')
   final List<Element>? synonymElement;
 
   /// [relatedMedicationKnowledge] /// Associated or related knowledge about a medication.
-  @JsonKey(name: 'relatedMedicationKnowledge')
   final List<MedicationKnowledgeRelatedMedicationKnowledge>?
       relatedMedicationKnowledge;
 
@@ -106,72 +96,56 @@ class MedicationKnowledge extends DomainResource {
   /// branded product (e.g. Crestor), this is the Therapeutic Moeity (e.g.
   /// Rosuvastatin) or if this is a generic medication (e.g. Rosuvastatin), this
   /// would link to a branded product (e.g. Crestor).
-  @JsonKey(name: 'associatedMedication')
   final List<Reference>? associatedMedication;
 
   /// [productType] /// Category of the medication or product (e.g. branded product, therapeutic
   /// moeity, generic product, innovator product, etc.).
-  @JsonKey(name: 'productType')
   final List<CodeableConcept>? productType;
 
   /// [monograph] /// Associated documentation about the medication.
-  @JsonKey(name: 'monograph')
   final List<MedicationKnowledgeMonograph>? monograph;
 
   /// [ingredient] /// Identifies a particular constituent of interest in the product.
-  @JsonKey(name: 'ingredient')
   final List<MedicationKnowledgeIngredient>? ingredient;
 
   /// [preparationInstruction] /// The instructions for preparing the medication.
-  @JsonKey(name: 'preparationInstruction')
   final FhirMarkdown? preparationInstruction;
-  @JsonKey(name: '_preparationInstruction')
   final Element? preparationInstructionElement;
 
   /// [intendedRoute] /// The intended or approved route of administration.
-  @JsonKey(name: 'intendedRoute')
   final List<CodeableConcept>? intendedRoute;
 
   /// [cost] /// The price of the medication.
-  @JsonKey(name: 'cost')
   final List<MedicationKnowledgeCost>? cost;
 
   /// [monitoringProgram] /// The program under which the medication is reviewed.
-  @JsonKey(name: 'monitoringProgram')
   final List<MedicationKnowledgeMonitoringProgram>? monitoringProgram;
 
   /// [administrationGuidelines] /// Guidelines for the administration of the medication.
-  @JsonKey(name: 'administrationGuidelines')
   final List<MedicationKnowledgeAdministrationGuidelines>?
       administrationGuidelines;
 
   /// [medicineClassification] /// Categorization of the medication within a formulary or classification
   /// system.
-  @JsonKey(name: 'medicineClassification')
   final List<MedicationKnowledgeMedicineClassification>? medicineClassification;
 
   /// [packaging] /// Information that only applies to packages (not products).
-  @JsonKey(name: 'packaging')
   final MedicationKnowledgePackaging? packaging;
 
   /// [drugCharacteristic] /// Specifies descriptive properties of the medicine, such as color, shape,
   /// imprints, etc.
-  @JsonKey(name: 'drugCharacteristic')
   final List<MedicationKnowledgeDrugCharacteristic>? drugCharacteristic;
 
   /// [contraindication] /// Potential clinical issue with or between medication(s) (for example,
   /// drug-drug interaction, drug-disease contraindication, drug-allergy
   /// interaction, etc.).
-  @JsonKey(name: 'contraindication')
   final List<Reference>? contraindication;
 
   /// [regulatory] /// Regulatory information about a medication.
-  @JsonKey(name: 'regulatory')
   final List<MedicationKnowledgeRegulatory>? regulatory;
 
   /// [kinetics] /// The time course of drug absorption, distribution, metabolism and excretion
   /// of a medication from the body.
-  @JsonKey(name: 'kinetics')
   final List<MedicationKnowledgeKinetics>? kinetics;
   @override
   Map<String, dynamic> toJson() {
@@ -603,7 +577,6 @@ class MedicationKnowledge extends DomainResource {
 }
 
 /// [MedicationKnowledgeRelatedMedicationKnowledge] /// Associated or related knowledge about a medication.
-@JsonSerializable()
 class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
   MedicationKnowledgeRelatedMedicationKnowledge({
     super.id,
@@ -618,18 +591,17 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MedicationKnowledgeRelatedMedicationKnowledge';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The category of the associated medication knowledge reference.
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [reference] /// Associated documentation about the associated medication knowledge.
-  @JsonKey(name: 'reference')
   final List<Reference> reference;
   @override
   Map<String, dynamic> toJson() {
@@ -733,7 +705,6 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
 }
 
 /// [MedicationKnowledgeMonograph] /// Associated documentation about the medication.
-@JsonSerializable()
 class MedicationKnowledgeMonograph extends BackboneElement {
   MedicationKnowledgeMonograph({
     super.id,
@@ -748,19 +719,18 @@ class MedicationKnowledgeMonograph extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MedicationKnowledgeMonograph';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The category of documentation about the medication. (e.g. professional
   /// monograph, patient education monograph).
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [source] /// Associated documentation about the medication.
-  @JsonKey(name: 'source')
   final Reference? source;
   @override
   Map<String, dynamic> toJson() {
@@ -863,7 +833,6 @@ class MedicationKnowledgeMonograph extends BackboneElement {
 }
 
 /// [MedicationKnowledgeIngredient] /// Identifies a particular constituent of interest in the product.
-@JsonSerializable()
 class MedicationKnowledgeIngredient extends BackboneElement {
   MedicationKnowledgeIngredient({
     super.id,
@@ -881,33 +850,29 @@ class MedicationKnowledgeIngredient extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MedicationKnowledgeIngredient';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [itemCodeableConcept] /// The actual ingredient - either a substance (simple ingredient) or another
   /// medication.
-  @JsonKey(name: 'itemCodeableConcept')
   final CodeableConcept? itemCodeableConcept;
 
   /// [itemReference] /// The actual ingredient - either a substance (simple ingredient) or another
   /// medication.
-  @JsonKey(name: 'itemReference')
   final Reference? itemReference;
 
   /// [isActive] /// Indication of whether this ingredient affects the therapeutic action of the
   /// drug.
-  @JsonKey(name: 'isActive')
   final FhirBoolean? isActive;
-  @JsonKey(name: '_isActive')
   final Element? isActiveElement;
 
   /// [strength] /// Specifies how many (or how much) of the items there are in this Medication.
   /// For example, 250 mg per tablet. This is expressed as a ratio where the
   /// numerator is 250mg and the denominator is 1 tablet.
-  @JsonKey(name: 'strength')
   final Ratio? strength;
   @override
   Map<String, dynamic> toJson() {
@@ -1033,7 +998,6 @@ class MedicationKnowledgeIngredient extends BackboneElement {
 }
 
 /// [MedicationKnowledgeCost] /// The price of the medication.
-@JsonSerializable()
 class MedicationKnowledgeCost extends BackboneElement {
   MedicationKnowledgeCost({
     super.id,
@@ -1050,25 +1014,22 @@ class MedicationKnowledgeCost extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MedicationKnowledgeCost';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The category of the cost information. For example, manufacturers' cost,
   /// patient cost, claim reimbursement cost, actual acquisition cost.
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [source] /// The source or owner that assigns the price to the medication.
-  @JsonKey(name: 'source')
   final FhirString? source;
-  @JsonKey(name: '_source')
   final Element? sourceElement;
 
   /// [cost] /// The price of the medication.
-  @JsonKey(name: 'cost')
   final Money cost;
   @override
   Map<String, dynamic> toJson() {
@@ -1177,7 +1138,6 @@ class MedicationKnowledgeCost extends BackboneElement {
 }
 
 /// [MedicationKnowledgeMonitoringProgram] /// The program under which the medication is reviewed.
-@JsonSerializable()
 class MedicationKnowledgeMonitoringProgram extends BackboneElement {
   MedicationKnowledgeMonitoringProgram({
     super.id,
@@ -1193,20 +1153,18 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MedicationKnowledgeMonitoringProgram';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Type of program under which the medication is monitored.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [name] /// Name of the reviewing program.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1317,7 +1275,6 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
 }
 
 /// [MedicationKnowledgeAdministrationGuidelines] /// Guidelines for the administration of the medication.
-@JsonSerializable()
 class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
   MedicationKnowledgeAdministrationGuidelines({
     super.id,
@@ -1334,27 +1291,24 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MedicationKnowledgeAdministrationGuidelines';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [dosage] /// Dosage for the medication for the specific guidelines.
-  @JsonKey(name: 'dosage')
   final List<MedicationKnowledgeDosage>? dosage;
 
   /// [indicationCodeableConcept] /// Indication for use that apply to the specific administration guidelines.
-  @JsonKey(name: 'indicationCodeableConcept')
   final CodeableConcept? indicationCodeableConcept;
 
   /// [indicationReference] /// Indication for use that apply to the specific administration guidelines.
-  @JsonKey(name: 'indicationReference')
   final Reference? indicationReference;
 
   /// [patientCharacteristics] /// Characteristics of the patient that are relevant to the administration
   /// guidelines (for example, height, weight, gender, etc.).
-  @JsonKey(name: 'patientCharacteristics')
   final List<MedicationKnowledgePatientCharacteristics>? patientCharacteristics;
   @override
   Map<String, dynamic> toJson() {
@@ -1493,7 +1447,6 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
 }
 
 /// [MedicationKnowledgeDosage] /// Dosage for the medication for the specific guidelines.
-@JsonSerializable()
 class MedicationKnowledgeDosage extends BackboneElement {
   MedicationKnowledgeDosage({
     super.id,
@@ -1508,19 +1461,18 @@ class MedicationKnowledgeDosage extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MedicationKnowledgeDosage';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The type of dosage (for example, prophylaxis, maintenance, therapeutic,
   /// etc.).
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [dosage] /// Dosage for the medication for the specific guidelines.
-  @JsonKey(name: 'dosage')
   final List<Dosage> dosage;
   @override
   Map<String, dynamic> toJson() {
@@ -1619,7 +1571,6 @@ class MedicationKnowledgeDosage extends BackboneElement {
 
 /// [MedicationKnowledgePatientCharacteristics] /// Characteristics of the patient that are relevant to the administration
 /// guidelines (for example, height, weight, gender, etc.).
-@JsonSerializable()
 class MedicationKnowledgePatientCharacteristics extends BackboneElement {
   MedicationKnowledgePatientCharacteristics({
     super.id,
@@ -1636,26 +1587,23 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MedicationKnowledgePatientCharacteristics';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [characteristicCodeableConcept] /// Specific characteristic that is relevant to the administration guideline
   /// (e.g. height, weight, gender).
-  @JsonKey(name: 'characteristicCodeableConcept')
   final CodeableConcept? characteristicCodeableConcept;
 
   /// [characteristicQuantity] /// Specific characteristic that is relevant to the administration guideline
   /// (e.g. height, weight, gender).
-  @JsonKey(name: 'characteristicQuantity')
   final Quantity? characteristicQuantity;
 
   /// [value] /// The specific characteristic (e.g. height, weight, gender, etc.).
-  @JsonKey(name: 'value')
   final List<FhirString>? value;
-  @JsonKey(name: '_value')
   final List<Element>? valueElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1790,7 +1738,6 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
 
 /// [MedicationKnowledgeMedicineClassification] /// Categorization of the medication within a formulary or classification
 /// system.
-@JsonSerializable()
 class MedicationKnowledgeMedicineClassification extends BackboneElement {
   MedicationKnowledgeMedicineClassification({
     super.id,
@@ -1805,20 +1752,19 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MedicationKnowledgeMedicineClassification';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The type of category for the medication (for example, therapeutic
   /// classification, therapeutic sub-classification).
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [classification] /// Specific category assigned to the medication (e.g. anti-infective,
   /// anti-hypertensive, antibiotic, etc.).
-  @JsonKey(name: 'classification')
   final List<CodeableConcept>? classification;
   @override
   Map<String, dynamic> toJson() {
@@ -1926,7 +1872,6 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
 }
 
 /// [MedicationKnowledgePackaging] /// Information that only applies to packages (not products).
-@JsonSerializable()
 class MedicationKnowledgePackaging extends BackboneElement {
   MedicationKnowledgePackaging({
     super.id,
@@ -1941,19 +1886,18 @@ class MedicationKnowledgePackaging extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MedicationKnowledgePackaging';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// A code that defines the specific type of packaging that the medication can
   /// be found in (e.g. blister sleeve, tube, bottle).
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [quantity] /// The number of product units the package would contain if fully loaded.
-  @JsonKey(name: 'quantity')
   final Quantity? quantity;
   @override
   Map<String, dynamic> toJson() {
@@ -2057,7 +2001,6 @@ class MedicationKnowledgePackaging extends BackboneElement {
 
 /// [MedicationKnowledgeDrugCharacteristic] /// Specifies descriptive properties of the medicine, such as color, shape,
 /// imprints, etc.
-@JsonSerializable()
 class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
   MedicationKnowledgeDrugCharacteristic({
     super.id,
@@ -2077,35 +2020,29 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MedicationKnowledgeDrugCharacteristic';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// A code specifying which characteristic of the medicine is being described
   /// (for example, colour, shape, imprint).
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [valueCodeableConcept] /// Description of the characteristic.
-  @JsonKey(name: 'valueCodeableConcept')
   final CodeableConcept? valueCodeableConcept;
 
   /// [valueString] /// Description of the characteristic.
-  @JsonKey(name: 'valueString')
   final FhirString? valueString;
-  @JsonKey(name: '_valueString')
   final Element? valueStringElement;
 
   /// [valueQuantity] /// Description of the characteristic.
-  @JsonKey(name: 'valueQuantity')
   final Quantity? valueQuantity;
 
   /// [valueBase64Binary] /// Description of the characteristic.
-  @JsonKey(name: 'valueBase64Binary')
   final FhirBase64Binary? valueBase64Binary;
-  @JsonKey(name: '_valueBase64Binary')
   final Element? valueBase64BinaryElement;
   @override
   Map<String, dynamic> toJson() {
@@ -2251,7 +2188,6 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
 }
 
 /// [MedicationKnowledgeRegulatory] /// Regulatory information about a medication.
-@JsonSerializable()
 class MedicationKnowledgeRegulatory extends BackboneElement {
   MedicationKnowledgeRegulatory({
     super.id,
@@ -2268,28 +2204,25 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MedicationKnowledgeRegulatory';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [regulatoryAuthority] /// The authority that is specifying the regulations.
-  @JsonKey(name: 'regulatoryAuthority')
   final Reference regulatoryAuthority;
 
   /// [substitution] /// Specifies if changes are allowed when dispensing a medication from a
   /// regulatory perspective.
-  @JsonKey(name: 'substitution')
   final List<MedicationKnowledgeSubstitution>? substitution;
 
   /// [schedule] /// Specifies the schedule of a medication in jurisdiction.
-  @JsonKey(name: 'schedule')
   final List<MedicationKnowledgeSchedule>? schedule;
 
   /// [maxDispense] /// The maximum number of units of the medication that can be dispensed in a
   /// period.
-  @JsonKey(name: 'maxDispense')
   final MedicationKnowledgeMaxDispense? maxDispense;
   @override
   Map<String, dynamic> toJson() {
@@ -2419,7 +2352,6 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
 
 /// [MedicationKnowledgeSubstitution] /// Specifies if changes are allowed when dispensing a medication from a
 /// regulatory perspective.
-@JsonSerializable()
 class MedicationKnowledgeSubstitution extends BackboneElement {
   MedicationKnowledgeSubstitution({
     super.id,
@@ -2435,21 +2367,19 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MedicationKnowledgeSubstitution';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Specifies the type of substitution allowed.
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [allowed] /// Specifies if regulation allows for changes in the medication when
   /// dispensing.
-  @JsonKey(name: 'allowed')
   final FhirBoolean allowed;
-  @JsonKey(name: '_allowed')
   final Element? allowedElement;
   @override
   Map<String, dynamic> toJson() {
@@ -2552,7 +2482,6 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
 }
 
 /// [MedicationKnowledgeSchedule] /// Specifies the schedule of a medication in jurisdiction.
-@JsonSerializable()
 class MedicationKnowledgeSchedule extends BackboneElement {
   MedicationKnowledgeSchedule({
     super.id,
@@ -2566,14 +2495,14 @@ class MedicationKnowledgeSchedule extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MedicationKnowledgeSchedule';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [schedule] /// Specifies the specific drug schedule.
-  @JsonKey(name: 'schedule')
   final CodeableConcept schedule;
   @override
   Map<String, dynamic> toJson() {
@@ -2666,7 +2595,6 @@ class MedicationKnowledgeSchedule extends BackboneElement {
 
 /// [MedicationKnowledgeMaxDispense] /// The maximum number of units of the medication that can be dispensed in a
 /// period.
-@JsonSerializable()
 class MedicationKnowledgeMaxDispense extends BackboneElement {
   MedicationKnowledgeMaxDispense({
     super.id,
@@ -2681,18 +2609,17 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MedicationKnowledgeMaxDispense';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [quantity] /// The maximum number of units of the medication that can be dispensed.
-  @JsonKey(name: 'quantity')
   final Quantity quantity;
 
   /// [period] /// The period that applies to the maximum number of units.
-  @JsonKey(name: 'period')
   final FhirDuration? period;
   @override
   Map<String, dynamic> toJson() {
@@ -2793,7 +2720,6 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
 
 /// [MedicationKnowledgeKinetics] /// The time course of drug absorption, distribution, metabolism and excretion
 /// of a medication from the body.
-@JsonSerializable()
 class MedicationKnowledgeKinetics extends BackboneElement {
   MedicationKnowledgeKinetics({
     super.id,
@@ -2809,23 +2735,21 @@ class MedicationKnowledgeKinetics extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MedicationKnowledgeKinetics';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [areaUnderCurve] /// The drug concentration measured at certain discrete points in time.
-  @JsonKey(name: 'areaUnderCurve')
   final List<Quantity>? areaUnderCurve;
 
   /// [lethalDose50] /// The median lethal dose of a drug.
-  @JsonKey(name: 'lethalDose50')
   final List<Quantity>? lethalDose50;
 
   /// [halfLifePeriod] /// The time required for any specified property (e.g., the concentration of a
   /// substance in the body) to decrease by half.
-  @JsonKey(name: 'halfLifePeriod')
   final FhirDuration? halfLifePeriod;
   @override
   Map<String, dynamic> toJson() {

@@ -1,21 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The relationship between two substance types.
 enum SubstanceAmountType {
   /// Display: Average
-  @JsonValue('Average')
   Average,
 
   /// Display: Approximately
-  @JsonValue('Approximately')
   Approximately,
 
   /// Display: Less Than
-  @JsonValue('LessThan')
   LessThan,
 
   /// Display: More Than
-  @JsonValue('MoreThan')
   MoreThan,
   ;
 

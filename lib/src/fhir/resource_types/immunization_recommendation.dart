@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [ImmunizationRecommendation] /// A patient's point-in-time set of recommendations (i.e. forecasting)
 /// according to a published schedule with optional supporting justification.
-@JsonSerializable()
 class ImmunizationRecommendation extends DomainResource {
   ImmunizationRecommendation({
     super.id,
@@ -33,32 +31,27 @@ class ImmunizationRecommendation extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.ImmunizationRecommendation);
+
   @override
   String get fhirType => 'ImmunizationRecommendation';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// A unique identifier assigned to this particular recommendation record.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [patient] /// The patient the recommendation(s) are for.
-  @JsonKey(name: 'patient')
   final Reference patient;
 
   /// [date] /// The date the immunization recommendation(s) were created.
-  @JsonKey(name: 'date')
   final FhirDateTime date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [authority] /// Indicates the authority who published the protocol (e.g. ACIP).
-  @JsonKey(name: 'authority')
   final Reference? authority;
 
   /// [recommendation] /// Vaccine administration recommendations.
-  @JsonKey(name: 'recommendation')
   final List<ImmunizationRecommendationRecommendation> recommendation;
   @override
   Map<String, dynamic> toJson() {
@@ -244,7 +237,6 @@ class ImmunizationRecommendation extends DomainResource {
 }
 
 /// [ImmunizationRecommendationRecommendation] /// Vaccine administration recommendations.
-@JsonSerializable()
 class ImmunizationRecommendationRecommendation extends BackboneElement {
   ImmunizationRecommendationRecommendation({
     super.id,
@@ -277,87 +269,68 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ImmunizationRecommendationRecommendation';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [vaccineCode] /// Vaccine(s) or vaccine group that pertain to the recommendation.
-  @JsonKey(name: 'vaccineCode')
   final List<CodeableConcept>? vaccineCode;
 
   /// [targetDisease] /// The targeted disease for the recommendation.
-  @JsonKey(name: 'targetDisease')
   final CodeableConcept? targetDisease;
 
   /// [contraindicatedVaccineCode] /// Vaccine(s) which should not be used to fulfill the recommendation.
-  @JsonKey(name: 'contraindicatedVaccineCode')
   final List<CodeableConcept>? contraindicatedVaccineCode;
 
   /// [forecastStatus] /// Indicates the patient status with respect to the path to immunity for the
   /// target disease.
-  @JsonKey(name: 'forecastStatus')
   final CodeableConcept forecastStatus;
 
   /// [forecastReason] /// The reason for the assigned forecast status.
-  @JsonKey(name: 'forecastReason')
   final List<CodeableConcept>? forecastReason;
 
   /// [dateCriterion] /// Vaccine date recommendations. For example, earliest date to administer,
   /// latest date to administer, etc.
-  @JsonKey(name: 'dateCriterion')
   final List<ImmunizationRecommendationDateCriterion>? dateCriterion;
 
   /// [description] /// Contains the description about the protocol under which the vaccine was
   /// administered.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [series] /// One possible path to achieve presumed immunity against a disease - within
   /// the context of an authority.
-  @JsonKey(name: 'series')
   final FhirString? series;
-  @JsonKey(name: '_series')
   final Element? seriesElement;
 
   /// [doseNumberPositiveInt] /// Nominal position of the recommended dose in a series (e.g. dose 2 is the
   /// next recommended dose).
-  @JsonKey(name: 'doseNumberPositiveInt')
   final FhirPositiveInt? doseNumberPositiveInt;
-  @JsonKey(name: '_doseNumberPositiveInt')
   final Element? doseNumberPositiveIntElement;
 
   /// [doseNumberString] /// Nominal position of the recommended dose in a series (e.g. dose 2 is the
   /// next recommended dose).
-  @JsonKey(name: 'doseNumberString')
   final FhirString? doseNumberString;
-  @JsonKey(name: '_doseNumberString')
   final Element? doseNumberStringElement;
 
   /// [seriesDosesPositiveInt] /// The recommended number of doses to achieve immunity.
-  @JsonKey(name: 'seriesDosesPositiveInt')
   final FhirPositiveInt? seriesDosesPositiveInt;
-  @JsonKey(name: '_seriesDosesPositiveInt')
   final Element? seriesDosesPositiveIntElement;
 
   /// [seriesDosesString] /// The recommended number of doses to achieve immunity.
-  @JsonKey(name: 'seriesDosesString')
   final FhirString? seriesDosesString;
-  @JsonKey(name: '_seriesDosesString')
   final Element? seriesDosesStringElement;
 
   /// [supportingImmunization] /// Immunization event history and/or evaluation that supports the status and
   /// recommendation.
-  @JsonKey(name: 'supportingImmunization')
   final List<Reference>? supportingImmunization;
 
   /// [supportingPatientInformation] /// Patient Information that supports the status and recommendation. This
   /// includes patient observations, adverse reactions and allergy/intolerance
   /// information.
-  @JsonKey(name: 'supportingPatientInformation')
   final List<Reference>? supportingPatientInformation;
   @override
   Map<String, dynamic> toJson() {
@@ -648,7 +621,6 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
 
 /// [ImmunizationRecommendationDateCriterion] /// Vaccine date recommendations. For example, earliest date to administer,
 /// latest date to administer, etc.
-@JsonSerializable()
 class ImmunizationRecommendationDateCriterion extends BackboneElement {
   ImmunizationRecommendationDateCriterion({
     super.id,
@@ -664,21 +636,19 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ImmunizationRecommendationDateCriterion';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// Date classification of recommendation. For example, earliest date to give,
   /// latest date to give, etc.
-  @JsonKey(name: 'code')
   final CodeableConcept code;
 
   /// [value] /// The date whose meaning is specified by dateCriterion.code.
-  @JsonKey(name: 'value')
   final FhirDateTime value;
-  @JsonKey(name: '_value')
   final Element? valueElement;
   @override
   Map<String, dynamic> toJson() {

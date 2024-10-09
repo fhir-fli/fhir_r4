@@ -1,35 +1,27 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The validation status of the target
 enum Status {
   /// Display: Attested
   /// Definition: ***TODO***
-  @JsonValue('attested')
   attested,
 
   /// Display: Validated
   /// Definition: ***TODO***
-  @JsonValue('validated')
   validated,
 
   /// Display: In process
   /// Definition: ***TODO***
-  @JsonValue('in-process')
   in_process,
 
   /// Display: Requires revalidation
   /// Definition: ***TODO***
-  @JsonValue('req-revalid')
   req_revalid,
 
   /// Display: Validation failed
   /// Definition: ***TODO***
-  @JsonValue('val-fail')
   val_fail,
 
   /// Display: Re-Validation failed
   /// Definition: ***TODO***
-  @JsonValue('reval-fail')
   reval_fail,
   ;
 

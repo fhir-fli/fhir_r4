@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// A code to indicate if the substance is actively used.
 enum FHIRSubstanceStatus {
   /// Display: Active
   /// Definition: The substance is considered for use or reference.
-  @JsonValue('active')
   active,
 
   /// Display: Inactive
   /// Definition: The substance is considered for reference, but not for use.
-  @JsonValue('inactive')
   inactive,
 
   /// Display: Entered in Error
   /// Definition: The substance was entered in error.
-  @JsonValue('entered-in-error')
   entered_in_error,
   ;
 

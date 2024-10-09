@@ -1,805 +1,603 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// A species for which a medicinal product is intended.
 enum TargetSpecies {
   /// Display: Dove
-  @JsonValue('100000108874')
   value100000108874,
 
   /// Display: Quail
-  @JsonValue('100000108875')
   value100000108875,
 
   /// Display: Snipe
-  @JsonValue('100000108876')
   value100000108876,
 
   /// Display: Sparrow
-  @JsonValue('100000108877')
   value100000108877,
 
   /// Display: Starling
-  @JsonValue('100000108878')
   value100000108878,
 
   /// Display: Swan
-  @JsonValue('100000108879')
   value100000108879,
 
   /// Display: Turkey hen
-  @JsonValue('100000108880')
   value100000108880,
 
   /// Display: Turkey cock
-  @JsonValue('100000108881')
   value100000108881,
 
   /// Display: Turkeys
-  @JsonValue('100000108882')
   value100000108882,
 
   /// Display: Turkey for reproduction
-  @JsonValue('100000108883')
   value100000108883,
 
   /// Display: Poult
-  @JsonValue('100000108884')
   value100000108884,
 
   /// Display: Turtle dove
-  @JsonValue('100000108885')
   value100000108885,
 
   /// Display: Bison
-  @JsonValue('100000108886')
   value100000108886,
 
   /// Display: Buffalo
-  @JsonValue('100000108887')
   value100000108887,
 
   /// Display: Cows
-  @JsonValue('100000108888')
   value100000108888,
 
   /// Display: Cow for reproduction
-  @JsonValue('100000108889')
   value100000108889,
 
   /// Display: Bull for reproduction
-  @JsonValue('100000108890')
   value100000108890,
 
   /// Display: Ox
-  @JsonValue('100000108891')
   value100000108891,
 
   /// Display: Bullock
-  @JsonValue('100000108892')
   value100000108892,
 
   /// Display: Cattle
-  @JsonValue('100000108893')
   value100000108893,
 
   /// Display: Beef cattle
-  @JsonValue('100000108894')
   value100000108894,
 
   /// Display: Dairy cattle
-  @JsonValue('100000108895')
   value100000108895,
 
   /// Display: Dry cow
-  @JsonValue('100000108896')
   value100000108896,
 
   /// Display: Bull
-  @JsonValue('100000108897')
   value100000108897,
 
   /// Display: Lactating cow
-  @JsonValue('100000108898')
   value100000108898,
 
   /// Display: All other food producing species
-  @JsonValue('100000108899')
   value100000108899,
 
   /// Display: All non-food producing species
-  @JsonValue('100000108900')
   value100000108900,
 
   /// Display: All species
-  @JsonValue('100000108901')
   value100000108901,
 
   /// Display: Carnivores
-  @JsonValue('100000108902')
   value100000108902,
 
   /// Display: Domestic animals
-  @JsonValue('100000108903')
   value100000108903,
 
   /// Display: Fur animals
-  @JsonValue('100000108904')
   value100000108904,
 
   /// Display: Game animals
-  @JsonValue('100000108905')
   value100000108905,
 
   /// Display: Laboratory animals
-  @JsonValue('100000108906')
   value100000108906,
 
   /// Display: Major species
-  @JsonValue('100000108907')
   value100000108907,
 
   /// Display: Minor species
-  @JsonValue('100000108908')
   value100000108908,
 
   /// Display: Ruminant
-  @JsonValue('100000108909')
   value100000108909,
 
   /// Display: Ruminant and porcine
-  @JsonValue('100000108910')
   value100000108910,
 
   /// Display: Small animals
-  @JsonValue('100000108911')
   value100000108911,
 
   /// Display: Crocodile
-  @JsonValue('100000108912')
   value100000108912,
 
   /// Display: Frog
-  @JsonValue('100000108913')
   value100000108913,
 
   /// Display: Iguana
-  @JsonValue('100000108914')
   value100000108914,
 
   /// Display: Lizard
-  @JsonValue('100000108915')
   value100000108915,
 
   /// Display: Amphibians
-  @JsonValue('100000108916')
   value100000108916,
 
   /// Display: Reptiles
-  @JsonValue('100000108917')
   value100000108917,
 
   /// Display: Reptiles for production
-  @JsonValue('100000108918')
   value100000108918,
 
   /// Display: Snake
-  @JsonValue('100000108919')
   value100000108919,
 
   /// Display: Tortoise
-  @JsonValue('100000108920')
   value100000108920,
 
   /// Display: Turtle
-  @JsonValue('100000108921')
   value100000108921,
 
   /// Display: Honey bees
-  @JsonValue('100000108922')
   value100000108922,
 
   /// Display: Crustacean
-  @JsonValue('100000108923')
   value100000108923,
 
   /// Display: Spider
-  @JsonValue('100000108924')
   value100000108924,
 
   /// Display: Indian hen
-  @JsonValue('100000108925')
   value100000108925,
 
   /// Display: African Goshawk
-  @JsonValue('100000108926')
   value100000108926,
 
   /// Display: Black Kite
-  @JsonValue('100000108927')
   value100000108927,
 
   /// Display: Budgerigar
-  @JsonValue('100000108928')
   value100000108928,
 
   /// Display: Bustard
-  @JsonValue('100000108929')
   value100000108929,
 
   /// Display: Buzzard
-  @JsonValue('100000108930')
   value100000108930,
 
   /// Display: Hen
-  @JsonValue('100000108931')
   value100000108931,
 
   /// Display: Layer hen
-  @JsonValue('100000108932')
   value100000108932,
 
   /// Display: Cock
-  @JsonValue('100000108933')
   value100000108933,
 
   /// Display: Broiler
-  @JsonValue('100000108934')
   value100000108934,
 
   /// Display: Chickens
-  @JsonValue('100000108935')
   value100000108935,
 
   /// Display: Chicken embryonated eggs
-  @JsonValue('100000108936')
   value100000108936,
 
   /// Display: Chicken for reproduction
-  @JsonValue('100000108937')
   value100000108937,
 
   /// Display: Replacement chick
-  @JsonValue('100000108938')
   value100000108938,
 
   /// Display: Chick
-  @JsonValue('100000108939')
   value100000108939,
 
   /// Display: Pullet
-  @JsonValue('100000108940')
   value100000108940,
 
   /// Display: Cockatiel
-  @JsonValue('100000108941')
   value100000108941,
 
   /// Display: Cockatoo
-  @JsonValue('100000108942')
   value100000108942,
 
   /// Display: Common canary
-  @JsonValue('100000108943')
   value100000108943,
 
   /// Display: Crow
-  @JsonValue('100000108944')
   value100000108944,
 
   /// Display: Duck
-  @JsonValue('100000108945')
   value100000108945,
 
   /// Display: Duck broiler
-  @JsonValue('100000108946')
   value100000108946,
 
   /// Display: Duckling
-  @JsonValue('100000108947')
   value100000108947,
 
   /// Display: Eagle
-  @JsonValue('100000108948')
   value100000108948,
 
   /// Display: Emu
-  @JsonValue('100000108949')
   value100000108949,
 
   /// Display: Goose
-  @JsonValue('100000108950')
   value100000108950,
 
   /// Display: Guinea fowl
-  @JsonValue('100000108951')
   value100000108951,
 
   /// Display: Kestrel
-  @JsonValue('100000108952')
   value100000108952,
 
   /// Display: Kite
-  @JsonValue('100000108953')
   value100000108953,
 
   /// Display: Macaw
-  @JsonValue('100000108954')
   value100000108954,
 
   /// Display: Ostrich
-  @JsonValue('100000108955')
   value100000108955,
 
   /// Display: Birds
-  @JsonValue('100000108956')
   value100000108956,
 
   /// Display: Fowls
-  @JsonValue('100000108957')
   value100000108957,
 
   /// Display: Finch
-  @JsonValue('100000108958')
   value100000108958,
 
   /// Display: Galliformes
-  @JsonValue('100000108959')
   value100000108959,
 
   /// Display: Game birds
-  @JsonValue('100000108960')
   value100000108960,
 
   /// Display: Pekin duck
-  @JsonValue('100000108961')
   value100000108961,
 
   /// Display: Ornamental birds
-  @JsonValue('100000108962')
   value100000108962,
 
   /// Display: Poultry
-  @JsonValue('100000108963')
   value100000108963,
 
   /// Display: Owl
-  @JsonValue('100000108964')
   value100000108964,
 
   /// Display: Parakeet
-  @JsonValue('100000108965')
   value100000108965,
 
   /// Display: Parrot
-  @JsonValue('100000108966')
   value100000108966,
 
   /// Display: Partridge
-  @JsonValue('100000108967')
   value100000108967,
 
   /// Display: Peregrine Falcon
-  @JsonValue('100000108968')
   value100000108968,
 
   /// Display: Pheasants
-  @JsonValue('100000108969')
   value100000108969,
 
   /// Display: Carrier pigeon
-  @JsonValue('100000108970')
   value100000108970,
 
   /// Display: Newborn calves
-  @JsonValue('100000108971')
   value100000108971,
 
   /// Display: Pregnant cow
-  @JsonValue('100000108972')
   value100000108972,
 
   /// Display: Pregnant heifer
-  @JsonValue('100000108973')
   value100000108973,
 
   /// Display: Pre-ruminant cattle
-  @JsonValue('100000108974')
   value100000108974,
 
   /// Display: Ruminant cattle
-  @JsonValue('100000108975')
   value100000108975,
 
   /// Display: Wild cattle
-  @JsonValue('100000108976')
   value100000108976,
 
   /// Display: Calf
-  @JsonValue('100000108977')
   value100000108977,
 
   /// Display: Heifers
-  @JsonValue('100000108978')
   value100000108978,
 
   /// Display: Other Bovids
-  @JsonValue('100000108979')
   value100000108979,
 
   /// Display: Alpaca
-  @JsonValue('100000108980')
   value100000108980,
 
   /// Display: Camel
-  @JsonValue('100000108981')
   value100000108981,
 
   /// Display: Llama
-  @JsonValue('100000108982')
   value100000108982,
 
   /// Display: Other Camelids
-  @JsonValue('100000108983')
   value100000108983,
 
   /// Display: Bitch
-  @JsonValue('100000108984')
   value100000108984,
 
   /// Display: Bitch for reproduction
-  @JsonValue('100000108985')
   value100000108985,
 
   /// Display: Adult male dog
-  @JsonValue('100000108986')
   value100000108986,
 
   /// Display: Adult male dog for reproduction
-  @JsonValue('100000108987')
   value100000108987,
 
   /// Display: Dogs
-  @JsonValue('100000108988')
   value100000108988,
 
   /// Display: Lactating bitch
-  @JsonValue('100000108989')
   value100000108989,
 
   /// Display: Large dog
-  @JsonValue('100000108990')
   value100000108990,
 
   /// Display: Medium dog
-  @JsonValue('100000108991')
   value100000108991,
 
   /// Display: Pregnant bitch
-  @JsonValue('100000108992')
   value100000108992,
 
   /// Display: Small dog
-  @JsonValue('100000108993')
   value100000108993,
 
   /// Display: Very large dog
-  @JsonValue('100000108994')
   value100000108994,
 
   /// Display: Very small dog
-  @JsonValue('100000108995')
   value100000108995,
 
   /// Display: Puppy
-  @JsonValue('100000108996')
   value100000108996,
 
   /// Display: Foxes
-  @JsonValue('100000108997')
   value100000108997,
 
   /// Display: Jackal
-  @JsonValue('100000108998')
   value100000108998,
 
   /// Display: Other Canids
-  @JsonValue('100000108999')
   value100000108999,
 
   /// Display: Raccoon dogs
-  @JsonValue('100000109000')
   value100000109000,
 
   /// Display: Wolf
-  @JsonValue('100000109001')
   value100000109001,
 
   /// Display: Chamois
-  @JsonValue('100000109002')
   value100000109002,
 
   /// Display: Other Caprines
-  @JsonValue('100000109003')
   value100000109003,
 
   /// Display: Adult female goat
-  @JsonValue('100000109004')
   value100000109004,
 
   /// Display: Adult male goat
-  @JsonValue('100000109005')
   value100000109005,
 
   /// Display: Dry adult female goat
-  @JsonValue('100000109006')
   value100000109006,
 
   /// Display: Goats
-  @JsonValue('100000109007')
   value100000109007,
 
   /// Display: Lactating adult female goat
-  @JsonValue('100000109008')
   value100000109008,
 
   /// Display: Pregnant adult female goat
-  @JsonValue('100000109009')
   value100000109009,
 
   /// Display: Pre-ruminant goat
-  @JsonValue('100000109010')
   value100000109010,
 
   /// Display: Ruminant goat
-  @JsonValue('100000109011')
   value100000109011,
 
   /// Display: Wild goat
-  @JsonValue('100000109012')
   value100000109012,
 
   /// Display: Kid
-  @JsonValue('100000109013')
   value100000109013,
 
   /// Display: Other Ovids
-  @JsonValue('100000109014')
   value100000109014,
 
   /// Display: Ewe
-  @JsonValue('100000109015')
   value100000109015,
 
   /// Display: Ram
-  @JsonValue('100000109016')
   value100000109016,
 
   /// Display: Dry ewe
-  @JsonValue('100000109017')
   value100000109017,
 
   /// Display: Lactating ewe
-  @JsonValue('100000109018')
   value100000109018,
 
   /// Display: Pregnant ewe
-  @JsonValue('100000109019')
   value100000109019,
 
   /// Display: Pre-ruminant sheep
-  @JsonValue('100000109020')
   value100000109020,
 
   /// Display: Ruminant sheep
-  @JsonValue('100000109021')
   value100000109021,
 
   /// Display: Sheep
-  @JsonValue('100000109022')
   value100000109022,
 
   /// Display: Sheep for meat production
-  @JsonValue('100000109023')
   value100000109023,
 
   /// Display: Dairy sheep
-  @JsonValue('100000109024')
   value100000109024,
 
   /// Display: Wild sheep
-  @JsonValue('100000109025')
   value100000109025,
 
   /// Display: Lamb
-  @JsonValue('100000109026')
   value100000109026,
 
   /// Display: Elk
-  @JsonValue('100000109027')
   value100000109027,
 
   /// Display: Fallow deer
-  @JsonValue('100000109028')
   value100000109028,
 
   /// Display: Moose
-  @JsonValue('100000109029')
   value100000109029,
 
   /// Display: Antelope
-  @JsonValue('100000109030')
   value100000109030,
 
   /// Display: Cervid
-  @JsonValue('100000109031')
   value100000109031,
 
   /// Display: Deer
-  @JsonValue('100000109032')
   value100000109032,
 
   /// Display: Other Deer
-  @JsonValue('100000109033')
   value100000109033,
 
   /// Display: Red deer
-  @JsonValue('100000109034')
   value100000109034,
 
   /// Display: Reindeer
-  @JsonValue('100000109035')
   value100000109035,
 
   /// Display: Roe deer
-  @JsonValue('100000109036')
   value100000109036,
 
   /// Display: Donkey
-  @JsonValue('100000109037')
   value100000109037,
 
   /// Display: Mare
-  @JsonValue('100000109038')
   value100000109038,
 
   /// Display: Gelding
-  @JsonValue('100000109039')
   value100000109039,
 
   /// Display: Horses
-  @JsonValue('100000109040')
   value100000109040,
 
   /// Display: Stallion
-  @JsonValue('100000109041')
   value100000109041,
 
   /// Display: Pony
-  @JsonValue('100000109042')
   value100000109042,
 
   /// Display: Pregnant mare
-  @JsonValue('100000109043')
   value100000109043,
 
   /// Display: Non food-producing horse
-  @JsonValue('100000109044')
   value100000109044,
 
   /// Display: Suckling colt
-  @JsonValue('100000109045')
   value100000109045,
 
   /// Display: Colt
-  @JsonValue('100000109046')
   value100000109046,
 
   /// Display: Mule
-  @JsonValue('100000109047')
   value100000109047,
 
   /// Display: Equid
-  @JsonValue('100000109048')
   value100000109048,
 
   /// Display: Female equid
-  @JsonValue('100000109049')
   value100000109049,
 
   /// Display: Other Equids
-  @JsonValue('100000109050')
   value100000109050,
 
   /// Display: Zebra
-  @JsonValue('100000109051')
   value100000109051,
 
   /// Display: Bobcat
-  @JsonValue('100000109052')
   value100000109052,
 
   /// Display: Adult female cat
-  @JsonValue('100000109053')
   value100000109053,
 
   /// Display: Adult female cat for reproduction
-  @JsonValue('100000109054')
   value100000109054,
 
   /// Display: Adult male cat
-  @JsonValue('100000109055')
   value100000109055,
 
   /// Display: Cats
-  @JsonValue('100000109056')
   value100000109056,
 
   /// Display: Lactating cat
-  @JsonValue('100000109057')
   value100000109057,
 
   /// Display: Large cat
-  @JsonValue('100000109058')
   value100000109058,
 
   /// Display: Medium cat
-  @JsonValue('100000109059')
   value100000109059,
 
   /// Display: Pregnant cat
-  @JsonValue('100000109060')
   value100000109060,
 
   /// Display: Small cat
-  @JsonValue('100000109061')
   value100000109061,
 
   /// Display: Kitten
-  @JsonValue('100000109062')
   value100000109062,
 
   /// Display: Cougar
-  @JsonValue('100000109063')
   value100000109063,
 
   /// Display: Jaguar
-  @JsonValue('100000109064')
   value100000109064,
 
   /// Display: Leopard
-  @JsonValue('100000109065')
   value100000109065,
 
   /// Display: Lion
-  @JsonValue('100000109066')
   value100000109066,
 
   /// Display: Lynx
-  @JsonValue('100000109067')
   value100000109067,
 
   /// Display: Other Felids
-  @JsonValue('100000109068')
   value100000109068,
 
   /// Display: Tiger
-  @JsonValue('100000109069')
   value100000109069,
 
   /// Display: Tsushima wild cat
-  @JsonValue('100000109070')
   value100000109070,
 
   /// Display: Other Leporids
-  @JsonValue('100000109071')
   value100000109071,
 
   /// Display: Hare
-  @JsonValue('100000109072')
   value100000109072,
 
   /// Display: Female rabbit for reproduction
-  @JsonValue('100000109073')
   value100000109073,
   ;
 

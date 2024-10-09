@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Example Measure Stratification Value for MeasureReports Resource.
 enum MeasureReportStratifierValueExample {
   /// Display: Northwest
   /// Definition: Northwest region stratification.
-  @JsonValue('northwest')
   northwest,
 
   /// Display: Northeast
   /// Definition: Northeast region stratification.
-  @JsonValue('northeast')
   northeast,
 
   /// Display: Soutwest
   /// Definition: Soutwest region stratification.
-  @JsonValue('southwest')
   southwest,
 
   /// Display: Southeast
   /// Definition: Southeast region stratification.
-  @JsonValue('southeast')
   southeast,
   ;
 

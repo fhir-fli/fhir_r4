@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,7 +7,6 @@ import '../../../fhir_r4.dart';
 /// [RelatedPerson] /// Information about a person that is involved in the care for a patient, but
 /// who is not the target of healthcare, nor has a formal responsibility in the
 /// care process.
-@JsonSerializable()
 class RelatedPerson extends DomainResource {
   RelatedPerson({
     super.id,
@@ -43,68 +41,54 @@ class RelatedPerson extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.RelatedPerson);
+
   @override
   String get fhirType => 'RelatedPerson';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifier for a person within a particular scope.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [active] /// Whether this related person record is in active use.
-  @JsonKey(name: 'active')
   final FhirBoolean? active;
-  @JsonKey(name: '_active')
   final Element? activeElement;
 
   /// [patient] /// The patient this person is related to.
-  @JsonKey(name: 'patient')
   final Reference patient;
 
   /// [relationship] /// The nature of the relationship between a patient and the related person.
-  @JsonKey(name: 'relationship')
   final List<CodeableConcept>? relationship;
 
   /// [name] /// A name associated with the person.
-  @JsonKey(name: 'name')
   final List<HumanName>? name;
 
   /// [telecom] /// A contact detail for the person, e.g. a telephone number or an email
   /// address.
-  @JsonKey(name: 'telecom')
   final List<ContactPoint>? telecom;
 
   /// [gender] /// Administrative Gender - the gender that the person is considered to have
   /// for administration and record keeping purposes.
-  @JsonKey(name: 'gender')
   final AdministrativeGender? gender;
-  @JsonKey(name: '_gender')
   final Element? genderElement;
 
   /// [birthDate] /// The date on which the related person was born.
-  @JsonKey(name: 'birthDate')
   final FhirDate? birthDate;
-  @JsonKey(name: '_birthDate')
   final Element? birthDateElement;
 
   /// [address] /// Address where the related person can be contacted or visited.
-  @JsonKey(name: 'address')
   final List<Address>? address;
 
   /// [photo] /// Image of the person.
-  @JsonKey(name: 'photo')
   final List<Attachment>? photo;
 
   /// [period] /// The period of time during which this relationship is or was active. If
   /// there are no dates defined, then the interval is unknown.
-  @JsonKey(name: 'period')
   final Period? period;
 
   /// [communication] /// A language which may be used to communicate with about the patient's
   /// health.
-  @JsonKey(name: 'communication')
   final List<RelatedPersonCommunication>? communication;
   @override
   Map<String, dynamic> toJson() {
@@ -383,7 +367,6 @@ class RelatedPerson extends DomainResource {
 
 /// [RelatedPersonCommunication] /// A language which may be used to communicate with about the patient's
 /// health.
-@JsonSerializable()
 class RelatedPersonCommunication extends BackboneElement {
   RelatedPersonCommunication({
     super.id,
@@ -399,24 +382,22 @@ class RelatedPersonCommunication extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'RelatedPersonCommunication';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [language] /// The ISO-639-1 alpha 2 code in lower case for the language, optionally
   /// followed by a hyphen and the ISO-3166-1 alpha 2 code for the region in
   /// upper case; e.g. "en" for English, or "en-US" for American English versus
   /// "en-EN" for England English.
-  @JsonKey(name: 'language')
   final CodeableConcept language;
 
   /// [preferred] /// Indicates whether or not the patient prefers this language (over other
   /// languages he masters up a certain level).
-  @JsonKey(name: 'preferred')
   final FhirBoolean? preferred;
-  @JsonKey(name: '_preferred')
   final Element? preferredElement;
   @override
   Map<String, dynamic> toJson() {

@@ -1,13 +1,9 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// A categorisation for incidence of occurence of an interaction.
 enum InteractionIncidence {
   /// Display: Theoretical
-  @JsonValue('Theoretical')
   Theoretical,
 
   /// Display: Observed
-  @JsonValue('Observed')
   Observed,
   ;
 

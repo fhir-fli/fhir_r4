@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -14,7 +13,6 @@ import '../../../fhir_r4.dart';
 /// first entry in a Bundle where Bundle.type=document, and any other resources
 /// referenced from Composition must be included as subsequent entries in the
 /// Bundle (for example Patient, Practitioner, Encounter, etc.).
-@JsonSerializable()
 class Composition extends DomainResource {
   Composition({
     super.id,
@@ -53,93 +51,75 @@ class Composition extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Composition);
+
   @override
   String get fhirType => 'Composition';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// A version-independent identifier for the Composition. This identifier stays
   /// constant as the composition is changed over time.
-  @JsonKey(name: 'identifier')
   final Identifier? identifier;
 
   /// [status] /// The workflow/clinical status of this composition. The status is a marker
   /// for the clinical standing of the document.
-  @JsonKey(name: 'status')
   final CompositionStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [type] /// Specifies the particular kind of composition (e.g. History and Physical,
   /// Discharge Summary, Progress Note). This usually equates to the purpose of
   /// making the composition.
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [category] /// A categorization for the type of the composition - helps for indexing and
   /// searching. This may be implied by or derived from the code specified in the
   /// Composition Type.
-  @JsonKey(name: 'category')
   final List<CodeableConcept>? category;
 
   /// [subject] /// Who or what the composition is about. The composition can be about a
   /// person, (patient or healthcare practitioner), a device (e.g. a machine) or
   /// even a group of subjects (such as a document about a herd of livestock, or
   /// a set of patients that share a common exposure).
-  @JsonKey(name: 'subject')
   final Reference? subject;
 
   /// [encounter] /// Describes the clinical encounter or type of care this documentation is
   /// associated with.
-  @JsonKey(name: 'encounter')
   final Reference? encounter;
 
   /// [date] /// The composition editing time, when the composition was last logically
   /// changed by the author.
-  @JsonKey(name: 'date')
   final FhirDateTime date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [author] /// Identifies who is responsible for the information in the composition, not
   /// necessarily who typed it in.
-  @JsonKey(name: 'author')
   final List<Reference> author;
 
   /// [title] /// Official human-readable label for the composition.
-  @JsonKey(name: 'title')
   final FhirString title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [confidentiality] /// The code specifying the level of confidentiality of the Composition.
-  @JsonKey(name: 'confidentiality')
   final FhirCode? confidentiality;
-  @JsonKey(name: '_confidentiality')
   final Element? confidentialityElement;
 
   /// [attester] /// A participant who has attested to the accuracy of the composition/document.
-  @JsonKey(name: 'attester')
   final List<CompositionAttester>? attester;
 
   /// [custodian] /// Identifies the organization or group who is responsible for ongoing
   /// maintenance of and access to the composition/document information.
-  @JsonKey(name: 'custodian')
   final Reference? custodian;
 
   /// [relatesTo] /// Relationships that this composition has with other compositions or
   /// documents that already exist.
-  @JsonKey(name: 'relatesTo')
   final List<CompositionRelatesTo>? relatesTo;
 
   /// [event] /// The clinical service, such as a colonoscopy or an appendectomy, being
   /// documented.
-  @JsonKey(name: 'event')
   final List<CompositionEvent>? event;
 
   /// [section] /// The root of the sections that make up the composition.
-  @JsonKey(name: 'section')
   final List<CompositionSection>? section;
   @override
   Map<String, dynamic> toJson() {
@@ -429,7 +409,6 @@ class Composition extends DomainResource {
 }
 
 /// [CompositionAttester] /// A participant who has attested to the accuracy of the composition/document.
-@JsonSerializable()
 class CompositionAttester extends BackboneElement {
   CompositionAttester({
     super.id,
@@ -447,26 +426,22 @@ class CompositionAttester extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CompositionAttester';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [mode] /// The type of attestation the authenticator offers.
-  @JsonKey(name: 'mode')
   final CompositionAttestationMode mode;
-  @JsonKey(name: '_mode')
   final Element? modeElement;
 
   /// [time] /// When the composition was attested by the party.
-  @JsonKey(name: 'time')
   final FhirDateTime? time;
-  @JsonKey(name: '_time')
   final Element? timeElement;
 
   /// [party] /// Who attested the composition in the specified way.
-  @JsonKey(name: 'party')
   final Reference? party;
   @override
   Map<String, dynamic> toJson() {
@@ -583,7 +558,6 @@ class CompositionAttester extends BackboneElement {
 
 /// [CompositionRelatesTo] /// Relationships that this composition has with other compositions or
 /// documents that already exist.
-@JsonSerializable()
 class CompositionRelatesTo extends BackboneElement {
   CompositionRelatesTo({
     super.id,
@@ -600,25 +574,22 @@ class CompositionRelatesTo extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CompositionRelatesTo';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// The type of relationship that this composition has with anther composition
   /// or document.
-  @JsonKey(name: 'code')
   final DocumentRelationshipType code;
-  @JsonKey(name: '_code')
   final Element? codeElement;
 
   /// [targetIdentifier] /// The target composition/document of this relationship.
-  @JsonKey(name: 'targetIdentifier')
   final Identifier? targetIdentifier;
 
   /// [targetReference] /// The target composition/document of this relationship.
-  @JsonKey(name: 'targetReference')
   final Reference? targetReference;
   @override
   Map<String, dynamic> toJson() {
@@ -730,7 +701,6 @@ class CompositionRelatesTo extends BackboneElement {
 
 /// [CompositionEvent] /// The clinical service, such as a colonoscopy or an appendectomy, being
 /// documented.
-@JsonSerializable()
 class CompositionEvent extends BackboneElement {
   CompositionEvent({
     super.id,
@@ -746,29 +716,27 @@ class CompositionEvent extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CompositionEvent';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// This list of codes represents the main clinical acts, such as a colonoscopy
   /// or an appendectomy, being documented. In some cases, the event is inherent
   /// in the typeCode, such as a "History and Physical Report" in which the
   /// procedure being documented is necessarily a "History and Physical" act.
-  @JsonKey(name: 'code')
   final List<CodeableConcept>? code;
 
   /// [period] /// The period of time covered by the documentation. There is no assertion that
   /// the documentation is a complete representation for this period, only that
   /// it documents events during this time.
-  @JsonKey(name: 'period')
   final Period? period;
 
   /// [detail] /// The description and/or reference of the event(s) being documented. For
   /// example, this could be used to document such a colonoscopy or an
   /// appendectomy.
-  @JsonKey(name: 'detail')
   final List<Reference>? detail;
   @override
   Map<String, dynamic> toJson() {
@@ -887,7 +855,6 @@ class CompositionEvent extends BackboneElement {
 }
 
 /// [CompositionSection] /// The root of the sections that make up the composition.
-@JsonSerializable()
 class CompositionSection extends BackboneElement {
   CompositionSection({
     super.id,
@@ -912,27 +879,24 @@ class CompositionSection extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CompositionSection';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [title] /// The label for this particular section. This will be part of the rendered
   /// content for the document, and is often used to build a table of contents.
-  @JsonKey(name: 'title')
   final FhirString? title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [code] /// A code identifying the kind of content contained within the section. This
   /// must be consistent with the section title.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [author] /// Identifies who is responsible for the information in this section, not
   /// necessarily who typed it in.
-  @JsonKey(name: 'author')
   final List<Reference>? author;
 
   /// [focus] /// The actual focus of the section when it is not the subject of the
@@ -943,7 +907,6 @@ class CompositionSection extends BackboneElement {
   /// the composition. Sections with a focus SHALL only include resources where
   /// the logical subject (patient, subject, focus, etc.) matches the section
   /// focus, or the resources have no logical subject (few resources).
-  @JsonKey(name: 'focus')
   final Reference? focus;
 
   /// [text] /// A human-readable narrative that contains the attested content of the
@@ -951,34 +914,27 @@ class CompositionSection extends BackboneElement {
   /// narrative need not encode all the structured data, but is required to
   /// contain sufficient detail to make it "clinically safe" for a human to just
   /// read the narrative.
-  @JsonKey(name: 'text')
   final Narrative? text;
 
   /// [mode] /// How the entry list was prepared - whether it is a working list that is
   /// suitable for being maintained on an ongoing basis, or if it represents a
   /// snapshot of a list of items from another source, or whether it is a
   /// prepared list where items may be marked as added, modified or deleted.
-  @JsonKey(name: 'mode')
   final ListMode? mode;
-  @JsonKey(name: '_mode')
   final Element? modeElement;
 
   /// [orderedBy] /// Specifies the order applied to the items in the section entries.
-  @JsonKey(name: 'orderedBy')
   final CodeableConcept? orderedBy;
 
   /// [entry] /// A reference to the actual resource from which the narrative in the section
   /// is derived.
-  @JsonKey(name: 'entry')
   final List<Reference>? entry;
 
   /// [emptyReason] /// If the section is empty, why the list is empty. An empty section typically
   /// has some text explaining the empty reason.
-  @JsonKey(name: 'emptyReason')
   final CodeableConcept? emptyReason;
 
   /// [section] /// A nested sub-section within this section.
-  @JsonKey(name: 'section')
   final List<CompositionSection>? section;
   @override
   Map<String, dynamic> toJson() {

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [Annotation] /// A text note which also contains information about who made the statement
 /// and when.
-@JsonSerializable()
 class Annotation extends DataType {
   Annotation({
     super.id,
@@ -26,32 +24,26 @@ class Annotation extends DataType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'Annotation';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [authorReference] /// The individual responsible for making the annotation.
-  @JsonKey(name: 'authorReference')
   final Reference? authorReference;
 
   /// [authorString] /// The individual responsible for making the annotation.
-  @JsonKey(name: 'authorString')
   final FhirString? authorString;
-  @JsonKey(name: '_authorString')
   final Element? authorStringElement;
 
   /// [time] /// Indicates when this particular annotation was made.
-  @JsonKey(name: 'time')
   final FhirDateTime? time;
-  @JsonKey(name: '_time')
   final Element? timeElement;
 
   /// [text] /// The text of the annotation in markdown format.
-  @JsonKey(name: 'text')
   final FhirMarkdown text;
-  @JsonKey(name: '_text')
   final Element? textElement;
   @override
   Map<String, dynamic> toJson() {

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -10,7 +9,6 @@ import '../../../fhir_r4.dart';
 /// enough to support the description of a broad range of clinical and
 /// non-clinical artifacts such as clinical decision support rules, order sets,
 /// protocols, and drug quality specifications.
-@JsonSerializable()
 class PlanDefinition extends DomainResource {
   PlanDefinition({
     super.id,
@@ -80,10 +78,11 @@ class PlanDefinition extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.PlanDefinition);
+
   @override
   String get fhirType => 'PlanDefinition';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this plan definition when it is
@@ -93,15 +92,12 @@ class PlanDefinition extends DomainResource {
   /// definition is (or will be) published. This URL can be the target of a
   /// canonical reference. It SHALL remain the same when the plan definition is
   /// stored on different servers.
-  @JsonKey(name: 'url')
   final FhirUri? url;
-  @JsonKey(name: '_url')
   final Element? urlElement;
 
   /// [identifier] /// A formal identifier that is used to identify this plan definition when it
   /// is represented in other formats, or referenced in a specification, model,
   /// design or an instance.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [version] /// The identifier that is used to identify this version of the plan definition
@@ -115,50 +111,37 @@ class PlanDefinition extends DomainResource {
   /// information on versioning knowledge assets, refer to the Decision Support
   /// Service specification. Note that a version is required for non-experimental
   /// active artifacts.
-  @JsonKey(name: 'version')
   final FhirString? version;
-  @JsonKey(name: '_version')
   final Element? versionElement;
 
   /// [name] /// A natural language name identifying the plan definition. This name should
   /// be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [title] /// A short, descriptive, user-friendly title for the plan definition.
-  @JsonKey(name: 'title')
   final FhirString? title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [subtitle] /// An explanatory or alternate title for the plan definition giving additional
   /// information about its content.
-  @JsonKey(name: 'subtitle')
   final FhirString? subtitle;
-  @JsonKey(name: '_subtitle')
   final Element? subtitleElement;
 
   /// [type] /// A high-level category for the plan definition that distinguishes the kinds
   /// of systems that would be interested in the plan definition.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [status] /// The status of this plan definition. Enables tracking the life-cycle of the
   /// content.
-  @JsonKey(name: 'status')
   final PublicationStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [experimental] /// A Boolean value to indicate that this plan definition is authored for
   /// testing purposes (or education/evaluation/marketing) and is not intended to
   /// be used for genuine usage.
-  @JsonKey(name: 'experimental')
   final FhirBoolean? experimental;
-  @JsonKey(name: '_experimental')
   final Element? experimentalElement;
 
   /// [subjectCodeableConcept] /// A code, group definition, or canonical reference that describes or
@@ -168,7 +151,6 @@ class PlanDefinition extends DomainResource {
   /// MedicinalProductDefinition, SubstanceDefinition,
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
-  @JsonKey(name: 'subjectCodeableConcept')
   final CodeableConcept? subjectCodeableConcept;
 
   /// [subjectReference] /// A code, group definition, or canonical reference that describes or
@@ -178,7 +160,6 @@ class PlanDefinition extends DomainResource {
   /// MedicinalProductDefinition, SubstanceDefinition,
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
-  @JsonKey(name: 'subjectReference')
   final Reference? subjectReference;
 
   /// [subjectCanonical] /// A code, group definition, or canonical reference that describes or
@@ -188,37 +169,28 @@ class PlanDefinition extends DomainResource {
   /// MedicinalProductDefinition, SubstanceDefinition,
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
-  @JsonKey(name: 'subjectCanonical')
   final SubjectType? subjectCanonical;
-  @JsonKey(name: '_subjectCanonical')
   final Element? subjectCanonicalElement;
 
   /// [date] /// The date (and optionally time) when the plan definition was published. The
   /// date must change when the business version changes and it must change if
   /// the status code changes. In addition, it should change when the substantive
   /// content of the plan definition changes.
-  @JsonKey(name: 'date')
   final FhirDateTime? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [publisher] /// The name of the organization or individual that published the plan
   /// definition.
-  @JsonKey(name: 'publisher')
   final FhirString? publisher;
-  @JsonKey(name: '_publisher')
   final Element? publisherElement;
 
   /// [contact] /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  @JsonKey(name: 'contact')
   final List<ContactDetail>? contact;
 
   /// [description] /// A free text natural language description of the plan definition from a
   /// consumer's perspective.
-  @JsonKey(name: 'description')
   final FhirMarkdown? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [useContext] /// The content was developed with a focus and intent of supporting the
@@ -226,91 +198,70 @@ class PlanDefinition extends DomainResource {
   /// age, ...) or may be references to specific programs (insurance plans,
   /// studies, ...) and may be used to assist with indexing and searching for
   /// appropriate plan definition instances.
-  @JsonKey(name: 'useContext')
   final List<UsageContext>? useContext;
 
   /// [jurisdiction] /// A legal or geographic region in which the plan definition is intended to be
   /// used.
-  @JsonKey(name: 'jurisdiction')
   final List<CodeableConcept>? jurisdiction;
 
   /// [purpose] /// Explanation of why this plan definition is needed and why it has been
   /// designed as it has.
-  @JsonKey(name: 'purpose')
   final FhirMarkdown? purpose;
-  @JsonKey(name: '_purpose')
   final Element? purposeElement;
 
   /// [usage] /// A detailed description of how the plan definition is used from a clinical
   /// perspective.
-  @JsonKey(name: 'usage')
   final FhirString? usage;
-  @JsonKey(name: '_usage')
   final Element? usageElement;
 
   /// [copyright] /// A copyright statement relating to the plan definition and/or its contents.
   /// Copyright statements are generally legal restrictions on the use and
   /// publishing of the plan definition.
-  @JsonKey(name: 'copyright')
   final FhirMarkdown? copyright;
-  @JsonKey(name: '_copyright')
   final Element? copyrightElement;
 
   /// [approvalDate] /// The date on which the resource content was approved by the publisher.
   /// Approval happens once when the content is officially approved for usage.
-  @JsonKey(name: 'approvalDate')
   final FhirDate? approvalDate;
-  @JsonKey(name: '_approvalDate')
   final Element? approvalDateElement;
 
   /// [lastReviewDate] /// The date on which the resource content was last reviewed. Review happens
   /// periodically after approval but does not change the original approval date.
-  @JsonKey(name: 'lastReviewDate')
   final FhirDate? lastReviewDate;
-  @JsonKey(name: '_lastReviewDate')
   final Element? lastReviewDateElement;
 
   /// [effectivePeriod] /// The period during which the plan definition content was or is planned to be
   /// in active use.
-  @JsonKey(name: 'effectivePeriod')
   final Period? effectivePeriod;
 
   /// [topic] /// Descriptive topics related to the content of the plan definition. Topics
   /// provide a high-level categorization of the definition that can be useful
   /// for filtering and searching.
-  @JsonKey(name: 'topic')
   final List<CodeableConcept>? topic;
 
   /// [author] /// An individiual or organization primarily involved in the creation and
   /// maintenance of the content.
-  @JsonKey(name: 'author')
   final List<ContactDetail>? author;
 
   /// [editor] /// An individual or organization primarily responsible for internal coherence
   /// of the content.
-  @JsonKey(name: 'editor')
   final List<ContactDetail>? editor;
 
   /// [reviewer] /// An individual or organization primarily responsible for review of some
   /// aspect of the content.
-  @JsonKey(name: 'reviewer')
   final List<ContactDetail>? reviewer;
 
   /// [endorser] /// An individual or organization responsible for officially endorsing the
   /// content for use in some setting.
-  @JsonKey(name: 'endorser')
   final List<ContactDetail>? endorser;
 
   /// [relatedArtifact] /// Related artifacts such as additional documentation, justification, or
   /// bibliographic references.
-  @JsonKey(name: 'relatedArtifact')
   final List<RelatedArtifact>? relatedArtifact;
 
   /// [library_] /// A reference to a Library resource containing any formal logic used by the
   /// plan definition.
-  @JsonKey(name: 'library')
   final List<FhirCanonical>? library_;
-  @JsonKey(name: '_library')
   final List<Element>? libraryElement;
 
   /// [goal] /// A goal describes an expected outcome that activities within the plan are
@@ -318,7 +269,6 @@ class PlanDefinition extends DomainResource {
   /// daily living, obtaining herd immunity via immunization, meeting a process
   /// improvement objective, meeting the acceptance criteria for a test as
   /// specified by a quality specification, etc.
-  @JsonKey(name: 'goal')
   final List<PlanDefinitionGoal>? goal;
 
   /// [action] /// An action or group of actions to be taken as part of the plan. For example,
@@ -326,7 +276,6 @@ class PlanDefinition extends DomainResource {
   /// medication, or perform a particular test as appropriate. In pharmaceutical
   /// quality, an action would be the test that needs to be performed on a drug
   /// product as defined in the quality specification.
-  @JsonKey(name: 'action')
   final List<PlanDefinitionAction>? action;
   @override
   Map<String, dynamic> toJson() {
@@ -898,7 +847,6 @@ class PlanDefinition extends DomainResource {
 /// daily living, obtaining herd immunity via immunization, meeting a process
 /// improvement objective, meeting the acceptance criteria for a test as
 /// specified by a quality specification, etc.
-@JsonSerializable()
 class PlanDefinitionGoal extends BackboneElement {
   PlanDefinitionGoal({
     super.id,
@@ -918,44 +866,38 @@ class PlanDefinitionGoal extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'PlanDefinitionGoal';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [category] /// Indicates a category the goal falls within.
-  @JsonKey(name: 'category')
   final CodeableConcept? category;
 
   /// [description] /// Human-readable and/or coded description of a specific desired objective of
   /// care, such as "control blood pressure" or "negotiate an obstacle course" or
   /// "dance with child at wedding".
-  @JsonKey(name: 'description')
   final CodeableConcept description;
 
   /// [priority] /// Identifies the expected level of importance associated with
   /// reaching/sustaining the defined goal.
-  @JsonKey(name: 'priority')
   final CodeableConcept? priority;
 
   /// [start] /// The event after which the goal should begin being pursued.
-  @JsonKey(name: 'start')
   final CodeableConcept? start;
 
   /// [addresses] /// Identifies problems, conditions, issues, or concerns the goal is intended
   /// to address.
-  @JsonKey(name: 'addresses')
   final List<CodeableConcept>? addresses;
 
   /// [documentation] /// Didactic or other informational resources associated with the goal that
   /// provide further supporting information about the goal. Information
   /// resources can include inline text commentary and links to web resources.
-  @JsonKey(name: 'documentation')
   final List<RelatedArtifact>? documentation;
 
   /// [target] /// Indicates what should be done and within what timeframe.
-  @JsonKey(name: 'target')
   final List<PlanDefinitionTarget>? target;
   @override
   Map<String, dynamic> toJson() {
@@ -1108,7 +1050,6 @@ class PlanDefinitionGoal extends BackboneElement {
 }
 
 /// [PlanDefinitionTarget] /// Indicates what should be done and within what timeframe.
-@JsonSerializable()
 class PlanDefinitionTarget extends BackboneElement {
   PlanDefinitionTarget({
     super.id,
@@ -1126,15 +1067,15 @@ class PlanDefinitionTarget extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'PlanDefinitionTarget';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [measure] /// The parameter whose value is to be tracked, e.g. body weight, blood
   /// pressure, or hemoglobin A1c level.
-  @JsonKey(name: 'measure')
   final CodeableConcept? measure;
 
   /// [detailQuantity] /// The target value of the measure to be achieved to signify fulfillment of
@@ -1144,7 +1085,6 @@ class PlanDefinitionTarget extends BackboneElement {
   /// the goal is achieved at any value at or below the high value. Similarly, if
   /// the high value is missing, it indicates that the goal is achieved at any
   /// value at or above the low value.
-  @JsonKey(name: 'detailQuantity')
   final Quantity? detailQuantity;
 
   /// [detailRange] /// The target value of the measure to be achieved to signify fulfillment of
@@ -1154,7 +1094,6 @@ class PlanDefinitionTarget extends BackboneElement {
   /// the goal is achieved at any value at or below the high value. Similarly, if
   /// the high value is missing, it indicates that the goal is achieved at any
   /// value at or above the low value.
-  @JsonKey(name: 'detailRange')
   final Range? detailRange;
 
   /// [detailCodeableConcept] /// The target value of the measure to be achieved to signify fulfillment of
@@ -1164,12 +1103,10 @@ class PlanDefinitionTarget extends BackboneElement {
   /// the goal is achieved at any value at or below the high value. Similarly, if
   /// the high value is missing, it indicates that the goal is achieved at any
   /// value at or above the low value.
-  @JsonKey(name: 'detailCodeableConcept')
   final CodeableConcept? detailCodeableConcept;
 
   /// [due] /// Indicates the timeframe after the start of the goal in which the goal
   /// should be met.
-  @JsonKey(name: 'due')
   final FhirDuration? due;
   @override
   Map<String, dynamic> toJson() {
@@ -1302,7 +1239,6 @@ class PlanDefinitionTarget extends BackboneElement {
 /// medication, or perform a particular test as appropriate. In pharmaceutical
 /// quality, an action would be the test that needs to be performed on a drug
 /// product as defined in the quality specification.
-@JsonSerializable()
 class PlanDefinitionAction extends BackboneElement {
   PlanDefinitionAction({
     super.id,
@@ -1366,64 +1302,52 @@ class PlanDefinitionAction extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'PlanDefinitionAction';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [prefix] /// A user-visible prefix for the action.
-  @JsonKey(name: 'prefix')
   final FhirString? prefix;
-  @JsonKey(name: '_prefix')
   final Element? prefixElement;
 
   /// [title] /// The textual description of the action displayed to a user. For example,
   /// when the action is a test to be performed, the title would be the title of
   /// the test such as Assay by HPLC.
-  @JsonKey(name: 'title')
   final FhirString? title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [description] /// A brief description of the action used to provide a summary to display to
   /// the user.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [textEquivalent] /// A text equivalent of the action to be performed. This provides a
   /// human-interpretable description of the action when the definition is
   /// consumed by a system that might not be capable of interpreting it
   /// dynamically.
-  @JsonKey(name: 'textEquivalent')
   final FhirString? textEquivalent;
-  @JsonKey(name: '_textEquivalent')
   final Element? textEquivalentElement;
 
   /// [priority] /// Indicates how quickly the action should be addressed with respect to other
   /// actions.
-  @JsonKey(name: 'priority')
   final RequestPriority? priority;
-  @JsonKey(name: '_priority')
   final Element? priorityElement;
 
   /// [code] /// A code that provides a meaning, grouping, or classification for the action
   /// or action group. For example, a section may have a LOINC code for the
   /// section of a documentation template. In pharmaceutical quality, an action
   /// (Test) such as pH could be classified as a physical property.
-  @JsonKey(name: 'code')
   final List<CodeableConcept>? code;
 
   /// [reason] /// A description of why this action is necessary or appropriate.
-  @JsonKey(name: 'reason')
   final List<CodeableConcept>? reason;
 
   /// [documentation] /// Didactic or other informational resources associated with the action that
   /// can be provided to the CDS recipient. Information resources can include
   /// inline text commentary and links to web resources.
-  @JsonKey(name: 'documentation')
   final List<RelatedArtifact>? documentation;
 
   /// [goalId] /// Identifies goals that this action supports. The reference must be to a goal
@@ -1431,9 +1355,7 @@ class PlanDefinitionAction extends BackboneElement {
   /// goal represents acceptance criteria (Goal) for a given action (Test), so
   /// the goalId would be the unique id of a defined goal element establishing
   /// the acceptance criteria for the action.
-  @JsonKey(name: 'goalId')
   final List<FhirId>? goalId;
-  @JsonKey(name: '_goalId')
   final List<Element>? goalIdElement;
 
   /// [subjectCodeableConcept] /// A code, group definition, or canonical reference that describes the
@@ -1443,7 +1365,6 @@ class PlanDefinitionAction extends BackboneElement {
   /// MedicinalProductDefinition, SubstanceDefinition,
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
-  @JsonKey(name: 'subjectCodeableConcept')
   final CodeableConcept? subjectCodeableConcept;
 
   /// [subjectReference] /// A code, group definition, or canonical reference that describes the
@@ -1453,7 +1374,6 @@ class PlanDefinitionAction extends BackboneElement {
   /// MedicinalProductDefinition, SubstanceDefinition,
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
-  @JsonKey(name: 'subjectReference')
   final Reference? subjectReference;
 
   /// [subjectCanonical] /// A code, group definition, or canonical reference that describes the
@@ -1463,119 +1383,87 @@ class PlanDefinitionAction extends BackboneElement {
   /// MedicinalProductDefinition, SubstanceDefinition,
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
-  @JsonKey(name: 'subjectCanonical')
   final SubjectType? subjectCanonical;
-  @JsonKey(name: '_subjectCanonical')
   final Element? subjectCanonicalElement;
 
   /// [trigger] /// A description of when the action should be triggered.
-  @JsonKey(name: 'trigger')
   final List<TriggerDefinition>? trigger;
 
   /// [condition] /// An expression that describes applicability criteria or start/stop
   /// conditions for the action.
-  @JsonKey(name: 'condition')
   final List<PlanDefinitionCondition>? condition;
 
   /// [input] /// Defines input data requirements for the action.
-  @JsonKey(name: 'input')
   final List<DataRequirement>? input;
 
   /// [output] /// Defines the outputs of the action, if any.
-  @JsonKey(name: 'output')
   final List<DataRequirement>? output;
 
   /// [relatedAction] /// A relationship to another action such as "before" or "30-60 minutes after
   /// start of".
-  @JsonKey(name: 'relatedAction')
   final List<PlanDefinitionRelatedAction>? relatedAction;
 
   /// [timingDateTime] /// An optional value describing when the action should be performed.
-  @JsonKey(name: 'timingDateTime')
   final FhirDateTime? timingDateTime;
-  @JsonKey(name: '_timingDateTime')
   final Element? timingDateTimeElement;
 
   /// [timingAge] /// An optional value describing when the action should be performed.
-  @JsonKey(name: 'timingAge')
   final Age? timingAge;
 
   /// [timingPeriod] /// An optional value describing when the action should be performed.
-  @JsonKey(name: 'timingPeriod')
   final Period? timingPeriod;
 
   /// [timingDuration] /// An optional value describing when the action should be performed.
-  @JsonKey(name: 'timingDuration')
   final FhirDuration? timingDuration;
 
   /// [timingRange] /// An optional value describing when the action should be performed.
-  @JsonKey(name: 'timingRange')
   final Range? timingRange;
 
   /// [timingTiming] /// An optional value describing when the action should be performed.
-  @JsonKey(name: 'timingTiming')
   final Timing? timingTiming;
 
   /// [participant] /// Indicates who should participate in performing the action described.
-  @JsonKey(name: 'participant')
   final List<PlanDefinitionParticipant>? participant;
 
   /// [type] /// The type of action to perform (create, update, remove).
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [groupingBehavior] /// Defines the grouping behavior for the action and its children.
-  @JsonKey(name: 'groupingBehavior')
   final ActionGroupingBehavior? groupingBehavior;
-  @JsonKey(name: '_groupingBehavior')
   final Element? groupingBehaviorElement;
 
   /// [selectionBehavior] /// Defines the selection behavior for the action and its children.
-  @JsonKey(name: 'selectionBehavior')
   final ActionSelectionBehavior? selectionBehavior;
-  @JsonKey(name: '_selectionBehavior')
   final Element? selectionBehaviorElement;
 
   /// [requiredBehavior] /// Defines the required behavior for the action.
-  @JsonKey(name: 'requiredBehavior')
   final ActionRequiredBehavior? requiredBehavior;
-  @JsonKey(name: '_requiredBehavior')
   final Element? requiredBehaviorElement;
 
   /// [precheckBehavior] /// Defines whether the action should usually be preselected.
-  @JsonKey(name: 'precheckBehavior')
   final ActionPrecheckBehavior? precheckBehavior;
-  @JsonKey(name: '_precheckBehavior')
   final Element? precheckBehaviorElement;
 
   /// [cardinalityBehavior] /// Defines whether the action can be selected multiple times.
-  @JsonKey(name: 'cardinalityBehavior')
   final ActionCardinalityBehavior? cardinalityBehavior;
-  @JsonKey(name: '_cardinalityBehavior')
   final Element? cardinalityBehaviorElement;
 
   /// [definitionCanonical] /// A reference to an ActivityDefinition that describes the action to be taken
   /// in detail, or a PlanDefinition that describes a series of actions to be
   /// taken.
-  @JsonKey(name: 'definitionCanonical')
   final FhirCanonical? definitionCanonical;
-  @JsonKey(name: '_definitionCanonical')
   final Element? definitionCanonicalElement;
 
   /// [definitionUri] /// A reference to an ActivityDefinition that describes the action to be taken
   /// in detail, or a PlanDefinition that describes a series of actions to be
   /// taken.
-  @JsonKey(name: 'definitionUri')
   final FhirUri? definitionUri;
-  @JsonKey(name: '_definitionUri')
   final Element? definitionUriElement;
 
   /// [transform] /// A reference to a StructureMap resource that defines a transform that can be
   /// executed to produce the intent resource using the ActivityDefinition
   /// instance as the input.
-  @JsonKey(name: 'transform')
   final FhirCanonical? transform;
-  @JsonKey(name: '_transform')
   final Element? transformElement;
 
   /// [dynamicValue] /// Customizations that should be applied to the statically defined resource.
@@ -1583,14 +1471,12 @@ class PlanDefinitionAction extends BackboneElement {
   /// patient's weight, a customization would be used to specify an expression
   /// that calculated the weight, and the path on the resource that would contain
   /// the result.
-  @JsonKey(name: 'dynamicValue')
   final List<PlanDefinitionDynamicValue>? dynamicValue;
 
   /// [action] /// Sub actions that are contained within the action. The behavior of this
   /// action determines the functionality of the sub-actions. For example, a
   /// selection behavior of at-most-one indicates that of the sub-actions, at
   /// most one may be chosen as part of realizing the action definition.
-  @JsonKey(name: 'action')
   final List<PlanDefinitionAction>? action;
   @override
   Map<String, dynamic> toJson() {
@@ -2112,7 +1998,6 @@ class PlanDefinitionAction extends BackboneElement {
 
 /// [PlanDefinitionCondition] /// An expression that describes applicability criteria or start/stop
 /// conditions for the action.
-@JsonSerializable()
 class PlanDefinitionCondition extends BackboneElement {
   PlanDefinitionCondition({
     super.id,
@@ -2128,21 +2013,19 @@ class PlanDefinitionCondition extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'PlanDefinitionCondition';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [kind] /// The kind of condition.
-  @JsonKey(name: 'kind')
   final ActionConditionKind kind;
-  @JsonKey(name: '_kind')
   final Element? kindElement;
 
   /// [expression] /// An expression that returns true or false, indicating whether the condition
   /// is satisfied.
-  @JsonKey(name: 'expression')
   final FhirExpression? expression;
   @override
   Map<String, dynamic> toJson() {
@@ -2244,7 +2127,6 @@ class PlanDefinitionCondition extends BackboneElement {
 
 /// [PlanDefinitionRelatedAction] /// A relationship to another action such as "before" or "30-60 minutes after
 /// start of".
-@JsonSerializable()
 class PlanDefinitionRelatedAction extends BackboneElement {
   PlanDefinitionRelatedAction({
     super.id,
@@ -2263,32 +2145,27 @@ class PlanDefinitionRelatedAction extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'PlanDefinitionRelatedAction';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [actionId] /// The element id of the related action.
-  @JsonKey(name: 'actionId')
   final FhirId actionId;
-  @JsonKey(name: '_actionId')
   final Element? actionIdElement;
 
   /// [relationship] /// The relationship of this action to the related action.
-  @JsonKey(name: 'relationship')
   final ActionRelationshipType relationship;
-  @JsonKey(name: '_relationship')
   final Element? relationshipElement;
 
   /// [offsetDuration] /// A duration or range of durations to apply to the relationship. For example,
   /// 30-60 minutes before.
-  @JsonKey(name: 'offsetDuration')
   final FhirDuration? offsetDuration;
 
   /// [offsetRange] /// A duration or range of durations to apply to the relationship. For example,
   /// 30-60 minutes before.
-  @JsonKey(name: 'offsetRange')
   final Range? offsetRange;
   @override
   Map<String, dynamic> toJson() {
@@ -2410,7 +2287,6 @@ class PlanDefinitionRelatedAction extends BackboneElement {
 }
 
 /// [PlanDefinitionParticipant] /// Indicates who should participate in performing the action described.
-@JsonSerializable()
 class PlanDefinitionParticipant extends BackboneElement {
   PlanDefinitionParticipant({
     super.id,
@@ -2426,20 +2302,18 @@ class PlanDefinitionParticipant extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'PlanDefinitionParticipant';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The type of participant in the action.
-  @JsonKey(name: 'type')
   final ActionParticipantType type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [role] /// The role the participant should play in performing the described action.
-  @JsonKey(name: 'role')
   final CodeableConcept? role;
   @override
   Map<String, dynamic> toJson() {
@@ -2545,7 +2419,6 @@ class PlanDefinitionParticipant extends BackboneElement {
 /// patient's weight, a customization would be used to specify an expression
 /// that calculated the weight, and the path on the resource that would contain
 /// the result.
-@JsonSerializable()
 class PlanDefinitionDynamicValue extends BackboneElement {
   PlanDefinitionDynamicValue({
     super.id,
@@ -2561,10 +2434,11 @@ class PlanDefinitionDynamicValue extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'PlanDefinitionDynamicValue';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [path] /// The path to the element to be customized. This is the path on the resource
@@ -2575,13 +2449,10 @@ class PlanDefinitionDynamicValue extends BackboneElement {
   /// contain qualifiers (.) to traverse sub-elements, as well as indexers ([x])
   /// to traverse multiple-cardinality sub-elements (see the [Simple FHIRPath
   /// Profile](fhirpath.html#simple) for full details).
-  @JsonKey(name: 'path')
   final FhirString? path;
-  @JsonKey(name: '_path')
   final Element? pathElement;
 
   /// [expression] /// An expression specifying the value of the customized element.
-  @JsonKey(name: 'expression')
   final FhirExpression? expression;
   @override
   Map<String, dynamic> toJson() {

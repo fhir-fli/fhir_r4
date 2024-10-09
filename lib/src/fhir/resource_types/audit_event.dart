@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,7 +7,6 @@ import '../../../fhir_r4.dart';
 /// [AuditEvent] /// A record of an event made for purposes of maintaining a security log.
 /// Typical uses include detection of intrusion attempts and monitoring for
 /// inappropriate usage.
-@JsonSerializable()
 class AuditEvent extends DomainResource {
   AuditEvent({
     super.id,
@@ -43,65 +41,51 @@ class AuditEvent extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.AuditEvent);
+
   @override
   String get fhirType => 'AuditEvent';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Identifier for a family of the event. For example, a menu item, program,
   /// rule, policy, function code, application name or URL. It identifies the
   /// performed function.
-  @JsonKey(name: 'type')
   final Coding type;
 
   /// [subtype] /// Identifier for the category of event.
-  @JsonKey(name: 'subtype')
   final List<Coding>? subtype;
 
   /// [action] /// Indicator for type of action performed during the event that generated the
   /// audit.
-  @JsonKey(name: 'action')
   final AuditEventAction? action;
-  @JsonKey(name: '_action')
   final Element? actionElement;
 
   /// [period] /// The period during which the activity occurred.
-  @JsonKey(name: 'period')
   final Period? period;
 
   /// [recorded] /// The time when the event was recorded.
-  @JsonKey(name: 'recorded')
   final FhirInstant recorded;
-  @JsonKey(name: '_recorded')
   final Element? recordedElement;
 
   /// [outcome] /// Indicates whether the event succeeded or failed.
-  @JsonKey(name: 'outcome')
   final AuditEventOutcome? outcome;
-  @JsonKey(name: '_outcome')
   final Element? outcomeElement;
 
   /// [outcomeDesc] /// A free text description of the outcome of the event.
-  @JsonKey(name: 'outcomeDesc')
   final FhirString? outcomeDesc;
-  @JsonKey(name: '_outcomeDesc')
   final Element? outcomeDescElement;
 
   /// [purposeOfEvent] /// The purposeOfUse (reason) that was used during the event being recorded.
-  @JsonKey(name: 'purposeOfEvent')
   final List<CodeableConcept>? purposeOfEvent;
 
   /// [agent] /// An actor taking an active role in the event or activity that is logged.
-  @JsonKey(name: 'agent')
   final List<AuditEventAgent> agent;
 
   /// [source] /// The system that is reporting the event.
-  @JsonKey(name: 'source')
   final AuditEventSource source;
 
   /// [entity] /// Specific instances of data or objects that have been accessed.
-  @JsonKey(name: 'entity')
   final List<AuditEventEntity>? entity;
   @override
   Map<String, dynamic> toJson() {
@@ -349,7 +333,6 @@ class AuditEvent extends DomainResource {
 }
 
 /// [AuditEventAgent] /// An actor taking an active role in the event or activity that is logged.
-@JsonSerializable()
 class AuditEventAgent extends BackboneElement {
   AuditEventAgent({
     super.id,
@@ -377,74 +360,60 @@ class AuditEventAgent extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'AuditEventAgent';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Specification of the participation type the user plays when performing the
   /// event.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [role] /// The security role that the user was acting under, that come from local
   /// codes defined by the access control security system (e.g. RBAC, ABAC) used
   /// in the local context.
-  @JsonKey(name: 'role')
   final List<CodeableConcept>? role;
 
   /// [who] /// Reference to who this agent is that was involved in the event.
-  @JsonKey(name: 'who')
   final Reference? who;
 
   /// [altId] /// Alternative agent Identifier. For a human, this should be a user identifier
   /// text string from authentication system. This identifier would be one known
   /// to a common authentication system (e.g. single sign-on), if available.
-  @JsonKey(name: 'altId')
   final FhirString? altId;
-  @JsonKey(name: '_altId')
   final Element? altIdElement;
 
   /// [name] /// Human-meaningful name for the agent.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [requestor] /// Indicator that the user is or is not the requestor, or initiator, for the
   /// event being audited.
-  @JsonKey(name: 'requestor')
   final FhirBoolean requestor;
-  @JsonKey(name: '_requestor')
   final Element? requestorElement;
 
   /// [location] /// Where the event occurred.
-  @JsonKey(name: 'location')
   final Reference? location;
 
   /// [policy] /// The policy or plan that authorized the activity being recorded. Typically,
   /// a single activity may have multiple applicable policies, such as patient
   /// consent, guarantor funding, etc. The policy would also indicate the
   /// security token used.
-  @JsonKey(name: 'policy')
   final List<FhirUri>? policy;
-  @JsonKey(name: '_policy')
   final List<Element>? policyElement;
 
   /// [media] /// Type of media involved. Used when the event is about exporting/importing
   /// onto media.
-  @JsonKey(name: 'media')
   final Coding? media;
 
   /// [network] /// Logical network location for application activity, if the activity has a
   /// network location.
-  @JsonKey(name: 'network')
   final AuditEventNetwork? network;
 
   /// [purposeOfUse] /// The reason (purpose of use), specific to this agent, that was used during
   /// the event being recorded.
-  @JsonKey(name: 'purposeOfUse')
   final List<CodeableConcept>? purposeOfUse;
   @override
   Map<String, dynamic> toJson() {
@@ -657,7 +626,6 @@ class AuditEventAgent extends BackboneElement {
 
 /// [AuditEventNetwork] /// Logical network location for application activity, if the activity has a
 /// network location.
-@JsonSerializable()
 class AuditEventNetwork extends BackboneElement {
   AuditEventNetwork({
     super.id,
@@ -674,24 +642,21 @@ class AuditEventNetwork extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'AuditEventNetwork';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [address] /// An identifier for the network access point of the user device for the audit
   /// event.
-  @JsonKey(name: 'address')
   final FhirString? address;
-  @JsonKey(name: '_address')
   final Element? addressElement;
 
   /// [type] /// An identifier for the type of network access point that originated the
   /// audit event.
-  @JsonKey(name: 'type')
   final AuditEventAgentNetworkType? type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
   @override
   Map<String, dynamic> toJson() {
@@ -803,7 +768,6 @@ class AuditEventNetwork extends BackboneElement {
 }
 
 /// [AuditEventSource] /// The system that is reporting the event.
-@JsonSerializable()
 class AuditEventSource extends BackboneElement {
   AuditEventSource({
     super.id,
@@ -820,26 +784,23 @@ class AuditEventSource extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'AuditEventSource';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [site] /// Logical source location within the healthcare enterprise network. For
   /// example, a hospital or other provider location within a multi-entity
   /// provider group.
-  @JsonKey(name: 'site')
   final FhirString? site;
-  @JsonKey(name: '_site')
   final Element? siteElement;
 
   /// [observer] /// Identifier of the source where the event was detected.
-  @JsonKey(name: 'observer')
   final Reference observer;
 
   /// [type] /// Code specifying the type of source where event originated.
-  @JsonKey(name: 'type')
   final List<Coding>? type;
   @override
   Map<String, dynamic> toJson() {
@@ -955,7 +916,6 @@ class AuditEventSource extends BackboneElement {
 }
 
 /// [AuditEventEntity] /// Specific instances of data or objects that have been accessed.
-@JsonSerializable()
 class AuditEventEntity extends BackboneElement {
   AuditEventEntity({
     super.id,
@@ -980,53 +940,42 @@ class AuditEventEntity extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'AuditEventEntity';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [what] /// Identifies a specific instance of the entity. The reference should be
   /// version specific.
-  @JsonKey(name: 'what')
   final Reference? what;
 
   /// [type] /// The type of the object that was involved in this audit event.
-  @JsonKey(name: 'type')
   final Coding? type;
 
   /// [role] /// Code representing the role the entity played in the event being audited.
-  @JsonKey(name: 'role')
   final Coding? role;
 
   /// [lifecycle] /// Identifier for the data life-cycle stage for the entity.
-  @JsonKey(name: 'lifecycle')
   final Coding? lifecycle;
 
   /// [securityLabel] /// Security labels for the identified entity.
-  @JsonKey(name: 'securityLabel')
   final List<Coding>? securityLabel;
 
   /// [name] /// A name of the entity in the audit event.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [description] /// Text that describes the entity in more detail.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [query] /// The query parameters for a query-type entities.
-  @JsonKey(name: 'query')
   final FhirBase64Binary? query;
-  @JsonKey(name: '_query')
   final Element? queryElement;
 
   /// [detail] /// Tagged value pairs for conveying additional information about the entity.
-  @JsonKey(name: 'detail')
   final List<AuditEventDetail>? detail;
   @override
   Map<String, dynamic> toJson() {
@@ -1212,7 +1161,6 @@ class AuditEventEntity extends BackboneElement {
 }
 
 /// [AuditEventDetail] /// Tagged value pairs for conveying additional information about the entity.
-@JsonSerializable()
 class AuditEventDetail extends BackboneElement {
   AuditEventDetail({
     super.id,
@@ -1231,28 +1179,23 @@ class AuditEventDetail extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'AuditEventDetail';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The type of extra detail provided in the value.
-  @JsonKey(name: 'type')
   final FhirString type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [valueString] /// The value of the extra detail.
-  @JsonKey(name: 'valueString')
   final FhirString? valueString;
-  @JsonKey(name: '_valueString')
   final Element? valueStringElement;
 
   /// [valueBase64Binary] /// The value of the extra detail.
-  @JsonKey(name: 'valueBase64Binary')
   final FhirBase64Binary? valueBase64Binary;
-  @JsonKey(name: '_valueBase64Binary')
   final Element? valueBase64BinaryElement;
   @override
   Map<String, dynamic> toJson() {

@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The possible types of research elements (E.g. Population, Exposure, Outcome).
 enum ResearchElementType {
   /// Display: Population
   /// Definition: The element defines the population that forms the basis for research.
-  @JsonValue('population')
   population,
 
   /// Display: Exposure
   /// Definition: The element defines an exposure within the population that is being researched.
-  @JsonValue('exposure')
   exposure,
 
   /// Display: Outcome
   /// Definition: The element defines an outcome within the population that is being researched.
-  @JsonValue('outcome')
   outcome,
   ;
 

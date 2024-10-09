@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Codes for general categories of communications such as alerts, instructions, etc.
 enum CommunicationCategory {
   /// Display: Alert
   /// Definition: The communication conveys an alert.
-  @JsonValue('alert')
   alert,
 
   /// Display: Notification
   /// Definition: The communication conveys a notification.
-  @JsonValue('notification')
   notification,
 
   /// Display: Reminder
   /// Definition: The communication conveys a reminder.
-  @JsonValue('reminder')
   reminder,
 
   /// Display: Instruction
   /// Definition: The communication conveys an instruction.
-  @JsonValue('instruction')
   instruction,
   ;
 

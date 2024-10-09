@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [ResearchSubject] /// A physical entity which is the primary unit of operational and/or
 /// administrative interest in a study.
-@JsonSerializable()
 class ResearchSubject extends DomainResource {
   ResearchSubject({
     super.id,
@@ -38,50 +36,40 @@ class ResearchSubject extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.ResearchSubject);
+
   @override
   String get fhirType => 'ResearchSubject';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifiers assigned to this research subject for a study.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// The current state of the subject.
-  @JsonKey(name: 'status')
   final ResearchSubjectStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [period] /// The dates the subject began and ended their participation in the study.
-  @JsonKey(name: 'period')
   final Period? period;
 
   /// [study] /// Reference to the study the subject is participating in.
-  @JsonKey(name: 'study')
   final Reference study;
 
   /// [individual] /// The record of the person or animal who is involved in the study.
-  @JsonKey(name: 'individual')
   final Reference individual;
 
   /// [assignedArm] /// The name of the arm in the study the subject is expected to follow as part
   /// of this study.
-  @JsonKey(name: 'assignedArm')
   final FhirString? assignedArm;
-  @JsonKey(name: '_assignedArm')
   final Element? assignedArmElement;
 
   /// [actualArm] /// The name of the arm in the study the subject actually followed as part of
   /// this study.
-  @JsonKey(name: 'actualArm')
   final FhirString? actualArm;
-  @JsonKey(name: '_actualArm')
   final Element? actualArmElement;
 
   /// [consent] /// A record of the patient's informed agreement to participate in the study.
-  @JsonKey(name: 'consent')
   final Reference? consent;
   @override
   Map<String, dynamic> toJson() {

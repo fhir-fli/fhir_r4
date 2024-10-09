@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The possible sort directions, ascending or descending.
 enum SortDirection {
   /// Display: Ascending
   /// Definition: Sort by the value ascending, so that lower values appear first.
-  @JsonValue('ascending')
   ascending,
 
   /// Display: Descending
   /// Definition: Sort by the value descending, so that lower values appear last.
-  @JsonValue('descending')
   descending,
   ;
 

@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Why an entry is in the result set - whether it's included as a match or because of an _include requirement, or to convey information or warning information about the search process.
 enum SearchEntryMode {
   /// Display: Match
   /// Definition: This resource matched the search specification.
-  @JsonValue('match')
   match,
 
   /// Display: Include
   /// Definition: This resource is returned because it is referred to from another resource in the search set.
-  @JsonValue('include')
   include,
 
   /// Display: Outcome
   /// Definition: An OperationOutcome that provides additional information about the processing of a search.
-  @JsonValue('outcome')
   outcome,
   ;
 

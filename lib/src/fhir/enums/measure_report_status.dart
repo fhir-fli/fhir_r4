@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The status of the measure report.
 enum MeasureReportStatus {
   /// Display: Complete
   /// Definition: The report is complete and ready for use.
-  @JsonValue('complete')
   complete,
 
   /// Display: Pending
   /// Definition: The report is currently being generated.
-  @JsonValue('pending')
   pending,
 
   /// Display: Error
   /// Definition: An error occurred attempting to generate the report.
-  @JsonValue('error')
   error,
   ;
 

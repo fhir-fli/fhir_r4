@@ -1,45 +1,33 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// A legal or regulatory framework against which an authorization is granted, or other reasons for it.
 enum RegulatedAuthorizationBasis {
   /// Display: Full application
-  @JsonValue('Full')
   Full,
 
   /// Display: New active substance
-  @JsonValue('NewSubstance')
   NewSubstance,
 
   /// Display: Known active substance
-  @JsonValue('KnownSubstance')
   KnownSubstance,
 
   /// Display: Similar biological application
-  @JsonValue('SimilarBiological')
   SimilarBiological,
 
   /// Display: Well-established use application
-  @JsonValue('Well-establishedUse')
   Well_establishedUse,
 
   /// Display: Traditional use registration for herbal medicinal product application
-  @JsonValue('TraditionalUse')
   TraditionalUse,
 
   /// Display: Bibliographical application (stand-alone)
-  @JsonValue('Bibliographical')
   Bibliographical,
 
   /// Display: Known human blood/plasma derived ancillary medicinal substance
-  @JsonValue('KnownHumanBlood')
   KnownHumanBlood,
 
   /// Display: Authorisations for temporary use
-  @JsonValue('TemporaryUse')
   TemporaryUse,
 
   /// Display: Parallel traded products
-  @JsonValue('ParallelTrade')
   ParallelTrade,
   ;
 

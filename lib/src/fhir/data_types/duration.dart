@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [FhirDuration] /// A length of time.
-@JsonSerializable()
 class FhirDuration extends Quantity {
   FhirDuration({
     super.id,
@@ -28,10 +26,11 @@ class FhirDuration extends Quantity {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'FhirDuration';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
   @override
   Map<String, dynamic> toJson() {

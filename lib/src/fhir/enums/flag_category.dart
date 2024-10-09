@@ -1,55 +1,43 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Example list of general categories for flagged issues. (Not complete or necessarily appropriate.)
 enum FlagCategory {
   /// Display: Diet
   /// Definition: Flags related to the subject's dietary needs.
-  @JsonValue('diet')
   diet,
 
   /// Display: Drug
   /// Definition: Flags related to the subject's medications.
-  @JsonValue('drug')
   drug,
 
   /// Display: Lab
   /// Definition: Flags related to performing laboratory tests and related processes (e.g. phlebotomy).
-  @JsonValue('lab')
   lab,
 
   /// Display: Administrative
   /// Definition: Flags related to administrative and financial processes.
-  @JsonValue('admin')
   admin,
 
   /// Display: Subject Contact
   /// Definition: Flags related to coming into contact with the patient.
-  @JsonValue('contact')
   contact,
 
   /// Display: Clinical
   /// Definition: Flags related to the subject's clinical data.
-  @JsonValue('clinical')
   clinical,
 
   /// Display: Behavioral
   /// Definition: Flags related to behavior.
-  @JsonValue('behavioral')
   behavioral,
 
   /// Display: Research
   /// Definition: Flags related to research.
-  @JsonValue('research')
   research,
 
   /// Display: Advance Directive
   /// Definition: Flags related to subject's advance directives.
-  @JsonValue('advance-directive')
   advance_directive,
 
   /// Display: Safety
   /// Definition: Flags related to safety precautions.
-  @JsonValue('safety')
   safety,
   ;
 

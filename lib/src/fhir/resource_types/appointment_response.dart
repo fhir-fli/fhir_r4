@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [AppointmentResponse] /// A reply to an appointment request for a patient and/or practitioner(s),
 /// such as a confirmation or rejection.
-@JsonSerializable()
 class AppointmentResponse extends DomainResource {
   AppointmentResponse({
     super.id,
@@ -39,44 +37,37 @@ class AppointmentResponse extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.AppointmentResponse);
+
   @override
   String get fhirType => 'AppointmentResponse';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// This records identifiers associated with this appointment response concern
   /// that are defined by business processes and/ or used to refer to it when a
   /// direct URL reference to the resource itself is not appropriate.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [appointment] /// Appointment that this response is replying to.
-  @JsonKey(name: 'appointment')
   final Reference appointment;
 
   /// [start] /// Date/Time that the appointment is to take place, or requested new start
   /// time.
-  @JsonKey(name: 'start')
   final FhirInstant? start;
-  @JsonKey(name: '_start')
   final Element? startElement;
 
   /// [end] /// This may be either the same as the appointment request to confirm the
   /// details of the appointment, or alternately a new time to request a
   /// re-negotiation of the end time.
-  @JsonKey(name: 'end')
   final FhirInstant? end;
-  @JsonKey(name: '_end')
   final Element? endElement;
 
   /// [participantType] /// Role of participant in the appointment.
-  @JsonKey(name: 'participantType')
   final List<CodeableConcept>? participantType;
 
   /// [actor] /// A Person, Location, HealthcareService, or Device that is participating in
   /// the appointment.
-  @JsonKey(name: 'actor')
   final Reference? actor;
 
   /// [participantStatus] /// Participation status of the participant. When the status is declined or
@@ -84,15 +75,11 @@ class AppointmentResponse extends DomainResource {
   /// these times should be interpreted as a requested time change. When the
   /// status is accepted, the times can either be the time of the appointment (as
   /// a confirmation of the time) or can be empty.
-  @JsonKey(name: 'participantStatus')
   final ParticipationStatus participantStatus;
-  @JsonKey(name: '_participantStatus')
   final Element? participantStatusElement;
 
   /// [comment] /// Additional comments about the appointment.
-  @JsonKey(name: 'comment')
   final FhirString? comment;
-  @JsonKey(name: '_comment')
   final Element? commentElement;
   @override
   Map<String, dynamic> toJson() {

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -10,7 +9,6 @@ import '../../../fhir_r4.dart';
 /// (supply) provided and the instructions for administering the medication.
 /// The medication dispense is the result of a pharmacy system responding to a
 /// medication order.
-@JsonSerializable()
 class MedicationDispense extends DomainResource {
   MedicationDispense({
     super.id,
@@ -59,10 +57,11 @@ class MedicationDispense extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.MedicationDispense);
+
   @override
   String get fhirType => 'MedicationDispense';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifiers associated with this Medication Dispense that are defined by
@@ -70,118 +69,92 @@ class MedicationDispense extends DomainResource {
   /// to the resource itself is not appropriate. They are business identifiers
   /// assigned to this resource by the performer or other systems and remain
   /// constant as the resource is updated and propagates from server to server.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [partOf] /// The procedure that trigger the dispense.
-  @JsonKey(name: 'partOf')
   final List<Reference>? partOf;
 
   /// [status] /// A code specifying the state of the set of dispense events.
-  @JsonKey(name: 'status')
   final MedicationDispenseStatusCodes status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [statusReasonCodeableConcept] /// Indicates the reason why a dispense was not performed.
-  @JsonKey(name: 'statusReasonCodeableConcept')
   final CodeableConcept? statusReasonCodeableConcept;
 
   /// [statusReasonReference] /// Indicates the reason why a dispense was not performed.
-  @JsonKey(name: 'statusReasonReference')
   final Reference? statusReasonReference;
 
   /// [category] /// Indicates the type of medication dispense (for example, where the
   /// medication is expected to be consumed or administered (i.e. inpatient or
   /// outpatient)).
-  @JsonKey(name: 'category')
   final CodeableConcept? category;
 
   /// [medicationCodeableConcept] /// Identifies the medication being administered. This is either a link to a
   /// resource representing the details of the medication or a simple attribute
   /// carrying a code that identifies the medication from a known list of
   /// medications.
-  @JsonKey(name: 'medicationCodeableConcept')
   final CodeableConcept? medicationCodeableConcept;
 
   /// [medicationReference] /// Identifies the medication being administered. This is either a link to a
   /// resource representing the details of the medication or a simple attribute
   /// carrying a code that identifies the medication from a known list of
   /// medications.
-  @JsonKey(name: 'medicationReference')
   final Reference? medicationReference;
 
   /// [subject] /// A link to a resource representing the person or the group to whom the
   /// medication will be given.
-  @JsonKey(name: 'subject')
   final Reference? subject;
 
   /// [context] /// The encounter or episode of care that establishes the context for this
   /// event.
-  @JsonKey(name: 'context')
   final Reference? context;
 
   /// [supportingInformation] /// Additional information that supports the medication being dispensed.
-  @JsonKey(name: 'supportingInformation')
   final List<Reference>? supportingInformation;
 
   /// [performer] /// Indicates who or what performed the event.
-  @JsonKey(name: 'performer')
   final List<MedicationDispensePerformer>? performer;
 
   /// [location] /// The principal physical location where the dispense was performed.
-  @JsonKey(name: 'location')
   final Reference? location;
 
   /// [authorizingPrescription] /// Indicates the medication order that is being dispensed against.
-  @JsonKey(name: 'authorizingPrescription')
   final List<Reference>? authorizingPrescription;
 
   /// [type] /// Indicates the type of dispensing event that is performed. For example,
   /// Trial Fill, Completion of Trial, Partial Fill, Emergency Fill, Samples,
   /// etc.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [quantity] /// The amount of medication that has been dispensed. Includes unit of measure.
-  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [daysSupply] /// The amount of medication expressed as a timing amount.
-  @JsonKey(name: 'daysSupply')
   final Quantity? daysSupply;
 
   /// [whenPrepared] /// The time when the dispensed product was packaged and reviewed.
-  @JsonKey(name: 'whenPrepared')
   final FhirDateTime? whenPrepared;
-  @JsonKey(name: '_whenPrepared')
   final Element? whenPreparedElement;
 
   /// [whenHandedOver] /// The time the dispensed product was provided to the patient or their
   /// representative.
-  @JsonKey(name: 'whenHandedOver')
   final FhirDateTime? whenHandedOver;
-  @JsonKey(name: '_whenHandedOver')
   final Element? whenHandedOverElement;
 
   /// [destination] /// Identification of the facility/location where the medication was shipped
   /// to, as part of the dispense event.
-  @JsonKey(name: 'destination')
   final Reference? destination;
 
   /// [receiver] /// Identifies the person who picked up the medication. This will usually be a
   /// patient or their caregiver, but some cases exist where it can be a
   /// healthcare professional.
-  @JsonKey(name: 'receiver')
   final List<Reference>? receiver;
 
   /// [note] /// Extra information about the dispense that could not be conveyed in the
   /// other attributes.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [dosageInstruction] /// Indicates how the medication is to be used by the patient.
-  @JsonKey(name: 'dosageInstruction')
   final List<Dosage>? dosageInstruction;
 
   /// [substitution] /// Indicates whether or not substitution was made as part of the dispense. In
@@ -189,18 +162,15 @@ class MedicationDispense extends DomainResource {
   /// cases substitution is not expected but does happen. This block explains
   /// what substitution did or did not happen and why. If nothing is specified,
   /// substitution was not done.
-  @JsonKey(name: 'substitution')
   final MedicationDispenseSubstitution? substitution;
 
   /// [detectedIssue] /// Indicates an actual or potential clinical issue with or between one or more
   /// active or proposed clinical actions for a patient; e.g. drug-drug
   /// interaction, duplicate therapy, dosage alert etc.
-  @JsonKey(name: 'detectedIssue')
   final List<Reference>? detectedIssue;
 
   /// [eventHistory] /// A summary of the events of interest that have occurred, such as when the
   /// dispense was verified.
-  @JsonKey(name: 'eventHistory')
   final List<Reference>? eventHistory;
   @override
   Map<String, dynamic> toJson() {
@@ -620,7 +590,6 @@ class MedicationDispense extends DomainResource {
 }
 
 /// [MedicationDispensePerformer] /// Indicates who or what performed the event.
-@JsonSerializable()
 class MedicationDispensePerformer extends BackboneElement {
   MedicationDispensePerformer({
     super.id,
@@ -635,20 +604,19 @@ class MedicationDispensePerformer extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MedicationDispensePerformer';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [function_] /// Distinguishes the type of performer in the dispense. For example, date
   /// enterer, packager, final checker.
-  @JsonKey(name: 'function')
   final CodeableConcept? function_;
 
   /// [actor] /// The device, practitioner, etc. who performed the action. It should be
   /// assumed that the actor is the dispenser of the medication.
-  @JsonKey(name: 'actor')
   final Reference actor;
   @override
   Map<String, dynamic> toJson() {
@@ -751,7 +719,6 @@ class MedicationDispensePerformer extends BackboneElement {
 /// cases substitution is not expected but does happen. This block explains
 /// what substitution did or did not happen and why. If nothing is specified,
 /// substitution was not done.
-@JsonSerializable()
 class MedicationDispenseSubstitution extends BackboneElement {
   MedicationDispenseSubstitution({
     super.id,
@@ -769,32 +736,28 @@ class MedicationDispenseSubstitution extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MedicationDispenseSubstitution';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [wasSubstituted] /// True if the dispenser dispensed a different drug or product from what was
   /// prescribed.
-  @JsonKey(name: 'wasSubstituted')
   final FhirBoolean wasSubstituted;
-  @JsonKey(name: '_wasSubstituted')
   final Element? wasSubstitutedElement;
 
   /// [type] /// A code signifying whether a different drug was dispensed from what was
   /// prescribed.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [reason] /// Indicates the reason for the substitution (or lack of substitution) from
   /// what was prescribed.
-  @JsonKey(name: 'reason')
   final List<CodeableConcept>? reason;
 
   /// [responsibleParty] /// The person or organization that has primary responsibility for the
   /// substitution.
-  @JsonKey(name: 'responsibleParty')
   final List<Reference>? responsibleParty;
   @override
   Map<String, dynamic> toJson() {

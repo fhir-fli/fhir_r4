@@ -1,413 +1,309 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// A type of packaging.
 enum PackagingType {
   /// Display: Ampoule
-  @JsonValue('100000073490')
   value100000073490,
 
   /// Display: Applicator
-  @JsonValue('100000073491')
   value100000073491,
 
   /// Display: Automatic injection device
-  @JsonValue('100000073492')
   value100000073492,
 
   /// Display: Bag
-  @JsonValue('100000073493')
   value100000073493,
 
   /// Display: Balling gun
-  @JsonValue('100000073494')
   value100000073494,
 
   /// Display: Barrel
-  @JsonValue('100000073495')
   value100000073495,
 
   /// Display: Blister
-  @JsonValue('100000073496')
   value100000073496,
 
   /// Display: Bottle
-  @JsonValue('100000073497')
   value100000073497,
 
   /// Display: Box
-  @JsonValue('100000073498')
   value100000073498,
 
   /// Display: Brush
-  @JsonValue('100000073499')
   value100000073499,
 
   /// Display: Brush applicator
-  @JsonValue('100000073500')
   value100000073500,
 
   /// Display: Cannula
-  @JsonValue('100000073501')
   value100000073501,
 
   /// Display: Cap
-  @JsonValue('100000073502')
   value100000073502,
 
   /// Display: Cartridge
-  @JsonValue('100000073503')
   value100000073503,
 
   /// Display: Child-resistant closure
-  @JsonValue('100000073504')
   value100000073504,
 
   /// Display: Cup
-  @JsonValue('100000073505')
   value100000073505,
 
   /// Display: Dabbing applicator
-  @JsonValue('100000073506')
   value100000073506,
 
   /// Display: Dart
-  @JsonValue('100000073507')
   value100000073507,
 
   /// Display: Dredging applicator
-  @JsonValue('100000073508')
   value100000073508,
 
   /// Display: Dredging container
-  @JsonValue('100000073509')
   value100000073509,
 
   /// Display: Drench gun
-  @JsonValue('100000073510')
   value100000073510,
 
   /// Display: Dropper applicator
-  @JsonValue('100000073511')
   value100000073511,
 
   /// Display: Dropper container
-  @JsonValue('100000073512')
   value100000073512,
 
   /// Display: Fixed cryogenic vessel
-  @JsonValue('100000073513')
   value100000073513,
 
   /// Display: Gas cylinder
-  @JsonValue('100000073514')
   value100000073514,
 
   /// Display: High pressure transdermal delivery device
-  @JsonValue('100000073515')
   value100000073515,
 
   /// Display: Implanter
-  @JsonValue('100000073516')
   value100000073516,
 
   /// Display: Inhaler
-  @JsonValue('100000073517')
   value100000073517,
 
   /// Display: In-ovo injection device
-  @JsonValue('100000073518')
   value100000073518,
 
   /// Display: Injection needle
-  @JsonValue('100000073519')
   value100000073519,
 
   /// Display: Injection syringe
-  @JsonValue('100000073520')
   value100000073520,
 
   /// Display: Internal graduated calibration chamber
-  @JsonValue('100000073521')
   value100000073521,
 
   /// Display: Intramammary syringe
-  @JsonValue('100000073522')
   value100000073522,
 
   /// Display: Jar
-  @JsonValue('100000073523')
   value100000073523,
 
   /// Display: Measuring device
-  @JsonValue('100000073524')
   value100000073524,
 
   /// Display: Measuring spoon
-  @JsonValue('100000073525')
   value100000073525,
 
   /// Display: Metering pump
-  @JsonValue('100000073526')
   value100000073526,
 
   /// Display: Metering valve
-  @JsonValue('100000073527')
   value100000073527,
 
   /// Display: Mobile cryogenic vessel
-  @JsonValue('100000073528')
   value100000073528,
 
   /// Display: Mouthpiece
-  @JsonValue('100000073529')
   value100000073529,
 
   /// Display: Multidose container
-  @JsonValue('100000073530')
   value100000073530,
 
   /// Display: Multidose container with airless pump
-  @JsonValue('100000073531')
   value100000073531,
 
   /// Display: Multipuncturer
-  @JsonValue('100000073532')
   value100000073532,
 
   /// Display: Nasal applicator
-  @JsonValue('100000073533')
   value100000073533,
 
   /// Display: Nebuliser
-  @JsonValue('100000073534')
   value100000073534,
 
   /// Display: Needle applicator
-  @JsonValue('100000073535')
   value100000073535,
 
   /// Display: Nozzle
-  @JsonValue('100000073536')
   value100000073536,
 
   /// Display: Oral syringe
-  @JsonValue('100000073537')
   value100000073537,
 
   /// Display: Pipette
-  @JsonValue('100000073538')
   value100000073538,
 
   /// Display: Pipette applicator
-  @JsonValue('100000073539')
   value100000073539,
 
   /// Display: Pouch
-  @JsonValue('100000073540')
   value100000073540,
 
   /// Display: Pour-on container
-  @JsonValue('100000073541')
   value100000073541,
 
   /// Display: Pre-filled gastroenteral tube
-  @JsonValue('100000073542')
   value100000073542,
 
   /// Display: Pre-filled pen
-  @JsonValue('100000073543')
   value100000073543,
 
   /// Display: Pre-filled syringe
-  @JsonValue('100000073544')
   value100000073544,
 
   /// Display: Pressurised container
-  @JsonValue('100000073545')
   value100000073545,
 
   /// Display: Prick test applicator
-  @JsonValue('100000073546')
   value100000073546,
 
   /// Display: Sachet
-  @JsonValue('100000073547')
   value100000073547,
 
   /// Display: Scarifier
-  @JsonValue('100000073548')
   value100000073548,
 
   /// Display: Screw cap
-  @JsonValue('100000073549')
   value100000073549,
 
   /// Display: Single-dose container
-  @JsonValue('100000073550')
   value100000073550,
 
   /// Display: Spatula
-  @JsonValue('100000073551')
   value100000073551,
 
   /// Display: Spot-on applicator
-  @JsonValue('100000073552')
   value100000073552,
 
   /// Display: Spray container
-  @JsonValue('100000073553')
   value100000073553,
 
   /// Display: Spray pump
-  @JsonValue('100000073554')
   value100000073554,
 
   /// Display: Spray valve
-  @JsonValue('100000073555')
   value100000073555,
 
   /// Display: Stab vaccinator
-  @JsonValue('100000073556')
   value100000073556,
 
   /// Display: Stopper
-  @JsonValue('100000073557')
   value100000073557,
 
   /// Display: Straw
-  @JsonValue('100000073558')
   value100000073558,
 
   /// Display: Strip
-  @JsonValue('100000073559')
   value100000073559,
 
   /// Display: Tablet container
-  @JsonValue('100000073560')
   value100000073560,
 
   /// Display: Tube
-  @JsonValue('100000073561')
   value100000073561,
 
   /// Display: Vaginal sponge applicator
-  @JsonValue('100000073562')
   value100000073562,
 
   /// Display: Vial
-  @JsonValue('100000073563')
   value100000073563,
 
   /// Display: Administration system
-  @JsonValue('100000075664')
   value100000075664,
 
   /// Display: Calendar package
-  @JsonValue('100000116195')
   value100000116195,
 
   /// Display: Needle-free injector
-  @JsonValue('100000116196')
   value100000116196,
 
   /// Display: Roll-on container
-  @JsonValue('100000116197')
   value100000116197,
 
   /// Display: Multidose container with pump
-  @JsonValue('100000125779')
   value100000125779,
 
   /// Display: Container
-  @JsonValue('100000137702')
   value100000137702,
 
   /// Display: Oral applicator
-  @JsonValue('100000137703')
   value100000137703,
 
   /// Display: Multidose container with metering pump
-  @JsonValue('100000143554')
   value100000143554,
 
   /// Display: Pack
-  @JsonValue('100000143555')
   value100000143555,
 
   /// Display: disk
-  @JsonValue('100000163233')
   value100000163233,
 
   /// Display: plunger
-  @JsonValue('100000163234')
   value100000163234,
 
   /// Display: infusion port
-  @JsonValue('100000164143')
   value100000164143,
 
   /// Display: Valve
-  @JsonValue('100000166980')
   value100000166980,
 
   /// Display: Jerrycan
-  @JsonValue('100000169899')
   value100000169899,
 
   /// Display: Oral applicator
-  @JsonValue('100000173982')
   value100000173982,
 
   /// Display: Dose dispenser
-  @JsonValue('100000173983')
   value100000173983,
 
   /// Display: Unit-dose blister
-  @JsonValue('100000174066')
   value100000174066,
 
   /// Display: Pre-filled injector
-  @JsonValue('100000174067')
   value100000174067,
 
   /// Display: Pre-filled oral syringe
-  @JsonValue('100000174068')
   value100000174068,
 
   /// Display: Pre-filled oral applicator
-  @JsonValue('100000174069')
   value100000174069,
 
   /// Display: Dose-dispenser cartridge
-  @JsonValue('100000174070')
   value100000174070,
 
   /// Display: Pen
-  @JsonValue('200000005068')
   value200000005068,
 
   /// Display: Wrapper
-  @JsonValue('200000005585')
   value200000005585,
 
   /// Display: Lid
-  @JsonValue('200000010647')
   value200000010647,
 
   /// Display: Capsule for opening
-  @JsonValue('200000011726')
   value200000011726,
 
   /// Display: Child-resistant sachet
-  @JsonValue('200000012539')
   value200000012539,
 
   /// Display: Tamper-evident closure
-  @JsonValue('200000013191')
   value200000013191,
 
   /// Display: Tablet tube
-  @JsonValue('200000024874')
   value200000024874,
   ;
 

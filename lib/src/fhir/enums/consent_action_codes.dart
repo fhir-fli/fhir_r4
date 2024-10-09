@@ -1,30 +1,23 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes sample Consent Action codes.
 enum ConsentActionCodes {
   /// Display: Collect
   /// Definition: Gather retrieved information for storage
-  @JsonValue('collect')
   collect,
 
   /// Display: Access
   /// Definition: Retrieval without permitting collection, use or disclosure. e.g., no screen-scraping for collection, use or disclosure (view-only access)
-  @JsonValue('access')
   access,
 
   /// Display: Use
   /// Definition: Utilize the retrieved information
-  @JsonValue('use')
   use,
 
   /// Display: Disclose
   /// Definition: Transfer retrieved information
-  @JsonValue('disclose')
   disclose,
 
   /// Display: Access and Correct
   /// Definition: Allow retrieval of a patient's information for the purpose of update or rectify
-  @JsonValue('correct')
   correct,
   ;
 

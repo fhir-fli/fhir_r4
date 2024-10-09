@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [InsurancePlan] /// Details of a Health Insurance product/plan provided by an organization.
-@JsonSerializable()
 class InsurancePlan extends DomainResource {
   InsurancePlan({
     super.id,
@@ -43,79 +41,63 @@ class InsurancePlan extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.InsurancePlan);
+
   @override
   String get fhirType => 'InsurancePlan';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Business identifiers assigned to this health insurance product which remain
   /// constant as the resource is updated and propagates from server to server.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// The current state of the health insurance product.
-  @JsonKey(name: 'status')
   final PublicationStatus? status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [type] /// The kind of health insurance product.
-  @JsonKey(name: 'type')
   final List<CodeableConcept>? type;
 
   /// [name] /// Official name of the health insurance product as designated by the owner.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [alias] /// A list of alternate names that the product is known as, or was known as in
   /// the past.
-  @JsonKey(name: 'alias')
   final List<FhirString>? alias;
-  @JsonKey(name: '_alias')
   final List<Element>? aliasElement;
 
   /// [period] /// The period of time that the health insurance product is available.
-  @JsonKey(name: 'period')
   final Period? period;
 
   /// [ownedBy] /// The entity that is providing the health insurance product and underwriting
   /// the risk. This is typically an insurance carriers, other third-party
   /// payers, or health plan sponsors comonly referred to as 'payers'.
-  @JsonKey(name: 'ownedBy')
   final Reference? ownedBy;
 
   /// [administeredBy] /// An organization which administer other services such as underwriting,
   /// customer service and/or claims processing on behalf of the health insurance
   /// product owner.
-  @JsonKey(name: 'administeredBy')
   final Reference? administeredBy;
 
   /// [coverageArea] /// The geographic region in which a health insurance product's benefits apply.
-  @JsonKey(name: 'coverageArea')
   final List<Reference>? coverageArea;
 
   /// [contact] /// The contact for the health insurance product for a certain purpose.
-  @JsonKey(name: 'contact')
   final List<InsurancePlanContact>? contact;
 
   /// [endpoint] /// The technical endpoints providing access to services operated for the
   /// health insurance product.
-  @JsonKey(name: 'endpoint')
   final List<Reference>? endpoint;
 
   /// [network] /// Reference to the network included in the health insurance product.
-  @JsonKey(name: 'network')
   final List<Reference>? network;
 
   /// [coverage] /// Details about the coverage offered by the insurance product.
-  @JsonKey(name: 'coverage')
   final List<InsurancePlanCoverage>? coverage;
 
   /// [plan] /// Details about an insurance plan.
-  @JsonKey(name: 'plan')
   final List<InsurancePlanPlan>? plan;
   @override
   Map<String, dynamic> toJson() {
@@ -423,7 +405,6 @@ class InsurancePlan extends DomainResource {
 }
 
 /// [InsurancePlanContact] /// The contact for the health insurance product for a certain purpose.
-@JsonSerializable()
 class InsurancePlanContact extends BackboneElement {
   InsurancePlanContact({
     super.id,
@@ -440,27 +421,24 @@ class InsurancePlanContact extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'InsurancePlanContact';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [purpose] /// Indicates a purpose for which the contact can be reached.
-  @JsonKey(name: 'purpose')
   final CodeableConcept? purpose;
 
   /// [name] /// A name associated with the contact.
-  @JsonKey(name: 'name')
   final HumanName? name;
 
   /// [telecom] /// A contact detail (e.g. a telephone number or an email address) by which the
   /// party may be contacted.
-  @JsonKey(name: 'telecom')
   final List<ContactPoint>? telecom;
 
   /// [address] /// Visiting or postal addresses for the contact.
-  @JsonKey(name: 'address')
   final Address? address;
   @override
   Map<String, dynamic> toJson() {
@@ -583,7 +561,6 @@ class InsurancePlanContact extends BackboneElement {
 }
 
 /// [InsurancePlanCoverage] /// Details about the coverage offered by the insurance product.
-@JsonSerializable()
 class InsurancePlanCoverage extends BackboneElement {
   InsurancePlanCoverage({
     super.id,
@@ -599,23 +576,21 @@ class InsurancePlanCoverage extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'InsurancePlanCoverage';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Type of coverage (Medical; Dental; Mental Health; Substance Abuse; Vision;
   /// Drug; Short Term; Long Term Care; Hospice; Home Health).
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [network] /// Reference to the network that providing the type of coverage.
-  @JsonKey(name: 'network')
   final List<Reference>? network;
 
   /// [benefit] /// Specific benefits under this type of coverage.
-  @JsonKey(name: 'benefit')
   final List<InsurancePlanBenefit> benefit;
   @override
   Map<String, dynamic> toJson() {
@@ -726,7 +701,6 @@ class InsurancePlanCoverage extends BackboneElement {
 }
 
 /// [InsurancePlanBenefit] /// Specific benefits under this type of coverage.
-@JsonSerializable()
 class InsurancePlanBenefit extends BackboneElement {
   InsurancePlanBenefit({
     super.id,
@@ -743,24 +717,21 @@ class InsurancePlanBenefit extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'InsurancePlanBenefit';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Type of benefit (primary care; speciality care; inpatient; outpatient).
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [requirement] /// The referral requirements to have access/coverage for this benefit.
-  @JsonKey(name: 'requirement')
   final FhirString? requirement;
-  @JsonKey(name: '_requirement')
   final Element? requirementElement;
 
   /// [limit] /// The specific limits on the benefit.
-  @JsonKey(name: 'limit')
   final List<InsurancePlanLimit>? limit;
   @override
   Map<String, dynamic> toJson() {
@@ -878,7 +849,6 @@ class InsurancePlanBenefit extends BackboneElement {
 }
 
 /// [InsurancePlanLimit] /// The specific limits on the benefit.
-@JsonSerializable()
 class InsurancePlanLimit extends BackboneElement {
   InsurancePlanLimit({
     super.id,
@@ -893,19 +863,18 @@ class InsurancePlanLimit extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'InsurancePlanLimit';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [value] /// The maximum amount of a service item a plan will pay for a covered benefit.
   /// For examples. wellness visits, or eyeglasses.
-  @JsonKey(name: 'value')
   final Quantity? value;
 
   /// [code] /// The specific limit on the benefit.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
   @override
   Map<String, dynamic> toJson() {
@@ -1008,7 +977,6 @@ class InsurancePlanLimit extends BackboneElement {
 }
 
 /// [InsurancePlanPlan] /// Details about an insurance plan.
-@JsonSerializable()
 class InsurancePlanPlan extends BackboneElement {
   InsurancePlanPlan({
     super.id,
@@ -1027,35 +995,30 @@ class InsurancePlanPlan extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'InsurancePlanPlan';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Business identifiers assigned to this health insurance plan which remain
   /// constant as the resource is updated and propagates from server to server.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [type] /// Type of plan. For example, "Platinum" or "High Deductable".
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [coverageArea] /// The geographic region in which a health insurance plan's benefits apply.
-  @JsonKey(name: 'coverageArea')
   final List<Reference>? coverageArea;
 
   /// [network] /// Reference to the network that providing the type of coverage.
-  @JsonKey(name: 'network')
   final List<Reference>? network;
 
   /// [generalCost] /// Overall costs associated with the plan.
-  @JsonKey(name: 'generalCost')
   final List<InsurancePlanGeneralCost>? generalCost;
 
   /// [specificCost] /// Costs associated with the coverage provided by the product.
-  @JsonKey(name: 'specificCost')
   final List<InsurancePlanSpecificCost>? specificCost;
   @override
   Map<String, dynamic> toJson() {
@@ -1212,7 +1175,6 @@ class InsurancePlanPlan extends BackboneElement {
 }
 
 /// [InsurancePlanGeneralCost] /// Overall costs associated with the plan.
-@JsonSerializable()
 class InsurancePlanGeneralCost extends BackboneElement {
   InsurancePlanGeneralCost({
     super.id,
@@ -1231,30 +1193,25 @@ class InsurancePlanGeneralCost extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'InsurancePlanGeneralCost';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Type of cost.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [groupSize] /// Number of participants enrolled in the plan.
-  @JsonKey(name: 'groupSize')
   final FhirPositiveInt? groupSize;
-  @JsonKey(name: '_groupSize')
   final Element? groupSizeElement;
 
   /// [cost] /// Value of the cost.
-  @JsonKey(name: 'cost')
   final Money? cost;
 
   /// [comment] /// Additional information about the general costs associated with this plan.
-  @JsonKey(name: 'comment')
   final FhirString? comment;
-  @JsonKey(name: '_comment')
   final Element? commentElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1386,7 +1343,6 @@ class InsurancePlanGeneralCost extends BackboneElement {
 }
 
 /// [InsurancePlanSpecificCost] /// Costs associated with the coverage provided by the product.
-@JsonSerializable()
 class InsurancePlanSpecificCost extends BackboneElement {
   InsurancePlanSpecificCost({
     super.id,
@@ -1401,19 +1357,18 @@ class InsurancePlanSpecificCost extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'InsurancePlanSpecificCost';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [category] /// General category of benefit (Medical; Dental; Vision; Drug; Mental Health;
   /// Substance Abuse; Hospice, Home Health).
-  @JsonKey(name: 'category')
   final CodeableConcept category;
 
   /// [benefit] /// List of the specific benefits under this category of benefit.
-  @JsonKey(name: 'benefit')
   final List<InsurancePlanBenefit>? benefit;
   @override
   Map<String, dynamic> toJson() {
@@ -1518,7 +1473,6 @@ class InsurancePlanSpecificCost extends BackboneElement {
 }
 
 /// [InsurancePlanBenefit1] /// List of the specific benefits under this category of benefit.
-@JsonSerializable()
 class InsurancePlanBenefit1 extends BackboneElement {
   InsurancePlanBenefit1({
     super.id,
@@ -1533,19 +1487,18 @@ class InsurancePlanBenefit1 extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'InsurancePlanBenefit1';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Type of specific benefit (preventative; primary care office visit;
   /// speciality office visit; hospitalization; emergency room; urgent care).
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [cost] /// List of the costs associated with a specific benefit.
-  @JsonKey(name: 'cost')
   final List<InsurancePlanCost>? cost;
   @override
   Map<String, dynamic> toJson() {
@@ -1648,7 +1601,6 @@ class InsurancePlanBenefit1 extends BackboneElement {
 }
 
 /// [InsurancePlanCost] /// List of the costs associated with a specific benefit.
-@JsonSerializable()
 class InsurancePlanCost extends BackboneElement {
   InsurancePlanCost({
     super.id,
@@ -1665,29 +1617,26 @@ class InsurancePlanCost extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'InsurancePlanCost';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Type of cost (copay; individual cap; family cap; coinsurance; deductible).
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [applicability] /// Whether the cost applies to in-network or out-of-network providers
   /// (in-network; out-of-network; other).
-  @JsonKey(name: 'applicability')
   final CodeableConcept? applicability;
 
   /// [qualifiers] /// Additional information about the cost, such as information about funding
   /// sources (e.g. HSA, HRA, FSA, RRA).
-  @JsonKey(name: 'qualifiers')
   final List<CodeableConcept>? qualifiers;
 
   /// [value] /// The actual cost value. (some of the costs may be represented as percentages
   /// rather than currency, e.g. 10% coinsurance).
-  @JsonKey(name: 'value')
   final Quantity? value;
   @override
   Map<String, dynamic> toJson() {

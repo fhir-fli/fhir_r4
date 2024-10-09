@@ -1,12 +1,7 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Procedure Outcome code: A selection of relevant SNOMED CT codes.
 enum ProcedureOutcomeCodesSNOMEDCT {
-  @JsonValue('385669000')
   value385669000,
-  @JsonValue('385671000')
   value385671000,
-  @JsonValue('385670004')
   value385670004,
   ;
 

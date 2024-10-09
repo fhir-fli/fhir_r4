@@ -1,17 +1,12 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The severity of the adverse event itself, in direct relation to the subject.
 enum AdverseEventSeverity {
   /// Display: Mild
-  @JsonValue('mild')
   mild,
 
   /// Display: Moderate
-  @JsonValue('moderate')
   moderate,
 
   /// Display: Severe
-  @JsonValue('severe')
   severe,
   ;
 

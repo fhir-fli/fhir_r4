@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Medication Status Codes
 enum MedicationUsageCategoryCodes {
   /// Display: Inpatient
   /// Definition: Includes orders for medications to be administered or consumed in an inpatient or acute care setting
-  @JsonValue('inpatient')
   inpatient,
 
   /// Display: Outpatient
   /// Definition: Includes orders for medications to be administered or consumed in an outpatient setting (for example, Emergency Department, Outpatient Clinic, Outpatient Surgery, Doctor's office)
-  @JsonValue('outpatient')
   outpatient,
 
   /// Display: Community
   /// Definition: Includes orders for medications to be administered or consumed by the patient in their home (this would include long term care or nursing homes, hospices, etc.).
-  @JsonValue('community')
   community,
 
   /// Display: Patient Specified
   /// Definition: Includes statements about medication use, including over the counter medication, provided by the patient, agent or another provider
-  @JsonValue('patientspecified')
   patientspecified,
   ;
 

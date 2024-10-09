@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [TestReport] /// A summary of information based on the results of executing a TestScript.
-@JsonSerializable()
 class TestReport extends DomainResource {
   TestReport({
     super.id,
@@ -44,77 +42,60 @@ class TestReport extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.TestReport);
+
   @override
   String get fhirType => 'TestReport';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifier for the TestScript assigned for external purposes outside the
   /// context of FHIR.
-  @JsonKey(name: 'identifier')
   final Identifier? identifier;
 
   /// [name] /// A free text natural language name identifying the executed TestScript.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [status] /// The current state of this test report.
-  @JsonKey(name: 'status')
   final TestReportStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [testScript] /// Ideally this is an absolute URL that is used to identify the
   /// version-specific TestScript that was executed, matching the
   /// `TestScript.url`.
-  @JsonKey(name: 'testScript')
   final Reference testScript;
 
   /// [result] /// The overall result from the execution of the TestScript.
-  @JsonKey(name: 'result')
   final TestReportResult result;
-  @JsonKey(name: '_result')
   final Element? resultElement;
 
   /// [score] /// The final score (percentage of tests passed) resulting from the execution
   /// of the TestScript.
-  @JsonKey(name: 'score')
   final FhirDecimal? score;
-  @JsonKey(name: '_score')
   final Element? scoreElement;
 
   /// [tester] /// Name of the tester producing this report (Organization or individual).
-  @JsonKey(name: 'tester')
   final FhirString? tester;
-  @JsonKey(name: '_tester')
   final Element? testerElement;
 
   /// [issued] /// When the TestScript was executed and this TestReport was generated.
-  @JsonKey(name: 'issued')
   final FhirDateTime? issued;
-  @JsonKey(name: '_issued')
   final Element? issuedElement;
 
   /// [participant] /// A participant in the test execution, either the execution engine, a client,
   /// or a server.
-  @JsonKey(name: 'participant')
   final List<TestReportParticipant>? participant;
 
   /// [setup] /// The results of the series of required setup operations before the tests
   /// were executed.
-  @JsonKey(name: 'setup')
   final TestReportSetup? setup;
 
   /// [test] /// A test executed from the test script.
-  @JsonKey(name: 'test')
   final List<TestReportTest>? test;
 
   /// [teardown] /// The results of the series of operations required to clean up after all the
   /// tests were executed (successfully or otherwise).
-  @JsonKey(name: 'teardown')
   final TestReportTeardown? teardown;
   @override
   Map<String, dynamic> toJson() {
@@ -379,7 +360,6 @@ class TestReport extends DomainResource {
 
 /// [TestReportParticipant] /// A participant in the test execution, either the execution engine, a client,
 /// or a server.
-@JsonSerializable()
 class TestReportParticipant extends BackboneElement {
   TestReportParticipant({
     super.id,
@@ -398,28 +378,23 @@ class TestReportParticipant extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TestReportParticipant';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The type of participant.
-  @JsonKey(name: 'type')
   final TestReportParticipantType type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [uri] /// The uri of the participant. An absolute URL is preferred.
-  @JsonKey(name: 'uri')
   final FhirUri uri;
-  @JsonKey(name: '_uri')
   final Element? uriElement;
 
   /// [display] /// The display name of the participant.
-  @JsonKey(name: 'display')
   final FhirString? display;
-  @JsonKey(name: '_display')
   final Element? displayElement;
   @override
   Map<String, dynamic> toJson() {
@@ -538,7 +513,6 @@ class TestReportParticipant extends BackboneElement {
 
 /// [TestReportSetup] /// The results of the series of required setup operations before the tests
 /// were executed.
-@JsonSerializable()
 class TestReportSetup extends BackboneElement {
   TestReportSetup({
     super.id,
@@ -552,14 +526,14 @@ class TestReportSetup extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TestReportSetup';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [action] /// Action would contain either an operation or an assertion.
-  @JsonKey(name: 'action')
   final List<TestReportAction> action;
   @override
   Map<String, dynamic> toJson() {
@@ -654,7 +628,6 @@ class TestReportSetup extends BackboneElement {
 }
 
 /// [TestReportAction] /// Action would contain either an operation or an assertion.
-@JsonSerializable()
 class TestReportAction extends BackboneElement {
   TestReportAction({
     super.id,
@@ -669,18 +642,17 @@ class TestReportAction extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TestReportAction';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [operation] /// The operation performed.
-  @JsonKey(name: 'operation')
   final TestReportOperation? operation;
 
   /// [assert_] /// The results of the assertion performed on the previous operations.
-  @JsonKey(name: 'assert')
   final TestReportAssert? assert_;
   @override
   Map<String, dynamic> toJson() {
@@ -784,7 +756,6 @@ class TestReportAction extends BackboneElement {
 }
 
 /// [TestReportOperation] /// The operation performed.
-@JsonSerializable()
 class TestReportOperation extends BackboneElement {
   TestReportOperation({
     super.id,
@@ -803,28 +774,23 @@ class TestReportOperation extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TestReportOperation';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [result] /// The result of this operation.
-  @JsonKey(name: 'result')
   final TestReportActionResult result;
-  @JsonKey(name: '_result')
   final Element? resultElement;
 
   /// [message] /// An explanatory message associated with the result.
-  @JsonKey(name: 'message')
   final FhirMarkdown? message;
-  @JsonKey(name: '_message')
   final Element? messageElement;
 
   /// [detail] /// A link to further details on the result.
-  @JsonKey(name: 'detail')
   final FhirUri? detail;
-  @JsonKey(name: '_detail')
   final Element? detailElement;
   @override
   Map<String, dynamic> toJson() {
@@ -946,7 +912,6 @@ class TestReportOperation extends BackboneElement {
 }
 
 /// [TestReportAssert] /// The results of the assertion performed on the previous operations.
-@JsonSerializable()
 class TestReportAssert extends BackboneElement {
   TestReportAssert({
     super.id,
@@ -965,28 +930,23 @@ class TestReportAssert extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TestReportAssert';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [result] /// The result of this assertion.
-  @JsonKey(name: 'result')
   final TestReportActionResult result;
-  @JsonKey(name: '_result')
   final Element? resultElement;
 
   /// [message] /// An explanatory message associated with the result.
-  @JsonKey(name: 'message')
   final FhirMarkdown? message;
-  @JsonKey(name: '_message')
   final Element? messageElement;
 
   /// [detail] /// A link to further details on the result.
-  @JsonKey(name: 'detail')
   final FhirString? detail;
-  @JsonKey(name: '_detail')
   final Element? detailElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1108,7 +1068,6 @@ class TestReportAssert extends BackboneElement {
 }
 
 /// [TestReportTest] /// A test executed from the test script.
-@JsonSerializable()
 class TestReportTest extends BackboneElement {
   TestReportTest({
     super.id,
@@ -1126,27 +1085,23 @@ class TestReportTest extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TestReportTest';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [name] /// The name of this test used for tracking/logging purposes by test engines.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [description] /// A short description of the test used by test engines for tracking and
   /// reporting purposes.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [action] /// Action would contain either an operation or an assertion.
-  @JsonKey(name: 'action')
   final List<TestReportAction> action;
   @override
   Map<String, dynamic> toJson() {
@@ -1270,7 +1225,6 @@ class TestReportTest extends BackboneElement {
 }
 
 /// [TestReportAction1] /// Action would contain either an operation or an assertion.
-@JsonSerializable()
 class TestReportAction1 extends BackboneElement {
   TestReportAction1({
     super.id,
@@ -1285,18 +1239,17 @@ class TestReportAction1 extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TestReportAction1';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [operation] /// An operation would involve a REST request to a server.
-  @JsonKey(name: 'operation')
   final TestReportOperation? operation;
 
   /// [assert_] /// The results of the assertion performed on the previous operations.
-  @JsonKey(name: 'assert')
   final TestReportAssert? assert_;
   @override
   Map<String, dynamic> toJson() {
@@ -1401,7 +1354,6 @@ class TestReportAction1 extends BackboneElement {
 
 /// [TestReportTeardown] /// The results of the series of operations required to clean up after all the
 /// tests were executed (successfully or otherwise).
-@JsonSerializable()
 class TestReportTeardown extends BackboneElement {
   TestReportTeardown({
     super.id,
@@ -1415,14 +1367,14 @@ class TestReportTeardown extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TestReportTeardown';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [action] /// The teardown action will only contain an operation.
-  @JsonKey(name: 'action')
   final List<TestReportAction> action;
   @override
   Map<String, dynamic> toJson() {
@@ -1517,7 +1469,6 @@ class TestReportTeardown extends BackboneElement {
 }
 
 /// [TestReportAction2] /// The teardown action will only contain an operation.
-@JsonSerializable()
 class TestReportAction2 extends BackboneElement {
   TestReportAction2({
     super.id,
@@ -1531,14 +1482,14 @@ class TestReportAction2 extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TestReportAction2';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [operation] /// An operation would involve a REST request to a server.
-  @JsonKey(name: 'operation')
   final TestReportOperation operation;
   @override
   Map<String, dynamic> toJson() {

@@ -1,60 +1,47 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Cited Artifact Classification Type
 enum CitedArtifactClassificationType {
   /// Display: Publication type
   /// Definition: Publication type
-  @JsonValue('publication-type')
   publication_type,
 
   /// Display: MeSH heading
   /// Definition: MeSH heading
-  @JsonValue('mesh-heading')
   mesh_heading,
 
   /// Display: Supplemental MeSH for Protocol
   /// Definition: Supplemental MeSH for Protocol
-  @JsonValue('supplemental-mesh-protocol')
   supplemental_mesh_protocol,
 
   /// Display: Supplemental MeSH for Disease
   /// Definition: Supplemental MeSH for Disease
-  @JsonValue('supplemental-mesh-disease')
   supplemental_mesh_disease,
 
   /// Display: Supplemental MeSH for Organism
   /// Definition: Supplemental MeSH for Organism
-  @JsonValue('supplemental-mesh-organism')
   supplemental_mesh_organism,
 
   /// Display: Keyword
   /// Definition: Keyword
-  @JsonValue('keyword')
   keyword,
 
   /// Display: Citation subset
   /// Definition: Citation subset
-  @JsonValue('citation-subset')
   citation_subset,
 
   /// Display: Chemical
   /// Definition: Chemical
-  @JsonValue('chemical')
   chemical,
 
   /// Display: Publishing Model
   /// Definition: Used for PubModel attribute in Medline
-  @JsonValue('publishing-model')
   publishing_model,
 
   /// Display: Knowledge Artifact Type
   /// Definition: Knowledge Artifact Type
-  @JsonValue('knowledge-artifact-type')
   knowledge_artifact_type,
 
   /// Display: Coverage
   /// Definition: The spatial or temporal topic of the resource, spatial applicability of the resource, or jurisdiction under which the resource is relevant
-  @JsonValue('coverage')
   coverage,
   ;
 

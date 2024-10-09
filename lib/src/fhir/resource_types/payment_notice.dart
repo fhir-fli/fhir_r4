@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [PaymentNotice] /// This resource provides the status of the payment for goods and services
 /// rendered, and the request and response resource references.
-@JsonSerializable()
 class PaymentNotice extends DomainResource {
   PaymentNotice({
     super.id,
@@ -42,66 +40,52 @@ class PaymentNotice extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.PaymentNotice);
+
   @override
   String get fhirType => 'PaymentNotice';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// A unique identifier assigned to this payment notice.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// The status of the resource instance.
-  @JsonKey(name: 'status')
   final FinancialResourceStatusCodes status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [request] /// Reference of resource for which payment is being made.
-  @JsonKey(name: 'request')
   final Reference? request;
 
   /// [response] /// Reference of response to resource for which payment is being made.
-  @JsonKey(name: 'response')
   final Reference? response;
 
   /// [created] /// The date when this resource was created.
-  @JsonKey(name: 'created')
   final FhirDateTime created;
-  @JsonKey(name: '_created')
   final Element? createdElement;
 
   /// [provider] /// The practitioner who is responsible for the services rendered to the
   /// patient.
-  @JsonKey(name: 'provider')
   final Reference? provider;
 
   /// [payment] /// A reference to the payment which is the subject of this notice.
-  @JsonKey(name: 'payment')
   final Reference payment;
 
   /// [paymentDate] /// The date when the above payment action occurred.
-  @JsonKey(name: 'paymentDate')
   final FhirDate? paymentDate;
-  @JsonKey(name: '_paymentDate')
   final Element? paymentDateElement;
 
   /// [payee] /// The party who will receive or has received payment that is the subject of
   /// this notification.
-  @JsonKey(name: 'payee')
   final Reference? payee;
 
   /// [recipient] /// The party who is notified of the payment status.
-  @JsonKey(name: 'recipient')
   final Reference recipient;
 
   /// [amount] /// The amount sent to the payee.
-  @JsonKey(name: 'amount')
   final Money amount;
 
   /// [paymentStatus] /// A code indicating whether payment has been sent or cleared.
-  @JsonKey(name: 'paymentStatus')
   final CodeableConcept? paymentStatus;
   @override
   Map<String, dynamic> toJson() {

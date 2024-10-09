@@ -1,30 +1,23 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Which type a compartment definition describes.
 enum CompartmentType {
   /// Display: Patient
   /// Definition: The compartment definition is for the patient compartment.
-  @JsonValue('Patient')
   Patient,
 
   /// Display: Encounter
   /// Definition: The compartment definition is for the encounter compartment.
-  @JsonValue('Encounter')
   Encounter,
 
   /// Display: RelatedPerson
   /// Definition: The compartment definition is for the related-person compartment.
-  @JsonValue('RelatedPerson')
   RelatedPerson,
 
   /// Display: Practitioner
   /// Definition: The compartment definition is for the practitioner compartment.
-  @JsonValue('Practitioner')
   Practitioner,
 
   /// Display: Device
   /// Definition: The compartment definition is for the device compartment.
-  @JsonValue('Device')
   Device,
   ;
 

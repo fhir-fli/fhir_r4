@@ -1,14 +1,8 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support the definition of dates relevant to recommendations for future doses of vaccines. This value set is provided as a suggestive example.
 enum ImmunizationRecommendationDateCriterionCodes {
-  @JsonValue('30981-5')
   value30981_5,
-  @JsonValue('30980-7')
   value30980_7,
-  @JsonValue('59777-3')
   value59777_3,
-  @JsonValue('59778-1')
   value59778_1,
   ;
 

@@ -1,30 +1,23 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes Claim Type codes.
 enum ClaimTypeCodes {
   /// Display: Institutional
   /// Definition: Hospital, clinic and typically inpatient claims.
-  @JsonValue('institutional')
   institutional,
 
   /// Display: Oral
   /// Definition: Dental, Denture and Hygiene claims.
-  @JsonValue('oral')
   oral,
 
   /// Display: Pharmacy
   /// Definition: Pharmacy claims for goods and services.
-  @JsonValue('pharmacy')
   pharmacy,
 
   /// Display: Professional
   /// Definition: Typically, outpatient claims from Physician, Psychological, Chiropractor, Physiotherapy, Speech Pathology, rehabilitative, consulting.
-  @JsonValue('professional')
   professional,
 
   /// Display: Vision
   /// Definition: Vision claims for professional services and products such as glasses and contact lenses.
-  @JsonValue('vision')
   vision,
   ;
 

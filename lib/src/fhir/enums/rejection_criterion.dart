@@ -1,30 +1,23 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Criterion for rejection of the specimen by laboratory.
 enum RejectionCriterion {
   /// Display: hemolized specimen
   /// Definition: blood specimen hemolized.
-  @JsonValue('hemolized')
   hemolized,
 
   /// Display: insufficient specimen volume
   /// Definition: insufficient quantity of specimen.
-  @JsonValue('insufficient')
   insufficient,
 
   /// Display: broken specimen container
   /// Definition: specimen container broken.
-  @JsonValue('broken')
   broken,
 
   /// Display: specimen clotted
   /// Definition: specimen clotted.
-  @JsonValue('clotted')
   clotted,
 
   /// Display: specimen temperature inappropriate
   /// Definition: specimen temperature inappropriate.
-  @JsonValue('wrong-temperature')
   wrong_temperature,
   ;
 

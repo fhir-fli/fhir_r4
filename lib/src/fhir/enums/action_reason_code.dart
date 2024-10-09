@@ -1,30 +1,23 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Provides examples of reasons for actions to be performed.
 enum ActionReasonCode {
   /// Display: Off pathway
   /// Definition: The action should be performed because the patient was determined to be off pathway.
-  @JsonValue('off-pathway')
   off_pathway,
 
   /// Display: Risk assessment
   /// Definition: The action should be performed based on a particular risk assessment.
-  @JsonValue('risk-assessment')
   risk_assessment,
 
   /// Display: Care gap detected
   /// Definition: The action should be performed to address a detected care gap.
-  @JsonValue('care-gap')
   care_gap,
 
   /// Display: Drug-drug interaction
   /// Definition: The action should be performed to address a detected potential drug-drug interaction.
-  @JsonValue('drug-drug-interaction')
   drug_drug_interaction,
 
   /// Display: Quality measure
   /// Definition: The action should be performed to bring the patient's care in line with a quality measure.
-  @JsonValue('quality-measure')
   quality_measure,
   ;
 

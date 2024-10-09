@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// How a compartment must be linked.
 enum GraphCompartmentRule {
   /// Display: Identical
   /// Definition: The compartment must be identical (the same literal reference).
-  @JsonValue('identical')
   identical,
 
   /// Display: Matching
   /// Definition: The compartment must be the same - the record must be about the same patient, but the reference may be different.
-  @JsonValue('matching')
   matching,
 
   /// Display: Different
   /// Definition: The compartment must be different.
-  @JsonValue('different')
   different,
 
   /// Display: Custom
   /// Definition: The compartment rule is defined in the accompanying FHIRPath expression.
-  @JsonValue('custom')
   custom,
   ;
 

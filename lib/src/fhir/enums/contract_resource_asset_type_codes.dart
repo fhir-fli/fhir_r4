@@ -1,10 +1,7 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set contract specific codes for asset type.
 enum ContractResourceAssetTypeCodes {
   /// Display: Participation
   /// Definition: To be completed
-  @JsonValue('participation')
   participation,
   ;
 

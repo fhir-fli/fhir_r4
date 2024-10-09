@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes example Procedure Type codes.
 enum ExampleProcedureTypeCodes {
   /// Display: Primary procedure
   /// Definition: The first procedure in a series required to produce and overall patient outcome.
-  @JsonValue('primary')
   primary,
 
   /// Display: Secondary procedure
   /// Definition: The second procedure in a series required to produce and overall patient outcome.
-  @JsonValue('secondary')
   secondary,
   ;
 

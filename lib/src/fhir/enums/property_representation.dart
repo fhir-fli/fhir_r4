@@ -1,30 +1,23 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// How a property is represented when serialized.
 enum PropertyRepresentation {
   /// Display: XML Attribute
   /// Definition: In XML, this property is represented as an attribute not an element.
-  @JsonValue('xmlAttr')
   xmlAttr,
 
   /// Display: XML Text
   /// Definition: This element is represented using the XML text attribute (primitives only).
-  @JsonValue('xmlText')
   xmlText,
 
   /// Display: Type Attribute
   /// Definition: The type of this element is indicated using xsi:type.
-  @JsonValue('typeAttr')
   typeAttr,
 
   /// Display: CDA Text Format
   /// Definition: Use CDA narrative instead of XHTML.
-  @JsonValue('cdaText')
   cdaText,
 
   /// Display: XHTML
   /// Definition: The property is represented using XHTML.
-  @JsonValue('xhtml')
   xhtml,
   ;
 

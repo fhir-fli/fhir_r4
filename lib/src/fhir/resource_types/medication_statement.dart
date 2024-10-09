@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -29,7 +28,6 @@ import '../../../fhir_r4.dart';
 /// prescription bottle or from a list of medications the patient, clinician or
 /// other party maintains. Medication administration is more formal and is not
 /// missing detailed information.
-@JsonSerializable()
 class MedicationStatement extends DomainResource {
   MedicationStatement({
     super.id,
@@ -71,10 +69,11 @@ class MedicationStatement extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.MedicationStatement);
+
   @override
   String get fhirType => 'MedicationStatement';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifiers associated with this Medication Statement that are defined by
@@ -82,106 +81,84 @@ class MedicationStatement extends DomainResource {
   /// to the resource itself is not appropriate. They are business identifiers
   /// assigned to this resource by the performer or other systems and remain
   /// constant as the resource is updated and propagates from server to server.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [basedOn] /// A plan, proposal or order that is fulfilled in whole or in part by this
   /// event.
-  @JsonKey(name: 'basedOn')
   final List<Reference>? basedOn;
 
   /// [partOf] /// A larger event of which this particular event is a component or step.
-  @JsonKey(name: 'partOf')
   final List<Reference>? partOf;
 
   /// [status] /// A code representing the patient or other source's judgment about the state
   /// of the medication used that this statement is about. Generally, this will
   /// be active or completed.
-  @JsonKey(name: 'status')
   final MedicationStatementStatusCodes status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [statusReason] /// Captures the reason for the current state of the MedicationStatement.
-  @JsonKey(name: 'statusReason')
   final List<CodeableConcept>? statusReason;
 
   /// [category] /// Indicates where the medication is expected to be consumed or administered.
-  @JsonKey(name: 'category')
   final CodeableConcept? category;
 
   /// [medicationCodeableConcept] /// Identifies the medication being administered. This is either a link to a
   /// resource representing the details of the medication or a simple attribute
   /// carrying a code that identifies the medication from a known list of
   /// medications.
-  @JsonKey(name: 'medicationCodeableConcept')
   final CodeableConcept? medicationCodeableConcept;
 
   /// [medicationReference] /// Identifies the medication being administered. This is either a link to a
   /// resource representing the details of the medication or a simple attribute
   /// carrying a code that identifies the medication from a known list of
   /// medications.
-  @JsonKey(name: 'medicationReference')
   final Reference? medicationReference;
 
   /// [subject] /// The person, animal or group who is/was taking the medication.
-  @JsonKey(name: 'subject')
   final Reference subject;
 
   /// [context] /// The encounter or episode of care that establishes the context for this
   /// MedicationStatement.
-  @JsonKey(name: 'context')
   final Reference? context;
 
   /// [effectiveDateTime] /// The interval of time during which it is being asserted that the patient
   /// is/was/will be taking the medication (or was not taking, when the
   /// MedicationStatement.taken element is No).
-  @JsonKey(name: 'effectiveDateTime')
   final FhirDateTime? effectiveDateTime;
-  @JsonKey(name: '_effectiveDateTime')
   final Element? effectiveDateTimeElement;
 
   /// [effectivePeriod] /// The interval of time during which it is being asserted that the patient
   /// is/was/will be taking the medication (or was not taking, when the
   /// MedicationStatement.taken element is No).
-  @JsonKey(name: 'effectivePeriod')
   final Period? effectivePeriod;
 
   /// [dateAsserted] /// The date when the medication statement was asserted by the information
   /// source.
-  @JsonKey(name: 'dateAsserted')
   final FhirDateTime? dateAsserted;
-  @JsonKey(name: '_dateAsserted')
   final Element? dateAssertedElement;
 
   /// [informationSource] /// The person or organization that provided the information about the taking
   /// of this medication. Note: Use derivedFrom when a MedicationStatement is
   /// derived from other resources, e.g. Claim or MedicationRequest.
-  @JsonKey(name: 'informationSource')
   final Reference? informationSource;
 
   /// [derivedFrom] /// Allows linking the MedicationStatement to the underlying MedicationRequest,
   /// or to other information that supports or is used to derive the
   /// MedicationStatement.
-  @JsonKey(name: 'derivedFrom')
   final List<Reference>? derivedFrom;
 
   /// [reasonCode] /// A reason for why the medication is being/was taken.
-  @JsonKey(name: 'reasonCode')
   final List<CodeableConcept>? reasonCode;
 
   /// [reasonReference] /// Condition or observation that supports why the medication is being/was
   /// taken.
-  @JsonKey(name: 'reasonReference')
   final List<Reference>? reasonReference;
 
   /// [note] /// Provides extra information about the medication statement that is not
   /// conveyed by the other attributes.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [dosage] /// Indicates how the medication is/was or should be taken by the patient.
-  @JsonKey(name: 'dosage')
   final List<Dosage>? dosage;
   @override
   Map<String, dynamic> toJson() {

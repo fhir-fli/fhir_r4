@@ -1,10 +1,7 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set contract specific codes for decision modes.
 enum ContractResourceDecisionModeCodes {
   /// Display: Policy
   /// Definition: To be completed
-  @JsonValue('policy')
   policy,
   ;
 

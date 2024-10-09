@@ -1,10 +1,7 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set contract specific codes for status.
 enum ContractResourceDefinitionTypeCodes {
   /// Display: Temporary Value
   /// Definition: To be completed
-  @JsonValue('temp')
   temp,
   ;
 

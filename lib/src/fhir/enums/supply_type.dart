@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value sets refers to a Category of supply.
 enum SupplyType {
   /// Display: Central Supply
   /// Definition: Supply is stored and requested from central supply.
-  @JsonValue('central')
   central,
 
   /// Display: Non-Stock
   /// Definition: Supply is not onsite and must be requested from an outside vendor using a non-stock requisition.
-  @JsonValue('nonstock')
   nonstock,
   ;
 

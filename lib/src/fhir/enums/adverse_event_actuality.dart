@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Overall nature of the adverse event, e.g. real or potential.
 enum AdverseEventActuality {
   /// Display: Adverse Event
   /// Definition: The adverse event actually happened regardless of whether anyone was affected or harmed.
-  @JsonValue('actual')
   actual,
 
   /// Display: Potential Adverse Event
   /// Definition: A potential adverse event.
-  @JsonValue('potential')
   potential,
   ;
 

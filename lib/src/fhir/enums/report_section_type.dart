@@ -1,144 +1,114 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Evidence Report Section Type.
 enum ReportSectionType {
   /// Display: Evidence Results
   /// Definition: Evidence Results.
-  @JsonValue('Evidence')
   Evidence,
 
   /// Display: Evidence Results for the intervention exposure only
   /// Definition: Evidence Results for the intervention exposure only.
-  @JsonValue('Intervention-group-alone-Evidence')
   Intervention_group_alone_Evidence,
 
   /// Display: Evidence Results for comparison of Intervention and Control
   /// Definition: Evidence Results for comparison of Intervention and Control.
-  @JsonValue('Intervention-vs-Control-Evidence')
   Intervention_vs_Control_Evidence,
 
   /// Display: Evidence Results for the control exposure only
   /// Definition: Evidence Results for the control exposure only.
-  @JsonValue('Control-group-alone-Evidence')
   Control_group_alone_Evidence,
 
   /// Display: Evidence Variables used
   /// Definition: Evidence Variables used.
-  @JsonValue('EvidenceVariable')
   EvidenceVariable,
 
   /// Display: Evidence Variables actually observed
   /// Definition: Evidence Variables as observed in the research data.
-  @JsonValue('EvidenceVariable-observed')
   EvidenceVariable_observed,
 
   /// Display: Evidence Variables intended for interpretation
   /// Definition: Evidence Variables intended for interpretation.
-  @JsonValue('EvidenceVariable-intended')
   EvidenceVariable_intended,
 
   /// Display: Evidence Variable in variable role Population
   /// Definition: Evidence Variable in variable role Population.
-  @JsonValue('EvidenceVariable-population')
   EvidenceVariable_population,
 
   /// Display: Evidence Variable in variable role Exposure
   /// Definition: Evidence Variable in variable role Exposure.
-  @JsonValue('EvidenceVariable-exposure')
   EvidenceVariable_exposure,
 
   /// Display: Evidence Variable in variable role Outcome (MeasuredVariable)
   /// Definition: Evidence Variable in variable role Outcome (MeasuredVariable).
-  @JsonValue('EvidenceVariable-outcome')
   EvidenceVariable_outcome,
 
   /// Display: Efficacy-outcomes
   /// Definition: Outcomes related to efficacy or potential benefits of interventions.
-  @JsonValue('Efficacy-outcomes')
   Efficacy_outcomes,
 
   /// Display: Harms outcomes
   /// Definition: Outcomes related to adverse effects or potential harms of interventions.
-  @JsonValue('Harms-outcomes')
   Harms_outcomes,
 
   /// Display: Sample Size
   /// Definition: Sample Size.
-  @JsonValue('SampleSize')
   SampleSize,
 
   /// Display: References
   /// Definition: References.
-  @JsonValue('References')
   References,
 
   /// Display: Assertion
   /// Definition: Assertion.
-  @JsonValue('Assertion')
   Assertion,
 
   /// Display: Reasons
   /// Definition: Reasons.
-  @JsonValue('Reasons')
   Reasons,
 
   /// Display: Certainty of Evidence
   /// Definition: Certainty of Evidence.
-  @JsonValue('Certainty-of-Evidence')
   Certainty_of_Evidence,
 
   /// Display: Evidence Classifier section
   /// Definition: This section is used for classifiers of the evidence.
-  @JsonValue('Evidence-Classifier')
   Evidence_Classifier,
 
   /// Display: Warnings
   /// Definition: Warnings.
-  @JsonValue('Warnings')
   Warnings,
 
   /// Display: Text Summary
   /// Definition: Denotes a section specifying text summary for a report.
-  @JsonValue('Text-Summary')
   Text_Summary,
 
   /// Display: Summary of Body of Evidence Findings
   /// Definition: Summary of Body of Evidence Findings.
-  @JsonValue('SummaryOfBodyOfEvidenceFindings')
   SummaryOfBodyOfEvidenceFindings,
 
   /// Display: Summary of Individual Study Findings
   /// Definition: Summary of Individual Study Findings.
-  @JsonValue('SummaryOfIndividualStudyFindings')
   SummaryOfIndividualStudyFindings,
 
   /// Display: Header
   /// Definition: Denotes the header to use for a Text Summary or above a Table.
-  @JsonValue('Header')
   Header,
 
   /// Display: Tables
   /// Definition: Tables.
-  @JsonValue('Tables')
   Tables,
 
   /// Display: Table
-  @JsonValue('Table')
   Table,
 
   /// Display: Row Headers
   /// Definition: Denotes a section specifying row headers for a tabular report.
-  @JsonValue('Row-Headers')
   Row_Headers,
 
   /// Display: Column Header
   /// Definition: Denotes the header to use for the column for a tabular report.
-  @JsonValue('Column-Header')
   Column_Header,
 
   /// Display: Column Headers
   /// Definition: Denotes a section specifying column headers for a tabular report.
-  @JsonValue('Column-Headers')
   Column_Headers,
   ;
 

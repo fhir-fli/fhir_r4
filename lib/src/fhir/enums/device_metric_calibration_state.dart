@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Describes the state of a metric calibration.
 enum DeviceMetricCalibrationState {
   /// Display: Not Calibrated
   /// Definition: The metric has not been calibrated.
-  @JsonValue('not-calibrated')
   not_calibrated,
 
   /// Display: Calibration Required
   /// Definition: The metric needs to be calibrated.
-  @JsonValue('calibration-required')
   calibration_required,
 
   /// Display: Calibrated
   /// Definition: The metric has been calibrated.
-  @JsonValue('calibrated')
   calibrated,
 
   /// Display: Unspecified
   /// Definition: The state of calibration of this metric is unspecified.
-  @JsonValue('unspecified')
   unspecified,
   ;
 

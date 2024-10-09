@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,7 +7,6 @@ import '../../../fhir_r4.dart';
 /// [GraphDefinition] /// A formal computable definition of a graph of resources - that is, a
 /// coherent set of resources that form a graph by following references. The
 /// Graph Definition resource defines a set and makes rules about the set.
-@JsonSerializable()
 class GraphDefinition extends DomainResource {
   GraphDefinition({
     super.id,
@@ -54,10 +52,11 @@ class GraphDefinition extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.GraphDefinition);
+
   @override
   String get fhirType => 'GraphDefinition';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this graph definition when it is
@@ -67,9 +66,7 @@ class GraphDefinition extends DomainResource {
   /// definition is (or will be) published. This URL can be the target of a
   /// canonical reference. It SHALL remain the same when the graph definition is
   /// stored on different servers.
-  @JsonKey(name: 'url')
   final FhirUri? url;
-  @JsonKey(name: '_url')
   final Element? urlElement;
 
   /// [version] /// The identifier that is used to identify this version of the graph
@@ -79,60 +76,45 @@ class GraphDefinition extends DomainResource {
   /// timestamp (e.g. yyyymmdd) if a managed version is not available. There is
   /// also no expectation that versions can be placed in a lexicographical
   /// sequence.
-  @JsonKey(name: 'version')
   final FhirString? version;
-  @JsonKey(name: '_version')
   final Element? versionElement;
 
   /// [name] /// A natural language name identifying the graph definition. This name should
   /// be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  @JsonKey(name: 'name')
   final FhirString name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [status] /// The status of this graph definition. Enables tracking the life-cycle of the
   /// content.
-  @JsonKey(name: 'status')
   final PublicationStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [experimental] /// A Boolean value to indicate that this graph definition is authored for
   /// testing purposes (or education/evaluation/marketing) and is not intended to
   /// be used for genuine usage.
-  @JsonKey(name: 'experimental')
   final FhirBoolean? experimental;
-  @JsonKey(name: '_experimental')
   final Element? experimentalElement;
 
   /// [date] /// The date (and optionally time) when the graph definition was published. The
   /// date must change when the business version changes and it must change if
   /// the status code changes. In addition, it should change when the substantive
   /// content of the graph definition changes.
-  @JsonKey(name: 'date')
   final FhirDateTime? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [publisher] /// The name of the organization or individual that published the graph
   /// definition.
-  @JsonKey(name: 'publisher')
   final FhirString? publisher;
-  @JsonKey(name: '_publisher')
   final Element? publisherElement;
 
   /// [contact] /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  @JsonKey(name: 'contact')
   final List<ContactDetail>? contact;
 
   /// [description] /// A free text natural language description of the graph definition from a
   /// consumer's perspective.
-  @JsonKey(name: 'description')
   final FhirMarkdown? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [useContext] /// The content was developed with a focus and intent of supporting the
@@ -140,35 +122,26 @@ class GraphDefinition extends DomainResource {
   /// age, ...) or may be references to specific programs (insurance plans,
   /// studies, ...) and may be used to assist with indexing and searching for
   /// appropriate graph definition instances.
-  @JsonKey(name: 'useContext')
   final List<UsageContext>? useContext;
 
   /// [jurisdiction] /// A legal or geographic region in which the graph definition is intended to
   /// be used.
-  @JsonKey(name: 'jurisdiction')
   final List<CodeableConcept>? jurisdiction;
 
   /// [purpose] /// Explanation of why this graph definition is needed and why it has been
   /// designed as it has.
-  @JsonKey(name: 'purpose')
   final FhirMarkdown? purpose;
-  @JsonKey(name: '_purpose')
   final Element? purposeElement;
 
   /// [start] /// The type of FHIR resource at which instances of this graph start.
-  @JsonKey(name: 'start')
   final FhirCode start;
-  @JsonKey(name: '_start')
   final Element? startElement;
 
   /// [profile] /// The profile that describes the use of the base resource.
-  @JsonKey(name: 'profile')
   final FhirCanonical? profile;
-  @JsonKey(name: '_profile')
   final Element? profileElement;
 
   /// [link] /// Links this graph makes rules about.
-  @JsonKey(name: 'link')
   final List<GraphDefinitionLink>? link;
   @override
   Map<String, dynamic> toJson() {
@@ -502,7 +475,6 @@ class GraphDefinition extends DomainResource {
 }
 
 /// [GraphDefinitionLink] /// Links this graph makes rules about.
-@JsonSerializable()
 class GraphDefinitionLink extends BackboneElement {
   GraphDefinitionLink({
     super.id,
@@ -526,45 +498,35 @@ class GraphDefinitionLink extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'GraphDefinitionLink';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [path] /// A FHIR expression that identifies one of FHIR References to other
   /// resources.
-  @JsonKey(name: 'path')
   final FhirString? path;
-  @JsonKey(name: '_path')
   final Element? pathElement;
 
   /// [sliceName] /// Which slice (if profiled).
-  @JsonKey(name: 'sliceName')
   final FhirString? sliceName;
-  @JsonKey(name: '_sliceName')
   final Element? sliceNameElement;
 
   /// [min] /// Minimum occurrences for this link.
-  @JsonKey(name: 'min')
   final FhirInteger? min;
-  @JsonKey(name: '_min')
   final Element? minElement;
 
   /// [max] /// Maximum occurrences for this link.
-  @JsonKey(name: 'max')
   final FhirString? max;
-  @JsonKey(name: '_max')
   final Element? maxElement;
 
   /// [description] /// Information about why this link is of interest in this graph definition.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [target] /// Potential target for the link.
-  @JsonKey(name: 'target')
   final List<GraphDefinitionTarget>? target;
   @override
   Map<String, dynamic> toJson() {
@@ -736,7 +698,6 @@ class GraphDefinitionLink extends BackboneElement {
 }
 
 /// [GraphDefinitionTarget] /// Potential target for the link.
-@JsonSerializable()
 class GraphDefinitionTarget extends BackboneElement {
   GraphDefinitionTarget({
     super.id,
@@ -757,36 +718,29 @@ class GraphDefinitionTarget extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'GraphDefinitionTarget';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Type of resource this link refers to.
-  @JsonKey(name: 'type')
   final FhirCode type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [params] /// A set of parameters to look up.
-  @JsonKey(name: 'params')
   final FhirString? params;
-  @JsonKey(name: '_params')
   final Element? paramsElement;
 
   /// [profile] /// Profile for the target resource.
-  @JsonKey(name: 'profile')
   final FhirCanonical? profile;
-  @JsonKey(name: '_profile')
   final Element? profileElement;
 
   /// [compartment] /// Compartment Consistency Rules.
-  @JsonKey(name: 'compartment')
   final List<GraphDefinitionCompartment>? compartment;
 
   /// [link] /// Additional links from target resource.
-  @JsonKey(name: 'link')
   final List<GraphDefinitionLink>? link;
   @override
   Map<String, dynamic> toJson() {
@@ -937,7 +891,6 @@ class GraphDefinitionTarget extends BackboneElement {
 }
 
 /// [GraphDefinitionCompartment] /// Compartment Consistency Rules.
-@JsonSerializable()
 class GraphDefinitionCompartment extends BackboneElement {
   GraphDefinitionCompartment({
     super.id,
@@ -960,42 +913,33 @@ class GraphDefinitionCompartment extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'GraphDefinitionCompartment';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [use] /// Defines how the compartment rule is used - whether it it is used to test
   /// whether resources are subject to the rule, or whether it is a rule that
   /// must be followed.
-  @JsonKey(name: 'use')
   final GraphCompartmentUse use;
-  @JsonKey(name: '_use')
   final Element? useElement;
 
   /// [code] /// Identifies the compartment.
-  @JsonKey(name: 'code')
   final CompartmentType code;
-  @JsonKey(name: '_code')
   final Element? codeElement;
 
   /// [rule] /// identical | matching | different | no-rule | custom.
-  @JsonKey(name: 'rule')
   final GraphCompartmentRule rule;
-  @JsonKey(name: '_rule')
   final Element? ruleElement;
 
   /// [expression] /// Custom rule, as a FHIRPath expression.
-  @JsonKey(name: 'expression')
   final FhirString? expression;
-  @JsonKey(name: '_expression')
   final Element? expressionElement;
 
   /// [description] /// Documentation for FHIRPath expression.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
   @override
   Map<String, dynamic> toJson() {

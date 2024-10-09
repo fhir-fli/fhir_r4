@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The type of actor - system or human.
 enum ExampleScenarioActorType {
   /// Display: Person
   /// Definition: A person.
-  @JsonValue('person')
   person,
 
   /// Display: System
   /// Definition: A system.
-  @JsonValue('entity')
   entity,
   ;
 

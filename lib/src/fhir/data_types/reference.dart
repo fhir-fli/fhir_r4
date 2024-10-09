@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [Reference] /// A reference from one resource to another.
-@JsonSerializable()
 class Reference extends DataType {
   Reference({
     super.id,
@@ -25,10 +23,11 @@ class Reference extends DataType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'Reference';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [reference] /// A reference to a location at which the other resource is found. The
@@ -38,9 +37,7 @@ class Reference extends DataType {
   /// reference is not to a FHIR RESTful server, then it should be assumed to be
   /// version specific. Internal fragment references (start with '#') refer to
   /// contained resources.
-  @JsonKey(name: 'reference')
   final FhirString? reference;
-  @JsonKey(name: '_reference')
   final Element? referenceElement;
 
   /// [type] /// The expected type of the target of the reference. If both Reference.type
@@ -53,9 +50,7 @@ class Reference extends DataType {
   /// http://hl7.org/fhir/StructureDefinition/Patient. Absolute URLs are only
   /// allowed for logical models (and can only be used in references in logical
   /// models, not resources).
-  @JsonKey(name: 'type')
   final FhirUri? type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [identifier] /// An identifier for the target resource. This is used when there is no way to
@@ -67,14 +62,11 @@ class Reference extends DataType {
   /// point to a business concept that would be expected to be exposed as a FHIR
   /// instance, and that instance would need to be of a FHIR resource type
   /// allowed by the reference.
-  @JsonKey(name: 'identifier')
   final Identifier? identifier;
 
   /// [display] /// Plain text narrative that identifies the resource in addition to the
   /// resource reference.
-  @JsonKey(name: 'display')
   final FhirString? display;
-  @JsonKey(name: '_display')
   final Element? displayElement;
   @override
   Map<String, dynamic> toJson() {

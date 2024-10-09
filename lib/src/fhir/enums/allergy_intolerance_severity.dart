@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Clinical assessment of the severity of a reaction event as a whole, potentially considering multiple different manifestations.
 enum AllergyIntoleranceSeverity {
   /// Display: Mild
   /// Definition: Causes mild physiological effects.
-  @JsonValue('mild')
   mild,
 
   /// Display: Moderate
   /// Definition: Causes moderate physiological effects.
-  @JsonValue('moderate')
   moderate,
 
   /// Display: Severe
   /// Definition: Causes severe physiological effects.
-  @JsonValue('severe')
   severe,
   ;
 

@@ -1,65 +1,51 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes a smattering of Benefit type codes.
 enum BenefitTypeCodes {
   /// Display: Benefit
   /// Definition: Maximum benefit allowable.
-  @JsonValue('benefit')
   benefit,
 
   /// Display: Deductible
   /// Definition: Cost to be incurred before benefits are applied
-  @JsonValue('deductible')
   deductible,
 
   /// Display: Visit
   /// Definition: Service visit
-  @JsonValue('visit')
   visit,
 
   /// Display: Room
   /// Definition: Type of room
-  @JsonValue('room')
   room,
 
   /// Display: Copayment per service
   /// Definition: Copayment per service
-  @JsonValue('copay')
   copay,
 
   /// Display: Copayment Percent per service
   /// Definition: Copayment percentage per service
-  @JsonValue('copay-percent')
   copay_percent,
 
   /// Display: Copayment maximum per service
   /// Definition: Copayment maximum per service
-  @JsonValue('copay-maximum')
   copay_maximum,
 
   /// Display: Vision Exam
   /// Definition: Vision Exam
-  @JsonValue('vision-exam')
   vision_exam,
 
   /// Display: Vision Glasses
   /// Definition: Frames and lenses
-  @JsonValue('vision-glasses')
   vision_glasses,
 
   /// Display: Vision Contacts Coverage
   /// Definition: Contact Lenses
-  @JsonValue('vision-contacts')
   vision_contacts,
 
   /// Display: Medical Primary Health Coverage
   /// Definition: Medical Primary Health Coverage
-  @JsonValue('medical-primarycare')
   medical_primarycare,
 
   /// Display: Pharmacy Dispense Coverage
   /// Definition: Pharmacy Dispense Coverage
-  @JsonValue('pharmacy-dispense')
   pharmacy_dispense,
   ;
 

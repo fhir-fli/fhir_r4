@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Set of handling instructions prior testing of the specimen.
 enum HandlingConditionSet {
   /// Display: room temperature
   /// Definition: room temperature.
-  @JsonValue('room')
   room,
 
   /// Display: refrigerated
   /// Definition: refrigerated temperature.
-  @JsonValue('refrigerated')
   refrigerated,
 
   /// Display: frozen
   /// Definition: frozen temperature.
-  @JsonValue('frozen')
   frozen,
   ;
 

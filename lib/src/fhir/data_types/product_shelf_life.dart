@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [ProductShelfLife] /// The shelf-life and storage information for a medicinal product item or
 /// container can be described using this class.
-@JsonSerializable()
 class ProductShelfLife extends BackboneType {
   ProductShelfLife({
     super.id,
@@ -24,14 +22,14 @@ class ProductShelfLife extends BackboneType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ProductShelfLife';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Unique identifier for the packaged Medicinal Product.
-  @JsonKey(name: 'identifier')
   final Identifier? identifier;
 
   /// [type] /// This describes the shelf life, taking into account various scenarios such
@@ -40,20 +38,17 @@ class ProductShelfLife extends BackboneType {
   /// bottle, etc. The shelf life type shall be specified using an appropriate
   /// controlled vocabulary The controlled term and the controlled term
   /// identifier shall be specified.
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [period] /// The shelf life time period can be specified using a numerical value for the
   /// period of time and its unit of time measurement The unit of measurement
   /// shall be specified in accordance with ISO 11240 and the resulting
   /// terminology The symbol and the symbol identifier shall be used.
-  @JsonKey(name: 'period')
   final Quantity period;
 
   /// [specialPrecautionsForStorage] /// Special precautions for storage, if any, can be specified using an
   /// appropriate controlled vocabulary The controlled term and the controlled
   /// term identifier shall be specified.
-  @JsonKey(name: 'specialPrecautionsForStorage')
   final List<CodeableConcept>? specialPrecautionsForStorage;
   @override
   Map<String, dynamic> toJson() {

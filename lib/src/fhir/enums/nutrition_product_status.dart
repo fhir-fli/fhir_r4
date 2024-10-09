@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Codes identifying the lifecycle stage of a product.
 enum NutritionProductStatus {
   /// Display: Active
   /// Definition: The product can be used.
-  @JsonValue('active')
   active,
 
   /// Display: Inactive
   /// Definition: The product is not expected or allowed to be used.
-  @JsonValue('inactive')
   inactive,
 
   /// Display: Entered in Error
   /// Definition: This electronic record should never have existed, though it is possible that real-world decisions were based on it.  (If real-world activity has occurred, the status should be "cancelled" rather than "entered-in-error".).
-  @JsonValue('entered-in-error')
   entered_in_error,
   ;
 

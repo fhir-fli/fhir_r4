@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -9,7 +8,6 @@ import '../../../fhir_r4.dart';
 /// evidence concept including the evidence variables (eg population,
 /// exposures/interventions, comparators, outcomes, measured variables,
 /// confounding variables), the statistics, and the certainty of this evidence.
-@JsonSerializable()
 class Evidence extends DomainResource {
   Evidence({
     super.id,
@@ -66,10 +64,11 @@ class Evidence extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Evidence);
+
   @override
   String get fhirType => 'Evidence';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this evidence when it is
@@ -79,15 +78,12 @@ class Evidence extends DomainResource {
   /// is (or will be) published. This URL can be the target of a canonical
   /// reference. It SHALL remain the same when the summary is stored on different
   /// servers.
-  @JsonKey(name: 'url')
   final FhirUri? url;
-  @JsonKey(name: '_url')
   final Element? urlElement;
 
   /// [identifier] /// A formal identifier that is used to identify this summary when it is
   /// represented in other formats, or referenced in a specification, model,
   /// design or an instance.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [version] /// The identifier that is used to identify this version of the summary when it
@@ -96,40 +92,29 @@ class Evidence extends DomainResource {
   /// globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a
   /// managed version is not available. There is also no expectation that
   /// versions can be placed in a lexicographical sequence.
-  @JsonKey(name: 'version')
   final FhirString? version;
-  @JsonKey(name: '_version')
   final Element? versionElement;
 
   /// [title] /// A short, descriptive, user-friendly title for the summary.
-  @JsonKey(name: 'title')
   final FhirString? title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [citeAsReference] /// Citation Resource or display of suggested citation for this evidence.
-  @JsonKey(name: 'citeAsReference')
   final Reference? citeAsReference;
 
   /// [citeAsMarkdown] /// Citation Resource or display of suggested citation for this evidence.
-  @JsonKey(name: 'citeAsMarkdown')
   final FhirMarkdown? citeAsMarkdown;
-  @JsonKey(name: '_citeAsMarkdown')
   final Element? citeAsMarkdownElement;
 
   /// [status] /// The status of this summary. Enables tracking the life-cycle of the content.
-  @JsonKey(name: 'status')
   final PublicationStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [date] /// The date (and optionally time) when the summary was published. The date
   /// must change when the business version changes and it must change if the
   /// status code changes. In addition, it should change when the substantive
   /// content of the summary changes.
-  @JsonKey(name: 'date')
   final FhirDateTime? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [useContext] /// The content was developed with a focus and intent of supporting the
@@ -137,94 +122,71 @@ class Evidence extends DomainResource {
   /// age, ...) or may be references to specific programs (insurance plans,
   /// studies, ...) and may be used to assist with indexing and searching for
   /// appropriate evidence instances.
-  @JsonKey(name: 'useContext')
   final List<UsageContext>? useContext;
 
   /// [approvalDate] /// The date on which the resource content was approved by the publisher.
   /// Approval happens once when the content is officially approved for usage.
-  @JsonKey(name: 'approvalDate')
   final FhirDate? approvalDate;
-  @JsonKey(name: '_approvalDate')
   final Element? approvalDateElement;
 
   /// [lastReviewDate] /// The date on which the resource content was last reviewed. Review happens
   /// periodically after approval but does not change the original approval date.
-  @JsonKey(name: 'lastReviewDate')
   final FhirDate? lastReviewDate;
-  @JsonKey(name: '_lastReviewDate')
   final Element? lastReviewDateElement;
 
   /// [publisher] /// The name of the organization or individual that published the evidence.
-  @JsonKey(name: 'publisher')
   final FhirString? publisher;
-  @JsonKey(name: '_publisher')
   final Element? publisherElement;
 
   /// [contact] /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  @JsonKey(name: 'contact')
   final List<ContactDetail>? contact;
 
   /// [author] /// An individiual, organization, or device primarily involved in the creation
   /// and maintenance of the content.
-  @JsonKey(name: 'author')
   final List<ContactDetail>? author;
 
   /// [editor] /// An individiual, organization, or device primarily responsible for internal
   /// coherence of the content.
-  @JsonKey(name: 'editor')
   final List<ContactDetail>? editor;
 
   /// [reviewer] /// An individiual, organization, or device primarily responsible for review of
   /// some aspect of the content.
-  @JsonKey(name: 'reviewer')
   final List<ContactDetail>? reviewer;
 
   /// [endorser] /// An individiual, organization, or device responsible for officially
   /// endorsing the content for use in some setting.
-  @JsonKey(name: 'endorser')
   final List<ContactDetail>? endorser;
 
   /// [relatedArtifact] /// Link or citation to artifact associated with the summary.
-  @JsonKey(name: 'relatedArtifact')
   final List<RelatedArtifact>? relatedArtifact;
 
   /// [description] /// A free text natural language description of the evidence from a consumer's
   /// perspective.
-  @JsonKey(name: 'description')
   final FhirMarkdown? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [assertion] /// Declarative description of the Evidence.
-  @JsonKey(name: 'assertion')
   final FhirMarkdown? assertion;
-  @JsonKey(name: '_assertion')
   final Element? assertionElement;
 
   /// [note] /// Footnotes and/or explanatory notes.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [variableDefinition] /// Evidence variable such as population, exposure, or outcome.
-  @JsonKey(name: 'variableDefinition')
   final List<EvidenceVariableDefinition> variableDefinition;
 
   /// [synthesisType] /// The method to combine studies.
-  @JsonKey(name: 'synthesisType')
   final CodeableConcept? synthesisType;
 
   /// [studyType] /// The type of study that produced this evidence.
-  @JsonKey(name: 'studyType')
   final CodeableConcept? studyType;
 
   /// [statistic] /// Values and parameters for a single statistic.
-  @JsonKey(name: 'statistic')
   final List<EvidenceStatistic>? statistic;
 
   /// [certainty] /// Assessment of certainty, confidence in the estimates, or quality of the
   /// evidence.
-  @JsonKey(name: 'certainty')
   final List<EvidenceCertainty>? certainty;
   @override
   Map<String, dynamic> toJson() {
@@ -689,7 +651,6 @@ class Evidence extends DomainResource {
 }
 
 /// [EvidenceVariableDefinition] /// Evidence variable such as population, exposure, or outcome.
-@JsonSerializable()
 class EvidenceVariableDefinition extends BackboneElement {
   EvidenceVariableDefinition({
     super.id,
@@ -709,38 +670,32 @@ class EvidenceVariableDefinition extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'EvidenceVariableDefinition';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [description] /// A text description or summary of the variable.
-  @JsonKey(name: 'description')
   final FhirMarkdown? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [note] /// Footnotes and/or explanatory notes.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [variableRole] /// population | subpopulation | exposure | referenceExposure |
   /// measuredVariable | confounder.
-  @JsonKey(name: 'variableRole')
   final CodeableConcept variableRole;
 
   /// [observed] /// Definition of the actual variable related to the statistic(s).
-  @JsonKey(name: 'observed')
   final Reference? observed;
 
   /// [intended] /// Definition of the intended variable related to the Evidence.
-  @JsonKey(name: 'intended')
   final Reference? intended;
 
   /// [directnessMatch] /// Indication of quality of match between intended variable to actual
   /// variable.
-  @JsonKey(name: 'directnessMatch')
   final CodeableConcept? directnessMatch;
   @override
   Map<String, dynamic> toJson() {
@@ -884,7 +839,6 @@ class EvidenceVariableDefinition extends BackboneElement {
 }
 
 /// [EvidenceStatistic] /// Values and parameters for a single statistic.
-@JsonSerializable()
 class EvidenceStatistic extends BackboneElement {
   EvidenceStatistic({
     super.id,
@@ -910,61 +864,49 @@ class EvidenceStatistic extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'EvidenceStatistic';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [description] /// A description of the content value of the statistic.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [note] /// Footnotes and/or explanatory notes.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [statisticType] /// Type of statistic, eg relative risk.
-  @JsonKey(name: 'statisticType')
   final CodeableConcept? statisticType;
 
   /// [category] /// When the measured variable is handled categorically, the category element
   /// is used to define which category the statistic is reporting.
-  @JsonKey(name: 'category')
   final CodeableConcept? category;
 
   /// [quantity] /// Statistic value.
-  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [numberOfEvents] /// The number of events associated with the statistic, where the unit of
   /// analysis is different from numberAffected, sampleSize.knownDataCount and
   /// sampleSize.numberOfParticipants.
-  @JsonKey(name: 'numberOfEvents')
   final FhirUnsignedInt? numberOfEvents;
-  @JsonKey(name: '_numberOfEvents')
   final Element? numberOfEventsElement;
 
   /// [numberAffected] /// The number of participants affected where the unit of analysis is the same
   /// as sampleSize.knownDataCount and sampleSize.numberOfParticipants.
-  @JsonKey(name: 'numberAffected')
   final FhirUnsignedInt? numberAffected;
-  @JsonKey(name: '_numberAffected')
   final Element? numberAffectedElement;
 
   /// [sampleSize] /// Number of samples in the statistic.
-  @JsonKey(name: 'sampleSize')
   final EvidenceSampleSize? sampleSize;
 
   /// [attributeEstimate] /// A statistical attribute of the statistic such as a measure of
   /// heterogeneity.
-  @JsonKey(name: 'attributeEstimate')
   final List<EvidenceAttributeEstimate>? attributeEstimate;
 
   /// [modelCharacteristic] /// A component of the method to generate the statistic.
-  @JsonKey(name: 'modelCharacteristic')
   final List<EvidenceModelCharacteristic>? modelCharacteristic;
   @override
   Map<String, dynamic> toJson() {
@@ -1172,7 +1114,6 @@ class EvidenceStatistic extends BackboneElement {
 }
 
 /// [EvidenceSampleSize] /// Number of samples in the statistic.
-@JsonSerializable()
 class EvidenceSampleSize extends BackboneElement {
   EvidenceSampleSize({
     super.id,
@@ -1194,39 +1135,31 @@ class EvidenceSampleSize extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'EvidenceSampleSize';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [description] /// Human-readable summary of population sample size.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [note] /// Footnote or explanatory note about the sample size.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [numberOfStudies] /// Number of participants in the population.
-  @JsonKey(name: 'numberOfStudies')
   final FhirUnsignedInt? numberOfStudies;
-  @JsonKey(name: '_numberOfStudies')
   final Element? numberOfStudiesElement;
 
   /// [numberOfParticipants] /// A human-readable string to clarify or explain concepts about the sample
   /// size.
-  @JsonKey(name: 'numberOfParticipants')
   final FhirUnsignedInt? numberOfParticipants;
-  @JsonKey(name: '_numberOfParticipants')
   final Element? numberOfParticipantsElement;
 
   /// [knownDataCount] /// Number of participants with known results for measured variables.
-  @JsonKey(name: 'knownDataCount')
   final FhirUnsignedInt? knownDataCount;
-  @JsonKey(name: '_knownDataCount')
   final Element? knownDataCountElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1392,7 +1325,6 @@ class EvidenceSampleSize extends BackboneElement {
 
 /// [EvidenceAttributeEstimate] /// A statistical attribute of the statistic such as a measure of
 /// heterogeneity.
-@JsonSerializable()
 class EvidenceAttributeEstimate extends BackboneElement {
   EvidenceAttributeEstimate({
     super.id,
@@ -1414,44 +1346,36 @@ class EvidenceAttributeEstimate extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'EvidenceAttributeEstimate';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [description] /// Human-readable summary of the estimate.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [note] /// Footnote or explanatory note about the estimate.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [type] /// The type of attribute estimate, eg confidence interval or p value.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [quantity] /// The singular quantity of the attribute estimate, for attribute estimates
   /// represented as single values; also used to report unit of measure.
-  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [level] /// Use 95 for a 95% confidence interval.
-  @JsonKey(name: 'level')
   final FhirDecimal? level;
-  @JsonKey(name: '_level')
   final Element? levelElement;
 
   /// [range] /// Lower bound of confidence interval.
-  @JsonKey(name: 'range')
   final Range? range;
 
   /// [attributeEstimate] /// A nested attribute estimate; which is the attribute estimate of an
   /// attribute estimate.
-  @JsonKey(name: 'attributeEstimate')
   final List<EvidenceAttributeEstimate>? attributeEstimate;
   @override
   Map<String, dynamic> toJson() {
@@ -1615,7 +1539,6 @@ class EvidenceAttributeEstimate extends BackboneElement {
 }
 
 /// [EvidenceModelCharacteristic] /// A component of the method to generate the statistic.
-@JsonSerializable()
 class EvidenceModelCharacteristic extends BackboneElement {
   EvidenceModelCharacteristic({
     super.id,
@@ -1632,27 +1555,24 @@ class EvidenceModelCharacteristic extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'EvidenceModelCharacteristic';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// Description of a component of the method to generate the statistic.
-  @JsonKey(name: 'code')
   final CodeableConcept code;
 
   /// [value] /// Further specification of the quantified value of the component of the
   /// method to generate the statistic.
-  @JsonKey(name: 'value')
   final Quantity? value;
 
   /// [variable] /// A variable adjusted for in the adjusted analysis.
-  @JsonKey(name: 'variable')
   final List<EvidenceVariable>? variable;
 
   /// [attributeEstimate] /// An attribute of the statistic used as a model characteristic.
-  @JsonKey(name: 'attributeEstimate')
   final List<EvidenceAttributeEstimate>? attributeEstimate;
   @override
   Map<String, dynamic> toJson() {
@@ -1776,7 +1696,6 @@ class EvidenceModelCharacteristic extends BackboneElement {
 }
 
 /// [Evidencevariable] /// A variable adjusted for in the adjusted analysis.
-@JsonSerializable()
 class Evidencevariable extends BackboneElement {
   Evidencevariable({
     super.id,
@@ -1795,32 +1714,27 @@ class Evidencevariable extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'Evidencevariable';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [variableDefinition] /// Description of the variable.
-  @JsonKey(name: 'variableDefinition')
   final Reference variableDefinition;
 
   /// [handling] /// How the variable is classified for use in adjusted analysis.
-  @JsonKey(name: 'handling')
   final EvidenceVariableHandling? handling;
-  @JsonKey(name: '_handling')
   final Element? handlingElement;
 
   /// [valueCategory] /// Description for grouping of ordinal or polychotomous variables.
-  @JsonKey(name: 'valueCategory')
   final List<CodeableConcept>? valueCategory;
 
   /// [valueQuantity] /// Discrete value for grouping of ordinal or polychotomous variables.
-  @JsonKey(name: 'valueQuantity')
   final List<Quantity>? valueQuantity;
 
   /// [valueRange] /// Range of values for grouping of ordinal or polychotomous variables.
-  @JsonKey(name: 'valueRange')
   final List<Range>? valueRange;
   @override
   Map<String, dynamic> toJson() {
@@ -1961,7 +1875,6 @@ class Evidencevariable extends BackboneElement {
 
 /// [EvidenceCertainty] /// Assessment of certainty, confidence in the estimates, or quality of the
 /// evidence.
-@JsonSerializable()
 class EvidenceCertainty extends BackboneElement {
   EvidenceCertainty({
     super.id,
@@ -1982,38 +1895,31 @@ class EvidenceCertainty extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'EvidenceCertainty';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [description] /// Textual description of certainty.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [note] /// Footnotes and/or explanatory notes.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [type] /// Aspect of certainty being rated.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [rating] /// Assessment or judgement of the aspect.
-  @JsonKey(name: 'rating')
   final CodeableConcept? rating;
 
   /// [rater] /// Individual or group who did the rating.
-  @JsonKey(name: 'rater')
   final FhirString? rater;
-  @JsonKey(name: '_rater')
   final Element? raterElement;
 
   /// [subcomponent] /// A domain or subdomain of certainty.
-  @JsonKey(name: 'subcomponent')
   final List<EvidenceCertainty>? subcomponent;
   @override
   Map<String, dynamic> toJson() {

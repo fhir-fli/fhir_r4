@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Behavior a server can exhibit when a criteria state does not exist (e.g., state prior to a create or after a delete).
 enum CriteriaNotExistsBehavior {
   /// Display: test passes
   /// Definition: The requested conditional statement will pass if a matching state does not exist (e.g., previous state during create).
-  @JsonValue('test-passes')
   test_passes,
 
   /// Display: test fails
   /// Definition: The requested conditional statement will fail if a matching state does not exist (e.g., previous state during create).
-  @JsonValue('test-fails')
   test_fails,
   ;
 

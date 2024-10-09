@@ -1,69 +1,51 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Code for a known / defined timing pattern.
 enum TimingAbbreviation {
   /// Display: BID
-  @JsonValue('BID')
   BID,
 
   /// Display: TID
-  @JsonValue('TID')
   TID,
 
   /// Display: QID
-  @JsonValue('QID')
   QID,
 
   /// Display: AM
-  @JsonValue('AM')
   AM,
 
   /// Display: PM
-  @JsonValue('PM')
   PM,
 
   /// Display: QD
-  @JsonValue('QD')
   QD,
 
   /// Display: QOD
-  @JsonValue('QOD')
   QOD,
 
   /// Display: every hour
-  @JsonValue('Q1H')
   Q1H,
 
   /// Display: every 2 hours
-  @JsonValue('Q2H')
   Q2H,
 
   /// Display: every 3 hours
-  @JsonValue('Q3H')
   Q3H,
 
   /// Display: Q4H
-  @JsonValue('Q4H')
   Q4H,
 
   /// Display: Q6H
-  @JsonValue('Q6H')
   Q6H,
 
   /// Display: every 8 hours
-  @JsonValue('Q8H')
   Q8H,
 
   /// Display: at bedtime
-  @JsonValue('BED')
   BED,
 
   /// Display: weekly
-  @JsonValue('WK')
   WK,
 
   /// Display: monthly
-  @JsonValue('MO')
   MO,
   ;
 

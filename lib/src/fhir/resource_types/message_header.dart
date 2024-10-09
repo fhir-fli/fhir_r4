@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -10,7 +9,6 @@ import '../../../fhir_r4.dart';
 /// as other information related to the action are typically transmitted in a
 /// bundle in which the MessageHeader resource instance is the first resource
 /// in the bundle.
-@JsonSerializable()
 class MessageHeader extends DomainResource {
   MessageHeader({
     super.id,
@@ -44,78 +42,65 @@ class MessageHeader extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.MessageHeader);
+
   @override
   String get fhirType => 'MessageHeader';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [eventCoding] /// Code that identifies the event this message represents and connects it with
   /// its definition. Events defined as part of the FHIR specification have the
   /// system value "http://terminology.hl7.org/CodeSystem/message-events".
   /// Alternatively uri to the EventDefinition.
-  @JsonKey(name: 'eventCoding')
   final Coding? eventCoding;
 
   /// [eventUri] /// Code that identifies the event this message represents and connects it with
   /// its definition. Events defined as part of the FHIR specification have the
   /// system value "http://terminology.hl7.org/CodeSystem/message-events".
   /// Alternatively uri to the EventDefinition.
-  @JsonKey(name: 'eventUri')
   final FhirUri? eventUri;
-  @JsonKey(name: '_eventUri')
   final Element? eventUriElement;
 
   /// [destination] /// The destination application which the message is intended for.
-  @JsonKey(name: 'destination')
   final List<MessageHeaderDestination>? destination;
 
   /// [sender] /// Identifies the sending system to allow the use of a trust relationship.
-  @JsonKey(name: 'sender')
   final Reference? sender;
 
   /// [enterer] /// The person or device that performed the data entry leading to this message.
   /// When there is more than one candidate, pick the most proximal to the
   /// message. Can provide other enterers in extensions.
-  @JsonKey(name: 'enterer')
   final Reference? enterer;
 
   /// [author] /// The logical author of the message - the person or device that decided the
   /// described event should happen. When there is more than one candidate, pick
   /// the most proximal to the MessageHeader. Can provide other authors in
   /// extensions.
-  @JsonKey(name: 'author')
   final Reference? author;
 
   /// [source] /// The source application from which this message originated.
-  @JsonKey(name: 'source')
   final MessageHeaderSource source;
 
   /// [responsible] /// The person or organization that accepts overall responsibility for the
   /// contents of the message. The implication is that the message event happened
   /// under the policies of the responsible party.
-  @JsonKey(name: 'responsible')
   final Reference? responsible;
 
   /// [reason] /// Coded indication of the cause for the event - indicates a reason for the
   /// occurrence of the event that is a focus of this message.
-  @JsonKey(name: 'reason')
   final CodeableConcept? reason;
 
   /// [response] /// Information about the message that this message is a response to. Only
   /// present if this message is a response.
-  @JsonKey(name: 'response')
   final MessageHeaderResponse? response;
 
   /// [focus] /// The actual data of the message - a reference to the root/focus class of the
   /// event.
-  @JsonKey(name: 'focus')
   final List<Reference>? focus;
 
   /// [definition] /// Permanent link to the MessageDefinition for this message.
-  @JsonKey(name: 'definition')
   final FhirCanonical? definition;
-  @JsonKey(name: '_definition')
   final Element? definitionElement;
   @override
   Map<String, dynamic> toJson() {
@@ -371,7 +356,6 @@ class MessageHeader extends DomainResource {
 }
 
 /// [MessageHeaderDestination] /// The destination application which the message is intended for.
-@JsonSerializable()
 class MessageHeaderDestination extends BackboneElement {
   MessageHeaderDestination({
     super.id,
@@ -390,32 +374,27 @@ class MessageHeaderDestination extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MessageHeaderDestination';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [name] /// Human-readable name for the target system.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [target] /// Identifies the target end system in situations where the initial message
   /// transmission is to an intermediary system.
-  @JsonKey(name: 'target')
   final Reference? target;
 
   /// [endpoint] /// Indicates where the message should be routed to.
-  @JsonKey(name: 'endpoint')
   final FhirUrl endpoint;
-  @JsonKey(name: '_endpoint')
   final Element? endpointElement;
 
   /// [receiver] /// Allows data conveyed by a message to be addressed to a particular person or
   /// department when routing to a specific application isn't sufficient.
-  @JsonKey(name: 'receiver')
   final Reference? receiver;
   @override
   Map<String, dynamic> toJson() {
@@ -543,7 +522,6 @@ class MessageHeaderDestination extends BackboneElement {
 }
 
 /// [MessageHeaderSource] /// The source application from which this message originated.
-@JsonSerializable()
 class MessageHeaderSource extends BackboneElement {
   MessageHeaderSource({
     super.id,
@@ -565,40 +543,32 @@ class MessageHeaderSource extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MessageHeaderSource';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [name] /// Human-readable name for the source system.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [software] /// May include configuration or other information useful in debugging.
-  @JsonKey(name: 'software')
   final FhirString? software;
-  @JsonKey(name: '_software')
   final Element? softwareElement;
 
   /// [version] /// Can convey versions of multiple systems in situations where a message
   /// passes through multiple hands.
-  @JsonKey(name: 'version')
   final FhirString? version;
-  @JsonKey(name: '_version')
   final Element? versionElement;
 
   /// [contact] /// An e-mail, phone, website or other contact point to use to resolve issues
   /// with message communications.
-  @JsonKey(name: 'contact')
   final ContactPoint? contact;
 
   /// [endpoint] /// Identifies the routing target to send acknowledgements to.
-  @JsonKey(name: 'endpoint')
   final FhirUrl endpoint;
-  @JsonKey(name: '_endpoint')
   final Element? endpointElement;
   @override
   Map<String, dynamic> toJson() {
@@ -747,7 +717,6 @@ class MessageHeaderSource extends BackboneElement {
 
 /// [MessageHeaderResponse] /// Information about the message that this message is a response to. Only
 /// present if this message is a response.
-@JsonSerializable()
 class MessageHeaderResponse extends BackboneElement {
   MessageHeaderResponse({
     super.id,
@@ -765,27 +734,23 @@ class MessageHeaderResponse extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MessageHeaderResponse';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// The MessageHeader.id of the message to which this message is a response.
-  @JsonKey(name: 'identifier')
   final FhirId identifier;
-  @JsonKey(name: '_identifier')
   final Element? identifierElement;
 
   /// [code] /// Code that identifies the type of response to the message - whether it was
   /// successful or not, and whether it should be resent or not.
-  @JsonKey(name: 'code')
   final ResponseType code;
-  @JsonKey(name: '_code')
   final Element? codeElement;
 
   /// [details] /// Full details of any issues found in the message.
-  @JsonKey(name: 'details')
   final Reference? details;
   @override
   Map<String, dynamic> toJson() {

@@ -1,30 +1,23 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// EnteralFormulaAdditiveType: Codes for the type of modular component such as protein, carbohydrate or fiber to be provided in addition to or mixed with the base formula. This value set is provided as a suggestive example.
 enum EnteralFormulaAdditiveTypeCode {
   /// Display: Lipid
   /// Definition: Modular lipid enteral formula component
-  @JsonValue('lipid')
   lipid,
 
   /// Display: Protein
   /// Definition: Modular protein enteral formula component
-  @JsonValue('protein')
   protein,
 
   /// Display: Carbohydrate
   /// Definition: Modular carbohydrate enteral formula component
-  @JsonValue('carbohydrate')
   carbohydrate,
 
   /// Display: Fiber
   /// Definition: Modular fiber enteral formula component
-  @JsonValue('fiber')
   fiber,
 
   /// Display: Water
   /// Definition: Added water
-  @JsonValue('water')
   water,
   ;
 

@@ -1,17 +1,12 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// A categorisation for a clinical use information item.
 enum ClinicalUseDefinitionCategory {
   /// Display: Pregnancy and Lactation
-  @JsonValue('Pregnancy')
   Pregnancy,
 
   /// Display: Overdose
-  @JsonValue('Overdose')
   Overdose,
 
   /// Display: Effects on Ability to Drive and Use Machines
-  @JsonValue('DriveAndMachines')
   DriveAndMachines,
   ;
 

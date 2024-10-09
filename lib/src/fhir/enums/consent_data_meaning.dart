@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// How a resource reference is interpreted when testing consent restrictions.
 enum ConsentDataMeaning {
   /// Display: Instance
   /// Definition: The consent applies directly to the instance of the resource.
-  @JsonValue('instance')
   instance,
 
   /// Display: Related
   /// Definition: The consent applies directly to the instance of the resource and instances it refers to.
-  @JsonValue('related')
   related,
 
   /// Display: Dependents
   /// Definition: The consent applies directly to the instance of the resource and instances that refer to it.
-  @JsonValue('dependents')
   dependents,
 
   /// Display: AuthoredBy
   /// Definition: The consent applies to instances of resources that are authored by.
-  @JsonValue('authoredby')
   authoredby,
   ;
 

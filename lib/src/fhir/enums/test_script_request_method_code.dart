@@ -1,40 +1,31 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The allowable request method or HTTP operation codes.
 enum TestScriptRequestMethodCode {
   /// Display: DELETE
   /// Definition: HTTP DELETE operation.
-  @JsonValue('delete')
   delete,
 
   /// Display: GET
   /// Definition: HTTP GET operation.
-  @JsonValue('get')
   get_,
 
   /// Display: OPTIONS
   /// Definition: HTTP OPTIONS operation.
-  @JsonValue('options')
   options,
 
   /// Display: PATCH
   /// Definition: HTTP PATCH operation.
-  @JsonValue('patch')
   patch,
 
   /// Display: POST
   /// Definition: HTTP POST operation.
-  @JsonValue('post')
   post,
 
   /// Display: PUT
   /// Definition: HTTP PUT operation.
-  @JsonValue('put')
   put,
 
   /// Display: HEAD
   /// Definition: HTTP HEAD operation.
-  @JsonValue('head')
   head,
   ;
 

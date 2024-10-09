@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [CompartmentDefinition] /// A compartment definition that defines how resources are accessed on a
 /// server.
-@JsonSerializable()
 class CompartmentDefinition extends DomainResource {
   CompartmentDefinition({
     super.id,
@@ -52,10 +50,11 @@ class CompartmentDefinition extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.CompartmentDefinition);
+
   @override
   String get fhirType => 'CompartmentDefinition';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this compartment definition when
@@ -65,9 +64,7 @@ class CompartmentDefinition extends DomainResource {
   /// compartment definition is (or will be) published. This URL can be the
   /// target of a canonical reference. It SHALL remain the same when the
   /// compartment definition is stored on different servers.
-  @JsonKey(name: 'url')
   final FhirUri url;
-  @JsonKey(name: '_url')
   final Element? urlElement;
 
   /// [version] /// The identifier that is used to identify this version of the compartment
@@ -77,60 +74,45 @@ class CompartmentDefinition extends DomainResource {
   /// a timestamp (e.g. yyyymmdd) if a managed version is not available. There is
   /// also no expectation that versions can be placed in a lexicographical
   /// sequence.
-  @JsonKey(name: 'version')
   final FhirString? version;
-  @JsonKey(name: '_version')
   final Element? versionElement;
 
   /// [name] /// A natural language name identifying the compartment definition. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  @JsonKey(name: 'name')
   final FhirString name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [status] /// The status of this compartment definition. Enables tracking the life-cycle
   /// of the content.
-  @JsonKey(name: 'status')
   final PublicationStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [experimental] /// A Boolean value to indicate that this compartment definition is authored
   /// for testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
-  @JsonKey(name: 'experimental')
   final FhirBoolean? experimental;
-  @JsonKey(name: '_experimental')
   final Element? experimentalElement;
 
   /// [date] /// The date (and optionally time) when the compartment definition was
   /// published. The date must change when the business version changes and it
   /// must change if the status code changes. In addition, it should change when
   /// the substantive content of the compartment definition changes.
-  @JsonKey(name: 'date')
   final FhirDateTime? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [publisher] /// The name of the organization or individual that published the compartment
   /// definition.
-  @JsonKey(name: 'publisher')
   final FhirString? publisher;
-  @JsonKey(name: '_publisher')
   final Element? publisherElement;
 
   /// [contact] /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  @JsonKey(name: 'contact')
   final List<ContactDetail>? contact;
 
   /// [description] /// A free text natural language description of the compartment definition from
   /// a consumer's perspective.
-  @JsonKey(name: 'description')
   final FhirMarkdown? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [useContext] /// The content was developed with a focus and intent of supporting the
@@ -138,30 +120,22 @@ class CompartmentDefinition extends DomainResource {
   /// age, ...) or may be references to specific programs (insurance plans,
   /// studies, ...) and may be used to assist with indexing and searching for
   /// appropriate compartment definition instances.
-  @JsonKey(name: 'useContext')
   final List<UsageContext>? useContext;
 
   /// [purpose] /// Explanation of why this compartment definition is needed and why it has
   /// been designed as it has.
-  @JsonKey(name: 'purpose')
   final FhirMarkdown? purpose;
-  @JsonKey(name: '_purpose')
   final Element? purposeElement;
 
   /// [code] /// Which compartment this definition describes.
-  @JsonKey(name: 'code')
   final CompartmentType code;
-  @JsonKey(name: '_code')
   final Element? codeElement;
 
   /// [search] /// Whether the search syntax is supported,.
-  @JsonKey(name: 'search')
   final FhirBoolean search;
-  @JsonKey(name: '_search')
   final Element? searchElement;
 
   /// [resource] /// Information about how a resource is related to the compartment.
-  @JsonKey(name: 'resource')
   final List<CompartmentDefinitionResource>? resource;
   @override
   Map<String, dynamic> toJson() {
@@ -472,7 +446,6 @@ class CompartmentDefinition extends DomainResource {
 }
 
 /// [CompartmentDefinitionResource] /// Information about how a resource is related to the compartment.
-@JsonSerializable()
 class CompartmentDefinitionResource extends BackboneElement {
   CompartmentDefinitionResource({
     super.id,
@@ -491,30 +464,25 @@ class CompartmentDefinitionResource extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CompartmentDefinitionResource';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// The name of a resource supported by the server.
-  @JsonKey(name: 'code')
   final FhirCode code;
-  @JsonKey(name: '_code')
   final Element? codeElement;
 
   /// [param] /// The name of a search parameter that represents the link to the compartment.
   /// More than one may be listed because a resource may be linked to a
   /// compartment in more than one way,.
-  @JsonKey(name: 'param')
   final List<FhirString>? param;
-  @JsonKey(name: '_param')
   final List<Element>? paramElement;
 
   /// [documentation] /// Additional documentation about the resource and compartment.
-  @JsonKey(name: 'documentation')
   final FhirString? documentation;
-  @JsonKey(name: '_documentation')
   final Element? documentationElement;
   @override
   Map<String, dynamic> toJson() {

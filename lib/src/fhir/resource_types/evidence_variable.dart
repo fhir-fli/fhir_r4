@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [EvidenceVariable] /// The EvidenceVariable resource describes an element that knowledge
 /// (Evidence) is about.
-@JsonSerializable()
 class EvidenceVariable extends DomainResource {
   EvidenceVariable({
     super.id,
@@ -64,10 +62,11 @@ class EvidenceVariable extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.EvidenceVariable);
+
   @override
   String get fhirType => 'EvidenceVariable';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this evidence variable when it is
@@ -77,15 +76,12 @@ class EvidenceVariable extends DomainResource {
   /// evidence variable is (or will be) published. This URL can be the target of
   /// a canonical reference. It SHALL remain the same when the evidence variable
   /// is stored on different servers.
-  @JsonKey(name: 'url')
   final FhirUri? url;
-  @JsonKey(name: '_url')
   final Element? urlElement;
 
   /// [identifier] /// A formal identifier that is used to identify this evidence variable when it
   /// is represented in other formats, or referenced in a specification, model,
   /// design or an instance.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [version] /// The identifier that is used to identify this version of the evidence
@@ -99,64 +95,47 @@ class EvidenceVariable extends DomainResource {
   /// information on versioning knowledge assets, refer to the Decision Support
   /// Service specification. Note that a version is required for non-experimental
   /// active artifacts.
-  @JsonKey(name: 'version')
   final FhirString? version;
-  @JsonKey(name: '_version')
   final Element? versionElement;
 
   /// [name] /// A natural language name identifying the evidence variable. This name should
   /// be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [title] /// A short, descriptive, user-friendly title for the evidence variable.
-  @JsonKey(name: 'title')
   final FhirString? title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [shortTitle] /// The short title provides an alternate title for use in informal descriptive
   /// contexts where the full, formal title is not necessary.
-  @JsonKey(name: 'shortTitle')
   final FhirString? shortTitle;
-  @JsonKey(name: '_shortTitle')
   final Element? shortTitleElement;
 
   /// [subtitle] /// An explanatory or alternate title for the EvidenceVariable giving
   /// additional information about its content.
-  @JsonKey(name: 'subtitle')
   final FhirString? subtitle;
-  @JsonKey(name: '_subtitle')
   final Element? subtitleElement;
 
   /// [status] /// The status of this evidence variable. Enables tracking the life-cycle of
   /// the content.
-  @JsonKey(name: 'status')
   final PublicationStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [date] /// The date (and optionally time) when the evidence variable was published.
   /// The date must change when the business version changes and it must change
   /// if the status code changes. In addition, it should change when the
   /// substantive content of the evidence variable changes.
-  @JsonKey(name: 'date')
   final FhirDateTime? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [description] /// A free text natural language description of the evidence variable from a
   /// consumer's perspective.
-  @JsonKey(name: 'description')
   final FhirMarkdown? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [note] /// A human-readable string to clarify or explain concepts about the resource.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [useContext] /// The content was developed with a focus and intent of supporting the
@@ -164,73 +143,56 @@ class EvidenceVariable extends DomainResource {
   /// age, ...) or may be references to specific programs (insurance plans,
   /// studies, ...) and may be used to assist with indexing and searching for
   /// appropriate evidence variable instances.
-  @JsonKey(name: 'useContext')
   final List<UsageContext>? useContext;
 
   /// [publisher] /// The name of the organization or individual that published the evidence
   /// variable.
-  @JsonKey(name: 'publisher')
   final FhirString? publisher;
-  @JsonKey(name: '_publisher')
   final Element? publisherElement;
 
   /// [contact] /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  @JsonKey(name: 'contact')
   final List<ContactDetail>? contact;
 
   /// [author] /// An individiual or organization primarily involved in the creation and
   /// maintenance of the content.
-  @JsonKey(name: 'author')
   final List<ContactDetail>? author;
 
   /// [editor] /// An individual or organization primarily responsible for internal coherence
   /// of the content.
-  @JsonKey(name: 'editor')
   final List<ContactDetail>? editor;
 
   /// [reviewer] /// An individual or organization primarily responsible for review of some
   /// aspect of the content.
-  @JsonKey(name: 'reviewer')
   final List<ContactDetail>? reviewer;
 
   /// [endorser] /// An individual or organization responsible for officially endorsing the
   /// content for use in some setting.
-  @JsonKey(name: 'endorser')
   final List<ContactDetail>? endorser;
 
   /// [relatedArtifact] /// Related artifacts such as additional documentation, justification, or
   /// bibliographic references.
-  @JsonKey(name: 'relatedArtifact')
   final List<RelatedArtifact>? relatedArtifact;
 
   /// [actual] /// True if the actual variable measured, false if a conceptual representation
   /// of the intended variable.
-  @JsonKey(name: 'actual')
   final FhirBoolean? actual;
-  @JsonKey(name: '_actual')
   final Element? actualElement;
 
   /// [characteristicCombination] /// Used to specify if two or more characteristics are combined with OR or AND.
-  @JsonKey(name: 'characteristicCombination')
   final CharacteristicCombination? characteristicCombination;
-  @JsonKey(name: '_characteristicCombination')
   final Element? characteristicCombinationElement;
 
   /// [characteristic] /// A characteristic that defines the members of the evidence element. Multiple
   /// characteristics are applied with "and" semantics.
-  @JsonKey(name: 'characteristic')
   final List<EvidenceVariableCharacteristic>? characteristic;
 
   /// [handling] /// Used for an outcome to classify.
-  @JsonKey(name: 'handling')
   final EvidenceVariableHandling? handling;
-  @JsonKey(name: '_handling')
   final Element? handlingElement;
 
   /// [category] /// A grouping (or set of values) described along with other groupings to
   /// specify the set of groupings allowed for the variable.
-  @JsonKey(name: 'category')
   final List<EvidenceVariableCategory>? category;
   @override
   Map<String, dynamic> toJson() {
@@ -682,7 +644,6 @@ class EvidenceVariable extends DomainResource {
 
 /// [EvidenceVariableCharacteristic] /// A characteristic that defines the members of the evidence element. Multiple
 /// characteristics are applied with "and" semantics.
-@JsonSerializable()
 class EvidenceVariableCharacteristic extends BackboneElement {
   EvidenceVariableCharacteristic({
     super.id,
@@ -709,72 +670,59 @@ class EvidenceVariableCharacteristic extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'EvidenceVariableCharacteristic';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [description] /// A short, natural language description of the characteristic that could be
   /// used to communicate the criteria to an end-user.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [definitionReference] /// Define members of the evidence element using Codes (such as condition,
   /// medication, or observation), Expressions ( using an expression language
   /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes diagnosis
   /// onset in the last year).
-  @JsonKey(name: 'definitionReference')
   final Reference? definitionReference;
 
   /// [definitionCanonical] /// Define members of the evidence element using Codes (such as condition,
   /// medication, or observation), Expressions ( using an expression language
   /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes diagnosis
   /// onset in the last year).
-  @JsonKey(name: 'definitionCanonical')
   final FhirCanonical? definitionCanonical;
-  @JsonKey(name: '_definitionCanonical')
   final Element? definitionCanonicalElement;
 
   /// [definitionCodeableConcept] /// Define members of the evidence element using Codes (such as condition,
   /// medication, or observation), Expressions ( using an expression language
   /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes diagnosis
   /// onset in the last year).
-  @JsonKey(name: 'definitionCodeableConcept')
   final CodeableConcept? definitionCodeableConcept;
 
   /// [definitionExpression] /// Define members of the evidence element using Codes (such as condition,
   /// medication, or observation), Expressions ( using an expression language
   /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes diagnosis
   /// onset in the last year).
-  @JsonKey(name: 'definitionExpression')
   final FhirExpression? definitionExpression;
 
   /// [method] /// Method used for describing characteristic.
-  @JsonKey(name: 'method')
   final CodeableConcept? method;
 
   /// [device] /// Device used for determining characteristic.
-  @JsonKey(name: 'device')
   final Reference? device;
 
   /// [exclude] /// When true, members with this characteristic are excluded from the element.
-  @JsonKey(name: 'exclude')
   final FhirBoolean? exclude;
-  @JsonKey(name: '_exclude')
   final Element? excludeElement;
 
   /// [timeFromStart] /// Indicates duration, period, or point of observation from the participant's
   /// study entry.
-  @JsonKey(name: 'timeFromStart')
   final EvidenceVariableTimeFromStart? timeFromStart;
 
   /// [groupMeasure] /// Indicates how elements are aggregated within the study effective period.
-  @JsonKey(name: 'groupMeasure')
   final GroupMeasure? groupMeasure;
-  @JsonKey(name: '_groupMeasure')
   final Element? groupMeasureElement;
   @override
   Map<String, dynamic> toJson() {
@@ -973,7 +921,6 @@ class EvidenceVariableCharacteristic extends BackboneElement {
 
 /// [EvidenceVariableTimeFromStart] /// Indicates duration, period, or point of observation from the participant's
 /// study entry.
-@JsonSerializable()
 class EvidenceVariableTimeFromStart extends BackboneElement {
   EvidenceVariableTimeFromStart({
     super.id,
@@ -991,29 +938,25 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'EvidenceVariableTimeFromStart';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [description] /// A short, natural language description.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [quantity] /// Used to express the observation at a defined amount of time after the study
   /// start.
-  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [range] /// Used to express the observation within a period after the study start.
-  @JsonKey(name: 'range')
   final Range? range;
 
   /// [note] /// A human-readable string to clarify or explain concepts about the resource.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
@@ -1143,7 +1086,6 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
 
 /// [EvidenceVariableCategory] /// A grouping (or set of values) described along with other groupings to
 /// specify the set of groupings allowed for the variable.
-@JsonSerializable()
 class EvidenceVariableCategory extends BackboneElement {
   EvidenceVariableCategory({
     super.id,
@@ -1161,28 +1103,24 @@ class EvidenceVariableCategory extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'EvidenceVariableCategory';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [name] /// A human-readable title or representation of the grouping.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [valueCodeableConcept] /// Value or set of values that define the grouping.
-  @JsonKey(name: 'valueCodeableConcept')
   final CodeableConcept? valueCodeableConcept;
 
   /// [valueQuantity] /// Value or set of values that define the grouping.
-  @JsonKey(name: 'valueQuantity')
   final Quantity? valueQuantity;
 
   /// [valueRange] /// Value or set of values that define the grouping.
-  @JsonKey(name: 'valueRange')
   final Range? valueRange;
   @override
   Map<String, dynamic> toJson() {

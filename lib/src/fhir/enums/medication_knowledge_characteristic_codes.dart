@@ -1,40 +1,31 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// MedicationKnowledge Characteristic Codes
 enum MedicationKnowledgeCharacteristicCodes {
   /// Display: Imprint Code
   /// Definition: Identyifying marks on product
-  @JsonValue('imprintcd')
   imprintcd,
 
   /// Display: Size
   /// Definition: Description of size of the product
-  @JsonValue('size')
   size,
 
   /// Display: Shape
   /// Definition: Description of the shape of the product
-  @JsonValue('shape')
   shape,
 
   /// Display: Color
   /// Definition: Description of the color of the product
-  @JsonValue('color')
   color,
 
   /// Display: Coating
   /// Definition: Description of the coating of the product
-  @JsonValue('coating')
   coating,
 
   /// Display: Scoring
   /// Definition: Description of the scoring of the product
-  @JsonValue('scoring')
   scoring,
 
   /// Display: Logo
   /// Definition: Description of the Logo of the product
-  @JsonValue('logo')
   logo,
   ;
 

@@ -1,30 +1,23 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Overall defining type of this clinical use definition.
 enum ClinicalUseDefinitionType {
   /// Display: Indication
   /// Definition: A reason for giving the medication.
-  @JsonValue('indication')
   indication,
 
   /// Display: Contraindication
   /// Definition: A reason for not giving the medication.
-  @JsonValue('contraindication')
   contraindication,
 
   /// Display: Interaction
   /// Definition: Interactions between the medication and other substances.
-  @JsonValue('interaction')
   interaction,
 
   /// Display: Undesirable Effect
   /// Definition: Side effects or adverse effects associated with the medication.
-  @JsonValue('undesirable-effect')
   undesirable_effect,
 
   /// Display: Warning
   /// Definition: A general warning or issue that is not specifically one of the other types.
-  @JsonValue('warning')
   warning,
   ;
 

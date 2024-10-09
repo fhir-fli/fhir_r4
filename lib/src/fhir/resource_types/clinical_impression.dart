@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -12,7 +11,6 @@ import '../../../fhir_r4.dart';
 /// depending on the clinical workflow. This resource is called
 /// "ClinicalImpression" rather than "ClinicalAssessment" to avoid confusion
 /// with the recording of assessment tools such as Apgar score.
-@JsonSerializable()
 class ClinicalImpression extends DomainResource {
   ClinicalImpression({
     super.id,
@@ -59,77 +57,61 @@ class ClinicalImpression extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.ClinicalImpression);
+
   @override
   String get fhirType => 'ClinicalImpression';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Business identifiers assigned to this clinical impression by the performer
   /// or other systems which remain constant as the resource is updated and
   /// propagates from server to server.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// Identifies the workflow status of the assessment.
-  @JsonKey(name: 'status')
   final ClinicalImpressionStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [statusReason] /// Captures the reason for the current state of the ClinicalImpression.
-  @JsonKey(name: 'statusReason')
   final CodeableConcept? statusReason;
 
   /// [code] /// Categorizes the type of clinical assessment performed.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [description] /// A summary of the context and/or cause of the assessment - why / where it
   /// was performed, and what patient events/status prompted it.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [subject] /// The patient or group of individuals assessed as part of this record.
-  @JsonKey(name: 'subject')
   final Reference subject;
 
   /// [encounter] /// The Encounter during which this ClinicalImpression was created or to which
   /// the creation of this record is tightly associated.
-  @JsonKey(name: 'encounter')
   final Reference? encounter;
 
   /// [effectiveDateTime] /// The point in time or period over which the subject was assessed.
-  @JsonKey(name: 'effectiveDateTime')
   final FhirDateTime? effectiveDateTime;
-  @JsonKey(name: '_effectiveDateTime')
   final Element? effectiveDateTimeElement;
 
   /// [effectivePeriod] /// The point in time or period over which the subject was assessed.
-  @JsonKey(name: 'effectivePeriod')
   final Period? effectivePeriod;
 
   /// [date] /// Indicates when the documentation of the assessment was complete.
-  @JsonKey(name: 'date')
   final FhirDateTime? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [assessor] /// The clinician performing the assessment.
-  @JsonKey(name: 'assessor')
   final Reference? assessor;
 
   /// [previous] /// A reference to the last assessment that was conducted on this patient.
   /// Assessments are often/usually ongoing in nature; a care provider
   /// (practitioner or team) will make new assessments on an ongoing basis as new
   /// data arises or the patient's conditions changes.
-  @JsonKey(name: 'previous')
   final Reference? previous;
 
   /// [problem] /// A list of the relevant problems/conditions for a patient.
-  @JsonKey(name: 'problem')
   final List<Reference>? problem;
 
   /// [investigation] /// One or more sets of investigations (signs, symptoms, etc.). The actual
@@ -137,44 +119,34 @@ class ClinicalImpression extends DomainResource {
   /// of the assessment. These investigations may include data generated during
   /// the assessment process, or data previously generated and recorded that is
   /// pertinent to the outcomes.
-  @JsonKey(name: 'investigation')
   final List<ClinicalImpressionInvestigation>? investigation;
 
   /// [protocol] /// Reference to a specific published clinical protocol that was followed
   /// during this assessment, and/or that provides evidence in support of the
   /// diagnosis.
-  @JsonKey(name: 'protocol')
   final List<FhirUri>? protocol;
-  @JsonKey(name: '_protocol')
   final List<Element>? protocolElement;
 
   /// [summary] /// A text summary of the investigations and the diagnosis.
-  @JsonKey(name: 'summary')
   final FhirString? summary;
-  @JsonKey(name: '_summary')
   final Element? summaryElement;
 
   /// [finding] /// Specific findings or diagnoses that were considered likely or relevant to
   /// ongoing treatment.
-  @JsonKey(name: 'finding')
   final List<ClinicalImpressionFinding>? finding;
 
   /// [prognosisCodeableConcept] /// Estimate of likely outcome.
-  @JsonKey(name: 'prognosisCodeableConcept')
   final List<CodeableConcept>? prognosisCodeableConcept;
 
   /// [prognosisReference] /// RiskAssessment expressing likely outcome.
-  @JsonKey(name: 'prognosisReference')
   final List<Reference>? prognosisReference;
 
   /// [supportingInfo] /// Information supporting the clinical impression.
-  @JsonKey(name: 'supportingInfo')
   final List<Reference>? supportingInfo;
 
   /// [note] /// Commentary about the impression, typically recorded after the impression
   /// itself was made, though supplemental notes by the original author could
   /// also appear.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
@@ -563,7 +535,6 @@ class ClinicalImpression extends DomainResource {
 /// of the assessment. These investigations may include data generated during
 /// the assessment process, or data previously generated and recorded that is
 /// pertinent to the outcomes.
-@JsonSerializable()
 class ClinicalImpressionInvestigation extends BackboneElement {
   ClinicalImpressionInvestigation({
     super.id,
@@ -578,21 +549,20 @@ class ClinicalImpressionInvestigation extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ClinicalImpressionInvestigation';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// A name/code for the group ("set") of investigations. Typically, this will
   /// be something like "signs", "symptoms", "clinical", "diagnostic", but the
   /// list is not constrained, and others such groups such as
   /// (exposure|family|travel|nutritional) history may be used.
-  @JsonKey(name: 'code')
   final CodeableConcept code;
 
   /// [item] /// A record of a specific investigation that was undertaken.
-  @JsonKey(name: 'item')
   final List<Reference>? item;
   @override
   Map<String, dynamic> toJson() {
@@ -696,7 +666,6 @@ class ClinicalImpressionInvestigation extends BackboneElement {
 
 /// [ClinicalImpressionFinding] /// Specific findings or diagnoses that were considered likely or relevant to
 /// ongoing treatment.
-@JsonSerializable()
 class ClinicalImpressionFinding extends BackboneElement {
   ClinicalImpressionFinding({
     super.id,
@@ -713,26 +682,23 @@ class ClinicalImpressionFinding extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ClinicalImpressionFinding';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [itemCodeableConcept] /// Specific text or code for finding or diagnosis, which may include ruled-out
   /// or resolved conditions.
-  @JsonKey(name: 'itemCodeableConcept')
   final CodeableConcept? itemCodeableConcept;
 
   /// [itemReference] /// Specific reference for finding or diagnosis, which may include ruled-out or
   /// resolved conditions.
-  @JsonKey(name: 'itemReference')
   final Reference? itemReference;
 
   /// [basis] /// Which investigations support finding or diagnosis.
-  @JsonKey(name: 'basis')
   final FhirString? basis;
-  @JsonKey(name: '_basis')
   final Element? basisElement;
   @override
   Map<String, dynamic> toJson() {

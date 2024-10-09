@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes sample Provider Qualification codes.
 enum ExampleProviderQualificationCodes {
   /// Display: Dentist
   /// Definition: Dentist General Practitioner (DDS, DDM).
-  @JsonValue('311405')
   value311405,
 
   /// Display: Ophthalmologist
   /// Definition: Ophthalmologist.
-  @JsonValue('604215')
   value604215,
 
   /// Display: Optometrist
   /// Definition: Optometrist.
-  @JsonValue('604210')
   value604210,
   ;
 

@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The type of relations between entries.
 enum CatalogEntryRelationType {
   /// Display: Triggers
   /// Definition: the related entry represents an activity that may be triggered by the current item.
-  @JsonValue('triggers')
   triggers,
 
   /// Display: Replaced By
   /// Definition: the related entry represents an item that replaces the current retired item.
-  @JsonValue('is-replaced-by')
   is_replaced_by,
   ;
 

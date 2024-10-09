@@ -1,10 +1,7 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Extra measures defined for a Medicinal Product, such as a requirement to conduct post-authorisation studies.
 enum SpecialMeasures {
   /// Display: Requirement to conduct post-authorisation studies
   /// Definition: Requirement to conduct post-authorisation studies
-  @JsonValue('Post-authorisationStudies')
   Post_authorisationStudies,
   ;
 

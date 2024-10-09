@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes a sample set of Payment Status codes.
 enum PaymentStatusCodes {
   /// Display: Paid
   /// Definition: The payment has been sent physically or electronically.
-  @JsonValue('paid')
   paid,
 
   /// Display: Cleared
   /// Definition: The payment has been received by the payee.
-  @JsonValue('cleared')
   cleared,
   ;
 

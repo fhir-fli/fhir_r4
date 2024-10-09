@@ -1,45 +1,35 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The type of trigger.
 enum TriggerType {
   /// Display: Named Event
   /// Definition: The trigger occurs in response to a specific named event, and no other information about the trigger is specified. Named events are completely pre-coordinated, and the formal semantics of the trigger are not provided.
-  @JsonValue('named-event')
   named_event,
 
   /// Display: Periodic
   /// Definition: The trigger occurs at a specific time or periodically as described by a timing or schedule. A periodic event cannot have any data elements, but may have a name assigned as a shorthand for the event.
-  @JsonValue('periodic')
   periodic,
 
   /// Display: Data Changed
   /// Definition: The trigger occurs whenever data of a particular type is changed in any way, either added, modified, or removed.
-  @JsonValue('data-changed')
   data_changed,
 
   /// Display: Data Added
   /// Definition: The trigger occurs whenever data of a particular type is added.
-  @JsonValue('data-added')
   data_added,
 
   /// Display: Data Updated
   /// Definition: The trigger occurs whenever data of a particular type is modified.
-  @JsonValue('data-modified')
   data_modified,
 
   /// Display: Data Removed
   /// Definition: The trigger occurs whenever data of a particular type is removed.
-  @JsonValue('data-removed')
   data_removed,
 
   /// Display: Data Accessed
   /// Definition: The trigger occurs whenever data of a particular type is accessed.
-  @JsonValue('data-accessed')
   data_accessed,
 
   /// Display: Data Access Ended
   /// Definition: The trigger occurs whenever access to data of a particular type is completed.
-  @JsonValue('data-access-ended')
   data_access_ended,
   ;
 

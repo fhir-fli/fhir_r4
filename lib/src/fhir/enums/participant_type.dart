@@ -1,22 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set defines a set of codes that can be used to indicate how an individual participates in an encounter.
 enum ParticipantType {
-  @JsonValue('SPRF')
   SPRF,
-  @JsonValue('PPRF')
   PPRF,
-  @JsonValue('PART')
   PART,
 
   /// Display: Translator
   /// Definition: A translator who is facilitating communication with the patient during the encounter.
-  @JsonValue('translator')
   translator,
 
   /// Display: Emergency
   /// Definition: A person to be contacted in case of an emergency during the encounter.
-  @JsonValue('emergency')
   emergency,
   ;
 

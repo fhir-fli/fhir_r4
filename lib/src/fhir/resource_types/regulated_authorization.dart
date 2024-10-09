@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -9,7 +8,6 @@ import '../../../fhir_r4.dart';
 /// treatment, facility or activity that is cited in a guidance, regulation,
 /// rule or legislative act. An example is Market Authorization relating to a
 /// Medicinal Product.
-@JsonSerializable()
 class RegulatedAuthorization extends DomainResource {
   RegulatedAuthorization({
     super.id,
@@ -45,76 +43,62 @@ class RegulatedAuthorization extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.RegulatedAuthorization);
+
   @override
   String get fhirType => 'RegulatedAuthorization';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Business identifier for the authorization, typically assigned by the
   /// authorizing body.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [subject] /// The product type, treatment, facility or activity that is being authorized.
-  @JsonKey(name: 'subject')
   final List<Reference>? subject;
 
   /// [type] /// Overall type of this authorization, for example drug marketing approval,
   /// orphan drug designation.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [description] /// General textual supporting information.
-  @JsonKey(name: 'description')
   final FhirMarkdown? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [region] /// The territory (e.g., country, jurisdiction etc.) in which the authorization
   /// has been granted.
-  @JsonKey(name: 'region')
   final List<CodeableConcept>? region;
 
   /// [status] /// The status that is authorised e.g. approved. Intermediate states and
   /// actions can be tracked with cases and applications.
-  @JsonKey(name: 'status')
   final CodeableConcept? status;
 
   /// [statusDate] /// The date at which the current status was assigned.
-  @JsonKey(name: 'statusDate')
   final FhirDateTime? statusDate;
-  @JsonKey(name: '_statusDate')
   final Element? statusDateElement;
 
   /// [validityPeriod] /// The time period in which the regulatory approval, clearance or licencing is
   /// in effect. As an example, a Marketing Authorization includes the date of
   /// authorization and/or an expiration date.
-  @JsonKey(name: 'validityPeriod')
   final Period? validityPeriod;
 
   /// [indication] /// Condition for which the use of the regulated product applies.
-  @JsonKey(name: 'indication')
   final CodeableReference? indication;
 
   /// [intendedUse] /// The intended use of the product, e.g. prevention, treatment, diagnosis.
-  @JsonKey(name: 'intendedUse')
   final CodeableConcept? intendedUse;
 
   /// [basis] /// The legal or regulatory framework against which this authorization is
   /// granted, or other reasons for it.
-  @JsonKey(name: 'basis')
   final List<CodeableConcept>? basis;
 
   /// [holder] /// The organization that has been granted this authorization, by some
   /// authoritative body (the 'regulator').
-  @JsonKey(name: 'holder')
   final Reference? holder;
 
   /// [regulator] /// The regulatory authority or authorizing body granting the authorization.
   /// For example, European Medicines Agency (EMA), Food and Drug Administration
   /// (FDA), Health Canada (HC), etc.
-  @JsonKey(name: 'regulator')
   final Reference? regulator;
 
   /// [case_] /// The case or regulatory procedure for granting or amending a regulated
@@ -124,7 +108,6 @@ class RegulatedAuthorization extends DomainResource {
   /// this and assesses them. Note: This area is subject to ongoing review and
   /// the workgroup is seeking implementer feedback on its use (see link at
   /// bottom of page).
-  @JsonKey(name: 'case')
   final RegulatedAuthorizationCase? case_;
   @override
   Map<String, dynamic> toJson() {
@@ -417,7 +400,6 @@ class RegulatedAuthorization extends DomainResource {
 /// this and assesses them. Note: This area is subject to ongoing review and
 /// the workgroup is seeking implementer feedback on its use (see link at
 /// bottom of page).
-@JsonSerializable()
 class RegulatedAuthorizationCase extends BackboneElement {
   RegulatedAuthorizationCase({
     super.id,
@@ -437,32 +419,27 @@ class RegulatedAuthorizationCase extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'RegulatedAuthorizationCase';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifier by which this case can be referenced.
-  @JsonKey(name: 'identifier')
   final Identifier? identifier;
 
   /// [type] /// The defining type of case.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [status] /// The status associated with the case.
-  @JsonKey(name: 'status')
   final CodeableConcept? status;
 
   /// [datePeriod] /// Relevant date for this case.
-  @JsonKey(name: 'datePeriod')
   final Period? datePeriod;
 
   /// [dateDateTime] /// Relevant date for this case.
-  @JsonKey(name: 'dateDateTime')
   final FhirDateTime? dateDateTime;
-  @JsonKey(name: '_dateDateTime')
   final Element? dateDateTimeElement;
 
   /// [application] /// A regulatory submission from an organization to a regulator, as part of an
@@ -470,7 +447,6 @@ class RegulatedAuthorizationCase extends BackboneElement {
   /// different information to support or modify the submission or the
   /// authorization. The applications can be considered as steps within the
   /// longer running case or procedure for this authorization process.
-  @JsonKey(name: 'application')
   final List<RegulatedAuthorizationCase>? application;
   @override
   Map<String, dynamic> toJson() {

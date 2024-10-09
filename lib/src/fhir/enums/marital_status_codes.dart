@@ -1,8 +1,5 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set defines the set of codes that can be used to indicate the marital status of a person.
 enum MaritalStatusCodes {
-  @JsonValue('UNK')
   UNK,
   ;
 

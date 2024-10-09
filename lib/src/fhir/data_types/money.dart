@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [Money] /// An amount of economic utility in some recognized currency.
-@JsonSerializable()
 class Money extends DataType {
   Money({
     super.id,
@@ -22,22 +20,19 @@ class Money extends DataType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'Money';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [value] /// Numerical value (with implicit precision).
-  @JsonKey(name: 'value')
   final FhirDecimal? value;
-  @JsonKey(name: '_value')
   final Element? valueElement;
 
   /// [currency] /// ISO 4217 Currency Code.
-  @JsonKey(name: 'currency')
   final FhirCode? currency;
-  @JsonKey(name: '_currency')
   final Element? currencyElement;
   @override
   Map<String, dynamic> toJson() {

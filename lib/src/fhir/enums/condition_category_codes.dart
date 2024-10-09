@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Preferred value set for Condition Categories.
 enum ConditionCategoryCodes {
   /// Display: Problem List Item
   /// Definition: An item on a problem list that can be managed over time and can be expressed by a practitioner (e.g. physician, nurse), patient, or related person.
-  @JsonValue('problem-list-item')
   problem_list_item,
 
   /// Display: Encounter Diagnosis
   /// Definition: A point in time diagnosis (e.g. from a physician or nurse) in context of an encounter.
-  @JsonValue('encounter-diagnosis')
   encounter_diagnosis,
   ;
 

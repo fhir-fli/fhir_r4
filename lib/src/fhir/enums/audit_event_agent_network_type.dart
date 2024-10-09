@@ -1,30 +1,23 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The type of network access point of this agent in the audit event.
 enum AuditEventAgentNetworkType {
   /// Display: Machine Name
   /// Definition: The machine name, including DNS name.
-  @JsonValue('1')
   value1,
 
   /// Display: IP Address
   /// Definition: The assigned Internet Protocol (IP) address.
-  @JsonValue('2')
   value2,
 
   /// Display: Telephone Number
   /// Definition: The assigned telephone number.
-  @JsonValue('3')
   value3,
 
   /// Display: Email address
   /// Definition: The assigned email address.
-  @JsonValue('4')
   value4,
 
   /// Display: URI
   /// Definition: URI (User directory, HTTP-PUT, ftp, etc.).
-  @JsonValue('5')
   value5,
   ;
 

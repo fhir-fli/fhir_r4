@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [ManufacturedItemDefinition] /// The definition and characteristics of a medicinal manufactured item, such
 /// as a tablet or capsule, as contained in a packaged medicinal product.
-@JsonSerializable()
 class ManufacturedItemDefinition extends DomainResource {
   ManufacturedItemDefinition({
     super.id,
@@ -35,45 +33,38 @@ class ManufacturedItemDefinition extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.ManufacturedItemDefinition);
+
   @override
   String get fhirType => 'ManufacturedItemDefinition';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Unique identifier.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// The status of this item. Enables tracking the life-cycle of the content.
-  @JsonKey(name: 'status')
   final PublicationStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [manufacturedDoseForm] /// Dose form as manufactured and before any transformation into the
   /// pharmaceutical product.
-  @JsonKey(name: 'manufacturedDoseForm')
   final CodeableConcept manufacturedDoseForm;
 
   /// [unitOfPresentation] /// The “real world” units in which the quantity of the manufactured item is
   /// described.
-  @JsonKey(name: 'unitOfPresentation')
   final CodeableConcept? unitOfPresentation;
 
   /// [manufacturer] /// Manufacturer of the item (Note that this should be named "manufacturer" but
   /// it currently causes technical issues).
-  @JsonKey(name: 'manufacturer')
   final List<Reference>? manufacturer;
 
   /// [ingredient] /// The ingredients of this manufactured item. This is only needed if the
   /// ingredients are not specified by incoming references from the Ingredient
   /// resource.
-  @JsonKey(name: 'ingredient')
   final List<CodeableConcept>? ingredient;
 
   /// [property] /// General characteristics of this item.
-  @JsonKey(name: 'property')
   final List<ManufacturedItemDefinitionProperty>? property;
   @override
   Map<String, dynamic> toJson() {
@@ -285,7 +276,6 @@ class ManufacturedItemDefinition extends DomainResource {
 }
 
 /// [ManufacturedItemDefinitionProperty] /// General characteristics of this item.
-@JsonSerializable()
 class ManufacturedItemDefinitionProperty extends BackboneElement {
   ManufacturedItemDefinitionProperty({
     super.id,
@@ -306,38 +296,31 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ManufacturedItemDefinitionProperty';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// A code expressing the type of characteristic.
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [valueCodeableConcept] /// A value for the characteristic.
-  @JsonKey(name: 'valueCodeableConcept')
   final CodeableConcept? valueCodeableConcept;
 
   /// [valueQuantity] /// A value for the characteristic.
-  @JsonKey(name: 'valueQuantity')
   final Quantity? valueQuantity;
 
   /// [valueDate] /// A value for the characteristic.
-  @JsonKey(name: 'valueDate')
   final FhirDate? valueDate;
-  @JsonKey(name: '_valueDate')
   final Element? valueDateElement;
 
   /// [valueBoolean] /// A value for the characteristic.
-  @JsonKey(name: 'valueBoolean')
   final FhirBoolean? valueBoolean;
-  @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
 
   /// [valueAttachment] /// A value for the characteristic.
-  @JsonKey(name: 'valueAttachment')
   final Attachment? valueAttachment;
   @override
   Map<String, dynamic> toJson() {

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,7 +7,6 @@ import '../../../fhir_r4.dart';
 /// [Location] /// Details and position information for a physical place where services are
 /// provided and resources and participants may be stored, found, contained, or
 /// accommodated.
-@JsonSerializable()
 class Location extends DomainResource {
   Location({
     super.id,
@@ -51,105 +49,83 @@ class Location extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Location);
+
   @override
   String get fhirType => 'Location';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Unique code or number identifying the location to its users.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// The status property covers the general availability of the resource, not
   /// the current value which may be covered by the operationStatus, or by a
   /// schedule/slots if they are configured for the location.
-  @JsonKey(name: 'status')
   final LocationStatus? status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [operationalStatus] /// The operational status covers operation values most relevant to beds (but
   /// can also apply to rooms/units/chairs/etc. such as an isolation
   /// unit/dialysis chair). This typically covers concepts such as contamination,
   /// housekeeping, and other activities like maintenance.
-  @JsonKey(name: 'operationalStatus')
   final Coding? operationalStatus;
 
   /// [name] /// Name of the location as used by humans. Does not need to be unique.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [alias] /// A list of alternate names that the location is known as, or was known as,
   /// in the past.
-  @JsonKey(name: 'alias')
   final List<FhirString>? alias;
-  @JsonKey(name: '_alias')
   final List<Element>? aliasElement;
 
   /// [description] /// Description of the Location, which helps in finding or referencing the
   /// place.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [mode] /// Indicates whether a resource instance represents a specific location or a
   /// class of locations.
-  @JsonKey(name: 'mode')
   final LocationMode? mode;
-  @JsonKey(name: '_mode')
   final Element? modeElement;
 
   /// [type] /// Indicates the type of function performed at the location.
-  @JsonKey(name: 'type')
   final List<CodeableConcept>? type;
 
   /// [telecom] /// The contact details of communication devices available at the location.
   /// This can include phone numbers, fax numbers, mobile numbers, email
   /// addresses and web sites.
-  @JsonKey(name: 'telecom')
   final List<ContactPoint>? telecom;
 
   /// [address] /// Physical location.
-  @JsonKey(name: 'address')
   final Address? address;
 
   /// [physicalType] /// Physical form of the location, e.g. building, room, vehicle, road.
-  @JsonKey(name: 'physicalType')
   final CodeableConcept? physicalType;
 
   /// [position] /// The absolute geographic location of the Location, expressed using the WGS84
   /// datum (This is the same co-ordinate system used in KML).
-  @JsonKey(name: 'position')
   final LocationPosition? position;
 
   /// [managingOrganization] /// The organization responsible for the provisioning and upkeep of the
   /// location.
-  @JsonKey(name: 'managingOrganization')
   final Reference? managingOrganization;
 
   /// [partOf] /// Another Location of which this Location is physically a part of.
-  @JsonKey(name: 'partOf')
   final Reference? partOf;
 
   /// [hoursOfOperation] /// What days/times during a week is this location usually open.
-  @JsonKey(name: 'hoursOfOperation')
   final List<LocationHoursOfOperation>? hoursOfOperation;
 
   /// [availabilityExceptions] /// A description of when the locations opening ours are different to normal,
   /// e.g. public holiday availability. Succinctly describing all possible
   /// exceptions to normal site availability as detailed in the opening hours
   /// Times.
-  @JsonKey(name: 'availabilityExceptions')
   final FhirString? availabilityExceptions;
-  @JsonKey(name: '_availabilityExceptions')
   final Element? availabilityExceptionsElement;
 
   /// [endpoint] /// Technical endpoints providing access to services operated for the location.
-  @JsonKey(name: 'endpoint')
   final List<Reference>? endpoint;
   @override
   Map<String, dynamic> toJson() {
@@ -491,7 +467,6 @@ class Location extends DomainResource {
 
 /// [LocationPosition] /// The absolute geographic location of the Location, expressed using the WGS84
 /// datum (This is the same co-ordinate system used in KML).
-@JsonSerializable()
 class LocationPosition extends BackboneElement {
   LocationPosition({
     super.id,
@@ -510,31 +485,26 @@ class LocationPosition extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'LocationPosition';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [longitude] /// Longitude. The value domain and the interpretation are the same as for the
   /// text of the longitude element in KML (see notes below).
-  @JsonKey(name: 'longitude')
   final FhirDecimal longitude;
-  @JsonKey(name: '_longitude')
   final Element? longitudeElement;
 
   /// [latitude] /// Latitude. The value domain and the interpretation are the same as for the
   /// text of the latitude element in KML (see notes below).
-  @JsonKey(name: 'latitude')
   final FhirDecimal latitude;
-  @JsonKey(name: '_latitude')
   final Element? latitudeElement;
 
   /// [altitude] /// Altitude. The value domain and the interpretation are the same as for the
   /// text of the altitude element in KML (see notes below).
-  @JsonKey(name: 'altitude')
   final FhirDecimal? altitude;
-  @JsonKey(name: '_altitude')
   final Element? altitudeElement;
   @override
   Map<String, dynamic> toJson() {
@@ -657,7 +627,6 @@ class LocationPosition extends BackboneElement {
 }
 
 /// [LocationHoursOfOperation] /// What days/times during a week is this location usually open.
-@JsonSerializable()
 class LocationHoursOfOperation extends BackboneElement {
   LocationHoursOfOperation({
     super.id,
@@ -678,35 +647,28 @@ class LocationHoursOfOperation extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'LocationHoursOfOperation';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [daysOfWeek] /// Indicates which days of the week are available between the start and end
   /// Times.
-  @JsonKey(name: 'daysOfWeek')
   final List<DaysOfWeek>? daysOfWeek;
-  @JsonKey(name: '_daysOfWeek')
   final List<Element>? daysOfWeekElement;
 
   /// [allDay] /// The Location is open all day.
-  @JsonKey(name: 'allDay')
   final FhirBoolean? allDay;
-  @JsonKey(name: '_allDay')
   final Element? allDayElement;
 
   /// [openingTime] /// Time that the Location opens.
-  @JsonKey(name: 'openingTime')
   final FhirTime? openingTime;
-  @JsonKey(name: '_openingTime')
   final Element? openingTimeElement;
 
   /// [closingTime] /// Time that the Location closes.
-  @JsonKey(name: 'closingTime')
   final FhirTime? closingTime;
-  @JsonKey(name: '_closingTime')
   final Element? closingTimeElement;
   @override
   Map<String, dynamic> toJson() {

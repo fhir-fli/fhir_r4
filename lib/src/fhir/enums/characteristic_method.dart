@@ -1,10 +1,7 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The method used to determine the characteristic(s) of the variable.
 enum CharacteristicMethod {
   /// Display: Default
   /// Definition: Default.
-  @JsonValue('Default')
   Default,
   ;
 

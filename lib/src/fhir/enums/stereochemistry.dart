@@ -1,17 +1,12 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The optical rotation type of a substance.
 enum Stereochemistry {
   /// Display: constitutional isomer
-  @JsonValue('ConstitutionalIsomer')
   ConstitutionalIsomer,
 
   /// Display: stereoisomer
-  @JsonValue('Stereoisomer')
   Stereoisomer,
 
   /// Display: enantiomer
-  @JsonValue('Enantiomer')
   Enantiomer,
   ;
 

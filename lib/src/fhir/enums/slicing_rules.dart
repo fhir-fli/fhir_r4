@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// How slices are interpreted when evaluating an instance.
 enum SlicingRules {
   /// Display: Closed
   /// Definition: No additional content is allowed other than that described by the slices in this profile.
-  @JsonValue('closed')
   closed,
 
   /// Display: Open
   /// Definition: Additional content is allowed anywhere in the list.
-  @JsonValue('open')
   open,
 
   /// Display: Open at End
   /// Definition: Additional content is allowed, but only at the end of the list. Note that using this requires that the slices be ordered, which makes it hard to share uses. This should only be done where absolutely required.
-  @JsonValue('openAtEnd')
   openAtEnd,
   ;
 

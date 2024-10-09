@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes a smattering of adjudication codes.
 enum AdjudicationErrorCodes {
   /// Display: Missing Identifier
   /// Definition: Missing Identifier
-  @JsonValue('a001')
   a001,
 
   /// Display: Missing Creation Date
   /// Definition: Missing Creation Date
-  @JsonValue('a002')
   a002,
   ;
 

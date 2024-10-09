@@ -1,10 +1,7 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set contract specific codes for action status.
 enum ContractResourceActionStatusCodes {
   /// Display: Complete
   /// Definition: To be completed
-  @JsonValue('complete')
   complete,
   ;
 

@@ -1,25 +1,18 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// An example value set of Codified order entry details concepts.  These concepts only make sense in the context of what is being ordered.  This example is for a patient ventilation order
 enum ServiceRequestOrderDetailsCodes {
   /// Display: Continuous positive airway pressure ventilation treatment (regime/therapy)
-  @JsonValue('47545007')
   value47545007,
 
   /// Display: Pressure controlled ventilation (procedure)
-  @JsonValue('286812008')
   value286812008,
 
   /// Display: Patient triggered inspiratory assistance (procedure)
-  @JsonValue('243144002')
   value243144002,
 
   /// Display: Assisted controlled mandatory ventilation (procedure)
-  @JsonValue('243150007')
   value243150007,
 
   /// Display: Synchronized intermittent mandatory ventilation (procedure)
-  @JsonValue('59427005')
   value59427005,
   ;
 

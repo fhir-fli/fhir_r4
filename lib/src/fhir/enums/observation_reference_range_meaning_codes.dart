@@ -1,70 +1,55 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set defines a set of codes that can be used to indicate the meaning/use of a reference range for a particular target population.
 enum ObservationReferenceRangeMeaningCodes {
   /// Display: Type
   /// Definition: General types of reference range.
-  @JsonValue('type')
   type,
 
   /// Display: Normal Range
   /// Definition: Values expected for a normal member of the relevant control population being measured. Typically each results producer such as a laboratory has specific normal ranges and they are usually defined as within two standard deviations from the mean and account for 95.45% of this population.
-  @JsonValue('normal')
   normal,
 
   /// Display: Recommended Range
   /// Definition: The range that is recommended by a relevant professional body.
-  @JsonValue('recommended')
   recommended,
 
   /// Display: Treatment Range
   /// Definition: The range at which treatment would/should be considered.
-  @JsonValue('treatment')
   treatment,
 
   /// Display: Therapeutic Desired Level
   /// Definition: The optimal range for best therapeutic outcomes.
-  @JsonValue('therapeutic')
   therapeutic,
 
   /// Display: Pre Therapeutic Desired Level
   /// Definition: The optimal range for best therapeutic outcomes for a specimen taken immediately before administration.
-  @JsonValue('pre')
   pre,
 
   /// Display: Post Therapeutic Desired Level
   /// Definition: The optimal range for best therapeutic outcomes for a specimen taken immediately after administration.
-  @JsonValue('post')
   post,
 
   /// Display: Endocrine
   /// Definition: Endocrine related states that change the expected value.
-  @JsonValue('endocrine')
   endocrine,
 
   /// Display: Pre-Puberty
   /// Definition: An expected range in an individual prior to puberty.
-  @JsonValue('pre-puberty')
   pre_puberty,
 
   /// Display: Follicular Stage
   /// Definition: An expected range in an individual during the follicular stage of the cycle.
-  @JsonValue('follicular')
   follicular,
 
   /// Display: MidCycle
   /// Definition: An expected range in an individual during the midcycle stage of the cycle.
-  @JsonValue('midcycle')
   midcycle,
 
   /// Display: Luteal
   /// Definition: An expected range in an individual during the luteal stage of the cycle.
-  @JsonValue('luteal')
   luteal,
 
   /// Display: Post-Menopause
   /// Definition: An expected range in an individual post-menopause.
-  @JsonValue('postmenopausal')
   postmenopausal,
   ;
 

@@ -1,40 +1,31 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The type of study the evidence was derived from.
 enum StudyType {
   /// Display: randomized trial
   /// Definition: randomized controlled trial.
-  @JsonValue('RCT')
   RCT,
 
   /// Display: controlled trial (non-randomized)
   /// Definition: controlled (but not randomized) trial.
-  @JsonValue('CCT')
   CCT,
 
   /// Display: comparative cohort study
   /// Definition: observational study comparing cohorts.
-  @JsonValue('cohort')
   cohort,
 
   /// Display: case-control study
   /// Definition: case-control study.
-  @JsonValue('case-control')
   case_control,
 
   /// Display: uncontrolled cohort or case series
   /// Definition: uncontrolled cohort or case series.
-  @JsonValue('series')
   series,
 
   /// Display: case report
   /// Definition: a single case report.
-  @JsonValue('case-report')
   case_report,
 
   /// Display: mixed methods
   /// Definition: a combination of 1 or more types of studies.
-  @JsonValue('mixed')
   mixed,
   ;
 

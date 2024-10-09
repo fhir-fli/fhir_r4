@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Applicable domain for this product (e.g. human, veterinary)
 enum MedicinalProductDomain {
   /// Display: Human use
   /// Definition: Product intended for use with humans
-  @JsonValue('Human')
   Human,
 
   /// Display: Veterinary use
   /// Definition: Product intended for use with animals
-  @JsonValue('Veterinary')
   Veterinary,
 
   /// Display: Human and Veterinary use
   /// Definition: Product intended for use with both humans and animals
-  @JsonValue('HumanAndVeterinary')
   HumanAndVeterinary,
   ;
 

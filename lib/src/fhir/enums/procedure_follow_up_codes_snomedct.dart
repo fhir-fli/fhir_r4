@@ -1,26 +1,14 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Procedure follow up codes: A selection of SNOMED CT codes relevant to procedure follow up.
 enum ProcedureFollowUpCodesSNOMEDCT {
-  @JsonValue('18949003')
   value18949003,
-  @JsonValue('30549001')
   value30549001,
-  @JsonValue('241031001')
   value241031001,
-  @JsonValue('35963001')
   value35963001,
-  @JsonValue('225164002')
   value225164002,
-  @JsonValue('447346005')
   value447346005,
-  @JsonValue('229506003')
   value229506003,
-  @JsonValue('274441001')
   value274441001,
-  @JsonValue('394725008')
   value394725008,
-  @JsonValue('359825008')
   value359825008,
   ;
 

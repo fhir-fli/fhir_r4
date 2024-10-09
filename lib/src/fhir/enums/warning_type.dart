@@ -1,55 +1,43 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Classification of warning type.
 enum WarningType {
   /// Display: Get medical advice/attention.
   /// Definition: Get medical advice/attention.
-  @JsonValue('P313')
   P313,
 
   /// Display: Get medical advice/attention if you feel unwell.
   /// Definition: Get medical advice/attention if you feel unwell.
-  @JsonValue('P314')
   P314,
 
   /// Display: Get immediate medical advice/attention.
   /// Definition: Get immediate medical advice/attention.
-  @JsonValue('P315')
   P315,
 
   /// Display: Specific treatment is urgent (see ... on this label).
   /// Definition: Specific treatment is urgent (see ... on this label).
-  @JsonValue('P320')
   P320,
 
   /// Display: Specific treatment (see ... on this label).
   /// Definition: Specific treatment (see ... on this label).
-  @JsonValue('P321')
   P321,
 
   /// Display: Specific measures (see ... on this label).
   /// Definition: Specific measures (see ... on this label).
-  @JsonValue('P322')
   P322,
 
   /// Display: Rinse mouth.
   /// Definition: Rinse mouth.
-  @JsonValue('P330')
   P330,
 
   /// Display: Do NOT induce vomiting.
   /// Definition: Do NOT induce vomiting.
-  @JsonValue('P331')
   P331,
 
   /// Display: Remove/Take off immediately all contaminated clothing.
   /// Definition: Remove/Take off immediately all contaminated clothing.
-  @JsonValue('P361')
   P361,
 
   /// Display: Wash contaminated clothing before reuse..
   /// Definition: Wash contaminated clothing before reuse.
-  @JsonValue('P363')
   P363,
   ;
 

@@ -1,25 +1,18 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The method used to elucidate the structure or characterization of the drug substance.
 enum StructureTechnique {
   /// Display: X-ray
-  @JsonValue('X-Ray')
   X_Ray,
 
   /// Display: HPLC
-  @JsonValue('HPLC')
   HPLC,
 
   /// Display: NMR
-  @JsonValue('NMR')
   NMR,
 
   /// Display: Peptide mapping
-  @JsonValue('PeptideMapping')
   PeptideMapping,
 
   /// Display: Ligand binding assay
-  @JsonValue('LigandBindingAssay')
   LigandBindingAssay,
   ;
 

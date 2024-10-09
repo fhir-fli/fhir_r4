@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [Contributor] /// A contributor to the content of a knowledge asset, including authors,
 /// editors, reviewers, and endorsers.
-@JsonSerializable()
 class Contributor extends DataType {
   Contributor({
     super.id,
@@ -24,28 +22,24 @@ class Contributor extends DataType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'Contributor';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The type of contributor.
-  @JsonKey(name: 'type')
   final ContributorType type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [name] /// The name of the individual or organization responsible for the
   /// contribution.
-  @JsonKey(name: 'name')
   final FhirString name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [contact] /// Contact details to assist a user in finding and communicating with the
   /// contributor.
-  @JsonKey(name: 'contact')
   final List<ContactDetail>? contact;
   @override
   Map<String, dynamic> toJson() {

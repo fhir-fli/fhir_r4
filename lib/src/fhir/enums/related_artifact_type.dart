@@ -1,45 +1,35 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The type of relationship to the related artifact.
 enum RelatedArtifactType {
   /// Display: Documentation
   /// Definition: Additional documentation for the knowledge resource. This would include additional instructions on usage as well as additional information on clinical context or appropriateness.
-  @JsonValue('documentation')
   documentation,
 
   /// Display: Justification
   /// Definition: A summary of the justification for the knowledge resource including supporting evidence, relevant guidelines, or other clinically important information. This information is intended to provide a way to make the justification for the knowledge resource available to the consumer of interventions or results produced by the knowledge resource.
-  @JsonValue('justification')
   justification,
 
   /// Display: Citation
   /// Definition: Bibliographic citation for papers, references, or other relevant material for the knowledge resource. This is intended to allow for citation of related material, but that was not necessarily specifically prepared in connection with this knowledge resource.
-  @JsonValue('citation')
   citation,
 
   /// Display: Predecessor
   /// Definition: The previous version of the knowledge resource.
-  @JsonValue('predecessor')
   predecessor,
 
   /// Display: Successor
   /// Definition: The next version of the knowledge resource.
-  @JsonValue('successor')
   successor,
 
   /// Display: Derived From
   /// Definition: The knowledge resource is derived from the related artifact. This is intended to capture the relationship in which a particular knowledge resource is based on the content of another artifact, but is modified to capture either a different set of overall requirements, or a more specific set of requirements such as those involved in a particular institution or clinical setting.
-  @JsonValue('derived-from')
   derived_from,
 
   /// Display: Depends On
   /// Definition: The knowledge resource depends on the given related artifact.
-  @JsonValue('depends-on')
   depends_on,
 
   /// Display: Composed Of
   /// Definition: The knowledge resource is composed of the given related artifact.
-  @JsonValue('composed-of')
   composed_of,
   ;
 

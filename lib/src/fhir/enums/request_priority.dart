@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Identifies the level of importance to be assigned to actioning the request.
 enum RequestPriority {
   /// Display: Routine
   /// Definition: The request has normal priority.
-  @JsonValue('routine')
   routine,
 
   /// Display: Urgent
   /// Definition: The request should be actioned promptly - higher priority than routine.
-  @JsonValue('urgent')
   urgent,
 
   /// Display: ASAP
   /// Definition: The request should be actioned as soon as possible - higher priority than urgent.
-  @JsonValue('asap')
   asap,
 
   /// Display: STAT
   /// Definition: The request should be actioned immediately - highest possible priority.  E.g. an emergency.
-  @JsonValue('stat')
   stat,
   ;
 

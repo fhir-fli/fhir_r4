@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,7 +7,6 @@ import '../../../fhir_r4.dart';
 /// [NamingSystem] /// A curated namespace that issues unique symbols within that namespace for
 /// the identification of concepts, people, devices, etc. Represents a "System"
 /// used within the Identifier and Coding data types.
-@JsonSerializable()
 class NamingSystem extends DomainResource {
   NamingSystem({
     super.id,
@@ -49,73 +47,58 @@ class NamingSystem extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.NamingSystem);
+
   @override
   String get fhirType => 'NamingSystem';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [name] /// A natural language name identifying the naming system. This name should be
   /// usable as an identifier for the module by machine processing applications
   /// such as code generation.
-  @JsonKey(name: 'name')
   final FhirString name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [status] /// The status of this naming system. Enables tracking the life-cycle of the
   /// content.
-  @JsonKey(name: 'status')
   final PublicationStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [kind] /// Indicates the purpose for the naming system - what kinds of things does it
   /// make unique?
-  @JsonKey(name: 'kind')
   final NamingSystemType kind;
-  @JsonKey(name: '_kind')
   final Element? kindElement;
 
   /// [date] /// The date (and optionally time) when the naming system was published. The
   /// date must change when the business version changes and it must change if
   /// the status code changes. In addition, it should change when the substantive
   /// content of the naming system changes.
-  @JsonKey(name: 'date')
   final FhirDateTime date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [publisher] /// The name of the organization or individual that published the naming
   /// system.
-  @JsonKey(name: 'publisher')
   final FhirString? publisher;
-  @JsonKey(name: '_publisher')
   final Element? publisherElement;
 
   /// [contact] /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  @JsonKey(name: 'contact')
   final List<ContactDetail>? contact;
 
   /// [responsible] /// The name of the organization that is responsible for issuing identifiers or
   /// codes for this namespace and ensuring their non-collision.
-  @JsonKey(name: 'responsible')
   final FhirString? responsible;
-  @JsonKey(name: '_responsible')
   final Element? responsibleElement;
 
   /// [type] /// Categorizes a naming system for easier search by grouping related naming
   /// systems.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [description] /// A free text natural language description of the naming system from a
   /// consumer's perspective. Details about what the namespace identifies
   /// including scope, granularity, version labeling, etc.
-  @JsonKey(name: 'description')
   final FhirMarkdown? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [useContext] /// The content was developed with a focus and intent of supporting the
@@ -123,24 +106,19 @@ class NamingSystem extends DomainResource {
   /// age, ...) or may be references to specific programs (insurance plans,
   /// studies, ...) and may be used to assist with indexing and searching for
   /// appropriate naming system instances.
-  @JsonKey(name: 'useContext')
   final List<UsageContext>? useContext;
 
   /// [jurisdiction] /// A legal or geographic region in which the naming system is intended to be
   /// used.
-  @JsonKey(name: 'jurisdiction')
   final List<CodeableConcept>? jurisdiction;
 
   /// [usage] /// Provides guidance on the use of the namespace, including the handling of
   /// formatting characters, use of upper vs. lower case, etc.
-  @JsonKey(name: 'usage')
   final FhirString? usage;
-  @JsonKey(name: '_usage')
   final Element? usageElement;
 
   /// [uniqueId] /// Indicates how the system may be identified when referenced in electronic
   /// exchange.
-  @JsonKey(name: 'uniqueId')
   final List<NamingSystemUniqueId> uniqueId;
   @override
   Map<String, dynamic> toJson() {
@@ -428,7 +406,6 @@ class NamingSystem extends DomainResource {
 
 /// [NamingSystemUniqueId] /// Indicates how the system may be identified when referenced in electronic
 /// exchange.
-@JsonSerializable()
 class NamingSystemUniqueId extends BackboneElement {
   NamingSystemUniqueId({
     super.id,
@@ -450,43 +427,35 @@ class NamingSystemUniqueId extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'NamingSystemUniqueId';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Identifies the unique identifier scheme used for this particular
   /// identifier.
-  @JsonKey(name: 'type')
   final NamingSystemIdentifierType type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [value] /// The string that should be sent over the wire to identify the code system or
   /// identifier system.
-  @JsonKey(name: 'value')
   final FhirString value;
-  @JsonKey(name: '_value')
   final Element? valueElement;
 
   /// [preferred] /// Indicates whether this identifier is the "preferred" identifier of this
   /// type.
-  @JsonKey(name: 'preferred')
   final FhirBoolean? preferred;
-  @JsonKey(name: '_preferred')
   final Element? preferredElement;
 
   /// [comment] /// Notes about the past or intended usage of this identifier.
-  @JsonKey(name: 'comment')
   final FhirString? comment;
-  @JsonKey(name: '_comment')
   final Element? commentElement;
 
   /// [period] /// Identifies the period of time over which this identifier is considered
   /// appropriate to refer to the naming system. Outside of this window, the
   /// identifier might be non-deterministic.
-  @JsonKey(name: 'period')
   final Period? period;
   @override
   Map<String, dynamic> toJson() {

@@ -1,40 +1,31 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The days of the week.
 enum DaysOfWeek {
   /// Display: Monday
   /// Definition: Monday.
-  @JsonValue('mon')
   mon,
 
   /// Display: Tuesday
   /// Definition: Tuesday.
-  @JsonValue('tue')
   tue,
 
   /// Display: Wednesday
   /// Definition: Wednesday.
-  @JsonValue('wed')
   wed,
 
   /// Display: Thursday
   /// Definition: Thursday.
-  @JsonValue('thu')
   thu,
 
   /// Display: Friday
   /// Definition: Friday.
-  @JsonValue('fri')
   fri,
 
   /// Display: Saturday
   /// Definition: Saturday.
-  @JsonValue('sat')
   sat,
 
   /// Display: Sunday
   /// Definition: Sunday.
-  @JsonValue('sun')
   sun,
   ;
 

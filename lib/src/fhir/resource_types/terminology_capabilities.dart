@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -9,7 +8,6 @@ import '../../../fhir_r4.dart';
 /// (behaviors) of a FHIR Terminology Server that may be used as a statement of
 /// actual server functionality or a statement of required or desired server
 /// implementation.
-@JsonSerializable()
 class TerminologyCapabilities extends DomainResource {
   TerminologyCapabilities({
     super.id,
@@ -67,10 +65,11 @@ class TerminologyCapabilities extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.TerminologyCapabilities);
+
   @override
   String get fhirType => 'TerminologyCapabilities';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this terminology capabilities when
@@ -80,9 +79,7 @@ class TerminologyCapabilities extends DomainResource {
   /// terminology capabilities is (or will be) published. This URL can be the
   /// target of a canonical reference. It SHALL remain the same when the
   /// terminology capabilities is stored on different servers.
-  @JsonKey(name: 'url')
   final FhirUri? url;
-  @JsonKey(name: '_url')
   final Element? urlElement;
 
   /// [version] /// The identifier that is used to identify this version of the terminology
@@ -92,68 +89,51 @@ class TerminologyCapabilities extends DomainResource {
   /// it might be a timestamp (e.g. yyyymmdd) if a managed version is not
   /// available. There is also no expectation that versions can be placed in a
   /// lexicographical sequence.
-  @JsonKey(name: 'version')
   final FhirString? version;
-  @JsonKey(name: '_version')
   final Element? versionElement;
 
   /// [name] /// A natural language name identifying the terminology capabilities. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [title] /// A short, descriptive, user-friendly title for the terminology capabilities.
-  @JsonKey(name: 'title')
   final FhirString? title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [status] /// The status of this terminology capabilities. Enables tracking the
   /// life-cycle of the content.
-  @JsonKey(name: 'status')
   final PublicationStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [experimental] /// A Boolean value to indicate that this terminology capabilities is authored
   /// for testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
-  @JsonKey(name: 'experimental')
   final FhirBoolean? experimental;
-  @JsonKey(name: '_experimental')
   final Element? experimentalElement;
 
   /// [date] /// The date (and optionally time) when the terminology capabilities was
   /// published. The date must change when the business version changes and it
   /// must change if the status code changes. In addition, it should change when
   /// the substantive content of the terminology capabilities changes.
-  @JsonKey(name: 'date')
   final FhirDateTime date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [publisher] /// The name of the organization or individual that published the terminology
   /// capabilities.
-  @JsonKey(name: 'publisher')
   final FhirString? publisher;
-  @JsonKey(name: '_publisher')
   final Element? publisherElement;
 
   /// [contact] /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  @JsonKey(name: 'contact')
   final List<ContactDetail>? contact;
 
   /// [description] /// A free text natural language description of the terminology capabilities
   /// from a consumer's perspective. Typically, this is used when the capability
   /// statement describes a desired rather than an actual solution, for example
   /// as a formal expression of requirements as part of an RFP.
-  @JsonKey(name: 'description')
   final FhirMarkdown? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [useContext] /// The content was developed with a focus and intent of supporting the
@@ -161,85 +141,66 @@ class TerminologyCapabilities extends DomainResource {
   /// age, ...) or may be references to specific programs (insurance plans,
   /// studies, ...) and may be used to assist with indexing and searching for
   /// appropriate terminology capabilities instances.
-  @JsonKey(name: 'useContext')
   final List<UsageContext>? useContext;
 
   /// [jurisdiction] /// A legal or geographic region in which the terminology capabilities is
   /// intended to be used.
-  @JsonKey(name: 'jurisdiction')
   final List<CodeableConcept>? jurisdiction;
 
   /// [purpose] /// Explanation of why this terminology capabilities is needed and why it has
   /// been designed as it has.
-  @JsonKey(name: 'purpose')
   final FhirMarkdown? purpose;
-  @JsonKey(name: '_purpose')
   final Element? purposeElement;
 
   /// [copyright] /// A copyright statement relating to the terminology capabilities and/or its
   /// contents. Copyright statements are generally legal restrictions on the use
   /// and publishing of the terminology capabilities.
-  @JsonKey(name: 'copyright')
   final FhirMarkdown? copyright;
-  @JsonKey(name: '_copyright')
   final Element? copyrightElement;
 
   /// [kind] /// The way that this statement is intended to be used, to describe an actual
   /// running instance of software, a particular product (kind, not instance of
   /// software) or a class of implementation (e.g. a desired purchase).
-  @JsonKey(name: 'kind')
   final CapabilityStatementKind kind;
-  @JsonKey(name: '_kind')
   final Element? kindElement;
 
   /// [software] /// Software that is covered by this terminology capability statement. It is
   /// used when the statement describes the capabilities of a particular software
   /// version, independent of an installation.
-  @JsonKey(name: 'software')
   final TerminologyCapabilitiesSoftware? software;
 
   /// [implementation] /// Identifies a specific implementation instance that is described by the
   /// terminology capability statement - i.e. a particular installation, rather
   /// than the capabilities of a software program.
-  @JsonKey(name: 'implementation')
   final TerminologyCapabilitiesImplementation? implementation;
 
   /// [lockedDate] /// Whether the server supports lockedDate.
-  @JsonKey(name: 'lockedDate')
   final FhirBoolean? lockedDate;
-  @JsonKey(name: '_lockedDate')
   final Element? lockedDateElement;
 
   /// [codeSystem] /// Identifies a code system that is supported by the server. If there is a no
   /// code system URL, then this declares the general assumptions a client can
   /// make about support for any CodeSystem resource.
-  @JsonKey(name: 'codeSystem')
   final List<TerminologyCapabilitiesCodeSystem>? codeSystem;
 
   /// [expansion] /// Information about the [ValueSet/$expand](valueset-operation-expand.html)
   /// operation.
-  @JsonKey(name: 'expansion')
   final TerminologyCapabilitiesExpansion? expansion;
 
   /// [codeSearch] /// The degree to which the server supports the code search parameter on
   /// ValueSet, if it is supported.
-  @JsonKey(name: 'codeSearch')
   final CodeSearchSupport? codeSearch;
-  @JsonKey(name: '_codeSearch')
   final Element? codeSearchElement;
 
   /// [validateCode] /// Information about the
   /// [ValueSet/$validate-code](valueset-operation-validate-code.html) operation.
-  @JsonKey(name: 'validateCode')
   final TerminologyCapabilitiesValidateCode? validateCode;
 
   /// [translation] /// Information about the
   /// [ConceptMap/$translate](conceptmap-operation-translate.html) operation.
-  @JsonKey(name: 'translation')
   final TerminologyCapabilitiesTranslation? translation;
 
   /// [closure] /// Whether the $closure operation is supported.
-  @JsonKey(name: 'closure')
   final TerminologyCapabilitiesClosure? closure;
   @override
   Map<String, dynamic> toJson() {
@@ -669,7 +630,6 @@ class TerminologyCapabilities extends DomainResource {
 /// [TerminologyCapabilitiesSoftware] /// Software that is covered by this terminology capability statement. It is
 /// used when the statement describes the capabilities of a particular software
 /// version, independent of an installation.
-@JsonSerializable()
 class TerminologyCapabilitiesSoftware extends BackboneElement {
   TerminologyCapabilitiesSoftware({
     super.id,
@@ -686,22 +646,19 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TerminologyCapabilitiesSoftware';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [name] /// Name the software is known by.
-  @JsonKey(name: 'name')
   final FhirString name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [version] /// The version identifier for the software covered by this statement.
-  @JsonKey(name: 'version')
   final FhirString? version;
-  @JsonKey(name: '_version')
   final Element? versionElement;
   @override
   Map<String, dynamic> toJson() {
@@ -815,7 +772,6 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
 /// [TerminologyCapabilitiesImplementation] /// Identifies a specific implementation instance that is described by the
 /// terminology capability statement - i.e. a particular installation, rather
 /// than the capabilities of a software program.
-@JsonSerializable()
 class TerminologyCapabilitiesImplementation extends BackboneElement {
   TerminologyCapabilitiesImplementation({
     super.id,
@@ -832,23 +788,20 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TerminologyCapabilitiesImplementation';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [description] /// Information about the specific installation that this terminology
   /// capability statement relates to.
-  @JsonKey(name: 'description')
   final FhirString description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [url] /// An absolute base URL for the implementation.
-  @JsonKey(name: 'url')
   final FhirUrl? url;
-  @JsonKey(name: '_url')
   final Element? urlElement;
   @override
   Map<String, dynamic> toJson() {
@@ -964,7 +917,6 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
 /// [TerminologyCapabilitiesCodeSystem] /// Identifies a code system that is supported by the server. If there is a no
 /// code system URL, then this declares the general assumptions a client can
 /// make about support for any CodeSystem resource.
-@JsonSerializable()
 class TerminologyCapabilitiesCodeSystem extends BackboneElement {
   TerminologyCapabilitiesCodeSystem({
     super.id,
@@ -982,26 +934,22 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TerminologyCapabilitiesCodeSystem';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [uri] /// URI for the Code System.
-  @JsonKey(name: 'uri')
   final FhirCanonical? uri;
-  @JsonKey(name: '_uri')
   final Element? uriElement;
 
   /// [version] /// For the code system, a list of versions that are supported by the server.
-  @JsonKey(name: 'version')
   final List<TerminologyCapabilitiesVersion>? version;
 
   /// [subsumption] /// True if subsumption is supported for this version of the code system.
-  @JsonKey(name: 'subsumption')
   final FhirBoolean? subsumption;
-  @JsonKey(name: '_subsumption')
   final Element? subsumptionElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1133,7 +1081,6 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
 }
 
 /// [TerminologyCapabilitiesVersion] /// For the code system, a list of versions that are supported by the server.
-@JsonSerializable()
 class TerminologyCapabilitiesVersion extends BackboneElement {
   TerminologyCapabilitiesVersion({
     super.id,
@@ -1157,45 +1104,35 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TerminologyCapabilitiesVersion';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// For version-less code systems, there should be a single version with no
   /// identifier.
-  @JsonKey(name: 'code')
   final FhirString? code;
-  @JsonKey(name: '_code')
   final Element? codeElement;
 
   /// [isDefault] /// If this is the default version for this code system.
-  @JsonKey(name: 'isDefault')
   final FhirBoolean? isDefault;
-  @JsonKey(name: '_isDefault')
   final Element? isDefaultElement;
 
   /// [compositional] /// If the compositional grammar defined by the code system is supported.
-  @JsonKey(name: 'compositional')
   final FhirBoolean? compositional;
-  @JsonKey(name: '_compositional')
   final Element? compositionalElement;
 
   /// [language] /// Language Displays supported.
-  @JsonKey(name: 'language')
   final List<FhirCode>? language;
-  @JsonKey(name: '_language')
   final List<Element>? languageElement;
 
   /// [filter] /// Filter Properties supported.
-  @JsonKey(name: 'filter')
   final List<TerminologyCapabilitiesFilter>? filter;
 
   /// [property] /// Properties supported for $lookup.
-  @JsonKey(name: 'property')
   final List<FhirCode>? property;
-  @JsonKey(name: '_property')
   final List<Element>? propertyElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1386,7 +1323,6 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
 }
 
 /// [TerminologyCapabilitiesFilter] /// Filter Properties supported.
-@JsonSerializable()
 class TerminologyCapabilitiesFilter extends BackboneElement {
   TerminologyCapabilitiesFilter({
     super.id,
@@ -1403,22 +1339,19 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TerminologyCapabilitiesFilter';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// Code of the property supported.
-  @JsonKey(name: 'code')
   final FhirCode code;
-  @JsonKey(name: '_code')
   final Element? codeElement;
 
   /// [op] /// Operations supported for the property.
-  @JsonKey(name: 'op')
   final List<FhirCode> op;
-  @JsonKey(name: '_op')
   final List<Element>? opElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1533,7 +1466,6 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
 
 /// [TerminologyCapabilitiesExpansion] /// Information about the [ValueSet/$expand](valueset-operation-expand.html)
 /// operation.
-@JsonSerializable()
 class TerminologyCapabilitiesExpansion extends BackboneElement {
   TerminologyCapabilitiesExpansion({
     super.id,
@@ -1555,38 +1487,30 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TerminologyCapabilitiesExpansion';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [hierarchical] /// Whether the server can return nested value sets.
-  @JsonKey(name: 'hierarchical')
   final FhirBoolean? hierarchical;
-  @JsonKey(name: '_hierarchical')
   final Element? hierarchicalElement;
 
   /// [paging] /// Whether the server supports paging on expansion.
-  @JsonKey(name: 'paging')
   final FhirBoolean? paging;
-  @JsonKey(name: '_paging')
   final Element? pagingElement;
 
   /// [incomplete] /// Allow request for incomplete expansions?
-  @JsonKey(name: 'incomplete')
   final FhirBoolean? incomplete;
-  @JsonKey(name: '_incomplete')
   final Element? incompleteElement;
 
   /// [parameter] /// Supported expansion parameter.
-  @JsonKey(name: 'parameter')
   final List<TerminologyCapabilitiesParameter>? parameter;
 
   /// [textFilter] /// Documentation about text searching works.
-  @JsonKey(name: 'textFilter')
   final FhirMarkdown? textFilter;
-  @JsonKey(name: '_textFilter')
   final Element? textFilterElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1748,7 +1672,6 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
 }
 
 /// [TerminologyCapabilitiesParameter] /// Supported expansion parameter.
-@JsonSerializable()
 class TerminologyCapabilitiesParameter extends BackboneElement {
   TerminologyCapabilitiesParameter({
     super.id,
@@ -1765,22 +1688,19 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TerminologyCapabilitiesParameter';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [name] /// Expansion Parameter name.
-  @JsonKey(name: 'name')
   final FhirCode name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [documentation] /// Description of support for parameter.
-  @JsonKey(name: 'documentation')
   final FhirString? documentation;
-  @JsonKey(name: '_documentation')
   final Element? documentationElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1895,7 +1815,6 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
 
 /// [TerminologyCapabilitiesValidateCode] /// Information about the
 /// [ValueSet/$validate-code](valueset-operation-validate-code.html) operation.
-@JsonSerializable()
 class TerminologyCapabilitiesValidateCode extends BackboneElement {
   TerminologyCapabilitiesValidateCode({
     super.id,
@@ -1910,16 +1829,15 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TerminologyCapabilitiesValidateCode';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [translations] /// Whether translations are validated.
-  @JsonKey(name: 'translations')
   final FhirBoolean translations;
-  @JsonKey(name: '_translations')
   final Element? translationsElement;
   @override
   Map<String, dynamic> toJson() {
@@ -2020,7 +1938,6 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
 
 /// [TerminologyCapabilitiesTranslation] /// Information about the
 /// [ConceptMap/$translate](conceptmap-operation-translate.html) operation.
-@JsonSerializable()
 class TerminologyCapabilitiesTranslation extends BackboneElement {
   TerminologyCapabilitiesTranslation({
     super.id,
@@ -2035,16 +1952,15 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TerminologyCapabilitiesTranslation';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [needsMap] /// Whether the client must identify the map.
-  @JsonKey(name: 'needsMap')
   final FhirBoolean needsMap;
-  @JsonKey(name: '_needsMap')
   final Element? needsMapElement;
   @override
   Map<String, dynamic> toJson() {
@@ -2144,7 +2060,6 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
 }
 
 /// [TerminologyCapabilitiesClosure] /// Whether the $closure operation is supported.
-@JsonSerializable()
 class TerminologyCapabilitiesClosure extends BackboneElement {
   TerminologyCapabilitiesClosure({
     super.id,
@@ -2159,16 +2074,15 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TerminologyCapabilitiesClosure';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [translation] /// If cross-system closure is supported.
-  @JsonKey(name: 'translation')
   final FhirBoolean? translation;
-  @JsonKey(name: '_translation')
   final Element? translationElement;
   @override
   Map<String, dynamic> toJson() {

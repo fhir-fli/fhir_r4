@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Type for orientation.
 enum OrientationType {
   /// Display: Sense orientation of referenceSeq
   /// Definition: Sense orientation of reference sequence.
-  @JsonValue('sense')
   sense,
 
   /// Display: Antisense orientation of referenceSeq
   /// Definition: Antisense orientation of reference sequence.
-  @JsonValue('antisense')
   antisense,
   ;
 

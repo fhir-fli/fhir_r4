@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [CodeableReference] /// A reference to a resource (by instance), or instead, a reference to a
 /// concept defined in a terminology or ontology (by class).
-@JsonSerializable()
 class CodeableReference extends DataType {
   CodeableReference({
     super.id,
@@ -21,20 +19,19 @@ class CodeableReference extends DataType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CodeableReference';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [concept] /// A reference to a concept - e.g. the information is identified by its
   /// general class to the degree of precision found in the terminology.
-  @JsonKey(name: 'concept')
   final CodeableConcept? concept;
 
   /// [reference] /// A reference to a resource the provides exact details about the information
   /// being referenced.
-  @JsonKey(name: 'reference')
   final Reference? reference;
   @override
   Map<String, dynamic> toJson() {

@@ -123,12 +123,12 @@ void generateResourceNewVersion(List<String> resourceTypes) {
 // Function to generate resource_types_enum.dart
 void generateResourceTypesEnum(List<String> resourceTypes) {
   final StringBuffer buffer = StringBuffer();
-  buffer.writeln("import 'package:json_annotation/json_annotation.dart';");
+  // buffer.writeln("import 'package:json_annotation/json_annotation.dart';");
   buffer.writeln('enum $fhirResourceType {');
 
   // Write the enum values
   for (final String resourceType in resourceTypes) {
-    buffer.writeln("  @JsonValue('${resourceType.replaceAll('Fhir', '')}')");
+    // buffer.writeln("  @JsonValue('${resourceType.replaceAll('Fhir', '')}')");
     buffer.writeln('  $resourceType,');
   }
 

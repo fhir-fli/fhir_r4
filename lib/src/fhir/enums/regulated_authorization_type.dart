@@ -1,17 +1,12 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Overall type of this authorization.
 enum RegulatedAuthorizationType {
   /// Display: Marketing Authorization
-  @JsonValue('MarketingAuth')
   MarketingAuth,
 
   /// Display: Orphan Drug Authorization
-  @JsonValue('Orphan')
   Orphan,
 
   /// Display: Pediatric Use Drug Authorization
-  @JsonValue('Pediatric')
   Pediatric,
   ;
 

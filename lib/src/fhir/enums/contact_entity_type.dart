@@ -1,35 +1,27 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This example value set defines a set of codes that can be used to indicate the purpose for which you would contact a contact party.
 enum ContactEntityType {
   /// Display: Billing
   /// Definition: Contact details for information regarding to billing/general finance enquiries.
-  @JsonValue('BILL')
   BILL,
 
   /// Display: Administrative
   /// Definition: Contact details for administrative enquiries.
-  @JsonValue('ADMIN')
   ADMIN,
 
   /// Display: Human Resource
   /// Definition: Contact details for issues related to Human Resources, such as staff matters, OH&S etc.
-  @JsonValue('HR')
   HR,
 
   /// Display: Payor
   /// Definition: Contact details for dealing with issues related to insurance claims/adjudication/payment.
-  @JsonValue('PAYOR')
   PAYOR,
 
   /// Display: Patient
   /// Definition: Generic information contact for patients.
-  @JsonValue('PATINF')
   PATINF,
 
   /// Display: Press
   /// Definition: Dedicated contact point for matters relating to press enquiries.
-  @JsonValue('PRESS')
   PRESS,
   ;
 

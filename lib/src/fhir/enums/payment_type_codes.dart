@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes sample Payment Type codes.
 enum PaymentTypeCodes {
   /// Display: Payment
   /// Definition: The amount is partial or complete settlement of the amounts due.
-  @JsonValue('payment')
   payment,
 
   /// Display: Adjustment
   /// Definition: The amount is an adjustment regarding claims already paid.
-  @JsonValue('adjustment')
   adjustment,
 
   /// Display: Advance
   /// Definition: The amount is an advance against future claims.
-  @JsonValue('advance')
   advance,
   ;
 

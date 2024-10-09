@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -9,7 +8,6 @@ import '../../../fhir_r4.dart';
 /// index and/or categorize an artifact. This metadata can either be specific
 /// to the applicable population (e.g., age category, DRG) or the specific
 /// context of care (e.g., venue, care setting, provider of care).
-@JsonSerializable()
 class UsageContext extends DataType {
   UsageContext({
     super.id,
@@ -26,35 +24,31 @@ class UsageContext extends DataType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'UsageContext';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// A code that identifies the type of context being specified by this usage
   /// context.
-  @JsonKey(name: 'code')
   final Coding code;
 
   /// [valueCodeableConcept] /// A value that defines the context specified in this context of use. The
   /// interpretation of the value is defined by the code.
-  @JsonKey(name: 'valueCodeableConcept')
   final CodeableConcept? valueCodeableConcept;
 
   /// [valueQuantity] /// A value that defines the context specified in this context of use. The
   /// interpretation of the value is defined by the code.
-  @JsonKey(name: 'valueQuantity')
   final Quantity? valueQuantity;
 
   /// [valueRange] /// A value that defines the context specified in this context of use. The
   /// interpretation of the value is defined by the code.
-  @JsonKey(name: 'valueRange')
   final Range? valueRange;
 
   /// [valueReference] /// A value that defines the context specified in this context of use. The
   /// interpretation of the value is defined by the code.
-  @JsonKey(name: 'valueReference')
   final Reference? valueReference;
   @override
   Map<String, dynamic> toJson() {

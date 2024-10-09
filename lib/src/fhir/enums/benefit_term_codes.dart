@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes a smattering of Benefit Term codes.
 enum BenefitTermCodes {
   /// Display: Annual
   /// Definition: Annual, renewing on the anniversary
-  @JsonValue('annual')
   annual,
 
   /// Display: Day
   /// Definition: Per day
-  @JsonValue('day')
   day,
 
   /// Display: Lifetime
   /// Definition: For the total term, lifetime, of the policy or coverage
-  @JsonValue('lifetime')
   lifetime,
   ;
 

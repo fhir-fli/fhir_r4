@@ -1,69 +1,51 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Type of part of a name for a Medicinal Product.
 enum ProductNamePartType {
   /// Display: Full name
-  @JsonValue('FullName')
   FullName,
 
   /// Display: Invented name part
-  @JsonValue('InventedNamePart')
   InventedNamePart,
 
   /// Display: Scientific name part
-  @JsonValue('ScientificNamePart')
   ScientificNamePart,
 
   /// Display: Strength part
-  @JsonValue('StrengthPart')
   StrengthPart,
 
   /// Display: Pharmaceutical dose form part
-  @JsonValue('DoseFormPart')
   DoseFormPart,
 
   /// Display: Formulation part
-  @JsonValue('FormulationPart')
   FormulationPart,
 
   /// Display: Intended use part
-  @JsonValue('IntendedUsePart')
   IntendedUsePart,
 
   /// Display: Target population part
-  @JsonValue('PopulationPart')
   PopulationPart,
 
   /// Display: Container or pack part
-  @JsonValue('ContainerPart')
   ContainerPart,
 
   /// Display: Device part
-  @JsonValue('DevicePart')
   DevicePart,
 
   /// Display: Trademark or company name part
-  @JsonValue('TrademarkOrCompanyPart')
   TrademarkOrCompanyPart,
 
   /// Display: Time/Period part
-  @JsonValue('TimeOrPeriodPart')
   TimeOrPeriodPart,
 
   /// Display: Flavor part
-  @JsonValue('FlavorPart')
   FlavorPart,
 
   /// Display: Delimiter part
-  @JsonValue('DelimiterPart')
   DelimiterPart,
 
   /// Display: Legacy name
-  @JsonValue('LegacyNamePart')
   LegacyNamePart,
 
   /// Display: Target species name part
-  @JsonValue('SpeciesNamePart')
   SpeciesNamePart,
   ;
 

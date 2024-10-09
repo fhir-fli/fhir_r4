@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The type of direction to use for assertion.
 enum AssertionDirectionType {
   /// Display: response
   /// Definition: The assertion is evaluated on the response. This is the default value.
-  @JsonValue('response')
   response,
 
   /// Display: request
   /// Definition: The assertion is evaluated on the request.
-  @JsonValue('request')
   request,
   ;
 

@@ -1,60 +1,47 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Used to express the reason and specific aspect for the variant abstract, such as language and specific language.
 enum CitedArtifactAbstractType {
   /// Display: Primary human use
   /// Definition: Human-friendly main or official abstract
-  @JsonValue('primary-human-use')
   primary_human_use,
 
   /// Display: Primary machine use
   /// Definition: Machine-friendly main or official abstract
-  @JsonValue('primary-machine-use')
   primary_machine_use,
 
   /// Display: Truncated
   /// Definition: Truncated abstract
-  @JsonValue('truncated')
   truncated,
 
   /// Display: Short abstract
   /// Definition: Brief abstract, for use when abstracts are provided in different sizes or lengths
-  @JsonValue('short-abstract')
   short_abstract,
 
   /// Display: Long abstract
   /// Definition: Long version of the abstract, for use when abstracts are provided in different sizes or lengths
-  @JsonValue('long-abstract')
   long_abstract,
 
   /// Display: Plain language
   /// Definition: Additional form of abstract written for the general public
-  @JsonValue('plain-language')
   plain_language,
 
   /// Display: Different publisher for abstract
   /// Definition: Abstract produced by a different publisher than the cited artifact
-  @JsonValue('different-publisher')
   different_publisher,
 
   /// Display: Different language
   /// Definition: Additional form of abstract in a different language
-  @JsonValue('language')
   language,
 
   /// Display: Different language derived from autotranslation
   /// Definition: Machine translated form of abstract in a different language, language element codes the language into which it was translated by machine
-  @JsonValue('autotranslated')
   autotranslated,
 
   /// Display: Different text in additional Medline entry
   /// Definition: Alternative form of abstract in two or more Medline entries
-  @JsonValue('duplicate-pmid')
   duplicate_pmid,
 
   /// Display: Different text in an earlier version
   /// Definition: Alternative form of abstract in an earlier version such as epub ahead of print
-  @JsonValue('earlier-abstract')
   earlier_abstract,
   ;
 

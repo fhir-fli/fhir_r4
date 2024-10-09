@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [ExampleScenario] /// Example of workflow instance.
-@JsonSerializable()
 class ExampleScenario extends DomainResource {
   ExampleScenario({
     super.id,
@@ -53,10 +51,11 @@ class ExampleScenario extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.ExampleScenario);
+
   @override
   String get fhirType => 'ExampleScenario';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this example scenario when it is
@@ -66,15 +65,12 @@ class ExampleScenario extends DomainResource {
   /// scenario is (or will be) published. This URL can be the target of a
   /// canonical reference. It SHALL remain the same when the example scenario is
   /// stored on different servers.
-  @JsonKey(name: 'url')
   final FhirUri? url;
-  @JsonKey(name: '_url')
   final Element? urlElement;
 
   /// [identifier] /// A formal identifier that is used to identify this example scenario when it
   /// is represented in other formats, or referenced in a specification, model,
   /// design or an instance.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [version] /// The identifier that is used to identify this version of the example
@@ -84,32 +80,24 @@ class ExampleScenario extends DomainResource {
   /// timestamp (e.g. yyyymmdd) if a managed version is not available. There is
   /// also no expectation that versions can be placed in a lexicographical
   /// sequence.
-  @JsonKey(name: 'version')
   final FhirString? version;
-  @JsonKey(name: '_version')
   final Element? versionElement;
 
   /// [name] /// A natural language name identifying the example scenario. This name should
   /// be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [status] /// The status of this example scenario. Enables tracking the life-cycle of the
   /// content.
-  @JsonKey(name: 'status')
   final PublicationStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [experimental] /// A Boolean value to indicate that this example scenario is authored for
   /// testing purposes (or education/evaluation/marketing) and is not intended to
   /// be used for genuine usage.
-  @JsonKey(name: 'experimental')
   final FhirBoolean? experimental;
-  @JsonKey(name: '_experimental')
   final Element? experimentalElement;
 
   /// [date] /// The date (and optionally time) when the example scenario was published. The
@@ -117,21 +105,16 @@ class ExampleScenario extends DomainResource {
   /// the status code changes. In addition, it should change when the substantive
   /// content of the example scenario changes. (e.g. the 'content logical
   /// definition').
-  @JsonKey(name: 'date')
   final FhirDateTime? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [publisher] /// The name of the organization or individual that published the example
   /// scenario.
-  @JsonKey(name: 'publisher')
   final FhirString? publisher;
-  @JsonKey(name: '_publisher')
   final Element? publisherElement;
 
   /// [contact] /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  @JsonKey(name: 'contact')
   final List<ContactDetail>? contact;
 
   /// [useContext] /// The content was developed with a focus and intent of supporting the
@@ -139,46 +122,35 @@ class ExampleScenario extends DomainResource {
   /// age, ...) or may be references to specific programs (insurance plans,
   /// studies, ...) and may be used to assist with indexing and searching for
   /// appropriate example scenario instances.
-  @JsonKey(name: 'useContext')
   final List<UsageContext>? useContext;
 
   /// [jurisdiction] /// A legal or geographic region in which the example scenario is intended to
   /// be used.
-  @JsonKey(name: 'jurisdiction')
   final List<CodeableConcept>? jurisdiction;
 
   /// [copyright] /// A copyright statement relating to the example scenario and/or its contents.
   /// Copyright statements are generally legal restrictions on the use and
   /// publishing of the example scenario.
-  @JsonKey(name: 'copyright')
   final FhirMarkdown? copyright;
-  @JsonKey(name: '_copyright')
   final Element? copyrightElement;
 
   /// [purpose] /// What the example scenario resource is created for. This should not be used
   /// to show the business purpose of the scenario itself, but the purpose of
   /// documenting a scenario.
-  @JsonKey(name: 'purpose')
   final FhirMarkdown? purpose;
-  @JsonKey(name: '_purpose')
   final Element? purposeElement;
 
   /// [actor] /// Actor participating in the resource.
-  @JsonKey(name: 'actor')
   final List<ExampleScenarioActor>? actor;
 
   /// [instance] /// Each resource and each version that is present in the workflow.
-  @JsonKey(name: 'instance')
   final List<ExampleScenarioInstance>? instance;
 
   /// [process] /// Each major process - a group of operations.
-  @JsonKey(name: 'process')
   final List<ExampleScenarioProcess>? process;
 
   /// [workflow] /// Another nested workflow.
-  @JsonKey(name: 'workflow')
   final List<FhirCanonical>? workflow;
-  @JsonKey(name: '_workflow')
   final List<Element>? workflowElement;
   @override
   Map<String, dynamic> toJson() {
@@ -551,7 +523,6 @@ class ExampleScenario extends DomainResource {
 }
 
 /// [ExampleScenarioActor] /// Actor participating in the resource.
-@JsonSerializable()
 class ExampleScenarioActor extends BackboneElement {
   ExampleScenarioActor({
     super.id,
@@ -572,34 +543,27 @@ class ExampleScenarioActor extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ExampleScenarioActor';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [actorId] /// ID or acronym of actor.
-  @JsonKey(name: 'actorId')
   final FhirString actorId;
-  @JsonKey(name: '_actorId')
   final Element? actorIdElement;
 
   /// [type] /// The type of actor - person or system.
-  @JsonKey(name: 'type')
   final ExampleScenarioActorType type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [name] /// The name of the actor as shown in the page.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [description] /// The description of the actor.
-  @JsonKey(name: 'description')
   final FhirMarkdown? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
   @override
   Map<String, dynamic> toJson() {
@@ -734,7 +698,6 @@ class ExampleScenarioActor extends BackboneElement {
 }
 
 /// [ExampleScenarioInstance] /// Each resource and each version that is present in the workflow.
-@JsonSerializable()
 class ExampleScenarioInstance extends BackboneElement {
   ExampleScenarioInstance({
     super.id,
@@ -757,43 +720,34 @@ class ExampleScenarioInstance extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ExampleScenarioInstance';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [resourceId] /// The id of the resource for referencing.
-  @JsonKey(name: 'resourceId')
   final FhirString resourceId;
-  @JsonKey(name: '_resourceId')
   final Element? resourceIdElement;
 
   /// [resourceType] /// The type of the resource.
-  @JsonKey(name: 'resourceType')
   final FhirCode resourceType;
-  @JsonKey(name: '_resourceType')
   final Element? resourceTypeElement;
 
   /// [name] /// A short name for the resource instance.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [description] /// Human-friendly description of the resource instance.
-  @JsonKey(name: 'description')
   final FhirMarkdown? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [version] /// A specific version of the resource.
-  @JsonKey(name: 'version')
   final List<ExampleScenarioVersion>? version;
 
   /// [containedInstance] /// Resources contained in the instance (e.g. the observations contained in a
   /// bundle).
-  @JsonKey(name: 'containedInstance')
   final List<ExampleScenarioContainedInstance>? containedInstance;
   @override
   Map<String, dynamic> toJson() {
@@ -959,7 +913,6 @@ class ExampleScenarioInstance extends BackboneElement {
 }
 
 /// [ExampleScenarioVersion] /// A specific version of the resource.
-@JsonSerializable()
 class ExampleScenarioVersion extends BackboneElement {
   ExampleScenarioVersion({
     super.id,
@@ -976,22 +929,19 @@ class ExampleScenarioVersion extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ExampleScenarioVersion';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [versionId] /// The identifier of a specific version of a resource.
-  @JsonKey(name: 'versionId')
   final FhirString versionId;
-  @JsonKey(name: '_versionId')
   final Element? versionIdElement;
 
   /// [description] /// The description of the resource version.
-  @JsonKey(name: 'description')
   final FhirMarkdown description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1101,7 +1051,6 @@ class ExampleScenarioVersion extends BackboneElement {
 
 /// [ExampleScenarioContainedInstance] /// Resources contained in the instance (e.g. the observations contained in a
 /// bundle).
-@JsonSerializable()
 class ExampleScenarioContainedInstance extends BackboneElement {
   ExampleScenarioContainedInstance({
     super.id,
@@ -1118,22 +1067,19 @@ class ExampleScenarioContainedInstance extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ExampleScenarioContainedInstance';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [resourceId] /// Each resource contained in the instance.
-  @JsonKey(name: 'resourceId')
   final FhirString resourceId;
-  @JsonKey(name: '_resourceId')
   final Element? resourceIdElement;
 
   /// [versionId] /// A specific version of a resource contained in the instance.
-  @JsonKey(name: 'versionId')
   final FhirString? versionId;
-  @JsonKey(name: '_versionId')
   final Element? versionIdElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1247,7 +1193,6 @@ class ExampleScenarioContainedInstance extends BackboneElement {
 }
 
 /// [ExampleScenarioProcess] /// Each major process - a group of operations.
-@JsonSerializable()
 class ExampleScenarioProcess extends BackboneElement {
   ExampleScenarioProcess({
     super.id,
@@ -1269,38 +1214,30 @@ class ExampleScenarioProcess extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ExampleScenarioProcess';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [title] /// The diagram title of the group of operations.
-  @JsonKey(name: 'title')
   final FhirString title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [description] /// A longer description of the group of operations.
-  @JsonKey(name: 'description')
   final FhirMarkdown? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [preConditions] /// Description of initial status before the process starts.
-  @JsonKey(name: 'preConditions')
   final FhirMarkdown? preConditions;
-  @JsonKey(name: '_preConditions')
   final Element? preConditionsElement;
 
   /// [postConditions] /// Description of final status after the process ends.
-  @JsonKey(name: 'postConditions')
   final FhirMarkdown? postConditions;
-  @JsonKey(name: '_postConditions')
   final Element? postConditionsElement;
 
   /// [step] /// Each step of the process.
-  @JsonKey(name: 'step')
   final List<ExampleScenarioStep>? step;
   @override
   Map<String, dynamic> toJson() {
@@ -1458,7 +1395,6 @@ class ExampleScenarioProcess extends BackboneElement {
 }
 
 /// [ExampleScenarioStep] /// Each step of the process.
-@JsonSerializable()
 class ExampleScenarioStep extends BackboneElement {
   ExampleScenarioStep({
     super.id,
@@ -1476,29 +1412,25 @@ class ExampleScenarioStep extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ExampleScenarioStep';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [process] /// Nested process.
-  @JsonKey(name: 'process')
   final List<ExampleScenarioProcess>? process;
 
   /// [pause] /// If there is a pause in the flow.
-  @JsonKey(name: 'pause')
   final FhirBoolean? pause;
-  @JsonKey(name: '_pause')
   final Element? pauseElement;
 
   /// [operation] /// Each interaction or action.
-  @JsonKey(name: 'operation')
   final ExampleScenarioOperation? operation;
 
   /// [alternative] /// Indicates an alternative step that can be taken instead of the operations
   /// on the base step in exceptional/atypical circumstances.
-  @JsonKey(name: 'alternative')
   final List<ExampleScenarioAlternative>? alternative;
   @override
   Map<String, dynamic> toJson() {
@@ -1635,7 +1567,6 @@ class ExampleScenarioStep extends BackboneElement {
 }
 
 /// [ExampleScenarioOperation] /// Each interaction or action.
-@JsonSerializable()
 class ExampleScenarioOperation extends BackboneElement {
   ExampleScenarioOperation({
     super.id,
@@ -1666,66 +1597,49 @@ class ExampleScenarioOperation extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ExampleScenarioOperation';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [number] /// The sequential number of the interaction, e.g. 1.2.5.
-  @JsonKey(name: 'number')
   final FhirString number;
-  @JsonKey(name: '_number')
   final Element? numberElement;
 
   /// [type] /// The type of operation - CRUD.
-  @JsonKey(name: 'type')
   final FhirString? type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [name] /// The human-friendly name of the interaction.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [initiator] /// Who starts the transaction.
-  @JsonKey(name: 'initiator')
   final FhirString? initiator;
-  @JsonKey(name: '_initiator')
   final Element? initiatorElement;
 
   /// [receiver] /// Who receives the transaction.
-  @JsonKey(name: 'receiver')
   final FhirString? receiver;
-  @JsonKey(name: '_receiver')
   final Element? receiverElement;
 
   /// [description] /// A comment to be inserted in the diagram.
-  @JsonKey(name: 'description')
   final FhirMarkdown? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [initiatorActive] /// Whether the initiator is deactivated right after the transaction.
-  @JsonKey(name: 'initiatorActive')
   final FhirBoolean? initiatorActive;
-  @JsonKey(name: '_initiatorActive')
   final Element? initiatorActiveElement;
 
   /// [receiverActive] /// Whether the receiver is deactivated right after the transaction.
-  @JsonKey(name: 'receiverActive')
   final FhirBoolean? receiverActive;
-  @JsonKey(name: '_receiverActive')
   final Element? receiverActiveElement;
 
   /// [request] /// Each resource instance used by the initiator.
-  @JsonKey(name: 'request')
   final ExampleScenarioContainedInstance? request;
 
   /// [response] /// Each resource instance used by the responder.
-  @JsonKey(name: 'response')
   final ExampleScenarioContainedInstance? response;
   @override
   Map<String, dynamic> toJson() {
@@ -1948,7 +1862,6 @@ class ExampleScenarioOperation extends BackboneElement {
 
 /// [ExampleScenarioAlternative] /// Indicates an alternative step that can be taken instead of the operations
 /// on the base step in exceptional/atypical circumstances.
-@JsonSerializable()
 class ExampleScenarioAlternative extends BackboneElement {
   ExampleScenarioAlternative({
     super.id,
@@ -1966,28 +1879,24 @@ class ExampleScenarioAlternative extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ExampleScenarioAlternative';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [title] /// The label to display for the alternative that gives a sense of the
   /// circumstance in which the alternative should be invoked.
-  @JsonKey(name: 'title')
   final FhirString title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [description] /// A human-readable description of the alternative explaining when the
   /// alternative should occur rather than the base step.
-  @JsonKey(name: 'description')
   final FhirMarkdown? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [step] /// What happens in each alternative option.
-  @JsonKey(name: 'step')
   final List<ExampleScenarioStep>? step;
   @override
   Map<String, dynamic> toJson() {

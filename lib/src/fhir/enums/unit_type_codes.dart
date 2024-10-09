@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes a smattering of Unit type codes.
 enum UnitTypeCodes {
   /// Display: Individual
   /// Definition: A single individual
-  @JsonValue('individual')
   individual,
 
   /// Display: Family
   /// Definition: A family, typically includes self, spouse(s) and children to a defined age
-  @JsonValue('family')
   family,
   ;
 

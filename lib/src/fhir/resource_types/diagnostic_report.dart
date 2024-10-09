@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -10,7 +9,6 @@ import '../../../fhir_r4.dart';
 /// these. The report includes clinical context such as requesting and provider
 /// information, and some mix of atomic results, images, textual and coded
 /// interpretations, and formatted representation of diagnostic reports.
-@JsonSerializable()
 class DiagnosticReport extends DomainResource {
   DiagnosticReport({
     super.id,
@@ -53,116 +51,94 @@ class DiagnosticReport extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.DiagnosticReport);
+
   @override
   String get fhirType => 'DiagnosticReport';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifiers assigned to this report by the performer or other systems.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [basedOn] /// Details concerning a service requested.
-  @JsonKey(name: 'basedOn')
   final List<Reference>? basedOn;
 
   /// [status] /// The status of the diagnostic report.
-  @JsonKey(name: 'status')
   final DiagnosticReportStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [category] /// A code that classifies the clinical discipline, department or diagnostic
   /// service that created the report (e.g. cardiology, biochemistry, hematology,
   /// MRI). This is used for searching, sorting and display purposes.
-  @JsonKey(name: 'category')
   final List<CodeableConcept>? category;
 
   /// [code] /// A code or name that describes this diagnostic report.
-  @JsonKey(name: 'code')
   final CodeableConcept code;
 
   /// [subject] /// The subject of the report. Usually, but not always, this is a patient.
   /// However, diagnostic services also perform analyses on specimens collected
   /// from a variety of other sources.
-  @JsonKey(name: 'subject')
   final Reference? subject;
 
   /// [encounter] /// The healthcare event (e.g. a patient and healthcare provider interaction)
   /// which this DiagnosticReport is about.
-  @JsonKey(name: 'encounter')
   final Reference? encounter;
 
   /// [effectiveDateTime] /// The time or time-period the observed values are related to. When the
   /// subject of the report is a patient, this is usually either the time of the
   /// procedure or of specimen collection(s), but very often the source of the
   /// date/time is not known, only the date/time itself.
-  @JsonKey(name: 'effectiveDateTime')
   final FhirDateTime? effectiveDateTime;
-  @JsonKey(name: '_effectiveDateTime')
   final Element? effectiveDateTimeElement;
 
   /// [effectivePeriod] /// The time or time-period the observed values are related to. When the
   /// subject of the report is a patient, this is usually either the time of the
   /// procedure or of specimen collection(s), but very often the source of the
   /// date/time is not known, only the date/time itself.
-  @JsonKey(name: 'effectivePeriod')
   final Period? effectivePeriod;
 
   /// [issued] /// The date and time that this version of the report was made available to
   /// providers, typically after the report was reviewed and verified.
-  @JsonKey(name: 'issued')
   final FhirInstant? issued;
-  @JsonKey(name: '_issued')
   final Element? issuedElement;
 
   /// [performer] /// The diagnostic service that is responsible for issuing the report.
-  @JsonKey(name: 'performer')
   final List<Reference>? performer;
 
   /// [resultsInterpreter] /// The practitioner or organization that is responsible for the report's
   /// conclusions and interpretations.
-  @JsonKey(name: 'resultsInterpreter')
   final List<Reference>? resultsInterpreter;
 
   /// [specimen] /// Details about the specimens on which this diagnostic report is based.
-  @JsonKey(name: 'specimen')
   final List<Reference>? specimen;
 
   /// [result] /// [Observations](observation.html) that are part of this diagnostic report.
-  @JsonKey(name: 'result')
   final List<Reference>? result;
 
   /// [imagingStudy] /// One or more links to full details of any imaging performed during the
   /// diagnostic investigation. Typically, this is imaging performed by DICOM
   /// enabled modalities, but this is not required. A fully enabled PACS viewer
   /// can use this information to provide views of the source images.
-  @JsonKey(name: 'imagingStudy')
   final List<Reference>? imagingStudy;
 
   /// [media] /// A list of key images associated with this report. The images are generally
   /// created during the diagnostic process, and may be directly of the patient,
   /// or of treated specimens (i.e. slides of interest).
-  @JsonKey(name: 'media')
   final List<DiagnosticReportMedia>? media;
 
   /// [conclusion] /// Concise and clinically contextualized summary conclusion
   /// (interpretation/impression) of the diagnostic report.
-  @JsonKey(name: 'conclusion')
   final FhirString? conclusion;
-  @JsonKey(name: '_conclusion')
   final Element? conclusionElement;
 
   /// [conclusionCode] /// One or more codes that represent the summary conclusion
   /// (interpretation/impression) of the diagnostic report.
-  @JsonKey(name: 'conclusionCode')
   final List<CodeableConcept>? conclusionCode;
 
   /// [presentedForm] /// Rich text representation of the entire result as issued by the diagnostic
   /// service. Multiple formats are allowed but they SHALL be semantically
   /// equivalent.
-  @JsonKey(name: 'presentedForm')
   final List<Attachment>? presentedForm;
   @override
   Map<String, dynamic> toJson() {
@@ -520,7 +496,6 @@ class DiagnosticReport extends DomainResource {
 /// [DiagnosticReportMedia] /// A list of key images associated with this report. The images are generally
 /// created during the diagnostic process, and may be directly of the patient,
 /// or of treated specimens (i.e. slides of interest).
-@JsonSerializable()
 class DiagnosticReportMedia extends BackboneElement {
   DiagnosticReportMedia({
     super.id,
@@ -536,22 +511,20 @@ class DiagnosticReportMedia extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'DiagnosticReportMedia';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [comment] /// A comment about the image. Typically, this is used to provide an
   /// explanation for why the image is included, or to draw the viewer's
   /// attention to important features.
-  @JsonKey(name: 'comment')
   final FhirString? comment;
-  @JsonKey(name: '_comment')
   final Element? commentElement;
 
   /// [link] /// Reference to the image source.
-  @JsonKey(name: 'link')
   final Reference link;
   @override
   Map<String, dynamic> toJson() {

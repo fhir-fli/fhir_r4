@@ -1,45 +1,35 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Overall seriousness of this event for the patient.
 enum AdverseEventSeriousness {
   /// Display: Non-serious
   /// Definition: Non-serious.
-  @JsonValue('Non-serious')
   Non_serious,
 
   /// Display: Serious
   /// Definition: Serious.
-  @JsonValue('Serious')
   Serious,
 
   /// Display: Results in death
   /// Definition: Results in death.
-  @JsonValue('SeriousResultsInDeath')
   SeriousResultsInDeath,
 
   /// Display: Is Life-threatening
   /// Definition: Is Life-threatening.
-  @JsonValue('SeriousIsLifeThreatening')
   SeriousIsLifeThreatening,
 
   /// Display: Requires or prolongs inpatient hospitalization
   /// Definition: Requires inpatient hospitalization or causes prolongation of existing hospitalization.
-  @JsonValue('SeriousResultsInHospitalization')
   SeriousResultsInHospitalization,
 
   /// Display: Results in persistent or significant disability/incapacity
   /// Definition: Results in persistent or significant disability/incapacity.
-  @JsonValue('SeriousResultsInDisability')
   SeriousResultsInDisability,
 
   /// Display: Is a congenital anomaly/birth defect
   /// Definition: Is a congenital anomaly/birth defect.
-  @JsonValue('SeriousIsBirthDefect')
   SeriousIsBirthDefect,
 
   /// Display: Requires intervention to prevent permanent impairment
   /// Definition: Requires intervention to prevent permanent impairment or damage (i.e., an important medical event that requires medical judgement).
-  @JsonValue('SeriousRequiresPreventImpairment')
   SeriousRequiresPreventImpairment,
   ;
 

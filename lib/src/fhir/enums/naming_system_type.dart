@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Identifies the purpose of the naming system.
 enum NamingSystemType {
   /// Display: Code System
   /// Definition: The naming system is used to define concepts and symbols to represent those concepts; e.g. UCUM, LOINC, NDC code, local lab codes, etc.
-  @JsonValue('codesystem')
   codesystem,
 
   /// Display: Identifier
   /// Definition: The naming system is used to manage identifiers (e.g. license numbers, order numbers, etc.).
-  @JsonValue('identifier')
   identifier,
 
   /// Display: Root
   /// Definition: The naming system is used as the root for other identifiers and naming systems.
-  @JsonValue('root')
   root,
   ;
 

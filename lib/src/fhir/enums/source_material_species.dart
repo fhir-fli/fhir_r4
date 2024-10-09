@@ -1,13 +1,9 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// A species of origin a substance raw material.
 enum SourceMaterialSpecies {
   /// Display: Ginkgo biloba
-  @JsonValue('GinkgoBiloba')
   GinkgoBiloba,
 
   /// Display: Olea europaea
-  @JsonValue('OleaEuropaea')
   OleaEuropaea,
   ;
 

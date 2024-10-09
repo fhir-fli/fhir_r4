@@ -1,53 +1,39 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Types of medicinal product packs
 enum MedicinalProductPackageType {
   /// Display: Ampoule
-  @JsonValue('100000073490')
   value100000073490,
 
   /// Display: Applicator
-  @JsonValue('100000073491')
   value100000073491,
 
   /// Display: Automatic injection device
-  @JsonValue('100000073492')
   value100000073492,
 
   /// Display: Bag
-  @JsonValue('100000073493')
   value100000073493,
 
   /// Display: Balling gun
-  @JsonValue('100000073494')
   value100000073494,
 
   /// Display: Barrel
-  @JsonValue('100000073495')
   value100000073495,
 
   /// Display: Blister
-  @JsonValue('100000073496')
   value100000073496,
 
   /// Display: Bottle
-  @JsonValue('100000073497')
   value100000073497,
 
   /// Display: Box
-  @JsonValue('100000073498')
   value100000073498,
 
   /// Display: Sachet
-  @JsonValue('100000073547')
   value100000073547,
 
   /// Display: Vial
-  @JsonValue('100000073563')
   value100000073563,
 
   /// Display: Pack
-  @JsonValue('100000143555')
   value100000143555,
   ;
 

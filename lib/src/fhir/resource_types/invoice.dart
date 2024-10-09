@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [Invoice] /// Invoice containing collected ChargeItems from an Account with calculated
 /// individual and total price for Billing purpose.
-@JsonSerializable()
 class Invoice extends DomainResource {
   Invoice({
     super.id,
@@ -47,93 +45,74 @@ class Invoice extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Invoice);
+
   @override
   String get fhirType => 'Invoice';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifier of this Invoice, often used for reference in correspondence
   /// about this invoice or for tracking of payments.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// The current state of the Invoice.
-  @JsonKey(name: 'status')
   final InvoiceStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [cancelledReason] /// In case of Invoice cancellation a reason must be given (entered in error,
   /// superseded by corrected invoice etc.).
-  @JsonKey(name: 'cancelledReason')
   final FhirString? cancelledReason;
-  @JsonKey(name: '_cancelledReason')
   final Element? cancelledReasonElement;
 
   /// [type] /// Type of Invoice depending on domain, realm an usage (e.g.
   /// internal/external, dental, preliminary).
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [subject] /// The individual or set of individuals receiving the goods and services
   /// billed in this invoice.
-  @JsonKey(name: 'subject')
   final Reference? subject;
 
   /// [recipient] /// The individual or Organization responsible for balancing of this invoice.
-  @JsonKey(name: 'recipient')
   final Reference? recipient;
 
   /// [date] /// Date/time(s) of when this Invoice was posted.
-  @JsonKey(name: 'date')
   final FhirDateTime? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [participant] /// Indicates who or what performed or participated in the charged service.
-  @JsonKey(name: 'participant')
   final List<InvoiceParticipant>? participant;
 
   /// [issuer] /// The organizationissuing the Invoice.
-  @JsonKey(name: 'issuer')
   final Reference? issuer;
 
   /// [account] /// Account which is supposed to be balanced with this Invoice.
-  @JsonKey(name: 'account')
   final Reference? account;
 
   /// [lineItem] /// Each line item represents one charge for goods and services rendered.
   /// Details such as date, code and amount are found in the referenced
   /// ChargeItem resource.
-  @JsonKey(name: 'lineItem')
   final List<InvoiceLineItem>? lineItem;
 
   /// [totalPriceComponent] /// The total amount for the Invoice may be calculated as the sum of the line
   /// items with surcharges/deductions that apply in certain conditions. The
   /// priceComponent element can be used to offer transparency to the recipient
   /// of the Invoice of how the total price was calculated.
-  @JsonKey(name: 'totalPriceComponent')
   final List<InvoicePriceComponent>? totalPriceComponent;
 
   /// [totalNet] /// Invoice total , taxes excluded.
-  @JsonKey(name: 'totalNet')
   final Money? totalNet;
 
   /// [totalGross] /// Invoice total, tax included.
-  @JsonKey(name: 'totalGross')
   final Money? totalGross;
 
   /// [paymentTerms] /// Payment details such as banking details, period of payment, deductibles,
   /// methods of payment.
-  @JsonKey(name: 'paymentTerms')
   final FhirMarkdown? paymentTerms;
-  @JsonKey(name: '_paymentTerms')
   final Element? paymentTermsElement;
 
   /// [note] /// Comments made about the invoice by the issuer, subject, or other
   /// participants.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
@@ -444,7 +423,6 @@ class Invoice extends DomainResource {
 }
 
 /// [InvoiceParticipant] /// Indicates who or what performed or participated in the charged service.
-@JsonSerializable()
 class InvoiceParticipant extends BackboneElement {
   InvoiceParticipant({
     super.id,
@@ -459,21 +437,20 @@ class InvoiceParticipant extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'InvoiceParticipant';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [role] /// Describes the type of involvement (e.g. transcriptionist, creator etc.). If
   /// the invoice has been created automatically, the Participant may be a
   /// billing engine or another kind of device.
-  @JsonKey(name: 'role')
   final CodeableConcept? role;
 
   /// [actor] /// The device, practitioner, etc. who performed or participated in the
   /// service.
-  @JsonKey(name: 'actor')
   final Reference actor;
   @override
   Map<String, dynamic> toJson() {
@@ -574,7 +551,6 @@ class InvoiceParticipant extends BackboneElement {
 /// [InvoiceLineItem] /// Each line item represents one charge for goods and services rendered.
 /// Details such as date, code and amount are found in the referenced
 /// ChargeItem resource.
-@JsonSerializable()
 class InvoiceLineItem extends BackboneElement {
   InvoiceLineItem({
     super.id,
@@ -592,30 +568,27 @@ class InvoiceLineItem extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'InvoiceLineItem';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [sequence] /// Sequence in which the items appear on the invoice.
-  @JsonKey(name: 'sequence')
   final FhirPositiveInt? sequence;
-  @JsonKey(name: '_sequence')
   final Element? sequenceElement;
 
   /// [chargeItemReference] /// The ChargeItem contains information such as the billing code, date, amount
   /// etc. If no further details are required for the lineItem, inline billing
   /// codes can be added using the CodeableConcept data type instead of the
   /// Reference.
-  @JsonKey(name: 'chargeItemReference')
   final Reference? chargeItemReference;
 
   /// [chargeItemCodeableConcept] /// The ChargeItem contains information such as the billing code, date, amount
   /// etc. If no further details are required for the lineItem, inline billing
   /// codes can be added using the CodeableConcept data type instead of the
   /// Reference.
-  @JsonKey(name: 'chargeItemCodeableConcept')
   final CodeableConcept? chargeItemCodeableConcept;
 
   /// [priceComponent] /// The price for a ChargeItem may be calculated as a base price with
@@ -624,7 +597,6 @@ class InvoiceLineItem extends BackboneElement {
   /// conditions that apply to a billing code is currently under development. The
   /// priceComponent element can be used to offer transparency to the recipient
   /// of the Invoice as to how the prices have been calculated.
-  @JsonKey(name: 'priceComponent')
   final List<InvoicePriceComponent>? priceComponent;
   @override
   Map<String, dynamic> toJson() {
@@ -763,7 +735,6 @@ class InvoiceLineItem extends BackboneElement {
 /// conditions that apply to a billing code is currently under development. The
 /// priceComponent element can be used to offer transparency to the recipient
 /// of the Invoice as to how the prices have been calculated.
-@JsonSerializable()
 class InvoicePriceComponent extends BackboneElement {
   InvoicePriceComponent({
     super.id,
@@ -782,32 +753,27 @@ class InvoicePriceComponent extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'InvoicePriceComponent';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// This code identifies the type of the component.
-  @JsonKey(name: 'type')
   final InvoicePriceComponentType type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [code] /// A code that identifies the component. Codes may be used to differentiate
   /// between kinds of taxes, surcharges, discounts etc.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [factor] /// The factor that has been applied on the base price for calculating this
   /// component.
-  @JsonKey(name: 'factor')
   final FhirDecimal? factor;
-  @JsonKey(name: '_factor')
   final Element? factorElement;
 
   /// [amount] /// The amount calculated for this component.
-  @JsonKey(name: 'amount')
   final Money? amount;
   @override
   Map<String, dynamic> toJson() {

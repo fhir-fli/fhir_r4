@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Indicates whether the location is still in use.
 enum LocationStatus {
   /// Display: Active
   /// Definition: The location is operational.
-  @JsonValue('active')
   active,
 
   /// Display: Suspended
   /// Definition: The location is temporarily closed.
-  @JsonValue('suspended')
   suspended,
 
   /// Display: Inactive
   /// Definition: The location is no longer used.
-  @JsonValue('inactive')
   inactive,
   ;
 

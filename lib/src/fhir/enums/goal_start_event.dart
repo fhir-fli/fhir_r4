@@ -1,21 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Identifies types of events that might trigger the start of a goal.
 enum GoalStartEvent {
   /// Display: Admission to hospital
-  @JsonValue('32485007')
   value32485007,
 
   /// Display: Discharge from hospital
-  @JsonValue('308283009')
   value308283009,
 
   /// Display: Completion time of procedure
-  @JsonValue('442137000')
   value442137000,
 
   /// Display: Childbirth
-  @JsonValue('386216000')
   value386216000,
   ;
 

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -11,7 +10,6 @@ import '../../../fhir_r4.dart';
 /// time, amounts and participating organizations and persons. Main Usage of
 /// the ChargeItem is to enable the billing process and internal cost
 /// allocation.
-@JsonSerializable()
 class ChargeItem extends DomainResource {
   ChargeItem({
     super.id,
@@ -67,151 +65,116 @@ class ChargeItem extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.ChargeItem);
+
   @override
   String get fhirType => 'ChargeItem';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifiers assigned to this event performer or other systems.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [definitionUri] /// References the (external) source of pricing information, rules of
   /// application for the code this ChargeItem uses.
-  @JsonKey(name: 'definitionUri')
   final List<FhirUri>? definitionUri;
-  @JsonKey(name: '_definitionUri')
   final List<Element>? definitionUriElement;
 
   /// [definitionCanonical] /// References the source of pricing information, rules of application for the
   /// code this ChargeItem uses.
-  @JsonKey(name: 'definitionCanonical')
   final List<FhirCanonical>? definitionCanonical;
-  @JsonKey(name: '_definitionCanonical')
   final List<Element>? definitionCanonicalElement;
 
   /// [status] /// The current state of the ChargeItem.
-  @JsonKey(name: 'status')
   final ChargeItemStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [partOf] /// ChargeItems can be grouped to larger ChargeItems covering the whole set.
-  @JsonKey(name: 'partOf')
   final List<Reference>? partOf;
 
   /// [code] /// A code that identifies the charge, like a billing code.
-  @JsonKey(name: 'code')
   final CodeableConcept code;
 
   /// [subject] /// The individual or set of individuals the action is being or was performed
   /// on.
-  @JsonKey(name: 'subject')
   final Reference subject;
 
   /// [context] /// The encounter or episode of care that establishes the context for this
   /// event.
-  @JsonKey(name: 'context')
   final Reference? context;
 
   /// [occurrenceDateTime] /// Date/time(s) or duration when the charged service was applied.
-  @JsonKey(name: 'occurrenceDateTime')
   final FhirDateTime? occurrenceDateTime;
-  @JsonKey(name: '_occurrenceDateTime')
   final Element? occurrenceDateTimeElement;
 
   /// [occurrencePeriod] /// Date/time(s) or duration when the charged service was applied.
-  @JsonKey(name: 'occurrencePeriod')
   final Period? occurrencePeriod;
 
   /// [occurrenceTiming] /// Date/time(s) or duration when the charged service was applied.
-  @JsonKey(name: 'occurrenceTiming')
   final Timing? occurrenceTiming;
 
   /// [performer] /// Indicates who or what performed or participated in the charged service.
-  @JsonKey(name: 'performer')
   final List<ChargeItemPerformer>? performer;
 
   /// [performingOrganization] /// The organization requesting the service.
-  @JsonKey(name: 'performingOrganization')
   final Reference? performingOrganization;
 
   /// [requestingOrganization] /// The organization performing the service.
-  @JsonKey(name: 'requestingOrganization')
   final Reference? requestingOrganization;
 
   /// [costCenter] /// The financial cost center permits the tracking of charge attribution.
-  @JsonKey(name: 'costCenter')
   final Reference? costCenter;
 
   /// [quantity] /// Quantity of which the charge item has been serviced.
-  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [bodysite] /// The anatomical location where the related service has been applied.
-  @JsonKey(name: 'bodysite')
   final List<CodeableConcept>? bodysite;
 
   /// [factorOverride] /// Factor overriding the factor determined by the rules associated with the
   /// code.
-  @JsonKey(name: 'factorOverride')
   final FhirDecimal? factorOverride;
-  @JsonKey(name: '_factorOverride')
   final Element? factorOverrideElement;
 
   /// [priceOverride] /// Total price of the charge overriding the list price associated with the
   /// code.
-  @JsonKey(name: 'priceOverride')
   final Money? priceOverride;
 
   /// [overrideReason] /// If the list price or the rule-based factor associated with the code is
   /// overridden, this attribute can capture a text to indicate the reason for
   /// this action.
-  @JsonKey(name: 'overrideReason')
   final FhirString? overrideReason;
-  @JsonKey(name: '_overrideReason')
   final Element? overrideReasonElement;
 
   /// [enterer] /// The device, practitioner, etc. who entered the charge item.
-  @JsonKey(name: 'enterer')
   final Reference? enterer;
 
   /// [enteredDate] /// Date the charge item was entered.
-  @JsonKey(name: 'enteredDate')
   final FhirDateTime? enteredDate;
-  @JsonKey(name: '_enteredDate')
   final Element? enteredDateElement;
 
   /// [reason] /// Describes why the event occurred in coded or textual form.
-  @JsonKey(name: 'reason')
   final List<CodeableConcept>? reason;
 
   /// [service] /// Indicated the rendered service that caused this charge.
-  @JsonKey(name: 'service')
   final List<Reference>? service;
 
   /// [productReference] /// Identifies the device, food, drug or other product being charged either by
   /// type code or reference to an instance.
-  @JsonKey(name: 'productReference')
   final Reference? productReference;
 
   /// [productCodeableConcept] /// Identifies the device, food, drug or other product being charged either by
   /// type code or reference to an instance.
-  @JsonKey(name: 'productCodeableConcept')
   final CodeableConcept? productCodeableConcept;
 
   /// [account] /// Account into which this ChargeItems belongs.
-  @JsonKey(name: 'account')
   final List<Reference>? account;
 
   /// [note] /// Comments made about the event by the performer, subject or other
   /// participants.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [supportingInformation] /// Further information supporting this charge.
-  @JsonKey(name: 'supportingInformation')
   final List<Reference>? supportingInformation;
   @override
   Map<String, dynamic> toJson() {
@@ -686,7 +649,6 @@ class ChargeItem extends DomainResource {
 }
 
 /// [ChargeItemPerformer] /// Indicates who or what performed or participated in the charged service.
-@JsonSerializable()
 class ChargeItemPerformer extends BackboneElement {
   ChargeItemPerformer({
     super.id,
@@ -701,20 +663,19 @@ class ChargeItemPerformer extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ChargeItemPerformer';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [function_] /// Describes the type of performance or participation(e.g. primary surgeon,
   /// anesthesiologiest, etc.).
-  @JsonKey(name: 'function')
   final CodeableConcept? function_;
 
   /// [actor] /// The device, practitioner, etc. who performed or participated in the
   /// service.
-  @JsonKey(name: 'actor')
   final Reference actor;
   @override
   Map<String, dynamic> toJson() {

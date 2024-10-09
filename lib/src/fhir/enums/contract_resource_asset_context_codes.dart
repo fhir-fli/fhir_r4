@@ -1,10 +1,7 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set contract specific codes for asset context.
 enum ContractResourceAssetContextCodes {
   /// Display: Custodian
   /// Definition: To be completed
-  @JsonValue('custodian')
   custodian,
   ;
 

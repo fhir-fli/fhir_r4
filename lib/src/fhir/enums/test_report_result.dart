@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The reported execution result.
 enum TestReportResult {
   /// Display: Pass
   /// Definition: All test operations successfully passed all asserts.
-  @JsonValue('pass')
   pass,
 
   /// Display: Fail
   /// Definition: One or more test operations failed one or more asserts.
-  @JsonValue('fail')
   fail,
 
   /// Display: Pending
   /// Definition: One or more test operations is pending execution completion.
-  @JsonValue('pending')
   pending,
   ;
 

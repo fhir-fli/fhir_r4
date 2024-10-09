@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Defines which action to take if there is no match in the group.
 enum ConceptMapGroupUnmappedMode {
   /// Display: Provided Code
   /// Definition: Use the code as provided in the $translate request.
-  @JsonValue('provided')
   provided,
 
   /// Display: Fixed Code
   /// Definition: Use the code explicitly provided in the group.unmapped.
-  @JsonValue('fixed')
   fixed,
 
   /// Display: Other Map
   /// Definition: Use the map identified by the canonical URL in the url element.
-  @JsonValue('other-map')
   other_map,
   ;
 

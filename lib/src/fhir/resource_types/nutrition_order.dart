@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [NutritionOrder] /// A request to supply a diet, formula feeding (enteral) or oral nutritional
 /// supplement to a patient/resident.
-@JsonSerializable()
 class NutritionOrder extends DomainResource {
   NutritionOrder({
     super.id,
@@ -50,76 +48,60 @@ class NutritionOrder extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.NutritionOrder);
+
   @override
   String get fhirType => 'NutritionOrder';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifiers assigned to this order by the order sender or by the order
   /// receiver.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [instantiatesCanonical] /// The URL pointing to a FHIR-defined protocol, guideline, orderset or other
   /// definition that is adhered to in whole or in part by this NutritionOrder.
-  @JsonKey(name: 'instantiatesCanonical')
   final List<FhirCanonical>? instantiatesCanonical;
-  @JsonKey(name: '_instantiatesCanonical')
   final List<Element>? instantiatesCanonicalElement;
 
   /// [instantiatesUri] /// The URL pointing to an externally maintained protocol, guideline, orderset
   /// or other definition that is adhered to in whole or in part by this
   /// NutritionOrder.
-  @JsonKey(name: 'instantiatesUri')
   final List<FhirUri>? instantiatesUri;
-  @JsonKey(name: '_instantiatesUri')
   final List<Element>? instantiatesUriElement;
 
   /// [instantiates] /// The URL pointing to a protocol, guideline, orderset or other definition
   /// that is adhered to in whole or in part by this NutritionOrder.
-  @JsonKey(name: 'instantiates')
   final List<FhirUri>? instantiates;
-  @JsonKey(name: '_instantiates')
   final List<Element>? instantiatesElement;
 
   /// [status] /// The workflow status of the nutrition order/request.
-  @JsonKey(name: 'status')
   final RequestStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [intent] /// Indicates the level of authority/intentionality associated with the
   /// NutrionOrder and where the request fits into the workflow chain.
-  @JsonKey(name: 'intent')
   final RequestIntent intent;
-  @JsonKey(name: '_intent')
   final Element? intentElement;
 
   /// [patient] /// The person (patient) who needs the nutrition order for an oral diet,
   /// nutritional supplement and/or enteral or formula feeding.
-  @JsonKey(name: 'patient')
   final Reference patient;
 
   /// [encounter] /// An encounter that provides additional information about the healthcare
   /// context in which this request is made.
-  @JsonKey(name: 'encounter')
   final Reference? encounter;
 
   /// [dateTime] /// The date and time that this nutrition order was requested.
-  @JsonKey(name: 'dateTime')
   final FhirDateTime dateTime;
-  @JsonKey(name: '_dateTime')
   final Element? dateTimeElement;
 
   /// [orderer] /// The practitioner that holds legal responsibility for ordering the diet,
   /// nutritional supplement, or formula feedings.
-  @JsonKey(name: 'orderer')
   final Reference? orderer;
 
   /// [allergyIntolerance] /// A link to a record of allergies or intolerances which should be included in
   /// the nutrition order.
-  @JsonKey(name: 'allergyIntolerance')
   final List<Reference>? allergyIntolerance;
 
   /// [foodPreferenceModifier] /// This modifier is used to convey order-specific modifiers about the type of
@@ -127,7 +109,6 @@ class NutritionOrder extends DomainResource {
   /// intolerances, or preferences such as Halal, Vegan or Kosher. This modifier
   /// applies to the entire nutrition order inclusive of the oral diet,
   /// nutritional supplements and enteral formula feedings.
-  @JsonKey(name: 'foodPreferenceModifier')
   final List<CodeableConcept>? foodPreferenceModifier;
 
   /// [excludeFoodModifier] /// This modifier is used to convey Order-specific modifier about the type of
@@ -140,26 +121,21 @@ class NutritionOrder extends DomainResource {
   /// eliminated from the patient’s diet for any reason. This modifier applies to
   /// the entire nutrition order inclusive of the oral diet, nutritional
   /// supplements and enteral formula feedings.
-  @JsonKey(name: 'excludeFoodModifier')
   final List<CodeableConcept>? excludeFoodModifier;
 
   /// [oralDiet] /// Diet given orally in contrast to enteral (tube) feeding.
-  @JsonKey(name: 'oralDiet')
   final NutritionOrderOralDiet? oralDiet;
 
   /// [supplement] /// Oral nutritional products given in order to add further nutritional value
   /// to the patient's diet.
-  @JsonKey(name: 'supplement')
   final List<NutritionOrderSupplement>? supplement;
 
   /// [enteralFormula] /// Feeding provided through the gastrointestinal tract via a tube, catheter,
   /// or stoma that delivers nutrition distal to the oral cavity.
-  @JsonKey(name: 'enteralFormula')
   final NutritionOrderEnteralFormula? enteralFormula;
 
   /// [note] /// Comments made about the {{title}} by the requester, performer, subject or
   /// other participants.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
@@ -509,7 +485,6 @@ class NutritionOrder extends DomainResource {
 }
 
 /// [NutritionOrderOralDiet] /// Diet given orally in contrast to enteral (tube) feeding.
-@JsonSerializable()
 class NutritionOrderOralDiet extends BackboneElement {
   NutritionOrderOralDiet({
     super.id,
@@ -529,43 +504,37 @@ class NutritionOrderOralDiet extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'NutritionOrderOralDiet';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The kind of diet or dietary restriction such as fiber restricted diet or
   /// diabetic diet.
-  @JsonKey(name: 'type')
   final List<CodeableConcept>? type;
 
   /// [schedule] /// The time period and frequency at which the diet should be given. The diet
   /// should be given for the combination of all schedules if more than one
   /// schedule is present.
-  @JsonKey(name: 'schedule')
   final List<Timing>? schedule;
 
   /// [nutrient] /// Class that defines the quantity and type of nutrient modifications (for
   /// example carbohydrate, fiber or sodium) required for the oral diet.
-  @JsonKey(name: 'nutrient')
   final List<NutritionOrderNutrient>? nutrient;
 
   /// [texture] /// Class that describes any texture modifications required for the patient to
   /// safely consume various types of solid foods.
-  @JsonKey(name: 'texture')
   final List<NutritionOrderTexture>? texture;
 
   /// [fluidConsistencyType] /// The required consistency (e.g. honey-thick, nectar-thick, thin, thickened.)
   /// of liquids or fluids served to the patient.
-  @JsonKey(name: 'fluidConsistencyType')
   final List<CodeableConcept>? fluidConsistencyType;
 
   /// [instruction] /// Free text or additional instructions or information pertaining to the oral
   /// diet.
-  @JsonKey(name: 'instruction')
   final FhirString? instruction;
-  @JsonKey(name: '_instruction')
   final Element? instructionElement;
   @override
   Map<String, dynamic> toJson() {
@@ -731,7 +700,6 @@ class NutritionOrderOralDiet extends BackboneElement {
 
 /// [NutritionOrderNutrient] /// Class that defines the quantity and type of nutrient modifications (for
 /// example carbohydrate, fiber or sodium) required for the oral diet.
-@JsonSerializable()
 class NutritionOrderNutrient extends BackboneElement {
   NutritionOrderNutrient({
     super.id,
@@ -746,18 +714,17 @@ class NutritionOrderNutrient extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'NutritionOrderNutrient';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [modifier] /// The nutrient that is being modified such as carbohydrate or sodium.
-  @JsonKey(name: 'modifier')
   final CodeableConcept? modifier;
 
   /// [amount] /// The quantity of the specified nutrient to include in diet.
-  @JsonKey(name: 'amount')
   final Quantity? amount;
   @override
   Map<String, dynamic> toJson() {
@@ -861,7 +828,6 @@ class NutritionOrderNutrient extends BackboneElement {
 
 /// [NutritionOrderTexture] /// Class that describes any texture modifications required for the patient to
 /// safely consume various types of solid foods.
-@JsonSerializable()
 class NutritionOrderTexture extends BackboneElement {
   NutritionOrderTexture({
     super.id,
@@ -876,20 +842,19 @@ class NutritionOrderTexture extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'NutritionOrderTexture';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [modifier] /// Any texture modifications (for solid foods) that should be made, e.g. easy
   /// to chew, chopped, ground, and pureed.
-  @JsonKey(name: 'modifier')
   final CodeableConcept? modifier;
 
   /// [foodType] /// The food type(s) (e.g. meats, all foods) that the texture modification
   /// applies to. This could be all foods types.
-  @JsonKey(name: 'foodType')
   final CodeableConcept? foodType;
   @override
   Map<String, dynamic> toJson() {
@@ -993,7 +958,6 @@ class NutritionOrderTexture extends BackboneElement {
 
 /// [NutritionOrderSupplement] /// Oral nutritional products given in order to add further nutritional value
 /// to the patient's diet.
-@JsonSerializable()
 class NutritionOrderSupplement extends BackboneElement {
   NutritionOrderSupplement({
     super.id,
@@ -1013,39 +977,33 @@ class NutritionOrderSupplement extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'NutritionOrderSupplement';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The kind of nutritional supplement product required such as a high protein
   /// or pediatric clear liquid supplement.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [productName] /// The product or brand name of the nutritional supplement such as "Acme
   /// Protein Shake".
-  @JsonKey(name: 'productName')
   final FhirString? productName;
-  @JsonKey(name: '_productName')
   final Element? productNameElement;
 
   /// [schedule] /// The time period and frequency at which the supplement(s) should be given.
   /// The supplement should be given for the combination of all schedules if more
   /// than one schedule is present.
-  @JsonKey(name: 'schedule')
   final List<Timing>? schedule;
 
   /// [quantity] /// The amount of the nutritional supplement to be given.
-  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [instruction] /// Free text or additional instructions or information pertaining to the oral
   /// supplement.
-  @JsonKey(name: 'instruction')
   final FhirString? instruction;
-  @JsonKey(name: '_instruction')
   final Element? instructionElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1191,7 +1149,6 @@ class NutritionOrderSupplement extends BackboneElement {
 
 /// [NutritionOrderEnteralFormula] /// Feeding provided through the gastrointestinal tract via a tube, catheter,
 /// or stoma that delivers nutrition distal to the oral cavity.
-@JsonSerializable()
 class NutritionOrderEnteralFormula extends BackboneElement {
   NutritionOrderEnteralFormula({
     super.id,
@@ -1214,59 +1171,50 @@ class NutritionOrderEnteralFormula extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'NutritionOrderEnteralFormula';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [baseFormulaType] /// The type of enteral or infant formula such as an adult standard formula
   /// with fiber or a soy-based infant formula.
-  @JsonKey(name: 'baseFormulaType')
   final CodeableConcept? baseFormulaType;
 
   /// [baseFormulaProductName] /// The product or brand name of the enteral or infant formula product such as
   /// "ACME Adult Standard Formula".
-  @JsonKey(name: 'baseFormulaProductName')
   final FhirString? baseFormulaProductName;
-  @JsonKey(name: '_baseFormulaProductName')
   final Element? baseFormulaProductNameElement;
 
   /// [additiveType] /// Indicates the type of modular component such as protein, carbohydrate, fat
   /// or fiber to be provided in addition to or mixed with the base formula.
-  @JsonKey(name: 'additiveType')
   final CodeableConcept? additiveType;
 
   /// [additiveProductName] /// The product or brand name of the type of modular component to be added to
   /// the formula.
-  @JsonKey(name: 'additiveProductName')
   final FhirString? additiveProductName;
-  @JsonKey(name: '_additiveProductName')
   final Element? additiveProductNameElement;
 
   /// [caloricDensity] /// The amount of energy (calories) that the formula should provide per
   /// specified volume, typically per mL or fluid oz. For example, an infant may
   /// require a formula that provides 24 calories per fluid ounce or an adult may
   /// require an enteral formula that provides 1.5 calorie/mL.
-  @JsonKey(name: 'caloricDensity')
   final Quantity? caloricDensity;
 
   /// [routeofAdministration] /// The route or physiological path of administration into the patient's
   /// gastrointestinal tract for purposes of providing the formula feeding, e.g.
   /// nasogastric tube.
-  @JsonKey(name: 'routeofAdministration')
   final CodeableConcept? routeofAdministration;
 
   /// [administration] /// Formula administration instructions as structured data. This repeating
   /// structure allows for changing the administration rate or volume over time
   /// for both bolus and continuous feeding. An example of this would be an
   /// instruction to increase the rate of continuous feeding every 2 hours.
-  @JsonKey(name: 'administration')
   final List<NutritionOrderAdministration>? administration;
 
   /// [maxVolumeToDeliver] /// The maximum total quantity of formula that may be administered to a subject
   /// over the period of time, e.g. 1440 mL over 24 hours.
-  @JsonKey(name: 'maxVolumeToDeliver')
   final Quantity? maxVolumeToDeliver;
   @override
   Map<String, dynamic> toJson() {
@@ -1452,7 +1400,6 @@ class NutritionOrderEnteralFormula extends BackboneElement {
 /// structure allows for changing the administration rate or volume over time
 /// for both bolus and continuous feeding. An example of this would be an
 /// instruction to increase the rate of continuous feeding every 2 hours.
-@JsonSerializable()
 class NutritionOrderAdministration extends BackboneElement {
   NutritionOrderAdministration({
     super.id,
@@ -1471,37 +1418,32 @@ class NutritionOrderAdministration extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'NutritionOrderAdministration';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [schedule] /// The time period and frequency at which the enteral formula should be
   /// delivered to the patient.
-  @JsonKey(name: 'schedule')
   final Timing? schedule;
 
   /// [quantity] /// The volume of formula to provide to the patient per the specified
   /// administration schedule.
-  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [rateQuantity] /// The rate of administration of formula via a feeding pump, e.g. 60 mL per
   /// hour, according to the specified schedule.
-  @JsonKey(name: 'rateQuantity')
   final Quantity? rateQuantity;
 
   /// [rateRatio] /// The rate of administration of formula via a feeding pump, e.g. 60 mL per
   /// hour, according to the specified schedule.
-  @JsonKey(name: 'rateRatio')
   final Ratio? rateRatio;
 
   /// [administrationInstruction] /// Free text formula administration, feeding instructions or additional
   /// instructions or information.
-  @JsonKey(name: 'administrationInstruction')
   final FhirString? administrationInstruction;
-  @JsonKey(name: '_administrationInstruction')
   final Element? administrationInstructionElement;
   @override
   Map<String, dynamic> toJson() {

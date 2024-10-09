@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Estimate of the potential clinical harm, or seriousness, of a reaction to an identified substance.
 enum AllergyIntoleranceCriticality {
   /// Display: Low Risk
   /// Definition: Worst case result of a future exposure is not assessed to be life-threatening or having high potential for organ system failure.
-  @JsonValue('low')
   low,
 
   /// Display: High Risk
   /// Definition: Worst case result of a future exposure is assessed to be life-threatening or having high potential for organ system failure.
-  @JsonValue('high')
   high,
 
   /// Display: Unable to Assess Risk
   /// Definition: Unable to assess the worst case result of a future exposure.
-  @JsonValue('unable-to-assess')
   unable_to_assess,
   ;
 

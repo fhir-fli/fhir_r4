@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,7 +7,6 @@ import '../../../fhir_r4.dart';
 /// [Binary] /// A resource that represents the data of a single raw artifact as digital
 /// content accessible in its native format. A Binary resource can contain any
 /// content, whether text, image, pdf, zip archive, etc.
-@JsonSerializable()
 class Binary extends Resource {
   Binary({
     super.id,
@@ -29,16 +27,15 @@ class Binary extends Resource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Binary);
+
   @override
   String get fhirType => 'Binary';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [contentType] /// MimeType of the binary content represented as a standard MimeType (BCP 13).
-  @JsonKey(name: 'contentType')
   final FhirCode contentType;
-  @JsonKey(name: '_contentType')
   final Element? contentTypeElement;
 
   /// [securityContext] /// This element identifies another resource that can be used as a proxy of the
@@ -51,13 +48,10 @@ class Binary extends Resource {
   /// purely as a security proxy. E.g. to identify that the binary resource
   /// relates to a patient, and access should only be granted to applications
   /// that have access to the patient.
-  @JsonKey(name: 'securityContext')
   final Reference? securityContext;
 
   /// [data] /// The actual content, base64 encoded.
-  @JsonKey(name: 'data')
   final FhirBase64Binary? data;
-  @JsonKey(name: '_data')
   final Element? dataElement;
   @override
   Map<String, dynamic> toJson() {

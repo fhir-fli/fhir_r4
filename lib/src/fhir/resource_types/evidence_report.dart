@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,7 +7,6 @@ import '../../../fhir_r4.dart';
 /// [EvidenceReport] /// The EvidenceReport Resource is a specialized container for a collection of
 /// resources and codable concepts, adapted to support compositions of
 /// Evidence, EvidenceVariable, and Citation resources and related concepts.
-@JsonSerializable()
 class EvidenceReport extends DomainResource {
   EvidenceReport({
     super.id,
@@ -51,10 +49,11 @@ class EvidenceReport extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.EvidenceReport);
+
   @override
   String get fhirType => 'EvidenceReport';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this EvidenceReport when it is
@@ -64,15 +63,11 @@ class EvidenceReport extends DomainResource {
   /// is (or will be) published. This URL can be the target of a canonical
   /// reference. It SHALL remain the same when the summary is stored on different
   /// servers.
-  @JsonKey(name: 'url')
   final FhirUri? url;
-  @JsonKey(name: '_url')
   final Element? urlElement;
 
   /// [status] /// The status of this summary. Enables tracking the life-cycle of the content.
-  @JsonKey(name: 'status')
   final PublicationStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [useContext] /// The content was developed with a focus and intent of supporting the
@@ -80,87 +75,68 @@ class EvidenceReport extends DomainResource {
   /// age, ...) or may be references to specific programs (insurance plans,
   /// studies, ...) and may be used to assist with indexing and searching for
   /// appropriate evidence report instances.
-  @JsonKey(name: 'useContext')
   final List<UsageContext>? useContext;
 
   /// [identifier] /// A formal identifier that is used to identify this EvidenceReport when it is
   /// represented in other formats, or referenced in a specification, model,
   /// design or an instance.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [relatedIdentifier] /// A formal identifier that is used to identify things closely related to this
   /// EvidenceReport.
-  @JsonKey(name: 'relatedIdentifier')
   final List<Identifier>? relatedIdentifier;
 
   /// [citeAsReference] /// Citation Resource or display of suggested citation for this report.
-  @JsonKey(name: 'citeAsReference')
   final Reference? citeAsReference;
 
   /// [citeAsMarkdown] /// Citation Resource or display of suggested citation for this report.
-  @JsonKey(name: 'citeAsMarkdown')
   final FhirMarkdown? citeAsMarkdown;
-  @JsonKey(name: '_citeAsMarkdown')
   final Element? citeAsMarkdownElement;
 
   /// [type] /// Specifies the kind of report, such as grouping of classifiers, search
   /// results, or human-compiled expression.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [note] /// Used for footnotes and annotations.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [relatedArtifact] /// Link, description or reference to artifact associated with the report.
-  @JsonKey(name: 'relatedArtifact')
   final List<RelatedArtifact>? relatedArtifact;
 
   /// [subject] /// Specifies the subject or focus of the report. Answers "What is this report
   /// about?".
-  @JsonKey(name: 'subject')
   final EvidenceReportSubject subject;
 
   /// [publisher] /// The name of the organization or individual that published the evidence
   /// report.
-  @JsonKey(name: 'publisher')
   final FhirString? publisher;
-  @JsonKey(name: '_publisher')
   final Element? publisherElement;
 
   /// [contact] /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  @JsonKey(name: 'contact')
   final List<ContactDetail>? contact;
 
   /// [author] /// An individiual, organization, or device primarily involved in the creation
   /// and maintenance of the content.
-  @JsonKey(name: 'author')
   final List<ContactDetail>? author;
 
   /// [editor] /// An individiual, organization, or device primarily responsible for internal
   /// coherence of the content.
-  @JsonKey(name: 'editor')
   final List<ContactDetail>? editor;
 
   /// [reviewer] /// An individiual, organization, or device primarily responsible for review of
   /// some aspect of the content.
-  @JsonKey(name: 'reviewer')
   final List<ContactDetail>? reviewer;
 
   /// [endorser] /// An individiual, organization, or device responsible for officially
   /// endorsing the content for use in some setting.
-  @JsonKey(name: 'endorser')
   final List<ContactDetail>? endorser;
 
   /// [relatesTo] /// Relationships that this composition has with other compositions or
   /// documents that already exist.
-  @JsonKey(name: 'relatesTo')
   final List<EvidenceReportRelatesTo>? relatesTo;
 
   /// [section] /// The root of the sections that make up the composition.
-  @JsonKey(name: 'section')
   final List<EvidenceReportSection>? section;
   @override
   Map<String, dynamic> toJson() {
@@ -523,7 +499,6 @@ class EvidenceReport extends DomainResource {
 
 /// [EvidenceReportSubject] /// Specifies the subject or focus of the report. Answers "What is this report
 /// about?".
-@JsonSerializable()
 class EvidenceReportSubject extends BackboneElement {
   EvidenceReportSubject({
     super.id,
@@ -538,18 +513,17 @@ class EvidenceReportSubject extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'EvidenceReportSubject';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [characteristic] /// Characteristic.
-  @JsonKey(name: 'characteristic')
   final List<EvidenceReportCharacteristic>? characteristic;
 
   /// [note] /// Used for general notes and annotations not coded elsewhere.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
@@ -661,7 +635,6 @@ class EvidenceReportSubject extends BackboneElement {
 }
 
 /// [EvidenceReportCharacteristic] /// Characteristic.
-@JsonSerializable()
 class EvidenceReportCharacteristic extends BackboneElement {
   EvidenceReportCharacteristic({
     super.id,
@@ -684,46 +657,37 @@ class EvidenceReportCharacteristic extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'EvidenceReportCharacteristic';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// Characteristic code.
-  @JsonKey(name: 'code')
   final CodeableConcept code;
 
   /// [valueReference] /// Characteristic value.
-  @JsonKey(name: 'valueReference')
   final Reference? valueReference;
 
   /// [valueCodeableConcept] /// Characteristic value.
-  @JsonKey(name: 'valueCodeableConcept')
   final CodeableConcept? valueCodeableConcept;
 
   /// [valueBoolean] /// Characteristic value.
-  @JsonKey(name: 'valueBoolean')
   final FhirBoolean? valueBoolean;
-  @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
 
   /// [valueQuantity] /// Characteristic value.
-  @JsonKey(name: 'valueQuantity')
   final Quantity? valueQuantity;
 
   /// [valueRange] /// Characteristic value.
-  @JsonKey(name: 'valueRange')
   final Range? valueRange;
 
   /// [exclude] /// Is used to express not the characteristic.
-  @JsonKey(name: 'exclude')
   final FhirBoolean? exclude;
-  @JsonKey(name: '_exclude')
   final Element? excludeElement;
 
   /// [period] /// Timeframe for the characteristic.
-  @JsonKey(name: 'period')
   final Period? period;
   @override
   Map<String, dynamic> toJson() {
@@ -886,7 +850,6 @@ class EvidenceReportCharacteristic extends BackboneElement {
 
 /// [EvidenceReportRelatesTo] /// Relationships that this composition has with other compositions or
 /// documents that already exist.
-@JsonSerializable()
 class EvidenceReportRelatesTo extends BackboneElement {
   EvidenceReportRelatesTo({
     super.id,
@@ -903,25 +866,22 @@ class EvidenceReportRelatesTo extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'EvidenceReportRelatesTo';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// The type of relationship that this composition has with anther composition
   /// or document.
-  @JsonKey(name: 'code')
   final ReportRelationshipType code;
-  @JsonKey(name: '_code')
   final Element? codeElement;
 
   /// [targetIdentifier] /// The target composition/document of this relationship.
-  @JsonKey(name: 'targetIdentifier')
   final Identifier? targetIdentifier;
 
   /// [targetReference] /// The target composition/document of this relationship.
-  @JsonKey(name: 'targetReference')
   final Reference? targetReference;
   @override
   Map<String, dynamic> toJson() {
@@ -1032,7 +992,6 @@ class EvidenceReportRelatesTo extends BackboneElement {
 }
 
 /// [EvidenceReportSection] /// The root of the sections that make up the composition.
-@JsonSerializable()
 class EvidenceReportSection extends BackboneElement {
   EvidenceReportSection({
     super.id,
@@ -1059,32 +1018,28 @@ class EvidenceReportSection extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'EvidenceReportSection';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [title] /// The label for this particular section. This will be part of the rendered
   /// content for the document, and is often used to build a table of contents.
-  @JsonKey(name: 'title')
   final FhirString? title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [focus] /// A code identifying the kind of content contained within the section. This
   /// should be consistent with the section title.
-  @JsonKey(name: 'focus')
   final CodeableConcept? focus;
 
   /// [focusReference] /// A definitional Resource identifying the kind of content contained within
   /// the section. This should be consistent with the section title.
-  @JsonKey(name: 'focusReference')
   final Reference? focusReference;
 
   /// [author] /// Identifies who is responsible for the information in this section, not
   /// necessarily who typed it in.
-  @JsonKey(name: 'author')
   final List<Reference>? author;
 
   /// [text] /// A human-readable narrative that contains the attested content of the
@@ -1092,42 +1047,33 @@ class EvidenceReportSection extends BackboneElement {
   /// narrative need not encode all the structured data, but is peferred to
   /// contain sufficient detail to make it acceptable for a human to just read
   /// the narrative.
-  @JsonKey(name: 'text')
   final Narrative? text;
 
   /// [mode] /// How the entry list was prepared - whether it is a working list that is
   /// suitable for being maintained on an ongoing basis, or if it represents a
   /// snapshot of a list of items from another source, or whether it is a
   /// prepared list where items may be marked as added, modified or deleted.
-  @JsonKey(name: 'mode')
   final ListMode? mode;
-  @JsonKey(name: '_mode')
   final Element? modeElement;
 
   /// [orderedBy] /// Specifies the order applied to the items in the section entries.
-  @JsonKey(name: 'orderedBy')
   final CodeableConcept? orderedBy;
 
   /// [entryClassifier] /// Specifies any type of classification of the evidence report.
-  @JsonKey(name: 'entryClassifier')
   final List<CodeableConcept>? entryClassifier;
 
   /// [entryReference] /// A reference to the actual resource from which the narrative in the section
   /// is derived.
-  @JsonKey(name: 'entryReference')
   final List<Reference>? entryReference;
 
   /// [entryQuantity] /// Quantity as content.
-  @JsonKey(name: 'entryQuantity')
   final List<Quantity>? entryQuantity;
 
   /// [emptyReason] /// If the section is empty, why the list is empty. An empty section typically
   /// has some text explaining the empty reason.
-  @JsonKey(name: 'emptyReason')
   final CodeableConcept? emptyReason;
 
   /// [section] /// A nested sub-section within this section.
-  @JsonKey(name: 'section')
   final List<EvidenceReportSection>? section;
   @override
   Map<String, dynamic> toJson() {

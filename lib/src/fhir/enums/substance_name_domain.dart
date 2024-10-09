@@ -1,13 +1,9 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The use context of a substance name for example if there is a different name when used as a drug active ingredient as opposed to a food colour additive.
 enum SubstanceNameDomain {
   /// Display: Active Ingredient
-  @JsonValue('ActiveIngredient')
   ActiveIngredient,
 
   /// Display: Food Color Additive
-  @JsonValue('FoodColorAdditive')
   FoodColorAdditive,
   ;
 

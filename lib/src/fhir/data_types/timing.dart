@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -10,7 +9,6 @@ import '../../../fhir_r4.dart';
 /// common usage is in dosage instructions for medications. They are also used
 /// when planning care of various kinds, and may be used for reporting the
 /// schedule to which past regular activities were carried out.
-@JsonSerializable()
 class Timing extends BackboneType {
   Timing({
     super.id,
@@ -27,20 +25,18 @@ class Timing extends BackboneType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'Timing';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [event] /// Identifies specific times when the event occurs.
-  @JsonKey(name: 'event')
   final List<FhirDateTime>? event;
-  @JsonKey(name: '_event')
   final List<Element>? eventElement;
 
   /// [repeat] /// A set of rules that describe when the event is scheduled.
-  @JsonKey(name: 'repeat')
   final TimingRepeat? repeat;
 
   /// [code] /// A code for the timing schedule (or just text in code.text). Some codes such
@@ -50,7 +46,6 @@ class Timing extends BackboneType {
   /// either the code or the data may be used to interpret the Timing, with the
   /// exception that .repeat.bounds still applies over the code (and is not
   /// contained in the code).
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
   @override
   Map<String, dynamic> toJson() {
@@ -174,7 +169,6 @@ class Timing extends BackboneType {
 }
 
 /// [TimingRepeat] /// A set of rules that describe when the event is scheduled.
-@JsonSerializable()
 class TimingRepeat extends Element {
   TimingRepeat({
     super.id,
@@ -217,130 +211,100 @@ class TimingRepeat extends Element {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TimingRepeat';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [boundsDuration] /// Either a duration for the length of the timing schedule, a range of
   /// possible length, or outer bounds for start and/or end limits of the timing
   /// schedule.
-  @JsonKey(name: 'boundsDuration')
   final FhirDuration? boundsDuration;
 
   /// [boundsRange] /// Either a duration for the length of the timing schedule, a range of
   /// possible length, or outer bounds for start and/or end limits of the timing
   /// schedule.
-  @JsonKey(name: 'boundsRange')
   final Range? boundsRange;
 
   /// [boundsPeriod] /// Either a duration for the length of the timing schedule, a range of
   /// possible length, or outer bounds for start and/or end limits of the timing
   /// schedule.
-  @JsonKey(name: 'boundsPeriod')
   final Period? boundsPeriod;
 
   /// [count] /// A total count of the desired number of repetitions across the duration of
   /// the entire timing specification. If countMax is present, this element
   /// indicates the lower bound of the allowed range of count values.
-  @JsonKey(name: 'count')
   final FhirPositiveInt? count;
-  @JsonKey(name: '_count')
   final Element? countElement;
 
   /// [countMax] /// If present, indicates that the count is a range - so to perform the action
   /// between [count] and [countMax] times.
-  @JsonKey(name: 'countMax')
   final FhirPositiveInt? countMax;
-  @JsonKey(name: '_countMax')
   final Element? countMaxElement;
 
   /// [duration] /// How long this thing happens for when it happens. If durationMax is present,
   /// this element indicates the lower bound of the allowed range of the
   /// duration.
-  @JsonKey(name: 'duration')
   final FhirDecimal? duration;
-  @JsonKey(name: '_duration')
   final Element? durationElement;
 
   /// [durationMax] /// If present, indicates that the duration is a range - so to perform the
   /// action between [duration] and [durationMax] time length.
-  @JsonKey(name: 'durationMax')
   final FhirDecimal? durationMax;
-  @JsonKey(name: '_durationMax')
   final Element? durationMaxElement;
 
   /// [durationUnit] /// The units of time for the duration, in UCUM units.
-  @JsonKey(name: 'durationUnit')
   final UnitsOfTime? durationUnit;
-  @JsonKey(name: '_durationUnit')
   final Element? durationUnitElement;
 
   /// [frequency] /// The number of times to repeat the action within the specified period. If
   /// frequencyMax is present, this element indicates the lower bound of the
   /// allowed range of the frequency.
-  @JsonKey(name: 'frequency')
   final FhirPositiveInt? frequency;
-  @JsonKey(name: '_frequency')
   final Element? frequencyElement;
 
   /// [frequencyMax] /// If present, indicates that the frequency is a range - so to repeat between
   /// [frequency] and [frequencyMax] times within the period or period range.
-  @JsonKey(name: 'frequencyMax')
   final FhirPositiveInt? frequencyMax;
-  @JsonKey(name: '_frequencyMax')
   final Element? frequencyMaxElement;
 
   /// [period] /// Indicates the duration of time over which repetitions are to occur; e.g. to
   /// express "3 times per day", 3 would be the frequency and "1 day" would be
   /// the period. If periodMax is present, this element indicates the lower bound
   /// of the allowed range of the period length.
-  @JsonKey(name: 'period')
   final FhirDecimal? period;
-  @JsonKey(name: '_period')
   final Element? periodElement;
 
   /// [periodMax] /// If present, indicates that the period is a range from [period] to
   /// [periodMax], allowing expressing concepts such as "do this once every 3-5
   /// days.
-  @JsonKey(name: 'periodMax')
   final FhirDecimal? periodMax;
-  @JsonKey(name: '_periodMax')
   final Element? periodMaxElement;
 
   /// [periodUnit] /// The units of time for the period in UCUM units.
-  @JsonKey(name: 'periodUnit')
   final UnitsOfTime? periodUnit;
-  @JsonKey(name: '_periodUnit')
   final Element? periodUnitElement;
 
   /// [dayOfWeek] /// If one or more days of week is provided, then the action happens only on
   /// the specified day(s).
-  @JsonKey(name: 'dayOfWeek')
   final List<DaysOfWeek>? dayOfWeek;
-  @JsonKey(name: '_dayOfWeek')
   final List<Element>? dayOfWeekElement;
 
   /// [timeOfDay] /// Specified time of day for action to take place.
-  @JsonKey(name: 'timeOfDay')
   final List<FhirTime>? timeOfDay;
-  @JsonKey(name: '_timeOfDay')
   final List<Element>? timeOfDayElement;
 
   /// [when] /// An approximate time period during the day, potentially linked to an event
   /// of daily living that indicates when the action should occur.
-  @JsonKey(name: 'when')
   final List<EventTiming>? when;
-  @JsonKey(name: '_when')
   final List<Element>? whenElement;
 
   /// [offset] /// The number of minutes from the event. If the event code does not indicate
   /// whether the minutes is before or after the event, then the offset is
   /// assumed to be after the event.
-  @JsonKey(name: 'offset')
   final FhirUnsignedInt? offset;
-  @JsonKey(name: '_offset')
   final Element? offsetElement;
   @override
   Map<String, dynamic> toJson() {

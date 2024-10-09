@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Degree of preference of a type of conditioned specimen.
 enum SpecimenContainedPreference {
   /// Display: Preferred
   /// Definition: This type of contained specimen is preferred to collect this kind of specimen.
-  @JsonValue('preferred')
   preferred,
 
   /// Display: Alternate
   /// Definition: This type of conditioned specimen is an alternate.
-  @JsonValue('alternate')
   alternate,
   ;
 

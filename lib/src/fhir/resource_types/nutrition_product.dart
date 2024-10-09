@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [NutritionProduct] /// A food or fluid product that is consumed by patients.
-@JsonSerializable()
 class NutritionProduct extends DomainResource {
   NutritionProduct({
     super.id,
@@ -37,57 +35,47 @@ class NutritionProduct extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.NutritionProduct);
+
   @override
   String get fhirType => 'NutritionProduct';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [status] /// The current state of the product.
-  @JsonKey(name: 'status')
   final NutritionProductStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [category] /// Nutrition products can have different classifications - according to its
   /// nutritional properties, preparation methods, etc.
-  @JsonKey(name: 'category')
   final List<CodeableConcept>? category;
 
   /// [code] /// The code assigned to the product, for example a manufacturer number or
   /// other terminology.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [manufacturer] /// The organisation (manufacturer, representative or legal authorisation
   /// holder) that is responsible for the device.
-  @JsonKey(name: 'manufacturer')
   final List<Reference>? manufacturer;
 
   /// [nutrient] /// The product's nutritional information expressed by the nutrients.
-  @JsonKey(name: 'nutrient')
   final List<NutritionProductNutrient>? nutrient;
 
   /// [ingredient] /// Ingredients contained in this product.
-  @JsonKey(name: 'ingredient')
   final List<NutritionProductIngredient>? ingredient;
 
   /// [knownAllergen] /// Allergens that are known or suspected to be a part of this nutrition
   /// product.
-  @JsonKey(name: 'knownAllergen')
   final List<CodeableReference>? knownAllergen;
 
   /// [productCharacteristic] /// Specifies descriptive properties of the nutrition product.
-  @JsonKey(name: 'productCharacteristic')
   final List<NutritionProductProductCharacteristic>? productCharacteristic;
 
   /// [instance] /// Conveys instance-level information about this product item. One or several
   /// physical, countable instances or occurrences of the product.
-  @JsonKey(name: 'instance')
   final NutritionProductInstance? instance;
 
   /// [note] /// Comments made about the product.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
@@ -342,7 +330,6 @@ class NutritionProduct extends DomainResource {
 }
 
 /// [NutritionProductNutrient] /// The product's nutritional information expressed by the nutrients.
-@JsonSerializable()
 class NutritionProductNutrient extends BackboneElement {
   NutritionProductNutrient({
     super.id,
@@ -357,19 +344,18 @@ class NutritionProductNutrient extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'NutritionProductNutrient';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [item] /// The (relevant) nutrients in the product.
-  @JsonKey(name: 'item')
   final CodeableReference? item;
 
   /// [amount] /// The amount of nutrient expressed in one or more units: X per pack / per
   /// serving / per dose.
-  @JsonKey(name: 'amount')
   final List<Ratio>? amount;
   @override
   Map<String, dynamic> toJson() {
@@ -475,7 +461,6 @@ class NutritionProductNutrient extends BackboneElement {
 }
 
 /// [NutritionProductIngredient] /// Ingredients contained in this product.
-@JsonSerializable()
 class NutritionProductIngredient extends BackboneElement {
   NutritionProductIngredient({
     super.id,
@@ -490,18 +475,17 @@ class NutritionProductIngredient extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'NutritionProductIngredient';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [item] /// The ingredient contained in the product.
-  @JsonKey(name: 'item')
   final CodeableReference item;
 
   /// [amount] /// The amount of ingredient that is in the product.
-  @JsonKey(name: 'amount')
   final List<Ratio>? amount;
   @override
   Map<String, dynamic> toJson() {
@@ -603,7 +587,6 @@ class NutritionProductIngredient extends BackboneElement {
 }
 
 /// [NutritionProductProductCharacteristic] /// Specifies descriptive properties of the nutrition product.
-@JsonSerializable()
 class NutritionProductProductCharacteristic extends BackboneElement {
   NutritionProductProductCharacteristic({
     super.id,
@@ -626,45 +609,36 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'NutritionProductProductCharacteristic';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// A code specifying which characteristic of the product is being described
   /// (for example, colour, shape).
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [valueCodeableConcept] /// The actual characteristic value corresponding to the type.
-  @JsonKey(name: 'valueCodeableConcept')
   final CodeableConcept? valueCodeableConcept;
 
   /// [valueString] /// The actual characteristic value corresponding to the type.
-  @JsonKey(name: 'valueString')
   final FhirString? valueString;
-  @JsonKey(name: '_valueString')
   final Element? valueStringElement;
 
   /// [valueQuantity] /// The actual characteristic value corresponding to the type.
-  @JsonKey(name: 'valueQuantity')
   final Quantity? valueQuantity;
 
   /// [valueBase64Binary] /// The actual characteristic value corresponding to the type.
-  @JsonKey(name: 'valueBase64Binary')
   final FhirBase64Binary? valueBase64Binary;
-  @JsonKey(name: '_valueBase64Binary')
   final Element? valueBase64BinaryElement;
 
   /// [valueAttachment] /// The actual characteristic value corresponding to the type.
-  @JsonKey(name: 'valueAttachment')
   final Attachment? valueAttachment;
 
   /// [valueBoolean] /// The actual characteristic value corresponding to the type.
-  @JsonKey(name: 'valueBoolean')
   final FhirBoolean? valueBoolean;
-  @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
   @override
   Map<String, dynamic> toJson() {
@@ -831,7 +805,6 @@ class NutritionProductProductCharacteristic extends BackboneElement {
 
 /// [NutritionProductInstance] /// Conveys instance-level information about this product item. One or several
 /// physical, countable instances or occurrences of the product.
-@JsonSerializable()
 class NutritionProductInstance extends BackboneElement {
   NutritionProductInstance({
     super.id,
@@ -852,39 +825,32 @@ class NutritionProductInstance extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'NutritionProductInstance';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [quantity] /// The amount of items or instances that the resource considers, for instance
   /// when referring to 2 identical units together.
-  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [identifier] /// The identifier for the physical instance, typically a serial number.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [lotNumber] /// The identification of the batch or lot of the product.
-  @JsonKey(name: 'lotNumber')
   final FhirString? lotNumber;
-  @JsonKey(name: '_lotNumber')
   final Element? lotNumberElement;
 
   /// [expiry] /// The time after which the product is no longer expected to be in proper
   /// condition, or its use is not advised or not allowed.
-  @JsonKey(name: 'expiry')
   final FhirDateTime? expiry;
-  @JsonKey(name: '_expiry')
   final Element? expiryElement;
 
   /// [useBy] /// The time after which the product is no longer expected to be in proper
   /// condition, or its use is not advised or not allowed.
-  @JsonKey(name: 'useBy')
   final FhirDateTime? useBy;
-  @JsonKey(name: '_useBy')
   final Element? useByElement;
   @override
   Map<String, dynamic> toJson() {

@@ -1,17 +1,12 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// A characteristic of a package.
 enum PackageCharacteristic {
   /// Display: Hospital pack
-  @JsonValue('HospitalPack')
   HospitalPack,
 
   /// Display: Nurse prescribable
-  @JsonValue('NursePrescribable')
   NursePrescribable,
 
   /// Display: Calendar pack
-  @JsonValue('CalendarPack')
   CalendarPack,
   ;
 

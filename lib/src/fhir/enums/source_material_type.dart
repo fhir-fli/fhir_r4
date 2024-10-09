@@ -1,17 +1,12 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// A classification that provides the origin of the substance raw material.
 enum SourceMaterialType {
   /// Display: animal
-  @JsonValue('Animal')
   Animal,
 
   /// Display: plant
-  @JsonValue('Plant')
   Plant,
 
   /// Display: mineral
-  @JsonValue('Mineral')
   Mineral,
   ;
 

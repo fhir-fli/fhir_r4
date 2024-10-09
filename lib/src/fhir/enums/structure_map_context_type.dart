@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// How to interpret the context.
 enum StructureMapContextType {
   /// Display: Type
   /// Definition: The context specifies a type.
-  @JsonValue('type')
   type,
 
   /// Display: Variable
   /// Definition: The context specifies a variable.
-  @JsonValue('variable')
   variable,
   ;
 

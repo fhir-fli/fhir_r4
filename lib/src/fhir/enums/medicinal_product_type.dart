@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Overall defining type of this Medicinal Product.
 enum MedicinalProductType {
   /// Display: Medicinal Product
   /// Definition: A standard medicinal product.
-  @JsonValue('MedicinalProduct')
   MedicinalProduct,
 
   /// Display: Investigational Medicinal Product
   /// Definition: An investigational medicinal product.
-  @JsonValue('InvestigationalProduct')
   InvestigationalProduct,
   ;
 

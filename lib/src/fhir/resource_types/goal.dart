@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -9,7 +8,6 @@ import '../../../fhir_r4.dart';
 /// care, for example, weight loss, restoring an activity of daily living,
 /// obtaining herd immunity via immunization, meeting a process improvement
 /// objective, etc.
-@JsonSerializable()
 class Goal extends DomainResource {
   Goal({
     super.id,
@@ -50,96 +48,76 @@ class Goal extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Goal);
+
   @override
   String get fhirType => 'Goal';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Business identifiers assigned to this goal by the performer or other
   /// systems which remain constant as the resource is updated and propagates
   /// from server to server.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [lifecycleStatus] /// The state of the goal throughout its lifecycle.
-  @JsonKey(name: 'lifecycleStatus')
   final GoalLifecycleStatus lifecycleStatus;
-  @JsonKey(name: '_lifecycleStatus')
   final Element? lifecycleStatusElement;
 
   /// [achievementStatus] /// Describes the progression, or lack thereof, towards the goal against the
   /// target.
-  @JsonKey(name: 'achievementStatus')
   final CodeableConcept? achievementStatus;
 
   /// [category] /// Indicates a category the goal falls within.
-  @JsonKey(name: 'category')
   final List<CodeableConcept>? category;
 
   /// [priority] /// Identifies the mutually agreed level of importance associated with
   /// reaching/sustaining the goal.
-  @JsonKey(name: 'priority')
   final CodeableConcept? priority;
 
   /// [description] /// Human-readable and/or coded description of a specific desired objective of
   /// care, such as "control blood pressure" or "negotiate an obstacle course" or
   /// "dance with child at wedding".
-  @JsonKey(name: 'description')
   final CodeableConcept description;
 
   /// [subject] /// Identifies the patient, group or organization for whom the goal is being
   /// established.
-  @JsonKey(name: 'subject')
   final Reference subject;
 
   /// [startDate] /// The date or event after which the goal should begin being pursued.
-  @JsonKey(name: 'startDate')
   final GoalStartEvent? startDate;
-  @JsonKey(name: '_startDate')
   final Element? startDateElement;
 
   /// [startCodeableConcept] /// The date or event after which the goal should begin being pursued.
-  @JsonKey(name: 'startCodeableConcept')
   final CodeableConcept? startCodeableConcept;
 
   /// [target] /// Indicates what should be done by when.
-  @JsonKey(name: 'target')
   final List<GoalTarget>? target;
 
   /// [statusDate] /// Identifies when the current status. I.e. When initially created, when
   /// achieved, when cancelled, etc.
-  @JsonKey(name: 'statusDate')
   final FhirDate? statusDate;
-  @JsonKey(name: '_statusDate')
   final Element? statusDateElement;
 
   /// [statusReason] /// Captures the reason for the current status.
-  @JsonKey(name: 'statusReason')
   final FhirString? statusReason;
-  @JsonKey(name: '_statusReason')
   final Element? statusReasonElement;
 
   /// [expressedBy] /// Indicates whose goal this is - patient goal, practitioner goal, etc.
-  @JsonKey(name: 'expressedBy')
   final Reference? expressedBy;
 
   /// [addresses] /// The identified conditions and other health record elements that are
   /// intended to be addressed by the goal.
-  @JsonKey(name: 'addresses')
   final List<Reference>? addresses;
 
   /// [note] /// Any comments related to the goal.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [outcomeCode] /// Identifies the change (or lack of change) at the point when the status of
   /// the goal is assessed.
-  @JsonKey(name: 'outcomeCode')
   final List<CodeableConcept>? outcomeCode;
 
   /// [outcomeReference] /// Details of what's changed (or not changed).
-  @JsonKey(name: 'outcomeReference')
   final List<Reference>? outcomeReference;
   @override
   Map<String, dynamic> toJson() {
@@ -454,7 +432,6 @@ class Goal extends DomainResource {
 }
 
 /// [GoalTarget] /// Indicates what should be done by when.
-@JsonSerializable()
 class GoalTarget extends BackboneElement {
   GoalTarget({
     super.id,
@@ -481,15 +458,15 @@ class GoalTarget extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'GoalTarget';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [measure] /// The parameter whose value is being tracked, e.g. body weight, blood
   /// pressure, or hemoglobin A1c level.
-  @JsonKey(name: 'measure')
   final CodeableConcept? measure;
 
   /// [detailQuantity] /// The target value of the focus to be achieved to signify the fulfillment of
@@ -498,7 +475,6 @@ class GoalTarget extends BackboneElement {
   /// the goal is achieved at any focus value at or below the high value.
   /// Similarly, if the high value is missing, it indicates that the goal is
   /// achieved at any focus value at or above the low value.
-  @JsonKey(name: 'detailQuantity')
   final Quantity? detailQuantity;
 
   /// [detailRange] /// The target value of the focus to be achieved to signify the fulfillment of
@@ -507,7 +483,6 @@ class GoalTarget extends BackboneElement {
   /// the goal is achieved at any focus value at or below the high value.
   /// Similarly, if the high value is missing, it indicates that the goal is
   /// achieved at any focus value at or above the low value.
-  @JsonKey(name: 'detailRange')
   final Range? detailRange;
 
   /// [detailCodeableConcept] /// The target value of the focus to be achieved to signify the fulfillment of
@@ -516,7 +491,6 @@ class GoalTarget extends BackboneElement {
   /// the goal is achieved at any focus value at or below the high value.
   /// Similarly, if the high value is missing, it indicates that the goal is
   /// achieved at any focus value at or above the low value.
-  @JsonKey(name: 'detailCodeableConcept')
   final CodeableConcept? detailCodeableConcept;
 
   /// [detailString] /// The target value of the focus to be achieved to signify the fulfillment of
@@ -525,9 +499,7 @@ class GoalTarget extends BackboneElement {
   /// the goal is achieved at any focus value at or below the high value.
   /// Similarly, if the high value is missing, it indicates that the goal is
   /// achieved at any focus value at or above the low value.
-  @JsonKey(name: 'detailString')
   final FhirString? detailString;
-  @JsonKey(name: '_detailString')
   final Element? detailStringElement;
 
   /// [detailBoolean] /// The target value of the focus to be achieved to signify the fulfillment of
@@ -536,9 +508,7 @@ class GoalTarget extends BackboneElement {
   /// the goal is achieved at any focus value at or below the high value.
   /// Similarly, if the high value is missing, it indicates that the goal is
   /// achieved at any focus value at or above the low value.
-  @JsonKey(name: 'detailBoolean')
   final FhirBoolean? detailBoolean;
-  @JsonKey(name: '_detailBoolean')
   final Element? detailBooleanElement;
 
   /// [detailInteger] /// The target value of the focus to be achieved to signify the fulfillment of
@@ -547,9 +517,7 @@ class GoalTarget extends BackboneElement {
   /// the goal is achieved at any focus value at or below the high value.
   /// Similarly, if the high value is missing, it indicates that the goal is
   /// achieved at any focus value at or above the low value.
-  @JsonKey(name: 'detailInteger')
   final FhirInteger? detailInteger;
-  @JsonKey(name: '_detailInteger')
   final Element? detailIntegerElement;
 
   /// [detailRatio] /// The target value of the focus to be achieved to signify the fulfillment of
@@ -558,19 +526,15 @@ class GoalTarget extends BackboneElement {
   /// the goal is achieved at any focus value at or below the high value.
   /// Similarly, if the high value is missing, it indicates that the goal is
   /// achieved at any focus value at or above the low value.
-  @JsonKey(name: 'detailRatio')
   final Ratio? detailRatio;
 
   /// [dueDate] /// Indicates either the date or the duration after start by which the goal
   /// should be met.
-  @JsonKey(name: 'dueDate')
   final FhirDate? dueDate;
-  @JsonKey(name: '_dueDate')
   final Element? dueDateElement;
 
   /// [dueDuration] /// Indicates either the date or the duration after start by which the goal
   /// should be met.
-  @JsonKey(name: 'dueDuration')
   final FhirDuration? dueDuration;
   @override
   Map<String, dynamic> toJson() {

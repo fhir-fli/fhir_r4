@@ -1,50 +1,39 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// What Search Comparator Codes are supported in search.
 enum SearchComparator {
   /// Display: Equals
   /// Definition: the value for the parameter in the resource is equal to the provided value.
-  @JsonValue('eq')
   eq,
 
   /// Display: Not Equals
   /// Definition: the value for the parameter in the resource is not equal to the provided value.
-  @JsonValue('ne')
   ne,
 
   /// Display: Greater Than
   /// Definition: the value for the parameter in the resource is greater than the provided value.
-  @JsonValue('gt')
   gt,
 
   /// Display: Less Than
   /// Definition: the value for the parameter in the resource is less than the provided value.
-  @JsonValue('lt')
   lt,
 
   /// Display: Greater or Equals
   /// Definition: the value for the parameter in the resource is greater or equal to the provided value.
-  @JsonValue('ge')
   ge,
 
   /// Display: Less of Equal
   /// Definition: the value for the parameter in the resource is less or equal to the provided value.
-  @JsonValue('le')
   le,
 
   /// Display: Starts After
   /// Definition: the value for the parameter in the resource starts after the provided value.
-  @JsonValue('sa')
   sa,
 
   /// Display: Ends Before
   /// Definition: the value for the parameter in the resource ends before the provided value.
-  @JsonValue('eb')
   eb,
 
   /// Display: Approximately
   /// Definition: the value for the parameter in the resource is approximately the same to the provided value.
-  @JsonValue('ap')
   ap,
   ;
 

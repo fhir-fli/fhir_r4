@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// How the Quantity should be understood and represented.
 enum QuantityComparator {
   /// Display: Less than
   /// Definition: The actual value is less than the given value.
-  @JsonValue('<')
   lessThan,
 
   /// Display: Less or Equal to
   /// Definition: The actual value is less than or equal to the given value.
-  @JsonValue('<=')
   lessThanOrEquals,
 
   /// Display: Greater or Equal to
   /// Definition: The actual value is greater than or equal to the given value.
-  @JsonValue('>=')
   greaterThanOrEquals,
 
   /// Display: Greater than
   /// Definition: The actual value is greater than the given value.
-  @JsonValue('>')
   greaterThan,
   ;
 

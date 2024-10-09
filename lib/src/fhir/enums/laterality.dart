@@ -1,17 +1,12 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Laterality: SNOMED-CT concepts for 'left', 'right', and 'bilateral'
 enum Laterality {
   /// Display: Unilateral left
-  @JsonValue('419161000')
   value419161000,
 
   /// Display: Unilateral right
-  @JsonValue('419465000')
   value419465000,
 
   /// Display: Bilateral
-  @JsonValue('51440002')
   value51440002,
   ;
 

@@ -1,12 +1,7 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set defines a set of codes that can be used to indicate the particular target population the reference range applies to.
 enum ObservationReferenceRangeAppliesToCodes {
-  @JsonValue('248153007')
   value248153007,
-  @JsonValue('248152002')
   value248152002,
-  @JsonValue('77386006')
   value77386006,
   ;
 

@@ -1,25 +1,18 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Performer function of an agent in an imaging study series
 enum ImagingStudySeriesPerformerFunction {
   /// Display: consultant
-  @JsonValue('CON')
   CON,
 
   /// Display: verifier
-  @JsonValue('VRF')
   VRF,
 
   /// Display: performer
-  @JsonValue('PRF')
   PRF,
 
   /// Display: secondary performer
-  @JsonValue('SPRF')
   SPRF,
 
   /// Display: referrer
-  @JsonValue('REF')
   REF,
   ;
 

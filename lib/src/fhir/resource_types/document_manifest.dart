@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [DocumentManifest] /// A collection of documents compiled for a purpose together with metadata
 /// that applies to the collection.
-@JsonSerializable()
 class DocumentManifest extends DomainResource {
   DocumentManifest({
     super.id,
@@ -43,31 +41,27 @@ class DocumentManifest extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.DocumentManifest);
+
   @override
   String get fhirType => 'DocumentManifest';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [masterIdentifier] /// A single identifier that uniquely identifies this manifest. Principally
   /// used to refer to the manifest in non-FHIR contexts.
-  @JsonKey(name: 'masterIdentifier')
   final Identifier? masterIdentifier;
 
   /// [identifier] /// Other identifiers associated with the document manifest, including version
   /// independent identifiers.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// The status of this document manifest.
-  @JsonKey(name: 'status')
   final DocumentReferenceStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [type] /// The code specifying the type of clinical activity that resulted in placing
   /// the associated content into the DocumentManifest.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [subject] /// Who or what the set of documents is about. The documents can be about a
@@ -76,47 +70,36 @@ class DocumentManifest extends DomainResource {
   /// or a set of patients that share a common exposure). If the documents cross
   /// more than one subject, then more than one subject is allowed here (unusual
   /// use case).
-  @JsonKey(name: 'subject')
   final Reference? subject;
 
   /// [created] /// When the document manifest was created for submission to the server (not
   /// necessarily the same thing as the actual resource last modified time, since
   /// it may be modified, replicated, etc.).
-  @JsonKey(name: 'created')
   final FhirDateTime? created;
-  @JsonKey(name: '_created')
   final Element? createdElement;
 
   /// [author] /// Identifies who is the author of the manifest. Manifest author is not
   /// necessarly the author of the references included.
-  @JsonKey(name: 'author')
   final List<Reference>? author;
 
   /// [recipient] /// A patient, practitioner, or organization for which this set of documents is
   /// intended.
-  @JsonKey(name: 'recipient')
   final List<Reference>? recipient;
 
   /// [source] /// Identifies the source system, application, or software that produced the
   /// document manifest.
-  @JsonKey(name: 'source')
   final FhirUri? source;
-  @JsonKey(name: '_source')
   final Element? sourceElement;
 
   /// [description] /// Human-readable description of the source document. This is sometimes known
   /// as the "title".
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [content] /// The list of Resources that consist of the parts of this manifest.
-  @JsonKey(name: 'content')
   final List<Reference> content;
 
   /// [related] /// Related identifiers or resources associated with the DocumentManifest.
-  @JsonKey(name: 'related')
   final List<DocumentManifestRelated>? related;
   @override
   Map<String, dynamic> toJson() {
@@ -389,7 +372,6 @@ class DocumentManifest extends DomainResource {
 }
 
 /// [DocumentManifestRelated] /// Related identifiers or resources associated with the DocumentManifest.
-@JsonSerializable()
 class DocumentManifestRelated extends BackboneElement {
   DocumentManifestRelated({
     super.id,
@@ -404,20 +386,19 @@ class DocumentManifestRelated extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'DocumentManifestRelated';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Related identifier to this DocumentManifest. For example, Order numbers,
   /// accession numbers, XDW workflow numbers.
-  @JsonKey(name: 'identifier')
   final Identifier? identifier;
 
   /// [ref] /// Related Resource to this DocumentManifest. For example, Order,
   /// ServiceRequest, Procedure, EligibilityRequest, etc.
-  @JsonKey(name: 'ref')
   final Reference? ref;
   @override
   Map<String, dynamic> toJson() {

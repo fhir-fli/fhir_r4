@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,7 +7,6 @@ import '../../../fhir_r4.dart';
 /// [Quantity] /// A measured amount (or an amount that can potentially be measured). Note
 /// that measured amounts include amounts that are not precisely quantified,
 /// including amounts involving arbitrary units and floating currencies.
-@JsonSerializable()
 class Quantity extends DataType {
   Quantity({
     super.id,
@@ -30,43 +28,34 @@ class Quantity extends DataType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'Quantity';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [value] /// The value of the measured amount. The value includes an implicit precision
   /// in the presentation of the value.
-  @JsonKey(name: 'value')
   final FhirDecimal? value;
-  @JsonKey(name: '_value')
   final Element? valueElement;
 
   /// [comparator] /// How the value should be understood and represented - whether the actual
   /// value is greater or less than the stated value due to measurement issues;
   /// e.g. if the comparator is "<" , then the real value is < stated value.
-  @JsonKey(name: 'comparator')
   final QuantityComparator? comparator;
-  @JsonKey(name: '_comparator')
   final Element? comparatorElement;
 
   /// [unit] /// A human-readable form of the unit.
-  @JsonKey(name: 'unit')
   final FhirString? unit;
-  @JsonKey(name: '_unit')
   final Element? unitElement;
 
   /// [system] /// The identification of the system that provides the coded form of the unit.
-  @JsonKey(name: 'system')
   final FhirUri? system;
-  @JsonKey(name: '_system')
   final Element? systemElement;
 
   /// [code] /// A computer processable form of the unit in some unit representation system.
-  @JsonKey(name: 'code')
   final FhirCode? code;
-  @JsonKey(name: '_code')
   final Element? codeElement;
   @override
   Map<String, dynamic> toJson() {

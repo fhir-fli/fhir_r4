@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Describes the category of the metric.
 enum DeviceMetricCategory {
   /// Display: Measurement
   /// Definition: DeviceObservations generated for this DeviceMetric are measured.
-  @JsonValue('measurement')
   measurement,
 
   /// Display: Setting
   /// Definition: DeviceObservations generated for this DeviceMetric is a setting that will influence the behavior of the Device.
-  @JsonValue('setting')
   setting,
 
   /// Display: Calculation
   /// Definition: DeviceObservations generated for this DeviceMetric are calculated.
-  @JsonValue('calculation')
   calculation,
 
   /// Display: Unspecified
   /// Definition: The category of this DeviceMetric is unspecified.
-  @JsonValue('unspecified')
   unspecified,
   ;
 

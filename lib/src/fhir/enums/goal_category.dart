@@ -1,30 +1,23 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Example codes for grouping goals to use for filtering or presentation.
 enum GoalCategory {
   /// Display: Dietary
   /// Definition: Goals related to the consumption of food and/or beverages.
-  @JsonValue('dietary')
   dietary,
 
   /// Display: Safety
   /// Definition: Goals related to the personal protection of the subject.
-  @JsonValue('safety')
   safety,
 
   /// Display: Behavioral
   /// Definition: Goals related to the manner in which the subject acts.
-  @JsonValue('behavioral')
   behavioral,
 
   /// Display: Nursing
   /// Definition: Goals related to the practice of nursing or established by nurses.
-  @JsonValue('nursing')
   nursing,
 
   /// Display: Physiotherapy
   /// Definition: Goals related to the mobility and/or motor capability of the subject.
-  @JsonValue('physiotherapy')
   physiotherapy,
   ;
 

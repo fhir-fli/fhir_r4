@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [RelatedArtifact] /// Related artifacts such as additional documentation, justification, or
 /// bibliographic references.
-@JsonSerializable()
 class RelatedArtifact extends DataType {
   RelatedArtifact({
     super.id,
@@ -32,55 +30,43 @@ class RelatedArtifact extends DataType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'RelatedArtifact';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The type of relationship to the related artifact.
-  @JsonKey(name: 'type')
   final RelatedArtifactType type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [label] /// A short label that can be used to reference the citation from elsewhere in
   /// the containing artifact, such as a footnote index.
-  @JsonKey(name: 'label')
   final FhirString? label;
-  @JsonKey(name: '_label')
   final Element? labelElement;
 
   /// [display] /// A brief description of the document or knowledge resource being referenced,
   /// suitable for display to a consumer.
-  @JsonKey(name: 'display')
   final FhirString? display;
-  @JsonKey(name: '_display')
   final Element? displayElement;
 
   /// [citation] /// A bibliographic citation for the related artifact. This text SHOULD be
   /// formatted according to an accepted citation format.
-  @JsonKey(name: 'citation')
   final FhirMarkdown? citation;
-  @JsonKey(name: '_citation')
   final Element? citationElement;
 
   /// [url] /// A url for the artifact that can be followed to access the actual content.
-  @JsonKey(name: 'url')
   final FhirUrl? url;
-  @JsonKey(name: '_url')
   final Element? urlElement;
 
   /// [document] /// The document being referenced, represented as an attachment. This is
   /// exclusive with the resource element.
-  @JsonKey(name: 'document')
   final Attachment? document;
 
   /// [resource] /// The related resource, such as a library, value set, profile, or other
   /// knowledge resource.
-  @JsonKey(name: 'resource')
   final FhirCanonical? resource;
-  @JsonKey(name: '_resource')
   final Element? resourceElement;
   @override
   Map<String, dynamic> toJson() {

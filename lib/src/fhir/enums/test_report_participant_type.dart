@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The type of participant.
 enum TestReportParticipantType {
   /// Display: Test Engine
   /// Definition: The test execution engine.
-  @JsonValue('test-engine')
   test_engine,
 
   /// Display: Client
   /// Definition: A FHIR Client.
-  @JsonValue('client')
   client,
 
   /// Display: Server
   /// Definition: A FHIR Server.
-  @JsonValue('server')
   server,
   ;
 

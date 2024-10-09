@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [Linkage] /// Identifies two or more records (resource instances) that refer to the same
 /// real-world "occurrence".
-@JsonSerializable()
 class Linkage extends DomainResource {
   Linkage({
     super.id,
@@ -31,29 +29,26 @@ class Linkage extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Linkage);
+
   @override
   String get fhirType => 'Linkage';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [active] /// Indicates whether the asserted set of linkages are considered to be "in
   /// effect".
-  @JsonKey(name: 'active')
   final FhirBoolean? active;
-  @JsonKey(name: '_active')
   final Element? activeElement;
 
   /// [author] /// Identifies the user or organization responsible for asserting the linkages
   /// as well as the user or organization who establishes the context in which
   /// the nature of each linkage is evaluated.
-  @JsonKey(name: 'author')
   final Reference? author;
 
   /// [item] /// Identifies which record considered as the reference to the same real-world
   /// occurrence as well as how the items should be evaluated within the
   /// collection of linked items.
-  @JsonKey(name: 'item')
   final List<LinkageItem> item;
   @override
   Map<String, dynamic> toJson() {
@@ -225,7 +220,6 @@ class Linkage extends DomainResource {
 /// [LinkageItem] /// Identifies which record considered as the reference to the same real-world
 /// occurrence as well as how the items should be evaluated within the
 /// collection of linked items.
-@JsonSerializable()
 class LinkageItem extends BackboneElement {
   LinkageItem({
     super.id,
@@ -241,21 +235,19 @@ class LinkageItem extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'LinkageItem';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Distinguishes which item is "source of truth" (if any) and which items are
   /// no longer considered to be current representations.
-  @JsonKey(name: 'type')
   final LinkageType type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [resource] /// The resource instance being linked as part of the group.
-  @JsonKey(name: 'resource')
   final Reference resource;
   @override
   Map<String, dynamic> toJson() {

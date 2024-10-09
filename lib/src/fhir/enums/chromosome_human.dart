@@ -1,125 +1,99 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Chromosome number for human.
 enum ChromosomeHuman {
   /// Display: chromosome 1
   /// Definition: chromosome 1.
-  @JsonValue('1')
   value1,
 
   /// Display: chromosome 2
   /// Definition: chromosome 2.
-  @JsonValue('2')
   value2,
 
   /// Display: chromosome 3
   /// Definition: chromosome 3.
-  @JsonValue('3')
   value3,
 
   /// Display: chromosome 4
   /// Definition: chromosome 4.
-  @JsonValue('4')
   value4,
 
   /// Display: chromosome 5
   /// Definition: chromosome 5.
-  @JsonValue('5')
   value5,
 
   /// Display: chromosome 6
   /// Definition: chromosome 6.
-  @JsonValue('6')
   value6,
 
   /// Display: chromosome 7
   /// Definition: chromosome 7.
-  @JsonValue('7')
   value7,
 
   /// Display: chromosome 8
   /// Definition: chromosome 8.
-  @JsonValue('8')
   value8,
 
   /// Display: chromosome 9
   /// Definition: chromosome 9.
-  @JsonValue('9')
   value9,
 
   /// Display: chromosome 10
   /// Definition: chromosome 10.
-  @JsonValue('10')
   value10,
 
   /// Display: chromosome 11
   /// Definition: chromosome 11.
-  @JsonValue('11')
   value11,
 
   /// Display: chromosome 12
   /// Definition: chromosome 12.
-  @JsonValue('12')
   value12,
 
   /// Display: chromosome 13
   /// Definition: chromosome 13.
-  @JsonValue('13')
   value13,
 
   /// Display: chromosome 14
   /// Definition: chromosome 14.
-  @JsonValue('14')
   value14,
 
   /// Display: chromosome 15
   /// Definition: chromosome 15.
-  @JsonValue('15')
   value15,
 
   /// Display: chromosome 16
   /// Definition: chromosome 16.
-  @JsonValue('16')
   value16,
 
   /// Display: chromosome 17
   /// Definition: chromosome 17.
-  @JsonValue('17')
   value17,
 
   /// Display: chromosome 18
   /// Definition: chromosome 18.
-  @JsonValue('18')
   value18,
 
   /// Display: chromosome 19
   /// Definition: chromosome 19.
-  @JsonValue('19')
   value19,
 
   /// Display: chromosome 20
   /// Definition: chromosome 20.
-  @JsonValue('20')
   value20,
 
   /// Display: chromosome 21
   /// Definition: chromosome 21.
-  @JsonValue('21')
   value21,
 
   /// Display: chromosome 22
   /// Definition: chromosome 22.
-  @JsonValue('22')
   value22,
 
   /// Display: chromosome X
   /// Definition: chromosome X.
-  @JsonValue('X')
   X,
 
   /// Display: chromosome Y
   /// Definition: chromosome Y.
-  @JsonValue('Y')
   Y,
   ;
 

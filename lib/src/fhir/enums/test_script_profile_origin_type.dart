@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set defines a set of codes that are used to indicate the profile type of a test system when acting as the origin within a TestScript.
 enum TestScriptProfileOriginType {
   /// Display: FHIR Client
   /// Definition: General FHIR client used to initiate operations against a FHIR server.
-  @JsonValue('FHIR-Client')
   FHIR_Client,
 
   /// Display: FHIR SDC FormFiller
   /// Definition: A FHIR client acting as a Structured Data Capture Form Filler.
-  @JsonValue('FHIR-SDC-FormFiller')
   FHIR_SDC_FormFiller,
   ;
 

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -10,7 +9,6 @@ import '../../../fhir_r4.dart';
 /// differ largely depending on type and realm, therefore this resource gives
 /// only a rough structure and requires profiling for each type of billing code
 /// system.
-@JsonSerializable()
 class ChargeItemDefinition extends DomainResource {
   ChargeItemDefinition({
     super.id,
@@ -67,10 +65,11 @@ class ChargeItemDefinition extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.ChargeItemDefinition);
+
   @override
   String get fhirType => 'ChargeItemDefinition';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this charge item definition when
@@ -80,15 +79,12 @@ class ChargeItemDefinition extends DomainResource {
   /// charge item definition is (or will be) published. This URL can be the
   /// target of a canonical reference. It SHALL remain the same when the charge
   /// item definition is stored on different servers.
-  @JsonKey(name: 'url')
   final FhirUri url;
-  @JsonKey(name: '_url')
   final Element? urlElement;
 
   /// [identifier] /// A formal identifier that is used to identify this charge item definition
   /// when it is represented in other formats, or referenced in a specification,
   /// model, design or an instance.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [version] /// The identifier that is used to identify this version of the charge item
@@ -102,78 +98,57 @@ class ChargeItemDefinition extends DomainResource {
   /// information on versioning knowledge assets, refer to the Decision Support
   /// Service specification. Note that a version is required for non-experimental
   /// active assets.
-  @JsonKey(name: 'version')
   final FhirString? version;
-  @JsonKey(name: '_version')
   final Element? versionElement;
 
   /// [title] /// A short, descriptive, user-friendly title for the charge item definition.
-  @JsonKey(name: 'title')
   final FhirString? title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [derivedFromUri] /// The URL pointing to an externally-defined charge item definition that is
   /// adhered to in whole or in part by this definition.
-  @JsonKey(name: 'derivedFromUri')
   final List<FhirUri>? derivedFromUri;
-  @JsonKey(name: '_derivedFromUri')
   final List<Element>? derivedFromUriElement;
 
   /// [partOf] /// A larger definition of which this particular definition is a component or
   /// step.
-  @JsonKey(name: 'partOf')
   final List<FhirCanonical>? partOf;
-  @JsonKey(name: '_partOf')
   final List<Element>? partOfElement;
 
   /// [replaces] /// As new versions of a protocol or guideline are defined, allows
   /// identification of what versions are replaced by a new instance.
-  @JsonKey(name: 'replaces')
   final List<FhirCanonical>? replaces;
-  @JsonKey(name: '_replaces')
   final List<Element>? replacesElement;
 
   /// [status] /// The current state of the ChargeItemDefinition.
-  @JsonKey(name: 'status')
   final PublicationStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [experimental] /// A Boolean value to indicate that this charge item definition is authored
   /// for testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
-  @JsonKey(name: 'experimental')
   final FhirBoolean? experimental;
-  @JsonKey(name: '_experimental')
   final Element? experimentalElement;
 
   /// [date] /// The date (and optionally time) when the charge item definition was
   /// published. The date must change when the business version changes and it
   /// must change if the status code changes. In addition, it should change when
   /// the substantive content of the charge item definition changes.
-  @JsonKey(name: 'date')
   final FhirDateTime? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [publisher] /// The name of the organization or individual that published the charge item
   /// definition.
-  @JsonKey(name: 'publisher')
   final FhirString? publisher;
-  @JsonKey(name: '_publisher')
   final Element? publisherElement;
 
   /// [contact] /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  @JsonKey(name: 'contact')
   final List<ContactDetail>? contact;
 
   /// [description] /// A free text natural language description of the charge item definition from
   /// a consumer's perspective.
-  @JsonKey(name: 'description')
   final FhirMarkdown? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [useContext] /// The content was developed with a focus and intent of supporting the
@@ -181,59 +156,46 @@ class ChargeItemDefinition extends DomainResource {
   /// age, ...) or may be references to specific programs (insurance plans,
   /// studies, ...) and may be used to assist with indexing and searching for
   /// appropriate charge item definition instances.
-  @JsonKey(name: 'useContext')
   final List<UsageContext>? useContext;
 
   /// [jurisdiction] /// A legal or geographic region in which the charge item definition is
   /// intended to be used.
-  @JsonKey(name: 'jurisdiction')
   final List<CodeableConcept>? jurisdiction;
 
   /// [copyright] /// A copyright statement relating to the charge item definition and/or its
   /// contents. Copyright statements are generally legal restrictions on the use
   /// and publishing of the charge item definition.
-  @JsonKey(name: 'copyright')
   final FhirMarkdown? copyright;
-  @JsonKey(name: '_copyright')
   final Element? copyrightElement;
 
   /// [approvalDate] /// The date on which the resource content was approved by the publisher.
   /// Approval happens once when the content is officially approved for usage.
-  @JsonKey(name: 'approvalDate')
   final FhirDate? approvalDate;
-  @JsonKey(name: '_approvalDate')
   final Element? approvalDateElement;
 
   /// [lastReviewDate] /// The date on which the resource content was last reviewed. Review happens
   /// periodically after approval but does not change the original approval date.
-  @JsonKey(name: 'lastReviewDate')
   final FhirDate? lastReviewDate;
-  @JsonKey(name: '_lastReviewDate')
   final Element? lastReviewDateElement;
 
   /// [effectivePeriod] /// The period during which the charge item definition content was or is
   /// planned to be in active use.
-  @JsonKey(name: 'effectivePeriod')
   final Period? effectivePeriod;
 
   /// [code] /// The defined billing details in this resource pertain to the given billing
   /// code.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [instance] /// The defined billing details in this resource pertain to the given product
   /// instance(s).
-  @JsonKey(name: 'instance')
   final List<Reference>? instance;
 
   /// [applicability] /// Expressions that describe applicability criteria for the billing code.
-  @JsonKey(name: 'applicability')
   final List<ChargeItemDefinitionApplicability>? applicability;
 
   /// [propertyGroup] /// Group of properties which are applicable under the same conditions. If no
   /// applicability rules are established for the group, then all properties
   /// always apply.
-  @JsonKey(name: 'propertyGroup')
   final List<ChargeItemDefinitionPropertyGroup>? propertyGroup;
   @override
   Map<String, dynamic> toJson() {
@@ -699,7 +661,6 @@ class ChargeItemDefinition extends DomainResource {
 }
 
 /// [ChargeItemDefinitionApplicability] /// Expressions that describe applicability criteria for the billing code.
-@JsonSerializable()
 class ChargeItemDefinitionApplicability extends BackboneElement {
   ChargeItemDefinitionApplicability({
     super.id,
@@ -718,34 +679,29 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ChargeItemDefinitionApplicability';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [description] /// A brief, natural language description of the condition that effectively
   /// communicates the intended semantics.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [language] /// The media type of the language for the expression, e.g. "text/cql" for
   /// Clinical Query Language expressions or "text/fhirpath" for FHIRPath
   /// expressions.
-  @JsonKey(name: 'language')
   final FhirString? language;
-  @JsonKey(name: '_language')
   final Element? languageElement;
 
   /// [expression] /// An expression that returns true or false, indicating whether the condition
   /// is satisfied. When using FHIRPath expressions, the %context environment
   /// variable must be replaced at runtime with the ChargeItem resource to which
   /// this definition is applied.
-  @JsonKey(name: 'expression')
   final FhirString? expression;
-  @JsonKey(name: '_expression')
   final Element? expressionElement;
   @override
   Map<String, dynamic> toJson() {
@@ -880,7 +836,6 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
 /// [ChargeItemDefinitionPropertyGroup] /// Group of properties which are applicable under the same conditions. If no
 /// applicability rules are established for the group, then all properties
 /// always apply.
-@JsonSerializable()
 class ChargeItemDefinitionPropertyGroup extends BackboneElement {
   ChargeItemDefinitionPropertyGroup({
     super.id,
@@ -895,14 +850,14 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ChargeItemDefinitionPropertyGroup';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [applicability] /// Expressions that describe applicability criteria for the priceComponent.
-  @JsonKey(name: 'applicability')
   final List<ChargeItemDefinitionApplicability>? applicability;
 
   /// [priceComponent] /// The price for a ChargeItem may be calculated as a base price with
@@ -911,7 +866,6 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
   /// conditions that apply to a billing code is currently under development. The
   /// priceComponent element can be used to offer transparency to the recipient
   /// of the Invoice of how the prices have been calculated.
-  @JsonKey(name: 'priceComponent')
   final List<ChargeItemDefinitionPriceComponent>? priceComponent;
   @override
   Map<String, dynamic> toJson() {
@@ -1033,7 +987,6 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
 /// conditions that apply to a billing code is currently under development. The
 /// priceComponent element can be used to offer transparency to the recipient
 /// of the Invoice of how the prices have been calculated.
-@JsonSerializable()
 class ChargeItemDefinitionPriceComponent extends BackboneElement {
   ChargeItemDefinitionPriceComponent({
     super.id,
@@ -1052,32 +1005,27 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ChargeItemDefinitionPriceComponent';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// This code identifies the type of the component.
-  @JsonKey(name: 'type')
   final InvoicePriceComponentType type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [code] /// A code that identifies the component. Codes may be used to differentiate
   /// between kinds of taxes, surcharges, discounts etc.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [factor] /// The factor that has been applied on the base price for calculating this
   /// component.
-  @JsonKey(name: 'factor')
   final FhirDecimal? factor;
-  @JsonKey(name: '_factor')
   final Element? factorElement;
 
   /// [amount] /// The amount calculated for this component.
-  @JsonKey(name: 'amount')
   final Money? amount;
   @override
   Map<String, dynamic> toJson() {

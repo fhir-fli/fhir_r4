@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [RequestGroup] /// A group of related requests that can be used to capture intended activities
 /// that have inter-dependencies such as "give this medication after that one".
-@JsonSerializable()
 class RequestGroup extends DomainResource {
   RequestGroup({
     super.id,
@@ -51,104 +49,81 @@ class RequestGroup extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.RequestGroup);
+
   @override
   String get fhirType => 'RequestGroup';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Allows a service to provide a unique, business identifier for the request.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [instantiatesCanonical] /// A canonical URL referencing a FHIR-defined protocol, guideline, orderset or
   /// other definition that is adhered to in whole or in part by this request.
-  @JsonKey(name: 'instantiatesCanonical')
   final List<FhirCanonical>? instantiatesCanonical;
-  @JsonKey(name: '_instantiatesCanonical')
   final List<Element>? instantiatesCanonicalElement;
 
   /// [instantiatesUri] /// A URL referencing an externally defined protocol, guideline, orderset or
   /// other definition that is adhered to in whole or in part by this request.
-  @JsonKey(name: 'instantiatesUri')
   final List<FhirUri>? instantiatesUri;
-  @JsonKey(name: '_instantiatesUri')
   final List<Element>? instantiatesUriElement;
 
   /// [basedOn] /// A plan, proposal or order that is fulfilled in whole or in part by this
   /// request.
-  @JsonKey(name: 'basedOn')
   final List<Reference>? basedOn;
 
   /// [replaces] /// Completed or terminated request(s) whose function is taken by this new
   /// request.
-  @JsonKey(name: 'replaces')
   final List<Reference>? replaces;
 
   /// [groupIdentifier] /// A shared identifier common to all requests that were authorized more or
   /// less simultaneously by a single author, representing the identifier of the
   /// requisition, prescription or similar form.
-  @JsonKey(name: 'groupIdentifier')
   final Identifier? groupIdentifier;
 
   /// [status] /// The current state of the request. For request groups, the status reflects
   /// the status of all the requests in the group.
-  @JsonKey(name: 'status')
   final RequestStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [intent] /// Indicates the level of authority/intentionality associated with the request
   /// and where the request fits into the workflow chain.
-  @JsonKey(name: 'intent')
   final RequestIntent intent;
-  @JsonKey(name: '_intent')
   final Element? intentElement;
 
   /// [priority] /// Indicates how quickly the request should be addressed with respect to other
   /// requests.
-  @JsonKey(name: 'priority')
   final RequestPriority? priority;
-  @JsonKey(name: '_priority')
   final Element? priorityElement;
 
   /// [code] /// A code that identifies what the overall request group is.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [subject] /// The subject for which the request group was created.
-  @JsonKey(name: 'subject')
   final Reference? subject;
 
   /// [encounter] /// Describes the context of the request group, if any.
-  @JsonKey(name: 'encounter')
   final Reference? encounter;
 
   /// [authoredOn] /// Indicates when the request group was created.
-  @JsonKey(name: 'authoredOn')
   final FhirDateTime? authoredOn;
-  @JsonKey(name: '_authoredOn')
   final Element? authoredOnElement;
 
   /// [author] /// Provides a reference to the author of the request group.
-  @JsonKey(name: 'author')
   final Reference? author;
 
   /// [reasonCode] /// Describes the reason for the request group in coded or textual form.
-  @JsonKey(name: 'reasonCode')
   final List<CodeableConcept>? reasonCode;
 
   /// [reasonReference] /// Indicates another resource whose existence justifies this request group.
-  @JsonKey(name: 'reasonReference')
   final List<Reference>? reasonReference;
 
   /// [note] /// Provides a mechanism to communicate additional information about the
   /// response.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [action] /// The actions, if any, produced by the evaluation of the artifact.
-  @JsonKey(name: 'action')
   final List<RequestGroupAction>? action;
   @override
   Map<String, dynamic> toJson() {
@@ -499,7 +474,6 @@ class RequestGroup extends DomainResource {
 }
 
 /// [RequestGroupAction] /// The actions, if any, produced by the evaluation of the artifact.
-@JsonSerializable()
 class RequestGroupAction extends BackboneElement {
   RequestGroupAction({
     super.id,
@@ -547,138 +521,104 @@ class RequestGroupAction extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'RequestGroupAction';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [prefix] /// A user-visible prefix for the action.
-  @JsonKey(name: 'prefix')
   final FhirString? prefix;
-  @JsonKey(name: '_prefix')
   final Element? prefixElement;
 
   /// [title] /// The title of the action displayed to a user.
-  @JsonKey(name: 'title')
   final FhirString? title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [description] /// A short description of the action used to provide a summary to display to
   /// the user.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [textEquivalent] /// A text equivalent of the action to be performed. This provides a
   /// human-interpretable description of the action when the definition is
   /// consumed by a system that might not be capable of interpreting it
   /// dynamically.
-  @JsonKey(name: 'textEquivalent')
   final FhirString? textEquivalent;
-  @JsonKey(name: '_textEquivalent')
   final Element? textEquivalentElement;
 
   /// [priority] /// Indicates how quickly the action should be addressed with respect to other
   /// actions.
-  @JsonKey(name: 'priority')
   final RequestPriority? priority;
-  @JsonKey(name: '_priority')
   final Element? priorityElement;
 
   /// [code] /// A code that provides meaning for the action or action group. For example, a
   /// section may have a LOINC code for a section of a documentation template.
-  @JsonKey(name: 'code')
   final List<CodeableConcept>? code;
 
   /// [documentation] /// Didactic or other informational resources associated with the action that
   /// can be provided to the CDS recipient. Information resources can include
   /// inline text commentary and links to web resources.
-  @JsonKey(name: 'documentation')
   final List<RelatedArtifact>? documentation;
 
   /// [condition] /// An expression that describes applicability criteria, or start/stop
   /// conditions for the action.
-  @JsonKey(name: 'condition')
   final List<RequestGroupCondition>? condition;
 
   /// [relatedAction] /// A relationship to another action such as "before" or "30-60 minutes after
   /// start of".
-  @JsonKey(name: 'relatedAction')
   final List<RequestGroupRelatedAction>? relatedAction;
 
   /// [timingDateTime] /// An optional value describing when the action should be performed.
-  @JsonKey(name: 'timingDateTime')
   final FhirDateTime? timingDateTime;
-  @JsonKey(name: '_timingDateTime')
   final Element? timingDateTimeElement;
 
   /// [timingAge] /// An optional value describing when the action should be performed.
-  @JsonKey(name: 'timingAge')
   final Age? timingAge;
 
   /// [timingPeriod] /// An optional value describing when the action should be performed.
-  @JsonKey(name: 'timingPeriod')
   final Period? timingPeriod;
 
   /// [timingDuration] /// An optional value describing when the action should be performed.
-  @JsonKey(name: 'timingDuration')
   final FhirDuration? timingDuration;
 
   /// [timingRange] /// An optional value describing when the action should be performed.
-  @JsonKey(name: 'timingRange')
   final Range? timingRange;
 
   /// [timingTiming] /// An optional value describing when the action should be performed.
-  @JsonKey(name: 'timingTiming')
   final Timing? timingTiming;
 
   /// [participant] /// The participant that should perform or be responsible for this action.
-  @JsonKey(name: 'participant')
   final List<Reference>? participant;
 
   /// [type] /// The type of action to perform (create, update, remove).
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [groupingBehavior] /// Defines the grouping behavior for the action and its children.
-  @JsonKey(name: 'groupingBehavior')
   final ActionGroupingBehavior? groupingBehavior;
-  @JsonKey(name: '_groupingBehavior')
   final Element? groupingBehaviorElement;
 
   /// [selectionBehavior] /// Defines the selection behavior for the action and its children.
-  @JsonKey(name: 'selectionBehavior')
   final ActionSelectionBehavior? selectionBehavior;
-  @JsonKey(name: '_selectionBehavior')
   final Element? selectionBehaviorElement;
 
   /// [requiredBehavior] /// Defines expectations around whether an action is required.
-  @JsonKey(name: 'requiredBehavior')
   final ActionRequiredBehavior? requiredBehavior;
-  @JsonKey(name: '_requiredBehavior')
   final Element? requiredBehaviorElement;
 
   /// [precheckBehavior] /// Defines whether the action should usually be preselected.
-  @JsonKey(name: 'precheckBehavior')
   final ActionPrecheckBehavior? precheckBehavior;
-  @JsonKey(name: '_precheckBehavior')
   final Element? precheckBehaviorElement;
 
   /// [cardinalityBehavior] /// Defines whether the action can be selected multiple times.
-  @JsonKey(name: 'cardinalityBehavior')
   final ActionCardinalityBehavior? cardinalityBehavior;
-  @JsonKey(name: '_cardinalityBehavior')
   final Element? cardinalityBehaviorElement;
 
   /// [resource] /// The resource that is the target of the action (e.g. CommunicationRequest).
-  @JsonKey(name: 'resource')
   final Reference? resource;
 
   /// [action] /// Sub actions.
-  @JsonKey(name: 'action')
   final List<RequestGroupAction>? action;
   @override
   Map<String, dynamic> toJson() {
@@ -1045,7 +985,6 @@ class RequestGroupAction extends BackboneElement {
 
 /// [RequestGroupCondition] /// An expression that describes applicability criteria, or start/stop
 /// conditions for the action.
-@JsonSerializable()
 class RequestGroupCondition extends BackboneElement {
   RequestGroupCondition({
     super.id,
@@ -1061,21 +1000,19 @@ class RequestGroupCondition extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'RequestGroupCondition';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [kind] /// The kind of condition.
-  @JsonKey(name: 'kind')
   final ActionConditionKind kind;
-  @JsonKey(name: '_kind')
   final Element? kindElement;
 
   /// [expression] /// An expression that returns true or false, indicating whether or not the
   /// condition is satisfied.
-  @JsonKey(name: 'expression')
   final FhirExpression? expression;
   @override
   Map<String, dynamic> toJson() {
@@ -1177,7 +1114,6 @@ class RequestGroupCondition extends BackboneElement {
 
 /// [RequestGroupRelatedAction] /// A relationship to another action such as "before" or "30-60 minutes after
 /// start of".
-@JsonSerializable()
 class RequestGroupRelatedAction extends BackboneElement {
   RequestGroupRelatedAction({
     super.id,
@@ -1196,32 +1132,27 @@ class RequestGroupRelatedAction extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'RequestGroupRelatedAction';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [actionId] /// The element id of the action this is related to.
-  @JsonKey(name: 'actionId')
   final FhirId actionId;
-  @JsonKey(name: '_actionId')
   final Element? actionIdElement;
 
   /// [relationship] /// The relationship of this action to the related action.
-  @JsonKey(name: 'relationship')
   final ActionRelationshipType relationship;
-  @JsonKey(name: '_relationship')
   final Element? relationshipElement;
 
   /// [offsetDuration] /// A duration or range of durations to apply to the relationship. For example,
   /// 30-60 minutes before.
-  @JsonKey(name: 'offsetDuration')
   final FhirDuration? offsetDuration;
 
   /// [offsetRange] /// A duration or range of durations to apply to the relationship. For example,
   /// 30-60 minutes before.
-  @JsonKey(name: 'offsetRange')
   final Range? offsetRange;
   @override
   Map<String, dynamic> toJson() {

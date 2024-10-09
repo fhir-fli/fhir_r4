@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// How resource references can be aggregated.
 enum AggregationMode {
   /// Display: Contained
   /// Definition: The reference is a local reference to a contained resource.
-  @JsonValue('contained')
   contained,
 
   /// Display: Referenced
   /// Definition: The reference to a resource that has to be resolved externally to the resource that includes the reference.
-  @JsonValue('referenced')
   referenced,
 
   /// Display: Bundled
   /// Definition: The resource the reference points to will be found in the same bundle as the resource that includes the reference.
-  @JsonValue('bundled')
   bundled,
   ;
 

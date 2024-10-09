@@ -1,33 +1,24 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// A format of a substance representation.
 enum SubstanceRepresentationFormat {
   /// Display: InChI
-  @JsonValue('InChI')
   InChI,
 
   /// Display: SMILES
-  @JsonValue('SMILES')
   SMILES,
 
   /// Display: MOLFILE
-  @JsonValue('MOLFILE')
   MOLFILE,
 
   /// Display: CDX
-  @JsonValue('CDX')
   CDX,
 
   /// Display: SDF
-  @JsonValue('SDF')
   SDF,
 
   /// Display: PDB
-  @JsonValue('PDB')
   PDB,
 
   /// Display: mmCIF
-  @JsonValue('mmCIF')
   mmCIF,
   ;
 

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,7 +7,6 @@ import '../../../fhir_r4.dart';
 /// [Encounter] /// An interaction between a patient and healthcare provider(s) for the purpose
 /// of providing healthcare service(s) or assessing the health status of a
 /// patient.
-@JsonSerializable()
 class Encounter extends DomainResource {
   Encounter({
     super.id,
@@ -52,33 +50,29 @@ class Encounter extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Encounter);
+
   @override
   String get fhirType => 'Encounter';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifier(s) by which this encounter is known.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// planned | arrived | triaged | in-progress | onleave | finished | cancelled
   /// +.
-  @JsonKey(name: 'status')
   final EncounterStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [statusHistory] /// The status history permits the encounter resource to contain the status
   /// history without needing to read through the historical versions of the
   /// resource, or even have the server store them.
-  @JsonKey(name: 'statusHistory')
   final List<EncounterStatusHistory>? statusHistory;
 
   /// [class_] /// Concepts representing classification of patient encounter such as
   /// ambulatory (outpatient), inpatient, emergency, home health or others due to
   /// local variations.
-  @JsonKey(name: 'class')
   final Coding class_;
 
   /// [classHistory] /// The class history permits the tracking of the encounters transitions
@@ -88,25 +82,20 @@ class Encounter extends DomainResource {
   /// encounter ensures that any lab/diagnostic results can more easily follow
   /// the patient and not require re-processing and not get lost or cancelled
   /// during a kind of discharge from emergency to inpatient.
-  @JsonKey(name: 'classHistory')
   final List<EncounterClassHistory>? classHistory;
 
   /// [type] /// Specific type of encounter (e.g. e-mail consultation, surgical day-care,
   /// skilled nursing, rehabilitation).
-  @JsonKey(name: 'type')
   final List<CodeableConcept>? type;
 
   /// [serviceType] /// Broad categorization of the service that is to be provided (e.g.
   /// cardiology).
-  @JsonKey(name: 'serviceType')
   final CodeableConcept? serviceType;
 
   /// [priority] /// Indicates the urgency of the encounter.
-  @JsonKey(name: 'priority')
   final CodeableConcept? priority;
 
   /// [subject] /// The patient or group present at the encounter.
-  @JsonKey(name: 'subject')
   final Reference? subject;
 
   /// [episodeOfCare] /// Where a specific encounter should be classified as a part of a specific
@@ -117,55 +106,43 @@ class Encounter extends DomainResource {
   /// typically created after the episode of care and grouped on entry rather
   /// than editing the episode of care to append another encounter to it (the
   /// episode of care could span years).
-  @JsonKey(name: 'episodeOfCare')
   final List<Reference>? episodeOfCare;
 
   /// [basedOn] /// The request this encounter satisfies (e.g. incoming referral or procedure
   /// request).
-  @JsonKey(name: 'basedOn')
   final List<Reference>? basedOn;
 
   /// [participant] /// The list of people responsible for providing the service.
-  @JsonKey(name: 'participant')
   final List<EncounterParticipant>? participant;
 
   /// [appointment] /// The appointment that scheduled this encounter.
-  @JsonKey(name: 'appointment')
   final List<Reference>? appointment;
 
   /// [period] /// The start and end time of the encounter.
-  @JsonKey(name: 'period')
   final Period? period;
 
   /// [length] /// Quantity of time the encounter lasted. This excludes the time during leaves
   /// of absence.
-  @JsonKey(name: 'length')
   final FhirDuration? length;
 
   /// [reasonCode] /// Reason the encounter takes place, expressed as a code. For admissions, this
   /// can be used for a coded admission diagnosis.
-  @JsonKey(name: 'reasonCode')
   final List<CodeableConcept>? reasonCode;
 
   /// [reasonReference] /// Reason the encounter takes place, expressed as a code. For admissions, this
   /// can be used for a coded admission diagnosis.
-  @JsonKey(name: 'reasonReference')
   final List<Reference>? reasonReference;
 
   /// [diagnosis] /// The list of diagnosis relevant to this encounter.
-  @JsonKey(name: 'diagnosis')
   final List<EncounterDiagnosis>? diagnosis;
 
   /// [account] /// The set of accounts that may be used for billing for this Encounter.
-  @JsonKey(name: 'account')
   final List<Reference>? account;
 
   /// [hospitalization] /// Details about the admission to a healthcare service.
-  @JsonKey(name: 'hospitalization')
   final EncounterHospitalization? hospitalization;
 
   /// [location] /// List of locations where the patient has been during this encounter.
-  @JsonKey(name: 'location')
   final List<EncounterLocation>? location;
 
   /// [serviceProvider] /// The organization that is primarily responsible for this Encounter's
@@ -174,12 +151,10 @@ class Encounter extends DomainResource {
   /// was from an external organization (which may be billed seperately) for an
   /// external consultation. Refer to the example bundle showing an abbreviated
   /// set of Encounters for a colonoscopy.
-  @JsonKey(name: 'serviceProvider')
   final Reference? serviceProvider;
 
   /// [partOf] /// Another Encounter of which this encounter is a part of (administratively or
   /// in time).
-  @JsonKey(name: 'partOf')
   final Reference? partOf;
   @override
   Map<String, dynamic> toJson() {
@@ -558,7 +533,6 @@ class Encounter extends DomainResource {
 /// [EncounterStatusHistory] /// The status history permits the encounter resource to contain the status
 /// history without needing to read through the historical versions of the
 /// resource, or even have the server store them.
-@JsonSerializable()
 class EncounterStatusHistory extends BackboneElement {
   EncounterStatusHistory({
     super.id,
@@ -574,21 +548,19 @@ class EncounterStatusHistory extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'EncounterStatusHistory';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [status] /// planned | arrived | triaged | in-progress | onleave | finished | cancelled
   /// +.
-  @JsonKey(name: 'status')
   final EncounterStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [period] /// The time that the episode was in the specified status.
-  @JsonKey(name: 'period')
   final Period period;
   @override
   Map<String, dynamic> toJson() {
@@ -691,7 +663,6 @@ class EncounterStatusHistory extends BackboneElement {
 /// encounter ensures that any lab/diagnostic results can more easily follow
 /// the patient and not require re-processing and not get lost or cancelled
 /// during a kind of discharge from emergency to inpatient.
-@JsonSerializable()
 class EncounterClassHistory extends BackboneElement {
   EncounterClassHistory({
     super.id,
@@ -706,18 +677,17 @@ class EncounterClassHistory extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'EncounterClassHistory';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [class_] /// inpatient | outpatient | ambulatory | emergency +.
-  @JsonKey(name: 'class')
   final Coding class_;
 
   /// [period] /// The time that the episode was in the specified class.
-  @JsonKey(name: 'period')
   final Period period;
   @override
   Map<String, dynamic> toJson() {
@@ -812,7 +782,6 @@ class EncounterClassHistory extends BackboneElement {
 }
 
 /// [EncounterParticipant] /// The list of people responsible for providing the service.
-@JsonSerializable()
 class EncounterParticipant extends BackboneElement {
   EncounterParticipant({
     super.id,
@@ -828,24 +797,22 @@ class EncounterParticipant extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'EncounterParticipant';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Role of participant in encounter.
-  @JsonKey(name: 'type')
   final List<CodeableConcept>? type;
 
   /// [period] /// The period of time that the specified participant participated in the
   /// encounter. These can overlap or be sub-sets of the overall encounter's
   /// period.
-  @JsonKey(name: 'period')
   final Period? period;
 
   /// [individual] /// Persons involved in the encounter other than the patient.
-  @JsonKey(name: 'individual')
   final Reference? individual;
   @override
   Map<String, dynamic> toJson() {
@@ -960,7 +927,6 @@ class EncounterParticipant extends BackboneElement {
 }
 
 /// [EncounterDiagnosis] /// The list of diagnosis relevant to this encounter.
-@JsonSerializable()
 class EncounterDiagnosis extends BackboneElement {
   EncounterDiagnosis({
     super.id,
@@ -977,28 +943,25 @@ class EncounterDiagnosis extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'EncounterDiagnosis';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [condition] /// Reason the encounter takes place, as specified using information from
   /// another resource. For admissions, this is the admission diagnosis. The
   /// indication will typically be a Condition (with other resources referenced
   /// in the evidence.detail), or a Procedure.
-  @JsonKey(name: 'condition')
   final Reference condition;
 
   /// [use] /// Role that this diagnosis has within the encounter (e.g. admission, billing,
   /// discharge …).
-  @JsonKey(name: 'use')
   final CodeableConcept? use;
 
   /// [rank] /// Ranking of the diagnosis (for each role type).
-  @JsonKey(name: 'rank')
   final FhirPositiveInt? rank;
-  @JsonKey(name: '_rank')
   final Element? rankElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1111,7 +1074,6 @@ class EncounterDiagnosis extends BackboneElement {
 }
 
 /// [EncounterHospitalization] /// Details about the admission to a healthcare service.
-@JsonSerializable()
 class EncounterHospitalization extends BackboneElement {
   EncounterHospitalization({
     super.id,
@@ -1133,47 +1095,39 @@ class EncounterHospitalization extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'EncounterHospitalization';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [preAdmissionIdentifier] /// Pre-admission identifier.
-  @JsonKey(name: 'preAdmissionIdentifier')
   final Identifier? preAdmissionIdentifier;
 
   /// [origin] /// The location/organization from which the patient came before admission.
-  @JsonKey(name: 'origin')
   final Reference? origin;
 
   /// [admitSource] /// From where patient was admitted (physician referral, transfer).
-  @JsonKey(name: 'admitSource')
   final CodeableConcept? admitSource;
 
   /// [reAdmission] /// Whether this hospitalization is a readmission and why if known.
-  @JsonKey(name: 'reAdmission')
   final CodeableConcept? reAdmission;
 
   /// [dietPreference] /// Diet preferences reported by the patient.
-  @JsonKey(name: 'dietPreference')
   final List<CodeableConcept>? dietPreference;
 
   /// [specialCourtesy] /// Special courtesies (VIP, board member).
-  @JsonKey(name: 'specialCourtesy')
   final List<CodeableConcept>? specialCourtesy;
 
   /// [specialArrangement] /// Any special requests that have been made for this hospitalization
   /// encounter, such as the provision of specific equipment or other things.
-  @JsonKey(name: 'specialArrangement')
   final List<CodeableConcept>? specialArrangement;
 
   /// [destination] /// Location/organization to which the patient is discharged.
-  @JsonKey(name: 'destination')
   final Reference? destination;
 
   /// [dischargeDisposition] /// Category or kind of location after discharge.
-  @JsonKey(name: 'dischargeDisposition')
   final CodeableConcept? dischargeDisposition;
   @override
   Map<String, dynamic> toJson() {
@@ -1352,7 +1306,6 @@ class EncounterHospitalization extends BackboneElement {
 }
 
 /// [EncounterLocation] /// List of locations where the patient has been during this encounter.
-@JsonSerializable()
 class EncounterLocation extends BackboneElement {
   EncounterLocation({
     super.id,
@@ -1370,31 +1323,27 @@ class EncounterLocation extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'EncounterLocation';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [location] /// The location where the encounter takes place.
-  @JsonKey(name: 'location')
   final Reference location;
 
   /// [status] /// The status of the participants' presence at the specified location during
   /// the period specified. If the participant is no longer at the location, then
   /// the period will have an end date/time.
-  @JsonKey(name: 'status')
   final EncounterLocationStatus? status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [physicalType] /// This will be used to specify the required levels (bed/ward/room/etc.)
   /// desired to be recorded to simplify either messaging or query.
-  @JsonKey(name: 'physicalType')
   final CodeableConcept? physicalType;
 
   /// [period] /// Time period during which the patient was present at the location.
-  @JsonKey(name: 'period')
   final Period? period;
   @override
   Map<String, dynamic> toJson() {

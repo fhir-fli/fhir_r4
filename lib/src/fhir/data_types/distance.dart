@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [Distance] /// A length - a value with a unit that is a physical distance.
-@JsonSerializable()
 class Distance extends Quantity {
   Distance({
     super.id,
@@ -28,10 +26,11 @@ class Distance extends Quantity {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'Distance';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
   @override
   Map<String, dynamic> toJson() {

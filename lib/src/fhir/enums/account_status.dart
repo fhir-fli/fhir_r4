@@ -1,30 +1,23 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Indicates whether the account is available to be used.
 enum AccountStatus {
   /// Display: Active
   /// Definition: This account is active and may be used.
-  @JsonValue('active')
   active,
 
   /// Display: Inactive
   /// Definition: This account is inactive and should not be used to track financial information.
-  @JsonValue('inactive')
   inactive,
 
   /// Display: Entered in error
   /// Definition: This instance should not have been part of this patient's medical record.
-  @JsonValue('entered-in-error')
   entered_in_error,
 
   /// Display: On Hold
   /// Definition: This account is on hold.
-  @JsonValue('on-hold')
   on_hold,
 
   /// Display: Unknown
   /// Definition: The account status is unknown.
-  @JsonValue('unknown')
   unknown,
   ;
 

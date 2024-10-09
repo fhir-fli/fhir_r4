@@ -1,159 +1,126 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Commonly used classifiers for evidence sets.
 enum EvidenceClassifier {
   /// Display: COVID-19 specific article
   /// Definition: About COVID-19.
-  @JsonValue('COVID19Specific')
   COVID19Specific,
 
   /// Display: COVID-19 relevant (but not specific) article
   /// Definition: Not about COVID-19 but relevant to COVID-19 management or understanding.
-  @JsonValue('COVID19Relevant')
   COVID19Relevant,
 
   /// Display: COVID-19 human data in population, exposure, or outcome
   /// Definition: contains human COVID-19 disease in the research data as any variable (population, exposure or outcome).
-  @JsonValue('COVID19HumanResearch')
   COVID19HumanResearch,
 
   /// Display: Article includes original research
   /// Definition: such as randomized trial, observational study.
-  @JsonValue('OriginalResearch')
   OriginalResearch,
 
   /// Display: Article includes synthesis of research
   /// Definition: such as systematic review, meta-analysis, rapid review.
-  @JsonValue('ResearchSynthesis')
   ResearchSynthesis,
 
   /// Display: Article includes guideline
   /// Definition: for clinical practice guidelines.
-  @JsonValue('Guideline')
   Guideline,
 
   /// Display: Article provides protocol without results
   /// Definition: for research protocols.
-  @JsonValue('ResearchProtocol')
   ResearchProtocol,
 
   /// Display: Article is neither research nor guideline
   /// Definition: for things that are not research reports, research protocols or guidelines.
-  @JsonValue('NotResearchNotGuideline')
   NotResearchNotGuideline,
 
   /// Display: Article about treatment
   /// Definition: about therapeutic interventions.
-  @JsonValue('Treatment')
   Treatment,
 
   /// Display: Article about prevention and control
   /// Definition: about preventive care and interventions.
-  @JsonValue('PreventionAndControl')
   PreventionAndControl,
 
   /// Display: Article about diagnosis
   /// Definition: about methods to distinguish having or not having a condition.
-  @JsonValue('Diagnosis')
   Diagnosis,
 
   /// Display: Article about prognosis or prediction
   /// Definition: about predicting risk for something or risk factors for it.
-  @JsonValue('PrognosisPrediction')
   PrognosisPrediction,
 
   /// Display: Rated as yes, affirmative, positive, present, or include
-  @JsonValue('RatedAsYes')
   RatedAsYes,
 
   /// Display: Rated as no, negative, absent, or exclude
   /// Definition: Rated as no, negative, absent, or exclude.
-  @JsonValue('RatedAsNo')
   RatedAsNo,
 
   /// Display: Not rated, not assessed
   /// Definition: Neither rated as yes nor rated as no.
-  @JsonValue('NotAssessed')
   NotAssessed,
 
   /// Display: classified as randomized controlled trial
   /// Definition: classified as randomized controlled trial.
-  @JsonValue('RatedAsRCT')
   RatedAsRCT,
 
   /// Display: classified as nonrandomized controlled trial (experimental)
   /// Definition: classified as nonrandomized controlled trial (experimental).
-  @JsonValue('RatedAsControlledTrial')
   RatedAsControlledTrial,
 
   /// Display: classified as comparative cohort study (observational)
   /// Definition: classified as comparative cohort study (observational).
-  @JsonValue('RatedAsComparativeCohort')
   RatedAsComparativeCohort,
 
   /// Display: classified as case-control study
   /// Definition: classified as case-control study.
-  @JsonValue('RatedAsCaseControl')
   RatedAsCaseControl,
 
   /// Display: classified as uncontrolled cohort (case series)
   /// Definition: classified as uncontrolled cohort (case series).
-  @JsonValue('RatedAsUncontrolledSeries')
   RatedAsUncontrolledSeries,
 
   /// Display: classified as mixed-methods study
   /// Definition: classified as mixed-methods study.
-  @JsonValue('RatedAsMixedMethods')
   RatedAsMixedMethods,
 
   /// Display: classified as other concept (not elsewhere classified)
   /// Definition: classified as other concept (not elsewhere classified).
-  @JsonValue('RatedAsOther')
   RatedAsOther,
 
   /// Display: Risk of bias assessment
   /// Definition: Risk of bias assessment.
-  @JsonValue('RiskOfBias')
   RiskOfBias,
 
   /// Display: No blinding
   /// Definition: No blinding.
-  @JsonValue('NoBlinding')
   NoBlinding,
 
   /// Display: Allocation concealment not stated
   /// Definition: Allocation concealment not stated.
-  @JsonValue('AllocConcealNotStated')
   AllocConcealNotStated,
 
   /// Display: Early trial termination
   /// Definition: Early trial termination.
-  @JsonValue('EarlyTrialTermination')
   EarlyTrialTermination,
 
   /// Display: No intention-to-treat analysis
   /// Definition: No intention-to-treat analysis.
-  @JsonValue('NoITT')
   NoITT,
 
   /// Display: Preprint (not final publication)
   /// Definition: Results presented in preprint (pre-final publication) form.
-  @JsonValue('Preprint')
   Preprint,
 
   /// Display: Preliminary analysis
   /// Definition: Preliminary analysis.
-  @JsonValue('PreliminaryAnalysis')
   PreliminaryAnalysis,
 
   /// Display: Baseline imbalances
   /// Definition: Differences between groups at start of trial may confound or bias the findings.
-  @JsonValue('BaselineImbalance')
   BaselineImbalance,
 
   /// Display: Subgroup analysis
   /// Definition: Subgroup analysis.
-  @JsonValue('SubgroupAnalysis')
   SubgroupAnalysis,
   ;
 

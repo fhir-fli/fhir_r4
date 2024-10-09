@@ -1,17 +1,12 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The type of substance weight measurement.
 enum WeightType {
   /// Display: exact
-  @JsonValue('Exact')
   Exact,
 
   /// Display: number average
-  @JsonValue('Average')
   Average,
 
   /// Display: weight average
-  @JsonValue('WeightAverage')
   WeightAverage,
   ;
 

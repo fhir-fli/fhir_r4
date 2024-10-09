@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The status of the document reference.
 enum DocumentReferenceStatus {
   /// Display: Current
   /// Definition: This is the current reference for this document.
-  @JsonValue('current')
   current,
 
   /// Display: Superseded
   /// Definition: This reference has been superseded by another reference.
-  @JsonValue('superseded')
   superseded,
 
   /// Display: Entered in Error
   /// Definition: This reference was created in error.
-  @JsonValue('entered-in-error')
   entered_in_error,
   ;
 

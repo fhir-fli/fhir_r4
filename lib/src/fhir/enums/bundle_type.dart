@@ -1,50 +1,39 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Indicates the purpose of a bundle - how it is intended to be used.
 enum BundleType {
   /// Display: Document
   /// Definition: The bundle is a document. The first resource is a Composition.
-  @JsonValue('document')
   document,
 
   /// Display: Message
   /// Definition: The bundle is a message. The first resource is a MessageHeader.
-  @JsonValue('message')
   message,
 
   /// Display: Transaction
   /// Definition: The bundle is a transaction - intended to be processed by a server as an atomic commit.
-  @JsonValue('transaction')
   transaction,
 
   /// Display: Transaction Response
   /// Definition: The bundle is a transaction response. Because the response is a transaction response, the transaction has succeeded, and all responses are error free.
-  @JsonValue('transaction-response')
   transaction_response,
 
   /// Display: Batch
   /// Definition: The bundle is a set of actions - intended to be processed by a server as a group of independent actions.
-  @JsonValue('batch')
   batch,
 
   /// Display: Batch Response
   /// Definition: The bundle is a batch response. Note that as a batch, some responses may indicate failure and others success.
-  @JsonValue('batch-response')
   batch_response,
 
   /// Display: History List
   /// Definition: The bundle is a list of resources from a history interaction on a server.
-  @JsonValue('history')
   history,
 
   /// Display: Search Results
   /// Definition: The bundle is a list of resources returned as a result of a search/query interaction, operation, or message.
-  @JsonValue('searchset')
   searchset,
 
   /// Display: Collection
   /// Definition: The bundle is a set of resources collected into a single package for ease of distribution that imposes no processing obligations or behavioral rules beyond persistence.
-  @JsonValue('collection')
   collection,
   ;
 

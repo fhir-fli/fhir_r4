@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The kind of report, such as grouping of classifiers, search results, or human-compiled expression.
 enum EvidenceReportType {
   /// Display: Classification
   /// Definition: The report is primarily a listing of classifiers about the report subject.
-  @JsonValue('classification')
   classification,
 
   /// Display: Search Results
   /// Definition: The report is a composition of results generated in response to a search query.
-  @JsonValue('search-results')
   search_results,
 
   /// Display: Resource Compilation
   /// Definition: The report is a composition containing one or more FHIR resources in the content.
-  @JsonValue('resources-compiled')
   resources_compiled,
 
   /// Display: Structured Text
   /// Definition: The report is a structured representation of text.
-  @JsonValue('text-structured')
   text_structured,
   ;
 

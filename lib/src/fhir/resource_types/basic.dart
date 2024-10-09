@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,7 +7,6 @@ import '../../../fhir_r4.dart';
 /// [Basic] /// Basic is used for handling concepts not yet defined in FHIR, narrative-only
 /// resources that don't map to an existing resource, and custom resources not
 /// appropriate for inclusion in the FHIR specification.
-@JsonSerializable()
 class Basic extends DomainResource {
   Basic({
     super.id,
@@ -34,35 +32,30 @@ class Basic extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Basic);
+
   @override
   String get fhirType => 'Basic';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifier assigned to the resource for business purposes, outside the
   /// context of FHIR.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [code] /// Identifies the 'type' of resource - equivalent to the resource name for
   /// other resources.
-  @JsonKey(name: 'code')
   final CodeableConcept code;
 
   /// [subject] /// Identifies the patient, practitioner, device or any other resource that is
   /// the "focus" of this resource.
-  @JsonKey(name: 'subject')
   final Reference? subject;
 
   /// [created] /// Identifies when the resource was first created.
-  @JsonKey(name: 'created')
   final FhirDate? created;
-  @JsonKey(name: '_created')
   final Element? createdElement;
 
   /// [author] /// Indicates who was responsible for creating the resource instance.
-  @JsonKey(name: 'author')
   final Reference? author;
   @override
   Map<String, dynamic> toJson() {

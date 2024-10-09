@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Codes for high level media categories.
 enum MediaType {
   /// Display: Image
   /// Definition: The media consists of one or more unmoving images, including photographs, computer-generated graphs and charts, and scanned documents
-  @JsonValue('image')
   image,
 
   /// Display: Video
   /// Definition: The media consists of a series of frames that capture a moving image
-  @JsonValue('video')
   video,
 
   /// Display: Audio
   /// Definition: The media consists of a sound recording
-  @JsonValue('audio')
   audio,
   ;
 

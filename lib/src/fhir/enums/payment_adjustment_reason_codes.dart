@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes smattering of Payment Adjustment Reason codes.
 enum PaymentAdjustmentReasonCodes {
   /// Display: Prior Payment Reversal
   /// Definition: Prior Payment Reversal
-  @JsonValue('a001')
   a001,
 
   /// Display: Prior Overpayment
   /// Definition: Prior Overpayment
-  @JsonValue('a002')
   a002,
   ;
 

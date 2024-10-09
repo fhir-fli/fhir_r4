@@ -1,25 +1,18 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The overall intended use of a product.
 enum ProductIntendedUse {
   /// Display: Prevention
-  @JsonValue('Prevention')
   Prevention,
 
   /// Display: Treatment
-  @JsonValue('Treatment')
   Treatment,
 
   /// Display: Alleviation
-  @JsonValue('Alleviation')
   Alleviation,
 
   /// Display: Diagnosis
-  @JsonValue('Diagnosis')
   Diagnosis,
 
   /// Display: Monitoring
-  @JsonValue('Monitoring')
   Monitoring,
   ;
 

@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Used to code the producer or rule for creating the display string.
 enum ContributorSummarySource {
   /// Display: Publisher provided
   /// Definition: Data copied by machine from publisher data.
-  @JsonValue('publisher-data')
   publisher_data,
 
   /// Display: Copied from article
   /// Definition: Data copied by human from article text.
-  @JsonValue('article-copy')
   article_copy,
 
   /// Display: Reported by citation manager
   /// Definition: Data copied by machine from citation manager data.
-  @JsonValue('citation-manager')
   citation_manager,
 
   /// Display: custom format
   /// Definition: Custom format (may be described in text note).
-  @JsonValue('custom')
   custom,
   ;
 

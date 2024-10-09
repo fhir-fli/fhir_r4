@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [HumanName] /// A human's name with the ability to identify parts and usage.
-@JsonSerializable()
 class HumanName extends DataType {
   HumanName({
     super.id,
@@ -31,56 +29,44 @@ class HumanName extends DataType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'HumanName';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [use] /// Identifies the purpose for this name.
-  @JsonKey(name: 'use')
   final NameUse? use;
-  @JsonKey(name: '_use')
   final Element? useElement;
 
   /// [text] /// Specifies the entire name as it should be displayed e.g. on an application
   /// UI. This may be provided instead of or as well as the specific parts.
-  @JsonKey(name: 'text')
   final FhirString? text;
-  @JsonKey(name: '_text')
   final Element? textElement;
 
   /// [family] /// The part of a name that links to the genealogy. In some cultures (e.g.
   /// Eritrea) the family name of a son is the first name of his father.
-  @JsonKey(name: 'family')
   final FhirString? family;
-  @JsonKey(name: '_family')
   final Element? familyElement;
 
   /// [given] /// Given name.
-  @JsonKey(name: 'given')
   final List<FhirString>? given;
-  @JsonKey(name: '_given')
   final List<Element>? givenElement;
 
   /// [prefix] /// Part of the name that is acquired as a title due to academic, legal,
   /// employment or nobility status, etc. and that appears at the start of the
   /// name.
-  @JsonKey(name: 'prefix')
   final List<FhirString>? prefix;
-  @JsonKey(name: '_prefix')
   final List<Element>? prefixElement;
 
   /// [suffix] /// Part of the name that is acquired as a title due to academic, legal,
   /// employment or nobility status, etc. and that appears at the end of the
   /// name.
-  @JsonKey(name: 'suffix')
   final List<FhirString>? suffix;
-  @JsonKey(name: '_suffix')
   final List<Element>? suffixElement;
 
   /// [period] /// Indicates the period of time when this name was valid for the named person.
-  @JsonKey(name: 'period')
   final Period? period;
   @override
   Map<String, dynamic> toJson() {

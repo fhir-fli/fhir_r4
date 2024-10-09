@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [Attachment] /// For referring to data content defined in other formats.
-@JsonSerializable()
 class Attachment extends DataType {
   Attachment({
     super.id,
@@ -34,62 +32,47 @@ class Attachment extends DataType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'Attachment';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [contentType] /// Identifies the type of the data in the attachment and allows a method to be
   /// chosen to interpret or render the data. Includes mime type parameters such
   /// as charset where appropriate.
-  @JsonKey(name: 'contentType')
   final FhirCode? contentType;
-  @JsonKey(name: '_contentType')
   final Element? contentTypeElement;
 
   /// [language] /// The human language of the content. The value can be any valid value
   /// according to BCP 47.
-  @JsonKey(name: 'language')
   final CommonLanguages? language;
-  @JsonKey(name: '_language')
   final Element? languageElement;
 
   /// [data] /// The actual data of the attachment - a sequence of bytes, base64 encoded.
-  @JsonKey(name: 'data')
   final FhirBase64Binary? data;
-  @JsonKey(name: '_data')
   final Element? dataElement;
 
   /// [url] /// A location where the data can be accessed.
-  @JsonKey(name: 'url')
   final FhirUrl? url;
-  @JsonKey(name: '_url')
   final Element? urlElement;
 
   /// [size] /// The number of bytes of data that make up this attachment (before base64
   /// encoding, if that is done).
-  @JsonKey(name: 'size')
   final FhirUnsignedInt? size;
-  @JsonKey(name: '_size')
   final Element? sizeElement;
 
   /// [hash] /// The calculated hash of the data using SHA-1. Represented using base64.
-  @JsonKey(name: 'hash')
   final FhirBase64Binary? hash;
-  @JsonKey(name: '_hash')
   final Element? hashElement;
 
   /// [title] /// A label or set of text to display in place of the data.
-  @JsonKey(name: 'title')
   final FhirString? title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [creation] /// The date that the attachment was first created.
-  @JsonKey(name: 'creation')
   final FhirDateTime? creation;
-  @JsonKey(name: '_creation')
   final Element? creationElement;
   @override
   Map<String, dynamic> toJson() {

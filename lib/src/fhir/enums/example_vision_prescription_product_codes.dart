@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes a smattering of Prescription Product codes.
 enum ExampleVisionPrescriptionProductCodes {
   /// Display: Lens
   /// Definition: A lens to be fitted to a frame to comprise a pair of glasses.
-  @JsonValue('lens')
   lens,
 
   /// Display: Contact Lens
   /// Definition: A lens to be fitted for wearing directly on an eye.
-  @JsonValue('contact')
   contact,
   ;
 

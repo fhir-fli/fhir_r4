@@ -1,80 +1,63 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Cited Artifact Status Type
 enum CitedArtifactStatusType {
   /// Display: Created
   /// Definition: The content was originally constructed or composed.
-  @JsonValue('created')
   created,
 
   /// Display: Submitted
   /// Definition: The content was sent to the publisher for consideration of publication.
-  @JsonValue('submitted')
   submitted,
 
   /// Display: Withdrawn
   /// Definition: The content that was not published has been removed from consideration for publishing by the submitter.
-  @JsonValue('withdrawn')
   withdrawn,
 
   /// Display: Pre review
   /// Definition: The content is awaiting assignment and delivery to reviewer(s).
-  @JsonValue('pre-review')
   pre_review,
 
   /// Display: Under review
   /// Definition: The content is in a state of being reviewed.
-  @JsonValue('under-review')
   under_review,
 
   /// Display: Post review pre published
   /// Definition: The content is in a state between the review(s) being completed and being published.
-  @JsonValue('post-review-pre-published')
   post_review_pre_published,
 
   /// Display: Rejected
   /// Definition: The content that was not published has been removed from consideration for publishing by a publisher or editor.
-  @JsonValue('rejected')
   rejected,
 
   /// Display: Published early form
   /// Definition: The content is published but future changes to the published version are expected.
-  @JsonValue('published-early-form')
   published_early_form,
 
   /// Display: Published final form
   /// Definition: The content is published and further changes to the content are not expected.
-  @JsonValue('published-final-form')
   published_final_form,
 
   /// Display: Accepted
   /// Definition: The content that was not published yet has been approved for publication by the publisher and/or editor.
-  @JsonValue('accepted')
   accepted,
 
   /// Display: Archived
   /// Definition: The content is retired or considered no longer current but still available as part of the public record.
-  @JsonValue('archived')
   archived,
 
   /// Display: Retracted
   /// Definition: The content that was published is removed from publication and should no longer be considered part of the public record.
-  @JsonValue('retracted')
   retracted,
 
   /// Display: Draft
   /// Definition: The content is considered unfinished or incomplete and not representative of the current state desired by the content creator.
-  @JsonValue('draft')
   draft,
 
   /// Display: Active
   /// Definition: The content is considered complete for its current state by the content creator.
-  @JsonValue('active')
   active,
 
   /// Display: Approved
   /// Definition: The content has been approved for a state transition, with the focus of approval described in the text associated with this coding.
-  @JsonValue('approved')
   approved,
   ;
 

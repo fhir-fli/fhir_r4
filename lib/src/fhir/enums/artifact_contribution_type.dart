@@ -1,75 +1,59 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Citation contribution.
 enum ArtifactContributionType {
   /// Display: Conceptualization
   /// Definition: Conceptualization (see https://jats4r.org/credit-taxonomy).
-  @JsonValue('conceptualization')
   conceptualization,
 
   /// Display: Data curation
   /// Definition: Data curation (see https://jats4r.org/credit-taxonomy).
-  @JsonValue('data-curation')
   data_curation,
 
   /// Display: Formal analysis
   /// Definition: Formal analysis (see https://jats4r.org/credit-taxonomy).
-  @JsonValue('formal-analysis')
   formal_analysis,
 
   /// Display: Funding acquisition
   /// Definition: Funding acquisition (see https://jats4r.org/credit-taxonomy).
-  @JsonValue('funding-acquisition')
   funding_acquisition,
 
   /// Display: Investigation
   /// Definition: Investigation (see https://jats4r.org/credit-taxonomy).
-  @JsonValue('investigation')
   investigation,
 
   /// Display: Methodology
   /// Definition: Methodology (see https://jats4r.org/credit-taxonomy).
-  @JsonValue('methodology')
   methodology,
 
   /// Display: Project administration
   /// Definition: Project administration (see https://jats4r.org/credit-taxonomy).
-  @JsonValue('project-administration')
   project_administration,
 
   /// Display: Resources
   /// Definition: Resources (see https://jats4r.org/credit-taxonomy).
-  @JsonValue('resources')
   resources,
 
   /// Display: Software
   /// Definition: Software (see https://jats4r.org/credit-taxonomy).
-  @JsonValue('software')
   software,
 
   /// Display: Supervision
   /// Definition: Supervision (see https://jats4r.org/credit-taxonomy).
-  @JsonValue('supervision')
   supervision,
 
   /// Display: Validation
   /// Definition: Validation (see https://jats4r.org/credit-taxonomy).
-  @JsonValue('validation')
   validation,
 
   /// Display: Visualization
   /// Definition: Visualization (see https://jats4r.org/credit-taxonomy).
-  @JsonValue('visualization')
   visualization,
 
   /// Display: Writing - original draft
   /// Definition: Writing - original draft (see https://jats4r.org/credit-taxonomy).
-  @JsonValue('writing-original-draft')
   writing_original_draft,
 
   /// Display: Writing - review & editing
   /// Definition: Writing - review & editing (see https://jats4r.org/credit-taxonomy).
-  @JsonValue('writing-review-editing')
   writing_review_editing,
   ;
 

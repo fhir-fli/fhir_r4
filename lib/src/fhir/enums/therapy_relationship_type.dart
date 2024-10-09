@@ -1,50 +1,39 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Classification of relationship between a therapy and a contraindication or an indication.
 enum TherapyRelationshipType {
   /// Display: Only contraindicated if the other therapy is given
   /// Definition: Only contraindicated if the other therapy is given
-  @JsonValue('contraindicated-only-with')
   contraindicated_only_with,
 
   /// Display: Contraindicated unless the other therapy is given
   /// Definition: Contraindicated unless the other therapy is given
-  @JsonValue('contraindicated-except-with')
   contraindicated_except_with,
 
   /// Display: Indicated only when the other therapy is given (co-occurrent)
   /// Definition: Indicated only when the other therapy is given (co-occurrent)
-  @JsonValue('indicated-only-with')
   indicated_only_with,
 
   /// Display: Indicated except when the other therapy is given
   /// Definition: Indicated except when the other therapy is given
-  @JsonValue('indicated-except-with')
   indicated_except_with,
 
   /// Display: Indicated only if the other therapy is planned to be given afterwards (prep)
   /// Definition: Indicated only if the other therapy is planned to be given afterwards (prep)
-  @JsonValue('indicated-only-before')
   indicated_only_before,
 
   /// Display: Indicated to replace the other therapy
   /// Definition: Indicated to replace the other therapy
-  @JsonValue('replace-other-therapy')
   replace_other_therapy,
 
   /// Display: Indicated to replace the other contraindicated therapy
   /// Definition: Indicated to replace the other contraindicated therapy.
-  @JsonValue('replace-other-therapy-contraindicated')
   replace_other_therapy_contraindicated,
 
   /// Display: Indicated to replace the other therapy not well tolerated by patient
   /// Definition: Indicated to replace the other therapy not well tolerated by patient
-  @JsonValue('replace-other-therapy-not-tolerated')
   replace_other_therapy_not_tolerated,
 
   /// Display: Indicated to replace the other therapy not effective on patient
   /// Definition: Indicated to replace the other therapy not effective on patient
-  @JsonValue('replace-other-therapy-not-effective')
   replace_other_therapy_not_effective,
   ;
 

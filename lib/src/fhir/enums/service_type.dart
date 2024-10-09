@@ -1,2985 +1,2387 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set defines an example set of codes of service-types.
 enum ServiceType {
   /// Display: Adoption/Permanent Care Info/Support
   /// Definition: Adoption & permanent care information/support
-  @JsonValue('1')
   value1,
 
   /// Display: Aged Care Assessment
   /// Definition: Aged care assessment
-  @JsonValue('2')
   value2,
 
   /// Display: Aged Care Information/Referral
   /// Definition: Aged Care information/referral
-  @JsonValue('3')
   value3,
 
   /// Display: Aged Residential Care
   /// Definition: Aged Residential Care
-  @JsonValue('4')
   value4,
 
   /// Display: Case Management for Older Persons
   /// Definition: Case management for older persons
-  @JsonValue('5')
   value5,
 
   /// Display: Delivered Meals (Meals On Wheels)
   /// Definition: Delivered meals (meals on wheels)
-  @JsonValue('6')
   value6,
 
   /// Display: Friendly Visiting
   /// Definition: Friendly visiting
-  @JsonValue('7')
   value7,
 
   /// Display: Home Care/Housekeeping Assistance
   /// Definition: Home care/housekeeping assistance
-  @JsonValue('8')
   value8,
 
   /// Display: Home Maintenance and Repair
   /// Definition: Home maintenance and repair
-  @JsonValue('9')
   value9,
 
   /// Display: Personal Alarms/Alerts
   /// Definition: Personal alarms/alerts
-  @JsonValue('10')
   value10,
 
   /// Display: Personal Care for Older Persons
   /// Definition: Personal care for older persons
-  @JsonValue('11')
   value11,
 
   /// Display: Planned Activity Groups
   /// Definition: Planned activity groups
-  @JsonValue('12')
   value12,
 
   /// Display: Acupuncture
   /// Definition: Acupuncture
-  @JsonValue('13')
   value13,
 
   /// Display: Alexander Technique Therapy
   /// Definition: Alexander technique therapy
-  @JsonValue('14')
   value14,
 
   /// Display: Aromatherapy
   /// Definition: Aromatherapy
-  @JsonValue('15')
   value15,
 
   /// Display: Biorhythm Services
   /// Definition: Biorhythm services
-  @JsonValue('16')
   value16,
 
   /// Display: Bowen Therapy
   /// Definition: Bowen therapy
-  @JsonValue('17')
   value17,
 
   /// Display: Chinese Herbal Medicine
   /// Definition: Chinese herbal medicine
-  @JsonValue('18')
   value18,
 
   /// Display: Feldenkrais
   /// Definition: Feldenkrais
-  @JsonValue('19')
   value19,
 
   /// Display: Homoeopathy
   /// Definition: Homoeopathy
-  @JsonValue('20')
   value20,
 
   /// Display: Hydrotherapy
   /// Definition: Hydrotherapy
-  @JsonValue('21')
   value21,
 
   /// Display: Hypnotherapy
   /// Definition: Hypnotherapy
-  @JsonValue('22')
   value22,
 
   /// Display: Kinesiology
   /// Definition: Kinesiology
-  @JsonValue('23')
   value23,
 
   /// Display: Magnetic Therapy
   /// Definition: Magnetic therapy
-  @JsonValue('24')
   value24,
 
   /// Display: Massage Therapy
   /// Definition: Massage therapy
-  @JsonValue('25')
   value25,
 
   /// Display: Meditation
   /// Definition: Meditation
-  @JsonValue('26')
   value26,
 
   /// Display: Myotherapy
   /// Definition: Myotherapy
-  @JsonValue('27')
   value27,
 
   /// Display: Naturopathy
   /// Definition: Naturopathy
-  @JsonValue('28')
   value28,
 
   /// Display: Reflexology
   /// Definition: Reflexology
-  @JsonValue('29')
   value29,
 
   /// Display: Reiki
   /// Definition: Reiki
-  @JsonValue('30')
   value30,
 
   /// Display: Relaxation Therapy
   /// Definition: Relaxation therapy
-  @JsonValue('31')
   value31,
 
   /// Display: Shiatsu
   /// Definition: Shiatsu
-  @JsonValue('32')
   value32,
 
   /// Display: Western Herbal Medicine
   /// Definition: Western herbal medicine
-  @JsonValue('33')
   value33,
 
   /// Display: Family Day care
   /// Definition: Family day care
-  @JsonValue('34')
   value34,
 
   /// Display: Holiday Programs
   /// Definition: Holiday programs
-  @JsonValue('35')
   value35,
 
   /// Display: Kindergarten Inclusion Support
   /// Definition: Kindergarten inclusion support for children with a disability
-  @JsonValue('36')
   value36,
 
   /// Display: Kindergarten/Preschool
   /// Definition: Kindergarten/preschool
-  @JsonValue('37')
   value37,
 
   /// Display: Long Day Child Care
   /// Definition: Long day child care
-  @JsonValue('38')
   value38,
 
   /// Display: Occasional Child Care
   /// Definition: Occasional child care
-  @JsonValue('39')
   value39,
 
   /// Display: Outside School Hours Care
   /// Definition: Outside school hours care
-  @JsonValue('40')
   value40,
 
   /// Display: Children's Play Programs
   /// Definition: Children's play programs
-  @JsonValue('41')
   value41,
 
   /// Display: Parenting/Family Support/Education
   /// Definition: Parenting & family management support/education
-  @JsonValue('42')
   value42,
 
   /// Display: Playgroup
   /// Definition: Playgroup
-  @JsonValue('43')
   value43,
 
   /// Display: School Nursing
   /// Definition: School nursing
-  @JsonValue('44')
   value44,
 
   /// Display: Toy Library
   /// Definition: Toy library
-  @JsonValue('45')
   value45,
 
   /// Display: Child Protection/Child Abuse Report
   /// Definition: Child protection/child abuse report
-  @JsonValue('46')
   value46,
 
   /// Display: Foster Care
   /// Definition: Foster care
-  @JsonValue('47')
   value47,
 
   /// Display: Residential/Out-of-Home Care
   /// Definition: Residential/ out of home care
-  @JsonValue('48')
   value48,
 
   /// Display: Support - Young People Leaving Care
   /// Definition: Support for young people leaving care
-  @JsonValue('49')
   value49,
 
   /// Display: Audiology
   /// Definition: Audiology
-  @JsonValue('50')
   value50,
 
   /// Display: Blood Donation
   /// Definition: Blood donation
-  @JsonValue('51')
   value51,
 
   /// Display: Chiropractic
   /// Definition: Chiropractic
-  @JsonValue('52')
   value52,
 
   /// Display: Dietetics
   /// Definition: Dietetics
-  @JsonValue('53')
   value53,
 
   /// Display: Family Planning
   /// Definition: Family planning
-  @JsonValue('54')
   value54,
 
   /// Display: Health Advocacy/Liaison Service
   /// Definition: Health advocacy/Liaison service
-  @JsonValue('55')
   value55,
 
   /// Display: Health Information/Referral
   /// Definition: Health information/referral
-  @JsonValue('56')
   value56,
 
   /// Display: Immunization
   /// Definition: Immunization
-  @JsonValue('57')
   value57,
 
   /// Display: Maternal & Child Health
   /// Definition: Maternal & child health
-  @JsonValue('58')
   value58,
 
   /// Display: Nursing
   /// Definition: Nursing
-  @JsonValue('59')
   value59,
 
   /// Display: Nutrition
   /// Definition: Nutrition
-  @JsonValue('60')
   value60,
 
   /// Display: Occupational Therapy
   /// Definition: Occupational therapy
-  @JsonValue('61')
   value61,
 
   /// Display: Optometry
   /// Definition: Optometry
-  @JsonValue('62')
   value62,
 
   /// Display: Osteopathy
   /// Definition: Osteopathy
-  @JsonValue('63')
   value63,
 
   /// Display: Pharmacy
   /// Definition: Pharmacy
-  @JsonValue('64')
   value64,
 
   /// Display: Physiotherapy
   /// Definition: Physiotherapy
-  @JsonValue('65')
   value65,
 
   /// Display: Podiatry
   /// Definition: Podiatry
-  @JsonValue('66')
   value66,
 
   /// Display: Sexual Health
   /// Definition: Sexual health
-  @JsonValue('67')
   value67,
 
   /// Display: Speech Pathology/Therapy
   /// Definition: Speech pathology/therapy
-  @JsonValue('68')
   value68,
 
   /// Display: Bereavement Counselling
   /// Definition: Bereavement counselling
-  @JsonValue('69')
   value69,
 
   /// Display: Crisis Counselling
   /// Definition: Crisis counselling
-  @JsonValue('70')
   value70,
 
   /// Display: Family Counselling/Therapy
   /// Definition: Family counselling and/or family therapy
-  @JsonValue('71')
   value71,
 
   /// Display: Family Violence Counselling
   /// Definition: Family violence counselling
-  @JsonValue('72')
   value72,
 
   /// Display: Financial Counselling
   /// Definition: Financial counselling
-  @JsonValue('73')
   value73,
 
   /// Display: Generalist Counselling
   /// Definition: Generalist counselling
-  @JsonValue('74')
   value74,
 
   /// Display: Genetic Counselling
   /// Definition: Genetic counselling
-  @JsonValue('75')
   value75,
 
   /// Display: Health Counselling
   /// Definition: Health counselling
-  @JsonValue('76')
   value76,
 
   /// Display: Mediation
   /// Definition: Mediation
-  @JsonValue('77')
   value77,
 
   /// Display: Problem Gambling Counselling
   /// Definition: Problem gambling counselling
-  @JsonValue('78')
   value78,
 
   /// Display: Relationship Counselling
   /// Definition: Relationship counselling
-  @JsonValue('79')
   value79,
 
   /// Display: Sexual Assault Counselling
   /// Definition: Sexual assault counselling
-  @JsonValue('80')
   value80,
 
   /// Display: Trauma Counselling
   /// Definition: Trauma counselling
-  @JsonValue('81')
   value81,
 
   /// Display: Victims of Crime Counselling
   /// Definition: Victims of crime counselling
-  @JsonValue('82')
   value82,
 
   /// Display: Cemetery Operation
   /// Definition: Cemetery operation
-  @JsonValue('83')
   value83,
 
   /// Display: Cremation
   /// Definition: Cremation
-  @JsonValue('84')
   value84,
 
   /// Display: Death Service Information
   /// Definition: Death service information
-  @JsonValue('85')
   value85,
 
   /// Display: Funeral Services
   /// Definition: Funeral services
-  @JsonValue('86')
   value86,
 
   /// Display: Endodontic
   /// Definition: Endodontic
-  @JsonValue('87')
   value87,
 
   /// Display: General Dental
   /// Definition: General dental
-  @JsonValue('88')
   value88,
 
   /// Display: Oral Medicine
   /// Definition: Oral medicine
-  @JsonValue('89')
   value89,
 
   /// Display: Oral Surgery
   /// Definition: Oral surgery
-  @JsonValue('90')
   value90,
 
   /// Display: Orthodontic
   /// Definition: Orthodontic
-  @JsonValue('91')
   value91,
 
   /// Display: Paediatric Dentistry
   /// Definition: Paediatric Dentistry
-  @JsonValue('92')
   value92,
 
   /// Display: Periodontic
   /// Definition: Periodontic
-  @JsonValue('93')
   value93,
 
   /// Display: Prosthodontic
   /// Definition: Prosthodontic
-  @JsonValue('94')
   value94,
 
   /// Display: Acquired Brain Injury Info/Referral
   /// Definition: Acquired brain injury information/referral
-  @JsonValue('95')
   value95,
 
   /// Display: Disability Advocacy
   /// Definition: Disability advocacy
-  @JsonValue('96')
   value96,
 
   /// Display: Disability Aids & Equipment
   /// Definition: Disability aids & equipment
-  @JsonValue('97')
   value97,
 
   /// Display: Disability Case Management
   /// Definition: Disability case management
-  @JsonValue('98')
   value98,
 
   /// Display: Disability Day Programs/Activities
   /// Definition: Disability day programs & activities
-  @JsonValue('99')
   value99,
 
   /// Display: Disability Information/Referral
   /// Definition: Disability information/referral
-  @JsonValue('100')
   value100,
 
   /// Display: Disability Support Packages
   /// Definition: Disability support packages
-  @JsonValue('101')
   value101,
 
   /// Display: Disability Supported Accommodation
   /// Definition: Disability supported accommodation
-  @JsonValue('102')
   value102,
 
   /// Display: Early Childhood Intervention
   /// Definition: Early childhood intervention
-  @JsonValue('103')
   value103,
 
   /// Display: Hearing Aids & Equipment
   /// Definition: Hearing aids & equipment
-  @JsonValue('104')
   value104,
 
   /// Display: Drug and/or Alcohol Counselling
   /// Definition: Drug and/or alcohol counselling
-  @JsonValue('105')
   value105,
 
   /// Display: Drug/Alcohol Information/Referral
   /// Definition: Drug and/or alcohol information/referral
-  @JsonValue('106')
   value106,
 
   /// Display: Needle & Syringe Exchange
   /// Definition: Needle & Syringe exchange
-  @JsonValue('107')
   value107,
 
   /// Display: Non-resid. Alcohol/Drug Treatment
   /// Definition: Non-residential alcohol and/or drug dependence treatment
-  @JsonValue('108')
   value108,
 
   /// Display: Pharmacotherapy
   /// Definition: Pharmacotherapy (eg. methadone) program
-  @JsonValue('109')
   value109,
 
   /// Display: Quit Program
   /// Definition: Quit program
-  @JsonValue('110')
   value110,
 
   /// Display: Residential Alcohol/Drug Treatment
   /// Definition: Residential alcohol and/or drug dependence treatment
-  @JsonValue('111')
   value111,
 
   /// Display: Adult/Community Education
   /// Definition: Adult/community education
-  @JsonValue('112')
   value112,
 
   /// Display: Higher Education
   /// Definition: Higher education
-  @JsonValue('113')
   value113,
 
   /// Display: Primary Education
   /// Definition: Primary education
-  @JsonValue('114')
   value114,
 
   /// Display: Secondary Education
   /// Definition: Secondary education
-  @JsonValue('115')
   value115,
 
   /// Display: Training & Vocational Education
   /// Definition: Training & vocational education
-  @JsonValue('116')
   value116,
 
   /// Display: Emergency Medical
   /// Definition: Emergency medical
-  @JsonValue('117')
   value117,
 
   /// Display: Employment Placement and/or Support
   /// Definition: Employment placement and/or support
-  @JsonValue('118')
   value118,
 
   /// Display: Vocational Rehabilitation
   /// Definition: Vocational Rehabilitation
-  @JsonValue('119')
   value119,
 
   /// Display: Work Safety/Accident Prevention
   /// Definition: Workplace safety and/or accident prevention
-  @JsonValue('120')
   value120,
 
   /// Display: Financial Assistance
   /// Definition: Financial assistance
-  @JsonValue('121')
   value121,
 
   /// Display: Financial Information/Advice
   /// Definition: Financial information/advice
-  @JsonValue('122')
   value122,
 
   /// Display: Material Aid
   /// Definition: Material aid
-  @JsonValue('123')
   value123,
 
   /// Display: General Practice
   /// Definition: General Practice/GP (doctor)
-  @JsonValue('124')
   value124,
 
   /// Display: Accommodation Placement/Support
   /// Definition: Accommodation placement and/or support
-  @JsonValue('125')
   value125,
 
   /// Display: Crisis/Emergency Accommodation
   /// Definition: Crisis/emergency accommodation
-  @JsonValue('126')
   value126,
 
   /// Display: Homelessness Support
   /// Definition: Homelessness support
-  @JsonValue('127')
   value127,
 
   /// Display: Housing Information/Referral
   /// Definition: Housing information/referral
-  @JsonValue('128')
   value128,
 
   /// Display: Public Rental Housing
   /// Definition: Public rental housing
-  @JsonValue('129')
   value129,
 
   /// Display: Interpreting/Multilingual Service
   /// Definition: Interpreting/Multilingual/Language service
-  @JsonValue('130')
   value130,
 
   /// Display: Juvenile Justice
   /// Definition: Juvenile Justice
-  @JsonValue('131')
   value131,
 
   /// Display: Legal Advocacy
   /// Definition: Legal advocacy
-  @JsonValue('132')
   value132,
 
   /// Display: Legal Information/Advice/Referral
   /// Definition: Legal information/advice/referral
-  @JsonValue('133')
   value133,
 
   /// Display: Mental Health Advocacy
   /// Definition: Mental health advocacy
-  @JsonValue('134')
   value134,
 
   /// Display: Mental Health Assess/Triage/Crisis Response
   /// Definition: Mental health assessment/triage/crisis response
-  @JsonValue('135')
   value135,
 
   /// Display: Mental Health Case Management
   /// Definition: Mental health case management/continuing care
-  @JsonValue('136')
   value136,
 
   /// Display: Mental Health Information/Referral
   /// Definition: Mental health information/referral
-  @JsonValue('137')
   value137,
 
   /// Display: Mental Health Inpatient Services
   /// Definition: Mental health inpatient services (hospital psychiatric unit) - requires referral
-  @JsonValue('138')
   value138,
 
   /// Display: Mental Health Non-residential Rehab
   /// Definition: Mental health non-residential rehabilitation
-  @JsonValue('139')
   value139,
 
   /// Display: Mental Health Residential Rehab/CCU
   /// Definition: Mental health residential rehabilitation/community care unit
-  @JsonValue('140')
   value140,
 
   /// Display: Psychiatry (Requires Referral)
   /// Definition: Psychiatry (requires referral)
-  @JsonValue('141')
   value141,
 
   /// Display: Psychology
   /// Definition: Psychology
-  @JsonValue('142')
   value142,
 
   /// Display: Martial Arts
   /// Definition: Martial arts
-  @JsonValue('143')
   value143,
 
   /// Display: Personal Fitness Training
   /// Definition: Personal fitness training
-  @JsonValue('144')
   value144,
 
   /// Display: Physical Activity Group
   /// Definition: Physical activity group
-  @JsonValue('145')
   value145,
 
   /// Display: Physical Activity Programs
   /// Definition: Physical activity programs
-  @JsonValue('146')
   value146,
 
   /// Display: Physical Fitness Testing
   /// Definition: Physical fitness testing
-  @JsonValue('147')
   value147,
 
   /// Display: Pilates
   /// Definition: Pilates
-  @JsonValue('148')
   value148,
 
   /// Display: Self-Defence
   /// Definition: Self defence
-  @JsonValue('149')
   value149,
 
   /// Display: Sporting Club
   /// Definition: Sporting club
-  @JsonValue('150')
   value150,
 
   /// Display: Yoga
   /// Definition: Yoga
-  @JsonValue('151')
   value151,
 
   /// Display: Food Safety
   /// Definition: Food safety
-  @JsonValue('152')
   value152,
 
   /// Display: Health Regulatory /Inspection /Cert.
   /// Definition: Health regulatory, inspection and/or certification
-  @JsonValue('153')
   value153,
 
   /// Display: Work Health/Safety Inspection/Cert.
   /// Definition: Workplace health and/or safety inspection and/or certification
-  @JsonValue('154')
   value154,
 
   /// Display: Carer Support
   /// Definition: Carer support
-  @JsonValue('155')
   value155,
 
   /// Display: Respite Care
   /// Definition: Respite care
-  @JsonValue('156')
   value156,
 
   /// Display: Anatomical Pathology
   /// Definition: Anatomical Pathology (including Cytopathology & Forensic Pathology)
-  @JsonValue('157')
   value157,
 
   /// Display: Pathology - Clinical Chemistry
   /// Definition: Pathology - Clinical Chemistry
-  @JsonValue('158')
   value158,
 
   /// Display: Pathology - General
   /// Definition: Pathology - General
-  @JsonValue('159')
   value159,
 
   /// Display: Pathology - Genetics
   /// Definition: Pathology - Genetics
-  @JsonValue('160')
   value160,
 
   /// Display: Pathology - Haematology
   /// Definition: Pathology - Haematology
-  @JsonValue('161')
   value161,
 
   /// Display: Pathology - Immunology
   /// Definition: Pathology - Immunology
-  @JsonValue('162')
   value162,
 
   /// Display: Pathology - Microbiology
   /// Definition: Pathology - Microbiology
-  @JsonValue('163')
   value163,
 
   /// Display: Anaesthesiology - Pain Medicine
   /// Definition: Anaesthesiology - Pain Medicine
-  @JsonValue('164')
   value164,
 
   /// Display: Cardiology
   /// Definition: Cardiology
-  @JsonValue('165')
   value165,
 
   /// Display: Clinical Genetics
   /// Definition: Clinical Genetics
-  @JsonValue('166')
   value166,
 
   /// Display: Clinical Pharmacology
   /// Definition: Clinical Pharmacology
-  @JsonValue('167')
   value167,
 
   /// Display: Dermatology
   /// Definition: Dermatology
-  @JsonValue('168')
   value168,
 
   /// Display: Endocrinology
   /// Definition: Endocrinology
-  @JsonValue('169')
   value169,
 
   /// Display: Gastroenterology & Hepatology
   /// Definition: Gastroenterology & Hepatology
-  @JsonValue('170')
   value170,
 
   /// Display: Geriatric Medicine
   /// Definition: Geriatric medicine
-  @JsonValue('171')
   value171,
 
   /// Display: Immunology & Allergy
   /// Definition: Immunology & Allergy
-  @JsonValue('172')
   value172,
 
   /// Display: Infectious Diseases
   /// Definition: Infectious diseases
-  @JsonValue('173')
   value173,
 
   /// Display: Intensive Care Medicine
   /// Definition: Intensive care medicine
-  @JsonValue('174')
   value174,
 
   /// Display: Medical Oncology
   /// Definition: Medical Oncology
-  @JsonValue('175')
   value175,
 
   /// Display: Nephrology
   /// Definition: Nephrology
-  @JsonValue('176')
   value176,
 
   /// Display: Neurology
   /// Definition: Neurology
-  @JsonValue('177')
   value177,
 
   /// Display: Occupational Medicine
   /// Definition: Occupational Medicine
-  @JsonValue('178')
   value178,
 
   /// Display: Palliative Medicine
   /// Definition: Palliative Medicine
-  @JsonValue('179')
   value179,
 
   /// Display: Public Health Medicine
   /// Definition: Public Health Medicine
-  @JsonValue('180')
   value180,
 
   /// Display: Rehabilitation Medicine
   /// Definition: Rehabilitation Medicine
-  @JsonValue('181')
   value181,
 
   /// Display: Rheumatology
   /// Definition: Rheumatology
-  @JsonValue('182')
   value182,
 
   /// Display: Sleep Medicine
   /// Definition: Sleep Medicine
-  @JsonValue('183')
   value183,
 
   /// Display: Thoracic Medicine
   /// Definition: Thoracic medicine
-  @JsonValue('184')
   value184,
 
   /// Display: Gynaecological Oncology
   /// Definition: Gynaecological Oncology
-  @JsonValue('185')
   value185,
 
   /// Display: Obstetrics & Gynaecology
   /// Definition: Obstetrics & Gynaecology
-  @JsonValue('186')
   value186,
 
   /// Display: Reproductive Endocrinology/Infertility
   /// Definition: Reproductive Endocrinology & Infertility
-  @JsonValue('187')
   value187,
 
   /// Display: Urogynaecology
   /// Definition: Urogynaecology
-  @JsonValue('188')
   value188,
 
   /// Display: Neonatology & Perinatology
   /// Definition: Neonatology & Perinatology
-  @JsonValue('189')
   value189,
 
   /// Display: Paediatric Cardiology
   /// Definition: Paediatric Cardiology
-  @JsonValue('190')
   value190,
 
   /// Display: Paediatric Clinical Genetics
   /// Definition: Paediatric Clinical Genetics
-  @JsonValue('191')
   value191,
 
   /// Display: Paediatric Clinical Pharmacology
   /// Definition: Paediatric Clinical Pharmacology
-  @JsonValue('192')
   value192,
 
   /// Display: Paediatric Endocrinology
   /// Definition: Paediatric Endocrinology
-  @JsonValue('193')
   value193,
 
   /// Display: Paed. Gastroenterology/Hepatology
   /// Definition: Paediatric Gastroenterology & Hepatology
-  @JsonValue('194')
   value194,
 
   /// Display: Paediatric Haematology
   /// Definition: Paediatric Haematology
-  @JsonValue('195')
   value195,
 
   /// Display: Paediatric Immunology & Allergy
   /// Definition: Paediatric Immunology & Allergy
-  @JsonValue('196')
   value196,
 
   /// Display: Paediatric Infectious Diseases
   /// Definition: Paediatric Infectious diseases
-  @JsonValue('197')
   value197,
 
   /// Display: Paediatric Intensive Care Medicine
   /// Definition: Paediatric intensive care medicine
-  @JsonValue('198')
   value198,
 
   /// Display: Paediatric Medical Oncology
   /// Definition: Paediatric Medical Oncology
-  @JsonValue('199')
   value199,
 
   /// Display: Paediatric Medicine
   /// Definition: Paediatric Medicine
-  @JsonValue('200')
   value200,
 
   /// Display: Paediatric Nephrology
   /// Definition: Paediatric Nephrology
-  @JsonValue('201')
   value201,
 
   /// Display: Paediatric Neurology
   /// Definition: Paediatric Neurology
-  @JsonValue('202')
   value202,
 
   /// Display: Paediatric Nuclear Medicine
   /// Definition: Paediatric Nuclear Medicine
-  @JsonValue('203')
   value203,
 
   /// Display: Paediatric Rehabilitation Medicine
   /// Definition: Paediatric Rehabilitation Medicine
-  @JsonValue('204')
   value204,
 
   /// Display: Paediatric Rheumatology
   /// Definition: Paediatric Rheumatology
-  @JsonValue('205')
   value205,
 
   /// Display: Paediatric Sleep Medicine
   /// Definition: Paediatric Sleep Medicine
-  @JsonValue('206')
   value206,
 
   /// Display: Paediatric Surgery
   /// Definition: Paediatric Surgery
-  @JsonValue('207')
   value207,
 
   /// Display: Paediatric Thoracic Medicine
   /// Definition: Paediatric Thoracic Medicine
-  @JsonValue('208')
   value208,
 
   /// Display: Diag. Radiology /Xray /CT /Fluoroscopy
   /// Definition: Diagnostic Radiology/Xray/CT/Fluoroscopy
-  @JsonValue('209')
   value209,
 
   /// Display: Diagnostic Ultrasound
   /// Definition: Diagnostic Ultrasound
-  @JsonValue('210')
   value210,
 
   /// Display: Magnetic Resonance Imaging (MRI)
   /// Definition: Magnetic Resonance Imaging (MRI)
-  @JsonValue('211')
   value211,
 
   /// Display: Nuclear Medicine
   /// Definition: Nuclear Medicine
-  @JsonValue('212')
   value212,
 
   /// Display: Obstetric/Gynaecological Ultrasound
   /// Definition: Obstetric & Gynaecological Ultrasound
-  @JsonValue('213')
   value213,
 
   /// Display: Radiation Oncology
   /// Definition: Radiation oncology
-  @JsonValue('214')
   value214,
 
   /// Display: Cardiothoracic Surgery
   /// Definition: Cardiothoracic surgery
-  @JsonValue('215')
   value215,
 
   /// Display: Neurosurgery
   /// Definition: Neurosurgery
-  @JsonValue('216')
   value216,
 
   /// Display: Ophthalmology
   /// Definition: Ophthalmology
-  @JsonValue('217')
   value217,
 
   /// Display: Orthopaedic Surgery
   /// Definition: Orthopaedic surgery
-  @JsonValue('218')
   value218,
 
   /// Display: Otolaryngology/Head & Neck Surgery
   /// Definition: Otolaryngology - Head & Neck Surgery
-  @JsonValue('219')
   value219,
 
   /// Display: Plastic & Reconstructive Surgery
   /// Definition: Plastic & Reconstructive Surgery
-  @JsonValue('220')
   value220,
 
   /// Display: Surgery - General
   /// Definition: Surgery - General
-  @JsonValue('221')
   value221,
 
   /// Display: Urology
   /// Definition: Urology
-  @JsonValue('222')
   value222,
 
   /// Display: Vascular Surgery
   /// Definition: Vascular surgery
-  @JsonValue('223')
   value223,
 
   /// Display: Support Groups
   /// Definition: Support groups
-  @JsonValue('224')
   value224,
 
   /// Display: Air ambulance
   /// Definition: Air ambulance
-  @JsonValue('225')
   value225,
 
   /// Display: Ambulance
   /// Definition: Ambulance
-  @JsonValue('226')
   value226,
 
   /// Display: Blood Transport
   /// Definition: Blood transport
-  @JsonValue('227')
   value227,
 
   /// Display: Community Bus
   /// Definition: Community bus
-  @JsonValue('228')
   value228,
 
   /// Display: Flying Doctor Service
   /// Definition: Flying doctor service
-  @JsonValue('229')
   value229,
 
   /// Display: Patient Transport
   /// Definition: Patient transport
-  @JsonValue('230')
   value230,
 
   /// Display: A&E
   /// Definition: A&E
-  @JsonValue('231')
   value231,
 
   /// Display: A&EP
   /// Definition: A&EP
-  @JsonValue('232')
   value232,
 
   /// Display: Abuse
   /// Definition: Abuse
-  @JsonValue('233')
   value233,
 
   /// Display: ACAS
   /// Definition: ACAS
-  @JsonValue('234')
   value234,
 
   /// Display: Access
   /// Definition: Access
-  @JsonValue('235')
   value235,
 
   /// Display: Accident
   /// Definition: Accident
-  @JsonValue('236')
   value236,
 
   /// Display: Acute Inpatient Serv
   /// Definition: Acute Inpatient Service's
-  @JsonValue('237')
   value237,
 
   /// Display: Adult Day Programs
   /// Definition: Adult Day Programs
-  @JsonValue('238')
   value238,
 
   /// Display: Adult Mental Health Services
   /// Definition: Adult Mental Health Services
-  @JsonValue('239')
   value239,
 
   /// Display: Advice
   /// Definition: Advice
-  @JsonValue('240')
   value240,
 
   /// Display: Advocacy
   /// Definition: Advocacy
-  @JsonValue('241')
   value241,
 
   /// Display: Aged Persons Mental
   /// Definition: Aged Persons Mental Health Residential Units
-  @JsonValue('242')
   value242,
 
   /// Display: Aged Persons Mental
   /// Definition: Aged Persons Mental Health Services
-  @JsonValue('243')
   value243,
 
   /// Display: Aged Persons Mental
   /// Definition: Aged Persons Mental Health Teams
-  @JsonValue('244')
   value244,
 
   /// Display: Aids
   /// Definition: Aids
-  @JsonValue('245')
   value245,
 
   /// Display: Al-Anon
   /// Definition: Al-Anon
-  @JsonValue('246')
   value246,
 
   /// Display: Alcohol
   /// Definition: Alcohol
-  @JsonValue('247')
   value247,
 
   /// Display: Al-Teen
   /// Definition: Al-Teen
-  @JsonValue('248')
   value248,
 
   /// Display: Antenatal
   /// Definition: Antenatal
-  @JsonValue('249')
   value249,
 
   /// Display: Anxiety
   /// Definition: Anxiety
-  @JsonValue('250')
   value250,
 
   /// Display: Arthritis
   /// Definition: Arthritis
-  @JsonValue('251')
   value251,
 
   /// Display: Assessment
   /// Definition: Assessment
-  @JsonValue('252')
   value252,
 
   /// Display: Assistance
   /// Definition: Assistance
-  @JsonValue('253')
   value253,
 
   /// Display: Asthma
   /// Definition: Asthma
-  @JsonValue('254')
   value254,
 
   /// Display: ATSS
   /// Definition: ATSS
-  @JsonValue('255')
   value255,
 
   /// Display: Attendant Care
   /// Definition: Attendant Care
-  @JsonValue('256')
   value256,
 
   /// Display: Babies
   /// Definition: Babies
-  @JsonValue('257')
   value257,
 
   /// Display: Bathroom Modificatio
   /// Definition: Bathroom Modification
-  @JsonValue('258')
   value258,
 
   /// Display: Behavior
   /// Definition: Behavior
-  @JsonValue('259')
   value259,
 
   /// Display: Behavior Interventi
   /// Definition: Behavior Intervention
-  @JsonValue('260')
   value260,
 
   /// Display: Bereavement
   /// Definition: Bereavement
-  @JsonValue('261')
   value261,
 
   /// Display: Bipolar
   /// Definition: Bipolar
-  @JsonValue('262')
   value262,
 
   /// Display: Birth
   /// Definition: Birth
-  @JsonValue('263')
   value263,
 
   /// Display: Birth Control
   /// Definition: Birth Control
-  @JsonValue('264')
   value264,
 
   /// Display: Birthing Options
   /// Definition: Birthing Options
-  @JsonValue('265')
   value265,
 
   /// Display: BIST
   /// Definition: BIST
-  @JsonValue('266')
   value266,
 
   /// Display: Blood
   /// Definition: Blood
-  @JsonValue('267')
   value267,
 
   /// Display: Bone
   /// Definition: Bone
-  @JsonValue('268')
   value268,
 
   /// Display: Bowel
   /// Definition: Bowel
-  @JsonValue('269')
   value269,
 
   /// Display: Brain
   /// Definition: Brain
-  @JsonValue('270')
   value270,
 
   /// Display: Breast Feeding
   /// Definition: Breast Feeding
-  @JsonValue('271')
   value271,
 
   /// Display: Breast Screen
   /// Definition: Breast Screen
-  @JsonValue('272')
   value272,
 
   /// Display: Brokerage
   /// Definition: Brokerage
-  @JsonValue('273')
   value273,
 
   /// Display: Cancer
   /// Definition: Cancer
-  @JsonValue('274')
   value274,
 
   /// Display: Cancer Support
   /// Definition: Cancer Support
-  @JsonValue('275')
   value275,
 
   /// Display: Cardiovascular Disea
   /// Definition: Cardiovascular Disease
-  @JsonValue('276')
   value276,
 
   /// Display: Care Packages
   /// Definition: Care Packages
-  @JsonValue('277')
   value277,
 
   /// Display: Carer
   /// Definition: Carer
-  @JsonValue('278')
   value278,
 
   /// Display: Case Management
   /// Definition: Case Management
-  @JsonValue('279')
   value279,
 
   /// Display: Casualty
   /// Definition: Casualty
-  @JsonValue('280')
   value280,
 
   /// Display: Centrelink
   /// Definition: Centrelink
-  @JsonValue('281')
   value281,
 
   /// Display: Chemists
   /// Definition: Chemists
-  @JsonValue('282')
   value282,
 
   /// Display: Child And Adolescent
   /// Definition: Child And Adolescent Mental Health Services
-  @JsonValue('283')
   value283,
 
   /// Display: Child Care
   /// Definition: Child Care
-  @JsonValue('284')
   value284,
 
   /// Display: Child Services
   /// Definition: Child Services
-  @JsonValue('285')
   value285,
 
   /// Display: Children
   /// Definition: Children
-  @JsonValue('286')
   value286,
 
   /// Display: Children's Services
   /// Definition: Children's Services
-  @JsonValue('287')
   value287,
 
   /// Display: Cholesterol
   /// Definition: Cholesterol
-  @JsonValue('288')
   value288,
 
   /// Display: Clothing
   /// Definition: Clothing
-  @JsonValue('289')
   value289,
 
   /// Display: Community Based Acco
   /// Definition: Community Based Accommodation
-  @JsonValue('290')
   value290,
 
   /// Display: Community Care Unit
   /// Definition: Community Care Unit
-  @JsonValue('291')
   value291,
 
   /// Display: Community Child And
   /// Definition: Community Child And Adolescent Mental Health Services
-  @JsonValue('292')
   value292,
 
   /// Display: Community Health
   /// Definition: Community Health
-  @JsonValue('293')
   value293,
 
   /// Display: Community Residentia
   /// Definition: Community Residential Unit
-  @JsonValue('294')
   value294,
 
   /// Display: Community Transport
   /// Definition: Community Transport
-  @JsonValue('295')
   value295,
 
   /// Display: Companion Visiting
   /// Definition: Companion Visiting
-  @JsonValue('296')
   value296,
 
   /// Display: Companionship
   /// Definition: Companionship
-  @JsonValue('297')
   value297,
 
   /// Display: Consumer Advice
   /// Definition: Consumer Advice
-  @JsonValue('298')
   value298,
 
   /// Display: Consumer Issues
   /// Definition: Consumer Issues
-  @JsonValue('299')
   value299,
 
   /// Display: Continuing Care Serv
   /// Definition: Continuing Care Services
-  @JsonValue('300')
   value300,
 
   /// Display: Contraception Inform
   /// Definition: Contraception Information
-  @JsonValue('301')
   value301,
 
   /// Display: Coordinating Bodies
   /// Definition: Coordinating Bodies
-  @JsonValue('302')
   value302,
 
   /// Display: Correctional Service
   /// Definition: Correctional Services
-  @JsonValue('303')
   value303,
 
   /// Display: Council Environmenta
   /// Definition: Council Environmental Health
-  @JsonValue('304')
   value304,
 
   /// Display: Counselling
   /// Definition: Counselling
-  @JsonValue('305')
   value305,
 
   /// Display: Criminal
   /// Definition: Criminal
-  @JsonValue('306')
   value306,
 
   /// Display: Crises
   /// Definition: Crises
-  @JsonValue('307')
   value307,
 
   /// Display: Crisis Assessment An
   /// Definition: Crisis Assessment And Treatment Services (Cats)
-  @JsonValue('308')
   value308,
 
   /// Display: Crisis Assistance
   /// Definition: Crisis Assistance
-  @JsonValue('309')
   value309,
 
   /// Display: Crisis Refuge
   /// Definition: Crisis Refuge
-  @JsonValue('310')
   value310,
 
   /// Display: Day Program
   /// Definition: Day Program
-  @JsonValue('311')
   value311,
 
   /// Display: Deaf
   /// Definition: Deaf
-  @JsonValue('312')
   value312,
 
   /// Display: Dental Hygiene
   /// Definition: Dental Hygiene
-  @JsonValue('313')
   value313,
 
   /// Display: Dentistry
   /// Definition: Dentistry
-  @JsonValue('314')
   value314,
 
   /// Display: Dentures
   /// Definition: Dentures
-  @JsonValue('315')
   value315,
 
   /// Display: Depression
   /// Definition: Depression
-  @JsonValue('316')
   value316,
 
   /// Display: Detoxification
   /// Definition: Detoxification
-  @JsonValue('317')
   value317,
 
   /// Display: Diabetes
   /// Definition: Diabetes
-  @JsonValue('318')
   value318,
 
   /// Display: Diaphragm Fitting
   /// Definition: Diaphragm Fitting
-  @JsonValue('319')
   value319,
 
   /// Display: Dieticians
   /// Definition: Dieticians
-  @JsonValue('320')
   value320,
 
   /// Display: Disabled Parking
   /// Definition: Disabled Parking
-  @JsonValue('321')
   value321,
 
   /// Display: District Nursing
   /// Definition: District Nursing
-  @JsonValue('322')
   value322,
 
   /// Display: Divorce
   /// Definition: Divorce
-  @JsonValue('323')
   value323,
 
   /// Display: Doctors
   /// Definition: Doctors
-  @JsonValue('324')
   value324,
 
   /// Display: Drink-Drive
   /// Definition: Drink-Drive
-  @JsonValue('325')
   value325,
 
   /// Display: Dual Diagnosis Servi
   /// Definition: Dual Diagnosis Services
-  @JsonValue('326')
   value326,
 
   /// Display: Early Choice
   /// Definition: Early Choice
-  @JsonValue('327')
   value327,
 
   /// Display: Eating Disorder
   /// Definition: Eating Disorder
-  @JsonValue('328')
   value328,
 
   /// Display: Emergency Relief
   /// Definition: Emergency Relief
-  @JsonValue('330')
   value330,
 
   /// Display: Employment And Train
   /// Definition: Employment And Training
-  @JsonValue('331')
   value331,
 
   /// Display: Environment
   /// Definition: Environment
-  @JsonValue('332')
   value332,
 
   /// Display: Equipment
   /// Definition: Equipment
-  @JsonValue('333')
   value333,
 
   /// Display: Exercise
   /// Definition: Exercise
-  @JsonValue('334')
   value334,
 
   /// Display: Facility
   /// Definition: Facility
-  @JsonValue('335')
   value335,
 
   /// Display: Family Choice
   /// Definition: Family Choice
-  @JsonValue('336')
   value336,
 
   /// Display: Family Law
   /// Definition: Family Law
-  @JsonValue('337')
   value337,
 
   /// Display: Family Options
   /// Definition: Family Options
-  @JsonValue('338')
   value338,
 
   /// Display: Family Services
   /// Definition: Family Services
-  @JsonValue('339')
   value339,
 
   /// Display: FFYA
   /// Definition: FFYA
-  @JsonValue('340')
   value340,
 
   /// Display: Financial Aid
   /// Definition: Financial Aid
-  @JsonValue('341')
   value341,
 
   /// Display: Fitness
   /// Definition: Fitness
-  @JsonValue('342')
   value342,
 
   /// Display: Flexible Care Packag
   /// Definition: Flexible Care Packages
-  @JsonValue('343')
   value343,
 
   /// Display: Food
   /// Definition: Food
-  @JsonValue('344')
   value344,
 
   /// Display: Food Vouchers
   /// Definition: Food Vouchers
-  @JsonValue('345')
   value345,
 
   /// Display: Forensic Mental Heal
   /// Definition: Forensic Mental Health Services
-  @JsonValue('346')
   value346,
 
   /// Display: Futures
   /// Definition: Futures
-  @JsonValue('347')
   value347,
 
   /// Display: Futures For Young Ad
   /// Definition: Futures For Young Adults
-  @JsonValue('348')
   value348,
 
   /// Display: General Practitioner
   /// Definition: General Practitioners
-  @JsonValue('349')
   value349,
 
   /// Display: Grants
   /// Definition: Grants
-  @JsonValue('350')
   value350,
 
   /// Display: Grief
   /// Definition: Grief
-  @JsonValue('351')
   value351,
 
   /// Display: Grief Counselling
   /// Definition: Grief Counselling
-  @JsonValue('352')
   value352,
 
   /// Display: HACC
   /// Definition: HACC
-  @JsonValue('353')
   value353,
 
   /// Display: Heart Disease
   /// Definition: Heart Disease
-  @JsonValue('354')
   value354,
 
   /// Display: Help
   /// Definition: Help
-  @JsonValue('355')
   value355,
 
   /// Display: High Blood Pressure
   /// Definition: High Blood Pressure
-  @JsonValue('356')
   value356,
 
   /// Display: Home Help
   /// Definition: Home Help
-  @JsonValue('357')
   value357,
 
   /// Display: Home Nursing
   /// Definition: Home Nursing
-  @JsonValue('358')
   value358,
 
   /// Display: Homefirst
   /// Definition: Homefirst
-  @JsonValue('359')
   value359,
 
   /// Display: Hospice Care
   /// Definition: Hospice Care
-  @JsonValue('360')
   value360,
 
   /// Display: Hospital Services
   /// Definition: Hospital Services
-  @JsonValue('361')
   value361,
 
   /// Display: Hospital To Home
   /// Definition: Hospital To Home
-  @JsonValue('362')
   value362,
 
   /// Display: Hostel
   /// Definition: Hostel
-  @JsonValue('364')
   value364,
 
   /// Display: Hostel Accommodation
   /// Definition: Hostel Accommodation
-  @JsonValue('365')
   value365,
 
   /// Display: Household Items
   /// Definition: Household Items
-  @JsonValue('366')
   value366,
 
   /// Display: Hypertension
   /// Definition: Hypertension
-  @JsonValue('367')
   value367,
 
   /// Display: Illness
   /// Definition: Illness
-  @JsonValue('368')
   value368,
 
   /// Display: Independent Living
   /// Definition: Independent Living
-  @JsonValue('369')
   value369,
 
   /// Display: Information
   /// Definition: Information
-  @JsonValue('370')
   value370,
 
   /// Display: Injury
   /// Definition: Injury
-  @JsonValue('371')
   value371,
 
   /// Display: Intake
   /// Definition: Intake
-  @JsonValue('372')
   value372,
 
   /// Display: Intensive Mobile You
   /// Definition: Intensive Mobile Youth Outreach Services (Imyos)
-  @JsonValue('373')
   value373,
 
   /// Display: Intervention
   /// Definition: Intervention
-  @JsonValue('374')
   value374,
 
   /// Display: Job Searching
   /// Definition: Job Searching
-  @JsonValue('375')
   value375,
 
   /// Display: Justice
   /// Definition: Justice
-  @JsonValue('376')
   value376,
 
   /// Display: Leisure
   /// Definition: Leisure
-  @JsonValue('377')
   value377,
 
   /// Display: Loans
   /// Definition: Loans
-  @JsonValue('378')
   value378,
 
   /// Display: Low Income Earners
   /// Definition: Low Income Earners
-  @JsonValue('379')
   value379,
 
   /// Display: Lung
   /// Definition: Lung
-  @JsonValue('380')
   value380,
 
   /// Display: Making A Difference
   /// Definition: Making A Difference
-  @JsonValue('381')
   value381,
 
   /// Display: Medical Services
   /// Definition: Medical Services
-  @JsonValue('382')
   value382,
 
   /// Display: Medical Specialists
   /// Definition: Medical Specialists
-  @JsonValue('383')
   value383,
 
   /// Display: Medication Administr
   /// Definition: Medication Administration
-  @JsonValue('384')
   value384,
 
   /// Display: Menstrual Informatio
   /// Definition: Menstrual Information
-  @JsonValue('385')
   value385,
 
   /// Display: Methadone
   /// Definition: Methadone
-  @JsonValue('386')
   value386,
 
   /// Display: Mobile Support And T
   /// Definition: Mobile Support And Treatment Services (MSTS)
-  @JsonValue('387')
   value387,
 
   /// Display: Motor Neurone
   /// Definition: Motor Neurone
-  @JsonValue('388')
   value388,
 
   /// Display: Multiple Sclerosis
   /// Definition: Multiple Sclerosis
-  @JsonValue('389')
   value389,
 
   /// Display: Neighbourhood House
   /// Definition: Neighbourhood House
-  @JsonValue('390')
   value390,
 
   /// Display: Nursing Home
   /// Definition: Nursing Home
-  @JsonValue('391')
   value391,
 
   /// Display: Nursing Mothers
   /// Definition: Nursing Mothers
-  @JsonValue('392')
   value392,
 
   /// Display: Obesity
   /// Definition: Obesity
-  @JsonValue('393')
   value393,
 
   /// Display: Occupational Health
   /// Definition: Occupational Health & Safety
-  @JsonValue('394')
   value394,
 
   /// Display: Optometrist
   /// Definition: Optometrist
-  @JsonValue('395')
   value395,
 
   /// Display: Oral Hygiene
   /// Definition: Oral Hygiene
-  @JsonValue('396')
   value396,
 
   /// Display: Outpatients
   /// Definition: Outpatients
-  @JsonValue('397')
   value397,
 
   /// Display: Outreach Service
   /// Definition: Outreach Service
-  @JsonValue('398')
   value398,
 
   /// Display: PADP
   /// Definition: PADP
-  @JsonValue('399')
   value399,
 
   /// Display: Pain
   /// Definition: Pain
-  @JsonValue('400')
   value400,
 
   /// Display: Pap Smear
   /// Definition: Pap Smear
-  @JsonValue('401')
   value401,
 
   /// Display: Parenting
   /// Definition: Parenting
-  @JsonValue('402')
   value402,
 
   /// Display: Peak Organizations
   /// Definition: Peak Organizations
-  @JsonValue('403')
   value403,
 
   /// Display: Personal Care
   /// Definition: Personal Care
-  @JsonValue('404')
   value404,
 
   /// Display: Pharmacies
   /// Definition: Pharmacies
-  @JsonValue('405')
   value405,
 
   /// Display: Phobias
   /// Definition: Phobias
-  @JsonValue('406')
   value406,
 
   /// Display: Physical
   /// Definition: Physical
-  @JsonValue('407')
   value407,
 
   /// Display: Physical Activity
   /// Definition: Physical Activity
-  @JsonValue('408')
   value408,
 
   /// Display: Postnatal
   /// Definition: Postnatal
-  @JsonValue('409')
   value409,
 
   /// Display: Pregnancy
   /// Definition: Pregnancy
-  @JsonValue('410')
   value410,
 
   /// Display: Pregnancy Tests
   /// Definition: Pregnancy Tests
-  @JsonValue('411')
   value411,
 
   /// Display: Preschool
   /// Definition: Preschool
-  @JsonValue('412')
   value412,
 
   /// Display: Prescriptions
   /// Definition: Prescriptions
-  @JsonValue('413')
   value413,
 
   /// Display: Primary Mental Healt
   /// Definition: Primary Mental Health And Early Intervention Teams
-  @JsonValue('414')
   value414,
 
   /// Display: Property Maintenance
   /// Definition: Property Maintenance
-  @JsonValue('415')
   value415,
 
   /// Display: Prostate
   /// Definition: Prostate
-  @JsonValue('416')
   value416,
 
   /// Display: Psychiatric
   /// Definition: Psychiatric
-  @JsonValue('417')
   value417,
 
   /// Display: Psychiatric Disabili
   /// Definition: Psychiatric Disability Support Services - Home-Based Outreach
-  @JsonValue('418')
   value418,
 
   /// Display: Psychiatric Disabili
   /// Definition: Psychiatric Disability Support Services - Planned Respite
-  @JsonValue('419')
   value419,
 
   /// Display: Psychiatric Disabili
   /// Definition: Psychiatric Disability Support Services - Residential Rehabilitation
-  @JsonValue('420')
   value420,
 
   /// Display: Psychiatric Disabili
   /// Definition: Psychiatric Disability Support Services Home-Based Outreach
-  @JsonValue('421')
   value421,
 
   /// Display: Psychiatric Disabili
   /// Definition: Psychiatric Disability Support Services Mutual Support And Self Help
-  @JsonValue('422')
   value422,
 
   /// Display: Psychiatric Support
   /// Definition: Psychiatric Support
-  @JsonValue('423')
   value423,
 
   /// Display: Recreation
   /// Definition: Recreation
-  @JsonValue('424')
   value424,
 
   /// Display: Referral
   /// Definition: Referral
-  @JsonValue('425')
   value425,
 
   /// Display: Refuge
   /// Definition: Refuge
-  @JsonValue('426')
   value426,
 
   /// Display: Rent Assistance
   /// Definition: Rent Assistance
-  @JsonValue('427')
   value427,
 
   /// Display: Residential Faciliti
   /// Definition: Residential Facilities
-  @JsonValue('428')
   value428,
 
   /// Display: Residential Respite
   /// Definition: Residential Respite
-  @JsonValue('429')
   value429,
 
   /// Display: Respiratory
   /// Definition: Respiratory
-  @JsonValue('430')
   value430,
 
   /// Display: Response
   /// Definition: Response
-  @JsonValue('431')
   value431,
 
   /// Display: Rooming Houses
   /// Definition: Rooming Houses
-  @JsonValue('432')
   value432,
 
   /// Display: Safe Sex
   /// Definition: Safe Sex
-  @JsonValue('433')
   value433,
 
   /// Display: Secure Extended Care
   /// Definition: Secure Extended Care Inpatient Services
-  @JsonValue('434')
   value434,
 
   /// Display: Self Help
   /// Definition: Self Help
-  @JsonValue('435')
   value435,
 
   /// Display: Separation
   /// Definition: Separation
-  @JsonValue('436')
   value436,
 
   /// Display: Services
   /// Definition: Services
-  @JsonValue('437')
   value437,
 
   /// Display: Sex Education
   /// Definition: Sex Education
-  @JsonValue('438')
   value438,
 
   /// Display: Sexual Abuse
   /// Definition: Sexual Abuse
-  @JsonValue('439')
   value439,
 
   /// Display: Sexual Issues
   /// Definition: Sexual Issues
-  @JsonValue('440')
   value440,
 
   /// Display: Sexually Transmitted
   /// Definition: Sexually Transmitted Diseases
-  @JsonValue('441')
   value441,
 
   /// Display: SIDS
   /// Definition: SIDS
-  @JsonValue('442')
   value442,
 
   /// Display: Social Support
   /// Definition: Social Support
-  @JsonValue('443')
   value443,
 
   /// Display: Socialisation
   /// Definition: Socialisation
-  @JsonValue('444')
   value444,
 
   /// Display: Special Needs
   /// Definition: Special Needs
-  @JsonValue('445')
   value445,
 
   /// Display: Speech Therapist
   /// Definition: Speech Therapist
-  @JsonValue('446')
   value446,
 
   /// Display: Splinting
   /// Definition: Splinting
-  @JsonValue('447')
   value447,
 
   /// Display: Sport
   /// Definition: Sport
-  @JsonValue('448')
   value448,
 
   /// Display: Statewide And Specia
   /// Definition: Statewide And Specialist Services
-  @JsonValue('449')
   value449,
 
   /// Display: STD
   /// Definition: STD
-  @JsonValue('450')
   value450,
 
   /// Display: STI
   /// Definition: STI
-  @JsonValue('451')
   value451,
 
   /// Display: Stillbirth
   /// Definition: Stillbirth
-  @JsonValue('452')
   value452,
 
   /// Display: Stomal Care
   /// Definition: Stomal Care
-  @JsonValue('453')
   value453,
 
   /// Display: Stroke
   /// Definition: Stroke
-  @JsonValue('454')
   value454,
 
   /// Display: Substance Abuse
   /// Definition: Substance Abuse
-  @JsonValue('455')
   value455,
 
   /// Display: Support
   /// Definition: Support
-  @JsonValue('456')
   value456,
 
   /// Display: Syringes
   /// Definition: Syringes
-  @JsonValue('457')
   value457,
 
   /// Display: Teeth
   /// Definition: Teeth
-  @JsonValue('458')
   value458,
 
   /// Display: Tenancy Advice
   /// Definition: Tenancy Advice
-  @JsonValue('459')
   value459,
 
   /// Display: Terminal Illness
   /// Definition: Terminal Illness
-  @JsonValue('460')
   value460,
 
   /// Display: Therapy
   /// Definition: Therapy
-  @JsonValue('461')
   value461,
 
   /// Display: Transcription
   /// Definition: Transcription
-  @JsonValue('462')
   value462,
 
   /// Display: Translating Services
   /// Definition: Translating Services
-  @JsonValue('463')
   value463,
 
   /// Display: Translator
   /// Definition: Translator
-  @JsonValue('464')
   value464,
 
   /// Display: Transport
   /// Definition: Transport
-  @JsonValue('465')
   value465,
 
   /// Display: Vertebrae
   /// Definition: Vertebrae
-  @JsonValue('466')
   value466,
 
   /// Display: Violence
   /// Definition: Violence
-  @JsonValue('467')
   value467,
 
   /// Display: Vocational Guidance
   /// Definition: Vocational Guidance
-  @JsonValue('468')
   value468,
 
   /// Display: Weight
   /// Definition: Weight
-  @JsonValue('469')
   value469,
 
   /// Display: Welfare Assistance
   /// Definition: Welfare Assistance
-  @JsonValue('470')
   value470,
 
   /// Display: Welfare Counselling
   /// Definition: Welfare Counselling
-  @JsonValue('471')
   value471,
 
   /// Display: Wheelchairs
   /// Definition: Wheelchairs
-  @JsonValue('472')
   value472,
 
   /// Display: Wound Management
   /// Definition: Wound Management
-  @JsonValue('473')
   value473,
 
   /// Display: Young People At Risk
   /// Definition: Young People At Risk
-  @JsonValue('474')
   value474,
 
   /// Display: Further Desc. - Community Health Care
   /// Definition: Further Description - Community Health Care
-  @JsonValue('475')
   value475,
 
   /// Display: Library
   /// Definition: Library
-  @JsonValue('476')
   value476,
 
   /// Display: Community Hours
   /// Definition: Community Hours
-  @JsonValue('477')
   value477,
 
   /// Display: Further Desc. - Specialist Medical
   /// Definition: Further Description - Specialist Medical
-  @JsonValue('478')
   value478,
 
   /// Display: Hepatology
   /// Definition: Hepatology
-  @JsonValue('479')
   value479,
 
   /// Display: Gastroenterology
   /// Definition: Gastroenterology
-  @JsonValue('480')
   value480,
 
   /// Display: Gynaecology
   /// Definition: Gynaecology
-  @JsonValue('481')
   value481,
 
   /// Display: Obstetrics
   /// Definition: Obstetrics
-  @JsonValue('482')
   value482,
 
   /// Display: Further Desc. - Specialist Surgical
   /// Definition: Further Description - Specialist Surgical
-  @JsonValue('483')
   value483,
 
   /// Display: Placement Protection
   /// Definition: Placement Protection
-  @JsonValue('484')
   value484,
 
   /// Display: Family Violence
   /// Definition: Family Violence
-  @JsonValue('485')
   value485,
 
   /// Display: Integrated Family Services
   /// Definition: Integrated Family Services
-  @JsonValue('486')
   value486,
 
   /// Display: Diabetes Educator
   /// Definition: Diabetes Educator
-  @JsonValue('488')
   value488,
 
   /// Display: Kinship Care
   /// Definition: Kinship Care
-  @JsonValue('489')
   value489,
 
   /// Display: General Mental Health Services
   /// Definition: General Mental Health Services
-  @JsonValue('490')
   value490,
 
   /// Display: Exercise Physiology
   /// Definition: Exercise Physiology
-  @JsonValue('491')
   value491,
 
   /// Display: Medical Research
   /// Definition: Medical Research
-  @JsonValue('492')
   value492,
 
   /// Display: Youth
   /// Definition: Youth
-  @JsonValue('493')
   value493,
 
   /// Display: Youth Services
   /// Definition: Youth Services
-  @JsonValue('494')
   value494,
 
   /// Display: Youth Health
   /// Definition: Youth Health
-  @JsonValue('495')
   value495,
 
   /// Display: Child and Family Ser
   /// Definition: Child and Family Services
-  @JsonValue('496')
   value496,
 
   /// Display: Home Visits
   /// Definition: Home Visits
-  @JsonValue('497')
   value497,
 
   /// Display: Mobile Services
   /// Definition: Mobile Services
-  @JsonValue('498')
   value498,
 
   /// Display: Before and/or After
   /// Definition: Before and/or After School Care
-  @JsonValue('500')
   value500,
 
   /// Display: Cancer Services
   /// Definition: Cancer Services
-  @JsonValue('501')
   value501,
 
   /// Display: Integrated Cancer Se
   /// Definition: Integrated Cancer Services
-  @JsonValue('502')
   value502,
 
   /// Display: Multidisciplinary Se
   /// Definition: Multidisciplinary Services
-  @JsonValue('503')
   value503,
 
   /// Display: Multidisciplinary Ca
   /// Definition: Multidisciplinary Cancer Services
-  @JsonValue('504')
   value504,
 
   /// Display: Meetings
   /// Definition: Meetings
-  @JsonValue('505')
   value505,
 
   /// Display: Blood pressure monit
   /// Definition: Blood pressure monitoring
-  @JsonValue('506')
   value506,
 
   /// Display: Dose administration
   /// Definition: Dose administration aid
-  @JsonValue('507')
   value507,
 
   /// Display: Medical Equipment Hi
   /// Definition: Medical Equipment Hire
-  @JsonValue('508')
   value508,
 
   /// Display: Parenting/Family Support/Education
   /// Definition: Parenting & family support/education
-  @JsonValue('509')
   value509,
 
   /// Display: Deputising Service
   /// Definition: Deputising Service
-  @JsonValue('510')
   value510,
 
   /// Display: Cancer Support Groups
   /// Definition: Cancer Support Groups
-  @JsonValue('513')
   value513,
 
   /// Display: Community Cancer Services
   /// Definition: Community Cancer Services
-  @JsonValue('514')
   value514,
 
   /// Display: Disability Care Transport
   /// Definition: Disability Care Transport
-  @JsonValue('530')
   value530,
 
   /// Display: Aged Care Transport
   /// Definition: Aged Care Transport
-  @JsonValue('531')
   value531,
 
   /// Display: Diabetes Education s
   /// Definition: Diabetes Education service
-  @JsonValue('532')
   value532,
 
   /// Display: Cardiac Rehabilitati
   /// Definition: Cardiac Rehabilitation Service
-  @JsonValue('533')
   value533,
 
   /// Display: Young Adult Diabetes
   /// Definition: Young Adult Diabetes services (YADS)
-  @JsonValue('534')
   value534,
 
   /// Display: Pulmonary Rehabilita
   /// Definition: Pulmonary Rehabilitation Service
-  @JsonValue('535')
   value535,
 
   /// Display: Art therapy
   /// Definition: Art therapy
-  @JsonValue('536')
   value536,
 
   /// Display: Medication Reviews
   /// Definition: Medication Reviews
-  @JsonValue('537')
   value537,
 
   /// Display: Telephone Counselling
   /// Definition: Telephone Counselling
-  @JsonValue('538')
   value538,
 
   /// Display: Telephone Help Line
   /// Definition: Telephone Help Line
-  @JsonValue('539')
   value539,
 
   /// Display: Online Service
   /// Definition: Online Service
-  @JsonValue('540')
   value540,
 
   /// Display: Crisis - Mental Health
   /// Definition: Crisis - Mental Health
-  @JsonValue('541')
   value541,
 
   /// Display: Youth Crisis
   /// Definition: Youth Crisis
-  @JsonValue('542')
   value542,
 
   /// Display: Sexual Assault
   /// Definition: Sexual Assault
-  @JsonValue('543')
   value543,
 
   /// Display: GPAH Other
   /// Definition: GPAH Other
-  @JsonValue('544')
   value544,
 
   /// Display: Paediatric Dermatology
   /// Definition: Paediatric Dermatology
-  @JsonValue('545')
   value545,
 
   /// Display: Veterans Services
   /// Definition: Veterans Services
-  @JsonValue('546')
   value546,
 
   /// Display: Veterans
   /// Definition: Veterans
-  @JsonValue('547')
   value547,
 
   /// Display: Food Relief/Food/Meals
   /// Definition: Food Relief/food/meals
-  @JsonValue('548')
   value548,
 
   /// Display: Dementia Care
   /// Definition: Dementia Care
-  @JsonValue('550')
   value550,
 
   /// Display: Alzheimer
   /// Definition: Alzheimer
-  @JsonValue('551')
   value551,
 
   /// Display: Drug and/or Alcohol Support Groups
   /// Definition: Drug and/or alcohol support groups
-  @JsonValue('552')
   value552,
 
   /// Display: 1-on-1 Support /Mentoring /Coaching
   /// Definition: One on One Support/Mentoring/Coaching
-  @JsonValue('553')
   value553,
 
   /// Display: Chronic Disease Management
   /// Definition: Chronic Disease Management
-  @JsonValue('554')
   value554,
 
   /// Display: Liaison Services
   /// Definition: Liaison Services
-  @JsonValue('555')
   value555,
 
   /// Display: Walk-in Centre /Non-Emergency
   /// Definition: Walk in Centre / non emergency
-  @JsonValue('556')
   value556,
 
   /// Display: Inpatients
   /// Definition: Inpatients
-  @JsonValue('557')
   value557,
 
   /// Display: Spiritual Counselling
   /// Definition: Spiritual Counselling
-  @JsonValue('558')
   value558,
 
   /// Display: Women's Health
   /// Definition: Women's Health
-  @JsonValue('559')
   value559,
 
   /// Display: Men's Health
   /// Definition: Men's Health
-  @JsonValue('560')
   value560,
 
   /// Display: Health Education/Awareness Program
   /// Definition: Health education/Health awareness program
-  @JsonValue('561')
   value561,
 
   /// Display: Test Message
   /// Definition: Test Message
-  @JsonValue('562')
   value562,
 
   /// Display: Remedial Massage
   /// Definition: Remedial Massage
-  @JsonValue('563')
   value563,
 
   /// Display: Adolescent Mental Health Services
   /// Definition: Adolescent Mental Health Services
-  @JsonValue('564')
   value564,
 
   /// Display: Youth Drop In/Assistance/Support
   /// Definition: Youth drop in/assistance/support
-  @JsonValue('565')
   value565,
 
   /// Display: Aboriginal Health Worker
   /// Definition: Aboriginal Health Worker
-  @JsonValue('566')
   value566,
 
   /// Display: Women's Health Clinic
   /// Definition: Women's Health Clinic
-  @JsonValue('567')
   value567,
 
   /// Display: Men's Health Clinic
   /// Definition: Men's Health Clinic
-  @JsonValue('568')
   value568,
 
   /// Display: Migrant Health Clinic
   /// Definition: Migrant Health Clinic
-  @JsonValue('569')
   value569,
 
   /// Display: Refugee Health Clinic
   /// Definition: Refugee Health Clinic
-  @JsonValue('570')
   value570,
 
   /// Display: Aboriginal Health Clinic
   /// Definition: Aboriginal Health Clinic
-  @JsonValue('571')
   value571,
 
   /// Display: Nurse Practitioner Lead Clinic/s
   /// Definition: Nurse Practitioner lead Clinic/s
-  @JsonValue('572')
   value572,
 
   /// Display: Nurse Lead Clinic/s
   /// Definition: Nurse lead Clinic/s
-  @JsonValue('573')
   value573,
 
   /// Display: Culturally Tailored Support Groups
   /// Definition: Culturally tailored support groups
-  @JsonValue('574')
   value574,
 
   /// Display: Culturally Tailored Health Promotion
   /// Definition: Culturally tailored health promotion
-  @JsonValue('575')
   value575,
 
   /// Display: Rehabilitation
   /// Definition: Rehabilitation
-  @JsonValue('576')
   value576,
 
   /// Display: Education Information/Referral
   /// Definition: Education information/referral
-  @JsonValue('577')
   value577,
 
   /// Display: Social Work
   /// Definition: Social Work
-  @JsonValue('580')
   value580,
 
   /// Display: Haematology
   /// Definition: Haematology
-  @JsonValue('581')
   value581,
 
   /// Display: Maternity Shared Car
   /// Definition: Maternity Shared Care
-  @JsonValue('582')
   value582,
 
   /// Display: Rehabilitation Servi
   /// Definition: Rehabilitation Service
-  @JsonValue('583')
   value583,
 
   /// Display: Cranio-sacral Therapy
   /// Definition: Cranio-Sacral Therapy
-  @JsonValue('584')
   value584,
 
   /// Display: Prosthetics & Orthotics
   /// Definition: Prosthetics & Orthotics
-  @JsonValue('585')
   value585,
 
   /// Display: Home Medicine Review
   /// Definition: Home Medicine Review
-  @JsonValue('589')
   value589,
 
   /// Display: GPAH - Medical
   /// Definition: GPAH - Medical
-  @JsonValue('590')
   value590,
 
   /// Display: Music Therapy
   /// Definition: Music Therapy
-  @JsonValue('591')
   value591,
 
   /// Display: Falls Prevention
   /// Definition: Falls Prevention
-  @JsonValue('593')
   value593,
 
   /// Display: Accommodation/Tenancy
   /// Definition: Accommodation/Tenancy
-  @JsonValue('599')
   value599,
 
   /// Display: Assess-Skill, Ability, Needs
   /// Definition: Assess-Skill, Ability, Needs
-  @JsonValue('600')
   value600,
 
   /// Display: Assist Access/Maintain Employ
   /// Definition: Assist Access/Maintain Employ
-  @JsonValue('601')
   value601,
 
   /// Display: Assist Prod-Pers Care/Safety
   /// Definition: Assist Prod-Pers Care/Safety
-  @JsonValue('602')
   value602,
 
   /// Display: Assist-Integrate School/Ed
   /// Definition: Assist-Integrate School/Ed
-  @JsonValue('603')
   value603,
 
   /// Display: Assist-Life Stage, Transition
   /// Definition: Assist-Life Stage, Transition
-  @JsonValue('604')
   value604,
 
   /// Display: Assist-Personal Activities
   /// Definition: Assist-Personal Activities
-  @JsonValue('605')
   value605,
 
   /// Display: Assist-Travel/Transport
   /// Definition: Assist-Travel/Transport
-  @JsonValue('606')
   value606,
 
   /// Display: Assistive Equip-General Tasks
   /// Definition: Assistive Equip-General Tasks
-  @JsonValue('607')
   value607,
 
   /// Display: Assistive Equip-Recreation
   /// Definition: Assistive Equip-Recreation
-  @JsonValue('608')
   value608,
 
   /// Display: Assistive Prod-Household Task
   /// Definition: Assistive Prod-Household Task
-  @JsonValue('609')
   value609,
 
   /// Display: Behavior Support
   /// Definition: Behavior Support
-  @JsonValue('610')
   value610,
 
   /// Display: Comms & Info Equipment
   /// Definition: Comms & Info Equipment
-  @JsonValue('611')
   value611,
 
   /// Display: Community Nursing Care
   /// Definition: Community Nursing Care
-  @JsonValue('612')
   value612,
 
   /// Display: Daily Tasks/Shared Living
   /// Definition: Daily Tasks/Shared Living
-  @JsonValue('613')
   value613,
 
   /// Display: Development-Life Skills
   /// Definition: Development-Life Skills
-  @JsonValue('614')
   value614,
 
   /// Display: Early Childhood Supports
   /// Definition: Early Childhood Supports
-  @JsonValue('615')
   value615,
 
   /// Display: Equipment Special Assess Setup
   /// Definition: Equipment Special Assess Setup
-  @JsonValue('616')
   value616,
 
   /// Display: Hearing Equipment
   /// Definition: Hearing Equipment
-  @JsonValue('617')
   value617,
 
   /// Display: Home Modification
   /// Definition: Home Modification
-  @JsonValue('618')
   value618,
 
   /// Display: Household Tasks
   /// Definition: Household Tasks
-  @JsonValue('619')
   value619,
 
   /// Display: Interpret/Translate
   /// Definition: Interpret/Translate
-  @JsonValue('620')
   value620,
 
   /// Display: Other Innovative Supports
   /// Definition: Other Innovative Supports
-  @JsonValue('621')
   value621,
 
   /// Display: Participate Community
   /// Definition: Participate Community
-  @JsonValue('622')
   value622,
 
   /// Display: Personal Mobility Equipment
   /// Definition: Personal Mobility Equipment
-  @JsonValue('623')
   value623,
 
   /// Display: Physical Wellbeing
   /// Definition: Physical Wellbeing
-  @JsonValue('624')
   value624,
 
   /// Display: Plan Management
   /// Definition: Plan Management
-  @JsonValue('625')
   value625,
 
   /// Display: Therapeutic Supports
   /// Definition: Therapeutic Supports
-  @JsonValue('626')
   value626,
 
   /// Display: Training-Travel Independence
   /// Definition: Training-Travel Independence
-  @JsonValue('627')
   value627,
 
   /// Display: Vehicle modifications
   /// Definition: Vehicle modifications
-  @JsonValue('628')
   value628,
 
   /// Display: Vision Equipment
   /// Definition: Vision Equipment
-  @JsonValue('629')
   value629,
   ;
 

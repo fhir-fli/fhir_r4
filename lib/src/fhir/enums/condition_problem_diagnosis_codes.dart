@@ -1,9 +1,6 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Example value set for Condition/Problem/Diagnosis codes.
 enum ConditionProblemDiagnosisCodes {
   /// Display: No current problems or disability
-  @JsonValue('160245001')
   value160245001,
   ;
 

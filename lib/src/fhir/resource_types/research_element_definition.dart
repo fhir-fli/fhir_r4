@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [ResearchElementDefinition] /// The ResearchElementDefinition resource describes a "PICO" element that
 /// knowledge (evidence, assertion, recommendation) is about.
-@JsonSerializable()
 class ResearchElementDefinition extends DomainResource {
   ResearchElementDefinition({
     super.id,
@@ -81,10 +79,11 @@ class ResearchElementDefinition extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.ResearchElementDefinition);
+
   @override
   String get fhirType => 'ResearchElementDefinition';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this research element definition
@@ -94,15 +93,12 @@ class ResearchElementDefinition extends DomainResource {
   /// this research element definition is (or will be) published. This URL can be
   /// the target of a canonical reference. It SHALL remain the same when the
   /// research element definition is stored on different servers.
-  @JsonKey(name: 'url')
   final FhirUri? url;
-  @JsonKey(name: '_url')
   final Element? urlElement;
 
   /// [identifier] /// A formal identifier that is used to identify this research element
   /// definition when it is represented in other formats, or referenced in a
   /// specification, model, design or an instance.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [version] /// The identifier that is used to identify this version of the research
@@ -116,99 +112,74 @@ class ResearchElementDefinition extends DomainResource {
   /// 1.0.0). For more information on versioning knowledge assets, refer to the
   /// Decision Support Service specification. Note that a version is required for
   /// non-experimental active artifacts.
-  @JsonKey(name: 'version')
   final FhirString? version;
-  @JsonKey(name: '_version')
   final Element? versionElement;
 
   /// [name] /// A natural language name identifying the research element definition. This
   /// name should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [title] /// A short, descriptive, user-friendly title for the research element
   /// definition.
-  @JsonKey(name: 'title')
   final FhirString? title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [shortTitle] /// The short title provides an alternate title for use in informal descriptive
   /// contexts where the full, formal title is not necessary.
-  @JsonKey(name: 'shortTitle')
   final FhirString? shortTitle;
-  @JsonKey(name: '_shortTitle')
   final Element? shortTitleElement;
 
   /// [subtitle] /// An explanatory or alternate title for the ResearchElementDefinition giving
   /// additional information about its content.
-  @JsonKey(name: 'subtitle')
   final FhirString? subtitle;
-  @JsonKey(name: '_subtitle')
   final Element? subtitleElement;
 
   /// [status] /// The status of this research element definition. Enables tracking the
   /// life-cycle of the content.
-  @JsonKey(name: 'status')
   final PublicationStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [experimental] /// A Boolean value to indicate that this research element definition is
   /// authored for testing purposes (or education/evaluation/marketing) and is
   /// not intended to be used for genuine usage.
-  @JsonKey(name: 'experimental')
   final FhirBoolean? experimental;
-  @JsonKey(name: '_experimental')
   final Element? experimentalElement;
 
   /// [subjectCodeableConcept] /// The intended subjects for the ResearchElementDefinition. If this element is
   /// not provided, a Patient subject is assumed, but the subject of the
   /// ResearchElementDefinition can be anything.
-  @JsonKey(name: 'subjectCodeableConcept')
   final CodeableConcept? subjectCodeableConcept;
 
   /// [subjectReference] /// The intended subjects for the ResearchElementDefinition. If this element is
   /// not provided, a Patient subject is assumed, but the subject of the
   /// ResearchElementDefinition can be anything.
-  @JsonKey(name: 'subjectReference')
   final Reference? subjectReference;
 
   /// [date] /// The date (and optionally time) when the research element definition was
   /// published. The date must change when the business version changes and it
   /// must change if the status code changes. In addition, it should change when
   /// the substantive content of the research element definition changes.
-  @JsonKey(name: 'date')
   final FhirDateTime? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [publisher] /// The name of the organization or individual that published the research
   /// element definition.
-  @JsonKey(name: 'publisher')
   final FhirString? publisher;
-  @JsonKey(name: '_publisher')
   final Element? publisherElement;
 
   /// [contact] /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  @JsonKey(name: 'contact')
   final List<ContactDetail>? contact;
 
   /// [description] /// A free text natural language description of the research element definition
   /// from a consumer's perspective.
-  @JsonKey(name: 'description')
   final FhirMarkdown? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [comment] /// A human-readable string to clarify or explain concepts about the resource.
-  @JsonKey(name: 'comment')
   final List<FhirString>? comment;
-  @JsonKey(name: '_comment')
   final List<Element>? commentElement;
 
   /// [useContext] /// The content was developed with a focus and intent of supporting the
@@ -216,108 +187,82 @@ class ResearchElementDefinition extends DomainResource {
   /// age, ...) or may be references to specific programs (insurance plans,
   /// studies, ...) and may be used to assist with indexing and searching for
   /// appropriate research element definition instances.
-  @JsonKey(name: 'useContext')
   final List<UsageContext>? useContext;
 
   /// [jurisdiction] /// A legal or geographic region in which the research element definition is
   /// intended to be used.
-  @JsonKey(name: 'jurisdiction')
   final List<CodeableConcept>? jurisdiction;
 
   /// [purpose] /// Explanation of why this research element definition is needed and why it
   /// has been designed as it has.
-  @JsonKey(name: 'purpose')
   final FhirMarkdown? purpose;
-  @JsonKey(name: '_purpose')
   final Element? purposeElement;
 
   /// [usage] /// A detailed description, from a clinical perspective, of how the
   /// ResearchElementDefinition is used.
-  @JsonKey(name: 'usage')
   final FhirString? usage;
-  @JsonKey(name: '_usage')
   final Element? usageElement;
 
   /// [copyright] /// A copyright statement relating to the research element definition and/or
   /// its contents. Copyright statements are generally legal restrictions on the
   /// use and publishing of the research element definition.
-  @JsonKey(name: 'copyright')
   final FhirMarkdown? copyright;
-  @JsonKey(name: '_copyright')
   final Element? copyrightElement;
 
   /// [approvalDate] /// The date on which the resource content was approved by the publisher.
   /// Approval happens once when the content is officially approved for usage.
-  @JsonKey(name: 'approvalDate')
   final FhirDate? approvalDate;
-  @JsonKey(name: '_approvalDate')
   final Element? approvalDateElement;
 
   /// [lastReviewDate] /// The date on which the resource content was last reviewed. Review happens
   /// periodically after approval but does not change the original approval date.
-  @JsonKey(name: 'lastReviewDate')
   final FhirDate? lastReviewDate;
-  @JsonKey(name: '_lastReviewDate')
   final Element? lastReviewDateElement;
 
   /// [effectivePeriod] /// The period during which the research element definition content was or is
   /// planned to be in active use.
-  @JsonKey(name: 'effectivePeriod')
   final Period? effectivePeriod;
 
   /// [topic] /// Descriptive topics related to the content of the ResearchElementDefinition.
   /// Topics provide a high-level categorization grouping types of
   /// ResearchElementDefinitions that can be useful for filtering and searching.
-  @JsonKey(name: 'topic')
   final List<CodeableConcept>? topic;
 
   /// [author] /// An individiual or organization primarily involved in the creation and
   /// maintenance of the content.
-  @JsonKey(name: 'author')
   final List<ContactDetail>? author;
 
   /// [editor] /// An individual or organization primarily responsible for internal coherence
   /// of the content.
-  @JsonKey(name: 'editor')
   final List<ContactDetail>? editor;
 
   /// [reviewer] /// An individual or organization primarily responsible for review of some
   /// aspect of the content.
-  @JsonKey(name: 'reviewer')
   final List<ContactDetail>? reviewer;
 
   /// [endorser] /// An individual or organization responsible for officially endorsing the
   /// content for use in some setting.
-  @JsonKey(name: 'endorser')
   final List<ContactDetail>? endorser;
 
   /// [relatedArtifact] /// Related artifacts such as additional documentation, justification, or
   /// bibliographic references.
-  @JsonKey(name: 'relatedArtifact')
   final List<RelatedArtifact>? relatedArtifact;
 
   /// [library_] /// A reference to a Library resource containing the formal logic used by the
   /// ResearchElementDefinition.
-  @JsonKey(name: 'library')
   final List<FhirCanonical>? library_;
-  @JsonKey(name: '_library')
   final List<Element>? libraryElement;
 
   /// [type] /// The type of research element, a population, an exposure, or an outcome.
-  @JsonKey(name: 'type')
   final ResearchElementType type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [variableType] /// The type of the outcome (e.g. Dichotomous, Continuous, or Descriptive).
-  @JsonKey(name: 'variableType')
   final VariableType? variableType;
-  @JsonKey(name: '_variableType')
   final Element? variableTypeElement;
 
   /// [characteristic] /// A characteristic that defines the members of the research element. Multiple
   /// characteristics are applied with "and" semantics.
-  @JsonKey(name: 'characteristic')
   final List<ResearchElementDefinitionCharacteristic> characteristic;
   @override
   Map<String, dynamic> toJson() {
@@ -905,7 +850,6 @@ class ResearchElementDefinition extends DomainResource {
 
 /// [ResearchElementDefinitionCharacteristic] /// A characteristic that defines the members of the research element. Multiple
 /// characteristics are applied with "and" semantics.
-@JsonSerializable()
 class ResearchElementDefinitionCharacteristic extends BackboneElement {
   ResearchElementDefinitionCharacteristic({
     super.id,
@@ -947,123 +891,95 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ResearchElementDefinitionCharacteristic';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [definitionCodeableConcept] /// Define members of the research element using Codes (such as condition,
   /// medication, or observation), Expressions ( using an expression language
   /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes diagnosis
   /// onset in the last year).
-  @JsonKey(name: 'definitionCodeableConcept')
   final CodeableConcept? definitionCodeableConcept;
 
   /// [definitionCanonical] /// Define members of the research element using Codes (such as condition,
   /// medication, or observation), Expressions ( using an expression language
   /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes diagnosis
   /// onset in the last year).
-  @JsonKey(name: 'definitionCanonical')
   final FhirCanonical? definitionCanonical;
-  @JsonKey(name: '_definitionCanonical')
   final Element? definitionCanonicalElement;
 
   /// [definitionExpression] /// Define members of the research element using Codes (such as condition,
   /// medication, or observation), Expressions ( using an expression language
   /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes diagnosis
   /// onset in the last year).
-  @JsonKey(name: 'definitionExpression')
   final FhirExpression? definitionExpression;
 
   /// [definitionDataRequirement] /// Define members of the research element using Codes (such as condition,
   /// medication, or observation), Expressions ( using an expression language
   /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes diagnosis
   /// onset in the last year).
-  @JsonKey(name: 'definitionDataRequirement')
   final DataRequirement? definitionDataRequirement;
 
   /// [usageContext] /// Use UsageContext to define the members of the population, such as Age
   /// Ranges, Genders, Settings.
-  @JsonKey(name: 'usageContext')
   final List<UsageContext>? usageContext;
 
   /// [exclude] /// When true, members with this characteristic are excluded from the element.
-  @JsonKey(name: 'exclude')
   final FhirBoolean? exclude;
-  @JsonKey(name: '_exclude')
   final Element? excludeElement;
 
   /// [unitOfMeasure] /// Specifies the UCUM unit for the outcome.
-  @JsonKey(name: 'unitOfMeasure')
   final CodeableConcept? unitOfMeasure;
 
   /// [studyEffectiveDescription] /// A narrative description of the time period the study covers.
-  @JsonKey(name: 'studyEffectiveDescription')
   final FhirString? studyEffectiveDescription;
-  @JsonKey(name: '_studyEffectiveDescription')
   final Element? studyEffectiveDescriptionElement;
 
   /// [studyEffectiveDateTime] /// Indicates what effective period the study covers.
-  @JsonKey(name: 'studyEffectiveDateTime')
   final FhirDateTime? studyEffectiveDateTime;
-  @JsonKey(name: '_studyEffectiveDateTime')
   final Element? studyEffectiveDateTimeElement;
 
   /// [studyEffectivePeriod] /// Indicates what effective period the study covers.
-  @JsonKey(name: 'studyEffectivePeriod')
   final Period? studyEffectivePeriod;
 
   /// [studyEffectiveDuration] /// Indicates what effective period the study covers.
-  @JsonKey(name: 'studyEffectiveDuration')
   final FhirDuration? studyEffectiveDuration;
 
   /// [studyEffectiveTiming] /// Indicates what effective period the study covers.
-  @JsonKey(name: 'studyEffectiveTiming')
   final Timing? studyEffectiveTiming;
 
   /// [studyEffectiveTimeFromStart] /// Indicates duration from the study initiation.
-  @JsonKey(name: 'studyEffectiveTimeFromStart')
   final FhirDuration? studyEffectiveTimeFromStart;
 
   /// [studyEffectiveGroupMeasure] /// Indicates how elements are aggregated within the study effective period.
-  @JsonKey(name: 'studyEffectiveGroupMeasure')
   final GroupMeasure? studyEffectiveGroupMeasure;
-  @JsonKey(name: '_studyEffectiveGroupMeasure')
   final Element? studyEffectiveGroupMeasureElement;
 
   /// [participantEffectiveDescription] /// A narrative description of the time period the study covers.
-  @JsonKey(name: 'participantEffectiveDescription')
   final FhirString? participantEffectiveDescription;
-  @JsonKey(name: '_participantEffectiveDescription')
   final Element? participantEffectiveDescriptionElement;
 
   /// [participantEffectiveDateTime] /// Indicates what effective period the study covers.
-  @JsonKey(name: 'participantEffectiveDateTime')
   final FhirDateTime? participantEffectiveDateTime;
-  @JsonKey(name: '_participantEffectiveDateTime')
   final Element? participantEffectiveDateTimeElement;
 
   /// [participantEffectivePeriod] /// Indicates what effective period the study covers.
-  @JsonKey(name: 'participantEffectivePeriod')
   final Period? participantEffectivePeriod;
 
   /// [participantEffectiveDuration] /// Indicates what effective period the study covers.
-  @JsonKey(name: 'participantEffectiveDuration')
   final FhirDuration? participantEffectiveDuration;
 
   /// [participantEffectiveTiming] /// Indicates what effective period the study covers.
-  @JsonKey(name: 'participantEffectiveTiming')
   final Timing? participantEffectiveTiming;
 
   /// [participantEffectiveTimeFromStart] /// Indicates duration from the participant's study entry.
-  @JsonKey(name: 'participantEffectiveTimeFromStart')
   final FhirDuration? participantEffectiveTimeFromStart;
 
   /// [participantEffectiveGroupMeasure] /// Indicates how elements are aggregated within the study effective period.
-  @JsonKey(name: 'participantEffectiveGroupMeasure')
   final GroupMeasure? participantEffectiveGroupMeasure;
-  @JsonKey(name: '_participantEffectiveGroupMeasure')
   final Element? participantEffectiveGroupMeasureElement;
   @override
   Map<String, dynamic> toJson() {

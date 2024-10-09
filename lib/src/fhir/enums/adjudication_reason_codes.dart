@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes smattering of Adjudication Reason codes.
 enum AdjudicationReasonCodes {
   /// Display: Not covered
   /// Definition: Not covered
-  @JsonValue('ar001')
   ar001,
 
   /// Display: Plan Limit Reached
   /// Definition: Plan Limit Reached
-  @JsonValue('ar002')
   ar002,
   ;
 

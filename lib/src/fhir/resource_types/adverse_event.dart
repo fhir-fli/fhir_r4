@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -9,7 +8,6 @@ import '../../../fhir_r4.dart';
 /// resulting from or contributed to by medical care, a research study or other
 /// healthcare setting factors that requires additional monitoring, treatment,
 /// or hospitalization, or that results in death.
-@JsonSerializable()
 class AdverseEvent extends DomainResource {
   AdverseEvent({
     super.id,
@@ -53,89 +51,71 @@ class AdverseEvent extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.AdverseEvent);
+
   @override
   String get fhirType => 'AdverseEvent';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Business identifiers assigned to this adverse event by the performer or
   /// other systems which remain constant as the resource is updated and
   /// propagates from server to server.
-  @JsonKey(name: 'identifier')
   final Identifier? identifier;
 
   /// [actuality] /// Whether the event actually happened, or just had the potential to. Note
   /// that this is independent of whether anyone was affected or harmed or how
   /// severely.
-  @JsonKey(name: 'actuality')
   final AdverseEventActuality actuality;
-  @JsonKey(name: '_actuality')
   final Element? actualityElement;
 
   /// [category] /// The overall type of event, intended for search and filtering purposes.
-  @JsonKey(name: 'category')
   final List<CodeableConcept>? category;
 
   /// [event] /// This element defines the specific type of event that occurred or that was
   /// prevented from occurring.
-  @JsonKey(name: 'event')
   final CodeableConcept? event;
 
   /// [subject] /// This subject or group impacted by the event.
-  @JsonKey(name: 'subject')
   final Reference subject;
 
   /// [encounter] /// The Encounter during which AdverseEvent was created or to which the
   /// creation of this record is tightly associated.
-  @JsonKey(name: 'encounter')
   final Reference? encounter;
 
   /// [date] /// The date (and perhaps time) when the adverse event occurred.
-  @JsonKey(name: 'date')
   final FhirDateTime? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [detected] /// Estimated or actual date the AdverseEvent began, in the opinion of the
   /// reporter.
-  @JsonKey(name: 'detected')
   final FhirDateTime? detected;
-  @JsonKey(name: '_detected')
   final Element? detectedElement;
 
   /// [recordedDate] /// The date on which the existence of the AdverseEvent was first recorded.
-  @JsonKey(name: 'recordedDate')
   final FhirDateTime? recordedDate;
-  @JsonKey(name: '_recordedDate')
   final Element? recordedDateElement;
 
   /// [resultingCondition] /// Includes information about the reaction that occurred as a result of
   /// exposure to a substance (for example, a drug or a chemical).
-  @JsonKey(name: 'resultingCondition')
   final List<Reference>? resultingCondition;
 
   /// [location] /// The information about where the adverse event occurred.
-  @JsonKey(name: 'location')
   final Reference? location;
 
   /// [seriousness] /// Assessment whether this event was of real importance.
-  @JsonKey(name: 'seriousness')
   final CodeableConcept? seriousness;
 
   /// [severity] /// Describes the severity of the adverse event, in relation to the subject.
   /// Contrast to AdverseEvent.seriousness - a severe rash might not be serious,
   /// but a mild heart problem is.
-  @JsonKey(name: 'severity')
   final CodeableConcept? severity;
 
   /// [outcome] /// Describes the type of outcome from the adverse event.
-  @JsonKey(name: 'outcome')
   final CodeableConcept? outcome;
 
   /// [recorder] /// Information on who recorded the adverse event. May be the patient or a
   /// practitioner.
-  @JsonKey(name: 'recorder')
   final Reference? recorder;
 
   /// [contributor] /// Parties that may or should contribute or have contributed information to
@@ -145,23 +125,18 @@ class AdverseEvent extends DomainResource {
   /// that the activity itself seeks to reveal (e.g. informant of clinical
   /// history), or information about what activity was performed (e.g. informant
   /// witness).
-  @JsonKey(name: 'contributor')
   final List<Reference>? contributor;
 
   /// [suspectEntity] /// Describes the entity that is suspected to have caused the adverse event.
-  @JsonKey(name: 'suspectEntity')
   final List<AdverseEventSuspectEntity>? suspectEntity;
 
   /// [subjectMedicalHistory] /// AdverseEvent.subjectMedicalHistory.
-  @JsonKey(name: 'subjectMedicalHistory')
   final List<Reference>? subjectMedicalHistory;
 
   /// [referenceDocument] /// AdverseEvent.referenceDocument.
-  @JsonKey(name: 'referenceDocument')
   final List<Reference>? referenceDocument;
 
   /// [study] /// AdverseEvent.study.
-  @JsonKey(name: 'study')
   final List<Reference>? study;
   @override
   Map<String, dynamic> toJson() {
@@ -510,7 +485,6 @@ class AdverseEvent extends DomainResource {
 }
 
 /// [AdverseEventSuspectEntity] /// Describes the entity that is suspected to have caused the adverse event.
-@JsonSerializable()
 class AdverseEventSuspectEntity extends BackboneElement {
   AdverseEventSuspectEntity({
     super.id,
@@ -525,20 +499,19 @@ class AdverseEventSuspectEntity extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'AdverseEventSuspectEntity';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [instance] /// Identifies the actual instance of what caused the adverse event. May be a
   /// substance, medication, medication administration, medication statement or a
   /// device.
-  @JsonKey(name: 'instance')
   final Reference instance;
 
   /// [causality] /// Information on the possible cause of the event.
-  @JsonKey(name: 'causality')
   final List<AdverseEventCausality>? causality;
   @override
   Map<String, dynamic> toJson() {
@@ -642,7 +615,6 @@ class AdverseEventSuspectEntity extends BackboneElement {
 }
 
 /// [AdverseEventCausality] /// Information on the possible cause of the event.
-@JsonSerializable()
 class AdverseEventCausality extends BackboneElement {
   AdverseEventCausality({
     super.id,
@@ -660,28 +632,24 @@ class AdverseEventCausality extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'AdverseEventCausality';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [assessment] /// Assessment of if the entity caused the event.
-  @JsonKey(name: 'assessment')
   final CodeableConcept? assessment;
 
   /// [productRelatedness] /// AdverseEvent.suspectEntity.causalityProductRelatedness.
-  @JsonKey(name: 'productRelatedness')
   final FhirString? productRelatedness;
-  @JsonKey(name: '_productRelatedness')
   final Element? productRelatednessElement;
 
   /// [author] /// AdverseEvent.suspectEntity.causalityAuthor.
-  @JsonKey(name: 'author')
   final Reference? author;
 
   /// [method] /// ProbabilityScale | Bayesian | Checklist.
-  @JsonKey(name: 'method')
   final CodeableConcept? method;
   @override
   Map<String, dynamic> toJson() {

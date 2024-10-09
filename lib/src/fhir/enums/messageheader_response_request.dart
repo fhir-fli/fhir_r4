@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// HL7-defined table of codes which identify conditions under which acknowledgments are required to be returned in response to a message.
 enum MessageheaderResponseRequest {
   /// Display: Always
   /// Definition: initiator expects a response for this message.
-  @JsonValue('always')
   always,
 
   /// Display: Error/reject conditions only
   /// Definition: initiator expects a response only if in error.
-  @JsonValue('on-error')
   on_error,
 
   /// Display: Never
   /// Definition: initiator does not expect a response.
-  @JsonValue('never')
   never,
 
   /// Display: Successful completion only
   /// Definition: initiator expects a response only if successful.
-  @JsonValue('on-success')
   on_success,
   ;
 

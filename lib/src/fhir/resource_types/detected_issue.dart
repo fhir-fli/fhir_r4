@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -9,7 +8,6 @@ import '../../../fhir_r4.dart';
 /// active or proposed clinical actions for a patient; e.g. Drug-drug
 /// interaction, Ineffective treatment frequency, Procedure-condition conflict,
 /// etc.
-@JsonSerializable()
 class DetectedIssue extends DomainResource {
   DetectedIssue({
     super.id,
@@ -47,81 +45,64 @@ class DetectedIssue extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.DetectedIssue);
+
   @override
   String get fhirType => 'DetectedIssue';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Business identifier associated with the detected issue record.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// Indicates the status of the detected issue.
-  @JsonKey(name: 'status')
   final ObservationStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [code] /// Identifies the general type of issue identified.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [severity] /// Indicates the degree of importance associated with the identified issue
   /// based on the potential impact on the patient.
-  @JsonKey(name: 'severity')
   final DetectedIssueSeverity? severity;
-  @JsonKey(name: '_severity')
   final Element? severityElement;
 
   /// [patient] /// Indicates the patient whose record the detected issue is associated with.
-  @JsonKey(name: 'patient')
   final Reference? patient;
 
   /// [identifiedDateTime] /// The date or period when the detected issue was initially identified.
-  @JsonKey(name: 'identifiedDateTime')
   final FhirDateTime? identifiedDateTime;
-  @JsonKey(name: '_identifiedDateTime')
   final Element? identifiedDateTimeElement;
 
   /// [identifiedPeriod] /// The date or period when the detected issue was initially identified.
-  @JsonKey(name: 'identifiedPeriod')
   final Period? identifiedPeriod;
 
   /// [author] /// Individual or device responsible for the issue being raised. For example, a
   /// decision support application or a pharmacist conducting a medication
   /// review.
-  @JsonKey(name: 'author')
   final Reference? author;
 
   /// [implicated] /// Indicates the resource representing the current activity or proposed
   /// activity that is potentially problematic.
-  @JsonKey(name: 'implicated')
   final List<Reference>? implicated;
 
   /// [evidence] /// Supporting evidence or manifestations that provide the basis for
   /// identifying the detected issue such as a GuidanceResponse or MeasureReport.
-  @JsonKey(name: 'evidence')
   final List<DetectedIssueEvidence>? evidence;
 
   /// [detail] /// A textual explanation of the detected issue.
-  @JsonKey(name: 'detail')
   final FhirString? detail;
-  @JsonKey(name: '_detail')
   final Element? detailElement;
 
   /// [reference] /// The literature, knowledge-base or similar reference that describes the
   /// propensity for the detected issue identified.
-  @JsonKey(name: 'reference')
   final FhirUri? reference;
-  @JsonKey(name: '_reference')
   final Element? referenceElement;
 
   /// [mitigation] /// Indicates an action that has been taken or is committed to reduce or
   /// eliminate the likelihood of the risk identified by the detected issue from
   /// manifesting. Can also reflect an observation of known mitigating factors
   /// that may reduce/eliminate the need for any action.
-  @JsonKey(name: 'mitigation')
   final List<DetectedIssueMitigation>? mitigation;
   @override
   Map<String, dynamic> toJson() {
@@ -409,7 +390,6 @@ class DetectedIssue extends DomainResource {
 
 /// [DetectedIssueEvidence] /// Supporting evidence or manifestations that provide the basis for
 /// identifying the detected issue such as a GuidanceResponse or MeasureReport.
-@JsonSerializable()
 class DetectedIssueEvidence extends BackboneElement {
   DetectedIssueEvidence({
     super.id,
@@ -424,19 +404,18 @@ class DetectedIssueEvidence extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'DetectedIssueEvidence';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// A manifestation that led to the recording of this detected issue.
-  @JsonKey(name: 'code')
   final List<CodeableConcept>? code;
 
   /// [detail] /// Links to resources that constitute evidence for the detected issue such as
   /// a GuidanceResponse or MeasureReport.
-  @JsonKey(name: 'detail')
   final List<Reference>? detail;
   @override
   Map<String, dynamic> toJson() {
@@ -550,7 +529,6 @@ class DetectedIssueEvidence extends BackboneElement {
 /// eliminate the likelihood of the risk identified by the detected issue from
 /// manifesting. Can also reflect an observation of known mitigating factors
 /// that may reduce/eliminate the need for any action.
-@JsonSerializable()
 class DetectedIssueMitigation extends BackboneElement {
   DetectedIssueMitigation({
     super.id,
@@ -567,26 +545,23 @@ class DetectedIssueMitigation extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'DetectedIssueMitigation';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [action] /// Describes the action that was taken or the observation that was made that
   /// reduces/eliminates the risk associated with the identified issue.
-  @JsonKey(name: 'action')
   final CodeableConcept action;
 
   /// [date] /// Indicates when the mitigating action was documented.
-  @JsonKey(name: 'date')
   final FhirDateTime? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [author] /// Identifies the practitioner who determined the mitigation and takes
   /// responsibility for the mitigation step occurring.
-  @JsonKey(name: 'author')
   final Reference? author;
   @override
   Map<String, dynamic> toJson() {

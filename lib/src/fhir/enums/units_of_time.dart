@@ -1,33 +1,24 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// A unit of time (units from UCUM).
 enum UnitsOfTime {
   /// Display: second
-  @JsonValue('s')
   s,
 
   /// Display: minute
-  @JsonValue('min')
   min,
 
   /// Display: hour
-  @JsonValue('h')
   h,
 
   /// Display: day
-  @JsonValue('d')
   d,
 
   /// Display: week
-  @JsonValue('wk')
   wk,
 
   /// Display: month
-  @JsonValue('mo')
   mo,
 
   /// Display: year
-  @JsonValue('a')
   a,
   ;
 

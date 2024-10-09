@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,7 +7,6 @@ import '../../../fhir_r4.dart';
 /// [BodyStructure] /// Record details about an anatomical structure. This resource may be used
 /// when a coded concept does not provide the necessary detail needed for the
 /// use case.
-@JsonSerializable()
 class BodyStructure extends DomainResource {
   BodyStructure({
     super.id,
@@ -38,50 +36,41 @@ class BodyStructure extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.BodyStructure);
+
   @override
   String get fhirType => 'BodyStructure';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifier for this instance of the anatomical structure.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [active] /// Whether this body site is in active use.
-  @JsonKey(name: 'active')
   final FhirBoolean? active;
-  @JsonKey(name: '_active')
   final Element? activeElement;
 
   /// [morphology] /// The kind of structure being represented by the body structure at
   /// `BodyStructure.location`. This can define both normal and abnormal
   /// morphologies.
-  @JsonKey(name: 'morphology')
   final CodeableConcept? morphology;
 
   /// [location] /// The anatomical location or region of the specimen, lesion, or body
   /// structure.
-  @JsonKey(name: 'location')
   final CodeableConcept? location;
 
   /// [locationQualifier] /// Qualifier to refine the anatomical location. These include qualifiers for
   /// laterality, relative location, directionality, number, and plane.
-  @JsonKey(name: 'locationQualifier')
   final List<CodeableConcept>? locationQualifier;
 
   /// [description] /// A summary, characterization or explanation of the body structure.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [image] /// Image or images used to identify a location.
-  @JsonKey(name: 'image')
   final List<Attachment>? image;
 
   /// [patient] /// The person to which the body site belongs.
-  @JsonKey(name: 'patient')
   final Reference patient;
   @override
   Map<String, dynamic> toJson() {

@@ -1,25 +1,18 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Type of a name for a Medicinal Product.
 enum ProductNameType {
   /// Display: British Approved Name
-  @JsonValue('BAN')
   BAN,
 
   /// Display: International Non-Proprietary Name
-  @JsonValue('INN')
   INN,
 
   /// Display: Modified International Non-Proprietary Name
-  @JsonValue('INNM')
   INNM,
 
   /// Display: Proposed International Non-Proprietary Name
-  @JsonValue('pINN')
   pINN,
 
   /// Display: Recommended International Non-Proprietary Name
-  @JsonValue('rINN')
   rINN,
   ;
 

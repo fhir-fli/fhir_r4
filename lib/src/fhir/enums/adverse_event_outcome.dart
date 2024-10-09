@@ -1,29 +1,21 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// TODO (and should this be required?).
 enum AdverseEventOutcome {
   /// Display: Resolved
-  @JsonValue('resolved')
   resolved,
 
   /// Display: Recovering
-  @JsonValue('recovering')
   recovering,
 
   /// Display: Ongoing
-  @JsonValue('ongoing')
   ongoing,
 
   /// Display: Resolved with Sequelae
-  @JsonValue('resolvedWithSequelae')
   resolvedWithSequelae,
 
   /// Display: Fatal
-  @JsonValue('fatal')
   fatal,
 
   /// Display: Unknown
-  @JsonValue('unknown')
   unknown,
   ;
 

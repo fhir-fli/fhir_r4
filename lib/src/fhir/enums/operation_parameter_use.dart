@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Whether an operation parameter is an input or an output parameter.
 enum OperationParameterUse {
   /// Display: In
   /// Definition: This is an input parameter.
-  @JsonValue('in')
   in_,
 
   /// Display: Out
   /// Definition: This is an output parameter.
-  @JsonValue('out')
   out,
   ;
 

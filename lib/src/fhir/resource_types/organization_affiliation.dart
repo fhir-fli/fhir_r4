@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [OrganizationAffiliation] /// Defines an affiliation/assotiation/relationship between 2 distinct
 /// oganizations, that is not a part-of relationship/sub-division relationship.
-@JsonSerializable()
 class OrganizationAffiliation extends DomainResource {
   OrganizationAffiliation({
     super.id,
@@ -40,69 +38,57 @@ class OrganizationAffiliation extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.OrganizationAffiliation);
+
   @override
   String get fhirType => 'OrganizationAffiliation';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Business identifiers that are specific to this role.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [active] /// Whether this organization affiliation record is in active use.
-  @JsonKey(name: 'active')
   final FhirBoolean? active;
-  @JsonKey(name: '_active')
   final Element? activeElement;
 
   /// [period] /// The period during which the participatingOrganization is affiliated with
   /// the primary organization.
-  @JsonKey(name: 'period')
   final Period? period;
 
   /// [organization] /// Organization where the role is available (primary organization/has
   /// members).
-  @JsonKey(name: 'organization')
   final Reference? organization;
 
   /// [participatingOrganization] /// The Participating Organization provides/performs the role(s) defined by the
   /// code to the Primary Organization (e.g. providing services or is a member
   /// of).
-  @JsonKey(name: 'participatingOrganization')
   final Reference? participatingOrganization;
 
   /// [network] /// Health insurance provider network in which the participatingOrganization
   /// provides the role's services (if defined) at the indicated locations (if
   /// defined).
-  @JsonKey(name: 'network')
   final List<Reference>? network;
 
   /// [code] /// Definition of the role the participatingOrganization plays in the
   /// association.
-  @JsonKey(name: 'code')
   final List<CodeableConcept>? code;
 
   /// [specialty] /// Specific specialty of the participatingOrganization in the context of the
   /// role.
-  @JsonKey(name: 'specialty')
   final List<CodeableConcept>? specialty;
 
   /// [location] /// The location(s) at which the role occurs.
-  @JsonKey(name: 'location')
   final List<Reference>? location;
 
   /// [healthcareService] /// Healthcare services provided through the role.
-  @JsonKey(name: 'healthcareService')
   final List<Reference>? healthcareService;
 
   /// [telecom] /// Contact details at the participatingOrganization relevant to this
   /// Affiliation.
-  @JsonKey(name: 'telecom')
   final List<ContactPoint>? telecom;
 
   /// [endpoint] /// Technical endpoints providing access to services operated for this role.
-  @JsonKey(name: 'endpoint')
   final List<Reference>? endpoint;
   @override
   Map<String, dynamic> toJson() {

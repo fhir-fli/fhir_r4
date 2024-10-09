@@ -1,35 +1,27 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Indicates the state of the consent.
 enum ConsentState {
   /// Display: Pending
   /// Definition: The consent is in development or awaiting use but is not yet intended to be acted upon.
-  @JsonValue('draft')
   draft,
 
   /// Display: Proposed
   /// Definition: The consent has been proposed but not yet agreed to by all parties. The negotiation stage.
-  @JsonValue('proposed')
   proposed,
 
   /// Display: Active
   /// Definition: The consent is to be followed and enforced.
-  @JsonValue('active')
   active,
 
   /// Display: Rejected
   /// Definition: The consent has been rejected by one or more of the parties.
-  @JsonValue('rejected')
   rejected,
 
   /// Display: Inactive
   /// Definition: The consent is terminated or replaced.
-  @JsonValue('inactive')
   inactive,
 
   /// Display: Entered in Error
   /// Definition: The consent was created wrongly (e.g. wrong patient) and should be ignored.
-  @JsonValue('entered-in-error')
   entered_in_error,
   ;
 

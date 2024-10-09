@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The kind of response to a message.
 enum ResponseType {
   /// Display: OK
   /// Definition: The message was accepted and processed without error.
-  @JsonValue('ok')
   ok,
 
   /// Display: Transient Error
   /// Definition: Some internal unexpected error occurred - wait and try again. Note - this is usually used for things like database unavailable, which may be expected to resolve, though human intervention may be required.
-  @JsonValue('transient-error')
   transient_error,
 
   /// Display: Fatal Error
   /// Definition: The message was rejected because of a problem with the content. There is no point in re-sending without change. The response narrative SHALL describe the issue.
-  @JsonValue('fatal-error')
   fatal_error,
   ;
 

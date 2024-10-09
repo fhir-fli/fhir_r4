@@ -1,65 +1,48 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// An authority that officates substance names.
 enum SubstanceNameAuthority {
   /// Display: BAN
-  @JsonValue('BAN')
   BAN,
 
   /// Display: COSING
-  @JsonValue('COSING')
   COSING,
 
   /// Display: Ph.Eur.
-  @JsonValue('Ph.Eur.')
   Ph_Eur_,
 
   /// Display: FCC
-  @JsonValue('FCC')
   FCC,
 
   /// Display: INCI
-  @JsonValue('INCI')
   INCI,
 
   /// Display: INN
-  @JsonValue('INN')
   INN,
 
   /// Display: JAN
-  @JsonValue('JAN')
   JAN,
 
   /// Display: JECFA
-  @JsonValue('JECFA')
   JECFA,
 
   /// Display: MARTINDALE
-  @JsonValue('MARTINDALE')
   MARTINDALE,
 
   /// Display: USAN
-  @JsonValue('USAN')
   USAN,
 
   /// Display: USP
-  @JsonValue('USP')
   USP,
 
   /// Display: PHF
-  @JsonValue('PHF')
   PHF,
 
   /// Display: HAB
-  @JsonValue('HAB')
   HAB,
 
   /// Display: PhF (Pharmacopée française)
-  @JsonValue('PhF')
   PhF,
 
   /// Display: IUIS
-  @JsonValue('IUIS')
   IUIS,
   ;
 

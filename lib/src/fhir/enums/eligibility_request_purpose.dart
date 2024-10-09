@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// A code specifying the types of information being requested.
 enum EligibilityRequestPurpose {
   /// Display: Coverage auth-requirements
   /// Definition: The prior authorization requirements for the listed, or discovered if specified, converages for the categories of service and/or specifed biling codes are requested.
-  @JsonValue('auth-requirements')
   auth_requirements,
 
   /// Display: Coverage benefits
   /// Definition: The plan benefits and optionally benefits consumed  for the listed, or discovered if specified, converages are requested.
-  @JsonValue('benefits')
   benefits,
 
   /// Display: Coverage Discovery
   /// Definition: The insurer is requested to report on any coverages which they are aware of in addition to any specifed.
-  @JsonValue('discovery')
   discovery,
 
   /// Display: Coverage Validation
   /// Definition: A check that the specified coverages are in-force is requested.
-  @JsonValue('validation')
   validation,
   ;
 

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,7 +7,6 @@ import '../../../fhir_r4.dart';
 /// [FhirMeta] /// The metadata about a resource. This is content in the resource that is
 /// maintained by the infrastructure. Changes to the content might not always
 /// be associated with version changes to the resource.
-@JsonSerializable()
 class FhirMeta extends DataType {
   FhirMeta({
     super.id,
@@ -30,24 +28,21 @@ class FhirMeta extends DataType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'FhirMeta';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [versionId] /// The version specific identifier, as it appears in the version portion of
   /// the URL. This value changes when the resource is created, updated, or
   /// deleted.
-  @JsonKey(name: 'versionId')
   final FhirId? versionId;
-  @JsonKey(name: '_versionId')
   final Element? versionIdElement;
 
   /// [lastUpdated] /// When the resource last changed - e.g. when the version changed.
-  @JsonKey(name: 'lastUpdated')
   final FhirInstant? lastUpdated;
-  @JsonKey(name: '_lastUpdated')
   final Element? lastUpdatedElement;
 
   /// [source] /// A uri that identifies the source system of the resource. This provides a
@@ -55,29 +50,23 @@ class FhirMeta extends DataType {
   /// used to track or differentiate the source of information in the resource.
   /// The source may identify another FHIR server, document, message, database,
   /// etc.
-  @JsonKey(name: 'source')
   final FhirUri? source;
-  @JsonKey(name: '_source')
   final Element? sourceElement;
 
   /// [profile] /// A list of profiles (references to
   /// [StructureDefinition](structuredefinition.html#) resources) that this
   /// resource claims to conform to. The URL is a reference to
   /// [StructureDefinition.url](structuredefinition-definitions.html#StructureDefinition.url).
-  @JsonKey(name: 'profile')
   final List<FhirCanonical>? profile;
-  @JsonKey(name: '_profile')
   final List<Element>? profileElement;
 
   /// [security] /// Security labels applied to this resource. These tags connect specific
   /// resources to the overall security policy and infrastructure.
-  @JsonKey(name: 'security')
   final List<Coding>? security;
 
   /// [tag] /// Tags applied to this resource. Tags are intended to be used to identify and
   /// relate resources to process and workflow, and applications are not required
   /// to consider the tags when interpreting the meaning of a resource.
-  @JsonKey(name: 'tag')
   final List<Coding>? tag;
   @override
   Map<String, dynamic> toJson() {

@@ -1,229 +1,171 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes common codes from BCP-47 (http://tools.ietf.org/html/bcp47)
 enum CommonLanguages {
   /// Display: Arabic
-  @JsonValue('ar')
   ar,
 
   /// Display: Bengali
-  @JsonValue('bn')
   bn,
 
   /// Display: Czech
-  @JsonValue('cs')
   cs,
 
   /// Display: Danish
-  @JsonValue('da')
   da,
 
   /// Display: German
-  @JsonValue('de')
   de,
 
   /// Display: German (Austria)
-  @JsonValue('de-AT')
   de_AT,
 
   /// Display: German (Switzerland)
-  @JsonValue('de-CH')
   de_CH,
 
   /// Display: German (Germany)
-  @JsonValue('de-DE')
   de_DE,
 
   /// Display: Greek
-  @JsonValue('el')
   el,
 
   /// Display: English
-  @JsonValue('en')
   en,
 
   /// Display: English (Australia)
-  @JsonValue('en-AU')
   en_AU,
 
   /// Display: English (Canada)
-  @JsonValue('en-CA')
   en_CA,
 
   /// Display: English (Great Britain)
-  @JsonValue('en-GB')
   en_GB,
 
   /// Display: English (India)
-  @JsonValue('en-IN')
   en_IN,
 
   /// Display: English (New Zeland)
-  @JsonValue('en-NZ')
   en_NZ,
 
   /// Display: English (Singapore)
-  @JsonValue('en-SG')
   en_SG,
 
   /// Display: English (United States)
-  @JsonValue('en-US')
   en_US,
 
   /// Display: Spanish
-  @JsonValue('es')
   es,
 
   /// Display: Spanish (Argentina)
-  @JsonValue('es-AR')
   es_AR,
 
   /// Display: Spanish (Spain)
-  @JsonValue('es-ES')
   es_ES,
 
   /// Display: Spanish (Uruguay)
-  @JsonValue('es-UY')
   es_UY,
 
   /// Display: Finnish
-  @JsonValue('fi')
   fi,
 
   /// Display: French
-  @JsonValue('fr')
   fr,
 
   /// Display: French (Belgium)
-  @JsonValue('fr-BE')
   fr_BE,
 
   /// Display: French (Switzerland)
-  @JsonValue('fr-CH')
   fr_CH,
 
   /// Display: French (France)
-  @JsonValue('fr-FR')
   fr_FR,
 
   /// Display: Frysian
-  @JsonValue('fy')
   fy,
 
   /// Display: Frysian (Netherlands)
-  @JsonValue('fy-NL')
   fy_NL,
 
   /// Display: Hindi
-  @JsonValue('hi')
   hi,
 
   /// Display: Croatian
-  @JsonValue('hr')
   hr,
 
   /// Display: Italian
-  @JsonValue('it')
   it,
 
   /// Display: Italian (Switzerland)
-  @JsonValue('it-CH')
   it_CH,
 
   /// Display: Italian (Italy)
-  @JsonValue('it-IT')
   it_IT,
 
   /// Display: Japanese
-  @JsonValue('ja')
   ja,
 
   /// Display: Korean
-  @JsonValue('ko')
   ko,
 
   /// Display: Dutch
-  @JsonValue('nl')
   nl,
 
   /// Display: Dutch (Belgium)
-  @JsonValue('nl-BE')
   nl_BE,
 
   /// Display: Dutch (Netherlands)
-  @JsonValue('nl-NL')
   nl_NL,
 
   /// Display: Norwegian
-  @JsonValue('no')
   no,
 
   /// Display: Norwegian (Norway)
-  @JsonValue('no-NO')
   no_NO,
 
   /// Display: Punjabi
-  @JsonValue('pa')
   pa,
 
   /// Display: Polish
-  @JsonValue('pl')
   pl,
 
   /// Display: Portuguese
-  @JsonValue('pt')
   pt,
 
   /// Display: Portuguese (Brazil)
-  @JsonValue('pt-BR')
   pt_BR,
 
   /// Display: Russian
-  @JsonValue('ru')
   ru,
 
   /// Display: Russian (Russia)
-  @JsonValue('ru-RU')
   ru_RU,
 
   /// Display: Serbian
-  @JsonValue('sr')
   sr,
 
   /// Display: Serbian (Serbia)
-  @JsonValue('sr-RS')
   sr_RS,
 
   /// Display: Swedish
-  @JsonValue('sv')
   sv,
 
   /// Display: Swedish (Sweden)
-  @JsonValue('sv-SE')
   sv_SE,
 
   /// Display: Telegu
-  @JsonValue('te')
   te,
 
   /// Display: Chinese
-  @JsonValue('zh')
   zh,
 
   /// Display: Chinese (China)
-  @JsonValue('zh-CN')
   zh_CN,
 
   /// Display: Chinese (Hong Kong)
-  @JsonValue('zh-HK')
   zh_HK,
 
   /// Display: Chinese (Singapore)
-  @JsonValue('zh-SG')
   zh_SG,
 
   /// Display: Chinese (Taiwan)
-  @JsonValue('zh-TW')
   zh_TW,
   ;
 

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -10,7 +9,6 @@ import '../../../fhir_r4.dart';
 /// existing reference structures and developing publication practices such as
 /// versioning, expressing complex contributorship roles, and referencing
 /// computable resources.
-@JsonSerializable()
 class Citation extends DomainResource {
   Citation({
     super.id,
@@ -72,10 +70,11 @@ class Citation extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Citation);
+
   @override
   String get fhirType => 'Citation';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this citation when it is
@@ -85,15 +84,12 @@ class Citation extends DomainResource {
   /// is (or will be) published. This URL can be the target of a canonical
   /// reference. It SHALL remain the same when the summary is stored on different
   /// servers.
-  @JsonKey(name: 'url')
   final FhirUri? url;
-  @JsonKey(name: '_url')
   final Element? urlElement;
 
   /// [identifier] /// A formal identifier that is used to identify this citation when it is
   /// represented in other formats, or referenced in a specification, model,
   /// design or an instance.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [version] /// The identifier that is used to identify this version of the citation when
@@ -102,64 +98,47 @@ class Citation extends DomainResource {
   /// globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a
   /// managed version is not available. There is also no expectation that
   /// versions can be placed in a lexicographical sequence.
-  @JsonKey(name: 'version')
   final FhirString? version;
-  @JsonKey(name: '_version')
   final Element? versionElement;
 
   /// [name] /// A natural language name identifying the citation. This name should be
   /// usable as an identifier for the module by machine processing applications
   /// such as code generation.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [title] /// A short, descriptive, user-friendly title for the citation.
-  @JsonKey(name: 'title')
   final FhirString? title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [status] /// The status of this summary. Enables tracking the life-cycle of the content.
-  @JsonKey(name: 'status')
   final PublicationStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [experimental] /// A Boolean value to indicate that this citation is authored for testing
   /// purposes (or education/evaluation/marketing) and is not intended to be used
   /// for genuine usage.
-  @JsonKey(name: 'experimental')
   final FhirBoolean? experimental;
-  @JsonKey(name: '_experimental')
   final Element? experimentalElement;
 
   /// [date] /// The date (and optionally time) when the citation was published. The date
   /// must change when the business version changes and it must change if the
   /// status code changes. In addition, it should change when the substantive
   /// content of the citation changes.
-  @JsonKey(name: 'date')
   final FhirDateTime? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [publisher] /// The name of the organization or individual that published the citation.
-  @JsonKey(name: 'publisher')
   final FhirString? publisher;
-  @JsonKey(name: '_publisher')
   final Element? publisherElement;
 
   /// [contact] /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  @JsonKey(name: 'contact')
   final List<ContactDetail>? contact;
 
   /// [description] /// A free text natural language description of the citation from a consumer's
   /// perspective.
-  @JsonKey(name: 'description')
   final FhirMarkdown? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [useContext] /// The content was developed with a focus and intent of supporting the
@@ -167,88 +146,66 @@ class Citation extends DomainResource {
   /// age, ...) or may be references to specific programs (insurance plans,
   /// studies, ...) and may be used to assist with indexing and searching for
   /// appropriate citation instances.
-  @JsonKey(name: 'useContext')
   final List<UsageContext>? useContext;
 
   /// [jurisdiction] /// A legal or geographic region in which the citation is intended to be used.
-  @JsonKey(name: 'jurisdiction')
   final List<CodeableConcept>? jurisdiction;
 
   /// [purpose] /// Explanation of why this citation is needed and why it has been designed as
   /// it has.
-  @JsonKey(name: 'purpose')
   final FhirMarkdown? purpose;
-  @JsonKey(name: '_purpose')
   final Element? purposeElement;
 
   /// [copyright] /// Use and/or publishing restrictions for the Citation, not for the cited
   /// artifact.
-  @JsonKey(name: 'copyright')
   final FhirMarkdown? copyright;
-  @JsonKey(name: '_copyright')
   final Element? copyrightElement;
 
   /// [approvalDate] /// The date on which the resource content was approved by the publisher.
   /// Approval happens once when the content is officially approved for usage.
-  @JsonKey(name: 'approvalDate')
   final FhirDate? approvalDate;
-  @JsonKey(name: '_approvalDate')
   final Element? approvalDateElement;
 
   /// [lastReviewDate] /// The date on which the resource content was last reviewed. Review happens
   /// periodically after approval but does not change the original approval date.
-  @JsonKey(name: 'lastReviewDate')
   final FhirDate? lastReviewDate;
-  @JsonKey(name: '_lastReviewDate')
   final Element? lastReviewDateElement;
 
   /// [effectivePeriod] /// The period during which the citation content was or is planned to be in
   /// active use.
-  @JsonKey(name: 'effectivePeriod')
   final Period? effectivePeriod;
 
   /// [author] /// Who authored the Citation.
-  @JsonKey(name: 'author')
   final List<ContactDetail>? author;
 
   /// [editor] /// Who edited the Citation.
-  @JsonKey(name: 'editor')
   final List<ContactDetail>? editor;
 
   /// [reviewer] /// Who reviewed the Citation.
-  @JsonKey(name: 'reviewer')
   final List<ContactDetail>? reviewer;
 
   /// [endorser] /// Who endorsed the Citation.
-  @JsonKey(name: 'endorser')
   final List<ContactDetail>? endorser;
 
   /// [summary] /// A human-readable display of the citation.
-  @JsonKey(name: 'summary')
   final List<CitationSummary>? summary;
 
   /// [classification] /// The assignment to an organizing scheme.
-  @JsonKey(name: 'classification')
   final List<CitationClassification>? classification;
 
   /// [note] /// Used for general notes and annotations not coded elsewhere.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [currentState] /// The status of the citation.
-  @JsonKey(name: 'currentState')
   final List<CodeableConcept>? currentState;
 
   /// [statusDate] /// An effective date or period for a status of the citation.
-  @JsonKey(name: 'statusDate')
   final List<CitationStatusDate>? statusDate;
 
   /// [relatesTo] /// Artifact related to the Citation Resource.
-  @JsonKey(name: 'relatesTo')
   final List<CitationRelatesTo>? relatesTo;
 
   /// [citedArtifact] /// The article or artifact being described.
-  @JsonKey(name: 'citedArtifact')
   final CitationCitedArtifact? citedArtifact;
   @override
   Map<String, dynamic> toJson() {
@@ -762,7 +719,6 @@ class Citation extends DomainResource {
 }
 
 /// [CitationSummary] /// A human-readable display of the citation.
-@JsonSerializable()
 class CitationSummary extends BackboneElement {
   CitationSummary({
     super.id,
@@ -778,20 +734,18 @@ class CitationSummary extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CitationSummary';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [style] /// Format for display of the citation.
-  @JsonKey(name: 'style')
   final CodeableConcept? style;
 
   /// [text] /// The human-readable display of the citation.
-  @JsonKey(name: 'text')
   final FhirMarkdown text;
-  @JsonKey(name: '_text')
   final Element? textElement;
   @override
   Map<String, dynamic> toJson() {
@@ -896,7 +850,6 @@ class CitationSummary extends BackboneElement {
 }
 
 /// [CitationClassification] /// The assignment to an organizing scheme.
-@JsonSerializable()
 class CitationClassification extends BackboneElement {
   CitationClassification({
     super.id,
@@ -911,18 +864,17 @@ class CitationClassification extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CitationClassification';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The kind of classifier (e.g. publication type, keyword).
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [classifier] /// The specific classification value.
-  @JsonKey(name: 'classifier')
   final List<CodeableConcept>? classifier;
   @override
   Map<String, dynamic> toJson() {
@@ -1029,7 +981,6 @@ class CitationClassification extends BackboneElement {
 }
 
 /// [CitationStatusDate] /// An effective date or period for a status of the citation.
-@JsonSerializable()
 class CitationStatusDate extends BackboneElement {
   CitationStatusDate({
     super.id,
@@ -1046,24 +997,21 @@ class CitationStatusDate extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CitationStatusDate';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [activity] /// Classification of the status.
-  @JsonKey(name: 'activity')
   final CodeableConcept activity;
 
   /// [actual] /// Either occurred or expected.
-  @JsonKey(name: 'actual')
   final FhirBoolean? actual;
-  @JsonKey(name: '_actual')
   final Element? actualElement;
 
   /// [period] /// When the status started and/or ended.
-  @JsonKey(name: 'period')
   final Period period;
   @override
   Map<String, dynamic> toJson() {
@@ -1173,7 +1121,6 @@ class CitationStatusDate extends BackboneElement {
 }
 
 /// [CitationRelatesTo] /// Artifact related to the Citation Resource.
-@JsonSerializable()
 class CitationRelatesTo extends BackboneElement {
   CitationRelatesTo({
     super.id,
@@ -1193,36 +1140,30 @@ class CitationRelatesTo extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CitationRelatesTo';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [relationshipType] /// How the Citation resource relates to the target artifact.
-  @JsonKey(name: 'relationshipType')
   final CodeableConcept relationshipType;
 
   /// [targetClassifier] /// The clasification of the related artifact.
-  @JsonKey(name: 'targetClassifier')
   final List<CodeableConcept>? targetClassifier;
 
   /// [targetUri] /// The article or artifact that the Citation Resource is related to.
-  @JsonKey(name: 'targetUri')
   final FhirUri? targetUri;
-  @JsonKey(name: '_targetUri')
   final Element? targetUriElement;
 
   /// [targetIdentifier] /// The article or artifact that the Citation Resource is related to.
-  @JsonKey(name: 'targetIdentifier')
   final Identifier? targetIdentifier;
 
   /// [targetReference] /// The article or artifact that the Citation Resource is related to.
-  @JsonKey(name: 'targetReference')
   final Reference? targetReference;
 
   /// [targetAttachment] /// The article or artifact that the Citation Resource is related to.
-  @JsonKey(name: 'targetAttachment')
   final Attachment? targetAttachment;
   @override
   Map<String, dynamic> toJson() {
@@ -1367,7 +1308,6 @@ class CitationRelatesTo extends BackboneElement {
 }
 
 /// [CitationCitedArtifact] /// The article or artifact being described.
-@JsonSerializable()
 class CitationCitedArtifact extends BackboneElement {
   CitationCitedArtifact({
     super.id,
@@ -1396,77 +1336,62 @@ class CitationCitedArtifact extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CitationCitedArtifact';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// A formal identifier that is used to identify this citation when it is
   /// represented in other formats, or referenced in a specification, model,
   /// design or an instance.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [relatedIdentifier] /// A formal identifier that is used to identify things closely related to this
   /// citation.
-  @JsonKey(name: 'relatedIdentifier')
   final List<Identifier>? relatedIdentifier;
 
   /// [dateAccessed] /// When the cited artifact was accessed.
-  @JsonKey(name: 'dateAccessed')
   final FhirDateTime? dateAccessed;
-  @JsonKey(name: '_dateAccessed')
   final Element? dateAccessedElement;
 
   /// [version] /// The defined version of the cited artifact.
-  @JsonKey(name: 'version')
   final CitationVersion? version;
 
   /// [currentState] /// The status of the cited artifact.
-  @JsonKey(name: 'currentState')
   final List<CodeableConcept>? currentState;
 
   /// [statusDate] /// An effective date or period for a status of the cited artifact.
-  @JsonKey(name: 'statusDate')
   final List<CitationStatusDate>? statusDate;
 
   /// [title] /// The title details of the article or artifact.
-  @JsonKey(name: 'title')
   final List<CitationTitle>? title;
 
   /// [abstract_] /// Summary of the article or artifact.
-  @JsonKey(name: 'abstract')
   final List<CitationAbstract>? abstract_;
 
   /// [part_] /// The component of the article or artifact.
-  @JsonKey(name: 'part')
   final CitationPart? part_;
 
   /// [relatesTo] /// The artifact related to the cited artifact.
-  @JsonKey(name: 'relatesTo')
   final List<CitationRelatesTo>? relatesTo;
 
   /// [publicationForm] /// If multiple, used to represent alternative forms of the article that are
   /// not separate citations.
-  @JsonKey(name: 'publicationForm')
   final List<CitationPublicationForm>? publicationForm;
 
   /// [webLocation] /// Used for any URL for the article or artifact cited.
-  @JsonKey(name: 'webLocation')
   final List<CitationWebLocation>? webLocation;
 
   /// [classification] /// The assignment to an organizing scheme.
-  @JsonKey(name: 'classification')
   final List<CitationClassification>? classification;
 
   /// [contributorship] /// This element is used to list authors and other contributors, their contact
   /// information, specific contributions, and summary statements.
-  @JsonKey(name: 'contributorship')
   final CitationContributorship? contributorship;
 
   /// [note] /// Any additional information or content for the article or artifact.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
@@ -1731,7 +1656,6 @@ class CitationCitedArtifact extends BackboneElement {
 }
 
 /// [CitationVersion] /// The defined version of the cited artifact.
-@JsonSerializable()
 class CitationVersion extends BackboneElement {
   CitationVersion({
     super.id,
@@ -1747,20 +1671,18 @@ class CitationVersion extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CitationVersion';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [value] /// The version number or other version identifier.
-  @JsonKey(name: 'value')
   final FhirString value;
-  @JsonKey(name: '_value')
   final Element? valueElement;
 
   /// [baseCitation] /// Citation for the main version of the cited artifact.
-  @JsonKey(name: 'baseCitation')
   final Reference? baseCitation;
   @override
   Map<String, dynamic> toJson() {
@@ -1865,7 +1787,6 @@ class CitationVersion extends BackboneElement {
 }
 
 /// [CitationStatusDate1] /// An effective date or period for a status of the cited artifact.
-@JsonSerializable()
 class CitationStatusDate1 extends BackboneElement {
   CitationStatusDate1({
     super.id,
@@ -1882,24 +1803,21 @@ class CitationStatusDate1 extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CitationStatusDate1';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [activity] /// Classification of the status.
-  @JsonKey(name: 'activity')
   final CodeableConcept activity;
 
   /// [actual] /// Either occurred or expected.
-  @JsonKey(name: 'actual')
   final FhirBoolean? actual;
-  @JsonKey(name: '_actual')
   final Element? actualElement;
 
   /// [period] /// When the status started and/or ended.
-  @JsonKey(name: 'period')
   final Period period;
   @override
   Map<String, dynamic> toJson() {
@@ -2009,7 +1927,6 @@ class CitationStatusDate1 extends BackboneElement {
 }
 
 /// [CitationTitle] /// The title details of the article or artifact.
-@JsonSerializable()
 class CitationTitle extends BackboneElement {
   CitationTitle({
     super.id,
@@ -2026,24 +1943,21 @@ class CitationTitle extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CitationTitle';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Used to express the reason or specific aspect for the title.
-  @JsonKey(name: 'type')
   final List<CodeableConcept>? type;
 
   /// [language] /// Used to express the specific language.
-  @JsonKey(name: 'language')
   final CodeableConcept? language;
 
   /// [text] /// The title of the article or artifact.
-  @JsonKey(name: 'text')
   final FhirMarkdown text;
-  @JsonKey(name: '_text')
   final Element? textElement;
   @override
   Map<String, dynamic> toJson() {
@@ -2160,7 +2074,6 @@ class CitationTitle extends BackboneElement {
 }
 
 /// [CitationAbstract] /// Summary of the article or artifact.
-@JsonSerializable()
 class CitationAbstract extends BackboneElement {
   CitationAbstract({
     super.id,
@@ -2179,30 +2092,25 @@ class CitationAbstract extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CitationAbstract';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Used to express the reason or specific aspect for the abstract.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [language] /// Used to express the specific language.
-  @JsonKey(name: 'language')
   final CodeableConcept? language;
 
   /// [text] /// Abstract content.
-  @JsonKey(name: 'text')
   final FhirMarkdown text;
-  @JsonKey(name: '_text')
   final Element? textElement;
 
   /// [copyright] /// Copyright notice for the abstract.
-  @JsonKey(name: 'copyright')
   final FhirMarkdown? copyright;
-  @JsonKey(name: '_copyright')
   final Element? copyrightElement;
   @override
   Map<String, dynamic> toJson() {
@@ -2330,7 +2238,6 @@ class CitationAbstract extends BackboneElement {
 }
 
 /// [CitationPart] /// The component of the article or artifact.
-@JsonSerializable()
 class CitationPart extends BackboneElement {
   CitationPart({
     super.id,
@@ -2347,24 +2254,21 @@ class CitationPart extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CitationPart';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The kind of component.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [value] /// The specification of the component.
-  @JsonKey(name: 'value')
   final FhirString? value;
-  @JsonKey(name: '_value')
   final Element? valueElement;
 
   /// [baseCitation] /// The citation for the full article or artifact.
-  @JsonKey(name: 'baseCitation')
   final Reference? baseCitation;
   @override
   Map<String, dynamic> toJson() {
@@ -2481,7 +2385,6 @@ class CitationPart extends BackboneElement {
 }
 
 /// [CitationRelatesTo1] /// The artifact related to the cited artifact.
-@JsonSerializable()
 class CitationRelatesTo1 extends BackboneElement {
   CitationRelatesTo1({
     super.id,
@@ -2501,36 +2404,30 @@ class CitationRelatesTo1 extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CitationRelatesTo1';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [relationshipType] /// How the cited artifact relates to the target artifact.
-  @JsonKey(name: 'relationshipType')
   final CodeableConcept relationshipType;
 
   /// [targetClassifier] /// The clasification of the related artifact.
-  @JsonKey(name: 'targetClassifier')
   final List<CodeableConcept>? targetClassifier;
 
   /// [targetUri] /// The article or artifact that the cited artifact is related to.
-  @JsonKey(name: 'targetUri')
   final FhirUri? targetUri;
-  @JsonKey(name: '_targetUri')
   final Element? targetUriElement;
 
   /// [targetIdentifier] /// The article or artifact that the cited artifact is related to.
-  @JsonKey(name: 'targetIdentifier')
   final Identifier? targetIdentifier;
 
   /// [targetReference] /// The article or artifact that the cited artifact is related to.
-  @JsonKey(name: 'targetReference')
   final Reference? targetReference;
 
   /// [targetAttachment] /// The article or artifact that the cited artifact is related to.
-  @JsonKey(name: 'targetAttachment')
   final Attachment? targetAttachment;
   @override
   Map<String, dynamic> toJson() {
@@ -2676,7 +2573,6 @@ class CitationRelatesTo1 extends BackboneElement {
 
 /// [CitationPublicationForm] /// If multiple, used to represent alternative forms of the article that are
 /// not separate citations.
-@JsonSerializable()
 class CitationPublicationForm extends BackboneElement {
   CitationPublicationForm({
     super.id,
@@ -2708,71 +2604,53 @@ class CitationPublicationForm extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CitationPublicationForm';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [publishedIn] /// The collection the cited article or artifact is published in.
-  @JsonKey(name: 'publishedIn')
   final CitationPublishedIn? publishedIn;
 
   /// [periodicRelease] /// The specific issue in which the cited article resides.
-  @JsonKey(name: 'periodicRelease')
   final CitationPeriodicRelease? periodicRelease;
 
   /// [articleDate] /// The date the article was added to the database, or the date the article was
   /// released (which may differ from the journal issue publication date).
-  @JsonKey(name: 'articleDate')
   final FhirDateTime? articleDate;
-  @JsonKey(name: '_articleDate')
   final Element? articleDateElement;
 
   /// [lastRevisionDate] /// The date the article was last revised or updated in the database.
-  @JsonKey(name: 'lastRevisionDate')
   final FhirDateTime? lastRevisionDate;
-  @JsonKey(name: '_lastRevisionDate')
   final Element? lastRevisionDateElement;
 
   /// [language] /// Language in which this form of the article is published.
-  @JsonKey(name: 'language')
   final List<CodeableConcept>? language;
 
   /// [accessionNumber] /// Entry number or identifier for inclusion in a database.
-  @JsonKey(name: 'accessionNumber')
   final FhirString? accessionNumber;
-  @JsonKey(name: '_accessionNumber')
   final Element? accessionNumberElement;
 
   /// [pageString] /// Used for full display of pagination.
-  @JsonKey(name: 'pageString')
   final FhirString? pageString;
-  @JsonKey(name: '_pageString')
   final Element? pageStringElement;
 
   /// [firstPage] /// Used for isolated representation of first page.
-  @JsonKey(name: 'firstPage')
   final FhirString? firstPage;
-  @JsonKey(name: '_firstPage')
   final Element? firstPageElement;
 
   /// [lastPage] /// Used for isolated representation of last page.
-  @JsonKey(name: 'lastPage')
   final FhirString? lastPage;
-  @JsonKey(name: '_lastPage')
   final Element? lastPageElement;
 
   /// [pageCount] /// Actual or approximate number of pages or screens.
-  @JsonKey(name: 'pageCount')
   final FhirString? pageCount;
-  @JsonKey(name: '_pageCount')
   final Element? pageCountElement;
 
   /// [copyright] /// Copyright notice for the full article or artifact.
-  @JsonKey(name: 'copyright')
   final FhirMarkdown? copyright;
-  @JsonKey(name: '_copyright')
   final Element? copyrightElement;
   @override
   Map<String, dynamic> toJson() {
@@ -3013,7 +2891,6 @@ class CitationPublicationForm extends BackboneElement {
 }
 
 /// [CitationPublishedIn] /// The collection the cited article or artifact is published in.
-@JsonSerializable()
 class CitationPublishedIn extends BackboneElement {
   CitationPublishedIn({
     super.id,
@@ -3033,35 +2910,29 @@ class CitationPublishedIn extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CitationPublishedIn';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Kind of container (e.g. Periodical, database, or book).
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [identifier] /// Journal identifiers include ISSN, ISO Abbreviation and NLMuniqueID; Book
   /// identifiers include ISBN.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [title] /// Name of the database or title of the book or journal.
-  @JsonKey(name: 'title')
   final FhirString? title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [publisher] /// Name of the publisher.
-  @JsonKey(name: 'publisher')
   final Reference? publisher;
 
   /// [publisherLocation] /// Geographic location of the publisher.
-  @JsonKey(name: 'publisherLocation')
   final FhirString? publisherLocation;
-  @JsonKey(name: '_publisherLocation')
   final Element? publisherLocationElement;
   @override
   Map<String, dynamic> toJson() {
@@ -3207,7 +3078,6 @@ class CitationPublishedIn extends BackboneElement {
 }
 
 /// [CitationPeriodicRelease] /// The specific issue in which the cited article resides.
-@JsonSerializable()
 class CitationPeriodicRelease extends BackboneElement {
   CitationPeriodicRelease({
     super.id,
@@ -3226,31 +3096,26 @@ class CitationPeriodicRelease extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CitationPeriodicRelease';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [citedMedium] /// Describes the form of the medium cited. Common codes are "Internet" or
   /// "Print".
-  @JsonKey(name: 'citedMedium')
   final CodeableConcept? citedMedium;
 
   /// [volume] /// Volume number of journal in which the article is published.
-  @JsonKey(name: 'volume')
   final FhirString? volume;
-  @JsonKey(name: '_volume')
   final Element? volumeElement;
 
   /// [issue] /// Issue, part or supplement of journal in which the article is published.
-  @JsonKey(name: 'issue')
   final FhirString? issue;
-  @JsonKey(name: '_issue')
   final Element? issueElement;
 
   /// [dateOfPublication] /// Defining the date on which the issue of the journal was published.
-  @JsonKey(name: 'dateOfPublication')
   final CitationDateOfPublication? dateOfPublication;
   @override
   Map<String, dynamic> toJson() {
@@ -3383,7 +3248,6 @@ class CitationPeriodicRelease extends BackboneElement {
 }
 
 /// [CitationDateOfPublication] /// Defining the date on which the issue of the journal was published.
-@JsonSerializable()
 class CitationDateOfPublication extends BackboneElement {
   CitationDateOfPublication({
     super.id,
@@ -3408,47 +3272,36 @@ class CitationDateOfPublication extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CitationDateOfPublication';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [date] /// Date on which the issue of the journal was published.
-  @JsonKey(name: 'date')
   final FhirDate? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [year] /// Year on which the issue of the journal was published.
-  @JsonKey(name: 'year')
   final FhirString? year;
-  @JsonKey(name: '_year')
   final Element? yearElement;
 
   /// [month] /// Month on which the issue of the journal was published.
-  @JsonKey(name: 'month')
   final FhirString? month;
-  @JsonKey(name: '_month')
   final Element? monthElement;
 
   /// [day] /// Day on which the issue of the journal was published.
-  @JsonKey(name: 'day')
   final FhirString? day;
-  @JsonKey(name: '_day')
   final Element? dayElement;
 
   /// [season] /// Spring, Summer, Fall/Autumn, Winter.
-  @JsonKey(name: 'season')
   final FhirString? season;
-  @JsonKey(name: '_season')
   final Element? seasonElement;
 
   /// [text] /// Text representation of the date of which the issue of the journal was
   /// published.
-  @JsonKey(name: 'text')
   final FhirString? text;
-  @JsonKey(name: '_text')
   final Element? textElement;
   @override
   Map<String, dynamic> toJson() {
@@ -3619,7 +3472,6 @@ class CitationDateOfPublication extends BackboneElement {
 }
 
 /// [CitationWebLocation] /// Used for any URL for the article or artifact cited.
-@JsonSerializable()
 class CitationWebLocation extends BackboneElement {
   CitationWebLocation({
     super.id,
@@ -3635,20 +3487,18 @@ class CitationWebLocation extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CitationWebLocation';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Code the reason for different URLs, e.g. abstract and full-text.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [url] /// The specific URL.
-  @JsonKey(name: 'url')
   final FhirUri? url;
-  @JsonKey(name: '_url')
   final Element? urlElement;
   @override
   Map<String, dynamic> toJson() {
@@ -3757,7 +3607,6 @@ class CitationWebLocation extends BackboneElement {
 }
 
 /// [CitationClassification1] /// The assignment to an organizing scheme.
-@JsonSerializable()
 class CitationClassification1 extends BackboneElement {
   CitationClassification1({
     super.id,
@@ -3773,22 +3622,20 @@ class CitationClassification1 extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CitationClassification1';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The kind of classifier (e.g. publication type, keyword).
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [classifier] /// The specific classification value.
-  @JsonKey(name: 'classifier')
   final List<CodeableConcept>? classifier;
 
   /// [whoClassified] /// Provenance and copyright of classification.
-  @JsonKey(name: 'whoClassified')
   final CitationWhoClassified? whoClassified;
   @override
   Map<String, dynamic> toJson() {
@@ -3904,7 +3751,6 @@ class CitationClassification1 extends BackboneElement {
 }
 
 /// [CitationWhoClassified] /// Provenance and copyright of classification.
-@JsonSerializable()
 class CitationWhoClassified extends BackboneElement {
   CitationWhoClassified({
     super.id,
@@ -3924,35 +3770,29 @@ class CitationWhoClassified extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CitationWhoClassified';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [person] /// Person who created the classification.
-  @JsonKey(name: 'person')
   final Reference? person;
 
   /// [organization] /// Organization who created the classification.
-  @JsonKey(name: 'organization')
   final Reference? organization;
 
   /// [publisher] /// The publisher of the classification, not the publisher of the article or
   /// artifact being cited.
-  @JsonKey(name: 'publisher')
   final Reference? publisher;
 
   /// [classifierCopyright] /// Rights management statement for the classification.
-  @JsonKey(name: 'classifierCopyright')
   final FhirString? classifierCopyright;
-  @JsonKey(name: '_classifierCopyright')
   final Element? classifierCopyrightElement;
 
   /// [freeToShare] /// Acceptable to re-use the classification.
-  @JsonKey(name: 'freeToShare')
   final FhirBoolean? freeToShare;
-  @JsonKey(name: '_freeToShare')
   final Element? freeToShareElement;
   @override
   Map<String, dynamic> toJson() {
@@ -4097,7 +3937,6 @@ class CitationWhoClassified extends BackboneElement {
 
 /// [CitationContributorship] /// This element is used to list authors and other contributors, their contact
 /// information, specific contributions, and summary statements.
-@JsonSerializable()
 class CitationContributorship extends BackboneElement {
   CitationContributorship({
     super.id,
@@ -4114,25 +3953,22 @@ class CitationContributorship extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CitationContributorship';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [complete] /// Indicates if the list includes all authors and/or contributors.
-  @JsonKey(name: 'complete')
   final FhirBoolean? complete;
-  @JsonKey(name: '_complete')
   final Element? completeElement;
 
   /// [entry] /// An individual entity named in the author list or contributor list.
-  @JsonKey(name: 'entry')
   final List<CitationEntry>? entry;
 
   /// [summary] /// Used to record a display of the author/contributor list without separate
   /// coding for each list member.
-  @JsonKey(name: 'summary')
   final List<CitationSummary>? summary;
   @override
   Map<String, dynamic> toJson() {
@@ -4257,7 +4093,6 @@ class CitationContributorship extends BackboneElement {
 }
 
 /// [CitationEntry] /// An individual entity named in the author list or contributor list.
-@JsonSerializable()
 class CitationEntry extends BackboneElement {
   CitationEntry({
     super.id,
@@ -4286,68 +4121,53 @@ class CitationEntry extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CitationEntry';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [name] /// A name associated with the individual.
-  @JsonKey(name: 'name')
   final HumanName? name;
 
   /// [initials] /// Initials for forename.
-  @JsonKey(name: 'initials')
   final FhirString? initials;
-  @JsonKey(name: '_initials')
   final Element? initialsElement;
 
   /// [collectiveName] /// Used for collective or corporate name as an author.
-  @JsonKey(name: 'collectiveName')
   final FhirString? collectiveName;
-  @JsonKey(name: '_collectiveName')
   final Element? collectiveNameElement;
 
   /// [identifier] /// Unique person identifier.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [affiliationInfo] /// Organization affiliated with the entity.
-  @JsonKey(name: 'affiliationInfo')
   final List<CitationAffiliationInfo>? affiliationInfo;
 
   /// [address] /// Physical mailing address for the author or contributor.
-  @JsonKey(name: 'address')
   final List<Address>? address;
 
   /// [telecom] /// Email or telephone contact methods for the author or contributor.
-  @JsonKey(name: 'telecom')
   final List<ContactPoint>? telecom;
 
   /// [contributionType] /// This element identifies the specific nature of an individual’s contribution
   /// with respect to the cited work.
-  @JsonKey(name: 'contributionType')
   final List<CodeableConcept>? contributionType;
 
   /// [role] /// The role of the contributor (e.g. author, editor, reviewer).
-  @JsonKey(name: 'role')
   final CodeableConcept? role;
 
   /// [contributionInstance] /// Contributions with accounting for time or number.
-  @JsonKey(name: 'contributionInstance')
   final List<CitationContributionInstance>? contributionInstance;
 
   /// [correspondingContact] /// Indication of which contributor is the corresponding contributor for the
   /// role.
-  @JsonKey(name: 'correspondingContact')
   final FhirBoolean? correspondingContact;
-  @JsonKey(name: '_correspondingContact')
   final Element? correspondingContactElement;
 
   /// [listOrder] /// Used to code order of authors.
-  @JsonKey(name: 'listOrder')
   final FhirPositiveInt? listOrder;
-  @JsonKey(name: '_listOrder')
   final Element? listOrderElement;
   @override
   Map<String, dynamic> toJson() {
@@ -4590,7 +4410,6 @@ class CitationEntry extends BackboneElement {
 }
 
 /// [CitationAffiliationInfo] /// Organization affiliated with the entity.
-@JsonSerializable()
 class CitationAffiliationInfo extends BackboneElement {
   CitationAffiliationInfo({
     super.id,
@@ -4608,26 +4427,22 @@ class CitationAffiliationInfo extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CitationAffiliationInfo';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [affiliation] /// Display for the organization.
-  @JsonKey(name: 'affiliation')
   final FhirString? affiliation;
-  @JsonKey(name: '_affiliation')
   final Element? affiliationElement;
 
   /// [role] /// Role within the organization, such as professional title.
-  @JsonKey(name: 'role')
   final FhirString? role;
-  @JsonKey(name: '_role')
   final Element? roleElement;
 
   /// [identifier] /// Identifier for the organization.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
   @override
   Map<String, dynamic> toJson() {
@@ -4755,7 +4570,6 @@ class CitationAffiliationInfo extends BackboneElement {
 }
 
 /// [CitationContributionInstance] /// Contributions with accounting for time or number.
-@JsonSerializable()
 class CitationContributionInstance extends BackboneElement {
   CitationContributionInstance({
     super.id,
@@ -4771,20 +4585,18 @@ class CitationContributionInstance extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CitationContributionInstance';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The specific contribution.
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [time] /// The time that the contribution was made.
-  @JsonKey(name: 'time')
   final FhirDateTime? time;
-  @JsonKey(name: '_time')
   final Element? timeElement;
   @override
   Map<String, dynamic> toJson() {
@@ -4890,7 +4702,6 @@ class CitationContributionInstance extends BackboneElement {
 
 /// [CitationSummary1] /// Used to record a display of the author/contributor list without separate
 /// coding for each list member.
-@JsonSerializable()
 class CitationSummary1 extends BackboneElement {
   CitationSummary1({
     super.id,
@@ -4908,30 +4719,26 @@ class CitationSummary1 extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CitationSummary1';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Used most commonly to express an author list or a contributorship
   /// statement.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [style] /// The format for the display string.
-  @JsonKey(name: 'style')
   final CodeableConcept? style;
 
   /// [source] /// Used to code the producer or rule for creating the display string.
-  @JsonKey(name: 'source')
   final CodeableConcept? source;
 
   /// [value] /// The display string for the author list, contributor list, or
   /// contributorship statement.
-  @JsonKey(name: 'value')
   final FhirMarkdown value;
-  @JsonKey(name: '_value')
   final Element? valueElement;
   @override
   Map<String, dynamic> toJson() {

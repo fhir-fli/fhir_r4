@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,7 +7,6 @@ import '../../../fhir_r4.dart';
 /// [ClinicalUseDefinition] /// A single issue - either an indication, contraindication, interaction or an
 /// undesirable effect for a medicinal product, medication, device or
 /// procedure.
-@JsonSerializable()
 class ClinicalUseDefinition extends DomainResource {
   ClinicalUseDefinition({
     super.id,
@@ -40,62 +38,51 @@ class ClinicalUseDefinition extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.ClinicalUseDefinition);
+
   @override
   String get fhirType => 'ClinicalUseDefinition';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Business identifier for this issue.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [type] /// indication | contraindication | interaction | undesirable-effect | warning.
-  @JsonKey(name: 'type')
   final ClinicalUseDefinitionType type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [category] /// A categorisation of the issue, primarily for dividing warnings into subject
   /// heading areas such as "Pregnancy and Lactation", "Overdose", "Effects on
   /// Ability to Drive and Use Machines".
-  @JsonKey(name: 'category')
   final List<CodeableConcept>? category;
 
   /// [subject] /// The medication or procedure for which this is an indication.
-  @JsonKey(name: 'subject')
   final List<Reference>? subject;
 
   /// [status] /// Whether this is a current issue or one that has been retired etc.
-  @JsonKey(name: 'status')
   final CodeableConcept? status;
 
   /// [contraindication] /// Specifics for when this is a contraindication.
-  @JsonKey(name: 'contraindication')
   final ClinicalUseDefinitionContraindication? contraindication;
 
   /// [indication] /// Specifics for when this is an indication.
-  @JsonKey(name: 'indication')
   final ClinicalUseDefinitionIndication? indication;
 
   /// [interaction] /// Specifics for when this is an interaction.
-  @JsonKey(name: 'interaction')
   final ClinicalUseDefinitionInteraction? interaction;
 
   /// [population] /// The population group to which this applies.
-  @JsonKey(name: 'population')
   final List<Reference>? population;
 
   /// [undesirableEffect] /// Describe the possible undesirable effects (negative outcomes) from the use
   /// of the medicinal product as treatment.
-  @JsonKey(name: 'undesirableEffect')
   final ClinicalUseDefinitionUndesirableEffect? undesirableEffect;
 
   /// [warning] /// A critical piece of information about environmental, health or physical
   /// risks or hazards that serve as caution to the user. For example 'Do not
   /// operate heavy machinery', 'May cause drowsiness', or 'Get medical
   /// advice/attention if you feel unwell'.
-  @JsonKey(name: 'warning')
   final ClinicalUseDefinitionWarning? warning;
   @override
   Map<String, dynamic> toJson() {
@@ -344,7 +331,6 @@ class ClinicalUseDefinition extends DomainResource {
 }
 
 /// [ClinicalUseDefinitionContraindication] /// Specifics for when this is a contraindication.
-@JsonSerializable()
 class ClinicalUseDefinitionContraindication extends BackboneElement {
   ClinicalUseDefinitionContraindication({
     super.id,
@@ -362,33 +348,29 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ClinicalUseDefinitionContraindication';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [diseaseSymptomProcedure] /// The situation that is being documented as contraindicating against this
   /// item.
-  @JsonKey(name: 'diseaseSymptomProcedure')
   final CodeableReference? diseaseSymptomProcedure;
 
   /// [diseaseStatus] /// The status of the disease or symptom for the contraindication, for example
   /// "chronic" or "metastatic".
-  @JsonKey(name: 'diseaseStatus')
   final CodeableReference? diseaseStatus;
 
   /// [comorbidity] /// A comorbidity (concurrent condition) or coinfection.
-  @JsonKey(name: 'comorbidity')
   final List<CodeableReference>? comorbidity;
 
   /// [indication] /// The indication which this is a contraidication for.
-  @JsonKey(name: 'indication')
   final List<Reference>? indication;
 
   /// [otherTherapy] /// Information about the use of the medicinal product in relation to other
   /// therapies described as part of the contraindication.
-  @JsonKey(name: 'otherTherapy')
   final List<ClinicalUseDefinitionOtherTherapy>? otherTherapy;
   @override
   Map<String, dynamic> toJson() {
@@ -536,7 +518,6 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
 
 /// [ClinicalUseDefinitionOtherTherapy] /// Information about the use of the medicinal product in relation to other
 /// therapies described as part of the contraindication.
-@JsonSerializable()
 class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
   ClinicalUseDefinitionOtherTherapy({
     super.id,
@@ -551,20 +532,19 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ClinicalUseDefinitionOtherTherapy';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [relationshipType] /// The type of relationship between the medicinal product indication or
   /// contraindication and another therapy.
-  @JsonKey(name: 'relationshipType')
   final CodeableConcept relationshipType;
 
   /// [therapy] /// Reference to a specific medication (active substance, medicinal product or
   /// class of products) as part of an indication or contraindication.
-  @JsonKey(name: 'therapy')
   final CodeableReference therapy;
   @override
   Map<String, dynamic> toJson() {
@@ -663,7 +643,6 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
 }
 
 /// [ClinicalUseDefinitionIndication] /// Specifics for when this is an indication.
-@JsonSerializable()
 class ClinicalUseDefinitionIndication extends BackboneElement {
   ClinicalUseDefinitionIndication({
     super.id,
@@ -685,54 +664,46 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ClinicalUseDefinitionIndication';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [diseaseSymptomProcedure] /// The situation that is being documented as an indicaton for this item.
-  @JsonKey(name: 'diseaseSymptomProcedure')
   final CodeableReference? diseaseSymptomProcedure;
 
   /// [diseaseStatus] /// The status of the disease or symptom for the indication, for example
   /// "chronic" or "metastatic".
-  @JsonKey(name: 'diseaseStatus')
   final CodeableReference? diseaseStatus;
 
   /// [comorbidity] /// A comorbidity (concurrent condition) or coinfection as part of the
   /// indication.
-  @JsonKey(name: 'comorbidity')
   final List<CodeableReference>? comorbidity;
 
   /// [intendedEffect] /// The intended effect, aim or strategy to be achieved.
-  @JsonKey(name: 'intendedEffect')
   final CodeableReference? intendedEffect;
 
   /// [durationRange] /// Timing or duration information, that may be associated with use with the
   /// indicated condition e.g. Adult patients suffering from myocardial
   /// infarction (from a few days until less than 35 days), ischaemic stroke
   /// (from 7 days until less than 6 months).
-  @JsonKey(name: 'durationRange')
   final Range? durationRange;
 
   /// [durationString] /// Timing or duration information, that may be associated with use with the
   /// indicated condition e.g. Adult patients suffering from myocardial
   /// infarction (from a few days until less than 35 days), ischaemic stroke
   /// (from 7 days until less than 6 months).
-  @JsonKey(name: 'durationString')
   final FhirString? durationString;
-  @JsonKey(name: '_durationString')
   final Element? durationStringElement;
 
   /// [undesirableEffect] /// An unwanted side effect or negative outcome that may happen if you use the
   /// drug (or other subject of this resource) for this indication.
-  @JsonKey(name: 'undesirableEffect')
   final List<Reference>? undesirableEffect;
 
   /// [otherTherapy] /// Information about the use of the medicinal product in relation to other
   /// therapies described as part of the indication.
-  @JsonKey(name: 'otherTherapy')
   final List<ClinicalUseDefinitionOtherTherapy>? otherTherapy;
   @override
   Map<String, dynamic> toJson() {
@@ -912,7 +883,6 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
 }
 
 /// [ClinicalUseDefinitionInteraction] /// Specifics for when this is an interaction.
-@JsonSerializable()
 class ClinicalUseDefinitionInteraction extends BackboneElement {
   ClinicalUseDefinitionInteraction({
     super.id,
@@ -930,32 +900,28 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ClinicalUseDefinitionInteraction';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [interactant] /// The specific medication, food, substance or laboratory test that interacts.
-  @JsonKey(name: 'interactant')
   final List<ClinicalUseDefinitionInteractant>? interactant;
 
   /// [type] /// The type of the interaction e.g. drug-drug interaction, drug-food
   /// interaction, drug-lab test interaction.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [effect] /// The effect of the interaction, for example "reduced gastric absorption of
   /// primary medication".
-  @JsonKey(name: 'effect')
   final CodeableReference? effect;
 
   /// [incidence] /// The incidence of the interaction, e.g. theoretical, observed.
-  @JsonKey(name: 'incidence')
   final CodeableConcept? incidence;
 
   /// [management] /// Actions for managing the interaction.
-  @JsonKey(name: 'management')
   final List<CodeableConcept>? management;
   @override
   Map<String, dynamic> toJson() {
@@ -1093,7 +1059,6 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
 }
 
 /// [ClinicalUseDefinitionInteractant] /// The specific medication, food, substance or laboratory test that interacts.
-@JsonSerializable()
 class ClinicalUseDefinitionInteractant extends BackboneElement {
   ClinicalUseDefinitionInteractant({
     super.id,
@@ -1108,18 +1073,17 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ClinicalUseDefinitionInteractant';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [itemReference] /// The specific medication, food or laboratory test that interacts.
-  @JsonKey(name: 'itemReference')
   final Reference? itemReference;
 
   /// [itemCodeableConcept] /// The specific medication, food or laboratory test that interacts.
-  @JsonKey(name: 'itemCodeableConcept')
   final CodeableConcept? itemCodeableConcept;
   @override
   Map<String, dynamic> toJson() {
@@ -1225,7 +1189,6 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
 
 /// [ClinicalUseDefinitionUndesirableEffect] /// Describe the possible undesirable effects (negative outcomes) from the use
 /// of the medicinal product as treatment.
-@JsonSerializable()
 class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
   ClinicalUseDefinitionUndesirableEffect({
     super.id,
@@ -1241,22 +1204,20 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ClinicalUseDefinitionUndesirableEffect';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [symptomConditionEffect] /// The situation in which the undesirable effect may manifest.
-  @JsonKey(name: 'symptomConditionEffect')
   final CodeableReference? symptomConditionEffect;
 
   /// [classification] /// High level classification of the effect.
-  @JsonKey(name: 'classification')
   final CodeableConcept? classification;
 
   /// [frequencyOfOccurrence] /// How often the effect is seen.
-  @JsonKey(name: 'frequencyOfOccurrence')
   final CodeableConcept? frequencyOfOccurrence;
   @override
   Map<String, dynamic> toJson() {
@@ -1377,7 +1338,6 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
 /// risks or hazards that serve as caution to the user. For example 'Do not
 /// operate heavy machinery', 'May cause drowsiness', or 'Get medical
 /// advice/attention if you feel unwell'.
-@JsonSerializable()
 class ClinicalUseDefinitionWarning extends BackboneElement {
   ClinicalUseDefinitionWarning({
     super.id,
@@ -1393,20 +1353,18 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ClinicalUseDefinitionWarning';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [description] /// A textual definition of this warning, with formatting.
-  @JsonKey(name: 'description')
   final FhirMarkdown? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [code] /// A coded or unformatted textual definition of this warning.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
   @override
   Map<String, dynamic> toJson() {

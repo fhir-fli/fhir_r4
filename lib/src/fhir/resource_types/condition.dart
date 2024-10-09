@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [Condition] /// A clinical condition, problem, diagnosis, or other event, situation, issue,
 /// or clinical concept that has risen to a level of concern.
-@JsonSerializable()
 class Condition extends DomainResource {
   Condition({
     super.id,
@@ -57,151 +55,122 @@ class Condition extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Condition);
+
   @override
   String get fhirType => 'Condition';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Business identifiers assigned to this condition by the performer or other
   /// systems which remain constant as the resource is updated and propagates
   /// from server to server.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [clinicalStatus] /// The clinical status of the condition.
-  @JsonKey(name: 'clinicalStatus')
   final CodeableConcept? clinicalStatus;
 
   /// [verificationStatus] /// The verification status to support the clinical status of the condition.
-  @JsonKey(name: 'verificationStatus')
   final CodeableConcept? verificationStatus;
 
   /// [category] /// A category assigned to the condition.
-  @JsonKey(name: 'category')
   final List<CodeableConcept>? category;
 
   /// [severity] /// A subjective assessment of the severity of the condition as evaluated by
   /// the clinician.
-  @JsonKey(name: 'severity')
   final CodeableConcept? severity;
 
   /// [code] /// Identification of the condition, problem or diagnosis.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [bodySite] /// The anatomical location where this condition manifests itself.
-  @JsonKey(name: 'bodySite')
   final List<CodeableConcept>? bodySite;
 
   /// [subject] /// Indicates the patient or group who the condition record is associated with.
-  @JsonKey(name: 'subject')
   final Reference subject;
 
   /// [encounter] /// The Encounter during which this Condition was created or to which the
   /// creation of this record is tightly associated.
-  @JsonKey(name: 'encounter')
   final Reference? encounter;
 
   /// [onsetDateTime] /// Estimated or actual date or date-time the condition began, in the opinion
   /// of the clinician.
-  @JsonKey(name: 'onsetDateTime')
   final FhirDateTime? onsetDateTime;
-  @JsonKey(name: '_onsetDateTime')
   final Element? onsetDateTimeElement;
 
   /// [onsetAge] /// Estimated or actual date or date-time the condition began, in the opinion
   /// of the clinician.
-  @JsonKey(name: 'onsetAge')
   final Age? onsetAge;
 
   /// [onsetPeriod] /// Estimated or actual date or date-time the condition began, in the opinion
   /// of the clinician.
-  @JsonKey(name: 'onsetPeriod')
   final Period? onsetPeriod;
 
   /// [onsetRange] /// Estimated or actual date or date-time the condition began, in the opinion
   /// of the clinician.
-  @JsonKey(name: 'onsetRange')
   final Range? onsetRange;
 
   /// [onsetString] /// Estimated or actual date or date-time the condition began, in the opinion
   /// of the clinician.
-  @JsonKey(name: 'onsetString')
   final FhirString? onsetString;
-  @JsonKey(name: '_onsetString')
   final Element? onsetStringElement;
 
   /// [abatementDateTime] /// The date or estimated date that the condition resolved or went into
   /// remission. This is called "abatement" because of the many overloaded
   /// connotations associated with "remission" or "resolution" - Conditions are
   /// never really resolved, but they can abate.
-  @JsonKey(name: 'abatementDateTime')
   final FhirDateTime? abatementDateTime;
-  @JsonKey(name: '_abatementDateTime')
   final Element? abatementDateTimeElement;
 
   /// [abatementAge] /// The date or estimated date that the condition resolved or went into
   /// remission. This is called "abatement" because of the many overloaded
   /// connotations associated with "remission" or "resolution" - Conditions are
   /// never really resolved, but they can abate.
-  @JsonKey(name: 'abatementAge')
   final Age? abatementAge;
 
   /// [abatementPeriod] /// The date or estimated date that the condition resolved or went into
   /// remission. This is called "abatement" because of the many overloaded
   /// connotations associated with "remission" or "resolution" - Conditions are
   /// never really resolved, but they can abate.
-  @JsonKey(name: 'abatementPeriod')
   final Period? abatementPeriod;
 
   /// [abatementRange] /// The date or estimated date that the condition resolved or went into
   /// remission. This is called "abatement" because of the many overloaded
   /// connotations associated with "remission" or "resolution" - Conditions are
   /// never really resolved, but they can abate.
-  @JsonKey(name: 'abatementRange')
   final Range? abatementRange;
 
   /// [abatementString] /// The date or estimated date that the condition resolved or went into
   /// remission. This is called "abatement" because of the many overloaded
   /// connotations associated with "remission" or "resolution" - Conditions are
   /// never really resolved, but they can abate.
-  @JsonKey(name: 'abatementString')
   final FhirString? abatementString;
-  @JsonKey(name: '_abatementString')
   final Element? abatementStringElement;
 
   /// [recordedDate] /// The recordedDate represents when this particular Condition record was
   /// created in the system, which is often a system-generated date.
-  @JsonKey(name: 'recordedDate')
   final FhirDateTime? recordedDate;
-  @JsonKey(name: '_recordedDate')
   final Element? recordedDateElement;
 
   /// [recorder] /// Individual who recorded the record and takes responsibility for its
   /// content.
-  @JsonKey(name: 'recorder')
   final Reference? recorder;
 
   /// [asserter] /// Individual who is making the condition statement.
-  @JsonKey(name: 'asserter')
   final Reference? asserter;
 
   /// [stage] /// Clinical stage or grade of a condition. May include formal severity
   /// assessments.
-  @JsonKey(name: 'stage')
   final List<ConditionStage>? stage;
 
   /// [evidence] /// Supporting evidence / manifestations that are the basis of the Condition's
   /// verification status, such as evidence that confirmed or refuted the
   /// condition.
-  @JsonKey(name: 'evidence')
   final List<ConditionEvidence>? evidence;
 
   /// [note] /// Additional information about the Condition. This is a general
   /// notes/comments entry for description of the Condition, its diagnosis and
   /// prognosis.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
@@ -605,7 +574,6 @@ class Condition extends DomainResource {
 
 /// [ConditionStage] /// Clinical stage or grade of a condition. May include formal severity
 /// assessments.
-@JsonSerializable()
 class ConditionStage extends BackboneElement {
   ConditionStage({
     super.id,
@@ -621,24 +589,22 @@ class ConditionStage extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ConditionStage';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [summary] /// A simple summary of the stage such as "Stage 3". The determination of the
   /// stage is disease-specific.
-  @JsonKey(name: 'summary')
   final CodeableConcept? summary;
 
   /// [assessment] /// Reference to a formal record of the evidence on which the staging
   /// assessment is based.
-  @JsonKey(name: 'assessment')
   final List<Reference>? assessment;
 
   /// [type] /// The kind of staging, such as pathological or clinical staging.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
   @override
   Map<String, dynamic> toJson() {
@@ -755,7 +721,6 @@ class ConditionStage extends BackboneElement {
 /// [ConditionEvidence] /// Supporting evidence / manifestations that are the basis of the Condition's
 /// verification status, such as evidence that confirmed or refuted the
 /// condition.
-@JsonSerializable()
 class ConditionEvidence extends BackboneElement {
   ConditionEvidence({
     super.id,
@@ -770,18 +735,17 @@ class ConditionEvidence extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ConditionEvidence';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// A manifestation or symptom that led to the recording of this condition.
-  @JsonKey(name: 'code')
   final List<CodeableConcept>? code;
 
   /// [detail] /// Links to other relevant information, including pathology reports.
-  @JsonKey(name: 'detail')
   final List<Reference>? detail;
   @override
   Map<String, dynamic> toJson() {

@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Whether a reference needs to be version specific or version independent, or whether either can be used.
 enum ReferenceVersionRules {
   /// Display: Either Specific or independent
   /// Definition: The reference may be either version independent or version specific.
-  @JsonValue('either')
   either,
 
   /// Display: Version independent
   /// Definition: The reference must be version independent.
-  @JsonValue('independent')
   independent,
 
   /// Display: Version Specific
   /// Definition: The reference must be version specific.
-  @JsonValue('specific')
   specific,
   ;
 

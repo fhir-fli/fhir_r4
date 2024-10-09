@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Artifact Contribution Instance Type
 enum ArtifactContributionInstanceType {
   /// Display: Reviewed
   /// Definition: Reviewed
-  @JsonValue('reviewed')
   reviewed,
 
   /// Display: Approved
   /// Definition: Approved
-  @JsonValue('approved')
   approved,
 
   /// Display: Edited
   /// Definition: Edited
-  @JsonValue('edited')
   edited,
   ;
 

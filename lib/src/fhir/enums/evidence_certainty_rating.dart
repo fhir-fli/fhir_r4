@@ -1,85 +1,67 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The assessment of quality, confidence, or certainty.
 enum EvidenceCertaintyRating {
   /// Display: High quality
   /// Definition: High quality evidence.
-  @JsonValue('high')
   high,
 
   /// Display: Moderate quality
   /// Definition: Moderate quality evidence.
-  @JsonValue('moderate')
   moderate,
 
   /// Display: Low quality
   /// Definition: Low quality evidence.
-  @JsonValue('low')
   low,
 
   /// Display: Very low quality
   /// Definition: Very low quality evidence.
-  @JsonValue('very-low')
   very_low,
 
   /// Display: no serious concern
   /// Definition: no serious concern.
-  @JsonValue('no-concern')
   no_concern,
 
   /// Display: serious concern
   /// Definition: serious concern.
-  @JsonValue('serious-concern')
   serious_concern,
 
   /// Display: very serious concern
   /// Definition: very serious concern.
-  @JsonValue('very-serious-concern')
   very_serious_concern,
 
   /// Display: extremely serious concern
   /// Definition: extremely serious concern.
-  @JsonValue('extremely-serious-concern')
   extremely_serious_concern,
 
   /// Display: present
   /// Definition: possible reason for increasing quality rating was checked and found to be present.
-  @JsonValue('present')
   present,
 
   /// Display: absent
   /// Definition: possible reason for increasing quality rating was checked and found to be absent.
-  @JsonValue('absent')
   absent,
 
   /// Display: no change to rating
   /// Definition: no change to quality rating.
-  @JsonValue('no-change')
   no_change,
 
   /// Display: reduce rating: -1
   /// Definition: reduce quality rating by 1.
-  @JsonValue('downcode1')
   downcode1,
 
   /// Display: reduce rating: -2
   /// Definition: reduce quality rating by 2.
-  @JsonValue('downcode2')
   downcode2,
 
   /// Display: reduce rating: -3
   /// Definition: reduce quality rating by 3.
-  @JsonValue('downcode3')
   downcode3,
 
   /// Display: increase rating: +1
   /// Definition: increase quality rating by 1.
-  @JsonValue('upcode1')
   upcode1,
 
   /// Display: increase rating: +2
   /// Definition: increase quality rating by 2.
-  @JsonValue('upcode2')
   upcode2,
   ;
 

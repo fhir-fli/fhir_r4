@@ -1,35 +1,27 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Codes indicating the kind of the price component.
 enum InvoicePriceComponentType {
   /// Display: base price
   /// Definition: the amount is the base price used for calculating the total price before applying surcharges, discount or taxes.
-  @JsonValue('base')
   base,
 
   /// Display: surcharge
   /// Definition: the amount is a surcharge applied on the base price.
-  @JsonValue('surcharge')
   surcharge,
 
   /// Display: deduction
   /// Definition: the amount is a deduction applied on the base price.
-  @JsonValue('deduction')
   deduction,
 
   /// Display: discount
   /// Definition: the amount is a discount applied on the base price.
-  @JsonValue('discount')
   discount,
 
   /// Display: tax
   /// Definition: the amount is the tax component of the total price.
-  @JsonValue('tax')
   tax,
 
   /// Display: informational
   /// Definition: the amount is of informational character, it has not been applied in the calculation of the total price.
-  @JsonValue('informational')
   informational,
   ;
 

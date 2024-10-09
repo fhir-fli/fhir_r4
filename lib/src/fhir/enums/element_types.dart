@@ -1,33 +1,24 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Allowed types for FHIR elements
 enum ElementTypes {
   /// Display: String
-  @JsonValue('http://hl7.org/fhirpath/System.String')
   hl7_org_fhirpath_System_String,
 
   /// Display: Boolean
-  @JsonValue('http://hl7.org/fhirpath/System.Boolean')
   hl7_org_fhirpath_System_Boolean,
 
   /// Display: Date
-  @JsonValue('http://hl7.org/fhirpath/System.Date')
   hl7_org_fhirpath_System_Date,
 
   /// Display: DateTime
-  @JsonValue('http://hl7.org/fhirpath/System.DateTime')
   hl7_org_fhirpath_System_DateTime,
 
   /// Display: Decimal
-  @JsonValue('http://hl7.org/fhirpath/System.Decimal')
   hl7_org_fhirpath_System_Decimal,
 
   /// Display: Integer
-  @JsonValue('http://hl7.org/fhirpath/System.Integer')
   hl7_org_fhirpath_System_Integer,
 
   /// Display: Time
-  @JsonValue('http://hl7.org/fhirpath/System.Time')
   hl7_org_fhirpath_System_Time,
   ;
 

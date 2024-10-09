@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// A code that indicates how the server supports conditional read.
 enum ConditionalReadStatus {
   /// Display: Not Supported
   /// Definition: No support for conditional reads.
-  @JsonValue('not-supported')
   not_supported,
 
   /// Display: If-Modified-Since
   /// Definition: Conditional reads are supported, but only with the If-Modified-Since HTTP Header.
-  @JsonValue('modified-since')
   modified_since,
 
   /// Display: If-None-Match
   /// Definition: Conditional reads are supported, but only with the If-None-Match HTTP Header.
-  @JsonValue('not-match')
   not_match,
 
   /// Display: Full Support
   /// Definition: Conditional reads are supported, with both If-Modified-Since and If-None-Match HTTP Headers.
-  @JsonValue('full-support')
   full_support,
   ;
 

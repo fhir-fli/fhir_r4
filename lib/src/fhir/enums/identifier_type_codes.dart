@@ -1,42 +1,22 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// A coded type for an identifier that can be used to determine which identifier to use for a specific purpose.
 enum IdentifierTypeCodes {
-  @JsonValue('DL')
   DL,
-  @JsonValue('PPN')
   PPN,
-  @JsonValue('BRN')
   BRN,
-  @JsonValue('MR')
   MR,
-  @JsonValue('MCN')
   MCN,
-  @JsonValue('EN')
   EN,
-  @JsonValue('TAX')
   TAX,
-  @JsonValue('NIIP')
   NIIP,
-  @JsonValue('PRN')
   PRN,
-  @JsonValue('MD')
   MD,
-  @JsonValue('DR')
   DR,
-  @JsonValue('ACSN')
   ACSN,
-  @JsonValue('UDI')
   UDI,
-  @JsonValue('SNO')
   SNO,
-  @JsonValue('SB')
   SB,
-  @JsonValue('PLAC')
   PLAC,
-  @JsonValue('FILL')
   FILL,
-  @JsonValue('JHN')
   JHN,
   ;
 

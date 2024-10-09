@@ -1,10 +1,7 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Extra monitoring defined for a Medicinal Product.
 enum AdditionalMonitoring {
   /// Display: Requirement for Black Triangle Monitoring
   /// Definition: Requirement for Black Triangle Monitoring
-  @JsonValue('BlackTriangleMonitoring')
   BlackTriangleMonitoring,
   ;
 

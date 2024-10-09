@@ -1,35 +1,27 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Preferred value set for Condition Clinical Status.
 enum ConditionClinicalStatusCodes {
   /// Display: Active
   /// Definition: The subject is currently experiencing the symptoms of the condition or there is evidence of the condition.
-  @JsonValue('active')
   active,
 
   /// Display: Recurrence
   /// Definition: The subject is experiencing a re-occurence or repeating of a previously resolved condition, e.g. urinary tract infection, pancreatitis, cholangitis, conjunctivitis.
-  @JsonValue('recurrence')
   recurrence,
 
   /// Display: Relapse
   /// Definition: The subject is experiencing a return of a condition, or signs and symptoms after a period of improvement or remission, e.g. relapse of cancer, multiple sclerosis, rheumatoid arthritis, systemic lupus erythematosus, bipolar disorder, [psychotic relapse of] schizophrenia, etc.
-  @JsonValue('relapse')
   relapse,
 
   /// Display: Inactive
   /// Definition: The subject is no longer experiencing the symptoms of the condition or there is no longer evidence of the condition.
-  @JsonValue('inactive')
   inactive,
 
   /// Display: Remission
   /// Definition: The subject is no longer experiencing the symptoms of the condition, but there is a risk of the symptoms returning.
-  @JsonValue('remission')
   remission,
 
   /// Display: Resolved
   /// Definition: The subject is no longer experiencing the symptoms of the condition and there is a negligible perceived risk of the symptoms returning.
-  @JsonValue('resolved')
   resolved,
   ;
 

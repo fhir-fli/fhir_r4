@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -10,7 +9,6 @@ import '../../../fhir_r4.dart';
 /// CoverageEligibilityResponse, with information regarding whether the stated
 /// coverage is valid and in-force and optionally to provide the insurance
 /// details of the policy.
-@JsonSerializable()
 class CoverageEligibilityRequest extends DomainResource {
   CoverageEligibilityRequest({
     super.id,
@@ -49,24 +47,21 @@ class CoverageEligibilityRequest extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.CoverageEligibilityRequest);
+
   @override
   String get fhirType => 'CoverageEligibilityRequest';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// A unique identifier assigned to this coverage eligiblity request.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// The status of the resource instance.
-  @JsonKey(name: 'status')
   final FinancialResourceStatusCodes status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [priority] /// When the requestor expects the processor to complete processing.
-  @JsonKey(name: 'priority')
   final CodeableConcept? priority;
 
   /// [purpose] /// Code to specify whether requesting: prior authorization requirements for
@@ -74,64 +69,49 @@ class CoverageEligibilityRequest extends DomainResource {
   /// or discovered; discovery and return of coverages for the patient; and/or
   /// validation that the specified coverage is in-force at the date/period
   /// specified or 'now' if not specified.
-  @JsonKey(name: 'purpose')
   final List<EligibilityRequestPurpose> purpose;
-  @JsonKey(name: '_purpose')
   final List<Element>? purposeElement;
 
   /// [patient] /// The party who is the beneficiary of the supplied coverage and for whom
   /// eligibility is sought.
-  @JsonKey(name: 'patient')
   final Reference patient;
 
   /// [servicedDate] /// The date or dates when the enclosed suite of services were performed or
   /// completed.
-  @JsonKey(name: 'servicedDate')
   final FhirDate? servicedDate;
-  @JsonKey(name: '_servicedDate')
   final Element? servicedDateElement;
 
   /// [servicedPeriod] /// The date or dates when the enclosed suite of services were performed or
   /// completed.
-  @JsonKey(name: 'servicedPeriod')
   final Period? servicedPeriod;
 
   /// [created] /// The date when this resource was created.
-  @JsonKey(name: 'created')
   final FhirDateTime created;
-  @JsonKey(name: '_created')
   final Element? createdElement;
 
   /// [enterer] /// Person who created the request.
-  @JsonKey(name: 'enterer')
   final Reference? enterer;
 
   /// [provider] /// The provider which is responsible for the request.
-  @JsonKey(name: 'provider')
   final Reference? provider;
 
   /// [insurer] /// The Insurer who issued the coverage in question and is the recipient of the
   /// request.
-  @JsonKey(name: 'insurer')
   final Reference insurer;
 
   /// [facility] /// Facility where the services are intended to be provided.
-  @JsonKey(name: 'facility')
   final Reference? facility;
 
   /// [supportingInfo] /// Additional information codes regarding exceptions, special considerations,
   /// the condition, situation, prior or concurrent issues.
-  @JsonKey(name: 'supportingInfo')
   final List<CoverageEligibilityRequestSupportingInfo>? supportingInfo;
 
   /// [insurance] /// Financial instruments for reimbursement for the health care products and
   /// services.
-  @JsonKey(name: 'insurance')
   final List<CoverageEligibilityRequestInsurance>? insurance;
 
   /// [item] /// Service categories or billable services for which benefit details and/or an
   /// authorization prior to service delivery may be required by the payor.
-  @JsonKey(name: 'item')
   final List<CoverageEligibilityRequestItem>? item;
   @override
   Map<String, dynamic> toJson() {
@@ -420,7 +400,6 @@ class CoverageEligibilityRequest extends DomainResource {
 
 /// [CoverageEligibilityRequestSupportingInfo] /// Additional information codes regarding exceptions, special considerations,
 /// the condition, situation, prior or concurrent issues.
-@JsonSerializable()
 class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
   CoverageEligibilityRequestSupportingInfo({
     super.id,
@@ -438,28 +417,24 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CoverageEligibilityRequestSupportingInfo';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [sequence] /// A number to uniquely identify supporting information entries.
-  @JsonKey(name: 'sequence')
   final FhirPositiveInt sequence;
-  @JsonKey(name: '_sequence')
   final Element? sequenceElement;
 
   /// [information] /// Additional data or information such as resources, documents, images etc.
   /// including references to the data or the actual inclusion of the data.
-  @JsonKey(name: 'information')
   final Reference information;
 
   /// [appliesToAll] /// The supporting materials are applicable for all detail items,
   /// product/servce categories and specific billing codes.
-  @JsonKey(name: 'appliesToAll')
   final FhirBoolean? appliesToAll;
-  @JsonKey(name: '_appliesToAll')
   final Element? appliesToAllElement;
   @override
   Map<String, dynamic> toJson() {
@@ -583,7 +558,6 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
 
 /// [CoverageEligibilityRequestInsurance] /// Financial instruments for reimbursement for the health care products and
 /// services.
-@JsonSerializable()
 class CoverageEligibilityRequestInsurance extends BackboneElement {
   CoverageEligibilityRequestInsurance({
     super.id,
@@ -601,30 +575,26 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CoverageEligibilityRequestInsurance';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [focal] /// A flag to indicate that this Coverage is to be used for evaluation of this
   /// request when set to true.
-  @JsonKey(name: 'focal')
   final FhirBoolean? focal;
-  @JsonKey(name: '_focal')
   final Element? focalElement;
 
   /// [coverage] /// Reference to the insurance card level information contained in the Coverage
   /// resource. The coverage issuing insurer will use these details to locate the
   /// patient's actual coverage within the insurer's information system.
-  @JsonKey(name: 'coverage')
   final Reference coverage;
 
   /// [businessArrangement] /// A business agreement number established between the provider and the
   /// insurer for special business processing purposes.
-  @JsonKey(name: 'businessArrangement')
   final FhirString? businessArrangement;
-  @JsonKey(name: '_businessArrangement')
   final Element? businessArrangementElement;
   @override
   Map<String, dynamic> toJson() {
@@ -750,7 +720,6 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
 
 /// [CoverageEligibilityRequestItem] /// Service categories or billable services for which benefit details and/or an
 /// authorization prior to service delivery may be required by the payor.
-@JsonSerializable()
 class CoverageEligibilityRequestItem extends BackboneElement {
   CoverageEligibilityRequestItem({
     super.id,
@@ -774,57 +743,47 @@ class CoverageEligibilityRequestItem extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CoverageEligibilityRequestItem';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [supportingInfoSequence] /// Exceptions, special conditions and supporting information applicable for
   /// this service or product line.
-  @JsonKey(name: 'supportingInfoSequence')
   final List<FhirPositiveInt>? supportingInfoSequence;
-  @JsonKey(name: '_supportingInfoSequence')
   final List<Element>? supportingInfoSequenceElement;
 
   /// [category] /// Code to identify the general type of benefits under which products and
   /// services are provided.
-  @JsonKey(name: 'category')
   final CodeableConcept? category;
 
   /// [productOrService] /// This contains the product, service, drug or other billing code for the
   /// item.
-  @JsonKey(name: 'productOrService')
   final CodeableConcept? productOrService;
 
   /// [modifier] /// Item typification or modifiers codes to convey additional context for the
   /// product or service.
-  @JsonKey(name: 'modifier')
   final List<CodeableConcept>? modifier;
 
   /// [provider] /// The practitioner who is responsible for the product or service to be
   /// rendered to the patient.
-  @JsonKey(name: 'provider')
   final Reference? provider;
 
   /// [quantity] /// The number of repetitions of a service or product.
-  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [unitPrice] /// The amount charged to the patient by the provider for a single unit.
-  @JsonKey(name: 'unitPrice')
   final Money? unitPrice;
 
   /// [facility] /// Facility where the services will be provided.
-  @JsonKey(name: 'facility')
   final Reference? facility;
 
   /// [diagnosis] /// Patient diagnosis for which care is sought.
-  @JsonKey(name: 'diagnosis')
   final List<CoverageEligibilityRequestDiagnosis>? diagnosis;
 
   /// [detail] /// The plan/proposal/order describing the proposed service in detail.
-  @JsonKey(name: 'detail')
   final List<Reference>? detail;
   @override
   Map<String, dynamic> toJson() {
@@ -1026,7 +985,6 @@ class CoverageEligibilityRequestItem extends BackboneElement {
 }
 
 /// [CoverageEligibilityRequestDiagnosis] /// Patient diagnosis for which care is sought.
-@JsonSerializable()
 class CoverageEligibilityRequestDiagnosis extends BackboneElement {
   CoverageEligibilityRequestDiagnosis({
     super.id,
@@ -1041,20 +999,19 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CoverageEligibilityRequestDiagnosis';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [diagnosisCodeableConcept] /// The nature of illness or problem in a coded form or as a reference to an
   /// external defined Condition.
-  @JsonKey(name: 'diagnosisCodeableConcept')
   final CodeableConcept? diagnosisCodeableConcept;
 
   /// [diagnosisReference] /// The nature of illness or problem in a coded form or as a reference to an
   /// external defined Condition.
-  @JsonKey(name: 'diagnosisReference')
   final Reference? diagnosisReference;
   @override
   Map<String, dynamic> toJson() {

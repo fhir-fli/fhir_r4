@@ -1,210 +1,167 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes a smattering of FDI oral site codes.
 enum OralSiteCodes {
   /// Display: Oral cavity
   /// Definition: Oral cavity.
-  @JsonValue('0')
   value0,
 
   /// Display: 1
   /// Definition: Permanent teeth Maxillary right.
-  @JsonValue('1')
   value1,
 
   /// Display: 2
   /// Definition: Permanent teeth Maxillary left.
-  @JsonValue('2')
   value2,
 
   /// Display: 3
   /// Definition: Permanent teeth Mandibular right.
-  @JsonValue('3')
   value3,
 
   /// Display: 4
   /// Definition: Permanent teeth Mandibular left.
-  @JsonValue('4')
   value4,
 
   /// Display: 5
   /// Definition: Deciduous teeth Maxillary right.
-  @JsonValue('5')
   value5,
 
   /// Display: 6
   /// Definition: Deciduous teeth Maxillary left.
-  @JsonValue('6')
   value6,
 
   /// Display: 7
   /// Definition: Deciduous teeth Mandibular right.
-  @JsonValue('7')
   value7,
 
   /// Display: 8
   /// Definition: Deciduous teeth Mandibular left.
-  @JsonValue('8')
   value8,
 
   /// Display: 11
   /// Definition: Upper Right Tooth 1 from the central axis, permanent dentition.
-  @JsonValue('11')
   value11,
 
   /// Display: 12
   /// Definition: Upper Right Tooth 2 from the central axis, permanent dentition.
-  @JsonValue('12')
   value12,
 
   /// Display: 13
   /// Definition: Upper Right Tooth 3 from the central axis, permanent dentition.
-  @JsonValue('13')
   value13,
 
   /// Display: 14
   /// Definition: Upper Right Tooth 4 from the central axis, permanent dentition.
-  @JsonValue('14')
   value14,
 
   /// Display: 15
   /// Definition: Upper Right Tooth 5 from the central axis, permanent dentition.
-  @JsonValue('15')
   value15,
 
   /// Display: 16
   /// Definition: Upper Right Tooth 6 from the central axis, permanent dentition.
-  @JsonValue('16')
   value16,
 
   /// Display: 17
   /// Definition: Upper Right Tooth 7 from the central axis, permanent dentition.
-  @JsonValue('17')
   value17,
 
   /// Display: 18
   /// Definition: Upper Right Tooth 8 from the central axis, permanent dentition.
-  @JsonValue('18')
   value18,
 
   /// Display: 21
   /// Definition: Upper Left Tooth 1 from the central axis, permanent dentition.
-  @JsonValue('21')
   value21,
 
   /// Display: 22
   /// Definition: Upper Left Tooth 2 from the central axis, permanent dentition.
-  @JsonValue('22')
   value22,
 
   /// Display: 23
   /// Definition: Upper Left Tooth 3 from the central axis, permanent dentition.
-  @JsonValue('23')
   value23,
 
   /// Display: 24
   /// Definition: Upper Left Tooth 4 from the central axis, permanent dentition.
-  @JsonValue('24')
   value24,
 
   /// Display: 25
   /// Definition: Upper Left Tooth 5 from the central axis, permanent dentition.
-  @JsonValue('25')
   value25,
 
   /// Display: 26
   /// Definition: Upper Left Tooth 6 from the central axis, permanent dentition.
-  @JsonValue('26')
   value26,
 
   /// Display: 27
   /// Definition: Upper Left Tooth 7 from the central axis, permanent dentition.
-  @JsonValue('27')
   value27,
 
   /// Display: 28
   /// Definition: Upper Left Tooth 8 from the central axis, permanent dentition.
-  @JsonValue('28')
   value28,
 
   /// Display: 31
   /// Definition: Lower Left Tooth 1 from the central axis, permanent dentition.
-  @JsonValue('31')
   value31,
 
   /// Display: 32
   /// Definition: Lower Left Tooth 2 from the central axis, permanent dentition.
-  @JsonValue('32')
   value32,
 
   /// Display: 33
   /// Definition: Lower Left Tooth 3 from the central axis, permanent dentition.
-  @JsonValue('33')
   value33,
 
   /// Display: 34
   /// Definition: Lower Left Tooth 4 from the central axis, permanent dentition.
-  @JsonValue('34')
   value34,
 
   /// Display: 35
   /// Definition: Lower Left Tooth 5 from the central axis, permanent dentition.
-  @JsonValue('35')
   value35,
 
   /// Display: 36
   /// Definition: Lower Left Tooth 6 from the central axis, permanent dentition.
-  @JsonValue('36')
   value36,
 
   /// Display: 37
   /// Definition: Lower Left Tooth 7 from the central axis, permanent dentition.
-  @JsonValue('37')
   value37,
 
   /// Display: 38
   /// Definition: Lower Left Tooth 8 from the central axis, permanent dentition.
-  @JsonValue('38')
   value38,
 
   /// Display: 41
   /// Definition: Lower Right Tooth 1 from the central axis, permanent dentition.
-  @JsonValue('41')
   value41,
 
   /// Display: 42
   /// Definition: Lower Right Tooth 2 from the central axis, permanent dentition.
-  @JsonValue('42')
   value42,
 
   /// Display: 43
   /// Definition: Lower Right Tooth 3 from the central axis, permanent dentition.
-  @JsonValue('43')
   value43,
 
   /// Display: 44
   /// Definition: Lower Right Tooth 4 from the central axis, permanent dentition.
-  @JsonValue('44')
   value44,
 
   /// Display: 45
   /// Definition: Lower Right Tooth 5 from the central axis, permanent dentition.
-  @JsonValue('45')
   value45,
 
   /// Display: 46
   /// Definition: Lower Right Tooth 6 from the central axis, permanent dentition.
-  @JsonValue('46')
   value46,
 
   /// Display: 47
   /// Definition: Lower Right Tooth 7 from the central axis, permanent dentition.
-  @JsonValue('47')
   value47,
 
   /// Display: 48
   /// Definition: Lower Right Tooth 8 from the central axis, permanent dentition.
-  @JsonValue('48')
   value48,
   ;
 

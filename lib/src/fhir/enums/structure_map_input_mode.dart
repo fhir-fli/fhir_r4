@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Mode for this instance of data.
 enum StructureMapInputMode {
   /// Display: Source Instance
   /// Definition: Names an input instance used a source for mapping.
-  @JsonValue('source')
   source,
 
   /// Display: Target Instance
   /// Definition: Names an instance that is being populated.
-  @JsonValue('target')
   target,
   ;
 

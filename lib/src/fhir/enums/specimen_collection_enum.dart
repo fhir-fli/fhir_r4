@@ -1,45 +1,33 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Actions that can be taken for the collection of specimen from a subject.
 enum SpecimenCollectionEnum {
   /// Display: Aspiration - action
-  @JsonValue('129316008')
   value129316008,
 
   /// Display: Biopsy - action
-  @JsonValue('129314006')
   value129314006,
 
   /// Display: Puncture - action
-  @JsonValue('129300006')
   value129300006,
 
   /// Display: Excision - action
-  @JsonValue('129304002')
   value129304002,
 
   /// Display: Scraping - action
-  @JsonValue('129323009')
   value129323009,
 
   /// Display: Urine specimen collection, clean catch
-  @JsonValue('73416001')
   value73416001,
 
   /// Display: Timed urine collection
-  @JsonValue('225113003')
   value225113003,
 
   /// Display: Urine specimen collection, catheterized
-  @JsonValue('70777001')
   value70777001,
 
   /// Display: Collection of coughed sputum
-  @JsonValue('386089008')
   value386089008,
 
   /// Display: Finger-prick sampling
-  @JsonValue('278450005')
   value278450005,
   ;
 

@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The mode of a message capability statement.
 enum EventCapabilityMode {
   /// Display: Sender
   /// Definition: The application sends requests and receives responses.
-  @JsonValue('sender')
   sender,
 
   /// Display: Receiver
   /// Definition: The application receives requests and sends responses.
-  @JsonValue('receiver')
   receiver,
   ;
 

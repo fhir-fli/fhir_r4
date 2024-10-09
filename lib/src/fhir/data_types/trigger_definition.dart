@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [TriggerDefinition] /// A description of a triggering event. Triggering events can be named events,
 /// data events, or periodic, as determined by the type element.
-@JsonSerializable()
 class TriggerDefinition extends DataType {
   TriggerDefinition({
     super.id,
@@ -31,56 +29,45 @@ class TriggerDefinition extends DataType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TriggerDefinition';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The type of triggering event.
-  @JsonKey(name: 'type')
   final TriggerType type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [name] /// A formal name for the event. This may be an absolute URI that identifies
   /// the event formally (e.g. from a trigger registry), or a simple relative URI
   /// that identifies the event in a local context.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [timingTiming] /// The timing of the event (if this is a periodic trigger).
-  @JsonKey(name: 'timingTiming')
   final Timing? timingTiming;
 
   /// [timingReference] /// The timing of the event (if this is a periodic trigger).
-  @JsonKey(name: 'timingReference')
   final Reference? timingReference;
 
   /// [timingDate] /// The timing of the event (if this is a periodic trigger).
-  @JsonKey(name: 'timingDate')
   final FhirDate? timingDate;
-  @JsonKey(name: '_timingDate')
   final Element? timingDateElement;
 
   /// [timingDateTime] /// The timing of the event (if this is a periodic trigger).
-  @JsonKey(name: 'timingDateTime')
   final FhirDateTime? timingDateTime;
-  @JsonKey(name: '_timingDateTime')
   final Element? timingDateTimeElement;
 
   /// [data] /// The triggering data of the event (if this is a data trigger). If more than
   /// one data is requirement is specified, then all the data requirements must
   /// be true.
-  @JsonKey(name: 'data')
   final List<DataRequirement>? data;
 
   /// [condition] /// A boolean-valued expression that is evaluated in the context of the
   /// container of the trigger definition and returns whether or not the trigger
   /// fires.
-  @JsonKey(name: 'condition')
   final FhirExpression? condition;
   @override
   Map<String, dynamic> toJson() {

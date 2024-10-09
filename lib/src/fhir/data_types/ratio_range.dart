@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [RatioRange] /// A range of ratios expressed as a low and high numerator and a denominator.
-@JsonSerializable()
 class RatioRange extends DataType {
   RatioRange({
     super.id,
@@ -21,22 +19,20 @@ class RatioRange extends DataType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'RatioRange';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [lowNumerator] /// The value of the low limit numerator.
-  @JsonKey(name: 'lowNumerator')
   final Quantity? lowNumerator;
 
   /// [highNumerator] /// The value of the high limit numerator.
-  @JsonKey(name: 'highNumerator')
   final Quantity? highNumerator;
 
   /// [denominator] /// The value of the denominator.
-  @JsonKey(name: 'denominator')
   final Quantity? denominator;
   @override
   Map<String, dynamic> toJson() {

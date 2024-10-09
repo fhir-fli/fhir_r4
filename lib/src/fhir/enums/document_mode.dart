@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Whether the application produces or consumes documents.
 enum DocumentMode {
   /// Display: Producer
   /// Definition: The application produces documents of the specified type.
-  @JsonValue('producer')
   producer,
 
   /// Display: Consumer
   /// Definition: The application consumes documents of the specified type.
-  @JsonValue('consumer')
   consumer,
   ;
 

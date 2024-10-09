@@ -1,50 +1,39 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The type of process where the audit event originated from.
 enum AuditEventSourceType {
   /// Display: User Device
   /// Definition: End-user display device, diagnostic device.
-  @JsonValue('1')
   value1,
 
   /// Display: Data Interface
   /// Definition: Data acquisition device or instrument.
-  @JsonValue('2')
   value2,
 
   /// Display: Web Server
   /// Definition: Web Server process or thread.
-  @JsonValue('3')
   value3,
 
   /// Display: Application Server
   /// Definition: Application Server process or thread.
-  @JsonValue('4')
   value4,
 
   /// Display: Database Server
   /// Definition: Database Server process or thread.
-  @JsonValue('5')
   value5,
 
   /// Display: Security Server
   /// Definition: Security server, e.g. a domain controller.
-  @JsonValue('6')
   value6,
 
   /// Display: Network Device
   /// Definition: ISO level 1-3 network component.
-  @JsonValue('7')
   value7,
 
   /// Display: Network Router
   /// Definition: ISO level 4-6 operating software.
-  @JsonValue('8')
   value8,
 
   /// Display: Other
   /// Definition: Other kind of device (defined by DICOM, but some other code/system can be used).
-  @JsonValue('9')
   value9,
   ;
 

@@ -1,125 +1,99 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Artifact Relationship Type
 enum ArtifactRelationshipType {
   /// Display: Replaces
   /// Definition: Replaces
-  @JsonValue('replaces')
   replaces,
 
   /// Display: Amends
   /// Definition: Amends
-  @JsonValue('amends')
   amends,
 
   /// Display: Appends
   /// Definition: Appends
-  @JsonValue('appends')
   appends,
 
   /// Display: Transforms
   /// Definition: Transforms
-  @JsonValue('transforms')
   transforms,
 
   /// Display: Replaced with
   /// Definition: Replaced with
-  @JsonValue('replaced-with')
   replaced_with,
 
   /// Display: Amended with
   /// Definition: Amended with
-  @JsonValue('amended-with')
   amended_with,
 
   /// Display: Appended with
   /// Definition: Appended with
-  @JsonValue('appended-with')
   appended_with,
 
   /// Display: Transformed with
   /// Definition: Transformed with
-  @JsonValue('transformed-with')
   transformed_with,
 
   /// Display: Derived from
   /// Definition: Derived from
-  @JsonValue('derived-from')
   derived_from,
 
   /// Display: Transformed into
   /// Definition: Transformed into
-  @JsonValue('transformed-into')
   transformed_into,
 
   /// Display: Composed of
   /// Definition: Composed of
-  @JsonValue('composed-of')
   composed_of,
 
   /// Display: Part of
   /// Definition: Part of
-  @JsonValue('part-of')
   part_of,
 
   /// Display: Supports
   /// Definition: Supports
-  @JsonValue('supports')
   supports,
 
   /// Display: Supported with
   /// Definition: Supported with
-  @JsonValue('supported-with')
   supported_with,
 
   /// Display: Depends on
   /// Definition: Depends on
-  @JsonValue('depends-on')
   depends_on,
 
   /// Display: Similar to
   /// Definition: Similar to
-  @JsonValue('similar-to')
   similar_to,
 
   /// Display: Cites
   /// Definition: Cites
-  @JsonValue('cites')
   cites,
 
   /// Display: Cited by
   /// Definition: Cited by
-  @JsonValue('cited-by')
   cited_by,
 
   /// Display: Retracts
   /// Definition: Retracts
-  @JsonValue('retracts')
   retracts,
 
   /// Display: Retracted by
   /// Definition: Retracted by
-  @JsonValue('retracted-by')
   retracted_by,
 
   /// Display: Comments On
   /// Definition: Comments On
-  @JsonValue('comments-on')
   comments_on,
 
   /// Display: Comment In
   /// Definition: Comment In
-  @JsonValue('comment-in')
   comment_in,
 
   /// Display: Corrects
   /// Definition: Corrects
-  @JsonValue('corrects')
   corrects,
 
   /// Display: Correction In
   /// Definition: Correction In
-  @JsonValue('correction-in')
   correction_in,
   ;
 

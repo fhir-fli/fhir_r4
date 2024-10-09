@@ -1,50 +1,39 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Provides examples of actions to be performed.
 enum ActionCode {
   /// Display: Send a message
   /// Definition: The action indicates that a particular message should be sent to a participant in the process.
-  @JsonValue('send-message')
   send_message,
 
   /// Display: Collect information
   /// Definition: The action indicates that information should be collected from a participant in the process.
-  @JsonValue('collect-information')
   collect_information,
 
   /// Display: Prescribe a medication
   /// Definition: The action indicates that a particular medication should be prescribed to the patient.
-  @JsonValue('prescribe-medication')
   prescribe_medication,
 
   /// Display: Recommend an immunization
   /// Definition: The action indicates that a particular immunization should be performed.
-  @JsonValue('recommend-immunization')
   recommend_immunization,
 
   /// Display: Order a service
   /// Definition: The action indicates that a particular service should be provided.
-  @JsonValue('order-service')
   order_service,
 
   /// Display: Propose a diagnosis
   /// Definition: The action indicates that a particular diagnosis should be proposed.
-  @JsonValue('propose-diagnosis')
   propose_diagnosis,
 
   /// Display: Record a detected issue
   /// Definition: The action indicates that a particular detected issue should be recorded.
-  @JsonValue('record-detected-issue')
   record_detected_issue,
 
   /// Display: Record an inference
   /// Definition: The action indicates that a particular inference should be recorded.
-  @JsonValue('record-inference')
   record_inference,
 
   /// Display: Report a flag
   /// Definition: The action indicates that a particular flag should be reported.
-  @JsonValue('report-flag')
   report_flag,
   ;
 

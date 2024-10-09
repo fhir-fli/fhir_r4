@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,7 +7,6 @@ import '../../../fhir_r4.dart';
 /// [FhirExpression] /// A expression that is evaluated in a specified context and returns a value.
 /// The context of use of the expression must specify the context in which the
 /// expression is evaluated, and how the result of the expression is used.
-@JsonSerializable()
 class FhirExpression extends DataType {
   FhirExpression({
     super.id,
@@ -30,42 +28,33 @@ class FhirExpression extends DataType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'FhirExpression';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [description] /// A brief, natural language description of the condition that effectively
   /// communicates the intended semantics.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [name] /// A short name assigned to the expression to allow for multiple reuse of the
   /// expression in the context where it is defined.
-  @JsonKey(name: 'name')
   final FhirId? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [language] /// The media type of the language for the expression.
-  @JsonKey(name: 'language')
   final ExpressionLanguage language;
-  @JsonKey(name: '_language')
   final Element? languageElement;
 
   /// [expression] /// An expression in the specified language that returns a value.
-  @JsonKey(name: 'expression')
   final FhirString? expression;
-  @JsonKey(name: '_expression')
   final Element? expressionElement;
 
   /// [reference] /// A URI that defines where the expression is found.
-  @JsonKey(name: 'reference')
   final FhirUri? reference;
-  @JsonKey(name: '_reference')
   final Element? referenceElement;
   @override
   Map<String, dynamic> toJson() {

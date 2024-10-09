@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,7 +7,6 @@ import '../../../fhir_r4.dart';
 /// [Device] /// A type of a manufactured item that is used in the provision of healthcare
 /// without being substantially changed through that activity. The device may
 /// be a medical or non-medical device.
-@JsonSerializable()
 class Device extends DomainResource {
   Device({
     super.id,
@@ -64,150 +62,115 @@ class Device extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Device);
+
   @override
   String get fhirType => 'Device';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Unique instance identifiers assigned to a device by manufacturers other
   /// organizations or owners.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [definition] /// The reference to the definition for the device.
-  @JsonKey(name: 'definition')
   final Reference? definition;
 
   /// [udiCarrier] /// Unique device identifier (UDI) assigned to device label or package. Note
   /// that the Device may include multiple udiCarriers as it either may include
   /// just the udiCarrier for the jurisdiction it is sold, or for multiple
   /// jurisdictions it could have been sold.
-  @JsonKey(name: 'udiCarrier')
   final List<DeviceUdiCarrier>? udiCarrier;
 
   /// [status] /// Status of the Device availability.
-  @JsonKey(name: 'status')
   final FHIRDeviceStatus? status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [statusReason] /// Reason for the dtatus of the Device availability.
-  @JsonKey(name: 'statusReason')
   final List<CodeableConcept>? statusReason;
 
   /// [distinctIdentifier] /// The distinct identification string as required by regulation for a human
   /// cell, tissue, or cellular and tissue-based product.
-  @JsonKey(name: 'distinctIdentifier')
   final FhirString? distinctIdentifier;
-  @JsonKey(name: '_distinctIdentifier')
   final Element? distinctIdentifierElement;
 
   /// [manufacturer] /// A name of the manufacturer.
-  @JsonKey(name: 'manufacturer')
   final FhirString? manufacturer;
-  @JsonKey(name: '_manufacturer')
   final Element? manufacturerElement;
 
   /// [manufactureDate] /// The date and time when the device was manufactured.
-  @JsonKey(name: 'manufactureDate')
   final FhirDateTime? manufactureDate;
-  @JsonKey(name: '_manufactureDate')
   final Element? manufactureDateElement;
 
   /// [expirationDate] /// The date and time beyond which this device is no longer valid or should not
   /// be used (if applicable).
-  @JsonKey(name: 'expirationDate')
   final FhirDateTime? expirationDate;
-  @JsonKey(name: '_expirationDate')
   final Element? expirationDateElement;
 
   /// [lotNumber] /// Lot number assigned by the manufacturer.
-  @JsonKey(name: 'lotNumber')
   final FhirString? lotNumber;
-  @JsonKey(name: '_lotNumber')
   final Element? lotNumberElement;
 
   /// [serialNumber] /// The serial number assigned by the organization when the device was
   /// manufactured.
-  @JsonKey(name: 'serialNumber')
   final FhirString? serialNumber;
-  @JsonKey(name: '_serialNumber')
   final Element? serialNumberElement;
 
   /// [deviceName] /// This represents the manufacturer's name of the device as provided by the
   /// device, from a UDI label, or by a person describing the Device. This
   /// typically would be used when a person provides the name(s) or when the
   /// device represents one of the names available from DeviceDefinition.
-  @JsonKey(name: 'deviceName')
   final List<DeviceDeviceName>? deviceName;
 
   /// [modelNumber] /// The manufacturer's model number for the device.
-  @JsonKey(name: 'modelNumber')
   final FhirString? modelNumber;
-  @JsonKey(name: '_modelNumber')
   final Element? modelNumberElement;
 
   /// [partNumber] /// The part number or catalog number of the device.
-  @JsonKey(name: 'partNumber')
   final FhirString? partNumber;
-  @JsonKey(name: '_partNumber')
   final Element? partNumberElement;
 
   /// [type] /// The kind or type of device.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [specialization] /// The capabilities supported on a device, the standards to which the device
   /// conforms for a particular purpose, and used for the communication.
-  @JsonKey(name: 'specialization')
   final List<DeviceSpecialization>? specialization;
 
   /// [version] /// The actual design of the device or software version running on the device.
-  @JsonKey(name: 'version')
   final List<DeviceVersion>? version;
 
   /// [property] /// The actual configuration settings of a device as it actually operates,
   /// e.g., regulation status, time properties.
-  @JsonKey(name: 'property')
   final List<DeviceProperty>? property;
 
   /// [patient] /// Patient information, If the device is affixed to a person.
-  @JsonKey(name: 'patient')
   final Reference? patient;
 
   /// [owner] /// An organization that is responsible for the provision and ongoing
   /// maintenance of the device.
-  @JsonKey(name: 'owner')
   final Reference? owner;
 
   /// [contact] /// Contact details for an organization or a particular human that is
   /// responsible for the device.
-  @JsonKey(name: 'contact')
   final List<ContactPoint>? contact;
 
   /// [location] /// The place where the device can be found.
-  @JsonKey(name: 'location')
   final Reference? location;
 
   /// [url] /// A network address on which the device may be contacted directly.
-  @JsonKey(name: 'url')
   final FhirUri? url;
-  @JsonKey(name: '_url')
   final Element? urlElement;
 
   /// [note] /// Descriptive information, usage information or implantation information that
   /// is not captured in an existing element.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [safety] /// Provides additional safety characteristics about a medical device. For
   /// example devices containing latex.
-  @JsonKey(name: 'safety')
   final List<CodeableConcept>? safety;
 
   /// [parent] /// The device that this device is attached to or is part of.
-  @JsonKey(name: 'parent')
   final Reference? parent;
   @override
   Map<String, dynamic> toJson() {
@@ -673,7 +636,6 @@ class Device extends DomainResource {
 /// that the Device may include multiple udiCarriers as it either may include
 /// just the udiCarrier for the jurisdiction it is sold, or for multiple
 /// jurisdictions it could have been sold.
-@JsonSerializable()
 class DeviceUdiCarrier extends BackboneElement {
   DeviceUdiCarrier({
     super.id,
@@ -698,17 +660,16 @@ class DeviceUdiCarrier extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'DeviceUdiCarrier';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [deviceIdentifier] /// The device identifier (DI) is a mandatory, fixed portion of a UDI that
   /// identifies the labeler and the specific version or model of a device.
-  @JsonKey(name: 'deviceIdentifier')
   final FhirString? deviceIdentifier;
-  @JsonKey(name: '_deviceIdentifier')
   final Element? deviceIdentifierElement;
 
   /// [issuer] /// Organization that is charged with issuing UDIs for devices. For example,
@@ -721,9 +682,7 @@ class DeviceUdiCarrier extends BackboneElement {
   /// http://hl7.org/fhir/NamingSystem/iccbba-blood-di,
   /// 4) ICCBA for other devices:
   /// http://hl7.org/fhir/NamingSystem/iccbba-other-di.
-  @JsonKey(name: 'issuer')
   final FhirUri? issuer;
-  @JsonKey(name: '_issuer')
   final Element? issuerElement;
 
   /// [jurisdiction] /// The identity of the authoritative source for UDI generation within a
@@ -731,9 +690,7 @@ class DeviceUdiCarrier extends BackboneElement {
   /// the appropriate repository uri as the system. For example, UDIs of devices
   /// managed in the U.S. by the FDA, the value is
   /// http://hl7.org/fhir/NamingSystem/fda-udi.
-  @JsonKey(name: 'jurisdiction')
   final FhirUri? jurisdiction;
-  @JsonKey(name: '_jurisdiction')
   final Element? jurisdictionElement;
 
   /// [carrierAIDC] /// The full UDI carrier of the Automatic Identification and Data Capture
@@ -741,22 +698,16 @@ class DeviceUdiCarrier extends BackboneElement {
   /// packaging of the device - e.g., a barcode or RFID. Because of limitations
   /// on character sets in XML and the need to round-trip JSON data through XML,
   /// AIDC Formats *SHALL* be base64 encoded.
-  @JsonKey(name: 'carrierAIDC')
   final FhirBase64Binary? carrierAIDC;
-  @JsonKey(name: '_carrierAIDC')
   final Element? carrierAIDCElement;
 
   /// [carrierHRF] /// The full UDI carrier as the human readable form (HRF) representation of the
   /// barcode string as printed on the packaging of the device.
-  @JsonKey(name: 'carrierHRF')
   final FhirString? carrierHRF;
-  @JsonKey(name: '_carrierHRF')
   final Element? carrierHRFElement;
 
   /// [entryType] /// A coded entry to indicate how the data was entered.
-  @JsonKey(name: 'entryType')
   final UDIEntryType? entryType;
-  @JsonKey(name: '_entryType')
   final Element? entryTypeElement;
   @override
   Map<String, dynamic> toJson() {
@@ -933,7 +884,6 @@ class DeviceUdiCarrier extends BackboneElement {
 /// device, from a UDI label, or by a person describing the Device. This
 /// typically would be used when a person provides the name(s) or when the
 /// device represents one of the names available from DeviceDefinition.
-@JsonSerializable()
 class DeviceDeviceName extends BackboneElement {
   DeviceDeviceName({
     super.id,
@@ -950,24 +900,21 @@ class DeviceDeviceName extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'DeviceDeviceName';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [name] /// The name that identifies the device.
-  @JsonKey(name: 'name')
   final FhirString name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [type] /// The type of deviceName.
   /// UDILabelName | UserFriendlyName | PatientReportedName |
   /// ManufactureDeviceName | ModelName.
-  @JsonKey(name: 'type')
   final DeviceNameType type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1071,7 +1018,6 @@ class DeviceDeviceName extends BackboneElement {
 
 /// [DeviceSpecialization] /// The capabilities supported on a device, the standards to which the device
 /// conforms for a particular purpose, and used for the communication.
-@JsonSerializable()
 class DeviceSpecialization extends BackboneElement {
   DeviceSpecialization({
     super.id,
@@ -1087,20 +1033,18 @@ class DeviceSpecialization extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'DeviceSpecialization';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [systemType] /// The standard that is used to operate and communicate.
-  @JsonKey(name: 'systemType')
   final CodeableConcept systemType;
 
   /// [version] /// The version of the standard that is used to operate and communicate.
-  @JsonKey(name: 'version')
   final FhirString? version;
-  @JsonKey(name: '_version')
   final Element? versionElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1206,7 +1150,6 @@ class DeviceSpecialization extends BackboneElement {
 }
 
 /// [DeviceVersion] /// The actual design of the device or software version running on the device.
-@JsonSerializable()
 class DeviceVersion extends BackboneElement {
   DeviceVersion({
     super.id,
@@ -1223,24 +1166,21 @@ class DeviceVersion extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'DeviceVersion';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The type of the device version, e.g. manufacturer, approved, internal.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [component] /// A single component of the device version.
-  @JsonKey(name: 'component')
   final Identifier? component;
 
   /// [value] /// The version text.
-  @JsonKey(name: 'value')
   final FhirString value;
-  @JsonKey(name: '_value')
   final Element? valueElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1354,7 +1294,6 @@ class DeviceVersion extends BackboneElement {
 
 /// [DeviceProperty] /// The actual configuration settings of a device as it actually operates,
 /// e.g., regulation status, time properties.
-@JsonSerializable()
 class DeviceProperty extends BackboneElement {
   DeviceProperty({
     super.id,
@@ -1370,22 +1309,20 @@ class DeviceProperty extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'DeviceProperty';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Code that specifies the property DeviceDefinitionPropetyCode (Extensible).
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [valueQuantity] /// Property value as a quantity.
-  @JsonKey(name: 'valueQuantity')
   final List<Quantity>? valueQuantity;
 
   /// [valueCode] /// Property value as a code, e.g., NTP4 (synced to NTP).
-  @JsonKey(name: 'valueCode')
   final List<CodeableConcept>? valueCode;
   @override
   Map<String, dynamic> toJson() {

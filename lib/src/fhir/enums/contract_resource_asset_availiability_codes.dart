@@ -1,10 +1,7 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set has asset availability codes.
 enum ContractResourceAssetAvailiabilityCodes {
   /// Display: Lease
   /// Definition: To be completed
-  @JsonValue('lease')
   lease,
   ;
 

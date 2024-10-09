@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [SubstanceDefinition] /// The detailed description of a substance, typically at a level beyond what
 /// is used for prescribing.
-@JsonSerializable()
 class SubstanceDefinition extends DomainResource {
   SubstanceDefinition({
     super.id,
@@ -48,98 +46,78 @@ class SubstanceDefinition extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.SubstanceDefinition);
+
   @override
   String get fhirType => 'SubstanceDefinition';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifier by which this substance is known.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [version] /// A business level version identifier of the substance.
-  @JsonKey(name: 'version')
   final FhirString? version;
-  @JsonKey(name: '_version')
   final Element? versionElement;
 
   /// [status] /// Status of substance within the catalogue e.g. active, retired.
-  @JsonKey(name: 'status')
   final CodeableConcept? status;
 
   /// [classification] /// A high level categorization, e.g. polymer or nucleic acid, or food,
   /// chemical, biological, or a lower level such as the general types of polymer
   /// (linear or branch chain) or type of impurity (process related or
   /// contaminant).
-  @JsonKey(name: 'classification')
   final List<CodeableConcept>? classification;
 
   /// [domain] /// If the substance applies to human or veterinary use.
-  @JsonKey(name: 'domain')
   final CodeableConcept? domain;
 
   /// [grade] /// The quality standard, established benchmark, to which substance complies
   /// (e.g. USP/NF, Ph. Eur, JP, BP, Company Standard).
-  @JsonKey(name: 'grade')
   final List<CodeableConcept>? grade;
 
   /// [description] /// Textual description of the substance.
-  @JsonKey(name: 'description')
   final FhirMarkdown? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [informationSource] /// Supporting literature.
-  @JsonKey(name: 'informationSource')
   final List<Reference>? informationSource;
 
   /// [note] /// Textual comment about the substance's catalogue or registry record.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [manufacturer] /// The entity that creates, makes, produces or fabricates the substance. This
   /// is a set of potential manufacturers but is not necessarily comprehensive.
-  @JsonKey(name: 'manufacturer')
   final List<Reference>? manufacturer;
 
   /// [supplier] /// An entity that is the source for the substance. It may be different from
   /// the manufacturer. Supplier is synonymous to a distributor.
-  @JsonKey(name: 'supplier')
   final List<Reference>? supplier;
 
   /// [moiety] /// Moiety, for structural modifications.
-  @JsonKey(name: 'moiety')
   final List<SubstanceDefinitionMoiety>? moiety;
 
   /// [property] /// General specifications for this substance.
-  @JsonKey(name: 'property')
   final List<SubstanceDefinitionProperty>? property;
 
   /// [molecularWeight] /// The molecular weight or weight range (for proteins, polymers or nucleic
   /// acids).
-  @JsonKey(name: 'molecularWeight')
   final List<SubstanceDefinitionMolecularWeight>? molecularWeight;
 
   /// [structure] /// Structural information.
-  @JsonKey(name: 'structure')
   final SubstanceDefinitionStructure? structure;
 
   /// [code] /// Codes associated with the substance.
-  @JsonKey(name: 'code')
   final List<SubstanceDefinitionCode>? code;
 
   /// [name] /// Names applicable to this substance.
-  @JsonKey(name: 'name')
   final List<SubstanceDefinitionName>? name;
 
   /// [relationship] /// A link between this substance and another, with details of the
   /// relationship.
-  @JsonKey(name: 'relationship')
   final List<SubstanceDefinitionRelationship>? relationship;
 
   /// [sourceMaterial] /// Material or taxonomic/anatomical source for the substance.
-  @JsonKey(name: 'sourceMaterial')
   final SubstanceDefinitionSourceMaterial? sourceMaterial;
   @override
   Map<String, dynamic> toJson() {
@@ -509,7 +487,6 @@ class SubstanceDefinition extends DomainResource {
 }
 
 /// [SubstanceDefinitionMoiety] /// Moiety, for structural modifications.
-@JsonSerializable()
 class SubstanceDefinitionMoiety extends BackboneElement {
   SubstanceDefinitionMoiety({
     super.id,
@@ -534,56 +511,45 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'SubstanceDefinitionMoiety';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [role] /// Role that the moiety is playing.
-  @JsonKey(name: 'role')
   final CodeableConcept? role;
 
   /// [identifier] /// Identifier by which this moiety substance is known.
-  @JsonKey(name: 'identifier')
   final Identifier? identifier;
 
   /// [name] /// Textual name for this moiety substance.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [stereochemistry] /// Stereochemistry type.
-  @JsonKey(name: 'stereochemistry')
   final CodeableConcept? stereochemistry;
 
   /// [opticalActivity] /// Optical activity type.
-  @JsonKey(name: 'opticalActivity')
   final CodeableConcept? opticalActivity;
 
   /// [molecularFormula] /// Molecular formula for this moiety of this substance, typically using the
   /// Hill system.
-  @JsonKey(name: 'molecularFormula')
   final FhirString? molecularFormula;
-  @JsonKey(name: '_molecularFormula')
   final Element? molecularFormulaElement;
 
   /// [amountQuantity] /// Quantitative value for this moiety.
-  @JsonKey(name: 'amountQuantity')
   final Quantity? amountQuantity;
 
   /// [amountString] /// Quantitative value for this moiety.
-  @JsonKey(name: 'amountString')
   final FhirString? amountString;
-  @JsonKey(name: '_amountString')
   final Element? amountStringElement;
 
   /// [measurementType] /// The measurement type of the quantitative value. In capturing the actual
   /// relative amounts of substances or molecular fragments it may be necessary
   /// to indicate whether the amount refers to, for example, a mole ratio or
   /// weight ratio.
-  @JsonKey(name: 'measurementType')
   final CodeableConcept? measurementType;
   @override
   Map<String, dynamic> toJson() {
@@ -768,7 +734,6 @@ class SubstanceDefinitionMoiety extends BackboneElement {
 }
 
 /// [SubstanceDefinitionProperty] /// General specifications for this substance.
-@JsonSerializable()
 class SubstanceDefinitionProperty extends BackboneElement {
   SubstanceDefinitionProperty({
     super.id,
@@ -789,38 +754,31 @@ class SubstanceDefinitionProperty extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'SubstanceDefinitionProperty';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// A code expressing the type of property.
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [valueCodeableConcept] /// A value for the property.
-  @JsonKey(name: 'valueCodeableConcept')
   final CodeableConcept? valueCodeableConcept;
 
   /// [valueQuantity] /// A value for the property.
-  @JsonKey(name: 'valueQuantity')
   final Quantity? valueQuantity;
 
   /// [valueDate] /// A value for the property.
-  @JsonKey(name: 'valueDate')
   final FhirDate? valueDate;
-  @JsonKey(name: '_valueDate')
   final Element? valueDateElement;
 
   /// [valueBoolean] /// A value for the property.
-  @JsonKey(name: 'valueBoolean')
   final FhirBoolean? valueBoolean;
-  @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
 
   /// [valueAttachment] /// A value for the property.
-  @JsonKey(name: 'valueAttachment')
   final Attachment? valueAttachment;
   @override
   Map<String, dynamic> toJson() {
@@ -967,7 +925,6 @@ class SubstanceDefinitionProperty extends BackboneElement {
 
 /// [SubstanceDefinitionMolecularWeight] /// The molecular weight or weight range (for proteins, polymers or nucleic
 /// acids).
-@JsonSerializable()
 class SubstanceDefinitionMolecularWeight extends BackboneElement {
   SubstanceDefinitionMolecularWeight({
     super.id,
@@ -983,26 +940,24 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'SubstanceDefinitionMolecularWeight';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [method] /// The method by which the molecular weight was determined.
-  @JsonKey(name: 'method')
   final CodeableConcept? method;
 
   /// [type] /// Type of molecular weight such as exact, average (also known as. number
   /// average), weight average.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [amount] /// Used to capture quantitative values for a variety of elements. If only
   /// limits are given, the arithmetic mean would be the average. If only a
   /// single definite value for a given element is given, it would be captured in
   /// this field.
-  @JsonKey(name: 'amount')
   final Quantity amount;
   @override
   Map<String, dynamic> toJson() {
@@ -1111,7 +1066,6 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
 }
 
 /// [SubstanceDefinitionStructure] /// Structural information.
-@JsonSerializable()
 class SubstanceDefinitionStructure extends BackboneElement {
   SubstanceDefinitionStructure({
     super.id,
@@ -1134,50 +1088,41 @@ class SubstanceDefinitionStructure extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'SubstanceDefinitionStructure';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [stereochemistry] /// Stereochemistry type.
-  @JsonKey(name: 'stereochemistry')
   final CodeableConcept? stereochemistry;
 
   /// [opticalActivity] /// Optical activity type.
-  @JsonKey(name: 'opticalActivity')
   final CodeableConcept? opticalActivity;
 
   /// [molecularFormula] /// Molecular formula of this substance, typically using the Hill system.
-  @JsonKey(name: 'molecularFormula')
   final FhirString? molecularFormula;
-  @JsonKey(name: '_molecularFormula')
   final Element? molecularFormulaElement;
 
   /// [molecularFormulaByMoiety] /// Specified per moiety according to the Hill system, i.e. first C, then H,
   /// then alphabetical, each moiety separated by a dot.
-  @JsonKey(name: 'molecularFormulaByMoiety')
   final FhirString? molecularFormulaByMoiety;
-  @JsonKey(name: '_molecularFormulaByMoiety')
   final Element? molecularFormulaByMoietyElement;
 
   /// [molecularWeight] /// The molecular weight or weight range (for proteins, polymers or nucleic
   /// acids).
-  @JsonKey(name: 'molecularWeight')
   final SubstanceDefinitionMolecularWeight? molecularWeight;
 
   /// [technique] /// The method used to elucidate the structure or characterization of the drug
   /// substance. Examples: X-ray, HPLC, NMR, Peptide mapping, Ligand binding
   /// assay.
-  @JsonKey(name: 'technique')
   final List<CodeableConcept>? technique;
 
   /// [sourceDocument] /// The source of information about the structure.
-  @JsonKey(name: 'sourceDocument')
   final List<Reference>? sourceDocument;
 
   /// [representation] /// A depiction of the structure or characterization of the substance.
-  @JsonKey(name: 'representation')
   final List<SubstanceDefinitionRepresentation>? representation;
   @override
   Map<String, dynamic> toJson() {
@@ -1366,7 +1311,6 @@ class SubstanceDefinitionStructure extends BackboneElement {
 }
 
 /// [SubstanceDefinitionRepresentation] /// A depiction of the structure or characterization of the substance.
-@JsonSerializable()
 class SubstanceDefinitionRepresentation extends BackboneElement {
   SubstanceDefinitionRepresentation({
     super.id,
@@ -1384,32 +1328,28 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'SubstanceDefinitionRepresentation';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The kind of structural representation (e.g. full, partial).
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [representation] /// The structural representation or characterization as a text string in a
   /// standard format.
-  @JsonKey(name: 'representation')
   final FhirString? representation;
-  @JsonKey(name: '_representation')
   final Element? representationElement;
 
   /// [format] /// The format of the representation e.g. InChI, SMILES, MOLFILE, CDX, SDF,
   /// PDB, mmCIF. The logical content type rather than the physical file format
   /// of a document.
-  @JsonKey(name: 'format')
   final CodeableConcept? format;
 
   /// [document] /// An attached file with the structural representation or characterization
   /// e.g. a molecular structure graphic of the substance, a JCAMP or AnIML file.
-  @JsonKey(name: 'document')
   final Reference? document;
   @override
   Map<String, dynamic> toJson() {
@@ -1539,7 +1479,6 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
 }
 
 /// [SubstanceDefinitionCode] /// Codes associated with the substance.
-@JsonSerializable()
 class SubstanceDefinitionCode extends BackboneElement {
   SubstanceDefinitionCode({
     super.id,
@@ -1558,33 +1497,28 @@ class SubstanceDefinitionCode extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'SubstanceDefinitionCode';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// The specific code.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [status] /// Status of the code assignment, for example 'provisional', 'approved'.
-  @JsonKey(name: 'status')
   final CodeableConcept? status;
 
   /// [statusDate] /// The date at which the code status was changed as part of the terminology
   /// maintenance.
-  @JsonKey(name: 'statusDate')
   final FhirDateTime? statusDate;
-  @JsonKey(name: '_statusDate')
   final Element? statusDateElement;
 
   /// [note] /// Any comment can be provided in this field, if necessary.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [source] /// Supporting literature.
-  @JsonKey(name: 'source')
   final List<Reference>? source;
   @override
   Map<String, dynamic> toJson() {
@@ -1725,7 +1659,6 @@ class SubstanceDefinitionCode extends BackboneElement {
 }
 
 /// [SubstanceDefinitionName] /// Names applicable to this substance.
-@JsonSerializable()
 class SubstanceDefinitionName extends BackboneElement {
   SubstanceDefinitionName({
     super.id,
@@ -1751,59 +1684,47 @@ class SubstanceDefinitionName extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'SubstanceDefinitionName';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [name] /// The actual name.
-  @JsonKey(name: 'name')
   final FhirString name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [type] /// Name type, for example 'systematic', 'scientific, 'brand'.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [status] /// The status of the name, for example 'current', 'proposed'.
-  @JsonKey(name: 'status')
   final CodeableConcept? status;
 
   /// [preferred] /// If this is the preferred name for this substance.
-  @JsonKey(name: 'preferred')
   final FhirBoolean? preferred;
-  @JsonKey(name: '_preferred')
   final Element? preferredElement;
 
   /// [language] /// Human language that the name is written in.
-  @JsonKey(name: 'language')
   final List<CodeableConcept>? language;
 
   /// [domain] /// The use context of this name for example if there is a different name a
   /// drug active ingredient as opposed to a food colour additive.
-  @JsonKey(name: 'domain')
   final List<CodeableConcept>? domain;
 
   /// [jurisdiction] /// The jurisdiction where this name applies.
-  @JsonKey(name: 'jurisdiction')
   final List<CodeableConcept>? jurisdiction;
 
   /// [synonym] /// A synonym of this particular name, by which the substance is also known.
-  @JsonKey(name: 'synonym')
   final List<SubstanceDefinitionName>? synonym;
 
   /// [translation] /// A translation for this name into another human language.
-  @JsonKey(name: 'translation')
   final List<SubstanceDefinitionName>? translation;
 
   /// [official] /// Details of the official nature of this name.
-  @JsonKey(name: 'official')
   final List<SubstanceDefinitionOfficial>? official;
 
   /// [source] /// Supporting literature.
-  @JsonKey(name: 'source')
   final List<Reference>? source;
   @override
   Map<String, dynamic> toJson() {
@@ -2020,7 +1941,6 @@ class SubstanceDefinitionName extends BackboneElement {
 }
 
 /// [SubstanceDefinitionOfficial] /// Details of the official nature of this name.
-@JsonSerializable()
 class SubstanceDefinitionOfficial extends BackboneElement {
   SubstanceDefinitionOfficial({
     super.id,
@@ -2037,24 +1957,21 @@ class SubstanceDefinitionOfficial extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'SubstanceDefinitionOfficial';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [authority] /// Which authority uses this official name.
-  @JsonKey(name: 'authority')
   final CodeableConcept? authority;
 
   /// [status] /// The status of the official name, for example 'draft', 'active', 'retired'.
-  @JsonKey(name: 'status')
   final CodeableConcept? status;
 
   /// [date] /// Date of the official name change.
-  @JsonKey(name: 'date')
   final FhirDateTime? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
   @override
   Map<String, dynamic> toJson() {
@@ -2172,7 +2089,6 @@ class SubstanceDefinitionOfficial extends BackboneElement {
 
 /// [SubstanceDefinitionRelationship] /// A link between this substance and another, with details of the
 /// relationship.
-@JsonSerializable()
 class SubstanceDefinitionRelationship extends BackboneElement {
   SubstanceDefinitionRelationship({
     super.id,
@@ -2197,66 +2113,55 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'SubstanceDefinitionRelationship';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [substanceDefinitionReference] /// A pointer to another substance, as a resource or just a representational
   /// code.
-  @JsonKey(name: 'substanceDefinitionReference')
   final Reference? substanceDefinitionReference;
 
   /// [substanceDefinitionCodeableConcept] /// A pointer to another substance, as a resource or just a representational
   /// code.
-  @JsonKey(name: 'substanceDefinitionCodeableConcept')
   final CodeableConcept? substanceDefinitionCodeableConcept;
 
   /// [type] /// For example "salt to parent", "active moiety", "starting material",
   /// "polymorph", "impurity of".
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [isDefining] /// For example where an enzyme strongly bonds with a particular substance,
   /// this is a defining relationship for that enzyme, out of several possible
   /// substance relationships.
-  @JsonKey(name: 'isDefining')
   final FhirBoolean? isDefining;
-  @JsonKey(name: '_isDefining')
   final Element? isDefiningElement;
 
   /// [amountQuantity] /// A numeric factor for the relationship, for instance to express that the
   /// salt of a substance has some percentage of the active substance in relation
   /// to some other.
-  @JsonKey(name: 'amountQuantity')
   final Quantity? amountQuantity;
 
   /// [amountRatio] /// A numeric factor for the relationship, for instance to express that the
   /// salt of a substance has some percentage of the active substance in relation
   /// to some other.
-  @JsonKey(name: 'amountRatio')
   final Ratio? amountRatio;
 
   /// [amountString] /// A numeric factor for the relationship, for instance to express that the
   /// salt of a substance has some percentage of the active substance in relation
   /// to some other.
-  @JsonKey(name: 'amountString')
   final FhirString? amountString;
-  @JsonKey(name: '_amountString')
   final Element? amountStringElement;
 
   /// [ratioHighLimitAmount] /// For use when the numeric has an uncertain range.
-  @JsonKey(name: 'ratioHighLimitAmount')
   final Ratio? ratioHighLimitAmount;
 
   /// [comparator] /// An operator for the amount, for example "average", "approximately", "less
   /// than".
-  @JsonKey(name: 'comparator')
   final CodeableConcept? comparator;
 
   /// [source] /// Supporting literature.
-  @JsonKey(name: 'source')
   final List<Reference>? source;
   @override
   Map<String, dynamic> toJson() {
@@ -2447,7 +2352,6 @@ class SubstanceDefinitionRelationship extends BackboneElement {
 }
 
 /// [SubstanceDefinitionSourceMaterial] /// Material or taxonomic/anatomical source for the substance.
-@JsonSerializable()
 class SubstanceDefinitionSourceMaterial extends BackboneElement {
   SubstanceDefinitionSourceMaterial({
     super.id,
@@ -2465,33 +2369,29 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'SubstanceDefinitionSourceMaterial';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// A classification that provides the origin of the raw material. Example: cat
   /// hair would be an Animal source type.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [genus] /// The genus of an organism, typically referring to the Latin epithet of the
   /// genus element of the plant/animal scientific name.
-  @JsonKey(name: 'genus')
   final CodeableConcept? genus;
 
   /// [species] /// The species of an organism, typically referring to the Latin epithet of the
   /// species of the plant/animal.
-  @JsonKey(name: 'species')
   final CodeableConcept? species;
 
   /// [part_] /// An anatomical origin of the source material within an organism.
-  @JsonKey(name: 'part')
   final CodeableConcept? part_;
 
   /// [countryOfOrigin] /// The country or countries where the material is harvested.
-  @JsonKey(name: 'countryOfOrigin')
   final List<CodeableConcept>? countryOfOrigin;
   @override
   Map<String, dynamic> toJson() {

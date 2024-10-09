@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [PackagedProductDefinition] /// A medically related item or items, in a container or package.
-@JsonSerializable()
 class PackagedProductDefinition extends DomainResource {
   PackagedProductDefinition({
     super.id,
@@ -44,44 +42,37 @@ class PackagedProductDefinition extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.PackagedProductDefinition);
+
   @override
   String get fhirType => 'PackagedProductDefinition';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// A unique identifier for this package as whole. Unique instance identifiers
   /// assigned to a package by manufacturers, regulators, drug catalogue
   /// custodians or other organizations.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [name] /// A name for this package. Typically what it would be listed as in a drug
   /// formulary or catalogue, inventory etc.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [type] /// A high level category e.g. medicinal product, raw material,
   /// shipping/transport container, etc.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [packageFor] /// The product that this is a pack for.
-  @JsonKey(name: 'packageFor')
   final List<Reference>? packageFor;
 
   /// [status] /// The status within the lifecycle of this item. A high level status, this is
   /// not intended to duplicate details carried elsewhere such as legal status,
   /// or authorization or marketing status.
-  @JsonKey(name: 'status')
   final CodeableConcept? status;
 
   /// [statusDate] /// The date at which the given status became applicable.
-  @JsonKey(name: 'statusDate')
   final FhirDateTime? statusDate;
-  @JsonKey(name: '_statusDate')
   final Element? statusDateElement;
 
   /// [containedItemQuantity] /// A total of the complete count of contained items of a particular type/form,
@@ -97,47 +88,37 @@ class PackagedProductDefinition extends DomainResource {
   /// similar items (e.g. not '2 tubes and 3 tubes'). Repeats are not to be used
   /// to represent different pack sizes (e.g. 20 pack vs. 50 pack) - which would
   /// be different instances of this resource.
-  @JsonKey(name: 'containedItemQuantity')
   final List<Quantity>? containedItemQuantity;
 
   /// [description] /// Textual description. Note that this is not the name of the package or
   /// product.
-  @JsonKey(name: 'description')
   final FhirMarkdown? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [legalStatusOfSupply] /// The legal status of supply of the packaged item as classified by the
   /// regulator.
-  @JsonKey(name: 'legalStatusOfSupply')
   final List<PackagedProductDefinitionLegalStatusOfSupply>? legalStatusOfSupply;
 
   /// [marketingStatus] /// Allows specifying that an item is on the market for sale, or that it is not
   /// available, and the dates and locations associated.
-  @JsonKey(name: 'marketingStatus')
   final List<MarketingStatus>? marketingStatus;
 
   /// [characteristic] /// Allows the key features to be recorded, such as "hospital pack", "nurse
   /// prescribable", "calendar pack".
-  @JsonKey(name: 'characteristic')
   final List<CodeableConcept>? characteristic;
 
   /// [copackagedIndicator] /// States whether a drug product is supplied with another item such as a
   /// diluent or adjuvant.
-  @JsonKey(name: 'copackagedIndicator')
   final FhirBoolean? copackagedIndicator;
-  @JsonKey(name: '_copackagedIndicator')
   final Element? copackagedIndicatorElement;
 
   /// [manufacturer] /// Manufacturer of this package type. When there are multiple it means these
   /// are all possible manufacturers.
-  @JsonKey(name: 'manufacturer')
   final List<Reference>? manufacturer;
 
   /// [package] /// A packaging item, as a container for medically related items, possibly with
   /// other packaging items within, or a packaging component, such as bottle cap
   /// (which is not a device or a medication manufactured item).
-  @JsonKey(name: 'package')
   final PackagedProductDefinitionPackage? package;
   @override
   Map<String, dynamic> toJson() {
@@ -458,7 +439,6 @@ class PackagedProductDefinition extends DomainResource {
 
 /// [PackagedProductDefinitionLegalStatusOfSupply] /// The legal status of supply of the packaged item as classified by the
 /// regulator.
-@JsonSerializable()
 class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
   PackagedProductDefinitionLegalStatusOfSupply({
     super.id,
@@ -473,20 +453,19 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'PackagedProductDefinitionLegalStatusOfSupply';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// The actual status of supply. Conveys in what situation this package type
   /// may be supplied for use.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [jurisdiction] /// The place where the legal status of supply applies. When not specified,
   /// this indicates it is unknown in this context.
-  @JsonKey(name: 'jurisdiction')
   final CodeableConcept? jurisdiction;
   @override
   Map<String, dynamic> toJson() {
@@ -596,7 +575,6 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
 /// [PackagedProductDefinitionPackage] /// A packaging item, as a container for medically related items, possibly with
 /// other packaging items within, or a packaging component, such as bottle cap
 /// (which is not a device or a medication manufactured item).
-@JsonSerializable()
 class PackagedProductDefinitionPackage extends BackboneElement {
   PackagedProductDefinitionPackage({
     super.id,
@@ -620,59 +598,49 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'PackagedProductDefinitionPackage';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// An identifier that is specific to this particular part of the packaging.
   /// Including possibly Data Carrier Identifier (a GS1 barcode).
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [type] /// The physical type of the container of the items.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [quantity] /// The quantity of this level of packaging in the package that contains it. If
   /// specified, the outermost level is always 1.
-  @JsonKey(name: 'quantity')
   final FhirInteger? quantity;
-  @JsonKey(name: '_quantity')
   final Element? quantityElement;
 
   /// [material] /// Material type of the package item.
-  @JsonKey(name: 'material')
   final List<CodeableConcept>? material;
 
   /// [alternateMaterial] /// A possible alternate material for this part of the packaging, that is
   /// allowed to be used instead of the usual material (e.g. different types of
   /// plastic for a blister sleeve).
-  @JsonKey(name: 'alternateMaterial')
   final List<CodeableConcept>? alternateMaterial;
 
   /// [shelfLifeStorage] /// Shelf Life and storage information.
-  @JsonKey(name: 'shelfLifeStorage')
   final List<PackagedProductDefinitionShelfLifeStorage>? shelfLifeStorage;
 
   /// [manufacturer] /// Manufacturer of this package Item. When there are multiple it means these
   /// are all possible manufacturers.
-  @JsonKey(name: 'manufacturer')
   final List<Reference>? manufacturer;
 
   /// [property] /// General characteristics of this item.
-  @JsonKey(name: 'property')
   final List<PackagedProductDefinitionProperty>? property;
 
   /// [containedItem] /// The item(s) within the packaging.
-  @JsonKey(name: 'containedItem')
   final List<PackagedProductDefinitionContainedItem>? containedItem;
 
   /// [package] /// Allows containers (and parts of containers) parwithin containers, still a
   /// single packaged product. See also
   /// PackagedProductDefinition.package.containedItem.item(PackagedProductDefinition).
-  @JsonKey(name: 'package')
   final List<PackagedProductDefinitionPackage>? package;
   @override
   Map<String, dynamic> toJson() {
@@ -889,7 +857,6 @@ class PackagedProductDefinitionPackage extends BackboneElement {
 }
 
 /// [PackagedProductDefinitionShelfLifeStorage] /// Shelf Life and storage information.
-@JsonSerializable()
 class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   PackagedProductDefinitionShelfLifeStorage({
     super.id,
@@ -907,10 +874,11 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'PackagedProductDefinitionShelfLifeStorage';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// This describes the shelf life, taking into account various scenarios such
@@ -919,29 +887,24 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   /// bottle, etc. The shelf life type shall be specified using an appropriate
   /// controlled vocabulary The controlled term and the controlled term
   /// identifier shall be specified.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [periodDuration] /// The shelf life time period can be specified using a numerical value for the
   /// period of time and its unit of time measurement The unit of measurement
   /// shall be specified in accordance with ISO 11240 and the resulting
   /// terminology The symbol and the symbol identifier shall be used.
-  @JsonKey(name: 'periodDuration')
   final FhirDuration? periodDuration;
 
   /// [periodString] /// The shelf life time period can be specified using a numerical value for the
   /// period of time and its unit of time measurement The unit of measurement
   /// shall be specified in accordance with ISO 11240 and the resulting
   /// terminology The symbol and the symbol identifier shall be used.
-  @JsonKey(name: 'periodString')
   final FhirString? periodString;
-  @JsonKey(name: '_periodString')
   final Element? periodStringElement;
 
   /// [specialPrecautionsForStorage] /// Special precautions for storage, if any, can be specified using an
   /// appropriate controlled vocabulary. The controlled term and the controlled
   /// term identifier shall be specified.
-  @JsonKey(name: 'specialPrecautionsForStorage')
   final List<CodeableConcept>? specialPrecautionsForStorage;
   @override
   Map<String, dynamic> toJson() {
@@ -1080,7 +1043,6 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
 }
 
 /// [PackagedProductDefinitionProperty] /// General characteristics of this item.
-@JsonSerializable()
 class PackagedProductDefinitionProperty extends BackboneElement {
   PackagedProductDefinitionProperty({
     super.id,
@@ -1101,38 +1063,31 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'PackagedProductDefinitionProperty';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// A code expressing the type of characteristic.
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [valueCodeableConcept] /// A value for the characteristic.
-  @JsonKey(name: 'valueCodeableConcept')
   final CodeableConcept? valueCodeableConcept;
 
   /// [valueQuantity] /// A value for the characteristic.
-  @JsonKey(name: 'valueQuantity')
   final Quantity? valueQuantity;
 
   /// [valueDate] /// A value for the characteristic.
-  @JsonKey(name: 'valueDate')
   final FhirDate? valueDate;
-  @JsonKey(name: '_valueDate')
   final Element? valueDateElement;
 
   /// [valueBoolean] /// A value for the characteristic.
-  @JsonKey(name: 'valueBoolean')
   final FhirBoolean? valueBoolean;
-  @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
 
   /// [valueAttachment] /// A value for the characteristic.
-  @JsonKey(name: 'valueAttachment')
   final Attachment? valueAttachment;
   @override
   Map<String, dynamic> toJson() {
@@ -1280,7 +1235,6 @@ class PackagedProductDefinitionProperty extends BackboneElement {
 }
 
 /// [PackagedProductDefinitionContainedItem] /// The item(s) within the packaging.
-@JsonSerializable()
 class PackagedProductDefinitionContainedItem extends BackboneElement {
   PackagedProductDefinitionContainedItem({
     super.id,
@@ -1295,10 +1249,11 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'PackagedProductDefinitionContainedItem';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [item] /// The actual item(s) of medication, as manufactured, or a device (typically,
@@ -1308,11 +1263,9 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
   /// to be included, which is solely for the case where a package of other
   /// entire packages is wanted - such as a wholesale or distribution pack (for
   /// layers within one package, use PackagedProductDefinition.package.package).
-  @JsonKey(name: 'item')
   final CodeableReference item;
 
   /// [amount] /// The number of this type of item within this packaging.
-  @JsonKey(name: 'amount')
   final Quantity? amount;
   @override
   Map<String, dynamic> toJson() {

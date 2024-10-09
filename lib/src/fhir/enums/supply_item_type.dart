@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value sets refers to a specific supply item.
 enum SupplyItemType {
   /// Display: Medication
   /// Definition: Supply is a kind of medication.
-  @JsonValue('medication')
   medication,
 
   /// Display: Device
   /// Definition: What is supplied (or requested) is a device.
-  @JsonValue('device')
   device,
   ;
 

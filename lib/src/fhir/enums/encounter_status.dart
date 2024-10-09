@@ -1,50 +1,39 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Current state of the encounter.
 enum EncounterStatus {
   /// Display: Planned
   /// Definition: The Encounter has not yet started.
-  @JsonValue('planned')
   planned,
 
   /// Display: Arrived
   /// Definition: The Patient is present for the encounter, however is not currently meeting with a practitioner.
-  @JsonValue('arrived')
   arrived,
 
   /// Display: Triaged
   /// Definition: The patient has been assessed for the priority of their treatment based on the severity of their condition.
-  @JsonValue('triaged')
   triaged,
 
   /// Display: In Progress
   /// Definition: The Encounter has begun and the patient is present / the practitioner and the patient are meeting.
-  @JsonValue('in-progress')
   in_progress,
 
   /// Display: On Leave
   /// Definition: The Encounter has begun, but the patient is temporarily on leave.
-  @JsonValue('onleave')
   onleave,
 
   /// Display: Finished
   /// Definition: The Encounter has ended.
-  @JsonValue('finished')
   finished,
 
   /// Display: Cancelled
   /// Definition: The Encounter has ended before it has begun.
-  @JsonValue('cancelled')
   cancelled,
 
   /// Display: Entered in Error
   /// Definition: This instance should not have been part of this patient's medical record.
-  @JsonValue('entered-in-error')
   entered_in_error,
 
   /// Display: Unknown
   /// Definition: The encounter status is unknown. Note that "unknown" is a value of last resort and every attempt should be made to provide a meaningful value other than "unknown".
-  @JsonValue('unknown')
   unknown,
   ;
 

@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// BiologicallyDerived Product Storage Scale.
 enum BiologicallyDerivedProductStorageScale {
   /// Display: Fahrenheit
   /// Definition: Fahrenheit temperature scale.
-  @JsonValue('farenheit')
   farenheit,
 
   /// Display: Celsius
   /// Definition: Celsius or centigrade temperature scale.
-  @JsonValue('celsius')
   celsius,
 
   /// Display: Kelvin
   /// Definition: Kelvin absolute thermodynamic temperature scale.
-  @JsonValue('kelvin')
   kelvin,
   ;
 

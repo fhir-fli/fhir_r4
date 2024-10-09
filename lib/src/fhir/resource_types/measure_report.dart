@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,7 +7,6 @@ import '../../../fhir_r4.dart';
 /// [MeasureReport] /// The MeasureReport resource contains the results of the calculation of a
 /// measure; and optionally a reference to the resources involved in that
 /// calculation.
-@JsonSerializable()
 class MeasureReport extends DomainResource {
   MeasureReport({
     super.id,
@@ -43,23 +41,21 @@ class MeasureReport extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.MeasureReport);
+
   @override
   String get fhirType => 'MeasureReport';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// A formal identifier that is used to identify this MeasureReport when it is
   /// represented in other formats or referenced in a specification, model,
   /// design or an instance.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// The MeasureReport status. No data will be available until the MeasureReport
   /// status is complete.
-  @JsonKey(name: 'status')
   final MeasureReportStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [type] /// The type of measure report. This may be an individual report, which
@@ -69,49 +65,37 @@ class MeasureReport extends DomainResource {
   /// population count for each of the criteria in the measure; or a
   /// data-collection, which enables the MeasureReport to be used to exchange the
   /// data-of-interest for a quality measure.
-  @JsonKey(name: 'type')
   final MeasureReportType type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [measure] /// A reference to the Measure that was calculated to produce this report.
-  @JsonKey(name: 'measure')
   final FhirCanonical measure;
-  @JsonKey(name: '_measure')
   final Element? measureElement;
 
   /// [subject] /// Optional subject identifying the individual or individuals the report is
   /// for.
-  @JsonKey(name: 'subject')
   final Reference? subject;
 
   /// [date] /// The date this measure report was generated.
-  @JsonKey(name: 'date')
   final FhirDateTime? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [reporter] /// The individual, location, or organization that is reporting the data.
-  @JsonKey(name: 'reporter')
   final Reference? reporter;
 
   /// [period] /// The reporting period for which the report was calculated.
-  @JsonKey(name: 'period')
   final Period period;
 
   /// [improvementNotation] /// Whether improvement in the measure is noted by an increase or decrease in
   /// the measure score.
-  @JsonKey(name: 'improvementNotation')
   final CodeableConcept? improvementNotation;
 
   /// [group] /// The results of the calculation, one for each population group in the
   /// measure.
-  @JsonKey(name: 'group')
   final List<MeasureReportGroup>? group;
 
   /// [evaluatedResource] /// A reference to a Bundle containing the Resources that were used in the
   /// calculation of this measure.
-  @JsonKey(name: 'evaluatedResource')
   final List<Reference>? evaluatedResource;
   @override
   Map<String, dynamic> toJson() {
@@ -356,7 +340,6 @@ class MeasureReport extends DomainResource {
 
 /// [MeasureReportGroup] /// The results of the calculation, one for each population group in the
 /// measure.
-@JsonSerializable()
 class MeasureReportGroup extends BackboneElement {
   MeasureReportGroup({
     super.id,
@@ -373,30 +356,27 @@ class MeasureReportGroup extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MeasureReportGroup';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// The meaning of the population group as defined in the measure definition.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [population] /// The populations that make up the population group, one for each type of
   /// population appropriate for the measure.
-  @JsonKey(name: 'population')
   final List<MeasureReportPopulation>? population;
 
   /// [measureScore] /// The measure score for this population group, calculated as appropriate for
   /// the measure type and scoring method, and based on the contents of the
   /// populations defined in the group.
-  @JsonKey(name: 'measureScore')
   final Quantity? measureScore;
 
   /// [stratifier] /// When a measure includes multiple stratifiers, there will be a stratifier
   /// group for each stratifier defined by the measure.
-  @JsonKey(name: 'stratifier')
   final List<MeasureReportStratifier>? stratifier;
   @override
   Map<String, dynamic> toJson() {
@@ -526,7 +506,6 @@ class MeasureReportGroup extends BackboneElement {
 
 /// [MeasureReportPopulation] /// The populations that make up the population group, one for each type of
 /// population appropriate for the measure.
-@JsonSerializable()
 class MeasureReportPopulation extends BackboneElement {
   MeasureReportPopulation({
     super.id,
@@ -543,25 +522,22 @@ class MeasureReportPopulation extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MeasureReportPopulation';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// The type of the population.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [count] /// The number of members of the population.
-  @JsonKey(name: 'count')
   final FhirInteger? count;
-  @JsonKey(name: '_count')
   final Element? countElement;
 
   /// [subjectResults] /// This element refers to a List of subject level MeasureReport resources, one
   /// for each subject in this population.
-  @JsonKey(name: 'subjectResults')
   final Reference? subjectResults;
   @override
   Map<String, dynamic> toJson() {
@@ -679,7 +655,6 @@ class MeasureReportPopulation extends BackboneElement {
 
 /// [MeasureReportStratifier] /// When a measure includes multiple stratifiers, there will be a stratifier
 /// group for each stratifier defined by the measure.
-@JsonSerializable()
 class MeasureReportStratifier extends BackboneElement {
   MeasureReportStratifier({
     super.id,
@@ -694,20 +669,19 @@ class MeasureReportStratifier extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MeasureReportStratifier';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// The meaning of this stratifier, as defined in the measure definition.
-  @JsonKey(name: 'code')
   final List<CodeableConcept>? code;
 
   /// [stratum] /// This element contains the results for a single stratum within the
   /// stratifier. For example, when stratifying on administrative gender, there
   /// will be four strata, one for each possible gender value.
-  @JsonKey(name: 'stratum')
   final List<MeasureReportStratum>? stratum;
   @override
   Map<String, dynamic> toJson() {
@@ -821,7 +795,6 @@ class MeasureReportStratifier extends BackboneElement {
 /// [MeasureReportStratum] /// This element contains the results for a single stratum within the
 /// stratifier. For example, when stratifying on administrative gender, there
 /// will be four strata, one for each possible gender value.
-@JsonSerializable()
 class MeasureReportStratum extends BackboneElement {
   MeasureReportStratum({
     super.id,
@@ -838,31 +811,28 @@ class MeasureReportStratum extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MeasureReportStratum';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [value] /// The value for this stratum, expressed as a CodeableConcept. When defining
   /// stratifiers on complex values, the value must be rendered such that the
   /// value for each stratum within the stratifier is unique.
-  @JsonKey(name: 'value')
   final CodeableConcept? value;
 
   /// [component] /// A stratifier component value.
-  @JsonKey(name: 'component')
   final List<MeasureReportComponent>? component;
 
   /// [population] /// The populations that make up the stratum, one for each type of population
   /// appropriate to the measure.
-  @JsonKey(name: 'population')
   final List<MeasureReportPopulation>? population;
 
   /// [measureScore] /// The measure score for this stratum, calculated as appropriate for the
   /// measure type and scoring method, and based on only the members of this
   /// stratum.
-  @JsonKey(name: 'measureScore')
   final Quantity? measureScore;
   @override
   Map<String, dynamic> toJson() {
@@ -991,7 +961,6 @@ class MeasureReportStratum extends BackboneElement {
 }
 
 /// [MeasureReportComponent] /// A stratifier component value.
-@JsonSerializable()
 class MeasureReportComponent extends BackboneElement {
   MeasureReportComponent({
     super.id,
@@ -1006,18 +975,17 @@ class MeasureReportComponent extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MeasureReportComponent';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// The code for the stratum component value.
-  @JsonKey(name: 'code')
   final CodeableConcept code;
 
   /// [value] /// The stratum component value.
-  @JsonKey(name: 'value')
   final CodeableConcept value;
   @override
   Map<String, dynamic> toJson() {
@@ -1113,7 +1081,6 @@ class MeasureReportComponent extends BackboneElement {
 
 /// [MeasureReportPopulation1] /// The populations that make up the stratum, one for each type of population
 /// appropriate to the measure.
-@JsonSerializable()
 class MeasureReportPopulation1 extends BackboneElement {
   MeasureReportPopulation1({
     super.id,
@@ -1130,25 +1097,22 @@ class MeasureReportPopulation1 extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MeasureReportPopulation1';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// The type of the population.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [count] /// The number of members of the population in this stratum.
-  @JsonKey(name: 'count')
   final FhirInteger? count;
-  @JsonKey(name: '_count')
   final Element? countElement;
 
   /// [subjectResults] /// This element refers to a List of subject level MeasureReport resources, one
   /// for each subject in this population in this stratum.
-  @JsonKey(name: 'subjectResults')
   final Reference? subjectResults;
   @override
   Map<String, dynamic> toJson() {

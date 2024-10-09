@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// A coded concept listing the eye codes.
 enum VisionEyes {
   /// Display: Right Eye
   /// Definition: Right Eye.
-  @JsonValue('right')
   right,
 
   /// Display: Left Eye
   /// Definition: Left Eye.
-  @JsonValue('left')
   left,
   ;
 

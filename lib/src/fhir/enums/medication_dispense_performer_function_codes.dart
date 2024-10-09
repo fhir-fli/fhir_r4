@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// MedicationDispense Performer Function Codes
 enum MedicationDispensePerformerFunctionCodes {
   /// Display: Data Enterer
   /// Definition: Recorded the details of the request
-  @JsonValue('dataenterer')
   dataenterer,
 
   /// Display: Packager
   /// Definition: Prepared the medication.
-  @JsonValue('packager')
   packager,
 
   /// Display: Checker
   /// Definition: Performed initial quality assurance on the prepared medication
-  @JsonValue('checker')
   checker,
 
   /// Display: Final Checker
   /// Definition: Performed the final quality assurance on the prepared medication against the request. Typically, this is a pharmacist function.
-  @JsonValue('finalchecker')
   finalchecker,
   ;
 

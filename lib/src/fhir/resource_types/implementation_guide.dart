@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -9,7 +8,6 @@ import '../../../fhir_r4.dart';
 /// solved - typically through the use of FHIR resources. This resource is used
 /// to gather all the parts of an implementation guide into a logical whole and
 /// to publish a computable definition of all the parts.
-@JsonSerializable()
 class ImplementationGuide extends DomainResource {
   ImplementationGuide({
     super.id,
@@ -62,10 +60,11 @@ class ImplementationGuide extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.ImplementationGuide);
+
   @override
   String get fhirType => 'ImplementationGuide';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this implementation guide when it
@@ -75,9 +74,7 @@ class ImplementationGuide extends DomainResource {
   /// implementation guide is (or will be) published. This URL can be the target
   /// of a canonical reference. It SHALL remain the same when the implementation
   /// guide is stored on different servers.
-  @JsonKey(name: 'url')
   final FhirUri url;
-  @JsonKey(name: '_url')
   final Element? urlElement;
 
   /// [version] /// The identifier that is used to identify this version of the implementation
@@ -86,66 +83,49 @@ class ImplementationGuide extends DomainResource {
   /// is not expected to be globally unique. For example, it might be a timestamp
   /// (e.g. yyyymmdd) if a managed version is not available. There is also no
   /// expectation that versions can be placed in a lexicographical sequence.
-  @JsonKey(name: 'version')
   final FhirString? version;
-  @JsonKey(name: '_version')
   final Element? versionElement;
 
   /// [name] /// A natural language name identifying the implementation guide. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  @JsonKey(name: 'name')
   final FhirString name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [title] /// A short, descriptive, user-friendly title for the implementation guide.
-  @JsonKey(name: 'title')
   final FhirString? title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [status] /// The status of this implementation guide. Enables tracking the life-cycle of
   /// the content.
-  @JsonKey(name: 'status')
   final PublicationStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [experimental] /// A Boolean value to indicate that this implementation guide is authored for
   /// testing purposes (or education/evaluation/marketing) and is not intended to
   /// be used for genuine usage.
-  @JsonKey(name: 'experimental')
   final FhirBoolean? experimental;
-  @JsonKey(name: '_experimental')
   final Element? experimentalElement;
 
   /// [date] /// The date (and optionally time) when the implementation guide was published.
   /// The date must change when the business version changes and it must change
   /// if the status code changes. In addition, it should change when the
   /// substantive content of the implementation guide changes.
-  @JsonKey(name: 'date')
   final FhirDateTime? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [publisher] /// The name of the organization or individual that published the
   /// implementation guide.
-  @JsonKey(name: 'publisher')
   final FhirString? publisher;
-  @JsonKey(name: '_publisher')
   final Element? publisherElement;
 
   /// [contact] /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  @JsonKey(name: 'contact')
   final List<ContactDetail>? contact;
 
   /// [description] /// A free text natural language description of the implementation guide from a
   /// consumer's perspective.
-  @JsonKey(name: 'description')
   final FhirMarkdown? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [useContext] /// The content was developed with a focus and intent of supporting the
@@ -153,66 +133,52 @@ class ImplementationGuide extends DomainResource {
   /// age, ...) or may be references to specific programs (insurance plans,
   /// studies, ...) and may be used to assist with indexing and searching for
   /// appropriate implementation guide instances.
-  @JsonKey(name: 'useContext')
   final List<UsageContext>? useContext;
 
   /// [jurisdiction] /// A legal or geographic region in which the implementation guide is intended
   /// to be used.
-  @JsonKey(name: 'jurisdiction')
   final List<CodeableConcept>? jurisdiction;
 
   /// [copyright] /// A copyright statement relating to the implementation guide and/or its
   /// contents. Copyright statements are generally legal restrictions on the use
   /// and publishing of the implementation guide.
-  @JsonKey(name: 'copyright')
   final FhirMarkdown? copyright;
-  @JsonKey(name: '_copyright')
   final Element? copyrightElement;
 
   /// [packageId] /// The NPM package name for this Implementation Guide, used in the NPM package
   /// distribution, which is the primary mechanism by which FHIR based tooling
   /// manages IG dependencies. This value must be globally unique, and should be
   /// assigned with care.
-  @JsonKey(name: 'packageId')
   final FhirId packageId;
-  @JsonKey(name: '_packageId')
   final Element? packageIdElement;
 
   /// [license] /// The license that applies to this Implementation Guide, using an SPDX
   /// license code, or 'not-open-source'.
-  @JsonKey(name: 'license')
   final SPDXLicense? license;
-  @JsonKey(name: '_license')
   final Element? licenseElement;
 
   /// [fhirVersion] /// The version(s) of the FHIR specification that this ImplementationGuide
   /// targets - e.g. describes how to use. The value of this element is the
   /// formal version of the specification, without the revision number, e.g.
   /// [publication].[major].[minor], which is 4.3.0 for this version.
-  @JsonKey(name: 'fhirVersion')
   final List<FHIRVersion> fhirVersion;
-  @JsonKey(name: '_fhirVersion')
   final List<Element>? fhirVersionElement;
 
   /// [dependsOn] /// Another implementation guide that this implementation depends on.
   /// Typically, an implementation guide uses value sets, profiles etc.defined in
   /// other implementation guides.
-  @JsonKey(name: 'dependsOn')
   final List<ImplementationGuideDependsOn>? dependsOn;
 
   /// [global] /// A set of profiles that all resources covered by this implementation guide
   /// must conform to.
-  @JsonKey(name: 'global')
   final List<ImplementationGuideGlobal>? global;
 
   /// [definition] /// The information needed by an IG publisher tool to publish the whole
   /// implementation guide.
-  @JsonKey(name: 'definition')
   final ImplementationGuideDefinition? definition;
 
   /// [manifest] /// Information about an assembled implementation guide, created by the
   /// publication tooling.
-  @JsonKey(name: 'manifest')
   final ImplementationGuideManifest? manifest;
   @override
   Map<String, dynamic> toJson() {
@@ -599,7 +565,6 @@ class ImplementationGuide extends DomainResource {
 /// [ImplementationGuideDependsOn] /// Another implementation guide that this implementation depends on.
 /// Typically, an implementation guide uses value sets, profiles etc.defined in
 /// other implementation guides.
-@JsonSerializable()
 class ImplementationGuideDependsOn extends BackboneElement {
   ImplementationGuideDependsOn({
     super.id,
@@ -618,29 +583,24 @@ class ImplementationGuideDependsOn extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ImplementationGuideDependsOn';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [uri] /// A canonical reference to the Implementation guide for the dependency.
-  @JsonKey(name: 'uri')
   final FhirCanonical uri;
-  @JsonKey(name: '_uri')
   final Element? uriElement;
 
   /// [packageId] /// The NPM package name for the Implementation Guide that this IG depends on.
-  @JsonKey(name: 'packageId')
   final FhirId? packageId;
-  @JsonKey(name: '_packageId')
   final Element? packageIdElement;
 
   /// [version] /// The version of the IG that is depended on, when the correct version is
   /// required to understand the IG correctly.
-  @JsonKey(name: 'version')
   final FhirString? version;
-  @JsonKey(name: '_version')
   final Element? versionElement;
   @override
   Map<String, dynamic> toJson() {
@@ -766,7 +726,6 @@ class ImplementationGuideDependsOn extends BackboneElement {
 
 /// [ImplementationGuideGlobal] /// A set of profiles that all resources covered by this implementation guide
 /// must conform to.
-@JsonSerializable()
 class ImplementationGuideGlobal extends BackboneElement {
   ImplementationGuideGlobal({
     super.id,
@@ -783,22 +742,19 @@ class ImplementationGuideGlobal extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ImplementationGuideGlobal';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The type of resource that all instances must conform to.
-  @JsonKey(name: 'type')
   final FhirCode type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [profile] /// A reference to the profile that all instances must conform to.
-  @JsonKey(name: 'profile')
   final FhirCanonical profile;
-  @JsonKey(name: '_profile')
   final Element? profileElement;
   @override
   Map<String, dynamic> toJson() {
@@ -907,7 +863,6 @@ class ImplementationGuideGlobal extends BackboneElement {
 
 /// [ImplementationGuideDefinition] /// The information needed by an IG publisher tool to publish the whole
 /// implementation guide.
-@JsonSerializable()
 class ImplementationGuideDefinition extends BackboneElement {
   ImplementationGuideDefinition({
     super.id,
@@ -925,35 +880,31 @@ class ImplementationGuideDefinition extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ImplementationGuideDefinition';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [grouping] /// A logical group of resources. Logical groups can be used when building
   /// pages.
-  @JsonKey(name: 'grouping')
   final List<ImplementationGuideGrouping>? grouping;
 
   /// [resource] /// A resource that is part of the implementation guide. Conformance resources
   /// (value set, structure definition, capability statements etc.) are obvious
   /// candidates for inclusion, but any kind of resource can be included as an
   /// example resource.
-  @JsonKey(name: 'resource')
   final List<ImplementationGuideResource> resource;
 
   /// [page] /// A page / section in the implementation guide. The root page is the
   /// implementation guide home page.
-  @JsonKey(name: 'page')
   final ImplementationGuidePage? page;
 
   /// [parameter] /// Defines how IG is built by tools.
-  @JsonKey(name: 'parameter')
   final List<ImplementationGuideParameter>? parameter;
 
   /// [template] /// A template for building resources.
-  @JsonKey(name: 'template')
   final List<ImplementationGuideTemplate>? template;
   @override
   Map<String, dynamic> toJson() {
@@ -1101,7 +1052,6 @@ class ImplementationGuideDefinition extends BackboneElement {
 
 /// [ImplementationGuideGrouping] /// A logical group of resources. Logical groups can be used when building
 /// pages.
-@JsonSerializable()
 class ImplementationGuideGrouping extends BackboneElement {
   ImplementationGuideGrouping({
     super.id,
@@ -1118,23 +1068,20 @@ class ImplementationGuideGrouping extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ImplementationGuideGrouping';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [name] /// The human-readable title to display for the package of resources when
   /// rendering the implementation guide.
-  @JsonKey(name: 'name')
   final FhirString name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [description] /// Human readable text describing the package.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1249,7 +1196,6 @@ class ImplementationGuideGrouping extends BackboneElement {
 /// (value set, structure definition, capability statements etc.) are obvious
 /// candidates for inclusion, but any kind of resource can be included as an
 /// example resource.
-@JsonSerializable()
 class ImplementationGuideResource extends BackboneElement {
   ImplementationGuideResource({
     super.id,
@@ -1275,58 +1221,46 @@ class ImplementationGuideResource extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ImplementationGuideResource';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [reference] /// Where this resource is found.
-  @JsonKey(name: 'reference')
   final Reference reference;
 
   /// [fhirVersion] /// Indicates the FHIR Version(s) this artifact is intended to apply to. If no
   /// versions are specified, the resource is assumed to apply to all the
   /// versions stated in ImplementationGuide.fhirVersion.
-  @JsonKey(name: 'fhirVersion')
   final List<FHIRVersion>? fhirVersion;
-  @JsonKey(name: '_fhirVersion')
   final List<Element>? fhirVersionElement;
 
   /// [name] /// A human assigned name for the resource. All resources SHOULD have a name,
   /// but the name may be extracted from the resource (e.g. ValueSet.name).
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [description] /// A description of the reason that a resource has been included in the
   /// implementation guide.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [exampleBoolean] /// If true or a reference, indicates the resource is an example instance. If a
   /// reference is present, indicates that the example is an example of the
   /// specified profile.
-  @JsonKey(name: 'exampleBoolean')
   final FhirBoolean? exampleBoolean;
-  @JsonKey(name: '_exampleBoolean')
   final Element? exampleBooleanElement;
 
   /// [exampleCanonical] /// If true or a reference, indicates the resource is an example instance. If a
   /// reference is present, indicates that the example is an example of the
   /// specified profile.
-  @JsonKey(name: 'exampleCanonical')
   final FhirCanonical? exampleCanonical;
-  @JsonKey(name: '_exampleCanonical')
   final Element? exampleCanonicalElement;
 
   /// [groupingId] /// Reference to the id of the grouping this resource appears in.
-  @JsonKey(name: 'groupingId')
   final FhirId? groupingId;
-  @JsonKey(name: '_groupingId')
   final Element? groupingIdElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1510,7 +1444,6 @@ class ImplementationGuideResource extends BackboneElement {
 
 /// [ImplementationGuidePage] /// A page / section in the implementation guide. The root page is the
 /// implementation guide home page.
-@JsonSerializable()
 class ImplementationGuidePage extends BackboneElement {
   ImplementationGuidePage({
     super.id,
@@ -1531,37 +1464,30 @@ class ImplementationGuidePage extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ImplementationGuidePage';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [nameUrl] /// The source address for the page.
-  @JsonKey(name: 'nameUrl')
   final FhirUrl? nameUrl;
-  @JsonKey(name: '_nameUrl')
   final Element? nameUrlElement;
 
   /// [nameReference] /// The source address for the page.
-  @JsonKey(name: 'nameReference')
   final Reference? nameReference;
 
   /// [title] /// A short title used to represent this page in navigational structures such
   /// as table of contents, bread crumbs, etc.
-  @JsonKey(name: 'title')
   final FhirString title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [generation] /// A code that indicates how the page is generated.
-  @JsonKey(name: 'generation')
   final GuidePageGeneration generation;
-  @JsonKey(name: '_generation')
   final Element? generationElement;
 
   /// [page] /// Nested Pages/Sections under this page.
-  @JsonKey(name: 'page')
   final List<ImplementationGuidePage>? page;
   @override
   Map<String, dynamic> toJson() {
@@ -1700,7 +1626,6 @@ class ImplementationGuidePage extends BackboneElement {
 }
 
 /// [ImplementationGuideParameter] /// Defines how IG is built by tools.
-@JsonSerializable()
 class ImplementationGuideParameter extends BackboneElement {
   ImplementationGuideParameter({
     super.id,
@@ -1717,24 +1642,21 @@ class ImplementationGuideParameter extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ImplementationGuideParameter';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// apply | path-resource | path-pages | path-tx-cache | expansion-parameter |
   /// rule-broken-links | generate-xml | generate-json | generate-turtle |
   /// html-template.
-  @JsonKey(name: 'code')
   final GuideParameterCode code;
-  @JsonKey(name: '_code')
   final Element? codeElement;
 
   /// [value] /// Value for named type.
-  @JsonKey(name: 'value')
   final FhirString value;
-  @JsonKey(name: '_value')
   final Element? valueElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1837,7 +1759,6 @@ class ImplementationGuideParameter extends BackboneElement {
 }
 
 /// [ImplementationGuideTemplate] /// A template for building resources.
-@JsonSerializable()
 class ImplementationGuideTemplate extends BackboneElement {
   ImplementationGuideTemplate({
     super.id,
@@ -1856,28 +1777,23 @@ class ImplementationGuideTemplate extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ImplementationGuideTemplate';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// Type of template specified.
-  @JsonKey(name: 'code')
   final FhirCode code;
-  @JsonKey(name: '_code')
   final Element? codeElement;
 
   /// [source] /// The source location for the template.
-  @JsonKey(name: 'source')
   final FhirString source;
-  @JsonKey(name: '_source')
   final Element? sourceElement;
 
   /// [scope] /// The scope in which the template applies.
-  @JsonKey(name: 'scope')
   final FhirString? scope;
-  @JsonKey(name: '_scope')
   final Element? scopeElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1999,7 +1915,6 @@ class ImplementationGuideTemplate extends BackboneElement {
 
 /// [ImplementationGuideManifest] /// Information about an assembled implementation guide, created by the
 /// publication tooling.
-@JsonSerializable()
 class ImplementationGuideManifest extends BackboneElement {
   ImplementationGuideManifest({
     super.id,
@@ -2020,42 +1935,35 @@ class ImplementationGuideManifest extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ImplementationGuideManifest';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [rendering] /// A pointer to official web page, PDF or other rendering of the
   /// implementation guide.
-  @JsonKey(name: 'rendering')
   final FhirUrl? rendering;
-  @JsonKey(name: '_rendering')
   final Element? renderingElement;
 
   /// [resource] /// A resource that is part of the implementation guide. Conformance resources
   /// (value set, structure definition, capability statements etc.) are obvious
   /// candidates for inclusion, but any kind of resource can be included as an
   /// example resource.
-  @JsonKey(name: 'resource')
   final List<ImplementationGuideResource> resource;
 
   /// [page] /// Information about a page within the IG.
-  @JsonKey(name: 'page')
   final List<ImplementationGuidePage>? page;
 
   /// [image] /// Indicates a relative path to an image that exists within the IG.
-  @JsonKey(name: 'image')
   final List<FhirString>? image;
-  @JsonKey(name: '_image')
   final List<Element>? imageElement;
 
   /// [other] /// Indicates the relative path of an additional non-page, non-image file that
   /// is part of the IG - e.g. zip, jar and similar files that could be the
   /// target of a hyperlink in a derived IG.
-  @JsonKey(name: 'other')
   final List<FhirString>? other;
-  @JsonKey(name: '_other')
   final List<Element>? otherElement;
   @override
   Map<String, dynamic> toJson() {
@@ -2223,7 +2131,6 @@ class ImplementationGuideManifest extends BackboneElement {
 /// (value set, structure definition, capability statements etc.) are obvious
 /// candidates for inclusion, but any kind of resource can be included as an
 /// example resource.
-@JsonSerializable()
 class ImplementationGuideResource1 extends BackboneElement {
   ImplementationGuideResource1({
     super.id,
@@ -2243,36 +2150,30 @@ class ImplementationGuideResource1 extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ImplementationGuideResource1';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [reference] /// Where this resource is found.
-  @JsonKey(name: 'reference')
   final Reference reference;
 
   /// [exampleBoolean] /// If true or a reference, indicates the resource is an example instance. If a
   /// reference is present, indicates that the example is an example of the
   /// specified profile.
-  @JsonKey(name: 'exampleBoolean')
   final FhirBoolean? exampleBoolean;
-  @JsonKey(name: '_exampleBoolean')
   final Element? exampleBooleanElement;
 
   /// [exampleCanonical] /// If true or a reference, indicates the resource is an example instance. If a
   /// reference is present, indicates that the example is an example of the
   /// specified profile.
-  @JsonKey(name: 'exampleCanonical')
   final FhirCanonical? exampleCanonical;
-  @JsonKey(name: '_exampleCanonical')
   final Element? exampleCanonicalElement;
 
   /// [relativePath] /// The relative path for primary page for this resource within the IG.
-  @JsonKey(name: 'relativePath')
   final FhirUrl? relativePath;
-  @JsonKey(name: '_relativePath')
   final Element? relativePathElement;
   @override
   Map<String, dynamic> toJson() {
@@ -2412,7 +2313,6 @@ class ImplementationGuideResource1 extends BackboneElement {
 }
 
 /// [ImplementationGuidePage1] /// Information about a page within the IG.
-@JsonSerializable()
 class ImplementationGuidePage1 extends BackboneElement {
   ImplementationGuidePage1({
     super.id,
@@ -2431,28 +2331,23 @@ class ImplementationGuidePage1 extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ImplementationGuidePage1';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [name] /// Relative path to the page.
-  @JsonKey(name: 'name')
   final FhirString name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [title] /// Label for the page intended for human display.
-  @JsonKey(name: 'title')
   final FhirString? title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [anchor] /// The name of an anchor available on the page.
-  @JsonKey(name: 'anchor')
   final List<FhirString>? anchor;
-  @JsonKey(name: '_anchor')
   final List<Element>? anchorElement;
   @override
   Map<String, dynamic> toJson() {

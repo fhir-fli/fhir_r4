@@ -1,50 +1,39 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes sample Revenue Center codes.
 enum ExampleRevenueCenterCodes {
   /// Display: Anaesthesia
   /// Definition: Anaesthesia.
-  @JsonValue('0370')
   value0370,
 
   /// Display: Physical Therapy
   /// Definition: Physical Therapy.
-  @JsonValue('0420')
   value0420,
 
   /// Display: Physical Therapy -
   /// Definition: Physical Therapy - visit charge.
-  @JsonValue('0421')
   value0421,
 
   /// Display: Speech-Language Pathology
   /// Definition: Speech-Language Pathology.
-  @JsonValue('0440')
   value0440,
 
   /// Display: Speech-Language Pathology - Visit
   /// Definition: Speech-Language Pathology- visit charge
-  @JsonValue('0441')
   value0441,
 
   /// Display: Emergency Room
   /// Definition: Emergency Room
-  @JsonValue('0450')
   value0450,
 
   /// Display: Emergency Room - EM/EMTALA
   /// Definition: Emergency Room - EM/EMTALA
-  @JsonValue('0451')
   value0451,
 
   /// Display: Emergency Room - beyond EMTALA
   /// Definition: Emergency Room - beyond EMTALA
-  @JsonValue('0452')
   value0452,
 
   /// Display: Vision Clinic
   /// Definition: Vision Clinic
-  @JsonValue('0010')
   value0010,
   ;
 

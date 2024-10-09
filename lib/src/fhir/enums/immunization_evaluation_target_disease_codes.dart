@@ -1,24 +1,13 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the disease that the evaluation is against. This value set is provided as a suggestive example and includes the SNOMED CT concepts from the 64572001 (Disease) hierarchy.
 enum ImmunizationEvaluationTargetDiseaseCodes {
-  @JsonValue('1857005')
   value1857005,
-  @JsonValue('397430003')
   value397430003,
-  @JsonValue('14189004')
   value14189004,
-  @JsonValue('36989005')
   value36989005,
-  @JsonValue('36653000')
   value36653000,
-  @JsonValue('76902006')
   value76902006,
-  @JsonValue('709410003')
   value709410003,
-  @JsonValue('27836007')
   value27836007,
-  @JsonValue('398102009')
   value398102009,
   ;
 

@@ -1,17 +1,12 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// A categorisation for a frequency of occurence of an undesirable effect.
 enum UndesirablEffectFrequency {
   /// Display: Common
-  @JsonValue('Common')
   Common,
 
   /// Display: Uncommon
-  @JsonValue('Uncommon')
   Uncommon,
 
   /// Display: Rare
-  @JsonValue('Rare')
   Rare,
   ;
 

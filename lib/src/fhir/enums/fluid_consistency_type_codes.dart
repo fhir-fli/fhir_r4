@@ -1,21 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// FluidConsistencyType :  Codes used to represent the consistency of fluids and liquids provided to the patient. This value set includes concepts from [SNOMED CT](http://snomed.info/sct)(US Extension) where concept is a 435681000124103  (Dietary liquid consistency diet (regime/therapy)). It is provided as a suggestive example.
 enum FluidConsistencyTypeCodes {
   /// Display: honey thick liquid
-  @JsonValue('439031000124108')
   value439031000124108,
 
   /// Display: nectar thick liquid
-  @JsonValue('439021000124105')
   value439021000124105,
 
   /// Display: spoon thick liquid
-  @JsonValue('439041000124103')
   value439041000124103,
 
   /// Display: thin liquid
-  @JsonValue('439081000124109')
   value439081000124109,
   ;
 

@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes sample ICD-10 Procedure codes.
 enum ICD10ProcedureCodes {
   /// Display: PROC-1
   /// Definition: Procedure 1
-  @JsonValue('123001')
   value123001,
 
   /// Display: PROC-2
   /// Definition: Procedure 2
-  @JsonValue('123002')
   value123002,
 
   /// Display: PROC-3
   /// Definition: Procedure 3
-  @JsonValue('123003')
   value123003,
   ;
 

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [ObservationDefinition] /// Set of definitional characteristics for a kind of observation or
 /// measurement produced or consumed by an orderable health care service.
-@JsonSerializable()
 class ObservationDefinition extends DomainResource {
   ObservationDefinition({
     super.id,
@@ -43,77 +41,62 @@ class ObservationDefinition extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.ObservationDefinition);
+
   @override
   String get fhirType => 'ObservationDefinition';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [category] /// A code that classifies the general type of observation.
-  @JsonKey(name: 'category')
   final List<CodeableConcept>? category;
 
   /// [code] /// Describes what will be observed. Sometimes this is called the observation
   /// "name".
-  @JsonKey(name: 'code')
   final CodeableConcept code;
 
   /// [identifier] /// A unique identifier assigned to this ObservationDefinition artifact.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [permittedDataType] /// The data types allowed for the value element of the instance observations
   /// conforming to this ObservationDefinition.
-  @JsonKey(name: 'permittedDataType')
   final List<ObservationDataType>? permittedDataType;
-  @JsonKey(name: '_permittedDataType')
   final List<Element>? permittedDataTypeElement;
 
   /// [multipleResultsAllowed] /// Multiple results allowed for observations conforming to this
   /// ObservationDefinition.
-  @JsonKey(name: 'multipleResultsAllowed')
   final FhirBoolean? multipleResultsAllowed;
-  @JsonKey(name: '_multipleResultsAllowed')
   final Element? multipleResultsAllowedElement;
 
   /// [method] /// The method or technique used to perform the observation.
-  @JsonKey(name: 'method')
   final CodeableConcept? method;
 
   /// [preferredReportName] /// The preferred name to be used when reporting the results of observations
   /// conforming to this ObservationDefinition.
-  @JsonKey(name: 'preferredReportName')
   final FhirString? preferredReportName;
-  @JsonKey(name: '_preferredReportName')
   final Element? preferredReportNameElement;
 
   /// [quantitativeDetails] /// Characteristics for quantitative results of this observation.
-  @JsonKey(name: 'quantitativeDetails')
   final ObservationDefinitionQuantitativeDetails? quantitativeDetails;
 
   /// [qualifiedInterval] /// Multiple ranges of results qualified by different contexts for ordinal or
   /// continuous observations conforming to this ObservationDefinition.
-  @JsonKey(name: 'qualifiedInterval')
   final List<ObservationDefinitionQualifiedInterval>? qualifiedInterval;
 
   /// [validCodedValueSet] /// The set of valid coded results for the observations conforming to this
   /// ObservationDefinition.
-  @JsonKey(name: 'validCodedValueSet')
   final Reference? validCodedValueSet;
 
   /// [normalCodedValueSet] /// The set of normal coded results for the observations conforming to this
   /// ObservationDefinition.
-  @JsonKey(name: 'normalCodedValueSet')
   final Reference? normalCodedValueSet;
 
   /// [abnormalCodedValueSet] /// The set of abnormal coded results for the observation conforming to this
   /// ObservationDefinition.
-  @JsonKey(name: 'abnormalCodedValueSet')
   final Reference? abnormalCodedValueSet;
 
   /// [criticalCodedValueSet] /// The set of critical coded results for the observation conforming to this
   /// ObservationDefinition.
-  @JsonKey(name: 'criticalCodedValueSet')
   final Reference? criticalCodedValueSet;
   @override
   Map<String, dynamic> toJson() {
@@ -405,7 +388,6 @@ class ObservationDefinition extends DomainResource {
 }
 
 /// [ObservationDefinitionQuantitativeDetails] /// Characteristics for quantitative results of this observation.
-@JsonSerializable()
 class ObservationDefinitionQuantitativeDetails extends BackboneElement {
   ObservationDefinitionQuantitativeDetails({
     super.id,
@@ -424,34 +406,29 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ObservationDefinitionQuantitativeDetails';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [customaryUnit] /// Customary unit used to report quantitative results of observations
   /// conforming to this ObservationDefinition.
-  @JsonKey(name: 'customaryUnit')
   final CodeableConcept? customaryUnit;
 
   /// [unit] /// SI unit used to report quantitative results of observations conforming to
   /// this ObservationDefinition.
-  @JsonKey(name: 'unit')
   final CodeableConcept? unit;
 
   /// [conversionFactor] /// Factor for converting value expressed with SI unit to value expressed with
   /// customary unit.
-  @JsonKey(name: 'conversionFactor')
   final FhirDecimal? conversionFactor;
-  @JsonKey(name: '_conversionFactor')
   final Element? conversionFactorElement;
 
   /// [decimalPrecision] /// Number of digits after decimal separator when the results of such
   /// observations are of type Quantity.
-  @JsonKey(name: 'decimalPrecision')
   final FhirInteger? decimalPrecision;
-  @JsonKey(name: '_decimalPrecision')
   final Element? decimalPrecisionElement;
   @override
   Map<String, dynamic> toJson() {
@@ -594,7 +571,6 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
 
 /// [ObservationDefinitionQualifiedInterval] /// Multiple ranges of results qualified by different contexts for ordinal or
 /// continuous observations conforming to this ObservationDefinition.
-@JsonSerializable()
 class ObservationDefinitionQualifiedInterval extends BackboneElement {
   ObservationDefinitionQualifiedInterval({
     super.id,
@@ -618,53 +594,43 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ObservationDefinitionQualifiedInterval';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [category] /// The category of interval of values for continuous or ordinal observations
   /// conforming to this ObservationDefinition.
-  @JsonKey(name: 'category')
   final ObservationRangeCategory? category;
-  @JsonKey(name: '_category')
   final Element? categoryElement;
 
   /// [range] /// The low and high values determining the interval. There may be only one of
   /// the two.
-  @JsonKey(name: 'range')
   final Range? range;
 
   /// [context] /// Codes to indicate the health context the range applies to. For example, the
   /// normal or therapeutic range.
-  @JsonKey(name: 'context')
   final CodeableConcept? context;
 
   /// [appliesTo] /// Codes to indicate the target population this reference range applies to.
-  @JsonKey(name: 'appliesTo')
   final List<CodeableConcept>? appliesTo;
 
   /// [gender] /// Sex of the population the range applies to.
-  @JsonKey(name: 'gender')
   final AdministrativeGender? gender;
-  @JsonKey(name: '_gender')
   final Element? genderElement;
 
   /// [age] /// The age at which this reference range is applicable. This is a neonatal age
   /// (e.g. number of weeks at term) if the meaning says so.
-  @JsonKey(name: 'age')
   final Range? age;
 
   /// [gestationalAge] /// The gestational age to which this reference range is applicable, in the
   /// context of pregnancy.
-  @JsonKey(name: 'gestationalAge')
   final Range? gestationalAge;
 
   /// [condition] /// Text based condition for which the reference range is valid.
-  @JsonKey(name: 'condition')
   final FhirString? condition;
-  @JsonKey(name: '_condition')
   final Element? conditionElement;
   @override
   Map<String, dynamic> toJson() {

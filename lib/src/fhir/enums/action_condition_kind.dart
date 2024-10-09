@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Defines the kinds of conditions that can appear on actions.
 enum ActionConditionKind {
   /// Display: Applicability
   /// Definition: The condition describes whether or not a given action is applicable.
-  @JsonValue('applicability')
   applicability,
 
   /// Display: Start
   /// Definition: The condition is a starting condition for the action.
-  @JsonValue('start')
   start,
 
   /// Display: Stop
   /// Definition: The condition is a stop, or exit condition for the action.
-  @JsonValue('stop')
   stop,
   ;
 

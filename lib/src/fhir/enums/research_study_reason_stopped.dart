@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Codes for why the study ended prematurely.
 enum ResearchStudyReasonStopped {
   /// Display: Accrual Goal Met
   /// Definition: The study prematurely ended because the accrual goal was met.
-  @JsonValue('accrual-goal-met')
   accrual_goal_met,
 
   /// Display: Closed due to toxicity
   /// Definition: The study prematurely ended due to toxicity.
-  @JsonValue('closed-due-to-toxicity')
   closed_due_to_toxicity,
 
   /// Display: Closed due to lack of study progress
   /// Definition: The study prematurely ended due to lack of study progress.
-  @JsonValue('closed-due-to-lack-of-study-progress')
   closed_due_to_lack_of_study_progress,
 
   /// Display: Temporarily closed per study design
   /// Definition: The study prematurely ended temporarily per study design.
-  @JsonValue('temporarily-closed-per-study-design')
   temporarily_closed_per_study_design,
   ;
 

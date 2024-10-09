@@ -1,10 +1,7 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set contract specific codes for offer party participation.
 enum ContractResourcePartyRoleCodes {
   /// Display: FLunky
   /// Definition: To be completed
-  @JsonValue('flunky')
   flunky,
   ;
 

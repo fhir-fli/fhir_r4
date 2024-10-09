@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Whether an operation is a normal operation or a query.
 enum OperationKind {
   /// Display: Operation
   /// Definition: This operation is invoked as an operation.
-  @JsonValue('operation')
   operation,
 
   /// Display: Query
   /// Definition: This operation is a named query, invoked using the search mechanism.
-  @JsonValue('query')
   query,
   ;
 

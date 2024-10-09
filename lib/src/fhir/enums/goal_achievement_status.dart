@@ -1,50 +1,39 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Describes the progression, or lack thereof, towards the goal against the target.
 enum GoalAchievementStatus {
   /// Display: In Progress
   /// Definition: The goal is being sought but has not yet been reached. (Also applies if the goal was reached in the past but there has been regression and the goal is again being sought).
-  @JsonValue('in-progress')
   in_progress,
 
   /// Display: Improving
   /// Definition: The goal is being sought, and is progressing.
-  @JsonValue('improving')
   improving,
 
   /// Display: Worsening
   /// Definition: The goal is being sought, but is regressing.
-  @JsonValue('worsening')
   worsening,
 
   /// Display: No Change
   /// Definition: The goal is being sought, but the trend is flat.
-  @JsonValue('no-change')
   no_change,
 
   /// Display: Achieved
   /// Definition: The goal has been met.
-  @JsonValue('achieved')
   achieved,
 
   /// Display: Sustaining
   /// Definition: The goal has been met, but ongoing activity is needed to sustain the goal objective.
-  @JsonValue('sustaining')
   sustaining,
 
   /// Display: Not Achieved
   /// Definition: The goal has not been met and there might or might not have been progress towards target.
-  @JsonValue('not-achieved')
   not_achieved,
 
   /// Display: No Progress
   /// Definition: The goal has not been met and little to no progress towards target.
-  @JsonValue('no-progress')
   no_progress,
 
   /// Display: Not Attainable
   /// Definition: The goal is not possible to be met.
-  @JsonValue('not-attainable')
   not_attainable,
   ;
 

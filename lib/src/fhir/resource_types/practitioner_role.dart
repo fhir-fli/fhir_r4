@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [PractitionerRole] /// A specific set of Roles/Locations/specialties/services that a practitioner
 /// may perform at an organization for a period of time.
-@JsonSerializable()
 class PractitionerRole extends DomainResource {
   PractitionerRole({
     super.id,
@@ -43,79 +41,64 @@ class PractitionerRole extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.PractitionerRole);
+
   @override
   String get fhirType => 'PractitionerRole';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Business Identifiers that are specific to a role/location.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [active] /// Whether this practitioner role record is in active use.
-  @JsonKey(name: 'active')
   final FhirBoolean? active;
-  @JsonKey(name: '_active')
   final Element? activeElement;
 
   /// [period] /// The period during which the person is authorized to act as a practitioner
   /// in these role(s) for the organization.
-  @JsonKey(name: 'period')
   final Period? period;
 
   /// [practitioner] /// Practitioner that is able to provide the defined services for the
   /// organization.
-  @JsonKey(name: 'practitioner')
   final Reference? practitioner;
 
   /// [organization] /// The organization where the Practitioner performs the roles associated.
-  @JsonKey(name: 'organization')
   final Reference? organization;
 
   /// [code] /// Roles which this practitioner is authorized to perform for the
   /// organization.
-  @JsonKey(name: 'code')
   final List<CodeableConcept>? code;
 
   /// [specialty] /// Specific specialty of the practitioner.
-  @JsonKey(name: 'specialty')
   final List<CodeableConcept>? specialty;
 
   /// [location] /// The location(s) at which this practitioner provides care.
-  @JsonKey(name: 'location')
   final List<Reference>? location;
 
   /// [healthcareService] /// The list of healthcare services that this worker provides for this role's
   /// Organization/Location(s).
-  @JsonKey(name: 'healthcareService')
   final List<Reference>? healthcareService;
 
   /// [telecom] /// Contact details that are specific to the role/location/service.
-  @JsonKey(name: 'telecom')
   final List<ContactPoint>? telecom;
 
   /// [availableTime] /// A collection of times the practitioner is available or performing this role
   /// at the location and/or healthcareservice.
-  @JsonKey(name: 'availableTime')
   final List<PractitionerRoleAvailableTime>? availableTime;
 
   /// [notAvailable] /// The practitioner is not available or performing this role during this
   /// period of time due to the provided reason.
-  @JsonKey(name: 'notAvailable')
   final List<PractitionerRoleNotAvailable>? notAvailable;
 
   /// [availabilityExceptions] /// A description of site availability exceptions, e.g. public holiday
   /// availability. Succinctly describing all possible exceptions to normal site
   /// availability as details in the available Times and not available Times.
-  @JsonKey(name: 'availabilityExceptions')
   final FhirString? availabilityExceptions;
-  @JsonKey(name: '_availabilityExceptions')
   final Element? availabilityExceptionsElement;
 
   /// [endpoint] /// Technical endpoints providing access to services operated for the
   /// practitioner with this role.
-  @JsonKey(name: 'endpoint')
   final List<Reference>? endpoint;
   @override
   Map<String, dynamic> toJson() {
@@ -426,7 +409,6 @@ class PractitionerRole extends DomainResource {
 
 /// [PractitionerRoleAvailableTime] /// A collection of times the practitioner is available or performing this role
 /// at the location and/or healthcareservice.
-@JsonSerializable()
 class PractitionerRoleAvailableTime extends BackboneElement {
   PractitionerRoleAvailableTime({
     super.id,
@@ -447,38 +429,31 @@ class PractitionerRoleAvailableTime extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'PractitionerRoleAvailableTime';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [daysOfWeek] /// Indicates which days of the week are available between the start and end
   /// Times.
-  @JsonKey(name: 'daysOfWeek')
   final List<DaysOfWeek>? daysOfWeek;
-  @JsonKey(name: '_daysOfWeek')
   final List<Element>? daysOfWeekElement;
 
   /// [allDay] /// Is this always available? (hence times are irrelevant) e.g. 24 hour
   /// service.
-  @JsonKey(name: 'allDay')
   final FhirBoolean? allDay;
-  @JsonKey(name: '_allDay')
   final Element? allDayElement;
 
   /// [availableStartTime] /// The opening time of day. Note: If the AllDay flag is set, then this time is
   /// ignored.
-  @JsonKey(name: 'availableStartTime')
   final FhirTime? availableStartTime;
-  @JsonKey(name: '_availableStartTime')
   final Element? availableStartTimeElement;
 
   /// [availableEndTime] /// The closing time of day. Note: If the AllDay flag is set, then this time is
   /// ignored.
-  @JsonKey(name: 'availableEndTime')
   final FhirTime? availableEndTime;
-  @JsonKey(name: '_availableEndTime')
   final Element? availableEndTimeElement;
   @override
   Map<String, dynamic> toJson() {
@@ -629,7 +604,6 @@ class PractitionerRoleAvailableTime extends BackboneElement {
 
 /// [PractitionerRoleNotAvailable] /// The practitioner is not available or performing this role during this
 /// period of time due to the provided reason.
-@JsonSerializable()
 class PractitionerRoleNotAvailable extends BackboneElement {
   PractitionerRoleNotAvailable({
     super.id,
@@ -645,22 +619,20 @@ class PractitionerRoleNotAvailable extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'PractitionerRoleNotAvailable';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [description] /// The reason that can be presented to the user as to why this time is not
   /// available.
-  @JsonKey(name: 'description')
   final FhirString description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [during] /// Service is not available (seasonally or for a public holiday) from this
   /// date.
-  @JsonKey(name: 'during')
   final Period? during;
   @override
   Map<String, dynamic> toJson() {

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -10,7 +9,6 @@ import '../../../fhir_r4.dart';
 /// long running infusion. Related resources tie this event to the authorizing
 /// prescription, and the specific encounter between patient and health care
 /// practitioner.
-@JsonSerializable()
 class MedicationAdministration extends DomainResource {
   MedicationAdministration({
     super.id,
@@ -54,10 +52,11 @@ class MedicationAdministration extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.MedicationAdministration);
+
   @override
   String get fhirType => 'MedicationAdministration';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifiers associated with this Medication Administration that are defined
@@ -66,117 +65,93 @@ class MedicationAdministration extends DomainResource {
   /// identifiers assigned to this resource by the performer or other systems and
   /// remain constant as the resource is updated and propagates from server to
   /// server.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [instantiates] /// A protocol, guideline, orderset, or other definition that was adhered to in
   /// whole or in part by this event.
-  @JsonKey(name: 'instantiates')
   final List<FhirUri>? instantiates;
-  @JsonKey(name: '_instantiates')
   final List<Element>? instantiatesElement;
 
   /// [partOf] /// A larger event of which this particular event is a component or step.
-  @JsonKey(name: 'partOf')
   final List<Reference>? partOf;
 
   /// [status] /// Will generally be set to show that the administration has been completed.
   /// For some long running administrations such as infusions, it is possible for
   /// an administration to be started but not completed or it may be paused while
   /// some other process is under way.
-  @JsonKey(name: 'status')
   final MedicationAdministrationStatusCodes status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [statusReason] /// A code indicating why the administration was not performed.
-  @JsonKey(name: 'statusReason')
   final List<CodeableConcept>? statusReason;
 
   /// [category] /// Indicates where the medication is expected to be consumed or administered.
-  @JsonKey(name: 'category')
   final CodeableConcept? category;
 
   /// [medicationCodeableConcept] /// Identifies the medication that was administered. This is either a link to a
   /// resource representing the details of the medication or a simple attribute
   /// carrying a code that identifies the medication from a known list of
   /// medications.
-  @JsonKey(name: 'medicationCodeableConcept')
   final CodeableConcept? medicationCodeableConcept;
 
   /// [medicationReference] /// Identifies the medication that was administered. This is either a link to a
   /// resource representing the details of the medication or a simple attribute
   /// carrying a code that identifies the medication from a known list of
   /// medications.
-  @JsonKey(name: 'medicationReference')
   final Reference? medicationReference;
 
   /// [subject] /// The person or animal or group receiving the medication.
-  @JsonKey(name: 'subject')
   final Reference subject;
 
   /// [context] /// The visit, admission, or other contact between patient and health care
   /// provider during which the medication administration was performed.
-  @JsonKey(name: 'context')
   final Reference? context;
 
   /// [supportingInformation] /// Additional information (for example, patient height and weight) that
   /// supports the administration of the medication.
-  @JsonKey(name: 'supportingInformation')
   final List<Reference>? supportingInformation;
 
   /// [effectiveDateTime] /// A specific date/time or interval of time during which the administration
   /// took place (or did not take place, when the 'notGiven' attribute is true).
   /// For many administrations, such as swallowing a tablet the use of dateTime
   /// is more appropriate.
-  @JsonKey(name: 'effectiveDateTime')
   final FhirDateTime? effectiveDateTime;
-  @JsonKey(name: '_effectiveDateTime')
   final Element? effectiveDateTimeElement;
 
   /// [effectivePeriod] /// A specific date/time or interval of time during which the administration
   /// took place (or did not take place, when the 'notGiven' attribute is true).
   /// For many administrations, such as swallowing a tablet the use of dateTime
   /// is more appropriate.
-  @JsonKey(name: 'effectivePeriod')
   final Period? effectivePeriod;
 
   /// [performer] /// Indicates who or what performed the medication administration and how they
   /// were involved.
-  @JsonKey(name: 'performer')
   final List<MedicationAdministrationPerformer>? performer;
 
   /// [reasonCode] /// A code indicating why the medication was given.
-  @JsonKey(name: 'reasonCode')
   final List<CodeableConcept>? reasonCode;
 
   /// [reasonReference] /// Condition or observation that supports why the medication was administered.
-  @JsonKey(name: 'reasonReference')
   final List<Reference>? reasonReference;
 
   /// [request] /// The original request, instruction or authority to perform the
   /// administration.
-  @JsonKey(name: 'request')
   final Reference? request;
 
   /// [device] /// The device used in administering the medication to the patient. For
   /// example, a particular infusion pump.
-  @JsonKey(name: 'device')
   final List<Reference>? device;
 
   /// [note] /// Extra information about the medication administration that is not conveyed
   /// by the other attributes.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [dosage] /// Describes the medication dosage information details e.g. dose, rate, site,
   /// route, etc.
-  @JsonKey(name: 'dosage')
   final MedicationAdministrationDosage? dosage;
 
   /// [eventHistory] /// A summary of the events of interest that have occurred, such as when the
   /// administration was verified.
-  @JsonKey(name: 'eventHistory')
   final List<Reference>? eventHistory;
   @override
   Map<String, dynamic> toJson() {
@@ -552,7 +527,6 @@ class MedicationAdministration extends DomainResource {
 
 /// [MedicationAdministrationPerformer] /// Indicates who or what performed the medication administration and how they
 /// were involved.
-@JsonSerializable()
 class MedicationAdministrationPerformer extends BackboneElement {
   MedicationAdministrationPerformer({
     super.id,
@@ -567,19 +541,18 @@ class MedicationAdministrationPerformer extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MedicationAdministrationPerformer';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [function_] /// Distinguishes the type of involvement of the performer in the medication
   /// administration.
-  @JsonKey(name: 'function')
   final CodeableConcept? function_;
 
   /// [actor] /// Indicates who or what performed the medication administration.
-  @JsonKey(name: 'actor')
   final Reference actor;
   @override
   Map<String, dynamic> toJson() {
@@ -681,7 +654,6 @@ class MedicationAdministrationPerformer extends BackboneElement {
 
 /// [MedicationAdministrationDosage] /// Describes the medication dosage information details e.g. dose, rate, site,
 /// route, etc.
-@JsonSerializable()
 class MedicationAdministrationDosage extends BackboneElement {
   MedicationAdministrationDosage({
     super.id,
@@ -702,43 +674,38 @@ class MedicationAdministrationDosage extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MedicationAdministrationDosage';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [text] /// Free text dosage can be used for cases where the dosage administered is too
   /// complex to code. When coded dosage is present, the free text dosage may
   /// still be present for display to humans. The dosage instructions should
   /// reflect the dosage of the medication that was administered.
-  @JsonKey(name: 'text')
   final FhirString? text;
-  @JsonKey(name: '_text')
   final Element? textElement;
 
   /// [site] /// A coded specification of the anatomic site where the medication first
   /// entered the body. For example, "left arm".
-  @JsonKey(name: 'site')
   final CodeableConcept? site;
 
   /// [route] /// A code specifying the route or physiological path of administration of a
   /// therapeutic agent into or onto the patient. For example, topical,
   /// intravenous, etc.
-  @JsonKey(name: 'route')
   final CodeableConcept? route;
 
   /// [method] /// A coded value indicating the method by which the medication is intended to
   /// be or was introduced into or on the body. This attribute will most often
   /// NOT be populated. It is most commonly used for injections. For example,
   /// Slow Push, Deep IV.
-  @JsonKey(name: 'method')
   final CodeableConcept? method;
 
   /// [dose] /// The amount of the medication given at one administration event. Use this
   /// value when the administration is essentially an instantaneous event such as
   /// a swallowing a tablet or giving an injection.
-  @JsonKey(name: 'dose')
   final Quantity? dose;
 
   /// [rateRatio] /// Identifies the speed with which the medication was or will be introduced
@@ -746,7 +713,6 @@ class MedicationAdministrationDosage extends BackboneElement {
   /// hour or 100 ml/hr. May also be expressed as a rate per unit of time, e.g.
   /// 500 ml per 2 hours. Other examples: 200 mcg/min or 200 mcg/1 minute; 1
   /// liter/8 hours.
-  @JsonKey(name: 'rateRatio')
   final Ratio? rateRatio;
 
   /// [rateQuantity] /// Identifies the speed with which the medication was or will be introduced
@@ -754,7 +720,6 @@ class MedicationAdministrationDosage extends BackboneElement {
   /// hour or 100 ml/hr. May also be expressed as a rate per unit of time, e.g.
   /// 500 ml per 2 hours. Other examples: 200 mcg/min or 200 mcg/1 minute; 1
   /// liter/8 hours.
-  @JsonKey(name: 'rateQuantity')
   final Quantity? rateQuantity;
   @override
   Map<String, dynamic> toJson() {

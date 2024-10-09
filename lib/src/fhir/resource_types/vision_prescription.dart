@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [VisionPrescription] /// An authorization for the provision of glasses and/or contact lenses to a
 /// patient.
-@JsonSerializable()
 class VisionPrescription extends DomainResource {
   VisionPrescription({
     super.id,
@@ -38,51 +36,41 @@ class VisionPrescription extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.VisionPrescription);
+
   @override
   String get fhirType => 'VisionPrescription';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// A unique identifier assigned to this vision prescription.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// The status of the resource instance.
-  @JsonKey(name: 'status')
   final FinancialResourceStatusCodes status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [created] /// The date this resource was created.
-  @JsonKey(name: 'created')
   final FhirDateTime created;
-  @JsonKey(name: '_created')
   final Element? createdElement;
 
   /// [patient] /// A resource reference to the person to whom the vision prescription applies.
-  @JsonKey(name: 'patient')
   final Reference patient;
 
   /// [encounter] /// A reference to a resource that identifies the particular occurrence of
   /// contact between patient and health care provider during which the
   /// prescription was issued.
-  @JsonKey(name: 'encounter')
   final Reference? encounter;
 
   /// [dateWritten] /// The date (and perhaps time) when the prescription was written.
-  @JsonKey(name: 'dateWritten')
   final FhirDateTime dateWritten;
-  @JsonKey(name: '_dateWritten')
   final Element? dateWrittenElement;
 
   /// [prescriber] /// The healthcare professional responsible for authorizing the prescription.
-  @JsonKey(name: 'prescriber')
   final Reference prescriber;
 
   /// [lensSpecification] /// Contain the details of the individual lens specifications and serves as the
   /// authorization for the fullfillment by certified professionals.
-  @JsonKey(name: 'lensSpecification')
   final List<VisionPrescriptionLensSpecification> lensSpecification;
   @override
   Map<String, dynamic> toJson() {
@@ -292,7 +280,6 @@ class VisionPrescription extends DomainResource {
 
 /// [VisionPrescriptionLensSpecification] /// Contain the details of the individual lens specifications and serves as the
 /// authorization for the fullfillment by certified professionals.
-@JsonSerializable()
 class VisionPrescriptionLensSpecification extends BackboneElement {
   VisionPrescriptionLensSpecification({
     super.id,
@@ -329,87 +316,64 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'VisionPrescriptionLensSpecification';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [product] /// Identifies the type of vision correction product which is required for the
   /// patient.
-  @JsonKey(name: 'product')
   final CodeableConcept product;
 
   /// [eye] /// The eye for which the lens specification applies.
-  @JsonKey(name: 'eye')
   final VisionEyes eye;
-  @JsonKey(name: '_eye')
   final Element? eyeElement;
 
   /// [sphere] /// Lens power measured in dioptres (0.25 units).
-  @JsonKey(name: 'sphere')
   final FhirDecimal? sphere;
-  @JsonKey(name: '_sphere')
   final Element? sphereElement;
 
   /// [cylinder] /// Power adjustment for astigmatism measured in dioptres (0.25 units).
-  @JsonKey(name: 'cylinder')
   final FhirDecimal? cylinder;
-  @JsonKey(name: '_cylinder')
   final Element? cylinderElement;
 
   /// [axis] /// Adjustment for astigmatism measured in integer degrees.
-  @JsonKey(name: 'axis')
   final FhirInteger? axis;
-  @JsonKey(name: '_axis')
   final Element? axisElement;
 
   /// [prism] /// Allows for adjustment on two axis.
-  @JsonKey(name: 'prism')
   final List<VisionPrescriptionPrism>? prism;
 
   /// [add] /// Power adjustment for multifocal lenses measured in dioptres (0.25 units).
-  @JsonKey(name: 'add')
   final FhirDecimal? add;
-  @JsonKey(name: '_add')
   final Element? addElement;
 
   /// [power] /// Contact lens power measured in dioptres (0.25 units).
-  @JsonKey(name: 'power')
   final FhirDecimal? power;
-  @JsonKey(name: '_power')
   final Element? powerElement;
 
   /// [backCurve] /// Back curvature measured in millimetres.
-  @JsonKey(name: 'backCurve')
   final FhirDecimal? backCurve;
-  @JsonKey(name: '_backCurve')
   final Element? backCurveElement;
 
   /// [diameter] /// Contact lens diameter measured in millimetres.
-  @JsonKey(name: 'diameter')
   final FhirDecimal? diameter;
-  @JsonKey(name: '_diameter')
   final Element? diameterElement;
 
   /// [duration] /// The recommended maximum wear period for the lens.
-  @JsonKey(name: 'duration')
   final Quantity? duration;
 
   /// [color] /// Special color or pattern.
-  @JsonKey(name: 'color')
   final FhirString? color;
-  @JsonKey(name: '_color')
   final Element? colorElement;
 
   /// [brand] /// Brand recommendations or restrictions.
-  @JsonKey(name: 'brand')
   final FhirString? brand;
-  @JsonKey(name: '_brand')
   final Element? brandElement;
 
   /// [note] /// Notes for special requirements such as coatings and lens materials.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
@@ -668,7 +632,6 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
 }
 
 /// [VisionPrescriptionPrism] /// Allows for adjustment on two axis.
-@JsonSerializable()
 class VisionPrescriptionPrism extends BackboneElement {
   VisionPrescriptionPrism({
     super.id,
@@ -685,22 +648,19 @@ class VisionPrescriptionPrism extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'VisionPrescriptionPrism';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [amount] /// Amount of prism to compensate for eye alignment in fractional units.
-  @JsonKey(name: 'amount')
   final FhirDecimal amount;
-  @JsonKey(name: '_amount')
   final Element? amountElement;
 
   /// [base] /// The relative base, or reference lens edge, for the prism.
-  @JsonKey(name: 'base')
   final VisionBase base;
-  @JsonKey(name: '_base')
   final Element? baseElement;
   @override
   Map<String, dynamic> toJson() {

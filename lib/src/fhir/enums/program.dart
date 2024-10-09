@@ -1,185 +1,138 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set defines an example set of codes that could be can be used to classify groupings of service-types/specialties.
 enum Program {
   /// Display: Acquired Brain Injury (ABI) Program
-  @JsonValue('1')
   value1,
 
   /// Display: ABI Slow To Recover (ABI STR) Program
-  @JsonValue('2')
   value2,
 
   /// Display: Access Programs
-  @JsonValue('3')
   value3,
 
   /// Display: Adult and Further Education (ACFE) Program
-  @JsonValue('4')
   value4,
 
   /// Display: Adult Day Activity and Support Services (ADASS) Program
-  @JsonValue('5')
   value5,
 
   /// Display: Adult Day Care Program
-  @JsonValue('6')
   value6,
 
   /// Display: ATSS (Adult Training Support Service)
-  @JsonValue('7')
   value7,
 
   /// Display: Community Aged Care Packages (CACP)
-  @JsonValue('8')
   value8,
 
   /// Display: Care Coordination & Supplementary Services (CCSS)
-  @JsonValue('9')
   value9,
 
   /// Display: Cognitive Dementia Memory Service (CDAMS)
-  @JsonValue('10')
   value10,
 
   /// Display: ChildFIRST
-  @JsonValue('11')
   value11,
 
   /// Display: Children's Contact Services
-  @JsonValue('12')
   value12,
 
   /// Display: Community Visitors Scheme
-  @JsonValue('13')
   value13,
 
   /// Display: CPP (Community Partners Program)
-  @JsonValue('14')
   value14,
 
   /// Display: Closing the Gap (CTG)
-  @JsonValue('15')
   value15,
 
   /// Display: Coordinated Veterans' Care (CVC) Program
-  @JsonValue('16')
   value16,
 
   /// Display: Day Program
-  @JsonValue('17')
   value17,
 
   /// Display: Drop In Program
-  @JsonValue('18')
   value18,
 
   /// Display: Early Years Program
-  @JsonValue('19')
   value19,
 
   /// Display: Employee Assistance Program
-  @JsonValue('20')
   value20,
 
   /// Display: Home And Community Care (HACC)
-  @JsonValue('21')
   value21,
 
   /// Display: Hospital Admission Risk Program (HARP)
-  @JsonValue('22')
   value22,
 
   /// Display: Hospital in the Home (HITH) Program
-  @JsonValue('23')
   value23,
 
   /// Display: ICTP (Intensive Community Treatment Program)
-  @JsonValue('24')
   value24,
 
   /// Display: IFSS (Intensive Family Support Program)
-  @JsonValue('25')
   value25,
 
   /// Display: JPET (Job Placement, Education and Training)
-  @JsonValue('26')
   value26,
 
   /// Display: Koori Juvenile Justice Program
-  @JsonValue('27')
   value27,
 
   /// Display: Language Literacy and Numeracy Program
-  @JsonValue('28')
   value28,
 
   /// Display: Life Skills Program
-  @JsonValue('29')
   value29,
 
   /// Display: LMP (Lifestyle Modification Program)
-  @JsonValue('30')
   value30,
 
   /// Display: MedsCheck Program
-  @JsonValue('31')
   value31,
 
   /// Display: Methadone/Buprenorphine Program
-  @JsonValue('32')
   value32,
 
   /// Display: National Disabilities Insurance Scheme (NDIS)
-  @JsonValue('33')
   value33,
 
   /// Display: National Diabetes Services Scheme (NDSS)
-  @JsonValue('34')
   value34,
 
   /// Display: Needle/Syringe Program
-  @JsonValue('35')
   value35,
 
   /// Display: nPEP Program
-  @JsonValue('36')
   value36,
 
   /// Display: Personal Support Program
-  @JsonValue('37')
   value37,
 
   /// Display: Partners in Recovery (PIR) Program
-  @JsonValue('38')
   value38,
 
   /// Display: Pre-employment Program
-  @JsonValue('39')
   value39,
 
   /// Display: Reconnect Program
-  @JsonValue('40')
   value40,
 
   /// Display: Sexual Abuse Counselling and Prevention Program (SACPP)
-  @JsonValue('41')
   value41,
 
   /// Display: Social Support Programs
-  @JsonValue('42')
   value42,
 
   /// Display: Supported Residential Service (SRS)
-  @JsonValue('43')
   value43,
 
   /// Display: Tasmanian Aboriginal Centre (TAC)
-  @JsonValue('44')
   value44,
 
   /// Display: Victim's Assistance Program
-  @JsonValue('45')
   value45,
   ;
 

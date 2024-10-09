@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes a smattering of Network type codes.
 enum NetworkTypeCodes {
   /// Display: In Network
   /// Definition: Services rendered by a Network provider
-  @JsonValue('in')
   in_,
 
   /// Display: Out of Network
   /// Definition: Services rendered by a provider who is not in the Network
-  @JsonValue('out')
   out,
   ;
 

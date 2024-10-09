@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Type for quality report.
 enum QualityType {
   /// Display: INDEL Comparison
   /// Definition: INDEL Comparison.
-  @JsonValue('indel')
   indel,
 
   /// Display: SNP Comparison
   /// Definition: SNP Comparison.
-  @JsonValue('snp')
   snp,
 
   /// Display: UNKNOWN Comparison
   /// Definition: UNKNOWN Comparison.
-  @JsonValue('unknown')
   unknown,
   ;
 

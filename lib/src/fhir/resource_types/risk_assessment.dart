@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [RiskAssessment] /// An assessment of the likely outcome(s) for a patient or other subject as
 /// well as the likelihood of each outcome.
-@JsonSerializable()
 class RiskAssessment extends DomainResource {
   RiskAssessment({
     super.id,
@@ -48,93 +46,73 @@ class RiskAssessment extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.RiskAssessment);
+
   @override
   String get fhirType => 'RiskAssessment';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Business identifier assigned to the risk assessment.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [basedOn] /// A reference to the request that is fulfilled by this risk assessment.
-  @JsonKey(name: 'basedOn')
   final Reference? basedOn;
 
   /// [parent] /// A reference to a resource that this risk assessment is part of, such as a
   /// Procedure.
-  @JsonKey(name: 'parent')
   final Reference? parent;
 
   /// [status] /// The status of the RiskAssessment, using the same statuses as an
   /// Observation.
-  @JsonKey(name: 'status')
   final ObservationStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [method] /// The algorithm, process or mechanism used to evaluate the risk.
-  @JsonKey(name: 'method')
   final CodeableConcept? method;
 
   /// [code] /// The type of the risk assessment performed.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [subject] /// The patient or group the risk assessment applies to.
-  @JsonKey(name: 'subject')
   final Reference subject;
 
   /// [encounter] /// The encounter where the assessment was performed.
-  @JsonKey(name: 'encounter')
   final Reference? encounter;
 
   /// [occurrenceDateTime] /// The date (and possibly time) the risk assessment was performed.
-  @JsonKey(name: 'occurrenceDateTime')
   final FhirDateTime? occurrenceDateTime;
-  @JsonKey(name: '_occurrenceDateTime')
   final Element? occurrenceDateTimeElement;
 
   /// [occurrencePeriod] /// The date (and possibly time) the risk assessment was performed.
-  @JsonKey(name: 'occurrencePeriod')
   final Period? occurrencePeriod;
 
   /// [condition] /// For assessments or prognosis specific to a particular condition, indicates
   /// the condition being assessed.
-  @JsonKey(name: 'condition')
   final Reference? condition;
 
   /// [performer] /// The provider or software application that performed the assessment.
-  @JsonKey(name: 'performer')
   final Reference? performer;
 
   /// [reasonCode] /// The reason the risk assessment was performed.
-  @JsonKey(name: 'reasonCode')
   final List<CodeableConcept>? reasonCode;
 
   /// [reasonReference] /// Resources supporting the reason the risk assessment was performed.
-  @JsonKey(name: 'reasonReference')
   final List<Reference>? reasonReference;
 
   /// [basis] /// Indicates the source data considered as part of the assessment (for
   /// example, FamilyHistory, Observations, Procedures, Conditions, etc.).
-  @JsonKey(name: 'basis')
   final List<Reference>? basis;
 
   /// [prediction] /// Describes the expected outcome for the subject.
-  @JsonKey(name: 'prediction')
   final List<RiskAssessmentPrediction>? prediction;
 
   /// [mitigation] /// A description of the steps that might be taken to reduce the identified
   /// risk(s).
-  @JsonKey(name: 'mitigation')
   final FhirString? mitigation;
-  @JsonKey(name: '_mitigation')
   final Element? mitigationElement;
 
   /// [note] /// Additional comments about the risk assessment.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
@@ -454,7 +432,6 @@ class RiskAssessment extends DomainResource {
 }
 
 /// [RiskAssessmentPrediction] /// Describes the expected outcome for the subject.
-@JsonSerializable()
 class RiskAssessmentPrediction extends BackboneElement {
   RiskAssessmentPrediction({
     super.id,
@@ -478,55 +455,45 @@ class RiskAssessmentPrediction extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'RiskAssessmentPrediction';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [outcome] /// One of the potential outcomes for the patient (e.g. remission, death, a
   /// particular condition).
-  @JsonKey(name: 'outcome')
   final CodeableConcept? outcome;
 
   /// [probabilityDecimal] /// Indicates how likely the outcome is (in the specified timeframe).
-  @JsonKey(name: 'probabilityDecimal')
   final FhirDecimal? probabilityDecimal;
-  @JsonKey(name: '_probabilityDecimal')
   final Element? probabilityDecimalElement;
 
   /// [probabilityRange] /// Indicates how likely the outcome is (in the specified timeframe).
-  @JsonKey(name: 'probabilityRange')
   final Range? probabilityRange;
 
   /// [qualitativeRisk] /// Indicates how likely the outcome is (in the specified timeframe), expressed
   /// as a qualitative value (e.g. low, medium, or high).
-  @JsonKey(name: 'qualitativeRisk')
   final CodeableConcept? qualitativeRisk;
 
   /// [relativeRisk] /// Indicates the risk for this particular subject (with their specific
   /// characteristics) divided by the risk of the population in general. (Numbers
   /// greater than 1 = higher risk than the population, numbers less than 1 =
   /// lower risk.).
-  @JsonKey(name: 'relativeRisk')
   final FhirDecimal? relativeRisk;
-  @JsonKey(name: '_relativeRisk')
   final Element? relativeRiskElement;
 
   /// [whenPeriod] /// Indicates the period of time or age range of the subject to which the
   /// specified probability applies.
-  @JsonKey(name: 'whenPeriod')
   final Period? whenPeriod;
 
   /// [whenRange] /// Indicates the period of time or age range of the subject to which the
   /// specified probability applies.
-  @JsonKey(name: 'whenRange')
   final Range? whenRange;
 
   /// [rationale] /// Additional information explaining the basis for the prediction.
-  @JsonKey(name: 'rationale')
   final FhirString? rationale;
-  @JsonKey(name: '_rationale')
   final Element? rationaleElement;
   @override
   Map<String, dynamic> toJson() {

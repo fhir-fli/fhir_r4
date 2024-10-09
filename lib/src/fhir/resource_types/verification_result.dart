@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [VerificationResult] /// Describes validation requirements, source(s), status and dates for one or
 /// more elements.
-@JsonSerializable()
 class VerificationResult extends DomainResource {
   VerificationResult({
     super.id,
@@ -46,80 +44,62 @@ class VerificationResult extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.VerificationResult);
+
   @override
   String get fhirType => 'VerificationResult';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [target] /// A resource that was validated.
-  @JsonKey(name: 'target')
   final List<Reference>? target;
 
   /// [targetLocation] /// The fhirpath location(s) within the resource that was validated.
-  @JsonKey(name: 'targetLocation')
   final List<FhirString>? targetLocation;
-  @JsonKey(name: '_targetLocation')
   final List<Element>? targetLocationElement;
 
   /// [need] /// The frequency with which the target must be validated (none; initial;
   /// periodic).
-  @JsonKey(name: 'need')
   final CodeableConcept? need;
 
   /// [status] /// The validation status of the target (attested; validated; in process;
   /// requires revalidation; validation failed; revalidation failed).
-  @JsonKey(name: 'status')
   final Status status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [statusDate] /// When the validation status was updated.
-  @JsonKey(name: 'statusDate')
   final FhirDateTime? statusDate;
-  @JsonKey(name: '_statusDate')
   final Element? statusDateElement;
 
   /// [validationType] /// What the target is validated against (nothing; primary source; multiple
   /// sources).
-  @JsonKey(name: 'validationType')
   final CodeableConcept? validationType;
 
   /// [validationProcess] /// The primary process by which the target is validated (edit check; value
   /// set; primary source; multiple sources; standalone; in context).
-  @JsonKey(name: 'validationProcess')
   final List<CodeableConcept>? validationProcess;
 
   /// [frequency] /// Frequency of revalidation.
-  @JsonKey(name: 'frequency')
   final Timing? frequency;
 
   /// [lastPerformed] /// The date/time validation was last completed (including failed validations).
-  @JsonKey(name: 'lastPerformed')
   final FhirDateTime? lastPerformed;
-  @JsonKey(name: '_lastPerformed')
   final Element? lastPerformedElement;
 
   /// [nextScheduled] /// The date when target is next validated, if appropriate.
-  @JsonKey(name: 'nextScheduled')
   final FhirDate? nextScheduled;
-  @JsonKey(name: '_nextScheduled')
   final Element? nextScheduledElement;
 
   /// [failureAction] /// The result if validation fails (fatal; warning; record only; none).
-  @JsonKey(name: 'failureAction')
   final CodeableConcept? failureAction;
 
   /// [primarySource] /// Information about the primary source(s) involved in validation.
-  @JsonKey(name: 'primarySource')
   final List<VerificationResultPrimarySource>? primarySource;
 
   /// [attestation] /// Information about the entity attesting to information.
-  @JsonKey(name: 'attestation')
   final VerificationResultAttestation? attestation;
 
   /// [validator] /// Information about the entity validating information.
-  @JsonKey(name: 'validator')
   final List<VerificationResultValidator>? validator;
   @override
   Map<String, dynamic> toJson() {
@@ -433,7 +413,6 @@ class VerificationResult extends DomainResource {
 }
 
 /// [VerificationResultPrimarySource] /// Information about the primary source(s) involved in validation.
-@JsonSerializable()
 class VerificationResultPrimarySource extends BackboneElement {
   VerificationResultPrimarySource({
     super.id,
@@ -454,45 +433,38 @@ class VerificationResultPrimarySource extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'VerificationResultPrimarySource';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [who] /// Reference to the primary source.
-  @JsonKey(name: 'who')
   final Reference? who;
 
   /// [type] /// Type of primary source (License Board; Primary Education; Continuing
   /// Education; Postal Service; Relationship owner; Registration Authority;
   /// legal source; issuing source; authoritative source).
-  @JsonKey(name: 'type')
   final List<CodeableConcept>? type;
 
   /// [communicationMethod] /// Method for communicating with the primary source (manual; API; Push).
-  @JsonKey(name: 'communicationMethod')
   final List<CodeableConcept>? communicationMethod;
 
   /// [validationStatus] /// Status of the validation of the target against the primary source
   /// (successful; failed; unknown).
-  @JsonKey(name: 'validationStatus')
   final CodeableConcept? validationStatus;
 
   /// [validationDate] /// When the target was validated against the primary source.
-  @JsonKey(name: 'validationDate')
   final FhirDateTime? validationDate;
-  @JsonKey(name: '_validationDate')
   final Element? validationDateElement;
 
   /// [canPushUpdates] /// Ability of the primary source to push updates/alerts (yes; no;
   /// undetermined).
-  @JsonKey(name: 'canPushUpdates')
   final CodeableConcept? canPushUpdates;
 
   /// [pushTypeAvailable] /// Type of alerts/updates the primary source can send (specific requested
   /// changes; any changes; as defined by source).
-  @JsonKey(name: 'pushTypeAvailable')
   final List<CodeableConcept>? pushTypeAvailable;
   @override
   Map<String, dynamic> toJson() {
@@ -661,7 +633,6 @@ class VerificationResultPrimarySource extends BackboneElement {
 }
 
 /// [VerificationResultAttestation] /// Information about the entity attesting to information.
-@JsonSerializable()
 class VerificationResultAttestation extends BackboneElement {
   VerificationResultAttestation({
     super.id,
@@ -685,53 +656,43 @@ class VerificationResultAttestation extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'VerificationResultAttestation';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [who] /// The individual or organization attesting to information.
-  @JsonKey(name: 'who')
   final Reference? who;
 
   /// [onBehalfOf] /// When the who is asserting on behalf of another (organization or
   /// individual).
-  @JsonKey(name: 'onBehalfOf')
   final Reference? onBehalfOf;
 
   /// [communicationMethod] /// The method by which attested information was submitted/retrieved (manual;
   /// API; Push).
-  @JsonKey(name: 'communicationMethod')
   final CodeableConcept? communicationMethod;
 
   /// [date] /// The date the information was attested to.
-  @JsonKey(name: 'date')
   final FhirDate? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [sourceIdentityCertificate] /// A digital identity certificate associated with the attestation source.
-  @JsonKey(name: 'sourceIdentityCertificate')
   final FhirString? sourceIdentityCertificate;
-  @JsonKey(name: '_sourceIdentityCertificate')
   final Element? sourceIdentityCertificateElement;
 
   /// [proxyIdentityCertificate] /// A digital identity certificate associated with the proxy entity submitting
   /// attested information on behalf of the attestation source.
-  @JsonKey(name: 'proxyIdentityCertificate')
   final FhirString? proxyIdentityCertificate;
-  @JsonKey(name: '_proxyIdentityCertificate')
   final Element? proxyIdentityCertificateElement;
 
   /// [proxySignature] /// Signed assertion by the proxy entity indicating that they have the right to
   /// submit attested information on behalf of the attestation source.
-  @JsonKey(name: 'proxySignature')
   final Signature? proxySignature;
 
   /// [sourceSignature] /// Signed assertion by the attestation source that they have attested to the
   /// information.
-  @JsonKey(name: 'sourceSignature')
   final Signature? sourceSignature;
   @override
   Map<String, dynamic> toJson() {
@@ -914,7 +875,6 @@ class VerificationResultAttestation extends BackboneElement {
 }
 
 /// [VerificationResultValidator] /// Information about the entity validating information.
-@JsonSerializable()
 class VerificationResultValidator extends BackboneElement {
   VerificationResultValidator({
     super.id,
@@ -931,24 +891,21 @@ class VerificationResultValidator extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'VerificationResultValidator';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [organization] /// Reference to the organization validating information.
-  @JsonKey(name: 'organization')
   final Reference organization;
 
   /// [identityCertificate] /// A digital identity certificate associated with the validator.
-  @JsonKey(name: 'identityCertificate')
   final FhirString? identityCertificate;
-  @JsonKey(name: '_identityCertificate')
   final Element? identityCertificateElement;
 
   /// [attestationSignature] /// Signed assertion by the validator that they have validated the information.
-  @JsonKey(name: 'attestationSignature')
   final Signature? attestationSignature;
   @override
   Map<String, dynamic> toJson() {

@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The code(s) that detail the conditions under which the healthcare service is available/offered.
 enum ServiceProvisionConditions {
   /// Display: Free
   /// Definition: This service is available for no patient cost.
-  @JsonValue('free')
   free,
 
   /// Display: Discounts Available
   /// Definition: There are discounts available on this service for qualifying patients.
-  @JsonValue('disc')
   disc,
 
   /// Display: Fees apply
   /// Definition: Fees apply for this service.
-  @JsonValue('cost')
   cost,
   ;
 

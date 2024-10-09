@@ -1,28 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set contains representative Activity Type codes, which includes codes from the HL7 DocumentCompletion, ActStatus, and DataOperations code system, W3C PROV-DM and PROV-N concepts and display names, several HL7 Lifecycle Event codes for which there are agreed upon definitions, and non-duplicated codes from the HL7 Security and Privacy Ontology Operations codes.
 enum ProvenanceActivityType {
-  @JsonValue('LA')
   LA,
-  @JsonValue('ANONY')
   ANONY,
-  @JsonValue('DEID')
   DEID,
-  @JsonValue('MASK')
   MASK,
-  @JsonValue('LABEL')
   LABEL,
-  @JsonValue('PSEUD')
   PSEUD,
-  @JsonValue('CREATE')
   CREATE,
-  @JsonValue('DELETE')
   DELETE,
-  @JsonValue('UPDATE')
   UPDATE,
-  @JsonValue('APPEND')
   APPEND,
-  @JsonValue('NULLIFY')
   NULLIFY,
   ;
 

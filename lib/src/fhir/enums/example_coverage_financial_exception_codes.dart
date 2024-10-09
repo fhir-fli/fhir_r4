@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes Example Coverage Financial Exception Codes.
 enum ExampleCoverageFinancialExceptionCodes {
   /// Display: Retired
   /// Definition: Retired persons have all copays and deductibles reduced.
-  @JsonValue('retired')
   retired,
 
   /// Display: Foster child
   /// Definition: Children in the foster care have all copays and deductibles waived.
-  @JsonValue('foster')
   foster,
   ;
 

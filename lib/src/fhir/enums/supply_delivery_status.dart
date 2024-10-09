@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Status of the supply delivery.
 enum SupplyDeliveryStatus {
   /// Display: In Progress
   /// Definition: Supply has been requested, but not delivered.
-  @JsonValue('in-progress')
   in_progress,
 
   /// Display: Delivered
   /// Definition: Supply has been delivered ("completed").
-  @JsonValue('completed')
   completed,
 
   /// Display: Abandoned
   /// Definition: Delivery was not completed.
-  @JsonValue('abandoned')
   abandoned,
 
   /// Display: Entered In Error
   /// Definition: This electronic record should never have existed, though it is possible that real-world decisions were based on it. (If real-world activity has occurred, the status should be "abandoned" rather than "entered-in-error".).
-  @JsonValue('entered-in-error')
   entered_in_error,
   ;
 

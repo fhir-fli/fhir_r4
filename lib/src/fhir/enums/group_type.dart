@@ -1,35 +1,27 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Types of resources that are part of group.
 enum GroupType {
   /// Display: Person
   /// Definition: Group contains "person" Patient resources.
-  @JsonValue('person')
   person,
 
   /// Display: Animal
   /// Definition: Group contains "animal" Patient resources.
-  @JsonValue('animal')
   animal,
 
   /// Display: Practitioner
   /// Definition: Group contains healthcare practitioner resources (Practitioner or PractitionerRole).
-  @JsonValue('practitioner')
   practitioner,
 
   /// Display: Device
   /// Definition: Group contains Device resources.
-  @JsonValue('device')
   device,
 
   /// Display: Medication
   /// Definition: Group contains Medication resources.
-  @JsonValue('medication')
   medication,
 
   /// Display: Substance
   /// Definition: Group contains Substance resources.
-  @JsonValue('substance')
   substance,
   ;
 

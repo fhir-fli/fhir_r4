@@ -1,35 +1,27 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Example Message Reasons. These are the set of codes that might be used an updating an encounter using admin-update.
 enum ExampleMessageReasonCodes {
   /// Display: Admit
   /// Definition: The patient has been admitted.
-  @JsonValue('admit')
   admit,
 
   /// Display: Discharge
   /// Definition: The patient has been discharged.
-  @JsonValue('discharge')
   discharge,
 
   /// Display: Absent
   /// Definition: The patient has temporarily left the institution.
-  @JsonValue('absent')
   absent,
 
   /// Display: Returned
   /// Definition: The patient has returned from a temporary absence.
-  @JsonValue('return')
   return_,
 
   /// Display: Moved
   /// Definition: The patient has been moved to a new location.
-  @JsonValue('moved')
   moved,
 
   /// Display: Edit
   /// Definition: Encounter details have been updated (e.g. to correct a coding error).
-  @JsonValue('edit')
   edit,
   ;
 

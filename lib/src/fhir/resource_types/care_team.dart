@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [CareTeam] /// The Care Team includes all the people and organizations who plan to
 /// participate in the coordination and delivery of care for a patient.
-@JsonSerializable()
 class CareTeam extends DomainResource {
   CareTeam({
     super.id,
@@ -42,73 +40,59 @@ class CareTeam extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.CareTeam);
+
   @override
   String get fhirType => 'CareTeam';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Business identifiers assigned to this care team by the performer or other
   /// systems which remain constant as the resource is updated and propagates
   /// from server to server.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [status] /// Indicates the current state of the care team.
-  @JsonKey(name: 'status')
   final CareTeamStatus? status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [category] /// Identifies what kind of team. This is to support differentiation between
   /// multiple co-existing teams, such as care plan team, episode of care team,
   /// longitudinal care team.
-  @JsonKey(name: 'category')
   final List<CodeableConcept>? category;
 
   /// [name] /// A label for human use intended to distinguish like teams. E.g. the "red"
   /// vs. "green" trauma teams.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [subject] /// Identifies the patient or group whose intended care is handled by the team.
-  @JsonKey(name: 'subject')
   final Reference? subject;
 
   /// [encounter] /// The Encounter during which this CareTeam was created or to which the
   /// creation of this record is tightly associated.
-  @JsonKey(name: 'encounter')
   final Reference? encounter;
 
   /// [period] /// Indicates when the team did (or is intended to) come into effect and end.
-  @JsonKey(name: 'period')
   final Period? period;
 
   /// [participant] /// Identifies all people and organizations who are expected to be involved in
   /// the care team.
-  @JsonKey(name: 'participant')
   final List<CareTeamParticipant>? participant;
 
   /// [reasonCode] /// Describes why the care team exists.
-  @JsonKey(name: 'reasonCode')
   final List<CodeableConcept>? reasonCode;
 
   /// [reasonReference] /// Condition(s) that this care team addresses.
-  @JsonKey(name: 'reasonReference')
   final List<Reference>? reasonReference;
 
   /// [managingOrganization] /// The organization responsible for the care team.
-  @JsonKey(name: 'managingOrganization')
   final List<Reference>? managingOrganization;
 
   /// [telecom] /// A central contact detail for the care team (that applies to all members).
-  @JsonKey(name: 'telecom')
   final List<ContactPoint>? telecom;
 
   /// [note] /// Comments made about the CareTeam.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
@@ -395,7 +379,6 @@ class CareTeam extends DomainResource {
 
 /// [CareTeamParticipant] /// Identifies all people and organizations who are expected to be involved in
 /// the care team.
-@JsonSerializable()
 class CareTeamParticipant extends BackboneElement {
   CareTeamParticipant({
     super.id,
@@ -412,30 +395,27 @@ class CareTeamParticipant extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CareTeamParticipant';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [role] /// Indicates specific responsibility of an individual within the care team,
   /// such as "Primary care physician", "Trained social worker counselor",
   /// "Caregiver", etc.
-  @JsonKey(name: 'role')
   final List<CodeableConcept>? role;
 
   /// [member] /// The specific person or organization who is participating/expected to
   /// participate in the care team.
-  @JsonKey(name: 'member')
   final Reference? member;
 
   /// [onBehalfOf] /// The organization of the practitioner.
-  @JsonKey(name: 'onBehalfOf')
   final Reference? onBehalfOf;
 
   /// [period] /// Indicates when the specific member or organization did (or is intended to)
   /// come into effect and end.
-  @JsonKey(name: 'period')
   final Period? period;
   @override
   Map<String, dynamic> toJson() {

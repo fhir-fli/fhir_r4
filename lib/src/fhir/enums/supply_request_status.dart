@@ -1,40 +1,31 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Status of the supply request.
 enum SupplyRequestStatus {
   /// Display: Draft
   /// Definition: The request has been created but is not yet complete or ready for action.
-  @JsonValue('draft')
   draft,
 
   /// Display: Active
   /// Definition: The request is ready to be acted upon.
-  @JsonValue('active')
   active,
 
   /// Display: Suspended
   /// Definition: The authorization/request to act has been temporarily withdrawn but is expected to resume in the future.
-  @JsonValue('suspended')
   suspended,
 
   /// Display: Cancelled
   /// Definition: The authorization/request to act has been terminated prior to the full completion of the intended actions.  No further activity should occur.
-  @JsonValue('cancelled')
   cancelled,
 
   /// Display: Completed
   /// Definition: Activity against the request has been sufficiently completed to the satisfaction of the requester.
-  @JsonValue('completed')
   completed,
 
   /// Display: Entered in Error
   /// Definition: This electronic record should never have existed, though it is possible that real-world decisions were based on it.  (If real-world activity has occurred, the status should be "cancelled" rather than "entered-in-error".).
-  @JsonValue('entered-in-error')
   entered_in_error,
 
   /// Display: Unknown
   /// Definition: The authoring/source system does not know which of the status values currently applies for this observation. Note: This concept is not to be used for "other" - one of the listed statuses is presumed to apply, but the authoring/source system does not know which.
-  @JsonValue('unknown')
   unknown,
   ;
 

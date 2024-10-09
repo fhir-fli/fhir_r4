@@ -295,7 +295,7 @@ StringBuffer _generateClassBuffer(
   final StringBuffer buffer = StringBuffer();
 
   buffer.writeln("import 'dart:convert';");
-  buffer.writeln("import 'package:json_annotation/json_annotation.dart';");
+  // buffer.writeln("import 'package:json_annotation/json_annotation.dart';");
   buffer.writeln("import 'package:objectbox/objectbox.dart';");
   buffer.writeln("import 'package:yaml/yaml.dart';");
   buffer.writeln("\nimport '../../../$fhirVersion.dart';\n");
@@ -391,7 +391,7 @@ void _writeClassHeader(StringBuffer buffer, WritableClass writableClass,
 
   // buffer.writeln('@JsonCodable()');
   // buffer.writeln('@Data()');
-  buffer.writeln('@JsonSerializable()');
+  // buffer.writeln('@JsonSerializable()');
   // buffer.writeln('@Entity()');
 
   final String extendsClause = writableClass.extendsClause;
@@ -404,7 +404,7 @@ void _writeClassHeader(StringBuffer buffer, WritableClass writableClass,
 void _writeFields(StringBuffer buffer, WritableClass writableClass,
     StringBuffer fhirFieldMapBuffer) {
   buffer.writeln('  @Id()');
-  buffer.writeln('@JsonKey(ignore: true)');
+  // buffer.writeln('@JsonKey(ignore: true)');
   buffer.writeln('  int dbId = 0;');
 
   for (final Field field in writableClass.fields) {
@@ -434,14 +434,14 @@ void _writeFields(StringBuffer buffer, WritableClass writableClass,
       originalFieldName = originalFieldName.contains('[x]')
           ? field.name.fhirFieldToDartName
           : originalFieldName;
-      buffer.writeln("@JsonKey(name: '$originalFieldName')");
+      // buffer.writeln("@JsonKey(name: '$originalFieldName')");
       buffer.writeln(
           '  final $fieldDeclaration ${field.name.fhirFieldToDartName};');
 
       // Handle associated Element fields with '_primitiveFieldName'
       if (field.needsElement && field.name != 'id') {
-        final String elementFieldName = '_$originalFieldName';
-        buffer.writeln("@JsonKey(name: '$elementFieldName')");
+        // final String elementFieldName = '_$originalFieldName';
+        // buffer.writeln("@JsonKey(name: '$elementFieldName')");
         buffer.writeln(field.isList
             ? '  final List<Element>? ${field.name}Element;'
             : '  final Element? ${field.name}Element;');
@@ -479,19 +479,19 @@ void _writeConstructor(StringBuffer buffer, WritableClass writableClass) {
   // Close constructor
   if (writableName.isResource && writableClass.isResource) {
     buffer.writeln(
-        '  }) : super(resourceType: R4ResourceType.${writableName.fhirToDartTypes});');
+        '  }) : super(resourceType: R4ResourceType.${writableName.fhirToDartTypes});\n');
     buffer.writeln('@override');
     buffer.writeln(
-        "      String get fhirType => '${writableName.fhirToDartTypes}';");
+        "      String get fhirType => '${writableName.fhirToDartTypes}';\n");
   } else if (writableName == 'Quantity') {
-    buffer.writeln('});');
+    buffer.writeln('});\n');
     buffer.writeln('@override');
-    buffer.writeln("String get fhirType => 'Quantity';");
+    buffer.writeln("String get fhirType => 'Quantity';\n");
   } else {
-    buffer.writeln('  });');
+    buffer.writeln('  });\n');
     buffer.writeln('@override');
-    buffer
-        .writeln("  String get fhirType => '${writableName.fhirToDartTypes}';");
+    buffer.writeln(
+        "  String get fhirType => '${writableName.fhirToDartTypes}';\n");
   }
 }
 

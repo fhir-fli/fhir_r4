@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [SupplyDelivery] /// Record of delivery of what is supplied.
-@JsonSerializable()
 class SupplyDelivery extends DomainResource {
   SupplyDelivery({
     super.id,
@@ -41,73 +39,59 @@ class SupplyDelivery extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.SupplyDelivery);
+
   @override
   String get fhirType => 'SupplyDelivery';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Identifier for the supply delivery event that is used to identify it across
   /// multiple disparate systems.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [basedOn] /// A plan, proposal or order that is fulfilled in whole or in part by this
   /// event.
-  @JsonKey(name: 'basedOn')
   final List<Reference>? basedOn;
 
   /// [partOf] /// A larger event of which this particular event is a component or step.
-  @JsonKey(name: 'partOf')
   final List<Reference>? partOf;
 
   /// [status] /// A code specifying the state of the dispense event.
-  @JsonKey(name: 'status')
   final SupplyDeliveryStatus? status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [patient] /// A link to a resource representing the person whom the delivered item is
   /// for.
-  @JsonKey(name: 'patient')
   final Reference? patient;
 
   /// [type] /// Indicates the type of dispensing event that is performed. Examples include:
   /// Trial Fill, Completion of Trial, Partial Fill, Emergency Fill, Samples,
   /// etc.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [suppliedItem] /// The item that is being delivered or has been supplied.
-  @JsonKey(name: 'suppliedItem')
   final SupplyDeliverySuppliedItem? suppliedItem;
 
   /// [occurrenceDateTime] /// The date or time(s) the activity occurred.
-  @JsonKey(name: 'occurrenceDateTime')
   final FhirDateTime? occurrenceDateTime;
-  @JsonKey(name: '_occurrenceDateTime')
   final Element? occurrenceDateTimeElement;
 
   /// [occurrencePeriod] /// The date or time(s) the activity occurred.
-  @JsonKey(name: 'occurrencePeriod')
   final Period? occurrencePeriod;
 
   /// [occurrenceTiming] /// The date or time(s) the activity occurred.
-  @JsonKey(name: 'occurrenceTiming')
   final Timing? occurrenceTiming;
 
   /// [supplier] /// The individual responsible for dispensing the medication, supplier or
   /// device.
-  @JsonKey(name: 'supplier')
   final Reference? supplier;
 
   /// [destination] /// Identification of the facility/location where the Supply was shipped to, as
   /// part of the dispense event.
-  @JsonKey(name: 'destination')
   final Reference? destination;
 
   /// [receiver] /// Identifies the person who picked up the Supply.
-  @JsonKey(name: 'receiver')
   final List<Reference>? receiver;
   @override
   Map<String, dynamic> toJson() {
@@ -382,7 +366,6 @@ class SupplyDelivery extends DomainResource {
 }
 
 /// [SupplyDeliverySuppliedItem] /// The item that is being delivered or has been supplied.
-@JsonSerializable()
 class SupplyDeliverySuppliedItem extends BackboneElement {
   SupplyDeliverySuppliedItem({
     super.id,
@@ -398,26 +381,24 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'SupplyDeliverySuppliedItem';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [quantity] /// The amount of supply that has been dispensed. Includes unit of measure.
-  @JsonKey(name: 'quantity')
   final Quantity? quantity;
 
   /// [itemCodeableConcept] /// Identifies the medication, substance or device being dispensed. This is
   /// either a link to a resource representing the details of the item or a code
   /// that identifies the item from a known list.
-  @JsonKey(name: 'itemCodeableConcept')
   final CodeableConcept? itemCodeableConcept;
 
   /// [itemReference] /// Identifies the medication, substance or device being dispensed. This is
   /// either a link to a resource representing the details of the item or a code
   /// that identifies the item from a known list.
-  @JsonKey(name: 'itemReference')
   final Reference? itemReference;
   @override
   Map<String, dynamic> toJson() {

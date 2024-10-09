@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [Task] /// A task to be performed.
-@JsonSerializable()
 class Task extends DomainResource {
   Task({
     super.id,
@@ -65,29 +63,25 @@ class Task extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Task);
+
   @override
   String get fhirType => 'Task';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// The business identifier for this task.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [instantiatesCanonical] /// The URL pointing to a *FHIR*-defined protocol, guideline, orderset or other
   /// definition that is adhered to in whole or in part by this Task.
-  @JsonKey(name: 'instantiatesCanonical')
   final FhirCanonical? instantiatesCanonical;
-  @JsonKey(name: '_instantiatesCanonical')
   final Element? instantiatesCanonicalElement;
 
   /// [instantiatesUri] /// The URL pointing to an *externally* maintained protocol, guideline,
   /// orderset or other definition that is adhered to in whole or in part by this
   /// Task.
-  @JsonKey(name: 'instantiatesUri')
   final FhirUri? instantiatesUri;
-  @JsonKey(name: '_instantiatesUri')
   final Element? instantiatesUriElement;
 
   /// [basedOn] /// BasedOn refers to a higher-level authorization that triggered the creation
@@ -97,139 +91,105 @@ class Task extends DomainResource {
   /// is referenced by FocusOn. For example, based on a ServiceRequest (=
   /// BasedOn), a task is created to fulfill a procedureRequest ( = FocusOn ) to
   /// collect a specimen from a patient.
-  @JsonKey(name: 'basedOn')
   final List<Reference>? basedOn;
 
   /// [groupIdentifier] /// An identifier that links together multiple tasks and other requests that
   /// were created in the same context.
-  @JsonKey(name: 'groupIdentifier')
   final Identifier? groupIdentifier;
 
   /// [partOf] /// Task that this particular task is part of.
-  @JsonKey(name: 'partOf')
   final List<Reference>? partOf;
 
   /// [status] /// The current status of the task.
-  @JsonKey(name: 'status')
   final TaskStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [statusReason] /// An explanation as to why this task is held, failed, was refused, etc.
-  @JsonKey(name: 'statusReason')
   final CodeableConcept? statusReason;
 
   /// [businessStatus] /// Contains business-specific nuances of the business state.
-  @JsonKey(name: 'businessStatus')
   final CodeableConcept? businessStatus;
 
   /// [intent] /// Indicates the "level" of actionability associated with the Task, i.e.
   /// i+R[9]Cs this a proposed task, a planned task, an actionable task, etc.
-  @JsonKey(name: 'intent')
   final TaskIntent intent;
-  @JsonKey(name: '_intent')
   final Element? intentElement;
 
   /// [priority] /// Indicates how quickly the Task should be addressed with respect to other
   /// requests.
-  @JsonKey(name: 'priority')
   final RequestPriority? priority;
-  @JsonKey(name: '_priority')
   final Element? priorityElement;
 
   /// [code] /// A name or code (or both) briefly describing what the task involves.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [description] /// A free-text description of what is to be performed.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [focus] /// The request being actioned or the resource being manipulated by this task.
-  @JsonKey(name: 'focus')
   final Reference? focus;
 
   /// [for_] /// The entity who benefits from the performance of the service specified in
   /// the task (e.g., the patient).
-  @JsonKey(name: 'for')
   final Reference? for_;
 
   /// [encounter] /// The healthcare event (e.g. a patient and healthcare provider interaction)
   /// during which this task was created.
-  @JsonKey(name: 'encounter')
   final Reference? encounter;
 
   /// [executionPeriod] /// Identifies the time action was first taken against the task (start) and/or
   /// the time final action was taken against the task prior to marking it as
   /// completed (end).
-  @JsonKey(name: 'executionPeriod')
   final Period? executionPeriod;
 
   /// [authoredOn] /// The date and time this task was created.
-  @JsonKey(name: 'authoredOn')
   final FhirDateTime? authoredOn;
-  @JsonKey(name: '_authoredOn')
   final Element? authoredOnElement;
 
   /// [lastModified] /// The date and time of last modification to this task.
-  @JsonKey(name: 'lastModified')
   final FhirDateTime? lastModified;
-  @JsonKey(name: '_lastModified')
   final Element? lastModifiedElement;
 
   /// [requester] /// The creator of the task.
-  @JsonKey(name: 'requester')
   final Reference? requester;
 
   /// [performerType] /// The kind of participant that should perform the task.
-  @JsonKey(name: 'performerType')
   final List<CodeableConcept>? performerType;
 
   /// [owner] /// Individual organization or Device currently responsible for task execution.
-  @JsonKey(name: 'owner')
   final Reference? owner;
 
   /// [location] /// Principal physical location where the this task is performed.
-  @JsonKey(name: 'location')
   final Reference? location;
 
   /// [reasonCode] /// A description or code indicating why this task needs to be performed.
-  @JsonKey(name: 'reasonCode')
   final CodeableConcept? reasonCode;
 
   /// [reasonReference] /// A resource reference indicating why this task needs to be performed.
-  @JsonKey(name: 'reasonReference')
   final Reference? reasonReference;
 
   /// [insurance] /// Insurance plans, coverage extensions, pre-authorizations and/or
   /// pre-determinations that may be relevant to the Task.
-  @JsonKey(name: 'insurance')
   final List<Reference>? insurance;
 
   /// [note] /// Free-text information captured about the task as it progresses.
-  @JsonKey(name: 'note')
   final List<Annotation>? note;
 
   /// [relevantHistory] /// Links to Provenance records for past versions of this Task that identify
   /// key state transitions or updates that are likely to be relevant to a user
   /// looking at the current version of the task.
-  @JsonKey(name: 'relevantHistory')
   final List<Reference>? relevantHistory;
 
   /// [restriction] /// If the Task.focus is a request resource and the task is seeking fulfillment
   /// (i.e. is asking for the request to be actioned), this element identifies
   /// any limitations on what parts of the referenced request should be actioned.
-  @JsonKey(name: 'restriction')
   final TaskRestriction? restriction;
 
   /// [input] /// Additional information that may be needed in the execution of the task.
-  @JsonKey(name: 'input')
   final List<TaskInput>? input;
 
   /// [output] /// Outputs produced by the Task.
-  @JsonKey(name: 'output')
   final List<TaskOutput>? output;
   @override
   Map<String, dynamic> toJson() {
@@ -697,7 +657,6 @@ class Task extends DomainResource {
 /// [TaskRestriction] /// If the Task.focus is a request resource and the task is seeking fulfillment
 /// (i.e. is asking for the request to be actioned), this element identifies
 /// any limitations on what parts of the referenced request should be actioned.
-@JsonSerializable()
 class TaskRestriction extends BackboneElement {
   TaskRestriction({
     super.id,
@@ -714,25 +673,22 @@ class TaskRestriction extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TaskRestriction';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [repetitions] /// Indicates the number of times the requested action should occur.
-  @JsonKey(name: 'repetitions')
   final FhirPositiveInt? repetitions;
-  @JsonKey(name: '_repetitions')
   final Element? repetitionsElement;
 
   /// [period] /// Over what time-period is fulfillment sought.
-  @JsonKey(name: 'period')
   final Period? period;
 
   /// [recipient] /// For requests that are targeted to more than on potential recipient/target,
   /// for whom is fulfillment sought?
-  @JsonKey(name: 'recipient')
   final List<Reference>? recipient;
   @override
   Map<String, dynamic> toJson() {
@@ -855,7 +811,6 @@ class TaskRestriction extends BackboneElement {
 }
 
 /// [TaskInput] /// Additional information that may be needed in the execution of the task.
-@JsonSerializable()
 class TaskInput extends BackboneElement {
   TaskInput({
     super.id,
@@ -938,253 +893,184 @@ class TaskInput extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TaskInput';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// A code or description indicating how the input is intended to be used as
   /// part of the task execution.
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [valueBase64Binary] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueBase64Binary')
   final FhirBase64Binary? valueBase64Binary;
-  @JsonKey(name: '_valueBase64Binary')
   final Element? valueBase64BinaryElement;
 
   /// [valueBoolean] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueBoolean')
   final FhirBoolean? valueBoolean;
-  @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
 
   /// [valueCanonical] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueCanonical')
   final FhirCanonical? valueCanonical;
-  @JsonKey(name: '_valueCanonical')
   final Element? valueCanonicalElement;
 
   /// [valueCode] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueCode')
   final FhirCode? valueCode;
-  @JsonKey(name: '_valueCode')
   final Element? valueCodeElement;
 
   /// [valueDate] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueDate')
   final FhirDate? valueDate;
-  @JsonKey(name: '_valueDate')
   final Element? valueDateElement;
 
   /// [valueDateTime] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueDateTime')
   final FhirDateTime? valueDateTime;
-  @JsonKey(name: '_valueDateTime')
   final Element? valueDateTimeElement;
 
   /// [valueDecimal] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueDecimal')
   final FhirDecimal? valueDecimal;
-  @JsonKey(name: '_valueDecimal')
   final Element? valueDecimalElement;
 
   /// [valueId] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueId')
   final FhirId? valueId;
-  @JsonKey(name: '_valueId')
   final Element? valueIdElement;
 
   /// [valueInstant] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueInstant')
   final FhirInstant? valueInstant;
-  @JsonKey(name: '_valueInstant')
   final Element? valueInstantElement;
 
   /// [valueInteger] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueInteger')
   final FhirInteger? valueInteger;
-  @JsonKey(name: '_valueInteger')
   final Element? valueIntegerElement;
 
   /// [valueMarkdown] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueMarkdown')
   final FhirMarkdown? valueMarkdown;
-  @JsonKey(name: '_valueMarkdown')
   final Element? valueMarkdownElement;
 
   /// [valueOid] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueOid')
   final FhirOid? valueOid;
-  @JsonKey(name: '_valueOid')
   final Element? valueOidElement;
 
   /// [valuePositiveInt] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valuePositiveInt')
   final FhirPositiveInt? valuePositiveInt;
-  @JsonKey(name: '_valuePositiveInt')
   final Element? valuePositiveIntElement;
 
   /// [valueString] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueString')
   final FhirString? valueString;
-  @JsonKey(name: '_valueString')
   final Element? valueStringElement;
 
   /// [valueTime] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueTime')
   final FhirTime? valueTime;
-  @JsonKey(name: '_valueTime')
   final Element? valueTimeElement;
 
   /// [valueUnsignedInt] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueUnsignedInt')
   final FhirUnsignedInt? valueUnsignedInt;
-  @JsonKey(name: '_valueUnsignedInt')
   final Element? valueUnsignedIntElement;
 
   /// [valueUri] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueUri')
   final FhirUri? valueUri;
-  @JsonKey(name: '_valueUri')
   final Element? valueUriElement;
 
   /// [valueUrl] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueUrl')
   final FhirUrl? valueUrl;
-  @JsonKey(name: '_valueUrl')
   final Element? valueUrlElement;
 
   /// [valueUuid] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueUuid')
   final FhirUuid? valueUuid;
-  @JsonKey(name: '_valueUuid')
   final Element? valueUuidElement;
 
   /// [valueAddress] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueAddress')
   final Address? valueAddress;
 
   /// [valueAge] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueAge')
   final Age? valueAge;
 
   /// [valueAnnotation] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueAnnotation')
   final Annotation? valueAnnotation;
 
   /// [valueAttachment] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueAttachment')
   final Attachment? valueAttachment;
 
   /// [valueCodeableConcept] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueCodeableConcept')
   final CodeableConcept? valueCodeableConcept;
 
   /// [valueCoding] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueCoding')
   final Coding? valueCoding;
 
   /// [valueContactPoint] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueContactPoint')
   final ContactPoint? valueContactPoint;
 
   /// [valueCount] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueCount')
   final Count? valueCount;
 
   /// [valueDistance] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueDistance')
   final Distance? valueDistance;
 
   /// [valueDuration] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueDuration')
   final FhirDuration? valueDuration;
 
   /// [valueHumanName] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueHumanName')
   final HumanName? valueHumanName;
 
   /// [valueIdentifier] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueIdentifier')
   final Identifier? valueIdentifier;
 
   /// [valueMoney] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueMoney')
   final Money? valueMoney;
 
   /// [valuePeriod] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valuePeriod')
   final Period? valuePeriod;
 
   /// [valueQuantity] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueQuantity')
   final Quantity? valueQuantity;
 
   /// [valueRange] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueRange')
   final Range? valueRange;
 
   /// [valueRatio] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueRatio')
   final Ratio? valueRatio;
 
   /// [valueReference] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueReference')
   final Reference? valueReference;
 
   /// [valueSampledData] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueSampledData')
   final SampledData? valueSampledData;
 
   /// [valueSignature] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueSignature')
   final Signature? valueSignature;
 
   /// [valueTiming] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueTiming')
   final Timing? valueTiming;
 
   /// [valueContactDetail] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueContactDetail')
   final ContactDetail? valueContactDetail;
 
   /// [valueContributor] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueContributor')
   final Contributor? valueContributor;
 
   /// [valueDataRequirement] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueDataRequirement')
   final DataRequirement? valueDataRequirement;
 
   /// [valueExpression] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueExpression')
   final FhirExpression? valueExpression;
 
   /// [valueParameterDefinition] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueParameterDefinition')
   final ParameterDefinition? valueParameterDefinition;
 
   /// [valueRelatedArtifact] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueRelatedArtifact')
   final RelatedArtifact? valueRelatedArtifact;
 
   /// [valueTriggerDefinition] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueTriggerDefinition')
   final TriggerDefinition? valueTriggerDefinition;
 
   /// [valueUsageContext] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueUsageContext')
   final UsageContext? valueUsageContext;
 
   /// [valueDosage] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueDosage')
   final Dosage? valueDosage;
 
   /// [valueMeta] /// The value of the input parameter as a basic type.
-  @JsonKey(name: 'valueMeta')
   final FhirMeta? valueMeta;
   @override
   Map<String, dynamic> toJson() {
@@ -1827,7 +1713,6 @@ class TaskInput extends BackboneElement {
 }
 
 /// [TaskOutput] /// Outputs produced by the Task.
-@JsonSerializable()
 class TaskOutput extends BackboneElement {
   TaskOutput({
     super.id,
@@ -1910,252 +1795,183 @@ class TaskOutput extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'TaskOutput';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The name of the Output parameter.
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [valueBase64Binary] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueBase64Binary')
   final FhirBase64Binary? valueBase64Binary;
-  @JsonKey(name: '_valueBase64Binary')
   final Element? valueBase64BinaryElement;
 
   /// [valueBoolean] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueBoolean')
   final FhirBoolean? valueBoolean;
-  @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
 
   /// [valueCanonical] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueCanonical')
   final FhirCanonical? valueCanonical;
-  @JsonKey(name: '_valueCanonical')
   final Element? valueCanonicalElement;
 
   /// [valueCode] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueCode')
   final FhirCode? valueCode;
-  @JsonKey(name: '_valueCode')
   final Element? valueCodeElement;
 
   /// [valueDate] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueDate')
   final FhirDate? valueDate;
-  @JsonKey(name: '_valueDate')
   final Element? valueDateElement;
 
   /// [valueDateTime] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueDateTime')
   final FhirDateTime? valueDateTime;
-  @JsonKey(name: '_valueDateTime')
   final Element? valueDateTimeElement;
 
   /// [valueDecimal] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueDecimal')
   final FhirDecimal? valueDecimal;
-  @JsonKey(name: '_valueDecimal')
   final Element? valueDecimalElement;
 
   /// [valueId] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueId')
   final FhirId? valueId;
-  @JsonKey(name: '_valueId')
   final Element? valueIdElement;
 
   /// [valueInstant] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueInstant')
   final FhirInstant? valueInstant;
-  @JsonKey(name: '_valueInstant')
   final Element? valueInstantElement;
 
   /// [valueInteger] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueInteger')
   final FhirInteger? valueInteger;
-  @JsonKey(name: '_valueInteger')
   final Element? valueIntegerElement;
 
   /// [valueMarkdown] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueMarkdown')
   final FhirMarkdown? valueMarkdown;
-  @JsonKey(name: '_valueMarkdown')
   final Element? valueMarkdownElement;
 
   /// [valueOid] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueOid')
   final FhirOid? valueOid;
-  @JsonKey(name: '_valueOid')
   final Element? valueOidElement;
 
   /// [valuePositiveInt] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valuePositiveInt')
   final FhirPositiveInt? valuePositiveInt;
-  @JsonKey(name: '_valuePositiveInt')
   final Element? valuePositiveIntElement;
 
   /// [valueString] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueString')
   final FhirString? valueString;
-  @JsonKey(name: '_valueString')
   final Element? valueStringElement;
 
   /// [valueTime] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueTime')
   final FhirTime? valueTime;
-  @JsonKey(name: '_valueTime')
   final Element? valueTimeElement;
 
   /// [valueUnsignedInt] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueUnsignedInt')
   final FhirUnsignedInt? valueUnsignedInt;
-  @JsonKey(name: '_valueUnsignedInt')
   final Element? valueUnsignedIntElement;
 
   /// [valueUri] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueUri')
   final FhirUri? valueUri;
-  @JsonKey(name: '_valueUri')
   final Element? valueUriElement;
 
   /// [valueUrl] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueUrl')
   final FhirUrl? valueUrl;
-  @JsonKey(name: '_valueUrl')
   final Element? valueUrlElement;
 
   /// [valueUuid] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueUuid')
   final FhirUuid? valueUuid;
-  @JsonKey(name: '_valueUuid')
   final Element? valueUuidElement;
 
   /// [valueAddress] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueAddress')
   final Address? valueAddress;
 
   /// [valueAge] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueAge')
   final Age? valueAge;
 
   /// [valueAnnotation] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueAnnotation')
   final Annotation? valueAnnotation;
 
   /// [valueAttachment] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueAttachment')
   final Attachment? valueAttachment;
 
   /// [valueCodeableConcept] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueCodeableConcept')
   final CodeableConcept? valueCodeableConcept;
 
   /// [valueCoding] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueCoding')
   final Coding? valueCoding;
 
   /// [valueContactPoint] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueContactPoint')
   final ContactPoint? valueContactPoint;
 
   /// [valueCount] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueCount')
   final Count? valueCount;
 
   /// [valueDistance] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueDistance')
   final Distance? valueDistance;
 
   /// [valueDuration] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueDuration')
   final FhirDuration? valueDuration;
 
   /// [valueHumanName] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueHumanName')
   final HumanName? valueHumanName;
 
   /// [valueIdentifier] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueIdentifier')
   final Identifier? valueIdentifier;
 
   /// [valueMoney] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueMoney')
   final Money? valueMoney;
 
   /// [valuePeriod] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valuePeriod')
   final Period? valuePeriod;
 
   /// [valueQuantity] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueQuantity')
   final Quantity? valueQuantity;
 
   /// [valueRange] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueRange')
   final Range? valueRange;
 
   /// [valueRatio] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueRatio')
   final Ratio? valueRatio;
 
   /// [valueReference] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueReference')
   final Reference? valueReference;
 
   /// [valueSampledData] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueSampledData')
   final SampledData? valueSampledData;
 
   /// [valueSignature] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueSignature')
   final Signature? valueSignature;
 
   /// [valueTiming] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueTiming')
   final Timing? valueTiming;
 
   /// [valueContactDetail] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueContactDetail')
   final ContactDetail? valueContactDetail;
 
   /// [valueContributor] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueContributor')
   final Contributor? valueContributor;
 
   /// [valueDataRequirement] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueDataRequirement')
   final DataRequirement? valueDataRequirement;
 
   /// [valueExpression] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueExpression')
   final FhirExpression? valueExpression;
 
   /// [valueParameterDefinition] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueParameterDefinition')
   final ParameterDefinition? valueParameterDefinition;
 
   /// [valueRelatedArtifact] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueRelatedArtifact')
   final RelatedArtifact? valueRelatedArtifact;
 
   /// [valueTriggerDefinition] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueTriggerDefinition')
   final TriggerDefinition? valueTriggerDefinition;
 
   /// [valueUsageContext] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueUsageContext')
   final UsageContext? valueUsageContext;
 
   /// [valueDosage] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueDosage')
   final Dosage? valueDosage;
 
   /// [valueMeta] /// The value of the Output parameter as a basic type.
-  @JsonKey(name: 'valueMeta')
   final FhirMeta? valueMeta;
   @override
   Map<String, dynamic> toJson() {

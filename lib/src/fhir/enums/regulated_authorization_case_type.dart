@@ -1,93 +1,69 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The type of a case involved in an application.
 enum RegulatedAuthorizationCaseType {
   /// Display: Initial Marketing Authorisation Application
-  @JsonValue('InitialMAA')
   InitialMAA,
 
   /// Display: Variation
-  @JsonValue('Variation')
   Variation,
 
   /// Display: Line Extension
-  @JsonValue('LineExtension')
   LineExtension,
 
   /// Display: Periodic Safety Update Report
-  @JsonValue('PSUR')
   PSUR,
 
   /// Display: Renewal
-  @JsonValue('Renewal')
   Renewal,
 
   /// Display: Follow-up Measure
-  @JsonValue('Follow-up')
   Follow_up,
 
   /// Display: Specific Obligation
-  @JsonValue('100000155699')
   value100000155699,
 
   /// Display: Annual Reassessment
-  @JsonValue('AnnualReassessment')
   AnnualReassessment,
 
   /// Display: Urgent Safety Restriction
-  @JsonValue('UrgentSafetyRestriction')
   UrgentSafetyRestriction,
 
   /// Display: Paediatric Submission
-  @JsonValue('PaediatricSubmission')
   PaediatricSubmission,
 
   /// Display: Transfer of a marketing authorisation
-  @JsonValue('TransferMA')
   TransferMA,
 
   /// Display: Lifting of a Suspension
-  @JsonValue('LiftingSuspension')
   LiftingSuspension,
 
   /// Display: Withdrawal
-  @JsonValue('Withdrawal')
   Withdrawal,
 
   /// Display: Reformatting
-  @JsonValue('Reformatting')
   Reformatting,
 
   /// Display: Risk Management Plan
-  @JsonValue('RMP')
   RMP,
 
   /// Display: Review of a Suspension of MA
-  @JsonValue('ReviewSuspension')
   ReviewSuspension,
 
   /// Display: Supplemental Information
-  @JsonValue('SupplementalInformation')
   SupplementalInformation,
 
   /// Display: Repeat Use Procedure
-  @JsonValue('RepeatUse')
   RepeatUse,
 
   /// Display: Signal detection
-  @JsonValue('SignalDetection')
   SignalDetection,
 
   /// Display: FLU STRAIN UPDATE
-  @JsonValue('FLU')
   FLU,
 
   /// Display: PANDEMIC UPDATE
-  @JsonValue('PANDEMIC')
   PANDEMIC,
 
   /// Display: Orphan Designation Application
-  @JsonValue('Orphan')
   Orphan,
   ;
 

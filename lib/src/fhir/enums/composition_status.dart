@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The workflow/clinical status of the composition.
 enum CompositionStatus {
   /// Display: Preliminary
   /// Definition: This is a preliminary composition or document (also known as initial or interim). The content may be incomplete or unverified.
-  @JsonValue('preliminary')
   preliminary,
 
   /// Display: Final
   /// Definition: This version of the composition is complete and verified by an appropriate person and no further work is planned. Any subsequent updates would be on a new version of the composition.
-  @JsonValue('final')
   final_,
 
   /// Display: Amended
   /// Definition: The composition content or the referenced resources have been modified (edited or added to) subsequent to being released as "final" and the composition is complete and verified by an authorized person.
-  @JsonValue('amended')
   amended,
 
   /// Display: Entered in Error
   /// Definition: The composition or document was originally created/issued in error, and this is an amendment that marks that the entire series should not be considered as valid.
-  @JsonValue('entered-in-error')
   entered_in_error,
   ;
 

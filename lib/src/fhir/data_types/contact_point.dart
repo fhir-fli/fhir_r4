@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [ContactPoint] /// Details for all kinds of technology mediated contact points for a person or
 /// organization, including telephone, email, etc.
-@JsonSerializable()
 class ContactPoint extends DataType {
   ContactPoint({
     super.id,
@@ -28,42 +26,34 @@ class ContactPoint extends DataType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ContactPoint';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [system] /// Telecommunications form for contact point - what communications system is
   /// required to make use of the contact.
-  @JsonKey(name: 'system')
   final ContactPointSystem? system;
-  @JsonKey(name: '_system')
   final Element? systemElement;
 
   /// [value] /// The actual contact point details, in a form that is meaningful to the
   /// designated communication system (i.e. phone number or email address).
-  @JsonKey(name: 'value')
   final FhirString? value;
-  @JsonKey(name: '_value')
   final Element? valueElement;
 
   /// [use] /// Identifies the purpose for the contact point.
-  @JsonKey(name: 'use')
   final ContactPointUse? use;
-  @JsonKey(name: '_use')
   final Element? useElement;
 
   /// [rank] /// Specifies a preferred order in which to use a set of contacts.
   /// ContactPoints with lower rank values are more preferred than those with
   /// higher rank values.
-  @JsonKey(name: 'rank')
   final FhirPositiveInt? rank;
-  @JsonKey(name: '_rank')
   final Element? rankElement;
 
   /// [period] /// Time period when the contact point was/is in use.
-  @JsonKey(name: 'period')
   final Period? period;
   @override
   Map<String, dynamic> toJson() {

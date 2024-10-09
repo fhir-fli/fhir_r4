@@ -1,50 +1,39 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The aspect of quality, confidence, or certainty.
 enum EvidenceCertaintyType {
   /// Display: Overall certainty
   /// Definition: Overall certainty of evidence (quality of evidence).
-  @JsonValue('Overall')
   Overall,
 
   /// Display: Risk of bias
   /// Definition: methodologic concerns reducing internal validity.
-  @JsonValue('RiskOfBias')
   RiskOfBias,
 
   /// Display: Inconsistency
   /// Definition: concerns that findings are not similar enough to support certainty.
-  @JsonValue('Inconsistency')
   Inconsistency,
 
   /// Display: Indirectness
   /// Definition: concerns reducing external validity.
-  @JsonValue('Indirectness')
   Indirectness,
 
   /// Display: Imprecision
   /// Definition: fuzzy or wide variability.
-  @JsonValue('Imprecision')
   Imprecision,
 
   /// Display: Publication bias
   /// Definition: likelihood that what is published misrepresents what is available to publish.
-  @JsonValue('PublicationBias')
   PublicationBias,
 
   /// Display: Dose response gradient
   /// Definition: higher certainty due to dose response relationship.
-  @JsonValue('DoseResponseGradient')
   DoseResponseGradient,
 
   /// Display: Plausible confounding
   /// Definition: higher certainty due to risk of bias in opposite direction.
-  @JsonValue('PlausibleConfounding')
   PlausibleConfounding,
 
   /// Display: Large effect
   /// Definition: higher certainty due to large effect size.
-  @JsonValue('LargeEffect')
   LargeEffect,
   ;
 

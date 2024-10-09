@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [Measure] /// The Measure resource provides the definition of a quality measure.
-@JsonSerializable()
 class Measure extends DomainResource {
   Measure({
     super.id,
@@ -91,10 +89,11 @@ class Measure extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Measure);
+
   @override
   String get fhirType => 'Measure';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this measure when it is referenced
@@ -103,15 +102,12 @@ class Measure extends DomainResource {
   /// at which at which an authoritative instance of this measure is (or will be)
   /// published. This URL can be the target of a canonical reference. It SHALL
   /// remain the same when the measure is stored on different servers.
-  @JsonKey(name: 'url')
   final FhirUri? url;
-  @JsonKey(name: '_url')
   final Element? urlElement;
 
   /// [identifier] /// A formal identifier that is used to identify this measure when it is
   /// represented in other formats, or referenced in a specification, model,
   /// design or an instance.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [version] /// The identifier that is used to identify this version of the measure when it
@@ -124,81 +120,60 @@ class Measure extends DomainResource {
   /// Major.Minor.Revision (e.g. 1.0.0). For more information on versioning
   /// knowledge assets, refer to the Decision Support Service specification. Note
   /// that a version is required for non-experimental active artifacts.
-  @JsonKey(name: 'version')
   final FhirString? version;
-  @JsonKey(name: '_version')
   final Element? versionElement;
 
   /// [name] /// A natural language name identifying the measure. This name should be usable
   /// as an identifier for the module by machine processing applications such as
   /// code generation.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [title] /// A short, descriptive, user-friendly title for the measure.
-  @JsonKey(name: 'title')
   final FhirString? title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [subtitle] /// An explanatory or alternate title for the measure giving additional
   /// information about its content.
-  @JsonKey(name: 'subtitle')
   final FhirString? subtitle;
-  @JsonKey(name: '_subtitle')
   final Element? subtitleElement;
 
   /// [status] /// The status of this measure. Enables tracking the life-cycle of the content.
-  @JsonKey(name: 'status')
   final PublicationStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [experimental] /// A Boolean value to indicate that this measure is authored for testing
   /// purposes (or education/evaluation/marketing) and is not intended to be used
   /// for genuine usage.
-  @JsonKey(name: 'experimental')
   final FhirBoolean? experimental;
-  @JsonKey(name: '_experimental')
   final Element? experimentalElement;
 
   /// [subjectCodeableConcept] /// The intended subjects for the measure. If this element is not provided, a
   /// Patient subject is assumed, but the subject of the measure can be anything.
-  @JsonKey(name: 'subjectCodeableConcept')
   final CodeableConcept? subjectCodeableConcept;
 
   /// [subjectReference] /// The intended subjects for the measure. If this element is not provided, a
   /// Patient subject is assumed, but the subject of the measure can be anything.
-  @JsonKey(name: 'subjectReference')
   final Reference? subjectReference;
 
   /// [date] /// The date (and optionally time) when the measure was published. The date
   /// must change when the business version changes and it must change if the
   /// status code changes. In addition, it should change when the substantive
   /// content of the measure changes.
-  @JsonKey(name: 'date')
   final FhirDateTime? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [publisher] /// The name of the organization or individual that published the measure.
-  @JsonKey(name: 'publisher')
   final FhirString? publisher;
-  @JsonKey(name: '_publisher')
   final Element? publisherElement;
 
   /// [contact] /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  @JsonKey(name: 'contact')
   final List<ContactDetail>? contact;
 
   /// [description] /// A free text natural language description of the measure from a consumer's
   /// perspective.
-  @JsonKey(name: 'description')
   final FhirMarkdown? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [useContext] /// The content was developed with a focus and intent of supporting the
@@ -206,173 +181,132 @@ class Measure extends DomainResource {
   /// age, ...) or may be references to specific programs (insurance plans,
   /// studies, ...) and may be used to assist with indexing and searching for
   /// appropriate measure instances.
-  @JsonKey(name: 'useContext')
   final List<UsageContext>? useContext;
 
   /// [jurisdiction] /// A legal or geographic region in which the measure is intended to be used.
-  @JsonKey(name: 'jurisdiction')
   final List<CodeableConcept>? jurisdiction;
 
   /// [purpose] /// Explanation of why this measure is needed and why it has been designed as
   /// it has.
-  @JsonKey(name: 'purpose')
   final FhirMarkdown? purpose;
-  @JsonKey(name: '_purpose')
   final Element? purposeElement;
 
   /// [usage] /// A detailed description, from a clinical perspective, of how the measure is
   /// used.
-  @JsonKey(name: 'usage')
   final FhirString? usage;
-  @JsonKey(name: '_usage')
   final Element? usageElement;
 
   /// [copyright] /// A copyright statement relating to the measure and/or its contents.
   /// Copyright statements are generally legal restrictions on the use and
   /// publishing of the measure.
-  @JsonKey(name: 'copyright')
   final FhirMarkdown? copyright;
-  @JsonKey(name: '_copyright')
   final Element? copyrightElement;
 
   /// [approvalDate] /// The date on which the resource content was approved by the publisher.
   /// Approval happens once when the content is officially approved for usage.
-  @JsonKey(name: 'approvalDate')
   final FhirDate? approvalDate;
-  @JsonKey(name: '_approvalDate')
   final Element? approvalDateElement;
 
   /// [lastReviewDate] /// The date on which the resource content was last reviewed. Review happens
   /// periodically after approval but does not change the original approval date.
-  @JsonKey(name: 'lastReviewDate')
   final FhirDate? lastReviewDate;
-  @JsonKey(name: '_lastReviewDate')
   final Element? lastReviewDateElement;
 
   /// [effectivePeriod] /// The period during which the measure content was or is planned to be in
   /// active use.
-  @JsonKey(name: 'effectivePeriod')
   final Period? effectivePeriod;
 
   /// [topic] /// Descriptive topics related to the content of the measure. Topics provide a
   /// high-level categorization grouping types of measures that can be useful for
   /// filtering and searching.
-  @JsonKey(name: 'topic')
   final List<CodeableConcept>? topic;
 
   /// [author] /// An individiual or organization primarily involved in the creation and
   /// maintenance of the content.
-  @JsonKey(name: 'author')
   final List<ContactDetail>? author;
 
   /// [editor] /// An individual or organization primarily responsible for internal coherence
   /// of the content.
-  @JsonKey(name: 'editor')
   final List<ContactDetail>? editor;
 
   /// [reviewer] /// An individual or organization primarily responsible for review of some
   /// aspect of the content.
-  @JsonKey(name: 'reviewer')
   final List<ContactDetail>? reviewer;
 
   /// [endorser] /// An individual or organization responsible for officially endorsing the
   /// content for use in some setting.
-  @JsonKey(name: 'endorser')
   final List<ContactDetail>? endorser;
 
   /// [relatedArtifact] /// Related artifacts such as additional documentation, justification, or
   /// bibliographic references.
-  @JsonKey(name: 'relatedArtifact')
   final List<RelatedArtifact>? relatedArtifact;
 
   /// [library_] /// A reference to a Library resource containing the formal logic used by the
   /// measure.
-  @JsonKey(name: 'library')
   final List<FhirCanonical>? library_;
-  @JsonKey(name: '_library')
   final List<Element>? libraryElement;
 
   /// [disclaimer] /// Notices and disclaimers regarding the use of the measure or related to
   /// intellectual property (such as code systems) referenced by the measure.
-  @JsonKey(name: 'disclaimer')
   final FhirMarkdown? disclaimer;
-  @JsonKey(name: '_disclaimer')
   final Element? disclaimerElement;
 
   /// [scoring] /// Indicates how the calculation is performed for the measure, including
   /// proportion, ratio, continuous-variable, and cohort. The value set is
   /// extensible, allowing additional measure scoring types to be represented.
-  @JsonKey(name: 'scoring')
   final CodeableConcept? scoring;
 
   /// [compositeScoring] /// If this is a composite measure, the scoring method used to combine the
   /// component measures to determine the composite score.
-  @JsonKey(name: 'compositeScoring')
   final CodeableConcept? compositeScoring;
 
   /// [type] /// Indicates whether the measure is used to examine a process, an outcome over
   /// time, a patient-reported outcome, or a structure measure such as
   /// utilization.
-  @JsonKey(name: 'type')
   final List<CodeableConcept>? type;
 
   /// [riskAdjustment] /// A description of the risk adjustment factors that may impact the resulting
   /// score for the measure and how they may be accounted for when computing and
   /// reporting measure results.
-  @JsonKey(name: 'riskAdjustment')
   final FhirString? riskAdjustment;
-  @JsonKey(name: '_riskAdjustment')
   final Element? riskAdjustmentElement;
 
   /// [rateAggregation] /// Describes how to combine the information calculated, based on logic in each
   /// of several populations, into one summarized result.
-  @JsonKey(name: 'rateAggregation')
   final FhirString? rateAggregation;
-  @JsonKey(name: '_rateAggregation')
   final Element? rateAggregationElement;
 
   /// [rationale] /// Provides a succinct statement of the need for the measure. Usually includes
   /// statements pertaining to importance criterion: impact, gap in care, and
   /// evidence.
-  @JsonKey(name: 'rationale')
   final FhirMarkdown? rationale;
-  @JsonKey(name: '_rationale')
   final Element? rationaleElement;
 
   /// [clinicalRecommendationStatement] /// Provides a summary of relevant clinical guidelines or other clinical
   /// recommendations supporting the measure.
-  @JsonKey(name: 'clinicalRecommendationStatement')
   final FhirMarkdown? clinicalRecommendationStatement;
-  @JsonKey(name: '_clinicalRecommendationStatement')
   final Element? clinicalRecommendationStatementElement;
 
   /// [improvementNotation] /// Information on whether an increase or decrease in score is the preferred
   /// result (e.g., a higher score indicates better quality OR a lower score
   /// indicates better quality OR quality is within a range).
-  @JsonKey(name: 'improvementNotation')
   final CodeableConcept? improvementNotation;
 
   /// [definition] /// Provides a description of an individual term used within the measure.
-  @JsonKey(name: 'definition')
   final List<FhirMarkdown>? definition;
-  @JsonKey(name: '_definition')
   final List<Element>? definitionElement;
 
   /// [guidance] /// Additional guidance for the measure including how it can be used in a
   /// clinical context, and the intent of the measure.
-  @JsonKey(name: 'guidance')
   final FhirMarkdown? guidance;
-  @JsonKey(name: '_guidance')
   final Element? guidanceElement;
 
   /// [group] /// A group of population criteria for the measure.
-  @JsonKey(name: 'group')
   final List<MeasureGroup>? group;
 
   /// [supplementalData] /// The supplemental data criteria for the measure report, specified as either
   /// the name of a valid CQL expression within a referenced library, or a valid
   /// FHIR Resource Path.
-  @JsonKey(name: 'supplementalData')
   final List<MeasureSupplementalData>? supplementalData;
   @override
   Map<String, dynamic> toJson() {
@@ -1085,7 +1019,6 @@ class Measure extends DomainResource {
 }
 
 /// [MeasureGroup] /// A group of population criteria for the measure.
-@JsonSerializable()
 class MeasureGroup extends BackboneElement {
   MeasureGroup({
     super.id,
@@ -1103,32 +1036,28 @@ class MeasureGroup extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MeasureGroup';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// Indicates a meaning for the group. This can be as simple as a unique
   /// identifier, or it can establish meaning in a broader context by drawing
   /// from a terminology, allowing groups to be correlated across measures.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [description] /// The human readable description of this population group.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [population] /// A population criteria for the measure.
-  @JsonKey(name: 'population')
   final List<MeasurePopulation>? population;
 
   /// [stratifier] /// The stratifier criteria for the measure report, specified as either the
   /// name of a valid CQL expression defined within a referenced library or a
   /// valid FHIR Resource Path.
-  @JsonKey(name: 'stratifier')
   final List<MeasureStratifier>? stratifier;
   @override
   Map<String, dynamic> toJson() {
@@ -1264,7 +1193,6 @@ class MeasureGroup extends BackboneElement {
 }
 
 /// [MeasurePopulation] /// A population criteria for the measure.
-@JsonSerializable()
 class MeasurePopulation extends BackboneElement {
   MeasurePopulation({
     super.id,
@@ -1281,25 +1209,22 @@ class MeasurePopulation extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MeasurePopulation';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// The type of population criteria.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [description] /// The human readable description of this population criteria.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [criteria] /// An expression that specifies the criteria for the population, typically the
   /// name of an expression in a library.
-  @JsonKey(name: 'criteria')
   final FhirExpression criteria;
   @override
   Map<String, dynamic> toJson() {
@@ -1416,7 +1341,6 @@ class MeasurePopulation extends BackboneElement {
 /// [MeasureStratifier] /// The stratifier criteria for the measure report, specified as either the
 /// name of a valid CQL expression defined within a referenced library or a
 /// valid FHIR Resource Path.
-@JsonSerializable()
 class MeasureStratifier extends BackboneElement {
   MeasureStratifier({
     super.id,
@@ -1434,34 +1358,30 @@ class MeasureStratifier extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MeasureStratifier';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// Indicates a meaning for the stratifier. This can be as simple as a unique
   /// identifier, or it can establish meaning in a broader context by drawing
   /// from a terminology, allowing stratifiers to be correlated across measures.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [description] /// The human readable description of this stratifier criteria.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [criteria] /// An expression that specifies the criteria for the stratifier. This is
   /// typically the name of an expression defined within a referenced library,
   /// but it may also be a path to a stratifier element.
-  @JsonKey(name: 'criteria')
   final FhirExpression? criteria;
 
   /// [component] /// A component of the stratifier criteria for the measure report, specified as
   /// either the name of a valid CQL expression defined within a referenced
   /// library or a valid FHIR Resource Path.
-  @JsonKey(name: 'component')
   final List<MeasureComponent>? component;
   @override
   Map<String, dynamic> toJson() {
@@ -1593,7 +1513,6 @@ class MeasureStratifier extends BackboneElement {
 /// [MeasureComponent] /// A component of the stratifier criteria for the measure report, specified as
 /// either the name of a valid CQL expression defined within a referenced
 /// library or a valid FHIR Resource Path.
-@JsonSerializable()
 class MeasureComponent extends BackboneElement {
   MeasureComponent({
     super.id,
@@ -1610,29 +1529,26 @@ class MeasureComponent extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MeasureComponent';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// Indicates a meaning for the stratifier component. This can be as simple as
   /// a unique identifier, or it can establish meaning in a broader context by
   /// drawing from a terminology, allowing stratifiers to be correlated across
   /// measures.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [description] /// The human readable description of this stratifier criteria component.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [criteria] /// An expression that specifies the criteria for this component of the
   /// stratifier. This is typically the name of an expression defined within a
   /// referenced library, but it may also be a path to a stratifier element.
-  @JsonKey(name: 'criteria')
   final FhirExpression criteria;
   @override
   Map<String, dynamic> toJson() {
@@ -1749,7 +1665,6 @@ class MeasureComponent extends BackboneElement {
 /// [MeasureSupplementalData] /// The supplemental data criteria for the measure report, specified as either
 /// the name of a valid CQL expression within a referenced library, or a valid
 /// FHIR Resource Path.
-@JsonSerializable()
 class MeasureSupplementalData extends BackboneElement {
   MeasureSupplementalData({
     super.id,
@@ -1767,17 +1682,17 @@ class MeasureSupplementalData extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MeasureSupplementalData';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// Indicates a meaning for the supplemental data. This can be as simple as a
   /// unique identifier, or it can establish meaning in a broader context by
   /// drawing from a terminology, allowing supplemental data to be correlated
   /// across measures.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [usage] /// An indicator of the intended usage for the supplemental data element.
@@ -1785,20 +1700,16 @@ class MeasureSupplementalData extends BackboneElement {
   /// augment the measure information. Risk adjustment factor indicates the data
   /// is additional information used to calculate risk adjustment factors when
   /// applying a risk model to the measure calculation.
-  @JsonKey(name: 'usage')
   final List<CodeableConcept>? usage;
 
   /// [description] /// The human readable description of this supplemental data.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [criteria] /// The criteria for the supplemental data. This is typically the name of a
   /// valid expression defined within a referenced library, but it may also be a
   /// path to a specific data element. The criteria defines the data to be
   /// returned for this element.
-  @JsonKey(name: 'criteria')
   final FhirExpression criteria;
   @override
   Map<String, dynamic> toJson() {

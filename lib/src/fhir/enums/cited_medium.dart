@@ -1,35 +1,27 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// NLM codes Internet or Print.
 enum CitedMedium {
   /// Display: Internet
   /// Definition: Online publication in a periodic release. Used to match NLM JournalIssue CitedMedium code for online version.
-  @JsonValue('internet')
   internet,
 
   /// Display: Print
   /// Definition: Print publication in a periodic release. Used to match NLM JournalIssue CitedMedium code for print version.
-  @JsonValue('print')
   print,
 
   /// Display: Offline Digital Storage
   /// Definition: Publication in a physical device for electronic data storage, organized in issues for periodic release.
-  @JsonValue('offline-digital-storage')
   offline_digital_storage,
 
   /// Display: Internet without issue
   /// Definition: Online publication without any periodic release. Used for article specific publication date which could be the same as or different from journal issue publication date.
-  @JsonValue('internet-without-issue')
   internet_without_issue,
 
   /// Display: Print without issue
   /// Definition: Print publication without any periodic release.
-  @JsonValue('print-without-issue')
   print_without_issue,
 
   /// Display: Offline Digital Storage without issue
   /// Definition: Publication in a physical device for electronic data storage, without any periodic release.
-  @JsonValue('offline-digital-storage-without-issue')
   offline_digital_storage_without_issue,
   ;
 

@@ -1,30 +1,23 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The free/busy status of the slot.
 enum SlotStatus {
   /// Display: Busy
   /// Definition: Indicates that the time interval is busy because one  or more events have been scheduled for that interval.
-  @JsonValue('busy')
   busy,
 
   /// Display: Free
   /// Definition: Indicates that the time interval is free for scheduling.
-  @JsonValue('free')
   free,
 
   /// Display: Busy (Unavailable)
   /// Definition: Indicates that the time interval is busy and that the interval cannot be scheduled.
-  @JsonValue('busy-unavailable')
   busy_unavailable,
 
   /// Display: Busy (Tentative)
   /// Definition: Indicates that the time interval is busy because one or more events have been tentatively scheduled for that interval.
-  @JsonValue('busy-tentative')
   busy_tentative,
 
   /// Display: Entered in error
   /// Definition: This instance should not have been part of this patient's medical record.
-  @JsonValue('entered-in-error')
   entered_in_error,
   ;
 

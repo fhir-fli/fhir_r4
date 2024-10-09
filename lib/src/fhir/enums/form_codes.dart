@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes a sample set of Forms codes.
 enum FormCodes {
   /// Display: Form #1
   /// Definition: Example: The #1 form to be used when printing this information.
-  @JsonValue('1')
   value1,
 
   /// Display: Form #1
   /// Definition: Example: The #2 form to be used when printing this information.
-  @JsonValue('2')
   value2,
   ;
 

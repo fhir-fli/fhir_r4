@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [HealthcareService] /// The details of a healthcare service available at a location.
-@JsonSerializable()
 class HealthcareService extends DomainResource {
   HealthcareService({
     super.id,
@@ -56,139 +54,110 @@ class HealthcareService extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.HealthcareService);
+
   @override
   String get fhirType => 'HealthcareService';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// External identifiers for this item.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [active] /// This flag is used to mark the record to not be used. This is not used when
   /// a center is closed for maintenance, or for holidays, the notAvailable
   /// period is to be used for this.
-  @JsonKey(name: 'active')
   final FhirBoolean? active;
-  @JsonKey(name: '_active')
   final Element? activeElement;
 
   /// [providedBy] /// The organization that provides this healthcare service.
-  @JsonKey(name: 'providedBy')
   final Reference? providedBy;
 
   /// [category] /// Identifies the broad category of service being performed or delivered.
-  @JsonKey(name: 'category')
   final List<CodeableConcept>? category;
 
   /// [type] /// The specific type of service that may be delivered or performed.
-  @JsonKey(name: 'type')
   final List<CodeableConcept>? type;
 
   /// [specialty] /// Collection of specialties handled by the service site. This is more of a
   /// medical term.
-  @JsonKey(name: 'specialty')
   final List<CodeableConcept>? specialty;
 
   /// [location] /// The location(s) where this healthcare service may be provided.
-  @JsonKey(name: 'location')
   final List<Reference>? location;
 
   /// [name] /// Further description of the service as it would be presented to a consumer
   /// while searching.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [comment] /// Any additional description of the service and/or any specific issues not
   /// covered by the other attributes, which can be displayed as further detail
   /// under the serviceName.
-  @JsonKey(name: 'comment')
   final FhirString? comment;
-  @JsonKey(name: '_comment')
   final Element? commentElement;
 
   /// [extraDetails] /// Extra details about the service that can't be placed in the other fields.
-  @JsonKey(name: 'extraDetails')
   final FhirMarkdown? extraDetails;
-  @JsonKey(name: '_extraDetails')
   final Element? extraDetailsElement;
 
   /// [photo] /// If there is a photo/symbol associated with this HealthcareService, it may
   /// be included here to facilitate quick identification of the service in a
   /// list.
-  @JsonKey(name: 'photo')
   final Attachment? photo;
 
   /// [telecom] /// List of contacts related to this specific healthcare service.
-  @JsonKey(name: 'telecom')
   final List<ContactPoint>? telecom;
 
   /// [coverageArea] /// The location(s) that this service is available to (not where the service is
   /// provided).
-  @JsonKey(name: 'coverageArea')
   final List<Reference>? coverageArea;
 
   /// [serviceProvisionCode] /// The code(s) that detail the conditions under which the healthcare service
   /// is available/offered.
-  @JsonKey(name: 'serviceProvisionCode')
   final List<CodeableConcept>? serviceProvisionCode;
 
   /// [eligibility] /// Does this service have specific eligibility requirements that need to be
   /// met in order to use the service?
-  @JsonKey(name: 'eligibility')
   final List<HealthcareServiceEligibility>? eligibility;
 
   /// [program] /// Programs that this service is applicable to.
-  @JsonKey(name: 'program')
   final List<CodeableConcept>? program;
 
   /// [characteristic] /// Collection of characteristics (attributes).
-  @JsonKey(name: 'characteristic')
   final List<CodeableConcept>? characteristic;
 
   /// [communication] /// Some services are specifically made available in multiple languages, this
   /// property permits a directory to declare the languages this is offered in.
   /// Typically this is only provided where a service operates in communities
   /// with mixed languages used.
-  @JsonKey(name: 'communication')
   final List<CodeableConcept>? communication;
 
   /// [referralMethod] /// Ways that the service accepts referrals, if this is not provided then it is
   /// implied that no referral is required.
-  @JsonKey(name: 'referralMethod')
   final List<CodeableConcept>? referralMethod;
 
   /// [appointmentRequired] /// Indicates whether or not a prospective consumer will require an appointment
   /// for a particular service at a site to be provided by the Organization.
   /// Indicates if an appointment is required for access to this service.
-  @JsonKey(name: 'appointmentRequired')
   final FhirBoolean? appointmentRequired;
-  @JsonKey(name: '_appointmentRequired')
   final Element? appointmentRequiredElement;
 
   /// [availableTime] /// A collection of times that the Service Site is available.
-  @JsonKey(name: 'availableTime')
   final List<HealthcareServiceAvailableTime>? availableTime;
 
   /// [notAvailable] /// The HealthcareService is not available during this period of time due to
   /// the provided reason.
-  @JsonKey(name: 'notAvailable')
   final List<HealthcareServiceNotAvailable>? notAvailable;
 
   /// [availabilityExceptions] /// A description of site availability exceptions, e.g. public holiday
   /// availability. Succinctly describing all possible exceptions to normal site
   /// availability as details in the available Times and not available Times.
-  @JsonKey(name: 'availabilityExceptions')
   final FhirString? availabilityExceptions;
-  @JsonKey(name: '_availabilityExceptions')
   final Element? availabilityExceptionsElement;
 
   /// [endpoint] /// Technical endpoints providing access to services operated for the specific
   /// healthcare services defined at this resource.
-  @JsonKey(name: 'endpoint')
   final List<Reference>? endpoint;
   @override
   Map<String, dynamic> toJson() {
@@ -643,7 +612,6 @@ class HealthcareService extends DomainResource {
 
 /// [HealthcareServiceEligibility] /// Does this service have specific eligibility requirements that need to be
 /// met in order to use the service?
-@JsonSerializable()
 class HealthcareServiceEligibility extends BackboneElement {
   HealthcareServiceEligibility({
     super.id,
@@ -659,20 +627,18 @@ class HealthcareServiceEligibility extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'HealthcareServiceEligibility';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// Coded value for the eligibility.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [comment] /// Describes the eligibility conditions for the service.
-  @JsonKey(name: 'comment')
   final FhirMarkdown? comment;
-  @JsonKey(name: '_comment')
   final Element? commentElement;
   @override
   Map<String, dynamic> toJson() {
@@ -781,7 +747,6 @@ class HealthcareServiceEligibility extends BackboneElement {
 }
 
 /// [HealthcareServiceAvailableTime] /// A collection of times that the Service Site is available.
-@JsonSerializable()
 class HealthcareServiceAvailableTime extends BackboneElement {
   HealthcareServiceAvailableTime({
     super.id,
@@ -802,38 +767,31 @@ class HealthcareServiceAvailableTime extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'HealthcareServiceAvailableTime';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [daysOfWeek] /// Indicates which days of the week are available between the start and end
   /// Times.
-  @JsonKey(name: 'daysOfWeek')
   final List<DaysOfWeek>? daysOfWeek;
-  @JsonKey(name: '_daysOfWeek')
   final List<Element>? daysOfWeekElement;
 
   /// [allDay] /// Is this always available? (hence times are irrelevant) e.g. 24 hour
   /// service.
-  @JsonKey(name: 'allDay')
   final FhirBoolean? allDay;
-  @JsonKey(name: '_allDay')
   final Element? allDayElement;
 
   /// [availableStartTime] /// The opening time of day. Note: If the AllDay flag is set, then this time is
   /// ignored.
-  @JsonKey(name: 'availableStartTime')
   final FhirTime? availableStartTime;
-  @JsonKey(name: '_availableStartTime')
   final Element? availableStartTimeElement;
 
   /// [availableEndTime] /// The closing time of day. Note: If the AllDay flag is set, then this time is
   /// ignored.
-  @JsonKey(name: 'availableEndTime')
   final FhirTime? availableEndTime;
-  @JsonKey(name: '_availableEndTime')
   final Element? availableEndTimeElement;
   @override
   Map<String, dynamic> toJson() {
@@ -985,7 +943,6 @@ class HealthcareServiceAvailableTime extends BackboneElement {
 
 /// [HealthcareServiceNotAvailable] /// The HealthcareService is not available during this period of time due to
 /// the provided reason.
-@JsonSerializable()
 class HealthcareServiceNotAvailable extends BackboneElement {
   HealthcareServiceNotAvailable({
     super.id,
@@ -1001,22 +958,20 @@ class HealthcareServiceNotAvailable extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'HealthcareServiceNotAvailable';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [description] /// The reason that can be presented to the user as to why this time is not
   /// available.
-  @JsonKey(name: 'description')
   final FhirString description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [during] /// Service is not available (seasonally or for a public holiday) from this
   /// date.
-  @JsonKey(name: 'during')
   final Period? during;
   @override
   Map<String, dynamic> toJson() {

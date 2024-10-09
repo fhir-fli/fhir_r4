@@ -1,17 +1,12 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The type of a name given to a substance.
 enum SubstanceNameType {
   /// Display: systematic
-  @JsonValue('Systematic')
   Systematic,
 
   /// Display: scientific
-  @JsonValue('Scientific')
   Scientific,
 
   /// Display: brand
-  @JsonValue('Brand')
   Brand,
   ;
 

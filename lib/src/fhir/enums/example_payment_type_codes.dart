@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes example Payment Type codes.
 enum ExamplePaymentTypeCodes {
   /// Display: Complete
   /// Definition: Complete (final) payment of the benefit under the Claim less any adjustments.
-  @JsonValue('complete')
   complete,
 
   /// Display: Partial
   /// Definition: Partial payment of the benefit under the Claim less any adjustments.
-  @JsonValue('partial')
   partial,
   ;
 

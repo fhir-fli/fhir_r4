@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set defines a set of codes that are used to indicate the profile type of a test system when acting as the destination within a TestScript.
 enum TestScriptProfileDestinationType {
   /// Display: FHIR Server
   /// Definition: General FHIR server used to respond to operations sent from a FHIR client.
-  @JsonValue('FHIR-Server')
   FHIR_Server,
 
   /// Display: FHIR SDC FormManager
   /// Definition: A FHIR server acting as a Structured Data Capture Form Manager.
-  @JsonValue('FHIR-SDC-FormManager')
   FHIR_SDC_FormManager,
 
   /// Display: FHIR SDC FormProcessor
   /// Definition: A FHIR server acting as a Structured Data Capture Form Processor.
-  @JsonValue('FHIR-SDC-FormProcessor')
   FHIR_SDC_FormProcessor,
 
   /// Display: FHIR SDC FormReceiver
   /// Definition: A FHIR server acting as a Structured Data Capture Form Receiver.
-  @JsonValue('FHIR-SDC-FormReceiver')
   FHIR_SDC_FormReceiver,
   ;
 

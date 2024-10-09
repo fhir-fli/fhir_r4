@@ -1,35 +1,27 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The type of name the device is referred by.
 enum DeviceNameType {
   /// Display: UDI Label name
   /// Definition: UDI Label name.
-  @JsonValue('udi-label-name')
   udi_label_name,
 
   /// Display: User Friendly name
   /// Definition: User Friendly name.
-  @JsonValue('user-friendly-name')
   user_friendly_name,
 
   /// Display: Patient Reported name
   /// Definition: Patient Reported name.
-  @JsonValue('patient-reported-name')
   patient_reported_name,
 
   /// Display: Manufacturer name
   /// Definition: Manufacturer name.
-  @JsonValue('manufacturer-name')
   manufacturer_name,
 
   /// Display: Model name
   /// Definition: Model name.
-  @JsonValue('model-name')
   model_name,
 
   /// Display: other
   /// Definition: other.
-  @JsonValue('other')
   other,
   ;
 

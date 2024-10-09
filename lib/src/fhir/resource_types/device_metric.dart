@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [DeviceMetric] /// Describes a measurement, calculation or setting capability of a medical
 /// device.
-@JsonSerializable()
 class DeviceMetric extends DomainResource {
   DeviceMetric({
     super.id,
@@ -40,32 +38,29 @@ class DeviceMetric extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.DeviceMetric);
+
   @override
   String get fhirType => 'DeviceMetric';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Unique instance identifiers assigned to a device by the device or gateway
   /// software, manufacturers, other organizations or owners. For example: handle
   /// ID.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [type] /// Describes the type of the metric. For example: Heart Rate, PEEP Setting,
   /// etc.
-  @JsonKey(name: 'type')
   final CodeableConcept type;
 
   /// [unit] /// Describes the unit that an observed value determined for this metric will
   /// have. For example: Percent, Seconds, etc.
-  @JsonKey(name: 'unit')
   final CodeableConcept? unit;
 
   /// [source] /// Describes the link to the Device that this DeviceMetric belongs to and that
   /// contains administrative device information such as manufacturer, serial
   /// number, etc.
-  @JsonKey(name: 'source')
   final Reference? source;
 
   /// [parent] /// Describes the link to the Device that this DeviceMetric belongs to and that
@@ -74,14 +69,11 @@ class DeviceMetric extends DomainResource {
   /// that represents a Channel. This reference can be used by a client
   /// application to distinguish DeviceMetrics that have the same type, but
   /// should be interpreted based on their containment location.
-  @JsonKey(name: 'parent')
   final Reference? parent;
 
   /// [operationalStatus] /// Indicates current operational state of the device. For example: On, Off,
   /// Standby, etc.
-  @JsonKey(name: 'operationalStatus')
   final DeviceMetricOperationalStatus? operationalStatus;
-  @JsonKey(name: '_operationalStatus')
   final Element? operationalStatusElement;
 
   /// [color] /// Describes the color representation for the metric. This is often used to
@@ -89,16 +81,12 @@ class DeviceMetric extends DomainResource {
   /// consider a Patient Monitor that has ECG/HR and Pleth for example; the
   /// parameters are displayed in different characteristic colors, such as
   /// HR-blue, BP-green, and PR and SpO2- magenta.
-  @JsonKey(name: 'color')
   final DeviceMetricColor? color;
-  @JsonKey(name: '_color')
   final Element? colorElement;
 
   /// [category] /// Indicates the category of the observation generation process. A
   /// DeviceMetric can be for example a setting, measurement, or calculation.
-  @JsonKey(name: 'category')
   final DeviceMetricCategory category;
-  @JsonKey(name: '_category')
   final Element? categoryElement;
 
   /// [measurementPeriod] /// Describes the measurement repetition time. This is not necessarily the same
@@ -109,12 +97,10 @@ class DeviceMetric extends DomainResource {
   /// triggered automatically every hour. The update period may be different than
   /// the measurement repetition time, if the device does not update the
   /// published observed value with the same frequency as it was measured.
-  @JsonKey(name: 'measurementPeriod')
   final Timing? measurementPeriod;
 
   /// [calibration] /// Describes the calibrations that have been performed or that are required to
   /// be performed.
-  @JsonKey(name: 'calibration')
   final List<DeviceMetricCalibration>? calibration;
   @override
   Map<String, dynamic> toJson() {
@@ -346,7 +332,6 @@ class DeviceMetric extends DomainResource {
 
 /// [DeviceMetricCalibration] /// Describes the calibrations that have been performed or that are required to
 /// be performed.
-@JsonSerializable()
 class DeviceMetricCalibration extends BackboneElement {
   DeviceMetricCalibration({
     super.id,
@@ -365,28 +350,23 @@ class DeviceMetricCalibration extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'DeviceMetricCalibration';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// Describes the type of the calibration method.
-  @JsonKey(name: 'type')
   final DeviceMetricCalibrationType? type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [state] /// Describes the state of the calibration.
-  @JsonKey(name: 'state')
   final DeviceMetricCalibrationState? state;
-  @JsonKey(name: '_state')
   final Element? stateElement;
 
   /// [time] /// Describes the time last calibration has been performed.
-  @JsonKey(name: 'time')
   final FhirInstant? time;
-  @JsonKey(name: '_time')
   final Element? timeElement;
   @override
   Map<String, dynamic> toJson() {

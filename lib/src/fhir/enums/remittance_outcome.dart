@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The outcome of the processing.
 enum RemittanceOutcome {
   /// Display: Queued
   /// Definition: The Claim/Pre-authorization/Pre-determination has been received but processing has not begun.
-  @JsonValue('queued')
   queued,
 
   /// Display: Complete
   /// Definition: The processing completed without errors.
-  @JsonValue('complete')
   complete,
 
   /// Display: Error
   /// Definition: The processing identified errors.
-  @JsonValue('error')
   error,
 
   /// Display: Partial
   /// Definition: No errors have been detected and some of the adjudication has been performed.
-  @JsonValue('partial')
   partial,
   ;
 

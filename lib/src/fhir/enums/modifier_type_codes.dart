@@ -1,35 +1,27 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes sample Modifier type codes.
 enum ModifierTypeCodes {
   /// Display: Repair of prior service or installation
   /// Definition: Repair of prior service or installation.
-  @JsonValue('a')
   a,
 
   /// Display: Temporary service or installation
   /// Definition: Temporary service or installation.
-  @JsonValue('b')
   b,
 
   /// Display: TMJ treatment
   /// Definition: Treatment associated with TMJ.
-  @JsonValue('c')
   c,
 
   /// Display: Implant or associated with an implant
   /// Definition: Implant or associated with an implant.
-  @JsonValue('e')
   e,
 
   /// Display: Rush or Outside of office hours
   /// Definition: A Rush service or service performed outside of normal office hours.
-  @JsonValue('rooh')
   rooh,
 
   /// Display: None
   /// Definition: None.
-  @JsonValue('x')
   x,
   ;
 

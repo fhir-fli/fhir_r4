@@ -1,313 +1,234 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Dose forms for a product as a whole, considering all individual parts, but before any mixing
 enum CombinedDoseForm {
   /// Display: Powder and solvent for oral solution
-  @JsonValue('100000073366')
   value100000073366,
 
   /// Display: Powder and solvent for oral suspension
-  @JsonValue('100000073651')
   value100000073651,
 
   /// Display: Eye drops, powder and solvent for solution
-  @JsonValue('100000073774')
   value100000073774,
 
   /// Display: Eye drops, powder and solvent for suspension
-  @JsonValue('100000073781')
   value100000073781,
 
   /// Display: Ear drops, powder and solvent for suspension
-  @JsonValue('100000073801')
   value100000073801,
 
   /// Display: Powder and solvent for solution for infusion
-  @JsonValue('100000073860')
   value100000073860,
 
   /// Display: Powder and solvent for solution for injection
-  @JsonValue('100000073868')
   value100000073868,
 
   /// Display: Powder and solvent for suspension for injection
-  @JsonValue('100000073869')
   value100000073869,
 
   /// Display: Powder and solvent for implantation paste
-  @JsonValue('100000073884')
   value100000073884,
 
   /// Display: Endotracheopulmonary instillation, powder and solvent for solution
-  @JsonValue('100000073891')
   value100000073891,
 
   /// Display: Powder and solvent for endocervical gel
-  @JsonValue('100000073892')
   value100000073892,
 
   /// Display: Powder and solvent for sealant
-  @JsonValue('100000073941')
   value100000073941,
 
   /// Display: Concentrate and solvent for concentrate for solution for infusion
-  @JsonValue('100000073972')
   value100000073972,
 
   /// Display: Concentrate and solvent for cutaneous use
-  @JsonValue('100000073973')
   value100000073973,
 
   /// Display: Concentrate and solvent for injection
-  @JsonValue('100000073974')
   value100000073974,
 
   /// Display: Concentrate and solvent for solution for infusion
-  @JsonValue('100000073975')
   value100000073975,
 
   /// Display: Concentrate and diluent for solution for infusion
-  @JsonValue('100000073987')
   value100000073987,
 
   /// Display: Concentrate and solvent for cutaneous solution
-  @JsonValue('100000073988')
   value100000073988,
 
   /// Display: Concentrate and solvent for solution for injection
-  @JsonValue('100000073989')
   value100000073989,
 
   /// Display: Concentrate and solvent for suspension for injection
-  @JsonValue('100000073990')
   value100000073990,
 
   /// Display: Granules and solvent for suspension for injection
-  @JsonValue('100000073999')
   value100000073999,
 
   /// Display: Powder and solvent for concentrate for solution for infusion
-  @JsonValue('100000074015')
   value100000074015,
 
   /// Display: Powder and solvent for cutaneous solution
-  @JsonValue('100000074016')
   value100000074016,
 
   /// Display: Powder and solvent for gingival gel
-  @JsonValue('100000074017')
   value100000074017,
 
   /// Display: Powder and solvent for prolonged-release suspension for injection
-  @JsonValue('100000074018')
   value100000074018,
 
   /// Display: Powder and solvent for endosinusial solution
-  @JsonValue('100000074030')
   value100000074030,
 
   /// Display: Powder and solvent for intraocular instillation solution
-  @JsonValue('100000074031')
   value100000074031,
 
   /// Display: Powder and suspension for suspension for injection
-  @JsonValue('100000074032')
   value100000074032,
 
   /// Display: Suspension and effervescent granules for oral suspension
-  @JsonValue('100000074048')
   value100000074048,
 
   /// Display: Tablet and solvent for rectal suspension
-  @JsonValue('100000074051')
   value100000074051,
 
   /// Display: Powder and solvent for dental gel
-  @JsonValue('100000074053')
   value100000074053,
 
   /// Display: Gas and solvent for dispersion for injection/infusion
-  @JsonValue('100000074056')
   value100000074056,
 
   /// Display: Powder and solvent for solution for injection/infusion
-  @JsonValue('100000074057')
   value100000074057,
 
   /// Display: Suspension and solution for spray
-  @JsonValue('100000074061')
   value100000074061,
 
   /// Display: Tablet and powder for oral solution
-  @JsonValue('100000074064')
   value100000074064,
 
   /// Display: Emulsion and suspension for emulsion for injection
-  @JsonValue('100000075580')
   value100000075580,
 
   /// Display: Powder and solvent for dispersion for injection
-  @JsonValue('100000075584')
   value100000075584,
 
   /// Display: Powder for mouth wash
-  @JsonValue('100000075587')
   value100000075587,
 
   /// Display: Lyophilisate and solvent for solution for injection
-  @JsonValue('100000116137')
   value100000116137,
 
   /// Display: Fibrin sealant-powder and solvent for fibrin sealant
-  @JsonValue('100000116141')
   value100000116141,
 
   /// Display: Granules and solvent for oral suspension
-  @JsonValue('100000116155')
   value100000116155,
 
   /// Display: Lyophilisate and solvent for suspension for injection
-  @JsonValue('100000116160')
   value100000116160,
 
   /// Display: Powder and gel for gel
-  @JsonValue('100000116172')
   value100000116172,
 
   /// Display: Powder and solution for solution for injection
-  @JsonValue('100000116173')
   value100000116173,
 
   /// Display: Powder and solvent for epilesional solution
-  @JsonValue('100000116174')
   value100000116174,
 
   /// Display: Powder and solvent for intravesical solution
-  @JsonValue('100000116175')
   value100000116175,
 
   /// Display: Powder and solvent for intravesical suspension
-  @JsonValue('100000116176')
   value100000116176,
 
   /// Display: Powder and solvent for nebuliser solution
-  @JsonValue('100000116177')
   value100000116177,
 
   /// Display: Powder, dispersion and solvent for concentrate for dispersion for infusion
-  @JsonValue('100000116179')
   value100000116179,
 
   /// Display: Powder and solvent for emulsion for injection
-  @JsonValue('100000125746')
   value100000125746,
 
   /// Display: Nasal drops, powder and solvent for solution
-  @JsonValue('100000125747')
   value100000125747,
 
   /// Display: Suspension and solvent for suspension for injection
-  @JsonValue('100000125777')
   value100000125777,
 
   /// Display: Concentrate and solvent for solution for injection/infusion
-  @JsonValue('100000136318')
   value100000136318,
 
   /// Display: Powder and solvent for solution for injection/skin-prick test
-  @JsonValue('100000136325')
   value100000136325,
 
   /// Display: Lyophilisate and solvent for suspension for nasal administration
-  @JsonValue('100000136558')
   value100000136558,
 
   /// Display: Powder and solvent for solution for sealant
-  @JsonValue('100000136560')
   value100000136560,
 
   /// Display: Solution for dispersion for injection/infusion
-  @JsonValue('100000136907')
   value100000136907,
 
   /// Display: Powder and solution for dental cement
-  @JsonValue('100000143502')
   value100000143502,
 
   /// Display: Endotracheopulmonary instillation, powder and solvent for suspension
-  @JsonValue('100000143546')
   value100000143546,
 
   /// Display: Powder, solvent and matrix for implantation matrix
-  @JsonValue('100000143552')
   value100000143552,
 
   /// Display: Nasal drops, lyophilisate and solvent for suspension
-  @JsonValue('100000156068')
   value100000156068,
 
   /// Display: Lyophilisate and suspension for suspension for injection
-  @JsonValue('100000157796')
   value100000157796,
 
   /// Display: Powder for concentrate and solution for solution for infusion
-  @JsonValue('100000164467')
   value100000164467,
 
   /// Display: Powder and solution for bee-hive solution
-  @JsonValue('100000169997')
   value100000169997,
 
   /// Display: Suspension and solvent for oral spray
-  @JsonValue('100000170588')
   value100000170588,
 
   /// Display: Lyophilisate and solvent for oral suspension
-  @JsonValue('100000171127')
   value100000171127,
 
   /// Display: Concentrate and solvent for concentrate for oral spray, suspension
-  @JsonValue('100000171193')
   value100000171193,
 
   /// Display: Lyophilisate and solvent for oculonasal suspension
-  @JsonValue('100000171238')
   value100000171238,
 
   /// Display: Emulsion and lyophilisate for suspension for injection
-  @JsonValue('100000171935')
   value100000171935,
 
   /// Display: Powder and solvent for syrup
-  @JsonValue('100000174065')
   value100000174065,
 
   /// Display: Nasal spray, lyophilisate and solvent for suspension
-  @JsonValue('200000002161')
   value200000002161,
 
   /// Display: Powder and solution for bee-hive dispersion
-  @JsonValue('200000002287')
   value200000002287,
 
   /// Display: Solution and dispersion for nebuliser dispersion
-  @JsonValue('200000004201')
   value200000004201,
 
   /// Display: Effervescent powder and powder for oral suspension
-  @JsonValue('200000004819')
   value200000004819,
 
   /// Display: Lyophilisate and solvent for emulsion for injection
-  @JsonValue('200000004820')
   value200000004820,
 
   /// Display: Powder and solution for suspension for injection
-  @JsonValue('200000005547')
   value200000005547,
 
   /// Display: Lyophilisate and solvent for suspension for nasal spray or injection
-  @JsonValue('200000010382')
   value200000010382,
   ;
 

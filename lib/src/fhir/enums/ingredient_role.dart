@@ -1,41 +1,30 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// A classification of the ingredient identifying its purpose within the product.
 enum IngredientRole {
   /// Display: Active
-  @JsonValue('100000072072')
   value100000072072,
 
   /// Display: Adjuvant
-  @JsonValue('100000072073')
   value100000072073,
 
   /// Display: Excipient
-  @JsonValue('100000072082')
   value100000072082,
 
   /// Display: Starting material for excipient
-  @JsonValue('100000136065')
   value100000136065,
 
   /// Display: Solvent / Diluent
-  @JsonValue('100000136066')
   value100000136066,
 
   /// Display: Raw materials used in the manufacture of the product
-  @JsonValue('100000136178')
   value100000136178,
 
   /// Display: Starting material for active substance
-  @JsonValue('100000136179')
   value100000136179,
 
   /// Display: Overage
-  @JsonValue('100000136561')
   value100000136561,
 
   /// Display: bioenhancer
-  @JsonValue('200000003427')
   value200000003427,
   ;
 

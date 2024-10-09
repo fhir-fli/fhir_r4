@@ -1,35 +1,27 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Structure Definition Use Codes / Keywords
 enum DefinitionUseCodes {
   /// Display: FHIR Structure
   /// Definition: This structure is defined as part of the base FHIR Specification
-  @JsonValue('fhir-structure')
   fhir_structure,
 
   /// Display: Custom Resource
   /// Definition: This structure is intended to be treated like a FHIR resource (e.g. on the FHIR API)
-  @JsonValue('custom-resource')
   custom_resource,
 
   /// Display: Domain Analysis Model
   /// Definition: This structure captures an analysis of a domain
-  @JsonValue('dam')
   dam,
 
   /// Display: Wire Format
   /// Definition: This structure represents and existing structure (e.g. CDA, HL7 v2)
-  @JsonValue('wire-format')
   wire_format,
 
   /// Display: Domain Analysis Model
   /// Definition: This structure captures an analysis of a domain
-  @JsonValue('archetype')
   archetype,
 
   /// Display: Template
   /// Definition: This structure is a template (n.b: 'template' has many meanings)
-  @JsonValue('template')
   template,
   ;
 

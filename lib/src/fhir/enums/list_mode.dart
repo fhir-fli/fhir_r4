@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The processing mode that applies to this list.
 enum ListMode {
   /// Display: Working List
   /// Definition: This list is the master list, maintained in an ongoing fashion with regular updates as the real world list it is tracking changes.
-  @JsonValue('working')
   working,
 
   /// Display: Snapshot List
   /// Definition: This list was prepared as a snapshot. It should not be assumed to be current.
-  @JsonValue('snapshot')
   snapshot,
 
   /// Display: Change List
   /// Definition: A point-in-time list that shows what changes have been made or recommended.  E.g. a discharge medication list showing what was added and removed during an encounter.
-  @JsonValue('changes')
   changes,
   ;
 

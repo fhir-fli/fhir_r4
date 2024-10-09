@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes sample Exception codes.
 enum ExceptionCodes {
   /// Display: Student (Fulltime)
   /// Definition: Fulltime Student
-  @JsonValue('student')
   student,
 
   /// Display: Disabled
   /// Definition: Disabled
-  @JsonValue('disabled')
   disabled,
   ;
 

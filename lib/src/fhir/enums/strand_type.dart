@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Type for strand.
 enum StrandType {
   /// Display: Watson strand of referenceSeq
   /// Definition: Watson strand of reference sequence.
-  @JsonValue('watson')
   watson,
 
   /// Display: Crick strand of referenceSeq
   /// Definition: Crick strand of reference sequence.
-  @JsonValue('crick')
   crick,
   ;
 

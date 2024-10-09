@@ -1,116 +1,59 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Document section codes (LOINC codes used in CCDA sections).
 enum DocumentSectionCodes {
-  @JsonValue('10154-3')
   value10154_3,
-  @JsonValue('10157-6')
   value10157_6,
-  @JsonValue('10160-0')
   value10160_0,
-  @JsonValue('10164-2')
   value10164_2,
-  @JsonValue('10183-2')
   value10183_2,
-  @JsonValue('10184-0')
   value10184_0,
-  @JsonValue('10187-3')
   value10187_3,
-  @JsonValue('10210-3')
   value10210_3,
-  @JsonValue('10216-0')
   value10216_0,
-  @JsonValue('10218-6')
   value10218_6,
-  @JsonValue('10223-6')
   value10223_6,
-  @JsonValue('10222-8')
   value10222_8,
-  @JsonValue('11329-0')
   value11329_0,
-  @JsonValue('11348-0')
   value11348_0,
-  @JsonValue('11369-6')
   value11369_6,
-  @JsonValue('57852-6')
   value57852_6,
-  @JsonValue('11493-4')
   value11493_4,
-  @JsonValue('11535-2')
   value11535_2,
-  @JsonValue('11537-8')
   value11537_8,
-  @JsonValue('18776-5')
   value18776_5,
-  @JsonValue('18841-7')
   value18841_7,
-  @JsonValue('29299-5')
   value29299_5,
-  @JsonValue('29545-1')
   value29545_1,
-  @JsonValue('29549-3')
   value29549_3,
-  @JsonValue('29554-3')
   value29554_3,
-  @JsonValue('29762-2')
   value29762_2,
-  @JsonValue('30954-2')
   value30954_2,
-  @JsonValue('42344-2')
   value42344_2,
-  @JsonValue('42346-7')
   value42346_7,
-  @JsonValue('42348-3')
   value42348_3,
-  @JsonValue('42349-1')
   value42349_1,
-  @JsonValue('46240-8')
   value46240_8,
-  @JsonValue('46241-6')
   value46241_6,
-  @JsonValue('46264-8')
   value46264_8,
-  @JsonValue('47420-5')
   value47420_5,
-  @JsonValue('47519-4')
   value47519_4,
-  @JsonValue('48765-2')
   value48765_2,
-  @JsonValue('48768-6')
   value48768_6,
-  @JsonValue('51848-0')
   value51848_0,
-  @JsonValue('55109-3')
   value55109_3,
-  @JsonValue('55122-6')
   value55122_6,
-  @JsonValue('59768-2')
   value59768_2,
-  @JsonValue('59769-0')
   value59769_0,
-  @JsonValue('59770-8')
   value59770_8,
-  @JsonValue('59771-6')
   value59771_6,
-  @JsonValue('59772-4')
   value59772_4,
-  @JsonValue('59773-2')
   value59773_2,
-  @JsonValue('59775-7')
   value59775_7,
-  @JsonValue('59776-5')
   value59776_5,
-  @JsonValue('61149-1')
   value61149_1,
-  @JsonValue('61150-9')
   value61150_9,
-  @JsonValue('69730-0')
   value69730_0,
-  @JsonValue('8648-8')
   value8648_8,
-  @JsonValue('8653-8')
   value8653_8,
-  @JsonValue('8716-3')
   value8716_3,
   ;
 

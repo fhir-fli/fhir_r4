@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// How the referenced structure is used in this mapping.
 enum StructureMapModelMode {
   /// Display: Source Structure Definition
   /// Definition: This structure describes an instance passed to the mapping engine that is used a source of data.
-  @JsonValue('source')
   source,
 
   /// Display: Queried Structure Definition
   /// Definition: This structure describes an instance that the mapping engine may ask for that is used a source of data.
-  @JsonValue('queried')
   queried,
 
   /// Display: Target Structure Definition
   /// Definition: This structure describes an instance passed to the mapping engine that is used a target of data.
-  @JsonValue('target')
   target,
 
   /// Display: Produced Structure Definition
   /// Definition: This structure describes an instance that the mapping engine may ask to create that is used a target of data.
-  @JsonValue('produced')
   produced,
   ;
 

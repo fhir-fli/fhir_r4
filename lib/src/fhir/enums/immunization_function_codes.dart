@@ -1,10 +1,6 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the function a practitioner or organization may play in the immunization event. This value set is provided as a suggestive example.
 enum ImmunizationFunctionCodes {
-  @JsonValue('OP')
   OP,
-  @JsonValue('AP')
   AP,
   ;
 

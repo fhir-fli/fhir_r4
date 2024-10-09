@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -9,7 +8,6 @@ import '../../../fhir_r4.dart';
 /// upon collectively but which are not expected to act collectively, and are
 /// not formally or legally recognized; i.e. a collection of entities that
 /// isn't an Organization.
-@JsonSerializable()
 class FhirGroup extends DomainResource {
   FhirGroup({
     super.id,
@@ -44,66 +42,52 @@ class FhirGroup extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.FhirGroup);
+
   @override
   String get fhirType => 'FhirGroup';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// A unique business identifier for this group.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [active] /// Indicates whether the record for the group is available for use or is
   /// merely being retained for historical purposes.
-  @JsonKey(name: 'active')
   final FhirBoolean? active;
-  @JsonKey(name: '_active')
   final Element? activeElement;
 
   /// [type] /// Identifies the broad classification of the kind of resources the group
   /// includes.
-  @JsonKey(name: 'type')
   final GroupType type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [actual] /// If true, indicates that the resource refers to a specific group of real
   /// individuals. If false, the group defines a set of intended individuals.
-  @JsonKey(name: 'actual')
   final FhirBoolean actual;
-  @JsonKey(name: '_actual')
   final Element? actualElement;
 
   /// [code] /// Provides a specific type of resource the group includes; e.g. "cow",
   /// "syringe", etc.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [name] /// A label assigned to the group for human identification and communication.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [quantity] /// A count of the number of resource instances that are part of the group.
-  @JsonKey(name: 'quantity')
   final FhirUnsignedInt? quantity;
-  @JsonKey(name: '_quantity')
   final Element? quantityElement;
 
   /// [managingEntity] /// Entity responsible for defining and maintaining Group characteristics
   /// and/or registered members.
-  @JsonKey(name: 'managingEntity')
   final Reference? managingEntity;
 
   /// [characteristic] /// Identifies traits whose presence r absence is shared by members of the
   /// group.
-  @JsonKey(name: 'characteristic')
   final List<GroupCharacteristic>? characteristic;
 
   /// [member] /// Identifies the resource instances that are members of the group.
-  @JsonKey(name: 'member')
   final List<GroupMember>? member;
   @override
   Map<String, dynamic> toJson() {
@@ -357,7 +341,6 @@ class FhirGroup extends DomainResource {
 
 /// [GroupCharacteristic] /// Identifies traits whose presence r absence is shared by members of the
 /// group.
-@JsonSerializable()
 class GroupCharacteristic extends BackboneElement {
   GroupCharacteristic({
     super.id,
@@ -380,53 +363,44 @@ class GroupCharacteristic extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'GroupCharacteristic';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// A code that identifies the kind of trait being asserted.
-  @JsonKey(name: 'code')
   final CodeableConcept code;
 
   /// [valueCodeableConcept] /// The value of the trait that holds (or does not hold - see 'exclude') for
   /// members of the group.
-  @JsonKey(name: 'valueCodeableConcept')
   final CodeableConcept? valueCodeableConcept;
 
   /// [valueBoolean] /// The value of the trait that holds (or does not hold - see 'exclude') for
   /// members of the group.
-  @JsonKey(name: 'valueBoolean')
   final FhirBoolean? valueBoolean;
-  @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
 
   /// [valueQuantity] /// The value of the trait that holds (or does not hold - see 'exclude') for
   /// members of the group.
-  @JsonKey(name: 'valueQuantity')
   final Quantity? valueQuantity;
 
   /// [valueRange] /// The value of the trait that holds (or does not hold - see 'exclude') for
   /// members of the group.
-  @JsonKey(name: 'valueRange')
   final Range? valueRange;
 
   /// [valueReference] /// The value of the trait that holds (or does not hold - see 'exclude') for
   /// members of the group.
-  @JsonKey(name: 'valueReference')
   final Reference? valueReference;
 
   /// [exclude] /// If true, indicates the characteristic is one that is NOT held by members of
   /// the group.
-  @JsonKey(name: 'exclude')
   final FhirBoolean exclude;
-  @JsonKey(name: '_exclude')
   final Element? excludeElement;
 
   /// [period] /// The period over which the characteristic is tested; e.g. the patient had an
   /// operation during the month of June.
-  @JsonKey(name: 'period')
   final Period? period;
   @override
   Map<String, dynamic> toJson() {
@@ -585,7 +559,6 @@ class GroupCharacteristic extends BackboneElement {
 }
 
 /// [GroupMember] /// Identifies the resource instances that are members of the group.
-@JsonSerializable()
 class GroupMember extends BackboneElement {
   GroupMember({
     super.id,
@@ -602,27 +575,24 @@ class GroupMember extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'GroupMember';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [entity] /// A reference to the entity that is a member of the group. Must be consistent
   /// with Group.type. If the entity is another group, then the type must be the
   /// same.
-  @JsonKey(name: 'entity')
   final Reference entity;
 
   /// [period] /// The period that the member was in the group, if known.
-  @JsonKey(name: 'period')
   final Period? period;
 
   /// [inactive] /// A flag to indicate that the member is no longer in the group, but
   /// previously may have been a member.
-  @JsonKey(name: 'inactive')
   final FhirBoolean? inactive;
-  @JsonKey(name: '_inactive')
   final Element? inactiveElement;
   @override
   Map<String, dynamic> toJson() {

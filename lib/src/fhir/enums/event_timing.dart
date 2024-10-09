@@ -1,93 +1,65 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Real world event relating to the schedule.
 enum EventTiming {
   /// Display: Morning
   /// Definition: Event occurs during the morning. The exact time is unspecified and established by institution convention or patient interpretation.
-  @JsonValue('MORN')
   MORN,
 
   /// Display: Early Morning
   /// Definition: Event occurs during the early morning. The exact time is unspecified and established by institution convention or patient interpretation.
-  @JsonValue('MORN.early')
   MORN_early,
 
   /// Display: Late Morning
   /// Definition: Event occurs during the late morning. The exact time is unspecified and established by institution convention or patient interpretation.
-  @JsonValue('MORN.late')
   MORN_late,
 
   /// Display: Noon
   /// Definition: Event occurs around 12:00pm. The exact time is unspecified and established by institution convention or patient interpretation.
-  @JsonValue('NOON')
   NOON,
 
   /// Display: Afternoon
   /// Definition: Event occurs during the afternoon. The exact time is unspecified and established by institution convention or patient interpretation.
-  @JsonValue('AFT')
   AFT,
 
   /// Display: Early Afternoon
   /// Definition: Event occurs during the early afternoon. The exact time is unspecified and established by institution convention or patient interpretation.
-  @JsonValue('AFT.early')
   AFT_early,
 
   /// Display: Late Afternoon
   /// Definition: Event occurs during the late afternoon. The exact time is unspecified and established by institution convention or patient interpretation.
-  @JsonValue('AFT.late')
   AFT_late,
 
   /// Display: Evening
   /// Definition: Event occurs during the evening. The exact time is unspecified and established by institution convention or patient interpretation.
-  @JsonValue('EVE')
   EVE,
 
   /// Display: Early Evening
   /// Definition: Event occurs during the early evening. The exact time is unspecified and established by institution convention or patient interpretation.
-  @JsonValue('EVE.early')
   EVE_early,
 
   /// Display: Late Evening
   /// Definition: Event occurs during the late evening. The exact time is unspecified and established by institution convention or patient interpretation.
-  @JsonValue('EVE.late')
   EVE_late,
 
   /// Display: Night
   /// Definition: Event occurs during the night. The exact time is unspecified and established by institution convention or patient interpretation.
-  @JsonValue('NIGHT')
   NIGHT,
 
   /// Display: After Sleep
   /// Definition: Event occurs [offset] after subject goes to sleep. The exact time is unspecified and established by institution convention or patient interpretation.
-  @JsonValue('PHS')
   PHS,
-  @JsonValue('HS')
   HS,
-  @JsonValue('WAKE')
   WAKE,
-  @JsonValue('C')
   C,
-  @JsonValue('CM')
   CM,
-  @JsonValue('CD')
   CD,
-  @JsonValue('CV')
   CV,
-  @JsonValue('AC')
   AC,
-  @JsonValue('ACM')
   ACM,
-  @JsonValue('ACD')
   ACD,
-  @JsonValue('ACV')
   ACV,
-  @JsonValue('PC')
   PC,
-  @JsonValue('PCM')
   PCM,
-  @JsonValue('PCD')
   PCD,
-  @JsonValue('PCV')
   PCV,
   ;
 

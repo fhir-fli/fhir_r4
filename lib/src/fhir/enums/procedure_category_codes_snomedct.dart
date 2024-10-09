@@ -1,20 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Procedure Category code: A selection of relevant SNOMED CT codes.
 enum ProcedureCategoryCodesSNOMEDCT {
-  @JsonValue('24642003')
   value24642003,
-  @JsonValue('409063005')
   value409063005,
-  @JsonValue('409073007')
   value409073007,
-  @JsonValue('387713003')
   value387713003,
-  @JsonValue('103693007')
   value103693007,
-  @JsonValue('46947000')
   value46947000,
-  @JsonValue('410606002')
   value410606002,
   ;
 

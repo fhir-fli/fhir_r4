@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Citation classification type
 enum CitationClassificationType {
   /// Display: Citation Source
   /// Definition: Citation repository where this citation was created or copied from
-  @JsonValue('citation-source')
   citation_source,
 
   /// Display: MEDLINE Citation Owner
   /// Definition: The party responsible for creating and validating the MEDLINE citation
-  @JsonValue('medline-owner')
   medline_owner,
 
   /// Display: FEvIR Platform Use
   /// Definition: Used for Citation sharing on the Fast Evidence Interoperability Resources (FEvIR) Platform
-  @JsonValue('fevir-platform-use')
   fevir_platform_use,
   ;
 

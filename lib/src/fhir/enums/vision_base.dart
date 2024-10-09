@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// A coded concept listing the base codes.
 enum VisionBase {
   /// Display: Up
   /// Definition: top.
-  @JsonValue('up')
   up,
 
   /// Display: Down
   /// Definition: bottom.
-  @JsonValue('down')
   down,
 
   /// Display: In
   /// Definition: inner edge.
-  @JsonValue('in')
   in_,
 
   /// Display: Out
   /// Definition: outer edge.
-  @JsonValue('out')
   out,
   ;
 

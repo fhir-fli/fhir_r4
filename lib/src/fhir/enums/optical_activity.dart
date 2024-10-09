@@ -1,13 +1,9 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The optical rotation type of a substance.
 enum OpticalActivity {
   /// Display: dextrorotary
-  @JsonValue('+')
   plus,
 
   /// Display: levorotary
-  @JsonValue('-')
   minus,
   ;
 

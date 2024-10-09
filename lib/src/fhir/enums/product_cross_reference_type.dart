@@ -1,35 +1,27 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Relationship to another Medicinal Product.
 enum ProductCrossReferenceType {
   /// Display: Link to Investigational Product
   /// Definition: Link to Investigational (Development) Product
-  @JsonValue('InvestigationalProduct')
   InvestigationalProduct,
 
   /// Display: Link Actual to Virtual Product
   /// Definition: Link Actual to Virtual Product
-  @JsonValue('VirtualProduct')
   VirtualProduct,
 
   /// Display: Link Virtual to Actual Product
   /// Definition: Link Virtual to Actual Product
-  @JsonValue('ActualProduct')
   ActualProduct,
 
   /// Display: Link Generic to Branded Product
   /// Definition: Link Generic to Branded Product
-  @JsonValue('BrandedProduct')
   BrandedProduct,
 
   /// Display: Link Branded to Generic Product
   /// Definition: Link Branded to Generic Product
-  @JsonValue('GenericProduct')
   GenericProduct,
 
   /// Display: Link to Parallel Import Product
   /// Definition: Link to Parallel Import Product
-  @JsonValue('Parallel')
   Parallel,
   ;
 

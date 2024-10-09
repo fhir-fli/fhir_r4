@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Is the Participant required to attend the appointment.
 enum ParticipantRequired {
   /// Display: Required
   /// Definition: The participant is required to attend the appointment.
-  @JsonValue('required')
   required_,
 
   /// Display: Optional
   /// Definition: The participant may optionally attend the appointment.
-  @JsonValue('optional')
   optional,
 
   /// Display: Information Only
   /// Definition: The participant is excluded from the appointment, and might not be informed of the appointment taking place. (Appointment is about them, not for them - such as 2 doctors discussing results about a patient's test).
-  @JsonValue('information-only')
   information_only,
   ;
 

@@ -175,7 +175,7 @@ String _buildEnumStringWithComments(
     List<Map<String, String>> enumValuesWithComments,
     Map<String, dynamic> valueSet) {
   final StringBuffer buffer = StringBuffer();
-  buffer.writeln("import 'package:json_annotation/json_annotation.dart';\n");
+  // buffer.writeln("import 'package:json_annotation/json_annotation.dart';\n");
 
   // Add enum description at the top
   if (valueSet.containsKey('description')) {
@@ -205,7 +205,7 @@ String _buildEnumStringWithComments(
             .replaceAll('\r', ' '); // Handling newlines in comments
         buffer.writeln('  /// Definition: $definition');
       }
-      buffer.writeln("  @JsonValue('${value['code']}')");
+      // buffer.writeln("  @JsonValue('${value['code']}')");
       buffer.writeln('  $validEnumValue,');
       enumValueMap[value['code']!] = validEnumValue;
     }

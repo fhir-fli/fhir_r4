@@ -1,17 +1,12 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// A high level categorisation of a package.
 enum PackageType {
   /// Display: Medicinal product pack
-  @JsonValue('MedicinalProductPack')
   MedicinalProductPack,
 
   /// Display: Raw material package
-  @JsonValue('RawMaterialPackage')
   RawMaterialPackage,
 
   /// Display: Shipping or transport container
-  @JsonValue('Shipping-TransportContainer')
   Shipping_TransportContainer,
   ;
 

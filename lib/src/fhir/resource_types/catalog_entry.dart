@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [CatalogEntry] /// Catalog entries are wrappers that contextualize items included in a
 /// catalog.
-@JsonSerializable()
 class CatalogEntry extends DomainResource {
   CatalogEntry({
     super.id,
@@ -44,74 +42,58 @@ class CatalogEntry extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.CatalogEntry);
+
   @override
   String get fhirType => 'CatalogEntry';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Used in supporting different identifiers for the same product, e.g.
   /// manufacturer code and retailer code.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [type] /// The type of item - medication, device, service, protocol or other.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [orderable] /// Whether the entry represents an orderable item.
-  @JsonKey(name: 'orderable')
   final FhirBoolean orderable;
-  @JsonKey(name: '_orderable')
   final Element? orderableElement;
 
   /// [referencedItem] /// The item in a catalog or definition.
-  @JsonKey(name: 'referencedItem')
   final Reference referencedItem;
 
   /// [additionalIdentifier] /// Used in supporting related concepts, e.g. NDC to RxNorm.
-  @JsonKey(name: 'additionalIdentifier')
   final List<Identifier>? additionalIdentifier;
 
   /// [classification] /// Classes of devices, or ATC for medication.
-  @JsonKey(name: 'classification')
   final List<CodeableConcept>? classification;
 
   /// [status] /// Used to support catalog exchange even for unsupported products, e.g.
   /// getting list of medications even if not prescribable.
-  @JsonKey(name: 'status')
   final PublicationStatus? status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [validityPeriod] /// The time period in which this catalog entry is expected to be active.
-  @JsonKey(name: 'validityPeriod')
   final Period? validityPeriod;
 
   /// [validTo] /// The date until which this catalog entry is expected to be active.
-  @JsonKey(name: 'validTo')
   final FhirDateTime? validTo;
-  @JsonKey(name: '_validTo')
   final Element? validToElement;
 
   /// [lastUpdated] /// Typically date of issue is different from the beginning of the validity.
   /// This can be used to see when an item was last updated.
-  @JsonKey(name: 'lastUpdated')
   final FhirDateTime? lastUpdated;
-  @JsonKey(name: '_lastUpdated')
   final Element? lastUpdatedElement;
 
   /// [additionalCharacteristic] /// Used for examplefor Out of Formulary, or any specifics.
-  @JsonKey(name: 'additionalCharacteristic')
   final List<CodeableConcept>? additionalCharacteristic;
 
   /// [additionalClassification] /// User for example for ATC classification, or.
-  @JsonKey(name: 'additionalClassification')
   final List<CodeableConcept>? additionalClassification;
 
   /// [relatedEntry] /// Used for example, to point to a substance, or to a device used to
   /// administer a medication.
-  @JsonKey(name: 'relatedEntry')
   final List<CatalogEntryRelatedEntry>? relatedEntry;
   @override
   Map<String, dynamic> toJson() {
@@ -406,7 +388,6 @@ class CatalogEntry extends DomainResource {
 
 /// [CatalogEntryRelatedEntry] /// Used for example, to point to a substance, or to a device used to
 /// administer a medication.
-@JsonSerializable()
 class CatalogEntryRelatedEntry extends BackboneElement {
   CatalogEntryRelatedEntry({
     super.id,
@@ -422,21 +403,19 @@ class CatalogEntryRelatedEntry extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CatalogEntryRelatedEntry';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [relationtype] /// The type of relation to the related item: child, parent, packageContent,
   /// containerPackage, usedIn, uses, requires, etc.
-  @JsonKey(name: 'relationtype')
   final CatalogEntryRelationType relationtype;
-  @JsonKey(name: '_relationtype')
   final Element? relationtypeElement;
 
   /// [item] /// The reference to the related item.
-  @JsonKey(name: 'item')
   final Reference item;
   @override
   Map<String, dynamic> toJson() {

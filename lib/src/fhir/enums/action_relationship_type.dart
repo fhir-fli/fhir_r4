@@ -1,50 +1,39 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Defines the types of relationships between actions.
 enum ActionRelationshipType {
   /// Display: Before Start
   /// Definition: The action must be performed before the start of the related action.
-  @JsonValue('before-start')
   before_start,
 
   /// Display: Before
   /// Definition: The action must be performed before the related action.
-  @JsonValue('before')
   before,
 
   /// Display: Before End
   /// Definition: The action must be performed before the end of the related action.
-  @JsonValue('before-end')
   before_end,
 
   /// Display: Concurrent With Start
   /// Definition: The action must be performed concurrent with the start of the related action.
-  @JsonValue('concurrent-with-start')
   concurrent_with_start,
 
   /// Display: Concurrent
   /// Definition: The action must be performed concurrent with the related action.
-  @JsonValue('concurrent')
   concurrent,
 
   /// Display: Concurrent With End
   /// Definition: The action must be performed concurrent with the end of the related action.
-  @JsonValue('concurrent-with-end')
   concurrent_with_end,
 
   /// Display: After Start
   /// Definition: The action must be performed after the start of the related action.
-  @JsonValue('after-start')
   after_start,
 
   /// Display: After
   /// Definition: The action must be performed after the related action.
-  @JsonValue('after')
   after,
 
   /// Display: After End
   /// Definition: The action must be performed after the end of the related action.
-  @JsonValue('after-end')
   after_end,
   ;
 

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,7 +7,6 @@ import '../../../fhir_r4.dart';
 /// [Medication] /// This resource is primarily used for the identification and definition of a
 /// medication for the purposes of prescribing, dispensing, and administering a
 /// medication as well as for making statements about medication use.
-@JsonSerializable()
 class Medication extends DomainResource {
   Medication({
     super.id,
@@ -37,14 +35,14 @@ class Medication extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Medication);
+
   @override
   String get fhirType => 'Medication';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// Business identifier for this medication.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [code] /// A code (or set of codes) that specify this medication, or a textual
@@ -52,22 +50,17 @@ class Medication extends DomainResource {
   /// medication code such as a code from RxNorm, SNOMED CT, IDMP etc. It could
   /// also be a national or local formulary code, optionally with translations to
   /// other code systems.
-  @JsonKey(name: 'code')
   final CodeableConcept? code;
 
   /// [status] /// A code to indicate if the medication is in active use.
-  @JsonKey(name: 'status')
   final MedicationStatusCodes? status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [manufacturer] /// Describes the details of the manufacturer of the medication product. This
   /// is not intended to represent the distributor of a medication product.
-  @JsonKey(name: 'manufacturer')
   final Reference? manufacturer;
 
   /// [form] /// Describes the form of the item. Powder; tablets; capsule.
-  @JsonKey(name: 'form')
   final CodeableConcept? form;
 
   /// [amount] /// Specific amount of the drug in the packaged product. For example, when
@@ -75,15 +68,12 @@ class Medication extends DomainResource {
   /// glargine 100 unit per mL solution for injection), this attribute provides
   /// additional clarification of the package amount (For example, 3 mL, 10mL,
   /// etc.).
-  @JsonKey(name: 'amount')
   final Ratio? amount;
 
   /// [ingredient] /// Identifies a particular constituent of interest in the product.
-  @JsonKey(name: 'ingredient')
   final List<MedicationIngredient>? ingredient;
 
   /// [batch] /// Information that only applies to packages (not products).
-  @JsonKey(name: 'batch')
   final MedicationBatch? batch;
   @override
   Map<String, dynamic> toJson() {
@@ -300,7 +290,6 @@ class Medication extends DomainResource {
 }
 
 /// [MedicationIngredient] /// Identifies a particular constituent of interest in the product.
-@JsonSerializable()
 class MedicationIngredient extends BackboneElement {
   MedicationIngredient({
     super.id,
@@ -318,33 +307,29 @@ class MedicationIngredient extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MedicationIngredient';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [itemCodeableConcept] /// The actual ingredient - either a substance (simple ingredient) or another
   /// medication of a medication.
-  @JsonKey(name: 'itemCodeableConcept')
   final CodeableConcept? itemCodeableConcept;
 
   /// [itemReference] /// The actual ingredient - either a substance (simple ingredient) or another
   /// medication of a medication.
-  @JsonKey(name: 'itemReference')
   final Reference? itemReference;
 
   /// [isActive] /// Indication of whether this ingredient affects the therapeutic action of the
   /// drug.
-  @JsonKey(name: 'isActive')
   final FhirBoolean? isActive;
-  @JsonKey(name: '_isActive')
   final Element? isActiveElement;
 
   /// [strength] /// Specifies how many (or how much) of the items there are in this Medication.
   /// For example, 250 mg per tablet. This is expressed as a ratio where the
   /// numerator is 250mg and the denominator is 1 tablet.
-  @JsonKey(name: 'strength')
   final Ratio? strength;
   @override
   Map<String, dynamic> toJson() {
@@ -470,7 +455,6 @@ class MedicationIngredient extends BackboneElement {
 }
 
 /// [MedicationBatch] /// Information that only applies to packages (not products).
-@JsonSerializable()
 class MedicationBatch extends BackboneElement {
   MedicationBatch({
     super.id,
@@ -487,22 +471,19 @@ class MedicationBatch extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'MedicationBatch';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [lotNumber] /// The assigned lot number of a batch of the specified product.
-  @JsonKey(name: 'lotNumber')
   final FhirString? lotNumber;
-  @JsonKey(name: '_lotNumber')
   final Element? lotNumberElement;
 
   /// [expirationDate] /// When this specific batch of product will expire.
-  @JsonKey(name: 'expirationDate')
   final FhirDateTime? expirationDate;
-  @JsonKey(name: '_expirationDate')
   final Element? expirationDateElement;
   @override
   Map<String, dynamic> toJson() {

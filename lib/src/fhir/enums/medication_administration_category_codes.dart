@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// MedicationAdministration Category Codes
 enum MedicationAdministrationCategoryCodes {
   /// Display: Inpatient
   /// Definition: Includes administrations in an inpatient or acute care setting
-  @JsonValue('inpatient')
   inpatient,
 
   /// Display: Outpatient
   /// Definition: Includes administrations in an outpatient setting (for example, Emergency Department, Outpatient Clinic, Outpatient Surgery, Doctor's office)
-  @JsonValue('outpatient')
   outpatient,
 
   /// Display: Community
   /// Definition: Includes administrations by the patient in their home (this would include long term care or nursing homes, hospices, etc.)
-  @JsonValue('community')
   community,
   ;
 

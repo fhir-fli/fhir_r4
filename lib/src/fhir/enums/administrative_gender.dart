@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The gender of a person used for administrative purposes.
 enum AdministrativeGender {
   /// Display: Male
   /// Definition: Male.
-  @JsonValue('male')
   male,
 
   /// Display: Female
   /// Definition: Female.
-  @JsonValue('female')
   female,
 
   /// Display: Other
   /// Definition: Other.
-  @JsonValue('other')
   other,
 
   /// Display: Unknown
   /// Definition: Unknown.
-  @JsonValue('unknown')
   unknown,
   ;
 

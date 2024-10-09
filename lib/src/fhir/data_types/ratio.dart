@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [Ratio] /// A relationship of two Quantity values - expressed as a numerator and a
 /// denominator.
-@JsonSerializable()
 class Ratio extends DataType {
   Ratio({
     super.id,
@@ -21,18 +19,17 @@ class Ratio extends DataType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'Ratio';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [numerator] /// The value of the numerator.
-  @JsonKey(name: 'numerator')
   final Quantity? numerator;
 
   /// [denominator] /// The value of the denominator.
-  @JsonKey(name: 'denominator')
   final Quantity? denominator;
   @override
   Map<String, dynamic> toJson() {

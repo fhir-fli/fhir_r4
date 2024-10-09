@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// How a rule statement is applied, such as adding additional consent or removing consent.
 enum ConsentProvisionType {
   /// Display: Opt Out
   /// Definition: Consent is denied for actions meeting these rules.
-  @JsonValue('deny')
   deny,
 
   /// Display: Opt In
   /// Definition: Consent is provided for actions meeting these rules.
-  @JsonValue('permit')
   permit,
   ;
 

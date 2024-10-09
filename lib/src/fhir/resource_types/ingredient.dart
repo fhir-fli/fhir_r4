@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [Ingredient] /// An ingredient of a manufactured item or pharmaceutical product.
-@JsonSerializable()
 class Ingredient extends DomainResource {
   Ingredient({
     super.id,
@@ -36,47 +34,40 @@ class Ingredient extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Ingredient);
+
   @override
   String get fhirType => 'Ingredient';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [identifier] /// The identifier(s) of this Ingredient that are assigned by business
   /// processes and/or used to refer to it when a direct URL reference to the
   /// resource itself is not appropriate.
-  @JsonKey(name: 'identifier')
   final Identifier? identifier;
 
   /// [status] /// The status of this ingredient. Enables tracking the life-cycle of the
   /// content.
-  @JsonKey(name: 'status')
   final PublicationStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [for_] /// The product which this ingredient is a constituent part of.
-  @JsonKey(name: 'for')
   final List<Reference>? for_;
 
   /// [role] /// A classification of the ingredient identifying its purpose within the
   /// product, e.g. active, inactive.
-  @JsonKey(name: 'role')
   final CodeableConcept role;
 
   /// [function_] /// A classification of the ingredient identifying its precise purpose(s) in
   /// the drug product. This extends the Ingredient.role to add more detail.
   /// Example: antioxidant, alkalizing agent.
-  @JsonKey(name: 'function')
   final List<CodeableConcept>? function_;
 
   /// [allergenicIndicator] /// If the ingredient is a known or suspected allergen. Note that this is a
   /// property of the substance, so if a reference to a SubstanceDefinition is
   /// used to decribe that (rather than just a code), the allergen information
   /// should go there, not here.
-  @JsonKey(name: 'allergenicIndicator')
   final FhirBoolean? allergenicIndicator;
-  @JsonKey(name: '_allergenicIndicator')
   final Element? allergenicIndicatorElement;
 
   /// [manufacturer] /// The organization(s) that manufacture this ingredient. Can be used to
@@ -84,11 +75,9 @@ class Ingredient extends DomainResource {
   /// 2) Specific Manufacturer(s) currently being used 3) Set of organisations
   /// allowed to manufacture this ingredient for this product Users must be clear
   /// on the application of context relevant to their use case.
-  @JsonKey(name: 'manufacturer')
   final List<IngredientManufacturer>? manufacturer;
 
   /// [substance] /// The substance that comprises this ingredient.
-  @JsonKey(name: 'substance')
   final IngredientSubstance substance;
   @override
   Map<String, dynamic> toJson() {
@@ -311,7 +300,6 @@ class Ingredient extends DomainResource {
 /// 2) Specific Manufacturer(s) currently being used 3) Set of organisations
 /// allowed to manufacture this ingredient for this product Users must be clear
 /// on the application of context relevant to their use case.
-@JsonSerializable()
 class IngredientManufacturer extends BackboneElement {
   IngredientManufacturer({
     super.id,
@@ -327,23 +315,21 @@ class IngredientManufacturer extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'IngredientManufacturer';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [role] /// The way in which this manufacturer is associated with the ingredient. For
   /// example whether it is a possible one (others allowed), or an exclusive
   /// authorized one for this ingredient. Note that this is not the manufacturing
   /// process role.
-  @JsonKey(name: 'role')
   final IngredientManufacturerRole? role;
-  @JsonKey(name: '_role')
   final Element? roleElement;
 
   /// [manufacturer] /// An organization that manufactures this ingredient.
-  @JsonKey(name: 'manufacturer')
   final Reference manufacturer;
   @override
   Map<String, dynamic> toJson() {
@@ -446,7 +432,6 @@ class IngredientManufacturer extends BackboneElement {
 }
 
 /// [IngredientSubstance] /// The substance that comprises this ingredient.
-@JsonSerializable()
 class IngredientSubstance extends BackboneElement {
   IngredientSubstance({
     super.id,
@@ -461,21 +446,20 @@ class IngredientSubstance extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'IngredientSubstance';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// A code or full resource that represents the ingredient's substance.
-  @JsonKey(name: 'code')
   final CodeableReference code;
 
   /// [strength] /// The quantity of substance in the unit of presentation, or in the volume (or
   /// mass) of the single pharmaceutical product or manufactured item. The
   /// allowed repetitions do not represent different strengths, but are different
   /// representations - mathematically equivalent - of a single strength.
-  @JsonKey(name: 'strength')
   final List<IngredientStrength>? strength;
   @override
   Map<String, dynamic> toJson() {
@@ -581,7 +565,6 @@ class IngredientSubstance extends BackboneElement {
 /// mass) of the single pharmaceutical product or manufactured item. The
 /// allowed repetitions do not represent different strengths, but are different
 /// representations - mathematically equivalent - of a single strength.
-@JsonSerializable()
 class IngredientStrength extends BackboneElement {
   IngredientStrength({
     super.id,
@@ -606,10 +589,11 @@ class IngredientStrength extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'IngredientStrength';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [presentationRatio] /// The quantity of substance in the unit of presentation, or in the volume (or
@@ -617,7 +601,6 @@ class IngredientStrength extends BackboneElement {
   /// presentation refers to the quantity that the item occurs in e.g. a strength
   /// per tablet size, perhaps 'per 20mg' (the size of the tablet). It is not
   /// generally normalized as a unitary unit, which would be 'per mg').
-  @JsonKey(name: 'presentationRatio')
   final Ratio? presentationRatio;
 
   /// [presentationRatioRange] /// The quantity of substance in the unit of presentation, or in the volume (or
@@ -625,42 +608,32 @@ class IngredientStrength extends BackboneElement {
   /// presentation refers to the quantity that the item occurs in e.g. a strength
   /// per tablet size, perhaps 'per 20mg' (the size of the tablet). It is not
   /// generally normalized as a unitary unit, which would be 'per mg').
-  @JsonKey(name: 'presentationRatioRange')
   final RatioRange? presentationRatioRange;
 
   /// [textPresentation] /// A textual represention of either the whole of the presentation strength or
   /// a part of it - with the rest being in Strength.presentation as a ratio.
-  @JsonKey(name: 'textPresentation')
   final FhirString? textPresentation;
-  @JsonKey(name: '_textPresentation')
   final Element? textPresentationElement;
 
   /// [concentrationRatio] /// The strength per unitary volume (or mass).
-  @JsonKey(name: 'concentrationRatio')
   final Ratio? concentrationRatio;
 
   /// [concentrationRatioRange] /// The strength per unitary volume (or mass).
-  @JsonKey(name: 'concentrationRatioRange')
   final RatioRange? concentrationRatioRange;
 
   /// [textConcentration] /// A textual represention of either the whole of the concentration strength or
   /// a part of it - with the rest being in Strength.concentration as a ratio.
-  @JsonKey(name: 'textConcentration')
   final FhirString? textConcentration;
-  @JsonKey(name: '_textConcentration')
   final Element? textConcentrationElement;
 
   /// [measurementPoint] /// For when strength is measured at a particular point or distance. There are
   /// products where strength is measured at a particular point. For example, the
   /// strength of the ingredient in some inhalers is measured at a particular
   /// position relative to the point of aerosolization.
-  @JsonKey(name: 'measurementPoint')
   final FhirString? measurementPoint;
-  @JsonKey(name: '_measurementPoint')
   final Element? measurementPointElement;
 
   /// [country] /// The country or countries for which the strength range applies.
-  @JsonKey(name: 'country')
   final List<CodeableConcept>? country;
 
   /// [referenceStrength] /// Strength expressed in terms of a reference substance. For when the
@@ -670,7 +643,6 @@ class IngredientStrength extends BackboneElement {
   /// moiety of the active substance. There are situations when the active
   /// substance and active moiety are different, therefore both a strength and a
   /// reference strength are needed.
-  @JsonKey(name: 'referenceStrength')
   final List<IngredientReferenceStrength>? referenceStrength;
   @override
   Map<String, dynamic> toJson() {
@@ -876,7 +848,6 @@ class IngredientStrength extends BackboneElement {
 /// moiety of the active substance. There are situations when the active
 /// substance and active moiety are different, therefore both a strength and a
 /// reference strength are needed.
-@JsonSerializable()
 class IngredientReferenceStrength extends BackboneElement {
   IngredientReferenceStrength({
     super.id,
@@ -895,32 +866,27 @@ class IngredientReferenceStrength extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'IngredientReferenceStrength';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [substance] /// Relevant reference substance.
-  @JsonKey(name: 'substance')
   final CodeableReference? substance;
 
   /// [strengthRatio] /// Strength expressed in terms of a reference substance.
-  @JsonKey(name: 'strengthRatio')
   final Ratio? strengthRatio;
 
   /// [strengthRatioRange] /// Strength expressed in terms of a reference substance.
-  @JsonKey(name: 'strengthRatioRange')
   final RatioRange? strengthRatioRange;
 
   /// [measurementPoint] /// For when strength is measured at a particular point or distance.
-  @JsonKey(name: 'measurementPoint')
   final FhirString? measurementPoint;
-  @JsonKey(name: '_measurementPoint')
   final Element? measurementPointElement;
 
   /// [country] /// The country or countries for which the strength range applies.
-  @JsonKey(name: 'country')
   final List<CodeableConcept>? country;
   @override
   Map<String, dynamic> toJson() {

@@ -1,133 +1,99 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This example value set defines a set of reasons for the cancellation of an appointment.
 enum AppointmentCancellationReason {
   /// Display: Patient
-  @JsonValue('pat')
   pat,
 
   /// Display: Patient: Canceled via automated reminder system
-  @JsonValue('pat-crs')
   pat_crs,
 
   /// Display: Patient: Canceled via Patient Portal
-  @JsonValue('pat-cpp')
   pat_cpp,
 
   /// Display: Patient: Deceased
-  @JsonValue('pat-dec')
   pat_dec,
 
   /// Display: Patient: Feeling Better
-  @JsonValue('pat-fb')
   pat_fb,
 
   /// Display: Patient: Lack of Transportation
-  @JsonValue('pat-lt')
   pat_lt,
 
   /// Display: Patient: Member Terminated
-  @JsonValue('pat-mt')
   pat_mt,
 
   /// Display: Patient: Moved
-  @JsonValue('pat-mv')
   pat_mv,
 
   /// Display: Patient: Pregnant
-  @JsonValue('pat-preg')
   pat_preg,
 
   /// Display: Patient: Scheduled from Wait List
-  @JsonValue('pat-swl')
   pat_swl,
 
   /// Display: Patient: Unhappy/Changed Provider
-  @JsonValue('pat-ucp')
   pat_ucp,
 
   /// Display: Provider
-  @JsonValue('prov')
   prov,
 
   /// Display: Provider: Personal
-  @JsonValue('prov-pers')
   prov_pers,
 
   /// Display: Provider: Discharged
-  @JsonValue('prov-dch')
   prov_dch,
 
   /// Display: Provider: Edu/Meeting
-  @JsonValue('prov-edu')
   prov_edu,
 
   /// Display: Provider: Hospitalized
-  @JsonValue('prov-hosp')
   prov_hosp,
 
   /// Display: Provider: Labs Out of Acceptable Range
-  @JsonValue('prov-labs')
   prov_labs,
 
   /// Display: Provider: MRI Screening Form Marked Do Not Proceed
-  @JsonValue('prov-mri')
   prov_mri,
 
   /// Display: Provider: Oncology Treatment Plan Changes
-  @JsonValue('prov-onc')
   prov_onc,
 
   /// Display: Equipment Maintenance/Repair
-  @JsonValue('maint')
   maint,
 
   /// Display: Prep/Med Incomplete
-  @JsonValue('meds-inc')
   meds_inc,
 
   /// Display: Other
-  @JsonValue('other')
   other,
 
   /// Display: Other: CMS Therapy Cap Service Not Authorized
-  @JsonValue('oth-cms')
   oth_cms,
 
   /// Display: Other: Error
-  @JsonValue('oth-err')
   oth_err,
 
   /// Display: Other: Financial
-  @JsonValue('oth-fin')
   oth_fin,
 
   /// Display: Other: Improper IV Access/Infiltrate IV
-  @JsonValue('oth-iv')
   oth_iv,
 
   /// Display: Other: No Interpreter Available
-  @JsonValue('oth-int')
   oth_int,
 
   /// Display: Other: Prep/Med/Results Unavailable
-  @JsonValue('oth-mu')
   oth_mu,
 
   /// Display: Other: Room/Resource Maintenance
-  @JsonValue('oth-room')
   oth_room,
 
   /// Display: Other: Schedule Order Error
-  @JsonValue('oth-oerr')
   oth_oerr,
 
   /// Display: Other: Silent Walk In Error
-  @JsonValue('oth-swie')
   oth_swie,
 
   /// Display: Other: Weather
-  @JsonValue('oth-weath')
   oth_weath,
   ;
 

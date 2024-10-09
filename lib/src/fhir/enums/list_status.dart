@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The current state of the list.
 enum ListStatus {
   /// Display: Current
   /// Definition: The list is considered to be an active part of the patient's record.
-  @JsonValue('current')
   current,
 
   /// Display: Retired
   /// Definition: The list is "old" and should no longer be considered accurate or relevant.
-  @JsonValue('retired')
   retired,
 
   /// Display: Entered In Error
   /// Definition: The list was never accurate.  It is retained for medico-legal purposes only.
-  @JsonValue('entered-in-error')
   entered_in_error,
   ;
 

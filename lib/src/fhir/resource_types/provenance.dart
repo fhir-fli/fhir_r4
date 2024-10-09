@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -15,7 +14,6 @@ import '../../../fhir_r4.dart';
 /// and trustworthiness, integrity, and stage in lifecycle (e.g. Document
 /// Completion - has the artifact been legally authenticated), all of which may
 /// impact security, privacy, and trust policies.
-@JsonSerializable()
 class Provenance extends DomainResource {
   Provenance({
     super.id,
@@ -49,68 +47,55 @@ class Provenance extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.Provenance);
+
   @override
   String get fhirType => 'Provenance';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [target] /// The Reference(s) that were generated or updated by the activity described
   /// in this resource. A provenance can point to more than one target if
   /// multiple resources were created/updated by the same activity.
-  @JsonKey(name: 'target')
   final List<Reference> target;
 
   /// [occurredPeriod] /// The period during which the activity occurred.
-  @JsonKey(name: 'occurredPeriod')
   final Period? occurredPeriod;
 
   /// [occurredDateTime] /// The period during which the activity occurred.
-  @JsonKey(name: 'occurredDateTime')
   final FhirDateTime? occurredDateTime;
-  @JsonKey(name: '_occurredDateTime')
   final Element? occurredDateTimeElement;
 
   /// [recorded] /// The instant of time at which the activity was recorded.
-  @JsonKey(name: 'recorded')
   final FhirInstant recorded;
-  @JsonKey(name: '_recorded')
   final Element? recordedElement;
 
   /// [policy] /// Policy or plan the activity was defined by. Typically, a single activity
   /// may have multiple applicable policy documents, such as patient consent,
   /// guarantor funding, etc.
-  @JsonKey(name: 'policy')
   final List<FhirUri>? policy;
-  @JsonKey(name: '_policy')
   final List<Element>? policyElement;
 
   /// [location] /// Where the activity occurred, if relevant.
-  @JsonKey(name: 'location')
   final Reference? location;
 
   /// [reason] /// The reason that the activity was taking place.
-  @JsonKey(name: 'reason')
   final List<CodeableConcept>? reason;
 
   /// [activity] /// An activity is something that occurs over a period of time and acts upon or
   /// with entities; it may include consuming, processing, transforming,
   /// modifying, relocating, using, or generating entities.
-  @JsonKey(name: 'activity')
   final CodeableConcept? activity;
 
   /// [agent] /// An actor taking a role in an activity for which it can be assigned some
   /// degree of responsibility for the activity taking place.
-  @JsonKey(name: 'agent')
   final List<ProvenanceAgent> agent;
 
   /// [entity] /// An entity used in this activity.
-  @JsonKey(name: 'entity')
   final List<ProvenanceEntity>? entity;
 
   /// [signature] /// A digital signature on the target Reference(s). The signer should match a
   /// Provenance.agent. The purpose of the signature is indicated.
-  @JsonKey(name: 'signature')
   final List<Signature>? signature;
   @override
   Map<String, dynamic> toJson() {
@@ -376,7 +361,6 @@ class Provenance extends DomainResource {
 
 /// [ProvenanceAgent] /// An actor taking a role in an activity for which it can be assigned some
 /// degree of responsibility for the activity taking place.
-@JsonSerializable()
 class ProvenanceAgent extends BackboneElement {
   ProvenanceAgent({
     super.id,
@@ -393,27 +377,24 @@ class ProvenanceAgent extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ProvenanceAgent';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [type] /// The participation the agent had with respect to the activity.
-  @JsonKey(name: 'type')
   final CodeableConcept? type;
 
   /// [role] /// The function of the agent with respect to the activity. The security role
   /// enabling the agent with respect to the activity.
-  @JsonKey(name: 'role')
   final List<CodeableConcept>? role;
 
   /// [who] /// The individual, device or organization that participated in the event.
-  @JsonKey(name: 'who')
   final Reference who;
 
   /// [onBehalfOf] /// The individual, device, or organization for whom the change was made.
-  @JsonKey(name: 'onBehalfOf')
   final Reference? onBehalfOf;
   @override
   Map<String, dynamic> toJson() {
@@ -532,7 +513,6 @@ class ProvenanceAgent extends BackboneElement {
 }
 
 /// [ProvenanceEntity] /// An entity used in this activity.
-@JsonSerializable()
 class ProvenanceEntity extends BackboneElement {
   ProvenanceEntity({
     super.id,
@@ -549,28 +529,25 @@ class ProvenanceEntity extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'ProvenanceEntity';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [role] /// How the entity was used during the activity.
-  @JsonKey(name: 'role')
   final ProvenanceEntityRole role;
-  @JsonKey(name: '_role')
   final Element? roleElement;
 
   /// [what] /// Identity of the Entity used. May be a logical or physical uri and maybe
   /// absolute or relative.
-  @JsonKey(name: 'what')
   final Reference what;
 
   /// [agent] /// The entity is attributed to an agent to express the agent's responsibility
   /// for that entity, possibly along with other agents. This description can be
   /// understood as shorthand for saying that the agent was responsible for the
   /// activity which generated the entity.
-  @JsonKey(name: 'agent')
   final List<ProvenanceAgent>? agent;
   @override
   Map<String, dynamic> toJson() {

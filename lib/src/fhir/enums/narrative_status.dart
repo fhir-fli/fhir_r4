@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The status of a resource narrative.
 enum NarrativeStatus {
   /// Display: Generated
   /// Definition: The contents of the narrative are entirely generated from the core elements in the content.
-  @JsonValue('generated')
   generated,
 
   /// Display: Extensions
   /// Definition: The contents of the narrative are entirely generated from the core elements in the content and some of the content is generated from extensions. The narrative SHALL reflect the impact of all modifier extensions.
-  @JsonValue('extensions')
   extensions,
 
   /// Display: Additional
   /// Definition: The contents of the narrative may contain additional information not found in the structured data. Note that there is no computable way to determine what the extra information is, other than by human inspection.
-  @JsonValue('additional')
   additional,
 
   /// Display: Empty
   /// Definition: The contents of the narrative are some equivalent of "No human-readable text provided in this case".
-  @JsonValue('empty')
   empty,
   ;
 

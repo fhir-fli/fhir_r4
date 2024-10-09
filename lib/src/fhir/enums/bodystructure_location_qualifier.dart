@@ -1,53 +1,39 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// SNOMED-CT concepts modifying the anatomic location
 enum BodystructureLocationQualifier {
   /// Display: Unilateral left
-  @JsonValue('419161000')
   value419161000,
 
   /// Display: Unilateral right
-  @JsonValue('419465000')
   value419465000,
 
   /// Display: Bilateral
-  @JsonValue('51440002')
   value51440002,
 
   /// Display: Upper
-  @JsonValue('261183002')
   value261183002,
 
   /// Display: Lower
-  @JsonValue('261122009')
   value261122009,
 
   /// Display: Medial
-  @JsonValue('255561001')
   value255561001,
 
   /// Display: Lateral
-  @JsonValue('49370004')
   value49370004,
 
   /// Display: Superior
-  @JsonValue('264217000')
   value264217000,
 
   /// Display: Inferior
-  @JsonValue('261089000')
   value261089000,
 
   /// Display: Posterior
-  @JsonValue('255551008')
   value255551008,
 
   /// Display: Below
-  @JsonValue('351726001')
   value351726001,
 
   /// Display: Above
-  @JsonValue('352730000')
   value352730000,
   ;
 

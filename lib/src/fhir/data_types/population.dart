@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [Population] /// A populatioof people with some set of grouping criteria.
-@JsonSerializable()
 class Population extends BackboneType {
   Population({
     super.id,
@@ -24,31 +22,27 @@ class Population extends BackboneType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'Population';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [ageRange] /// The age of the specific population.
-  @JsonKey(name: 'ageRange')
   final Range? ageRange;
 
   /// [ageCodeableConcept] /// The age of the specific population.
-  @JsonKey(name: 'ageCodeableConcept')
   final CodeableConcept? ageCodeableConcept;
 
   /// [gender] /// The gender of the specific population.
-  @JsonKey(name: 'gender')
   final CodeableConcept? gender;
 
   /// [race] /// Race of the specific population.
-  @JsonKey(name: 'race')
   final CodeableConcept? race;
 
   /// [physiologicalCondition] /// The existing physiological conditions of the specific population to which
   /// this applies.
-  @JsonKey(name: 'physiologicalCondition')
   final CodeableConcept? physiologicalCondition;
   @override
   Map<String, dynamic> toJson() {

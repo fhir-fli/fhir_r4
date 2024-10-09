@@ -1,93 +1,69 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// MedicationKnowledge Package Type Codes
 enum MedicationKnowledgePackageTypeCodes {
   /// Display: Ampule
-  @JsonValue('amp')
   amp,
 
   /// Display: Bag
-  @JsonValue('bag')
   bag,
 
   /// Display: Blister Pack
-  @JsonValue('blstrpk')
   blstrpk,
 
   /// Display: Bottle
-  @JsonValue('bot')
   bot,
 
   /// Display: Box
-  @JsonValue('box')
   box,
 
   /// Display: Can
-  @JsonValue('can')
   can,
 
   /// Display: Cartridge
-  @JsonValue('cart')
   cart,
 
   /// Display: Disk
-  @JsonValue('disk')
   disk,
 
   /// Display: Dosette
-  @JsonValue('doset')
   doset,
 
   /// Display: Jar
-  @JsonValue('jar')
   jar,
 
   /// Display: Jug
-  @JsonValue('jug')
   jug,
 
   /// Display: Minim
-  @JsonValue('minim')
   minim,
 
   /// Display: Nebule Amp
-  @JsonValue('nebamp')
   nebamp,
 
   /// Display: Ovule
-  @JsonValue('ovul')
   ovul,
 
   /// Display: Pouch
-  @JsonValue('pch')
   pch,
 
   /// Display: Packet
-  @JsonValue('pkt')
   pkt,
 
   /// Display: Sashet
-  @JsonValue('sash')
   sash,
 
   /// Display: Strip
-  @JsonValue('strip')
   strip,
 
   /// Display: Tin
-  @JsonValue('tin')
   tin,
 
   /// Display: Tub
-  @JsonValue('tub')
   tub,
 
   /// Display: Tube
-  @JsonValue('tube')
   tube,
 
   /// Display: Vial
-  @JsonValue('vial')
   vial,
   ;
 

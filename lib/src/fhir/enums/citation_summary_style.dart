@@ -1,75 +1,59 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The format for display of the citation.
 enum CitationSummaryStyle {
   /// Display: Vancouver style
   /// Definition: Citation style used by International Committee of Medical Journal Editors and maintained by US National Library of Medicine.
-  @JsonValue('vancouver')
   vancouver,
 
   /// Display: American Medical Association 11th edition
   /// Definition: Medicine.
-  @JsonValue('ama11')
   ama11,
 
   /// Display: American Psychological Association 7th edition
   /// Definition: APA 7th edition (October 2019) used by Education, Psychology and Sciences.
-  @JsonValue('apa7')
   apa7,
 
   /// Display: American Psychological Association 6th edition
   /// Definition: APA 6th edition used by Education, Psychology and Sciences.
-  @JsonValue('apa6')
   apa6,
 
   /// Display: American Sociological Association 6th edition
   /// Definition: Sociology.
-  @JsonValue('asa6')
   asa6,
 
   /// Display: Modern Language Association 8th edition
   /// Definition: MLA 8th edition used by the Humanities.
-  @JsonValue('mla8')
   mla8,
 
   /// Display: Cochrane Style
   /// Definition: Used by Cochrane reviews, example: Huang, M, Tang T, Pang, P, Li, M, Ma R, Lu, J, et al. Treating COVID-19 with Chloroquine. J Mol Cell Biol 2020; 12(4):322–5.
-  @JsonValue('cochrane')
   cochrane,
 
   /// Display: Elsevier-Harvard Style
   /// Definition: Biology ecology.
-  @JsonValue('elsevier-harvard')
   elsevier_harvard,
 
   /// Display: Nature Referencing style
   /// Definition: Biology.
-  @JsonValue('nature')
   nature,
 
   /// Display: American Chemical Society
   /// Definition: Chemistry.
-  @JsonValue('acs')
   acs,
 
   /// Display: Chicago Style Version 17 Author Date
   /// Definition: Used by Business, History and the Fine Arts.
-  @JsonValue('chicago-a-17')
   chicago_a_17,
 
   /// Display: Chicago Style Version 17 Full note
   /// Definition: Used by Business, History and the Fine Arts.
-  @JsonValue('chicago-b-17')
   chicago_b_17,
 
   /// Display: Institute of Electrical and Electronics Engineers
   /// Definition: IT, Engineering.
-  @JsonValue('ieee')
   ieee,
 
   /// Display: Computable Publishing
   /// Definition: Citation style to report human-readable and/or machine-readable access paths, example: Alper BS, Dehnbostel J, Shahin K. 14-day mortality remdesivir vs placebo meta-analysis (ACTT-1, Wang et al, WHO SOLIDARITY).  Fast Evidence Interoperability Resources (FEvIR) Platform, entry 55, version 4. Created 2020 Dec 17. Revised 2020 Dec 21. Accessed 2021 Mar 13. Computable resource at: https://fevir.net/resources/Evidence/55.
-  @JsonValue('comppub')
   comppub,
   ;
 

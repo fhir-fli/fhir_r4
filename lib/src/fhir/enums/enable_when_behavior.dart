@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Controls how multiple enableWhen values are interpreted -  whether all or any must be true.
 enum EnableWhenBehavior {
   /// Display: All
   /// Definition: Enable the question when all the enableWhen criteria are satisfied.
-  @JsonValue('all')
   all,
 
   /// Display: Any
   /// Definition: Enable the question when any of the enableWhen criteria are satisfied.
-  @JsonValue('any')
   any,
   ;
 

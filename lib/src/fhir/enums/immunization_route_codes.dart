@@ -1,33 +1,24 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the administrative routes used during vaccination. This value set is provided as a suggestive example.
 enum ImmunizationRouteCodes {
   /// Display: Injection, intradermal
-  @JsonValue('IDINJ')
   IDINJ,
 
   /// Display: Injection, intramuscular
-  @JsonValue('IM')
   IM,
 
   /// Display: Inhalation, nasal
-  @JsonValue('NASINHLC')
   NASINHLC,
 
   /// Display: Injection, intravenous
-  @JsonValue('IVINJ')
   IVINJ,
 
   /// Display: Swallow, oral
-  @JsonValue('PO')
   PO,
 
   /// Display: Injection, subcutaneous
-  @JsonValue('SQ')
   SQ,
 
   /// Display: Transdermal
-  @JsonValue('TRNSDERM')
   TRNSDERM,
   ;
 

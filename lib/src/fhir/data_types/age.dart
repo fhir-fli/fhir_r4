@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [Age] /// A duration of time during which an organism (or a process) has existed.
-@JsonSerializable()
 class Age extends Quantity {
   Age({
     super.id,
@@ -28,10 +26,11 @@ class Age extends Quantity {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'Age';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
   @override
   Map<String, dynamic> toJson() {

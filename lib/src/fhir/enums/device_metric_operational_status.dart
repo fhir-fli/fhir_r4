@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Describes the operational status of the DeviceMetric.
 enum DeviceMetricOperationalStatus {
   /// Display: On
   /// Definition: The DeviceMetric is operating and will generate DeviceObservations.
-  @JsonValue('on')
   on_,
 
   /// Display: Off
   /// Definition: The DeviceMetric is not operating.
-  @JsonValue('off')
   off,
 
   /// Display: Standby
   /// Definition: The DeviceMetric is operating, but will not generate any DeviceObservations.
-  @JsonValue('standby')
   standby,
 
   /// Display: Entered In Error
   /// Definition: The DeviceMetric was entered in error.
-  @JsonValue('entered-in-error')
   entered_in_error,
   ;
 

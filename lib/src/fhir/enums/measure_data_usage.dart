@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The intended usage for supplemental data elements in the measure.
 enum MeasureDataUsage {
   /// Display: Supplemental Data
   /// Definition: The data is intended to be provided as additional information alongside the measure results.
-  @JsonValue('supplemental-data')
   supplemental_data,
 
   /// Display: Risk Adjustment Factor
   /// Definition: The data is intended to be used to calculate and apply a risk adjustment model for the measure.
-  @JsonValue('risk-adjustment-factor')
   risk_adjustment_factor,
   ;
 

@@ -1,35 +1,27 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// HTTP verbs (in the HTTP command line). See [HTTP rfc](https://tools.ietf.org/html/rfc7231) for details.
 enum HTTPVerb {
   /// Display: GET
   /// Definition: HTTP GET Command.
-  @JsonValue('GET')
   GET,
 
   /// Display: HEAD
   /// Definition: HTTP HEAD Command.
-  @JsonValue('HEAD')
   HEAD,
 
   /// Display: POST
   /// Definition: HTTP POST Command.
-  @JsonValue('POST')
   POST,
 
   /// Display: PUT
   /// Definition: HTTP PUT Command.
-  @JsonValue('PUT')
   PUT,
 
   /// Display: DELETE
   /// Definition: HTTP DELETE Command.
-  @JsonValue('DELETE')
   DELETE,
 
   /// Display: PATCH
   /// Definition: HTTP PATCH Command.
-  @JsonValue('PATCH')
   PATCH,
   ;
 

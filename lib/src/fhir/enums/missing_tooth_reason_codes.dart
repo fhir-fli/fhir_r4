@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes sample Missing Tooth Reason codes.
 enum MissingToothReasonCodes {
   /// Display: E
   /// Definition: Extraction
-  @JsonValue('e')
   e,
 
   /// Display: C
   /// Definition: Congenital
-  @JsonValue('c')
   c,
 
   /// Display: U
   /// Definition: Unknown
-  @JsonValue('u')
   u,
 
   /// Display: O
   /// Definition: Other
-  @JsonValue('o')
   o,
   ;
 

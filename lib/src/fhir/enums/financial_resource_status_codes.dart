@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes Status codes.
 enum FinancialResourceStatusCodes {
   /// Display: Active
   /// Definition: The instance is currently in-force.
-  @JsonValue('active')
   active,
 
   /// Display: Cancelled
   /// Definition: The instance is withdrawn, rescinded or reversed.
-  @JsonValue('cancelled')
   cancelled,
 
   /// Display: Draft
   /// Definition: A new instance the contents of which is not complete.
-  @JsonValue('draft')
   draft,
 
   /// Display: Entered in Error
   /// Definition: The instance was entered in error.
-  @JsonValue('entered-in-error')
   entered_in_error,
   ;
 

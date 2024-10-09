@@ -1,145 +1,115 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set includes examples of Benefit Category codes.
 enum BenefitCategoryCodes {
   /// Display: Medical Care
   /// Definition: Medical Care.
-  @JsonValue('1')
   value1,
 
   /// Display: Surgical
   /// Definition: Surgical.
-  @JsonValue('2')
   value2,
 
   /// Display: Consultation
   /// Definition: Consultation.
-  @JsonValue('3')
   value3,
 
   /// Display: Diagnostic XRay
   /// Definition: Diagnostic XRay.
-  @JsonValue('4')
   value4,
 
   /// Display: Diagnostic Lab
   /// Definition: Diagnostic Lab.
-  @JsonValue('5')
   value5,
 
   /// Display: Renal Supplies
   /// Definition: Renal Supplies excluding Dialysis.
-  @JsonValue('14')
   value14,
 
   /// Display: Diagnostic Dental
   /// Definition: Diagnostic Dental.
-  @JsonValue('23')
   value23,
 
   /// Display: Periodontics
   /// Definition: Periodontics.
-  @JsonValue('24')
   value24,
 
   /// Display: Restorative
   /// Definition: Restorative.
-  @JsonValue('25')
   value25,
 
   /// Display: Endodontics
   /// Definition: Endodontics.
-  @JsonValue('26')
   value26,
 
   /// Display: Maxillofacial Prosthetics
   /// Definition: Maxillofacial Prosthetics.
-  @JsonValue('27')
   value27,
 
   /// Display: Adjunctive Dental Services
   /// Definition: Adjunctive Dental Services.
-  @JsonValue('28')
   value28,
 
   /// Display: Health Benefit Plan Coverage
   /// Definition: Health Benefit Plan Coverage.
-  @JsonValue('30')
   value30,
 
   /// Display: Dental Care
   /// Definition: Dental Care.
-  @JsonValue('35')
   value35,
 
   /// Display: Dental Crowns
   /// Definition: Dental Crowns.
-  @JsonValue('36')
   value36,
 
   /// Display: Dental Accident
   /// Definition: Dental Accident.
-  @JsonValue('37')
   value37,
 
   /// Display: Hospital Room and Board
   /// Definition: Hospital Room and Board.
-  @JsonValue('49')
   value49,
 
   /// Display: Major Medical
   /// Definition: Major Medical.
-  @JsonValue('55')
   value55,
 
   /// Display: Medically Related Transportation
   /// Definition: Medically Related Transportation.
-  @JsonValue('56')
   value56,
 
   /// Display: In-vitro Fertilization
   /// Definition: In-vitro Fertilization.
-  @JsonValue('61')
   value61,
 
   /// Display: MRI Scan
   /// Definition: MRI Scan.
-  @JsonValue('62')
   value62,
 
   /// Display: Donor Procedures
   /// Definition: Donor Procedures such as organ harvest.
-  @JsonValue('63')
   value63,
 
   /// Display: Maternity
   /// Definition: Maternity.
-  @JsonValue('69')
   value69,
 
   /// Display: Renal Dialysis
   /// Definition: Renal dialysis.
-  @JsonValue('76')
   value76,
 
   /// Display: Medical Coverage
   /// Definition: Medical Coverage.
-  @JsonValue('F1')
   F1,
 
   /// Display: Dental Coverage
   /// Definition: Dental Coverage.
-  @JsonValue('F3')
   F3,
 
   /// Display: Hearing Coverage
   /// Definition: Hearing Coverage.
-  @JsonValue('F4')
   F4,
 
   /// Display: Vision Coverage
   /// Definition: Vision Coverage.
-  @JsonValue('F6')
   F6,
   ;
 

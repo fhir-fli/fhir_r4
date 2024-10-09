@@ -1,35 +1,27 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Codes for the reason why a communication did not happen.
 enum CommunicationNotDoneReason {
   /// Display: Unknown
   /// Definition: The communication was not done due to an unknown reason.
-  @JsonValue('unknown')
   unknown,
 
   /// Display: System Error
   /// Definition: The communication was not done due to a system error.
-  @JsonValue('system-error')
   system_error,
 
   /// Display: Invalid Phone Number
   /// Definition: The communication was not done due to an invalid phone number.
-  @JsonValue('invalid-phone-number')
   invalid_phone_number,
 
   /// Display: Recipient Unavailable
   /// Definition: The communication was not done due to the recipient being unavailable.
-  @JsonValue('recipient-unavailable')
   recipient_unavailable,
 
   /// Display: Family Objection
   /// Definition: The communication was not done due to a family objection.
-  @JsonValue('family-objection')
   family_objection,
 
   /// Display: Patient Objection
   /// Definition: The communication was not done due to a patient objection.
-  @JsonValue('patient-objection')
   patient_objection,
   ;
 

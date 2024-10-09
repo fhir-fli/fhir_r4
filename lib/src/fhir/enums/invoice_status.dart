@@ -1,30 +1,23 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Codes identifying the lifecycle stage of an Invoice.
 enum InvoiceStatus {
   /// Display: draft
   /// Definition: the invoice has been prepared but not yet finalized.
-  @JsonValue('draft')
   draft,
 
   /// Display: issued
   /// Definition: the invoice has been finalized and sent to the recipient.
-  @JsonValue('issued')
   issued,
 
   /// Display: balanced
   /// Definition: the invoice has been balaced / completely paid.
-  @JsonValue('balanced')
   balanced,
 
   /// Display: cancelled
   /// Definition: the invoice was cancelled.
-  @JsonValue('cancelled')
   cancelled,
 
   /// Display: entered in error
   /// Definition: the invoice was determined as entered in error before it was issued.
-  @JsonValue('entered-in-error')
   entered_in_error,
   ;
 

@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The type of contributor.
 enum ContributorType {
   /// Display: Author
   /// Definition: An author of the content of the module.
-  @JsonValue('author')
   author,
 
   /// Display: Editor
   /// Definition: An editor of the content of the module.
-  @JsonValue('editor')
   editor,
 
   /// Display: Reviewer
   /// Definition: A reviewer of the content of the module.
-  @JsonValue('reviewer')
   reviewer,
 
   /// Display: Endorser
   /// Definition: An endorser of the content of the module.
-  @JsonValue('endorser')
   endorser,
   ;
 

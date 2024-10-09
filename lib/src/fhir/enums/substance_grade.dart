@@ -1,25 +1,18 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The quality standard, established benchmark, to which a substance complies.
 enum SubstanceGrade {
   /// Display: USP/NF United States Pharmacopeia (USP) and the National Formulary (NF)
-  @JsonValue('USP-NF')
   USP_NF,
 
   /// Display: European Pharmacopoeia
-  @JsonValue('Ph.Eur')
   Ph_Eur,
 
   /// Display: Japanese Pharmacopoeia
-  @JsonValue('JP')
   JP,
 
   /// Display: British Pharmacopoeia
-  @JsonValue('BP')
   BP,
 
   /// Display: Company Standard
-  @JsonValue('CompanyStandard')
   CompanyStandard,
   ;
 

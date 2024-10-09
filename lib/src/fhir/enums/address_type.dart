@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The type of an address (physical / postal).
 enum AddressType {
   /// Display: Postal
   /// Definition: Mailing addresses - PO Boxes and care-of addresses.
-  @JsonValue('postal')
   postal,
 
   /// Display: Physical
   /// Definition: A physical address that can be visited.
-  @JsonValue('physical')
   physical,
 
   /// Display: Postal & Physical
   /// Definition: An address that is both physical and postal.
-  @JsonValue('both')
   both,
   ;
 

@@ -1,30 +1,23 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The results of executing an action.
 enum TestReportActionResult {
   /// Display: Pass
   /// Definition: The action was successful.
-  @JsonValue('pass')
   pass,
 
   /// Display: Skip
   /// Definition: The action was skipped.
-  @JsonValue('skip')
   skip,
 
   /// Display: Fail
   /// Definition: The action failed.
-  @JsonValue('fail')
   fail,
 
   /// Display: Warning
   /// Definition: The action passed but with warnings.
-  @JsonValue('warning')
   warning,
 
   /// Display: Error
   /// Definition: The action encountered a fatal error and the engine was unable to process.
-  @JsonValue('error')
   error,
   ;
 

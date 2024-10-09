@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Codes identifying the category of observation range.
 enum ObservationRangeCategory {
   /// Display: reference range
   /// Definition: Reference (Normal) Range for Ordinal and Continuous Observations.
-  @JsonValue('reference')
   reference,
 
   /// Display: critical range
   /// Definition: Critical Range for Ordinal and Continuous Observations.
-  @JsonValue('critical')
   critical,
 
   /// Display: absolute range
   /// Definition: Absolute Range for Ordinal and Continuous Observations. Results outside this range are not possible.
-  @JsonValue('absolute')
   absolute,
   ;
 

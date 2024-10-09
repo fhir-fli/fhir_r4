@@ -1,40 +1,31 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This value set defines a set of codes that can be used to indicate dietary preferences or restrictions a patient may have.
 enum Diet {
   /// Display: Vegetarian
   /// Definition: Food without meat, poultry or seafood.
-  @JsonValue('vegetarian')
   vegetarian,
 
   /// Display: Dairy Free
   /// Definition: Excludes dairy products.
-  @JsonValue('dairy-free')
   dairy_free,
 
   /// Display: Nut Free
   /// Definition: Excludes ingredients containing nuts.
-  @JsonValue('nut-free')
   nut_free,
 
   /// Display: Gluten Free
   /// Definition: Excludes ingredients containing gluten.
-  @JsonValue('gluten-free')
   gluten_free,
 
   /// Display: Vegan
   /// Definition: Food without meat, poultry, seafood, eggs, dairy products and other animal-derived substances.
-  @JsonValue('vegan')
   vegan,
 
   /// Display: Halal
   /// Definition: Foods that conform to Islamic law.
-  @JsonValue('halal')
   halal,
 
   /// Display: Kosher
   /// Definition: Foods that conform to Jewish dietary law.
-  @JsonValue('kosher')
   kosher,
   ;
 

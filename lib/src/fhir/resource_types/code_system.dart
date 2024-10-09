@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,7 +7,6 @@ import '../../../fhir_r4.dart';
 /// [CodeSystem] /// The CodeSystem resource is used to declare the existence of and describe a
 /// code system or code system supplement and its key properties, and
 /// optionally define a part or all of its content.
-@JsonSerializable()
 class CodeSystem extends DomainResource {
   CodeSystem({
     super.id,
@@ -73,10 +71,11 @@ class CodeSystem extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.CodeSystem);
+
   @override
   String get fhirType => 'CodeSystem';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this code system when it is
@@ -86,15 +85,12 @@ class CodeSystem extends DomainResource {
   /// system is (or will be) published. This URL can be the target of a canonical
   /// reference. It SHALL remain the same when the code system is stored on
   /// different servers. This is used in [Coding](datatypes.html#Coding).system.
-  @JsonKey(name: 'url')
   final FhirUri? url;
-  @JsonKey(name: '_url')
   final Element? urlElement;
 
   /// [identifier] /// A formal identifier that is used to identify this code system when it is
   /// represented in other formats, or referenced in a specification, model,
   /// design or an instance.
-  @JsonKey(name: 'identifier')
   final List<Identifier>? identifier;
 
   /// [version] /// The identifier that is used to identify this version of the code system
@@ -104,65 +100,48 @@ class CodeSystem extends DomainResource {
   /// if a managed version is not available. There is also no expectation that
   /// versions can be placed in a lexicographical sequence. This is used in
   /// [Coding](datatypes.html#Coding).version.
-  @JsonKey(name: 'version')
   final FhirString? version;
-  @JsonKey(name: '_version')
   final Element? versionElement;
 
   /// [name] /// A natural language name identifying the code system. This name should be
   /// usable as an identifier for the module by machine processing applications
   /// such as code generation.
-  @JsonKey(name: 'name')
   final FhirString? name;
-  @JsonKey(name: '_name')
   final Element? nameElement;
 
   /// [title] /// A short, descriptive, user-friendly title for the code system.
-  @JsonKey(name: 'title')
   final FhirString? title;
-  @JsonKey(name: '_title')
   final Element? titleElement;
 
   /// [status] /// The date (and optionally time) when the code system resource was created or
   /// revised.
-  @JsonKey(name: 'status')
   final PublicationStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [experimental] /// A Boolean value to indicate that this code system is authored for testing
   /// purposes (or education/evaluation/marketing) and is not intended to be used
   /// for genuine usage.
-  @JsonKey(name: 'experimental')
   final FhirBoolean? experimental;
-  @JsonKey(name: '_experimental')
   final Element? experimentalElement;
 
   /// [date] /// The date (and optionally time) when the code system was published. The date
   /// must change when the business version changes and it must change if the
   /// status code changes. In addition, it should change when the substantive
   /// content of the code system changes.
-  @JsonKey(name: 'date')
   final FhirDateTime? date;
-  @JsonKey(name: '_date')
   final Element? dateElement;
 
   /// [publisher] /// The name of the organization or individual that published the code system.
-  @JsonKey(name: 'publisher')
   final FhirString? publisher;
-  @JsonKey(name: '_publisher')
   final Element? publisherElement;
 
   /// [contact] /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  @JsonKey(name: 'contact')
   final List<ContactDetail>? contact;
 
   /// [description] /// A free text natural language description of the code system from a
   /// consumer's perspective.
-  @JsonKey(name: 'description')
   final FhirMarkdown? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [useContext] /// The content was developed with a focus and intent of supporting the
@@ -170,98 +149,73 @@ class CodeSystem extends DomainResource {
   /// age, ...) or may be references to specific programs (insurance plans,
   /// studies, ...) and may be used to assist with indexing and searching for
   /// appropriate code system instances.
-  @JsonKey(name: 'useContext')
   final List<UsageContext>? useContext;
 
   /// [jurisdiction] /// A legal or geographic region in which the code system is intended to be
   /// used.
-  @JsonKey(name: 'jurisdiction')
   final List<CodeableConcept>? jurisdiction;
 
   /// [purpose] /// Explanation of why this code system is needed and why it has been designed
   /// as it has.
-  @JsonKey(name: 'purpose')
   final FhirMarkdown? purpose;
-  @JsonKey(name: '_purpose')
   final Element? purposeElement;
 
   /// [copyright] /// A copyright statement relating to the code system and/or its contents.
   /// Copyright statements are generally legal restrictions on the use and
   /// publishing of the code system.
-  @JsonKey(name: 'copyright')
   final FhirMarkdown? copyright;
-  @JsonKey(name: '_copyright')
   final Element? copyrightElement;
 
   /// [caseSensitive] /// If code comparison is case sensitive when codes within this system are
   /// compared to each other.
-  @JsonKey(name: 'caseSensitive')
   final FhirBoolean? caseSensitive;
-  @JsonKey(name: '_caseSensitive')
   final Element? caseSensitiveElement;
 
   /// [valueSet] /// Canonical reference to the value set that contains the entire code system.
-  @JsonKey(name: 'valueSet')
   final FhirCanonical? valueSet;
-  @JsonKey(name: '_valueSet')
   final Element? valueSetElement;
 
   /// [hierarchyMeaning] /// The meaning of the hierarchy of concepts as represented in this resource.
-  @JsonKey(name: 'hierarchyMeaning')
   final CodeSystemHierarchyMeaning? hierarchyMeaning;
-  @JsonKey(name: '_hierarchyMeaning')
   final Element? hierarchyMeaningElement;
 
   /// [compositional] /// The code system defines a compositional (post-coordination) grammar.
-  @JsonKey(name: 'compositional')
   final FhirBoolean? compositional;
-  @JsonKey(name: '_compositional')
   final Element? compositionalElement;
 
   /// [versionNeeded] /// This flag is used to signify that the code system does not commit to
   /// concept permanence across versions. If true, a version must be specified
   /// when referencing this code system.
-  @JsonKey(name: 'versionNeeded')
   final FhirBoolean? versionNeeded;
-  @JsonKey(name: '_versionNeeded')
   final Element? versionNeededElement;
 
   /// [content] /// The extent of the content of the code system (the concepts and codes it
   /// defines) are represented in this resource instance.
-  @JsonKey(name: 'content')
   final CodeSystemContentMode content;
-  @JsonKey(name: '_content')
   final Element? contentElement;
 
   /// [supplements] /// The canonical URL of the code system that this code system supplement is
   /// adding designations and properties to.
-  @JsonKey(name: 'supplements')
   final FhirCanonical? supplements;
-  @JsonKey(name: '_supplements')
   final Element? supplementsElement;
 
   /// [count] /// The total number of concepts defined by the code system. Where the code
   /// system has a compositional grammar, the basis of this count is defined by
   /// the system steward.
-  @JsonKey(name: 'count')
   final FhirUnsignedInt? count;
-  @JsonKey(name: '_count')
   final Element? countElement;
 
   /// [filter] /// A filter that can be used in a value set compose statement when selecting
   /// concepts using a filter.
-  @JsonKey(name: 'filter')
   final List<CodeSystemFilter>? filter;
 
   /// [property] /// A property defines an additional slot through which additional information
   /// can be provided about a concept.
-  @JsonKey(name: 'property')
   final List<CodeSystemProperty>? property;
 
   /// [concept] /// Concepts that are in the code system. The concept definitions are
   /// inherently hierarchical, but the definitions must be consulted to determine
   /// what the meanings of the hierarchical relationships are.
-  @JsonKey(name: 'concept')
   final List<CodeSystemConcept>? concept;
   @override
   Map<String, dynamic> toJson() {
@@ -753,7 +707,6 @@ class CodeSystem extends DomainResource {
 
 /// [CodeSystemFilter] /// A filter that can be used in a value set compose statement when selecting
 /// concepts using a filter.
-@JsonSerializable()
 class CodeSystemFilter extends BackboneElement {
   CodeSystemFilter({
     super.id,
@@ -774,35 +727,28 @@ class CodeSystemFilter extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CodeSystemFilter';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// The code that identifies this filter when it is used as a filter in
   /// [ValueSet](valueset.html#).compose.include.filter.
-  @JsonKey(name: 'code')
   final FhirCode code;
-  @JsonKey(name: '_code')
   final Element? codeElement;
 
   /// [description] /// A description of how or why the filter is used.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [operator_] /// A list of operators that can be used with the filter.
-  @JsonKey(name: 'operator')
   final List<FilterOperator> operator_;
-  @JsonKey(name: '_operator')
   final List<Element>? operatorElement;
 
   /// [value] /// A description of what the value for the filter should be.
-  @JsonKey(name: 'value')
   final FhirString value;
-  @JsonKey(name: '_value')
   final Element? valueElement;
   @override
   Map<String, dynamic> toJson() {
@@ -935,7 +881,6 @@ class CodeSystemFilter extends BackboneElement {
 
 /// [CodeSystemProperty] /// A property defines an additional slot through which additional information
 /// can be provided about a concept.
-@JsonSerializable()
 class CodeSystemProperty extends BackboneElement {
   CodeSystemProperty({
     super.id,
@@ -956,40 +901,33 @@ class CodeSystemProperty extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CodeSystemProperty';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// A code that is used to identify the property. The code is used internally
   /// (in CodeSystem.concept.property.code) and also externally, such as in
   /// property filters.
-  @JsonKey(name: 'code')
   final FhirCode code;
-  @JsonKey(name: '_code')
   final Element? codeElement;
 
   /// [uri] /// Reference to the formal meaning of the property. One possible source of
   /// meaning is the [Concept Properties](codesystem-concept-properties.html)
   /// code system.
-  @JsonKey(name: 'uri')
   final FhirUri? uri;
-  @JsonKey(name: '_uri')
   final Element? uriElement;
 
   /// [description] /// A description of the property- why it is defined, and how its value might
   /// be used.
-  @JsonKey(name: 'description')
   final FhirString? description;
-  @JsonKey(name: '_description')
   final Element? descriptionElement;
 
   /// [type] /// The type of the property value. Properties of type "code" contain a code
   /// defined by the code system (e.g. a reference to another defined concept).
-  @JsonKey(name: 'type')
   final PropertyTypeEnum type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1123,7 +1061,6 @@ class CodeSystemProperty extends BackboneElement {
 /// [CodeSystemConcept] /// Concepts that are in the code system. The concept definitions are
 /// inherently hierarchical, but the definitions must be consulted to determine
 /// what the meanings of the hierarchical relationships are.
-@JsonSerializable()
 class CodeSystemConcept extends BackboneElement {
   CodeSystemConcept({
     super.id,
@@ -1145,48 +1082,40 @@ class CodeSystemConcept extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CodeSystemConcept';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// A code - a text symbol - that uniquely identifies the concept within the
   /// code system.
-  @JsonKey(name: 'code')
   final FhirCode code;
-  @JsonKey(name: '_code')
   final Element? codeElement;
 
   /// [display] /// A human readable string that is the recommended default way to present this
   /// concept to a user.
-  @JsonKey(name: 'display')
   final FhirString? display;
-  @JsonKey(name: '_display')
   final Element? displayElement;
 
   /// [definition] /// The formal definition of the concept. The code system resource does not
   /// make formal definitions required, because of the prevalence of legacy
   /// systems. However, they are highly recommended, as without them there is no
   /// formal meaning associated with the concept.
-  @JsonKey(name: 'definition')
   final FhirString? definition;
-  @JsonKey(name: '_definition')
   final Element? definitionElement;
 
   /// [designation] /// Additional representations for the concept - other languages, aliases,
   /// specialized purposes, used for particular purposes, etc.
-  @JsonKey(name: 'designation')
   final List<CodeSystemDesignation>? designation;
 
   /// [property] /// A property value for this concept.
-  @JsonKey(name: 'property')
   final List<CodeSystemProperty>? property;
 
   /// [concept] /// Defines children of a concept to produce a hierarchy of concepts. The
   /// nature of the relationships is variable (is-a/contains/categorizes) - see
   /// hierarchyMeaning.
-  @JsonKey(name: 'concept')
   final List<CodeSystemConcept>? concept;
   @override
   Map<String, dynamic> toJson() {
@@ -1350,7 +1279,6 @@ class CodeSystemConcept extends BackboneElement {
 
 /// [CodeSystemDesignation] /// Additional representations for the concept - other languages, aliases,
 /// specialized purposes, used for particular purposes, etc.
-@JsonSerializable()
 class CodeSystemDesignation extends BackboneElement {
   CodeSystemDesignation({
     super.id,
@@ -1368,26 +1296,22 @@ class CodeSystemDesignation extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CodeSystemDesignation';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [language] /// The language this designation is defined for.
-  @JsonKey(name: 'language')
   final CommonLanguages? language;
-  @JsonKey(name: '_language')
   final Element? languageElement;
 
   /// [use] /// A code that details how this designation would be used.
-  @JsonKey(name: 'use')
   final Coding? use;
 
   /// [value] /// The text value for this designation.
-  @JsonKey(name: 'value')
   final FhirString value;
-  @JsonKey(name: '_value')
   final Element? valueElement;
   @override
   Map<String, dynamic> toJson() {
@@ -1502,7 +1426,6 @@ class CodeSystemDesignation extends BackboneElement {
 }
 
 /// [CodeSystemProperty1] /// A property value for this concept.
-@JsonSerializable()
 class CodeSystemProperty1 extends BackboneElement {
   CodeSystemProperty1({
     super.id,
@@ -1530,56 +1453,42 @@ class CodeSystemProperty1 extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'CodeSystemProperty1';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [code] /// A code that is a reference to CodeSystem.property.code.
-  @JsonKey(name: 'code')
   final FhirCode code;
-  @JsonKey(name: '_code')
   final Element? codeElement;
 
   /// [valueCode] /// The value of this property.
-  @JsonKey(name: 'valueCode')
   final FhirCode? valueCode;
-  @JsonKey(name: '_valueCode')
   final Element? valueCodeElement;
 
   /// [valueCoding] /// The value of this property.
-  @JsonKey(name: 'valueCoding')
   final Coding? valueCoding;
 
   /// [valueString] /// The value of this property.
-  @JsonKey(name: 'valueString')
   final FhirString? valueString;
-  @JsonKey(name: '_valueString')
   final Element? valueStringElement;
 
   /// [valueInteger] /// The value of this property.
-  @JsonKey(name: 'valueInteger')
   final FhirInteger? valueInteger;
-  @JsonKey(name: '_valueInteger')
   final Element? valueIntegerElement;
 
   /// [valueBoolean] /// The value of this property.
-  @JsonKey(name: 'valueBoolean')
   final FhirBoolean? valueBoolean;
-  @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
 
   /// [valueDateTime] /// The value of this property.
-  @JsonKey(name: 'valueDateTime')
   final FhirDateTime? valueDateTime;
-  @JsonKey(name: '_valueDateTime')
   final Element? valueDateTimeElement;
 
   /// [valueDecimal] /// The value of this property.
-  @JsonKey(name: 'valueDecimal')
   final FhirDecimal? valueDecimal;
-  @JsonKey(name: '_valueDecimal')
   final Element? valueDecimalElement;
   @override
   Map<String, dynamic> toJson() {

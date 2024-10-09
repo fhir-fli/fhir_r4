@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The mode of a RESTful capability statement.
 enum RestfulCapabilityMode {
   /// Display: Client
   /// Definition: The application acts as a client for this resource.
-  @JsonValue('client')
   client,
 
   /// Display: Server
   /// Definition: The application acts as a server for this resource.
-  @JsonValue('server')
   server,
   ;
 

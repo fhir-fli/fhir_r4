@@ -1,10 +1,6 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the reason why a dose of vaccine was administered. This value set is provided as a suggestive example.
 enum ImmunizationReasonCodes {
-  @JsonValue('429060002')
   value429060002,
-  @JsonValue('281657000')
   value281657000,
   ;
 

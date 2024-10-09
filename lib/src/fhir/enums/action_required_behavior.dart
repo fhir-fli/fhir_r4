@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Defines expectations around whether an action or action group is required.
 enum ActionRequiredBehavior {
   /// Display: Must
   /// Definition: An action with this behavior must be included in the actions processed by the end user; the end user SHALL NOT choose not to include this action.
-  @JsonValue('must')
   must,
 
   /// Display: Could
   /// Definition: An action with this behavior may be included in the set of actions processed by the end user.
-  @JsonValue('could')
   could,
 
   /// Display: Must Unless Documented
   /// Definition: An action with this behavior must be included in the set of actions processed by the end user, unless the end user provides documentation as to why the action was not included.
-  @JsonValue('must-unless-documented')
   must_unless_documented,
   ;
 

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [SubscriptionStatus] /// The SubscriptionStatus resource describes the state of a Subscription
 /// during notifications.
-@JsonSerializable()
 class SubscriptionStatus extends DomainResource {
   SubscriptionStatus({
     super.id,
@@ -38,52 +36,42 @@ class SubscriptionStatus extends DomainResource {
     super.children,
     super.namedChildren,
   }) : super(resourceType: R4ResourceType.SubscriptionStatus);
+
   @override
   String get fhirType => 'SubscriptionStatus';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [status] /// The status of the subscription, which marks the server state for managing
   /// the subscription.
-  @JsonKey(name: 'status')
   final SubscriptionStatusCodes? status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [type] /// The type of event being conveyed with this notificaiton.
-  @JsonKey(name: 'type')
   final SubscriptionNotificationType type;
-  @JsonKey(name: '_type')
   final Element? typeElement;
 
   /// [eventsSinceSubscriptionStart] /// The total number of actual events which have been generated since the
   /// Subscription was created (inclusive of this notification) - regardless of
   /// how many have been successfully communicated. This number is NOT
   /// incremented for handshake and heartbeat notifications.
-  @JsonKey(name: 'eventsSinceSubscriptionStart')
   final FhirString? eventsSinceSubscriptionStart;
-  @JsonKey(name: '_eventsSinceSubscriptionStart')
   final Element? eventsSinceSubscriptionStartElement;
 
   /// [notificationEvent] /// Detailed information about events relevant to this subscription
   /// notification.
-  @JsonKey(name: 'notificationEvent')
   final List<SubscriptionStatusNotificationEvent>? notificationEvent;
 
   /// [subscription] /// The reference to the Subscription which generated this notification.
-  @JsonKey(name: 'subscription')
   final Reference subscription;
 
   /// [topic] /// The reference to the SubscriptionTopic for the Subscription which generated
   /// this notification.
-  @JsonKey(name: 'topic')
   final FhirCanonical? topic;
-  @JsonKey(name: '_topic')
   final Element? topicElement;
 
   /// [error] /// A record of errors that occurred when the server processed a notification.
-  @JsonKey(name: 'error')
   final List<CodeableConcept>? error;
   @override
   Map<String, dynamic> toJson() {
@@ -311,7 +299,6 @@ class SubscriptionStatus extends DomainResource {
 
 /// [SubscriptionStatusNotificationEvent] /// Detailed information about events relevant to this subscription
 /// notification.
-@JsonSerializable()
 class SubscriptionStatusNotificationEvent extends BackboneElement {
   SubscriptionStatusNotificationEvent({
     super.id,
@@ -330,36 +317,31 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'SubscriptionStatusNotificationEvent';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [eventNumber] /// The sequential number of this event in this subscription context. Note that
   /// this value is a 64-bit integer value, encoded as a string.
-  @JsonKey(name: 'eventNumber')
   final FhirString eventNumber;
-  @JsonKey(name: '_eventNumber')
   final Element? eventNumberElement;
 
   /// [timestamp] /// The actual time this event occured on the server.
-  @JsonKey(name: 'timestamp')
   final FhirInstant? timestamp;
-  @JsonKey(name: '_timestamp')
   final Element? timestampElement;
 
   /// [focus] /// The focus of this event. While this will usually be a reference to the
   /// focus resource of the event, it MAY contain a reference to a non-FHIR
   /// object.
-  @JsonKey(name: 'focus')
   final Reference? focus;
 
   /// [additionalContext] /// Additional context information for this event. Generally, this will contain
   /// references to additional resources included with the event (e.g., the
   /// Patient relevant to an Encounter), however it MAY refer to non-FHIR
   /// objects.
-  @JsonKey(name: 'additionalContext')
   final List<Reference>? additionalContext;
   @override
   Map<String, dynamic> toJson() {

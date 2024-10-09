@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The composite scoring method of the measure.
 enum CompositeMeasureScoring {
   /// Display: Opportunity
   /// Definition: Opportunity scoring combines the scores from component measures by combining the numerators and denominators for each component.
-  @JsonValue('opportunity')
   opportunity,
 
   /// Display: All-or-nothing
   /// Definition: All-or-nothing scoring includes an individual in the numerator of the composite measure if they are in the numerators of all of the component measures in which they are in the denominator.
-  @JsonValue('all-or-nothing')
   all_or_nothing,
 
   /// Display: Linear
   /// Definition: Linear scoring gives an individual a score based on the number of numerators in which they appear.
-  @JsonValue('linear')
   linear,
 
   /// Display: Weighted
   /// Definition: Weighted scoring gives an individual a score based on a weighted factor for each component numerator in which they appear.
-  @JsonValue('weighted')
   weighted,
   ;
 

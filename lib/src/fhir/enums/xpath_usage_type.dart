@@ -1,30 +1,23 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// How a search parameter relates to the set of elements returned by evaluating its xpath query.
 enum XPathUsageType {
   /// Display: Normal
   /// Definition: The search parameter is derived directly from the selected nodes based on the type definitions.
-  @JsonValue('normal')
   normal,
 
   /// Display: Phonetic
   /// Definition: The search parameter is derived by a phonetic transform from the selected nodes.
-  @JsonValue('phonetic')
   phonetic,
 
   /// Display: Nearby
   /// Definition: The search parameter is based on a spatial transform of the selected nodes.
-  @JsonValue('nearby')
   nearby,
 
   /// Display: Distance
   /// Definition: The search parameter is based on a spatial transform of the selected nodes, using physical distance from the middle.
-  @JsonValue('distance')
   distance,
 
   /// Display: Other
   /// Definition: The interpretation of the xpath statement is unknown (and can't be automated).
-  @JsonValue('other')
   other,
   ;
 

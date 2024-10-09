@@ -1,13 +1,9 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the body site where the vaccination occurred. This value set is provided as a suggestive example.
 enum CodesForImmunizationSiteOfAdministration {
   /// Display: Left arm
-  @JsonValue('LA')
   LA,
 
   /// Display: Right arm
-  @JsonValue('RA')
   RA,
   ;
 

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -7,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 /// [Narrative] /// A human-readable summary of the resource conveying the essential clinical
 /// and business information for the resource.
-@JsonSerializable()
 class Narrative extends DataType {
   Narrative({
     super.id,
@@ -22,22 +20,20 @@ class Narrative extends DataType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'Narrative';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [status] /// The status of the narrative - whether it's entirely generated (from just
   /// the defined data or the extensions too), or whether a human authored it and
   /// it may contain additional data.
-  @JsonKey(name: 'status')
   final NarrativeStatus status;
-  @JsonKey(name: '_status')
   final Element? statusElement;
 
   /// [div] /// The actual narrative content, a stripped down version of XHTML.
-  @JsonKey(name: 'div')
   final FhirMarkdown div;
   @override
   Map<String, dynamic> toJson() {

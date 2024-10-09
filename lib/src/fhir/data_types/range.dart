@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [Range] /// A set of ordered Quantities defined by a low and high limit.
-@JsonSerializable()
 class Range extends DataType {
   Range({
     super.id,
@@ -20,18 +18,17 @@ class Range extends DataType {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'Range';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
 
   /// [low] /// The low limit. The boundary is inclusive.
-  @JsonKey(name: 'low')
   final Quantity? low;
 
   /// [high] /// The high limit. The boundary is inclusive.
-  @JsonKey(name: 'high')
   final Quantity? high;
   @override
   Map<String, dynamic> toJson() {

@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Preferred value set for AllergyIntolerance Clinical Status.
 enum AllergyIntoleranceClinicalStatusCodes {
   /// Display: Active
   /// Definition: The subject is currently experiencing, or is at risk of, a reaction to the identified substance.
-  @JsonValue('active')
   active,
 
   /// Display: Inactive
   /// Definition: The subject is no longer at risk of a reaction to the identified substance.
-  @JsonValue('inactive')
   inactive,
 
   /// Display: Resolved
   /// Definition: A reaction to the identified substance has been clinically reassessed by testing or re-exposure and is considered no longer to be present. Re-exposure could be accidental, unplanned, or outside of any clinical setting.
-  @JsonValue('resolved')
   resolved,
   ;
 

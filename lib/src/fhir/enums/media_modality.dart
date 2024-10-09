@@ -1,45 +1,35 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Detailed information about the type of the image - its kind, purpose, or the kind of equipment used to generate it.
 enum MediaModality {
   /// Display: Diagram
   /// Definition: A diagram. Often used in diagnostic reports
-  @JsonValue('diagram')
   diagram,
 
   /// Display: Fax
   /// Definition: A digital record of a fax document
-  @JsonValue('fax')
   fax,
 
   /// Display: Scanned Document
   /// Definition: A digital scan of a document. This is reserved for when there is not enough metadata to create a document reference
-  @JsonValue('scan')
   scan,
 
   /// Display: Retina Scan
   /// Definition: A retinal image used for identification purposes
-  @JsonValue('retina')
   retina,
 
   /// Display: Fingerprint
   /// Definition: A finger print scan used for identification purposes
-  @JsonValue('fingerprint')
   fingerprint,
 
   /// Display: Iris Scan
   /// Definition: An iris scan used for identification purposes
-  @JsonValue('iris')
   iris,
 
   /// Display: Palm Scan
   /// Definition: A palm scan used for identification purposes
-  @JsonValue('palm')
   palm,
 
   /// Display: Face Scan
   /// Definition: A face scan used for identification purposes
-  @JsonValue('face')
   face,
   ;
 

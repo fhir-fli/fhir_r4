@@ -1,10 +1,6 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the reasons why a given recommendation status is assigned. This value set is provided as a suggestive example and includes SNOMED CT concepts.
 enum ImmunizationRecommendationReasonCodes {
-  @JsonValue('77176002')
   value77176002,
-  @JsonValue('77386006')
   value77386006,
   ;
 

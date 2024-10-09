@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Describes the type of a metric calibration.
 enum DeviceMetricCalibrationType {
   /// Display: Unspecified
   /// Definition: Metric calibration method has not been identified.
-  @JsonValue('unspecified')
   unspecified,
 
   /// Display: Offset
   /// Definition: Offset metric calibration method.
-  @JsonValue('offset')
   offset,
 
   /// Display: Gain
   /// Definition: Gain metric calibration method.
-  @JsonValue('gain')
   gain,
 
   /// Display: Two Point
   /// Definition: Two-point metric calibration method.
-  @JsonValue('two-point')
   two_point,
   ;
 

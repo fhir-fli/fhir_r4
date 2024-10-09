@@ -1,15 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// Logical grouping of characteristics.
 enum CharacteristicCombination {
   /// Display: intersection
   /// Definition: Combine characteristics with AND.
-  @JsonValue('intersection')
   intersection,
 
   /// Display: union
   /// Definition: Combine characteristics with OR.
-  @JsonValue('union')
   union,
   ;
 

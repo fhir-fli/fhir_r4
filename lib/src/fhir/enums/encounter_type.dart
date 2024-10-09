@@ -1,21 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
-
 /// This example value set defines a set of codes that can be used to indicate the type of encounter: a specific code indicating type of service provided.
 enum EncounterType {
   /// Display: Annual diabetes mellitus screening
-  @JsonValue('ADMS')
   ADMS,
 
   /// Display: Bone drilling/bone marrow punction in clinic
-  @JsonValue('BD/BM-clin')
   BD_BM_clin,
 
   /// Display: Infant colon screening - 60 minutes
-  @JsonValue('CCS60')
   CCS60,
 
   /// Display: Outpatient Kenacort injection
-  @JsonValue('OKI')
   OKI,
   ;
 

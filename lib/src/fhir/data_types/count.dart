@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
@@ -8,7 +7,6 @@ import '../../../fhir_r4.dart';
 /// [Count] /// A measured amount (or an amount that can potentially be measured). Note
 /// that measured amounts include amounts that are not precisely quantified,
 /// including amounts involving arbitrary units and floating currencies.
-@JsonSerializable()
 class Count extends Quantity {
   Count({
     super.id,
@@ -30,10 +28,11 @@ class Count extends Quantity {
     super.children,
     super.namedChildren,
   });
+
   @override
   String get fhirType => 'Count';
+
   @Id()
-  @JsonKey(ignore: true)
   int dbId = 0;
   @override
   Map<String, dynamic> toJson() {
