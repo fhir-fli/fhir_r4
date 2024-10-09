@@ -28,8 +28,8 @@ class SupplyRequest extends DomainResource {
     this.category,
     this.priority,
     this.priorityElement,
-    required this.itemCodeableConcept,
-    required this.itemReference,
+    this.itemCodeableConcept,
+    this.itemReference,
     required this.quantity,
     this.parameter,
     this.occurrenceDateTime,
@@ -87,13 +87,13 @@ class SupplyRequest extends DomainResource {
   /// resource representing the details of the item or a code that identifies the
   /// item from a known list.
   @JsonKey(name: 'itemCodeableConcept')
-  final CodeableConcept itemCodeableConcept;
+  final CodeableConcept? itemCodeableConcept;
 
   /// [itemReference] /// The item that is requested to be supplied. This is either a link to a
   /// resource representing the details of the item or a code that identifies the
   /// item from a known list.
   @JsonKey(name: 'itemReference')
-  final Reference itemReference;
+  final Reference? itemReference;
 
   /// [quantity] /// The amount that is being ordered of the indicated item.
   @JsonKey(name: 'quantity')

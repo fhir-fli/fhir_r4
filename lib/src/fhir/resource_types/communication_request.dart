@@ -313,10 +313,10 @@ class CommunicationRequestPayload extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.contentString,
+    this.contentString,
     this.contentStringElement,
-    required this.contentAttachment,
-    required this.contentReference,
+    this.contentAttachment,
+    this.contentReference,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -333,19 +333,19 @@ class CommunicationRequestPayload extends BackboneElement {
   /// [contentString] /// The communicated content (or for multi-part communications, one portion of
   /// the communication).
   @JsonKey(name: 'contentString')
-  final FhirString contentString;
+  final FhirString? contentString;
   @JsonKey(name: '_contentString')
   final Element? contentStringElement;
 
   /// [contentAttachment] /// The communicated content (or for multi-part communications, one portion of
   /// the communication).
   @JsonKey(name: 'contentAttachment')
-  final Attachment contentAttachment;
+  final Attachment? contentAttachment;
 
   /// [contentReference] /// The communicated content (or for multi-part communications, one portion of
   /// the communication).
   @JsonKey(name: 'contentReference')
-  final Reference contentReference;
+  final Reference? contentReference;
   factory CommunicationRequestPayload.fromJson(Map<String, dynamic> json) =>
       _$CommunicationRequestPayloadFromJson(json);
 

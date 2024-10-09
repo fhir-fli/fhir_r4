@@ -486,8 +486,8 @@ class MedicationKnowledgeIngredient extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.itemCodeableConcept,
-    required this.itemReference,
+    this.itemCodeableConcept,
+    this.itemReference,
     this.isActive,
     this.isActiveElement,
     this.strength,
@@ -507,12 +507,12 @@ class MedicationKnowledgeIngredient extends BackboneElement {
   /// [itemCodeableConcept] /// The actual ingredient - either a substance (simple ingredient) or another
   /// medication.
   @JsonKey(name: 'itemCodeableConcept')
-  final CodeableConcept itemCodeableConcept;
+  final CodeableConcept? itemCodeableConcept;
 
   /// [itemReference] /// The actual ingredient - either a substance (simple ingredient) or another
   /// medication.
   @JsonKey(name: 'itemReference')
-  final Reference itemReference;
+  final Reference? itemReference;
 
   /// [isActive] /// Indication of whether this ingredient affects the therapeutic action of the
   /// drug.
@@ -985,8 +985,8 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.characteristicCodeableConcept,
-    required this.characteristicQuantity,
+    this.characteristicCodeableConcept,
+    this.characteristicQuantity,
     this.value,
     this.valueElement,
     super.userData,
@@ -1005,12 +1005,12 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
   /// [characteristicCodeableConcept] /// Specific characteristic that is relevant to the administration guideline
   /// (e.g. height, weight, gender).
   @JsonKey(name: 'characteristicCodeableConcept')
-  final CodeableConcept characteristicCodeableConcept;
+  final CodeableConcept? characteristicCodeableConcept;
 
   /// [characteristicQuantity] /// Specific characteristic that is relevant to the administration guideline
   /// (e.g. height, weight, gender).
   @JsonKey(name: 'characteristicQuantity')
-  final Quantity characteristicQuantity;
+  final Quantity? characteristicQuantity;
 
   /// [value] /// The specific characteristic (e.g. height, weight, gender, etc.).
   @JsonKey(name: 'value')

@@ -48,10 +48,13 @@ SupplyRequest _$SupplyRequestFromJson(Map<String, dynamic> json) =>
       priorityElement: json['_priority'] == null
           ? null
           : Element.fromJson(json['_priority'] as Map<String, dynamic>),
-      itemCodeableConcept: CodeableConcept.fromJson(
-          json['itemCodeableConcept'] as Map<String, dynamic>),
-      itemReference:
-          Reference.fromJson(json['itemReference'] as Map<String, dynamic>),
+      itemCodeableConcept: json['itemCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['itemCodeableConcept'] as Map<String, dynamic>),
+      itemReference: json['itemReference'] == null
+          ? null
+          : Reference.fromJson(json['itemReference'] as Map<String, dynamic>),
       quantity: Quantity.fromJson(json['quantity'] as Map<String, dynamic>),
       parameter: (json['parameter'] as List<dynamic>?)
           ?.map(
@@ -148,8 +151,8 @@ Map<String, dynamic> _$SupplyRequestToJson(SupplyRequest instance) {
   writeNotNull('category', instance.category?.toJson());
   writeNotNull('priority', instance.priority?.toJson());
   writeNotNull('_priority', instance.priorityElement?.toJson());
-  val['itemCodeableConcept'] = instance.itemCodeableConcept.toJson();
-  val['itemReference'] = instance.itemReference.toJson();
+  writeNotNull('itemCodeableConcept', instance.itemCodeableConcept?.toJson());
+  writeNotNull('itemReference', instance.itemReference?.toJson());
   val['quantity'] = instance.quantity.toJson();
   writeNotNull(
       'parameter', instance.parameter?.map((e) => e.toJson()).toList());

@@ -508,11 +508,11 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.definitionCodeableConcept,
-    required this.definitionCanonical,
+    this.definitionCodeableConcept,
+    this.definitionCanonical,
     this.definitionCanonicalElement,
-    required this.definitionExpression,
-    required this.definitionDataRequirement,
+    this.definitionExpression,
+    this.definitionDataRequirement,
     this.usageContext,
     this.exclude,
     this.excludeElement,
@@ -555,14 +555,14 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
   /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes diagnosis
   /// onset in the last year).
   @JsonKey(name: 'definitionCodeableConcept')
-  final CodeableConcept definitionCodeableConcept;
+  final CodeableConcept? definitionCodeableConcept;
 
   /// [definitionCanonical] /// Define members of the research element using Codes (such as condition,
   /// medication, or observation), Expressions ( using an expression language
   /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes diagnosis
   /// onset in the last year).
   @JsonKey(name: 'definitionCanonical')
-  final FhirCanonical definitionCanonical;
+  final FhirCanonical? definitionCanonical;
   @JsonKey(name: '_definitionCanonical')
   final Element? definitionCanonicalElement;
 
@@ -571,14 +571,14 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
   /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes diagnosis
   /// onset in the last year).
   @JsonKey(name: 'definitionExpression')
-  final FhirExpression definitionExpression;
+  final FhirExpression? definitionExpression;
 
   /// [definitionDataRequirement] /// Define members of the research element using Codes (such as condition,
   /// medication, or observation), Expressions ( using an expression language
   /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes diagnosis
   /// onset in the last year).
   @JsonKey(name: 'definitionDataRequirement')
-  final DataRequirement definitionDataRequirement;
+  final DataRequirement? definitionDataRequirement;
 
   /// [usageContext] /// Use UsageContext to define the members of the population, such as Age
   /// Ranges, Genders, Settings.

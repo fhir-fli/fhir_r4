@@ -40,8 +40,8 @@ class MedicationRequest extends DomainResource {
     this.reportedBoolean,
     this.reportedBooleanElement,
     this.reportedReference,
-    required this.medicationCodeableConcept,
-    required this.medicationReference,
+    this.medicationCodeableConcept,
+    this.medicationReference,
     required this.subject,
     this.encounter,
     this.supportingInformation,
@@ -146,14 +146,14 @@ class MedicationRequest extends DomainResource {
   /// or simply an attribute carrying a code that identifies the medication from
   /// a known list of medications.
   @JsonKey(name: 'medicationCodeableConcept')
-  final CodeableConcept medicationCodeableConcept;
+  final CodeableConcept? medicationCodeableConcept;
 
   /// [medicationReference] /// Identifies the medication being requested. This is a link to a resource
   /// that represents the medication which may be the details of the medication
   /// or simply an attribute carrying a code that identifies the medication from
   /// a known list of medications.
   @JsonKey(name: 'medicationReference')
-  final Reference medicationReference;
+  final Reference? medicationReference;
 
   /// [subject] /// A link to a resource representing the person or set of individuals to whom
   /// the medication will be given.
@@ -684,9 +684,9 @@ class MedicationRequestSubstitution extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.allowedBoolean,
+    this.allowedBoolean,
     this.allowedBooleanElement,
-    required this.allowedCodeableConcept,
+    this.allowedCodeableConcept,
     this.reason,
     super.userData,
     super.formatCommentsPre,
@@ -704,14 +704,14 @@ class MedicationRequestSubstitution extends BackboneElement {
   /// [allowedBoolean] /// True if the prescriber allows a different drug to be dispensed from what
   /// was prescribed.
   @JsonKey(name: 'allowedBoolean')
-  final FhirBoolean allowedBoolean;
+  final FhirBoolean? allowedBoolean;
   @JsonKey(name: '_allowedBoolean')
   final Element? allowedBooleanElement;
 
   /// [allowedCodeableConcept] /// True if the prescriber allows a different drug to be dispensed from what
   /// was prescribed.
   @JsonKey(name: 'allowedCodeableConcept')
-  final CodeableConcept allowedCodeableConcept;
+  final CodeableConcept? allowedCodeableConcept;
 
   /// [reason] /// Indicates the reason for the substitution, or why substitution must or must
   /// not be performed.

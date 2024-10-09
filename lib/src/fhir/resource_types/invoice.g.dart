@@ -446,10 +446,14 @@ InvoiceLineItem _$InvoiceLineItemFromJson(Map<String, dynamic> json) =>
       sequenceElement: json['_sequence'] == null
           ? null
           : Element.fromJson(json['_sequence'] as Map<String, dynamic>),
-      chargeItemReference: Reference.fromJson(
-          json['chargeItemReference'] as Map<String, dynamic>),
-      chargeItemCodeableConcept: CodeableConcept.fromJson(
-          json['chargeItemCodeableConcept'] as Map<String, dynamic>),
+      chargeItemReference: json['chargeItemReference'] == null
+          ? null
+          : Reference.fromJson(
+              json['chargeItemReference'] as Map<String, dynamic>),
+      chargeItemCodeableConcept: json['chargeItemCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['chargeItemCodeableConcept'] as Map<String, dynamic>),
       priceComponent: (json['priceComponent'] as List<dynamic>?)
           ?.map(
               (e) => InvoicePriceComponent.fromJson(e as Map<String, dynamic>))
@@ -492,9 +496,9 @@ Map<String, dynamic> _$InvoiceLineItemToJson(InvoiceLineItem instance) {
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('sequence', instance.sequence?.toJson());
   writeNotNull('_sequence', instance.sequenceElement?.toJson());
-  val['chargeItemReference'] = instance.chargeItemReference.toJson();
-  val['chargeItemCodeableConcept'] =
-      instance.chargeItemCodeableConcept.toJson();
+  writeNotNull('chargeItemReference', instance.chargeItemReference?.toJson());
+  writeNotNull('chargeItemCodeableConcept',
+      instance.chargeItemCodeableConcept?.toJson());
   writeNotNull('priceComponent',
       instance.priceComponent?.map((e) => e.toJson()).toList());
   return val;

@@ -694,11 +694,15 @@ AuditEventDetail _$AuditEventDetailFromJson(Map<String, dynamic> json) =>
       typeElement: json['_type'] == null
           ? null
           : Element.fromJson(json['_type'] as Map<String, dynamic>),
-      valueString: FhirString.fromJson(json['valueString']),
+      valueString: json['valueString'] == null
+          ? null
+          : FhirString.fromJson(json['valueString']),
       valueStringElement: json['_valueString'] == null
           ? null
           : Element.fromJson(json['_valueString'] as Map<String, dynamic>),
-      valueBase64Binary: FhirBase64Binary.fromJson(json['valueBase64Binary']),
+      valueBase64Binary: json['valueBase64Binary'] == null
+          ? null
+          : FhirBase64Binary.fromJson(json['valueBase64Binary']),
       valueBase64BinaryElement: json['_valueBase64Binary'] == null
           ? null
           : Element.fromJson(
@@ -741,9 +745,9 @@ Map<String, dynamic> _$AuditEventDetailToJson(AuditEventDetail instance) {
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();
   writeNotNull('_type', instance.typeElement?.toJson());
-  val['valueString'] = instance.valueString.toJson();
+  writeNotNull('valueString', instance.valueString?.toJson());
   writeNotNull('_valueString', instance.valueStringElement?.toJson());
-  val['valueBase64Binary'] = instance.valueBase64Binary.toJson();
+  writeNotNull('valueBase64Binary', instance.valueBase64Binary?.toJson());
   writeNotNull(
       '_valueBase64Binary', instance.valueBase64BinaryElement?.toJson());
   return val;

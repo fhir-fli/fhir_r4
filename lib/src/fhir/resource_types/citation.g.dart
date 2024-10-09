@@ -653,16 +653,23 @@ CitationRelatesTo _$CitationRelatesToFromJson(Map<String, dynamic> json) =>
       targetClassifier: (json['targetClassifier'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
-      targetUri: FhirUri.fromJson(json['targetUri']),
+      targetUri: json['targetUri'] == null
+          ? null
+          : FhirUri.fromJson(json['targetUri']),
       targetUriElement: json['_targetUri'] == null
           ? null
           : Element.fromJson(json['_targetUri'] as Map<String, dynamic>),
-      targetIdentifier:
-          Identifier.fromJson(json['targetIdentifier'] as Map<String, dynamic>),
-      targetReference:
-          Reference.fromJson(json['targetReference'] as Map<String, dynamic>),
-      targetAttachment:
-          Attachment.fromJson(json['targetAttachment'] as Map<String, dynamic>),
+      targetIdentifier: json['targetIdentifier'] == null
+          ? null
+          : Identifier.fromJson(
+              json['targetIdentifier'] as Map<String, dynamic>),
+      targetReference: json['targetReference'] == null
+          ? null
+          : Reference.fromJson(json['targetReference'] as Map<String, dynamic>),
+      targetAttachment: json['targetAttachment'] == null
+          ? null
+          : Attachment.fromJson(
+              json['targetAttachment'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -702,11 +709,11 @@ Map<String, dynamic> _$CitationRelatesToToJson(CitationRelatesTo instance) {
   val['relationshipType'] = instance.relationshipType.toJson();
   writeNotNull('targetClassifier',
       instance.targetClassifier?.map((e) => e.toJson()).toList());
-  val['targetUri'] = instance.targetUri.toJson();
+  writeNotNull('targetUri', instance.targetUri?.toJson());
   writeNotNull('_targetUri', instance.targetUriElement?.toJson());
-  val['targetIdentifier'] = instance.targetIdentifier.toJson();
-  val['targetReference'] = instance.targetReference.toJson();
-  val['targetAttachment'] = instance.targetAttachment.toJson();
+  writeNotNull('targetIdentifier', instance.targetIdentifier?.toJson());
+  writeNotNull('targetReference', instance.targetReference?.toJson());
+  writeNotNull('targetAttachment', instance.targetAttachment?.toJson());
   return val;
 }
 
@@ -1160,16 +1167,23 @@ CitationRelatesTo1 _$CitationRelatesTo1FromJson(Map<String, dynamic> json) =>
       targetClassifier: (json['targetClassifier'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
-      targetUri: FhirUri.fromJson(json['targetUri']),
+      targetUri: json['targetUri'] == null
+          ? null
+          : FhirUri.fromJson(json['targetUri']),
       targetUriElement: json['_targetUri'] == null
           ? null
           : Element.fromJson(json['_targetUri'] as Map<String, dynamic>),
-      targetIdentifier:
-          Identifier.fromJson(json['targetIdentifier'] as Map<String, dynamic>),
-      targetReference:
-          Reference.fromJson(json['targetReference'] as Map<String, dynamic>),
-      targetAttachment:
-          Attachment.fromJson(json['targetAttachment'] as Map<String, dynamic>),
+      targetIdentifier: json['targetIdentifier'] == null
+          ? null
+          : Identifier.fromJson(
+              json['targetIdentifier'] as Map<String, dynamic>),
+      targetReference: json['targetReference'] == null
+          ? null
+          : Reference.fromJson(json['targetReference'] as Map<String, dynamic>),
+      targetAttachment: json['targetAttachment'] == null
+          ? null
+          : Attachment.fromJson(
+              json['targetAttachment'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -1209,11 +1223,11 @@ Map<String, dynamic> _$CitationRelatesTo1ToJson(CitationRelatesTo1 instance) {
   val['relationshipType'] = instance.relationshipType.toJson();
   writeNotNull('targetClassifier',
       instance.targetClassifier?.map((e) => e.toJson()).toList());
-  val['targetUri'] = instance.targetUri.toJson();
+  writeNotNull('targetUri', instance.targetUri?.toJson());
   writeNotNull('_targetUri', instance.targetUriElement?.toJson());
-  val['targetIdentifier'] = instance.targetIdentifier.toJson();
-  val['targetReference'] = instance.targetReference.toJson();
-  val['targetAttachment'] = instance.targetAttachment.toJson();
+  writeNotNull('targetIdentifier', instance.targetIdentifier?.toJson());
+  writeNotNull('targetReference', instance.targetReference?.toJson());
+  writeNotNull('targetAttachment', instance.targetAttachment?.toJson());
   return val;
 }
 

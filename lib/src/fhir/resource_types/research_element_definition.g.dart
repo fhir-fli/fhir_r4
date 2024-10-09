@@ -533,18 +533,25 @@ ResearchElementDefinitionCharacteristic
           modifierExtension: (json['modifierExtension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
-          definitionCodeableConcept: CodeableConcept.fromJson(
-              json['definitionCodeableConcept'] as Map<String, dynamic>),
-          definitionCanonical:
-              FhirCanonical.fromJson(json['definitionCanonical']),
+          definitionCodeableConcept: json['definitionCodeableConcept'] == null
+              ? null
+              : CodeableConcept.fromJson(
+                  json['definitionCodeableConcept'] as Map<String, dynamic>),
+          definitionCanonical: json['definitionCanonical'] == null
+              ? null
+              : FhirCanonical.fromJson(json['definitionCanonical']),
           definitionCanonicalElement: json['_definitionCanonical'] == null
               ? null
               : Element.fromJson(
                   json['_definitionCanonical'] as Map<String, dynamic>),
-          definitionExpression: FhirExpression.fromJson(
-              json['definitionExpression'] as Map<String, dynamic>),
-          definitionDataRequirement: DataRequirement.fromJson(
-              json['definitionDataRequirement'] as Map<String, dynamic>),
+          definitionExpression: json['definitionExpression'] == null
+              ? null
+              : FhirExpression.fromJson(
+                  json['definitionExpression'] as Map<String, dynamic>),
+          definitionDataRequirement: json['definitionDataRequirement'] == null
+              ? null
+              : DataRequirement.fromJson(
+                  json['definitionDataRequirement'] as Map<String, dynamic>),
           usageContext: (json['usageContext'] as List<dynamic>?)
               ?.map((e) => UsageContext.fromJson(e as Map<String, dynamic>))
               .toList(),
@@ -681,14 +688,14 @@ Map<String, dynamic> _$ResearchElementDefinitionCharacteristicToJson(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
-  val['definitionCodeableConcept'] =
-      instance.definitionCodeableConcept.toJson();
-  val['definitionCanonical'] = instance.definitionCanonical.toJson();
+  writeNotNull('definitionCodeableConcept',
+      instance.definitionCodeableConcept?.toJson());
+  writeNotNull('definitionCanonical', instance.definitionCanonical?.toJson());
   writeNotNull(
       '_definitionCanonical', instance.definitionCanonicalElement?.toJson());
-  val['definitionExpression'] = instance.definitionExpression.toJson();
-  val['definitionDataRequirement'] =
-      instance.definitionDataRequirement.toJson();
+  writeNotNull('definitionExpression', instance.definitionExpression?.toJson());
+  writeNotNull('definitionDataRequirement',
+      instance.definitionDataRequirement?.toJson());
   writeNotNull(
       'usageContext', instance.usageContext?.map((e) => e.toJson()).toList());
   writeNotNull('exclude', instance.exclude?.toJson());

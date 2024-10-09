@@ -34,8 +34,11 @@ MessageHeader _$MessageHeaderFromJson(Map<String, dynamic> json) =>
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      eventCoding: Coding.fromJson(json['eventCoding'] as Map<String, dynamic>),
-      eventUri: FhirUri.fromJson(json['eventUri']),
+      eventCoding: json['eventCoding'] == null
+          ? null
+          : Coding.fromJson(json['eventCoding'] as Map<String, dynamic>),
+      eventUri:
+          json['eventUri'] == null ? null : FhirUri.fromJson(json['eventUri']),
       eventUriElement: json['_eventUri'] == null
           ? null
           : Element.fromJson(json['_eventUri'] as Map<String, dynamic>),
@@ -120,8 +123,8 @@ Map<String, dynamic> _$MessageHeaderToJson(MessageHeader instance) {
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
-  val['eventCoding'] = instance.eventCoding.toJson();
-  val['eventUri'] = instance.eventUri.toJson();
+  writeNotNull('eventCoding', instance.eventCoding?.toJson());
+  writeNotNull('eventUri', instance.eventUri?.toJson());
   writeNotNull('_eventUri', instance.eventUriElement?.toJson());
   writeNotNull(
       'destination', instance.destination?.map((e) => e.toJson()).toList());

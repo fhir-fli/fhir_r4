@@ -744,9 +744,9 @@ class AuditEventDetail extends BackboneElement {
     super.modifierExtension,
     required this.type,
     this.typeElement,
-    required this.valueString,
+    this.valueString,
     this.valueStringElement,
-    required this.valueBase64Binary,
+    this.valueBase64Binary,
     this.valueBase64BinaryElement,
     super.userData,
     super.formatCommentsPre,
@@ -769,13 +769,13 @@ class AuditEventDetail extends BackboneElement {
 
   /// [valueString] /// The value of the extra detail.
   @JsonKey(name: 'valueString')
-  final FhirString valueString;
+  final FhirString? valueString;
   @JsonKey(name: '_valueString')
   final Element? valueStringElement;
 
   /// [valueBase64Binary] /// The value of the extra detail.
   @JsonKey(name: 'valueBase64Binary')
-  final FhirBase64Binary valueBase64Binary;
+  final FhirBase64Binary? valueBase64Binary;
   @JsonKey(name: '_valueBase64Binary')
   final Element? valueBase64BinaryElement;
   factory AuditEventDetail.fromJson(Map<String, dynamic> json) =>

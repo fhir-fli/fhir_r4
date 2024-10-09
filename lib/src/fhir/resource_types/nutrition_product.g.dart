@@ -470,23 +470,34 @@ NutritionProductProductCharacteristic
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
           type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
-          valueCodeableConcept: CodeableConcept.fromJson(
-              json['valueCodeableConcept'] as Map<String, dynamic>),
-          valueString: FhirString.fromJson(json['valueString']),
+          valueCodeableConcept: json['valueCodeableConcept'] == null
+              ? null
+              : CodeableConcept.fromJson(
+                  json['valueCodeableConcept'] as Map<String, dynamic>),
+          valueString: json['valueString'] == null
+              ? null
+              : FhirString.fromJson(json['valueString']),
           valueStringElement: json['_valueString'] == null
               ? null
               : Element.fromJson(json['_valueString'] as Map<String, dynamic>),
-          valueQuantity:
-              Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>),
-          valueBase64Binary:
-              FhirBase64Binary.fromJson(json['valueBase64Binary']),
+          valueQuantity: json['valueQuantity'] == null
+              ? null
+              : Quantity.fromJson(
+                  json['valueQuantity'] as Map<String, dynamic>),
+          valueBase64Binary: json['valueBase64Binary'] == null
+              ? null
+              : FhirBase64Binary.fromJson(json['valueBase64Binary']),
           valueBase64BinaryElement: json['_valueBase64Binary'] == null
               ? null
               : Element.fromJson(
                   json['_valueBase64Binary'] as Map<String, dynamic>),
-          valueAttachment: Attachment.fromJson(
-              json['valueAttachment'] as Map<String, dynamic>),
-          valueBoolean: FhirBoolean.fromJson(json['valueBoolean']),
+          valueAttachment: json['valueAttachment'] == null
+              ? null
+              : Attachment.fromJson(
+                  json['valueAttachment'] as Map<String, dynamic>),
+          valueBoolean: json['valueBoolean'] == null
+              ? null
+              : FhirBoolean.fromJson(json['valueBoolean']),
           valueBooleanElement: json['_valueBoolean'] == null
               ? null
               : Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>),
@@ -529,15 +540,15 @@ Map<String, dynamic> _$NutritionProductProductCharacteristicToJson(
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['type'] = instance.type.toJson();
-  val['valueCodeableConcept'] = instance.valueCodeableConcept.toJson();
-  val['valueString'] = instance.valueString.toJson();
+  writeNotNull('valueCodeableConcept', instance.valueCodeableConcept?.toJson());
+  writeNotNull('valueString', instance.valueString?.toJson());
   writeNotNull('_valueString', instance.valueStringElement?.toJson());
-  val['valueQuantity'] = instance.valueQuantity.toJson();
-  val['valueBase64Binary'] = instance.valueBase64Binary.toJson();
+  writeNotNull('valueQuantity', instance.valueQuantity?.toJson());
+  writeNotNull('valueBase64Binary', instance.valueBase64Binary?.toJson());
   writeNotNull(
       '_valueBase64Binary', instance.valueBase64BinaryElement?.toJson());
-  val['valueAttachment'] = instance.valueAttachment.toJson();
-  val['valueBoolean'] = instance.valueBoolean.toJson();
+  writeNotNull('valueAttachment', instance.valueAttachment?.toJson());
+  writeNotNull('valueBoolean', instance.valueBoolean?.toJson());
   writeNotNull('_valueBoolean', instance.valueBooleanElement?.toJson());
   return val;
 }

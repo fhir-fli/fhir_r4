@@ -72,10 +72,14 @@ MedicationRequest _$MedicationRequestFromJson(Map<String, dynamic> json) =>
           ? null
           : Reference.fromJson(
               json['reportedReference'] as Map<String, dynamic>),
-      medicationCodeableConcept: CodeableConcept.fromJson(
-          json['medicationCodeableConcept'] as Map<String, dynamic>),
-      medicationReference: Reference.fromJson(
-          json['medicationReference'] as Map<String, dynamic>),
+      medicationCodeableConcept: json['medicationCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['medicationCodeableConcept'] as Map<String, dynamic>),
+      medicationReference: json['medicationReference'] == null
+          ? null
+          : Reference.fromJson(
+              json['medicationReference'] as Map<String, dynamic>),
       subject: Reference.fromJson(json['subject'] as Map<String, dynamic>),
       encounter: json['encounter'] == null
           ? null
@@ -221,9 +225,9 @@ Map<String, dynamic> _$MedicationRequestToJson(MedicationRequest instance) {
   writeNotNull('reportedBoolean', instance.reportedBoolean?.toJson());
   writeNotNull('_reportedBoolean', instance.reportedBooleanElement?.toJson());
   writeNotNull('reportedReference', instance.reportedReference?.toJson());
-  val['medicationCodeableConcept'] =
-      instance.medicationCodeableConcept.toJson();
-  val['medicationReference'] = instance.medicationReference.toJson();
+  writeNotNull('medicationCodeableConcept',
+      instance.medicationCodeableConcept?.toJson());
+  writeNotNull('medicationReference', instance.medicationReference?.toJson());
   val['subject'] = instance.subject.toJson();
   writeNotNull('encounter', instance.encounter?.toJson());
   writeNotNull('supportingInformation',
@@ -654,12 +658,16 @@ MedicationRequestSubstitution _$MedicationRequestSubstitutionFromJson(
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      allowedBoolean: FhirBoolean.fromJson(json['allowedBoolean']),
+      allowedBoolean: json['allowedBoolean'] == null
+          ? null
+          : FhirBoolean.fromJson(json['allowedBoolean']),
       allowedBooleanElement: json['_allowedBoolean'] == null
           ? null
           : Element.fromJson(json['_allowedBoolean'] as Map<String, dynamic>),
-      allowedCodeableConcept: CodeableConcept.fromJson(
-          json['allowedCodeableConcept'] as Map<String, dynamic>),
+      allowedCodeableConcept: json['allowedCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['allowedCodeableConcept'] as Map<String, dynamic>),
       reason: json['reason'] == null
           ? null
           : CodeableConcept.fromJson(json['reason'] as Map<String, dynamic>),
@@ -700,9 +708,10 @@ Map<String, dynamic> _$MedicationRequestSubstitutionToJson(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
-  val['allowedBoolean'] = instance.allowedBoolean.toJson();
+  writeNotNull('allowedBoolean', instance.allowedBoolean?.toJson());
   writeNotNull('_allowedBoolean', instance.allowedBooleanElement?.toJson());
-  val['allowedCodeableConcept'] = instance.allowedCodeableConcept.toJson();
+  writeNotNull(
+      'allowedCodeableConcept', instance.allowedCodeableConcept?.toJson());
   writeNotNull('reason', instance.reason?.toJson());
   return val;
 }

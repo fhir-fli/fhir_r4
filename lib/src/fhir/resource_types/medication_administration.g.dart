@@ -58,10 +58,14 @@ MedicationAdministration _$MedicationAdministrationFromJson(
       category: json['category'] == null
           ? null
           : CodeableConcept.fromJson(json['category'] as Map<String, dynamic>),
-      medicationCodeableConcept: CodeableConcept.fromJson(
-          json['medicationCodeableConcept'] as Map<String, dynamic>),
-      medicationReference: Reference.fromJson(
-          json['medicationReference'] as Map<String, dynamic>),
+      medicationCodeableConcept: json['medicationCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['medicationCodeableConcept'] as Map<String, dynamic>),
+      medicationReference: json['medicationReference'] == null
+          ? null
+          : Reference.fromJson(
+              json['medicationReference'] as Map<String, dynamic>),
       subject: Reference.fromJson(json['subject'] as Map<String, dynamic>),
       context: json['context'] == null
           ? null
@@ -69,14 +73,16 @@ MedicationAdministration _$MedicationAdministrationFromJson(
       supportingInformation: (json['supportingInformation'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
-      effectiveDateTime:
-          FhirDateTime.fromJson(json['effectiveDateTime'] as String),
+      effectiveDateTime: json['effectiveDateTime'] == null
+          ? null
+          : FhirDateTime.fromJson(json['effectiveDateTime'] as String),
       effectiveDateTimeElement: json['_effectiveDateTime'] == null
           ? null
           : Element.fromJson(
               json['_effectiveDateTime'] as Map<String, dynamic>),
-      effectivePeriod:
-          Period.fromJson(json['effectivePeriod'] as Map<String, dynamic>),
+      effectivePeriod: json['effectivePeriod'] == null
+          ? null
+          : Period.fromJson(json['effectivePeriod'] as Map<String, dynamic>),
       performer: (json['performer'] as List<dynamic>?)
           ?.map((e) => MedicationAdministrationPerformer.fromJson(
               e as Map<String, dynamic>))
@@ -163,17 +169,17 @@ Map<String, dynamic> _$MedicationAdministrationToJson(
   writeNotNull(
       'statusReason', instance.statusReason?.map((e) => e.toJson()).toList());
   writeNotNull('category', instance.category?.toJson());
-  val['medicationCodeableConcept'] =
-      instance.medicationCodeableConcept.toJson();
-  val['medicationReference'] = instance.medicationReference.toJson();
+  writeNotNull('medicationCodeableConcept',
+      instance.medicationCodeableConcept?.toJson());
+  writeNotNull('medicationReference', instance.medicationReference?.toJson());
   val['subject'] = instance.subject.toJson();
   writeNotNull('context', instance.context?.toJson());
   writeNotNull('supportingInformation',
       instance.supportingInformation?.map((e) => e.toJson()).toList());
-  val['effectiveDateTime'] = instance.effectiveDateTime.toJson();
+  writeNotNull('effectiveDateTime', instance.effectiveDateTime?.toJson());
   writeNotNull(
       '_effectiveDateTime', instance.effectiveDateTimeElement?.toJson());
-  val['effectivePeriod'] = instance.effectivePeriod.toJson();
+  writeNotNull('effectivePeriod', instance.effectivePeriod?.toJson());
   writeNotNull(
       'performer', instance.performer?.map((e) => e.toJson()).toList());
   writeNotNull(

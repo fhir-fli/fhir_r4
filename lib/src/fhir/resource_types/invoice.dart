@@ -347,8 +347,8 @@ class InvoiceLineItem extends BackboneElement {
     super.modifierExtension,
     this.sequence,
     this.sequenceElement,
-    required this.chargeItemReference,
-    required this.chargeItemCodeableConcept,
+    this.chargeItemReference,
+    this.chargeItemCodeableConcept,
     this.priceComponent,
     super.userData,
     super.formatCommentsPre,
@@ -374,14 +374,14 @@ class InvoiceLineItem extends BackboneElement {
   /// codes can be added using the CodeableConcept data type instead of the
   /// Reference.
   @JsonKey(name: 'chargeItemReference')
-  final Reference chargeItemReference;
+  final Reference? chargeItemReference;
 
   /// [chargeItemCodeableConcept] /// The ChargeItem contains information such as the billing code, date, amount
   /// etc. If no further details are required for the lineItem, inline billing
   /// codes can be added using the CodeableConcept data type instead of the
   /// Reference.
   @JsonKey(name: 'chargeItemCodeableConcept')
-  final CodeableConcept chargeItemCodeableConcept;
+  final CodeableConcept? chargeItemCodeableConcept;
 
   /// [priceComponent] /// The price for a ChargeItem may be calculated as a base price with
   /// surcharges/deductions that apply in certain conditions. A

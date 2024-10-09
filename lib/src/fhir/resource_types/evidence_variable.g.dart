@@ -470,17 +470,25 @@ EvidenceVariableCharacteristic _$EvidenceVariableCharacteristicFromJson(
       descriptionElement: json['_description'] == null
           ? null
           : Element.fromJson(json['_description'] as Map<String, dynamic>),
-      definitionReference: Reference.fromJson(
-          json['definitionReference'] as Map<String, dynamic>),
-      definitionCanonical: FhirCanonical.fromJson(json['definitionCanonical']),
+      definitionReference: json['definitionReference'] == null
+          ? null
+          : Reference.fromJson(
+              json['definitionReference'] as Map<String, dynamic>),
+      definitionCanonical: json['definitionCanonical'] == null
+          ? null
+          : FhirCanonical.fromJson(json['definitionCanonical']),
       definitionCanonicalElement: json['_definitionCanonical'] == null
           ? null
           : Element.fromJson(
               json['_definitionCanonical'] as Map<String, dynamic>),
-      definitionCodeableConcept: CodeableConcept.fromJson(
-          json['definitionCodeableConcept'] as Map<String, dynamic>),
-      definitionExpression: FhirExpression.fromJson(
-          json['definitionExpression'] as Map<String, dynamic>),
+      definitionCodeableConcept: json['definitionCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['definitionCodeableConcept'] as Map<String, dynamic>),
+      definitionExpression: json['definitionExpression'] == null
+          ? null
+          : FhirExpression.fromJson(
+              json['definitionExpression'] as Map<String, dynamic>),
       method: json['method'] == null
           ? null
           : CodeableConcept.fromJson(json['method'] as Map<String, dynamic>),
@@ -541,13 +549,13 @@ Map<String, dynamic> _$EvidenceVariableCharacteristicToJson(
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('description', instance.description?.toJson());
   writeNotNull('_description', instance.descriptionElement?.toJson());
-  val['definitionReference'] = instance.definitionReference.toJson();
-  val['definitionCanonical'] = instance.definitionCanonical.toJson();
+  writeNotNull('definitionReference', instance.definitionReference?.toJson());
+  writeNotNull('definitionCanonical', instance.definitionCanonical?.toJson());
   writeNotNull(
       '_definitionCanonical', instance.definitionCanonicalElement?.toJson());
-  val['definitionCodeableConcept'] =
-      instance.definitionCodeableConcept.toJson();
-  val['definitionExpression'] = instance.definitionExpression.toJson();
+  writeNotNull('definitionCodeableConcept',
+      instance.definitionCodeableConcept?.toJson());
+  writeNotNull('definitionExpression', instance.definitionExpression?.toJson());
   writeNotNull('method', instance.method?.toJson());
   writeNotNull('device', instance.device?.toJson());
   writeNotNull('exclude', instance.exclude?.toJson());

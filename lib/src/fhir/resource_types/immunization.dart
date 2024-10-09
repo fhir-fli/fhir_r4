@@ -29,9 +29,9 @@ class Immunization extends DomainResource {
     required this.vaccineCode,
     required this.patient,
     this.encounter,
-    required this.occurrenceDateTime,
+    this.occurrenceDateTime,
     this.occurrenceDateTimeElement,
-    required this.occurrenceString,
+    this.occurrenceString,
     this.occurrenceStringElement,
     this.recorded,
     this.recordedElement,
@@ -103,13 +103,13 @@ class Immunization extends DomainResource {
 
   /// [occurrenceDateTime] /// Date vaccine administered or was to be administered.
   @JsonKey(name: 'occurrenceDateTime')
-  final FhirDateTime occurrenceDateTime;
+  final FhirDateTime? occurrenceDateTime;
   @JsonKey(name: '_occurrenceDateTime')
   final Element? occurrenceDateTimeElement;
 
   /// [occurrenceString] /// Date vaccine administered or was to be administered.
   @JsonKey(name: 'occurrenceString')
-  final FhirString occurrenceString;
+  final FhirString? occurrenceString;
   @JsonKey(name: '_occurrenceString')
   final Element? occurrenceStringElement;
 
@@ -690,9 +690,9 @@ class ImmunizationProtocolApplied extends BackboneElement {
     this.seriesElement,
     this.authority,
     this.targetDisease,
-    required this.doseNumberPositiveInt,
+    this.doseNumberPositiveInt,
     this.doseNumberPositiveIntElement,
-    required this.doseNumberString,
+    this.doseNumberString,
     this.doseNumberStringElement,
     this.seriesDosesPositiveInt,
     this.seriesDosesPositiveIntElement,
@@ -729,13 +729,13 @@ class ImmunizationProtocolApplied extends BackboneElement {
 
   /// [doseNumberPositiveInt] /// Nominal position in a series.
   @JsonKey(name: 'doseNumberPositiveInt')
-  final FhirPositiveInt doseNumberPositiveInt;
+  final FhirPositiveInt? doseNumberPositiveInt;
   @JsonKey(name: '_doseNumberPositiveInt')
   final Element? doseNumberPositiveIntElement;
 
   /// [doseNumberString] /// Nominal position in a series.
   @JsonKey(name: 'doseNumberString')
-  final FhirString doseNumberString;
+  final FhirString? doseNumberString;
   @JsonKey(name: '_doseNumberString')
   final Element? doseNumberStringElement;
 

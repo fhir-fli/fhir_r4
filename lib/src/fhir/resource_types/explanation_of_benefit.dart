@@ -964,8 +964,8 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
     super.modifierExtension,
     required this.sequence,
     this.sequenceElement,
-    required this.diagnosisCodeableConcept,
-    required this.diagnosisReference,
+    this.diagnosisCodeableConcept,
+    this.diagnosisReference,
     this.type,
     this.onAdmission,
     this.packageCode,
@@ -991,12 +991,12 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
   /// [diagnosisCodeableConcept] /// The nature of illness or problem in a coded form or as a reference to an
   /// external defined Condition.
   @JsonKey(name: 'diagnosisCodeableConcept')
-  final CodeableConcept diagnosisCodeableConcept;
+  final CodeableConcept? diagnosisCodeableConcept;
 
   /// [diagnosisReference] /// The nature of illness or problem in a coded form or as a reference to an
   /// external defined Condition.
   @JsonKey(name: 'diagnosisReference')
-  final Reference diagnosisReference;
+  final Reference? diagnosisReference;
 
   /// [type] /// When the condition was observed or the relative ranking.
   @JsonKey(name: 'type')
@@ -1092,8 +1092,8 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
     this.type,
     this.date,
     this.dateElement,
-    required this.procedureCodeableConcept,
-    required this.procedureReference,
+    this.procedureCodeableConcept,
+    this.procedureReference,
     this.udi,
     super.userData,
     super.formatCommentsPre,
@@ -1127,12 +1127,12 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
   /// [procedureCodeableConcept] /// The code or reference to a Procedure resource which identifies the clinical
   /// intervention performed.
   @JsonKey(name: 'procedureCodeableConcept')
-  final CodeableConcept procedureCodeableConcept;
+  final CodeableConcept? procedureCodeableConcept;
 
   /// [procedureReference] /// The code or reference to a Procedure resource which identifies the clinical
   /// intervention performed.
   @JsonKey(name: 'procedureReference')
-  final Reference procedureReference;
+  final Reference? procedureReference;
 
   /// [udi] /// Unique Device Identifiers associated with this line item.
   @JsonKey(name: 'udi')

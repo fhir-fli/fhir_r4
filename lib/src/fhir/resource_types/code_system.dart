@@ -926,18 +926,18 @@ class CodeSystemProperty1 extends BackboneElement {
     super.modifierExtension,
     required this.code,
     this.codeElement,
-    required this.valueCode,
+    this.valueCode,
     this.valueCodeElement,
-    required this.valueCoding,
-    required this.valueString,
+    this.valueCoding,
+    this.valueString,
     this.valueStringElement,
-    required this.valueInteger,
+    this.valueInteger,
     this.valueIntegerElement,
-    required this.valueBoolean,
+    this.valueBoolean,
     this.valueBooleanElement,
-    required this.valueDateTime,
+    this.valueDateTime,
     this.valueDateTimeElement,
-    required this.valueDecimal,
+    this.valueDecimal,
     this.valueDecimalElement,
     super.userData,
     super.formatCommentsPre,
@@ -960,41 +960,41 @@ class CodeSystemProperty1 extends BackboneElement {
 
   /// [valueCode] /// The value of this property.
   @JsonKey(name: 'valueCode')
-  final FhirCode valueCode;
+  final FhirCode? valueCode;
   @JsonKey(name: '_valueCode')
   final Element? valueCodeElement;
 
   /// [valueCoding] /// The value of this property.
   @JsonKey(name: 'valueCoding')
-  final Coding valueCoding;
+  final Coding? valueCoding;
 
   /// [valueString] /// The value of this property.
   @JsonKey(name: 'valueString')
-  final FhirString valueString;
+  final FhirString? valueString;
   @JsonKey(name: '_valueString')
   final Element? valueStringElement;
 
   /// [valueInteger] /// The value of this property.
   @JsonKey(name: 'valueInteger')
-  final FhirInteger valueInteger;
+  final FhirInteger? valueInteger;
   @JsonKey(name: '_valueInteger')
   final Element? valueIntegerElement;
 
   /// [valueBoolean] /// The value of this property.
   @JsonKey(name: 'valueBoolean')
-  final FhirBoolean valueBoolean;
+  final FhirBoolean? valueBoolean;
   @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
 
   /// [valueDateTime] /// The value of this property.
   @JsonKey(name: 'valueDateTime')
-  final FhirDateTime valueDateTime;
+  final FhirDateTime? valueDateTime;
   @JsonKey(name: '_valueDateTime')
   final Element? valueDateTimeElement;
 
   /// [valueDecimal] /// The value of this property.
   @JsonKey(name: 'valueDecimal')
-  final FhirDecimal valueDecimal;
+  final FhirDecimal? valueDecimal;
   @JsonKey(name: '_valueDecimal')
   final Element? valueDecimalElement;
   factory CodeSystemProperty1.fromJson(Map<String, dynamic> json) =>

@@ -571,10 +571,13 @@ IngredientReferenceStrength _$IngredientReferenceStrengthFromJson(
           ? null
           : CodeableReference.fromJson(
               json['substance'] as Map<String, dynamic>),
-      strengthRatio:
-          Ratio.fromJson(json['strengthRatio'] as Map<String, dynamic>),
-      strengthRatioRange: RatioRange.fromJson(
-          json['strengthRatioRange'] as Map<String, dynamic>),
+      strengthRatio: json['strengthRatio'] == null
+          ? null
+          : Ratio.fromJson(json['strengthRatio'] as Map<String, dynamic>),
+      strengthRatioRange: json['strengthRatioRange'] == null
+          ? null
+          : RatioRange.fromJson(
+              json['strengthRatioRange'] as Map<String, dynamic>),
       measurementPoint: json['measurementPoint'] == null
           ? null
           : FhirString.fromJson(json['measurementPoint']),
@@ -622,8 +625,8 @@ Map<String, dynamic> _$IngredientReferenceStrengthToJson(
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('substance', instance.substance?.toJson());
-  val['strengthRatio'] = instance.strengthRatio.toJson();
-  val['strengthRatioRange'] = instance.strengthRatioRange.toJson();
+  writeNotNull('strengthRatio', instance.strengthRatio?.toJson());
+  writeNotNull('strengthRatioRange', instance.strengthRatioRange?.toJson());
   writeNotNull('measurementPoint', instance.measurementPoint?.toJson());
   writeNotNull('_measurementPoint', instance.measurementPointElement?.toJson());
   writeNotNull('country', instance.country?.map((e) => e.toJson()).toList());

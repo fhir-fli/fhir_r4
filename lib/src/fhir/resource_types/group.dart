@@ -215,12 +215,12 @@ class GroupCharacteristic extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    required this.valueCodeableConcept,
-    required this.valueBoolean,
+    this.valueCodeableConcept,
+    this.valueBoolean,
     this.valueBooleanElement,
-    required this.valueQuantity,
-    required this.valueRange,
-    required this.valueReference,
+    this.valueQuantity,
+    this.valueRange,
+    this.valueReference,
     required this.exclude,
     this.excludeElement,
     this.period,
@@ -244,29 +244,29 @@ class GroupCharacteristic extends BackboneElement {
   /// [valueCodeableConcept] /// The value of the trait that holds (or does not hold - see 'exclude') for
   /// members of the group.
   @JsonKey(name: 'valueCodeableConcept')
-  final CodeableConcept valueCodeableConcept;
+  final CodeableConcept? valueCodeableConcept;
 
   /// [valueBoolean] /// The value of the trait that holds (or does not hold - see 'exclude') for
   /// members of the group.
   @JsonKey(name: 'valueBoolean')
-  final FhirBoolean valueBoolean;
+  final FhirBoolean? valueBoolean;
   @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
 
   /// [valueQuantity] /// The value of the trait that holds (or does not hold - see 'exclude') for
   /// members of the group.
   @JsonKey(name: 'valueQuantity')
-  final Quantity valueQuantity;
+  final Quantity? valueQuantity;
 
   /// [valueRange] /// The value of the trait that holds (or does not hold - see 'exclude') for
   /// members of the group.
   @JsonKey(name: 'valueRange')
-  final Range valueRange;
+  final Range? valueRange;
 
   /// [valueReference] /// The value of the trait that holds (or does not hold - see 'exclude') for
   /// members of the group.
   @JsonKey(name: 'valueReference')
-  final Reference valueReference;
+  final Reference? valueReference;
 
   /// [exclude] /// If true, indicates the characteristic is one that is NOT held by members of
   /// the group.

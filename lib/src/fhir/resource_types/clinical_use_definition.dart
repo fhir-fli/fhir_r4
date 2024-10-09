@@ -664,8 +664,8 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.itemReference,
-    required this.itemCodeableConcept,
+    this.itemReference,
+    this.itemCodeableConcept,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -681,11 +681,11 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
 
   /// [itemReference] /// The specific medication, food or laboratory test that interacts.
   @JsonKey(name: 'itemReference')
-  final Reference itemReference;
+  final Reference? itemReference;
 
   /// [itemCodeableConcept] /// The specific medication, food or laboratory test that interacts.
   @JsonKey(name: 'itemCodeableConcept')
-  final CodeableConcept itemCodeableConcept;
+  final CodeableConcept? itemCodeableConcept;
   factory ClinicalUseDefinitionInteractant.fromJson(
           Map<String, dynamic> json) =>
       _$ClinicalUseDefinitionInteractantFromJson(json);

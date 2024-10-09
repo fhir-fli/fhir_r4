@@ -33,14 +33,14 @@ class MedicationAdministration extends DomainResource {
     this.statusElement,
     this.statusReason,
     this.category,
-    required this.medicationCodeableConcept,
-    required this.medicationReference,
+    this.medicationCodeableConcept,
+    this.medicationReference,
     required this.subject,
     this.context,
     this.supportingInformation,
-    required this.effectiveDateTime,
+    this.effectiveDateTime,
     this.effectiveDateTimeElement,
-    required this.effectivePeriod,
+    this.effectivePeriod,
     this.performer,
     this.reasonCode,
     this.reasonReference,
@@ -106,14 +106,14 @@ class MedicationAdministration extends DomainResource {
   /// carrying a code that identifies the medication from a known list of
   /// medications.
   @JsonKey(name: 'medicationCodeableConcept')
-  final CodeableConcept medicationCodeableConcept;
+  final CodeableConcept? medicationCodeableConcept;
 
   /// [medicationReference] /// Identifies the medication that was administered. This is either a link to a
   /// resource representing the details of the medication or a simple attribute
   /// carrying a code that identifies the medication from a known list of
   /// medications.
   @JsonKey(name: 'medicationReference')
-  final Reference medicationReference;
+  final Reference? medicationReference;
 
   /// [subject] /// The person or animal or group receiving the medication.
   @JsonKey(name: 'subject')
@@ -134,7 +134,7 @@ class MedicationAdministration extends DomainResource {
   /// For many administrations, such as swallowing a tablet the use of dateTime
   /// is more appropriate.
   @JsonKey(name: 'effectiveDateTime')
-  final FhirDateTime effectiveDateTime;
+  final FhirDateTime? effectiveDateTime;
   @JsonKey(name: '_effectiveDateTime')
   final Element? effectiveDateTimeElement;
 
@@ -143,7 +143,7 @@ class MedicationAdministration extends DomainResource {
   /// For many administrations, such as swallowing a tablet the use of dateTime
   /// is more appropriate.
   @JsonKey(name: 'effectivePeriod')
-  final Period effectivePeriod;
+  final Period? effectivePeriod;
 
   /// [performer] /// Indicates who or what performed the medication administration and how they
   /// were involved.

@@ -922,45 +922,66 @@ ContractAnswer _$ContractAnswerFromJson(Map<String, dynamic> json) =>
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      valueBoolean: FhirBoolean.fromJson(json['valueBoolean']),
+      valueBoolean: json['valueBoolean'] == null
+          ? null
+          : FhirBoolean.fromJson(json['valueBoolean']),
       valueBooleanElement: json['_valueBoolean'] == null
           ? null
           : Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>),
-      valueDecimal: FhirDecimal.fromJson(json['valueDecimal']),
+      valueDecimal: json['valueDecimal'] == null
+          ? null
+          : FhirDecimal.fromJson(json['valueDecimal']),
       valueDecimalElement: json['_valueDecimal'] == null
           ? null
           : Element.fromJson(json['_valueDecimal'] as Map<String, dynamic>),
-      valueInteger: FhirInteger.fromJson(json['valueInteger']),
+      valueInteger: json['valueInteger'] == null
+          ? null
+          : FhirInteger.fromJson(json['valueInteger']),
       valueIntegerElement: json['_valueInteger'] == null
           ? null
           : Element.fromJson(json['_valueInteger'] as Map<String, dynamic>),
-      valueDate: FhirDate.fromJson(json['valueDate'] as String),
+      valueDate: json['valueDate'] == null
+          ? null
+          : FhirDate.fromJson(json['valueDate'] as String),
       valueDateElement: json['_valueDate'] == null
           ? null
           : Element.fromJson(json['_valueDate'] as Map<String, dynamic>),
-      valueDateTime: FhirDateTime.fromJson(json['valueDateTime'] as String),
+      valueDateTime: json['valueDateTime'] == null
+          ? null
+          : FhirDateTime.fromJson(json['valueDateTime'] as String),
       valueDateTimeElement: json['_valueDateTime'] == null
           ? null
           : Element.fromJson(json['_valueDateTime'] as Map<String, dynamic>),
-      valueTime: FhirTime.fromJson(json['valueTime']),
+      valueTime: json['valueTime'] == null
+          ? null
+          : FhirTime.fromJson(json['valueTime']),
       valueTimeElement: json['_valueTime'] == null
           ? null
           : Element.fromJson(json['_valueTime'] as Map<String, dynamic>),
-      valueString: FhirString.fromJson(json['valueString']),
+      valueString: json['valueString'] == null
+          ? null
+          : FhirString.fromJson(json['valueString']),
       valueStringElement: json['_valueString'] == null
           ? null
           : Element.fromJson(json['_valueString'] as Map<String, dynamic>),
-      valueUri: FhirUri.fromJson(json['valueUri']),
+      valueUri:
+          json['valueUri'] == null ? null : FhirUri.fromJson(json['valueUri']),
       valueUriElement: json['_valueUri'] == null
           ? null
           : Element.fromJson(json['_valueUri'] as Map<String, dynamic>),
-      valueAttachment:
-          Attachment.fromJson(json['valueAttachment'] as Map<String, dynamic>),
-      valueCoding: Coding.fromJson(json['valueCoding'] as Map<String, dynamic>),
-      valueQuantity:
-          Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>),
-      valueReference:
-          Reference.fromJson(json['valueReference'] as Map<String, dynamic>),
+      valueAttachment: json['valueAttachment'] == null
+          ? null
+          : Attachment.fromJson(
+              json['valueAttachment'] as Map<String, dynamic>),
+      valueCoding: json['valueCoding'] == null
+          ? null
+          : Coding.fromJson(json['valueCoding'] as Map<String, dynamic>),
+      valueQuantity: json['valueQuantity'] == null
+          ? null
+          : Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>),
+      valueReference: json['valueReference'] == null
+          ? null
+          : Reference.fromJson(json['valueReference'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -997,26 +1018,26 @@ Map<String, dynamic> _$ContractAnswerToJson(ContractAnswer instance) {
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
-  val['valueBoolean'] = instance.valueBoolean.toJson();
+  writeNotNull('valueBoolean', instance.valueBoolean?.toJson());
   writeNotNull('_valueBoolean', instance.valueBooleanElement?.toJson());
-  val['valueDecimal'] = instance.valueDecimal.toJson();
+  writeNotNull('valueDecimal', instance.valueDecimal?.toJson());
   writeNotNull('_valueDecimal', instance.valueDecimalElement?.toJson());
-  val['valueInteger'] = instance.valueInteger.toJson();
+  writeNotNull('valueInteger', instance.valueInteger?.toJson());
   writeNotNull('_valueInteger', instance.valueIntegerElement?.toJson());
-  val['valueDate'] = instance.valueDate.toJson();
+  writeNotNull('valueDate', instance.valueDate?.toJson());
   writeNotNull('_valueDate', instance.valueDateElement?.toJson());
-  val['valueDateTime'] = instance.valueDateTime.toJson();
+  writeNotNull('valueDateTime', instance.valueDateTime?.toJson());
   writeNotNull('_valueDateTime', instance.valueDateTimeElement?.toJson());
-  val['valueTime'] = instance.valueTime.toJson();
+  writeNotNull('valueTime', instance.valueTime?.toJson());
   writeNotNull('_valueTime', instance.valueTimeElement?.toJson());
-  val['valueString'] = instance.valueString.toJson();
+  writeNotNull('valueString', instance.valueString?.toJson());
   writeNotNull('_valueString', instance.valueStringElement?.toJson());
-  val['valueUri'] = instance.valueUri.toJson();
+  writeNotNull('valueUri', instance.valueUri?.toJson());
   writeNotNull('_valueUri', instance.valueUriElement?.toJson());
-  val['valueAttachment'] = instance.valueAttachment.toJson();
-  val['valueCoding'] = instance.valueCoding.toJson();
-  val['valueQuantity'] = instance.valueQuantity.toJson();
-  val['valueReference'] = instance.valueReference.toJson();
+  writeNotNull('valueAttachment', instance.valueAttachment?.toJson());
+  writeNotNull('valueCoding', instance.valueCoding?.toJson());
+  writeNotNull('valueQuantity', instance.valueQuantity?.toJson());
+  writeNotNull('valueReference', instance.valueReference?.toJson());
   return val;
 }
 
@@ -1658,10 +1679,14 @@ ContractFriendly _$ContractFriendlyFromJson(Map<String, dynamic> json) =>
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      contentAttachment: Attachment.fromJson(
-          json['contentAttachment'] as Map<String, dynamic>),
-      contentReference:
-          Reference.fromJson(json['contentReference'] as Map<String, dynamic>),
+      contentAttachment: json['contentAttachment'] == null
+          ? null
+          : Attachment.fromJson(
+              json['contentAttachment'] as Map<String, dynamic>),
+      contentReference: json['contentReference'] == null
+          ? null
+          : Reference.fromJson(
+              json['contentReference'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -1698,8 +1723,8 @@ Map<String, dynamic> _$ContractFriendlyToJson(ContractFriendly instance) {
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
-  val['contentAttachment'] = instance.contentAttachment.toJson();
-  val['contentReference'] = instance.contentReference.toJson();
+  writeNotNull('contentAttachment', instance.contentAttachment?.toJson());
+  writeNotNull('contentReference', instance.contentReference?.toJson());
   return val;
 }
 
@@ -1712,10 +1737,14 @@ ContractLegal _$ContractLegalFromJson(Map<String, dynamic> json) =>
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      contentAttachment: Attachment.fromJson(
-          json['contentAttachment'] as Map<String, dynamic>),
-      contentReference:
-          Reference.fromJson(json['contentReference'] as Map<String, dynamic>),
+      contentAttachment: json['contentAttachment'] == null
+          ? null
+          : Attachment.fromJson(
+              json['contentAttachment'] as Map<String, dynamic>),
+      contentReference: json['contentReference'] == null
+          ? null
+          : Reference.fromJson(
+              json['contentReference'] as Map<String, dynamic>),
       legallyBindingAttachment: json['legallyBindingAttachment'] == null
           ? null
           : Attachment.fromJson(
@@ -1760,8 +1789,8 @@ Map<String, dynamic> _$ContractLegalToJson(ContractLegal instance) {
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
-  val['contentAttachment'] = instance.contentAttachment.toJson();
-  val['contentReference'] = instance.contentReference.toJson();
+  writeNotNull('contentAttachment', instance.contentAttachment?.toJson());
+  writeNotNull('contentReference', instance.contentReference?.toJson());
   writeNotNull(
       'legallyBindingAttachment', instance.legallyBindingAttachment?.toJson());
   writeNotNull(
@@ -1777,10 +1806,14 @@ ContractRule _$ContractRuleFromJson(Map<String, dynamic> json) => ContractRule(
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      contentAttachment: Attachment.fromJson(
-          json['contentAttachment'] as Map<String, dynamic>),
-      contentReference:
-          Reference.fromJson(json['contentReference'] as Map<String, dynamic>),
+      contentAttachment: json['contentAttachment'] == null
+          ? null
+          : Attachment.fromJson(
+              json['contentAttachment'] as Map<String, dynamic>),
+      contentReference: json['contentReference'] == null
+          ? null
+          : Reference.fromJson(
+              json['contentReference'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -1817,7 +1850,7 @@ Map<String, dynamic> _$ContractRuleToJson(ContractRule instance) {
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
-  val['contentAttachment'] = instance.contentAttachment.toJson();
-  val['contentReference'] = instance.contentReference.toJson();
+  writeNotNull('contentAttachment', instance.contentAttachment?.toJson());
+  writeNotNull('contentReference', instance.contentReference?.toJson());
   return val;
 }

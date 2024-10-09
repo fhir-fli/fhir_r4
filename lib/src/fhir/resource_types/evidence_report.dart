@@ -375,12 +375,12 @@ class EvidenceReportCharacteristic extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    required this.valueReference,
-    required this.valueCodeableConcept,
-    required this.valueBoolean,
+    this.valueReference,
+    this.valueCodeableConcept,
+    this.valueBoolean,
     this.valueBooleanElement,
-    required this.valueQuantity,
-    required this.valueRange,
+    this.valueQuantity,
+    this.valueRange,
     this.exclude,
     this.excludeElement,
     this.period,
@@ -403,25 +403,25 @@ class EvidenceReportCharacteristic extends BackboneElement {
 
   /// [valueReference] /// Characteristic value.
   @JsonKey(name: 'valueReference')
-  final Reference valueReference;
+  final Reference? valueReference;
 
   /// [valueCodeableConcept] /// Characteristic value.
   @JsonKey(name: 'valueCodeableConcept')
-  final CodeableConcept valueCodeableConcept;
+  final CodeableConcept? valueCodeableConcept;
 
   /// [valueBoolean] /// Characteristic value.
   @JsonKey(name: 'valueBoolean')
-  final FhirBoolean valueBoolean;
+  final FhirBoolean? valueBoolean;
   @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
 
   /// [valueQuantity] /// Characteristic value.
   @JsonKey(name: 'valueQuantity')
-  final Quantity valueQuantity;
+  final Quantity? valueQuantity;
 
   /// [valueRange] /// Characteristic value.
   @JsonKey(name: 'valueRange')
-  final Range valueRange;
+  final Range? valueRange;
 
   /// [exclude] /// Is used to express not the characteristic.
   @JsonKey(name: 'exclude')
@@ -515,8 +515,8 @@ class EvidenceReportRelatesTo extends BackboneElement {
     super.modifierExtension,
     required this.code,
     this.codeElement,
-    required this.targetIdentifier,
-    required this.targetReference,
+    this.targetIdentifier,
+    this.targetReference,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -539,11 +539,11 @@ class EvidenceReportRelatesTo extends BackboneElement {
 
   /// [targetIdentifier] /// The target composition/document of this relationship.
   @JsonKey(name: 'targetIdentifier')
-  final Identifier targetIdentifier;
+  final Identifier? targetIdentifier;
 
   /// [targetReference] /// The target composition/document of this relationship.
   @JsonKey(name: 'targetReference')
-  final Reference targetReference;
+  final Reference? targetReference;
   factory EvidenceReportRelatesTo.fromJson(Map<String, dynamic> json) =>
       _$EvidenceReportRelatesToFromJson(json);
 

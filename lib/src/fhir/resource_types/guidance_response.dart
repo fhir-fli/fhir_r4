@@ -25,11 +25,11 @@ class GuidanceResponse extends DomainResource {
     super.modifierExtension,
     this.requestIdentifier,
     this.identifier,
-    required this.moduleUri,
+    this.moduleUri,
     this.moduleUriElement,
-    required this.moduleCanonical,
+    this.moduleCanonical,
     this.moduleCanonicalElement,
-    required this.moduleCodeableConcept,
+    this.moduleCodeableConcept,
     required this.status,
     this.statusElement,
     this.subject,
@@ -73,21 +73,21 @@ class GuidanceResponse extends DomainResource {
   /// [moduleUri] /// An identifier, CodeableConcept or canonical reference to the guidance that
   /// was requested.
   @JsonKey(name: 'moduleUri')
-  final FhirUri moduleUri;
+  final FhirUri? moduleUri;
   @JsonKey(name: '_moduleUri')
   final Element? moduleUriElement;
 
   /// [moduleCanonical] /// An identifier, CodeableConcept or canonical reference to the guidance that
   /// was requested.
   @JsonKey(name: 'moduleCanonical')
-  final FhirCanonical moduleCanonical;
+  final FhirCanonical? moduleCanonical;
   @JsonKey(name: '_moduleCanonical')
   final Element? moduleCanonicalElement;
 
   /// [moduleCodeableConcept] /// An identifier, CodeableConcept or canonical reference to the guidance that
   /// was requested.
   @JsonKey(name: 'moduleCodeableConcept')
-  final CodeableConcept moduleCodeableConcept;
+  final CodeableConcept? moduleCodeableConcept;
 
   /// [status] /// The status of the response. If the evaluation is completed successfully,
   /// the status will indicate success. However, in order to complete the

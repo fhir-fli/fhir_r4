@@ -403,10 +403,14 @@ SubstanceIngredient _$SubstanceIngredientFromJson(Map<String, dynamic> json) =>
       quantity: json['quantity'] == null
           ? null
           : Ratio.fromJson(json['quantity'] as Map<String, dynamic>),
-      substanceCodeableConcept: CodeableConcept.fromJson(
-          json['substanceCodeableConcept'] as Map<String, dynamic>),
-      substanceReference: Reference.fromJson(
-          json['substanceReference'] as Map<String, dynamic>),
+      substanceCodeableConcept: json['substanceCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['substanceCodeableConcept'] as Map<String, dynamic>),
+      substanceReference: json['substanceReference'] == null
+          ? null
+          : Reference.fromJson(
+              json['substanceReference'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -444,7 +448,8 @@ Map<String, dynamic> _$SubstanceIngredientToJson(SubstanceIngredient instance) {
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('quantity', instance.quantity?.toJson());
-  val['substanceCodeableConcept'] = instance.substanceCodeableConcept.toJson();
-  val['substanceReference'] = instance.substanceReference.toJson();
+  writeNotNull(
+      'substanceCodeableConcept', instance.substanceCodeableConcept?.toJson());
+  writeNotNull('substanceReference', instance.substanceReference?.toJson());
   return val;
 }

@@ -637,40 +637,57 @@ QuestionnaireEnableWhen _$QuestionnaireEnableWhenFromJson(
       operatorElement: json['_operator'] == null
           ? null
           : Element.fromJson(json['_operator'] as Map<String, dynamic>),
-      answerBoolean: FhirBoolean.fromJson(json['answerBoolean']),
+      answerBoolean: json['answerBoolean'] == null
+          ? null
+          : FhirBoolean.fromJson(json['answerBoolean']),
       answerBooleanElement: json['_answerBoolean'] == null
           ? null
           : Element.fromJson(json['_answerBoolean'] as Map<String, dynamic>),
-      answerDecimal: FhirDecimal.fromJson(json['answerDecimal']),
+      answerDecimal: json['answerDecimal'] == null
+          ? null
+          : FhirDecimal.fromJson(json['answerDecimal']),
       answerDecimalElement: json['_answerDecimal'] == null
           ? null
           : Element.fromJson(json['_answerDecimal'] as Map<String, dynamic>),
-      answerInteger: FhirInteger.fromJson(json['answerInteger']),
+      answerInteger: json['answerInteger'] == null
+          ? null
+          : FhirInteger.fromJson(json['answerInteger']),
       answerIntegerElement: json['_answerInteger'] == null
           ? null
           : Element.fromJson(json['_answerInteger'] as Map<String, dynamic>),
-      answerDate: FhirDate.fromJson(json['answerDate'] as String),
+      answerDate: json['answerDate'] == null
+          ? null
+          : FhirDate.fromJson(json['answerDate'] as String),
       answerDateElement: json['_answerDate'] == null
           ? null
           : Element.fromJson(json['_answerDate'] as Map<String, dynamic>),
-      answerDateTime: FhirDateTime.fromJson(json['answerDateTime'] as String),
+      answerDateTime: json['answerDateTime'] == null
+          ? null
+          : FhirDateTime.fromJson(json['answerDateTime'] as String),
       answerDateTimeElement: json['_answerDateTime'] == null
           ? null
           : Element.fromJson(json['_answerDateTime'] as Map<String, dynamic>),
-      answerTime: FhirTime.fromJson(json['answerTime']),
+      answerTime: json['answerTime'] == null
+          ? null
+          : FhirTime.fromJson(json['answerTime']),
       answerTimeElement: json['_answerTime'] == null
           ? null
           : Element.fromJson(json['_answerTime'] as Map<String, dynamic>),
-      answerString: FhirString.fromJson(json['answerString']),
+      answerString: json['answerString'] == null
+          ? null
+          : FhirString.fromJson(json['answerString']),
       answerStringElement: json['_answerString'] == null
           ? null
           : Element.fromJson(json['_answerString'] as Map<String, dynamic>),
-      answerCoding:
-          Coding.fromJson(json['answerCoding'] as Map<String, dynamic>),
-      answerQuantity:
-          Quantity.fromJson(json['answerQuantity'] as Map<String, dynamic>),
-      answerReference:
-          Reference.fromJson(json['answerReference'] as Map<String, dynamic>),
+      answerCoding: json['answerCoding'] == null
+          ? null
+          : Coding.fromJson(json['answerCoding'] as Map<String, dynamic>),
+      answerQuantity: json['answerQuantity'] == null
+          ? null
+          : Quantity.fromJson(json['answerQuantity'] as Map<String, dynamic>),
+      answerReference: json['answerReference'] == null
+          ? null
+          : Reference.fromJson(json['answerReference'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -712,23 +729,23 @@ Map<String, dynamic> _$QuestionnaireEnableWhenToJson(
   writeNotNull('_question', instance.questionElement?.toJson());
   val['operator'] = instance.operator_.toJson();
   writeNotNull('_operator', instance.operatorElement?.toJson());
-  val['answerBoolean'] = instance.answerBoolean.toJson();
+  writeNotNull('answerBoolean', instance.answerBoolean?.toJson());
   writeNotNull('_answerBoolean', instance.answerBooleanElement?.toJson());
-  val['answerDecimal'] = instance.answerDecimal.toJson();
+  writeNotNull('answerDecimal', instance.answerDecimal?.toJson());
   writeNotNull('_answerDecimal', instance.answerDecimalElement?.toJson());
-  val['answerInteger'] = instance.answerInteger.toJson();
+  writeNotNull('answerInteger', instance.answerInteger?.toJson());
   writeNotNull('_answerInteger', instance.answerIntegerElement?.toJson());
-  val['answerDate'] = instance.answerDate.toJson();
+  writeNotNull('answerDate', instance.answerDate?.toJson());
   writeNotNull('_answerDate', instance.answerDateElement?.toJson());
-  val['answerDateTime'] = instance.answerDateTime.toJson();
+  writeNotNull('answerDateTime', instance.answerDateTime?.toJson());
   writeNotNull('_answerDateTime', instance.answerDateTimeElement?.toJson());
-  val['answerTime'] = instance.answerTime.toJson();
+  writeNotNull('answerTime', instance.answerTime?.toJson());
   writeNotNull('_answerTime', instance.answerTimeElement?.toJson());
-  val['answerString'] = instance.answerString.toJson();
+  writeNotNull('answerString', instance.answerString?.toJson());
   writeNotNull('_answerString', instance.answerStringElement?.toJson());
-  val['answerCoding'] = instance.answerCoding.toJson();
-  val['answerQuantity'] = instance.answerQuantity.toJson();
-  val['answerReference'] = instance.answerReference.toJson();
+  writeNotNull('answerCoding', instance.answerCoding?.toJson());
+  writeNotNull('answerQuantity', instance.answerQuantity?.toJson());
+  writeNotNull('answerReference', instance.answerReference?.toJson());
   return val;
 }
 
@@ -752,25 +769,36 @@ QuestionnaireAnswerOption _$QuestionnaireAnswerOptionFromJson(
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      valueInteger: FhirInteger.fromJson(json['valueInteger']),
+      valueInteger: json['valueInteger'] == null
+          ? null
+          : FhirInteger.fromJson(json['valueInteger']),
       valueIntegerElement: json['_valueInteger'] == null
           ? null
           : Element.fromJson(json['_valueInteger'] as Map<String, dynamic>),
-      valueDate: FhirDate.fromJson(json['valueDate'] as String),
+      valueDate: json['valueDate'] == null
+          ? null
+          : FhirDate.fromJson(json['valueDate'] as String),
       valueDateElement: json['_valueDate'] == null
           ? null
           : Element.fromJson(json['_valueDate'] as Map<String, dynamic>),
-      valueTime: FhirTime.fromJson(json['valueTime']),
+      valueTime: json['valueTime'] == null
+          ? null
+          : FhirTime.fromJson(json['valueTime']),
       valueTimeElement: json['_valueTime'] == null
           ? null
           : Element.fromJson(json['_valueTime'] as Map<String, dynamic>),
-      valueString: FhirString.fromJson(json['valueString']),
+      valueString: json['valueString'] == null
+          ? null
+          : FhirString.fromJson(json['valueString']),
       valueStringElement: json['_valueString'] == null
           ? null
           : Element.fromJson(json['_valueString'] as Map<String, dynamic>),
-      valueCoding: Coding.fromJson(json['valueCoding'] as Map<String, dynamic>),
-      valueReference:
-          Reference.fromJson(json['valueReference'] as Map<String, dynamic>),
+      valueCoding: json['valueCoding'] == null
+          ? null
+          : Coding.fromJson(json['valueCoding'] as Map<String, dynamic>),
+      valueReference: json['valueReference'] == null
+          ? null
+          : Reference.fromJson(json['valueReference'] as Map<String, dynamic>),
       initialSelected: json['initialSelected'] == null
           ? null
           : FhirBoolean.fromJson(json['initialSelected']),
@@ -814,16 +842,16 @@ Map<String, dynamic> _$QuestionnaireAnswerOptionToJson(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
-  val['valueInteger'] = instance.valueInteger.toJson();
+  writeNotNull('valueInteger', instance.valueInteger?.toJson());
   writeNotNull('_valueInteger', instance.valueIntegerElement?.toJson());
-  val['valueDate'] = instance.valueDate.toJson();
+  writeNotNull('valueDate', instance.valueDate?.toJson());
   writeNotNull('_valueDate', instance.valueDateElement?.toJson());
-  val['valueTime'] = instance.valueTime.toJson();
+  writeNotNull('valueTime', instance.valueTime?.toJson());
   writeNotNull('_valueTime', instance.valueTimeElement?.toJson());
-  val['valueString'] = instance.valueString.toJson();
+  writeNotNull('valueString', instance.valueString?.toJson());
   writeNotNull('_valueString', instance.valueStringElement?.toJson());
-  val['valueCoding'] = instance.valueCoding.toJson();
-  val['valueReference'] = instance.valueReference.toJson();
+  writeNotNull('valueCoding', instance.valueCoding?.toJson());
+  writeNotNull('valueReference', instance.valueReference?.toJson());
   writeNotNull('initialSelected', instance.initialSelected?.toJson());
   writeNotNull('_initialSelected', instance.initialSelectedElement?.toJson());
   return val;
@@ -839,45 +867,66 @@ QuestionnaireInitial _$QuestionnaireInitialFromJson(
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      valueBoolean: FhirBoolean.fromJson(json['valueBoolean']),
+      valueBoolean: json['valueBoolean'] == null
+          ? null
+          : FhirBoolean.fromJson(json['valueBoolean']),
       valueBooleanElement: json['_valueBoolean'] == null
           ? null
           : Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>),
-      valueDecimal: FhirDecimal.fromJson(json['valueDecimal']),
+      valueDecimal: json['valueDecimal'] == null
+          ? null
+          : FhirDecimal.fromJson(json['valueDecimal']),
       valueDecimalElement: json['_valueDecimal'] == null
           ? null
           : Element.fromJson(json['_valueDecimal'] as Map<String, dynamic>),
-      valueInteger: FhirInteger.fromJson(json['valueInteger']),
+      valueInteger: json['valueInteger'] == null
+          ? null
+          : FhirInteger.fromJson(json['valueInteger']),
       valueIntegerElement: json['_valueInteger'] == null
           ? null
           : Element.fromJson(json['_valueInteger'] as Map<String, dynamic>),
-      valueDate: FhirDate.fromJson(json['valueDate'] as String),
+      valueDate: json['valueDate'] == null
+          ? null
+          : FhirDate.fromJson(json['valueDate'] as String),
       valueDateElement: json['_valueDate'] == null
           ? null
           : Element.fromJson(json['_valueDate'] as Map<String, dynamic>),
-      valueDateTime: FhirDateTime.fromJson(json['valueDateTime'] as String),
+      valueDateTime: json['valueDateTime'] == null
+          ? null
+          : FhirDateTime.fromJson(json['valueDateTime'] as String),
       valueDateTimeElement: json['_valueDateTime'] == null
           ? null
           : Element.fromJson(json['_valueDateTime'] as Map<String, dynamic>),
-      valueTime: FhirTime.fromJson(json['valueTime']),
+      valueTime: json['valueTime'] == null
+          ? null
+          : FhirTime.fromJson(json['valueTime']),
       valueTimeElement: json['_valueTime'] == null
           ? null
           : Element.fromJson(json['_valueTime'] as Map<String, dynamic>),
-      valueString: FhirString.fromJson(json['valueString']),
+      valueString: json['valueString'] == null
+          ? null
+          : FhirString.fromJson(json['valueString']),
       valueStringElement: json['_valueString'] == null
           ? null
           : Element.fromJson(json['_valueString'] as Map<String, dynamic>),
-      valueUri: FhirUri.fromJson(json['valueUri']),
+      valueUri:
+          json['valueUri'] == null ? null : FhirUri.fromJson(json['valueUri']),
       valueUriElement: json['_valueUri'] == null
           ? null
           : Element.fromJson(json['_valueUri'] as Map<String, dynamic>),
-      valueAttachment:
-          Attachment.fromJson(json['valueAttachment'] as Map<String, dynamic>),
-      valueCoding: Coding.fromJson(json['valueCoding'] as Map<String, dynamic>),
-      valueQuantity:
-          Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>),
-      valueReference:
-          Reference.fromJson(json['valueReference'] as Map<String, dynamic>),
+      valueAttachment: json['valueAttachment'] == null
+          ? null
+          : Attachment.fromJson(
+              json['valueAttachment'] as Map<String, dynamic>),
+      valueCoding: json['valueCoding'] == null
+          ? null
+          : Coding.fromJson(json['valueCoding'] as Map<String, dynamic>),
+      valueQuantity: json['valueQuantity'] == null
+          ? null
+          : Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>),
+      valueReference: json['valueReference'] == null
+          ? null
+          : Reference.fromJson(json['valueReference'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -915,25 +964,25 @@ Map<String, dynamic> _$QuestionnaireInitialToJson(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
-  val['valueBoolean'] = instance.valueBoolean.toJson();
+  writeNotNull('valueBoolean', instance.valueBoolean?.toJson());
   writeNotNull('_valueBoolean', instance.valueBooleanElement?.toJson());
-  val['valueDecimal'] = instance.valueDecimal.toJson();
+  writeNotNull('valueDecimal', instance.valueDecimal?.toJson());
   writeNotNull('_valueDecimal', instance.valueDecimalElement?.toJson());
-  val['valueInteger'] = instance.valueInteger.toJson();
+  writeNotNull('valueInteger', instance.valueInteger?.toJson());
   writeNotNull('_valueInteger', instance.valueIntegerElement?.toJson());
-  val['valueDate'] = instance.valueDate.toJson();
+  writeNotNull('valueDate', instance.valueDate?.toJson());
   writeNotNull('_valueDate', instance.valueDateElement?.toJson());
-  val['valueDateTime'] = instance.valueDateTime.toJson();
+  writeNotNull('valueDateTime', instance.valueDateTime?.toJson());
   writeNotNull('_valueDateTime', instance.valueDateTimeElement?.toJson());
-  val['valueTime'] = instance.valueTime.toJson();
+  writeNotNull('valueTime', instance.valueTime?.toJson());
   writeNotNull('_valueTime', instance.valueTimeElement?.toJson());
-  val['valueString'] = instance.valueString.toJson();
+  writeNotNull('valueString', instance.valueString?.toJson());
   writeNotNull('_valueString', instance.valueStringElement?.toJson());
-  val['valueUri'] = instance.valueUri.toJson();
+  writeNotNull('valueUri', instance.valueUri?.toJson());
   writeNotNull('_valueUri', instance.valueUriElement?.toJson());
-  val['valueAttachment'] = instance.valueAttachment.toJson();
-  val['valueCoding'] = instance.valueCoding.toJson();
-  val['valueQuantity'] = instance.valueQuantity.toJson();
-  val['valueReference'] = instance.valueReference.toJson();
+  writeNotNull('valueAttachment', instance.valueAttachment?.toJson());
+  writeNotNull('valueCoding', instance.valueCoding?.toJson());
+  writeNotNull('valueQuantity', instance.valueQuantity?.toJson());
+  writeNotNull('valueReference', instance.valueReference?.toJson());
   return val;
 }

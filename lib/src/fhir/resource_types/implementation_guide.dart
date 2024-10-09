@@ -942,9 +942,9 @@ class ImplementationGuidePage extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.nameUrl,
+    this.nameUrl,
     this.nameUrlElement,
-    required this.nameReference,
+    this.nameReference,
     required this.title,
     this.titleElement,
     required this.generation,
@@ -965,13 +965,13 @@ class ImplementationGuidePage extends BackboneElement {
 
   /// [nameUrl] /// The source address for the page.
   @JsonKey(name: 'nameUrl')
-  final FhirUrl nameUrl;
+  final FhirUrl? nameUrl;
   @JsonKey(name: '_nameUrl')
   final Element? nameUrlElement;
 
   /// [nameReference] /// The source address for the page.
   @JsonKey(name: 'nameReference')
-  final Reference nameReference;
+  final Reference? nameReference;
 
   /// [title] /// A short title used to represent this page in navigational structures such
   /// as table of contents, bread crumbs, etc.

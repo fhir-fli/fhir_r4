@@ -361,17 +361,25 @@ GroupCharacteristic _$GroupCharacteristicFromJson(Map<String, dynamic> json) =>
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       code: CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
-      valueCodeableConcept: CodeableConcept.fromJson(
-          json['valueCodeableConcept'] as Map<String, dynamic>),
-      valueBoolean: FhirBoolean.fromJson(json['valueBoolean']),
+      valueCodeableConcept: json['valueCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['valueCodeableConcept'] as Map<String, dynamic>),
+      valueBoolean: json['valueBoolean'] == null
+          ? null
+          : FhirBoolean.fromJson(json['valueBoolean']),
       valueBooleanElement: json['_valueBoolean'] == null
           ? null
           : Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>),
-      valueQuantity:
-          Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>),
-      valueRange: Range.fromJson(json['valueRange'] as Map<String, dynamic>),
-      valueReference:
-          Reference.fromJson(json['valueReference'] as Map<String, dynamic>),
+      valueQuantity: json['valueQuantity'] == null
+          ? null
+          : Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>),
+      valueRange: json['valueRange'] == null
+          ? null
+          : Range.fromJson(json['valueRange'] as Map<String, dynamic>),
+      valueReference: json['valueReference'] == null
+          ? null
+          : Reference.fromJson(json['valueReference'] as Map<String, dynamic>),
       exclude: FhirBoolean.fromJson(json['exclude']),
       excludeElement: json['_exclude'] == null
           ? null
@@ -416,12 +424,12 @@ Map<String, dynamic> _$GroupCharacteristicToJson(GroupCharacteristic instance) {
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['code'] = instance.code.toJson();
-  val['valueCodeableConcept'] = instance.valueCodeableConcept.toJson();
-  val['valueBoolean'] = instance.valueBoolean.toJson();
+  writeNotNull('valueCodeableConcept', instance.valueCodeableConcept?.toJson());
+  writeNotNull('valueBoolean', instance.valueBoolean?.toJson());
   writeNotNull('_valueBoolean', instance.valueBooleanElement?.toJson());
-  val['valueQuantity'] = instance.valueQuantity.toJson();
-  val['valueRange'] = instance.valueRange.toJson();
-  val['valueReference'] = instance.valueReference.toJson();
+  writeNotNull('valueQuantity', instance.valueQuantity?.toJson());
+  writeNotNull('valueRange', instance.valueRange?.toJson());
+  writeNotNull('valueReference', instance.valueReference?.toJson());
   val['exclude'] = instance.exclude.toJson();
   writeNotNull('_exclude', instance.excludeElement?.toJson());
   writeNotNull('period', instance.period?.toJson());

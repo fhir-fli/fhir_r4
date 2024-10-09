@@ -434,14 +434,20 @@ CommunicationRequestPayload _$CommunicationRequestPayloadFromJson(
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      contentString: FhirString.fromJson(json['contentString']),
+      contentString: json['contentString'] == null
+          ? null
+          : FhirString.fromJson(json['contentString']),
       contentStringElement: json['_contentString'] == null
           ? null
           : Element.fromJson(json['_contentString'] as Map<String, dynamic>),
-      contentAttachment: Attachment.fromJson(
-          json['contentAttachment'] as Map<String, dynamic>),
-      contentReference:
-          Reference.fromJson(json['contentReference'] as Map<String, dynamic>),
+      contentAttachment: json['contentAttachment'] == null
+          ? null
+          : Attachment.fromJson(
+              json['contentAttachment'] as Map<String, dynamic>),
+      contentReference: json['contentReference'] == null
+          ? null
+          : Reference.fromJson(
+              json['contentReference'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -479,9 +485,9 @@ Map<String, dynamic> _$CommunicationRequestPayloadToJson(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
-  val['contentString'] = instance.contentString.toJson();
+  writeNotNull('contentString', instance.contentString?.toJson());
   writeNotNull('_contentString', instance.contentStringElement?.toJson());
-  val['contentAttachment'] = instance.contentAttachment.toJson();
-  val['contentReference'] = instance.contentReference.toJson();
+  writeNotNull('contentAttachment', instance.contentAttachment?.toJson());
+  writeNotNull('contentReference', instance.contentReference?.toJson());
   return val;
 }

@@ -661,23 +661,23 @@ class QuestionnaireEnableWhen extends BackboneElement {
     this.questionElement,
     required this.operator_,
     this.operatorElement,
-    required this.answerBoolean,
+    this.answerBoolean,
     this.answerBooleanElement,
-    required this.answerDecimal,
+    this.answerDecimal,
     this.answerDecimalElement,
-    required this.answerInteger,
+    this.answerInteger,
     this.answerIntegerElement,
-    required this.answerDate,
+    this.answerDate,
     this.answerDateElement,
-    required this.answerDateTime,
+    this.answerDateTime,
     this.answerDateTimeElement,
-    required this.answerTime,
+    this.answerTime,
     this.answerTimeElement,
-    required this.answerString,
+    this.answerString,
     this.answerStringElement,
-    required this.answerCoding,
-    required this.answerQuantity,
-    required this.answerReference,
+    this.answerCoding,
+    this.answerQuantity,
+    this.answerReference,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -707,66 +707,66 @@ class QuestionnaireEnableWhen extends BackboneElement {
   /// [answerBoolean] /// A value that the referenced question is tested using the specified operator
   /// in order for the item to be enabled.
   @JsonKey(name: 'answerBoolean')
-  final FhirBoolean answerBoolean;
+  final FhirBoolean? answerBoolean;
   @JsonKey(name: '_answerBoolean')
   final Element? answerBooleanElement;
 
   /// [answerDecimal] /// A value that the referenced question is tested using the specified operator
   /// in order for the item to be enabled.
   @JsonKey(name: 'answerDecimal')
-  final FhirDecimal answerDecimal;
+  final FhirDecimal? answerDecimal;
   @JsonKey(name: '_answerDecimal')
   final Element? answerDecimalElement;
 
   /// [answerInteger] /// A value that the referenced question is tested using the specified operator
   /// in order for the item to be enabled.
   @JsonKey(name: 'answerInteger')
-  final FhirInteger answerInteger;
+  final FhirInteger? answerInteger;
   @JsonKey(name: '_answerInteger')
   final Element? answerIntegerElement;
 
   /// [answerDate] /// A value that the referenced question is tested using the specified operator
   /// in order for the item to be enabled.
   @JsonKey(name: 'answerDate')
-  final FhirDate answerDate;
+  final FhirDate? answerDate;
   @JsonKey(name: '_answerDate')
   final Element? answerDateElement;
 
   /// [answerDateTime] /// A value that the referenced question is tested using the specified operator
   /// in order for the item to be enabled.
   @JsonKey(name: 'answerDateTime')
-  final FhirDateTime answerDateTime;
+  final FhirDateTime? answerDateTime;
   @JsonKey(name: '_answerDateTime')
   final Element? answerDateTimeElement;
 
   /// [answerTime] /// A value that the referenced question is tested using the specified operator
   /// in order for the item to be enabled.
   @JsonKey(name: 'answerTime')
-  final FhirTime answerTime;
+  final FhirTime? answerTime;
   @JsonKey(name: '_answerTime')
   final Element? answerTimeElement;
 
   /// [answerString] /// A value that the referenced question is tested using the specified operator
   /// in order for the item to be enabled.
   @JsonKey(name: 'answerString')
-  final FhirString answerString;
+  final FhirString? answerString;
   @JsonKey(name: '_answerString')
   final Element? answerStringElement;
 
   /// [answerCoding] /// A value that the referenced question is tested using the specified operator
   /// in order for the item to be enabled.
   @JsonKey(name: 'answerCoding')
-  final Coding answerCoding;
+  final Coding? answerCoding;
 
   /// [answerQuantity] /// A value that the referenced question is tested using the specified operator
   /// in order for the item to be enabled.
   @JsonKey(name: 'answerQuantity')
-  final Quantity answerQuantity;
+  final Quantity? answerQuantity;
 
   /// [answerReference] /// A value that the referenced question is tested using the specified operator
   /// in order for the item to be enabled.
   @JsonKey(name: 'answerReference')
-  final Reference answerReference;
+  final Reference? answerReference;
   factory QuestionnaireEnableWhen.fromJson(Map<String, dynamic> json) =>
       _$QuestionnaireEnableWhenFromJson(json);
 
@@ -870,16 +870,16 @@ class QuestionnaireAnswerOption extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.valueInteger,
+    this.valueInteger,
     this.valueIntegerElement,
-    required this.valueDate,
+    this.valueDate,
     this.valueDateElement,
-    required this.valueTime,
+    this.valueTime,
     this.valueTimeElement,
-    required this.valueString,
+    this.valueString,
     this.valueStringElement,
-    required this.valueCoding,
-    required this.valueReference,
+    this.valueCoding,
+    this.valueReference,
     this.initialSelected,
     this.initialSelectedElement,
     super.userData,
@@ -897,35 +897,35 @@ class QuestionnaireAnswerOption extends BackboneElement {
 
   /// [valueInteger] /// A potential answer that's allowed as the answer to this question.
   @JsonKey(name: 'valueInteger')
-  final FhirInteger valueInteger;
+  final FhirInteger? valueInteger;
   @JsonKey(name: '_valueInteger')
   final Element? valueIntegerElement;
 
   /// [valueDate] /// A potential answer that's allowed as the answer to this question.
   @JsonKey(name: 'valueDate')
-  final FhirDate valueDate;
+  final FhirDate? valueDate;
   @JsonKey(name: '_valueDate')
   final Element? valueDateElement;
 
   /// [valueTime] /// A potential answer that's allowed as the answer to this question.
   @JsonKey(name: 'valueTime')
-  final FhirTime valueTime;
+  final FhirTime? valueTime;
   @JsonKey(name: '_valueTime')
   final Element? valueTimeElement;
 
   /// [valueString] /// A potential answer that's allowed as the answer to this question.
   @JsonKey(name: 'valueString')
-  final FhirString valueString;
+  final FhirString? valueString;
   @JsonKey(name: '_valueString')
   final Element? valueStringElement;
 
   /// [valueCoding] /// A potential answer that's allowed as the answer to this question.
   @JsonKey(name: 'valueCoding')
-  final Coding valueCoding;
+  final Coding? valueCoding;
 
   /// [valueReference] /// A potential answer that's allowed as the answer to this question.
   @JsonKey(name: 'valueReference')
-  final Reference valueReference;
+  final Reference? valueReference;
 
   /// [initialSelected] /// Indicates whether the answer value is selected when the list of possible
   /// answers is initially shown.
@@ -1019,26 +1019,26 @@ class QuestionnaireInitial extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.valueBoolean,
+    this.valueBoolean,
     this.valueBooleanElement,
-    required this.valueDecimal,
+    this.valueDecimal,
     this.valueDecimalElement,
-    required this.valueInteger,
+    this.valueInteger,
     this.valueIntegerElement,
-    required this.valueDate,
+    this.valueDate,
     this.valueDateElement,
-    required this.valueDateTime,
+    this.valueDateTime,
     this.valueDateTimeElement,
-    required this.valueTime,
+    this.valueTime,
     this.valueTimeElement,
-    required this.valueString,
+    this.valueString,
     this.valueStringElement,
-    required this.valueUri,
+    this.valueUri,
     this.valueUriElement,
-    required this.valueAttachment,
-    required this.valueCoding,
-    required this.valueQuantity,
-    required this.valueReference,
+    this.valueAttachment,
+    this.valueCoding,
+    this.valueQuantity,
+    this.valueReference,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1054,67 +1054,67 @@ class QuestionnaireInitial extends BackboneElement {
 
   /// [valueBoolean] /// The actual value to for an initial answer.
   @JsonKey(name: 'valueBoolean')
-  final FhirBoolean valueBoolean;
+  final FhirBoolean? valueBoolean;
   @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
 
   /// [valueDecimal] /// The actual value to for an initial answer.
   @JsonKey(name: 'valueDecimal')
-  final FhirDecimal valueDecimal;
+  final FhirDecimal? valueDecimal;
   @JsonKey(name: '_valueDecimal')
   final Element? valueDecimalElement;
 
   /// [valueInteger] /// The actual value to for an initial answer.
   @JsonKey(name: 'valueInteger')
-  final FhirInteger valueInteger;
+  final FhirInteger? valueInteger;
   @JsonKey(name: '_valueInteger')
   final Element? valueIntegerElement;
 
   /// [valueDate] /// The actual value to for an initial answer.
   @JsonKey(name: 'valueDate')
-  final FhirDate valueDate;
+  final FhirDate? valueDate;
   @JsonKey(name: '_valueDate')
   final Element? valueDateElement;
 
   /// [valueDateTime] /// The actual value to for an initial answer.
   @JsonKey(name: 'valueDateTime')
-  final FhirDateTime valueDateTime;
+  final FhirDateTime? valueDateTime;
   @JsonKey(name: '_valueDateTime')
   final Element? valueDateTimeElement;
 
   /// [valueTime] /// The actual value to for an initial answer.
   @JsonKey(name: 'valueTime')
-  final FhirTime valueTime;
+  final FhirTime? valueTime;
   @JsonKey(name: '_valueTime')
   final Element? valueTimeElement;
 
   /// [valueString] /// The actual value to for an initial answer.
   @JsonKey(name: 'valueString')
-  final FhirString valueString;
+  final FhirString? valueString;
   @JsonKey(name: '_valueString')
   final Element? valueStringElement;
 
   /// [valueUri] /// The actual value to for an initial answer.
   @JsonKey(name: 'valueUri')
-  final FhirUri valueUri;
+  final FhirUri? valueUri;
   @JsonKey(name: '_valueUri')
   final Element? valueUriElement;
 
   /// [valueAttachment] /// The actual value to for an initial answer.
   @JsonKey(name: 'valueAttachment')
-  final Attachment valueAttachment;
+  final Attachment? valueAttachment;
 
   /// [valueCoding] /// The actual value to for an initial answer.
   @JsonKey(name: 'valueCoding')
-  final Coding valueCoding;
+  final Coding? valueCoding;
 
   /// [valueQuantity] /// The actual value to for an initial answer.
   @JsonKey(name: 'valueQuantity')
-  final Quantity valueQuantity;
+  final Quantity? valueQuantity;
 
   /// [valueReference] /// The actual value to for an initial answer.
   @JsonKey(name: 'valueReference')
-  final Reference valueReference;
+  final Reference? valueReference;
   factory QuestionnaireInitial.fromJson(Map<String, dynamic> json) =>
       _$QuestionnaireInitialFromJson(json);
 

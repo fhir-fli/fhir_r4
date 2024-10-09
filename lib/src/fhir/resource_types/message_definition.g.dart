@@ -117,8 +117,11 @@ MessageDefinition _$MessageDefinitionFromJson(Map<String, dynamic> json) =>
       parentElement: (json['_parent'] as List<dynamic>?)
           ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
           .toList(),
-      eventCoding: Coding.fromJson(json['eventCoding'] as Map<String, dynamic>),
-      eventUri: FhirUri.fromJson(json['eventUri']),
+      eventCoding: json['eventCoding'] == null
+          ? null
+          : Coding.fromJson(json['eventCoding'] as Map<String, dynamic>),
+      eventUri:
+          json['eventUri'] == null ? null : FhirUri.fromJson(json['eventUri']),
       eventUriElement: json['_eventUri'] == null
           ? null
           : Element.fromJson(json['_eventUri'] as Map<String, dynamic>),
@@ -230,8 +233,8 @@ Map<String, dynamic> _$MessageDefinitionToJson(MessageDefinition instance) {
   writeNotNull('parent', instance.parent?.map((e) => e.toJson()).toList());
   writeNotNull(
       '_parent', instance.parentElement?.map((e) => e.toJson()).toList());
-  val['eventCoding'] = instance.eventCoding.toJson();
-  val['eventUri'] = instance.eventUri.toJson();
+  writeNotNull('eventCoding', instance.eventCoding?.toJson());
+  writeNotNull('eventUri', instance.eventUri?.toJson());
   writeNotNull('_eventUri', instance.eventUriElement?.toJson());
   writeNotNull('category', instance.category?.toJson());
   writeNotNull('_category', instance.categoryElement?.toJson());

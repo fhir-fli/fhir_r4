@@ -1123,26 +1123,26 @@ class ContractAnswer extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.valueBoolean,
+    this.valueBoolean,
     this.valueBooleanElement,
-    required this.valueDecimal,
+    this.valueDecimal,
     this.valueDecimalElement,
-    required this.valueInteger,
+    this.valueInteger,
     this.valueIntegerElement,
-    required this.valueDate,
+    this.valueDate,
     this.valueDateElement,
-    required this.valueDateTime,
+    this.valueDateTime,
     this.valueDateTimeElement,
-    required this.valueTime,
+    this.valueTime,
     this.valueTimeElement,
-    required this.valueString,
+    this.valueString,
     this.valueStringElement,
-    required this.valueUri,
+    this.valueUri,
     this.valueUriElement,
-    required this.valueAttachment,
-    required this.valueCoding,
-    required this.valueQuantity,
-    required this.valueReference,
+    this.valueAttachment,
+    this.valueCoding,
+    this.valueQuantity,
+    this.valueReference,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1161,7 +1161,7 @@ class ContractAnswer extends BackboneElement {
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
   @JsonKey(name: 'valueBoolean')
-  final FhirBoolean valueBoolean;
+  final FhirBoolean? valueBoolean;
   @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
 
@@ -1170,7 +1170,7 @@ class ContractAnswer extends BackboneElement {
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
   @JsonKey(name: 'valueDecimal')
-  final FhirDecimal valueDecimal;
+  final FhirDecimal? valueDecimal;
   @JsonKey(name: '_valueDecimal')
   final Element? valueDecimalElement;
 
@@ -1179,7 +1179,7 @@ class ContractAnswer extends BackboneElement {
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
   @JsonKey(name: 'valueInteger')
-  final FhirInteger valueInteger;
+  final FhirInteger? valueInteger;
   @JsonKey(name: '_valueInteger')
   final Element? valueIntegerElement;
 
@@ -1188,7 +1188,7 @@ class ContractAnswer extends BackboneElement {
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
   @JsonKey(name: 'valueDate')
-  final FhirDate valueDate;
+  final FhirDate? valueDate;
   @JsonKey(name: '_valueDate')
   final Element? valueDateElement;
 
@@ -1197,7 +1197,7 @@ class ContractAnswer extends BackboneElement {
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
   @JsonKey(name: 'valueDateTime')
-  final FhirDateTime valueDateTime;
+  final FhirDateTime? valueDateTime;
   @JsonKey(name: '_valueDateTime')
   final Element? valueDateTimeElement;
 
@@ -1206,7 +1206,7 @@ class ContractAnswer extends BackboneElement {
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
   @JsonKey(name: 'valueTime')
-  final FhirTime valueTime;
+  final FhirTime? valueTime;
   @JsonKey(name: '_valueTime')
   final Element? valueTimeElement;
 
@@ -1215,7 +1215,7 @@ class ContractAnswer extends BackboneElement {
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
   @JsonKey(name: 'valueString')
-  final FhirString valueString;
+  final FhirString? valueString;
   @JsonKey(name: '_valueString')
   final Element? valueStringElement;
 
@@ -1224,7 +1224,7 @@ class ContractAnswer extends BackboneElement {
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
   @JsonKey(name: 'valueUri')
-  final FhirUri valueUri;
+  final FhirUri? valueUri;
   @JsonKey(name: '_valueUri')
   final Element? valueUriElement;
 
@@ -1233,28 +1233,28 @@ class ContractAnswer extends BackboneElement {
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
   @JsonKey(name: 'valueAttachment')
-  final Attachment valueAttachment;
+  final Attachment? valueAttachment;
 
   /// [valueCoding] /// Response to an offer clause or question text, which enables selection of
   /// values to be agreed to, e.g., the period of participation, the date of
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
   @JsonKey(name: 'valueCoding')
-  final Coding valueCoding;
+  final Coding? valueCoding;
 
   /// [valueQuantity] /// Response to an offer clause or question text, which enables selection of
   /// values to be agreed to, e.g., the period of participation, the date of
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
   @JsonKey(name: 'valueQuantity')
-  final Quantity valueQuantity;
+  final Quantity? valueQuantity;
 
   /// [valueReference] /// Response to an offer clause or question text, which enables selection of
   /// values to be agreed to, e.g., the period of participation, the date of
   /// occupancy of a rental, warrently duration, or whether biospecimen may be
   /// used for further research.
   @JsonKey(name: 'valueReference')
-  final Reference valueReference;
+  final Reference? valueReference;
   factory ContractAnswer.fromJson(Map<String, dynamic> json) =>
       _$ContractAnswerFromJson(json);
 
@@ -2372,8 +2372,8 @@ class ContractFriendly extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.contentAttachment,
-    required this.contentReference,
+    this.contentAttachment,
+    this.contentReference,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -2390,12 +2390,12 @@ class ContractFriendly extends BackboneElement {
   /// [contentAttachment] /// Human readable rendering of this Contract in a format and representation
   /// intended to enhance comprehension and ensure understandability.
   @JsonKey(name: 'contentAttachment')
-  final Attachment contentAttachment;
+  final Attachment? contentAttachment;
 
   /// [contentReference] /// Human readable rendering of this Contract in a format and representation
   /// intended to enhance comprehension and ensure understandability.
   @JsonKey(name: 'contentReference')
-  final Reference contentReference;
+  final Reference? contentReference;
   factory ContractFriendly.fromJson(Map<String, dynamic> json) =>
       _$ContractFriendlyFromJson(json);
 
@@ -2460,8 +2460,8 @@ class ContractLegal extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.contentAttachment,
-    required this.contentReference,
+    this.contentAttachment,
+    this.contentReference,
     this.legallyBindingAttachment,
     this.legallyBindingReference,
     super.userData,
@@ -2479,11 +2479,11 @@ class ContractLegal extends BackboneElement {
 
   /// [contentAttachment] /// Contract legal text in human renderable form.
   @JsonKey(name: 'contentAttachment')
-  final Attachment contentAttachment;
+  final Attachment? contentAttachment;
 
   /// [contentReference] /// Contract legal text in human renderable form.
   @JsonKey(name: 'contentReference')
-  final Reference contentReference;
+  final Reference? contentReference;
 
   /// [legallyBindingAttachment] /// Legally binding Contract: This is the signed and legally recognized
   /// representation of the Contract, which is considered the "source of truth"
@@ -2568,8 +2568,8 @@ class ContractRule extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.contentAttachment,
-    required this.contentReference,
+    this.contentAttachment,
+    this.contentReference,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -2586,12 +2586,12 @@ class ContractRule extends BackboneElement {
   /// [contentAttachment] /// Computable Contract conveyed using a policy rule language (e.g. XACML,
   /// DKAL, SecPal).
   @JsonKey(name: 'contentAttachment')
-  final Attachment contentAttachment;
+  final Attachment? contentAttachment;
 
   /// [contentReference] /// Computable Contract conveyed using a policy rule language (e.g. XACML,
   /// DKAL, SecPal).
   @JsonKey(name: 'contentReference')
-  final Reference contentReference;
+  final Reference? contentReference;
   factory ContractRule.fromJson(Map<String, dynamic> json) =>
       _$ContractRuleFromJson(json);
 

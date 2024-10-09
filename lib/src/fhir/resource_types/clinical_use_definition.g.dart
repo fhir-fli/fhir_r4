@@ -664,10 +664,13 @@ ClinicalUseDefinitionInteractant _$ClinicalUseDefinitionInteractantFromJson(
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      itemReference:
-          Reference.fromJson(json['itemReference'] as Map<String, dynamic>),
-      itemCodeableConcept: CodeableConcept.fromJson(
-          json['itemCodeableConcept'] as Map<String, dynamic>),
+      itemReference: json['itemReference'] == null
+          ? null
+          : Reference.fromJson(json['itemReference'] as Map<String, dynamic>),
+      itemCodeableConcept: json['itemCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['itemCodeableConcept'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -705,8 +708,8 @@ Map<String, dynamic> _$ClinicalUseDefinitionInteractantToJson(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
-  val['itemReference'] = instance.itemReference.toJson();
-  val['itemCodeableConcept'] = instance.itemCodeableConcept.toJson();
+  writeNotNull('itemReference', instance.itemReference?.toJson());
+  writeNotNull('itemCodeableConcept', instance.itemCodeableConcept?.toJson());
   return val;
 }
 

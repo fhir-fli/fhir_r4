@@ -272,7 +272,7 @@ Map<String, WritableClass> _buildWritableClasses(
           comment: element['definition'] as String? ?? '',
           needsElement: actualType.isPrimitiveType,
           path: path,
-          isRequired: isRequired,
+          isRequired: !fieldName.contains('[x]') && isRequired,
           isList: isList,
         ));
       }

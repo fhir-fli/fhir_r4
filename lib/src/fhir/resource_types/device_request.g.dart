@@ -72,10 +72,13 @@ DeviceRequest _$DeviceRequestFromJson(Map<String, dynamic> json) =>
       priorityElement: json['_priority'] == null
           ? null
           : Element.fromJson(json['_priority'] as Map<String, dynamic>),
-      codeReference:
-          Reference.fromJson(json['codeReference'] as Map<String, dynamic>),
-      codeCodeableConcept: CodeableConcept.fromJson(
-          json['codeCodeableConcept'] as Map<String, dynamic>),
+      codeReference: json['codeReference'] == null
+          ? null
+          : Reference.fromJson(json['codeReference'] as Map<String, dynamic>),
+      codeCodeableConcept: json['codeCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['codeCodeableConcept'] as Map<String, dynamic>),
       parameter: (json['parameter'] as List<dynamic>?)
           ?.map(
               (e) => DeviceRequestParameter.fromJson(e as Map<String, dynamic>))
@@ -198,8 +201,8 @@ Map<String, dynamic> _$DeviceRequestToJson(DeviceRequest instance) {
   writeNotNull('_intent', instance.intentElement?.toJson());
   writeNotNull('priority', instance.priority?.toJson());
   writeNotNull('_priority', instance.priorityElement?.toJson());
-  val['codeReference'] = instance.codeReference.toJson();
-  val['codeCodeableConcept'] = instance.codeCodeableConcept.toJson();
+  writeNotNull('codeReference', instance.codeReference?.toJson());
+  writeNotNull('codeCodeableConcept', instance.codeCodeableConcept?.toJson());
   writeNotNull(
       'parameter', instance.parameter?.map((e) => e.toJson()).toList());
   val['subject'] = instance.subject.toJson();

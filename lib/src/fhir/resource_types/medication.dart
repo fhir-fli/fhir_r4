@@ -181,8 +181,8 @@ class MedicationIngredient extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.itemCodeableConcept,
-    required this.itemReference,
+    this.itemCodeableConcept,
+    this.itemReference,
     this.isActive,
     this.isActiveElement,
     this.strength,
@@ -202,12 +202,12 @@ class MedicationIngredient extends BackboneElement {
   /// [itemCodeableConcept] /// The actual ingredient - either a substance (simple ingredient) or another
   /// medication of a medication.
   @JsonKey(name: 'itemCodeableConcept')
-  final CodeableConcept itemCodeableConcept;
+  final CodeableConcept? itemCodeableConcept;
 
   /// [itemReference] /// The actual ingredient - either a substance (simple ingredient) or another
   /// medication of a medication.
   @JsonKey(name: 'itemReference')
-  final Reference itemReference;
+  final Reference? itemReference;
 
   /// [isActive] /// Indication of whether this ingredient affects the therapeutic action of the
   /// drug.

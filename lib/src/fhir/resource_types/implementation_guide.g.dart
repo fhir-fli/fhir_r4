@@ -1186,12 +1186,14 @@ ImplementationGuidePage _$ImplementationGuidePageFromJson(
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      nameUrl: FhirUrl.fromJson(json['nameUrl']),
+      nameUrl:
+          json['nameUrl'] == null ? null : FhirUrl.fromJson(json['nameUrl']),
       nameUrlElement: json['_nameUrl'] == null
           ? null
           : Element.fromJson(json['_nameUrl'] as Map<String, dynamic>),
-      nameReference:
-          Reference.fromJson(json['nameReference'] as Map<String, dynamic>),
+      nameReference: json['nameReference'] == null
+          ? null
+          : Reference.fromJson(json['nameReference'] as Map<String, dynamic>),
       title: FhirString.fromJson(json['title']),
       titleElement: json['_title'] == null
           ? null
@@ -1241,9 +1243,9 @@ Map<String, dynamic> _$ImplementationGuidePageToJson(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
-  val['nameUrl'] = instance.nameUrl.toJson();
+  writeNotNull('nameUrl', instance.nameUrl?.toJson());
   writeNotNull('_nameUrl', instance.nameUrlElement?.toJson());
-  val['nameReference'] = instance.nameReference.toJson();
+  writeNotNull('nameReference', instance.nameReference?.toJson());
   val['title'] = instance.title.toJson();
   writeNotNull('_title', instance.titleElement?.toJson());
   val['generation'] = instance.generation.toJson();

@@ -462,9 +462,12 @@ CoverageCostToBeneficiary _$CoverageCostToBeneficiaryFromJson(
       type: json['type'] == null
           ? null
           : CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
-      valueQuantity:
-          Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>),
-      valueMoney: Money.fromJson(json['valueMoney'] as Map<String, dynamic>),
+      valueQuantity: json['valueQuantity'] == null
+          ? null
+          : Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>),
+      valueMoney: json['valueMoney'] == null
+          ? null
+          : Money.fromJson(json['valueMoney'] as Map<String, dynamic>),
       exception: (json['exception'] as List<dynamic>?)
           ?.map((e) => CoverageException.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -506,8 +509,8 @@ Map<String, dynamic> _$CoverageCostToBeneficiaryToJson(
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   writeNotNull('type', instance.type?.toJson());
-  val['valueQuantity'] = instance.valueQuantity.toJson();
-  val['valueMoney'] = instance.valueMoney.toJson();
+  writeNotNull('valueQuantity', instance.valueQuantity?.toJson());
+  writeNotNull('valueMoney', instance.valueMoney?.toJson());
   writeNotNull(
       'exception', instance.exception?.map((e) => e.toJson()).toList());
   return val;

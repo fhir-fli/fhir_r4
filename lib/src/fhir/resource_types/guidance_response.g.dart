@@ -41,16 +41,22 @@ GuidanceResponse _$GuidanceResponseFromJson(Map<String, dynamic> json) =>
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map((e) => Identifier.fromJson(e as Map<String, dynamic>))
           .toList(),
-      moduleUri: FhirUri.fromJson(json['moduleUri']),
+      moduleUri: json['moduleUri'] == null
+          ? null
+          : FhirUri.fromJson(json['moduleUri']),
       moduleUriElement: json['_moduleUri'] == null
           ? null
           : Element.fromJson(json['_moduleUri'] as Map<String, dynamic>),
-      moduleCanonical: FhirCanonical.fromJson(json['moduleCanonical']),
+      moduleCanonical: json['moduleCanonical'] == null
+          ? null
+          : FhirCanonical.fromJson(json['moduleCanonical']),
       moduleCanonicalElement: json['_moduleCanonical'] == null
           ? null
           : Element.fromJson(json['_moduleCanonical'] as Map<String, dynamic>),
-      moduleCodeableConcept: CodeableConcept.fromJson(
-          json['moduleCodeableConcept'] as Map<String, dynamic>),
+      moduleCodeableConcept: json['moduleCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['moduleCodeableConcept'] as Map<String, dynamic>),
       status: $enumDecode(_$GuidanceResponseStatusEnumMap, json['status']),
       statusElement: json['_status'] == null
           ? null
@@ -143,11 +149,12 @@ Map<String, dynamic> _$GuidanceResponseToJson(GuidanceResponse instance) {
   writeNotNull('requestIdentifier', instance.requestIdentifier?.toJson());
   writeNotNull(
       'identifier', instance.identifier?.map((e) => e.toJson()).toList());
-  val['moduleUri'] = instance.moduleUri.toJson();
+  writeNotNull('moduleUri', instance.moduleUri?.toJson());
   writeNotNull('_moduleUri', instance.moduleUriElement?.toJson());
-  val['moduleCanonical'] = instance.moduleCanonical.toJson();
+  writeNotNull('moduleCanonical', instance.moduleCanonical?.toJson());
   writeNotNull('_moduleCanonical', instance.moduleCanonicalElement?.toJson());
-  val['moduleCodeableConcept'] = instance.moduleCodeableConcept.toJson();
+  writeNotNull(
+      'moduleCodeableConcept', instance.moduleCodeableConcept?.toJson());
   val['status'] = instance.status.toJson();
   writeNotNull('_status', instance.statusElement?.toJson());
   writeNotNull('subject', instance.subject?.toJson());

@@ -25,8 +25,8 @@ class MessageHeader extends DomainResource {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    required this.eventCoding,
-    required this.eventUri,
+    this.eventCoding,
+    this.eventUri,
     this.eventUriElement,
     this.destination,
     this.sender,
@@ -59,14 +59,14 @@ class MessageHeader extends DomainResource {
   /// system value "http://terminology.hl7.org/CodeSystem/message-events".
   /// Alternatively uri to the EventDefinition.
   @JsonKey(name: 'eventCoding')
-  final Coding eventCoding;
+  final Coding? eventCoding;
 
   /// [eventUri] /// Code that identifies the event this message represents and connects it with
   /// its definition. Events defined as part of the FHIR specification have the
   /// system value "http://terminology.hl7.org/CodeSystem/message-events".
   /// Alternatively uri to the EventDefinition.
   @JsonKey(name: 'eventUri')
-  final FhirUri eventUri;
+  final FhirUri? eventUri;
   @JsonKey(name: '_eventUri')
   final Element? eventUriElement;
 

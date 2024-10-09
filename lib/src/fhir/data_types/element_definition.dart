@@ -3703,76 +3703,76 @@ class ElementDefinitionExample extends Element {
     super.extension_,
     required this.label,
     this.labelElement,
-    required this.valueBase64Binary,
+    this.valueBase64Binary,
     this.valueBase64BinaryElement,
-    required this.valueBoolean,
+    this.valueBoolean,
     this.valueBooleanElement,
-    required this.valueCanonical,
+    this.valueCanonical,
     this.valueCanonicalElement,
-    required this.valueCode,
+    this.valueCode,
     this.valueCodeElement,
-    required this.valueDate,
+    this.valueDate,
     this.valueDateElement,
-    required this.valueDateTime,
+    this.valueDateTime,
     this.valueDateTimeElement,
-    required this.valueDecimal,
+    this.valueDecimal,
     this.valueDecimalElement,
-    required this.valueId,
+    this.valueId,
     this.valueIdElement,
-    required this.valueInstant,
+    this.valueInstant,
     this.valueInstantElement,
-    required this.valueInteger,
+    this.valueInteger,
     this.valueIntegerElement,
-    required this.valueMarkdown,
+    this.valueMarkdown,
     this.valueMarkdownElement,
-    required this.valueOid,
+    this.valueOid,
     this.valueOidElement,
-    required this.valuePositiveInt,
+    this.valuePositiveInt,
     this.valuePositiveIntElement,
-    required this.valueString,
+    this.valueString,
     this.valueStringElement,
-    required this.valueTime,
+    this.valueTime,
     this.valueTimeElement,
-    required this.valueUnsignedInt,
+    this.valueUnsignedInt,
     this.valueUnsignedIntElement,
-    required this.valueUri,
+    this.valueUri,
     this.valueUriElement,
-    required this.valueUrl,
+    this.valueUrl,
     this.valueUrlElement,
-    required this.valueUuid,
+    this.valueUuid,
     this.valueUuidElement,
-    required this.valueAddress,
-    required this.valueAge,
-    required this.valueAnnotation,
-    required this.valueAttachment,
-    required this.valueCodeableConcept,
-    required this.valueCodeableReference,
-    required this.valueCoding,
-    required this.valueContactPoint,
-    required this.valueCount,
-    required this.valueDistance,
-    required this.valueDuration,
-    required this.valueHumanName,
-    required this.valueIdentifier,
-    required this.valueMoney,
-    required this.valuePeriod,
-    required this.valueQuantity,
-    required this.valueRange,
-    required this.valueRatio,
-    required this.valueRatioRange,
-    required this.valueReference,
-    required this.valueSampledData,
-    required this.valueSignature,
-    required this.valueTiming,
-    required this.valueContactDetail,
-    required this.valueContributor,
-    required this.valueDataRequirement,
-    required this.valueExpression,
-    required this.valueParameterDefinition,
-    required this.valueRelatedArtifact,
-    required this.valueTriggerDefinition,
-    required this.valueUsageContext,
-    required this.valueDosage,
+    this.valueAddress,
+    this.valueAge,
+    this.valueAnnotation,
+    this.valueAttachment,
+    this.valueCodeableConcept,
+    this.valueCodeableReference,
+    this.valueCoding,
+    this.valueContactPoint,
+    this.valueCount,
+    this.valueDistance,
+    this.valueDuration,
+    this.valueHumanName,
+    this.valueIdentifier,
+    this.valueMoney,
+    this.valuePeriod,
+    this.valueQuantity,
+    this.valueRange,
+    this.valueRatio,
+    this.valueRatioRange,
+    this.valueReference,
+    this.valueSampledData,
+    this.valueSignature,
+    this.valueTiming,
+    this.valueContactDetail,
+    this.valueContributor,
+    this.valueDataRequirement,
+    this.valueExpression,
+    this.valueParameterDefinition,
+    this.valueRelatedArtifact,
+    this.valueTriggerDefinition,
+    this.valueUsageContext,
+    this.valueDosage,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -3795,295 +3795,295 @@ class ElementDefinitionExample extends Element {
   /// [valueBase64Binary] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueBase64Binary')
-  final FhirBase64Binary valueBase64Binary;
+  final FhirBase64Binary? valueBase64Binary;
   @JsonKey(name: '_valueBase64Binary')
   final Element? valueBase64BinaryElement;
 
   /// [valueBoolean] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueBoolean')
-  final FhirBoolean valueBoolean;
+  final FhirBoolean? valueBoolean;
   @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
 
   /// [valueCanonical] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueCanonical')
-  final FhirCanonical valueCanonical;
+  final FhirCanonical? valueCanonical;
   @JsonKey(name: '_valueCanonical')
   final Element? valueCanonicalElement;
 
   /// [valueCode] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueCode')
-  final FhirCode valueCode;
+  final FhirCode? valueCode;
   @JsonKey(name: '_valueCode')
   final Element? valueCodeElement;
 
   /// [valueDate] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueDate')
-  final FhirDate valueDate;
+  final FhirDate? valueDate;
   @JsonKey(name: '_valueDate')
   final Element? valueDateElement;
 
   /// [valueDateTime] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueDateTime')
-  final FhirDateTime valueDateTime;
+  final FhirDateTime? valueDateTime;
   @JsonKey(name: '_valueDateTime')
   final Element? valueDateTimeElement;
 
   /// [valueDecimal] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueDecimal')
-  final FhirDecimal valueDecimal;
+  final FhirDecimal? valueDecimal;
   @JsonKey(name: '_valueDecimal')
   final Element? valueDecimalElement;
 
   /// [valueId] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueId')
-  final FhirId valueId;
+  final FhirId? valueId;
   @JsonKey(name: '_valueId')
   final Element? valueIdElement;
 
   /// [valueInstant] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueInstant')
-  final FhirInstant valueInstant;
+  final FhirInstant? valueInstant;
   @JsonKey(name: '_valueInstant')
   final Element? valueInstantElement;
 
   /// [valueInteger] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueInteger')
-  final FhirInteger valueInteger;
+  final FhirInteger? valueInteger;
   @JsonKey(name: '_valueInteger')
   final Element? valueIntegerElement;
 
   /// [valueMarkdown] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueMarkdown')
-  final FhirMarkdown valueMarkdown;
+  final FhirMarkdown? valueMarkdown;
   @JsonKey(name: '_valueMarkdown')
   final Element? valueMarkdownElement;
 
   /// [valueOid] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueOid')
-  final FhirOid valueOid;
+  final FhirOid? valueOid;
   @JsonKey(name: '_valueOid')
   final Element? valueOidElement;
 
   /// [valuePositiveInt] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valuePositiveInt')
-  final FhirPositiveInt valuePositiveInt;
+  final FhirPositiveInt? valuePositiveInt;
   @JsonKey(name: '_valuePositiveInt')
   final Element? valuePositiveIntElement;
 
   /// [valueString] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueString')
-  final FhirString valueString;
+  final FhirString? valueString;
   @JsonKey(name: '_valueString')
   final Element? valueStringElement;
 
   /// [valueTime] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueTime')
-  final FhirTime valueTime;
+  final FhirTime? valueTime;
   @JsonKey(name: '_valueTime')
   final Element? valueTimeElement;
 
   /// [valueUnsignedInt] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueUnsignedInt')
-  final FhirUnsignedInt valueUnsignedInt;
+  final FhirUnsignedInt? valueUnsignedInt;
   @JsonKey(name: '_valueUnsignedInt')
   final Element? valueUnsignedIntElement;
 
   /// [valueUri] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueUri')
-  final FhirUri valueUri;
+  final FhirUri? valueUri;
   @JsonKey(name: '_valueUri')
   final Element? valueUriElement;
 
   /// [valueUrl] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueUrl')
-  final FhirUrl valueUrl;
+  final FhirUrl? valueUrl;
   @JsonKey(name: '_valueUrl')
   final Element? valueUrlElement;
 
   /// [valueUuid] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueUuid')
-  final FhirUuid valueUuid;
+  final FhirUuid? valueUuid;
   @JsonKey(name: '_valueUuid')
   final Element? valueUuidElement;
 
   /// [valueAddress] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueAddress')
-  final Address valueAddress;
+  final Address? valueAddress;
 
   /// [valueAge] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueAge')
-  final Age valueAge;
+  final Age? valueAge;
 
   /// [valueAnnotation] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueAnnotation')
-  final Annotation valueAnnotation;
+  final Annotation? valueAnnotation;
 
   /// [valueAttachment] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueAttachment')
-  final Attachment valueAttachment;
+  final Attachment? valueAttachment;
 
   /// [valueCodeableConcept] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueCodeableConcept')
-  final CodeableConcept valueCodeableConcept;
+  final CodeableConcept? valueCodeableConcept;
 
   /// [valueCodeableReference] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueCodeableReference')
-  final CodeableReference valueCodeableReference;
+  final CodeableReference? valueCodeableReference;
 
   /// [valueCoding] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueCoding')
-  final Coding valueCoding;
+  final Coding? valueCoding;
 
   /// [valueContactPoint] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueContactPoint')
-  final ContactPoint valueContactPoint;
+  final ContactPoint? valueContactPoint;
 
   /// [valueCount] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueCount')
-  final Count valueCount;
+  final Count? valueCount;
 
   /// [valueDistance] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueDistance')
-  final Distance valueDistance;
+  final Distance? valueDistance;
 
   /// [valueDuration] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueDuration')
-  final FhirDuration valueDuration;
+  final FhirDuration? valueDuration;
 
   /// [valueHumanName] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueHumanName')
-  final HumanName valueHumanName;
+  final HumanName? valueHumanName;
 
   /// [valueIdentifier] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueIdentifier')
-  final Identifier valueIdentifier;
+  final Identifier? valueIdentifier;
 
   /// [valueMoney] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueMoney')
-  final Money valueMoney;
+  final Money? valueMoney;
 
   /// [valuePeriod] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valuePeriod')
-  final Period valuePeriod;
+  final Period? valuePeriod;
 
   /// [valueQuantity] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueQuantity')
-  final Quantity valueQuantity;
+  final Quantity? valueQuantity;
 
   /// [valueRange] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueRange')
-  final Range valueRange;
+  final Range? valueRange;
 
   /// [valueRatio] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueRatio')
-  final Ratio valueRatio;
+  final Ratio? valueRatio;
 
   /// [valueRatioRange] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueRatioRange')
-  final RatioRange valueRatioRange;
+  final RatioRange? valueRatioRange;
 
   /// [valueReference] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueReference')
-  final Reference valueReference;
+  final Reference? valueReference;
 
   /// [valueSampledData] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueSampledData')
-  final SampledData valueSampledData;
+  final SampledData? valueSampledData;
 
   /// [valueSignature] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueSignature')
-  final Signature valueSignature;
+  final Signature? valueSignature;
 
   /// [valueTiming] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueTiming')
-  final Timing valueTiming;
+  final Timing? valueTiming;
 
   /// [valueContactDetail] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueContactDetail')
-  final ContactDetail valueContactDetail;
+  final ContactDetail? valueContactDetail;
 
   /// [valueContributor] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueContributor')
-  final Contributor valueContributor;
+  final Contributor? valueContributor;
 
   /// [valueDataRequirement] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueDataRequirement')
-  final DataRequirement valueDataRequirement;
+  final DataRequirement? valueDataRequirement;
 
   /// [valueExpression] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueExpression')
-  final FhirExpression valueExpression;
+  final FhirExpression? valueExpression;
 
   /// [valueParameterDefinition] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueParameterDefinition')
-  final ParameterDefinition valueParameterDefinition;
+  final ParameterDefinition? valueParameterDefinition;
 
   /// [valueRelatedArtifact] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueRelatedArtifact')
-  final RelatedArtifact valueRelatedArtifact;
+  final RelatedArtifact? valueRelatedArtifact;
 
   /// [valueTriggerDefinition] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueTriggerDefinition')
-  final TriggerDefinition valueTriggerDefinition;
+  final TriggerDefinition? valueTriggerDefinition;
 
   /// [valueUsageContext] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueUsageContext')
-  final UsageContext valueUsageContext;
+  final UsageContext? valueUsageContext;
 
   /// [valueDosage] /// The actual value for the element, which must be one of the types allowed
   /// for this element.
   @JsonKey(name: 'valueDosage')
-  final Dosage valueDosage;
+  final Dosage? valueDosage;
   factory ElementDefinitionExample.fromJson(Map<String, dynamic> json) =>
       _$ElementDefinitionExampleFromJson(json);
 

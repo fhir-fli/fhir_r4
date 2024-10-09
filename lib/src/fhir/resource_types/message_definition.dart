@@ -55,8 +55,8 @@ class MessageDefinition extends DomainResource {
     this.baseElement,
     this.parent,
     this.parentElement,
-    required this.eventCoding,
-    required this.eventUri,
+    this.eventCoding,
+    this.eventUri,
     this.eventUriElement,
     this.category,
     this.categoryElement,
@@ -212,11 +212,11 @@ class MessageDefinition extends DomainResource {
 
   /// [eventCoding] /// Event code or link to the EventDefinition.
   @JsonKey(name: 'eventCoding')
-  final Coding eventCoding;
+  final Coding? eventCoding;
 
   /// [eventUri] /// Event code or link to the EventDefinition.
   @JsonKey(name: 'eventUri')
-  final FhirUri eventUri;
+  final FhirUri? eventUri;
   @JsonKey(name: '_eventUri')
   final Element? eventUriElement;
 

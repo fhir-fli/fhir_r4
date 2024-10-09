@@ -340,10 +340,13 @@ MedicationIngredient _$MedicationIngredientFromJson(
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      itemCodeableConcept: CodeableConcept.fromJson(
-          json['itemCodeableConcept'] as Map<String, dynamic>),
-      itemReference:
-          Reference.fromJson(json['itemReference'] as Map<String, dynamic>),
+      itemCodeableConcept: json['itemCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['itemCodeableConcept'] as Map<String, dynamic>),
+      itemReference: json['itemReference'] == null
+          ? null
+          : Reference.fromJson(json['itemReference'] as Map<String, dynamic>),
       isActive: json['isActive'] == null
           ? null
           : FhirBoolean.fromJson(json['isActive']),
@@ -390,8 +393,8 @@ Map<String, dynamic> _$MedicationIngredientToJson(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
-  val['itemCodeableConcept'] = instance.itemCodeableConcept.toJson();
-  val['itemReference'] = instance.itemReference.toJson();
+  writeNotNull('itemCodeableConcept', instance.itemCodeableConcept?.toJson());
+  writeNotNull('itemReference', instance.itemReference?.toJson());
   writeNotNull('isActive', instance.isActive?.toJson());
   writeNotNull('_isActive', instance.isActiveElement?.toJson());
   writeNotNull('strength', instance.strength?.toJson());

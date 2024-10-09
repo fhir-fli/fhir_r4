@@ -37,8 +37,8 @@ class DeviceRequest extends DomainResource {
     this.intentElement,
     this.priority,
     this.priorityElement,
-    required this.codeReference,
-    required this.codeCodeableConcept,
+    this.codeReference,
+    this.codeCodeableConcept,
     this.parameter,
     required this.subject,
     this.encounter,
@@ -126,11 +126,11 @@ class DeviceRequest extends DomainResource {
 
   /// [codeReference] /// The details of the device to be used.
   @JsonKey(name: 'codeReference')
-  final Reference codeReference;
+  final Reference? codeReference;
 
   /// [codeCodeableConcept] /// The details of the device to be used.
   @JsonKey(name: 'codeCodeableConcept')
-  final CodeableConcept codeCodeableConcept;
+  final CodeableConcept? codeCodeableConcept;
 
   /// [parameter] /// Specific parameters for the ordered item. For example, the prism value for
   /// lenses.

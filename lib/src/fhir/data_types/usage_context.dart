@@ -17,10 +17,10 @@ class UsageContext extends DataType {
     super.id,
     super.extension_,
     required this.code,
-    required this.valueCodeableConcept,
-    required this.valueQuantity,
-    required this.valueRange,
-    required this.valueReference,
+    this.valueCodeableConcept,
+    this.valueQuantity,
+    this.valueRange,
+    this.valueReference,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -42,22 +42,22 @@ class UsageContext extends DataType {
   /// [valueCodeableConcept] /// A value that defines the context specified in this context of use. The
   /// interpretation of the value is defined by the code.
   @JsonKey(name: 'valueCodeableConcept')
-  final CodeableConcept valueCodeableConcept;
+  final CodeableConcept? valueCodeableConcept;
 
   /// [valueQuantity] /// A value that defines the context specified in this context of use. The
   /// interpretation of the value is defined by the code.
   @JsonKey(name: 'valueQuantity')
-  final Quantity valueQuantity;
+  final Quantity? valueQuantity;
 
   /// [valueRange] /// A value that defines the context specified in this context of use. The
   /// interpretation of the value is defined by the code.
   @JsonKey(name: 'valueRange')
-  final Range valueRange;
+  final Range? valueRange;
 
   /// [valueReference] /// A value that defines the context specified in this context of use. The
   /// interpretation of the value is defined by the code.
   @JsonKey(name: 'valueReference')
-  final Reference valueReference;
+  final Reference? valueReference;
   factory UsageContext.fromJson(Map<String, dynamic> json) =>
       _$UsageContextFromJson(json);
 

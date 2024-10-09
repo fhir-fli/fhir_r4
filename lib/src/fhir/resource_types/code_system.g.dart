@@ -815,28 +815,42 @@ CodeSystemProperty1 _$CodeSystemProperty1FromJson(Map<String, dynamic> json) =>
       codeElement: json['_code'] == null
           ? null
           : Element.fromJson(json['_code'] as Map<String, dynamic>),
-      valueCode: FhirCode.fromJson(json['valueCode']),
+      valueCode: json['valueCode'] == null
+          ? null
+          : FhirCode.fromJson(json['valueCode']),
       valueCodeElement: json['_valueCode'] == null
           ? null
           : Element.fromJson(json['_valueCode'] as Map<String, dynamic>),
-      valueCoding: Coding.fromJson(json['valueCoding'] as Map<String, dynamic>),
-      valueString: FhirString.fromJson(json['valueString']),
+      valueCoding: json['valueCoding'] == null
+          ? null
+          : Coding.fromJson(json['valueCoding'] as Map<String, dynamic>),
+      valueString: json['valueString'] == null
+          ? null
+          : FhirString.fromJson(json['valueString']),
       valueStringElement: json['_valueString'] == null
           ? null
           : Element.fromJson(json['_valueString'] as Map<String, dynamic>),
-      valueInteger: FhirInteger.fromJson(json['valueInteger']),
+      valueInteger: json['valueInteger'] == null
+          ? null
+          : FhirInteger.fromJson(json['valueInteger']),
       valueIntegerElement: json['_valueInteger'] == null
           ? null
           : Element.fromJson(json['_valueInteger'] as Map<String, dynamic>),
-      valueBoolean: FhirBoolean.fromJson(json['valueBoolean']),
+      valueBoolean: json['valueBoolean'] == null
+          ? null
+          : FhirBoolean.fromJson(json['valueBoolean']),
       valueBooleanElement: json['_valueBoolean'] == null
           ? null
           : Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>),
-      valueDateTime: FhirDateTime.fromJson(json['valueDateTime'] as String),
+      valueDateTime: json['valueDateTime'] == null
+          ? null
+          : FhirDateTime.fromJson(json['valueDateTime'] as String),
       valueDateTimeElement: json['_valueDateTime'] == null
           ? null
           : Element.fromJson(json['_valueDateTime'] as Map<String, dynamic>),
-      valueDecimal: FhirDecimal.fromJson(json['valueDecimal']),
+      valueDecimal: json['valueDecimal'] == null
+          ? null
+          : FhirDecimal.fromJson(json['valueDecimal']),
       valueDecimalElement: json['_valueDecimal'] == null
           ? null
           : Element.fromJson(json['_valueDecimal'] as Map<String, dynamic>),
@@ -878,18 +892,18 @@ Map<String, dynamic> _$CodeSystemProperty1ToJson(CodeSystemProperty1 instance) {
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['code'] = instance.code.toJson();
   writeNotNull('_code', instance.codeElement?.toJson());
-  val['valueCode'] = instance.valueCode.toJson();
+  writeNotNull('valueCode', instance.valueCode?.toJson());
   writeNotNull('_valueCode', instance.valueCodeElement?.toJson());
-  val['valueCoding'] = instance.valueCoding.toJson();
-  val['valueString'] = instance.valueString.toJson();
+  writeNotNull('valueCoding', instance.valueCoding?.toJson());
+  writeNotNull('valueString', instance.valueString?.toJson());
   writeNotNull('_valueString', instance.valueStringElement?.toJson());
-  val['valueInteger'] = instance.valueInteger.toJson();
+  writeNotNull('valueInteger', instance.valueInteger?.toJson());
   writeNotNull('_valueInteger', instance.valueIntegerElement?.toJson());
-  val['valueBoolean'] = instance.valueBoolean.toJson();
+  writeNotNull('valueBoolean', instance.valueBoolean?.toJson());
   writeNotNull('_valueBoolean', instance.valueBooleanElement?.toJson());
-  val['valueDateTime'] = instance.valueDateTime.toJson();
+  writeNotNull('valueDateTime', instance.valueDateTime?.toJson());
   writeNotNull('_valueDateTime', instance.valueDateTimeElement?.toJson());
-  val['valueDecimal'] = instance.valueDecimal.toJson();
+  writeNotNull('valueDecimal', instance.valueDecimal?.toJson());
   writeNotNull('_valueDecimal', instance.valueDecimalElement?.toJson());
   return val;
 }

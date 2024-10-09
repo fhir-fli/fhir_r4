@@ -548,10 +548,13 @@ MedicationKnowledgeIngredient _$MedicationKnowledgeIngredientFromJson(
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      itemCodeableConcept: CodeableConcept.fromJson(
-          json['itemCodeableConcept'] as Map<String, dynamic>),
-      itemReference:
-          Reference.fromJson(json['itemReference'] as Map<String, dynamic>),
+      itemCodeableConcept: json['itemCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['itemCodeableConcept'] as Map<String, dynamic>),
+      itemReference: json['itemReference'] == null
+          ? null
+          : Reference.fromJson(json['itemReference'] as Map<String, dynamic>),
       isActive: json['isActive'] == null
           ? null
           : FhirBoolean.fromJson(json['isActive']),
@@ -598,8 +601,8 @@ Map<String, dynamic> _$MedicationKnowledgeIngredientToJson(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
-  val['itemCodeableConcept'] = instance.itemCodeableConcept.toJson();
-  val['itemReference'] = instance.itemReference.toJson();
+  writeNotNull('itemCodeableConcept', instance.itemCodeableConcept?.toJson());
+  writeNotNull('itemReference', instance.itemReference?.toJson());
   writeNotNull('isActive', instance.isActive?.toJson());
   writeNotNull('_isActive', instance.isActiveElement?.toJson());
   writeNotNull('strength', instance.strength?.toJson());
@@ -870,10 +873,16 @@ MedicationKnowledgePatientCharacteristics
           modifierExtension: (json['modifierExtension'] as List<dynamic>?)
               ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
               .toList(),
-          characteristicCodeableConcept: CodeableConcept.fromJson(
-              json['characteristicCodeableConcept'] as Map<String, dynamic>),
-          characteristicQuantity: Quantity.fromJson(
-              json['characteristicQuantity'] as Map<String, dynamic>),
+          characteristicCodeableConcept:
+              json['characteristicCodeableConcept'] == null
+                  ? null
+                  : CodeableConcept.fromJson(
+                      json['characteristicCodeableConcept']
+                          as Map<String, dynamic>),
+          characteristicQuantity: json['characteristicQuantity'] == null
+              ? null
+              : Quantity.fromJson(
+                  json['characteristicQuantity'] as Map<String, dynamic>),
           value: (json['value'] as List<dynamic>?)
               ?.map(FhirString.fromJson)
               .toList(),
@@ -918,9 +927,10 @@ Map<String, dynamic> _$MedicationKnowledgePatientCharacteristicsToJson(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
-  val['characteristicCodeableConcept'] =
-      instance.characteristicCodeableConcept.toJson();
-  val['characteristicQuantity'] = instance.characteristicQuantity.toJson();
+  writeNotNull('characteristicCodeableConcept',
+      instance.characteristicCodeableConcept?.toJson());
+  writeNotNull(
+      'characteristicQuantity', instance.characteristicQuantity?.toJson());
   writeNotNull('value', instance.value?.map((e) => e.toJson()).toList());
   writeNotNull(
       '_value', instance.valueElement?.map((e) => e.toJson()).toList());

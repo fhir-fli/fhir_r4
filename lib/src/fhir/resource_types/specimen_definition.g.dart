@@ -536,10 +536,14 @@ SpecimenDefinitionAdditive _$SpecimenDefinitionAdditiveFromJson(
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      additiveCodeableConcept: CodeableConcept.fromJson(
-          json['additiveCodeableConcept'] as Map<String, dynamic>),
-      additiveReference:
-          Reference.fromJson(json['additiveReference'] as Map<String, dynamic>),
+      additiveCodeableConcept: json['additiveCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['additiveCodeableConcept'] as Map<String, dynamic>),
+      additiveReference: json['additiveReference'] == null
+          ? null
+          : Reference.fromJson(
+              json['additiveReference'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -577,8 +581,9 @@ Map<String, dynamic> _$SpecimenDefinitionAdditiveToJson(
       'extension', instance.extension_?.map((e) => e.toJson()).toList());
   writeNotNull('modifierExtension',
       instance.modifierExtension?.map((e) => e.toJson()).toList());
-  val['additiveCodeableConcept'] = instance.additiveCodeableConcept.toJson();
-  val['additiveReference'] = instance.additiveReference.toJson();
+  writeNotNull(
+      'additiveCodeableConcept', instance.additiveCodeableConcept?.toJson());
+  writeNotNull('additiveReference', instance.additiveReference?.toJson());
   return val;
 }
 

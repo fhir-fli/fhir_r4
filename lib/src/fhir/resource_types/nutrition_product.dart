@@ -364,14 +364,14 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    required this.valueCodeableConcept,
-    required this.valueString,
+    this.valueCodeableConcept,
+    this.valueString,
     this.valueStringElement,
-    required this.valueQuantity,
-    required this.valueBase64Binary,
+    this.valueQuantity,
+    this.valueBase64Binary,
     this.valueBase64BinaryElement,
-    required this.valueAttachment,
-    required this.valueBoolean,
+    this.valueAttachment,
+    this.valueBoolean,
     this.valueBooleanElement,
     super.userData,
     super.formatCommentsPre,
@@ -393,31 +393,31 @@ class NutritionProductProductCharacteristic extends BackboneElement {
 
   /// [valueCodeableConcept] /// The actual characteristic value corresponding to the type.
   @JsonKey(name: 'valueCodeableConcept')
-  final CodeableConcept valueCodeableConcept;
+  final CodeableConcept? valueCodeableConcept;
 
   /// [valueString] /// The actual characteristic value corresponding to the type.
   @JsonKey(name: 'valueString')
-  final FhirString valueString;
+  final FhirString? valueString;
   @JsonKey(name: '_valueString')
   final Element? valueStringElement;
 
   /// [valueQuantity] /// The actual characteristic value corresponding to the type.
   @JsonKey(name: 'valueQuantity')
-  final Quantity valueQuantity;
+  final Quantity? valueQuantity;
 
   /// [valueBase64Binary] /// The actual characteristic value corresponding to the type.
   @JsonKey(name: 'valueBase64Binary')
-  final FhirBase64Binary valueBase64Binary;
+  final FhirBase64Binary? valueBase64Binary;
   @JsonKey(name: '_valueBase64Binary')
   final Element? valueBase64BinaryElement;
 
   /// [valueAttachment] /// The actual characteristic value corresponding to the type.
   @JsonKey(name: 'valueAttachment')
-  final Attachment valueAttachment;
+  final Attachment? valueAttachment;
 
   /// [valueBoolean] /// The actual characteristic value corresponding to the type.
   @JsonKey(name: 'valueBoolean')
-  final FhirBoolean valueBoolean;
+  final FhirBoolean? valueBoolean;
   @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
   factory NutritionProductProductCharacteristic.fromJson(

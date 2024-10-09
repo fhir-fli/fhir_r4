@@ -273,8 +273,8 @@ class SubstanceIngredient extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.quantity,
-    required this.substanceCodeableConcept,
-    required this.substanceReference,
+    this.substanceCodeableConcept,
+    this.substanceReference,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -294,11 +294,11 @@ class SubstanceIngredient extends BackboneElement {
 
   /// [substanceCodeableConcept] /// Another substance that is a component of this substance.
   @JsonKey(name: 'substanceCodeableConcept')
-  final CodeableConcept substanceCodeableConcept;
+  final CodeableConcept? substanceCodeableConcept;
 
   /// [substanceReference] /// Another substance that is a component of this substance.
   @JsonKey(name: 'substanceReference')
-  final Reference substanceReference;
+  final Reference? substanceReference;
   factory SubstanceIngredient.fromJson(Map<String, dynamic> json) =>
       _$SubstanceIngredientFromJson(json);
 

@@ -389,11 +389,11 @@ class EvidenceVariableCharacteristic extends BackboneElement {
     super.modifierExtension,
     this.description,
     this.descriptionElement,
-    required this.definitionReference,
-    required this.definitionCanonical,
+    this.definitionReference,
+    this.definitionCanonical,
     this.definitionCanonicalElement,
-    required this.definitionCodeableConcept,
-    required this.definitionExpression,
+    this.definitionCodeableConcept,
+    this.definitionExpression,
     this.method,
     this.device,
     this.exclude,
@@ -426,14 +426,14 @@ class EvidenceVariableCharacteristic extends BackboneElement {
   /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes diagnosis
   /// onset in the last year).
   @JsonKey(name: 'definitionReference')
-  final Reference definitionReference;
+  final Reference? definitionReference;
 
   /// [definitionCanonical] /// Define members of the evidence element using Codes (such as condition,
   /// medication, or observation), Expressions ( using an expression language
   /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes diagnosis
   /// onset in the last year).
   @JsonKey(name: 'definitionCanonical')
-  final FhirCanonical definitionCanonical;
+  final FhirCanonical? definitionCanonical;
   @JsonKey(name: '_definitionCanonical')
   final Element? definitionCanonicalElement;
 
@@ -442,14 +442,14 @@ class EvidenceVariableCharacteristic extends BackboneElement {
   /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes diagnosis
   /// onset in the last year).
   @JsonKey(name: 'definitionCodeableConcept')
-  final CodeableConcept definitionCodeableConcept;
+  final CodeableConcept? definitionCodeableConcept;
 
   /// [definitionExpression] /// Define members of the evidence element using Codes (such as condition,
   /// medication, or observation), Expressions ( using an expression language
   /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes diagnosis
   /// onset in the last year).
   @JsonKey(name: 'definitionExpression')
-  final FhirExpression definitionExpression;
+  final FhirExpression? definitionExpression;
 
   /// [method] /// Method used for describing characteristic.
   @JsonKey(name: 'method')

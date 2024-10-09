@@ -50,13 +50,16 @@ Immunization _$ImmunizationFromJson(Map<String, dynamic> json) => Immunization(
       encounter: json['encounter'] == null
           ? null
           : Reference.fromJson(json['encounter'] as Map<String, dynamic>),
-      occurrenceDateTime:
-          FhirDateTime.fromJson(json['occurrenceDateTime'] as String),
+      occurrenceDateTime: json['occurrenceDateTime'] == null
+          ? null
+          : FhirDateTime.fromJson(json['occurrenceDateTime'] as String),
       occurrenceDateTimeElement: json['_occurrenceDateTime'] == null
           ? null
           : Element.fromJson(
               json['_occurrenceDateTime'] as Map<String, dynamic>),
-      occurrenceString: FhirString.fromJson(json['occurrenceString']),
+      occurrenceString: json['occurrenceString'] == null
+          ? null
+          : FhirString.fromJson(json['occurrenceString']),
       occurrenceStringElement: json['_occurrenceString'] == null
           ? null
           : Element.fromJson(json['_occurrenceString'] as Map<String, dynamic>),
@@ -198,10 +201,10 @@ Map<String, dynamic> _$ImmunizationToJson(Immunization instance) {
   val['vaccineCode'] = instance.vaccineCode.toJson();
   val['patient'] = instance.patient.toJson();
   writeNotNull('encounter', instance.encounter?.toJson());
-  val['occurrenceDateTime'] = instance.occurrenceDateTime.toJson();
+  writeNotNull('occurrenceDateTime', instance.occurrenceDateTime?.toJson());
   writeNotNull(
       '_occurrenceDateTime', instance.occurrenceDateTimeElement?.toJson());
-  val['occurrenceString'] = instance.occurrenceString.toJson();
+  writeNotNull('occurrenceString', instance.occurrenceString?.toJson());
   writeNotNull('_occurrenceString', instance.occurrenceStringElement?.toJson());
   writeNotNull('recorded', instance.recorded?.toJson());
   writeNotNull('_recorded', instance.recordedElement?.toJson());
@@ -683,13 +686,16 @@ ImmunizationProtocolApplied _$ImmunizationProtocolAppliedFromJson(
       targetDisease: (json['targetDisease'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
-      doseNumberPositiveInt:
-          FhirPositiveInt.fromJson(json['doseNumberPositiveInt']),
+      doseNumberPositiveInt: json['doseNumberPositiveInt'] == null
+          ? null
+          : FhirPositiveInt.fromJson(json['doseNumberPositiveInt']),
       doseNumberPositiveIntElement: json['_doseNumberPositiveInt'] == null
           ? null
           : Element.fromJson(
               json['_doseNumberPositiveInt'] as Map<String, dynamic>),
-      doseNumberString: FhirString.fromJson(json['doseNumberString']),
+      doseNumberString: json['doseNumberString'] == null
+          ? null
+          : FhirString.fromJson(json['doseNumberString']),
       doseNumberStringElement: json['_doseNumberString'] == null
           ? null
           : Element.fromJson(json['_doseNumberString'] as Map<String, dynamic>),
@@ -749,10 +755,11 @@ Map<String, dynamic> _$ImmunizationProtocolAppliedToJson(
   writeNotNull('authority', instance.authority?.toJson());
   writeNotNull(
       'targetDisease', instance.targetDisease?.map((e) => e.toJson()).toList());
-  val['doseNumberPositiveInt'] = instance.doseNumberPositiveInt.toJson();
+  writeNotNull(
+      'doseNumberPositiveInt', instance.doseNumberPositiveInt?.toJson());
   writeNotNull('_doseNumberPositiveInt',
       instance.doseNumberPositiveIntElement?.toJson());
-  val['doseNumberString'] = instance.doseNumberString.toJson();
+  writeNotNull('doseNumberString', instance.doseNumberString?.toJson());
   writeNotNull('_doseNumberString', instance.doseNumberStringElement?.toJson());
   writeNotNull(
       'seriesDosesPositiveInt', instance.seriesDosesPositiveInt?.toJson());

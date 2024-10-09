@@ -560,8 +560,8 @@ class IngredientReferenceStrength extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.substance,
-    required this.strengthRatio,
-    required this.strengthRatioRange,
+    this.strengthRatio,
+    this.strengthRatioRange,
     this.measurementPoint,
     this.measurementPointElement,
     this.country,
@@ -584,11 +584,11 @@ class IngredientReferenceStrength extends BackboneElement {
 
   /// [strengthRatio] /// Strength expressed in terms of a reference substance.
   @JsonKey(name: 'strengthRatio')
-  final Ratio strengthRatio;
+  final Ratio? strengthRatio;
 
   /// [strengthRatioRange] /// Strength expressed in terms of a reference substance.
   @JsonKey(name: 'strengthRatioRange')
-  final RatioRange strengthRatioRange;
+  final RatioRange? strengthRatioRange;
 
   /// [measurementPoint] /// For when strength is measured at a particular point or distance.
   @JsonKey(name: 'measurementPoint')

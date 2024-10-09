@@ -841,10 +841,14 @@ ExplanationOfBenefitDiagnosis _$ExplanationOfBenefitDiagnosisFromJson(
       sequenceElement: json['_sequence'] == null
           ? null
           : Element.fromJson(json['_sequence'] as Map<String, dynamic>),
-      diagnosisCodeableConcept: CodeableConcept.fromJson(
-          json['diagnosisCodeableConcept'] as Map<String, dynamic>),
-      diagnosisReference: Reference.fromJson(
-          json['diagnosisReference'] as Map<String, dynamic>),
+      diagnosisCodeableConcept: json['diagnosisCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['diagnosisCodeableConcept'] as Map<String, dynamic>),
+      diagnosisReference: json['diagnosisReference'] == null
+          ? null
+          : Reference.fromJson(
+              json['diagnosisReference'] as Map<String, dynamic>),
       type: (json['type'] as List<dynamic>?)
           ?.map((e) => CodeableConcept.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -895,8 +899,9 @@ Map<String, dynamic> _$ExplanationOfBenefitDiagnosisToJson(
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['sequence'] = instance.sequence.toJson();
   writeNotNull('_sequence', instance.sequenceElement?.toJson());
-  val['diagnosisCodeableConcept'] = instance.diagnosisCodeableConcept.toJson();
-  val['diagnosisReference'] = instance.diagnosisReference.toJson();
+  writeNotNull(
+      'diagnosisCodeableConcept', instance.diagnosisCodeableConcept?.toJson());
+  writeNotNull('diagnosisReference', instance.diagnosisReference?.toJson());
   writeNotNull('type', instance.type?.map((e) => e.toJson()).toList());
   writeNotNull('onAdmission', instance.onAdmission?.toJson());
   writeNotNull('packageCode', instance.packageCode?.toJson());
@@ -926,10 +931,14 @@ ExplanationOfBenefitProcedure _$ExplanationOfBenefitProcedureFromJson(
       dateElement: json['_date'] == null
           ? null
           : Element.fromJson(json['_date'] as Map<String, dynamic>),
-      procedureCodeableConcept: CodeableConcept.fromJson(
-          json['procedureCodeableConcept'] as Map<String, dynamic>),
-      procedureReference: Reference.fromJson(
-          json['procedureReference'] as Map<String, dynamic>),
+      procedureCodeableConcept: json['procedureCodeableConcept'] == null
+          ? null
+          : CodeableConcept.fromJson(
+              json['procedureCodeableConcept'] as Map<String, dynamic>),
+      procedureReference: json['procedureReference'] == null
+          ? null
+          : Reference.fromJson(
+              json['procedureReference'] as Map<String, dynamic>),
       udi: (json['udi'] as List<dynamic>?)
           ?.map((e) => Reference.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -975,8 +984,9 @@ Map<String, dynamic> _$ExplanationOfBenefitProcedureToJson(
   writeNotNull('type', instance.type?.map((e) => e.toJson()).toList());
   writeNotNull('date', instance.date?.toJson());
   writeNotNull('_date', instance.dateElement?.toJson());
-  val['procedureCodeableConcept'] = instance.procedureCodeableConcept.toJson();
-  val['procedureReference'] = instance.procedureReference.toJson();
+  writeNotNull(
+      'procedureCodeableConcept', instance.procedureCodeableConcept?.toJson());
+  writeNotNull('procedureReference', instance.procedureReference?.toJson());
   writeNotNull('udi', instance.udi?.map((e) => e.toJson()).toList());
   return val;
 }

@@ -1680,15 +1680,15 @@ class StructureMapParameter extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.valueId,
+    this.valueId,
     this.valueIdElement,
-    required this.valueString,
+    this.valueString,
     this.valueStringElement,
-    required this.valueBoolean,
+    this.valueBoolean,
     this.valueBooleanElement,
-    required this.valueInteger,
+    this.valueInteger,
     this.valueIntegerElement,
-    required this.valueDecimal,
+    this.valueDecimal,
     this.valueDecimalElement,
     super.userData,
     super.formatCommentsPre,
@@ -1705,31 +1705,31 @@ class StructureMapParameter extends BackboneElement {
 
   /// [valueId] /// Parameter value - variable or literal.
   @JsonKey(name: 'valueId')
-  final FhirId valueId;
+  final FhirId? valueId;
   @JsonKey(name: '_valueId')
   final Element? valueIdElement;
 
   /// [valueString] /// Parameter value - variable or literal.
   @JsonKey(name: 'valueString')
-  final FhirString valueString;
+  final FhirString? valueString;
   @JsonKey(name: '_valueString')
   final Element? valueStringElement;
 
   /// [valueBoolean] /// Parameter value - variable or literal.
   @JsonKey(name: 'valueBoolean')
-  final FhirBoolean valueBoolean;
+  final FhirBoolean? valueBoolean;
   @JsonKey(name: '_valueBoolean')
   final Element? valueBooleanElement;
 
   /// [valueInteger] /// Parameter value - variable or literal.
   @JsonKey(name: 'valueInteger')
-  final FhirInteger valueInteger;
+  final FhirInteger? valueInteger;
   @JsonKey(name: '_valueInteger')
   final Element? valueIntegerElement;
 
   /// [valueDecimal] /// Parameter value - variable or literal.
   @JsonKey(name: 'valueDecimal')
-  final FhirDecimal valueDecimal;
+  final FhirDecimal? valueDecimal;
   @JsonKey(name: '_valueDecimal')
   final Element? valueDecimalElement;
   factory StructureMapParameter.fromJson(Map<String, dynamic> json) =>

@@ -450,10 +450,13 @@ CompositionRelatesTo _$CompositionRelatesToFromJson(
       codeElement: json['_code'] == null
           ? null
           : Element.fromJson(json['_code'] as Map<String, dynamic>),
-      targetIdentifier:
-          Identifier.fromJson(json['targetIdentifier'] as Map<String, dynamic>),
-      targetReference:
-          Reference.fromJson(json['targetReference'] as Map<String, dynamic>),
+      targetIdentifier: json['targetIdentifier'] == null
+          ? null
+          : Identifier.fromJson(
+              json['targetIdentifier'] as Map<String, dynamic>),
+      targetReference: json['targetReference'] == null
+          ? null
+          : Reference.fromJson(json['targetReference'] as Map<String, dynamic>),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -493,8 +496,8 @@ Map<String, dynamic> _$CompositionRelatesToToJson(
       instance.modifierExtension?.map((e) => e.toJson()).toList());
   val['code'] = instance.code.toJson();
   writeNotNull('_code', instance.codeElement?.toJson());
-  val['targetIdentifier'] = instance.targetIdentifier.toJson();
-  val['targetReference'] = instance.targetReference.toJson();
+  writeNotNull('targetIdentifier', instance.targetIdentifier?.toJson());
+  writeNotNull('targetReference', instance.targetReference?.toJson());
   return val;
 }
 

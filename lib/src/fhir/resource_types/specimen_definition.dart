@@ -457,8 +457,8 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    required this.additiveCodeableConcept,
-    required this.additiveReference,
+    this.additiveCodeableConcept,
+    this.additiveReference,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -475,12 +475,12 @@ class SpecimenDefinitionAdditive extends BackboneElement {
   /// [additiveCodeableConcept] /// Substance introduced in the kind of container to preserve, maintain or
   /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
   @JsonKey(name: 'additiveCodeableConcept')
-  final CodeableConcept additiveCodeableConcept;
+  final CodeableConcept? additiveCodeableConcept;
 
   /// [additiveReference] /// Substance introduced in the kind of container to preserve, maintain or
   /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
   @JsonKey(name: 'additiveReference')
-  final Reference additiveReference;
+  final Reference? additiveReference;
   factory SpecimenDefinitionAdditive.fromJson(Map<String, dynamic> json) =>
       _$SpecimenDefinitionAdditiveFromJson(json);
 

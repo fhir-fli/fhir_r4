@@ -364,8 +364,8 @@ class CompositionRelatesTo extends BackboneElement {
     super.modifierExtension,
     required this.code,
     this.codeElement,
-    required this.targetIdentifier,
-    required this.targetReference,
+    this.targetIdentifier,
+    this.targetReference,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -388,11 +388,11 @@ class CompositionRelatesTo extends BackboneElement {
 
   /// [targetIdentifier] /// The target composition/document of this relationship.
   @JsonKey(name: 'targetIdentifier')
-  final Identifier targetIdentifier;
+  final Identifier? targetIdentifier;
 
   /// [targetReference] /// The target composition/document of this relationship.
   @JsonKey(name: 'targetReference')
-  final Reference targetReference;
+  final Reference? targetReference;
   factory CompositionRelatesTo.fromJson(Map<String, dynamic> json) =>
       _$CompositionRelatesToFromJson(json);
 

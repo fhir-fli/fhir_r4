@@ -384,8 +384,8 @@ class CoverageCostToBeneficiary extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.type,
-    required this.valueQuantity,
-    required this.valueMoney,
+    this.valueQuantity,
+    this.valueMoney,
     this.exception,
     super.userData,
     super.formatCommentsPre,
@@ -406,11 +406,11 @@ class CoverageCostToBeneficiary extends BackboneElement {
 
   /// [valueQuantity] /// The amount due from the patient for the cost category.
   @JsonKey(name: 'valueQuantity')
-  final Quantity valueQuantity;
+  final Quantity? valueQuantity;
 
   /// [valueMoney] /// The amount due from the patient for the cost category.
   @JsonKey(name: 'valueMoney')
-  final Money valueMoney;
+  final Money? valueMoney;
 
   /// [exception] /// A suite of codes indicating exceptions or reductions to patient costs and
   /// their effective periods.

@@ -690,11 +690,11 @@ class CitationRelatesTo extends BackboneElement {
     super.modifierExtension,
     required this.relationshipType,
     this.targetClassifier,
-    required this.targetUri,
+    this.targetUri,
     this.targetUriElement,
-    required this.targetIdentifier,
-    required this.targetReference,
-    required this.targetAttachment,
+    this.targetIdentifier,
+    this.targetReference,
+    this.targetAttachment,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -718,21 +718,21 @@ class CitationRelatesTo extends BackboneElement {
 
   /// [targetUri] /// The article or artifact that the Citation Resource is related to.
   @JsonKey(name: 'targetUri')
-  final FhirUri targetUri;
+  final FhirUri? targetUri;
   @JsonKey(name: '_targetUri')
   final Element? targetUriElement;
 
   /// [targetIdentifier] /// The article or artifact that the Citation Resource is related to.
   @JsonKey(name: 'targetIdentifier')
-  final Identifier targetIdentifier;
+  final Identifier? targetIdentifier;
 
   /// [targetReference] /// The article or artifact that the Citation Resource is related to.
   @JsonKey(name: 'targetReference')
-  final Reference targetReference;
+  final Reference? targetReference;
 
   /// [targetAttachment] /// The article or artifact that the Citation Resource is related to.
   @JsonKey(name: 'targetAttachment')
-  final Attachment targetAttachment;
+  final Attachment? targetAttachment;
   factory CitationRelatesTo.fromJson(Map<String, dynamic> json) =>
       _$CitationRelatesToFromJson(json);
 
@@ -1491,11 +1491,11 @@ class CitationRelatesTo1 extends BackboneElement {
     super.modifierExtension,
     required this.relationshipType,
     this.targetClassifier,
-    required this.targetUri,
+    this.targetUri,
     this.targetUriElement,
-    required this.targetIdentifier,
-    required this.targetReference,
-    required this.targetAttachment,
+    this.targetIdentifier,
+    this.targetReference,
+    this.targetAttachment,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1519,21 +1519,21 @@ class CitationRelatesTo1 extends BackboneElement {
 
   /// [targetUri] /// The article or artifact that the cited artifact is related to.
   @JsonKey(name: 'targetUri')
-  final FhirUri targetUri;
+  final FhirUri? targetUri;
   @JsonKey(name: '_targetUri')
   final Element? targetUriElement;
 
   /// [targetIdentifier] /// The article or artifact that the cited artifact is related to.
   @JsonKey(name: 'targetIdentifier')
-  final Identifier targetIdentifier;
+  final Identifier? targetIdentifier;
 
   /// [targetReference] /// The article or artifact that the cited artifact is related to.
   @JsonKey(name: 'targetReference')
-  final Reference targetReference;
+  final Reference? targetReference;
 
   /// [targetAttachment] /// The article or artifact that the cited artifact is related to.
   @JsonKey(name: 'targetAttachment')
-  final Attachment targetAttachment;
+  final Attachment? targetAttachment;
   factory CitationRelatesTo1.fromJson(Map<String, dynamic> json) =>
       _$CitationRelatesTo1FromJson(json);
 
