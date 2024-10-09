@@ -161,9 +161,7 @@ class ProdCharacteristic extends BackboneType {
 
   factory ProdCharacteristic.fromJson(Map<String, dynamic> json) {
     return ProdCharacteristic(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -200,7 +198,7 @@ class ProdCharacteristic extends BackboneType {
           : null,
       color: json['color'] != null
           ? (json['color'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       colorElement: json['_color'] != null
@@ -211,7 +209,7 @@ class ProdCharacteristic extends BackboneType {
           : null,
       imprint: json['imprint'] != null
           ? (json['imprint'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       imprintElement: json['_imprint'] != null

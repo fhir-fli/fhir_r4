@@ -255,9 +255,7 @@ class DiagnosticReport extends DomainResource {
 
   factory DiagnosticReport.fromJson(Map<String, dynamic> json) {
     return DiagnosticReport(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -553,9 +551,7 @@ class DiagnosticReportMedia extends BackboneElement {
 
   factory DiagnosticReportMedia.fromJson(Map<String, dynamic> json) {
     return DiagnosticReportMedia(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

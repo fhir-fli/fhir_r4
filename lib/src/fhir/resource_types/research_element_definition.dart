@@ -467,9 +467,7 @@ class ResearchElementDefinition extends DomainResource {
 
   factory ResearchElementDefinition.fromJson(Map<String, dynamic> json) {
     return ResearchElementDefinition(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -571,7 +569,7 @@ class ResearchElementDefinition extends DomainResource {
           : null,
       comment: json['comment'] != null
           ? (json['comment'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       commentElement: json['_comment'] != null
@@ -657,7 +655,8 @@ class ResearchElementDefinition extends DomainResource {
           : null,
       library_: json['library'] != null
           ? (json['library'] as List<dynamic>)
-              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .map<FhirCanonical>(
+                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
               .toList()
           : null,
       libraryElement: json['_library'] != null
@@ -1093,9 +1092,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
   factory ResearchElementDefinitionCharacteristic.fromJson(
       Map<String, dynamic> json) {
     return ResearchElementDefinitionCharacteristic(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

@@ -175,9 +175,7 @@ class QuestionnaireResponse extends DomainResource {
 
   factory QuestionnaireResponse.fromJson(Map<String, dynamic> json) {
     return QuestionnaireResponse(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -442,9 +440,7 @@ class QuestionnaireResponseItem extends BackboneElement {
 
   factory QuestionnaireResponseItem.fromJson(Map<String, dynamic> json) {
     return QuestionnaireResponseItem(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -730,9 +726,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
 
   factory QuestionnaireResponseAnswer.fromJson(Map<String, dynamic> json) {
     return QuestionnaireResponseAnswer(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

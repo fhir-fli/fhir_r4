@@ -235,9 +235,7 @@ class RequestGroup extends DomainResource {
 
   factory RequestGroup.fromJson(Map<String, dynamic> json) {
     return RequestGroup(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -278,7 +276,8 @@ class RequestGroup extends DomainResource {
           : null,
       instantiatesCanonical: json['instantiatesCanonical'] != null
           ? (json['instantiatesCanonical'] as List<dynamic>)
-              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .map<FhirCanonical>(
+                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
               .toList()
           : null,
       instantiatesCanonicalElement: json['_instantiatesCanonical'] != null
@@ -289,7 +288,7 @@ class RequestGroup extends DomainResource {
           : null,
       instantiatesUri: json['instantiatesUri'] != null
           ? (json['instantiatesUri'] as List<dynamic>)
-              .map<FhirUri>((dynamic v) => FhirUri(v))
+              .map<FhirUri>((dynamic v) => FhirUri.fromJson(v as dynamic))
               .toList()
           : null,
       instantiatesUriElement: json['_instantiatesUri'] != null
@@ -736,9 +735,7 @@ class RequestGroupAction extends BackboneElement {
 
   factory RequestGroupAction.fromJson(Map<String, dynamic> json) {
     return RequestGroupAction(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1038,9 +1035,7 @@ class RequestGroupCondition extends BackboneElement {
 
   factory RequestGroupCondition.fromJson(Map<String, dynamic> json) {
     return RequestGroupCondition(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1185,9 +1180,7 @@ class RequestGroupRelatedAction extends BackboneElement {
 
   factory RequestGroupRelatedAction.fromJson(Map<String, dynamic> json) {
     return RequestGroupRelatedAction(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

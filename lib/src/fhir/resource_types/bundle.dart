@@ -116,9 +116,7 @@ class Bundle extends Resource {
 
   factory Bundle.fromJson(Map<String, dynamic> json) {
     return Bundle(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -293,9 +291,7 @@ class BundleLink extends BackboneElement {
 
   factory BundleLink.fromJson(Map<String, dynamic> json) {
     return BundleLink(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -470,9 +466,7 @@ class BundleEntry extends BackboneElement {
 
   factory BundleEntry.fromJson(Map<String, dynamic> json) {
     return BundleEntry(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -633,9 +627,7 @@ class BundleSearch extends BackboneElement {
 
   factory BundleSearch.fromJson(Map<String, dynamic> json) {
     return BundleSearch(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -827,9 +819,7 @@ class BundleRequest extends BackboneElement {
 
   factory BundleRequest.fromJson(Map<String, dynamic> json) {
     return BundleRequest(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1040,9 +1030,7 @@ class BundleResponse extends BackboneElement {
 
   factory BundleResponse.fromJson(Map<String, dynamic> json) {
     return BundleResponse(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

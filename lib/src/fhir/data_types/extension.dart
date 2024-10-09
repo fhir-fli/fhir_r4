@@ -545,16 +545,14 @@ class FhirExtension extends DataType {
 
   factory FhirExtension.fromJson(Map<String, dynamic> json) {
     return FhirExtension(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
                   FhirExtension.fromJson(v as Map<String, dynamic>))
               .toList()
           : null,
-      url: FhirString.fromJson(json['url'] as Map<String, dynamic>),
+      url: FhirString(json['url']),
       valueBase64Binary: json['valueBase64Binary'] != null
           ? FhirBase64Binary(json['valueBase64Binary'])
           : null,

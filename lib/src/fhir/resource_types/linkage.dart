@@ -100,9 +100,7 @@ class Linkage extends DomainResource {
 
   factory Linkage.fromJson(Map<String, dynamic> json) {
     return Linkage(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -271,9 +269,7 @@ class LinkageItem extends BackboneElement {
 
   factory LinkageItem.fromJson(Map<String, dynamic> json) {
     return LinkageItem(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

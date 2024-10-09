@@ -114,9 +114,7 @@ class Basic extends DomainResource {
 
   factory Basic.fromJson(Map<String, dynamic> json) {
     return Basic(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,

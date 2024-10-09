@@ -182,9 +182,7 @@ class TestReport extends DomainResource {
 
   factory TestReport.fromJson(Map<String, dynamic> json) {
     return TestReport(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -427,9 +425,7 @@ class TestReportParticipant extends BackboneElement {
 
   factory TestReportParticipant.fromJson(Map<String, dynamic> json) {
     return TestReportParticipant(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -557,9 +553,7 @@ class TestReportSetup extends BackboneElement {
 
   factory TestReportSetup.fromJson(Map<String, dynamic> json) {
     return TestReportSetup(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -680,9 +674,7 @@ class TestReportAction extends BackboneElement {
 
   factory TestReportAction.fromJson(Map<String, dynamic> json) {
     return TestReportAction(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -825,9 +817,7 @@ class TestReportOperation extends BackboneElement {
 
   factory TestReportOperation.fromJson(Map<String, dynamic> json) {
     return TestReportOperation(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -981,9 +971,7 @@ class TestReportAssert extends BackboneElement {
 
   factory TestReportAssert.fromJson(Map<String, dynamic> json) {
     return TestReportAssert(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1137,9 +1125,7 @@ class TestReportTest extends BackboneElement {
 
   factory TestReportTest.fromJson(Map<String, dynamic> json) {
     return TestReportTest(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1277,9 +1263,7 @@ class TestReportAction1 extends BackboneElement {
 
   factory TestReportAction1.fromJson(Map<String, dynamic> json) {
     return TestReportAction1(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1398,9 +1382,7 @@ class TestReportTeardown extends BackboneElement {
 
   factory TestReportTeardown.fromJson(Map<String, dynamic> json) {
     return TestReportTeardown(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1512,9 +1494,7 @@ class TestReportAction2 extends BackboneElement {
 
   factory TestReportAction2.fromJson(Map<String, dynamic> json) {
     return TestReportAction2(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

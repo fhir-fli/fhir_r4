@@ -132,9 +132,7 @@ class Substance extends DomainResource {
 
   factory Substance.fromJson(Map<String, dynamic> json) {
     return Substance(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -349,9 +347,7 @@ class SubstanceInstance extends BackboneElement {
 
   factory SubstanceInstance.fromJson(Map<String, dynamic> json) {
     return SubstanceInstance(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -491,9 +487,7 @@ class SubstanceIngredient extends BackboneElement {
 
   factory SubstanceIngredient.fromJson(Map<String, dynamic> json) {
     return SubstanceIngredient(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

@@ -387,9 +387,7 @@ class SearchParameter extends DomainResource {
 
   factory SearchParameter.fromJson(Map<String, dynamic> json) {
     return SearchParameter(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -481,7 +479,7 @@ class SearchParameter extends DomainResource {
       code: FhirCode(json['code']),
       codeElement: Element.fromJson(json['_code'] as Map<String, dynamic>),
       base: (json['base'] as List<dynamic>)
-          .map<FhirCode>((dynamic v) => FhirCode(v))
+          .map<FhirCode>((dynamic v) => FhirCode.fromJson(v as dynamic))
           .toList(),
       baseElement: json['_base'] != null
           ? (json['_base'] as List<dynamic>)
@@ -504,7 +502,7 @@ class SearchParameter extends DomainResource {
           : null,
       target: json['target'] != null
           ? (json['target'] as List<dynamic>)
-              .map<FhirCode>((dynamic v) => FhirCode(v))
+              .map<FhirCode>((dynamic v) => FhirCode.fromJson(v as dynamic))
               .toList()
           : null,
       targetElement: json['_target'] != null
@@ -537,7 +535,7 @@ class SearchParameter extends DomainResource {
           : null,
       chain: json['chain'] != null
           ? (json['chain'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       chainElement: json['_chain'] != null
@@ -771,9 +769,7 @@ class SearchParameterComponent extends BackboneElement {
 
   factory SearchParameterComponent.fromJson(Map<String, dynamic> json) {
     return SearchParameterComponent(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

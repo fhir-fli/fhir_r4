@@ -233,9 +233,7 @@ class Coverage extends DomainResource {
 
   factory Coverage.fromJson(Map<String, dynamic> json) {
     return Coverage(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -517,9 +515,7 @@ class CoverageClass extends BackboneElement {
 
   factory CoverageClass.fromJson(Map<String, dynamic> json) {
     return CoverageClass(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -669,9 +665,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
 
   factory CoverageCostToBeneficiary.fromJson(Map<String, dynamic> json) {
     return CoverageCostToBeneficiary(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -808,9 +802,7 @@ class CoverageException extends BackboneElement {
 
   factory CoverageException.fromJson(Map<String, dynamic> json) {
     return CoverageException(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

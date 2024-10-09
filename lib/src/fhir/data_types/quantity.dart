@@ -99,9 +99,7 @@ class Quantity extends DataType {
 
   factory Quantity.fromJson(Map<String, dynamic> json) {
     return Quantity(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

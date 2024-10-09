@@ -212,9 +212,7 @@ class Composition extends DomainResource {
 
   factory Composition.fromJson(Map<String, dynamic> json) {
     return Composition(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -473,9 +471,7 @@ class CompositionAttester extends BackboneElement {
 
   factory CompositionAttester.fromJson(Map<String, dynamic> json) {
     return CompositionAttester(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -618,9 +614,7 @@ class CompositionRelatesTo extends BackboneElement {
 
   factory CompositionRelatesTo.fromJson(Map<String, dynamic> json) {
     return CompositionRelatesTo(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -769,9 +763,7 @@ class CompositionEvent extends BackboneElement {
 
   factory CompositionEvent.fromJson(Map<String, dynamic> json) {
     return CompositionEvent(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -991,9 +983,7 @@ class CompositionSection extends BackboneElement {
 
   factory CompositionSection.fromJson(Map<String, dynamic> json) {
     return CompositionSection(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

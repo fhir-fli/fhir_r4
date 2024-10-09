@@ -334,9 +334,7 @@ class SubscriptionTopic extends DomainResource {
 
   factory SubscriptionTopic.fromJson(Map<String, dynamic> json) {
     return SubscriptionTopic(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -387,7 +385,8 @@ class SubscriptionTopic extends DomainResource {
           : null,
       derivedFrom: json['derivedFrom'] != null
           ? (json['derivedFrom'] as List<dynamic>)
-              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .map<FhirCanonical>(
+                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
               .toList()
           : null,
       derivedFromElement: json['_derivedFrom'] != null
@@ -726,9 +725,7 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
 
   factory SubscriptionTopicResourceTrigger.fromJson(Map<String, dynamic> json) {
     return SubscriptionTopicResourceTrigger(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -935,9 +932,7 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
 
   factory SubscriptionTopicQueryCriteria.fromJson(Map<String, dynamic> json) {
     return SubscriptionTopicQueryCriteria(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1116,9 +1111,7 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
 
   factory SubscriptionTopicEventTrigger.fromJson(Map<String, dynamic> json) {
     return SubscriptionTopicEventTrigger(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1305,9 +1298,7 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
 
   factory SubscriptionTopicCanFilterBy.fromJson(Map<String, dynamic> json) {
     return SubscriptionTopicCanFilterBy(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1500,9 +1491,7 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
   factory SubscriptionTopicNotificationShape.fromJson(
       Map<String, dynamic> json) {
     return SubscriptionTopicNotificationShape(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1519,7 +1508,7 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
           FHIRDefinedType.fromJson(json['resource'] as Map<String, dynamic>),
       include: json['include'] != null
           ? (json['include'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       includeElement: json['_include'] != null
@@ -1530,7 +1519,7 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
           : null,
       revInclude: json['revInclude'] != null
           ? (json['revInclude'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       revIncludeElement: json['_revInclude'] != null

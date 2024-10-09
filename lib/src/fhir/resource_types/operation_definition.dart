@@ -389,9 +389,7 @@ class OperationDefinition extends DomainResource {
 
   factory OperationDefinition.fromJson(Map<String, dynamic> json) {
     return OperationDefinition(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -502,7 +500,7 @@ class OperationDefinition extends DomainResource {
           : null,
       resource: json['resource'] != null
           ? (json['resource'] as List<dynamic>)
-              .map<FhirCode>((dynamic v) => FhirCode(v))
+              .map<FhirCode>((dynamic v) => FhirCode.fromJson(v as dynamic))
               .toList()
           : null,
       resourceElement: json['_resource'] != null
@@ -858,9 +856,7 @@ class OperationDefinitionParameter extends BackboneElement {
 
   factory OperationDefinitionParameter.fromJson(Map<String, dynamic> json) {
     return OperationDefinitionParameter(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -891,7 +887,8 @@ class OperationDefinitionParameter extends BackboneElement {
           : null,
       targetProfile: json['targetProfile'] != null
           ? (json['targetProfile'] as List<dynamic>)
-              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .map<FhirCanonical>(
+                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
               .toList()
           : null,
       targetProfileElement: json['_targetProfile'] != null
@@ -1068,9 +1065,7 @@ class OperationDefinitionBinding extends BackboneElement {
 
   factory OperationDefinitionBinding.fromJson(Map<String, dynamic> json) {
     return OperationDefinitionBinding(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1211,9 +1206,7 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
   factory OperationDefinitionReferencedFrom.fromJson(
       Map<String, dynamic> json) {
     return OperationDefinitionReferencedFrom(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1357,9 +1350,7 @@ class OperationDefinitionOverload extends BackboneElement {
 
   factory OperationDefinitionOverload.fromJson(Map<String, dynamic> json) {
     return OperationDefinitionOverload(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1374,7 +1365,7 @@ class OperationDefinitionOverload extends BackboneElement {
           : null,
       parameterName: json['parameterName'] != null
           ? (json['parameterName'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       parameterNameElement: json['_parameterName'] != null

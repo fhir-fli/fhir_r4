@@ -144,9 +144,7 @@ class DataRequirement extends DataType {
 
   factory DataRequirement.fromJson(Map<String, dynamic> json) {
     return DataRequirement(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -156,7 +154,8 @@ class DataRequirement extends DataType {
       type: FHIRAllTypes.fromJson(json['type'] as Map<String, dynamic>),
       profile: json['profile'] != null
           ? (json['profile'] as List<dynamic>)
-              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .map<FhirCanonical>(
+                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
               .toList()
           : null,
       profileElement: json['_profile'] != null
@@ -174,7 +173,7 @@ class DataRequirement extends DataType {
           : null,
       mustSupport: json['mustSupport'] != null
           ? (json['mustSupport'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       mustSupportElement: json['_mustSupport'] != null
@@ -374,9 +373,7 @@ class DataRequirementCodeFilter extends Element {
 
   factory DataRequirementCodeFilter.fromJson(Map<String, dynamic> json) {
     return DataRequirementCodeFilter(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -573,9 +570,7 @@ class DataRequirementDateFilter extends Element {
 
   factory DataRequirementDateFilter.fromJson(Map<String, dynamic> json) {
     return DataRequirementDateFilter(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -720,9 +715,7 @@ class DataRequirementSort extends Element {
 
   factory DataRequirementSort.fromJson(Map<String, dynamic> json) {
     return DataRequirementSort(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

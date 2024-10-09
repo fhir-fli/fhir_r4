@@ -115,9 +115,7 @@ class FhirMeta extends DataType {
 
   factory FhirMeta.fromJson(Map<String, dynamic> json) {
     return FhirMeta(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -139,7 +137,8 @@ class FhirMeta extends DataType {
           : null,
       profile: json['profile'] != null
           ? (json['profile'] as List<dynamic>)
-              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .map<FhirCanonical>(
+                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
               .toList()
           : null,
       profileElement: json['_profile'] != null

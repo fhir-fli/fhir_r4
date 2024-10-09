@@ -252,9 +252,7 @@ class AdverseEvent extends DomainResource {
 
   factory AdverseEvent.fromJson(Map<String, dynamic> json) {
     return AdverseEvent(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -539,9 +537,7 @@ class AdverseEventSuspectEntity extends BackboneElement {
 
   factory AdverseEventSuspectEntity.fromJson(Map<String, dynamic> json) {
     return AdverseEventSuspectEntity(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -686,9 +682,7 @@ class AdverseEventCausality extends BackboneElement {
 
   factory AdverseEventCausality.fromJson(Map<String, dynamic> json) {
     return AdverseEventCausality(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

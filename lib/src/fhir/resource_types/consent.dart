@@ -188,9 +188,7 @@ class Consent extends DomainResource {
 
   factory Consent.fromJson(Map<String, dynamic> json) {
     return Consent(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -445,9 +443,7 @@ class ConsentPolicy extends BackboneElement {
 
   factory ConsentPolicy.fromJson(Map<String, dynamic> json) {
     return ConsentPolicy(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -600,9 +596,7 @@ class ConsentVerification extends BackboneElement {
 
   factory ConsentVerification.fromJson(Map<String, dynamic> json) {
     return ConsentVerification(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -819,9 +813,7 @@ class ConsentProvision extends BackboneElement {
 
   factory ConsentProvision.fromJson(Map<String, dynamic> json) {
     return ConsentProvision(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1017,9 +1009,7 @@ class ConsentActor extends BackboneElement {
 
   factory ConsentActor.fromJson(Map<String, dynamic> json) {
     return ConsentActor(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1140,9 +1130,7 @@ class ConsentData extends BackboneElement {
 
   factory ConsentData.fromJson(Map<String, dynamic> json) {
     return ConsentData(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

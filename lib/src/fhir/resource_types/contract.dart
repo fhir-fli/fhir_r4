@@ -410,9 +410,7 @@ class Contract extends DomainResource {
 
   factory Contract.fromJson(Map<String, dynamic> json) {
     return Contract(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -529,7 +527,7 @@ class Contract extends DomainResource {
           : null,
       alias: json['alias'] != null
           ? (json['alias'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       aliasElement: json['_alias'] != null
@@ -856,9 +854,7 @@ class ContractContentDefinition extends BackboneElement {
 
   factory ContractContentDefinition.fromJson(Map<String, dynamic> json) {
     return ContractContentDefinition(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1109,9 +1105,7 @@ class ContractTerm extends BackboneElement {
 
   factory ContractTerm.fromJson(Map<String, dynamic> json) {
     return ContractTerm(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1332,9 +1326,7 @@ class ContractSecurityLabel extends BackboneElement {
 
   factory ContractSecurityLabel.fromJson(Map<String, dynamic> json) {
     return ContractSecurityLabel(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1349,7 +1341,8 @@ class ContractSecurityLabel extends BackboneElement {
           : null,
       number: json['number'] != null
           ? (json['number'] as List<dynamic>)
-              .map<FhirUnsignedInt>((dynamic v) => FhirUnsignedInt(v))
+              .map<FhirUnsignedInt>(
+                  (dynamic v) => FhirUnsignedInt.fromJson(v as dynamic))
               .toList()
           : null,
       numberElement: json['_number'] != null
@@ -1568,9 +1561,7 @@ class ContractOffer extends BackboneElement {
 
   factory ContractOffer.fromJson(Map<String, dynamic> json) {
     return ContractOffer(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1622,7 +1613,7 @@ class ContractOffer extends BackboneElement {
           : null,
       linkId: json['linkId'] != null
           ? (json['linkId'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       linkIdElement: json['_linkId'] != null
@@ -1633,7 +1624,8 @@ class ContractOffer extends BackboneElement {
           : null,
       securityLabelNumber: json['securityLabelNumber'] != null
           ? (json['securityLabelNumber'] as List<dynamic>)
-              .map<FhirUnsignedInt>((dynamic v) => FhirUnsignedInt(v))
+              .map<FhirUnsignedInt>(
+                  (dynamic v) => FhirUnsignedInt.fromJson(v as dynamic))
               .toList()
           : null,
       securityLabelNumberElement: json['_securityLabelNumber'] != null
@@ -1768,9 +1760,7 @@ class ContractParty extends BackboneElement {
 
   factory ContractParty.fromJson(Map<String, dynamic> json) {
     return ContractParty(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2040,9 +2030,7 @@ class ContractAnswer extends BackboneElement {
 
   factory ContractAnswer.fromJson(Map<String, dynamic> json) {
     return ContractAnswer(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2379,9 +2367,7 @@ class ContractAsset extends BackboneElement {
 
   factory ContractAsset.fromJson(Map<String, dynamic> json) {
     return ContractAsset(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2453,7 +2439,7 @@ class ContractAsset extends BackboneElement {
           : null,
       linkId: json['linkId'] != null
           ? (json['linkId'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       linkIdElement: json['_linkId'] != null
@@ -2470,7 +2456,8 @@ class ContractAsset extends BackboneElement {
           : null,
       securityLabelNumber: json['securityLabelNumber'] != null
           ? (json['securityLabelNumber'] as List<dynamic>)
-              .map<FhirUnsignedInt>((dynamic v) => FhirUnsignedInt(v))
+              .map<FhirUnsignedInt>(
+                  (dynamic v) => FhirUnsignedInt.fromJson(v as dynamic))
               .toList()
           : null,
       securityLabelNumberElement: json['_securityLabelNumber'] != null
@@ -2642,9 +2629,7 @@ class ContractContext extends BackboneElement {
 
   factory ContractContext.fromJson(Map<String, dynamic> json) {
     return ContractContext(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2922,9 +2907,7 @@ class ContractValuedItem extends BackboneElement {
 
   factory ContractValuedItem.fromJson(Map<String, dynamic> json) {
     return ContractValuedItem(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2988,7 +2971,7 @@ class ContractValuedItem extends BackboneElement {
           : null,
       linkId: json['linkId'] != null
           ? (json['linkId'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       linkIdElement: json['_linkId'] != null
@@ -2999,7 +2982,8 @@ class ContractValuedItem extends BackboneElement {
           : null,
       securityLabelNumber: json['securityLabelNumber'] != null
           ? (json['securityLabelNumber'] as List<dynamic>)
-              .map<FhirUnsignedInt>((dynamic v) => FhirUnsignedInt(v))
+              .map<FhirUnsignedInt>(
+                  (dynamic v) => FhirUnsignedInt.fromJson(v as dynamic))
               .toList()
           : null,
       securityLabelNumberElement: json['_securityLabelNumber'] != null
@@ -3374,9 +3358,7 @@ class ContractAction extends BackboneElement {
 
   factory ContractAction.fromJson(Map<String, dynamic> json) {
     return ContractAction(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -3405,7 +3387,7 @@ class ContractAction extends BackboneElement {
       intent: CodeableConcept.fromJson(json['intent'] as Map<String, dynamic>),
       linkId: json['linkId'] != null
           ? (json['linkId'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       linkIdElement: json['_linkId'] != null
@@ -3420,7 +3402,7 @@ class ContractAction extends BackboneElement {
           : null,
       contextLinkId: json['contextLinkId'] != null
           ? (json['contextLinkId'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       contextLinkIdElement: json['_contextLinkId'] != null
@@ -3450,7 +3432,7 @@ class ContractAction extends BackboneElement {
           : null,
       requesterLinkId: json['requesterLinkId'] != null
           ? (json['requesterLinkId'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       requesterLinkIdElement: json['_requesterLinkId'] != null
@@ -3474,7 +3456,7 @@ class ContractAction extends BackboneElement {
           : null,
       performerLinkId: json['performerLinkId'] != null
           ? (json['performerLinkId'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       performerLinkIdElement: json['_performerLinkId'] != null
@@ -3497,7 +3479,7 @@ class ContractAction extends BackboneElement {
           : null,
       reason: json['reason'] != null
           ? (json['reason'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       reasonElement: json['_reason'] != null
@@ -3508,7 +3490,7 @@ class ContractAction extends BackboneElement {
           : null,
       reasonLinkId: json['reasonLinkId'] != null
           ? (json['reasonLinkId'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       reasonLinkIdElement: json['_reasonLinkId'] != null
@@ -3525,7 +3507,8 @@ class ContractAction extends BackboneElement {
           : null,
       securityLabelNumber: json['securityLabelNumber'] != null
           ? (json['securityLabelNumber'] as List<dynamic>)
-              .map<FhirUnsignedInt>((dynamic v) => FhirUnsignedInt(v))
+              .map<FhirUnsignedInt>(
+                  (dynamic v) => FhirUnsignedInt.fromJson(v as dynamic))
               .toList()
           : null,
       securityLabelNumberElement: json['_securityLabelNumber'] != null
@@ -3703,9 +3686,7 @@ class ContractSubject extends BackboneElement {
 
   factory ContractSubject.fromJson(Map<String, dynamic> json) {
     return ContractSubject(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -3836,9 +3817,7 @@ class ContractSigner extends BackboneElement {
 
   factory ContractSigner.fromJson(Map<String, dynamic> json) {
     return ContractSigner(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -3973,9 +3952,7 @@ class ContractFriendly extends BackboneElement {
 
   factory ContractFriendly.fromJson(Map<String, dynamic> json) {
     return ContractFriendly(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -4121,9 +4098,7 @@ class ContractLegal extends BackboneElement {
 
   factory ContractLegal.fromJson(Map<String, dynamic> json) {
     return ContractLegal(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -4265,9 +4240,7 @@ class ContractRule extends BackboneElement {
 
   factory ContractRule.fromJson(Map<String, dynamic> json) {
     return ContractRule(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

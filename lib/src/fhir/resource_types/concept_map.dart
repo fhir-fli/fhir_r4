@@ -324,9 +324,7 @@ class ConceptMap extends DomainResource {
 
   factory ConceptMap.fromJson(Map<String, dynamic> json) {
     return ConceptMap(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -696,9 +694,7 @@ class ConceptMapGroup extends BackboneElement {
 
   factory ConceptMapGroup.fromJson(Map<String, dynamic> json) {
     return ConceptMapGroup(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -881,9 +877,7 @@ class ConceptMapElement extends BackboneElement {
 
   factory ConceptMapElement.fromJson(Map<String, dynamic> json) {
     return ConceptMapElement(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1078,9 +1072,7 @@ class ConceptMapTarget extends BackboneElement {
 
   factory ConceptMapTarget.fromJson(Map<String, dynamic> json) {
     return ConceptMapTarget(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1279,9 +1271,7 @@ class ConceptMapDependsOn extends BackboneElement {
 
   factory ConceptMapDependsOn.fromJson(Map<String, dynamic> json) {
     return ConceptMapDependsOn(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1465,9 +1455,7 @@ class ConceptMapUnmapped extends BackboneElement {
 
   factory ConceptMapUnmapped.fromJson(Map<String, dynamic> json) {
     return ConceptMapUnmapped(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

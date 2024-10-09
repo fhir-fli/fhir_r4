@@ -179,9 +179,7 @@ class SupplyDelivery extends DomainResource {
 
   factory SupplyDelivery.fromJson(Map<String, dynamic> json) {
     return SupplyDelivery(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -429,9 +427,7 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
 
   factory SupplyDeliverySuppliedItem.fromJson(Map<String, dynamic> json) {
     return SupplyDeliverySuppliedItem(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

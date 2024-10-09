@@ -133,9 +133,7 @@ class VisionPrescription extends DomainResource {
 
   factory VisionPrescription.fromJson(Map<String, dynamic> json) {
     return VisionPrescription(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -463,9 +461,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   factory VisionPrescriptionLensSpecification.fromJson(
       Map<String, dynamic> json) {
     return VisionPrescriptionLensSpecification(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -687,9 +683,7 @@ class VisionPrescriptionPrism extends BackboneElement {
 
   factory VisionPrescriptionPrism.fromJson(Map<String, dynamic> json) {
     return VisionPrescriptionPrism(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

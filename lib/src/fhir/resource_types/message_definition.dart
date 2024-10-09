@@ -371,9 +371,7 @@ class MessageDefinition extends DomainResource {
 
   factory MessageDefinition.fromJson(Map<String, dynamic> json) {
     return MessageDefinition(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -430,7 +428,8 @@ class MessageDefinition extends DomainResource {
           : null,
       replaces: json['replaces'] != null
           ? (json['replaces'] as List<dynamic>)
-              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .map<FhirCanonical>(
+                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
               .toList()
           : null,
       replacesElement: json['_replaces'] != null
@@ -493,7 +492,8 @@ class MessageDefinition extends DomainResource {
           : null,
       parent: json['parent'] != null
           ? (json['parent'] as List<dynamic>)
-              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .map<FhirCanonical>(
+                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
               .toList()
           : null,
       parentElement: json['_parent'] != null
@@ -532,7 +532,8 @@ class MessageDefinition extends DomainResource {
           : null,
       graph: json['graph'] != null
           ? (json['graph'] as List<dynamic>)
-              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .map<FhirCanonical>(
+                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
               .toList()
           : null,
       graphElement: json['_graph'] != null
@@ -781,9 +782,7 @@ class MessageDefinitionFocus extends BackboneElement {
 
   factory MessageDefinitionFocus.fromJson(Map<String, dynamic> json) {
     return MessageDefinitionFocus(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -937,9 +936,7 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
 
   factory MessageDefinitionAllowedResponse.fromJson(Map<String, dynamic> json) {
     return MessageDefinitionAllowedResponse(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

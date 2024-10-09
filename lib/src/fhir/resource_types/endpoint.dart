@@ -178,9 +178,7 @@ class FhirEndpoint extends DomainResource {
 
   factory FhirEndpoint.fromJson(Map<String, dynamic> json) {
     return FhirEndpoint(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -245,7 +243,7 @@ class FhirEndpoint extends DomainResource {
           .toList(),
       payloadMimeType: json['payloadMimeType'] != null
           ? (json['payloadMimeType'] as List<dynamic>)
-              .map<FhirCode>((dynamic v) => FhirCode(v))
+              .map<FhirCode>((dynamic v) => FhirCode.fromJson(v as dynamic))
               .toList()
           : null,
       payloadMimeTypeElement: json['_payloadMimeType'] != null
@@ -259,7 +257,7 @@ class FhirEndpoint extends DomainResource {
           Element.fromJson(json['_address'] as Map<String, dynamic>),
       header: json['header'] != null
           ? (json['header'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       headerElement: json['_header'] != null

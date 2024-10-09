@@ -374,9 +374,7 @@ class StructureDefinition extends DomainResource {
 
   factory StructureDefinition.fromJson(Map<String, dynamic> json) {
     return StructureDefinition(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -762,9 +760,7 @@ class StructureDefinitionMapping extends BackboneElement {
 
   factory StructureDefinitionMapping.fromJson(Map<String, dynamic> json) {
     return StructureDefinitionMapping(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -932,9 +928,7 @@ class StructureDefinitionContext extends BackboneElement {
 
   factory StructureDefinitionContext.fromJson(Map<String, dynamic> json) {
     return StructureDefinitionContext(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -953,7 +947,7 @@ class StructureDefinitionContext extends BackboneElement {
           Element.fromJson(json['_expression'] as Map<String, dynamic>),
       contextInvariant: json['contextInvariant'] != null
           ? (json['contextInvariant'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       contextInvariantElement: json['_contextInvariant'] != null
@@ -1070,9 +1064,7 @@ class StructureDefinitionSnapshot extends BackboneElement {
 
   factory StructureDefinitionSnapshot.fromJson(Map<String, dynamic> json) {
     return StructureDefinitionSnapshot(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1186,9 +1178,7 @@ class StructureDefinitionDifferential extends BackboneElement {
 
   factory StructureDefinitionDifferential.fromJson(Map<String, dynamic> json) {
     return StructureDefinitionDifferential(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

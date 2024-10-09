@@ -262,9 +262,7 @@ class ImagingStudy extends DomainResource {
 
   factory ImagingStudy.fromJson(Map<String, dynamic> json) {
     return ImagingStudy(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -673,9 +671,7 @@ class ImagingStudySeries extends BackboneElement {
 
   factory ImagingStudySeries.fromJson(Map<String, dynamic> json) {
     return ImagingStudySeries(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -875,9 +871,7 @@ class ImagingStudyPerformer extends BackboneElement {
 
   factory ImagingStudyPerformer.fromJson(Map<String, dynamic> json) {
     return ImagingStudyPerformer(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1026,9 +1020,7 @@ class ImagingStudyInstance extends BackboneElement {
 
   factory ImagingStudyInstance.fromJson(Map<String, dynamic> json) {
     return ImagingStudyInstance(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

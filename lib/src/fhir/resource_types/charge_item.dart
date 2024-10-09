@@ -330,9 +330,7 @@ class ChargeItem extends DomainResource {
 
   factory ChargeItem.fromJson(Map<String, dynamic> json) {
     return ChargeItem(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -373,7 +371,7 @@ class ChargeItem extends DomainResource {
           : null,
       definitionUri: json['definitionUri'] != null
           ? (json['definitionUri'] as List<dynamic>)
-              .map<FhirUri>((dynamic v) => FhirUri(v))
+              .map<FhirUri>((dynamic v) => FhirUri.fromJson(v as dynamic))
               .toList()
           : null,
       definitionUriElement: json['_definitionUri'] != null
@@ -384,7 +382,8 @@ class ChargeItem extends DomainResource {
           : null,
       definitionCanonical: json['definitionCanonical'] != null
           ? (json['definitionCanonical'] as List<dynamic>)
-              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .map<FhirCanonical>(
+                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
               .toList()
           : null,
       definitionCanonicalElement: json['_definitionCanonical'] != null
@@ -701,9 +700,7 @@ class ChargeItemPerformer extends BackboneElement {
 
   factory ChargeItemPerformer.fromJson(Map<String, dynamic> json) {
     return ChargeItemPerformer(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

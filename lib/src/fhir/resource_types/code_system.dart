@@ -387,9 +387,7 @@ class CodeSystem extends DomainResource {
 
   factory CodeSystem.fromJson(Map<String, dynamic> json) {
     return CodeSystem(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -786,9 +784,7 @@ class CodeSystemFilter extends BackboneElement {
 
   factory CodeSystemFilter.fromJson(Map<String, dynamic> json) {
     return CodeSystemFilter(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -966,9 +962,7 @@ class CodeSystemProperty extends BackboneElement {
 
   factory CodeSystemProperty.fromJson(Map<String, dynamic> json) {
     return CodeSystemProperty(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1166,9 +1160,7 @@ class CodeSystemConcept extends BackboneElement {
 
   factory CodeSystemConcept.fromJson(Map<String, dynamic> json) {
     return CodeSystemConcept(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1343,9 +1335,7 @@ class CodeSystemDesignation extends BackboneElement {
 
   factory CodeSystemDesignation.fromJson(Map<String, dynamic> json) {
     return CodeSystemDesignation(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1553,9 +1543,7 @@ class CodeSystemProperty1 extends BackboneElement {
 
   factory CodeSystemProperty1.fromJson(Map<String, dynamic> json) {
     return CodeSystemProperty1(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

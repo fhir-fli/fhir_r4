@@ -345,9 +345,7 @@ class Evidence extends DomainResource {
 
   factory Evidence.fromJson(Map<String, dynamic> json) {
     return Evidence(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -736,9 +734,7 @@ class EvidenceVariableDefinition extends BackboneElement {
 
   factory EvidenceVariableDefinition.fromJson(Map<String, dynamic> json) {
     return EvidenceVariableDefinition(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -971,9 +967,7 @@ class EvidenceStatistic extends BackboneElement {
 
   factory EvidenceStatistic.fromJson(Map<String, dynamic> json) {
     return EvidenceStatistic(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1208,9 +1202,7 @@ class EvidenceSampleSize extends BackboneElement {
 
   factory EvidenceSampleSize.fromJson(Map<String, dynamic> json) {
     return EvidenceSampleSize(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1426,9 +1418,7 @@ class EvidenceAttributeEstimate extends BackboneElement {
 
   factory EvidenceAttributeEstimate.fromJson(Map<String, dynamic> json) {
     return EvidenceAttributeEstimate(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1607,9 +1597,7 @@ class EvidenceModelCharacteristic extends BackboneElement {
 
   factory EvidenceModelCharacteristic.fromJson(Map<String, dynamic> json) {
     return EvidenceModelCharacteristic(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1773,9 +1761,7 @@ class Evidencevariable extends BackboneElement {
 
   factory Evidencevariable.fromJson(Map<String, dynamic> json) {
     return Evidencevariable(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1967,9 +1953,7 @@ class EvidenceCertainty extends BackboneElement {
 
   factory EvidenceCertainty.fromJson(Map<String, dynamic> json) {
     return EvidenceCertainty(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

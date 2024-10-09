@@ -275,9 +275,7 @@ class ClinicalImpression extends DomainResource {
 
   factory ClinicalImpression.fromJson(Map<String, dynamic> json) {
     return ClinicalImpression(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -368,7 +366,7 @@ class ClinicalImpression extends DomainResource {
           : null,
       protocol: json['protocol'] != null
           ? (json['protocol'] as List<dynamic>)
-              .map<FhirUri>((dynamic v) => FhirUri(v))
+              .map<FhirUri>((dynamic v) => FhirUri.fromJson(v as dynamic))
               .toList()
           : null,
       protocolElement: json['_protocol'] != null
@@ -588,9 +586,7 @@ class ClinicalImpressionInvestigation extends BackboneElement {
 
   factory ClinicalImpressionInvestigation.fromJson(Map<String, dynamic> json) {
     return ClinicalImpressionInvestigation(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -732,9 +728,7 @@ class ClinicalImpressionFinding extends BackboneElement {
 
   factory ClinicalImpressionFinding.fromJson(Map<String, dynamic> json) {
     return ClinicalImpressionFinding(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

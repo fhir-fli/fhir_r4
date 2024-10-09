@@ -174,9 +174,7 @@ class Dosage extends BackboneType {
 
   factory Dosage.fromJson(Map<String, dynamic> json) {
     return Dosage(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -414,9 +412,7 @@ class DosageDoseAndRate extends Element {
 
   factory DosageDoseAndRate.fromJson(Map<String, dynamic> json) {
     return DosageDoseAndRate(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

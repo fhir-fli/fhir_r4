@@ -309,9 +309,7 @@ class ImplementationGuide extends DomainResource {
 
   factory ImplementationGuide.fromJson(Map<String, dynamic> json) {
     return ImplementationGuide(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -638,9 +636,7 @@ class ImplementationGuideDependsOn extends BackboneElement {
 
   factory ImplementationGuideDependsOn.fromJson(Map<String, dynamic> json) {
     return ImplementationGuideDependsOn(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -784,9 +780,7 @@ class ImplementationGuideGlobal extends BackboneElement {
 
   factory ImplementationGuideGlobal.fromJson(Map<String, dynamic> json) {
     return ImplementationGuideGlobal(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -947,9 +941,7 @@ class ImplementationGuideDefinition extends BackboneElement {
 
   factory ImplementationGuideDefinition.fromJson(Map<String, dynamic> json) {
     return ImplementationGuideDefinition(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1113,9 +1105,7 @@ class ImplementationGuideGrouping extends BackboneElement {
 
   factory ImplementationGuideGrouping.fromJson(Map<String, dynamic> json) {
     return ImplementationGuideGrouping(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1317,9 +1307,7 @@ class ImplementationGuideResource extends BackboneElement {
 
   factory ImplementationGuideResource.fromJson(Map<String, dynamic> json) {
     return ImplementationGuideResource(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1528,9 +1516,7 @@ class ImplementationGuidePage extends BackboneElement {
 
   factory ImplementationGuidePage.fromJson(Map<String, dynamic> json) {
     return ImplementationGuidePage(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1683,9 +1669,7 @@ class ImplementationGuideParameter extends BackboneElement {
 
   factory ImplementationGuideParameter.fromJson(Map<String, dynamic> json) {
     return ImplementationGuideParameter(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1829,9 +1813,7 @@ class ImplementationGuideTemplate extends BackboneElement {
 
   factory ImplementationGuideTemplate.fromJson(Map<String, dynamic> json) {
     return ImplementationGuideTemplate(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2011,9 +1993,7 @@ class ImplementationGuideManifest extends BackboneElement {
 
   factory ImplementationGuideManifest.fromJson(Map<String, dynamic> json) {
     return ImplementationGuideManifest(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2042,7 +2022,7 @@ class ImplementationGuideManifest extends BackboneElement {
           : null,
       image: json['image'] != null
           ? (json['image'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       imageElement: json['_image'] != null
@@ -2053,7 +2033,7 @@ class ImplementationGuideManifest extends BackboneElement {
           : null,
       other: json['other'] != null
           ? (json['other'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       otherElement: json['_other'] != null
@@ -2214,9 +2194,7 @@ class ImplementationGuideResource1 extends BackboneElement {
 
   factory ImplementationGuideResource1.fromJson(Map<String, dynamic> json) {
     return ImplementationGuideResource1(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2385,9 +2363,7 @@ class ImplementationGuidePage1 extends BackboneElement {
 
   factory ImplementationGuidePage1.fromJson(Map<String, dynamic> json) {
     return ImplementationGuidePage1(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2408,7 +2384,7 @@ class ImplementationGuidePage1 extends BackboneElement {
           : null,
       anchor: json['anchor'] != null
           ? (json['anchor'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       anchorElement: json['_anchor'] != null

@@ -222,9 +222,7 @@ class DocumentReference extends DomainResource {
 
   factory DocumentReference.fromJson(Map<String, dynamic> json) {
     return DocumentReference(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -482,9 +480,7 @@ class DocumentReferenceRelatesTo extends BackboneElement {
 
   factory DocumentReferenceRelatesTo.fromJson(Map<String, dynamic> json) {
     return DocumentReferenceRelatesTo(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -609,9 +605,7 @@ class DocumentReferenceContent extends BackboneElement {
 
   factory DocumentReferenceContent.fromJson(Map<String, dynamic> json) {
     return DocumentReferenceContent(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -780,9 +774,7 @@ class DocumentReferenceContext extends BackboneElement {
 
   factory DocumentReferenceContext.fromJson(Map<String, dynamic> json) {
     return DocumentReferenceContext(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

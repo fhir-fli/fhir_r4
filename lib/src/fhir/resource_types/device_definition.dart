@@ -289,9 +289,7 @@ class DeviceDefinition extends DomainResource {
 
   factory DeviceDefinition.fromJson(Map<String, dynamic> json) {
     return DeviceDefinition(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -372,7 +370,7 @@ class DeviceDefinition extends DomainResource {
           : null,
       version: json['version'] != null
           ? (json['version'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       versionElement: json['_version'] != null
@@ -651,9 +649,7 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
   factory DeviceDefinitionUdiDeviceIdentifier.fromJson(
       Map<String, dynamic> json) {
     return DeviceDefinitionUdiDeviceIdentifier(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -795,9 +791,7 @@ class DeviceDefinitionDeviceName extends BackboneElement {
 
   factory DeviceDefinitionDeviceName.fromJson(Map<String, dynamic> json) {
     return DeviceDefinitionDeviceName(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -932,9 +926,7 @@ class DeviceDefinitionSpecialization extends BackboneElement {
 
   factory DeviceDefinitionSpecialization.fromJson(Map<String, dynamic> json) {
     return DeviceDefinitionSpecialization(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1064,9 +1056,7 @@ class DeviceDefinitionCapability extends BackboneElement {
 
   factory DeviceDefinitionCapability.fromJson(Map<String, dynamic> json) {
     return DeviceDefinitionCapability(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1200,9 +1190,7 @@ class DeviceDefinitionProperty extends BackboneElement {
 
   factory DeviceDefinitionProperty.fromJson(Map<String, dynamic> json) {
     return DeviceDefinitionProperty(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1351,9 +1339,7 @@ class DeviceDefinitionMaterial extends BackboneElement {
 
   factory DeviceDefinitionMaterial.fromJson(Map<String, dynamic> json) {
     return DeviceDefinitionMaterial(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

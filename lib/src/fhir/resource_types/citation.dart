@@ -385,9 +385,7 @@ class Citation extends DomainResource {
 
   factory Citation.fromJson(Map<String, dynamic> json) {
     return Citation(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -774,9 +772,7 @@ class CitationSummary extends BackboneElement {
 
   factory CitationSummary.fromJson(Map<String, dynamic> json) {
     return CitationSummary(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -903,9 +899,7 @@ class CitationClassification extends BackboneElement {
 
   factory CitationClassification.fromJson(Map<String, dynamic> json) {
     return CitationClassification(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1041,9 +1035,7 @@ class CitationStatusDate extends BackboneElement {
 
   factory CitationStatusDate.fromJson(Map<String, dynamic> json) {
     return CitationStatusDate(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1206,9 +1198,7 @@ class CitationRelatesTo extends BackboneElement {
 
   factory CitationRelatesTo.fromJson(Map<String, dynamic> json) {
     return CitationRelatesTo(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1477,9 +1467,7 @@ class CitationCitedArtifact extends BackboneElement {
 
   factory CitationCitedArtifact.fromJson(Map<String, dynamic> json) {
     return CitationCitedArtifact(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1711,9 +1699,7 @@ class CitationVersion extends BackboneElement {
 
   factory CitationVersion.fromJson(Map<String, dynamic> json) {
     return CitationVersion(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1847,9 +1833,7 @@ class CitationStatusDate1 extends BackboneElement {
 
   factory CitationStatusDate1.fromJson(Map<String, dynamic> json) {
     return CitationStatusDate1(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1990,9 +1974,7 @@ class CitationTitle extends BackboneElement {
 
   factory CitationTitle.fromJson(Map<String, dynamic> json) {
     return CitationTitle(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2148,9 +2130,7 @@ class CitationAbstract extends BackboneElement {
 
   factory CitationAbstract.fromJson(Map<String, dynamic> json) {
     return CitationAbstract(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2302,9 +2282,7 @@ class CitationPart extends BackboneElement {
 
   factory CitationPart.fromJson(Map<String, dynamic> json) {
     return CitationPart(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2470,9 +2448,7 @@ class CitationRelatesTo1 extends BackboneElement {
 
   factory CitationRelatesTo1.fromJson(Map<String, dynamic> json) {
     return CitationRelatesTo1(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2730,9 +2706,7 @@ class CitationPublicationForm extends BackboneElement {
 
   factory CitationPublicationForm.fromJson(Map<String, dynamic> json) {
     return CitationPublicationForm(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2976,9 +2950,7 @@ class CitationPublishedIn extends BackboneElement {
 
   factory CitationPublishedIn.fromJson(Map<String, dynamic> json) {
     return CitationPublishedIn(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -3155,9 +3127,7 @@ class CitationPeriodicRelease extends BackboneElement {
 
   factory CitationPeriodicRelease.fromJson(Map<String, dynamic> json) {
     return CitationPeriodicRelease(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -3359,9 +3329,7 @@ class CitationDateOfPublication extends BackboneElement {
 
   factory CitationDateOfPublication.fromJson(Map<String, dynamic> json) {
     return CitationDateOfPublication(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -3529,9 +3497,7 @@ class CitationWebLocation extends BackboneElement {
 
   factory CitationWebLocation.fromJson(Map<String, dynamic> json) {
     return CitationWebLocation(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -3667,9 +3633,7 @@ class CitationClassification1 extends BackboneElement {
 
   factory CitationClassification1.fromJson(Map<String, dynamic> json) {
     return CitationClassification1(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -3835,9 +3799,7 @@ class CitationWhoClassified extends BackboneElement {
 
   factory CitationWhoClassified.fromJson(Map<String, dynamic> json) {
     return CitationWhoClassified(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -4004,9 +3966,7 @@ class CitationContributorship extends BackboneElement {
 
   factory CitationContributorship.fromJson(Map<String, dynamic> json) {
     return CitationContributorship(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -4246,9 +4206,7 @@ class CitationEntry extends BackboneElement {
 
   factory CitationEntry.fromJson(Map<String, dynamic> json) {
     return CitationEntry(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -4480,9 +4438,7 @@ class CitationAffiliationInfo extends BackboneElement {
 
   factory CitationAffiliationInfo.fromJson(Map<String, dynamic> json) {
     return CitationAffiliationInfo(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -4625,9 +4581,7 @@ class CitationContributionInstance extends BackboneElement {
 
   factory CitationContributionInstance.fromJson(Map<String, dynamic> json) {
     return CitationContributionInstance(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -4773,9 +4727,7 @@ class CitationSummary1 extends BackboneElement {
 
   factory CitationSummary1.fromJson(Map<String, dynamic> json) {
     return CitationSummary1(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

@@ -196,9 +196,7 @@ class DetectedIssue extends DomainResource {
 
   factory DetectedIssue.fromJson(Map<String, dynamic> json) {
     return DetectedIssue(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -445,9 +443,7 @@ class DetectedIssueEvidence extends BackboneElement {
 
   factory DetectedIssueEvidence.fromJson(Map<String, dynamic> json) {
     return DetectedIssueEvidence(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -593,9 +589,7 @@ class DetectedIssueMitigation extends BackboneElement {
 
   factory DetectedIssueMitigation.fromJson(Map<String, dynamic> json) {
     return DetectedIssueMitigation(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

@@ -215,9 +215,7 @@ class Invoice extends DomainResource {
 
   factory Invoice.fromJson(Map<String, dynamic> json) {
     return Invoice(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -476,9 +474,7 @@ class InvoiceParticipant extends BackboneElement {
 
   factory InvoiceParticipant.fromJson(Map<String, dynamic> json) {
     return InvoiceParticipant(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -635,9 +631,7 @@ class InvoiceLineItem extends BackboneElement {
 
   factory InvoiceLineItem.fromJson(Map<String, dynamic> json) {
     return InvoiceLineItem(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -808,9 +802,7 @@ class InvoicePriceComponent extends BackboneElement {
 
   factory InvoicePriceComponent.fromJson(Map<String, dynamic> json) {
     return InvoicePriceComponent(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

@@ -296,9 +296,7 @@ class ValueSet extends DomainResource {
 
   factory ValueSet.fromJson(Map<String, dynamic> json) {
     return ValueSet(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -625,9 +623,7 @@ class ValueSetCompose extends BackboneElement {
 
   factory ValueSetCompose.fromJson(Map<String, dynamic> json) {
     return ValueSetCompose(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -819,9 +815,7 @@ class ValueSetInclude extends BackboneElement {
 
   factory ValueSetInclude.fromJson(Map<String, dynamic> json) {
     return ValueSetInclude(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -856,7 +850,8 @@ class ValueSetInclude extends BackboneElement {
           : null,
       valueSet: json['valueSet'] != null
           ? (json['valueSet'] as List<dynamic>)
-              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .map<FhirCanonical>(
+                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
               .toList()
           : null,
       valueSetElement: json['_valueSet'] != null
@@ -1004,9 +999,7 @@ class ValueSetConcept extends BackboneElement {
 
   factory ValueSetConcept.fromJson(Map<String, dynamic> json) {
     return ValueSetConcept(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1157,9 +1150,7 @@ class ValueSetDesignation extends BackboneElement {
 
   factory ValueSetDesignation.fromJson(Map<String, dynamic> json) {
     return ValueSetDesignation(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1312,9 +1303,7 @@ class ValueSetFilter extends BackboneElement {
 
   factory ValueSetFilter.fromJson(Map<String, dynamic> json) {
     return ValueSetFilter(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1508,9 +1497,7 @@ class ValueSetExpansion extends BackboneElement {
 
   factory ValueSetExpansion.fromJson(Map<String, dynamic> json) {
     return ValueSetExpansion(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1757,9 +1744,7 @@ class ValueSetParameter extends BackboneElement {
 
   factory ValueSetParameter.fromJson(Map<String, dynamic> json) {
     return ValueSetParameter(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2035,9 +2020,7 @@ class ValueSetContains extends BackboneElement {
 
   factory ValueSetContains.fromJson(Map<String, dynamic> json) {
     return ValueSetContains(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

@@ -676,9 +676,7 @@ class ActivityDefinition extends DomainResource {
 
   factory ActivityDefinition.fromJson(Map<String, dynamic> json) {
     return ActivityDefinition(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -854,7 +852,8 @@ class ActivityDefinition extends DomainResource {
           : null,
       library_: json['library'] != null
           ? (json['library'] as List<dynamic>)
-              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .map<FhirCanonical>(
+                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
               .toList()
           : null,
       libraryElement: json['_library'] != null
@@ -1248,9 +1247,7 @@ class ActivityDefinitionParticipant extends BackboneElement {
 
   factory ActivityDefinitionParticipant.fromJson(Map<String, dynamic> json) {
     return ActivityDefinitionParticipant(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1388,9 +1385,7 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
 
   factory ActivityDefinitionDynamicValue.fromJson(Map<String, dynamic> json) {
     return ActivityDefinitionDynamicValue(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

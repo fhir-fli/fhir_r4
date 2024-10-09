@@ -305,9 +305,7 @@ class Condition extends DomainResource {
 
   factory Condition.fromJson(Map<String, dynamic> json) {
     return Condition(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -636,9 +634,7 @@ class ConditionStage extends BackboneElement {
 
   factory ConditionStage.fromJson(Map<String, dynamic> json) {
     return ConditionStage(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -775,9 +771,7 @@ class ConditionEvidence extends BackboneElement {
 
   factory ConditionEvidence.fromJson(Map<String, dynamic> json) {
     return ConditionEvidence(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

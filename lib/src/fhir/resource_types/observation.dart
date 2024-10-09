@@ -440,9 +440,7 @@ class Observation extends DomainResource {
 
   factory Observation.fromJson(Map<String, dynamic> json) {
     return Observation(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -903,9 +901,7 @@ class ObservationReferenceRange extends BackboneElement {
 
   factory ObservationReferenceRange.fromJson(Map<String, dynamic> json) {
     return ObservationReferenceRange(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1193,9 +1189,7 @@ class ObservationComponent extends BackboneElement {
 
   factory ObservationComponent.fromJson(Map<String, dynamic> json) {
     return ObservationComponent(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

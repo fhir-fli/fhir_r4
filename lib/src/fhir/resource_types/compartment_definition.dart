@@ -240,9 +240,7 @@ class CompartmentDefinition extends DomainResource {
 
   factory CompartmentDefinition.fromJson(Map<String, dynamic> json) {
     return CompartmentDefinition(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -520,9 +518,7 @@ class CompartmentDefinitionResource extends BackboneElement {
 
   factory CompartmentDefinitionResource.fromJson(Map<String, dynamic> json) {
     return CompartmentDefinitionResource(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -539,7 +535,7 @@ class CompartmentDefinitionResource extends BackboneElement {
       codeElement: Element.fromJson(json['_code'] as Map<String, dynamic>),
       param: json['param'] != null
           ? (json['param'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       paramElement: json['_param'] != null

@@ -221,9 +221,7 @@ class MolecularSequence extends DomainResource {
 
   factory MolecularSequence.fromJson(Map<String, dynamic> json) {
     return MolecularSequence(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -577,9 +575,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
 
   factory MolecularSequenceReferenceSeq.fromJson(Map<String, dynamic> json) {
     return MolecularSequenceReferenceSeq(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -838,9 +834,7 @@ class MolecularSequenceVariant extends BackboneElement {
 
   factory MolecularSequenceVariant.fromJson(Map<String, dynamic> json) {
     return MolecularSequenceVariant(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1169,9 +1163,7 @@ class MolecularSequenceQuality extends BackboneElement {
 
   factory MolecularSequenceQuality.fromJson(Map<String, dynamic> json) {
     return MolecularSequenceQuality(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1473,9 +1465,7 @@ class MolecularSequenceRoc extends BackboneElement {
 
   factory MolecularSequenceRoc.fromJson(Map<String, dynamic> json) {
     return MolecularSequenceRoc(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1490,7 +1480,8 @@ class MolecularSequenceRoc extends BackboneElement {
           : null,
       score: json['score'] != null
           ? (json['score'] as List<dynamic>)
-              .map<FhirInteger>((dynamic v) => FhirInteger(v))
+              .map<FhirInteger>(
+                  (dynamic v) => FhirInteger.fromJson(v as dynamic))
               .toList()
           : null,
       scoreElement: json['_score'] != null
@@ -1501,7 +1492,8 @@ class MolecularSequenceRoc extends BackboneElement {
           : null,
       numTP: json['numTP'] != null
           ? (json['numTP'] as List<dynamic>)
-              .map<FhirInteger>((dynamic v) => FhirInteger(v))
+              .map<FhirInteger>(
+                  (dynamic v) => FhirInteger.fromJson(v as dynamic))
               .toList()
           : null,
       numTPElement: json['_numTP'] != null
@@ -1512,7 +1504,8 @@ class MolecularSequenceRoc extends BackboneElement {
           : null,
       numFP: json['numFP'] != null
           ? (json['numFP'] as List<dynamic>)
-              .map<FhirInteger>((dynamic v) => FhirInteger(v))
+              .map<FhirInteger>(
+                  (dynamic v) => FhirInteger.fromJson(v as dynamic))
               .toList()
           : null,
       numFPElement: json['_numFP'] != null
@@ -1523,7 +1516,8 @@ class MolecularSequenceRoc extends BackboneElement {
           : null,
       numFN: json['numFN'] != null
           ? (json['numFN'] as List<dynamic>)
-              .map<FhirInteger>((dynamic v) => FhirInteger(v))
+              .map<FhirInteger>(
+                  (dynamic v) => FhirInteger.fromJson(v as dynamic))
               .toList()
           : null,
       numFNElement: json['_numFN'] != null
@@ -1534,7 +1528,8 @@ class MolecularSequenceRoc extends BackboneElement {
           : null,
       precision: json['precision'] != null
           ? (json['precision'] as List<dynamic>)
-              .map<FhirDecimal>((dynamic v) => FhirDecimal(v))
+              .map<FhirDecimal>(
+                  (dynamic v) => FhirDecimal.fromJson(v as dynamic))
               .toList()
           : null,
       precisionElement: json['_precision'] != null
@@ -1545,7 +1540,8 @@ class MolecularSequenceRoc extends BackboneElement {
           : null,
       sensitivity: json['sensitivity'] != null
           ? (json['sensitivity'] as List<dynamic>)
-              .map<FhirDecimal>((dynamic v) => FhirDecimal(v))
+              .map<FhirDecimal>(
+                  (dynamic v) => FhirDecimal.fromJson(v as dynamic))
               .toList()
           : null,
       sensitivityElement: json['_sensitivity'] != null
@@ -1556,7 +1552,8 @@ class MolecularSequenceRoc extends BackboneElement {
           : null,
       fMeasure: json['fMeasure'] != null
           ? (json['fMeasure'] as List<dynamic>)
-              .map<FhirDecimal>((dynamic v) => FhirDecimal(v))
+              .map<FhirDecimal>(
+                  (dynamic v) => FhirDecimal.fromJson(v as dynamic))
               .toList()
           : null,
       fMeasureElement: json['_fMeasure'] != null
@@ -1756,9 +1753,7 @@ class MolecularSequenceRepository extends BackboneElement {
 
   factory MolecularSequenceRepository.fromJson(Map<String, dynamic> json) {
     return MolecularSequenceRepository(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1955,9 +1950,7 @@ class MolecularSequenceStructureVariant extends BackboneElement {
   factory MolecularSequenceStructureVariant.fromJson(
       Map<String, dynamic> json) {
     return MolecularSequenceStructureVariant(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2120,9 +2113,7 @@ class MolecularSequenceOuter extends BackboneElement {
 
   factory MolecularSequenceOuter.fromJson(Map<String, dynamic> json) {
     return MolecularSequenceOuter(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2266,9 +2257,7 @@ class MolecularSequenceInner extends BackboneElement {
 
   factory MolecularSequenceInner.fromJson(Map<String, dynamic> json) {
     return MolecularSequenceInner(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

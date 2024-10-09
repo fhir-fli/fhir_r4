@@ -312,9 +312,7 @@ class HealthcareService extends DomainResource {
 
   factory HealthcareService.fromJson(Map<String, dynamic> json) {
     return HealthcareService(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -669,9 +667,7 @@ class HealthcareServiceEligibility extends BackboneElement {
 
   factory HealthcareServiceEligibility.fromJson(Map<String, dynamic> json) {
     return HealthcareServiceEligibility(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -835,9 +831,7 @@ class HealthcareServiceAvailableTime extends BackboneElement {
 
   factory HealthcareServiceAvailableTime.fromJson(Map<String, dynamic> json) {
     return HealthcareServiceAvailableTime(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1000,9 +994,7 @@ class HealthcareServiceNotAvailable extends BackboneElement {
 
   factory HealthcareServiceNotAvailable.fromJson(Map<String, dynamic> json) {
     return HealthcareServiceNotAvailable(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

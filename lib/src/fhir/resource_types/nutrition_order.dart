@@ -247,9 +247,7 @@ class NutritionOrder extends DomainResource {
 
   factory NutritionOrder.fromJson(Map<String, dynamic> json) {
     return NutritionOrder(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -290,7 +288,8 @@ class NutritionOrder extends DomainResource {
           : null,
       instantiatesCanonical: json['instantiatesCanonical'] != null
           ? (json['instantiatesCanonical'] as List<dynamic>)
-              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .map<FhirCanonical>(
+                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
               .toList()
           : null,
       instantiatesCanonicalElement: json['_instantiatesCanonical'] != null
@@ -301,7 +300,7 @@ class NutritionOrder extends DomainResource {
           : null,
       instantiatesUri: json['instantiatesUri'] != null
           ? (json['instantiatesUri'] as List<dynamic>)
-              .map<FhirUri>((dynamic v) => FhirUri(v))
+              .map<FhirUri>((dynamic v) => FhirUri.fromJson(v as dynamic))
               .toList()
           : null,
       instantiatesUriElement: json['_instantiatesUri'] != null
@@ -312,7 +311,7 @@ class NutritionOrder extends DomainResource {
           : null,
       instantiates: json['instantiates'] != null
           ? (json['instantiates'] as List<dynamic>)
-              .map<FhirUri>((dynamic v) => FhirUri(v))
+              .map<FhirUri>((dynamic v) => FhirUri.fromJson(v as dynamic))
               .toList()
           : null,
       instantiatesElement: json['_instantiates'] != null
@@ -585,9 +584,7 @@ class NutritionOrderOralDiet extends BackboneElement {
 
   factory NutritionOrderOralDiet.fromJson(Map<String, dynamic> json) {
     return NutritionOrderOralDiet(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -752,9 +749,7 @@ class NutritionOrderNutrient extends BackboneElement {
 
   factory NutritionOrderNutrient.fromJson(Map<String, dynamic> json) {
     return NutritionOrderNutrient(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -882,9 +877,7 @@ class NutritionOrderTexture extends BackboneElement {
 
   factory NutritionOrderTexture.fromJson(Map<String, dynamic> json) {
     return NutritionOrderTexture(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1047,9 +1040,7 @@ class NutritionOrderSupplement extends BackboneElement {
 
   factory NutritionOrderSupplement.fromJson(Map<String, dynamic> json) {
     return NutritionOrderSupplement(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1268,9 +1259,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
 
   factory NutritionOrderEnteralFormula.fromJson(Map<String, dynamic> json) {
     return NutritionOrderEnteralFormula(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1484,9 +1473,7 @@ class NutritionOrderAdministration extends BackboneElement {
 
   factory NutritionOrderAdministration.fromJson(Map<String, dynamic> json) {
     return NutritionOrderAdministration(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

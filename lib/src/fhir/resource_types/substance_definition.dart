@@ -241,9 +241,7 @@ class SubstanceDefinition extends DomainResource {
 
   factory SubstanceDefinition.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinition(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -607,9 +605,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
 
   factory SubstanceDefinitionMoiety.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinitionMoiety(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -822,9 +818,7 @@ class SubstanceDefinitionProperty extends BackboneElement {
 
   factory SubstanceDefinitionProperty.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinitionProperty(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -987,9 +981,7 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
   factory SubstanceDefinitionMolecularWeight.fromJson(
       Map<String, dynamic> json) {
     return SubstanceDefinitionMolecularWeight(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1179,9 +1171,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
 
   factory SubstanceDefinitionStructure.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinitionStructure(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1387,9 +1377,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
   factory SubstanceDefinitionRepresentation.fromJson(
       Map<String, dynamic> json) {
     return SubstanceDefinitionRepresentation(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1559,9 +1547,7 @@ class SubstanceDefinitionCode extends BackboneElement {
 
   factory SubstanceDefinitionCode.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinitionCode(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1794,9 +1780,7 @@ class SubstanceDefinitionName extends BackboneElement {
 
   factory SubstanceDefinitionName.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinitionName(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2005,9 +1989,7 @@ class SubstanceDefinitionOfficial extends BackboneElement {
 
   factory SubstanceDefinitionOfficial.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinitionOfficial(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2220,9 +2202,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
 
   factory SubstanceDefinitionRelationship.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinitionRelationship(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2431,9 +2411,7 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
   factory SubstanceDefinitionSourceMaterial.fromJson(
       Map<String, dynamic> json) {
     return SubstanceDefinitionSourceMaterial(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

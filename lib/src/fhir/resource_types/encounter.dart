@@ -278,9 +278,7 @@ class Encounter extends DomainResource {
 
   factory Encounter.fromJson(Map<String, dynamic> json) {
     return Encounter(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -584,9 +582,7 @@ class EncounterStatusHistory extends BackboneElement {
 
   factory EncounterStatusHistory.fromJson(Map<String, dynamic> json) {
     return EncounterStatusHistory(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -711,9 +707,7 @@ class EncounterClassHistory extends BackboneElement {
 
   factory EncounterClassHistory.fromJson(Map<String, dynamic> json) {
     return EncounterClassHistory(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -844,9 +838,7 @@ class EncounterParticipant extends BackboneElement {
 
   factory EncounterParticipant.fromJson(Map<String, dynamic> json) {
     return EncounterParticipant(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -993,9 +985,7 @@ class EncounterDiagnosis extends BackboneElement {
 
   factory EncounterDiagnosis.fromJson(Map<String, dynamic> json) {
     return EncounterDiagnosis(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1182,9 +1172,7 @@ class EncounterHospitalization extends BackboneElement {
 
   factory EncounterHospitalization.fromJson(Map<String, dynamic> json) {
     return EncounterHospitalization(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1375,9 +1363,7 @@ class EncounterLocation extends BackboneElement {
 
   factory EncounterLocation.fromJson(Map<String, dynamic> json) {
     return EncounterLocation(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

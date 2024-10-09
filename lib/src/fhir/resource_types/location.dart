@@ -236,9 +236,7 @@ class Location extends DomainResource {
 
   factory Location.fromJson(Map<String, dynamic> json) {
     return Location(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -289,7 +287,7 @@ class Location extends DomainResource {
           : null,
       alias: json['alias'] != null
           ? (json['alias'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       aliasElement: json['_alias'] != null
@@ -540,9 +538,7 @@ class LocationPosition extends BackboneElement {
 
   factory LocationPosition.fromJson(Map<String, dynamic> json) {
     return LocationPosition(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -712,9 +708,7 @@ class LocationHoursOfOperation extends BackboneElement {
 
   factory LocationHoursOfOperation.fromJson(Map<String, dynamic> json) {
     return LocationHoursOfOperation(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

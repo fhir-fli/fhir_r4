@@ -168,9 +168,7 @@ class Practitioner extends DomainResource {
 
   factory Practitioner.fromJson(Map<String, dynamic> json) {
     return Practitioner(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -415,9 +413,7 @@ class PractitionerQualification extends BackboneElement {
 
   factory PractitionerQualification.fromJson(Map<String, dynamic> json) {
     return PractitionerQualification(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

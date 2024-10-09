@@ -177,9 +177,7 @@ class OrganizationAffiliation extends DomainResource {
 
   factory OrganizationAffiliation.fromJson(Map<String, dynamic> json) {
     return OrganizationAffiliation(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,

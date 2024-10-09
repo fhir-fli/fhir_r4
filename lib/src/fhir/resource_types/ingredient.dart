@@ -143,9 +143,7 @@ class Ingredient extends DomainResource {
 
   factory Ingredient.fromJson(Map<String, dynamic> json) {
     return Ingredient(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -355,9 +353,7 @@ class IngredientManufacturer extends BackboneElement {
 
   factory IngredientManufacturer.fromJson(Map<String, dynamic> json) {
     return IngredientManufacturer(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -486,9 +482,7 @@ class IngredientSubstance extends BackboneElement {
 
   factory IngredientSubstance.fromJson(Map<String, dynamic> json) {
     return IngredientSubstance(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -703,9 +697,7 @@ class IngredientStrength extends BackboneElement {
 
   factory IngredientStrength.fromJson(Map<String, dynamic> json) {
     return IngredientStrength(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -927,9 +919,7 @@ class IngredientReferenceStrength extends BackboneElement {
 
   factory IngredientReferenceStrength.fromJson(Map<String, dynamic> json) {
     return IngredientReferenceStrength(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

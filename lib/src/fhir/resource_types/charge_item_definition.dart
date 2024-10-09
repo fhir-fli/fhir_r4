@@ -354,9 +354,7 @@ class ChargeItemDefinition extends DomainResource {
 
   factory ChargeItemDefinition.fromJson(Map<String, dynamic> json) {
     return ChargeItemDefinition(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -407,7 +405,7 @@ class ChargeItemDefinition extends DomainResource {
           : null,
       derivedFromUri: json['derivedFromUri'] != null
           ? (json['derivedFromUri'] as List<dynamic>)
-              .map<FhirUri>((dynamic v) => FhirUri(v))
+              .map<FhirUri>((dynamic v) => FhirUri.fromJson(v as dynamic))
               .toList()
           : null,
       derivedFromUriElement: json['_derivedFromUri'] != null
@@ -418,7 +416,8 @@ class ChargeItemDefinition extends DomainResource {
           : null,
       partOf: json['partOf'] != null
           ? (json['partOf'] as List<dynamic>)
-              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .map<FhirCanonical>(
+                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
               .toList()
           : null,
       partOfElement: json['_partOf'] != null
@@ -429,7 +428,8 @@ class ChargeItemDefinition extends DomainResource {
           : null,
       replaces: json['replaces'] != null
           ? (json['replaces'] as List<dynamic>)
-              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .map<FhirCanonical>(
+                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
               .toList()
           : null,
       replacesElement: json['_replaces'] != null
@@ -742,9 +742,7 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
   factory ChargeItemDefinitionApplicability.fromJson(
       Map<String, dynamic> json) {
     return ChargeItemDefinitionApplicability(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -898,9 +896,7 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
   factory ChargeItemDefinitionPropertyGroup.fromJson(
       Map<String, dynamic> json) {
     return ChargeItemDefinitionPropertyGroup(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1061,9 +1057,7 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
   factory ChargeItemDefinitionPriceComponent.fromJson(
       Map<String, dynamic> json) {
     return ChargeItemDefinitionPriceComponent(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

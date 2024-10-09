@@ -192,9 +192,7 @@ class CatalogEntry extends DomainResource {
 
   factory CatalogEntry.fromJson(Map<String, dynamic> json) {
     return CatalogEntry(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -439,9 +437,7 @@ class CatalogEntryRelatedEntry extends BackboneElement {
 
   factory CatalogEntryRelatedEntry.fromJson(Map<String, dynamic> json) {
     return CatalogEntryRelatedEntry(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

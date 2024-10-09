@@ -202,9 +202,7 @@ class VerificationResult extends DomainResource {
 
   factory VerificationResult.fromJson(Map<String, dynamic> json) {
     return VerificationResult(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -245,7 +243,7 @@ class VerificationResult extends DomainResource {
           : null,
       targetLocation: json['targetLocation'] != null
           ? (json['targetLocation'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       targetLocationElement: json['_targetLocation'] != null
@@ -515,9 +513,7 @@ class VerificationResultPrimarySource extends BackboneElement {
 
   factory VerificationResultPrimarySource.fromJson(Map<String, dynamic> json) {
     return VerificationResultPrimarySource(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -749,9 +745,7 @@ class VerificationResultAttestation extends BackboneElement {
 
   factory VerificationResultAttestation.fromJson(Map<String, dynamic> json) {
     return VerificationResultAttestation(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -937,9 +931,7 @@ class VerificationResultValidator extends BackboneElement {
 
   factory VerificationResultValidator.fromJson(Map<String, dynamic> json) {
     return VerificationResultValidator(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

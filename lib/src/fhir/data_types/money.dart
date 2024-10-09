@@ -61,9 +61,7 @@ class Money extends DataType {
 
   factory Money.fromJson(Map<String, dynamic> json) {
     return Money(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

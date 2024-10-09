@@ -144,9 +144,7 @@ class BodyStructure extends DomainResource {
 
   factory BodyStructure.fromJson(Map<String, dynamic> json) {
     return BodyStructure(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,

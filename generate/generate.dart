@@ -613,28 +613,32 @@ void _writeFromJson(StringBuffer buffer, WritableClass writableClass) {
       if (field.isRequired) {
         if (field.type.isPrimitiveType) {
           buffer.writeln(
-              "    $fieldName: (json['$jsonFieldName'] as List<dynamic>).map<${field.type.fhirToDartTypes}>((dynamic v) => ${field.type.fhirToDartTypes}(v)).toList(),");
+              "    $fieldName: (json['$jsonFieldName'] as List<dynamic>).map<${field.type.fhirToDartTypes}>((dynamic v) => ${field.type.fhirToDartTypes}.fromJson(v as dynamic)).toList(),");
         } else {
           buffer.writeln(
               "    $fieldName: (json['$jsonFieldName'] as List<dynamic>).map<${field.type.fhirToDartTypes}>((dynamic v) => ${field.type.fhirToDartTypes}.fromJson(v as Map<String, dynamic>)).toList(),");
         }
 
         // Add Element field for list of primitives
-        if (field.type.isPrimitiveType && field.needsElement) {
+        if (field.type.isPrimitiveType &&
+            field.needsElement &&
+            fieldName != 'id') {
           buffer.writeln(
               "    ${fieldName}Element: json['$jsonElementFieldName'] != null ? (json['$jsonElementFieldName'] as List<dynamic>).map<Element>((dynamic v) => Element.fromJson(v as Map<String, dynamic>)).toList() : null,");
         }
       } else {
         if (field.type.isPrimitiveType) {
           buffer.writeln(
-              "    $fieldName: json['$jsonFieldName'] != null ? (json['$jsonFieldName'] as List<dynamic>).map<${field.type.fhirToDartTypes}>((dynamic v) => ${field.type.fhirToDartTypes}(v)).toList() : null,");
+              "    $fieldName: json['$jsonFieldName'] != null ? (json['$jsonFieldName'] as List<dynamic>).map<${field.type.fhirToDartTypes}>((dynamic v) => ${field.type.fhirToDartTypes}.fromJson(v as dynamic)).toList() : null,");
         } else {
           buffer.writeln(
               "    $fieldName: json['$jsonFieldName'] != null ? (json['$jsonFieldName'] as List<dynamic>).map<${field.type.fhirToDartTypes}>((dynamic v) => ${field.type.fhirToDartTypes}.fromJson(v as Map<String, dynamic>)).toList() : null,");
         }
 
         // Add Element field for optional list of primitives
-        if (field.type.isPrimitiveType && field.needsElement) {
+        if (field.type.isPrimitiveType &&
+            field.needsElement &&
+            fieldName != 'id') {
           buffer.writeln(
               "    ${jsonFieldName}Element: json['$jsonElementFieldName'] != null ? (json['$jsonElementFieldName'] as List<dynamic>).map<Element>((dynamic v) => Element.fromJson(v as Map<String, dynamic>)).toList() : null,");
         }
@@ -642,7 +646,8 @@ void _writeFromJson(StringBuffer buffer, WritableClass writableClass) {
     } else {
       // Handle non-list fields
       if (field.isRequired) {
-        if (field.type.isPrimitiveType) {
+        if (field.type.isPrimitiveType ||
+            field.type == 'http://hl7.org/fhirpath/System.String') {
           buffer.writeln(
               "    $fieldName: ${field.type.fhirToDartTypes}(json['$jsonFieldName']),");
         } else {
@@ -651,12 +656,15 @@ void _writeFromJson(StringBuffer buffer, WritableClass writableClass) {
         }
 
         // Add Element field for primitive fields
-        if (field.type.isPrimitiveType && field.needsElement) {
+        if (field.type.isPrimitiveType &&
+            field.needsElement &&
+            fieldName != 'id') {
           buffer.writeln(
               "    ${jsonFieldName}Element: Element.fromJson(json['$jsonElementFieldName'] as Map<String, dynamic>),");
         }
       } else {
-        if (field.type.isPrimitiveType) {
+        if (field.type.isPrimitiveType ||
+            field.type == 'http://hl7.org/fhirpath/System.String') {
           buffer.writeln(
               "    $fieldName: json['$jsonFieldName'] != null ? ${field.type.fhirToDartTypes}(json['$jsonFieldName']) : null,");
         } else {
@@ -665,7 +673,9 @@ void _writeFromJson(StringBuffer buffer, WritableClass writableClass) {
         }
 
         // Add Element field for optional primitive fields
-        if (field.type.isPrimitiveType && field.needsElement) {
+        if (field.type.isPrimitiveType &&
+            field.needsElement &&
+            fieldName != 'id') {
           buffer.writeln(
               "    ${jsonFieldName}Element: json['$jsonElementFieldName'] != null ? Element.fromJson(json['$jsonElementFieldName'] as Map<String, dynamic>) : null,");
         }

@@ -195,9 +195,7 @@ class PaymentReconciliation extends DomainResource {
 
   factory PaymentReconciliation.fromJson(Map<String, dynamic> json) {
     return PaymentReconciliation(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -504,9 +502,7 @@ class PaymentReconciliationDetail extends BackboneElement {
 
   factory PaymentReconciliationDetail.fromJson(Map<String, dynamic> json) {
     return PaymentReconciliationDetail(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -679,9 +675,7 @@ class PaymentReconciliationProcessNote extends BackboneElement {
 
   factory PaymentReconciliationProcessNote.fromJson(Map<String, dynamic> json) {
     return PaymentReconciliationProcessNote(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

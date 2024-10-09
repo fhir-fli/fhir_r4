@@ -474,9 +474,7 @@ class ResearchDefinition extends DomainResource {
 
   factory ResearchDefinition.fromJson(Map<String, dynamic> json) {
     return ResearchDefinition(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -578,7 +576,7 @@ class ResearchDefinition extends DomainResource {
           : null,
       comment: json['comment'] != null
           ? (json['comment'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       commentElement: json['_comment'] != null
@@ -664,7 +662,8 @@ class ResearchDefinition extends DomainResource {
           : null,
       library_: json['library'] != null
           ? (json['library'] as List<dynamic>)
-              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .map<FhirCanonical>(
+                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
               .toList()
           : null,
       libraryElement: json['_library'] != null

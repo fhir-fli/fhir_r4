@@ -559,9 +559,7 @@ class Measure extends DomainResource {
 
   factory Measure.fromJson(Map<String, dynamic> json) {
     return Measure(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -733,7 +731,8 @@ class Measure extends DomainResource {
           : null,
       library_: json['library'] != null
           ? (json['library'] as List<dynamic>)
-              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .map<FhirCanonical>(
+                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
               .toList()
           : null,
       libraryElement: json['_library'] != null
@@ -792,7 +791,8 @@ class Measure extends DomainResource {
           : null,
       definition: json['definition'] != null
           ? (json['definition'] as List<dynamic>)
-              .map<FhirMarkdown>((dynamic v) => FhirMarkdown(v))
+              .map<FhirMarkdown>(
+                  (dynamic v) => FhirMarkdown.fromJson(v as dynamic))
               .toList()
           : null,
       definitionElement: json['_definition'] != null
@@ -1098,9 +1098,7 @@ class MeasureGroup extends BackboneElement {
 
   factory MeasureGroup.fromJson(Map<String, dynamic> json) {
     return MeasureGroup(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1256,9 +1254,7 @@ class MeasurePopulation extends BackboneElement {
 
   factory MeasurePopulation.fromJson(Map<String, dynamic> json) {
     return MeasurePopulation(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1419,9 +1415,7 @@ class MeasureStratifier extends BackboneElement {
 
   factory MeasureStratifier.fromJson(Map<String, dynamic> json) {
     return MeasureStratifier(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1580,9 +1574,7 @@ class MeasureComponent extends BackboneElement {
 
   factory MeasureComponent.fromJson(Map<String, dynamic> json) {
     return MeasureComponent(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1745,9 +1737,7 @@ class MeasureSupplementalData extends BackboneElement {
 
   factory MeasureSupplementalData.fromJson(Map<String, dynamic> json) {
     return MeasureSupplementalData(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

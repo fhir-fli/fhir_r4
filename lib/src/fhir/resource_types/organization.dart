@@ -167,9 +167,7 @@ class Organization extends DomainResource {
 
   factory Organization.fromJson(Map<String, dynamic> json) {
     return Organization(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -224,7 +222,7 @@ class Organization extends DomainResource {
           : null,
       alias: json['alias'] != null
           ? (json['alias'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       aliasElement: json['_alias'] != null
@@ -418,9 +416,7 @@ class OrganizationContact extends BackboneElement {
 
   factory OrganizationContact.fromJson(Map<String, dynamic> json) {
     return OrganizationContact(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

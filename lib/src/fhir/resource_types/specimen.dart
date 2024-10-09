@@ -183,9 +183,7 @@ class Specimen extends DomainResource {
 
   factory Specimen.fromJson(Map<String, dynamic> json) {
     return Specimen(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -492,9 +490,7 @@ class SpecimenCollection extends BackboneElement {
 
   factory SpecimenCollection.fromJson(Map<String, dynamic> json) {
     return SpecimenCollection(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -700,9 +696,7 @@ class SpecimenProcessing extends BackboneElement {
 
   factory SpecimenProcessing.fromJson(Map<String, dynamic> json) {
     return SpecimenProcessing(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -902,9 +896,7 @@ class SpecimenContainer extends BackboneElement {
 
   factory SpecimenContainer.fromJson(Map<String, dynamic> json) {
     return SpecimenContainer(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

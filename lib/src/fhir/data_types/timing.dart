@@ -79,9 +79,7 @@ class Timing extends BackboneType {
 
   factory Timing.fromJson(Map<String, dynamic> json) {
     return Timing(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -96,7 +94,8 @@ class Timing extends BackboneType {
           : null,
       event: json['event'] != null
           ? (json['event'] as List<dynamic>)
-              .map<FhirDateTime>((dynamic v) => FhirDateTime(v))
+              .map<FhirDateTime>(
+                  (dynamic v) => FhirDateTime.fromJson(v as dynamic))
               .toList()
           : null,
       eventElement: json['_event'] != null
@@ -404,9 +403,7 @@ class TimingRepeat extends Element {
 
   factory TimingRepeat.fromJson(Map<String, dynamic> json) {
     return TimingRepeat(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -475,7 +472,7 @@ class TimingRepeat extends Element {
           : null,
       timeOfDay: json['timeOfDay'] != null
           ? (json['timeOfDay'] as List<dynamic>)
-              .map<FhirTime>((dynamic v) => FhirTime(v))
+              .map<FhirTime>((dynamic v) => FhirTime.fromJson(v as dynamic))
               .toList()
           : null,
       timeOfDayElement: json['_timeOfDay'] != null

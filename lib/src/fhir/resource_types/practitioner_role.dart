@@ -199,9 +199,7 @@ class PractitionerRole extends DomainResource {
 
   factory PractitionerRole.fromJson(Map<String, dynamic> json) {
     return PractitionerRole(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -497,9 +495,7 @@ class PractitionerRoleAvailableTime extends BackboneElement {
 
   factory PractitionerRoleAvailableTime.fromJson(Map<String, dynamic> json) {
     return PractitionerRoleAvailableTime(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -661,9 +657,7 @@ class PractitionerRoleNotAvailable extends BackboneElement {
 
   factory PractitionerRoleNotAvailable.fromJson(Map<String, dynamic> json) {
     return PractitionerRoleNotAvailable(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

@@ -255,9 +255,7 @@ class EvidenceReport extends DomainResource {
 
   factory EvidenceReport.fromJson(Map<String, dynamic> json) {
     return EvidenceReport(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -553,9 +551,7 @@ class EvidenceReportSubject extends BackboneElement {
 
   factory EvidenceReportSubject.fromJson(Map<String, dynamic> json) {
     return EvidenceReportSubject(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -737,9 +733,7 @@ class EvidenceReportCharacteristic extends BackboneElement {
 
   factory EvidenceReportCharacteristic.fromJson(Map<String, dynamic> json) {
     return EvidenceReportCharacteristic(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -910,9 +904,7 @@ class EvidenceReportRelatesTo extends BackboneElement {
 
   factory EvidenceReportRelatesTo.fromJson(Map<String, dynamic> json) {
     return EvidenceReportRelatesTo(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1141,9 +1133,7 @@ class EvidenceReportSection extends BackboneElement {
 
   factory EvidenceReportSection.fromJson(Map<String, dynamic> json) {
     return EvidenceReportSection(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

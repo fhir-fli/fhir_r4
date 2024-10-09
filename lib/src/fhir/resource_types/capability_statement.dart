@@ -379,9 +379,7 @@ class CapabilityStatement extends DomainResource {
 
   factory CapabilityStatement.fromJson(Map<String, dynamic> json) {
     return CapabilityStatement(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -482,7 +480,8 @@ class CapabilityStatement extends DomainResource {
           json['kind'] as Map<String, dynamic>),
       instantiates: json['instantiates'] != null
           ? (json['instantiates'] as List<dynamic>)
-              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .map<FhirCanonical>(
+                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
               .toList()
           : null,
       instantiatesElement: json['_instantiates'] != null
@@ -493,7 +492,8 @@ class CapabilityStatement extends DomainResource {
           : null,
       imports: json['imports'] != null
           ? (json['imports'] as List<dynamic>)
-              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .map<FhirCanonical>(
+                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
               .toList()
           : null,
       importsElement: json['_imports'] != null
@@ -513,7 +513,7 @@ class CapabilityStatement extends DomainResource {
       fhirVersion:
           FHIRVersion.fromJson(json['fhirVersion'] as Map<String, dynamic>),
       format: (json['format'] as List<dynamic>)
-          .map<FhirCode>((dynamic v) => FhirCode(v))
+          .map<FhirCode>((dynamic v) => FhirCode.fromJson(v as dynamic))
           .toList(),
       formatElement: json['_format'] != null
           ? (json['_format'] as List<dynamic>)
@@ -523,7 +523,7 @@ class CapabilityStatement extends DomainResource {
           : null,
       patchFormat: json['patchFormat'] != null
           ? (json['patchFormat'] as List<dynamic>)
-              .map<FhirCode>((dynamic v) => FhirCode(v))
+              .map<FhirCode>((dynamic v) => FhirCode.fromJson(v as dynamic))
               .toList()
           : null,
       patchFormatElement: json['_patchFormat'] != null
@@ -774,9 +774,7 @@ class CapabilityStatementSoftware extends BackboneElement {
 
   factory CapabilityStatementSoftware.fromJson(Map<String, dynamic> json) {
     return CapabilityStatementSoftware(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -952,9 +950,7 @@ class CapabilityStatementImplementation extends BackboneElement {
   factory CapabilityStatementImplementation.fromJson(
       Map<String, dynamic> json) {
     return CapabilityStatementImplementation(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -979,7 +975,8 @@ class CapabilityStatementImplementation extends BackboneElement {
           : null,
       implementationGuide: json['implementationGuide'] != null
           ? (json['implementationGuide'] as List<dynamic>)
-              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .map<FhirCanonical>(
+                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
               .toList()
           : null,
       implementationGuideElement: json['_implementationGuide'] != null
@@ -1178,9 +1175,7 @@ class CapabilityStatementRest extends BackboneElement {
 
   factory CapabilityStatementRest.fromJson(Map<String, dynamic> json) {
     return CapabilityStatementRest(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1235,7 +1230,8 @@ class CapabilityStatementRest extends BackboneElement {
           : null,
       compartment: json['compartment'] != null
           ? (json['compartment'] as List<dynamic>)
-              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .map<FhirCanonical>(
+                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
               .toList()
           : null,
       compartmentElement: json['_compartment'] != null
@@ -1388,9 +1384,7 @@ class CapabilityStatementSecurity extends BackboneElement {
 
   factory CapabilityStatementSecurity.fromJson(Map<String, dynamic> json) {
     return CapabilityStatementSecurity(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1732,9 +1726,7 @@ class CapabilityStatementResource extends BackboneElement {
 
   factory CapabilityStatementResource.fromJson(Map<String, dynamic> json) {
     return CapabilityStatementResource(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1755,7 +1747,8 @@ class CapabilityStatementResource extends BackboneElement {
           : null,
       supportedProfile: json['supportedProfile'] != null
           ? (json['supportedProfile'] as List<dynamic>)
-              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .map<FhirCanonical>(
+                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
               .toList()
           : null,
       supportedProfileElement: json['_supportedProfile'] != null
@@ -1820,7 +1813,7 @@ class CapabilityStatementResource extends BackboneElement {
           : null,
       searchInclude: json['searchInclude'] != null
           ? (json['searchInclude'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       searchIncludeElement: json['_searchInclude'] != null
@@ -1831,7 +1824,7 @@ class CapabilityStatementResource extends BackboneElement {
           : null,
       searchRevInclude: json['searchRevInclude'] != null
           ? (json['searchRevInclude'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       searchRevIncludeElement: json['_searchRevInclude'] != null
@@ -2032,9 +2025,7 @@ class CapabilityStatementInteraction extends BackboneElement {
 
   factory CapabilityStatementInteraction.fromJson(Map<String, dynamic> json) {
     return CapabilityStatementInteraction(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2203,9 +2194,7 @@ class CapabilityStatementSearchParam extends BackboneElement {
 
   factory CapabilityStatementSearchParam.fromJson(Map<String, dynamic> json) {
     return CapabilityStatementSearchParam(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2382,9 +2371,7 @@ class CapabilityStatementOperation extends BackboneElement {
 
   factory CapabilityStatementOperation.fromJson(Map<String, dynamic> json) {
     return CapabilityStatementOperation(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2529,9 +2516,7 @@ class CapabilityStatementInteraction1 extends BackboneElement {
 
   factory CapabilityStatementInteraction1.fromJson(Map<String, dynamic> json) {
     return CapabilityStatementInteraction1(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2697,9 +2682,7 @@ class CapabilityStatementMessaging extends BackboneElement {
 
   factory CapabilityStatementMessaging.fromJson(Map<String, dynamic> json) {
     return CapabilityStatementMessaging(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2856,9 +2839,7 @@ class CapabilityStatementEndpoint extends BackboneElement {
 
   factory CapabilityStatementEndpoint.fromJson(Map<String, dynamic> json) {
     return CapabilityStatementEndpoint(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2990,9 +2971,7 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
   factory CapabilityStatementSupportedMessage.fromJson(
       Map<String, dynamic> json) {
     return CapabilityStatementSupportedMessage(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -3139,9 +3118,7 @@ class CapabilityStatementDocument extends BackboneElement {
 
   factory CapabilityStatementDocument.fromJson(Map<String, dynamic> json) {
     return CapabilityStatementDocument(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

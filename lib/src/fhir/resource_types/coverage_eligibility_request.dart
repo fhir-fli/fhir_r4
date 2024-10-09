@@ -204,9 +204,7 @@ class CoverageEligibilityRequest extends DomainResource {
 
   factory CoverageEligibilityRequest.fromJson(Map<String, dynamic> json) {
     return CoverageEligibilityRequest(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -468,9 +466,7 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
   factory CoverageEligibilityRequestSupportingInfo.fromJson(
       Map<String, dynamic> json) {
     return CoverageEligibilityRequestSupportingInfo(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -630,9 +626,7 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
   factory CoverageEligibilityRequestInsurance.fromJson(
       Map<String, dynamic> json) {
     return CoverageEligibilityRequestInsurance(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -846,9 +840,7 @@ class CoverageEligibilityRequestItem extends BackboneElement {
 
   factory CoverageEligibilityRequestItem.fromJson(Map<String, dynamic> json) {
     return CoverageEligibilityRequestItem(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -863,7 +855,8 @@ class CoverageEligibilityRequestItem extends BackboneElement {
           : null,
       supportingInfoSequence: json['supportingInfoSequence'] != null
           ? (json['supportingInfoSequence'] as List<dynamic>)
-              .map<FhirPositiveInt>((dynamic v) => FhirPositiveInt(v))
+              .map<FhirPositiveInt>(
+                  (dynamic v) => FhirPositiveInt.fromJson(v as dynamic))
               .toList()
           : null,
       supportingInfoSequenceElement: json['_supportingInfoSequence'] != null
@@ -1040,9 +1033,7 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
   factory CoverageEligibilityRequestDiagnosis.fromJson(
       Map<String, dynamic> json) {
     return CoverageEligibilityRequestDiagnosis(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

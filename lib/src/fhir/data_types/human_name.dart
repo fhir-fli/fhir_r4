@@ -119,9 +119,7 @@ class HumanName extends DataType {
 
   factory HumanName.fromJson(Map<String, dynamic> json) {
     return HumanName(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -141,7 +139,7 @@ class HumanName extends DataType {
           : null,
       given: json['given'] != null
           ? (json['given'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       givenElement: json['_given'] != null
@@ -152,7 +150,7 @@ class HumanName extends DataType {
           : null,
       prefix: json['prefix'] != null
           ? (json['prefix'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       prefixElement: json['_prefix'] != null
@@ -163,7 +161,7 @@ class HumanName extends DataType {
           : null,
       suffix: json['suffix'] != null
           ? (json['suffix'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString(v))
+              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
               .toList()
           : null,
       suffixElement: json['_suffix'] != null

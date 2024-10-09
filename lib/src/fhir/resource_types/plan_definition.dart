@@ -474,9 +474,7 @@ class PlanDefinition extends DomainResource {
 
   factory PlanDefinition.fromJson(Map<String, dynamic> json) {
     return PlanDefinition(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -655,7 +653,8 @@ class PlanDefinition extends DomainResource {
           : null,
       library_: json['library'] != null
           ? (json['library'] as List<dynamic>)
-              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .map<FhirCanonical>(
+                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
               .toList()
           : null,
       libraryElement: json['_library'] != null
@@ -942,9 +941,7 @@ class PlanDefinitionGoal extends BackboneElement {
 
   factory PlanDefinitionGoal.fromJson(Map<String, dynamic> json) {
     return PlanDefinitionGoal(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1143,9 +1140,7 @@ class PlanDefinitionTarget extends BackboneElement {
 
   factory PlanDefinitionTarget.fromJson(Map<String, dynamic> json) {
     return PlanDefinitionTarget(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1646,9 +1641,7 @@ class PlanDefinitionAction extends BackboneElement {
 
   factory PlanDefinitionAction.fromJson(Map<String, dynamic> json) {
     return PlanDefinitionAction(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1703,7 +1696,7 @@ class PlanDefinitionAction extends BackboneElement {
           : null,
       goalId: json['goalId'] != null
           ? (json['goalId'] as List<dynamic>)
-              .map<FhirId>((dynamic v) => FhirId(v))
+              .map<FhirId>((dynamic v) => FhirId.fromJson(v as dynamic))
               .toList()
           : null,
       goalIdElement: json['_goalId'] != null
@@ -2051,9 +2044,7 @@ class PlanDefinitionCondition extends BackboneElement {
 
   factory PlanDefinitionCondition.fromJson(Map<String, dynamic> json) {
     return PlanDefinitionCondition(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2198,9 +2189,7 @@ class PlanDefinitionRelatedAction extends BackboneElement {
 
   factory PlanDefinitionRelatedAction.fromJson(Map<String, dynamic> json) {
     return PlanDefinitionRelatedAction(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2339,9 +2328,7 @@ class PlanDefinitionParticipant extends BackboneElement {
 
   factory PlanDefinitionParticipant.fromJson(Map<String, dynamic> json) {
     return PlanDefinitionParticipant(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2483,9 +2470,7 @@ class PlanDefinitionDynamicValue extends BackboneElement {
 
   factory PlanDefinitionDynamicValue.fromJson(Map<String, dynamic> json) {
     return PlanDefinitionDynamicValue(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

@@ -347,9 +347,7 @@ class TerminologyCapabilities extends DomainResource {
 
   factory TerminologyCapabilities.fromJson(Map<String, dynamic> json) {
     return TerminologyCapabilities(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -690,9 +688,7 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
 
   factory TerminologyCapabilitiesSoftware.fromJson(Map<String, dynamic> json) {
     return TerminologyCapabilitiesSoftware(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -834,9 +830,7 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
   factory TerminologyCapabilitiesImplementation.fromJson(
       Map<String, dynamic> json) {
     return TerminologyCapabilitiesImplementation(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -989,9 +983,7 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
   factory TerminologyCapabilitiesCodeSystem.fromJson(
       Map<String, dynamic> json) {
     return TerminologyCapabilitiesCodeSystem(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1191,9 +1183,7 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
 
   factory TerminologyCapabilitiesVersion.fromJson(Map<String, dynamic> json) {
     return TerminologyCapabilitiesVersion(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1223,7 +1213,7 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
           : null,
       language: json['language'] != null
           ? (json['language'] as List<dynamic>)
-              .map<FhirCode>((dynamic v) => FhirCode(v))
+              .map<FhirCode>((dynamic v) => FhirCode.fromJson(v as dynamic))
               .toList()
           : null,
       languageElement: json['_language'] != null
@@ -1241,7 +1231,7 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
           : null,
       property: json['property'] != null
           ? (json['property'] as List<dynamic>)
-              .map<FhirCode>((dynamic v) => FhirCode(v))
+              .map<FhirCode>((dynamic v) => FhirCode.fromJson(v as dynamic))
               .toList()
           : null,
       propertyElement: json['_property'] != null
@@ -1381,9 +1371,7 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
 
   factory TerminologyCapabilitiesFilter.fromJson(Map<String, dynamic> json) {
     return TerminologyCapabilitiesFilter(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1399,7 +1387,7 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
       code: FhirCode(json['code']),
       codeElement: Element.fromJson(json['_code'] as Map<String, dynamic>),
       op: (json['op'] as List<dynamic>)
-          .map<FhirCode>((dynamic v) => FhirCode(v))
+          .map<FhirCode>((dynamic v) => FhirCode.fromJson(v as dynamic))
           .toList(),
       opElement: json['_op'] != null
           ? (json['_op'] as List<dynamic>)
@@ -1561,9 +1549,7 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
 
   factory TerminologyCapabilitiesExpansion.fromJson(Map<String, dynamic> json) {
     return TerminologyCapabilitiesExpansion(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1732,9 +1718,7 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
 
   factory TerminologyCapabilitiesParameter.fromJson(Map<String, dynamic> json) {
     return TerminologyCapabilitiesParameter(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1864,9 +1848,7 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
   factory TerminologyCapabilitiesValidateCode.fromJson(
       Map<String, dynamic> json) {
     return TerminologyCapabilitiesValidateCode(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -1987,9 +1969,7 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
   factory TerminologyCapabilitiesTranslation.fromJson(
       Map<String, dynamic> json) {
     return TerminologyCapabilitiesTranslation(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
@@ -2110,9 +2090,7 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
 
   factory TerminologyCapabilitiesClosure.fromJson(Map<String, dynamic> json) {
     return TerminologyCapabilitiesClosure(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>

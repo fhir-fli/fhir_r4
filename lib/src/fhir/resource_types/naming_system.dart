@@ -212,9 +212,7 @@ class NamingSystem extends DomainResource {
 
   factory NamingSystem.fromJson(Map<String, dynamic> json) {
     return NamingSystem(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
           : null,
@@ -497,9 +495,7 @@ class NamingSystemUniqueId extends BackboneElement {
 
   factory NamingSystemUniqueId.fromJson(Map<String, dynamic> json) {
     return NamingSystemUniqueId(
-      id: json['id'] != null
-          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
-          : null,
+      id: json['id'] != null ? FhirString(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>((dynamic v) =>
