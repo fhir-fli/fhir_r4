@@ -28,7 +28,7 @@ enum SourceMaterialPart {
   }
 
   String toJson() => toString();
-  SourceMaterialPart fromString(String str) {
+  static SourceMaterialPart fromString(String str) {
     switch (str) {
       case 'Animal':
         return SourceMaterialPart.Animal;
@@ -41,7 +41,7 @@ enum SourceMaterialPart {
     }
   }
 
-  SourceMaterialPart fromJson(dynamic jsonValue) {
+  static SourceMaterialPart fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

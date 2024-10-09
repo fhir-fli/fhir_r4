@@ -31,7 +31,7 @@ enum AggregationMode {
   }
 
   String toJson() => toString();
-  AggregationMode fromString(String str) {
+  static AggregationMode fromString(String str) {
     switch (str) {
       case 'contained':
         return AggregationMode.contained;
@@ -44,7 +44,7 @@ enum AggregationMode {
     }
   }
 
-  AggregationMode fromJson(dynamic jsonValue) {
+  static AggregationMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

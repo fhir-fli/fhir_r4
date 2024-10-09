@@ -45,7 +45,7 @@ enum SlotStatus {
   }
 
   String toJson() => toString();
-  SlotStatus fromString(String str) {
+  static SlotStatus fromString(String str) {
     switch (str) {
       case 'busy':
         return SlotStatus.busy;
@@ -62,7 +62,7 @@ enum SlotStatus {
     }
   }
 
-  SlotStatus fromJson(dynamic jsonValue) {
+  static SlotStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

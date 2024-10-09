@@ -2432,7 +2432,7 @@ enum SPDXLicense {
   }
 
   String toJson() => toString();
-  SPDXLicense fromString(String str) {
+  static SPDXLicense fromString(String str) {
     switch (str) {
       case 'not-open-source':
         return SPDXLicense.not_open_source;
@@ -3131,7 +3131,7 @@ enum SPDXLicense {
     }
   }
 
-  SPDXLicense fromJson(dynamic jsonValue) {
+  static SPDXLicense fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

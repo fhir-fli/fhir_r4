@@ -28,7 +28,7 @@ enum IngredientManufacturerRole {
   }
 
   String toJson() => toString();
-  IngredientManufacturerRole fromString(String str) {
+  static IngredientManufacturerRole fromString(String str) {
     switch (str) {
       case 'allowed':
         return IngredientManufacturerRole.allowed;
@@ -41,7 +41,7 @@ enum IngredientManufacturerRole {
     }
   }
 
-  IngredientManufacturerRole fromJson(dynamic jsonValue) {
+  static IngredientManufacturerRole fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

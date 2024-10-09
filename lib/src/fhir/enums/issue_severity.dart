@@ -38,7 +38,7 @@ enum IssueSeverity {
   }
 
   String toJson() => toString();
-  IssueSeverity fromString(String str) {
+  static IssueSeverity fromString(String str) {
     switch (str) {
       case 'fatal':
         return IssueSeverity.fatal;
@@ -53,7 +53,7 @@ enum IssueSeverity {
     }
   }
 
-  IssueSeverity fromJson(dynamic jsonValue) {
+  static IssueSeverity fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

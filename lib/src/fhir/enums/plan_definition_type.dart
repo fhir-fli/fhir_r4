@@ -38,7 +38,7 @@ enum PlanDefinitionType {
   }
 
   String toJson() => toString();
-  PlanDefinitionType fromString(String str) {
+  static PlanDefinitionType fromString(String str) {
     switch (str) {
       case 'order-set':
         return PlanDefinitionType.order_set;
@@ -53,7 +53,7 @@ enum PlanDefinitionType {
     }
   }
 
-  PlanDefinitionType fromJson(dynamic jsonValue) {
+  static PlanDefinitionType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

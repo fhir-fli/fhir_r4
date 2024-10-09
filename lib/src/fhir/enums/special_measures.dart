@@ -17,7 +17,7 @@ enum SpecialMeasures {
   }
 
   String toJson() => toString();
-  SpecialMeasures fromString(String str) {
+  static SpecialMeasures fromString(String str) {
     switch (str) {
       case 'Post-authorisationStudies':
         return SpecialMeasures.Post_authorisationStudies;
@@ -26,7 +26,7 @@ enum SpecialMeasures {
     }
   }
 
-  SpecialMeasures fromJson(dynamic jsonValue) {
+  static SpecialMeasures fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

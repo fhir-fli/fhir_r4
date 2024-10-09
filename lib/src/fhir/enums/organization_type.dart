@@ -94,7 +94,7 @@ enum OrganizationType {
   }
 
   String toJson() => toString();
-  OrganizationType fromString(String str) {
+  static OrganizationType fromString(String str) {
     switch (str) {
       case 'prov':
         return OrganizationType.prov;
@@ -125,7 +125,7 @@ enum OrganizationType {
     }
   }
 
-  OrganizationType fromJson(dynamic jsonValue) {
+  static OrganizationType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

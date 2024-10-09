@@ -227,7 +227,7 @@ enum IssueType {
   }
 
   String toJson() => toString();
-  IssueType fromString(String str) {
+  static IssueType fromString(String str) {
     switch (str) {
       case 'invalid':
         return IssueType.invalid;
@@ -296,7 +296,7 @@ enum IssueType {
     }
   }
 
-  IssueType fromJson(dynamic jsonValue) {
+  static IssueType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

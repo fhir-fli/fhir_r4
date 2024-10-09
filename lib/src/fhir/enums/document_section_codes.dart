@@ -231,7 +231,7 @@ enum DocumentSectionCodes {
   }
 
   String toJson() => toString();
-  DocumentSectionCodes fromString(String str) {
+  static DocumentSectionCodes fromString(String str) {
     switch (str) {
       case '10154-3':
         return DocumentSectionCodes.value10154_3;
@@ -348,7 +348,7 @@ enum DocumentSectionCodes {
     }
   }
 
-  DocumentSectionCodes fromJson(dynamic jsonValue) {
+  static DocumentSectionCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

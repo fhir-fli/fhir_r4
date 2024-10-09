@@ -22,7 +22,7 @@ enum IngredientFunction {
   }
 
   String toJson() => toString();
-  IngredientFunction fromString(String str) {
+  static IngredientFunction fromString(String str) {
     switch (str) {
       case 'Antioxidant':
         return IngredientFunction.Antioxidant;
@@ -33,7 +33,7 @@ enum IngredientFunction {
     }
   }
 
-  IngredientFunction fromJson(dynamic jsonValue) {
+  static IngredientFunction fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

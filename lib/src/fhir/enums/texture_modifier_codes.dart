@@ -94,7 +94,7 @@ enum TextureModifierCodes {
   }
 
   String toJson() => toString();
-  TextureModifierCodes fromString(String str) {
+  static TextureModifierCodes fromString(String str) {
     switch (str) {
       case '228053002':
         return TextureModifierCodes.value228053002;
@@ -129,7 +129,7 @@ enum TextureModifierCodes {
     }
   }
 
-  TextureModifierCodes fromJson(dynamic jsonValue) {
+  static TextureModifierCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

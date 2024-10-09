@@ -45,7 +45,7 @@ enum ImmunizationRecommendationStatusCodes {
   }
 
   String toJson() => toString();
-  ImmunizationRecommendationStatusCodes fromString(String str) {
+  static ImmunizationRecommendationStatusCodes fromString(String str) {
     switch (str) {
       case 'due':
         return ImmunizationRecommendationStatusCodes.due;
@@ -62,7 +62,7 @@ enum ImmunizationRecommendationStatusCodes {
     }
   }
 
-  ImmunizationRecommendationStatusCodes fromJson(dynamic jsonValue) {
+  static ImmunizationRecommendationStatusCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

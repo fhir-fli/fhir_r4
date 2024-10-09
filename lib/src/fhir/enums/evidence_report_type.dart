@@ -38,7 +38,7 @@ enum EvidenceReportType {
   }
 
   String toJson() => toString();
-  EvidenceReportType fromString(String str) {
+  static EvidenceReportType fromString(String str) {
     switch (str) {
       case 'classification':
         return EvidenceReportType.classification;
@@ -53,7 +53,7 @@ enum EvidenceReportType {
     }
   }
 
-  EvidenceReportType fromJson(dynamic jsonValue) {
+  static EvidenceReportType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

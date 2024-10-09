@@ -17,7 +17,7 @@ enum AdditionalMonitoring {
   }
 
   String toJson() => toString();
-  AdditionalMonitoring fromString(String str) {
+  static AdditionalMonitoring fromString(String str) {
     switch (str) {
       case 'BlackTriangleMonitoring':
         return AdditionalMonitoring.BlackTriangleMonitoring;
@@ -26,7 +26,7 @@ enum AdditionalMonitoring {
     }
   }
 
-  AdditionalMonitoring fromJson(dynamic jsonValue) {
+  static AdditionalMonitoring fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

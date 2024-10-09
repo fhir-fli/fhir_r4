@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'audit_event.g.dart';
-
 /// [AuditEvent] /// A record of an event made for purposes of maintaining a security log.
 /// Typical uses include detection of intrusion attempts and monitoring for
 /// inappropriate usage.
@@ -44,8 +42,6 @@ class AuditEvent extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.AuditEvent);
   @override
   String get fhirType => 'AuditEvent';
@@ -107,12 +103,160 @@ class AuditEvent extends DomainResource {
   /// [entity] /// Specific instances of data or objects that have been accessed.
   @JsonKey(name: 'entity')
   final List<AuditEventEntity>? entity;
-  factory AuditEvent.fromJson(Map<String, dynamic> json) =>
-      _$AuditEventFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$AuditEventToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['type'] = type.toJson();
+    if (subtype != null && subtype!.isNotEmpty) {
+      json['subtype'] =
+          subtype!.map<dynamic>((Coding v) => v.toJson()).toList();
+    }
+    if (action != null) {
+      json['action'] = action!.toJson();
+    }
+    if (period != null) {
+      json['period'] = period!.toJson();
+    }
+    json['recorded'] = recorded.value;
+    if (recordedElement != null) {
+      json['_recorded'] = recordedElement!.toJson();
+    }
+    if (outcome != null) {
+      json['outcome'] = outcome!.toJson();
+    }
+    if (outcomeDesc?.value != null) {
+      json['outcomeDesc'] = outcomeDesc!.value;
+    }
+    if (outcomeDescElement != null) {
+      json['_outcomeDesc'] = outcomeDescElement!.toJson();
+    }
+    if (purposeOfEvent != null && purposeOfEvent!.isNotEmpty) {
+      json['purposeOfEvent'] = purposeOfEvent!
+          .map<dynamic>((CodeableConcept v) => v.toJson())
+          .toList();
+    }
+    json['agent'] =
+        agent.map<dynamic>((AuditEventAgent v) => v.toJson()).toList();
+    json['source'] = source.toJson();
+    if (entity != null && entity!.isNotEmpty) {
+      json['entity'] =
+          entity!.map<dynamic>((AuditEventEntity v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory AuditEvent.fromJson(Map<String, dynamic> json) {
+    return AuditEvent(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: Coding.fromJson(json['type'] as Map<String, dynamic>),
+      subtype: json['subtype'] != null
+          ? (json['subtype'] as List<dynamic>)
+              .map<Coding>(
+                  (dynamic v) => Coding.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      action: json['action'] != null
+          ? AuditEventAction.fromJson(json['action'] as Map<String, dynamic>)
+          : null,
+      period: json['period'] != null
+          ? Period.fromJson(json['period'] as Map<String, dynamic>)
+          : null,
+      recorded: FhirInstant(json['recorded']),
+      recordedElement:
+          Element.fromJson(json['_recorded'] as Map<String, dynamic>),
+      outcome: json['outcome'] != null
+          ? AuditEventOutcome.fromJson(json['outcome'] as Map<String, dynamic>)
+          : null,
+      outcomeDesc:
+          json['outcomeDesc'] != null ? FhirString(json['outcomeDesc']) : null,
+      outcomeDescElement: json['_outcomeDesc'] != null
+          ? Element.fromJson(json['_outcomeDesc'] as Map<String, dynamic>)
+          : null,
+      purposeOfEvent: json['purposeOfEvent'] != null
+          ? (json['purposeOfEvent'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      agent: (json['agent'] as List<dynamic>)
+          .map<AuditEventAgent>((dynamic v) =>
+              AuditEventAgent.fromJson(v as Map<String, dynamic>))
+          .toList(),
+      source: AuditEventSource.fromJson(json['source'] as Map<String, dynamic>),
+      entity: json['entity'] != null
+          ? (json['entity'] as List<dynamic>)
+              .map<AuditEventEntity>((dynamic v) =>
+                  AuditEventEntity.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   AuditEvent clone() => throw UnimplementedError();
   @override
@@ -302,12 +446,138 @@ class AuditEventAgent extends BackboneElement {
   /// the event being recorded.
   @JsonKey(name: 'purposeOfUse')
   final List<CodeableConcept>? purposeOfUse;
-  factory AuditEventAgent.fromJson(Map<String, dynamic> json) =>
-      _$AuditEventAgentFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$AuditEventAgentToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (type != null) {
+      json['type'] = type!.toJson();
+    }
+    if (role != null && role!.isNotEmpty) {
+      json['role'] =
+          role!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (who != null) {
+      json['who'] = who!.toJson();
+    }
+    if (altId?.value != null) {
+      json['altId'] = altId!.value;
+    }
+    if (altIdElement != null) {
+      json['_altId'] = altIdElement!.toJson();
+    }
+    if (name?.value != null) {
+      json['name'] = name!.value;
+    }
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    json['requestor'] = requestor.value;
+    if (requestorElement != null) {
+      json['_requestor'] = requestorElement!.toJson();
+    }
+    if (location != null) {
+      json['location'] = location!.toJson();
+    }
+    if (policy != null && policy!.isNotEmpty) {
+      json['policy'] = policy!.map((FhirUri v) => v.value).toList();
+    }
+    if (policyElement != null && policyElement!.isNotEmpty) {
+      json['_policy'] = policyElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (media != null) {
+      json['media'] = media!.toJson();
+    }
+    if (network != null) {
+      json['network'] = network!.toJson();
+    }
+    if (purposeOfUse != null && purposeOfUse!.isNotEmpty) {
+      json['purposeOfUse'] = purposeOfUse!
+          .map<dynamic>((CodeableConcept v) => v.toJson())
+          .toList();
+    }
+    return json;
+  }
 
+  factory AuditEventAgent.fromJson(Map<String, dynamic> json) {
+    return AuditEventAgent(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
+          : null,
+      role: json['role'] != null
+          ? (json['role'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      who: json['who'] != null
+          ? Reference.fromJson(json['who'] as Map<String, dynamic>)
+          : null,
+      altId: json['altId'] != null ? FhirString(json['altId']) : null,
+      altIdElement: json['_altId'] != null
+          ? Element.fromJson(json['_altId'] as Map<String, dynamic>)
+          : null,
+      name: json['name'] != null ? FhirString(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
+      requestor: FhirBoolean(json['requestor']),
+      requestorElement:
+          Element.fromJson(json['_requestor'] as Map<String, dynamic>),
+      location: json['location'] != null
+          ? Reference.fromJson(json['location'] as Map<String, dynamic>)
+          : null,
+      policy: json['policy'] != null
+          ? (json['policy'] as List<dynamic>)
+              .map<FhirUri>((dynamic v) => FhirUri(v))
+              .toList()
+          : null,
+      policyElement: json['_policy'] != null
+          ? (json['_policy'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      media: json['media'] != null
+          ? Coding.fromJson(json['media'] as Map<String, dynamic>)
+          : null,
+      network: json['network'] != null
+          ? AuditEventNetwork.fromJson(json['network'] as Map<String, dynamic>)
+          : null,
+      purposeOfUse: json['purposeOfUse'] != null
+          ? (json['purposeOfUse'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   AuditEventAgent clone() => throw UnimplementedError();
   @override
@@ -423,12 +693,60 @@ class AuditEventNetwork extends BackboneElement {
   final AuditEventAgentNetworkType? type;
   @JsonKey(name: '_type')
   final Element? typeElement;
-  factory AuditEventNetwork.fromJson(Map<String, dynamic> json) =>
-      _$AuditEventNetworkFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$AuditEventNetworkToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (address?.value != null) {
+      json['address'] = address!.value;
+    }
+    if (addressElement != null) {
+      json['_address'] = addressElement!.toJson();
+    }
+    if (type != null) {
+      json['type'] = type!.toJson();
+    }
+    return json;
+  }
 
+  factory AuditEventNetwork.fromJson(Map<String, dynamic> json) {
+    return AuditEventNetwork(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      address: json['address'] != null ? FhirString(json['address']) : null,
+      addressElement: json['_address'] != null
+          ? Element.fromJson(json['_address'] as Map<String, dynamic>)
+          : null,
+      type: json['type'] != null
+          ? AuditEventAgentNetworkType.fromJson(
+              json['type'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   AuditEventNetwork clone() => throw UnimplementedError();
   @override
@@ -523,12 +841,64 @@ class AuditEventSource extends BackboneElement {
   /// [type] /// Code specifying the type of source where event originated.
   @JsonKey(name: 'type')
   final List<Coding>? type;
-  factory AuditEventSource.fromJson(Map<String, dynamic> json) =>
-      _$AuditEventSourceFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$AuditEventSourceToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (site?.value != null) {
+      json['site'] = site!.value;
+    }
+    if (siteElement != null) {
+      json['_site'] = siteElement!.toJson();
+    }
+    json['observer'] = observer.toJson();
+    if (type != null && type!.isNotEmpty) {
+      json['type'] = type!.map<dynamic>((Coding v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory AuditEventSource.fromJson(Map<String, dynamic> json) {
+    return AuditEventSource(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      site: json['site'] != null ? FhirString(json['site']) : null,
+      siteElement: json['_site'] != null
+          ? Element.fromJson(json['_site'] as Map<String, dynamic>)
+          : null,
+      observer: Reference.fromJson(json['observer'] as Map<String, dynamic>),
+      type: json['type'] != null
+          ? (json['type'] as List<dynamic>)
+              .map<Coding>(
+                  (dynamic v) => Coding.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   AuditEventSource clone() => throw UnimplementedError();
   @override
@@ -658,12 +1028,118 @@ class AuditEventEntity extends BackboneElement {
   /// [detail] /// Tagged value pairs for conveying additional information about the entity.
   @JsonKey(name: 'detail')
   final List<AuditEventDetail>? detail;
-  factory AuditEventEntity.fromJson(Map<String, dynamic> json) =>
-      _$AuditEventEntityFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$AuditEventEntityToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (what != null) {
+      json['what'] = what!.toJson();
+    }
+    if (type != null) {
+      json['type'] = type!.toJson();
+    }
+    if (role != null) {
+      json['role'] = role!.toJson();
+    }
+    if (lifecycle != null) {
+      json['lifecycle'] = lifecycle!.toJson();
+    }
+    if (securityLabel != null && securityLabel!.isNotEmpty) {
+      json['securityLabel'] =
+          securityLabel!.map<dynamic>((Coding v) => v.toJson()).toList();
+    }
+    if (name?.value != null) {
+      json['name'] = name!.value;
+    }
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (description?.value != null) {
+      json['description'] = description!.value;
+    }
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    if (query?.value != null) {
+      json['query'] = query!.value;
+    }
+    if (queryElement != null) {
+      json['_query'] = queryElement!.toJson();
+    }
+    if (detail != null && detail!.isNotEmpty) {
+      json['detail'] =
+          detail!.map<dynamic>((AuditEventDetail v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory AuditEventEntity.fromJson(Map<String, dynamic> json) {
+    return AuditEventEntity(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      what: json['what'] != null
+          ? Reference.fromJson(json['what'] as Map<String, dynamic>)
+          : null,
+      type: json['type'] != null
+          ? Coding.fromJson(json['type'] as Map<String, dynamic>)
+          : null,
+      role: json['role'] != null
+          ? Coding.fromJson(json['role'] as Map<String, dynamic>)
+          : null,
+      lifecycle: json['lifecycle'] != null
+          ? Coding.fromJson(json['lifecycle'] as Map<String, dynamic>)
+          : null,
+      securityLabel: json['securityLabel'] != null
+          ? (json['securityLabel'] as List<dynamic>)
+              .map<Coding>(
+                  (dynamic v) => Coding.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      name: json['name'] != null ? FhirString(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
+      description:
+          json['description'] != null ? FhirString(json['description']) : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
+      query: json['query'] != null ? FhirBase64Binary(json['query']) : null,
+      queryElement: json['_query'] != null
+          ? Element.fromJson(json['_query'] as Map<String, dynamic>)
+          : null,
+      detail: json['detail'] != null
+          ? (json['detail'] as List<dynamic>)
+              .map<AuditEventDetail>((dynamic v) =>
+                  AuditEventDetail.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   AuditEventEntity clone() => throw UnimplementedError();
   @override
@@ -778,12 +1254,72 @@ class AuditEventDetail extends BackboneElement {
   final FhirBase64Binary? valueBase64Binary;
   @JsonKey(name: '_valueBase64Binary')
   final Element? valueBase64BinaryElement;
-  factory AuditEventDetail.fromJson(Map<String, dynamic> json) =>
-      _$AuditEventDetailFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$AuditEventDetailToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['type'] = type.value;
+    if (typeElement != null) {
+      json['_type'] = typeElement!.toJson();
+    }
+    if (valueString?.value != null) {
+      json['valueString'] = valueString!.value;
+    }
+    if (valueStringElement != null) {
+      json['_valueString'] = valueStringElement!.toJson();
+    }
+    if (valueBase64Binary?.value != null) {
+      json['valueBase64Binary'] = valueBase64Binary!.value;
+    }
+    if (valueBase64BinaryElement != null) {
+      json['_valueBase64Binary'] = valueBase64BinaryElement!.toJson();
+    }
+    return json;
+  }
 
+  factory AuditEventDetail.fromJson(Map<String, dynamic> json) {
+    return AuditEventDetail(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: FhirString(json['type']),
+      typeElement: Element.fromJson(json['_type'] as Map<String, dynamic>),
+      valueString:
+          json['valueString'] != null ? FhirString(json['valueString']) : null,
+      valueStringElement: json['_valueString'] != null
+          ? Element.fromJson(json['_valueString'] as Map<String, dynamic>)
+          : null,
+      valueBase64Binary: json['valueBase64Binary'] != null
+          ? FhirBase64Binary(json['valueBase64Binary'])
+          : null,
+      valueBase64BinaryElement: json['_valueBase64Binary'] != null
+          ? Element.fromJson(json['_valueBase64Binary'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   AuditEventDetail clone() => throw UnimplementedError();
   @override

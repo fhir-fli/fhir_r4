@@ -31,7 +31,7 @@ enum DetectedIssueSeverity {
   }
 
   String toJson() => toString();
-  DetectedIssueSeverity fromString(String str) {
+  static DetectedIssueSeverity fromString(String str) {
     switch (str) {
       case 'high':
         return DetectedIssueSeverity.high;
@@ -44,7 +44,7 @@ enum DetectedIssueSeverity {
     }
   }
 
-  DetectedIssueSeverity fromJson(dynamic jsonValue) {
+  static DetectedIssueSeverity fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

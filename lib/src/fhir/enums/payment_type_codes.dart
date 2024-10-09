@@ -31,7 +31,7 @@ enum PaymentTypeCodes {
   }
 
   String toJson() => toString();
-  PaymentTypeCodes fromString(String str) {
+  static PaymentTypeCodes fromString(String str) {
     switch (str) {
       case 'payment':
         return PaymentTypeCodes.payment;
@@ -44,7 +44,7 @@ enum PaymentTypeCodes {
     }
   }
 
-  PaymentTypeCodes fromJson(dynamic jsonValue) {
+  static PaymentTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

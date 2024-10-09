@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'range.g.dart';
-
 /// [Range] /// A set of ordered Quantities defined by a low and high limit.
 @JsonSerializable()
 class Range extends DataType {
@@ -35,11 +33,44 @@ class Range extends DataType {
   /// [high] /// The high limit. The boundary is inclusive.
   @JsonKey(name: 'high')
   final Quantity? high;
-  factory Range.fromJson(Map<String, dynamic> json) => _$RangeFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$RangeToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (low != null) {
+      json['low'] = low!.toJson();
+    }
+    if (high != null) {
+      json['high'] = high!.toJson();
+    }
+    return json;
+  }
 
+  factory Range.fromJson(Map<String, dynamic> json) {
+    return Range(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      low: json['low'] != null
+          ? Quantity.fromJson(json['low'] as Map<String, dynamic>)
+          : null,
+      high: json['high'] != null
+          ? Quantity.fromJson(json['high'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   Range clone() => throw UnimplementedError();
   @override

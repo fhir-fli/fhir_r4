@@ -45,7 +45,7 @@ enum ClaimTypeCodes {
   }
 
   String toJson() => toString();
-  ClaimTypeCodes fromString(String str) {
+  static ClaimTypeCodes fromString(String str) {
     switch (str) {
       case 'institutional':
         return ClaimTypeCodes.institutional;
@@ -62,7 +62,7 @@ enum ClaimTypeCodes {
     }
   }
 
-  ClaimTypeCodes fromJson(dynamic jsonValue) {
+  static ClaimTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

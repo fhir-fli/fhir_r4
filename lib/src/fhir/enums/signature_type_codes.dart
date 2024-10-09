@@ -136,7 +136,7 @@ enum SignatureTypeCodes {
   }
 
   String toJson() => toString();
-  SignatureTypeCodes fromString(String str) {
+  static SignatureTypeCodes fromString(String str) {
     switch (str) {
       case '1.2.840.10065.1.12.1.1':
         return SignatureTypeCodes.value1_2_840_10065_1_12_1_1;
@@ -179,7 +179,7 @@ enum SignatureTypeCodes {
     }
   }
 
-  SignatureTypeCodes fromJson(dynamic jsonValue) {
+  static SignatureTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

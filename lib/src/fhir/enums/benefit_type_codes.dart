@@ -94,7 +94,7 @@ enum BenefitTypeCodes {
   }
 
   String toJson() => toString();
-  BenefitTypeCodes fromString(String str) {
+  static BenefitTypeCodes fromString(String str) {
     switch (str) {
       case 'benefit':
         return BenefitTypeCodes.benefit;
@@ -125,7 +125,7 @@ enum BenefitTypeCodes {
     }
   }
 
-  BenefitTypeCodes fromJson(dynamic jsonValue) {
+  static BenefitTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

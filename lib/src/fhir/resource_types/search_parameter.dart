@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'search_parameter.g.dart';
-
 /// [SearchParameter] /// A search parameter that defines a named search item that can be used to
 /// search/filter on a resource.
 @JsonSerializable()
@@ -76,8 +74,6 @@ class SearchParameter extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.SearchParameter);
   @override
   String get fhirType => 'SearchParameter';
@@ -277,12 +273,336 @@ class SearchParameter extends DomainResource {
   /// [component] /// Used to define the parts of a composite search parameter.
   @JsonKey(name: 'component')
   final List<SearchParameterComponent>? component;
-  factory SearchParameter.fromJson(Map<String, dynamic> json) =>
-      _$SearchParameterFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$SearchParameterToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['url'] = url.value;
+    if (urlElement != null) {
+      json['_url'] = urlElement!.toJson();
+    }
+    if (version?.value != null) {
+      json['version'] = version!.value;
+    }
+    if (versionElement != null) {
+      json['_version'] = versionElement!.toJson();
+    }
+    json['name'] = name.value;
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (derivedFrom?.value != null) {
+      json['derivedFrom'] = derivedFrom!.value;
+    }
+    if (derivedFromElement != null) {
+      json['_derivedFrom'] = derivedFromElement!.toJson();
+    }
+    json['status'] = status.toJson();
+    if (experimental?.value != null) {
+      json['experimental'] = experimental!.value;
+    }
+    if (experimentalElement != null) {
+      json['_experimental'] = experimentalElement!.toJson();
+    }
+    if (date?.value != null) {
+      json['date'] = date!.value;
+    }
+    if (dateElement != null) {
+      json['_date'] = dateElement!.toJson();
+    }
+    if (publisher?.value != null) {
+      json['publisher'] = publisher!.value;
+    }
+    if (publisherElement != null) {
+      json['_publisher'] = publisherElement!.toJson();
+    }
+    if (contact != null && contact!.isNotEmpty) {
+      json['contact'] =
+          contact!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+    }
+    json['description'] = description.value;
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    if (useContext != null && useContext!.isNotEmpty) {
+      json['useContext'] =
+          useContext!.map<dynamic>((UsageContext v) => v.toJson()).toList();
+    }
+    if (jurisdiction != null && jurisdiction!.isNotEmpty) {
+      json['jurisdiction'] = jurisdiction!
+          .map<dynamic>((CodeableConcept v) => v.toJson())
+          .toList();
+    }
+    if (purpose?.value != null) {
+      json['purpose'] = purpose!.value;
+    }
+    if (purposeElement != null) {
+      json['_purpose'] = purposeElement!.toJson();
+    }
+    json['code'] = code.value;
+    if (codeElement != null) {
+      json['_code'] = codeElement!.toJson();
+    }
+    json['base'] = base.map((FhirCode v) => v.value).toList();
+    if (baseElement != null && baseElement!.isNotEmpty) {
+      json['_base'] = baseElement!.map((Element v) => v.toJson()).toList();
+    }
+    json['type'] = type.toJson();
+    if (expression?.value != null) {
+      json['expression'] = expression!.value;
+    }
+    if (expressionElement != null) {
+      json['_expression'] = expressionElement!.toJson();
+    }
+    if (xpath?.value != null) {
+      json['xpath'] = xpath!.value;
+    }
+    if (xpathElement != null) {
+      json['_xpath'] = xpathElement!.toJson();
+    }
+    if (xpathUsage != null) {
+      json['xpathUsage'] = xpathUsage!.toJson();
+    }
+    if (target != null && target!.isNotEmpty) {
+      json['target'] = target!.map((FhirCode v) => v.value).toList();
+    }
+    if (targetElement != null && targetElement!.isNotEmpty) {
+      json['_target'] = targetElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (multipleOr?.value != null) {
+      json['multipleOr'] = multipleOr!.value;
+    }
+    if (multipleOrElement != null) {
+      json['_multipleOr'] = multipleOrElement!.toJson();
+    }
+    if (multipleAnd?.value != null) {
+      json['multipleAnd'] = multipleAnd!.value;
+    }
+    if (multipleAndElement != null) {
+      json['_multipleAnd'] = multipleAndElement!.toJson();
+    }
+    if (comparator != null && comparator!.isNotEmpty) {
+      json['comparator'] =
+          comparator!.map<dynamic>((SearchComparator v) => v.toJson()).toList();
+    }
+    if (modifier != null && modifier!.isNotEmpty) {
+      json['modifier'] =
+          modifier!.map<dynamic>((SearchModifierCode v) => v.toJson()).toList();
+    }
+    if (chain != null && chain!.isNotEmpty) {
+      json['chain'] = chain!.map((FhirString v) => v.value).toList();
+    }
+    if (chainElement != null && chainElement!.isNotEmpty) {
+      json['_chain'] = chainElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (component != null && component!.isNotEmpty) {
+      json['component'] = component!
+          .map<dynamic>((SearchParameterComponent v) => v.toJson())
+          .toList();
+    }
+    return json;
+  }
 
+  factory SearchParameter.fromJson(Map<String, dynamic> json) {
+    return SearchParameter(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      url: FhirUri(json['url']),
+      urlElement: Element.fromJson(json['_url'] as Map<String, dynamic>),
+      version: json['version'] != null ? FhirString(json['version']) : null,
+      versionElement: json['_version'] != null
+          ? Element.fromJson(json['_version'] as Map<String, dynamic>)
+          : null,
+      name: FhirString(json['name']),
+      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      derivedFrom: json['derivedFrom'] != null
+          ? FhirCanonical(json['derivedFrom'])
+          : null,
+      derivedFromElement: json['_derivedFrom'] != null
+          ? Element.fromJson(json['_derivedFrom'] as Map<String, dynamic>)
+          : null,
+      status:
+          PublicationStatus.fromJson(json['status'] as Map<String, dynamic>),
+      experimental: json['experimental'] != null
+          ? FhirBoolean(json['experimental'])
+          : null,
+      experimentalElement: json['_experimental'] != null
+          ? Element.fromJson(json['_experimental'] as Map<String, dynamic>)
+          : null,
+      date: json['date'] != null ? FhirDateTime(json['date']) : null,
+      dateElement: json['_date'] != null
+          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
+          : null,
+      publisher:
+          json['publisher'] != null ? FhirString(json['publisher']) : null,
+      publisherElement: json['_publisher'] != null
+          ? Element.fromJson(json['_publisher'] as Map<String, dynamic>)
+          : null,
+      contact: json['contact'] != null
+          ? (json['contact'] as List<dynamic>)
+              .map<ContactDetail>((dynamic v) =>
+                  ContactDetail.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      description: FhirMarkdown(json['description']),
+      descriptionElement:
+          Element.fromJson(json['_description'] as Map<String, dynamic>),
+      useContext: json['useContext'] != null
+          ? (json['useContext'] as List<dynamic>)
+              .map<UsageContext>((dynamic v) =>
+                  UsageContext.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      jurisdiction: json['jurisdiction'] != null
+          ? (json['jurisdiction'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      purpose: json['purpose'] != null ? FhirMarkdown(json['purpose']) : null,
+      purposeElement: json['_purpose'] != null
+          ? Element.fromJson(json['_purpose'] as Map<String, dynamic>)
+          : null,
+      code: FhirCode(json['code']),
+      codeElement: Element.fromJson(json['_code'] as Map<String, dynamic>),
+      base: (json['base'] as List<dynamic>)
+          .map<FhirCode>((dynamic v) => FhirCode(v))
+          .toList(),
+      baseElement: json['_base'] != null
+          ? (json['_base'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: SearchParamType.fromJson(json['type'] as Map<String, dynamic>),
+      expression:
+          json['expression'] != null ? FhirString(json['expression']) : null,
+      expressionElement: json['_expression'] != null
+          ? Element.fromJson(json['_expression'] as Map<String, dynamic>)
+          : null,
+      xpath: json['xpath'] != null ? FhirString(json['xpath']) : null,
+      xpathElement: json['_xpath'] != null
+          ? Element.fromJson(json['_xpath'] as Map<String, dynamic>)
+          : null,
+      xpathUsage: json['xpathUsage'] != null
+          ? XPathUsageType.fromJson(json['xpathUsage'] as Map<String, dynamic>)
+          : null,
+      target: json['target'] != null
+          ? (json['target'] as List<dynamic>)
+              .map<FhirCode>((dynamic v) => FhirCode(v))
+              .toList()
+          : null,
+      targetElement: json['_target'] != null
+          ? (json['_target'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      multipleOr:
+          json['multipleOr'] != null ? FhirBoolean(json['multipleOr']) : null,
+      multipleOrElement: json['_multipleOr'] != null
+          ? Element.fromJson(json['_multipleOr'] as Map<String, dynamic>)
+          : null,
+      multipleAnd:
+          json['multipleAnd'] != null ? FhirBoolean(json['multipleAnd']) : null,
+      multipleAndElement: json['_multipleAnd'] != null
+          ? Element.fromJson(json['_multipleAnd'] as Map<String, dynamic>)
+          : null,
+      comparator: json['comparator'] != null
+          ? (json['comparator'] as List<dynamic>)
+              .map<SearchComparator>((dynamic v) =>
+                  SearchComparator.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifier: json['modifier'] != null
+          ? (json['modifier'] as List<dynamic>)
+              .map<SearchModifierCode>((dynamic v) =>
+                  SearchModifierCode.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      chain: json['chain'] != null
+          ? (json['chain'] as List<dynamic>)
+              .map<FhirString>((dynamic v) => FhirString(v))
+              .toList()
+          : null,
+      chainElement: json['_chain'] != null
+          ? (json['_chain'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      component: json['component'] != null
+          ? (json['component'] as List<dynamic>)
+              .map<SearchParameterComponent>((dynamic v) =>
+                  SearchParameterComponent.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   SearchParameter clone() => throw UnimplementedError();
   @override
@@ -476,12 +796,57 @@ class SearchParameterComponent extends BackboneElement {
   final FhirString expression;
   @JsonKey(name: '_expression')
   final Element? expressionElement;
-  factory SearchParameterComponent.fromJson(Map<String, dynamic> json) =>
-      _$SearchParameterComponentFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$SearchParameterComponentToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['definition'] = definition.value;
+    if (definitionElement != null) {
+      json['_definition'] = definitionElement!.toJson();
+    }
+    json['expression'] = expression.value;
+    if (expressionElement != null) {
+      json['_expression'] = expressionElement!.toJson();
+    }
+    return json;
+  }
 
+  factory SearchParameterComponent.fromJson(Map<String, dynamic> json) {
+    return SearchParameterComponent(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      definition: FhirCanonical(json['definition']),
+      definitionElement:
+          Element.fromJson(json['_definition'] as Map<String, dynamic>),
+      expression: FhirString(json['expression']),
+      expressionElement:
+          Element.fromJson(json['_expression'] as Map<String, dynamic>),
+    );
+  }
   @override
   SearchParameterComponent clone() => throw UnimplementedError();
   @override

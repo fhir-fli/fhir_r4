@@ -64,7 +64,7 @@ enum IngredientRole {
   }
 
   String toJson() => toString();
-  IngredientRole fromString(String str) {
+  static IngredientRole fromString(String str) {
     switch (str) {
       case '100000072072':
         return IngredientRole.value100000072072;
@@ -89,7 +89,7 @@ enum IngredientRole {
     }
   }
 
-  IngredientRole fromJson(dynamic jsonValue) {
+  static IngredientRole fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

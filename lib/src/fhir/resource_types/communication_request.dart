@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'communication_request.g.dart';
-
 /// [CommunicationRequest] /// A request to convey information; e.g. the CDS system proposes that an alert
 /// be sent to a responsible provider, the CDS system proposes that the public
 /// health agency be notified about a reportable condition.
@@ -57,8 +55,6 @@ class CommunicationRequest extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.CommunicationRequest);
   @override
   String get fhirType => 'CommunicationRequest';
@@ -182,12 +178,280 @@ class CommunicationRequest extends DomainResource {
   /// subject or other participants.
   @JsonKey(name: 'note')
   final List<Annotation>? note;
-  factory CommunicationRequest.fromJson(Map<String, dynamic> json) =>
-      _$CommunicationRequestFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$CommunicationRequestToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    if (basedOn != null && basedOn!.isNotEmpty) {
+      json['basedOn'] =
+          basedOn!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (replaces != null && replaces!.isNotEmpty) {
+      json['replaces'] =
+          replaces!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (groupIdentifier != null) {
+      json['groupIdentifier'] = groupIdentifier!.toJson();
+    }
+    json['status'] = status.toJson();
+    if (statusReason != null) {
+      json['statusReason'] = statusReason!.toJson();
+    }
+    if (category != null && category!.isNotEmpty) {
+      json['category'] =
+          category!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (priority != null) {
+      json['priority'] = priority!.toJson();
+    }
+    if (doNotPerform?.value != null) {
+      json['doNotPerform'] = doNotPerform!.value;
+    }
+    if (doNotPerformElement != null) {
+      json['_doNotPerform'] = doNotPerformElement!.toJson();
+    }
+    if (medium != null && medium!.isNotEmpty) {
+      json['medium'] =
+          medium!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (subject != null) {
+      json['subject'] = subject!.toJson();
+    }
+    if (about != null && about!.isNotEmpty) {
+      json['about'] = about!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (encounter != null) {
+      json['encounter'] = encounter!.toJson();
+    }
+    if (payload != null && payload!.isNotEmpty) {
+      json['payload'] = payload!
+          .map<dynamic>((CommunicationRequestPayload v) => v.toJson())
+          .toList();
+    }
+    if (occurrenceDateTime?.value != null) {
+      json['occurrenceDateTime'] = occurrenceDateTime!.value;
+    }
+    if (occurrenceDateTimeElement != null) {
+      json['_occurrenceDateTime'] = occurrenceDateTimeElement!.toJson();
+    }
+    if (occurrencePeriod != null) {
+      json['occurrencePeriod'] = occurrencePeriod!.toJson();
+    }
+    if (authoredOn?.value != null) {
+      json['authoredOn'] = authoredOn!.value;
+    }
+    if (authoredOnElement != null) {
+      json['_authoredOn'] = authoredOnElement!.toJson();
+    }
+    if (requester != null) {
+      json['requester'] = requester!.toJson();
+    }
+    if (recipient != null && recipient!.isNotEmpty) {
+      json['recipient'] =
+          recipient!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (sender != null) {
+      json['sender'] = sender!.toJson();
+    }
+    if (reasonCode != null && reasonCode!.isNotEmpty) {
+      json['reasonCode'] =
+          reasonCode!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (reasonReference != null && reasonReference!.isNotEmpty) {
+      json['reasonReference'] =
+          reasonReference!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (note != null && note!.isNotEmpty) {
+      json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory CommunicationRequest.fromJson(Map<String, dynamic> json) {
+    return CommunicationRequest(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      basedOn: json['basedOn'] != null
+          ? (json['basedOn'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      replaces: json['replaces'] != null
+          ? (json['replaces'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      groupIdentifier: json['groupIdentifier'] != null
+          ? Identifier.fromJson(json['groupIdentifier'] as Map<String, dynamic>)
+          : null,
+      status: RequestStatus.fromJson(json['status'] as Map<String, dynamic>),
+      statusReason: json['statusReason'] != null
+          ? CodeableConcept.fromJson(
+              json['statusReason'] as Map<String, dynamic>)
+          : null,
+      category: json['category'] != null
+          ? (json['category'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      priority: json['priority'] != null
+          ? RequestPriority.fromJson(json['priority'] as Map<String, dynamic>)
+          : null,
+      doNotPerform: json['doNotPerform'] != null
+          ? FhirBoolean(json['doNotPerform'])
+          : null,
+      doNotPerformElement: json['_doNotPerform'] != null
+          ? Element.fromJson(json['_doNotPerform'] as Map<String, dynamic>)
+          : null,
+      medium: json['medium'] != null
+          ? (json['medium'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      subject: json['subject'] != null
+          ? Reference.fromJson(json['subject'] as Map<String, dynamic>)
+          : null,
+      about: json['about'] != null
+          ? (json['about'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      encounter: json['encounter'] != null
+          ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
+          : null,
+      payload: json['payload'] != null
+          ? (json['payload'] as List<dynamic>)
+              .map<CommunicationRequestPayload>((dynamic v) =>
+                  CommunicationRequestPayload.fromJson(
+                      v as Map<String, dynamic>))
+              .toList()
+          : null,
+      occurrenceDateTime: json['occurrenceDateTime'] != null
+          ? FhirDateTime(json['occurrenceDateTime'])
+          : null,
+      occurrenceDateTimeElement: json['_occurrenceDateTime'] != null
+          ? Element.fromJson(
+              json['_occurrenceDateTime'] as Map<String, dynamic>)
+          : null,
+      occurrencePeriod: json['occurrencePeriod'] != null
+          ? Period.fromJson(json['occurrencePeriod'] as Map<String, dynamic>)
+          : null,
+      authoredOn:
+          json['authoredOn'] != null ? FhirDateTime(json['authoredOn']) : null,
+      authoredOnElement: json['_authoredOn'] != null
+          ? Element.fromJson(json['_authoredOn'] as Map<String, dynamic>)
+          : null,
+      requester: json['requester'] != null
+          ? Reference.fromJson(json['requester'] as Map<String, dynamic>)
+          : null,
+      recipient: json['recipient'] != null
+          ? (json['recipient'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      sender: json['sender'] != null
+          ? Reference.fromJson(json['sender'] as Map<String, dynamic>)
+          : null,
+      reasonCode: json['reasonCode'] != null
+          ? (json['reasonCode'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      reasonReference: json['reasonReference'] != null
+          ? (json['reasonReference'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                  (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   CommunicationRequest clone() => throw UnimplementedError();
   @override
@@ -346,12 +610,68 @@ class CommunicationRequestPayload extends BackboneElement {
   /// the communication).
   @JsonKey(name: 'contentReference')
   final Reference? contentReference;
-  factory CommunicationRequestPayload.fromJson(Map<String, dynamic> json) =>
-      _$CommunicationRequestPayloadFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$CommunicationRequestPayloadToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (contentString?.value != null) {
+      json['contentString'] = contentString!.value;
+    }
+    if (contentStringElement != null) {
+      json['_contentString'] = contentStringElement!.toJson();
+    }
+    if (contentAttachment != null) {
+      json['contentAttachment'] = contentAttachment!.toJson();
+    }
+    if (contentReference != null) {
+      json['contentReference'] = contentReference!.toJson();
+    }
+    return json;
+  }
 
+  factory CommunicationRequestPayload.fromJson(Map<String, dynamic> json) {
+    return CommunicationRequestPayload(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      contentString: json['contentString'] != null
+          ? FhirString(json['contentString'])
+          : null,
+      contentStringElement: json['_contentString'] != null
+          ? Element.fromJson(json['_contentString'] as Map<String, dynamic>)
+          : null,
+      contentAttachment: json['contentAttachment'] != null
+          ? Attachment.fromJson(
+              json['contentAttachment'] as Map<String, dynamic>)
+          : null,
+      contentReference: json['contentReference'] != null
+          ? Reference.fromJson(json['contentReference'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   CommunicationRequestPayload clone() => throw UnimplementedError();
   @override

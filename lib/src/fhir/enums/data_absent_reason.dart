@@ -115,7 +115,7 @@ enum DataAbsentReason {
   }
 
   String toJson() => toString();
-  DataAbsentReason fromString(String str) {
+  static DataAbsentReason fromString(String str) {
     switch (str) {
       case 'unknown':
         return DataAbsentReason.unknown;
@@ -152,7 +152,7 @@ enum DataAbsentReason {
     }
   }
 
-  DataAbsentReason fromJson(dynamic jsonValue) {
+  static DataAbsentReason fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

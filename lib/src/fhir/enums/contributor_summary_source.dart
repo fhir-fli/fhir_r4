@@ -38,7 +38,7 @@ enum ContributorSummarySource {
   }
 
   String toJson() => toString();
-  ContributorSummarySource fromString(String str) {
+  static ContributorSummarySource fromString(String str) {
     switch (str) {
       case 'publisher-data':
         return ContributorSummarySource.publisher_data;
@@ -53,7 +53,7 @@ enum ContributorSummarySource {
     }
   }
 
-  ContributorSummarySource fromJson(dynamic jsonValue) {
+  static ContributorSummarySource fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

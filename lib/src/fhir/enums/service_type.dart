@@ -4182,7 +4182,7 @@ enum ServiceType {
   }
 
   String toJson() => toString();
-  ServiceType fromString(String str) {
+  static ServiceType fromString(String str) {
     switch (str) {
       case '1':
         return ServiceType.value1;
@@ -5381,7 +5381,7 @@ enum ServiceType {
     }
   }
 
-  ServiceType fromJson(dynamic jsonValue) {
+  static ServiceType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -52,7 +52,7 @@ enum CommunicationNotDoneReason {
   }
 
   String toJson() => toString();
-  CommunicationNotDoneReason fromString(String str) {
+  static CommunicationNotDoneReason fromString(String str) {
     switch (str) {
       case 'unknown':
         return CommunicationNotDoneReason.unknown;
@@ -71,7 +71,7 @@ enum CommunicationNotDoneReason {
     }
   }
 
-  CommunicationNotDoneReason fromJson(dynamic jsonValue) {
+  static CommunicationNotDoneReason fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -38,7 +38,7 @@ enum ConsentDataMeaning {
   }
 
   String toJson() => toString();
-  ConsentDataMeaning fromString(String str) {
+  static ConsentDataMeaning fromString(String str) {
     switch (str) {
       case 'instance':
         return ConsentDataMeaning.instance;
@@ -53,7 +53,7 @@ enum ConsentDataMeaning {
     }
   }
 
-  ConsentDataMeaning fromJson(dynamic jsonValue) {
+  static ConsentDataMeaning fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

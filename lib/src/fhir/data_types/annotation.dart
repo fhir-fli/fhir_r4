@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'annotation.g.dart';
-
 /// [Annotation] /// A text note which also contains information about who made the statement
 /// and when.
 @JsonSerializable()
@@ -55,12 +53,66 @@ class Annotation extends DataType {
   final FhirMarkdown text;
   @JsonKey(name: '_text')
   final Element? textElement;
-  factory Annotation.fromJson(Map<String, dynamic> json) =>
-      _$AnnotationFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$AnnotationToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (authorReference != null) {
+      json['authorReference'] = authorReference!.toJson();
+    }
+    if (authorString?.value != null) {
+      json['authorString'] = authorString!.value;
+    }
+    if (authorStringElement != null) {
+      json['_authorString'] = authorStringElement!.toJson();
+    }
+    if (time?.value != null) {
+      json['time'] = time!.value;
+    }
+    if (timeElement != null) {
+      json['_time'] = timeElement!.toJson();
+    }
+    json['text'] = text.value;
+    if (textElement != null) {
+      json['_text'] = textElement!.toJson();
+    }
+    return json;
+  }
 
+  factory Annotation.fromJson(Map<String, dynamic> json) {
+    return Annotation(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      authorReference: json['authorReference'] != null
+          ? Reference.fromJson(json['authorReference'] as Map<String, dynamic>)
+          : null,
+      authorString: json['authorString'] != null
+          ? FhirString(json['authorString'])
+          : null,
+      authorStringElement: json['_authorString'] != null
+          ? Element.fromJson(json['_authorString'] as Map<String, dynamic>)
+          : null,
+      time: json['time'] != null ? FhirDateTime(json['time']) : null,
+      timeElement: json['_time'] != null
+          ? Element.fromJson(json['_time'] as Map<String, dynamic>)
+          : null,
+      text: FhirMarkdown(json['text']),
+      textElement: Element.fromJson(json['_text'] as Map<String, dynamic>),
+    );
+  }
   @override
   Annotation clone() => throw UnimplementedError();
   @override

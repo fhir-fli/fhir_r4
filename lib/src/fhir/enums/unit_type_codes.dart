@@ -24,7 +24,7 @@ enum UnitTypeCodes {
   }
 
   String toJson() => toString();
-  UnitTypeCodes fromString(String str) {
+  static UnitTypeCodes fromString(String str) {
     switch (str) {
       case 'individual':
         return UnitTypeCodes.individual;
@@ -35,7 +35,7 @@ enum UnitTypeCodes {
     }
   }
 
-  UnitTypeCodes fromJson(dynamic jsonValue) {
+  static UnitTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

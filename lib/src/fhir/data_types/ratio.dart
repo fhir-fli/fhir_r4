@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'ratio.g.dart';
-
 /// [Ratio] /// A relationship of two Quantity values - expressed as a numerator and a
 /// denominator.
 @JsonSerializable()
@@ -36,11 +34,44 @@ class Ratio extends DataType {
   /// [denominator] /// The value of the denominator.
   @JsonKey(name: 'denominator')
   final Quantity? denominator;
-  factory Ratio.fromJson(Map<String, dynamic> json) => _$RatioFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$RatioToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (numerator != null) {
+      json['numerator'] = numerator!.toJson();
+    }
+    if (denominator != null) {
+      json['denominator'] = denominator!.toJson();
+    }
+    return json;
+  }
 
+  factory Ratio.fromJson(Map<String, dynamic> json) {
+    return Ratio(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      numerator: json['numerator'] != null
+          ? Quantity.fromJson(json['numerator'] as Map<String, dynamic>)
+          : null,
+      denominator: json['denominator'] != null
+          ? Quantity.fromJson(json['denominator'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   Ratio clone() => throw UnimplementedError();
   @override

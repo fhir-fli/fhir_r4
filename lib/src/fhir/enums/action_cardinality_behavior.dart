@@ -24,7 +24,7 @@ enum ActionCardinalityBehavior {
   }
 
   String toJson() => toString();
-  ActionCardinalityBehavior fromString(String str) {
+  static ActionCardinalityBehavior fromString(String str) {
     switch (str) {
       case 'single':
         return ActionCardinalityBehavior.single;
@@ -35,7 +35,7 @@ enum ActionCardinalityBehavior {
     }
   }
 
-  ActionCardinalityBehavior fromJson(dynamic jsonValue) {
+  static ActionCardinalityBehavior fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

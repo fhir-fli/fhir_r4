@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'supply_delivery.g.dart';
-
 /// [SupplyDelivery] /// Record of delivery of what is supplied.
 @JsonSerializable()
 class SupplyDelivery extends DomainResource {
@@ -42,8 +40,6 @@ class SupplyDelivery extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.SupplyDelivery);
   @override
   String get fhirType => 'SupplyDelivery';
@@ -113,12 +109,186 @@ class SupplyDelivery extends DomainResource {
   /// [receiver] /// Identifies the person who picked up the Supply.
   @JsonKey(name: 'receiver')
   final List<Reference>? receiver;
-  factory SupplyDelivery.fromJson(Map<String, dynamic> json) =>
-      _$SupplyDeliveryFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$SupplyDeliveryToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    if (basedOn != null && basedOn!.isNotEmpty) {
+      json['basedOn'] =
+          basedOn!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (partOf != null && partOf!.isNotEmpty) {
+      json['partOf'] =
+          partOf!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (status != null) {
+      json['status'] = status!.toJson();
+    }
+    if (patient != null) {
+      json['patient'] = patient!.toJson();
+    }
+    if (type != null) {
+      json['type'] = type!.toJson();
+    }
+    if (suppliedItem != null) {
+      json['suppliedItem'] = suppliedItem!.toJson();
+    }
+    if (occurrenceDateTime?.value != null) {
+      json['occurrenceDateTime'] = occurrenceDateTime!.value;
+    }
+    if (occurrenceDateTimeElement != null) {
+      json['_occurrenceDateTime'] = occurrenceDateTimeElement!.toJson();
+    }
+    if (occurrencePeriod != null) {
+      json['occurrencePeriod'] = occurrencePeriod!.toJson();
+    }
+    if (occurrenceTiming != null) {
+      json['occurrenceTiming'] = occurrenceTiming!.toJson();
+    }
+    if (supplier != null) {
+      json['supplier'] = supplier!.toJson();
+    }
+    if (destination != null) {
+      json['destination'] = destination!.toJson();
+    }
+    if (receiver != null && receiver!.isNotEmpty) {
+      json['receiver'] =
+          receiver!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory SupplyDelivery.fromJson(Map<String, dynamic> json) {
+    return SupplyDelivery(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      basedOn: json['basedOn'] != null
+          ? (json['basedOn'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      partOf: json['partOf'] != null
+          ? (json['partOf'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      status: json['status'] != null
+          ? SupplyDeliveryStatus.fromJson(
+              json['status'] as Map<String, dynamic>)
+          : null,
+      patient: json['patient'] != null
+          ? Reference.fromJson(json['patient'] as Map<String, dynamic>)
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
+          : null,
+      suppliedItem: json['suppliedItem'] != null
+          ? SupplyDeliverySuppliedItem.fromJson(
+              json['suppliedItem'] as Map<String, dynamic>)
+          : null,
+      occurrenceDateTime: json['occurrenceDateTime'] != null
+          ? FhirDateTime(json['occurrenceDateTime'])
+          : null,
+      occurrenceDateTimeElement: json['_occurrenceDateTime'] != null
+          ? Element.fromJson(
+              json['_occurrenceDateTime'] as Map<String, dynamic>)
+          : null,
+      occurrencePeriod: json['occurrencePeriod'] != null
+          ? Period.fromJson(json['occurrencePeriod'] as Map<String, dynamic>)
+          : null,
+      occurrenceTiming: json['occurrenceTiming'] != null
+          ? Timing.fromJson(json['occurrenceTiming'] as Map<String, dynamic>)
+          : null,
+      supplier: json['supplier'] != null
+          ? Reference.fromJson(json['supplier'] as Map<String, dynamic>)
+          : null,
+      destination: json['destination'] != null
+          ? Reference.fromJson(json['destination'] as Map<String, dynamic>)
+          : null,
+      receiver: json['receiver'] != null
+          ? (json['receiver'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   SupplyDelivery clone() => throw UnimplementedError();
   @override
@@ -249,12 +419,62 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
   /// that identifies the item from a known list.
   @JsonKey(name: 'itemReference')
   final Reference? itemReference;
-  factory SupplyDeliverySuppliedItem.fromJson(Map<String, dynamic> json) =>
-      _$SupplyDeliverySuppliedItemFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$SupplyDeliverySuppliedItemToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (quantity != null) {
+      json['quantity'] = quantity!.toJson();
+    }
+    if (itemCodeableConcept != null) {
+      json['itemCodeableConcept'] = itemCodeableConcept!.toJson();
+    }
+    if (itemReference != null) {
+      json['itemReference'] = itemReference!.toJson();
+    }
+    return json;
+  }
 
+  factory SupplyDeliverySuppliedItem.fromJson(Map<String, dynamic> json) {
+    return SupplyDeliverySuppliedItem(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      quantity: json['quantity'] != null
+          ? Quantity.fromJson(json['quantity'] as Map<String, dynamic>)
+          : null,
+      itemCodeableConcept: json['itemCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['itemCodeableConcept'] as Map<String, dynamic>)
+          : null,
+      itemReference: json['itemReference'] != null
+          ? Reference.fromJson(json['itemReference'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   SupplyDeliverySuppliedItem clone() => throw UnimplementedError();
   @override

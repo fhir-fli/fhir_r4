@@ -31,7 +31,7 @@ enum ObservationRangeCategory {
   }
 
   String toJson() => toString();
-  ObservationRangeCategory fromString(String str) {
+  static ObservationRangeCategory fromString(String str) {
     switch (str) {
       case 'reference':
         return ObservationRangeCategory.reference;
@@ -44,7 +44,7 @@ enum ObservationRangeCategory {
     }
   }
 
-  ObservationRangeCategory fromJson(dynamic jsonValue) {
+  static ObservationRangeCategory fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

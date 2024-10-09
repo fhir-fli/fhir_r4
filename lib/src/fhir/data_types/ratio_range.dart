@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'ratio_range.g.dart';
-
 /// [RatioRange] /// A range of ratios expressed as a low and high numerator and a denominator.
 @JsonSerializable()
 class RatioRange extends DataType {
@@ -40,12 +38,50 @@ class RatioRange extends DataType {
   /// [denominator] /// The value of the denominator.
   @JsonKey(name: 'denominator')
   final Quantity? denominator;
-  factory RatioRange.fromJson(Map<String, dynamic> json) =>
-      _$RatioRangeFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$RatioRangeToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (lowNumerator != null) {
+      json['lowNumerator'] = lowNumerator!.toJson();
+    }
+    if (highNumerator != null) {
+      json['highNumerator'] = highNumerator!.toJson();
+    }
+    if (denominator != null) {
+      json['denominator'] = denominator!.toJson();
+    }
+    return json;
+  }
 
+  factory RatioRange.fromJson(Map<String, dynamic> json) {
+    return RatioRange(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      lowNumerator: json['lowNumerator'] != null
+          ? Quantity.fromJson(json['lowNumerator'] as Map<String, dynamic>)
+          : null,
+      highNumerator: json['highNumerator'] != null
+          ? Quantity.fromJson(json['highNumerator'] as Map<String, dynamic>)
+          : null,
+      denominator: json['denominator'] != null
+          ? Quantity.fromJson(json['denominator'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   RatioRange clone() => throw UnimplementedError();
   @override

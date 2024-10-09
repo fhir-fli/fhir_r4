@@ -52,7 +52,7 @@ enum GuidanceResponseStatus {
   }
 
   String toJson() => toString();
-  GuidanceResponseStatus fromString(String str) {
+  static GuidanceResponseStatus fromString(String str) {
     switch (str) {
       case 'success':
         return GuidanceResponseStatus.success;
@@ -71,7 +71,7 @@ enum GuidanceResponseStatus {
     }
   }
 
-  GuidanceResponseStatus fromJson(dynamic jsonValue) {
+  static GuidanceResponseStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

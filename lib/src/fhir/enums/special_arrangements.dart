@@ -45,7 +45,7 @@ enum SpecialArrangements {
   }
 
   String toJson() => toString();
-  SpecialArrangements fromString(String str) {
+  static SpecialArrangements fromString(String str) {
     switch (str) {
       case 'wheel':
         return SpecialArrangements.wheel;
@@ -62,7 +62,7 @@ enum SpecialArrangements {
     }
   }
 
-  SpecialArrangements fromJson(dynamic jsonValue) {
+  static SpecialArrangements fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

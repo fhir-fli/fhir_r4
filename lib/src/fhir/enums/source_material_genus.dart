@@ -28,7 +28,7 @@ enum SourceMaterialGenus {
   }
 
   String toJson() => toString();
-  SourceMaterialGenus fromString(String str) {
+  static SourceMaterialGenus fromString(String str) {
     switch (str) {
       case 'Mycobacterium':
         return SourceMaterialGenus.Mycobacterium;
@@ -41,7 +41,7 @@ enum SourceMaterialGenus {
     }
   }
 
-  SourceMaterialGenus fromJson(dynamic jsonValue) {
+  static SourceMaterialGenus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

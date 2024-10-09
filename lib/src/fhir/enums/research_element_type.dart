@@ -31,7 +31,7 @@ enum ResearchElementType {
   }
 
   String toJson() => toString();
-  ResearchElementType fromString(String str) {
+  static ResearchElementType fromString(String str) {
     switch (str) {
       case 'population':
         return ResearchElementType.population;
@@ -44,7 +44,7 @@ enum ResearchElementType {
     }
   }
 
-  ResearchElementType fromJson(dynamic jsonValue) {
+  static ResearchElementType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

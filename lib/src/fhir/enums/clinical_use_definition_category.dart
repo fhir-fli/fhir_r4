@@ -28,7 +28,7 @@ enum ClinicalUseDefinitionCategory {
   }
 
   String toJson() => toString();
-  ClinicalUseDefinitionCategory fromString(String str) {
+  static ClinicalUseDefinitionCategory fromString(String str) {
     switch (str) {
       case 'Pregnancy':
         return ClinicalUseDefinitionCategory.Pregnancy;
@@ -41,7 +41,7 @@ enum ClinicalUseDefinitionCategory {
     }
   }
 
-  ClinicalUseDefinitionCategory fromJson(dynamic jsonValue) {
+  static ClinicalUseDefinitionCategory fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -38,7 +38,7 @@ enum StructureMapTargetListMode {
   }
 
   String toJson() => toString();
-  StructureMapTargetListMode fromString(String str) {
+  static StructureMapTargetListMode fromString(String str) {
     switch (str) {
       case 'first':
         return StructureMapTargetListMode.first;
@@ -53,7 +53,7 @@ enum StructureMapTargetListMode {
     }
   }
 
-  StructureMapTargetListMode fromJson(dynamic jsonValue) {
+  static StructureMapTargetListMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

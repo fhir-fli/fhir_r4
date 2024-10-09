@@ -52,7 +52,7 @@ enum ConsentState {
   }
 
   String toJson() => toString();
-  ConsentState fromString(String str) {
+  static ConsentState fromString(String str) {
     switch (str) {
       case 'draft':
         return ConsentState.draft;
@@ -71,7 +71,7 @@ enum ConsentState {
     }
   }
 
-  ConsentState fromJson(dynamic jsonValue) {
+  static ConsentState fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

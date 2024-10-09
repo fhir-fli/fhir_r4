@@ -24,7 +24,7 @@ enum EventCapabilityMode {
   }
 
   String toJson() => toString();
-  EventCapabilityMode fromString(String str) {
+  static EventCapabilityMode fromString(String str) {
     switch (str) {
       case 'sender':
         return EventCapabilityMode.sender;
@@ -35,7 +35,7 @@ enum EventCapabilityMode {
     }
   }
 
-  EventCapabilityMode fromJson(dynamic jsonValue) {
+  static EventCapabilityMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

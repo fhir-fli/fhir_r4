@@ -17,7 +17,7 @@ enum CharacteristicMethod {
   }
 
   String toJson() => toString();
-  CharacteristicMethod fromString(String str) {
+  static CharacteristicMethod fromString(String str) {
     switch (str) {
       case 'Default':
         return CharacteristicMethod.Default;
@@ -26,7 +26,7 @@ enum CharacteristicMethod {
     }
   }
 
-  CharacteristicMethod fromJson(dynamic jsonValue) {
+  static CharacteristicMethod fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

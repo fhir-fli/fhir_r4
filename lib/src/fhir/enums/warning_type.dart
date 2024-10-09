@@ -80,7 +80,7 @@ enum WarningType {
   }
 
   String toJson() => toString();
-  WarningType fromString(String str) {
+  static WarningType fromString(String str) {
     switch (str) {
       case 'P313':
         return WarningType.P313;
@@ -107,7 +107,7 @@ enum WarningType {
     }
   }
 
-  WarningType fromJson(dynamic jsonValue) {
+  static WarningType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

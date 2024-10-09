@@ -45,7 +45,7 @@ enum CareTeamStatus {
   }
 
   String toJson() => toString();
-  CareTeamStatus fromString(String str) {
+  static CareTeamStatus fromString(String str) {
     switch (str) {
       case 'proposed':
         return CareTeamStatus.proposed;
@@ -62,7 +62,7 @@ enum CareTeamStatus {
     }
   }
 
-  CareTeamStatus fromJson(dynamic jsonValue) {
+  static CareTeamStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

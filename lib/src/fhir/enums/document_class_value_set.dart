@@ -280,7 +280,7 @@ enum DocumentClassValueSet {
   }
 
   String toJson() => toString();
-  DocumentClassValueSet fromString(String str) {
+  static DocumentClassValueSet fromString(String str) {
     switch (str) {
       case '11369-6':
         return DocumentClassValueSet.value11369_6;
@@ -377,7 +377,7 @@ enum DocumentClassValueSet {
     }
   }
 
-  DocumentClassValueSet fromJson(dynamic jsonValue) {
+  static DocumentClassValueSet fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

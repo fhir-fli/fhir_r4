@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'period.g.dart';
-
 /// [Period] /// A time period defined by a start and end date and optionally time.
 @JsonSerializable()
 class Period extends DataType {
@@ -44,11 +42,52 @@ class Period extends DataType {
   final FhirDateTime? end;
   @JsonKey(name: '_end')
   final Element? endElement;
-  factory Period.fromJson(Map<String, dynamic> json) => _$PeriodFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$PeriodToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (start?.value != null) {
+      json['start'] = start!.value;
+    }
+    if (startElement != null) {
+      json['_start'] = startElement!.toJson();
+    }
+    if (end?.value != null) {
+      json['end'] = end!.value;
+    }
+    if (endElement != null) {
+      json['_end'] = endElement!.toJson();
+    }
+    return json;
+  }
 
+  factory Period.fromJson(Map<String, dynamic> json) {
+    return Period(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      start: json['start'] != null ? FhirDateTime(json['start']) : null,
+      startElement: json['_start'] != null
+          ? Element.fromJson(json['_start'] as Map<String, dynamic>)
+          : null,
+      end: json['end'] != null ? FhirDateTime(json['end']) : null,
+      endElement: json['_end'] != null
+          ? Element.fromJson(json['_end'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   Period clone() => throw UnimplementedError();
   @override

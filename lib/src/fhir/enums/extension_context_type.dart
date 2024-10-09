@@ -31,7 +31,7 @@ enum ExtensionContextType {
   }
 
   String toJson() => toString();
-  ExtensionContextType fromString(String str) {
+  static ExtensionContextType fromString(String str) {
     switch (str) {
       case 'fhirpath':
         return ExtensionContextType.fhirpath;
@@ -44,7 +44,7 @@ enum ExtensionContextType {
     }
   }
 
-  ExtensionContextType fromJson(dynamic jsonValue) {
+  static ExtensionContextType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

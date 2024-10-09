@@ -38,7 +38,7 @@ enum FamilyHistoryAbsentReason {
   }
 
   String toJson() => toString();
-  FamilyHistoryAbsentReason fromString(String str) {
+  static FamilyHistoryAbsentReason fromString(String str) {
     switch (str) {
       case 'subject-unknown':
         return FamilyHistoryAbsentReason.subject_unknown;
@@ -53,7 +53,7 @@ enum FamilyHistoryAbsentReason {
     }
   }
 
-  FamilyHistoryAbsentReason fromJson(dynamic jsonValue) {
+  static FamilyHistoryAbsentReason fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

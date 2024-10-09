@@ -40,7 +40,7 @@ enum CommonUCUMCodesForDistance {
   }
 
   String toJson() => toString();
-  CommonUCUMCodesForDistance fromString(String str) {
+  static CommonUCUMCodesForDistance fromString(String str) {
     switch (str) {
       case 'nm':
         return CommonUCUMCodesForDistance.nm;
@@ -57,7 +57,7 @@ enum CommonUCUMCodesForDistance {
     }
   }
 
-  CommonUCUMCodesForDistance fromJson(dynamic jsonValue) {
+  static CommonUCUMCodesForDistance fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

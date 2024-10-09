@@ -24,7 +24,7 @@ enum FormCodes {
   }
 
   String toJson() => toString();
-  FormCodes fromString(String str) {
+  static FormCodes fromString(String str) {
     switch (str) {
       case '1':
         return FormCodes.value1;
@@ -35,7 +35,7 @@ enum FormCodes {
     }
   }
 
-  FormCodes fromJson(dynamic jsonValue) {
+  static FormCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

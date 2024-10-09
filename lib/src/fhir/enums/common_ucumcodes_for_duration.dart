@@ -58,7 +58,7 @@ enum CommonUCUMCodesForDuration {
   }
 
   String toJson() => toString();
-  CommonUCUMCodesForDuration fromString(String str) {
+  static CommonUCUMCodesForDuration fromString(String str) {
     switch (str) {
       case 'ms':
         return CommonUCUMCodesForDuration.ms;
@@ -81,7 +81,7 @@ enum CommonUCUMCodesForDuration {
     }
   }
 
-  CommonUCUMCodesForDuration fromJson(dynamic jsonValue) {
+  static CommonUCUMCodesForDuration fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

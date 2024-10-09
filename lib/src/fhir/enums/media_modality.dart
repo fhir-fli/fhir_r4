@@ -66,7 +66,7 @@ enum MediaModality {
   }
 
   String toJson() => toString();
-  MediaModality fromString(String str) {
+  static MediaModality fromString(String str) {
     switch (str) {
       case 'diagram':
         return MediaModality.diagram;
@@ -89,7 +89,7 @@ enum MediaModality {
     }
   }
 
-  MediaModality fromJson(dynamic jsonValue) {
+  static MediaModality fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

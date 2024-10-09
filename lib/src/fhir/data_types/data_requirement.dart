@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'data_requirement.g.dart';
-
 /// [DataRequirement] /// Describes a required data item for evaluation in terms of the type of data,
 /// and optional code or date-based filters of the data.
 @JsonSerializable()
@@ -103,12 +101,126 @@ class DataRequirement extends DataType {
   /// [sort] /// Specifies the order of the results to be returned.
   @JsonKey(name: 'sort')
   final List<DataRequirementSort>? sort;
-  factory DataRequirement.fromJson(Map<String, dynamic> json) =>
-      _$DataRequirementFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$DataRequirementToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    json['type'] = type.toJson();
+    if (profile != null && profile!.isNotEmpty) {
+      json['profile'] = profile!.map((FhirCanonical v) => v.value).toList();
+    }
+    if (profileElement != null && profileElement!.isNotEmpty) {
+      json['_profile'] =
+          profileElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (subjectCodeableConcept != null) {
+      json['subjectCodeableConcept'] = subjectCodeableConcept!.toJson();
+    }
+    if (subjectReference != null) {
+      json['subjectReference'] = subjectReference!.toJson();
+    }
+    if (mustSupport != null && mustSupport!.isNotEmpty) {
+      json['mustSupport'] =
+          mustSupport!.map((FhirString v) => v.value).toList();
+    }
+    if (mustSupportElement != null && mustSupportElement!.isNotEmpty) {
+      json['_mustSupport'] =
+          mustSupportElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (codeFilter != null && codeFilter!.isNotEmpty) {
+      json['codeFilter'] = codeFilter!
+          .map<dynamic>((DataRequirementCodeFilter v) => v.toJson())
+          .toList();
+    }
+    if (dateFilter != null && dateFilter!.isNotEmpty) {
+      json['dateFilter'] = dateFilter!
+          .map<dynamic>((DataRequirementDateFilter v) => v.toJson())
+          .toList();
+    }
+    if (limit?.value != null) {
+      json['limit'] = limit!.value;
+    }
+    if (limitElement != null) {
+      json['_limit'] = limitElement!.toJson();
+    }
+    if (sort != null && sort!.isNotEmpty) {
+      json['sort'] =
+          sort!.map<dynamic>((DataRequirementSort v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory DataRequirement.fromJson(Map<String, dynamic> json) {
+    return DataRequirement(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: FHIRAllTypes.fromJson(json['type'] as Map<String, dynamic>),
+      profile: json['profile'] != null
+          ? (json['profile'] as List<dynamic>)
+              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .toList()
+          : null,
+      profileElement: json['_profile'] != null
+          ? (json['_profile'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      subjectCodeableConcept: json['subjectCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['subjectCodeableConcept'] as Map<String, dynamic>)
+          : null,
+      subjectReference: json['subjectReference'] != null
+          ? Reference.fromJson(json['subjectReference'] as Map<String, dynamic>)
+          : null,
+      mustSupport: json['mustSupport'] != null
+          ? (json['mustSupport'] as List<dynamic>)
+              .map<FhirString>((dynamic v) => FhirString(v))
+              .toList()
+          : null,
+      mustSupportElement: json['_mustSupport'] != null
+          ? (json['_mustSupport'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      codeFilter: json['codeFilter'] != null
+          ? (json['codeFilter'] as List<dynamic>)
+              .map<DataRequirementCodeFilter>((dynamic v) =>
+                  DataRequirementCodeFilter.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      dateFilter: json['dateFilter'] != null
+          ? (json['dateFilter'] as List<dynamic>)
+              .map<DataRequirementDateFilter>((dynamic v) =>
+                  DataRequirementDateFilter.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      limit: json['limit'] != null ? FhirPositiveInt(json['limit']) : null,
+      limitElement: json['_limit'] != null
+          ? Element.fromJson(json['_limit'] as Map<String, dynamic>)
+          : null,
+      sort: json['sort'] != null
+          ? (json['sort'] as List<dynamic>)
+              .map<DataRequirementSort>((dynamic v) =>
+                  DataRequirementSort.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   DataRequirement clone() => throw UnimplementedError();
   @override
@@ -247,12 +359,73 @@ class DataRequirementCodeFilter extends Element {
   /// value set or one of the specified codes.
   @JsonKey(name: 'code')
   final List<Coding>? code;
-  factory DataRequirementCodeFilter.fromJson(Map<String, dynamic> json) =>
-      _$DataRequirementCodeFilterFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$DataRequirementCodeFilterToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (path?.value != null) {
+      json['path'] = path!.value;
+    }
+    if (pathElement != null) {
+      json['_path'] = pathElement!.toJson();
+    }
+    if (searchParam?.value != null) {
+      json['searchParam'] = searchParam!.value;
+    }
+    if (searchParamElement != null) {
+      json['_searchParam'] = searchParamElement!.toJson();
+    }
+    if (valueSet?.value != null) {
+      json['valueSet'] = valueSet!.value;
+    }
+    if (valueSetElement != null) {
+      json['_valueSet'] = valueSetElement!.toJson();
+    }
+    if (code != null && code!.isNotEmpty) {
+      json['code'] = code!.map<dynamic>((Coding v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory DataRequirementCodeFilter.fromJson(Map<String, dynamic> json) {
+    return DataRequirementCodeFilter(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      path: json['path'] != null ? FhirString(json['path']) : null,
+      pathElement: json['_path'] != null
+          ? Element.fromJson(json['_path'] as Map<String, dynamic>)
+          : null,
+      searchParam:
+          json['searchParam'] != null ? FhirString(json['searchParam']) : null,
+      searchParamElement: json['_searchParam'] != null
+          ? Element.fromJson(json['_searchParam'] as Map<String, dynamic>)
+          : null,
+      valueSet:
+          json['valueSet'] != null ? FhirCanonical(json['valueSet']) : null,
+      valueSetElement: json['_valueSet'] != null
+          ? Element.fromJson(json['_valueSet'] as Map<String, dynamic>)
+          : null,
+      code: json['code'] != null
+          ? (json['code'] as List<dynamic>)
+              .map<Coding>(
+                  (dynamic v) => Coding.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   DataRequirementCodeFilter clone() => throw UnimplementedError();
   @override
@@ -390,12 +563,77 @@ class DataRequirementDateFilter extends Element {
   /// that fall within Duration before now.
   @JsonKey(name: 'valueDuration')
   final FhirDuration? valueDuration;
-  factory DataRequirementDateFilter.fromJson(Map<String, dynamic> json) =>
-      _$DataRequirementDateFilterFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$DataRequirementDateFilterToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (path?.value != null) {
+      json['path'] = path!.value;
+    }
+    if (pathElement != null) {
+      json['_path'] = pathElement!.toJson();
+    }
+    if (searchParam?.value != null) {
+      json['searchParam'] = searchParam!.value;
+    }
+    if (searchParamElement != null) {
+      json['_searchParam'] = searchParamElement!.toJson();
+    }
+    if (valueDateTime?.value != null) {
+      json['valueDateTime'] = valueDateTime!.value;
+    }
+    if (valueDateTimeElement != null) {
+      json['_valueDateTime'] = valueDateTimeElement!.toJson();
+    }
+    if (valuePeriod != null) {
+      json['valuePeriod'] = valuePeriod!.toJson();
+    }
+    if (valueDuration != null) {
+      json['valueDuration'] = valueDuration!.toJson();
+    }
+    return json;
+  }
 
+  factory DataRequirementDateFilter.fromJson(Map<String, dynamic> json) {
+    return DataRequirementDateFilter(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      path: json['path'] != null ? FhirString(json['path']) : null,
+      pathElement: json['_path'] != null
+          ? Element.fromJson(json['_path'] as Map<String, dynamic>)
+          : null,
+      searchParam:
+          json['searchParam'] != null ? FhirString(json['searchParam']) : null,
+      searchParamElement: json['_searchParam'] != null
+          ? Element.fromJson(json['_searchParam'] as Map<String, dynamic>)
+          : null,
+      valueDateTime: json['valueDateTime'] != null
+          ? FhirDateTime(json['valueDateTime'])
+          : null,
+      valueDateTimeElement: json['_valueDateTime'] != null
+          ? Element.fromJson(json['_valueDateTime'] as Map<String, dynamic>)
+          : null,
+      valuePeriod: json['valuePeriod'] != null
+          ? Period.fromJson(json['valuePeriod'] as Map<String, dynamic>)
+          : null,
+      valueDuration: json['valueDuration'] != null
+          ? FhirDuration.fromJson(json['valueDuration'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   DataRequirementDateFilter clone() => throw UnimplementedError();
   @override
@@ -495,12 +733,41 @@ class DataRequirementSort extends Element {
   final SortDirection direction;
   @JsonKey(name: '_direction')
   final Element? directionElement;
-  factory DataRequirementSort.fromJson(Map<String, dynamic> json) =>
-      _$DataRequirementSortFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$DataRequirementSortToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    json['path'] = path.value;
+    if (pathElement != null) {
+      json['_path'] = pathElement!.toJson();
+    }
+    json['direction'] = direction.toJson();
+    return json;
+  }
 
+  factory DataRequirementSort.fromJson(Map<String, dynamic> json) {
+    return DataRequirementSort(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      path: FhirString(json['path']),
+      pathElement: Element.fromJson(json['_path'] as Map<String, dynamic>),
+      direction:
+          SortDirection.fromJson(json['direction'] as Map<String, dynamic>),
+    );
+  }
   @override
   DataRequirementSort clone() => throw UnimplementedError();
   @override

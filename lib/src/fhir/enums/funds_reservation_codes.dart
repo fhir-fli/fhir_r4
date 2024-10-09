@@ -31,7 +31,7 @@ enum FundsReservationCodes {
   }
 
   String toJson() => toString();
-  FundsReservationCodes fromString(String str) {
+  static FundsReservationCodes fromString(String str) {
     switch (str) {
       case 'patient':
         return FundsReservationCodes.patient;
@@ -44,7 +44,7 @@ enum FundsReservationCodes {
     }
   }
 
-  FundsReservationCodes fromJson(dynamic jsonValue) {
+  static FundsReservationCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

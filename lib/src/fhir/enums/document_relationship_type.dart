@@ -38,7 +38,7 @@ enum DocumentRelationshipType {
   }
 
   String toJson() => toString();
-  DocumentRelationshipType fromString(String str) {
+  static DocumentRelationshipType fromString(String str) {
     switch (str) {
       case 'replaces':
         return DocumentRelationshipType.replaces;
@@ -53,7 +53,7 @@ enum DocumentRelationshipType {
     }
   }
 
-  DocumentRelationshipType fromJson(dynamic jsonValue) {
+  static DocumentRelationshipType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

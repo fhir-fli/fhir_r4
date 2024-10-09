@@ -45,7 +45,7 @@ enum ActionReasonCode {
   }
 
   String toJson() => toString();
-  ActionReasonCode fromString(String str) {
+  static ActionReasonCode fromString(String str) {
     switch (str) {
       case 'off-pathway':
         return ActionReasonCode.off_pathway;
@@ -62,7 +62,7 @@ enum ActionReasonCode {
     }
   }
 
-  ActionReasonCode fromJson(dynamic jsonValue) {
+  static ActionReasonCode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

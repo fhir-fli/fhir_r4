@@ -38,7 +38,7 @@ enum VisionBase {
   }
 
   String toJson() => toString();
-  VisionBase fromString(String str) {
+  static VisionBase fromString(String str) {
     switch (str) {
       case 'up':
         return VisionBase.up;
@@ -53,7 +53,7 @@ enum VisionBase {
     }
   }
 
-  VisionBase fromJson(dynamic jsonValue) {
+  static VisionBase fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

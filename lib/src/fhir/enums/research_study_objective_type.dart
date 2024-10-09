@@ -31,7 +31,7 @@ enum ResearchStudyObjectiveType {
   }
 
   String toJson() => toString();
-  ResearchStudyObjectiveType fromString(String str) {
+  static ResearchStudyObjectiveType fromString(String str) {
     switch (str) {
       case 'primary':
         return ResearchStudyObjectiveType.primary;
@@ -44,7 +44,7 @@ enum ResearchStudyObjectiveType {
     }
   }
 
-  ResearchStudyObjectiveType fromJson(dynamic jsonValue) {
+  static ResearchStudyObjectiveType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

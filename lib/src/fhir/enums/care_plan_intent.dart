@@ -73,7 +73,7 @@ enum CarePlanIntent {
   }
 
   String toJson() => toString();
-  CarePlanIntent fromString(String str) {
+  static CarePlanIntent fromString(String str) {
     switch (str) {
       case 'proposal':
         return CarePlanIntent.proposal;
@@ -98,7 +98,7 @@ enum CarePlanIntent {
     }
   }
 
-  CarePlanIntent fromJson(dynamic jsonValue) {
+  static CarePlanIntent fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

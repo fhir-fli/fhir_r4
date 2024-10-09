@@ -31,7 +31,7 @@ enum ProcessPriorityCodes {
   }
 
   String toJson() => toString();
-  ProcessPriorityCodes fromString(String str) {
+  static ProcessPriorityCodes fromString(String str) {
     switch (str) {
       case 'stat':
         return ProcessPriorityCodes.stat;
@@ -44,7 +44,7 @@ enum ProcessPriorityCodes {
     }
   }
 
-  ProcessPriorityCodes fromJson(dynamic jsonValue) {
+  static ProcessPriorityCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

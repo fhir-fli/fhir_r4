@@ -38,7 +38,7 @@ enum RemittanceOutcome {
   }
 
   String toJson() => toString();
-  RemittanceOutcome fromString(String str) {
+  static RemittanceOutcome fromString(String str) {
     switch (str) {
       case 'queued':
         return RemittanceOutcome.queued;
@@ -53,7 +53,7 @@ enum RemittanceOutcome {
     }
   }
 
-  RemittanceOutcome fromJson(dynamic jsonValue) {
+  static RemittanceOutcome fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -24,7 +24,7 @@ enum OrientationType {
   }
 
   String toJson() => toString();
-  OrientationType fromString(String str) {
+  static OrientationType fromString(String str) {
     switch (str) {
       case 'sense':
         return OrientationType.sense;
@@ -35,7 +35,7 @@ enum OrientationType {
     }
   }
 
-  OrientationType fromJson(dynamic jsonValue) {
+  static OrientationType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

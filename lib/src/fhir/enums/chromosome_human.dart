@@ -178,7 +178,7 @@ enum ChromosomeHuman {
   }
 
   String toJson() => toString();
-  ChromosomeHuman fromString(String str) {
+  static ChromosomeHuman fromString(String str) {
     switch (str) {
       case '1':
         return ChromosomeHuman.value1;
@@ -233,7 +233,7 @@ enum ChromosomeHuman {
     }
   }
 
-  ChromosomeHuman fromJson(dynamic jsonValue) {
+  static ChromosomeHuman fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

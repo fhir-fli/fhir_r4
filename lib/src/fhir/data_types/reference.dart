@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'reference.g.dart';
-
 /// [Reference] /// A reference from one resource to another.
 @JsonSerializable()
 class Reference extends DataType {
@@ -78,12 +76,69 @@ class Reference extends DataType {
   final FhirString? display;
   @JsonKey(name: '_display')
   final Element? displayElement;
-  factory Reference.fromJson(Map<String, dynamic> json) =>
-      _$ReferenceFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ReferenceToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (reference?.value != null) {
+      json['reference'] = reference!.value;
+    }
+    if (referenceElement != null) {
+      json['_reference'] = referenceElement!.toJson();
+    }
+    if (type?.value != null) {
+      json['type'] = type!.value;
+    }
+    if (typeElement != null) {
+      json['_type'] = typeElement!.toJson();
+    }
+    if (identifier != null) {
+      json['identifier'] = identifier!.toJson();
+    }
+    if (display?.value != null) {
+      json['display'] = display!.value;
+    }
+    if (displayElement != null) {
+      json['_display'] = displayElement!.toJson();
+    }
+    return json;
+  }
 
+  factory Reference.fromJson(Map<String, dynamic> json) {
+    return Reference(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      reference:
+          json['reference'] != null ? FhirString(json['reference']) : null,
+      referenceElement: json['_reference'] != null
+          ? Element.fromJson(json['_reference'] as Map<String, dynamic>)
+          : null,
+      type: json['type'] != null ? FhirUri(json['type']) : null,
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
+          : null,
+      identifier: json['identifier'] != null
+          ? Identifier.fromJson(json['identifier'] as Map<String, dynamic>)
+          : null,
+      display: json['display'] != null ? FhirString(json['display']) : null,
+      displayElement: json['_display'] != null
+          ? Element.fromJson(json['_display'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   Reference clone() => throw UnimplementedError();
   @override

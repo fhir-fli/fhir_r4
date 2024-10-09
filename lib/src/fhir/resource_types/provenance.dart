@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'provenance.g.dart';
-
 /// [Provenance] /// Provenance of a resource is a record that describes entities and processes
 /// involved in producing and delivering or otherwise influencing that
 /// resource. Provenance provides a critical foundation for assessing
@@ -50,8 +48,6 @@ class Provenance extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Provenance);
   @override
   String get fhirType => 'Provenance';
@@ -116,12 +112,178 @@ class Provenance extends DomainResource {
   /// Provenance.agent. The purpose of the signature is indicated.
   @JsonKey(name: 'signature')
   final List<Signature>? signature;
-  factory Provenance.fromJson(Map<String, dynamic> json) =>
-      _$ProvenanceFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ProvenanceToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['target'] = target.map<dynamic>((Reference v) => v.toJson()).toList();
+    if (occurredPeriod != null) {
+      json['occurredPeriod'] = occurredPeriod!.toJson();
+    }
+    if (occurredDateTime?.value != null) {
+      json['occurredDateTime'] = occurredDateTime!.value;
+    }
+    if (occurredDateTimeElement != null) {
+      json['_occurredDateTime'] = occurredDateTimeElement!.toJson();
+    }
+    json['recorded'] = recorded.value;
+    if (recordedElement != null) {
+      json['_recorded'] = recordedElement!.toJson();
+    }
+    if (policy != null && policy!.isNotEmpty) {
+      json['policy'] = policy!.map((FhirUri v) => v.value).toList();
+    }
+    if (policyElement != null && policyElement!.isNotEmpty) {
+      json['_policy'] = policyElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (location != null) {
+      json['location'] = location!.toJson();
+    }
+    if (reason != null && reason!.isNotEmpty) {
+      json['reason'] =
+          reason!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (activity != null) {
+      json['activity'] = activity!.toJson();
+    }
+    json['agent'] =
+        agent.map<dynamic>((ProvenanceAgent v) => v.toJson()).toList();
+    if (entity != null && entity!.isNotEmpty) {
+      json['entity'] =
+          entity!.map<dynamic>((ProvenanceEntity v) => v.toJson()).toList();
+    }
+    if (signature != null && signature!.isNotEmpty) {
+      json['signature'] =
+          signature!.map<dynamic>((Signature v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory Provenance.fromJson(Map<String, dynamic> json) {
+    return Provenance(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      target: (json['target'] as List<dynamic>)
+          .map<Reference>(
+              (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+          .toList(),
+      occurredPeriod: json['occurredPeriod'] != null
+          ? Period.fromJson(json['occurredPeriod'] as Map<String, dynamic>)
+          : null,
+      occurredDateTime: json['occurredDateTime'] != null
+          ? FhirDateTime(json['occurredDateTime'])
+          : null,
+      occurredDateTimeElement: json['_occurredDateTime'] != null
+          ? Element.fromJson(json['_occurredDateTime'] as Map<String, dynamic>)
+          : null,
+      recorded: FhirInstant(json['recorded']),
+      recordedElement:
+          Element.fromJson(json['_recorded'] as Map<String, dynamic>),
+      policy: json['policy'] != null
+          ? (json['policy'] as List<dynamic>)
+              .map<FhirUri>((dynamic v) => FhirUri(v))
+              .toList()
+          : null,
+      policyElement: json['_policy'] != null
+          ? (json['_policy'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      location: json['location'] != null
+          ? Reference.fromJson(json['location'] as Map<String, dynamic>)
+          : null,
+      reason: json['reason'] != null
+          ? (json['reason'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      activity: json['activity'] != null
+          ? CodeableConcept.fromJson(json['activity'] as Map<String, dynamic>)
+          : null,
+      agent: (json['agent'] as List<dynamic>)
+          .map<ProvenanceAgent>((dynamic v) =>
+              ProvenanceAgent.fromJson(v as Map<String, dynamic>))
+          .toList(),
+      entity: json['entity'] != null
+          ? (json['entity'] as List<dynamic>)
+              .map<ProvenanceEntity>((dynamic v) =>
+                  ProvenanceEntity.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      signature: json['signature'] != null
+          ? (json['signature'] as List<dynamic>)
+              .map<Signature>(
+                  (dynamic v) => Signature.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   Provenance clone() => throw UnimplementedError();
   @override
@@ -253,12 +415,67 @@ class ProvenanceAgent extends BackboneElement {
   /// [onBehalfOf] /// The individual, device, or organization for whom the change was made.
   @JsonKey(name: 'onBehalfOf')
   final Reference? onBehalfOf;
-  factory ProvenanceAgent.fromJson(Map<String, dynamic> json) =>
-      _$ProvenanceAgentFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ProvenanceAgentToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (type != null) {
+      json['type'] = type!.toJson();
+    }
+    if (role != null && role!.isNotEmpty) {
+      json['role'] =
+          role!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    json['who'] = who.toJson();
+    if (onBehalfOf != null) {
+      json['onBehalfOf'] = onBehalfOf!.toJson();
+    }
+    return json;
+  }
 
+  factory ProvenanceAgent.fromJson(Map<String, dynamic> json) {
+    return ProvenanceAgent(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
+          : null,
+      role: json['role'] != null
+          ? (json['role'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      who: Reference.fromJson(json['who'] as Map<String, dynamic>),
+      onBehalfOf: json['onBehalfOf'] != null
+          ? Reference.fromJson(json['onBehalfOf'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   ProvenanceAgent clone() => throw UnimplementedError();
   @override
@@ -355,12 +572,57 @@ class ProvenanceEntity extends BackboneElement {
   /// activity which generated the entity.
   @JsonKey(name: 'agent')
   final List<ProvenanceAgent>? agent;
-  factory ProvenanceEntity.fromJson(Map<String, dynamic> json) =>
-      _$ProvenanceEntityFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ProvenanceEntityToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['role'] = role.toJson();
+    json['what'] = what.toJson();
+    if (agent != null && agent!.isNotEmpty) {
+      json['agent'] =
+          agent!.map<dynamic>((ProvenanceAgent v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory ProvenanceEntity.fromJson(Map<String, dynamic> json) {
+    return ProvenanceEntity(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      role: ProvenanceEntityRole.fromJson(json['role'] as Map<String, dynamic>),
+      what: Reference.fromJson(json['what'] as Map<String, dynamic>),
+      agent: json['agent'] != null
+          ? (json['agent'] as List<dynamic>)
+              .map<ProvenanceAgent>((dynamic v) =>
+                  ProvenanceAgent.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   ProvenanceEntity clone() => throw UnimplementedError();
   @override

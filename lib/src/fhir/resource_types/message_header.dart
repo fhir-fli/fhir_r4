@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'message_header.g.dart';
-
 /// [MessageHeader] /// The header for a message exchange that is either requesting or responding
 /// to an action. The reference(s) that are the subject of the action as well
 /// as other information related to the action are typically transmitted in a
@@ -45,8 +43,6 @@ class MessageHeader extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.MessageHeader);
   @override
   String get fhirType => 'MessageHeader';
@@ -121,12 +117,170 @@ class MessageHeader extends DomainResource {
   final FhirCanonical? definition;
   @JsonKey(name: '_definition')
   final Element? definitionElement;
-  factory MessageHeader.fromJson(Map<String, dynamic> json) =>
-      _$MessageHeaderFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MessageHeaderToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (eventCoding != null) {
+      json['eventCoding'] = eventCoding!.toJson();
+    }
+    if (eventUri?.value != null) {
+      json['eventUri'] = eventUri!.value;
+    }
+    if (eventUriElement != null) {
+      json['_eventUri'] = eventUriElement!.toJson();
+    }
+    if (destination != null && destination!.isNotEmpty) {
+      json['destination'] = destination!
+          .map<dynamic>((MessageHeaderDestination v) => v.toJson())
+          .toList();
+    }
+    if (sender != null) {
+      json['sender'] = sender!.toJson();
+    }
+    if (enterer != null) {
+      json['enterer'] = enterer!.toJson();
+    }
+    if (author != null) {
+      json['author'] = author!.toJson();
+    }
+    json['source'] = source.toJson();
+    if (responsible != null) {
+      json['responsible'] = responsible!.toJson();
+    }
+    if (reason != null) {
+      json['reason'] = reason!.toJson();
+    }
+    if (response != null) {
+      json['response'] = response!.toJson();
+    }
+    if (focus != null && focus!.isNotEmpty) {
+      json['focus'] = focus!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (definition?.value != null) {
+      json['definition'] = definition!.value;
+    }
+    if (definitionElement != null) {
+      json['_definition'] = definitionElement!.toJson();
+    }
+    return json;
+  }
 
+  factory MessageHeader.fromJson(Map<String, dynamic> json) {
+    return MessageHeader(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      eventCoding: json['eventCoding'] != null
+          ? Coding.fromJson(json['eventCoding'] as Map<String, dynamic>)
+          : null,
+      eventUri: json['eventUri'] != null ? FhirUri(json['eventUri']) : null,
+      eventUriElement: json['_eventUri'] != null
+          ? Element.fromJson(json['_eventUri'] as Map<String, dynamic>)
+          : null,
+      destination: json['destination'] != null
+          ? (json['destination'] as List<dynamic>)
+              .map<MessageHeaderDestination>((dynamic v) =>
+                  MessageHeaderDestination.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      sender: json['sender'] != null
+          ? Reference.fromJson(json['sender'] as Map<String, dynamic>)
+          : null,
+      enterer: json['enterer'] != null
+          ? Reference.fromJson(json['enterer'] as Map<String, dynamic>)
+          : null,
+      author: json['author'] != null
+          ? Reference.fromJson(json['author'] as Map<String, dynamic>)
+          : null,
+      source:
+          MessageHeaderSource.fromJson(json['source'] as Map<String, dynamic>),
+      responsible: json['responsible'] != null
+          ? Reference.fromJson(json['responsible'] as Map<String, dynamic>)
+          : null,
+      reason: json['reason'] != null
+          ? CodeableConcept.fromJson(json['reason'] as Map<String, dynamic>)
+          : null,
+      response: json['response'] != null
+          ? MessageHeaderResponse.fromJson(
+              json['response'] as Map<String, dynamic>)
+          : null,
+      focus: json['focus'] != null
+          ? (json['focus'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      definition:
+          json['definition'] != null ? FhirCanonical(json['definition']) : null,
+      definitionElement: json['_definition'] != null
+          ? Element.fromJson(json['_definition'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   MessageHeader clone() => throw UnimplementedError();
   @override
@@ -263,12 +417,72 @@ class MessageHeaderDestination extends BackboneElement {
   /// department when routing to a specific application isn't sufficient.
   @JsonKey(name: 'receiver')
   final Reference? receiver;
-  factory MessageHeaderDestination.fromJson(Map<String, dynamic> json) =>
-      _$MessageHeaderDestinationFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MessageHeaderDestinationToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (name?.value != null) {
+      json['name'] = name!.value;
+    }
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (target != null) {
+      json['target'] = target!.toJson();
+    }
+    json['endpoint'] = endpoint.value;
+    if (endpointElement != null) {
+      json['_endpoint'] = endpointElement!.toJson();
+    }
+    if (receiver != null) {
+      json['receiver'] = receiver!.toJson();
+    }
+    return json;
+  }
 
+  factory MessageHeaderDestination.fromJson(Map<String, dynamic> json) {
+    return MessageHeaderDestination(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      name: json['name'] != null ? FhirString(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
+      target: json['target'] != null
+          ? Reference.fromJson(json['target'] as Map<String, dynamic>)
+          : null,
+      endpoint: FhirUrl(json['endpoint']),
+      endpointElement:
+          Element.fromJson(json['_endpoint'] as Map<String, dynamic>),
+      receiver: json['receiver'] != null
+          ? Reference.fromJson(json['receiver'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   MessageHeaderDestination clone() => throw UnimplementedError();
   @override
@@ -386,12 +600,86 @@ class MessageHeaderSource extends BackboneElement {
   final FhirUrl endpoint;
   @JsonKey(name: '_endpoint')
   final Element? endpointElement;
-  factory MessageHeaderSource.fromJson(Map<String, dynamic> json) =>
-      _$MessageHeaderSourceFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MessageHeaderSourceToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (name?.value != null) {
+      json['name'] = name!.value;
+    }
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (software?.value != null) {
+      json['software'] = software!.value;
+    }
+    if (softwareElement != null) {
+      json['_software'] = softwareElement!.toJson();
+    }
+    if (version?.value != null) {
+      json['version'] = version!.value;
+    }
+    if (versionElement != null) {
+      json['_version'] = versionElement!.toJson();
+    }
+    if (contact != null) {
+      json['contact'] = contact!.toJson();
+    }
+    json['endpoint'] = endpoint.value;
+    if (endpointElement != null) {
+      json['_endpoint'] = endpointElement!.toJson();
+    }
+    return json;
+  }
 
+  factory MessageHeaderSource.fromJson(Map<String, dynamic> json) {
+    return MessageHeaderSource(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      name: json['name'] != null ? FhirString(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
+      software: json['software'] != null ? FhirString(json['software']) : null,
+      softwareElement: json['_software'] != null
+          ? Element.fromJson(json['_software'] as Map<String, dynamic>)
+          : null,
+      version: json['version'] != null ? FhirString(json['version']) : null,
+      versionElement: json['_version'] != null
+          ? Element.fromJson(json['_version'] as Map<String, dynamic>)
+          : null,
+      contact: json['contact'] != null
+          ? ContactPoint.fromJson(json['contact'] as Map<String, dynamic>)
+          : null,
+      endpoint: FhirUrl(json['endpoint']),
+      endpointElement:
+          Element.fromJson(json['_endpoint'] as Map<String, dynamic>),
+    );
+  }
   @override
   MessageHeaderSource clone() => throw UnimplementedError();
   @override
@@ -499,12 +787,58 @@ class MessageHeaderResponse extends BackboneElement {
   /// [details] /// Full details of any issues found in the message.
   @JsonKey(name: 'details')
   final Reference? details;
-  factory MessageHeaderResponse.fromJson(Map<String, dynamic> json) =>
-      _$MessageHeaderResponseFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MessageHeaderResponseToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['identifier'] = identifier.value;
+    if (identifierElement != null) {
+      json['_identifier'] = identifierElement!.toJson();
+    }
+    json['code'] = code.toJson();
+    if (details != null) {
+      json['details'] = details!.toJson();
+    }
+    return json;
+  }
 
+  factory MessageHeaderResponse.fromJson(Map<String, dynamic> json) {
+    return MessageHeaderResponse(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: FhirId(json['identifier']),
+      identifierElement:
+          Element.fromJson(json['_identifier'] as Map<String, dynamic>),
+      code: ResponseType.fromJson(json['code'] as Map<String, dynamic>),
+      details: json['details'] != null
+          ? Reference.fromJson(json['details'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   MessageHeaderResponse clone() => throw UnimplementedError();
   @override

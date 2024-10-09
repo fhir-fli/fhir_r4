@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'location.g.dart';
-
 /// [Location] /// Details and position information for a physical place where services are
 /// provided and resources and participants may be stored, found, contained, or
 /// accommodated.
@@ -52,8 +50,6 @@ class Location extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Location);
   @override
   String get fhirType => 'Location';
@@ -155,12 +151,235 @@ class Location extends DomainResource {
   /// [endpoint] /// Technical endpoints providing access to services operated for the location.
   @JsonKey(name: 'endpoint')
   final List<Reference>? endpoint;
-  factory Location.fromJson(Map<String, dynamic> json) =>
-      _$LocationFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$LocationToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    if (status != null) {
+      json['status'] = status!.toJson();
+    }
+    if (operationalStatus != null) {
+      json['operationalStatus'] = operationalStatus!.toJson();
+    }
+    if (name?.value != null) {
+      json['name'] = name!.value;
+    }
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (alias != null && alias!.isNotEmpty) {
+      json['alias'] = alias!.map((FhirString v) => v.value).toList();
+    }
+    if (aliasElement != null && aliasElement!.isNotEmpty) {
+      json['_alias'] = aliasElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (description?.value != null) {
+      json['description'] = description!.value;
+    }
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    if (mode != null) {
+      json['mode'] = mode!.toJson();
+    }
+    if (type != null && type!.isNotEmpty) {
+      json['type'] =
+          type!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (telecom != null && telecom!.isNotEmpty) {
+      json['telecom'] =
+          telecom!.map<dynamic>((ContactPoint v) => v.toJson()).toList();
+    }
+    if (address != null) {
+      json['address'] = address!.toJson();
+    }
+    if (physicalType != null) {
+      json['physicalType'] = physicalType!.toJson();
+    }
+    if (position != null) {
+      json['position'] = position!.toJson();
+    }
+    if (managingOrganization != null) {
+      json['managingOrganization'] = managingOrganization!.toJson();
+    }
+    if (partOf != null) {
+      json['partOf'] = partOf!.toJson();
+    }
+    if (hoursOfOperation != null && hoursOfOperation!.isNotEmpty) {
+      json['hoursOfOperation'] = hoursOfOperation!
+          .map<dynamic>((LocationHoursOfOperation v) => v.toJson())
+          .toList();
+    }
+    if (availabilityExceptions?.value != null) {
+      json['availabilityExceptions'] = availabilityExceptions!.value;
+    }
+    if (availabilityExceptionsElement != null) {
+      json['_availabilityExceptions'] = availabilityExceptionsElement!.toJson();
+    }
+    if (endpoint != null && endpoint!.isNotEmpty) {
+      json['endpoint'] =
+          endpoint!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory Location.fromJson(Map<String, dynamic> json) {
+    return Location(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      status: json['status'] != null
+          ? LocationStatus.fromJson(json['status'] as Map<String, dynamic>)
+          : null,
+      operationalStatus: json['operationalStatus'] != null
+          ? Coding.fromJson(json['operationalStatus'] as Map<String, dynamic>)
+          : null,
+      name: json['name'] != null ? FhirString(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
+      alias: json['alias'] != null
+          ? (json['alias'] as List<dynamic>)
+              .map<FhirString>((dynamic v) => FhirString(v))
+              .toList()
+          : null,
+      aliasElement: json['_alias'] != null
+          ? (json['_alias'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      description:
+          json['description'] != null ? FhirString(json['description']) : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
+      mode: json['mode'] != null
+          ? LocationMode.fromJson(json['mode'] as Map<String, dynamic>)
+          : null,
+      type: json['type'] != null
+          ? (json['type'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      telecom: json['telecom'] != null
+          ? (json['telecom'] as List<dynamic>)
+              .map<ContactPoint>((dynamic v) =>
+                  ContactPoint.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      address: json['address'] != null
+          ? Address.fromJson(json['address'] as Map<String, dynamic>)
+          : null,
+      physicalType: json['physicalType'] != null
+          ? CodeableConcept.fromJson(
+              json['physicalType'] as Map<String, dynamic>)
+          : null,
+      position: json['position'] != null
+          ? LocationPosition.fromJson(json['position'] as Map<String, dynamic>)
+          : null,
+      managingOrganization: json['managingOrganization'] != null
+          ? Reference.fromJson(
+              json['managingOrganization'] as Map<String, dynamic>)
+          : null,
+      partOf: json['partOf'] != null
+          ? Reference.fromJson(json['partOf'] as Map<String, dynamic>)
+          : null,
+      hoursOfOperation: json['hoursOfOperation'] != null
+          ? (json['hoursOfOperation'] as List<dynamic>)
+              .map<LocationHoursOfOperation>((dynamic v) =>
+                  LocationHoursOfOperation.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      availabilityExceptions: json['availabilityExceptions'] != null
+          ? FhirString(json['availabilityExceptions'])
+          : null,
+      availabilityExceptionsElement: json['_availabilityExceptions'] != null
+          ? Element.fromJson(
+              json['_availabilityExceptions'] as Map<String, dynamic>)
+          : null,
+      endpoint: json['endpoint'] != null
+          ? (json['endpoint'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   Location clone() => throw UnimplementedError();
   @override
@@ -317,12 +536,67 @@ class LocationPosition extends BackboneElement {
   final FhirDecimal? altitude;
   @JsonKey(name: '_altitude')
   final Element? altitudeElement;
-  factory LocationPosition.fromJson(Map<String, dynamic> json) =>
-      _$LocationPositionFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$LocationPositionToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['longitude'] = longitude.value;
+    if (longitudeElement != null) {
+      json['_longitude'] = longitudeElement!.toJson();
+    }
+    json['latitude'] = latitude.value;
+    if (latitudeElement != null) {
+      json['_latitude'] = latitudeElement!.toJson();
+    }
+    if (altitude?.value != null) {
+      json['altitude'] = altitude!.value;
+    }
+    if (altitudeElement != null) {
+      json['_altitude'] = altitudeElement!.toJson();
+    }
+    return json;
+  }
 
+  factory LocationPosition.fromJson(Map<String, dynamic> json) {
+    return LocationPosition(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      longitude: FhirDecimal(json['longitude']),
+      longitudeElement:
+          Element.fromJson(json['_longitude'] as Map<String, dynamic>),
+      latitude: FhirDecimal(json['latitude']),
+      latitudeElement:
+          Element.fromJson(json['_latitude'] as Map<String, dynamic>),
+      altitude: json['altitude'] != null ? FhirDecimal(json['altitude']) : null,
+      altitudeElement: json['_altitude'] != null
+          ? Element.fromJson(json['_altitude'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   LocationPosition clone() => throw UnimplementedError();
   @override
@@ -434,12 +708,85 @@ class LocationHoursOfOperation extends BackboneElement {
   final FhirTime? closingTime;
   @JsonKey(name: '_closingTime')
   final Element? closingTimeElement;
-  factory LocationHoursOfOperation.fromJson(Map<String, dynamic> json) =>
-      _$LocationHoursOfOperationFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$LocationHoursOfOperationToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (daysOfWeek != null && daysOfWeek!.isNotEmpty) {
+      json['daysOfWeek'] =
+          daysOfWeek!.map<dynamic>((DaysOfWeek v) => v.toJson()).toList();
+    }
+    if (allDay?.value != null) {
+      json['allDay'] = allDay!.value;
+    }
+    if (allDayElement != null) {
+      json['_allDay'] = allDayElement!.toJson();
+    }
+    if (openingTime?.value != null) {
+      json['openingTime'] = openingTime!.value;
+    }
+    if (openingTimeElement != null) {
+      json['_openingTime'] = openingTimeElement!.toJson();
+    }
+    if (closingTime?.value != null) {
+      json['closingTime'] = closingTime!.value;
+    }
+    if (closingTimeElement != null) {
+      json['_closingTime'] = closingTimeElement!.toJson();
+    }
+    return json;
+  }
 
+  factory LocationHoursOfOperation.fromJson(Map<String, dynamic> json) {
+    return LocationHoursOfOperation(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      daysOfWeek: json['daysOfWeek'] != null
+          ? (json['daysOfWeek'] as List<dynamic>)
+              .map<DaysOfWeek>(
+                  (dynamic v) => DaysOfWeek.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      allDay: json['allDay'] != null ? FhirBoolean(json['allDay']) : null,
+      allDayElement: json['_allDay'] != null
+          ? Element.fromJson(json['_allDay'] as Map<String, dynamic>)
+          : null,
+      openingTime:
+          json['openingTime'] != null ? FhirTime(json['openingTime']) : null,
+      openingTimeElement: json['_openingTime'] != null
+          ? Element.fromJson(json['_openingTime'] as Map<String, dynamic>)
+          : null,
+      closingTime:
+          json['closingTime'] != null ? FhirTime(json['closingTime']) : null,
+      closingTimeElement: json['_closingTime'] != null
+          ? Element.fromJson(json['_closingTime'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   LocationHoursOfOperation clone() => throw UnimplementedError();
   @override

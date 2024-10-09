@@ -45,7 +45,7 @@ enum AddressUse {
   }
 
   String toJson() => toString();
-  AddressUse fromString(String str) {
+  static AddressUse fromString(String str) {
     switch (str) {
       case 'home':
         return AddressUse.home;
@@ -62,7 +62,7 @@ enum AddressUse {
     }
   }
 
-  AddressUse fromJson(dynamic jsonValue) {
+  static AddressUse fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

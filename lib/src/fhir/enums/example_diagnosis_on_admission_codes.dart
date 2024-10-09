@@ -38,7 +38,7 @@ enum ExampleDiagnosisOnAdmissionCodes {
   }
 
   String toJson() => toString();
-  ExampleDiagnosisOnAdmissionCodes fromString(String str) {
+  static ExampleDiagnosisOnAdmissionCodes fromString(String str) {
     switch (str) {
       case 'y':
         return ExampleDiagnosisOnAdmissionCodes.y;
@@ -53,7 +53,7 @@ enum ExampleDiagnosisOnAdmissionCodes {
     }
   }
 
-  ExampleDiagnosisOnAdmissionCodes fromJson(dynamic jsonValue) {
+  static ExampleDiagnosisOnAdmissionCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

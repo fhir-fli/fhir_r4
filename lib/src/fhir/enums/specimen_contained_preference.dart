@@ -24,7 +24,7 @@ enum SpecimenContainedPreference {
   }
 
   String toJson() => toString();
-  SpecimenContainedPreference fromString(String str) {
+  static SpecimenContainedPreference fromString(String str) {
     switch (str) {
       case 'preferred':
         return SpecimenContainedPreference.preferred;
@@ -35,7 +35,7 @@ enum SpecimenContainedPreference {
     }
   }
 
-  SpecimenContainedPreference fromJson(dynamic jsonValue) {
+  static SpecimenContainedPreference fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

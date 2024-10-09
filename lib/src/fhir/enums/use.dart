@@ -31,7 +31,7 @@ enum Use {
   }
 
   String toJson() => toString();
-  Use fromString(String str) {
+  static Use fromString(String str) {
     switch (str) {
       case 'claim':
         return Use.claim;
@@ -44,7 +44,7 @@ enum Use {
     }
   }
 
-  Use fromJson(dynamic jsonValue) {
+  static Use fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

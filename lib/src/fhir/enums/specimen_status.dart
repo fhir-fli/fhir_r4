@@ -38,7 +38,7 @@ enum SpecimenStatus {
   }
 
   String toJson() => toString();
-  SpecimenStatus fromString(String str) {
+  static SpecimenStatus fromString(String str) {
     switch (str) {
       case 'available':
         return SpecimenStatus.available;
@@ -53,7 +53,7 @@ enum SpecimenStatus {
     }
   }
 
-  SpecimenStatus fromJson(dynamic jsonValue) {
+  static SpecimenStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

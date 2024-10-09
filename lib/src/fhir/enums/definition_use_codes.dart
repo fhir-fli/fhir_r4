@@ -52,7 +52,7 @@ enum DefinitionUseCodes {
   }
 
   String toJson() => toString();
-  DefinitionUseCodes fromString(String str) {
+  static DefinitionUseCodes fromString(String str) {
     switch (str) {
       case 'fhir-structure':
         return DefinitionUseCodes.fhir_structure;
@@ -71,7 +71,7 @@ enum DefinitionUseCodes {
     }
   }
 
-  DefinitionUseCodes fromJson(dynamic jsonValue) {
+  static DefinitionUseCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

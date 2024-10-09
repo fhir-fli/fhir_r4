@@ -73,7 +73,7 @@ enum GoalAchievementStatus {
   }
 
   String toJson() => toString();
-  GoalAchievementStatus fromString(String str) {
+  static GoalAchievementStatus fromString(String str) {
     switch (str) {
       case 'in-progress':
         return GoalAchievementStatus.in_progress;
@@ -98,7 +98,7 @@ enum GoalAchievementStatus {
     }
   }
 
-  GoalAchievementStatus fromJson(dynamic jsonValue) {
+  static GoalAchievementStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

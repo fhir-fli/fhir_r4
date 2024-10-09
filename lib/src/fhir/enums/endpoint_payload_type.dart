@@ -450,7 +450,7 @@ enum EndpointPayloadType {
   }
 
   String toJson() => toString();
-  EndpointPayloadType fromString(String str) {
+  static EndpointPayloadType fromString(String str) {
     switch (str) {
       case 'any':
         return EndpointPayloadType.any;
@@ -605,7 +605,7 @@ enum EndpointPayloadType {
     }
   }
 
-  EndpointPayloadType fromJson(dynamic jsonValue) {
+  static EndpointPayloadType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

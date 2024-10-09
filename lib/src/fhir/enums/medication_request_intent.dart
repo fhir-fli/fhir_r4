@@ -66,7 +66,7 @@ enum MedicationRequestIntent {
   }
 
   String toJson() => toString();
-  MedicationRequestIntent fromString(String str) {
+  static MedicationRequestIntent fromString(String str) {
     switch (str) {
       case 'proposal':
         return MedicationRequestIntent.proposal;
@@ -89,7 +89,7 @@ enum MedicationRequestIntent {
     }
   }
 
-  MedicationRequestIntent fromJson(dynamic jsonValue) {
+  static MedicationRequestIntent fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

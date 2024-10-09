@@ -31,7 +31,7 @@ enum SlicingRules {
   }
 
   String toJson() => toString();
-  SlicingRules fromString(String str) {
+  static SlicingRules fromString(String str) {
     switch (str) {
       case 'closed':
         return SlicingRules.closed;
@@ -44,7 +44,7 @@ enum SlicingRules {
     }
   }
 
-  SlicingRules fromJson(dynamic jsonValue) {
+  static SlicingRules fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

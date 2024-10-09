@@ -38,7 +38,7 @@ enum IdentityAssuranceLevel {
   }
 
   String toJson() => toString();
-  IdentityAssuranceLevel fromString(String str) {
+  static IdentityAssuranceLevel fromString(String str) {
     switch (str) {
       case 'level1':
         return IdentityAssuranceLevel.level1;
@@ -53,7 +53,7 @@ enum IdentityAssuranceLevel {
     }
   }
 
-  IdentityAssuranceLevel fromJson(dynamic jsonValue) {
+  static IdentityAssuranceLevel fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -38,7 +38,7 @@ enum TestScriptProfileDestinationType {
   }
 
   String toJson() => toString();
-  TestScriptProfileDestinationType fromString(String str) {
+  static TestScriptProfileDestinationType fromString(String str) {
     switch (str) {
       case 'FHIR-Server':
         return TestScriptProfileDestinationType.FHIR_Server;
@@ -53,7 +53,7 @@ enum TestScriptProfileDestinationType {
     }
   }
 
-  TestScriptProfileDestinationType fromJson(dynamic jsonValue) {
+  static TestScriptProfileDestinationType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

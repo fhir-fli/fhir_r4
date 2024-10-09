@@ -106,7 +106,7 @@ enum ProductNamePartType {
   }
 
   String toJson() => toString();
-  ProductNamePartType fromString(String str) {
+  static ProductNamePartType fromString(String str) {
     switch (str) {
       case 'FullName':
         return ProductNamePartType.FullName;
@@ -145,7 +145,7 @@ enum ProductNamePartType {
     }
   }
 
-  ProductNamePartType fromJson(dynamic jsonValue) {
+  static ProductNamePartType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

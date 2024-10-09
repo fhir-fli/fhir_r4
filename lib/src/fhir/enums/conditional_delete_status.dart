@@ -31,7 +31,7 @@ enum ConditionalDeleteStatus {
   }
 
   String toJson() => toString();
-  ConditionalDeleteStatus fromString(String str) {
+  static ConditionalDeleteStatus fromString(String str) {
     switch (str) {
       case 'not-supported':
         return ConditionalDeleteStatus.not_supported;
@@ -44,7 +44,7 @@ enum ConditionalDeleteStatus {
     }
   }
 
-  ConditionalDeleteStatus fromJson(dynamic jsonValue) {
+  static ConditionalDeleteStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

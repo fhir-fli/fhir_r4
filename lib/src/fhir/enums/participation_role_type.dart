@@ -22330,7 +22330,7 @@ enum ParticipationRoleType {
   }
 
   String toJson() => toString();
-  ParticipationRoleType fromString(String str) {
+  static ParticipationRoleType fromString(String str) {
     switch (str) {
       case 'AMENDER':
         return ParticipationRoleType.AMENDER;
@@ -28771,7 +28771,7 @@ enum ParticipationRoleType {
     }
   }
 
-  ParticipationRoleType fromJson(dynamic jsonValue) {
+  static ParticipationRoleType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

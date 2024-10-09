@@ -24,7 +24,7 @@ enum ExampleScenarioActorType {
   }
 
   String toJson() => toString();
-  ExampleScenarioActorType fromString(String str) {
+  static ExampleScenarioActorType fromString(String str) {
     switch (str) {
       case 'person':
         return ExampleScenarioActorType.person;
@@ -35,7 +35,7 @@ enum ExampleScenarioActorType {
     }
   }
 
-  ExampleScenarioActorType fromJson(dynamic jsonValue) {
+  static ExampleScenarioActorType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

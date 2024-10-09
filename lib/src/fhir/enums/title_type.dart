@@ -101,7 +101,7 @@ enum TitleType {
   }
 
   String toJson() => toString();
-  TitleType fromString(String str) {
+  static TitleType fromString(String str) {
     switch (str) {
       case 'primary':
         return TitleType.primary;
@@ -134,7 +134,7 @@ enum TitleType {
     }
   }
 
-  TitleType fromJson(dynamic jsonValue) {
+  static TitleType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

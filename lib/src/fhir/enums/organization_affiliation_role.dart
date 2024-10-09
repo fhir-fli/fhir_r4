@@ -65,7 +65,7 @@ enum OrganizationAffiliationRole {
   }
 
   String toJson() => toString();
-  OrganizationAffiliationRole fromString(String str) {
+  static OrganizationAffiliationRole fromString(String str) {
     switch (str) {
       case 'provider':
         return OrganizationAffiliationRole.provider;
@@ -88,7 +88,7 @@ enum OrganizationAffiliationRole {
     }
   }
 
-  OrganizationAffiliationRole fromJson(dynamic jsonValue) {
+  static OrganizationAffiliationRole fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

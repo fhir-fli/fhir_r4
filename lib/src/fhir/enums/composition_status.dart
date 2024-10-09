@@ -38,7 +38,7 @@ enum CompositionStatus {
   }
 
   String toJson() => toString();
-  CompositionStatus fromString(String str) {
+  static CompositionStatus fromString(String str) {
     switch (str) {
       case 'preliminary':
         return CompositionStatus.preliminary;
@@ -53,7 +53,7 @@ enum CompositionStatus {
     }
   }
 
-  CompositionStatus fromJson(dynamic jsonValue) {
+  static CompositionStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

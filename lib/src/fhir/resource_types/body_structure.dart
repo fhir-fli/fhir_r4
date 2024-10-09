@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'body_structure.g.dart';
-
 /// [BodyStructure] /// Record details about an anatomical structure. This resource may be used
 /// when a coded concept does not provide the necessary detail needed for the
 /// use case.
@@ -39,8 +37,6 @@ class BodyStructure extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.BodyStructure);
   @override
   String get fhirType => 'BodyStructure';
@@ -87,12 +83,149 @@ class BodyStructure extends DomainResource {
   /// [patient] /// The person to which the body site belongs.
   @JsonKey(name: 'patient')
   final Reference patient;
-  factory BodyStructure.fromJson(Map<String, dynamic> json) =>
-      _$BodyStructureFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$BodyStructureToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    if (active?.value != null) {
+      json['active'] = active!.value;
+    }
+    if (activeElement != null) {
+      json['_active'] = activeElement!.toJson();
+    }
+    if (morphology != null) {
+      json['morphology'] = morphology!.toJson();
+    }
+    if (location != null) {
+      json['location'] = location!.toJson();
+    }
+    if (locationQualifier != null && locationQualifier!.isNotEmpty) {
+      json['locationQualifier'] = locationQualifier!
+          .map<dynamic>((CodeableConcept v) => v.toJson())
+          .toList();
+    }
+    if (description?.value != null) {
+      json['description'] = description!.value;
+    }
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    if (image != null && image!.isNotEmpty) {
+      json['image'] =
+          image!.map<dynamic>((Attachment v) => v.toJson()).toList();
+    }
+    json['patient'] = patient.toJson();
+    return json;
+  }
 
+  factory BodyStructure.fromJson(Map<String, dynamic> json) {
+    return BodyStructure(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      active: json['active'] != null ? FhirBoolean(json['active']) : null,
+      activeElement: json['_active'] != null
+          ? Element.fromJson(json['_active'] as Map<String, dynamic>)
+          : null,
+      morphology: json['morphology'] != null
+          ? CodeableConcept.fromJson(json['morphology'] as Map<String, dynamic>)
+          : null,
+      location: json['location'] != null
+          ? CodeableConcept.fromJson(json['location'] as Map<String, dynamic>)
+          : null,
+      locationQualifier: json['locationQualifier'] != null
+          ? (json['locationQualifier'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      description:
+          json['description'] != null ? FhirString(json['description']) : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
+      image: json['image'] != null
+          ? (json['image'] as List<dynamic>)
+              .map<Attachment>(
+                  (dynamic v) => Attachment.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      patient: Reference.fromJson(json['patient'] as Map<String, dynamic>),
+    );
+  }
   @override
   BodyStructure clone() => throw UnimplementedError();
   @override

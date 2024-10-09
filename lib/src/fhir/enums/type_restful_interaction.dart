@@ -129,7 +129,7 @@ enum TypeRestfulInteraction {
   }
 
   String toJson() => toString();
-  TypeRestfulInteraction fromString(String str) {
+  static TypeRestfulInteraction fromString(String str) {
     switch (str) {
       case 'read':
         return TypeRestfulInteraction.read;
@@ -170,7 +170,7 @@ enum TypeRestfulInteraction {
     }
   }
 
-  TypeRestfulInteraction fromJson(dynamic jsonValue) {
+  static TypeRestfulInteraction fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

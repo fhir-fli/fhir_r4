@@ -24,7 +24,7 @@ enum StructureMapInputMode {
   }
 
   String toJson() => toString();
-  StructureMapInputMode fromString(String str) {
+  static StructureMapInputMode fromString(String str) {
     switch (str) {
       case 'source':
         return StructureMapInputMode.source;
@@ -35,7 +35,7 @@ enum StructureMapInputMode {
     }
   }
 
-  StructureMapInputMode fromJson(dynamic jsonValue) {
+  static StructureMapInputMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

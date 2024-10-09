@@ -52,7 +52,7 @@ enum InvoicePriceComponentType {
   }
 
   String toJson() => toString();
-  InvoicePriceComponentType fromString(String str) {
+  static InvoicePriceComponentType fromString(String str) {
     switch (str) {
       case 'base':
         return InvoicePriceComponentType.base;
@@ -71,7 +71,7 @@ enum InvoicePriceComponentType {
     }
   }
 
-  InvoicePriceComponentType fromJson(dynamic jsonValue) {
+  static InvoicePriceComponentType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

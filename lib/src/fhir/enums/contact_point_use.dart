@@ -45,7 +45,7 @@ enum ContactPointUse {
   }
 
   String toJson() => toString();
-  ContactPointUse fromString(String str) {
+  static ContactPointUse fromString(String str) {
     switch (str) {
       case 'home':
         return ContactPointUse.home;
@@ -62,7 +62,7 @@ enum ContactPointUse {
     }
   }
 
-  ContactPointUse fromJson(dynamic jsonValue) {
+  static ContactPointUse fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

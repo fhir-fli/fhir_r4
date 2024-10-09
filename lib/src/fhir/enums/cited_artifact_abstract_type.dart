@@ -87,7 +87,7 @@ enum CitedArtifactAbstractType {
   }
 
   String toJson() => toString();
-  CitedArtifactAbstractType fromString(String str) {
+  static CitedArtifactAbstractType fromString(String str) {
     switch (str) {
       case 'primary-human-use':
         return CitedArtifactAbstractType.primary_human_use;
@@ -116,7 +116,7 @@ enum CitedArtifactAbstractType {
     }
   }
 
-  CitedArtifactAbstractType fromJson(dynamic jsonValue) {
+  static CitedArtifactAbstractType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

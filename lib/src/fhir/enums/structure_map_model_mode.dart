@@ -38,7 +38,7 @@ enum StructureMapModelMode {
   }
 
   String toJson() => toString();
-  StructureMapModelMode fromString(String str) {
+  static StructureMapModelMode fromString(String str) {
     switch (str) {
       case 'source':
         return StructureMapModelMode.source;
@@ -53,7 +53,7 @@ enum StructureMapModelMode {
     }
   }
 
-  StructureMapModelMode fromJson(dynamic jsonValue) {
+  static StructureMapModelMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

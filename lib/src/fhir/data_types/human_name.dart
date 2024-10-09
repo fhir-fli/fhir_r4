@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'human_name.g.dart';
-
 /// [HumanName] /// A human's name with the ability to identify parts and usage.
 @JsonSerializable()
 class HumanName extends DataType {
@@ -84,12 +82,115 @@ class HumanName extends DataType {
   /// [period] /// Indicates the period of time when this name was valid for the named person.
   @JsonKey(name: 'period')
   final Period? period;
-  factory HumanName.fromJson(Map<String, dynamic> json) =>
-      _$HumanNameFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$HumanNameToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (use != null) {
+      json['use'] = use!.toJson();
+    }
+    if (text?.value != null) {
+      json['text'] = text!.value;
+    }
+    if (textElement != null) {
+      json['_text'] = textElement!.toJson();
+    }
+    if (family?.value != null) {
+      json['family'] = family!.value;
+    }
+    if (familyElement != null) {
+      json['_family'] = familyElement!.toJson();
+    }
+    if (given != null && given!.isNotEmpty) {
+      json['given'] = given!.map((FhirString v) => v.value).toList();
+    }
+    if (givenElement != null && givenElement!.isNotEmpty) {
+      json['_given'] = givenElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (prefix != null && prefix!.isNotEmpty) {
+      json['prefix'] = prefix!.map((FhirString v) => v.value).toList();
+    }
+    if (prefixElement != null && prefixElement!.isNotEmpty) {
+      json['_prefix'] = prefixElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (suffix != null && suffix!.isNotEmpty) {
+      json['suffix'] = suffix!.map((FhirString v) => v.value).toList();
+    }
+    if (suffixElement != null && suffixElement!.isNotEmpty) {
+      json['_suffix'] = suffixElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (period != null) {
+      json['period'] = period!.toJson();
+    }
+    return json;
+  }
 
+  factory HumanName.fromJson(Map<String, dynamic> json) {
+    return HumanName(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      use: json['use'] != null
+          ? NameUse.fromJson(json['use'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null ? FhirString(json['text']) : null,
+      textElement: json['_text'] != null
+          ? Element.fromJson(json['_text'] as Map<String, dynamic>)
+          : null,
+      family: json['family'] != null ? FhirString(json['family']) : null,
+      familyElement: json['_family'] != null
+          ? Element.fromJson(json['_family'] as Map<String, dynamic>)
+          : null,
+      given: json['given'] != null
+          ? (json['given'] as List<dynamic>)
+              .map<FhirString>((dynamic v) => FhirString(v))
+              .toList()
+          : null,
+      givenElement: json['_given'] != null
+          ? (json['_given'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      prefix: json['prefix'] != null
+          ? (json['prefix'] as List<dynamic>)
+              .map<FhirString>((dynamic v) => FhirString(v))
+              .toList()
+          : null,
+      prefixElement: json['_prefix'] != null
+          ? (json['_prefix'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      suffix: json['suffix'] != null
+          ? (json['suffix'] as List<dynamic>)
+              .map<FhirString>((dynamic v) => FhirString(v))
+              .toList()
+          : null,
+      suffixElement: json['_suffix'] != null
+          ? (json['_suffix'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      period: json['period'] != null
+          ? Period.fromJson(json['period'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   HumanName clone() => throw UnimplementedError();
   @override

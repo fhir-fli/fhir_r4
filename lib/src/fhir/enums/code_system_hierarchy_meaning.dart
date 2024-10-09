@@ -38,7 +38,7 @@ enum CodeSystemHierarchyMeaning {
   }
 
   String toJson() => toString();
-  CodeSystemHierarchyMeaning fromString(String str) {
+  static CodeSystemHierarchyMeaning fromString(String str) {
     switch (str) {
       case 'grouped-by':
         return CodeSystemHierarchyMeaning.grouped_by;
@@ -53,7 +53,7 @@ enum CodeSystemHierarchyMeaning {
     }
   }
 
-  CodeSystemHierarchyMeaning fromJson(dynamic jsonValue) {
+  static CodeSystemHierarchyMeaning fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

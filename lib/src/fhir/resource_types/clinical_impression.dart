@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'clinical_impression.g.dart';
-
 /// [ClinicalImpression] /// A record of a clinical assessment performed to determine what problem(s)
 /// may affect the patient and before planning the treatments or management
 /// strategies that are best to manage a patient's condition. Assessments are
@@ -60,8 +58,6 @@ class ClinicalImpression extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.ClinicalImpression);
   @override
   String get fhirType => 'ClinicalImpression';
@@ -180,12 +176,271 @@ class ClinicalImpression extends DomainResource {
   /// also appear.
   @JsonKey(name: 'note')
   final List<Annotation>? note;
-  factory ClinicalImpression.fromJson(Map<String, dynamic> json) =>
-      _$ClinicalImpressionFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ClinicalImpressionToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    json['status'] = status.toJson();
+    if (statusReason != null) {
+      json['statusReason'] = statusReason!.toJson();
+    }
+    if (code != null) {
+      json['code'] = code!.toJson();
+    }
+    if (description?.value != null) {
+      json['description'] = description!.value;
+    }
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    json['subject'] = subject.toJson();
+    if (encounter != null) {
+      json['encounter'] = encounter!.toJson();
+    }
+    if (effectiveDateTime?.value != null) {
+      json['effectiveDateTime'] = effectiveDateTime!.value;
+    }
+    if (effectiveDateTimeElement != null) {
+      json['_effectiveDateTime'] = effectiveDateTimeElement!.toJson();
+    }
+    if (effectivePeriod != null) {
+      json['effectivePeriod'] = effectivePeriod!.toJson();
+    }
+    if (date?.value != null) {
+      json['date'] = date!.value;
+    }
+    if (dateElement != null) {
+      json['_date'] = dateElement!.toJson();
+    }
+    if (assessor != null) {
+      json['assessor'] = assessor!.toJson();
+    }
+    if (previous != null) {
+      json['previous'] = previous!.toJson();
+    }
+    if (problem != null && problem!.isNotEmpty) {
+      json['problem'] =
+          problem!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (investigation != null && investigation!.isNotEmpty) {
+      json['investigation'] = investigation!
+          .map<dynamic>((ClinicalImpressionInvestigation v) => v.toJson())
+          .toList();
+    }
+    if (protocol != null && protocol!.isNotEmpty) {
+      json['protocol'] = protocol!.map((FhirUri v) => v.value).toList();
+    }
+    if (protocolElement != null && protocolElement!.isNotEmpty) {
+      json['_protocol'] =
+          protocolElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (summary?.value != null) {
+      json['summary'] = summary!.value;
+    }
+    if (summaryElement != null) {
+      json['_summary'] = summaryElement!.toJson();
+    }
+    if (finding != null && finding!.isNotEmpty) {
+      json['finding'] = finding!
+          .map<dynamic>((ClinicalImpressionFinding v) => v.toJson())
+          .toList();
+    }
+    if (prognosisCodeableConcept != null &&
+        prognosisCodeableConcept!.isNotEmpty) {
+      json['prognosisCodeableConcept'] = prognosisCodeableConcept!
+          .map<dynamic>((CodeableConcept v) => v.toJson())
+          .toList();
+    }
+    if (prognosisReference != null && prognosisReference!.isNotEmpty) {
+      json['prognosisReference'] = prognosisReference!
+          .map<dynamic>((Reference v) => v.toJson())
+          .toList();
+    }
+    if (supportingInfo != null && supportingInfo!.isNotEmpty) {
+      json['supportingInfo'] =
+          supportingInfo!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (note != null && note!.isNotEmpty) {
+      json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory ClinicalImpression.fromJson(Map<String, dynamic> json) {
+    return ClinicalImpression(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      status: ClinicalImpressionStatus.fromJson(
+          json['status'] as Map<String, dynamic>),
+      statusReason: json['statusReason'] != null
+          ? CodeableConcept.fromJson(
+              json['statusReason'] as Map<String, dynamic>)
+          : null,
+      code: json['code'] != null
+          ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
+          : null,
+      description:
+          json['description'] != null ? FhirString(json['description']) : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
+      subject: Reference.fromJson(json['subject'] as Map<String, dynamic>),
+      encounter: json['encounter'] != null
+          ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
+          : null,
+      effectiveDateTime: json['effectiveDateTime'] != null
+          ? FhirDateTime(json['effectiveDateTime'])
+          : null,
+      effectiveDateTimeElement: json['_effectiveDateTime'] != null
+          ? Element.fromJson(json['_effectiveDateTime'] as Map<String, dynamic>)
+          : null,
+      effectivePeriod: json['effectivePeriod'] != null
+          ? Period.fromJson(json['effectivePeriod'] as Map<String, dynamic>)
+          : null,
+      date: json['date'] != null ? FhirDateTime(json['date']) : null,
+      dateElement: json['_date'] != null
+          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
+          : null,
+      assessor: json['assessor'] != null
+          ? Reference.fromJson(json['assessor'] as Map<String, dynamic>)
+          : null,
+      previous: json['previous'] != null
+          ? Reference.fromJson(json['previous'] as Map<String, dynamic>)
+          : null,
+      problem: json['problem'] != null
+          ? (json['problem'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      investigation: json['investigation'] != null
+          ? (json['investigation'] as List<dynamic>)
+              .map<ClinicalImpressionInvestigation>((dynamic v) =>
+                  ClinicalImpressionInvestigation.fromJson(
+                      v as Map<String, dynamic>))
+              .toList()
+          : null,
+      protocol: json['protocol'] != null
+          ? (json['protocol'] as List<dynamic>)
+              .map<FhirUri>((dynamic v) => FhirUri(v))
+              .toList()
+          : null,
+      protocolElement: json['_protocol'] != null
+          ? (json['_protocol'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      summary: json['summary'] != null ? FhirString(json['summary']) : null,
+      summaryElement: json['_summary'] != null
+          ? Element.fromJson(json['_summary'] as Map<String, dynamic>)
+          : null,
+      finding: json['finding'] != null
+          ? (json['finding'] as List<dynamic>)
+              .map<ClinicalImpressionFinding>((dynamic v) =>
+                  ClinicalImpressionFinding.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      prognosisCodeableConcept: json['prognosisCodeableConcept'] != null
+          ? (json['prognosisCodeableConcept'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      prognosisReference: json['prognosisReference'] != null
+          ? (json['prognosisReference'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      supportingInfo: json['supportingInfo'] != null
+          ? (json['supportingInfo'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                  (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   ClinicalImpression clone() => throw UnimplementedError();
   @override
@@ -339,13 +594,54 @@ class ClinicalImpressionInvestigation extends BackboneElement {
   /// [item] /// A record of a specific investigation that was undertaken.
   @JsonKey(name: 'item')
   final List<Reference>? item;
-  factory ClinicalImpressionInvestigation.fromJson(Map<String, dynamic> json) =>
-      _$ClinicalImpressionInvestigationFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() =>
-      _$ClinicalImpressionInvestigationToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['code'] = code.toJson();
+    if (item != null && item!.isNotEmpty) {
+      json['item'] = item!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory ClinicalImpressionInvestigation.fromJson(Map<String, dynamic> json) {
+    return ClinicalImpressionInvestigation(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      code: CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
+      item: json['item'] != null
+          ? (json['item'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   ClinicalImpressionInvestigation clone() => throw UnimplementedError();
   @override
@@ -438,12 +734,66 @@ class ClinicalImpressionFinding extends BackboneElement {
   final FhirString? basis;
   @JsonKey(name: '_basis')
   final Element? basisElement;
-  factory ClinicalImpressionFinding.fromJson(Map<String, dynamic> json) =>
-      _$ClinicalImpressionFindingFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ClinicalImpressionFindingToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (itemCodeableConcept != null) {
+      json['itemCodeableConcept'] = itemCodeableConcept!.toJson();
+    }
+    if (itemReference != null) {
+      json['itemReference'] = itemReference!.toJson();
+    }
+    if (basis?.value != null) {
+      json['basis'] = basis!.value;
+    }
+    if (basisElement != null) {
+      json['_basis'] = basisElement!.toJson();
+    }
+    return json;
+  }
 
+  factory ClinicalImpressionFinding.fromJson(Map<String, dynamic> json) {
+    return ClinicalImpressionFinding(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      itemCodeableConcept: json['itemCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['itemCodeableConcept'] as Map<String, dynamic>)
+          : null,
+      itemReference: json['itemReference'] != null
+          ? Reference.fromJson(json['itemReference'] as Map<String, dynamic>)
+          : null,
+      basis: json['basis'] != null ? FhirString(json['basis']) : null,
+      basisElement: json['_basis'] != null
+          ? Element.fromJson(json['_basis'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   ClinicalImpressionFinding clone() => throw UnimplementedError();
   @override

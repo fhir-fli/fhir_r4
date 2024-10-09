@@ -202,7 +202,7 @@ enum AppointmentCancellationReason {
   }
 
   String toJson() => toString();
-  AppointmentCancellationReason fromString(String str) {
+  static AppointmentCancellationReason fromString(String str) {
     switch (str) {
       case 'pat':
         return AppointmentCancellationReason.pat;
@@ -273,7 +273,7 @@ enum AppointmentCancellationReason {
     }
   }
 
-  AppointmentCancellationReason fromJson(dynamic jsonValue) {
+  static AppointmentCancellationReason fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

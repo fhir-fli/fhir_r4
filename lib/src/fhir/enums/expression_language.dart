@@ -45,7 +45,7 @@ enum ExpressionLanguage {
   }
 
   String toJson() => toString();
-  ExpressionLanguage fromString(String str) {
+  static ExpressionLanguage fromString(String str) {
     switch (str) {
       case 'text/cql':
         return ExpressionLanguage.text_cql;
@@ -62,7 +62,7 @@ enum ExpressionLanguage {
     }
   }
 
-  ExpressionLanguage fromJson(dynamic jsonValue) {
+  static ExpressionLanguage fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

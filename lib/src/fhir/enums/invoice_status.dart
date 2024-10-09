@@ -45,7 +45,7 @@ enum InvoiceStatus {
   }
 
   String toJson() => toString();
-  InvoiceStatus fromString(String str) {
+  static InvoiceStatus fromString(String str) {
     switch (str) {
       case 'draft':
         return InvoiceStatus.draft;
@@ -62,7 +62,7 @@ enum InvoiceStatus {
     }
   }
 
-  InvoiceStatus fromJson(dynamic jsonValue) {
+  static InvoiceStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

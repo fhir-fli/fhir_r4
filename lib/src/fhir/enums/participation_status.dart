@@ -38,7 +38,7 @@ enum ParticipationStatus {
   }
 
   String toJson() => toString();
-  ParticipationStatus fromString(String str) {
+  static ParticipationStatus fromString(String str) {
     switch (str) {
       case 'accepted':
         return ParticipationStatus.accepted;
@@ -53,7 +53,7 @@ enum ParticipationStatus {
     }
   }
 
-  ParticipationStatus fromJson(dynamic jsonValue) {
+  static ParticipationStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

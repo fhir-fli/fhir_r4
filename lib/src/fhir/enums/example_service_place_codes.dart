@@ -129,7 +129,7 @@ enum ExampleServicePlaceCodes {
   }
 
   String toJson() => toString();
-  ExampleServicePlaceCodes fromString(String str) {
+  static ExampleServicePlaceCodes fromString(String str) {
     switch (str) {
       case '01':
         return ExampleServicePlaceCodes.value01;
@@ -170,7 +170,7 @@ enum ExampleServicePlaceCodes {
     }
   }
 
-  ExampleServicePlaceCodes fromJson(dynamic jsonValue) {
+  static ExampleServicePlaceCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

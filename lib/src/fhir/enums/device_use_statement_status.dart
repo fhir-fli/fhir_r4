@@ -52,7 +52,7 @@ enum DeviceUseStatementStatus {
   }
 
   String toJson() => toString();
-  DeviceUseStatementStatus fromString(String str) {
+  static DeviceUseStatementStatus fromString(String str) {
     switch (str) {
       case 'active':
         return DeviceUseStatementStatus.active;
@@ -71,7 +71,7 @@ enum DeviceUseStatementStatus {
     }
   }
 
-  DeviceUseStatementStatus fromJson(dynamic jsonValue) {
+  static DeviceUseStatementStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

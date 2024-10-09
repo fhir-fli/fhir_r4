@@ -108,7 +108,7 @@ enum CitationSummaryStyle {
   }
 
   String toJson() => toString();
-  CitationSummaryStyle fromString(String str) {
+  static CitationSummaryStyle fromString(String str) {
     switch (str) {
       case 'vancouver':
         return CitationSummaryStyle.vancouver;
@@ -143,7 +143,7 @@ enum CitationSummaryStyle {
     }
   }
 
-  CitationSummaryStyle fromJson(dynamic jsonValue) {
+  static CitationSummaryStyle fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

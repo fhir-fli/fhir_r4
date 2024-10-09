@@ -87,7 +87,7 @@ enum AssertionOperatorType {
   }
 
   String toJson() => toString();
-  AssertionOperatorType fromString(String str) {
+  static AssertionOperatorType fromString(String str) {
     switch (str) {
       case 'equals':
         return AssertionOperatorType.equals;
@@ -116,7 +116,7 @@ enum AssertionOperatorType {
     }
   }
 
-  AssertionOperatorType fromJson(dynamic jsonValue) {
+  static AssertionOperatorType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -31,7 +31,7 @@ enum LocationStatus {
   }
 
   String toJson() => toString();
-  LocationStatus fromString(String str) {
+  static LocationStatus fromString(String str) {
     switch (str) {
       case 'active':
         return LocationStatus.active;
@@ -44,7 +44,7 @@ enum LocationStatus {
     }
   }
 
-  LocationStatus fromJson(dynamic jsonValue) {
+  static LocationStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -31,7 +31,7 @@ enum GoalPriority {
   }
 
   String toJson() => toString();
-  GoalPriority fromString(String str) {
+  static GoalPriority fromString(String str) {
     switch (str) {
       case 'high-priority':
         return GoalPriority.high_priority;
@@ -44,7 +44,7 @@ enum GoalPriority {
     }
   }
 
-  GoalPriority fromJson(dynamic jsonValue) {
+  static GoalPriority fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

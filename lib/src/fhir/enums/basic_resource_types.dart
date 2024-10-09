@@ -122,7 +122,7 @@ enum BasicResourceTypes {
   }
 
   String toJson() => toString();
-  BasicResourceTypes fromString(String str) {
+  static BasicResourceTypes fromString(String str) {
     switch (str) {
       case 'consent':
         return BasicResourceTypes.consent;
@@ -161,7 +161,7 @@ enum BasicResourceTypes {
     }
   }
 
-  BasicResourceTypes fromJson(dynamic jsonValue) {
+  static BasicResourceTypes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

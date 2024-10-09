@@ -22,7 +22,7 @@ enum SubstanceNameDomain {
   }
 
   String toJson() => toString();
-  SubstanceNameDomain fromString(String str) {
+  static SubstanceNameDomain fromString(String str) {
     switch (str) {
       case 'ActiveIngredient':
         return SubstanceNameDomain.ActiveIngredient;
@@ -33,7 +33,7 @@ enum SubstanceNameDomain {
     }
   }
 
-  SubstanceNameDomain fromJson(dynamic jsonValue) {
+  static SubstanceNameDomain fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

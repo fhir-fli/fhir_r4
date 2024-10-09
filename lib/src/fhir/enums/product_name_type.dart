@@ -40,7 +40,7 @@ enum ProductNameType {
   }
 
   String toJson() => toString();
-  ProductNameType fromString(String str) {
+  static ProductNameType fromString(String str) {
     switch (str) {
       case 'BAN':
         return ProductNameType.BAN;
@@ -57,7 +57,7 @@ enum ProductNameType {
     }
   }
 
-  ProductNameType fromJson(dynamic jsonValue) {
+  static ProductNameType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -22070,7 +22070,7 @@ enum MediaTypeCode {
   }
 
   String toJson() => toString();
-  MediaTypeCode fromString(String str) {
+  static MediaTypeCode fromString(String str) {
     switch (str) {
       case 'ARCHIVE':
         return MediaTypeCode.ARCHIVE;
@@ -28389,7 +28389,7 @@ enum MediaTypeCode {
     }
   }
 
-  MediaTypeCode fromJson(dynamic jsonValue) {
+  static MediaTypeCode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

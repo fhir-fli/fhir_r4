@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'identifier.g.dart';
-
 /// [Identifier] /// An identifier - identifies some entity uniquely and unambiguously.
 /// Typically this is used for business identifiers.
 @JsonSerializable()
@@ -68,12 +66,76 @@ class Identifier extends DataType {
   /// [assigner] /// Organization that issued/manages the identifier.
   @JsonKey(name: 'assigner')
   final Reference? assigner;
-  factory Identifier.fromJson(Map<String, dynamic> json) =>
-      _$IdentifierFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$IdentifierToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (use != null) {
+      json['use'] = use!.toJson();
+    }
+    if (type != null) {
+      json['type'] = type!.toJson();
+    }
+    if (system?.value != null) {
+      json['system'] = system!.value;
+    }
+    if (systemElement != null) {
+      json['_system'] = systemElement!.toJson();
+    }
+    if (value?.value != null) {
+      json['value'] = value!.value;
+    }
+    if (valueElement != null) {
+      json['_value'] = valueElement!.toJson();
+    }
+    if (period != null) {
+      json['period'] = period!.toJson();
+    }
+    if (assigner != null) {
+      json['assigner'] = assigner!.toJson();
+    }
+    return json;
+  }
 
+  factory Identifier.fromJson(Map<String, dynamic> json) {
+    return Identifier(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      use: json['use'] != null
+          ? IdentifierUse.fromJson(json['use'] as Map<String, dynamic>)
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
+          : null,
+      system: json['system'] != null ? FhirUri(json['system']) : null,
+      systemElement: json['_system'] != null
+          ? Element.fromJson(json['_system'] as Map<String, dynamic>)
+          : null,
+      value: json['value'] != null ? FhirString(json['value']) : null,
+      valueElement: json['_value'] != null
+          ? Element.fromJson(json['_value'] as Map<String, dynamic>)
+          : null,
+      period: json['period'] != null
+          ? Period.fromJson(json['period'] as Map<String, dynamic>)
+          : null,
+      assigner: json['assigner'] != null
+          ? Reference.fromJson(json['assigner'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   Identifier clone() => throw UnimplementedError();
   @override

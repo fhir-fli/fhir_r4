@@ -178,7 +178,7 @@ enum CitationArtifactClassifier {
   }
 
   String toJson() => toString();
-  CitationArtifactClassifier fromString(String str) {
+  static CitationArtifactClassifier fromString(String str) {
     switch (str) {
       case 'webpage':
         return CitationArtifactClassifier.webpage;
@@ -233,7 +233,7 @@ enum CitationArtifactClassifier {
     }
   }
 
-  CitationArtifactClassifier fromJson(dynamic jsonValue) {
+  static CitationArtifactClassifier fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -31,7 +31,7 @@ enum VariableType {
   }
 
   String toJson() => toString();
-  VariableType fromString(String str) {
+  static VariableType fromString(String str) {
     switch (str) {
       case 'dichotomous':
         return VariableType.dichotomous;
@@ -44,7 +44,7 @@ enum VariableType {
     }
   }
 
-  VariableType fromJson(dynamic jsonValue) {
+  static VariableType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

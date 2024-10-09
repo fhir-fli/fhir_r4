@@ -300,15 +300,12 @@ StringBuffer _generateClassBuffer(
   buffer.writeln("import 'package:yaml/yaml.dart';");
   buffer.writeln("\nimport '../../../$fhirVersion.dart';\n");
 
-  final String? writeFileName =
-      classes.values.first.className.fileNameFromClassName(_nameMap);
-
-  buffer.writeln("part '${writeFileName?.properFileName}.g.dart';\n");
-
   for (final WritableClass writableClass in classes.values) {
     _writeClassHeader(buffer, writableClass, fhirFieldMapBuffer);
     _writeConstructor(buffer, writableClass);
     _writeFields(buffer, writableClass, fhirFieldMapBuffer);
+    _writeToJson(buffer, writableClass);
+    _writeFromJson(buffer, writableClass);
     _writeClassFooter(buffer, writableClass);
   }
 
@@ -481,8 +478,6 @@ void _writeConstructor(StringBuffer buffer, WritableClass writableClass) {
 
   // Close constructor
   if (writableName.isResource && writableClass.isResource) {
-    buffer.writeln('    // ignore: avoid_unused_constructor_parameters');
-    buffer.writeln('R4ResourceType? resourceType,');
     buffer.writeln(
         '  }) : super(resourceType: R4ResourceType.${writableName.fhirToDartTypes});');
     buffer.writeln('@override');
@@ -500,20 +495,202 @@ void _writeConstructor(StringBuffer buffer, WritableClass writableClass) {
   }
 }
 
+void _writeToJson(StringBuffer buffer, WritableClass writableClass) {
+  buffer.writeln('@override');
+  buffer.writeln('Map<String, dynamic> toJson() {');
+  buffer.writeln('  final Map<String, dynamic> json = <String, dynamic>{};');
+  if (writableClass.isResource) {
+    buffer.writeln("  json['resourceType'] = resourceType.toJson();");
+  }
+
+  for (final Field field in writableClass.fields) {
+    final String fieldName = field.name.fhirFieldToDartName;
+    final String jsonFieldName = fieldName.endsWith('_')
+        ? fieldName.substring(0, fieldName.length - 1)
+        : fieldName;
+    final String elementFieldName = '_$fieldName';
+    final String jsonElementFieldName = elementFieldName.endsWith('_')
+        ? elementFieldName.substring(0, elementFieldName.length - 1)
+        : elementFieldName;
+    final String fieldType = field.type.fhirToDartTypes;
+
+    if (field.isList) {
+      // Handle lists
+      if (field.isRequired) {
+        if (field.type.isPrimitiveType) {
+          buffer.writeln(
+              "    json['$jsonFieldName'] = $fieldName.map(($fieldType v) => v.value).toList();");
+        } else {
+          buffer.writeln(
+              "    json['$jsonFieldName'] = $fieldName.map<dynamic>(($fieldType v) => v.toJson()).toList();");
+        }
+
+        // Add Element field for list of primitives
+        if (field.type.isPrimitiveType && field.needsElement) {
+          buffer.writeln(
+              '   if (${jsonFieldName}Element != null && ${jsonFieldName}Element!.isNotEmpty) {');
+          buffer.writeln(
+              "    json['$jsonElementFieldName'] = ${jsonFieldName}Element!.map((Element v) => v.toJson()).toList();}");
+        }
+      } else {
+        buffer.writeln('  if ($fieldName != null && $fieldName!.isNotEmpty) {');
+        if (field.type.isPrimitiveType) {
+          buffer.writeln(
+              "    json['$jsonFieldName'] = $fieldName!.map(($fieldType v) => v.value).toList();");
+        } else {
+          buffer.writeln(
+              "    json['$jsonFieldName'] = $fieldName!.map<dynamic>(($fieldType v) => v.toJson()).toList();");
+        }
+        buffer.writeln('  }');
+
+        // Add Element field for optional list of primitives
+        if (field.type.isPrimitiveType && field.needsElement) {
+          buffer.writeln(
+              '  if (${jsonFieldName}Element != null && ${jsonFieldName}Element!.isNotEmpty) {');
+          buffer.writeln(
+              "    json['$jsonElementFieldName'] = ${jsonFieldName}Element!.map((Element v) => v.toJson()).toList();}");
+        }
+      }
+    } else {
+      // Handle single non-list fields
+      if (field.isRequired) {
+        if (field.type.isPrimitiveType) {
+          buffer.writeln("    json['$jsonFieldName'] = $fieldName.value;");
+        } else {
+          buffer.writeln("    json['$jsonFieldName'] = $fieldName.toJson();");
+        }
+
+        // Add Element field for primitive fields
+        if (field.type.isPrimitiveType && field.needsElement) {
+          buffer.writeln('    if(${jsonFieldName}Element != null){');
+          buffer.writeln(
+              "    json['$jsonElementFieldName'] = ${jsonFieldName}Element!.toJson();}");
+        }
+      } else {
+        if (field.type.isPrimitiveType) {
+          buffer.writeln('  if ($fieldName?.value != null) {');
+          buffer.writeln("    json['$jsonFieldName'] = $fieldName!.value;");
+        } else {
+          buffer.writeln('  if ($fieldName != null) {');
+          buffer.writeln("    json['$jsonFieldName'] = $fieldName!.toJson();");
+        }
+        buffer.writeln('  }');
+
+        // Add Element field for optional primitive fields
+        if (field.type.isPrimitiveType && field.needsElement) {
+          buffer.writeln('  if (${jsonFieldName}Element != null) {');
+          buffer.writeln(
+              "    json['$jsonElementFieldName'] = ${jsonFieldName}Element!.toJson();");
+          buffer.writeln('  }');
+        }
+      }
+    }
+  }
+
+  buffer.writeln('  return json;');
+  buffer.writeln('}');
+}
+
+void _writeFromJson(StringBuffer buffer, WritableClass writableClass) {
+  final String writableName = writableClass.className;
+
+  buffer.writeln(
+      'factory ${writableName.fhirToDartTypes}.fromJson(Map<String, dynamic> json) {');
+  buffer.writeln('  return ${writableName.fhirToDartTypes}(');
+
+  for (final Field field in writableClass.fields) {
+    final String fieldName = field.name.fhirFieldToDartName;
+    final String jsonFieldName = fieldName.endsWith('_')
+        ? fieldName.substring(0, fieldName.length - 1)
+        : fieldName;
+    final String elementFieldName = '_$fieldName';
+    final String jsonElementFieldName = elementFieldName.endsWith('_')
+        ? elementFieldName.substring(0, elementFieldName.length - 1)
+        : elementFieldName;
+
+    if (field.isList) {
+      // Handle lists with proper casting and types
+      if (field.isRequired) {
+        if (field.type.isPrimitiveType) {
+          buffer.writeln(
+              "    $fieldName: (json['$jsonFieldName'] as List<dynamic>).map<${field.type.fhirToDartTypes}>((dynamic v) => ${field.type.fhirToDartTypes}(v)).toList(),");
+        } else {
+          buffer.writeln(
+              "    $fieldName: (json['$jsonFieldName'] as List<dynamic>).map<${field.type.fhirToDartTypes}>((dynamic v) => ${field.type.fhirToDartTypes}.fromJson(v as Map<String, dynamic>)).toList(),");
+        }
+
+        // Add Element field for list of primitives
+        if (field.type.isPrimitiveType && field.needsElement) {
+          buffer.writeln(
+              "    ${fieldName}Element: json['$jsonElementFieldName'] != null ? (json['$jsonElementFieldName'] as List<dynamic>).map<Element>((dynamic v) => Element.fromJson(v as Map<String, dynamic>)).toList() : null,");
+        }
+      } else {
+        if (field.type.isPrimitiveType) {
+          buffer.writeln(
+              "    $fieldName: json['$jsonFieldName'] != null ? (json['$jsonFieldName'] as List<dynamic>).map<${field.type.fhirToDartTypes}>((dynamic v) => ${field.type.fhirToDartTypes}(v)).toList() : null,");
+        } else {
+          buffer.writeln(
+              "    $fieldName: json['$jsonFieldName'] != null ? (json['$jsonFieldName'] as List<dynamic>).map<${field.type.fhirToDartTypes}>((dynamic v) => ${field.type.fhirToDartTypes}.fromJson(v as Map<String, dynamic>)).toList() : null,");
+        }
+
+        // Add Element field for optional list of primitives
+        if (field.type.isPrimitiveType && field.needsElement) {
+          buffer.writeln(
+              "    ${jsonFieldName}Element: json['$jsonElementFieldName'] != null ? (json['$jsonElementFieldName'] as List<dynamic>).map<Element>((dynamic v) => Element.fromJson(v as Map<String, dynamic>)).toList() : null,");
+        }
+      }
+    } else {
+      // Handle non-list fields
+      if (field.isRequired) {
+        if (field.type.isPrimitiveType) {
+          buffer.writeln(
+              "    $fieldName: ${field.type.fhirToDartTypes}(json['$jsonFieldName']),");
+        } else {
+          buffer.writeln(
+              "    $fieldName: ${field.type.fhirToDartTypes}.fromJson(json['$jsonFieldName'] as Map<String, dynamic>),");
+        }
+
+        // Add Element field for primitive fields
+        if (field.type.isPrimitiveType && field.needsElement) {
+          buffer.writeln(
+              "    ${jsonFieldName}Element: Element.fromJson(json['$jsonElementFieldName'] as Map<String, dynamic>),");
+        }
+      } else {
+        if (field.type.isPrimitiveType) {
+          buffer.writeln(
+              "    $fieldName: json['$jsonFieldName'] != null ? ${field.type.fhirToDartTypes}(json['$jsonFieldName']) : null,");
+        } else {
+          buffer.writeln(
+              "    $fieldName: json['$jsonFieldName'] != null ? ${field.type.fhirToDartTypes}.fromJson(json['$jsonFieldName'] as Map<String, dynamic>) : null,");
+        }
+
+        // Add Element field for optional primitive fields
+        if (field.type.isPrimitiveType && field.needsElement) {
+          buffer.writeln(
+              "    ${jsonFieldName}Element: json['$jsonElementFieldName'] != null ? Element.fromJson(json['$jsonElementFieldName'] as Map<String, dynamic>) : null,");
+        }
+      }
+    }
+  }
+
+  buffer.writeln('  );');
+  buffer.writeln('}');
+}
+
 void _writeClassFooter(StringBuffer buffer, WritableClass writableClass) {
   final String writableName = writableClass.className;
 
   // Include fromJson constructor for JsonSerializable
-  buffer.writeln('''
-  factory ${writableName.fhirToDartTypes}.fromJson(Map<String, dynamic> json) =>
-      _\$${writableName.fhirToDartTypes}FromJson(json);
-  ''');
+  // buffer.writeln('''
+  // factory ${writableName.fhirToDartTypes}.fromJson(Map<String, dynamic> json) =>
+  //     _\$${writableName.fhirToDartTypes}FromJson(json);
+  // ''');
 
   // Include toJson method for JsonSerializable
-  buffer.writeln('@override');
-  buffer.writeln('''
-  Map<String, dynamic> toJson() => _\$${writableName.fhirToDartTypes}ToJson(this);
-  ''');
+  // buffer.writeln('@override');
+  // buffer.writeln('''
+  // Map<String, dynamic> toJson() => _\$${writableName.fhirToDartTypes}ToJson(this);
+  // ''');
 
   buffer.writeln('@override');
   buffer.writeln(

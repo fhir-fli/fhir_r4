@@ -38,7 +38,7 @@ enum StructureDefinitionKind {
   }
 
   String toJson() => toString();
-  StructureDefinitionKind fromString(String str) {
+  static StructureDefinitionKind fromString(String str) {
     switch (str) {
       case 'primitive-type':
         return StructureDefinitionKind.primitive_type;
@@ -53,7 +53,7 @@ enum StructureDefinitionKind {
     }
   }
 
-  StructureDefinitionKind fromJson(dynamic jsonValue) {
+  static StructureDefinitionKind fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

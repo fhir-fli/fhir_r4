@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'usage_context.g.dart';
-
 /// [UsageContext] /// Specifies clinical/business/etc. metadata that can be used to retrieve,
 /// index and/or categorize an artifact. This metadata can either be specific
 /// to the applicable population (e.g., age category, DRG) or the specific
@@ -58,12 +56,59 @@ class UsageContext extends DataType {
   /// interpretation of the value is defined by the code.
   @JsonKey(name: 'valueReference')
   final Reference? valueReference;
-  factory UsageContext.fromJson(Map<String, dynamic> json) =>
-      _$UsageContextFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$UsageContextToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    json['code'] = code.toJson();
+    if (valueCodeableConcept != null) {
+      json['valueCodeableConcept'] = valueCodeableConcept!.toJson();
+    }
+    if (valueQuantity != null) {
+      json['valueQuantity'] = valueQuantity!.toJson();
+    }
+    if (valueRange != null) {
+      json['valueRange'] = valueRange!.toJson();
+    }
+    if (valueReference != null) {
+      json['valueReference'] = valueReference!.toJson();
+    }
+    return json;
+  }
 
+  factory UsageContext.fromJson(Map<String, dynamic> json) {
+    return UsageContext(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      code: Coding.fromJson(json['code'] as Map<String, dynamic>),
+      valueCodeableConcept: json['valueCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['valueCodeableConcept'] as Map<String, dynamic>)
+          : null,
+      valueQuantity: json['valueQuantity'] != null
+          ? Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>)
+          : null,
+      valueRange: json['valueRange'] != null
+          ? Range.fromJson(json['valueRange'] as Map<String, dynamic>)
+          : null,
+      valueReference: json['valueReference'] != null
+          ? Reference.fromJson(json['valueReference'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   UsageContext clone() => throw UnimplementedError();
   @override

@@ -38,7 +38,7 @@ enum ActionParticipantType {
   }
 
   String toJson() => toString();
-  ActionParticipantType fromString(String str) {
+  static ActionParticipantType fromString(String str) {
     switch (str) {
       case 'patient':
         return ActionParticipantType.patient;
@@ -53,7 +53,7 @@ enum ActionParticipantType {
     }
   }
 
-  ActionParticipantType fromJson(dynamic jsonValue) {
+  static ActionParticipantType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

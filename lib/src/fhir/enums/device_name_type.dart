@@ -52,7 +52,7 @@ enum DeviceNameType {
   }
 
   String toJson() => toString();
-  DeviceNameType fromString(String str) {
+  static DeviceNameType fromString(String str) {
     switch (str) {
       case 'udi-label-name':
         return DeviceNameType.udi_label_name;
@@ -71,7 +71,7 @@ enum DeviceNameType {
     }
   }
 
-  DeviceNameType fromJson(dynamic jsonValue) {
+  static DeviceNameType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

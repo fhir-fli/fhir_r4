@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'procedure.g.dart';
-
 /// [Procedure] /// An action that is or was performed on or for a patient. This can be a
 /// physical intervention like an operation, or less invasive like long term
 /// services, counseling, or hypnotherapy.
@@ -66,8 +64,6 @@ class Procedure extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Procedure);
   @override
   String get fhirType => 'Procedure';
@@ -251,12 +247,370 @@ class Procedure extends DomainResource {
   /// [usedCode] /// Identifies coded items that were used as part of the procedure.
   @JsonKey(name: 'usedCode')
   final List<CodeableConcept>? usedCode;
-  factory Procedure.fromJson(Map<String, dynamic> json) =>
-      _$ProcedureFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ProcedureToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    if (instantiatesCanonical != null && instantiatesCanonical!.isNotEmpty) {
+      json['instantiatesCanonical'] =
+          instantiatesCanonical!.map((FhirCanonical v) => v.value).toList();
+    }
+    if (instantiatesCanonicalElement != null &&
+        instantiatesCanonicalElement!.isNotEmpty) {
+      json['_instantiatesCanonical'] =
+          instantiatesCanonicalElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (instantiatesUri != null && instantiatesUri!.isNotEmpty) {
+      json['instantiatesUri'] =
+          instantiatesUri!.map((FhirUri v) => v.value).toList();
+    }
+    if (instantiatesUriElement != null && instantiatesUriElement!.isNotEmpty) {
+      json['_instantiatesUri'] =
+          instantiatesUriElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (basedOn != null && basedOn!.isNotEmpty) {
+      json['basedOn'] =
+          basedOn!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (partOf != null && partOf!.isNotEmpty) {
+      json['partOf'] =
+          partOf!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    json['status'] = status.toJson();
+    if (statusReason != null) {
+      json['statusReason'] = statusReason!.toJson();
+    }
+    if (category != null) {
+      json['category'] = category!.toJson();
+    }
+    if (code != null) {
+      json['code'] = code!.toJson();
+    }
+    json['subject'] = subject.toJson();
+    if (encounter != null) {
+      json['encounter'] = encounter!.toJson();
+    }
+    if (performedDateTime?.value != null) {
+      json['performedDateTime'] = performedDateTime!.value;
+    }
+    if (performedDateTimeElement != null) {
+      json['_performedDateTime'] = performedDateTimeElement!.toJson();
+    }
+    if (performedPeriod != null) {
+      json['performedPeriod'] = performedPeriod!.toJson();
+    }
+    if (performedString?.value != null) {
+      json['performedString'] = performedString!.value;
+    }
+    if (performedStringElement != null) {
+      json['_performedString'] = performedStringElement!.toJson();
+    }
+    if (performedAge != null) {
+      json['performedAge'] = performedAge!.toJson();
+    }
+    if (performedRange != null) {
+      json['performedRange'] = performedRange!.toJson();
+    }
+    if (recorder != null) {
+      json['recorder'] = recorder!.toJson();
+    }
+    if (asserter != null) {
+      json['asserter'] = asserter!.toJson();
+    }
+    if (performer != null && performer!.isNotEmpty) {
+      json['performer'] = performer!
+          .map<dynamic>((ProcedurePerformer v) => v.toJson())
+          .toList();
+    }
+    if (location != null) {
+      json['location'] = location!.toJson();
+    }
+    if (reasonCode != null && reasonCode!.isNotEmpty) {
+      json['reasonCode'] =
+          reasonCode!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (reasonReference != null && reasonReference!.isNotEmpty) {
+      json['reasonReference'] =
+          reasonReference!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (bodySite != null && bodySite!.isNotEmpty) {
+      json['bodySite'] =
+          bodySite!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (outcome != null) {
+      json['outcome'] = outcome!.toJson();
+    }
+    if (report != null && report!.isNotEmpty) {
+      json['report'] =
+          report!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (complication != null && complication!.isNotEmpty) {
+      json['complication'] = complication!
+          .map<dynamic>((CodeableConcept v) => v.toJson())
+          .toList();
+    }
+    if (complicationDetail != null && complicationDetail!.isNotEmpty) {
+      json['complicationDetail'] = complicationDetail!
+          .map<dynamic>((Reference v) => v.toJson())
+          .toList();
+    }
+    if (followUp != null && followUp!.isNotEmpty) {
+      json['followUp'] =
+          followUp!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (note != null && note!.isNotEmpty) {
+      json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
+    }
+    if (focalDevice != null && focalDevice!.isNotEmpty) {
+      json['focalDevice'] = focalDevice!
+          .map<dynamic>((ProcedureFocalDevice v) => v.toJson())
+          .toList();
+    }
+    if (usedReference != null && usedReference!.isNotEmpty) {
+      json['usedReference'] =
+          usedReference!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (usedCode != null && usedCode!.isNotEmpty) {
+      json['usedCode'] =
+          usedCode!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory Procedure.fromJson(Map<String, dynamic> json) {
+    return Procedure(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      instantiatesCanonical: json['instantiatesCanonical'] != null
+          ? (json['instantiatesCanonical'] as List<dynamic>)
+              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .toList()
+          : null,
+      instantiatesCanonicalElement: json['_instantiatesCanonical'] != null
+          ? (json['_instantiatesCanonical'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      instantiatesUri: json['instantiatesUri'] != null
+          ? (json['instantiatesUri'] as List<dynamic>)
+              .map<FhirUri>((dynamic v) => FhirUri(v))
+              .toList()
+          : null,
+      instantiatesUriElement: json['_instantiatesUri'] != null
+          ? (json['_instantiatesUri'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      basedOn: json['basedOn'] != null
+          ? (json['basedOn'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      partOf: json['partOf'] != null
+          ? (json['partOf'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      status: EventStatus.fromJson(json['status'] as Map<String, dynamic>),
+      statusReason: json['statusReason'] != null
+          ? CodeableConcept.fromJson(
+              json['statusReason'] as Map<String, dynamic>)
+          : null,
+      category: json['category'] != null
+          ? CodeableConcept.fromJson(json['category'] as Map<String, dynamic>)
+          : null,
+      code: json['code'] != null
+          ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
+          : null,
+      subject: Reference.fromJson(json['subject'] as Map<String, dynamic>),
+      encounter: json['encounter'] != null
+          ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
+          : null,
+      performedDateTime: json['performedDateTime'] != null
+          ? FhirDateTime(json['performedDateTime'])
+          : null,
+      performedDateTimeElement: json['_performedDateTime'] != null
+          ? Element.fromJson(json['_performedDateTime'] as Map<String, dynamic>)
+          : null,
+      performedPeriod: json['performedPeriod'] != null
+          ? Period.fromJson(json['performedPeriod'] as Map<String, dynamic>)
+          : null,
+      performedString: json['performedString'] != null
+          ? FhirString(json['performedString'])
+          : null,
+      performedStringElement: json['_performedString'] != null
+          ? Element.fromJson(json['_performedString'] as Map<String, dynamic>)
+          : null,
+      performedAge: json['performedAge'] != null
+          ? Age.fromJson(json['performedAge'] as Map<String, dynamic>)
+          : null,
+      performedRange: json['performedRange'] != null
+          ? Range.fromJson(json['performedRange'] as Map<String, dynamic>)
+          : null,
+      recorder: json['recorder'] != null
+          ? Reference.fromJson(json['recorder'] as Map<String, dynamic>)
+          : null,
+      asserter: json['asserter'] != null
+          ? Reference.fromJson(json['asserter'] as Map<String, dynamic>)
+          : null,
+      performer: json['performer'] != null
+          ? (json['performer'] as List<dynamic>)
+              .map<ProcedurePerformer>((dynamic v) =>
+                  ProcedurePerformer.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      location: json['location'] != null
+          ? Reference.fromJson(json['location'] as Map<String, dynamic>)
+          : null,
+      reasonCode: json['reasonCode'] != null
+          ? (json['reasonCode'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      reasonReference: json['reasonReference'] != null
+          ? (json['reasonReference'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      bodySite: json['bodySite'] != null
+          ? (json['bodySite'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      outcome: json['outcome'] != null
+          ? CodeableConcept.fromJson(json['outcome'] as Map<String, dynamic>)
+          : null,
+      report: json['report'] != null
+          ? (json['report'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      complication: json['complication'] != null
+          ? (json['complication'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      complicationDetail: json['complicationDetail'] != null
+          ? (json['complicationDetail'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      followUp: json['followUp'] != null
+          ? (json['followUp'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                  (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      focalDevice: json['focalDevice'] != null
+          ? (json['focalDevice'] as List<dynamic>)
+              .map<ProcedureFocalDevice>((dynamic v) =>
+                  ProcedureFocalDevice.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      usedReference: json['usedReference'] != null
+          ? (json['usedReference'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      usedCode: json['usedCode'] != null
+          ? (json['usedCode'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   Procedure clone() => throw UnimplementedError();
   @override
@@ -432,12 +786,57 @@ class ProcedurePerformer extends BackboneElement {
   /// [onBehalfOf] /// The organization the device or practitioner was acting on behalf of.
   @JsonKey(name: 'onBehalfOf')
   final Reference? onBehalfOf;
-  factory ProcedurePerformer.fromJson(Map<String, dynamic> json) =>
-      _$ProcedurePerformerFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ProcedurePerformerToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (function_ != null) {
+      json['function'] = function_!.toJson();
+    }
+    json['actor'] = actor.toJson();
+    if (onBehalfOf != null) {
+      json['onBehalfOf'] = onBehalfOf!.toJson();
+    }
+    return json;
+  }
 
+  factory ProcedurePerformer.fromJson(Map<String, dynamic> json) {
+    return ProcedurePerformer(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      function_: json['function'] != null
+          ? CodeableConcept.fromJson(json['function'] as Map<String, dynamic>)
+          : null,
+      actor: Reference.fromJson(json['actor'] as Map<String, dynamic>),
+      onBehalfOf: json['onBehalfOf'] != null
+          ? Reference.fromJson(json['onBehalfOf'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   ProcedurePerformer clone() => throw UnimplementedError();
   @override
@@ -522,12 +921,52 @@ class ProcedureFocalDevice extends BackboneElement {
   /// [manipulated] /// The device that was manipulated (changed) during the procedure.
   @JsonKey(name: 'manipulated')
   final Reference manipulated;
-  factory ProcedureFocalDevice.fromJson(Map<String, dynamic> json) =>
-      _$ProcedureFocalDeviceFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ProcedureFocalDeviceToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (action != null) {
+      json['action'] = action!.toJson();
+    }
+    json['manipulated'] = manipulated.toJson();
+    return json;
+  }
 
+  factory ProcedureFocalDevice.fromJson(Map<String, dynamic> json) {
+    return ProcedureFocalDevice(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      action: json['action'] != null
+          ? CodeableConcept.fromJson(json['action'] as Map<String, dynamic>)
+          : null,
+      manipulated:
+          Reference.fromJson(json['manipulated'] as Map<String, dynamic>),
+    );
+  }
   @override
   ProcedureFocalDevice clone() => throw UnimplementedError();
   @override

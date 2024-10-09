@@ -38,7 +38,7 @@ enum ExplanationOfBenefitStatus {
   }
 
   String toJson() => toString();
-  ExplanationOfBenefitStatus fromString(String str) {
+  static ExplanationOfBenefitStatus fromString(String str) {
     switch (str) {
       case 'active':
         return ExplanationOfBenefitStatus.active;
@@ -53,7 +53,7 @@ enum ExplanationOfBenefitStatus {
     }
   }
 
-  ExplanationOfBenefitStatus fromJson(dynamic jsonValue) {
+  static ExplanationOfBenefitStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

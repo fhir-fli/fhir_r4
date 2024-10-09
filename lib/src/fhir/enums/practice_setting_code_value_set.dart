@@ -700,7 +700,7 @@ enum PracticeSettingCodeValueSet {
   }
 
   String toJson() => toString();
-  PracticeSettingCodeValueSet fromString(String str) {
+  static PracticeSettingCodeValueSet fromString(String str) {
     switch (str) {
       case '408467006':
         return PracticeSettingCodeValueSet.value408467006;
@@ -937,7 +937,7 @@ enum PracticeSettingCodeValueSet {
     }
   }
 
-  PracticeSettingCodeValueSet fromJson(dynamic jsonValue) {
+  static PracticeSettingCodeValueSet fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

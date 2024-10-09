@@ -31,7 +31,7 @@ enum DefinitionTopic {
   }
 
   String toJson() => toString();
-  DefinitionTopic fromString(String str) {
+  static DefinitionTopic fromString(String str) {
     switch (str) {
       case 'treatment':
         return DefinitionTopic.treatment;
@@ -44,7 +44,7 @@ enum DefinitionTopic {
     }
   }
 
-  DefinitionTopic fromJson(dynamic jsonValue) {
+  static DefinitionTopic fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

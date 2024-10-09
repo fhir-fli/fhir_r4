@@ -31,7 +31,7 @@ enum ClaimPayeeTypeCodes {
   }
 
   String toJson() => toString();
-  ClaimPayeeTypeCodes fromString(String str) {
+  static ClaimPayeeTypeCodes fromString(String str) {
     switch (str) {
       case 'subscriber':
         return ClaimPayeeTypeCodes.subscriber;
@@ -44,7 +44,7 @@ enum ClaimPayeeTypeCodes {
     }
   }
 
-  ClaimPayeeTypeCodes fromJson(dynamic jsonValue) {
+  static ClaimPayeeTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

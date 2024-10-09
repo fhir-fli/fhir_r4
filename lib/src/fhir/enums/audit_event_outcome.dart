@@ -38,7 +38,7 @@ enum AuditEventOutcome {
   }
 
   String toJson() => toString();
-  AuditEventOutcome fromString(String str) {
+  static AuditEventOutcome fromString(String str) {
     switch (str) {
       case '0':
         return AuditEventOutcome.value0;
@@ -53,7 +53,7 @@ enum AuditEventOutcome {
     }
   }
 
-  AuditEventOutcome fromJson(dynamic jsonValue) {
+  static AuditEventOutcome fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

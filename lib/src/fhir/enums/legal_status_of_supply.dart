@@ -58,7 +58,7 @@ enum LegalStatusOfSupply {
   }
 
   String toJson() => toString();
-  LegalStatusOfSupply fromString(String str) {
+  static LegalStatusOfSupply fromString(String str) {
     switch (str) {
       case '100000072076':
         return LegalStatusOfSupply.value100000072076;
@@ -81,7 +81,7 @@ enum LegalStatusOfSupply {
     }
   }
 
-  LegalStatusOfSupply fromJson(dynamic jsonValue) {
+  static LegalStatusOfSupply fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

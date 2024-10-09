@@ -24,7 +24,7 @@ enum ImmunizationProgramEligibility {
   }
 
   String toJson() => toString();
-  ImmunizationProgramEligibility fromString(String str) {
+  static ImmunizationProgramEligibility fromString(String str) {
     switch (str) {
       case 'ineligible':
         return ImmunizationProgramEligibility.ineligible;
@@ -35,7 +35,7 @@ enum ImmunizationProgramEligibility {
     }
   }
 
-  ImmunizationProgramEligibility fromJson(dynamic jsonValue) {
+  static ImmunizationProgramEligibility fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

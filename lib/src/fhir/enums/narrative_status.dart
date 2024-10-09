@@ -38,7 +38,7 @@ enum NarrativeStatus {
   }
 
   String toJson() => toString();
-  NarrativeStatus fromString(String str) {
+  static NarrativeStatus fromString(String str) {
     switch (str) {
       case 'generated':
         return NarrativeStatus.generated;
@@ -53,7 +53,7 @@ enum NarrativeStatus {
     }
   }
 
-  NarrativeStatus fromJson(dynamic jsonValue) {
+  static NarrativeStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

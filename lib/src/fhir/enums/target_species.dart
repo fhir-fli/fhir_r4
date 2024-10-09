@@ -1210,7 +1210,7 @@ enum TargetSpecies {
   }
 
   String toJson() => toString();
-  TargetSpecies fromString(String str) {
+  static TargetSpecies fromString(String str) {
     switch (str) {
       case '100000108874':
         return TargetSpecies.value100000108874;
@@ -1617,7 +1617,7 @@ enum TargetSpecies {
     }
   }
 
-  TargetSpecies fromJson(dynamic jsonValue) {
+  static TargetSpecies fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

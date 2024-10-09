@@ -28,7 +28,7 @@ enum PackageType {
   }
 
   String toJson() => toString();
-  PackageType fromString(String str) {
+  static PackageType fromString(String str) {
     switch (str) {
       case 'MedicinalProductPack':
         return PackageType.MedicinalProductPack;
@@ -41,7 +41,7 @@ enum PackageType {
     }
   }
 
-  PackageType fromJson(dynamic jsonValue) {
+  static PackageType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

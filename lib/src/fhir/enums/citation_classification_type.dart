@@ -31,7 +31,7 @@ enum CitationClassificationType {
   }
 
   String toJson() => toString();
-  CitationClassificationType fromString(String str) {
+  static CitationClassificationType fromString(String str) {
     switch (str) {
       case 'citation-source':
         return CitationClassificationType.citation_source;
@@ -44,7 +44,7 @@ enum CitationClassificationType {
     }
   }
 
-  CitationClassificationType fromJson(dynamic jsonValue) {
+  static CitationClassificationType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

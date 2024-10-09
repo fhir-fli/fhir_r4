@@ -17,7 +17,7 @@ enum ContractResourceAssetContextCodes {
   }
 
   String toJson() => toString();
-  ContractResourceAssetContextCodes fromString(String str) {
+  static ContractResourceAssetContextCodes fromString(String str) {
     switch (str) {
       case 'custodian':
         return ContractResourceAssetContextCodes.custodian;
@@ -26,7 +26,7 @@ enum ContractResourceAssetContextCodes {
     }
   }
 
-  ContractResourceAssetContextCodes fromJson(dynamic jsonValue) {
+  static ContractResourceAssetContextCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -38,7 +38,7 @@ enum RequestPriority {
   }
 
   String toJson() => toString();
-  RequestPriority fromString(String str) {
+  static RequestPriority fromString(String str) {
     switch (str) {
       case 'routine':
         return RequestPriority.routine;
@@ -53,7 +53,7 @@ enum RequestPriority {
     }
   }
 
-  RequestPriority fromJson(dynamic jsonValue) {
+  static RequestPriority fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

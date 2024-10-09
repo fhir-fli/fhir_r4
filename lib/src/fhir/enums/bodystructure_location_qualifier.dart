@@ -82,7 +82,7 @@ enum BodystructureLocationQualifier {
   }
 
   String toJson() => toString();
-  BodystructureLocationQualifier fromString(String str) {
+  static BodystructureLocationQualifier fromString(String str) {
     switch (str) {
       case '419161000':
         return BodystructureLocationQualifier.value419161000;
@@ -113,7 +113,7 @@ enum BodystructureLocationQualifier {
     }
   }
 
-  BodystructureLocationQualifier fromJson(dynamic jsonValue) {
+  static BodystructureLocationQualifier fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

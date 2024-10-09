@@ -31,7 +31,7 @@ enum ServiceProvisionConditions {
   }
 
   String toJson() => toString();
-  ServiceProvisionConditions fromString(String str) {
+  static ServiceProvisionConditions fromString(String str) {
     switch (str) {
       case 'free':
         return ServiceProvisionConditions.free;
@@ -44,7 +44,7 @@ enum ServiceProvisionConditions {
     }
   }
 
-  ServiceProvisionConditions fromJson(dynamic jsonValue) {
+  static ServiceProvisionConditions fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

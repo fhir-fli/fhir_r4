@@ -38,7 +38,7 @@ enum MeasureSupplementalDataExample {
   }
 
   String toJson() => toString();
-  MeasureSupplementalDataExample fromString(String str) {
+  static MeasureSupplementalDataExample fromString(String str) {
     switch (str) {
       case 'age':
         return MeasureSupplementalDataExample.age;
@@ -53,7 +53,7 @@ enum MeasureSupplementalDataExample {
     }
   }
 
-  MeasureSupplementalDataExample fromJson(dynamic jsonValue) {
+  static MeasureSupplementalDataExample fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

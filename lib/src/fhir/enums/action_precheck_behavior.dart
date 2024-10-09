@@ -24,7 +24,7 @@ enum ActionPrecheckBehavior {
   }
 
   String toJson() => toString();
-  ActionPrecheckBehavior fromString(String str) {
+  static ActionPrecheckBehavior fromString(String str) {
     switch (str) {
       case 'yes':
         return ActionPrecheckBehavior.yes;
@@ -35,7 +35,7 @@ enum ActionPrecheckBehavior {
     }
   }
 
-  ActionPrecheckBehavior fromJson(dynamic jsonValue) {
+  static ActionPrecheckBehavior fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

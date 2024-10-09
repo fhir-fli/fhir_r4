@@ -17,7 +17,7 @@ enum ContractResourceExpirationTypeCodes {
   }
 
   String toJson() => toString();
-  ContractResourceExpirationTypeCodes fromString(String str) {
+  static ContractResourceExpirationTypeCodes fromString(String str) {
     switch (str) {
       case 'breach':
         return ContractResourceExpirationTypeCodes.breach;
@@ -26,7 +26,7 @@ enum ContractResourceExpirationTypeCodes {
     }
   }
 
-  ContractResourceExpirationTypeCodes fromJson(dynamic jsonValue) {
+  static ContractResourceExpirationTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

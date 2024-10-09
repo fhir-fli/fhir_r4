@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'composition.g.dart';
-
 /// [Composition] /// A set of healthcare-related information that is assembled together into a
 /// single logical package that provides a single coherent statement of
 /// meaning, establishes its own context and that has clinical attestation with
@@ -54,8 +52,6 @@ class Composition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Composition);
   @override
   String get fhirType => 'Composition';
@@ -145,12 +141,193 @@ class Composition extends DomainResource {
   /// [section] /// The root of the sections that make up the composition.
   @JsonKey(name: 'section')
   final List<CompositionSection>? section;
-  factory Composition.fromJson(Map<String, dynamic> json) =>
-      _$CompositionFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$CompositionToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null) {
+      json['identifier'] = identifier!.toJson();
+    }
+    json['status'] = status.toJson();
+    json['type'] = type.toJson();
+    if (category != null && category!.isNotEmpty) {
+      json['category'] =
+          category!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (subject != null) {
+      json['subject'] = subject!.toJson();
+    }
+    if (encounter != null) {
+      json['encounter'] = encounter!.toJson();
+    }
+    json['date'] = date.value;
+    if (dateElement != null) {
+      json['_date'] = dateElement!.toJson();
+    }
+    json['author'] = author.map<dynamic>((Reference v) => v.toJson()).toList();
+    json['title'] = title.value;
+    if (titleElement != null) {
+      json['_title'] = titleElement!.toJson();
+    }
+    if (confidentiality?.value != null) {
+      json['confidentiality'] = confidentiality!.value;
+    }
+    if (confidentialityElement != null) {
+      json['_confidentiality'] = confidentialityElement!.toJson();
+    }
+    if (attester != null && attester!.isNotEmpty) {
+      json['attester'] = attester!
+          .map<dynamic>((CompositionAttester v) => v.toJson())
+          .toList();
+    }
+    if (custodian != null) {
+      json['custodian'] = custodian!.toJson();
+    }
+    if (relatesTo != null && relatesTo!.isNotEmpty) {
+      json['relatesTo'] = relatesTo!
+          .map<dynamic>((CompositionRelatesTo v) => v.toJson())
+          .toList();
+    }
+    if (event != null && event!.isNotEmpty) {
+      json['event'] =
+          event!.map<dynamic>((CompositionEvent v) => v.toJson()).toList();
+    }
+    if (section != null && section!.isNotEmpty) {
+      json['section'] =
+          section!.map<dynamic>((CompositionSection v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory Composition.fromJson(Map<String, dynamic> json) {
+    return Composition(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? Identifier.fromJson(json['identifier'] as Map<String, dynamic>)
+          : null,
+      status:
+          CompositionStatus.fromJson(json['status'] as Map<String, dynamic>),
+      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      category: json['category'] != null
+          ? (json['category'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      subject: json['subject'] != null
+          ? Reference.fromJson(json['subject'] as Map<String, dynamic>)
+          : null,
+      encounter: json['encounter'] != null
+          ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
+          : null,
+      date: FhirDateTime(json['date']),
+      dateElement: Element.fromJson(json['_date'] as Map<String, dynamic>),
+      author: (json['author'] as List<dynamic>)
+          .map<Reference>(
+              (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+          .toList(),
+      title: FhirString(json['title']),
+      titleElement: Element.fromJson(json['_title'] as Map<String, dynamic>),
+      confidentiality: json['confidentiality'] != null
+          ? FhirCode(json['confidentiality'])
+          : null,
+      confidentialityElement: json['_confidentiality'] != null
+          ? Element.fromJson(json['_confidentiality'] as Map<String, dynamic>)
+          : null,
+      attester: json['attester'] != null
+          ? (json['attester'] as List<dynamic>)
+              .map<CompositionAttester>((dynamic v) =>
+                  CompositionAttester.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      custodian: json['custodian'] != null
+          ? Reference.fromJson(json['custodian'] as Map<String, dynamic>)
+          : null,
+      relatesTo: json['relatesTo'] != null
+          ? (json['relatesTo'] as List<dynamic>)
+              .map<CompositionRelatesTo>((dynamic v) =>
+                  CompositionRelatesTo.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      event: json['event'] != null
+          ? (json['event'] as List<dynamic>)
+              .map<CompositionEvent>((dynamic v) =>
+                  CompositionEvent.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      section: json['section'] != null
+          ? (json['section'] as List<dynamic>)
+              .map<CompositionSection>((dynamic v) =>
+                  CompositionSection.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   Composition clone() => throw UnimplementedError();
   @override
@@ -291,12 +468,62 @@ class CompositionAttester extends BackboneElement {
   /// [party] /// Who attested the composition in the specified way.
   @JsonKey(name: 'party')
   final Reference? party;
-  factory CompositionAttester.fromJson(Map<String, dynamic> json) =>
-      _$CompositionAttesterFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$CompositionAttesterToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['mode'] = mode.toJson();
+    if (time?.value != null) {
+      json['time'] = time!.value;
+    }
+    if (timeElement != null) {
+      json['_time'] = timeElement!.toJson();
+    }
+    if (party != null) {
+      json['party'] = party!.toJson();
+    }
+    return json;
+  }
 
+  factory CompositionAttester.fromJson(Map<String, dynamic> json) {
+    return CompositionAttester(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      mode: CompositionAttestationMode.fromJson(
+          json['mode'] as Map<String, dynamic>),
+      time: json['time'] != null ? FhirDateTime(json['time']) : null,
+      timeElement: json['_time'] != null
+          ? Element.fromJson(json['_time'] as Map<String, dynamic>)
+          : null,
+      party: json['party'] != null
+          ? Reference.fromJson(json['party'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   CompositionAttester clone() => throw UnimplementedError();
   @override
@@ -393,12 +620,59 @@ class CompositionRelatesTo extends BackboneElement {
   /// [targetReference] /// The target composition/document of this relationship.
   @JsonKey(name: 'targetReference')
   final Reference? targetReference;
-  factory CompositionRelatesTo.fromJson(Map<String, dynamic> json) =>
-      _$CompositionRelatesToFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$CompositionRelatesToToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['code'] = code.toJson();
+    if (targetIdentifier != null) {
+      json['targetIdentifier'] = targetIdentifier!.toJson();
+    }
+    if (targetReference != null) {
+      json['targetReference'] = targetReference!.toJson();
+    }
+    return json;
+  }
 
+  factory CompositionRelatesTo.fromJson(Map<String, dynamic> json) {
+    return CompositionRelatesTo(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      code: DocumentRelationshipType.fromJson(
+          json['code'] as Map<String, dynamic>),
+      targetIdentifier: json['targetIdentifier'] != null
+          ? Identifier.fromJson(
+              json['targetIdentifier'] as Map<String, dynamic>)
+          : null,
+      targetReference: json['targetReference'] != null
+          ? Reference.fromJson(json['targetReference'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   CompositionRelatesTo clone() => throw UnimplementedError();
   @override
@@ -496,12 +770,69 @@ class CompositionEvent extends BackboneElement {
   /// appendectomy.
   @JsonKey(name: 'detail')
   final List<Reference>? detail;
-  factory CompositionEvent.fromJson(Map<String, dynamic> json) =>
-      _$CompositionEventFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$CompositionEventToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (code != null && code!.isNotEmpty) {
+      json['code'] =
+          code!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (period != null) {
+      json['period'] = period!.toJson();
+    }
+    if (detail != null && detail!.isNotEmpty) {
+      json['detail'] =
+          detail!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory CompositionEvent.fromJson(Map<String, dynamic> json) {
+    return CompositionEvent(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      code: json['code'] != null
+          ? (json['code'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      period: json['period'] != null
+          ? Period.fromJson(json['period'] as Map<String, dynamic>)
+          : null,
+      detail: json['detail'] != null
+          ? (json['detail'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   CompositionEvent clone() => throw UnimplementedError();
   @override
@@ -649,12 +980,119 @@ class CompositionSection extends BackboneElement {
   /// [section] /// A nested sub-section within this section.
   @JsonKey(name: 'section')
   final List<CompositionSection>? section;
-  factory CompositionSection.fromJson(Map<String, dynamic> json) =>
-      _$CompositionSectionFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$CompositionSectionToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (title?.value != null) {
+      json['title'] = title!.value;
+    }
+    if (titleElement != null) {
+      json['_title'] = titleElement!.toJson();
+    }
+    if (code != null) {
+      json['code'] = code!.toJson();
+    }
+    if (author != null && author!.isNotEmpty) {
+      json['author'] =
+          author!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (focus != null) {
+      json['focus'] = focus!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (mode != null) {
+      json['mode'] = mode!.toJson();
+    }
+    if (orderedBy != null) {
+      json['orderedBy'] = orderedBy!.toJson();
+    }
+    if (entry != null && entry!.isNotEmpty) {
+      json['entry'] = entry!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (emptyReason != null) {
+      json['emptyReason'] = emptyReason!.toJson();
+    }
+    if (section != null && section!.isNotEmpty) {
+      json['section'] =
+          section!.map<dynamic>((CompositionSection v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory CompositionSection.fromJson(Map<String, dynamic> json) {
+    return CompositionSection(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      title: json['title'] != null ? FhirString(json['title']) : null,
+      titleElement: json['_title'] != null
+          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
+          : null,
+      code: json['code'] != null
+          ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
+          : null,
+      author: json['author'] != null
+          ? (json['author'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      focus: json['focus'] != null
+          ? Reference.fromJson(json['focus'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      mode: json['mode'] != null
+          ? ListMode.fromJson(json['mode'] as Map<String, dynamic>)
+          : null,
+      orderedBy: json['orderedBy'] != null
+          ? CodeableConcept.fromJson(json['orderedBy'] as Map<String, dynamic>)
+          : null,
+      entry: json['entry'] != null
+          ? (json['entry'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      emptyReason: json['emptyReason'] != null
+          ? CodeableConcept.fromJson(
+              json['emptyReason'] as Map<String, dynamic>)
+          : null,
+      section: json['section'] != null
+          ? (json['section'] as List<dynamic>)
+              .map<CompositionSection>((dynamic v) =>
+                  CompositionSection.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   CompositionSection clone() => throw UnimplementedError();
   @override

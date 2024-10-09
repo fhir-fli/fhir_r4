@@ -280,7 +280,7 @@ enum Program {
   }
 
   String toJson() => toString();
-  Program fromString(String str) {
+  static Program fromString(String str) {
     switch (str) {
       case '1':
         return Program.value1;
@@ -377,7 +377,7 @@ enum Program {
     }
   }
 
-  Program fromJson(dynamic jsonValue) {
+  static Program fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

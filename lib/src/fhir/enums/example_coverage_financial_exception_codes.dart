@@ -24,7 +24,7 @@ enum ExampleCoverageFinancialExceptionCodes {
   }
 
   String toJson() => toString();
-  ExampleCoverageFinancialExceptionCodes fromString(String str) {
+  static ExampleCoverageFinancialExceptionCodes fromString(String str) {
     switch (str) {
       case 'retired':
         return ExampleCoverageFinancialExceptionCodes.retired;
@@ -35,7 +35,7 @@ enum ExampleCoverageFinancialExceptionCodes {
     }
   }
 
-  ExampleCoverageFinancialExceptionCodes fromJson(dynamic jsonValue) {
+  static ExampleCoverageFinancialExceptionCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

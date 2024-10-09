@@ -59,7 +59,7 @@ enum SynthesisType {
   }
 
   String toJson() => toString();
-  SynthesisType fromString(String str) {
+  static SynthesisType fromString(String str) {
     switch (str) {
       case 'std-MA':
         return SynthesisType.std_MA;
@@ -80,7 +80,7 @@ enum SynthesisType {
     }
   }
 
-  SynthesisType fromJson(dynamic jsonValue) {
+  static SynthesisType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

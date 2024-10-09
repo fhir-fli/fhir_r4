@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'clinical_use_definition.g.dart';
-
 /// [ClinicalUseDefinition] /// A single issue - either an indication, contraindication, interaction or an
 /// undesirable effect for a medicinal product, medication, device or
 /// procedure.
@@ -41,8 +39,6 @@ class ClinicalUseDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.ClinicalUseDefinition);
   @override
   String get fhirType => 'ClinicalUseDefinition';
@@ -101,12 +97,167 @@ class ClinicalUseDefinition extends DomainResource {
   /// advice/attention if you feel unwell'.
   @JsonKey(name: 'warning')
   final ClinicalUseDefinitionWarning? warning;
-  factory ClinicalUseDefinition.fromJson(Map<String, dynamic> json) =>
-      _$ClinicalUseDefinitionFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ClinicalUseDefinitionToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    json['type'] = type.toJson();
+    if (category != null && category!.isNotEmpty) {
+      json['category'] =
+          category!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (subject != null && subject!.isNotEmpty) {
+      json['subject'] =
+          subject!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (status != null) {
+      json['status'] = status!.toJson();
+    }
+    if (contraindication != null) {
+      json['contraindication'] = contraindication!.toJson();
+    }
+    if (indication != null) {
+      json['indication'] = indication!.toJson();
+    }
+    if (interaction != null) {
+      json['interaction'] = interaction!.toJson();
+    }
+    if (population != null && population!.isNotEmpty) {
+      json['population'] =
+          population!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (undesirableEffect != null) {
+      json['undesirableEffect'] = undesirableEffect!.toJson();
+    }
+    if (warning != null) {
+      json['warning'] = warning!.toJson();
+    }
+    return json;
+  }
 
+  factory ClinicalUseDefinition.fromJson(Map<String, dynamic> json) {
+    return ClinicalUseDefinition(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: ClinicalUseDefinitionType.fromJson(
+          json['type'] as Map<String, dynamic>),
+      category: json['category'] != null
+          ? (json['category'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      subject: json['subject'] != null
+          ? (json['subject'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      status: json['status'] != null
+          ? CodeableConcept.fromJson(json['status'] as Map<String, dynamic>)
+          : null,
+      contraindication: json['contraindication'] != null
+          ? ClinicalUseDefinitionContraindication.fromJson(
+              json['contraindication'] as Map<String, dynamic>)
+          : null,
+      indication: json['indication'] != null
+          ? ClinicalUseDefinitionIndication.fromJson(
+              json['indication'] as Map<String, dynamic>)
+          : null,
+      interaction: json['interaction'] != null
+          ? ClinicalUseDefinitionInteraction.fromJson(
+              json['interaction'] as Map<String, dynamic>)
+          : null,
+      population: json['population'] != null
+          ? (json['population'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      undesirableEffect: json['undesirableEffect'] != null
+          ? ClinicalUseDefinitionUndesirableEffect.fromJson(
+              json['undesirableEffect'] as Map<String, dynamic>)
+          : null,
+      warning: json['warning'] != null
+          ? ClinicalUseDefinitionWarning.fromJson(
+              json['warning'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   ClinicalUseDefinition clone() => throw UnimplementedError();
   @override
@@ -239,14 +390,91 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
   /// therapies described as part of the contraindication.
   @JsonKey(name: 'otherTherapy')
   final List<ClinicalUseDefinitionOtherTherapy>? otherTherapy;
-  factory ClinicalUseDefinitionContraindication.fromJson(
-          Map<String, dynamic> json) =>
-      _$ClinicalUseDefinitionContraindicationFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() =>
-      _$ClinicalUseDefinitionContraindicationToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (diseaseSymptomProcedure != null) {
+      json['diseaseSymptomProcedure'] = diseaseSymptomProcedure!.toJson();
+    }
+    if (diseaseStatus != null) {
+      json['diseaseStatus'] = diseaseStatus!.toJson();
+    }
+    if (comorbidity != null && comorbidity!.isNotEmpty) {
+      json['comorbidity'] = comorbidity!
+          .map<dynamic>((CodeableReference v) => v.toJson())
+          .toList();
+    }
+    if (indication != null && indication!.isNotEmpty) {
+      json['indication'] =
+          indication!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (otherTherapy != null && otherTherapy!.isNotEmpty) {
+      json['otherTherapy'] = otherTherapy!
+          .map<dynamic>((ClinicalUseDefinitionOtherTherapy v) => v.toJson())
+          .toList();
+    }
+    return json;
+  }
 
+  factory ClinicalUseDefinitionContraindication.fromJson(
+      Map<String, dynamic> json) {
+    return ClinicalUseDefinitionContraindication(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      diseaseSymptomProcedure: json['diseaseSymptomProcedure'] != null
+          ? CodeableReference.fromJson(
+              json['diseaseSymptomProcedure'] as Map<String, dynamic>)
+          : null,
+      diseaseStatus: json['diseaseStatus'] != null
+          ? CodeableReference.fromJson(
+              json['diseaseStatus'] as Map<String, dynamic>)
+          : null,
+      comorbidity: json['comorbidity'] != null
+          ? (json['comorbidity'] as List<dynamic>)
+              .map<CodeableReference>((dynamic v) =>
+                  CodeableReference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      indication: json['indication'] != null
+          ? (json['indication'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      otherTherapy: json['otherTherapy'] != null
+          ? (json['otherTherapy'] as List<dynamic>)
+              .map<ClinicalUseDefinitionOtherTherapy>((dynamic v) =>
+                  ClinicalUseDefinitionOtherTherapy.fromJson(
+                      v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   ClinicalUseDefinitionContraindication clone() => throw UnimplementedError();
   @override
@@ -338,14 +566,50 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
   /// class of products) as part of an indication or contraindication.
   @JsonKey(name: 'therapy')
   final CodeableReference therapy;
-  factory ClinicalUseDefinitionOtherTherapy.fromJson(
-          Map<String, dynamic> json) =>
-      _$ClinicalUseDefinitionOtherTherapyFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() =>
-      _$ClinicalUseDefinitionOtherTherapyToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['relationshipType'] = relationshipType.toJson();
+    json['therapy'] = therapy.toJson();
+    return json;
+  }
 
+  factory ClinicalUseDefinitionOtherTherapy.fromJson(
+      Map<String, dynamic> json) {
+    return ClinicalUseDefinitionOtherTherapy(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      relationshipType: CodeableConcept.fromJson(
+          json['relationshipType'] as Map<String, dynamic>),
+      therapy:
+          CodeableReference.fromJson(json['therapy'] as Map<String, dynamic>),
+    );
+  }
   @override
   ClinicalUseDefinitionOtherTherapy clone() => throw UnimplementedError();
   @override
@@ -470,13 +734,115 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
   /// therapies described as part of the indication.
   @JsonKey(name: 'otherTherapy')
   final List<ClinicalUseDefinitionOtherTherapy>? otherTherapy;
-  factory ClinicalUseDefinitionIndication.fromJson(Map<String, dynamic> json) =>
-      _$ClinicalUseDefinitionIndicationFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() =>
-      _$ClinicalUseDefinitionIndicationToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (diseaseSymptomProcedure != null) {
+      json['diseaseSymptomProcedure'] = diseaseSymptomProcedure!.toJson();
+    }
+    if (diseaseStatus != null) {
+      json['diseaseStatus'] = diseaseStatus!.toJson();
+    }
+    if (comorbidity != null && comorbidity!.isNotEmpty) {
+      json['comorbidity'] = comorbidity!
+          .map<dynamic>((CodeableReference v) => v.toJson())
+          .toList();
+    }
+    if (intendedEffect != null) {
+      json['intendedEffect'] = intendedEffect!.toJson();
+    }
+    if (durationRange != null) {
+      json['durationRange'] = durationRange!.toJson();
+    }
+    if (durationString?.value != null) {
+      json['durationString'] = durationString!.value;
+    }
+    if (durationStringElement != null) {
+      json['_durationString'] = durationStringElement!.toJson();
+    }
+    if (undesirableEffect != null && undesirableEffect!.isNotEmpty) {
+      json['undesirableEffect'] =
+          undesirableEffect!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (otherTherapy != null && otherTherapy!.isNotEmpty) {
+      json['otherTherapy'] = otherTherapy!
+          .map<dynamic>((ClinicalUseDefinitionOtherTherapy v) => v.toJson())
+          .toList();
+    }
+    return json;
+  }
 
+  factory ClinicalUseDefinitionIndication.fromJson(Map<String, dynamic> json) {
+    return ClinicalUseDefinitionIndication(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      diseaseSymptomProcedure: json['diseaseSymptomProcedure'] != null
+          ? CodeableReference.fromJson(
+              json['diseaseSymptomProcedure'] as Map<String, dynamic>)
+          : null,
+      diseaseStatus: json['diseaseStatus'] != null
+          ? CodeableReference.fromJson(
+              json['diseaseStatus'] as Map<String, dynamic>)
+          : null,
+      comorbidity: json['comorbidity'] != null
+          ? (json['comorbidity'] as List<dynamic>)
+              .map<CodeableReference>((dynamic v) =>
+                  CodeableReference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      intendedEffect: json['intendedEffect'] != null
+          ? CodeableReference.fromJson(
+              json['intendedEffect'] as Map<String, dynamic>)
+          : null,
+      durationRange: json['durationRange'] != null
+          ? Range.fromJson(json['durationRange'] as Map<String, dynamic>)
+          : null,
+      durationString: json['durationString'] != null
+          ? FhirString(json['durationString'])
+          : null,
+      durationStringElement: json['_durationString'] != null
+          ? Element.fromJson(json['_durationString'] as Map<String, dynamic>)
+          : null,
+      undesirableEffect: json['undesirableEffect'] != null
+          ? (json['undesirableEffect'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      otherTherapy: json['otherTherapy'] != null
+          ? (json['otherTherapy'] as List<dynamic>)
+              .map<ClinicalUseDefinitionOtherTherapy>((dynamic v) =>
+                  ClinicalUseDefinitionOtherTherapy.fromJson(
+                      v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   ClinicalUseDefinitionIndication clone() => throw UnimplementedError();
   @override
@@ -591,14 +957,83 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
   /// [management] /// Actions for managing the interaction.
   @JsonKey(name: 'management')
   final List<CodeableConcept>? management;
-  factory ClinicalUseDefinitionInteraction.fromJson(
-          Map<String, dynamic> json) =>
-      _$ClinicalUseDefinitionInteractionFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() =>
-      _$ClinicalUseDefinitionInteractionToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (interactant != null && interactant!.isNotEmpty) {
+      json['interactant'] = interactant!
+          .map<dynamic>((ClinicalUseDefinitionInteractant v) => v.toJson())
+          .toList();
+    }
+    if (type != null) {
+      json['type'] = type!.toJson();
+    }
+    if (effect != null) {
+      json['effect'] = effect!.toJson();
+    }
+    if (incidence != null) {
+      json['incidence'] = incidence!.toJson();
+    }
+    if (management != null && management!.isNotEmpty) {
+      json['management'] =
+          management!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory ClinicalUseDefinitionInteraction.fromJson(Map<String, dynamic> json) {
+    return ClinicalUseDefinitionInteraction(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      interactant: json['interactant'] != null
+          ? (json['interactant'] as List<dynamic>)
+              .map<ClinicalUseDefinitionInteractant>((dynamic v) =>
+                  ClinicalUseDefinitionInteractant.fromJson(
+                      v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
+          : null,
+      effect: json['effect'] != null
+          ? CodeableReference.fromJson(json['effect'] as Map<String, dynamic>)
+          : null,
+      incidence: json['incidence'] != null
+          ? CodeableConcept.fromJson(json['incidence'] as Map<String, dynamic>)
+          : null,
+      management: json['management'] != null
+          ? (json['management'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   ClinicalUseDefinitionInteraction clone() => throw UnimplementedError();
   @override
@@ -686,14 +1121,56 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
   /// [itemCodeableConcept] /// The specific medication, food or laboratory test that interacts.
   @JsonKey(name: 'itemCodeableConcept')
   final CodeableConcept? itemCodeableConcept;
-  factory ClinicalUseDefinitionInteractant.fromJson(
-          Map<String, dynamic> json) =>
-      _$ClinicalUseDefinitionInteractantFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() =>
-      _$ClinicalUseDefinitionInteractantToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (itemReference != null) {
+      json['itemReference'] = itemReference!.toJson();
+    }
+    if (itemCodeableConcept != null) {
+      json['itemCodeableConcept'] = itemCodeableConcept!.toJson();
+    }
+    return json;
+  }
 
+  factory ClinicalUseDefinitionInteractant.fromJson(Map<String, dynamic> json) {
+    return ClinicalUseDefinitionInteractant(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      itemReference: json['itemReference'] != null
+          ? Reference.fromJson(json['itemReference'] as Map<String, dynamic>)
+          : null,
+      itemCodeableConcept: json['itemCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['itemCodeableConcept'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   ClinicalUseDefinitionInteractant clone() => throw UnimplementedError();
   @override
@@ -781,14 +1258,65 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
   /// [frequencyOfOccurrence] /// How often the effect is seen.
   @JsonKey(name: 'frequencyOfOccurrence')
   final CodeableConcept? frequencyOfOccurrence;
-  factory ClinicalUseDefinitionUndesirableEffect.fromJson(
-          Map<String, dynamic> json) =>
-      _$ClinicalUseDefinitionUndesirableEffectFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() =>
-      _$ClinicalUseDefinitionUndesirableEffectToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (symptomConditionEffect != null) {
+      json['symptomConditionEffect'] = symptomConditionEffect!.toJson();
+    }
+    if (classification != null) {
+      json['classification'] = classification!.toJson();
+    }
+    if (frequencyOfOccurrence != null) {
+      json['frequencyOfOccurrence'] = frequencyOfOccurrence!.toJson();
+    }
+    return json;
+  }
 
+  factory ClinicalUseDefinitionUndesirableEffect.fromJson(
+      Map<String, dynamic> json) {
+    return ClinicalUseDefinitionUndesirableEffect(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      symptomConditionEffect: json['symptomConditionEffect'] != null
+          ? CodeableReference.fromJson(
+              json['symptomConditionEffect'] as Map<String, dynamic>)
+          : null,
+      classification: json['classification'] != null
+          ? CodeableConcept.fromJson(
+              json['classification'] as Map<String, dynamic>)
+          : null,
+      frequencyOfOccurrence: json['frequencyOfOccurrence'] != null
+          ? CodeableConcept.fromJson(
+              json['frequencyOfOccurrence'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   ClinicalUseDefinitionUndesirableEffect clone() => throw UnimplementedError();
   @override
@@ -880,12 +1408,61 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
   /// [code] /// A coded or unformatted textual definition of this warning.
   @JsonKey(name: 'code')
   final CodeableConcept? code;
-  factory ClinicalUseDefinitionWarning.fromJson(Map<String, dynamic> json) =>
-      _$ClinicalUseDefinitionWarningFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ClinicalUseDefinitionWarningToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (description?.value != null) {
+      json['description'] = description!.value;
+    }
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    if (code != null) {
+      json['code'] = code!.toJson();
+    }
+    return json;
+  }
 
+  factory ClinicalUseDefinitionWarning.fromJson(Map<String, dynamic> json) {
+    return ClinicalUseDefinitionWarning(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      description: json['description'] != null
+          ? FhirMarkdown(json['description'])
+          : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
+      code: json['code'] != null
+          ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   ClinicalUseDefinitionWarning clone() => throw UnimplementedError();
   @override

@@ -59,7 +59,7 @@ enum SubscriberRelationshipCodes {
   }
 
   String toJson() => toString();
-  SubscriberRelationshipCodes fromString(String str) {
+  static SubscriberRelationshipCodes fromString(String str) {
     switch (str) {
       case 'child':
         return SubscriberRelationshipCodes.child;
@@ -80,7 +80,7 @@ enum SubscriberRelationshipCodes {
     }
   }
 
-  SubscriberRelationshipCodes fromJson(dynamic jsonValue) {
+  static SubscriberRelationshipCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -46,7 +46,7 @@ enum CommonUCUMCodesForAge {
   }
 
   String toJson() => toString();
-  CommonUCUMCodesForAge fromString(String str) {
+  static CommonUCUMCodesForAge fromString(String str) {
     switch (str) {
       case 'min':
         return CommonUCUMCodesForAge.min;
@@ -65,7 +65,7 @@ enum CommonUCUMCodesForAge {
     }
   }
 
-  CommonUCUMCodesForAge fromJson(dynamic jsonValue) {
+  static CommonUCUMCodesForAge fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

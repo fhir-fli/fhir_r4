@@ -59,7 +59,7 @@ enum StudyType {
   }
 
   String toJson() => toString();
-  StudyType fromString(String str) {
+  static StudyType fromString(String str) {
     switch (str) {
       case 'RCT':
         return StudyType.RCT;
@@ -80,7 +80,7 @@ enum StudyType {
     }
   }
 
-  StudyType fromJson(dynamic jsonValue) {
+  static StudyType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

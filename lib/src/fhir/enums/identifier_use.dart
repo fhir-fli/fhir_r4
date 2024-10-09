@@ -45,7 +45,7 @@ enum IdentifierUse {
   }
 
   String toJson() => toString();
-  IdentifierUse fromString(String str) {
+  static IdentifierUse fromString(String str) {
     switch (str) {
       case 'usual':
         return IdentifierUse.usual;
@@ -62,7 +62,7 @@ enum IdentifierUse {
     }
   }
 
-  IdentifierUse fromJson(dynamic jsonValue) {
+  static IdentifierUse fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -66,7 +66,7 @@ enum EventStatus {
   }
 
   String toJson() => toString();
-  EventStatus fromString(String str) {
+  static EventStatus fromString(String str) {
     switch (str) {
       case 'preparation':
         return EventStatus.preparation;
@@ -89,7 +89,7 @@ enum EventStatus {
     }
   }
 
-  EventStatus fromJson(dynamic jsonValue) {
+  static EventStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

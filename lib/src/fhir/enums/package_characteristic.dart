@@ -28,7 +28,7 @@ enum PackageCharacteristic {
   }
 
   String toJson() => toString();
-  PackageCharacteristic fromString(String str) {
+  static PackageCharacteristic fromString(String str) {
     switch (str) {
       case 'HospitalPack':
         return PackageCharacteristic.HospitalPack;
@@ -41,7 +41,7 @@ enum PackageCharacteristic {
     }
   }
 
-  PackageCharacteristic fromJson(dynamic jsonValue) {
+  static PackageCharacteristic fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

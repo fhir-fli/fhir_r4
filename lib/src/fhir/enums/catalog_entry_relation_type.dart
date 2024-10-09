@@ -24,7 +24,7 @@ enum CatalogEntryRelationType {
   }
 
   String toJson() => toString();
-  CatalogEntryRelationType fromString(String str) {
+  static CatalogEntryRelationType fromString(String str) {
     switch (str) {
       case 'triggers':
         return CatalogEntryRelationType.triggers;
@@ -35,7 +35,7 @@ enum CatalogEntryRelationType {
     }
   }
 
-  CatalogEntryRelationType fromJson(dynamic jsonValue) {
+  static CatalogEntryRelationType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

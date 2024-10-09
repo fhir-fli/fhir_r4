@@ -129,7 +129,7 @@ enum SystemRestfulInteraction {
   }
 
   String toJson() => toString();
-  SystemRestfulInteraction fromString(String str) {
+  static SystemRestfulInteraction fromString(String str) {
     switch (str) {
       case 'read':
         return SystemRestfulInteraction.read;
@@ -170,7 +170,7 @@ enum SystemRestfulInteraction {
     }
   }
 
-  SystemRestfulInteraction fromJson(dynamic jsonValue) {
+  static SystemRestfulInteraction fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

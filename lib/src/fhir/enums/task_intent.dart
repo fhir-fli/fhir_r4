@@ -80,7 +80,7 @@ enum TaskIntent {
   }
 
   String toJson() => toString();
-  TaskIntent fromString(String str) {
+  static TaskIntent fromString(String str) {
     switch (str) {
       case 'unknown':
         return TaskIntent.unknown;
@@ -107,7 +107,7 @@ enum TaskIntent {
     }
   }
 
-  TaskIntent fromJson(dynamic jsonValue) {
+  static TaskIntent fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

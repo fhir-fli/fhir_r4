@@ -87,7 +87,7 @@ enum ObservationDataType {
   }
 
   String toJson() => toString();
-  ObservationDataType fromString(String str) {
+  static ObservationDataType fromString(String str) {
     switch (str) {
       case 'Quantity':
         return ObservationDataType.Quantity;
@@ -116,7 +116,7 @@ enum ObservationDataType {
     }
   }
 
-  ObservationDataType fromJson(dynamic jsonValue) {
+  static ObservationDataType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

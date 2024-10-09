@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'narrative.g.dart';
-
 /// [Narrative] /// A human-readable summary of the resource conveying the essential clinical
 /// and business information for the resource.
 @JsonSerializable()
@@ -41,12 +39,36 @@ class Narrative extends DataType {
   /// [div] /// The actual narrative content, a stripped down version of XHTML.
   @JsonKey(name: 'div')
   final FhirMarkdown div;
-  factory Narrative.fromJson(Map<String, dynamic> json) =>
-      _$NarrativeFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$NarrativeToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    json['status'] = status.toJson();
+    json['div'] = div.toJson();
+    return json;
+  }
 
+  factory Narrative.fromJson(Map<String, dynamic> json) {
+    return Narrative(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      status: NarrativeStatus.fromJson(json['status'] as Map<String, dynamic>),
+      div: FhirMarkdown.fromJson(json['div'] as Map<String, dynamic>),
+    );
+  }
   @override
   Narrative clone() => throw UnimplementedError();
   @override

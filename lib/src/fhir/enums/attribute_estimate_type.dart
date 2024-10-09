@@ -87,7 +87,7 @@ enum AttributeEstimateType {
   }
 
   String toJson() => toString();
-  AttributeEstimateType fromString(String str) {
+  static AttributeEstimateType fromString(String str) {
     switch (str) {
       case '0000419':
         return AttributeEstimateType.value0000419;
@@ -116,7 +116,7 @@ enum AttributeEstimateType {
     }
   }
 
-  AttributeEstimateType fromJson(dynamic jsonValue) {
+  static AttributeEstimateType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -38,7 +38,7 @@ enum SubscriptionStatusCodes {
   }
 
   String toJson() => toString();
-  SubscriptionStatusCodes fromString(String str) {
+  static SubscriptionStatusCodes fromString(String str) {
     switch (str) {
       case 'requested':
         return SubscriptionStatusCodes.requested;
@@ -53,7 +53,7 @@ enum SubscriptionStatusCodes {
     }
   }
 
-  SubscriptionStatusCodes fromJson(dynamic jsonValue) {
+  static SubscriptionStatusCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

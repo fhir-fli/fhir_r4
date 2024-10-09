@@ -28,7 +28,7 @@ enum Stereochemistry {
   }
 
   String toJson() => toString();
-  Stereochemistry fromString(String str) {
+  static Stereochemistry fromString(String str) {
     switch (str) {
       case 'ConstitutionalIsomer':
         return Stereochemistry.ConstitutionalIsomer;
@@ -41,7 +41,7 @@ enum Stereochemistry {
     }
   }
 
-  Stereochemistry fromJson(dynamic jsonValue) {
+  static Stereochemistry fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

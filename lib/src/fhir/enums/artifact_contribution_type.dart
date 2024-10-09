@@ -108,7 +108,7 @@ enum ArtifactContributionType {
   }
 
   String toJson() => toString();
-  ArtifactContributionType fromString(String str) {
+  static ArtifactContributionType fromString(String str) {
     switch (str) {
       case 'conceptualization':
         return ArtifactContributionType.conceptualization;
@@ -143,7 +143,7 @@ enum ArtifactContributionType {
     }
   }
 
-  ArtifactContributionType fromJson(dynamic jsonValue) {
+  static ArtifactContributionType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

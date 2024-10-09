@@ -24,7 +24,7 @@ enum EnableWhenBehavior {
   }
 
   String toJson() => toString();
-  EnableWhenBehavior fromString(String str) {
+  static EnableWhenBehavior fromString(String str) {
     switch (str) {
       case 'all':
         return EnableWhenBehavior.all;
@@ -35,7 +35,7 @@ enum EnableWhenBehavior {
     }
   }
 
-  EnableWhenBehavior fromJson(dynamic jsonValue) {
+  static EnableWhenBehavior fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -38,7 +38,7 @@ enum ClaimCareTeamRoleCodes {
   }
 
   String toJson() => toString();
-  ClaimCareTeamRoleCodes fromString(String str) {
+  static ClaimCareTeamRoleCodes fromString(String str) {
     switch (str) {
       case 'primary':
         return ClaimCareTeamRoleCodes.primary;
@@ -53,7 +53,7 @@ enum ClaimCareTeamRoleCodes {
     }
   }
 
-  ClaimCareTeamRoleCodes fromJson(dynamic jsonValue) {
+  static ClaimCareTeamRoleCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -226,7 +226,7 @@ enum EvidenceClassifier {
   }
 
   String toJson() => toString();
-  EvidenceClassifier fromString(String str) {
+  static EvidenceClassifier fromString(String str) {
     switch (str) {
       case 'COVID19Specific':
         return EvidenceClassifier.COVID19Specific;
@@ -295,7 +295,7 @@ enum EvidenceClassifier {
     }
   }
 
-  EvidenceClassifier fromJson(dynamic jsonValue) {
+  static EvidenceClassifier fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

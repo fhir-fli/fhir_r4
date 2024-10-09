@@ -31,7 +31,7 @@ enum NamingSystemType {
   }
 
   String toJson() => toString();
-  NamingSystemType fromString(String str) {
+  static NamingSystemType fromString(String str) {
     switch (str) {
       case 'codesystem':
         return NamingSystemType.codesystem;
@@ -44,7 +44,7 @@ enum NamingSystemType {
     }
   }
 
-  NamingSystemType fromJson(dynamic jsonValue) {
+  static NamingSystemType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

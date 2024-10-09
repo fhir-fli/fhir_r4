@@ -22,7 +22,7 @@ enum InvestigationType {
   }
 
   String toJson() => toString();
-  InvestigationType fromString(String str) {
+  static InvestigationType fromString(String str) {
     switch (str) {
       case '271336007':
         return InvestigationType.value271336007;
@@ -33,7 +33,7 @@ enum InvestigationType {
     }
   }
 
-  InvestigationType fromJson(dynamic jsonValue) {
+  static InvestigationType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

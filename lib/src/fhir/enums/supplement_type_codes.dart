@@ -280,7 +280,7 @@ enum SupplementTypeCodes {
   }
 
   String toJson() => toString();
-  SupplementTypeCodes fromString(String str) {
+  static SupplementTypeCodes fromString(String str) {
     switch (str) {
       case '442901000124106':
         return SupplementTypeCodes.value442901000124106;
@@ -377,7 +377,7 @@ enum SupplementTypeCodes {
     }
   }
 
-  SupplementTypeCodes fromJson(dynamic jsonValue) {
+  static SupplementTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

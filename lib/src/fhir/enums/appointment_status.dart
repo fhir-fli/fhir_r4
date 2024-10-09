@@ -80,7 +80,7 @@ enum AppointmentStatus {
   }
 
   String toJson() => toString();
-  AppointmentStatus fromString(String str) {
+  static AppointmentStatus fromString(String str) {
     switch (str) {
       case 'proposed':
         return AppointmentStatus.proposed;
@@ -107,7 +107,7 @@ enum AppointmentStatus {
     }
   }
 
-  AppointmentStatus fromJson(dynamic jsonValue) {
+  static AppointmentStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -122,7 +122,7 @@ enum EvidenceCertaintyRating {
   }
 
   String toJson() => toString();
-  EvidenceCertaintyRating fromString(String str) {
+  static EvidenceCertaintyRating fromString(String str) {
     switch (str) {
       case 'high':
         return EvidenceCertaintyRating.high;
@@ -161,7 +161,7 @@ enum EvidenceCertaintyRating {
     }
   }
 
-  EvidenceCertaintyRating fromJson(dynamic jsonValue) {
+  static EvidenceCertaintyRating fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

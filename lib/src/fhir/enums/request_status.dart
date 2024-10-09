@@ -59,7 +59,7 @@ enum RequestStatus {
   }
 
   String toJson() => toString();
-  RequestStatus fromString(String str) {
+  static RequestStatus fromString(String str) {
     switch (str) {
       case 'draft':
         return RequestStatus.draft;
@@ -80,7 +80,7 @@ enum RequestStatus {
     }
   }
 
-  RequestStatus fromJson(dynamic jsonValue) {
+  static RequestStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

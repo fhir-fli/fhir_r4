@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'signature.g.dart';
-
 /// [Signature] /// A signature along with supporting context. The signature may be a digital
 /// signature that is cryptographic in nature, or some other signature
 /// acceptable to the domain. This other signature may be as simple as a
@@ -85,12 +83,82 @@ class Signature extends DataType {
   final FhirBase64Binary? data;
   @JsonKey(name: '_data')
   final Element? dataElement;
-  factory Signature.fromJson(Map<String, dynamic> json) =>
-      _$SignatureFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$SignatureToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    json['type'] = type.map<dynamic>((Coding v) => v.toJson()).toList();
+    json['when'] = when.value;
+    if (whenElement != null) {
+      json['_when'] = whenElement!.toJson();
+    }
+    json['who'] = who.toJson();
+    if (onBehalfOf != null) {
+      json['onBehalfOf'] = onBehalfOf!.toJson();
+    }
+    if (targetFormat?.value != null) {
+      json['targetFormat'] = targetFormat!.value;
+    }
+    if (targetFormatElement != null) {
+      json['_targetFormat'] = targetFormatElement!.toJson();
+    }
+    if (sigFormat?.value != null) {
+      json['sigFormat'] = sigFormat!.value;
+    }
+    if (sigFormatElement != null) {
+      json['_sigFormat'] = sigFormatElement!.toJson();
+    }
+    if (data?.value != null) {
+      json['data'] = data!.value;
+    }
+    if (dataElement != null) {
+      json['_data'] = dataElement!.toJson();
+    }
+    return json;
+  }
 
+  factory Signature.fromJson(Map<String, dynamic> json) {
+    return Signature(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: (json['type'] as List<dynamic>)
+          .map<Coding>(
+              (dynamic v) => Coding.fromJson(v as Map<String, dynamic>))
+          .toList(),
+      when: FhirInstant(json['when']),
+      whenElement: Element.fromJson(json['_when'] as Map<String, dynamic>),
+      who: Reference.fromJson(json['who'] as Map<String, dynamic>),
+      onBehalfOf: json['onBehalfOf'] != null
+          ? Reference.fromJson(json['onBehalfOf'] as Map<String, dynamic>)
+          : null,
+      targetFormat:
+          json['targetFormat'] != null ? FhirCode(json['targetFormat']) : null,
+      targetFormatElement: json['_targetFormat'] != null
+          ? Element.fromJson(json['_targetFormat'] as Map<String, dynamic>)
+          : null,
+      sigFormat: json['sigFormat'] != null ? FhirCode(json['sigFormat']) : null,
+      sigFormatElement: json['_sigFormat'] != null
+          ? Element.fromJson(json['_sigFormat'] as Map<String, dynamic>)
+          : null,
+      data: json['data'] != null ? FhirBase64Binary(json['data']) : null,
+      dataElement: json['_data'] != null
+          ? Element.fromJson(json['_data'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   Signature clone() => throw UnimplementedError();
   @override

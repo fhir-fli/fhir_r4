@@ -24,7 +24,7 @@ enum GraphCompartmentUse {
   }
 
   String toJson() => toString();
-  GraphCompartmentUse fromString(String str) {
+  static GraphCompartmentUse fromString(String str) {
     switch (str) {
       case 'condition':
         return GraphCompartmentUse.condition;
@@ -35,7 +35,7 @@ enum GraphCompartmentUse {
     }
   }
 
-  GraphCompartmentUse fromJson(dynamic jsonValue) {
+  static GraphCompartmentUse fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

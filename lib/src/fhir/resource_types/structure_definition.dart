@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'structure_definition.g.dart';
-
 /// [StructureDefinition] /// A definition of a FHIR structure. This resource is used to describe the
 /// underlying resources, data types defined in FHIR, and also for describing
 /// extensions and constraints on resources and data types.
@@ -72,8 +70,6 @@ class StructureDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.StructureDefinition);
   @override
   String get fhirType => 'StructureDefinition';
@@ -270,12 +266,310 @@ class StructureDefinition extends DomainResource {
   /// a statement of differences that it applies.
   @JsonKey(name: 'differential')
   final StructureDefinitionDifferential? differential;
-  factory StructureDefinition.fromJson(Map<String, dynamic> json) =>
-      _$StructureDefinitionFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$StructureDefinitionToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['url'] = url.value;
+    if (urlElement != null) {
+      json['_url'] = urlElement!.toJson();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    if (version?.value != null) {
+      json['version'] = version!.value;
+    }
+    if (versionElement != null) {
+      json['_version'] = versionElement!.toJson();
+    }
+    json['name'] = name.value;
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (title?.value != null) {
+      json['title'] = title!.value;
+    }
+    if (titleElement != null) {
+      json['_title'] = titleElement!.toJson();
+    }
+    json['status'] = status.toJson();
+    if (experimental?.value != null) {
+      json['experimental'] = experimental!.value;
+    }
+    if (experimentalElement != null) {
+      json['_experimental'] = experimentalElement!.toJson();
+    }
+    if (date?.value != null) {
+      json['date'] = date!.value;
+    }
+    if (dateElement != null) {
+      json['_date'] = dateElement!.toJson();
+    }
+    if (publisher?.value != null) {
+      json['publisher'] = publisher!.value;
+    }
+    if (publisherElement != null) {
+      json['_publisher'] = publisherElement!.toJson();
+    }
+    if (contact != null && contact!.isNotEmpty) {
+      json['contact'] =
+          contact!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+    }
+    if (description?.value != null) {
+      json['description'] = description!.value;
+    }
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    if (useContext != null && useContext!.isNotEmpty) {
+      json['useContext'] =
+          useContext!.map<dynamic>((UsageContext v) => v.toJson()).toList();
+    }
+    if (jurisdiction != null && jurisdiction!.isNotEmpty) {
+      json['jurisdiction'] = jurisdiction!
+          .map<dynamic>((CodeableConcept v) => v.toJson())
+          .toList();
+    }
+    if (purpose?.value != null) {
+      json['purpose'] = purpose!.value;
+    }
+    if (purposeElement != null) {
+      json['_purpose'] = purposeElement!.toJson();
+    }
+    if (copyright?.value != null) {
+      json['copyright'] = copyright!.value;
+    }
+    if (copyrightElement != null) {
+      json['_copyright'] = copyrightElement!.toJson();
+    }
+    if (keyword != null && keyword!.isNotEmpty) {
+      json['keyword'] =
+          keyword!.map<dynamic>((Coding v) => v.toJson()).toList();
+    }
+    if (fhirVersion != null) {
+      json['fhirVersion'] = fhirVersion!.toJson();
+    }
+    if (mapping != null && mapping!.isNotEmpty) {
+      json['mapping'] = mapping!
+          .map<dynamic>((StructureDefinitionMapping v) => v.toJson())
+          .toList();
+    }
+    json['kind'] = kind.toJson();
+    json['abstract'] = abstract_.value;
+    if (abstractElement != null) {
+      json['_abstract'] = abstractElement!.toJson();
+    }
+    if (context != null && context!.isNotEmpty) {
+      json['context'] = context!
+          .map<dynamic>((StructureDefinitionContext v) => v.toJson())
+          .toList();
+    }
+    json['type'] = type.toJson();
+    if (baseDefinition?.value != null) {
+      json['baseDefinition'] = baseDefinition!.value;
+    }
+    if (baseDefinitionElement != null) {
+      json['_baseDefinition'] = baseDefinitionElement!.toJson();
+    }
+    if (derivation != null) {
+      json['derivation'] = derivation!.toJson();
+    }
+    if (snapshot != null) {
+      json['snapshot'] = snapshot!.toJson();
+    }
+    if (differential != null) {
+      json['differential'] = differential!.toJson();
+    }
+    return json;
+  }
 
+  factory StructureDefinition.fromJson(Map<String, dynamic> json) {
+    return StructureDefinition(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      url: FhirUri(json['url']),
+      urlElement: Element.fromJson(json['_url'] as Map<String, dynamic>),
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      version: json['version'] != null ? FhirString(json['version']) : null,
+      versionElement: json['_version'] != null
+          ? Element.fromJson(json['_version'] as Map<String, dynamic>)
+          : null,
+      name: FhirString(json['name']),
+      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      title: json['title'] != null ? FhirString(json['title']) : null,
+      titleElement: json['_title'] != null
+          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
+          : null,
+      status:
+          PublicationStatus.fromJson(json['status'] as Map<String, dynamic>),
+      experimental: json['experimental'] != null
+          ? FhirBoolean(json['experimental'])
+          : null,
+      experimentalElement: json['_experimental'] != null
+          ? Element.fromJson(json['_experimental'] as Map<String, dynamic>)
+          : null,
+      date: json['date'] != null ? FhirDateTime(json['date']) : null,
+      dateElement: json['_date'] != null
+          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
+          : null,
+      publisher:
+          json['publisher'] != null ? FhirString(json['publisher']) : null,
+      publisherElement: json['_publisher'] != null
+          ? Element.fromJson(json['_publisher'] as Map<String, dynamic>)
+          : null,
+      contact: json['contact'] != null
+          ? (json['contact'] as List<dynamic>)
+              .map<ContactDetail>((dynamic v) =>
+                  ContactDetail.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      description: json['description'] != null
+          ? FhirMarkdown(json['description'])
+          : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
+      useContext: json['useContext'] != null
+          ? (json['useContext'] as List<dynamic>)
+              .map<UsageContext>((dynamic v) =>
+                  UsageContext.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      jurisdiction: json['jurisdiction'] != null
+          ? (json['jurisdiction'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      purpose: json['purpose'] != null ? FhirMarkdown(json['purpose']) : null,
+      purposeElement: json['_purpose'] != null
+          ? Element.fromJson(json['_purpose'] as Map<String, dynamic>)
+          : null,
+      copyright:
+          json['copyright'] != null ? FhirMarkdown(json['copyright']) : null,
+      copyrightElement: json['_copyright'] != null
+          ? Element.fromJson(json['_copyright'] as Map<String, dynamic>)
+          : null,
+      keyword: json['keyword'] != null
+          ? (json['keyword'] as List<dynamic>)
+              .map<Coding>(
+                  (dynamic v) => Coding.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      fhirVersion: json['fhirVersion'] != null
+          ? FHIRVersion.fromJson(json['fhirVersion'] as Map<String, dynamic>)
+          : null,
+      mapping: json['mapping'] != null
+          ? (json['mapping'] as List<dynamic>)
+              .map<StructureDefinitionMapping>((dynamic v) =>
+                  StructureDefinitionMapping.fromJson(
+                      v as Map<String, dynamic>))
+              .toList()
+          : null,
+      kind: StructureDefinitionKind.fromJson(
+          json['kind'] as Map<String, dynamic>),
+      abstract_: FhirBoolean(json['abstract']),
+      abstractElement:
+          Element.fromJson(json['_abstract'] as Map<String, dynamic>),
+      context: json['context'] != null
+          ? (json['context'] as List<dynamic>)
+              .map<StructureDefinitionContext>((dynamic v) =>
+                  StructureDefinitionContext.fromJson(
+                      v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: FHIRDefinedType.fromJson(json['type'] as Map<String, dynamic>),
+      baseDefinition: json['baseDefinition'] != null
+          ? FhirCanonical(json['baseDefinition'])
+          : null,
+      baseDefinitionElement: json['_baseDefinition'] != null
+          ? Element.fromJson(json['_baseDefinition'] as Map<String, dynamic>)
+          : null,
+      derivation: json['derivation'] != null
+          ? TypeDerivationRule.fromJson(
+              json['derivation'] as Map<String, dynamic>)
+          : null,
+      snapshot: json['snapshot'] != null
+          ? StructureDefinitionSnapshot.fromJson(
+              json['snapshot'] as Map<String, dynamic>)
+          : null,
+      differential: json['differential'] != null
+          ? StructureDefinitionDifferential.fromJson(
+              json['differential'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   StructureDefinition clone() => throw UnimplementedError();
   @override
@@ -478,12 +772,80 @@ class StructureDefinitionMapping extends BackboneElement {
   final FhirString? comment;
   @JsonKey(name: '_comment')
   final Element? commentElement;
-  factory StructureDefinitionMapping.fromJson(Map<String, dynamic> json) =>
-      _$StructureDefinitionMappingFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$StructureDefinitionMappingToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['identity'] = identity.value;
+    if (identityElement != null) {
+      json['_identity'] = identityElement!.toJson();
+    }
+    if (uri?.value != null) {
+      json['uri'] = uri!.value;
+    }
+    if (uriElement != null) {
+      json['_uri'] = uriElement!.toJson();
+    }
+    if (name?.value != null) {
+      json['name'] = name!.value;
+    }
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (comment?.value != null) {
+      json['comment'] = comment!.value;
+    }
+    if (commentElement != null) {
+      json['_comment'] = commentElement!.toJson();
+    }
+    return json;
+  }
 
+  factory StructureDefinitionMapping.fromJson(Map<String, dynamic> json) {
+    return StructureDefinitionMapping(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identity: FhirId(json['identity']),
+      identityElement:
+          Element.fromJson(json['_identity'] as Map<String, dynamic>),
+      uri: json['uri'] != null ? FhirUri(json['uri']) : null,
+      uriElement: json['_uri'] != null
+          ? Element.fromJson(json['_uri'] as Map<String, dynamic>)
+          : null,
+      name: json['name'] != null ? FhirString(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
+      comment: json['comment'] != null ? FhirString(json['comment']) : null,
+      commentElement: json['_comment'] != null
+          ? Element.fromJson(json['_comment'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   StructureDefinitionMapping clone() => throw UnimplementedError();
   @override
@@ -594,12 +956,72 @@ class StructureDefinitionContext extends BackboneElement {
   final List<FhirString>? contextInvariant;
   @JsonKey(name: '_contextInvariant')
   final List<Element>? contextInvariantElement;
-  factory StructureDefinitionContext.fromJson(Map<String, dynamic> json) =>
-      _$StructureDefinitionContextFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$StructureDefinitionContextToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['type'] = type.toJson();
+    json['expression'] = expression.value;
+    if (expressionElement != null) {
+      json['_expression'] = expressionElement!.toJson();
+    }
+    if (contextInvariant != null && contextInvariant!.isNotEmpty) {
+      json['contextInvariant'] =
+          contextInvariant!.map((FhirString v) => v.value).toList();
+    }
+    if (contextInvariantElement != null &&
+        contextInvariantElement!.isNotEmpty) {
+      json['_contextInvariant'] =
+          contextInvariantElement!.map((Element v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory StructureDefinitionContext.fromJson(Map<String, dynamic> json) {
+    return StructureDefinitionContext(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: ExtensionContextType.fromJson(json['type'] as Map<String, dynamic>),
+      expression: FhirString(json['expression']),
+      expressionElement:
+          Element.fromJson(json['_expression'] as Map<String, dynamic>),
+      contextInvariant: json['contextInvariant'] != null
+          ? (json['contextInvariant'] as List<dynamic>)
+              .map<FhirString>((dynamic v) => FhirString(v))
+              .toList()
+          : null,
+      contextInvariantElement: json['_contextInvariant'] != null
+          ? (json['_contextInvariant'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   StructureDefinitionContext clone() => throw UnimplementedError();
   @override
@@ -685,12 +1107,49 @@ class StructureDefinitionSnapshot extends BackboneElement {
   /// [element] /// Captures constraints on each element within the resource.
   @JsonKey(name: 'element')
   final List<ElementDefinition> element;
-  factory StructureDefinitionSnapshot.fromJson(Map<String, dynamic> json) =>
-      _$StructureDefinitionSnapshotFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$StructureDefinitionSnapshotToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['element'] =
+        element.map<dynamic>((ElementDefinition v) => v.toJson()).toList();
+    return json;
+  }
 
+  factory StructureDefinitionSnapshot.fromJson(Map<String, dynamic> json) {
+    return StructureDefinitionSnapshot(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      element: (json['element'] as List<dynamic>)
+          .map<ElementDefinition>((dynamic v) =>
+              ElementDefinition.fromJson(v as Map<String, dynamic>))
+          .toList(),
+    );
+  }
   @override
   StructureDefinitionSnapshot clone() => throw UnimplementedError();
   @override
@@ -765,13 +1224,49 @@ class StructureDefinitionDifferential extends BackboneElement {
   /// [element] /// Captures constraints on each element within the resource.
   @JsonKey(name: 'element')
   final List<ElementDefinition> element;
-  factory StructureDefinitionDifferential.fromJson(Map<String, dynamic> json) =>
-      _$StructureDefinitionDifferentialFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() =>
-      _$StructureDefinitionDifferentialToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['element'] =
+        element.map<dynamic>((ElementDefinition v) => v.toJson()).toList();
+    return json;
+  }
 
+  factory StructureDefinitionDifferential.fromJson(Map<String, dynamic> json) {
+    return StructureDefinitionDifferential(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      element: (json['element'] as List<dynamic>)
+          .map<ElementDefinition>((dynamic v) =>
+              ElementDefinition.fromJson(v as Map<String, dynamic>))
+          .toList(),
+    );
+  }
   @override
   StructureDefinitionDifferential clone() => throw UnimplementedError();
   @override

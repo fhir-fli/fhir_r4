@@ -297,7 +297,7 @@ enum OralSiteCodes {
   }
 
   String toJson() => toString();
-  OralSiteCodes fromString(String str) {
+  static OralSiteCodes fromString(String str) {
     switch (str) {
       case '0':
         return OralSiteCodes.value0;
@@ -386,7 +386,7 @@ enum OralSiteCodes {
     }
   }
 
-  OralSiteCodes fromJson(dynamic jsonValue) {
+  static OralSiteCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

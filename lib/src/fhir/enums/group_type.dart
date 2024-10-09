@@ -52,7 +52,7 @@ enum GroupType {
   }
 
   String toJson() => toString();
-  GroupType fromString(String str) {
+  static GroupType fromString(String str) {
     switch (str) {
       case 'person':
         return GroupType.person;
@@ -71,7 +71,7 @@ enum GroupType {
     }
   }
 
-  GroupType fromJson(dynamic jsonValue) {
+  static GroupType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

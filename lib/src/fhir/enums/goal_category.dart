@@ -45,7 +45,7 @@ enum GoalCategory {
   }
 
   String toJson() => toString();
-  GoalCategory fromString(String str) {
+  static GoalCategory fromString(String str) {
     switch (str) {
       case 'dietary':
         return GoalCategory.dietary;
@@ -62,7 +62,7 @@ enum GoalCategory {
     }
   }
 
-  GoalCategory fromJson(dynamic jsonValue) {
+  static GoalCategory fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

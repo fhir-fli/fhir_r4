@@ -24,7 +24,7 @@ enum SupplyType {
   }
 
   String toJson() => toString();
-  SupplyType fromString(String str) {
+  static SupplyType fromString(String str) {
     switch (str) {
       case 'central':
         return SupplyType.central;
@@ -35,7 +35,7 @@ enum SupplyType {
     }
   }
 
-  SupplyType fromJson(dynamic jsonValue) {
+  static SupplyType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

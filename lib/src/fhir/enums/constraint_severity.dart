@@ -24,7 +24,7 @@ enum ConstraintSeverity {
   }
 
   String toJson() => toString();
-  ConstraintSeverity fromString(String str) {
+  static ConstraintSeverity fromString(String str) {
     switch (str) {
       case 'error':
         return ConstraintSeverity.error;
@@ -35,7 +35,7 @@ enum ConstraintSeverity {
     }
   }
 
-  ConstraintSeverity fromJson(dynamic jsonValue) {
+  static ConstraintSeverity fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

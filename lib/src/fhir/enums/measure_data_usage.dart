@@ -24,7 +24,7 @@ enum MeasureDataUsage {
   }
 
   String toJson() => toString();
-  MeasureDataUsage fromString(String str) {
+  static MeasureDataUsage fromString(String str) {
     switch (str) {
       case 'supplemental-data':
         return MeasureDataUsage.supplemental_data;
@@ -35,7 +35,7 @@ enum MeasureDataUsage {
     }
   }
 
-  MeasureDataUsage fromJson(dynamic jsonValue) {
+  static MeasureDataUsage fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

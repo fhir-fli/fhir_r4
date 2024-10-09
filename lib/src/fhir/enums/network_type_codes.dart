@@ -24,7 +24,7 @@ enum NetworkTypeCodes {
   }
 
   String toJson() => toString();
-  NetworkTypeCodes fromString(String str) {
+  static NetworkTypeCodes fromString(String str) {
     switch (str) {
       case 'in':
         return NetworkTypeCodes.in_;
@@ -35,7 +35,7 @@ enum NetworkTypeCodes {
     }
   }
 
-  NetworkTypeCodes fromJson(dynamic jsonValue) {
+  static NetworkTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

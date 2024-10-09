@@ -45,7 +45,7 @@ enum MeasureType {
   }
 
   String toJson() => toString();
-  MeasureType fromString(String str) {
+  static MeasureType fromString(String str) {
     switch (str) {
       case 'process':
         return MeasureType.process;
@@ -62,7 +62,7 @@ enum MeasureType {
     }
   }
 
-  MeasureType fromJson(dynamic jsonValue) {
+  static MeasureType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

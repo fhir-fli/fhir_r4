@@ -31,7 +31,7 @@ enum ArtifactContributionInstanceType {
   }
 
   String toJson() => toString();
-  ArtifactContributionInstanceType fromString(String str) {
+  static ArtifactContributionInstanceType fromString(String str) {
     switch (str) {
       case 'reviewed':
         return ArtifactContributionInstanceType.reviewed;
@@ -44,7 +44,7 @@ enum ArtifactContributionInstanceType {
     }
   }
 
-  ArtifactContributionInstanceType fromJson(dynamic jsonValue) {
+  static ArtifactContributionInstanceType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

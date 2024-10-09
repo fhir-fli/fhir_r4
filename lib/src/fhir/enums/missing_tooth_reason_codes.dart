@@ -38,7 +38,7 @@ enum MissingToothReasonCodes {
   }
 
   String toJson() => toString();
-  MissingToothReasonCodes fromString(String str) {
+  static MissingToothReasonCodes fromString(String str) {
     switch (str) {
       case 'e':
         return MissingToothReasonCodes.e;
@@ -53,7 +53,7 @@ enum MissingToothReasonCodes {
     }
   }
 
-  MissingToothReasonCodes fromJson(dynamic jsonValue) {
+  static MissingToothReasonCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

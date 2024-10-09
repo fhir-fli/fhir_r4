@@ -66,7 +66,7 @@ enum AdjudicationValueCodes {
   }
 
   String toJson() => toString();
-  AdjudicationValueCodes fromString(String str) {
+  static AdjudicationValueCodes fromString(String str) {
     switch (str) {
       case 'submitted':
         return AdjudicationValueCodes.submitted;
@@ -89,7 +89,7 @@ enum AdjudicationValueCodes {
     }
   }
 
-  AdjudicationValueCodes fromJson(dynamic jsonValue) {
+  static AdjudicationValueCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

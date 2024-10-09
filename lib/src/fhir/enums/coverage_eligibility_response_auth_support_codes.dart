@@ -66,7 +66,7 @@ enum CoverageEligibilityResponseAuthSupportCodes {
   }
 
   String toJson() => toString();
-  CoverageEligibilityResponseAuthSupportCodes fromString(String str) {
+  static CoverageEligibilityResponseAuthSupportCodes fromString(String str) {
     switch (str) {
       case 'laborder':
         return CoverageEligibilityResponseAuthSupportCodes.laborder;
@@ -90,7 +90,8 @@ enum CoverageEligibilityResponseAuthSupportCodes {
     }
   }
 
-  CoverageEligibilityResponseAuthSupportCodes fromJson(dynamic jsonValue) {
+  static CoverageEligibilityResponseAuthSupportCodes fromJson(
+      dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

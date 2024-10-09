@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'contributor.g.dart';
-
 /// [Contributor] /// A contributor to the content of a knowledge asset, including authors,
 /// editors, reviewers, and endorsers.
 @JsonSerializable()
@@ -49,12 +47,50 @@ class Contributor extends DataType {
   /// contributor.
   @JsonKey(name: 'contact')
   final List<ContactDetail>? contact;
-  factory Contributor.fromJson(Map<String, dynamic> json) =>
-      _$ContributorFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ContributorToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    json['type'] = type.toJson();
+    json['name'] = name.value;
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (contact != null && contact!.isNotEmpty) {
+      json['contact'] =
+          contact!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory Contributor.fromJson(Map<String, dynamic> json) {
+    return Contributor(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: ContributorType.fromJson(json['type'] as Map<String, dynamic>),
+      name: FhirString(json['name']),
+      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      contact: json['contact'] != null
+          ? (json['contact'] as List<dynamic>)
+              .map<ContactDetail>((dynamic v) =>
+                  ContactDetail.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   Contributor clone() => throw UnimplementedError();
   @override

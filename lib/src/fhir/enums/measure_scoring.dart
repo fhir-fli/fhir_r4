@@ -38,7 +38,7 @@ enum MeasureScoring {
   }
 
   String toJson() => toString();
-  MeasureScoring fromString(String str) {
+  static MeasureScoring fromString(String str) {
     switch (str) {
       case 'proportion':
         return MeasureScoring.proportion;
@@ -53,7 +53,7 @@ enum MeasureScoring {
     }
   }
 
-  MeasureScoring fromJson(dynamic jsonValue) {
+  static MeasureScoring fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -73,7 +73,7 @@ enum ExampleUseCodesForList {
   }
 
   String toJson() => toString();
-  ExampleUseCodesForList fromString(String str) {
+  static ExampleUseCodesForList fromString(String str) {
     switch (str) {
       case 'alerts':
         return ExampleUseCodesForList.alerts;
@@ -98,7 +98,7 @@ enum ExampleUseCodesForList {
     }
   }
 
-  ExampleUseCodesForList fromJson(dynamic jsonValue) {
+  static ExampleUseCodesForList fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

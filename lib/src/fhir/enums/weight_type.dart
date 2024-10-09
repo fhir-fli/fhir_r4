@@ -28,7 +28,7 @@ enum WeightType {
   }
 
   String toJson() => toString();
-  WeightType fromString(String str) {
+  static WeightType fromString(String str) {
     switch (str) {
       case 'Exact':
         return WeightType.Exact;
@@ -41,7 +41,7 @@ enum WeightType {
     }
   }
 
-  WeightType fromJson(dynamic jsonValue) {
+  static WeightType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

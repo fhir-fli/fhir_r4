@@ -52,7 +52,7 @@ enum ActionSelectionBehavior {
   }
 
   String toJson() => toString();
-  ActionSelectionBehavior fromString(String str) {
+  static ActionSelectionBehavior fromString(String str) {
     switch (str) {
       case 'any':
         return ActionSelectionBehavior.any;
@@ -71,7 +71,7 @@ enum ActionSelectionBehavior {
     }
   }
 
-  ActionSelectionBehavior fromJson(dynamic jsonValue) {
+  static ActionSelectionBehavior fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

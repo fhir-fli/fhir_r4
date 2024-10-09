@@ -73,7 +73,7 @@ enum MeasurePopulationType {
   }
 
   String toJson() => toString();
-  MeasurePopulationType fromString(String str) {
+  static MeasurePopulationType fromString(String str) {
     switch (str) {
       case 'initial-population':
         return MeasurePopulationType.initial_population;
@@ -98,7 +98,7 @@ enum MeasurePopulationType {
     }
   }
 
-  MeasurePopulationType fromJson(dynamic jsonValue) {
+  static MeasurePopulationType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

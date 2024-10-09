@@ -52,7 +52,7 @@ enum ProductCrossReferenceType {
   }
 
   String toJson() => toString();
-  ProductCrossReferenceType fromString(String str) {
+  static ProductCrossReferenceType fromString(String str) {
     switch (str) {
       case 'InvestigationalProduct':
         return ProductCrossReferenceType.InvestigationalProduct;
@@ -71,7 +71,7 @@ enum ProductCrossReferenceType {
     }
   }
 
-  ProductCrossReferenceType fromJson(dynamic jsonValue) {
+  static ProductCrossReferenceType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

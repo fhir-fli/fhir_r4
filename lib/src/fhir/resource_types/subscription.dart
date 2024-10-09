@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'subscription.g.dart';
-
 /// [Subscription] /// The subscription resource is used to define a push-based subscription from
 /// a server to another system. Once a subscription is registered with the
 /// server, the server checks every resource that is created or updated, and if
@@ -43,8 +41,6 @@ class Subscription extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Subscription);
   @override
   String get fhirType => 'Subscription';
@@ -94,12 +90,132 @@ class Subscription extends DomainResource {
   /// the criteria.
   @JsonKey(name: 'channel')
   final SubscriptionChannel channel;
-  factory Subscription.fromJson(Map<String, dynamic> json) =>
-      _$SubscriptionFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$SubscriptionToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['status'] = status.toJson();
+    if (contact != null && contact!.isNotEmpty) {
+      json['contact'] =
+          contact!.map<dynamic>((ContactPoint v) => v.toJson()).toList();
+    }
+    if (end?.value != null) {
+      json['end'] = end!.value;
+    }
+    if (endElement != null) {
+      json['_end'] = endElement!.toJson();
+    }
+    json['reason'] = reason.value;
+    if (reasonElement != null) {
+      json['_reason'] = reasonElement!.toJson();
+    }
+    json['criteria'] = criteria.value;
+    if (criteriaElement != null) {
+      json['_criteria'] = criteriaElement!.toJson();
+    }
+    if (error?.value != null) {
+      json['error'] = error!.value;
+    }
+    if (errorElement != null) {
+      json['_error'] = errorElement!.toJson();
+    }
+    json['channel'] = channel.toJson();
+    return json;
+  }
 
+  factory Subscription.fromJson(Map<String, dynamic> json) {
+    return Subscription(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      status: SubscriptionStatusCodes.fromJson(
+          json['status'] as Map<String, dynamic>),
+      contact: json['contact'] != null
+          ? (json['contact'] as List<dynamic>)
+              .map<ContactPoint>((dynamic v) =>
+                  ContactPoint.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      end: json['end'] != null ? FhirInstant(json['end']) : null,
+      endElement: json['_end'] != null
+          ? Element.fromJson(json['_end'] as Map<String, dynamic>)
+          : null,
+      reason: FhirString(json['reason']),
+      reasonElement: Element.fromJson(json['_reason'] as Map<String, dynamic>),
+      criteria: FhirString(json['criteria']),
+      criteriaElement:
+          Element.fromJson(json['_criteria'] as Map<String, dynamic>),
+      error: json['error'] != null ? FhirString(json['error']) : null,
+      errorElement: json['_error'] != null
+          ? Element.fromJson(json['_error'] as Map<String, dynamic>)
+          : null,
+      channel:
+          SubscriptionChannel.fromJson(json['channel'] as Map<String, dynamic>),
+    );
+  }
   @override
   Subscription clone() => throw UnimplementedError();
   @override
@@ -240,12 +356,83 @@ class SubscriptionChannel extends BackboneElement {
   final List<FhirString>? header;
   @JsonKey(name: '_header')
   final List<Element>? headerElement;
-  factory SubscriptionChannel.fromJson(Map<String, dynamic> json) =>
-      _$SubscriptionChannelFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$SubscriptionChannelToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['type'] = type.toJson();
+    if (endpoint?.value != null) {
+      json['endpoint'] = endpoint!.value;
+    }
+    if (endpointElement != null) {
+      json['_endpoint'] = endpointElement!.toJson();
+    }
+    if (payload?.value != null) {
+      json['payload'] = payload!.value;
+    }
+    if (payloadElement != null) {
+      json['_payload'] = payloadElement!.toJson();
+    }
+    if (header != null && header!.isNotEmpty) {
+      json['header'] = header!.map((FhirString v) => v.value).toList();
+    }
+    if (headerElement != null && headerElement!.isNotEmpty) {
+      json['_header'] = headerElement!.map((Element v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory SubscriptionChannel.fromJson(Map<String, dynamic> json) {
+    return SubscriptionChannel(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: SubscriptionChannelType.fromJson(
+          json['type'] as Map<String, dynamic>),
+      endpoint: json['endpoint'] != null ? FhirUrl(json['endpoint']) : null,
+      endpointElement: json['_endpoint'] != null
+          ? Element.fromJson(json['_endpoint'] as Map<String, dynamic>)
+          : null,
+      payload: json['payload'] != null ? FhirCode(json['payload']) : null,
+      payloadElement: json['_payload'] != null
+          ? Element.fromJson(json['_payload'] as Map<String, dynamic>)
+          : null,
+      header: json['header'] != null
+          ? (json['header'] as List<dynamic>)
+              .map<FhirString>((dynamic v) => FhirString(v))
+              .toList()
+          : null,
+      headerElement: json['_header'] != null
+          ? (json['_header'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   SubscriptionChannel clone() => throw UnimplementedError();
   @override

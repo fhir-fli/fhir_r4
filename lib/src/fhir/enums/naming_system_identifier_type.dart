@@ -38,7 +38,7 @@ enum NamingSystemIdentifierType {
   }
 
   String toJson() => toString();
-  NamingSystemIdentifierType fromString(String str) {
+  static NamingSystemIdentifierType fromString(String str) {
     switch (str) {
       case 'oid':
         return NamingSystemIdentifierType.oid;
@@ -53,7 +53,7 @@ enum NamingSystemIdentifierType {
     }
   }
 
-  NamingSystemIdentifierType fromJson(dynamic jsonValue) {
+  static NamingSystemIdentifierType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

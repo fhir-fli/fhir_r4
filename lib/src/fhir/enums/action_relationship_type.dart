@@ -73,7 +73,7 @@ enum ActionRelationshipType {
   }
 
   String toJson() => toString();
-  ActionRelationshipType fromString(String str) {
+  static ActionRelationshipType fromString(String str) {
     switch (str) {
       case 'before-start':
         return ActionRelationshipType.before_start;
@@ -98,7 +98,7 @@ enum ActionRelationshipType {
     }
   }
 
-  ActionRelationshipType fromJson(dynamic jsonValue) {
+  static ActionRelationshipType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

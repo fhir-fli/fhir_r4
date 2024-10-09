@@ -94,7 +94,7 @@ enum TaskStatus {
   }
 
   String toJson() => toString();
-  TaskStatus fromString(String str) {
+  static TaskStatus fromString(String str) {
     switch (str) {
       case 'draft':
         return TaskStatus.draft;
@@ -125,7 +125,7 @@ enum TaskStatus {
     }
   }
 
-  TaskStatus fromJson(dynamic jsonValue) {
+  static TaskStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

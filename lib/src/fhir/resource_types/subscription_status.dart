@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'subscription_status.g.dart';
-
 /// [SubscriptionStatus] /// The SubscriptionStatus resource describes the state of a Subscription
 /// during notifications.
 @JsonSerializable()
@@ -39,8 +37,6 @@ class SubscriptionStatus extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.SubscriptionStatus);
   @override
   String get fhirType => 'SubscriptionStatus';
@@ -89,12 +85,144 @@ class SubscriptionStatus extends DomainResource {
   /// [error] /// A record of errors that occurred when the server processed a notification.
   @JsonKey(name: 'error')
   final List<CodeableConcept>? error;
-  factory SubscriptionStatus.fromJson(Map<String, dynamic> json) =>
-      _$SubscriptionStatusFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$SubscriptionStatusToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (status != null) {
+      json['status'] = status!.toJson();
+    }
+    json['type'] = type.toJson();
+    if (eventsSinceSubscriptionStart?.value != null) {
+      json['eventsSinceSubscriptionStart'] =
+          eventsSinceSubscriptionStart!.value;
+    }
+    if (eventsSinceSubscriptionStartElement != null) {
+      json['_eventsSinceSubscriptionStart'] =
+          eventsSinceSubscriptionStartElement!.toJson();
+    }
+    if (notificationEvent != null && notificationEvent!.isNotEmpty) {
+      json['notificationEvent'] = notificationEvent!
+          .map<dynamic>((SubscriptionStatusNotificationEvent v) => v.toJson())
+          .toList();
+    }
+    json['subscription'] = subscription.toJson();
+    if (topic?.value != null) {
+      json['topic'] = topic!.value;
+    }
+    if (topicElement != null) {
+      json['_topic'] = topicElement!.toJson();
+    }
+    if (error != null && error!.isNotEmpty) {
+      json['error'] =
+          error!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory SubscriptionStatus.fromJson(Map<String, dynamic> json) {
+    return SubscriptionStatus(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      status: json['status'] != null
+          ? SubscriptionStatusCodes.fromJson(
+              json['status'] as Map<String, dynamic>)
+          : null,
+      type: SubscriptionNotificationType.fromJson(
+          json['type'] as Map<String, dynamic>),
+      eventsSinceSubscriptionStart: json['eventsSinceSubscriptionStart'] != null
+          ? FhirString(json['eventsSinceSubscriptionStart'])
+          : null,
+      eventsSinceSubscriptionStartElement:
+          json['_eventsSinceSubscriptionStart'] != null
+              ? Element.fromJson(
+                  json['_eventsSinceSubscriptionStart'] as Map<String, dynamic>)
+              : null,
+      notificationEvent: json['notificationEvent'] != null
+          ? (json['notificationEvent'] as List<dynamic>)
+              .map<SubscriptionStatusNotificationEvent>((dynamic v) =>
+                  SubscriptionStatusNotificationEvent.fromJson(
+                      v as Map<String, dynamic>))
+              .toList()
+          : null,
+      subscription:
+          Reference.fromJson(json['subscription'] as Map<String, dynamic>),
+      topic: json['topic'] != null ? FhirCanonical(json['topic']) : null,
+      topicElement: json['_topic'] != null
+          ? Element.fromJson(json['_topic'] as Map<String, dynamic>)
+          : null,
+      error: json['error'] != null
+          ? (json['error'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   SubscriptionStatus clone() => throw UnimplementedError();
   @override
@@ -233,14 +361,78 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
   /// objects.
   @JsonKey(name: 'additionalContext')
   final List<Reference>? additionalContext;
-  factory SubscriptionStatusNotificationEvent.fromJson(
-          Map<String, dynamic> json) =>
-      _$SubscriptionStatusNotificationEventFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() =>
-      _$SubscriptionStatusNotificationEventToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['eventNumber'] = eventNumber.value;
+    if (eventNumberElement != null) {
+      json['_eventNumber'] = eventNumberElement!.toJson();
+    }
+    if (timestamp?.value != null) {
+      json['timestamp'] = timestamp!.value;
+    }
+    if (timestampElement != null) {
+      json['_timestamp'] = timestampElement!.toJson();
+    }
+    if (focus != null) {
+      json['focus'] = focus!.toJson();
+    }
+    if (additionalContext != null && additionalContext!.isNotEmpty) {
+      json['additionalContext'] =
+          additionalContext!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory SubscriptionStatusNotificationEvent.fromJson(
+      Map<String, dynamic> json) {
+    return SubscriptionStatusNotificationEvent(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      eventNumber: FhirString(json['eventNumber']),
+      eventNumberElement:
+          Element.fromJson(json['_eventNumber'] as Map<String, dynamic>),
+      timestamp:
+          json['timestamp'] != null ? FhirInstant(json['timestamp']) : null,
+      timestampElement: json['_timestamp'] != null
+          ? Element.fromJson(json['_timestamp'] as Map<String, dynamic>)
+          : null,
+      focus: json['focus'] != null
+          ? Reference.fromJson(json['focus'] as Map<String, dynamic>)
+          : null,
+      additionalContext: json['additionalContext'] != null
+          ? (json['additionalContext'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   SubscriptionStatusNotificationEvent clone() => throw UnimplementedError();
   @override

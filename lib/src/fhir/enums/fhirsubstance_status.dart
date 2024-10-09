@@ -31,7 +31,7 @@ enum FHIRSubstanceStatus {
   }
 
   String toJson() => toString();
-  FHIRSubstanceStatus fromString(String str) {
+  static FHIRSubstanceStatus fromString(String str) {
     switch (str) {
       case 'active':
         return FHIRSubstanceStatus.active;
@@ -44,7 +44,7 @@ enum FHIRSubstanceStatus {
     }
   }
 
-  FHIRSubstanceStatus fromJson(dynamic jsonValue) {
+  static FHIRSubstanceStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

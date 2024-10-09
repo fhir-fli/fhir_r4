@@ -52,7 +52,7 @@ enum GroupMeasure {
   }
 
   String toJson() => toString();
-  GroupMeasure fromString(String str) {
+  static GroupMeasure fromString(String str) {
     switch (str) {
       case 'mean':
         return GroupMeasure.mean;
@@ -71,7 +71,7 @@ enum GroupMeasure {
     }
   }
 
-  GroupMeasure fromJson(dynamic jsonValue) {
+  static GroupMeasure fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -52,7 +52,7 @@ enum RestfulSecurityService {
   }
 
   String toJson() => toString();
-  RestfulSecurityService fromString(String str) {
+  static RestfulSecurityService fromString(String str) {
     switch (str) {
       case 'OAuth':
         return RestfulSecurityService.OAuth;
@@ -71,7 +71,7 @@ enum RestfulSecurityService {
     }
   }
 
-  RestfulSecurityService fromJson(dynamic jsonValue) {
+  static RestfulSecurityService fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

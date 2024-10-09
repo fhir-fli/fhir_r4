@@ -24,7 +24,7 @@ enum AdverseEventActuality {
   }
 
   String toJson() => toString();
-  AdverseEventActuality fromString(String str) {
+  static AdverseEventActuality fromString(String str) {
     switch (str) {
       case 'actual':
         return AdverseEventActuality.actual;
@@ -35,7 +35,7 @@ enum AdverseEventActuality {
     }
   }
 
-  AdverseEventActuality fromJson(dynamic jsonValue) {
+  static AdverseEventActuality fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

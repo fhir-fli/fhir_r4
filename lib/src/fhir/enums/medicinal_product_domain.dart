@@ -31,7 +31,7 @@ enum MedicinalProductDomain {
   }
 
   String toJson() => toString();
-  MedicinalProductDomain fromString(String str) {
+  static MedicinalProductDomain fromString(String str) {
     switch (str) {
       case 'Human':
         return MedicinalProductDomain.Human;
@@ -44,7 +44,7 @@ enum MedicinalProductDomain {
     }
   }
 
-  MedicinalProductDomain fromJson(dynamic jsonValue) {
+  static MedicinalProductDomain fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

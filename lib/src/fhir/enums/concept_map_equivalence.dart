@@ -80,7 +80,7 @@ enum ConceptMapEquivalence {
   }
 
   String toJson() => toString();
-  ConceptMapEquivalence fromString(String str) {
+  static ConceptMapEquivalence fromString(String str) {
     switch (str) {
       case 'relatedto':
         return ConceptMapEquivalence.relatedto;
@@ -107,7 +107,7 @@ enum ConceptMapEquivalence {
     }
   }
 
-  ConceptMapEquivalence fromJson(dynamic jsonValue) {
+  static ConceptMapEquivalence fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

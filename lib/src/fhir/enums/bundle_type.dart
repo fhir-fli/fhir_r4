@@ -73,7 +73,7 @@ enum BundleType {
   }
 
   String toJson() => toString();
-  BundleType fromString(String str) {
+  static BundleType fromString(String str) {
     switch (str) {
       case 'document':
         return BundleType.document;
@@ -98,7 +98,7 @@ enum BundleType {
     }
   }
 
-  BundleType fromJson(dynamic jsonValue) {
+  static BundleType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

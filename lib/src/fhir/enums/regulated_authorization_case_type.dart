@@ -142,7 +142,7 @@ enum RegulatedAuthorizationCaseType {
   }
 
   String toJson() => toString();
-  RegulatedAuthorizationCaseType fromString(String str) {
+  static RegulatedAuthorizationCaseType fromString(String str) {
     switch (str) {
       case 'InitialMAA':
         return RegulatedAuthorizationCaseType.InitialMAA;
@@ -193,7 +193,7 @@ enum RegulatedAuthorizationCaseType {
     }
   }
 
-  RegulatedAuthorizationCaseType fromJson(dynamic jsonValue) {
+  static RegulatedAuthorizationCaseType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

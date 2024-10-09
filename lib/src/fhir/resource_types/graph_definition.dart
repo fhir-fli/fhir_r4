@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'graph_definition.g.dart';
-
 /// [GraphDefinition] /// A formal computable definition of a graph of resources - that is, a
 /// coherent set of resources that form a graph by following references. The
 /// Graph Definition resource defines a set and makes rules about the set.
@@ -55,8 +53,6 @@ class GraphDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.GraphDefinition);
   @override
   String get fhirType => 'GraphDefinition';
@@ -174,12 +170,224 @@ class GraphDefinition extends DomainResource {
   /// [link] /// Links this graph makes rules about.
   @JsonKey(name: 'link')
   final List<GraphDefinitionLink>? link;
-  factory GraphDefinition.fromJson(Map<String, dynamic> json) =>
-      _$GraphDefinitionFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$GraphDefinitionToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (url?.value != null) {
+      json['url'] = url!.value;
+    }
+    if (urlElement != null) {
+      json['_url'] = urlElement!.toJson();
+    }
+    if (version?.value != null) {
+      json['version'] = version!.value;
+    }
+    if (versionElement != null) {
+      json['_version'] = versionElement!.toJson();
+    }
+    json['name'] = name.value;
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    json['status'] = status.toJson();
+    if (experimental?.value != null) {
+      json['experimental'] = experimental!.value;
+    }
+    if (experimentalElement != null) {
+      json['_experimental'] = experimentalElement!.toJson();
+    }
+    if (date?.value != null) {
+      json['date'] = date!.value;
+    }
+    if (dateElement != null) {
+      json['_date'] = dateElement!.toJson();
+    }
+    if (publisher?.value != null) {
+      json['publisher'] = publisher!.value;
+    }
+    if (publisherElement != null) {
+      json['_publisher'] = publisherElement!.toJson();
+    }
+    if (contact != null && contact!.isNotEmpty) {
+      json['contact'] =
+          contact!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+    }
+    if (description?.value != null) {
+      json['description'] = description!.value;
+    }
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    if (useContext != null && useContext!.isNotEmpty) {
+      json['useContext'] =
+          useContext!.map<dynamic>((UsageContext v) => v.toJson()).toList();
+    }
+    if (jurisdiction != null && jurisdiction!.isNotEmpty) {
+      json['jurisdiction'] = jurisdiction!
+          .map<dynamic>((CodeableConcept v) => v.toJson())
+          .toList();
+    }
+    if (purpose?.value != null) {
+      json['purpose'] = purpose!.value;
+    }
+    if (purposeElement != null) {
+      json['_purpose'] = purposeElement!.toJson();
+    }
+    json['start'] = start.value;
+    if (startElement != null) {
+      json['_start'] = startElement!.toJson();
+    }
+    if (profile?.value != null) {
+      json['profile'] = profile!.value;
+    }
+    if (profileElement != null) {
+      json['_profile'] = profileElement!.toJson();
+    }
+    if (link != null && link!.isNotEmpty) {
+      json['link'] =
+          link!.map<dynamic>((GraphDefinitionLink v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory GraphDefinition.fromJson(Map<String, dynamic> json) {
+    return GraphDefinition(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      url: json['url'] != null ? FhirUri(json['url']) : null,
+      urlElement: json['_url'] != null
+          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
+          : null,
+      version: json['version'] != null ? FhirString(json['version']) : null,
+      versionElement: json['_version'] != null
+          ? Element.fromJson(json['_version'] as Map<String, dynamic>)
+          : null,
+      name: FhirString(json['name']),
+      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      status:
+          PublicationStatus.fromJson(json['status'] as Map<String, dynamic>),
+      experimental: json['experimental'] != null
+          ? FhirBoolean(json['experimental'])
+          : null,
+      experimentalElement: json['_experimental'] != null
+          ? Element.fromJson(json['_experimental'] as Map<String, dynamic>)
+          : null,
+      date: json['date'] != null ? FhirDateTime(json['date']) : null,
+      dateElement: json['_date'] != null
+          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
+          : null,
+      publisher:
+          json['publisher'] != null ? FhirString(json['publisher']) : null,
+      publisherElement: json['_publisher'] != null
+          ? Element.fromJson(json['_publisher'] as Map<String, dynamic>)
+          : null,
+      contact: json['contact'] != null
+          ? (json['contact'] as List<dynamic>)
+              .map<ContactDetail>((dynamic v) =>
+                  ContactDetail.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      description: json['description'] != null
+          ? FhirMarkdown(json['description'])
+          : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
+      useContext: json['useContext'] != null
+          ? (json['useContext'] as List<dynamic>)
+              .map<UsageContext>((dynamic v) =>
+                  UsageContext.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      jurisdiction: json['jurisdiction'] != null
+          ? (json['jurisdiction'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      purpose: json['purpose'] != null ? FhirMarkdown(json['purpose']) : null,
+      purposeElement: json['_purpose'] != null
+          ? Element.fromJson(json['_purpose'] as Map<String, dynamic>)
+          : null,
+      start: FhirCode(json['start']),
+      startElement: Element.fromJson(json['_start'] as Map<String, dynamic>),
+      profile: json['profile'] != null ? FhirCanonical(json['profile']) : null,
+      profileElement: json['_profile'] != null
+          ? Element.fromJson(json['_profile'] as Map<String, dynamic>)
+          : null,
+      link: json['link'] != null
+          ? (json['link'] as List<dynamic>)
+              .map<GraphDefinitionLink>((dynamic v) =>
+                  GraphDefinitionLink.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   GraphDefinition clone() => throw UnimplementedError();
   @override
@@ -358,12 +566,106 @@ class GraphDefinitionLink extends BackboneElement {
   /// [target] /// Potential target for the link.
   @JsonKey(name: 'target')
   final List<GraphDefinitionTarget>? target;
-  factory GraphDefinitionLink.fromJson(Map<String, dynamic> json) =>
-      _$GraphDefinitionLinkFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$GraphDefinitionLinkToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (path?.value != null) {
+      json['path'] = path!.value;
+    }
+    if (pathElement != null) {
+      json['_path'] = pathElement!.toJson();
+    }
+    if (sliceName?.value != null) {
+      json['sliceName'] = sliceName!.value;
+    }
+    if (sliceNameElement != null) {
+      json['_sliceName'] = sliceNameElement!.toJson();
+    }
+    if (min?.value != null) {
+      json['min'] = min!.value;
+    }
+    if (minElement != null) {
+      json['_min'] = minElement!.toJson();
+    }
+    if (max?.value != null) {
+      json['max'] = max!.value;
+    }
+    if (maxElement != null) {
+      json['_max'] = maxElement!.toJson();
+    }
+    if (description?.value != null) {
+      json['description'] = description!.value;
+    }
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    if (target != null && target!.isNotEmpty) {
+      json['target'] = target!
+          .map<dynamic>((GraphDefinitionTarget v) => v.toJson())
+          .toList();
+    }
+    return json;
+  }
 
+  factory GraphDefinitionLink.fromJson(Map<String, dynamic> json) {
+    return GraphDefinitionLink(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      path: json['path'] != null ? FhirString(json['path']) : null,
+      pathElement: json['_path'] != null
+          ? Element.fromJson(json['_path'] as Map<String, dynamic>)
+          : null,
+      sliceName:
+          json['sliceName'] != null ? FhirString(json['sliceName']) : null,
+      sliceNameElement: json['_sliceName'] != null
+          ? Element.fromJson(json['_sliceName'] as Map<String, dynamic>)
+          : null,
+      min: json['min'] != null ? FhirInteger(json['min']) : null,
+      minElement: json['_min'] != null
+          ? Element.fromJson(json['_min'] as Map<String, dynamic>)
+          : null,
+      max: json['max'] != null ? FhirString(json['max']) : null,
+      maxElement: json['_max'] != null
+          ? Element.fromJson(json['_max'] as Map<String, dynamic>)
+          : null,
+      description:
+          json['description'] != null ? FhirString(json['description']) : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
+      target: json['target'] != null
+          ? (json['target'] as List<dynamic>)
+              .map<GraphDefinitionTarget>((dynamic v) =>
+                  GraphDefinitionTarget.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   GraphDefinitionLink clone() => throw UnimplementedError();
   @override
@@ -486,12 +788,91 @@ class GraphDefinitionTarget extends BackboneElement {
   /// [link] /// Additional links from target resource.
   @JsonKey(name: 'link')
   final List<GraphDefinitionLink>? link;
-  factory GraphDefinitionTarget.fromJson(Map<String, dynamic> json) =>
-      _$GraphDefinitionTargetFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$GraphDefinitionTargetToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['type'] = type.value;
+    if (typeElement != null) {
+      json['_type'] = typeElement!.toJson();
+    }
+    if (params?.value != null) {
+      json['params'] = params!.value;
+    }
+    if (paramsElement != null) {
+      json['_params'] = paramsElement!.toJson();
+    }
+    if (profile?.value != null) {
+      json['profile'] = profile!.value;
+    }
+    if (profileElement != null) {
+      json['_profile'] = profileElement!.toJson();
+    }
+    if (compartment != null && compartment!.isNotEmpty) {
+      json['compartment'] = compartment!
+          .map<dynamic>((GraphDefinitionCompartment v) => v.toJson())
+          .toList();
+    }
+    if (link != null && link!.isNotEmpty) {
+      json['link'] =
+          link!.map<dynamic>((GraphDefinitionLink v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory GraphDefinitionTarget.fromJson(Map<String, dynamic> json) {
+    return GraphDefinitionTarget(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: FhirCode(json['type']),
+      typeElement: Element.fromJson(json['_type'] as Map<String, dynamic>),
+      params: json['params'] != null ? FhirString(json['params']) : null,
+      paramsElement: json['_params'] != null
+          ? Element.fromJson(json['_params'] as Map<String, dynamic>)
+          : null,
+      profile: json['profile'] != null ? FhirCanonical(json['profile']) : null,
+      profileElement: json['_profile'] != null
+          ? Element.fromJson(json['_profile'] as Map<String, dynamic>)
+          : null,
+      compartment: json['compartment'] != null
+          ? (json['compartment'] as List<dynamic>)
+              .map<GraphDefinitionCompartment>((dynamic v) =>
+                  GraphDefinitionCompartment.fromJson(
+                      v as Map<String, dynamic>))
+              .toList()
+          : null,
+      link: json['link'] != null
+          ? (json['link'] as List<dynamic>)
+              .map<GraphDefinitionLink>((dynamic v) =>
+                  GraphDefinitionLink.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   GraphDefinitionTarget clone() => throw UnimplementedError();
   @override
@@ -616,12 +997,71 @@ class GraphDefinitionCompartment extends BackboneElement {
   final FhirString? description;
   @JsonKey(name: '_description')
   final Element? descriptionElement;
-  factory GraphDefinitionCompartment.fromJson(Map<String, dynamic> json) =>
-      _$GraphDefinitionCompartmentFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$GraphDefinitionCompartmentToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['use'] = use.toJson();
+    json['code'] = code.toJson();
+    json['rule'] = rule.toJson();
+    if (expression?.value != null) {
+      json['expression'] = expression!.value;
+    }
+    if (expressionElement != null) {
+      json['_expression'] = expressionElement!.toJson();
+    }
+    if (description?.value != null) {
+      json['description'] = description!.value;
+    }
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    return json;
+  }
 
+  factory GraphDefinitionCompartment.fromJson(Map<String, dynamic> json) {
+    return GraphDefinitionCompartment(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      use: GraphCompartmentUse.fromJson(json['use'] as Map<String, dynamic>),
+      code: CompartmentType.fromJson(json['code'] as Map<String, dynamic>),
+      rule: GraphCompartmentRule.fromJson(json['rule'] as Map<String, dynamic>),
+      expression:
+          json['expression'] != null ? FhirString(json['expression']) : null,
+      expressionElement: json['_expression'] != null
+          ? Element.fromJson(json['_expression'] as Map<String, dynamic>)
+          : null,
+      description:
+          json['description'] != null ? FhirString(json['description']) : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   GraphDefinitionCompartment clone() => throw UnimplementedError();
   @override

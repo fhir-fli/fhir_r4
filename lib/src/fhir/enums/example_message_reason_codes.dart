@@ -52,7 +52,7 @@ enum ExampleMessageReasonCodes {
   }
 
   String toJson() => toString();
-  ExampleMessageReasonCodes fromString(String str) {
+  static ExampleMessageReasonCodes fromString(String str) {
     switch (str) {
       case 'admit':
         return ExampleMessageReasonCodes.admit;
@@ -71,7 +71,7 @@ enum ExampleMessageReasonCodes {
     }
   }
 
-  ExampleMessageReasonCodes fromJson(dynamic jsonValue) {
+  static ExampleMessageReasonCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

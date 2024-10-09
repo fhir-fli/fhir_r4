@@ -59,7 +59,7 @@ enum TestScriptRequestMethodCode {
   }
 
   String toJson() => toString();
-  TestScriptRequestMethodCode fromString(String str) {
+  static TestScriptRequestMethodCode fromString(String str) {
     switch (str) {
       case 'delete':
         return TestScriptRequestMethodCode.delete;
@@ -80,7 +80,7 @@ enum TestScriptRequestMethodCode {
     }
   }
 
-  TestScriptRequestMethodCode fromJson(dynamic jsonValue) {
+  static TestScriptRequestMethodCode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

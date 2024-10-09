@@ -24,7 +24,7 @@ enum MedicinalProductType {
   }
 
   String toJson() => toString();
-  MedicinalProductType fromString(String str) {
+  static MedicinalProductType fromString(String str) {
     switch (str) {
       case 'MedicinalProduct':
         return MedicinalProductType.MedicinalProduct;
@@ -35,7 +35,7 @@ enum MedicinalProductType {
     }
   }
 
-  MedicinalProductType fromJson(dynamic jsonValue) {
+  static MedicinalProductType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

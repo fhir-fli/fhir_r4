@@ -45,7 +45,7 @@ enum PropertyRepresentation {
   }
 
   String toJson() => toString();
-  PropertyRepresentation fromString(String str) {
+  static PropertyRepresentation fromString(String str) {
     switch (str) {
       case 'xmlAttr':
         return PropertyRepresentation.xmlAttr;
@@ -62,7 +62,7 @@ enum PropertyRepresentation {
     }
   }
 
-  PropertyRepresentation fromJson(dynamic jsonValue) {
+  static PropertyRepresentation fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

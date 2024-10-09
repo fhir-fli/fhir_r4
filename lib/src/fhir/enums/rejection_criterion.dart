@@ -45,7 +45,7 @@ enum RejectionCriterion {
   }
 
   String toJson() => toString();
-  RejectionCriterion fromString(String str) {
+  static RejectionCriterion fromString(String str) {
     switch (str) {
       case 'hemolized':
         return RejectionCriterion.hemolized;
@@ -62,7 +62,7 @@ enum RejectionCriterion {
     }
   }
 
-  RejectionCriterion fromJson(dynamic jsonValue) {
+  static RejectionCriterion fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

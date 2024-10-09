@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'request_group.g.dart';
-
 /// [RequestGroup] /// A group of related requests that can be used to capture intended activities
 /// that have inter-dependencies such as "give this medication after that one".
 @JsonSerializable()
@@ -52,8 +50,6 @@ class RequestGroup extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.RequestGroup);
   @override
   String get fhirType => 'RequestGroup';
@@ -154,12 +150,242 @@ class RequestGroup extends DomainResource {
   /// [action] /// The actions, if any, produced by the evaluation of the artifact.
   @JsonKey(name: 'action')
   final List<RequestGroupAction>? action;
-  factory RequestGroup.fromJson(Map<String, dynamic> json) =>
-      _$RequestGroupFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$RequestGroupToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    if (instantiatesCanonical != null && instantiatesCanonical!.isNotEmpty) {
+      json['instantiatesCanonical'] =
+          instantiatesCanonical!.map((FhirCanonical v) => v.value).toList();
+    }
+    if (instantiatesCanonicalElement != null &&
+        instantiatesCanonicalElement!.isNotEmpty) {
+      json['_instantiatesCanonical'] =
+          instantiatesCanonicalElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (instantiatesUri != null && instantiatesUri!.isNotEmpty) {
+      json['instantiatesUri'] =
+          instantiatesUri!.map((FhirUri v) => v.value).toList();
+    }
+    if (instantiatesUriElement != null && instantiatesUriElement!.isNotEmpty) {
+      json['_instantiatesUri'] =
+          instantiatesUriElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (basedOn != null && basedOn!.isNotEmpty) {
+      json['basedOn'] =
+          basedOn!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (replaces != null && replaces!.isNotEmpty) {
+      json['replaces'] =
+          replaces!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (groupIdentifier != null) {
+      json['groupIdentifier'] = groupIdentifier!.toJson();
+    }
+    json['status'] = status.toJson();
+    json['intent'] = intent.toJson();
+    if (priority != null) {
+      json['priority'] = priority!.toJson();
+    }
+    if (code != null) {
+      json['code'] = code!.toJson();
+    }
+    if (subject != null) {
+      json['subject'] = subject!.toJson();
+    }
+    if (encounter != null) {
+      json['encounter'] = encounter!.toJson();
+    }
+    if (authoredOn?.value != null) {
+      json['authoredOn'] = authoredOn!.value;
+    }
+    if (authoredOnElement != null) {
+      json['_authoredOn'] = authoredOnElement!.toJson();
+    }
+    if (author != null) {
+      json['author'] = author!.toJson();
+    }
+    if (reasonCode != null && reasonCode!.isNotEmpty) {
+      json['reasonCode'] =
+          reasonCode!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (reasonReference != null && reasonReference!.isNotEmpty) {
+      json['reasonReference'] =
+          reasonReference!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (note != null && note!.isNotEmpty) {
+      json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
+    }
+    if (action != null && action!.isNotEmpty) {
+      json['action'] =
+          action!.map<dynamic>((RequestGroupAction v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory RequestGroup.fromJson(Map<String, dynamic> json) {
+    return RequestGroup(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      instantiatesCanonical: json['instantiatesCanonical'] != null
+          ? (json['instantiatesCanonical'] as List<dynamic>)
+              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .toList()
+          : null,
+      instantiatesCanonicalElement: json['_instantiatesCanonical'] != null
+          ? (json['_instantiatesCanonical'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      instantiatesUri: json['instantiatesUri'] != null
+          ? (json['instantiatesUri'] as List<dynamic>)
+              .map<FhirUri>((dynamic v) => FhirUri(v))
+              .toList()
+          : null,
+      instantiatesUriElement: json['_instantiatesUri'] != null
+          ? (json['_instantiatesUri'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      basedOn: json['basedOn'] != null
+          ? (json['basedOn'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      replaces: json['replaces'] != null
+          ? (json['replaces'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      groupIdentifier: json['groupIdentifier'] != null
+          ? Identifier.fromJson(json['groupIdentifier'] as Map<String, dynamic>)
+          : null,
+      status: RequestStatus.fromJson(json['status'] as Map<String, dynamic>),
+      intent: RequestIntent.fromJson(json['intent'] as Map<String, dynamic>),
+      priority: json['priority'] != null
+          ? RequestPriority.fromJson(json['priority'] as Map<String, dynamic>)
+          : null,
+      code: json['code'] != null
+          ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
+          : null,
+      subject: json['subject'] != null
+          ? Reference.fromJson(json['subject'] as Map<String, dynamic>)
+          : null,
+      encounter: json['encounter'] != null
+          ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
+          : null,
+      authoredOn:
+          json['authoredOn'] != null ? FhirDateTime(json['authoredOn']) : null,
+      authoredOnElement: json['_authoredOn'] != null
+          ? Element.fromJson(json['_authoredOn'] as Map<String, dynamic>)
+          : null,
+      author: json['author'] != null
+          ? Reference.fromJson(json['author'] as Map<String, dynamic>)
+          : null,
+      reasonCode: json['reasonCode'] != null
+          ? (json['reasonCode'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      reasonReference: json['reasonReference'] != null
+          ? (json['reasonReference'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                  (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      action: json['action'] != null
+          ? (json['action'] as List<dynamic>)
+              .map<RequestGroupAction>((dynamic v) =>
+                  RequestGroupAction.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   RequestGroup clone() => throw UnimplementedError();
   @override
@@ -454,12 +680,245 @@ class RequestGroupAction extends BackboneElement {
   /// [action] /// Sub actions.
   @JsonKey(name: 'action')
   final List<RequestGroupAction>? action;
-  factory RequestGroupAction.fromJson(Map<String, dynamic> json) =>
-      _$RequestGroupActionFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$RequestGroupActionToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (prefix?.value != null) {
+      json['prefix'] = prefix!.value;
+    }
+    if (prefixElement != null) {
+      json['_prefix'] = prefixElement!.toJson();
+    }
+    if (title?.value != null) {
+      json['title'] = title!.value;
+    }
+    if (titleElement != null) {
+      json['_title'] = titleElement!.toJson();
+    }
+    if (description?.value != null) {
+      json['description'] = description!.value;
+    }
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    if (textEquivalent?.value != null) {
+      json['textEquivalent'] = textEquivalent!.value;
+    }
+    if (textEquivalentElement != null) {
+      json['_textEquivalent'] = textEquivalentElement!.toJson();
+    }
+    if (priority != null) {
+      json['priority'] = priority!.toJson();
+    }
+    if (code != null && code!.isNotEmpty) {
+      json['code'] =
+          code!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (documentation != null && documentation!.isNotEmpty) {
+      json['documentation'] = documentation!
+          .map<dynamic>((RelatedArtifact v) => v.toJson())
+          .toList();
+    }
+    if (condition != null && condition!.isNotEmpty) {
+      json['condition'] = condition!
+          .map<dynamic>((RequestGroupCondition v) => v.toJson())
+          .toList();
+    }
+    if (relatedAction != null && relatedAction!.isNotEmpty) {
+      json['relatedAction'] = relatedAction!
+          .map<dynamic>((RequestGroupRelatedAction v) => v.toJson())
+          .toList();
+    }
+    if (timingDateTime?.value != null) {
+      json['timingDateTime'] = timingDateTime!.value;
+    }
+    if (timingDateTimeElement != null) {
+      json['_timingDateTime'] = timingDateTimeElement!.toJson();
+    }
+    if (timingAge != null) {
+      json['timingAge'] = timingAge!.toJson();
+    }
+    if (timingPeriod != null) {
+      json['timingPeriod'] = timingPeriod!.toJson();
+    }
+    if (timingDuration != null) {
+      json['timingDuration'] = timingDuration!.toJson();
+    }
+    if (timingRange != null) {
+      json['timingRange'] = timingRange!.toJson();
+    }
+    if (timingTiming != null) {
+      json['timingTiming'] = timingTiming!.toJson();
+    }
+    if (participant != null && participant!.isNotEmpty) {
+      json['participant'] =
+          participant!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (type != null) {
+      json['type'] = type!.toJson();
+    }
+    if (groupingBehavior != null) {
+      json['groupingBehavior'] = groupingBehavior!.toJson();
+    }
+    if (selectionBehavior != null) {
+      json['selectionBehavior'] = selectionBehavior!.toJson();
+    }
+    if (requiredBehavior != null) {
+      json['requiredBehavior'] = requiredBehavior!.toJson();
+    }
+    if (precheckBehavior != null) {
+      json['precheckBehavior'] = precheckBehavior!.toJson();
+    }
+    if (cardinalityBehavior != null) {
+      json['cardinalityBehavior'] = cardinalityBehavior!.toJson();
+    }
+    if (resource != null) {
+      json['resource'] = resource!.toJson();
+    }
+    if (action != null && action!.isNotEmpty) {
+      json['action'] =
+          action!.map<dynamic>((RequestGroupAction v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory RequestGroupAction.fromJson(Map<String, dynamic> json) {
+    return RequestGroupAction(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      prefix: json['prefix'] != null ? FhirString(json['prefix']) : null,
+      prefixElement: json['_prefix'] != null
+          ? Element.fromJson(json['_prefix'] as Map<String, dynamic>)
+          : null,
+      title: json['title'] != null ? FhirString(json['title']) : null,
+      titleElement: json['_title'] != null
+          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
+          : null,
+      description:
+          json['description'] != null ? FhirString(json['description']) : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
+      textEquivalent: json['textEquivalent'] != null
+          ? FhirString(json['textEquivalent'])
+          : null,
+      textEquivalentElement: json['_textEquivalent'] != null
+          ? Element.fromJson(json['_textEquivalent'] as Map<String, dynamic>)
+          : null,
+      priority: json['priority'] != null
+          ? RequestPriority.fromJson(json['priority'] as Map<String, dynamic>)
+          : null,
+      code: json['code'] != null
+          ? (json['code'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      documentation: json['documentation'] != null
+          ? (json['documentation'] as List<dynamic>)
+              .map<RelatedArtifact>((dynamic v) =>
+                  RelatedArtifact.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      condition: json['condition'] != null
+          ? (json['condition'] as List<dynamic>)
+              .map<RequestGroupCondition>((dynamic v) =>
+                  RequestGroupCondition.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      relatedAction: json['relatedAction'] != null
+          ? (json['relatedAction'] as List<dynamic>)
+              .map<RequestGroupRelatedAction>((dynamic v) =>
+                  RequestGroupRelatedAction.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      timingDateTime: json['timingDateTime'] != null
+          ? FhirDateTime(json['timingDateTime'])
+          : null,
+      timingDateTimeElement: json['_timingDateTime'] != null
+          ? Element.fromJson(json['_timingDateTime'] as Map<String, dynamic>)
+          : null,
+      timingAge: json['timingAge'] != null
+          ? Age.fromJson(json['timingAge'] as Map<String, dynamic>)
+          : null,
+      timingPeriod: json['timingPeriod'] != null
+          ? Period.fromJson(json['timingPeriod'] as Map<String, dynamic>)
+          : null,
+      timingDuration: json['timingDuration'] != null
+          ? FhirDuration.fromJson(
+              json['timingDuration'] as Map<String, dynamic>)
+          : null,
+      timingRange: json['timingRange'] != null
+          ? Range.fromJson(json['timingRange'] as Map<String, dynamic>)
+          : null,
+      timingTiming: json['timingTiming'] != null
+          ? Timing.fromJson(json['timingTiming'] as Map<String, dynamic>)
+          : null,
+      participant: json['participant'] != null
+          ? (json['participant'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
+          : null,
+      groupingBehavior: json['groupingBehavior'] != null
+          ? ActionGroupingBehavior.fromJson(
+              json['groupingBehavior'] as Map<String, dynamic>)
+          : null,
+      selectionBehavior: json['selectionBehavior'] != null
+          ? ActionSelectionBehavior.fromJson(
+              json['selectionBehavior'] as Map<String, dynamic>)
+          : null,
+      requiredBehavior: json['requiredBehavior'] != null
+          ? ActionRequiredBehavior.fromJson(
+              json['requiredBehavior'] as Map<String, dynamic>)
+          : null,
+      precheckBehavior: json['precheckBehavior'] != null
+          ? ActionPrecheckBehavior.fromJson(
+              json['precheckBehavior'] as Map<String, dynamic>)
+          : null,
+      cardinalityBehavior: json['cardinalityBehavior'] != null
+          ? ActionCardinalityBehavior.fromJson(
+              json['cardinalityBehavior'] as Map<String, dynamic>)
+          : null,
+      resource: json['resource'] != null
+          ? Reference.fromJson(json['resource'] as Map<String, dynamic>)
+          : null,
+      action: json['action'] != null
+          ? (json['action'] as List<dynamic>)
+              .map<RequestGroupAction>((dynamic v) =>
+                  RequestGroupAction.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   RequestGroupAction clone() => throw UnimplementedError();
   @override
@@ -618,12 +1077,51 @@ class RequestGroupCondition extends BackboneElement {
   /// condition is satisfied.
   @JsonKey(name: 'expression')
   final FhirExpression? expression;
-  factory RequestGroupCondition.fromJson(Map<String, dynamic> json) =>
-      _$RequestGroupConditionFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$RequestGroupConditionToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['kind'] = kind.toJson();
+    if (expression != null) {
+      json['expression'] = expression!.toJson();
+    }
+    return json;
+  }
 
+  factory RequestGroupCondition.fromJson(Map<String, dynamic> json) {
+    return RequestGroupCondition(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      kind: ActionConditionKind.fromJson(json['kind'] as Map<String, dynamic>),
+      expression: json['expression'] != null
+          ? FhirExpression.fromJson(json['expression'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   RequestGroupCondition clone() => throw UnimplementedError();
   @override
@@ -725,12 +1223,66 @@ class RequestGroupRelatedAction extends BackboneElement {
   /// 30-60 minutes before.
   @JsonKey(name: 'offsetRange')
   final Range? offsetRange;
-  factory RequestGroupRelatedAction.fromJson(Map<String, dynamic> json) =>
-      _$RequestGroupRelatedActionFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$RequestGroupRelatedActionToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['actionId'] = actionId.value;
+    if (actionIdElement != null) {
+      json['_actionId'] = actionIdElement!.toJson();
+    }
+    json['relationship'] = relationship.toJson();
+    if (offsetDuration != null) {
+      json['offsetDuration'] = offsetDuration!.toJson();
+    }
+    if (offsetRange != null) {
+      json['offsetRange'] = offsetRange!.toJson();
+    }
+    return json;
+  }
 
+  factory RequestGroupRelatedAction.fromJson(Map<String, dynamic> json) {
+    return RequestGroupRelatedAction(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      actionId: FhirId(json['actionId']),
+      actionIdElement:
+          Element.fromJson(json['_actionId'] as Map<String, dynamic>),
+      relationship: ActionRelationshipType.fromJson(
+          json['relationship'] as Map<String, dynamic>),
+      offsetDuration: json['offsetDuration'] != null
+          ? FhirDuration.fromJson(
+              json['offsetDuration'] as Map<String, dynamic>)
+          : null,
+      offsetRange: json['offsetRange'] != null
+          ? Range.fromJson(json['offsetRange'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   RequestGroupRelatedAction clone() => throw UnimplementedError();
   @override

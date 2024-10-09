@@ -52,7 +52,7 @@ enum DiagnosisRole {
   }
 
   String toJson() => toString();
-  DiagnosisRole fromString(String str) {
+  static DiagnosisRole fromString(String str) {
     switch (str) {
       case 'AD':
         return DiagnosisRole.AD;
@@ -73,7 +73,7 @@ enum DiagnosisRole {
     }
   }
 
-  DiagnosisRole fromJson(dynamic jsonValue) {
+  static DiagnosisRole fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

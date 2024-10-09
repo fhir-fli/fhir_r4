@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'slot.g.dart';
-
 /// [Slot] /// A slot of time on a schedule that may be available for booking
 /// appointments.
 @JsonSerializable()
@@ -44,8 +42,6 @@ class Slot extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Slot);
   @override
   String get fhirType => 'Slot';
@@ -115,11 +111,168 @@ class Slot extends DomainResource {
   final FhirString? comment;
   @JsonKey(name: '_comment')
   final Element? commentElement;
-  factory Slot.fromJson(Map<String, dynamic> json) => _$SlotFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$SlotToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    if (serviceCategory != null && serviceCategory!.isNotEmpty) {
+      json['serviceCategory'] = serviceCategory!
+          .map<dynamic>((CodeableConcept v) => v.toJson())
+          .toList();
+    }
+    if (serviceType != null && serviceType!.isNotEmpty) {
+      json['serviceType'] =
+          serviceType!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (specialty != null && specialty!.isNotEmpty) {
+      json['specialty'] =
+          specialty!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (appointmentType != null) {
+      json['appointmentType'] = appointmentType!.toJson();
+    }
+    json['schedule'] = schedule.toJson();
+    json['status'] = status.toJson();
+    json['start'] = start.value;
+    if (startElement != null) {
+      json['_start'] = startElement!.toJson();
+    }
+    json['end'] = end.value;
+    if (endElement != null) {
+      json['_end'] = endElement!.toJson();
+    }
+    if (overbooked?.value != null) {
+      json['overbooked'] = overbooked!.value;
+    }
+    if (overbookedElement != null) {
+      json['_overbooked'] = overbookedElement!.toJson();
+    }
+    if (comment?.value != null) {
+      json['comment'] = comment!.value;
+    }
+    if (commentElement != null) {
+      json['_comment'] = commentElement!.toJson();
+    }
+    return json;
+  }
 
+  factory Slot.fromJson(Map<String, dynamic> json) {
+    return Slot(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      serviceCategory: json['serviceCategory'] != null
+          ? (json['serviceCategory'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      serviceType: json['serviceType'] != null
+          ? (json['serviceType'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      specialty: json['specialty'] != null
+          ? (json['specialty'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      appointmentType: json['appointmentType'] != null
+          ? CodeableConcept.fromJson(
+              json['appointmentType'] as Map<String, dynamic>)
+          : null,
+      schedule: Reference.fromJson(json['schedule'] as Map<String, dynamic>),
+      status: SlotStatus.fromJson(json['status'] as Map<String, dynamic>),
+      start: FhirInstant(json['start']),
+      startElement: Element.fromJson(json['_start'] as Map<String, dynamic>),
+      end: FhirInstant(json['end']),
+      endElement: Element.fromJson(json['_end'] as Map<String, dynamic>),
+      overbooked:
+          json['overbooked'] != null ? FhirBoolean(json['overbooked']) : null,
+      overbookedElement: json['_overbooked'] != null
+          ? Element.fromJson(json['_overbooked'] as Map<String, dynamic>)
+          : null,
+      comment: json['comment'] != null ? FhirString(json['comment']) : null,
+      commentElement: json['_comment'] != null
+          ? Element.fromJson(json['_comment'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   Slot clone() => throw UnimplementedError();
   @override

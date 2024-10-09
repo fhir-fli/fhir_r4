@@ -83,7 +83,7 @@ enum IdentifierTypeCodes {
   }
 
   String toJson() => toString();
-  IdentifierTypeCodes fromString(String str) {
+  static IdentifierTypeCodes fromString(String str) {
     switch (str) {
       case 'DL':
         return IdentifierTypeCodes.DL;
@@ -126,7 +126,7 @@ enum IdentifierTypeCodes {
     }
   }
 
-  IdentifierTypeCodes fromJson(dynamic jsonValue) {
+  static IdentifierTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

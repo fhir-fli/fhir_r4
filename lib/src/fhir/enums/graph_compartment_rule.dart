@@ -38,7 +38,7 @@ enum GraphCompartmentRule {
   }
 
   String toJson() => toString();
-  GraphCompartmentRule fromString(String str) {
+  static GraphCompartmentRule fromString(String str) {
     switch (str) {
       case 'identical':
         return GraphCompartmentRule.identical;
@@ -53,7 +53,7 @@ enum GraphCompartmentRule {
     }
   }
 
-  GraphCompartmentRule fromJson(dynamic jsonValue) {
+  static GraphCompartmentRule fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

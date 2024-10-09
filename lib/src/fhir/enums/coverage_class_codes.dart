@@ -87,7 +87,7 @@ enum CoverageClassCodes {
   }
 
   String toJson() => toString();
-  CoverageClassCodes fromString(String str) {
+  static CoverageClassCodes fromString(String str) {
     switch (str) {
       case 'group':
         return CoverageClassCodes.group;
@@ -116,7 +116,7 @@ enum CoverageClassCodes {
     }
   }
 
-  CoverageClassCodes fromJson(dynamic jsonValue) {
+  static CoverageClassCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

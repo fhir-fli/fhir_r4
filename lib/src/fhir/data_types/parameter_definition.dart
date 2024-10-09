@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'parameter_definition.g.dart';
-
 /// [ParameterDefinition] /// The parameters to the module. This collection specifies both the input and
 /// output parameters. Input parameters are provided by the caller as part of
 /// the $evaluate operation. Output parameters are included in the
@@ -89,12 +87,88 @@ class ParameterDefinition extends DataType {
   final FhirCanonical? profile;
   @JsonKey(name: '_profile')
   final Element? profileElement;
-  factory ParameterDefinition.fromJson(Map<String, dynamic> json) =>
-      _$ParameterDefinitionFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ParameterDefinitionToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (name?.value != null) {
+      json['name'] = name!.value;
+    }
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    json['use'] = use.toJson();
+    if (min?.value != null) {
+      json['min'] = min!.value;
+    }
+    if (minElement != null) {
+      json['_min'] = minElement!.toJson();
+    }
+    if (max?.value != null) {
+      json['max'] = max!.value;
+    }
+    if (maxElement != null) {
+      json['_max'] = maxElement!.toJson();
+    }
+    if (documentation?.value != null) {
+      json['documentation'] = documentation!.value;
+    }
+    if (documentationElement != null) {
+      json['_documentation'] = documentationElement!.toJson();
+    }
+    json['type'] = type.toJson();
+    if (profile?.value != null) {
+      json['profile'] = profile!.value;
+    }
+    if (profileElement != null) {
+      json['_profile'] = profileElement!.toJson();
+    }
+    return json;
+  }
 
+  factory ParameterDefinition.fromJson(Map<String, dynamic> json) {
+    return ParameterDefinition(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      name: json['name'] != null ? FhirCode(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
+      use: OperationParameterUse.fromJson(json['use'] as Map<String, dynamic>),
+      min: json['min'] != null ? FhirInteger(json['min']) : null,
+      minElement: json['_min'] != null
+          ? Element.fromJson(json['_min'] as Map<String, dynamic>)
+          : null,
+      max: json['max'] != null ? FhirString(json['max']) : null,
+      maxElement: json['_max'] != null
+          ? Element.fromJson(json['_max'] as Map<String, dynamic>)
+          : null,
+      documentation: json['documentation'] != null
+          ? FhirString(json['documentation'])
+          : null,
+      documentationElement: json['_documentation'] != null
+          ? Element.fromJson(json['_documentation'] as Map<String, dynamic>)
+          : null,
+      type: FHIRAllTypes.fromJson(json['type'] as Map<String, dynamic>),
+      profile: json['profile'] != null ? FhirCanonical(json['profile']) : null,
+      profileElement: json['_profile'] != null
+          ? Element.fromJson(json['_profile'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   ParameterDefinition clone() => throw UnimplementedError();
   @override

@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'operation_definition.g.dart';
-
 /// [OperationDefinition] /// A formal computable definition of an operation (on the RESTful interface)
 /// or a named query (using the search interaction).
 @JsonSerializable()
@@ -75,8 +73,6 @@ class OperationDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.OperationDefinition);
   @override
   String get fhirType => 'OperationDefinition';
@@ -271,12 +267,333 @@ class OperationDefinition extends DomainResource {
   /// sets for this operation.
   @JsonKey(name: 'overload')
   final List<OperationDefinitionOverload>? overload;
-  factory OperationDefinition.fromJson(Map<String, dynamic> json) =>
-      _$OperationDefinitionFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$OperationDefinitionToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (url?.value != null) {
+      json['url'] = url!.value;
+    }
+    if (urlElement != null) {
+      json['_url'] = urlElement!.toJson();
+    }
+    if (version?.value != null) {
+      json['version'] = version!.value;
+    }
+    if (versionElement != null) {
+      json['_version'] = versionElement!.toJson();
+    }
+    json['name'] = name.value;
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (title?.value != null) {
+      json['title'] = title!.value;
+    }
+    if (titleElement != null) {
+      json['_title'] = titleElement!.toJson();
+    }
+    json['status'] = status.toJson();
+    json['kind'] = kind.toJson();
+    if (experimental?.value != null) {
+      json['experimental'] = experimental!.value;
+    }
+    if (experimentalElement != null) {
+      json['_experimental'] = experimentalElement!.toJson();
+    }
+    if (date?.value != null) {
+      json['date'] = date!.value;
+    }
+    if (dateElement != null) {
+      json['_date'] = dateElement!.toJson();
+    }
+    if (publisher?.value != null) {
+      json['publisher'] = publisher!.value;
+    }
+    if (publisherElement != null) {
+      json['_publisher'] = publisherElement!.toJson();
+    }
+    if (contact != null && contact!.isNotEmpty) {
+      json['contact'] =
+          contact!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+    }
+    if (description?.value != null) {
+      json['description'] = description!.value;
+    }
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    if (useContext != null && useContext!.isNotEmpty) {
+      json['useContext'] =
+          useContext!.map<dynamic>((UsageContext v) => v.toJson()).toList();
+    }
+    if (jurisdiction != null && jurisdiction!.isNotEmpty) {
+      json['jurisdiction'] = jurisdiction!
+          .map<dynamic>((CodeableConcept v) => v.toJson())
+          .toList();
+    }
+    if (purpose?.value != null) {
+      json['purpose'] = purpose!.value;
+    }
+    if (purposeElement != null) {
+      json['_purpose'] = purposeElement!.toJson();
+    }
+    if (affectsState?.value != null) {
+      json['affectsState'] = affectsState!.value;
+    }
+    if (affectsStateElement != null) {
+      json['_affectsState'] = affectsStateElement!.toJson();
+    }
+    json['code'] = code.value;
+    if (codeElement != null) {
+      json['_code'] = codeElement!.toJson();
+    }
+    if (comment?.value != null) {
+      json['comment'] = comment!.value;
+    }
+    if (commentElement != null) {
+      json['_comment'] = commentElement!.toJson();
+    }
+    if (base?.value != null) {
+      json['base'] = base!.value;
+    }
+    if (baseElement != null) {
+      json['_base'] = baseElement!.toJson();
+    }
+    if (resource != null && resource!.isNotEmpty) {
+      json['resource'] = resource!.map((FhirCode v) => v.value).toList();
+    }
+    if (resourceElement != null && resourceElement!.isNotEmpty) {
+      json['_resource'] =
+          resourceElement!.map((Element v) => v.toJson()).toList();
+    }
+    json['system'] = system.value;
+    if (systemElement != null) {
+      json['_system'] = systemElement!.toJson();
+    }
+    json['type'] = type.value;
+    if (typeElement != null) {
+      json['_type'] = typeElement!.toJson();
+    }
+    json['instance'] = instance.value;
+    if (instanceElement != null) {
+      json['_instance'] = instanceElement!.toJson();
+    }
+    if (inputProfile?.value != null) {
+      json['inputProfile'] = inputProfile!.value;
+    }
+    if (inputProfileElement != null) {
+      json['_inputProfile'] = inputProfileElement!.toJson();
+    }
+    if (outputProfile?.value != null) {
+      json['outputProfile'] = outputProfile!.value;
+    }
+    if (outputProfileElement != null) {
+      json['_outputProfile'] = outputProfileElement!.toJson();
+    }
+    if (parameter != null && parameter!.isNotEmpty) {
+      json['parameter'] = parameter!
+          .map<dynamic>((OperationDefinitionParameter v) => v.toJson())
+          .toList();
+    }
+    if (overload != null && overload!.isNotEmpty) {
+      json['overload'] = overload!
+          .map<dynamic>((OperationDefinitionOverload v) => v.toJson())
+          .toList();
+    }
+    return json;
+  }
 
+  factory OperationDefinition.fromJson(Map<String, dynamic> json) {
+    return OperationDefinition(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      url: json['url'] != null ? FhirUri(json['url']) : null,
+      urlElement: json['_url'] != null
+          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
+          : null,
+      version: json['version'] != null ? FhirString(json['version']) : null,
+      versionElement: json['_version'] != null
+          ? Element.fromJson(json['_version'] as Map<String, dynamic>)
+          : null,
+      name: FhirString(json['name']),
+      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      title: json['title'] != null ? FhirString(json['title']) : null,
+      titleElement: json['_title'] != null
+          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
+          : null,
+      status:
+          PublicationStatus.fromJson(json['status'] as Map<String, dynamic>),
+      kind: OperationKind.fromJson(json['kind'] as Map<String, dynamic>),
+      experimental: json['experimental'] != null
+          ? FhirBoolean(json['experimental'])
+          : null,
+      experimentalElement: json['_experimental'] != null
+          ? Element.fromJson(json['_experimental'] as Map<String, dynamic>)
+          : null,
+      date: json['date'] != null ? FhirDateTime(json['date']) : null,
+      dateElement: json['_date'] != null
+          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
+          : null,
+      publisher:
+          json['publisher'] != null ? FhirString(json['publisher']) : null,
+      publisherElement: json['_publisher'] != null
+          ? Element.fromJson(json['_publisher'] as Map<String, dynamic>)
+          : null,
+      contact: json['contact'] != null
+          ? (json['contact'] as List<dynamic>)
+              .map<ContactDetail>((dynamic v) =>
+                  ContactDetail.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      description: json['description'] != null
+          ? FhirMarkdown(json['description'])
+          : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
+      useContext: json['useContext'] != null
+          ? (json['useContext'] as List<dynamic>)
+              .map<UsageContext>((dynamic v) =>
+                  UsageContext.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      jurisdiction: json['jurisdiction'] != null
+          ? (json['jurisdiction'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      purpose: json['purpose'] != null ? FhirMarkdown(json['purpose']) : null,
+      purposeElement: json['_purpose'] != null
+          ? Element.fromJson(json['_purpose'] as Map<String, dynamic>)
+          : null,
+      affectsState: json['affectsState'] != null
+          ? FhirBoolean(json['affectsState'])
+          : null,
+      affectsStateElement: json['_affectsState'] != null
+          ? Element.fromJson(json['_affectsState'] as Map<String, dynamic>)
+          : null,
+      code: FhirCode(json['code']),
+      codeElement: Element.fromJson(json['_code'] as Map<String, dynamic>),
+      comment: json['comment'] != null ? FhirMarkdown(json['comment']) : null,
+      commentElement: json['_comment'] != null
+          ? Element.fromJson(json['_comment'] as Map<String, dynamic>)
+          : null,
+      base: json['base'] != null ? FhirCanonical(json['base']) : null,
+      baseElement: json['_base'] != null
+          ? Element.fromJson(json['_base'] as Map<String, dynamic>)
+          : null,
+      resource: json['resource'] != null
+          ? (json['resource'] as List<dynamic>)
+              .map<FhirCode>((dynamic v) => FhirCode(v))
+              .toList()
+          : null,
+      resourceElement: json['_resource'] != null
+          ? (json['_resource'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      system: FhirBoolean(json['system']),
+      systemElement: Element.fromJson(json['_system'] as Map<String, dynamic>),
+      type: FhirBoolean(json['type']),
+      typeElement: Element.fromJson(json['_type'] as Map<String, dynamic>),
+      instance: FhirBoolean(json['instance']),
+      instanceElement:
+          Element.fromJson(json['_instance'] as Map<String, dynamic>),
+      inputProfile: json['inputProfile'] != null
+          ? FhirCanonical(json['inputProfile'])
+          : null,
+      inputProfileElement: json['_inputProfile'] != null
+          ? Element.fromJson(json['_inputProfile'] as Map<String, dynamic>)
+          : null,
+      outputProfile: json['outputProfile'] != null
+          ? FhirCanonical(json['outputProfile'])
+          : null,
+      outputProfileElement: json['_outputProfile'] != null
+          ? Element.fromJson(json['_outputProfile'] as Map<String, dynamic>)
+          : null,
+      parameter: json['parameter'] != null
+          ? (json['parameter'] as List<dynamic>)
+              .map<OperationDefinitionParameter>((dynamic v) =>
+                  OperationDefinitionParameter.fromJson(
+                      v as Map<String, dynamic>))
+              .toList()
+          : null,
+      overload: json['overload'] != null
+          ? (json['overload'] as List<dynamic>)
+              .map<OperationDefinitionOverload>((dynamic v) =>
+                  OperationDefinitionOverload.fromJson(
+                      v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   OperationDefinition clone() => throw UnimplementedError();
   @override
@@ -542,12 +859,137 @@ class OperationDefinitionParameter extends BackboneElement {
   /// [part_] /// The parts of a nested Parameter.
   @JsonKey(name: 'part')
   final List<OperationDefinitionParameter>? part_;
-  factory OperationDefinitionParameter.fromJson(Map<String, dynamic> json) =>
-      _$OperationDefinitionParameterFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$OperationDefinitionParameterToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['name'] = name.value;
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    json['use'] = use.toJson();
+    json['min'] = min.value;
+    if (minElement != null) {
+      json['_min'] = minElement!.toJson();
+    }
+    json['max'] = max.value;
+    if (maxElement != null) {
+      json['_max'] = maxElement!.toJson();
+    }
+    if (documentation?.value != null) {
+      json['documentation'] = documentation!.value;
+    }
+    if (documentationElement != null) {
+      json['_documentation'] = documentationElement!.toJson();
+    }
+    if (type != null) {
+      json['type'] = type!.toJson();
+    }
+    if (targetProfile != null && targetProfile!.isNotEmpty) {
+      json['targetProfile'] =
+          targetProfile!.map((FhirCanonical v) => v.value).toList();
+    }
+    if (targetProfileElement != null && targetProfileElement!.isNotEmpty) {
+      json['_targetProfile'] =
+          targetProfileElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (searchType != null) {
+      json['searchType'] = searchType!.toJson();
+    }
+    if (binding != null) {
+      json['binding'] = binding!.toJson();
+    }
+    if (referencedFrom != null && referencedFrom!.isNotEmpty) {
+      json['referencedFrom'] = referencedFrom!
+          .map<dynamic>((OperationDefinitionReferencedFrom v) => v.toJson())
+          .toList();
+    }
+    if (part_ != null && part_!.isNotEmpty) {
+      json['part'] = part_!
+          .map<dynamic>((OperationDefinitionParameter v) => v.toJson())
+          .toList();
+    }
+    return json;
+  }
 
+  factory OperationDefinitionParameter.fromJson(Map<String, dynamic> json) {
+    return OperationDefinitionParameter(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      name: FhirCode(json['name']),
+      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      use: OperationParameterUse.fromJson(json['use'] as Map<String, dynamic>),
+      min: FhirInteger(json['min']),
+      minElement: Element.fromJson(json['_min'] as Map<String, dynamic>),
+      max: FhirString(json['max']),
+      maxElement: Element.fromJson(json['_max'] as Map<String, dynamic>),
+      documentation: json['documentation'] != null
+          ? FhirString(json['documentation'])
+          : null,
+      documentationElement: json['_documentation'] != null
+          ? Element.fromJson(json['_documentation'] as Map<String, dynamic>)
+          : null,
+      type: json['type'] != null
+          ? FHIRAllTypes.fromJson(json['type'] as Map<String, dynamic>)
+          : null,
+      targetProfile: json['targetProfile'] != null
+          ? (json['targetProfile'] as List<dynamic>)
+              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .toList()
+          : null,
+      targetProfileElement: json['_targetProfile'] != null
+          ? (json['_targetProfile'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      searchType: json['searchType'] != null
+          ? SearchParamType.fromJson(json['searchType'] as Map<String, dynamic>)
+          : null,
+      binding: json['binding'] != null
+          ? OperationDefinitionBinding.fromJson(
+              json['binding'] as Map<String, dynamic>)
+          : null,
+      referencedFrom: json['referencedFrom'] != null
+          ? (json['referencedFrom'] as List<dynamic>)
+              .map<OperationDefinitionReferencedFrom>((dynamic v) =>
+                  OperationDefinitionReferencedFrom.fromJson(
+                      v as Map<String, dynamic>))
+              .toList()
+          : null,
+      part_: json['part'] != null
+          ? (json['part'] as List<dynamic>)
+              .map<OperationDefinitionParameter>((dynamic v) =>
+                  OperationDefinitionParameter.fromJson(
+                      v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   OperationDefinitionParameter clone() => throw UnimplementedError();
   @override
@@ -672,12 +1114,53 @@ class OperationDefinitionBinding extends BackboneElement {
   final FhirCanonical valueSet;
   @JsonKey(name: '_valueSet')
   final Element? valueSetElement;
-  factory OperationDefinitionBinding.fromJson(Map<String, dynamic> json) =>
-      _$OperationDefinitionBindingFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$OperationDefinitionBindingToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['strength'] = strength.toJson();
+    json['valueSet'] = valueSet.value;
+    if (valueSetElement != null) {
+      json['_valueSet'] = valueSetElement!.toJson();
+    }
+    return json;
+  }
 
+  factory OperationDefinitionBinding.fromJson(Map<String, dynamic> json) {
+    return OperationDefinitionBinding(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      strength:
+          BindingStrength.fromJson(json['strength'] as Map<String, dynamic>),
+      valueSet: FhirCanonical(json['valueSet']),
+      valueSetElement:
+          Element.fromJson(json['_valueSet'] as Map<String, dynamic>),
+    );
+  }
   @override
   OperationDefinitionBinding clone() => throw UnimplementedError();
   @override
@@ -772,14 +1255,60 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
   final FhirString? sourceId;
   @JsonKey(name: '_sourceId')
   final Element? sourceIdElement;
-  factory OperationDefinitionReferencedFrom.fromJson(
-          Map<String, dynamic> json) =>
-      _$OperationDefinitionReferencedFromFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() =>
-      _$OperationDefinitionReferencedFromToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['source'] = source.value;
+    if (sourceElement != null) {
+      json['_source'] = sourceElement!.toJson();
+    }
+    if (sourceId?.value != null) {
+      json['sourceId'] = sourceId!.value;
+    }
+    if (sourceIdElement != null) {
+      json['_sourceId'] = sourceIdElement!.toJson();
+    }
+    return json;
+  }
 
+  factory OperationDefinitionReferencedFrom.fromJson(
+      Map<String, dynamic> json) {
+    return OperationDefinitionReferencedFrom(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      source: FhirString(json['source']),
+      sourceElement: Element.fromJson(json['_source'] as Map<String, dynamic>),
+      sourceId: json['sourceId'] != null ? FhirString(json['sourceId']) : null,
+      sourceIdElement: json['_sourceId'] != null
+          ? Element.fromJson(json['_sourceId'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   OperationDefinitionReferencedFrom clone() => throw UnimplementedError();
   @override
@@ -873,12 +1402,72 @@ class OperationDefinitionOverload extends BackboneElement {
   final FhirString? comment;
   @JsonKey(name: '_comment')
   final Element? commentElement;
-  factory OperationDefinitionOverload.fromJson(Map<String, dynamic> json) =>
-      _$OperationDefinitionOverloadFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$OperationDefinitionOverloadToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (parameterName != null && parameterName!.isNotEmpty) {
+      json['parameterName'] =
+          parameterName!.map((FhirString v) => v.value).toList();
+    }
+    if (parameterNameElement != null && parameterNameElement!.isNotEmpty) {
+      json['_parameterName'] =
+          parameterNameElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (comment?.value != null) {
+      json['comment'] = comment!.value;
+    }
+    if (commentElement != null) {
+      json['_comment'] = commentElement!.toJson();
+    }
+    return json;
+  }
 
+  factory OperationDefinitionOverload.fromJson(Map<String, dynamic> json) {
+    return OperationDefinitionOverload(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      parameterName: json['parameterName'] != null
+          ? (json['parameterName'] as List<dynamic>)
+              .map<FhirString>((dynamic v) => FhirString(v))
+              .toList()
+          : null,
+      parameterNameElement: json['_parameterName'] != null
+          ? (json['_parameterName'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      comment: json['comment'] != null ? FhirString(json['comment']) : null,
+      commentElement: json['_comment'] != null
+          ? Element.fromJson(json['_comment'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   OperationDefinitionOverload clone() => throw UnimplementedError();
   @override

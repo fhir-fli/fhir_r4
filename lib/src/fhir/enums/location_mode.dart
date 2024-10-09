@@ -24,7 +24,7 @@ enum LocationMode {
   }
 
   String toJson() => toString();
-  LocationMode fromString(String str) {
+  static LocationMode fromString(String str) {
     switch (str) {
       case 'instance':
         return LocationMode.instance;
@@ -35,7 +35,7 @@ enum LocationMode {
     }
   }
 
-  LocationMode fromJson(dynamic jsonValue) {
+  static LocationMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

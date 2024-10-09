@@ -31,7 +31,7 @@ enum LinkageType {
   }
 
   String toJson() => toString();
-  LinkageType fromString(String str) {
+  static LinkageType fromString(String str) {
     switch (str) {
       case 'source':
         return LinkageType.source;
@@ -44,7 +44,7 @@ enum LinkageType {
     }
   }
 
-  LinkageType fromJson(dynamic jsonValue) {
+  static LinkageType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

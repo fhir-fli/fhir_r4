@@ -24,7 +24,7 @@ enum TestScriptProfileOriginType {
   }
 
   String toJson() => toString();
-  TestScriptProfileOriginType fromString(String str) {
+  static TestScriptProfileOriginType fromString(String str) {
     switch (str) {
       case 'FHIR-Client':
         return TestScriptProfileOriginType.FHIR_Client;
@@ -35,7 +35,7 @@ enum TestScriptProfileOriginType {
     }
   }
 
-  TestScriptProfileOriginType fromJson(dynamic jsonValue) {
+  static TestScriptProfileOriginType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

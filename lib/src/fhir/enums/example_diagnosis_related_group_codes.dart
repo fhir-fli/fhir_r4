@@ -38,7 +38,7 @@ enum ExampleDiagnosisRelatedGroupCodes {
   }
 
   String toJson() => toString();
-  ExampleDiagnosisRelatedGroupCodes fromString(String str) {
+  static ExampleDiagnosisRelatedGroupCodes fromString(String str) {
     switch (str) {
       case '100':
         return ExampleDiagnosisRelatedGroupCodes.value100;
@@ -53,7 +53,7 @@ enum ExampleDiagnosisRelatedGroupCodes {
     }
   }
 
-  ExampleDiagnosisRelatedGroupCodes fromJson(dynamic jsonValue) {
+  static ExampleDiagnosisRelatedGroupCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

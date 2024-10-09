@@ -1144,7 +1144,7 @@ enum AnimalTissueType {
   }
 
   String toJson() => toString();
-  AnimalTissueType fromString(String str) {
+  static AnimalTissueType fromString(String str) {
     switch (str) {
       case '100000072091':
         return AnimalTissueType.value100000072091;
@@ -1529,7 +1529,7 @@ enum AnimalTissueType {
     }
   }
 
-  AnimalTissueType fromJson(dynamic jsonValue) {
+  static AnimalTissueType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -31,7 +31,7 @@ enum ExampleProviderQualificationCodes {
   }
 
   String toJson() => toString();
-  ExampleProviderQualificationCodes fromString(String str) {
+  static ExampleProviderQualificationCodes fromString(String str) {
     switch (str) {
       case '311405':
         return ExampleProviderQualificationCodes.value311405;
@@ -44,7 +44,7 @@ enum ExampleProviderQualificationCodes {
     }
   }
 
-  ExampleProviderQualificationCodes fromJson(dynamic jsonValue) {
+  static ExampleProviderQualificationCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

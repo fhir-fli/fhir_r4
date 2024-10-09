@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'invoice.g.dart';
-
 /// [Invoice] /// Invoice containing collected ChargeItems from an Account with calculated
 /// individual and total price for Billing purpose.
 @JsonSerializable()
@@ -48,8 +46,6 @@ class Invoice extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Invoice);
   @override
   String get fhirType => 'Invoice';
@@ -139,12 +135,212 @@ class Invoice extends DomainResource {
   /// participants.
   @JsonKey(name: 'note')
   final List<Annotation>? note;
-  factory Invoice.fromJson(Map<String, dynamic> json) =>
-      _$InvoiceFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$InvoiceToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    json['status'] = status.toJson();
+    if (cancelledReason?.value != null) {
+      json['cancelledReason'] = cancelledReason!.value;
+    }
+    if (cancelledReasonElement != null) {
+      json['_cancelledReason'] = cancelledReasonElement!.toJson();
+    }
+    if (type != null) {
+      json['type'] = type!.toJson();
+    }
+    if (subject != null) {
+      json['subject'] = subject!.toJson();
+    }
+    if (recipient != null) {
+      json['recipient'] = recipient!.toJson();
+    }
+    if (date?.value != null) {
+      json['date'] = date!.value;
+    }
+    if (dateElement != null) {
+      json['_date'] = dateElement!.toJson();
+    }
+    if (participant != null && participant!.isNotEmpty) {
+      json['participant'] = participant!
+          .map<dynamic>((InvoiceParticipant v) => v.toJson())
+          .toList();
+    }
+    if (issuer != null) {
+      json['issuer'] = issuer!.toJson();
+    }
+    if (account != null) {
+      json['account'] = account!.toJson();
+    }
+    if (lineItem != null && lineItem!.isNotEmpty) {
+      json['lineItem'] =
+          lineItem!.map<dynamic>((InvoiceLineItem v) => v.toJson()).toList();
+    }
+    if (totalPriceComponent != null && totalPriceComponent!.isNotEmpty) {
+      json['totalPriceComponent'] = totalPriceComponent!
+          .map<dynamic>((InvoicePriceComponent v) => v.toJson())
+          .toList();
+    }
+    if (totalNet != null) {
+      json['totalNet'] = totalNet!.toJson();
+    }
+    if (totalGross != null) {
+      json['totalGross'] = totalGross!.toJson();
+    }
+    if (paymentTerms?.value != null) {
+      json['paymentTerms'] = paymentTerms!.value;
+    }
+    if (paymentTermsElement != null) {
+      json['_paymentTerms'] = paymentTermsElement!.toJson();
+    }
+    if (note != null && note!.isNotEmpty) {
+      json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory Invoice.fromJson(Map<String, dynamic> json) {
+    return Invoice(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      status: InvoiceStatus.fromJson(json['status'] as Map<String, dynamic>),
+      cancelledReason: json['cancelledReason'] != null
+          ? FhirString(json['cancelledReason'])
+          : null,
+      cancelledReasonElement: json['_cancelledReason'] != null
+          ? Element.fromJson(json['_cancelledReason'] as Map<String, dynamic>)
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
+          : null,
+      subject: json['subject'] != null
+          ? Reference.fromJson(json['subject'] as Map<String, dynamic>)
+          : null,
+      recipient: json['recipient'] != null
+          ? Reference.fromJson(json['recipient'] as Map<String, dynamic>)
+          : null,
+      date: json['date'] != null ? FhirDateTime(json['date']) : null,
+      dateElement: json['_date'] != null
+          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
+          : null,
+      participant: json['participant'] != null
+          ? (json['participant'] as List<dynamic>)
+              .map<InvoiceParticipant>((dynamic v) =>
+                  InvoiceParticipant.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      issuer: json['issuer'] != null
+          ? Reference.fromJson(json['issuer'] as Map<String, dynamic>)
+          : null,
+      account: json['account'] != null
+          ? Reference.fromJson(json['account'] as Map<String, dynamic>)
+          : null,
+      lineItem: json['lineItem'] != null
+          ? (json['lineItem'] as List<dynamic>)
+              .map<InvoiceLineItem>((dynamic v) =>
+                  InvoiceLineItem.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      totalPriceComponent: json['totalPriceComponent'] != null
+          ? (json['totalPriceComponent'] as List<dynamic>)
+              .map<InvoicePriceComponent>((dynamic v) =>
+                  InvoicePriceComponent.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      totalNet: json['totalNet'] != null
+          ? Money.fromJson(json['totalNet'] as Map<String, dynamic>)
+          : null,
+      totalGross: json['totalGross'] != null
+          ? Money.fromJson(json['totalGross'] as Map<String, dynamic>)
+          : null,
+      paymentTerms: json['paymentTerms'] != null
+          ? FhirMarkdown(json['paymentTerms'])
+          : null,
+      paymentTermsElement: json['_paymentTerms'] != null
+          ? Element.fromJson(json['_paymentTerms'] as Map<String, dynamic>)
+          : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                  (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   Invoice clone() => throw UnimplementedError();
   @override
@@ -279,12 +475,51 @@ class InvoiceParticipant extends BackboneElement {
   /// service.
   @JsonKey(name: 'actor')
   final Reference actor;
-  factory InvoiceParticipant.fromJson(Map<String, dynamic> json) =>
-      _$InvoiceParticipantFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$InvoiceParticipantToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (role != null) {
+      json['role'] = role!.toJson();
+    }
+    json['actor'] = actor.toJson();
+    return json;
+  }
 
+  factory InvoiceParticipant.fromJson(Map<String, dynamic> json) {
+    return InvoiceParticipant(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      role: json['role'] != null
+          ? CodeableConcept.fromJson(json['role'] as Map<String, dynamic>)
+          : null,
+      actor: Reference.fromJson(json['actor'] as Map<String, dynamic>),
+    );
+  }
   @override
   InvoiceParticipant clone() => throw UnimplementedError();
   @override
@@ -391,12 +626,79 @@ class InvoiceLineItem extends BackboneElement {
   /// of the Invoice as to how the prices have been calculated.
   @JsonKey(name: 'priceComponent')
   final List<InvoicePriceComponent>? priceComponent;
-  factory InvoiceLineItem.fromJson(Map<String, dynamic> json) =>
-      _$InvoiceLineItemFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$InvoiceLineItemToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (sequence?.value != null) {
+      json['sequence'] = sequence!.value;
+    }
+    if (sequenceElement != null) {
+      json['_sequence'] = sequenceElement!.toJson();
+    }
+    if (chargeItemReference != null) {
+      json['chargeItemReference'] = chargeItemReference!.toJson();
+    }
+    if (chargeItemCodeableConcept != null) {
+      json['chargeItemCodeableConcept'] = chargeItemCodeableConcept!.toJson();
+    }
+    if (priceComponent != null && priceComponent!.isNotEmpty) {
+      json['priceComponent'] = priceComponent!
+          .map<dynamic>((InvoicePriceComponent v) => v.toJson())
+          .toList();
+    }
+    return json;
+  }
 
+  factory InvoiceLineItem.fromJson(Map<String, dynamic> json) {
+    return InvoiceLineItem(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      sequence:
+          json['sequence'] != null ? FhirPositiveInt(json['sequence']) : null,
+      sequenceElement: json['_sequence'] != null
+          ? Element.fromJson(json['_sequence'] as Map<String, dynamic>)
+          : null,
+      chargeItemReference: json['chargeItemReference'] != null
+          ? Reference.fromJson(
+              json['chargeItemReference'] as Map<String, dynamic>)
+          : null,
+      chargeItemCodeableConcept: json['chargeItemCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['chargeItemCodeableConcept'] as Map<String, dynamic>)
+          : null,
+      priceComponent: json['priceComponent'] != null
+          ? (json['priceComponent'] as List<dynamic>)
+              .map<InvoicePriceComponent>((dynamic v) =>
+                  InvoicePriceComponent.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   InvoiceLineItem clone() => throw UnimplementedError();
   @override
@@ -507,12 +809,68 @@ class InvoicePriceComponent extends BackboneElement {
   /// [amount] /// The amount calculated for this component.
   @JsonKey(name: 'amount')
   final Money? amount;
-  factory InvoicePriceComponent.fromJson(Map<String, dynamic> json) =>
-      _$InvoicePriceComponentFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$InvoicePriceComponentToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['type'] = type.toJson();
+    if (code != null) {
+      json['code'] = code!.toJson();
+    }
+    if (factor?.value != null) {
+      json['factor'] = factor!.value;
+    }
+    if (factorElement != null) {
+      json['_factor'] = factorElement!.toJson();
+    }
+    if (amount != null) {
+      json['amount'] = amount!.toJson();
+    }
+    return json;
+  }
 
+  factory InvoicePriceComponent.fromJson(Map<String, dynamic> json) {
+    return InvoicePriceComponent(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: InvoicePriceComponentType.fromJson(
+          json['type'] as Map<String, dynamic>),
+      code: json['code'] != null
+          ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
+          : null,
+      factor: json['factor'] != null ? FhirDecimal(json['factor']) : null,
+      factorElement: json['_factor'] != null
+          ? Element.fromJson(json['_factor'] as Map<String, dynamic>)
+          : null,
+      amount: json['amount'] != null
+          ? Money.fromJson(json['amount'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   InvoicePriceComponent clone() => throw UnimplementedError();
   @override

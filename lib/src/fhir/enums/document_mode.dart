@@ -24,7 +24,7 @@ enum DocumentMode {
   }
 
   String toJson() => toString();
-  DocumentMode fromString(String str) {
+  static DocumentMode fromString(String str) {
     switch (str) {
       case 'producer':
         return DocumentMode.producer;
@@ -35,7 +35,7 @@ enum DocumentMode {
     }
   }
 
-  DocumentMode fromJson(dynamic jsonValue) {
+  static DocumentMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

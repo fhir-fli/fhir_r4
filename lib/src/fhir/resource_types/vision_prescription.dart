@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'vision_prescription.g.dart';
-
 /// [VisionPrescription] /// An authorization for the provision of glasses and/or contact lenses to a
 /// patient.
 @JsonSerializable()
@@ -39,8 +37,6 @@ class VisionPrescription extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.VisionPrescription);
   @override
   String get fhirType => 'VisionPrescription';
@@ -88,12 +84,129 @@ class VisionPrescription extends DomainResource {
   /// authorization for the fullfillment by certified professionals.
   @JsonKey(name: 'lensSpecification')
   final List<VisionPrescriptionLensSpecification> lensSpecification;
-  factory VisionPrescription.fromJson(Map<String, dynamic> json) =>
-      _$VisionPrescriptionFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$VisionPrescriptionToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    json['status'] = status.toJson();
+    json['created'] = created.value;
+    if (createdElement != null) {
+      json['_created'] = createdElement!.toJson();
+    }
+    json['patient'] = patient.toJson();
+    if (encounter != null) {
+      json['encounter'] = encounter!.toJson();
+    }
+    json['dateWritten'] = dateWritten.value;
+    if (dateWrittenElement != null) {
+      json['_dateWritten'] = dateWrittenElement!.toJson();
+    }
+    json['prescriber'] = prescriber.toJson();
+    json['lensSpecification'] = lensSpecification
+        .map<dynamic>((VisionPrescriptionLensSpecification v) => v.toJson())
+        .toList();
+    return json;
+  }
 
+  factory VisionPrescription.fromJson(Map<String, dynamic> json) {
+    return VisionPrescription(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      status: FinancialResourceStatusCodes.fromJson(
+          json['status'] as Map<String, dynamic>),
+      created: FhirDateTime(json['created']),
+      createdElement:
+          Element.fromJson(json['_created'] as Map<String, dynamic>),
+      patient: Reference.fromJson(json['patient'] as Map<String, dynamic>),
+      encounter: json['encounter'] != null
+          ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
+          : null,
+      dateWritten: FhirDateTime(json['dateWritten']),
+      dateWrittenElement:
+          Element.fromJson(json['_dateWritten'] as Map<String, dynamic>),
+      prescriber:
+          Reference.fromJson(json['prescriber'] as Map<String, dynamic>),
+      lensSpecification: (json['lensSpecification'] as List<dynamic>)
+          .map<VisionPrescriptionLensSpecification>((dynamic v) =>
+              VisionPrescriptionLensSpecification.fromJson(
+                  v as Map<String, dynamic>))
+          .toList(),
+    );
+  }
   @override
   VisionPrescription clone() => throw UnimplementedError();
   @override
@@ -298,14 +411,166 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   /// [note] /// Notes for special requirements such as coatings and lens materials.
   @JsonKey(name: 'note')
   final List<Annotation>? note;
-  factory VisionPrescriptionLensSpecification.fromJson(
-          Map<String, dynamic> json) =>
-      _$VisionPrescriptionLensSpecificationFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() =>
-      _$VisionPrescriptionLensSpecificationToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['product'] = product.toJson();
+    json['eye'] = eye.toJson();
+    if (sphere?.value != null) {
+      json['sphere'] = sphere!.value;
+    }
+    if (sphereElement != null) {
+      json['_sphere'] = sphereElement!.toJson();
+    }
+    if (cylinder?.value != null) {
+      json['cylinder'] = cylinder!.value;
+    }
+    if (cylinderElement != null) {
+      json['_cylinder'] = cylinderElement!.toJson();
+    }
+    if (axis?.value != null) {
+      json['axis'] = axis!.value;
+    }
+    if (axisElement != null) {
+      json['_axis'] = axisElement!.toJson();
+    }
+    if (prism != null && prism!.isNotEmpty) {
+      json['prism'] = prism!
+          .map<dynamic>((VisionPrescriptionPrism v) => v.toJson())
+          .toList();
+    }
+    if (add?.value != null) {
+      json['add'] = add!.value;
+    }
+    if (addElement != null) {
+      json['_add'] = addElement!.toJson();
+    }
+    if (power?.value != null) {
+      json['power'] = power!.value;
+    }
+    if (powerElement != null) {
+      json['_power'] = powerElement!.toJson();
+    }
+    if (backCurve?.value != null) {
+      json['backCurve'] = backCurve!.value;
+    }
+    if (backCurveElement != null) {
+      json['_backCurve'] = backCurveElement!.toJson();
+    }
+    if (diameter?.value != null) {
+      json['diameter'] = diameter!.value;
+    }
+    if (diameterElement != null) {
+      json['_diameter'] = diameterElement!.toJson();
+    }
+    if (duration != null) {
+      json['duration'] = duration!.toJson();
+    }
+    if (color?.value != null) {
+      json['color'] = color!.value;
+    }
+    if (colorElement != null) {
+      json['_color'] = colorElement!.toJson();
+    }
+    if (brand?.value != null) {
+      json['brand'] = brand!.value;
+    }
+    if (brandElement != null) {
+      json['_brand'] = brandElement!.toJson();
+    }
+    if (note != null && note!.isNotEmpty) {
+      json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory VisionPrescriptionLensSpecification.fromJson(
+      Map<String, dynamic> json) {
+    return VisionPrescriptionLensSpecification(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      product:
+          CodeableConcept.fromJson(json['product'] as Map<String, dynamic>),
+      eye: VisionEyes.fromJson(json['eye'] as Map<String, dynamic>),
+      sphere: json['sphere'] != null ? FhirDecimal(json['sphere']) : null,
+      sphereElement: json['_sphere'] != null
+          ? Element.fromJson(json['_sphere'] as Map<String, dynamic>)
+          : null,
+      cylinder: json['cylinder'] != null ? FhirDecimal(json['cylinder']) : null,
+      cylinderElement: json['_cylinder'] != null
+          ? Element.fromJson(json['_cylinder'] as Map<String, dynamic>)
+          : null,
+      axis: json['axis'] != null ? FhirInteger(json['axis']) : null,
+      axisElement: json['_axis'] != null
+          ? Element.fromJson(json['_axis'] as Map<String, dynamic>)
+          : null,
+      prism: json['prism'] != null
+          ? (json['prism'] as List<dynamic>)
+              .map<VisionPrescriptionPrism>((dynamic v) =>
+                  VisionPrescriptionPrism.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      add: json['add'] != null ? FhirDecimal(json['add']) : null,
+      addElement: json['_add'] != null
+          ? Element.fromJson(json['_add'] as Map<String, dynamic>)
+          : null,
+      power: json['power'] != null ? FhirDecimal(json['power']) : null,
+      powerElement: json['_power'] != null
+          ? Element.fromJson(json['_power'] as Map<String, dynamic>)
+          : null,
+      backCurve:
+          json['backCurve'] != null ? FhirDecimal(json['backCurve']) : null,
+      backCurveElement: json['_backCurve'] != null
+          ? Element.fromJson(json['_backCurve'] as Map<String, dynamic>)
+          : null,
+      diameter: json['diameter'] != null ? FhirDecimal(json['diameter']) : null,
+      diameterElement: json['_diameter'] != null
+          ? Element.fromJson(json['_diameter'] as Map<String, dynamic>)
+          : null,
+      duration: json['duration'] != null
+          ? Quantity.fromJson(json['duration'] as Map<String, dynamic>)
+          : null,
+      color: json['color'] != null ? FhirString(json['color']) : null,
+      colorElement: json['_color'] != null
+          ? Element.fromJson(json['_color'] as Map<String, dynamic>)
+          : null,
+      brand: json['brand'] != null ? FhirString(json['brand']) : null,
+      brandElement: json['_brand'] != null
+          ? Element.fromJson(json['_brand'] as Map<String, dynamic>)
+          : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                  (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   VisionPrescriptionLensSpecification clone() => throw UnimplementedError();
   @override
@@ -437,12 +702,51 @@ class VisionPrescriptionPrism extends BackboneElement {
   final VisionBase base;
   @JsonKey(name: '_base')
   final Element? baseElement;
-  factory VisionPrescriptionPrism.fromJson(Map<String, dynamic> json) =>
-      _$VisionPrescriptionPrismFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$VisionPrescriptionPrismToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['amount'] = amount.value;
+    if (amountElement != null) {
+      json['_amount'] = amountElement!.toJson();
+    }
+    json['base'] = base.toJson();
+    return json;
+  }
 
+  factory VisionPrescriptionPrism.fromJson(Map<String, dynamic> json) {
+    return VisionPrescriptionPrism(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      amount: FhirDecimal(json['amount']),
+      amountElement: Element.fromJson(json['_amount'] as Map<String, dynamic>),
+      base: VisionBase.fromJson(json['base'] as Map<String, dynamic>),
+    );
+  }
   @override
   VisionPrescriptionPrism clone() => throw UnimplementedError();
   @override

@@ -31,7 +31,7 @@ enum QualityType {
   }
 
   String toJson() => toString();
-  QualityType fromString(String str) {
+  static QualityType fromString(String str) {
     switch (str) {
       case 'indel':
         return QualityType.indel;
@@ -44,7 +44,7 @@ enum QualityType {
     }
   }
 
-  QualityType fromJson(dynamic jsonValue) {
+  static QualityType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

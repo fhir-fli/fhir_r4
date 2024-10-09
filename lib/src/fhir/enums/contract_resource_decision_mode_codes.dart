@@ -17,7 +17,7 @@ enum ContractResourceDecisionModeCodes {
   }
 
   String toJson() => toString();
-  ContractResourceDecisionModeCodes fromString(String str) {
+  static ContractResourceDecisionModeCodes fromString(String str) {
     switch (str) {
       case 'policy':
         return ContractResourceDecisionModeCodes.policy;
@@ -26,7 +26,7 @@ enum ContractResourceDecisionModeCodes {
     }
   }
 
-  ContractResourceDecisionModeCodes fromJson(dynamic jsonValue) {
+  static ContractResourceDecisionModeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

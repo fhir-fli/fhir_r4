@@ -45,7 +45,7 @@ enum DiscriminatorType {
   }
 
   String toJson() => toString();
-  DiscriminatorType fromString(String str) {
+  static DiscriminatorType fromString(String str) {
     switch (str) {
       case 'value':
         return DiscriminatorType.value;
@@ -62,7 +62,7 @@ enum DiscriminatorType {
     }
   }
 
-  DiscriminatorType fromJson(dynamic jsonValue) {
+  static DiscriminatorType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -38,7 +38,7 @@ enum ResearchStudyReasonStopped {
   }
 
   String toJson() => toString();
-  ResearchStudyReasonStopped fromString(String str) {
+  static ResearchStudyReasonStopped fromString(String str) {
     switch (str) {
       case 'accrual-goal-met':
         return ResearchStudyReasonStopped.accrual_goal_met;
@@ -53,7 +53,7 @@ enum ResearchStudyReasonStopped {
     }
   }
 
-  ResearchStudyReasonStopped fromJson(dynamic jsonValue) {
+  static ResearchStudyReasonStopped fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -22266,7 +22266,7 @@ enum AuditEventID {
   }
 
   String toJson() => toString();
-  AuditEventID fromString(String str) {
+  static AuditEventID fromString(String str) {
     switch (str) {
       case 'ARCHIVE':
         return AuditEventID.ARCHIVE;
@@ -28641,7 +28641,7 @@ enum AuditEventID {
     }
   }
 
-  AuditEventID fromJson(dynamic jsonValue) {
+  static AuditEventID fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

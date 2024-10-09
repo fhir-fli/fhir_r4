@@ -66,7 +66,7 @@ enum ReportRelationshipType {
   }
 
   String toJson() => toString();
-  ReportRelationshipType fromString(String str) {
+  static ReportRelationshipType fromString(String str) {
     switch (str) {
       case 'replaces':
         return ReportRelationshipType.replaces;
@@ -89,7 +89,7 @@ enum ReportRelationshipType {
     }
   }
 
-  ReportRelationshipType fromJson(dynamic jsonValue) {
+  static ReportRelationshipType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

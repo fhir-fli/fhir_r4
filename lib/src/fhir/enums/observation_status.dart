@@ -66,7 +66,7 @@ enum ObservationStatus {
   }
 
   String toJson() => toString();
-  ObservationStatus fromString(String str) {
+  static ObservationStatus fromString(String str) {
     switch (str) {
       case 'registered':
         return ObservationStatus.registered;
@@ -89,7 +89,7 @@ enum ObservationStatus {
     }
   }
 
-  ObservationStatus fromJson(dynamic jsonValue) {
+  static ObservationStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

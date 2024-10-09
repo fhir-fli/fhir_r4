@@ -31,7 +31,7 @@ enum ChargeItemCode {
   }
 
   String toJson() => toString();
-  ChargeItemCode fromString(String str) {
+  static ChargeItemCode fromString(String str) {
     switch (str) {
       case '1100':
         return ChargeItemCode.value1100;
@@ -44,7 +44,7 @@ enum ChargeItemCode {
     }
   }
 
-  ChargeItemCode fromJson(dynamic jsonValue) {
+  static ChargeItemCode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

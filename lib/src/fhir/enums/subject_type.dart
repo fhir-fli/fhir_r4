@@ -1011,7 +1011,7 @@ enum SubjectType {
   }
 
   String toJson() => toString();
-  SubjectType fromString(String str) {
+  static SubjectType fromString(String str) {
     switch (str) {
       case 'Resource':
         return SubjectType.Resource;
@@ -1304,7 +1304,7 @@ enum SubjectType {
     }
   }
 
-  SubjectType fromJson(dynamic jsonValue) {
+  static SubjectType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

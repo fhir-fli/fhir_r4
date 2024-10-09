@@ -455,7 +455,7 @@ enum DocumentReferenceFormatCodeSet {
   }
 
   String toJson() => toString();
-  DocumentReferenceFormatCodeSet fromString(String str) {
+  static DocumentReferenceFormatCodeSet fromString(String str) {
     switch (str) {
       case 'urn:ihe:pcc:xphr:2007':
         return DocumentReferenceFormatCodeSet.urn_ihe_pcc_xphr_2007;
@@ -635,7 +635,7 @@ enum DocumentReferenceFormatCodeSet {
     }
   }
 
-  DocumentReferenceFormatCodeSet fromJson(dynamic jsonValue) {
+  static DocumentReferenceFormatCodeSet fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -45,7 +45,7 @@ enum TestReportStatus {
   }
 
   String toJson() => toString();
-  TestReportStatus fromString(String str) {
+  static TestReportStatus fromString(String str) {
     switch (str) {
       case 'completed':
         return TestReportStatus.completed;
@@ -62,7 +62,7 @@ enum TestReportStatus {
     }
   }
 
-  TestReportStatus fromJson(dynamic jsonValue) {
+  static TestReportStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -24,7 +24,7 @@ enum StrandType {
   }
 
   String toJson() => toString();
-  StrandType fromString(String str) {
+  static StrandType fromString(String str) {
     switch (str) {
       case 'watson':
         return StrandType.watson;
@@ -35,7 +35,7 @@ enum StrandType {
     }
   }
 
-  StrandType fromJson(dynamic jsonValue) {
+  static StrandType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

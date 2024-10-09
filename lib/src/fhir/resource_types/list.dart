@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'list.g.dart';
-
 /// [FhirList] /// A list is a curated collection of resources.
 @JsonSerializable()
 class FhirList extends DomainResource {
@@ -44,8 +42,6 @@ class FhirList extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.FhirList);
   @override
   String get fhirType => 'FhirList';
@@ -119,12 +115,172 @@ class FhirList extends DomainResource {
   /// [emptyReason] /// If the list is empty, why the list is empty.
   @JsonKey(name: 'emptyReason')
   final CodeableConcept? emptyReason;
-  factory FhirList.fromJson(Map<String, dynamic> json) =>
-      _$FhirListFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$FhirListToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    json['status'] = status.toJson();
+    json['mode'] = mode.toJson();
+    if (title?.value != null) {
+      json['title'] = title!.value;
+    }
+    if (titleElement != null) {
+      json['_title'] = titleElement!.toJson();
+    }
+    if (code != null) {
+      json['code'] = code!.toJson();
+    }
+    if (subject != null) {
+      json['subject'] = subject!.toJson();
+    }
+    if (encounter != null) {
+      json['encounter'] = encounter!.toJson();
+    }
+    if (date?.value != null) {
+      json['date'] = date!.value;
+    }
+    if (dateElement != null) {
+      json['_date'] = dateElement!.toJson();
+    }
+    if (source != null) {
+      json['source'] = source!.toJson();
+    }
+    if (orderedBy != null) {
+      json['orderedBy'] = orderedBy!.toJson();
+    }
+    if (note != null && note!.isNotEmpty) {
+      json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
+    }
+    if (entry != null && entry!.isNotEmpty) {
+      json['entry'] = entry!.map<dynamic>((ListEntry v) => v.toJson()).toList();
+    }
+    if (emptyReason != null) {
+      json['emptyReason'] = emptyReason!.toJson();
+    }
+    return json;
+  }
 
+  factory FhirList.fromJson(Map<String, dynamic> json) {
+    return FhirList(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      status: ListStatus.fromJson(json['status'] as Map<String, dynamic>),
+      mode: ListMode.fromJson(json['mode'] as Map<String, dynamic>),
+      title: json['title'] != null ? FhirString(json['title']) : null,
+      titleElement: json['_title'] != null
+          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
+          : null,
+      code: json['code'] != null
+          ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
+          : null,
+      subject: json['subject'] != null
+          ? Reference.fromJson(json['subject'] as Map<String, dynamic>)
+          : null,
+      encounter: json['encounter'] != null
+          ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
+          : null,
+      date: json['date'] != null ? FhirDateTime(json['date']) : null,
+      dateElement: json['_date'] != null
+          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
+          : null,
+      source: json['source'] != null
+          ? Reference.fromJson(json['source'] as Map<String, dynamic>)
+          : null,
+      orderedBy: json['orderedBy'] != null
+          ? CodeableConcept.fromJson(json['orderedBy'] as Map<String, dynamic>)
+          : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                  (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      entry: json['entry'] != null
+          ? (json['entry'] as List<dynamic>)
+              .map<ListEntry>(
+                  (dynamic v) => ListEntry.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      emptyReason: json['emptyReason'] != null
+          ? CodeableConcept.fromJson(
+              json['emptyReason'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   FhirList clone() => throw UnimplementedError();
   @override
@@ -266,12 +422,71 @@ class ListEntry extends BackboneElement {
   /// [item] /// A reference to the actual resource from which data was derived.
   @JsonKey(name: 'item')
   final Reference item;
-  factory ListEntry.fromJson(Map<String, dynamic> json) =>
-      _$ListEntryFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ListEntryToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (flag != null) {
+      json['flag'] = flag!.toJson();
+    }
+    if (deleted?.value != null) {
+      json['deleted'] = deleted!.value;
+    }
+    if (deletedElement != null) {
+      json['_deleted'] = deletedElement!.toJson();
+    }
+    if (date?.value != null) {
+      json['date'] = date!.value;
+    }
+    if (dateElement != null) {
+      json['_date'] = dateElement!.toJson();
+    }
+    json['item'] = item.toJson();
+    return json;
+  }
 
+  factory ListEntry.fromJson(Map<String, dynamic> json) {
+    return ListEntry(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      flag: json['flag'] != null
+          ? CodeableConcept.fromJson(json['flag'] as Map<String, dynamic>)
+          : null,
+      deleted: json['deleted'] != null ? FhirBoolean(json['deleted']) : null,
+      deletedElement: json['_deleted'] != null
+          ? Element.fromJson(json['_deleted'] as Map<String, dynamic>)
+          : null,
+      date: json['date'] != null ? FhirDateTime(json['date']) : null,
+      dateElement: json['_date'] != null
+          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
+          : null,
+      item: Reference.fromJson(json['item'] as Map<String, dynamic>),
+    );
+  }
   @override
   ListEntry clone() => throw UnimplementedError();
   @override

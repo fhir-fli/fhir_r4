@@ -31,7 +31,7 @@ enum ListStatus {
   }
 
   String toJson() => toString();
-  ListStatus fromString(String str) {
+  static ListStatus fromString(String str) {
     switch (str) {
       case 'current':
         return ListStatus.current;
@@ -44,7 +44,7 @@ enum ListStatus {
     }
   }
 
-  ListStatus fromJson(dynamic jsonValue) {
+  static ListStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

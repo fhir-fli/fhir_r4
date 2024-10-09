@@ -45,7 +45,7 @@ enum CodeSystemContentMode {
   }
 
   String toJson() => toString();
-  CodeSystemContentMode fromString(String str) {
+  static CodeSystemContentMode fromString(String str) {
     switch (str) {
       case 'not-present':
         return CodeSystemContentMode.not_present;
@@ -62,7 +62,7 @@ enum CodeSystemContentMode {
     }
   }
 
-  CodeSystemContentMode fromJson(dynamic jsonValue) {
+  static CodeSystemContentMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -38,7 +38,7 @@ enum MeasureReportType {
   }
 
   String toJson() => toString();
-  MeasureReportType fromString(String str) {
+  static MeasureReportType fromString(String str) {
     switch (str) {
       case 'individual':
         return MeasureReportType.individual;
@@ -53,7 +53,7 @@ enum MeasureReportType {
     }
   }
 
-  MeasureReportType fromJson(dynamic jsonValue) {
+  static MeasureReportType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

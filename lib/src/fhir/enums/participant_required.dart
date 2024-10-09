@@ -31,7 +31,7 @@ enum ParticipantRequired {
   }
 
   String toJson() => toString();
-  ParticipantRequired fromString(String str) {
+  static ParticipantRequired fromString(String str) {
     switch (str) {
       case 'required':
         return ParticipantRequired.required_;
@@ -44,7 +44,7 @@ enum ParticipantRequired {
     }
   }
 
-  ParticipantRequired fromJson(dynamic jsonValue) {
+  static ParticipantRequired fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

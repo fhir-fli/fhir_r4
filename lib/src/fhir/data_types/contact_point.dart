@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'contact_point.g.dart';
-
 /// [ContactPoint] /// Details for all kinds of technology mediated contact points for a person or
 /// organization, including telephone, email, etc.
 @JsonSerializable()
@@ -67,12 +65,70 @@ class ContactPoint extends DataType {
   /// [period] /// Time period when the contact point was/is in use.
   @JsonKey(name: 'period')
   final Period? period;
-  factory ContactPoint.fromJson(Map<String, dynamic> json) =>
-      _$ContactPointFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ContactPointToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (system != null) {
+      json['system'] = system!.toJson();
+    }
+    if (value?.value != null) {
+      json['value'] = value!.value;
+    }
+    if (valueElement != null) {
+      json['_value'] = valueElement!.toJson();
+    }
+    if (use != null) {
+      json['use'] = use!.toJson();
+    }
+    if (rank?.value != null) {
+      json['rank'] = rank!.value;
+    }
+    if (rankElement != null) {
+      json['_rank'] = rankElement!.toJson();
+    }
+    if (period != null) {
+      json['period'] = period!.toJson();
+    }
+    return json;
+  }
 
+  factory ContactPoint.fromJson(Map<String, dynamic> json) {
+    return ContactPoint(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      system: json['system'] != null
+          ? ContactPointSystem.fromJson(json['system'] as Map<String, dynamic>)
+          : null,
+      value: json['value'] != null ? FhirString(json['value']) : null,
+      valueElement: json['_value'] != null
+          ? Element.fromJson(json['_value'] as Map<String, dynamic>)
+          : null,
+      use: json['use'] != null
+          ? ContactPointUse.fromJson(json['use'] as Map<String, dynamic>)
+          : null,
+      rank: json['rank'] != null ? FhirPositiveInt(json['rank']) : null,
+      rankElement: json['_rank'] != null
+          ? Element.fromJson(json['_rank'] as Map<String, dynamic>)
+          : null,
+      period: json['period'] != null
+          ? Period.fromJson(json['period'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   ContactPoint clone() => throw UnimplementedError();
   @override

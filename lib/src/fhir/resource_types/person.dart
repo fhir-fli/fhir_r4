@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'person.g.dart';
-
 /// [Person] /// Demographics and administrative information about a person independent of a
 /// specific health-related context.
 @JsonSerializable()
@@ -41,8 +39,6 @@ class Person extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Person);
   @override
   String get fhirType => 'Person';
@@ -97,11 +93,171 @@ class Person extends DomainResource {
   /// [link] /// Link to a resource that concerns the same actual person.
   @JsonKey(name: 'link')
   final List<PersonLink>? link;
-  factory Person.fromJson(Map<String, dynamic> json) => _$PersonFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$PersonToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    if (name != null && name!.isNotEmpty) {
+      json['name'] = name!.map<dynamic>((HumanName v) => v.toJson()).toList();
+    }
+    if (telecom != null && telecom!.isNotEmpty) {
+      json['telecom'] =
+          telecom!.map<dynamic>((ContactPoint v) => v.toJson()).toList();
+    }
+    if (gender != null) {
+      json['gender'] = gender!.toJson();
+    }
+    if (birthDate?.value != null) {
+      json['birthDate'] = birthDate!.value;
+    }
+    if (birthDateElement != null) {
+      json['_birthDate'] = birthDateElement!.toJson();
+    }
+    if (address != null && address!.isNotEmpty) {
+      json['address'] =
+          address!.map<dynamic>((Address v) => v.toJson()).toList();
+    }
+    if (photo != null) {
+      json['photo'] = photo!.toJson();
+    }
+    if (managingOrganization != null) {
+      json['managingOrganization'] = managingOrganization!.toJson();
+    }
+    if (active?.value != null) {
+      json['active'] = active!.value;
+    }
+    if (activeElement != null) {
+      json['_active'] = activeElement!.toJson();
+    }
+    if (link != null && link!.isNotEmpty) {
+      json['link'] = link!.map<dynamic>((PersonLink v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory Person.fromJson(Map<String, dynamic> json) {
+    return Person(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      name: json['name'] != null
+          ? (json['name'] as List<dynamic>)
+              .map<HumanName>(
+                  (dynamic v) => HumanName.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      telecom: json['telecom'] != null
+          ? (json['telecom'] as List<dynamic>)
+              .map<ContactPoint>((dynamic v) =>
+                  ContactPoint.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      gender: json['gender'] != null
+          ? AdministrativeGender.fromJson(
+              json['gender'] as Map<String, dynamic>)
+          : null,
+      birthDate: json['birthDate'] != null ? FhirDate(json['birthDate']) : null,
+      birthDateElement: json['_birthDate'] != null
+          ? Element.fromJson(json['_birthDate'] as Map<String, dynamic>)
+          : null,
+      address: json['address'] != null
+          ? (json['address'] as List<dynamic>)
+              .map<Address>(
+                  (dynamic v) => Address.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      photo: json['photo'] != null
+          ? Attachment.fromJson(json['photo'] as Map<String, dynamic>)
+          : null,
+      managingOrganization: json['managingOrganization'] != null
+          ? Reference.fromJson(
+              json['managingOrganization'] as Map<String, dynamic>)
+          : null,
+      active: json['active'] != null ? FhirBoolean(json['active']) : null,
+      activeElement: json['_active'] != null
+          ? Element.fromJson(json['_active'] as Map<String, dynamic>)
+          : null,
+      link: json['link'] != null
+          ? (json['link'] as List<dynamic>)
+              .map<PersonLink>(
+                  (dynamic v) => PersonLink.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   Person clone() => throw UnimplementedError();
   @override
@@ -221,12 +377,52 @@ class PersonLink extends BackboneElement {
   final IdentityAssuranceLevel? assurance;
   @JsonKey(name: '_assurance')
   final Element? assuranceElement;
-  factory PersonLink.fromJson(Map<String, dynamic> json) =>
-      _$PersonLinkFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$PersonLinkToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['target'] = target.toJson();
+    if (assurance != null) {
+      json['assurance'] = assurance!.toJson();
+    }
+    return json;
+  }
 
+  factory PersonLink.fromJson(Map<String, dynamic> json) {
+    return PersonLink(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      target: Reference.fromJson(json['target'] as Map<String, dynamic>),
+      assurance: json['assurance'] != null
+          ? IdentityAssuranceLevel.fromJson(
+              json['assurance'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   PersonLink clone() => throw UnimplementedError();
   @override

@@ -45,7 +45,7 @@ enum StructureMapSourceListMode {
   }
 
   String toJson() => toString();
-  StructureMapSourceListMode fromString(String str) {
+  static StructureMapSourceListMode fromString(String str) {
     switch (str) {
       case 'first':
         return StructureMapSourceListMode.first;
@@ -62,7 +62,7 @@ enum StructureMapSourceListMode {
     }
   }
 
-  StructureMapSourceListMode fromJson(dynamic jsonValue) {
+  static StructureMapSourceListMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

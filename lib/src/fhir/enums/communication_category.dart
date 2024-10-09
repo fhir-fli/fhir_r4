@@ -38,7 +38,7 @@ enum CommunicationCategory {
   }
 
   String toJson() => toString();
-  CommunicationCategory fromString(String str) {
+  static CommunicationCategory fromString(String str) {
     switch (str) {
       case 'alert':
         return CommunicationCategory.alert;
@@ -53,7 +53,7 @@ enum CommunicationCategory {
     }
   }
 
-  CommunicationCategory fromJson(dynamic jsonValue) {
+  static CommunicationCategory fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

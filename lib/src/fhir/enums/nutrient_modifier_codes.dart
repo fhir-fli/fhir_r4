@@ -28,7 +28,7 @@ enum NutrientModifierCodes {
   }
 
   String toJson() => toString();
-  NutrientModifierCodes fromString(String str) {
+  static NutrientModifierCodes fromString(String str) {
     switch (str) {
       case '33463005':
         return NutrientModifierCodes.value33463005;
@@ -41,7 +41,7 @@ enum NutrientModifierCodes {
     }
   }
 
-  NutrientModifierCodes fromJson(dynamic jsonValue) {
+  static NutrientModifierCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

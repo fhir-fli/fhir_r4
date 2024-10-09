@@ -52,7 +52,7 @@ enum ConditionVerificationStatus {
   }
 
   String toJson() => toString();
-  ConditionVerificationStatus fromString(String str) {
+  static ConditionVerificationStatus fromString(String str) {
     switch (str) {
       case 'unconfirmed':
         return ConditionVerificationStatus.unconfirmed;
@@ -71,7 +71,7 @@ enum ConditionVerificationStatus {
     }
   }
 
-  ConditionVerificationStatus fromJson(dynamic jsonValue) {
+  static ConditionVerificationStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

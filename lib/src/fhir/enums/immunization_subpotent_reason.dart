@@ -31,7 +31,7 @@ enum ImmunizationSubpotentReason {
   }
 
   String toJson() => toString();
-  ImmunizationSubpotentReason fromString(String str) {
+  static ImmunizationSubpotentReason fromString(String str) {
     switch (str) {
       case 'partial':
         return ImmunizationSubpotentReason.partial;
@@ -44,7 +44,7 @@ enum ImmunizationSubpotentReason {
     }
   }
 
-  ImmunizationSubpotentReason fromJson(dynamic jsonValue) {
+  static ImmunizationSubpotentReason fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

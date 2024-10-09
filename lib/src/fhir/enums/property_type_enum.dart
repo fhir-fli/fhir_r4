@@ -59,7 +59,7 @@ enum PropertyTypeEnum {
   }
 
   String toJson() => toString();
-  PropertyTypeEnum fromString(String str) {
+  static PropertyTypeEnum fromString(String str) {
     switch (str) {
       case 'code':
         return PropertyTypeEnum.code;
@@ -80,7 +80,7 @@ enum PropertyTypeEnum {
     }
   }
 
-  PropertyTypeEnum fromJson(dynamic jsonValue) {
+  static PropertyTypeEnum fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

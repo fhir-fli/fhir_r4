@@ -59,7 +59,7 @@ enum TaskCode {
   }
 
   String toJson() => toString();
-  TaskCode fromString(String str) {
+  static TaskCode fromString(String str) {
     switch (str) {
       case 'approve':
         return TaskCode.approve;
@@ -80,7 +80,7 @@ enum TaskCode {
     }
   }
 
-  TaskCode fromJson(dynamic jsonValue) {
+  static TaskCode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

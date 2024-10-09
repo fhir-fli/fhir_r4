@@ -47,7 +47,7 @@ enum EnteralRouteCodes {
   }
 
   String toJson() => toString();
-  EnteralRouteCodes fromString(String str) {
+  static EnteralRouteCodes fromString(String str) {
     switch (str) {
       case 'PO':
         return EnteralRouteCodes.PO;
@@ -72,7 +72,7 @@ enum EnteralRouteCodes {
     }
   }
 
-  EnteralRouteCodes fromJson(dynamic jsonValue) {
+  static EnteralRouteCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

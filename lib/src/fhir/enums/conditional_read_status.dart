@@ -38,7 +38,7 @@ enum ConditionalReadStatus {
   }
 
   String toJson() => toString();
-  ConditionalReadStatus fromString(String str) {
+  static ConditionalReadStatus fromString(String str) {
     switch (str) {
       case 'not-supported':
         return ConditionalReadStatus.not_supported;
@@ -53,7 +53,7 @@ enum ConditionalReadStatus {
     }
   }
 
-  ConditionalReadStatus fromJson(dynamic jsonValue) {
+  static ConditionalReadStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

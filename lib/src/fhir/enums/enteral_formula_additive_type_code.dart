@@ -45,7 +45,7 @@ enum EnteralFormulaAdditiveTypeCode {
   }
 
   String toJson() => toString();
-  EnteralFormulaAdditiveTypeCode fromString(String str) {
+  static EnteralFormulaAdditiveTypeCode fromString(String str) {
     switch (str) {
       case 'lipid':
         return EnteralFormulaAdditiveTypeCode.lipid;
@@ -62,7 +62,7 @@ enum EnteralFormulaAdditiveTypeCode {
     }
   }
 
-  EnteralFormulaAdditiveTypeCode fromJson(dynamic jsonValue) {
+  static EnteralFormulaAdditiveTypeCode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

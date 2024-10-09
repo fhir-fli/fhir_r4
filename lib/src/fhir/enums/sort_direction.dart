@@ -24,7 +24,7 @@ enum SortDirection {
   }
 
   String toJson() => toString();
-  SortDirection fromString(String str) {
+  static SortDirection fromString(String str) {
     switch (str) {
       case 'ascending':
         return SortDirection.ascending;
@@ -35,7 +35,7 @@ enum SortDirection {
     }
   }
 
-  SortDirection fromJson(dynamic jsonValue) {
+  static SortDirection fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

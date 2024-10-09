@@ -45,7 +45,7 @@ enum QuestionnaireResponseStatus {
   }
 
   String toJson() => toString();
-  QuestionnaireResponseStatus fromString(String str) {
+  static QuestionnaireResponseStatus fromString(String str) {
     switch (str) {
       case 'in-progress':
         return QuestionnaireResponseStatus.in_progress;
@@ -62,7 +62,7 @@ enum QuestionnaireResponseStatus {
     }
   }
 
-  QuestionnaireResponseStatus fromJson(dynamic jsonValue) {
+  static QuestionnaireResponseStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'attachment.g.dart';
-
 /// [Attachment] /// For referring to data content defined in other formats.
 @JsonSerializable()
 class Attachment extends DataType {
@@ -93,12 +91,110 @@ class Attachment extends DataType {
   final FhirDateTime? creation;
   @JsonKey(name: '_creation')
   final Element? creationElement;
-  factory Attachment.fromJson(Map<String, dynamic> json) =>
-      _$AttachmentFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$AttachmentToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (contentType?.value != null) {
+      json['contentType'] = contentType!.value;
+    }
+    if (contentTypeElement != null) {
+      json['_contentType'] = contentTypeElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (data?.value != null) {
+      json['data'] = data!.value;
+    }
+    if (dataElement != null) {
+      json['_data'] = dataElement!.toJson();
+    }
+    if (url?.value != null) {
+      json['url'] = url!.value;
+    }
+    if (urlElement != null) {
+      json['_url'] = urlElement!.toJson();
+    }
+    if (size?.value != null) {
+      json['size'] = size!.value;
+    }
+    if (sizeElement != null) {
+      json['_size'] = sizeElement!.toJson();
+    }
+    if (hash?.value != null) {
+      json['hash'] = hash!.value;
+    }
+    if (hashElement != null) {
+      json['_hash'] = hashElement!.toJson();
+    }
+    if (title?.value != null) {
+      json['title'] = title!.value;
+    }
+    if (titleElement != null) {
+      json['_title'] = titleElement!.toJson();
+    }
+    if (creation?.value != null) {
+      json['creation'] = creation!.value;
+    }
+    if (creationElement != null) {
+      json['_creation'] = creationElement!.toJson();
+    }
+    return json;
+  }
 
+  factory Attachment.fromJson(Map<String, dynamic> json) {
+    return Attachment(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      contentType:
+          json['contentType'] != null ? FhirCode(json['contentType']) : null,
+      contentTypeElement: json['_contentType'] != null
+          ? Element.fromJson(json['_contentType'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      data: json['data'] != null ? FhirBase64Binary(json['data']) : null,
+      dataElement: json['_data'] != null
+          ? Element.fromJson(json['_data'] as Map<String, dynamic>)
+          : null,
+      url: json['url'] != null ? FhirUrl(json['url']) : null,
+      urlElement: json['_url'] != null
+          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
+          : null,
+      size: json['size'] != null ? FhirUnsignedInt(json['size']) : null,
+      sizeElement: json['_size'] != null
+          ? Element.fromJson(json['_size'] as Map<String, dynamic>)
+          : null,
+      hash: json['hash'] != null ? FhirBase64Binary(json['hash']) : null,
+      hashElement: json['_hash'] != null
+          ? Element.fromJson(json['_hash'] as Map<String, dynamic>)
+          : null,
+      title: json['title'] != null ? FhirString(json['title']) : null,
+      titleElement: json['_title'] != null
+          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
+          : null,
+      creation:
+          json['creation'] != null ? FhirDateTime(json['creation']) : null,
+      creationElement: json['_creation'] != null
+          ? Element.fromJson(json['_creation'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   Attachment clone() => throw UnimplementedError();
   @override

@@ -164,7 +164,7 @@ enum StatisticType {
   }
 
   String toJson() => toString();
-  StatisticType fromString(String str) {
+  static StatisticType fromString(String str) {
     switch (str) {
       case 'absolute-MedianDiff':
         return StatisticType.absolute_MedianDiff;
@@ -215,7 +215,7 @@ enum StatisticType {
     }
   }
 
-  StatisticType fromJson(dynamic jsonValue) {
+  static StatisticType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

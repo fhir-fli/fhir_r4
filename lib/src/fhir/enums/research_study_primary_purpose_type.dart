@@ -66,7 +66,7 @@ enum ResearchStudyPrimaryPurposeType {
   }
 
   String toJson() => toString();
-  ResearchStudyPrimaryPurposeType fromString(String str) {
+  static ResearchStudyPrimaryPurposeType fromString(String str) {
     switch (str) {
       case 'treatment':
         return ResearchStudyPrimaryPurposeType.treatment;
@@ -89,7 +89,7 @@ enum ResearchStudyPrimaryPurposeType {
     }
   }
 
-  ResearchStudyPrimaryPurposeType fromJson(dynamic jsonValue) {
+  static ResearchStudyPrimaryPurposeType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

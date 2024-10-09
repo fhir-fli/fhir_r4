@@ -66,7 +66,7 @@ enum FocusCharacteristicCode {
   }
 
   String toJson() => toString();
-  FocusCharacteristicCode fromString(String str) {
+  static FocusCharacteristicCode fromString(String str) {
     switch (str) {
       case 'citation':
         return FocusCharacteristicCode.citation;
@@ -89,7 +89,7 @@ enum FocusCharacteristicCode {
     }
   }
 
-  FocusCharacteristicCode fromJson(dynamic jsonValue) {
+  static FocusCharacteristicCode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

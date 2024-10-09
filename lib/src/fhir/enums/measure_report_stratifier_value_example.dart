@@ -38,7 +38,7 @@ enum MeasureReportStratifierValueExample {
   }
 
   String toJson() => toString();
-  MeasureReportStratifierValueExample fromString(String str) {
+  static MeasureReportStratifierValueExample fromString(String str) {
     switch (str) {
       case 'northwest':
         return MeasureReportStratifierValueExample.northwest;
@@ -53,7 +53,7 @@ enum MeasureReportStratifierValueExample {
     }
   }
 
-  MeasureReportStratifierValueExample fromJson(dynamic jsonValue) {
+  static MeasureReportStratifierValueExample fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

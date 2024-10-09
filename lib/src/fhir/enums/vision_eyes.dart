@@ -24,7 +24,7 @@ enum VisionEyes {
   }
 
   String toJson() => toString();
-  VisionEyes fromString(String str) {
+  static VisionEyes fromString(String str) {
     switch (str) {
       case 'right':
         return VisionEyes.right;
@@ -35,7 +35,7 @@ enum VisionEyes {
     }
   }
 
-  VisionEyes fromJson(dynamic jsonValue) {
+  static VisionEyes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

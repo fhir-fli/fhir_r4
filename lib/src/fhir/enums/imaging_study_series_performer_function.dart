@@ -40,7 +40,7 @@ enum ImagingStudySeriesPerformerFunction {
   }
 
   String toJson() => toString();
-  ImagingStudySeriesPerformerFunction fromString(String str) {
+  static ImagingStudySeriesPerformerFunction fromString(String str) {
     switch (str) {
       case 'CON':
         return ImagingStudySeriesPerformerFunction.CON;
@@ -57,7 +57,7 @@ enum ImagingStudySeriesPerformerFunction {
     }
   }
 
-  ImagingStudySeriesPerformerFunction fromJson(dynamic jsonValue) {
+  static ImagingStudySeriesPerformerFunction fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -225,7 +225,7 @@ String _buildEnumStringWithComments(
 
   buffer.writeln('String toJson() => toString();');
 
-  buffer.writeln('  $enumName fromString(String str) {');
+  buffer.writeln('static  $enumName fromString(String str) {');
   buffer.writeln('    switch(str) {');
   for (final String key in enumValueMap.keys) {
     buffer.writeln("      case '$key': return $enumName.${enumValueMap[key]};");
@@ -235,7 +235,7 @@ String _buildEnumStringWithComments(
   buffer.writeln('    }');
   buffer.writeln('      }');
 
-  buffer.writeln(' $enumName fromJson(dynamic jsonValue) {');
+  buffer.writeln(' static $enumName fromJson(dynamic jsonValue) {');
   buffer.writeln('    if (jsonValue is String) {');
   buffer.writeln('      return fromString(jsonValue);');
   buffer.writeln('    } else {');

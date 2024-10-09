@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'group.g.dart';
-
 /// [FhirGroup] /// Represents a defined collection of entities that may be discussed or acted
 /// upon collectively but which are not expected to act collectively, and are
 /// not formally or legally recognized; i.e. a collection of entities that
@@ -45,8 +43,6 @@ class FhirGroup extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.FhirGroup);
   @override
   String get fhirType => 'FhirGroup';
@@ -109,12 +105,165 @@ class FhirGroup extends DomainResource {
   /// [member] /// Identifies the resource instances that are members of the group.
   @JsonKey(name: 'member')
   final List<GroupMember>? member;
-  factory FhirGroup.fromJson(Map<String, dynamic> json) =>
-      _$FhirGroupFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$FhirGroupToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    if (active?.value != null) {
+      json['active'] = active!.value;
+    }
+    if (activeElement != null) {
+      json['_active'] = activeElement!.toJson();
+    }
+    json['type'] = type.toJson();
+    json['actual'] = actual.value;
+    if (actualElement != null) {
+      json['_actual'] = actualElement!.toJson();
+    }
+    if (code != null) {
+      json['code'] = code!.toJson();
+    }
+    if (name?.value != null) {
+      json['name'] = name!.value;
+    }
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (quantity?.value != null) {
+      json['quantity'] = quantity!.value;
+    }
+    if (quantityElement != null) {
+      json['_quantity'] = quantityElement!.toJson();
+    }
+    if (managingEntity != null) {
+      json['managingEntity'] = managingEntity!.toJson();
+    }
+    if (characteristic != null && characteristic!.isNotEmpty) {
+      json['characteristic'] = characteristic!
+          .map<dynamic>((GroupCharacteristic v) => v.toJson())
+          .toList();
+    }
+    if (member != null && member!.isNotEmpty) {
+      json['member'] =
+          member!.map<dynamic>((GroupMember v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory FhirGroup.fromJson(Map<String, dynamic> json) {
+    return FhirGroup(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      active: json['active'] != null ? FhirBoolean(json['active']) : null,
+      activeElement: json['_active'] != null
+          ? Element.fromJson(json['_active'] as Map<String, dynamic>)
+          : null,
+      type: GroupType.fromJson(json['type'] as Map<String, dynamic>),
+      actual: FhirBoolean(json['actual']),
+      actualElement: Element.fromJson(json['_actual'] as Map<String, dynamic>),
+      code: json['code'] != null
+          ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
+          : null,
+      name: json['name'] != null ? FhirString(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
+      quantity:
+          json['quantity'] != null ? FhirUnsignedInt(json['quantity']) : null,
+      quantityElement: json['_quantity'] != null
+          ? Element.fromJson(json['_quantity'] as Map<String, dynamic>)
+          : null,
+      managingEntity: json['managingEntity'] != null
+          ? Reference.fromJson(json['managingEntity'] as Map<String, dynamic>)
+          : null,
+      characteristic: json['characteristic'] != null
+          ? (json['characteristic'] as List<dynamic>)
+              .map<GroupCharacteristic>((dynamic v) =>
+                  GroupCharacteristic.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      member: json['member'] != null
+          ? (json['member'] as List<dynamic>)
+              .map<GroupMember>((dynamic v) =>
+                  GroupMember.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   FhirGroup clone() => throw UnimplementedError();
   @override
@@ -279,12 +428,95 @@ class GroupCharacteristic extends BackboneElement {
   /// operation during the month of June.
   @JsonKey(name: 'period')
   final Period? period;
-  factory GroupCharacteristic.fromJson(Map<String, dynamic> json) =>
-      _$GroupCharacteristicFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$GroupCharacteristicToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['code'] = code.toJson();
+    if (valueCodeableConcept != null) {
+      json['valueCodeableConcept'] = valueCodeableConcept!.toJson();
+    }
+    if (valueBoolean?.value != null) {
+      json['valueBoolean'] = valueBoolean!.value;
+    }
+    if (valueBooleanElement != null) {
+      json['_valueBoolean'] = valueBooleanElement!.toJson();
+    }
+    if (valueQuantity != null) {
+      json['valueQuantity'] = valueQuantity!.toJson();
+    }
+    if (valueRange != null) {
+      json['valueRange'] = valueRange!.toJson();
+    }
+    if (valueReference != null) {
+      json['valueReference'] = valueReference!.toJson();
+    }
+    json['exclude'] = exclude.value;
+    if (excludeElement != null) {
+      json['_exclude'] = excludeElement!.toJson();
+    }
+    if (period != null) {
+      json['period'] = period!.toJson();
+    }
+    return json;
+  }
 
+  factory GroupCharacteristic.fromJson(Map<String, dynamic> json) {
+    return GroupCharacteristic(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      code: CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
+      valueCodeableConcept: json['valueCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['valueCodeableConcept'] as Map<String, dynamic>)
+          : null,
+      valueBoolean: json['valueBoolean'] != null
+          ? FhirBoolean(json['valueBoolean'])
+          : null,
+      valueBooleanElement: json['_valueBoolean'] != null
+          ? Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>)
+          : null,
+      valueQuantity: json['valueQuantity'] != null
+          ? Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>)
+          : null,
+      valueRange: json['valueRange'] != null
+          ? Range.fromJson(json['valueRange'] as Map<String, dynamic>)
+          : null,
+      valueReference: json['valueReference'] != null
+          ? Reference.fromJson(json['valueReference'] as Map<String, dynamic>)
+          : null,
+      exclude: FhirBoolean(json['exclude']),
+      excludeElement:
+          Element.fromJson(json['_exclude'] as Map<String, dynamic>),
+      period: json['period'] != null
+          ? Period.fromJson(json['period'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   GroupCharacteristic clone() => throw UnimplementedError();
   @override
@@ -392,12 +624,61 @@ class GroupMember extends BackboneElement {
   final FhirBoolean? inactive;
   @JsonKey(name: '_inactive')
   final Element? inactiveElement;
-  factory GroupMember.fromJson(Map<String, dynamic> json) =>
-      _$GroupMemberFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$GroupMemberToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['entity'] = entity.toJson();
+    if (period != null) {
+      json['period'] = period!.toJson();
+    }
+    if (inactive?.value != null) {
+      json['inactive'] = inactive!.value;
+    }
+    if (inactiveElement != null) {
+      json['_inactive'] = inactiveElement!.toJson();
+    }
+    return json;
+  }
 
+  factory GroupMember.fromJson(Map<String, dynamic> json) {
+    return GroupMember(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      entity: Reference.fromJson(json['entity'] as Map<String, dynamic>),
+      period: json['period'] != null
+          ? Period.fromJson(json['period'] as Map<String, dynamic>)
+          : null,
+      inactive: json['inactive'] != null ? FhirBoolean(json['inactive']) : null,
+      inactiveElement: json['_inactive'] != null
+          ? Element.fromJson(json['_inactive'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   GroupMember clone() => throw UnimplementedError();
   @override

@@ -52,7 +52,7 @@ enum UnitsOfTime {
   }
 
   String toJson() => toString();
-  UnitsOfTime fromString(String str) {
+  static UnitsOfTime fromString(String str) {
     switch (str) {
       case 's':
         return UnitsOfTime.s;
@@ -73,7 +73,7 @@ enum UnitsOfTime {
     }
   }
 
-  UnitsOfTime fromJson(dynamic jsonValue) {
+  static UnitsOfTime fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

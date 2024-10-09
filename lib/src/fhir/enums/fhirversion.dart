@@ -199,7 +199,7 @@ enum FHIRVersion {
   }
 
   String toJson() => toString();
-  FHIRVersion fromString(String str) {
+  static FHIRVersion fromString(String str) {
     switch (str) {
       case '0.01':
         return FHIRVersion.value0_01;
@@ -260,7 +260,7 @@ enum FHIRVersion {
     }
   }
 
-  FHIRVersion fromJson(dynamic jsonValue) {
+  static FHIRVersion fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

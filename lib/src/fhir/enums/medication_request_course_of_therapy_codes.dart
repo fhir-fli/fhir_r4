@@ -31,7 +31,7 @@ enum MedicationRequestCourseOfTherapyCodes {
   }
 
   String toJson() => toString();
-  MedicationRequestCourseOfTherapyCodes fromString(String str) {
+  static MedicationRequestCourseOfTherapyCodes fromString(String str) {
     switch (str) {
       case 'continuous':
         return MedicationRequestCourseOfTherapyCodes.continuous;
@@ -44,7 +44,7 @@ enum MedicationRequestCourseOfTherapyCodes {
     }
   }
 
-  MedicationRequestCourseOfTherapyCodes fromJson(dynamic jsonValue) {
+  static MedicationRequestCourseOfTherapyCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

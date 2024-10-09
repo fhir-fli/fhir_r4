@@ -31,7 +31,7 @@ enum ConceptMapGroupUnmappedMode {
   }
 
   String toJson() => toString();
-  ConceptMapGroupUnmappedMode fromString(String str) {
+  static ConceptMapGroupUnmappedMode fromString(String str) {
     switch (str) {
       case 'provided':
         return ConceptMapGroupUnmappedMode.provided;
@@ -44,7 +44,7 @@ enum ConceptMapGroupUnmappedMode {
     }
   }
 
-  ConceptMapGroupUnmappedMode fromJson(dynamic jsonValue) {
+  static ConceptMapGroupUnmappedMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

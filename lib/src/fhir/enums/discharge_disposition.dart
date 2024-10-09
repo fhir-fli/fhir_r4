@@ -87,7 +87,7 @@ enum DischargeDisposition {
   }
 
   String toJson() => toString();
-  DischargeDisposition fromString(String str) {
+  static DischargeDisposition fromString(String str) {
     switch (str) {
       case 'home':
         return DischargeDisposition.home;
@@ -116,7 +116,7 @@ enum DischargeDisposition {
     }
   }
 
-  DischargeDisposition fromJson(dynamic jsonValue) {
+  static DischargeDisposition fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -205,7 +205,7 @@ enum ReportSectionType {
   }
 
   String toJson() => toString();
-  ReportSectionType fromString(String str) {
+  static ReportSectionType fromString(String str) {
     switch (str) {
       case 'Evidence':
         return ReportSectionType.Evidence;
@@ -268,7 +268,7 @@ enum ReportSectionType {
     }
   }
 
-  ReportSectionType fromJson(dynamic jsonValue) {
+  static ReportSectionType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

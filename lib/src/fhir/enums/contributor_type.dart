@@ -38,7 +38,7 @@ enum ContributorType {
   }
 
   String toJson() => toString();
-  ContributorType fromString(String str) {
+  static ContributorType fromString(String str) {
     switch (str) {
       case 'author':
         return ContributorType.author;
@@ -53,7 +53,7 @@ enum ContributorType {
     }
   }
 
-  ContributorType fromJson(dynamic jsonValue) {
+  static ContributorType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

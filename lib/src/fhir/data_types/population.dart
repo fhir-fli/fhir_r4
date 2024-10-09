@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'population.g.dart';
-
 /// [Population] /// A populatioof people with some set of grouping criteria.
 @JsonSerializable()
 class Population extends BackboneType {
@@ -52,12 +50,75 @@ class Population extends BackboneType {
   /// this applies.
   @JsonKey(name: 'physiologicalCondition')
   final CodeableConcept? physiologicalCondition;
-  factory Population.fromJson(Map<String, dynamic> json) =>
-      _$PopulationFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$PopulationToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (ageRange != null) {
+      json['ageRange'] = ageRange!.toJson();
+    }
+    if (ageCodeableConcept != null) {
+      json['ageCodeableConcept'] = ageCodeableConcept!.toJson();
+    }
+    if (gender != null) {
+      json['gender'] = gender!.toJson();
+    }
+    if (race != null) {
+      json['race'] = race!.toJson();
+    }
+    if (physiologicalCondition != null) {
+      json['physiologicalCondition'] = physiologicalCondition!.toJson();
+    }
+    return json;
+  }
 
+  factory Population.fromJson(Map<String, dynamic> json) {
+    return Population(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      ageRange: json['ageRange'] != null
+          ? Range.fromJson(json['ageRange'] as Map<String, dynamic>)
+          : null,
+      ageCodeableConcept: json['ageCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['ageCodeableConcept'] as Map<String, dynamic>)
+          : null,
+      gender: json['gender'] != null
+          ? CodeableConcept.fromJson(json['gender'] as Map<String, dynamic>)
+          : null,
+      race: json['race'] != null
+          ? CodeableConcept.fromJson(json['race'] as Map<String, dynamic>)
+          : null,
+      physiologicalCondition: json['physiologicalCondition'] != null
+          ? CodeableConcept.fromJson(
+              json['physiologicalCondition'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   Population clone() => throw UnimplementedError();
   @override

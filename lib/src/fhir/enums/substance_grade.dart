@@ -40,7 +40,7 @@ enum SubstanceGrade {
   }
 
   String toJson() => toString();
-  SubstanceGrade fromString(String str) {
+  static SubstanceGrade fromString(String str) {
     switch (str) {
       case 'USP-NF':
         return SubstanceGrade.USP_NF;
@@ -57,7 +57,7 @@ enum SubstanceGrade {
     }
   }
 
-  SubstanceGrade fromJson(dynamic jsonValue) {
+  static SubstanceGrade fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

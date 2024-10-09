@@ -59,7 +59,7 @@ enum ContributorRole {
   }
 
   String toJson() => toString();
-  ContributorRole fromString(String str) {
+  static ContributorRole fromString(String str) {
     switch (str) {
       case 'publisher':
         return ContributorRole.publisher;
@@ -80,7 +80,7 @@ enum ContributorRole {
     }
   }
 
-  ContributorRole fromJson(dynamic jsonValue) {
+  static ContributorRole fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

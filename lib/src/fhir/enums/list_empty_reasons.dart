@@ -52,7 +52,7 @@ enum ListEmptyReasons {
   }
 
   String toJson() => toString();
-  ListEmptyReasons fromString(String str) {
+  static ListEmptyReasons fromString(String str) {
     switch (str) {
       case 'nilknown':
         return ListEmptyReasons.nilknown;
@@ -71,7 +71,7 @@ enum ListEmptyReasons {
     }
   }
 
-  ListEmptyReasons fromJson(dynamic jsonValue) {
+  static ListEmptyReasons fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

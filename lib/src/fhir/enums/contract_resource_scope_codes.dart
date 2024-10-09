@@ -17,7 +17,7 @@ enum ContractResourceScopeCodes {
   }
 
   String toJson() => toString();
-  ContractResourceScopeCodes fromString(String str) {
+  static ContractResourceScopeCodes fromString(String str) {
     switch (str) {
       case 'policy':
         return ContractResourceScopeCodes.policy;
@@ -26,7 +26,7 @@ enum ContractResourceScopeCodes {
     }
   }
 
-  ContractResourceScopeCodes fromJson(dynamic jsonValue) {
+  static ContractResourceScopeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

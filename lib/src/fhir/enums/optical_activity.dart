@@ -22,7 +22,7 @@ enum OpticalActivity {
   }
 
   String toJson() => toString();
-  OpticalActivity fromString(String str) {
+  static OpticalActivity fromString(String str) {
     switch (str) {
       case '+':
         return OpticalActivity.plus;
@@ -33,7 +33,7 @@ enum OpticalActivity {
     }
   }
 
-  OpticalActivity fromJson(dynamic jsonValue) {
+  static OpticalActivity fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

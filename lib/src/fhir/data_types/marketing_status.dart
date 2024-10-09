@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'marketing_status.g.dart';
-
 /// [MarketingStatus] /// The marketing status describes the date when a medicinal product is
 /// actually put on the market or the date as of which it is no longer
 /// available.
@@ -72,12 +70,76 @@ class MarketingStatus extends BackboneType {
   final FhirDateTime? restoreDate;
   @JsonKey(name: '_restoreDate')
   final Element? restoreDateElement;
-  factory MarketingStatus.fromJson(Map<String, dynamic> json) =>
-      _$MarketingStatusFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MarketingStatusToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (country != null) {
+      json['country'] = country!.toJson();
+    }
+    if (jurisdiction != null) {
+      json['jurisdiction'] = jurisdiction!.toJson();
+    }
+    json['status'] = status.toJson();
+    if (dateRange != null) {
+      json['dateRange'] = dateRange!.toJson();
+    }
+    if (restoreDate?.value != null) {
+      json['restoreDate'] = restoreDate!.value;
+    }
+    if (restoreDateElement != null) {
+      json['_restoreDate'] = restoreDateElement!.toJson();
+    }
+    return json;
+  }
 
+  factory MarketingStatus.fromJson(Map<String, dynamic> json) {
+    return MarketingStatus(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      country: json['country'] != null
+          ? CodeableConcept.fromJson(json['country'] as Map<String, dynamic>)
+          : null,
+      jurisdiction: json['jurisdiction'] != null
+          ? CodeableConcept.fromJson(
+              json['jurisdiction'] as Map<String, dynamic>)
+          : null,
+      status: CodeableConcept.fromJson(json['status'] as Map<String, dynamic>),
+      dateRange: json['dateRange'] != null
+          ? Period.fromJson(json['dateRange'] as Map<String, dynamic>)
+          : null,
+      restoreDate: json['restoreDate'] != null
+          ? FhirDateTime(json['restoreDate'])
+          : null,
+      restoreDateElement: json['_restoreDate'] != null
+          ? Element.fromJson(json['_restoreDate'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   MarketingStatus clone() => throw UnimplementedError();
   @override

@@ -1039,7 +1039,7 @@ enum AuditEventEntityType {
   }
 
   String toJson() => toString();
-  AuditEventEntityType fromString(String str) {
+  static AuditEventEntityType fromString(String str) {
     switch (str) {
       case '1':
         return AuditEventEntityType.value1;
@@ -1340,7 +1340,7 @@ enum AuditEventEntityType {
     }
   }
 
-  AuditEventEntityType fromJson(dynamic jsonValue) {
+  static AuditEventEntityType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

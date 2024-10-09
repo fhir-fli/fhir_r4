@@ -31,7 +31,7 @@ enum ResourceVersionPolicy {
   }
 
   String toJson() => toString();
-  ResourceVersionPolicy fromString(String str) {
+  static ResourceVersionPolicy fromString(String str) {
     switch (str) {
       case 'no-version':
         return ResourceVersionPolicy.no_version;
@@ -44,7 +44,7 @@ enum ResourceVersionPolicy {
     }
   }
 
-  ResourceVersionPolicy fromJson(dynamic jsonValue) {
+  static ResourceVersionPolicy fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

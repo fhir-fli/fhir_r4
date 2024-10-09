@@ -268,7 +268,7 @@ enum PackageMaterial {
   }
 
   String toJson() => toString();
-  PackageMaterial fromString(String str) {
+  static PackageMaterial fromString(String str) {
     switch (str) {
       case '200000003200':
         return PackageMaterial.value200000003200;
@@ -361,7 +361,7 @@ enum PackageMaterial {
     }
   }
 
-  PackageMaterial fromJson(dynamic jsonValue) {
+  static PackageMaterial fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

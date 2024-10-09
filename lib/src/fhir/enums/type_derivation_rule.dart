@@ -24,7 +24,7 @@ enum TypeDerivationRule {
   }
 
   String toJson() => toString();
-  TypeDerivationRule fromString(String str) {
+  static TypeDerivationRule fromString(String str) {
     switch (str) {
       case 'specialization':
         return TypeDerivationRule.specialization;
@@ -35,7 +35,7 @@ enum TypeDerivationRule {
     }
   }
 
-  TypeDerivationRule fromJson(dynamic jsonValue) {
+  static TypeDerivationRule fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

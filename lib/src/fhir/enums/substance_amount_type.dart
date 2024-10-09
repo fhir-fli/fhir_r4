@@ -34,7 +34,7 @@ enum SubstanceAmountType {
   }
 
   String toJson() => toString();
-  SubstanceAmountType fromString(String str) {
+  static SubstanceAmountType fromString(String str) {
     switch (str) {
       case 'Average':
         return SubstanceAmountType.Average;
@@ -49,7 +49,7 @@ enum SubstanceAmountType {
     }
   }
 
-  SubstanceAmountType fromJson(dynamic jsonValue) {
+  static SubstanceAmountType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

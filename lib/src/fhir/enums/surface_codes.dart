@@ -87,7 +87,7 @@ enum SurfaceCodes {
   }
 
   String toJson() => toString();
-  SurfaceCodes fromString(String str) {
+  static SurfaceCodes fromString(String str) {
     switch (str) {
       case 'M':
         return SurfaceCodes.M;
@@ -116,7 +116,7 @@ enum SurfaceCodes {
     }
   }
 
-  SurfaceCodes fromJson(dynamic jsonValue) {
+  static SurfaceCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

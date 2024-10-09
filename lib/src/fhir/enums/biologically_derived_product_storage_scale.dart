@@ -31,7 +31,7 @@ enum BiologicallyDerivedProductStorageScale {
   }
 
   String toJson() => toString();
-  BiologicallyDerivedProductStorageScale fromString(String str) {
+  static BiologicallyDerivedProductStorageScale fromString(String str) {
     switch (str) {
       case 'farenheit':
         return BiologicallyDerivedProductStorageScale.farenheit;
@@ -44,7 +44,7 @@ enum BiologicallyDerivedProductStorageScale {
     }
   }
 
-  BiologicallyDerivedProductStorageScale fromJson(dynamic jsonValue) {
+  static BiologicallyDerivedProductStorageScale fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

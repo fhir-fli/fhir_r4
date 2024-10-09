@@ -6,7 +6,7 @@ R4b Version of the FHIR Specification
 ~~### Macros~~
 ~~- So I'm going to start using Macros for this version. This requires a higher dart version ```sdk: ">=3.5.0-152 <4.0.0"```~~ No I'm not. They're not quite ready for production yet. But there are still some breaking changes. 
 - No more freezed. I really liked freezed, but it doesn't play nicely with some other code generators. 
-- While I wait for macros, it's probably better to use the ```equalsDeep(FhirBase? other)``` method for equality over ```==```
+- Speaking of which, since I'm already generating most of the class, I went ahead and generated ```toJson/fromJson``` and ```==```, no external code generation packages (as always, please let me know about mistakes)
 - All of the serializable methods and copyWith should still work as before. 
 
 ### Primitives

@@ -73,7 +73,7 @@ enum SearchComparator {
   }
 
   String toJson() => toString();
-  SearchComparator fromString(String str) {
+  static SearchComparator fromString(String str) {
     switch (str) {
       case 'eq':
         return SearchComparator.eq;
@@ -98,7 +98,7 @@ enum SearchComparator {
     }
   }
 
-  SearchComparator fromJson(dynamic jsonValue) {
+  static SearchComparator fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

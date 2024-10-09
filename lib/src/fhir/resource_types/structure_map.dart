@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'structure_map.g.dart';
-
 /// [StructureMap] /// A Map of relationships between 2 structures that can be used to transform
 /// data.
 @JsonSerializable()
@@ -58,8 +56,6 @@ class StructureMap extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.StructureMap);
   @override
   String get fhirType => 'StructureMap';
@@ -196,12 +192,259 @@ class StructureMap extends DomainResource {
   /// maintenance.
   @JsonKey(name: 'group')
   final List<StructureMapGroup> group;
-  factory StructureMap.fromJson(Map<String, dynamic> json) =>
-      _$StructureMapFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$StructureMapToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['url'] = url.value;
+    if (urlElement != null) {
+      json['_url'] = urlElement!.toJson();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    if (version?.value != null) {
+      json['version'] = version!.value;
+    }
+    if (versionElement != null) {
+      json['_version'] = versionElement!.toJson();
+    }
+    json['name'] = name.value;
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (title?.value != null) {
+      json['title'] = title!.value;
+    }
+    if (titleElement != null) {
+      json['_title'] = titleElement!.toJson();
+    }
+    json['status'] = status.toJson();
+    if (experimental?.value != null) {
+      json['experimental'] = experimental!.value;
+    }
+    if (experimentalElement != null) {
+      json['_experimental'] = experimentalElement!.toJson();
+    }
+    if (date?.value != null) {
+      json['date'] = date!.value;
+    }
+    if (dateElement != null) {
+      json['_date'] = dateElement!.toJson();
+    }
+    if (publisher?.value != null) {
+      json['publisher'] = publisher!.value;
+    }
+    if (publisherElement != null) {
+      json['_publisher'] = publisherElement!.toJson();
+    }
+    if (contact != null && contact!.isNotEmpty) {
+      json['contact'] =
+          contact!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+    }
+    if (description?.value != null) {
+      json['description'] = description!.value;
+    }
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    if (useContext != null && useContext!.isNotEmpty) {
+      json['useContext'] =
+          useContext!.map<dynamic>((UsageContext v) => v.toJson()).toList();
+    }
+    if (jurisdiction != null && jurisdiction!.isNotEmpty) {
+      json['jurisdiction'] = jurisdiction!
+          .map<dynamic>((CodeableConcept v) => v.toJson())
+          .toList();
+    }
+    if (purpose?.value != null) {
+      json['purpose'] = purpose!.value;
+    }
+    if (purposeElement != null) {
+      json['_purpose'] = purposeElement!.toJson();
+    }
+    if (copyright?.value != null) {
+      json['copyright'] = copyright!.value;
+    }
+    if (copyrightElement != null) {
+      json['_copyright'] = copyrightElement!.toJson();
+    }
+    if (structure != null && structure!.isNotEmpty) {
+      json['structure'] = structure!
+          .map<dynamic>((StructureMapStructure v) => v.toJson())
+          .toList();
+    }
+    if (import_ != null && import_!.isNotEmpty) {
+      json['import'] = import_!.map((FhirCanonical v) => v.value).toList();
+    }
+    if (importElement != null && importElement!.isNotEmpty) {
+      json['_import'] = importElement!.map((Element v) => v.toJson()).toList();
+    }
+    json['group'] =
+        group.map<dynamic>((StructureMapGroup v) => v.toJson()).toList();
+    return json;
+  }
 
+  factory StructureMap.fromJson(Map<String, dynamic> json) {
+    return StructureMap(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      url: FhirUri(json['url']),
+      urlElement: Element.fromJson(json['_url'] as Map<String, dynamic>),
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      version: json['version'] != null ? FhirString(json['version']) : null,
+      versionElement: json['_version'] != null
+          ? Element.fromJson(json['_version'] as Map<String, dynamic>)
+          : null,
+      name: FhirString(json['name']),
+      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      title: json['title'] != null ? FhirString(json['title']) : null,
+      titleElement: json['_title'] != null
+          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
+          : null,
+      status:
+          PublicationStatus.fromJson(json['status'] as Map<String, dynamic>),
+      experimental: json['experimental'] != null
+          ? FhirBoolean(json['experimental'])
+          : null,
+      experimentalElement: json['_experimental'] != null
+          ? Element.fromJson(json['_experimental'] as Map<String, dynamic>)
+          : null,
+      date: json['date'] != null ? FhirDateTime(json['date']) : null,
+      dateElement: json['_date'] != null
+          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
+          : null,
+      publisher:
+          json['publisher'] != null ? FhirString(json['publisher']) : null,
+      publisherElement: json['_publisher'] != null
+          ? Element.fromJson(json['_publisher'] as Map<String, dynamic>)
+          : null,
+      contact: json['contact'] != null
+          ? (json['contact'] as List<dynamic>)
+              .map<ContactDetail>((dynamic v) =>
+                  ContactDetail.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      description: json['description'] != null
+          ? FhirMarkdown(json['description'])
+          : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
+      useContext: json['useContext'] != null
+          ? (json['useContext'] as List<dynamic>)
+              .map<UsageContext>((dynamic v) =>
+                  UsageContext.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      jurisdiction: json['jurisdiction'] != null
+          ? (json['jurisdiction'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      purpose: json['purpose'] != null ? FhirMarkdown(json['purpose']) : null,
+      purposeElement: json['_purpose'] != null
+          ? Element.fromJson(json['_purpose'] as Map<String, dynamic>)
+          : null,
+      copyright:
+          json['copyright'] != null ? FhirMarkdown(json['copyright']) : null,
+      copyrightElement: json['_copyright'] != null
+          ? Element.fromJson(json['_copyright'] as Map<String, dynamic>)
+          : null,
+      structure: json['structure'] != null
+          ? (json['structure'] as List<dynamic>)
+              .map<StructureMapStructure>((dynamic v) =>
+                  StructureMapStructure.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      import_: json['import'] != null
+          ? (json['import'] as List<dynamic>)
+              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .toList()
+          : null,
+      importElement: json['_import'] != null
+          ? (json['_import'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      group: (json['group'] as List<dynamic>)
+          .map<StructureMapGroup>((dynamic v) =>
+              StructureMapGroup.fromJson(v as Map<String, dynamic>))
+          .toList(),
+    );
+  }
   @override
   StructureMap clone() => throw UnimplementedError();
   @override
@@ -375,12 +618,74 @@ class StructureMapStructure extends BackboneElement {
   final FhirString? documentation;
   @JsonKey(name: '_documentation')
   final Element? documentationElement;
-  factory StructureMapStructure.fromJson(Map<String, dynamic> json) =>
-      _$StructureMapStructureFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$StructureMapStructureToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['url'] = url.value;
+    if (urlElement != null) {
+      json['_url'] = urlElement!.toJson();
+    }
+    json['mode'] = mode.toJson();
+    if (alias?.value != null) {
+      json['alias'] = alias!.value;
+    }
+    if (aliasElement != null) {
+      json['_alias'] = aliasElement!.toJson();
+    }
+    if (documentation?.value != null) {
+      json['documentation'] = documentation!.value;
+    }
+    if (documentationElement != null) {
+      json['_documentation'] = documentationElement!.toJson();
+    }
+    return json;
+  }
 
+  factory StructureMapStructure.fromJson(Map<String, dynamic> json) {
+    return StructureMapStructure(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      url: FhirCanonical(json['url']),
+      urlElement: Element.fromJson(json['_url'] as Map<String, dynamic>),
+      mode:
+          StructureMapModelMode.fromJson(json['mode'] as Map<String, dynamic>),
+      alias: json['alias'] != null ? FhirString(json['alias']) : null,
+      aliasElement: json['_alias'] != null
+          ? Element.fromJson(json['_alias'] as Map<String, dynamic>)
+          : null,
+      documentation: json['documentation'] != null
+          ? FhirString(json['documentation'])
+          : null,
+      documentationElement: json['_documentation'] != null
+          ? Element.fromJson(json['_documentation'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   StructureMapStructure clone() => throw UnimplementedError();
   @override
@@ -509,12 +814,86 @@ class StructureMapGroup extends BackboneElement {
   /// [rule] /// Transform Rule from source to target.
   @JsonKey(name: 'rule')
   final List<StructureMapRule> rule;
-  factory StructureMapGroup.fromJson(Map<String, dynamic> json) =>
-      _$StructureMapGroupFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$StructureMapGroupToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['name'] = name.value;
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (extends_?.value != null) {
+      json['extends'] = extends_!.value;
+    }
+    if (extendsElement != null) {
+      json['_extends'] = extendsElement!.toJson();
+    }
+    json['typeMode'] = typeMode.toJson();
+    if (documentation?.value != null) {
+      json['documentation'] = documentation!.value;
+    }
+    if (documentationElement != null) {
+      json['_documentation'] = documentationElement!.toJson();
+    }
+    json['input'] =
+        input.map<dynamic>((StructureMapInput v) => v.toJson()).toList();
+    json['rule'] =
+        rule.map<dynamic>((StructureMapRule v) => v.toJson()).toList();
+    return json;
+  }
 
+  factory StructureMapGroup.fromJson(Map<String, dynamic> json) {
+    return StructureMapGroup(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      name: FhirId(json['name']),
+      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      extends_: json['extends'] != null ? FhirId(json['extends']) : null,
+      extendsElement: json['_extends'] != null
+          ? Element.fromJson(json['_extends'] as Map<String, dynamic>)
+          : null,
+      typeMode: StructureMapGroupTypeMode.fromJson(
+          json['typeMode'] as Map<String, dynamic>),
+      documentation: json['documentation'] != null
+          ? FhirString(json['documentation'])
+          : null,
+      documentationElement: json['_documentation'] != null
+          ? Element.fromJson(json['_documentation'] as Map<String, dynamic>)
+          : null,
+      input: (json['input'] as List<dynamic>)
+          .map<StructureMapInput>((dynamic v) =>
+              StructureMapInput.fromJson(v as Map<String, dynamic>))
+          .toList(),
+      rule: (json['rule'] as List<dynamic>)
+          .map<StructureMapRule>((dynamic v) =>
+              StructureMapRule.fromJson(v as Map<String, dynamic>))
+          .toList(),
+    );
+  }
   @override
   StructureMapGroup clone() => throw UnimplementedError();
   @override
@@ -634,12 +1013,74 @@ class StructureMapInput extends BackboneElement {
   final FhirString? documentation;
   @JsonKey(name: '_documentation')
   final Element? documentationElement;
-  factory StructureMapInput.fromJson(Map<String, dynamic> json) =>
-      _$StructureMapInputFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$StructureMapInputToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['name'] = name.value;
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (type?.value != null) {
+      json['type'] = type!.value;
+    }
+    if (typeElement != null) {
+      json['_type'] = typeElement!.toJson();
+    }
+    json['mode'] = mode.toJson();
+    if (documentation?.value != null) {
+      json['documentation'] = documentation!.value;
+    }
+    if (documentationElement != null) {
+      json['_documentation'] = documentationElement!.toJson();
+    }
+    return json;
+  }
 
+  factory StructureMapInput.fromJson(Map<String, dynamic> json) {
+    return StructureMapInput(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      name: FhirId(json['name']),
+      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      type: json['type'] != null ? FhirString(json['type']) : null,
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
+          : null,
+      mode:
+          StructureMapInputMode.fromJson(json['mode'] as Map<String, dynamic>),
+      documentation: json['documentation'] != null
+          ? FhirString(json['documentation'])
+          : null,
+      documentationElement: json['_documentation'] != null
+          ? Element.fromJson(json['_documentation'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   StructureMapInput clone() => throw UnimplementedError();
   @override
@@ -758,12 +1199,98 @@ class StructureMapRule extends BackboneElement {
   final FhirString? documentation;
   @JsonKey(name: '_documentation')
   final Element? documentationElement;
-  factory StructureMapRule.fromJson(Map<String, dynamic> json) =>
-      _$StructureMapRuleFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$StructureMapRuleToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['name'] = name.value;
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    json['source'] =
+        source.map<dynamic>((StructureMapSource v) => v.toJson()).toList();
+    if (target != null && target!.isNotEmpty) {
+      json['target'] =
+          target!.map<dynamic>((StructureMapTarget v) => v.toJson()).toList();
+    }
+    if (rule != null && rule!.isNotEmpty) {
+      json['rule'] =
+          rule!.map<dynamic>((StructureMapRule v) => v.toJson()).toList();
+    }
+    if (dependent != null && dependent!.isNotEmpty) {
+      json['dependent'] = dependent!
+          .map<dynamic>((StructureMapDependent v) => v.toJson())
+          .toList();
+    }
+    if (documentation?.value != null) {
+      json['documentation'] = documentation!.value;
+    }
+    if (documentationElement != null) {
+      json['_documentation'] = documentationElement!.toJson();
+    }
+    return json;
+  }
 
+  factory StructureMapRule.fromJson(Map<String, dynamic> json) {
+    return StructureMapRule(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      name: FhirId(json['name']),
+      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      source: (json['source'] as List<dynamic>)
+          .map<StructureMapSource>((dynamic v) =>
+              StructureMapSource.fromJson(v as Map<String, dynamic>))
+          .toList(),
+      target: json['target'] != null
+          ? (json['target'] as List<dynamic>)
+              .map<StructureMapTarget>((dynamic v) =>
+                  StructureMapTarget.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      rule: json['rule'] != null
+          ? (json['rule'] as List<dynamic>)
+              .map<StructureMapRule>((dynamic v) =>
+                  StructureMapRule.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      dependent: json['dependent'] != null
+          ? (json['dependent'] as List<dynamic>)
+              .map<StructureMapDependent>((dynamic v) =>
+                  StructureMapDependent.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      documentation: json['documentation'] != null
+          ? FhirString(json['documentation'])
+          : null,
+      documentationElement: json['_documentation'] != null
+          ? Element.fromJson(json['_documentation'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   StructureMapRule clone() => throw UnimplementedError();
   @override
@@ -1239,12 +1766,596 @@ class StructureMapSource extends BackboneElement {
   final FhirString? logMessage;
   @JsonKey(name: '_logMessage')
   final Element? logMessageElement;
-  factory StructureMapSource.fromJson(Map<String, dynamic> json) =>
-      _$StructureMapSourceFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$StructureMapSourceToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['context'] = context.value;
+    if (contextElement != null) {
+      json['_context'] = contextElement!.toJson();
+    }
+    if (min?.value != null) {
+      json['min'] = min!.value;
+    }
+    if (minElement != null) {
+      json['_min'] = minElement!.toJson();
+    }
+    if (max?.value != null) {
+      json['max'] = max!.value;
+    }
+    if (maxElement != null) {
+      json['_max'] = maxElement!.toJson();
+    }
+    if (type?.value != null) {
+      json['type'] = type!.value;
+    }
+    if (typeElement != null) {
+      json['_type'] = typeElement!.toJson();
+    }
+    if (defaultValueBase64Binary?.value != null) {
+      json['defaultValueBase64Binary'] = defaultValueBase64Binary!.value;
+    }
+    if (defaultValueBase64BinaryElement != null) {
+      json['_defaultValueBase64Binary'] =
+          defaultValueBase64BinaryElement!.toJson();
+    }
+    if (defaultValueBoolean?.value != null) {
+      json['defaultValueBoolean'] = defaultValueBoolean!.value;
+    }
+    if (defaultValueBooleanElement != null) {
+      json['_defaultValueBoolean'] = defaultValueBooleanElement!.toJson();
+    }
+    if (defaultValueCanonical?.value != null) {
+      json['defaultValueCanonical'] = defaultValueCanonical!.value;
+    }
+    if (defaultValueCanonicalElement != null) {
+      json['_defaultValueCanonical'] = defaultValueCanonicalElement!.toJson();
+    }
+    if (defaultValueCode?.value != null) {
+      json['defaultValueCode'] = defaultValueCode!.value;
+    }
+    if (defaultValueCodeElement != null) {
+      json['_defaultValueCode'] = defaultValueCodeElement!.toJson();
+    }
+    if (defaultValueDate?.value != null) {
+      json['defaultValueDate'] = defaultValueDate!.value;
+    }
+    if (defaultValueDateElement != null) {
+      json['_defaultValueDate'] = defaultValueDateElement!.toJson();
+    }
+    if (defaultValueDateTime?.value != null) {
+      json['defaultValueDateTime'] = defaultValueDateTime!.value;
+    }
+    if (defaultValueDateTimeElement != null) {
+      json['_defaultValueDateTime'] = defaultValueDateTimeElement!.toJson();
+    }
+    if (defaultValueDecimal?.value != null) {
+      json['defaultValueDecimal'] = defaultValueDecimal!.value;
+    }
+    if (defaultValueDecimalElement != null) {
+      json['_defaultValueDecimal'] = defaultValueDecimalElement!.toJson();
+    }
+    if (defaultValueId?.value != null) {
+      json['defaultValueId'] = defaultValueId!.value;
+    }
+    if (defaultValueIdElement != null) {
+      json['_defaultValueId'] = defaultValueIdElement!.toJson();
+    }
+    if (defaultValueInstant?.value != null) {
+      json['defaultValueInstant'] = defaultValueInstant!.value;
+    }
+    if (defaultValueInstantElement != null) {
+      json['_defaultValueInstant'] = defaultValueInstantElement!.toJson();
+    }
+    if (defaultValueInteger?.value != null) {
+      json['defaultValueInteger'] = defaultValueInteger!.value;
+    }
+    if (defaultValueIntegerElement != null) {
+      json['_defaultValueInteger'] = defaultValueIntegerElement!.toJson();
+    }
+    if (defaultValueMarkdown?.value != null) {
+      json['defaultValueMarkdown'] = defaultValueMarkdown!.value;
+    }
+    if (defaultValueMarkdownElement != null) {
+      json['_defaultValueMarkdown'] = defaultValueMarkdownElement!.toJson();
+    }
+    if (defaultValueOid?.value != null) {
+      json['defaultValueOid'] = defaultValueOid!.value;
+    }
+    if (defaultValueOidElement != null) {
+      json['_defaultValueOid'] = defaultValueOidElement!.toJson();
+    }
+    if (defaultValuePositiveInt?.value != null) {
+      json['defaultValuePositiveInt'] = defaultValuePositiveInt!.value;
+    }
+    if (defaultValuePositiveIntElement != null) {
+      json['_defaultValuePositiveInt'] =
+          defaultValuePositiveIntElement!.toJson();
+    }
+    if (defaultValueString?.value != null) {
+      json['defaultValueString'] = defaultValueString!.value;
+    }
+    if (defaultValueStringElement != null) {
+      json['_defaultValueString'] = defaultValueStringElement!.toJson();
+    }
+    if (defaultValueTime?.value != null) {
+      json['defaultValueTime'] = defaultValueTime!.value;
+    }
+    if (defaultValueTimeElement != null) {
+      json['_defaultValueTime'] = defaultValueTimeElement!.toJson();
+    }
+    if (defaultValueUnsignedInt?.value != null) {
+      json['defaultValueUnsignedInt'] = defaultValueUnsignedInt!.value;
+    }
+    if (defaultValueUnsignedIntElement != null) {
+      json['_defaultValueUnsignedInt'] =
+          defaultValueUnsignedIntElement!.toJson();
+    }
+    if (defaultValueUri?.value != null) {
+      json['defaultValueUri'] = defaultValueUri!.value;
+    }
+    if (defaultValueUriElement != null) {
+      json['_defaultValueUri'] = defaultValueUriElement!.toJson();
+    }
+    if (defaultValueUrl?.value != null) {
+      json['defaultValueUrl'] = defaultValueUrl!.value;
+    }
+    if (defaultValueUrlElement != null) {
+      json['_defaultValueUrl'] = defaultValueUrlElement!.toJson();
+    }
+    if (defaultValueUuid?.value != null) {
+      json['defaultValueUuid'] = defaultValueUuid!.value;
+    }
+    if (defaultValueUuidElement != null) {
+      json['_defaultValueUuid'] = defaultValueUuidElement!.toJson();
+    }
+    if (defaultValueAddress != null) {
+      json['defaultValueAddress'] = defaultValueAddress!.toJson();
+    }
+    if (defaultValueAge != null) {
+      json['defaultValueAge'] = defaultValueAge!.toJson();
+    }
+    if (defaultValueAnnotation != null) {
+      json['defaultValueAnnotation'] = defaultValueAnnotation!.toJson();
+    }
+    if (defaultValueAttachment != null) {
+      json['defaultValueAttachment'] = defaultValueAttachment!.toJson();
+    }
+    if (defaultValueCodeableConcept != null) {
+      json['defaultValueCodeableConcept'] =
+          defaultValueCodeableConcept!.toJson();
+    }
+    if (defaultValueCoding != null) {
+      json['defaultValueCoding'] = defaultValueCoding!.toJson();
+    }
+    if (defaultValueContactPoint != null) {
+      json['defaultValueContactPoint'] = defaultValueContactPoint!.toJson();
+    }
+    if (defaultValueCount != null) {
+      json['defaultValueCount'] = defaultValueCount!.toJson();
+    }
+    if (defaultValueDistance != null) {
+      json['defaultValueDistance'] = defaultValueDistance!.toJson();
+    }
+    if (defaultValueDuration != null) {
+      json['defaultValueDuration'] = defaultValueDuration!.toJson();
+    }
+    if (defaultValueHumanName != null) {
+      json['defaultValueHumanName'] = defaultValueHumanName!.toJson();
+    }
+    if (defaultValueIdentifier != null) {
+      json['defaultValueIdentifier'] = defaultValueIdentifier!.toJson();
+    }
+    if (defaultValueMoney != null) {
+      json['defaultValueMoney'] = defaultValueMoney!.toJson();
+    }
+    if (defaultValuePeriod != null) {
+      json['defaultValuePeriod'] = defaultValuePeriod!.toJson();
+    }
+    if (defaultValueQuantity != null) {
+      json['defaultValueQuantity'] = defaultValueQuantity!.toJson();
+    }
+    if (defaultValueRange != null) {
+      json['defaultValueRange'] = defaultValueRange!.toJson();
+    }
+    if (defaultValueRatio != null) {
+      json['defaultValueRatio'] = defaultValueRatio!.toJson();
+    }
+    if (defaultValueReference != null) {
+      json['defaultValueReference'] = defaultValueReference!.toJson();
+    }
+    if (defaultValueSampledData != null) {
+      json['defaultValueSampledData'] = defaultValueSampledData!.toJson();
+    }
+    if (defaultValueSignature != null) {
+      json['defaultValueSignature'] = defaultValueSignature!.toJson();
+    }
+    if (defaultValueTiming != null) {
+      json['defaultValueTiming'] = defaultValueTiming!.toJson();
+    }
+    if (defaultValueContactDetail != null) {
+      json['defaultValueContactDetail'] = defaultValueContactDetail!.toJson();
+    }
+    if (defaultValueContributor != null) {
+      json['defaultValueContributor'] = defaultValueContributor!.toJson();
+    }
+    if (defaultValueDataRequirement != null) {
+      json['defaultValueDataRequirement'] =
+          defaultValueDataRequirement!.toJson();
+    }
+    if (defaultValueExpression != null) {
+      json['defaultValueExpression'] = defaultValueExpression!.toJson();
+    }
+    if (defaultValueParameterDefinition != null) {
+      json['defaultValueParameterDefinition'] =
+          defaultValueParameterDefinition!.toJson();
+    }
+    if (defaultValueRelatedArtifact != null) {
+      json['defaultValueRelatedArtifact'] =
+          defaultValueRelatedArtifact!.toJson();
+    }
+    if (defaultValueTriggerDefinition != null) {
+      json['defaultValueTriggerDefinition'] =
+          defaultValueTriggerDefinition!.toJson();
+    }
+    if (defaultValueUsageContext != null) {
+      json['defaultValueUsageContext'] = defaultValueUsageContext!.toJson();
+    }
+    if (defaultValueDosage != null) {
+      json['defaultValueDosage'] = defaultValueDosage!.toJson();
+    }
+    if (defaultValueMeta != null) {
+      json['defaultValueMeta'] = defaultValueMeta!.toJson();
+    }
+    if (element?.value != null) {
+      json['element'] = element!.value;
+    }
+    if (elementElement != null) {
+      json['_element'] = elementElement!.toJson();
+    }
+    if (listMode != null) {
+      json['listMode'] = listMode!.toJson();
+    }
+    if (variable?.value != null) {
+      json['variable'] = variable!.value;
+    }
+    if (variableElement != null) {
+      json['_variable'] = variableElement!.toJson();
+    }
+    if (condition?.value != null) {
+      json['condition'] = condition!.value;
+    }
+    if (conditionElement != null) {
+      json['_condition'] = conditionElement!.toJson();
+    }
+    if (check?.value != null) {
+      json['check'] = check!.value;
+    }
+    if (checkElement != null) {
+      json['_check'] = checkElement!.toJson();
+    }
+    if (logMessage?.value != null) {
+      json['logMessage'] = logMessage!.value;
+    }
+    if (logMessageElement != null) {
+      json['_logMessage'] = logMessageElement!.toJson();
+    }
+    return json;
+  }
 
+  factory StructureMapSource.fromJson(Map<String, dynamic> json) {
+    return StructureMapSource(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      context: FhirId(json['context']),
+      contextElement:
+          Element.fromJson(json['_context'] as Map<String, dynamic>),
+      min: json['min'] != null ? FhirInteger(json['min']) : null,
+      minElement: json['_min'] != null
+          ? Element.fromJson(json['_min'] as Map<String, dynamic>)
+          : null,
+      max: json['max'] != null ? FhirString(json['max']) : null,
+      maxElement: json['_max'] != null
+          ? Element.fromJson(json['_max'] as Map<String, dynamic>)
+          : null,
+      type: json['type'] != null ? FhirString(json['type']) : null,
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
+          : null,
+      defaultValueBase64Binary: json['defaultValueBase64Binary'] != null
+          ? FhirBase64Binary(json['defaultValueBase64Binary'])
+          : null,
+      defaultValueBase64BinaryElement: json['_defaultValueBase64Binary'] != null
+          ? Element.fromJson(
+              json['_defaultValueBase64Binary'] as Map<String, dynamic>)
+          : null,
+      defaultValueBoolean: json['defaultValueBoolean'] != null
+          ? FhirBoolean(json['defaultValueBoolean'])
+          : null,
+      defaultValueBooleanElement: json['_defaultValueBoolean'] != null
+          ? Element.fromJson(
+              json['_defaultValueBoolean'] as Map<String, dynamic>)
+          : null,
+      defaultValueCanonical: json['defaultValueCanonical'] != null
+          ? FhirCanonical(json['defaultValueCanonical'])
+          : null,
+      defaultValueCanonicalElement: json['_defaultValueCanonical'] != null
+          ? Element.fromJson(
+              json['_defaultValueCanonical'] as Map<String, dynamic>)
+          : null,
+      defaultValueCode: json['defaultValueCode'] != null
+          ? FhirCode(json['defaultValueCode'])
+          : null,
+      defaultValueCodeElement: json['_defaultValueCode'] != null
+          ? Element.fromJson(json['_defaultValueCode'] as Map<String, dynamic>)
+          : null,
+      defaultValueDate: json['defaultValueDate'] != null
+          ? FhirDate(json['defaultValueDate'])
+          : null,
+      defaultValueDateElement: json['_defaultValueDate'] != null
+          ? Element.fromJson(json['_defaultValueDate'] as Map<String, dynamic>)
+          : null,
+      defaultValueDateTime: json['defaultValueDateTime'] != null
+          ? FhirDateTime(json['defaultValueDateTime'])
+          : null,
+      defaultValueDateTimeElement: json['_defaultValueDateTime'] != null
+          ? Element.fromJson(
+              json['_defaultValueDateTime'] as Map<String, dynamic>)
+          : null,
+      defaultValueDecimal: json['defaultValueDecimal'] != null
+          ? FhirDecimal(json['defaultValueDecimal'])
+          : null,
+      defaultValueDecimalElement: json['_defaultValueDecimal'] != null
+          ? Element.fromJson(
+              json['_defaultValueDecimal'] as Map<String, dynamic>)
+          : null,
+      defaultValueId: json['defaultValueId'] != null
+          ? FhirId(json['defaultValueId'])
+          : null,
+      defaultValueIdElement: json['_defaultValueId'] != null
+          ? Element.fromJson(json['_defaultValueId'] as Map<String, dynamic>)
+          : null,
+      defaultValueInstant: json['defaultValueInstant'] != null
+          ? FhirInstant(json['defaultValueInstant'])
+          : null,
+      defaultValueInstantElement: json['_defaultValueInstant'] != null
+          ? Element.fromJson(
+              json['_defaultValueInstant'] as Map<String, dynamic>)
+          : null,
+      defaultValueInteger: json['defaultValueInteger'] != null
+          ? FhirInteger(json['defaultValueInteger'])
+          : null,
+      defaultValueIntegerElement: json['_defaultValueInteger'] != null
+          ? Element.fromJson(
+              json['_defaultValueInteger'] as Map<String, dynamic>)
+          : null,
+      defaultValueMarkdown: json['defaultValueMarkdown'] != null
+          ? FhirMarkdown(json['defaultValueMarkdown'])
+          : null,
+      defaultValueMarkdownElement: json['_defaultValueMarkdown'] != null
+          ? Element.fromJson(
+              json['_defaultValueMarkdown'] as Map<String, dynamic>)
+          : null,
+      defaultValueOid: json['defaultValueOid'] != null
+          ? FhirOid(json['defaultValueOid'])
+          : null,
+      defaultValueOidElement: json['_defaultValueOid'] != null
+          ? Element.fromJson(json['_defaultValueOid'] as Map<String, dynamic>)
+          : null,
+      defaultValuePositiveInt: json['defaultValuePositiveInt'] != null
+          ? FhirPositiveInt(json['defaultValuePositiveInt'])
+          : null,
+      defaultValuePositiveIntElement: json['_defaultValuePositiveInt'] != null
+          ? Element.fromJson(
+              json['_defaultValuePositiveInt'] as Map<String, dynamic>)
+          : null,
+      defaultValueString: json['defaultValueString'] != null
+          ? FhirString(json['defaultValueString'])
+          : null,
+      defaultValueStringElement: json['_defaultValueString'] != null
+          ? Element.fromJson(
+              json['_defaultValueString'] as Map<String, dynamic>)
+          : null,
+      defaultValueTime: json['defaultValueTime'] != null
+          ? FhirTime(json['defaultValueTime'])
+          : null,
+      defaultValueTimeElement: json['_defaultValueTime'] != null
+          ? Element.fromJson(json['_defaultValueTime'] as Map<String, dynamic>)
+          : null,
+      defaultValueUnsignedInt: json['defaultValueUnsignedInt'] != null
+          ? FhirUnsignedInt(json['defaultValueUnsignedInt'])
+          : null,
+      defaultValueUnsignedIntElement: json['_defaultValueUnsignedInt'] != null
+          ? Element.fromJson(
+              json['_defaultValueUnsignedInt'] as Map<String, dynamic>)
+          : null,
+      defaultValueUri: json['defaultValueUri'] != null
+          ? FhirUri(json['defaultValueUri'])
+          : null,
+      defaultValueUriElement: json['_defaultValueUri'] != null
+          ? Element.fromJson(json['_defaultValueUri'] as Map<String, dynamic>)
+          : null,
+      defaultValueUrl: json['defaultValueUrl'] != null
+          ? FhirUrl(json['defaultValueUrl'])
+          : null,
+      defaultValueUrlElement: json['_defaultValueUrl'] != null
+          ? Element.fromJson(json['_defaultValueUrl'] as Map<String, dynamic>)
+          : null,
+      defaultValueUuid: json['defaultValueUuid'] != null
+          ? FhirUuid(json['defaultValueUuid'])
+          : null,
+      defaultValueUuidElement: json['_defaultValueUuid'] != null
+          ? Element.fromJson(json['_defaultValueUuid'] as Map<String, dynamic>)
+          : null,
+      defaultValueAddress: json['defaultValueAddress'] != null
+          ? Address.fromJson(
+              json['defaultValueAddress'] as Map<String, dynamic>)
+          : null,
+      defaultValueAge: json['defaultValueAge'] != null
+          ? Age.fromJson(json['defaultValueAge'] as Map<String, dynamic>)
+          : null,
+      defaultValueAnnotation: json['defaultValueAnnotation'] != null
+          ? Annotation.fromJson(
+              json['defaultValueAnnotation'] as Map<String, dynamic>)
+          : null,
+      defaultValueAttachment: json['defaultValueAttachment'] != null
+          ? Attachment.fromJson(
+              json['defaultValueAttachment'] as Map<String, dynamic>)
+          : null,
+      defaultValueCodeableConcept: json['defaultValueCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['defaultValueCodeableConcept'] as Map<String, dynamic>)
+          : null,
+      defaultValueCoding: json['defaultValueCoding'] != null
+          ? Coding.fromJson(json['defaultValueCoding'] as Map<String, dynamic>)
+          : null,
+      defaultValueContactPoint: json['defaultValueContactPoint'] != null
+          ? ContactPoint.fromJson(
+              json['defaultValueContactPoint'] as Map<String, dynamic>)
+          : null,
+      defaultValueCount: json['defaultValueCount'] != null
+          ? Count.fromJson(json['defaultValueCount'] as Map<String, dynamic>)
+          : null,
+      defaultValueDistance: json['defaultValueDistance'] != null
+          ? Distance.fromJson(
+              json['defaultValueDistance'] as Map<String, dynamic>)
+          : null,
+      defaultValueDuration: json['defaultValueDuration'] != null
+          ? FhirDuration.fromJson(
+              json['defaultValueDuration'] as Map<String, dynamic>)
+          : null,
+      defaultValueHumanName: json['defaultValueHumanName'] != null
+          ? HumanName.fromJson(
+              json['defaultValueHumanName'] as Map<String, dynamic>)
+          : null,
+      defaultValueIdentifier: json['defaultValueIdentifier'] != null
+          ? Identifier.fromJson(
+              json['defaultValueIdentifier'] as Map<String, dynamic>)
+          : null,
+      defaultValueMoney: json['defaultValueMoney'] != null
+          ? Money.fromJson(json['defaultValueMoney'] as Map<String, dynamic>)
+          : null,
+      defaultValuePeriod: json['defaultValuePeriod'] != null
+          ? Period.fromJson(json['defaultValuePeriod'] as Map<String, dynamic>)
+          : null,
+      defaultValueQuantity: json['defaultValueQuantity'] != null
+          ? Quantity.fromJson(
+              json['defaultValueQuantity'] as Map<String, dynamic>)
+          : null,
+      defaultValueRange: json['defaultValueRange'] != null
+          ? Range.fromJson(json['defaultValueRange'] as Map<String, dynamic>)
+          : null,
+      defaultValueRatio: json['defaultValueRatio'] != null
+          ? Ratio.fromJson(json['defaultValueRatio'] as Map<String, dynamic>)
+          : null,
+      defaultValueReference: json['defaultValueReference'] != null
+          ? Reference.fromJson(
+              json['defaultValueReference'] as Map<String, dynamic>)
+          : null,
+      defaultValueSampledData: json['defaultValueSampledData'] != null
+          ? SampledData.fromJson(
+              json['defaultValueSampledData'] as Map<String, dynamic>)
+          : null,
+      defaultValueSignature: json['defaultValueSignature'] != null
+          ? Signature.fromJson(
+              json['defaultValueSignature'] as Map<String, dynamic>)
+          : null,
+      defaultValueTiming: json['defaultValueTiming'] != null
+          ? Timing.fromJson(json['defaultValueTiming'] as Map<String, dynamic>)
+          : null,
+      defaultValueContactDetail: json['defaultValueContactDetail'] != null
+          ? ContactDetail.fromJson(
+              json['defaultValueContactDetail'] as Map<String, dynamic>)
+          : null,
+      defaultValueContributor: json['defaultValueContributor'] != null
+          ? Contributor.fromJson(
+              json['defaultValueContributor'] as Map<String, dynamic>)
+          : null,
+      defaultValueDataRequirement: json['defaultValueDataRequirement'] != null
+          ? DataRequirement.fromJson(
+              json['defaultValueDataRequirement'] as Map<String, dynamic>)
+          : null,
+      defaultValueExpression: json['defaultValueExpression'] != null
+          ? FhirExpression.fromJson(
+              json['defaultValueExpression'] as Map<String, dynamic>)
+          : null,
+      defaultValueParameterDefinition:
+          json['defaultValueParameterDefinition'] != null
+              ? ParameterDefinition.fromJson(
+                  json['defaultValueParameterDefinition']
+                      as Map<String, dynamic>)
+              : null,
+      defaultValueRelatedArtifact: json['defaultValueRelatedArtifact'] != null
+          ? RelatedArtifact.fromJson(
+              json['defaultValueRelatedArtifact'] as Map<String, dynamic>)
+          : null,
+      defaultValueTriggerDefinition:
+          json['defaultValueTriggerDefinition'] != null
+              ? TriggerDefinition.fromJson(
+                  json['defaultValueTriggerDefinition'] as Map<String, dynamic>)
+              : null,
+      defaultValueUsageContext: json['defaultValueUsageContext'] != null
+          ? UsageContext.fromJson(
+              json['defaultValueUsageContext'] as Map<String, dynamic>)
+          : null,
+      defaultValueDosage: json['defaultValueDosage'] != null
+          ? Dosage.fromJson(json['defaultValueDosage'] as Map<String, dynamic>)
+          : null,
+      defaultValueMeta: json['defaultValueMeta'] != null
+          ? FhirMeta.fromJson(json['defaultValueMeta'] as Map<String, dynamic>)
+          : null,
+      element: json['element'] != null ? FhirString(json['element']) : null,
+      elementElement: json['_element'] != null
+          ? Element.fromJson(json['_element'] as Map<String, dynamic>)
+          : null,
+      listMode: json['listMode'] != null
+          ? StructureMapSourceListMode.fromJson(
+              json['listMode'] as Map<String, dynamic>)
+          : null,
+      variable: json['variable'] != null ? FhirId(json['variable']) : null,
+      variableElement: json['_variable'] != null
+          ? Element.fromJson(json['_variable'] as Map<String, dynamic>)
+          : null,
+      condition:
+          json['condition'] != null ? FhirString(json['condition']) : null,
+      conditionElement: json['_condition'] != null
+          ? Element.fromJson(json['_condition'] as Map<String, dynamic>)
+          : null,
+      check: json['check'] != null ? FhirString(json['check']) : null,
+      checkElement: json['_check'] != null
+          ? Element.fromJson(json['_check'] as Map<String, dynamic>)
+          : null,
+      logMessage:
+          json['logMessage'] != null ? FhirString(json['logMessage']) : null,
+      logMessageElement: json['_logMessage'] != null
+          ? Element.fromJson(json['_logMessage'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   StructureMapSource clone() => throw UnimplementedError();
   @override
@@ -1590,12 +2701,121 @@ class StructureMapTarget extends BackboneElement {
   /// [parameter] /// Parameters to the transform.
   @JsonKey(name: 'parameter')
   final List<StructureMapParameter>? parameter;
-  factory StructureMapTarget.fromJson(Map<String, dynamic> json) =>
-      _$StructureMapTargetFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$StructureMapTargetToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (context?.value != null) {
+      json['context'] = context!.value;
+    }
+    if (contextElement != null) {
+      json['_context'] = contextElement!.toJson();
+    }
+    if (contextType != null) {
+      json['contextType'] = contextType!.toJson();
+    }
+    if (element?.value != null) {
+      json['element'] = element!.value;
+    }
+    if (elementElement != null) {
+      json['_element'] = elementElement!.toJson();
+    }
+    if (variable?.value != null) {
+      json['variable'] = variable!.value;
+    }
+    if (variableElement != null) {
+      json['_variable'] = variableElement!.toJson();
+    }
+    if (listMode != null && listMode!.isNotEmpty) {
+      json['listMode'] = listMode!
+          .map<dynamic>((StructureMapTargetListMode v) => v.toJson())
+          .toList();
+    }
+    if (listRuleId?.value != null) {
+      json['listRuleId'] = listRuleId!.value;
+    }
+    if (listRuleIdElement != null) {
+      json['_listRuleId'] = listRuleIdElement!.toJson();
+    }
+    if (transform != null) {
+      json['transform'] = transform!.toJson();
+    }
+    if (parameter != null && parameter!.isNotEmpty) {
+      json['parameter'] = parameter!
+          .map<dynamic>((StructureMapParameter v) => v.toJson())
+          .toList();
+    }
+    return json;
+  }
 
+  factory StructureMapTarget.fromJson(Map<String, dynamic> json) {
+    return StructureMapTarget(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      context: json['context'] != null ? FhirId(json['context']) : null,
+      contextElement: json['_context'] != null
+          ? Element.fromJson(json['_context'] as Map<String, dynamic>)
+          : null,
+      contextType: json['contextType'] != null
+          ? StructureMapContextType.fromJson(
+              json['contextType'] as Map<String, dynamic>)
+          : null,
+      element: json['element'] != null ? FhirString(json['element']) : null,
+      elementElement: json['_element'] != null
+          ? Element.fromJson(json['_element'] as Map<String, dynamic>)
+          : null,
+      variable: json['variable'] != null ? FhirId(json['variable']) : null,
+      variableElement: json['_variable'] != null
+          ? Element.fromJson(json['_variable'] as Map<String, dynamic>)
+          : null,
+      listMode: json['listMode'] != null
+          ? (json['listMode'] as List<dynamic>)
+              .map<StructureMapTargetListMode>((dynamic v) =>
+                  StructureMapTargetListMode.fromJson(
+                      v as Map<String, dynamic>))
+              .toList()
+          : null,
+      listRuleId:
+          json['listRuleId'] != null ? FhirId(json['listRuleId']) : null,
+      listRuleIdElement: json['_listRuleId'] != null
+          ? Element.fromJson(json['_listRuleId'] as Map<String, dynamic>)
+          : null,
+      transform: json['transform'] != null
+          ? StructureMapTransform.fromJson(
+              json['transform'] as Map<String, dynamic>)
+          : null,
+      parameter: json['parameter'] != null
+          ? (json['parameter'] as List<dynamic>)
+              .map<StructureMapParameter>((dynamic v) =>
+                  StructureMapParameter.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   StructureMapTarget clone() => throw UnimplementedError();
   @override
@@ -1732,12 +2952,100 @@ class StructureMapParameter extends BackboneElement {
   final FhirDecimal? valueDecimal;
   @JsonKey(name: '_valueDecimal')
   final Element? valueDecimalElement;
-  factory StructureMapParameter.fromJson(Map<String, dynamic> json) =>
-      _$StructureMapParameterFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$StructureMapParameterToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (valueId?.value != null) {
+      json['valueId'] = valueId!.value;
+    }
+    if (valueIdElement != null) {
+      json['_valueId'] = valueIdElement!.toJson();
+    }
+    if (valueString?.value != null) {
+      json['valueString'] = valueString!.value;
+    }
+    if (valueStringElement != null) {
+      json['_valueString'] = valueStringElement!.toJson();
+    }
+    if (valueBoolean?.value != null) {
+      json['valueBoolean'] = valueBoolean!.value;
+    }
+    if (valueBooleanElement != null) {
+      json['_valueBoolean'] = valueBooleanElement!.toJson();
+    }
+    if (valueInteger?.value != null) {
+      json['valueInteger'] = valueInteger!.value;
+    }
+    if (valueIntegerElement != null) {
+      json['_valueInteger'] = valueIntegerElement!.toJson();
+    }
+    if (valueDecimal?.value != null) {
+      json['valueDecimal'] = valueDecimal!.value;
+    }
+    if (valueDecimalElement != null) {
+      json['_valueDecimal'] = valueDecimalElement!.toJson();
+    }
+    return json;
+  }
 
+  factory StructureMapParameter.fromJson(Map<String, dynamic> json) {
+    return StructureMapParameter(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      valueId: json['valueId'] != null ? FhirId(json['valueId']) : null,
+      valueIdElement: json['_valueId'] != null
+          ? Element.fromJson(json['_valueId'] as Map<String, dynamic>)
+          : null,
+      valueString:
+          json['valueString'] != null ? FhirString(json['valueString']) : null,
+      valueStringElement: json['_valueString'] != null
+          ? Element.fromJson(json['_valueString'] as Map<String, dynamic>)
+          : null,
+      valueBoolean: json['valueBoolean'] != null
+          ? FhirBoolean(json['valueBoolean'])
+          : null,
+      valueBooleanElement: json['_valueBoolean'] != null
+          ? Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>)
+          : null,
+      valueInteger: json['valueInteger'] != null
+          ? FhirInteger(json['valueInteger'])
+          : null,
+      valueIntegerElement: json['_valueInteger'] != null
+          ? Element.fromJson(json['_valueInteger'] as Map<String, dynamic>)
+          : null,
+      valueDecimal: json['valueDecimal'] != null
+          ? FhirDecimal(json['valueDecimal'])
+          : null,
+      valueDecimalElement: json['_valueDecimal'] != null
+          ? Element.fromJson(json['_valueDecimal'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   StructureMapParameter clone() => throw UnimplementedError();
   @override
@@ -1840,12 +3148,63 @@ class StructureMapDependent extends BackboneElement {
   final List<FhirString> variable;
   @JsonKey(name: '_variable')
   final List<Element>? variableElement;
-  factory StructureMapDependent.fromJson(Map<String, dynamic> json) =>
-      _$StructureMapDependentFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$StructureMapDependentToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['name'] = name.value;
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    json['variable'] = variable.map((FhirString v) => v.value).toList();
+    if (variableElement != null && variableElement!.isNotEmpty) {
+      json['_variable'] =
+          variableElement!.map((Element v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory StructureMapDependent.fromJson(Map<String, dynamic> json) {
+    return StructureMapDependent(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      name: FhirId(json['name']),
+      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      variable: (json['variable'] as List<dynamic>)
+          .map<FhirString>((dynamic v) => FhirString(v))
+          .toList(),
+      variableElement: json['_variable'] != null
+          ? (json['_variable'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   StructureMapDependent clone() => throw UnimplementedError();
   @override

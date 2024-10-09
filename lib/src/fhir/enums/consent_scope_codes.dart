@@ -38,7 +38,7 @@ enum ConsentScopeCodes {
   }
 
   String toJson() => toString();
-  ConsentScopeCodes fromString(String str) {
+  static ConsentScopeCodes fromString(String str) {
     switch (str) {
       case 'adr':
         return ConsentScopeCodes.adr;
@@ -53,7 +53,7 @@ enum ConsentScopeCodes {
     }
   }
 
-  ConsentScopeCodes fromJson(dynamic jsonValue) {
+  static ConsentScopeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -87,7 +87,7 @@ enum ResearchStudyStatus {
   }
 
   String toJson() => toString();
-  ResearchStudyStatus fromString(String str) {
+  static ResearchStudyStatus fromString(String str) {
     switch (str) {
       case 'active':
         return ResearchStudyStatus.active;
@@ -117,7 +117,7 @@ enum ResearchStudyStatus {
     }
   }
 
-  ResearchStudyStatus fromJson(dynamic jsonValue) {
+  static ResearchStudyStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

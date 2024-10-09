@@ -17,7 +17,7 @@ enum ContractResourceDefinitionSubtypeCodes {
   }
 
   String toJson() => toString();
-  ContractResourceDefinitionSubtypeCodes fromString(String str) {
+  static ContractResourceDefinitionSubtypeCodes fromString(String str) {
     switch (str) {
       case 'temp':
         return ContractResourceDefinitionSubtypeCodes.temp;
@@ -26,7 +26,7 @@ enum ContractResourceDefinitionSubtypeCodes {
     }
   }
 
-  ContractResourceDefinitionSubtypeCodes fromJson(dynamic jsonValue) {
+  static ContractResourceDefinitionSubtypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

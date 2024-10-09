@@ -40,7 +40,7 @@ enum ProductIntendedUse {
   }
 
   String toJson() => toString();
-  ProductIntendedUse fromString(String str) {
+  static ProductIntendedUse fromString(String str) {
     switch (str) {
       case 'Prevention':
         return ProductIntendedUse.Prevention;
@@ -57,7 +57,7 @@ enum ProductIntendedUse {
     }
   }
 
-  ProductIntendedUse fromJson(dynamic jsonValue) {
+  static ProductIntendedUse fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

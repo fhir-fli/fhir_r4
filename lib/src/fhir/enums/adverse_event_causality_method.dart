@@ -28,7 +28,7 @@ enum AdverseEventCausalityMethod {
   }
 
   String toJson() => toString();
-  AdverseEventCausalityMethod fromString(String str) {
+  static AdverseEventCausalityMethod fromString(String str) {
     switch (str) {
       case 'ProbabilityScale':
         return AdverseEventCausalityMethod.ProbabilityScale;
@@ -41,7 +41,7 @@ enum AdverseEventCausalityMethod {
     }
   }
 
-  AdverseEventCausalityMethod fromJson(dynamic jsonValue) {
+  static AdverseEventCausalityMethod fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

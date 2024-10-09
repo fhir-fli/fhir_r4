@@ -59,7 +59,7 @@ enum Diet {
   }
 
   String toJson() => toString();
-  Diet fromString(String str) {
+  static Diet fromString(String str) {
     switch (str) {
       case 'vegetarian':
         return Diet.vegetarian;
@@ -80,7 +80,7 @@ enum Diet {
     }
   }
 
-  Diet fromJson(dynamic jsonValue) {
+  static Diet fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

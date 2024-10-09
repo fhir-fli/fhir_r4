@@ -472,7 +472,7 @@ enum CombinedDoseForm {
   }
 
   String toJson() => toString();
-  CombinedDoseForm fromString(String str) {
+  static CombinedDoseForm fromString(String str) {
     switch (str) {
       case '100000073366':
         return CombinedDoseForm.value100000073366;
@@ -633,7 +633,7 @@ enum CombinedDoseForm {
     }
   }
 
-  CombinedDoseForm fromJson(dynamic jsonValue) {
+  static CombinedDoseForm fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

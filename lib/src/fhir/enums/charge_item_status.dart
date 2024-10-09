@@ -59,7 +59,7 @@ enum ChargeItemStatus {
   }
 
   String toJson() => toString();
-  ChargeItemStatus fromString(String str) {
+  static ChargeItemStatus fromString(String str) {
     switch (str) {
       case 'planned':
         return ChargeItemStatus.planned;
@@ -80,7 +80,7 @@ enum ChargeItemStatus {
     }
   }
 
-  ChargeItemStatus fromJson(dynamic jsonValue) {
+  static ChargeItemStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

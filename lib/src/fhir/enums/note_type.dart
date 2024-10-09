@@ -31,7 +31,7 @@ enum NoteType {
   }
 
   String toJson() => toString();
-  NoteType fromString(String str) {
+  static NoteType fromString(String str) {
     switch (str) {
       case 'display':
         return NoteType.display;
@@ -44,7 +44,7 @@ enum NoteType {
     }
   }
 
-  NoteType fromJson(dynamic jsonValue) {
+  static NoteType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

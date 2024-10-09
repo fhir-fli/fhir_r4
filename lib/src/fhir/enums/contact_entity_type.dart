@@ -52,7 +52,7 @@ enum ContactEntityType {
   }
 
   String toJson() => toString();
-  ContactEntityType fromString(String str) {
+  static ContactEntityType fromString(String str) {
     switch (str) {
       case 'BILL':
         return ContactEntityType.BILL;
@@ -71,7 +71,7 @@ enum ContactEntityType {
     }
   }
 
-  ContactEntityType fromJson(dynamic jsonValue) {
+  static ContactEntityType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

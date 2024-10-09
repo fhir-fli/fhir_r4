@@ -31,7 +31,7 @@ enum AllergyIntoleranceCriticality {
   }
 
   String toJson() => toString();
-  AllergyIntoleranceCriticality fromString(String str) {
+  static AllergyIntoleranceCriticality fromString(String str) {
     switch (str) {
       case 'low':
         return AllergyIntoleranceCriticality.low;
@@ -44,7 +44,7 @@ enum AllergyIntoleranceCriticality {
     }
   }
 
-  AllergyIntoleranceCriticality fromJson(dynamic jsonValue) {
+  static AllergyIntoleranceCriticality fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

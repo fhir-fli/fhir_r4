@@ -31,7 +31,7 @@ enum CapabilityStatementKind {
   }
 
   String toJson() => toString();
-  CapabilityStatementKind fromString(String str) {
+  static CapabilityStatementKind fromString(String str) {
     switch (str) {
       case 'instance':
         return CapabilityStatementKind.instance;
@@ -44,7 +44,7 @@ enum CapabilityStatementKind {
     }
   }
 
-  CapabilityStatementKind fromJson(dynamic jsonValue) {
+  static CapabilityStatementKind fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

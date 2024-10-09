@@ -34,7 +34,7 @@ enum GoalStartEvent {
   }
 
   String toJson() => toString();
-  GoalStartEvent fromString(String str) {
+  static GoalStartEvent fromString(String str) {
     switch (str) {
       case '32485007':
         return GoalStartEvent.value32485007;
@@ -49,7 +49,7 @@ enum GoalStartEvent {
     }
   }
 
-  GoalStartEvent fromJson(dynamic jsonValue) {
+  static GoalStartEvent fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

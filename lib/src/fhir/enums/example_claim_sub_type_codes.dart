@@ -24,7 +24,7 @@ enum ExampleClaimSubTypeCodes {
   }
 
   String toJson() => toString();
-  ExampleClaimSubTypeCodes fromString(String str) {
+  static ExampleClaimSubTypeCodes fromString(String str) {
     switch (str) {
       case 'ortho':
         return ExampleClaimSubTypeCodes.ortho;
@@ -35,7 +35,7 @@ enum ExampleClaimSubTypeCodes {
     }
   }
 
-  ExampleClaimSubTypeCodes fromJson(dynamic jsonValue) {
+  static ExampleClaimSubTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

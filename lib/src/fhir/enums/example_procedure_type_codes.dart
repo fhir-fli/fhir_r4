@@ -24,7 +24,7 @@ enum ExampleProcedureTypeCodes {
   }
 
   String toJson() => toString();
-  ExampleProcedureTypeCodes fromString(String str) {
+  static ExampleProcedureTypeCodes fromString(String str) {
     switch (str) {
       case 'primary':
         return ExampleProcedureTypeCodes.primary;
@@ -35,7 +35,7 @@ enum ExampleProcedureTypeCodes {
     }
   }
 
-  ExampleProcedureTypeCodes fromJson(dynamic jsonValue) {
+  static ExampleProcedureTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

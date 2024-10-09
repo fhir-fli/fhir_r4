@@ -24,7 +24,7 @@ enum OperationParameterUse {
   }
 
   String toJson() => toString();
-  OperationParameterUse fromString(String str) {
+  static OperationParameterUse fromString(String str) {
     switch (str) {
       case 'in':
         return OperationParameterUse.in_;
@@ -35,7 +35,7 @@ enum OperationParameterUse {
     }
   }
 
-  OperationParameterUse fromJson(dynamic jsonValue) {
+  static OperationParameterUse fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

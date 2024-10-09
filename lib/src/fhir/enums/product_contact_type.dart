@@ -45,7 +45,7 @@ enum ProductContactType {
   }
 
   String toJson() => toString();
-  ProductContactType fromString(String str) {
+  static ProductContactType fromString(String str) {
     switch (str) {
       case 'ProposedMAH':
         return ProductContactType.ProposedMAH;
@@ -62,7 +62,7 @@ enum ProductContactType {
     }
   }
 
-  ProductContactType fromJson(dynamic jsonValue) {
+  static ProductContactType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

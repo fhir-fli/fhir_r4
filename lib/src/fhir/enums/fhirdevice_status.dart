@@ -38,7 +38,7 @@ enum FHIRDeviceStatus {
   }
 
   String toJson() => toString();
-  FHIRDeviceStatus fromString(String str) {
+  static FHIRDeviceStatus fromString(String str) {
     switch (str) {
       case 'active':
         return FHIRDeviceStatus.active;
@@ -53,7 +53,7 @@ enum FHIRDeviceStatus {
     }
   }
 
-  FHIRDeviceStatus fromJson(dynamic jsonValue) {
+  static FHIRDeviceStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

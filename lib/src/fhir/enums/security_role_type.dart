@@ -22330,7 +22330,7 @@ enum SecurityRoleType {
   }
 
   String toJson() => toString();
-  SecurityRoleType fromString(String str) {
+  static SecurityRoleType fromString(String str) {
     switch (str) {
       case 'AMENDER':
         return SecurityRoleType.AMENDER;
@@ -28771,7 +28771,7 @@ enum SecurityRoleType {
     }
   }
 
-  SecurityRoleType fromJson(dynamic jsonValue) {
+  static SecurityRoleType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

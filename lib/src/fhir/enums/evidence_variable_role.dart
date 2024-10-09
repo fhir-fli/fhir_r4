@@ -52,7 +52,7 @@ enum EvidenceVariableRole {
   }
 
   String toJson() => toString();
-  EvidenceVariableRole fromString(String str) {
+  static EvidenceVariableRole fromString(String str) {
     switch (str) {
       case 'population':
         return EvidenceVariableRole.population;
@@ -71,7 +71,7 @@ enum EvidenceVariableRole {
     }
   }
 
-  EvidenceVariableRole fromJson(dynamic jsonValue) {
+  static EvidenceVariableRole fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

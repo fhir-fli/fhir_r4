@@ -24,7 +24,7 @@ enum DoseAndRateType {
   }
 
   String toJson() => toString();
-  DoseAndRateType fromString(String str) {
+  static DoseAndRateType fromString(String str) {
     switch (str) {
       case 'calculated':
         return DoseAndRateType.calculated;
@@ -35,7 +35,7 @@ enum DoseAndRateType {
     }
   }
 
-  DoseAndRateType fromJson(dynamic jsonValue) {
+  static DoseAndRateType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

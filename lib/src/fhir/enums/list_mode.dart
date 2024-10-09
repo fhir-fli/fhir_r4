@@ -31,7 +31,7 @@ enum ListMode {
   }
 
   String toJson() => toString();
-  ListMode fromString(String str) {
+  static ListMode fromString(String str) {
     switch (str) {
       case 'working':
         return ListMode.working;
@@ -44,7 +44,7 @@ enum ListMode {
     }
   }
 
-  ListMode fromJson(dynamic jsonValue) {
+  static ListMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -24,7 +24,7 @@ enum BiologicallyDerivedProductStatus {
   }
 
   String toJson() => toString();
-  BiologicallyDerivedProductStatus fromString(String str) {
+  static BiologicallyDerivedProductStatus fromString(String str) {
     switch (str) {
       case 'available':
         return BiologicallyDerivedProductStatus.available;
@@ -35,7 +35,7 @@ enum BiologicallyDerivedProductStatus {
     }
   }
 
-  BiologicallyDerivedProductStatus fromJson(dynamic jsonValue) {
+  static BiologicallyDerivedProductStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

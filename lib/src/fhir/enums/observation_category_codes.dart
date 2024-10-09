@@ -73,7 +73,7 @@ enum ObservationCategoryCodes {
   }
 
   String toJson() => toString();
-  ObservationCategoryCodes fromString(String str) {
+  static ObservationCategoryCodes fromString(String str) {
     switch (str) {
       case 'social-history':
         return ObservationCategoryCodes.social_history;
@@ -98,7 +98,7 @@ enum ObservationCategoryCodes {
     }
   }
 
-  ObservationCategoryCodes fromJson(dynamic jsonValue) {
+  static ObservationCategoryCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

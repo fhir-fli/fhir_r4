@@ -28,7 +28,7 @@ enum ContainerMaterials {
   }
 
   String toJson() => toString();
-  ContainerMaterials fromString(String str) {
+  static ContainerMaterials fromString(String str) {
     switch (str) {
       case '32039001':
         return ContainerMaterials.value32039001;
@@ -41,7 +41,7 @@ enum ContainerMaterials {
     }
   }
 
-  ContainerMaterials fromJson(dynamic jsonValue) {
+  static ContainerMaterials fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

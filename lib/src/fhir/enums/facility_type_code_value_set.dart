@@ -484,7 +484,7 @@ enum FacilityTypeCodeValueSet {
   }
 
   String toJson() => toString();
-  FacilityTypeCodeValueSet fromString(String str) {
+  static FacilityTypeCodeValueSet fromString(String str) {
     switch (str) {
       case '82242000':
         return FacilityTypeCodeValueSet.value82242000;
@@ -649,7 +649,7 @@ enum FacilityTypeCodeValueSet {
     }
   }
 
-  FacilityTypeCodeValueSet fromJson(dynamic jsonValue) {
+  static FacilityTypeCodeValueSet fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

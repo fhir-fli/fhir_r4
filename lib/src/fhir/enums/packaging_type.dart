@@ -622,7 +622,7 @@ enum PackagingType {
   }
 
   String toJson() => toString();
-  PackagingType fromString(String str) {
+  static PackagingType fromString(String str) {
     switch (str) {
       case '100000073490':
         return PackagingType.value100000073490;
@@ -833,7 +833,7 @@ enum PackagingType {
     }
   }
 
-  PackagingType fromJson(dynamic jsonValue) {
+  static PackagingType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

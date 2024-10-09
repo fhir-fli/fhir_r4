@@ -24,7 +24,7 @@ enum ImmunizationFundingSource {
   }
 
   String toJson() => toString();
-  ImmunizationFundingSource fromString(String str) {
+  static ImmunizationFundingSource fromString(String str) {
     switch (str) {
       case 'private':
         return ImmunizationFundingSource.private;
@@ -35,7 +35,7 @@ enum ImmunizationFundingSource {
     }
   }
 
-  ImmunizationFundingSource fromJson(dynamic jsonValue) {
+  static ImmunizationFundingSource fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

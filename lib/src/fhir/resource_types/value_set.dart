@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'value_set.g.dart';
-
 /// [ValueSet] /// A ValueSet resource instance specifies a set of codes drawn from one or
 /// more code systems, intended for use in a particular context. Value sets
 /// link between [CodeSystem](codesystem.html) definitions and their use in
@@ -60,8 +58,6 @@ class ValueSet extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.ValueSet);
   @override
   String get fhirType => 'ValueSet';
@@ -201,12 +197,257 @@ class ValueSet extends DomainResource {
   /// it has been performed.
   @JsonKey(name: 'expansion')
   final ValueSetExpansion? expansion;
-  factory ValueSet.fromJson(Map<String, dynamic> json) =>
-      _$ValueSetFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ValueSetToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (url?.value != null) {
+      json['url'] = url!.value;
+    }
+    if (urlElement != null) {
+      json['_url'] = urlElement!.toJson();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    if (version?.value != null) {
+      json['version'] = version!.value;
+    }
+    if (versionElement != null) {
+      json['_version'] = versionElement!.toJson();
+    }
+    if (name?.value != null) {
+      json['name'] = name!.value;
+    }
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (title?.value != null) {
+      json['title'] = title!.value;
+    }
+    if (titleElement != null) {
+      json['_title'] = titleElement!.toJson();
+    }
+    json['status'] = status.toJson();
+    if (experimental?.value != null) {
+      json['experimental'] = experimental!.value;
+    }
+    if (experimentalElement != null) {
+      json['_experimental'] = experimentalElement!.toJson();
+    }
+    if (date?.value != null) {
+      json['date'] = date!.value;
+    }
+    if (dateElement != null) {
+      json['_date'] = dateElement!.toJson();
+    }
+    if (publisher?.value != null) {
+      json['publisher'] = publisher!.value;
+    }
+    if (publisherElement != null) {
+      json['_publisher'] = publisherElement!.toJson();
+    }
+    if (contact != null && contact!.isNotEmpty) {
+      json['contact'] =
+          contact!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+    }
+    if (description?.value != null) {
+      json['description'] = description!.value;
+    }
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    if (useContext != null && useContext!.isNotEmpty) {
+      json['useContext'] =
+          useContext!.map<dynamic>((UsageContext v) => v.toJson()).toList();
+    }
+    if (jurisdiction != null && jurisdiction!.isNotEmpty) {
+      json['jurisdiction'] = jurisdiction!
+          .map<dynamic>((CodeableConcept v) => v.toJson())
+          .toList();
+    }
+    if (immutable?.value != null) {
+      json['immutable'] = immutable!.value;
+    }
+    if (immutableElement != null) {
+      json['_immutable'] = immutableElement!.toJson();
+    }
+    if (purpose?.value != null) {
+      json['purpose'] = purpose!.value;
+    }
+    if (purposeElement != null) {
+      json['_purpose'] = purposeElement!.toJson();
+    }
+    if (copyright?.value != null) {
+      json['copyright'] = copyright!.value;
+    }
+    if (copyrightElement != null) {
+      json['_copyright'] = copyrightElement!.toJson();
+    }
+    if (compose != null) {
+      json['compose'] = compose!.toJson();
+    }
+    if (expansion != null) {
+      json['expansion'] = expansion!.toJson();
+    }
+    return json;
+  }
 
+  factory ValueSet.fromJson(Map<String, dynamic> json) {
+    return ValueSet(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      url: json['url'] != null ? FhirUri(json['url']) : null,
+      urlElement: json['_url'] != null
+          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      version: json['version'] != null ? FhirString(json['version']) : null,
+      versionElement: json['_version'] != null
+          ? Element.fromJson(json['_version'] as Map<String, dynamic>)
+          : null,
+      name: json['name'] != null ? FhirString(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
+      title: json['title'] != null ? FhirString(json['title']) : null,
+      titleElement: json['_title'] != null
+          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
+          : null,
+      status:
+          PublicationStatus.fromJson(json['status'] as Map<String, dynamic>),
+      experimental: json['experimental'] != null
+          ? FhirBoolean(json['experimental'])
+          : null,
+      experimentalElement: json['_experimental'] != null
+          ? Element.fromJson(json['_experimental'] as Map<String, dynamic>)
+          : null,
+      date: json['date'] != null ? FhirDateTime(json['date']) : null,
+      dateElement: json['_date'] != null
+          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
+          : null,
+      publisher:
+          json['publisher'] != null ? FhirString(json['publisher']) : null,
+      publisherElement: json['_publisher'] != null
+          ? Element.fromJson(json['_publisher'] as Map<String, dynamic>)
+          : null,
+      contact: json['contact'] != null
+          ? (json['contact'] as List<dynamic>)
+              .map<ContactDetail>((dynamic v) =>
+                  ContactDetail.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      description: json['description'] != null
+          ? FhirMarkdown(json['description'])
+          : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
+      useContext: json['useContext'] != null
+          ? (json['useContext'] as List<dynamic>)
+              .map<UsageContext>((dynamic v) =>
+                  UsageContext.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      jurisdiction: json['jurisdiction'] != null
+          ? (json['jurisdiction'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      immutable:
+          json['immutable'] != null ? FhirBoolean(json['immutable']) : null,
+      immutableElement: json['_immutable'] != null
+          ? Element.fromJson(json['_immutable'] as Map<String, dynamic>)
+          : null,
+      purpose: json['purpose'] != null ? FhirMarkdown(json['purpose']) : null,
+      purposeElement: json['_purpose'] != null
+          ? Element.fromJson(json['_purpose'] as Map<String, dynamic>)
+          : null,
+      copyright:
+          json['copyright'] != null ? FhirMarkdown(json['copyright']) : null,
+      copyrightElement: json['_copyright'] != null
+          ? Element.fromJson(json['_copyright'] as Map<String, dynamic>)
+          : null,
+      compose: json['compose'] != null
+          ? ValueSetCompose.fromJson(json['compose'] as Map<String, dynamic>)
+          : null,
+      expansion: json['expansion'] != null
+          ? ValueSetExpansion.fromJson(
+              json['expansion'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   ValueSet clone() => throw UnimplementedError();
   @override
@@ -383,12 +624,80 @@ class ValueSetCompose extends BackboneElement {
   /// and/or other value sets.
   @JsonKey(name: 'exclude')
   final List<ValueSetInclude>? exclude;
-  factory ValueSetCompose.fromJson(Map<String, dynamic> json) =>
-      _$ValueSetComposeFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ValueSetComposeToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (lockedDate?.value != null) {
+      json['lockedDate'] = lockedDate!.value;
+    }
+    if (lockedDateElement != null) {
+      json['_lockedDate'] = lockedDateElement!.toJson();
+    }
+    if (inactive?.value != null) {
+      json['inactive'] = inactive!.value;
+    }
+    if (inactiveElement != null) {
+      json['_inactive'] = inactiveElement!.toJson();
+    }
+    json['include'] =
+        include.map<dynamic>((ValueSetInclude v) => v.toJson()).toList();
+    if (exclude != null && exclude!.isNotEmpty) {
+      json['exclude'] =
+          exclude!.map<dynamic>((ValueSetInclude v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory ValueSetCompose.fromJson(Map<String, dynamic> json) {
+    return ValueSetCompose(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      lockedDate:
+          json['lockedDate'] != null ? FhirDate(json['lockedDate']) : null,
+      lockedDateElement: json['_lockedDate'] != null
+          ? Element.fromJson(json['_lockedDate'] as Map<String, dynamic>)
+          : null,
+      inactive: json['inactive'] != null ? FhirBoolean(json['inactive']) : null,
+      inactiveElement: json['_inactive'] != null
+          ? Element.fromJson(json['_inactive'] as Map<String, dynamic>)
+          : null,
+      include: (json['include'] as List<dynamic>)
+          .map<ValueSetInclude>((dynamic v) =>
+              ValueSetInclude.fromJson(v as Map<String, dynamic>))
+          .toList(),
+      exclude: json['exclude'] != null
+          ? (json['exclude'] as List<dynamic>)
+              .map<ValueSetInclude>((dynamic v) =>
+                  ValueSetInclude.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   ValueSetCompose clone() => throw UnimplementedError();
   @override
@@ -508,12 +817,101 @@ class ValueSetInclude extends BackboneElement {
   final List<FhirCanonical>? valueSet;
   @JsonKey(name: '_valueSet')
   final List<Element>? valueSetElement;
-  factory ValueSetInclude.fromJson(Map<String, dynamic> json) =>
-      _$ValueSetIncludeFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ValueSetIncludeToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (system?.value != null) {
+      json['system'] = system!.value;
+    }
+    if (systemElement != null) {
+      json['_system'] = systemElement!.toJson();
+    }
+    if (version?.value != null) {
+      json['version'] = version!.value;
+    }
+    if (versionElement != null) {
+      json['_version'] = versionElement!.toJson();
+    }
+    if (concept != null && concept!.isNotEmpty) {
+      json['concept'] =
+          concept!.map<dynamic>((ValueSetConcept v) => v.toJson()).toList();
+    }
+    if (filter != null && filter!.isNotEmpty) {
+      json['filter'] =
+          filter!.map<dynamic>((ValueSetFilter v) => v.toJson()).toList();
+    }
+    if (valueSet != null && valueSet!.isNotEmpty) {
+      json['valueSet'] = valueSet!.map((FhirCanonical v) => v.value).toList();
+    }
+    if (valueSetElement != null && valueSetElement!.isNotEmpty) {
+      json['_valueSet'] =
+          valueSetElement!.map((Element v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory ValueSetInclude.fromJson(Map<String, dynamic> json) {
+    return ValueSetInclude(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      system: json['system'] != null ? FhirUri(json['system']) : null,
+      systemElement: json['_system'] != null
+          ? Element.fromJson(json['_system'] as Map<String, dynamic>)
+          : null,
+      version: json['version'] != null ? FhirString(json['version']) : null,
+      versionElement: json['_version'] != null
+          ? Element.fromJson(json['_version'] as Map<String, dynamic>)
+          : null,
+      concept: json['concept'] != null
+          ? (json['concept'] as List<dynamic>)
+              .map<ValueSetConcept>((dynamic v) =>
+                  ValueSetConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      filter: json['filter'] != null
+          ? (json['filter'] as List<dynamic>)
+              .map<ValueSetFilter>((dynamic v) =>
+                  ValueSetFilter.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      valueSet: json['valueSet'] != null
+          ? (json['valueSet'] as List<dynamic>)
+              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .toList()
+          : null,
+      valueSetElement: json['_valueSet'] != null
+          ? (json['_valueSet'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   ValueSetInclude clone() => throw UnimplementedError();
   @override
@@ -621,12 +1019,70 @@ class ValueSetConcept extends BackboneElement {
   /// purposes, etc.
   @JsonKey(name: 'designation')
   final List<ValueSetDesignation>? designation;
-  factory ValueSetConcept.fromJson(Map<String, dynamic> json) =>
-      _$ValueSetConceptFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ValueSetConceptToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['code'] = code.value;
+    if (codeElement != null) {
+      json['_code'] = codeElement!.toJson();
+    }
+    if (display?.value != null) {
+      json['display'] = display!.value;
+    }
+    if (displayElement != null) {
+      json['_display'] = displayElement!.toJson();
+    }
+    if (designation != null && designation!.isNotEmpty) {
+      json['designation'] = designation!
+          .map<dynamic>((ValueSetDesignation v) => v.toJson())
+          .toList();
+    }
+    return json;
+  }
 
+  factory ValueSetConcept.fromJson(Map<String, dynamic> json) {
+    return ValueSetConcept(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      code: FhirCode(json['code']),
+      codeElement: Element.fromJson(json['_code'] as Map<String, dynamic>),
+      display: json['display'] != null ? FhirString(json['display']) : null,
+      displayElement: json['_display'] != null
+          ? Element.fromJson(json['_display'] as Map<String, dynamic>)
+          : null,
+      designation: json['designation'] != null
+          ? (json['designation'] as List<dynamic>)
+              .map<ValueSetDesignation>((dynamic v) =>
+                  ValueSetDesignation.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   ValueSetConcept clone() => throw UnimplementedError();
   @override
@@ -726,12 +1182,61 @@ class ValueSetDesignation extends BackboneElement {
   final FhirString value;
   @JsonKey(name: '_value')
   final Element? valueElement;
-  factory ValueSetDesignation.fromJson(Map<String, dynamic> json) =>
-      _$ValueSetDesignationFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ValueSetDesignationToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (use != null) {
+      json['use'] = use!.toJson();
+    }
+    json['value'] = value.value;
+    if (valueElement != null) {
+      json['_value'] = valueElement!.toJson();
+    }
+    return json;
+  }
 
+  factory ValueSetDesignation.fromJson(Map<String, dynamic> json) {
+    return ValueSetDesignation(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      use: json['use'] != null
+          ? Coding.fromJson(json['use'] as Map<String, dynamic>)
+          : null,
+      value: FhirString(json['value']),
+      valueElement: Element.fromJson(json['_value'] as Map<String, dynamic>),
+    );
+  }
   @override
   ValueSetDesignation clone() => throw UnimplementedError();
   @override
@@ -839,12 +1344,58 @@ class ValueSetFilter extends BackboneElement {
   final FhirString value;
   @JsonKey(name: '_value')
   final Element? valueElement;
-  factory ValueSetFilter.fromJson(Map<String, dynamic> json) =>
-      _$ValueSetFilterFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ValueSetFilterToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['property'] = property.value;
+    if (propertyElement != null) {
+      json['_property'] = propertyElement!.toJson();
+    }
+    json['op'] = op.toJson();
+    json['value'] = value.value;
+    if (valueElement != null) {
+      json['_value'] = valueElement!.toJson();
+    }
+    return json;
+  }
 
+  factory ValueSetFilter.fromJson(Map<String, dynamic> json) {
+    return ValueSetFilter(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      property: FhirCode(json['property']),
+      propertyElement:
+          Element.fromJson(json['_property'] as Map<String, dynamic>),
+      op: FilterOperator.fromJson(json['op'] as Map<String, dynamic>),
+      value: FhirString(json['value']),
+      valueElement: Element.fromJson(json['_value'] as Map<String, dynamic>),
+    );
+  }
   @override
   ValueSetFilter clone() => throw UnimplementedError();
   @override
@@ -978,12 +1529,101 @@ class ValueSetExpansion extends BackboneElement {
   /// [contains] /// The codes that are contained in the value set expansion.
   @JsonKey(name: 'contains')
   final List<ValueSetContains>? contains;
-  factory ValueSetExpansion.fromJson(Map<String, dynamic> json) =>
-      _$ValueSetExpansionFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ValueSetExpansionToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier?.value != null) {
+      json['identifier'] = identifier!.value;
+    }
+    if (identifierElement != null) {
+      json['_identifier'] = identifierElement!.toJson();
+    }
+    json['timestamp'] = timestamp.value;
+    if (timestampElement != null) {
+      json['_timestamp'] = timestampElement!.toJson();
+    }
+    if (total?.value != null) {
+      json['total'] = total!.value;
+    }
+    if (totalElement != null) {
+      json['_total'] = totalElement!.toJson();
+    }
+    if (offset?.value != null) {
+      json['offset'] = offset!.value;
+    }
+    if (offsetElement != null) {
+      json['_offset'] = offsetElement!.toJson();
+    }
+    if (parameter != null && parameter!.isNotEmpty) {
+      json['parameter'] =
+          parameter!.map<dynamic>((ValueSetParameter v) => v.toJson()).toList();
+    }
+    if (contains != null && contains!.isNotEmpty) {
+      json['contains'] =
+          contains!.map<dynamic>((ValueSetContains v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory ValueSetExpansion.fromJson(Map<String, dynamic> json) {
+    return ValueSetExpansion(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier:
+          json['identifier'] != null ? FhirUri(json['identifier']) : null,
+      identifierElement: json['_identifier'] != null
+          ? Element.fromJson(json['_identifier'] as Map<String, dynamic>)
+          : null,
+      timestamp: FhirDateTime(json['timestamp']),
+      timestampElement:
+          Element.fromJson(json['_timestamp'] as Map<String, dynamic>),
+      total: json['total'] != null ? FhirInteger(json['total']) : null,
+      totalElement: json['_total'] != null
+          ? Element.fromJson(json['_total'] as Map<String, dynamic>)
+          : null,
+      offset: json['offset'] != null ? FhirInteger(json['offset']) : null,
+      offsetElement: json['_offset'] != null
+          ? Element.fromJson(json['_offset'] as Map<String, dynamic>)
+          : null,
+      parameter: json['parameter'] != null
+          ? (json['parameter'] as List<dynamic>)
+              .map<ValueSetParameter>((dynamic v) =>
+                  ValueSetParameter.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      contains: json['contains'] != null
+          ? (json['contains'] as List<dynamic>)
+              .map<ValueSetContains>((dynamic v) =>
+                  ValueSetContains.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   ValueSetExpansion clone() => throw UnimplementedError();
   @override
@@ -1138,12 +1778,128 @@ class ValueSetParameter extends BackboneElement {
   final FhirDateTime? valueDateTime;
   @JsonKey(name: '_valueDateTime')
   final Element? valueDateTimeElement;
-  factory ValueSetParameter.fromJson(Map<String, dynamic> json) =>
-      _$ValueSetParameterFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ValueSetParameterToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['name'] = name.value;
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (valueString?.value != null) {
+      json['valueString'] = valueString!.value;
+    }
+    if (valueStringElement != null) {
+      json['_valueString'] = valueStringElement!.toJson();
+    }
+    if (valueBoolean?.value != null) {
+      json['valueBoolean'] = valueBoolean!.value;
+    }
+    if (valueBooleanElement != null) {
+      json['_valueBoolean'] = valueBooleanElement!.toJson();
+    }
+    if (valueInteger?.value != null) {
+      json['valueInteger'] = valueInteger!.value;
+    }
+    if (valueIntegerElement != null) {
+      json['_valueInteger'] = valueIntegerElement!.toJson();
+    }
+    if (valueDecimal?.value != null) {
+      json['valueDecimal'] = valueDecimal!.value;
+    }
+    if (valueDecimalElement != null) {
+      json['_valueDecimal'] = valueDecimalElement!.toJson();
+    }
+    if (valueUri?.value != null) {
+      json['valueUri'] = valueUri!.value;
+    }
+    if (valueUriElement != null) {
+      json['_valueUri'] = valueUriElement!.toJson();
+    }
+    if (valueCode?.value != null) {
+      json['valueCode'] = valueCode!.value;
+    }
+    if (valueCodeElement != null) {
+      json['_valueCode'] = valueCodeElement!.toJson();
+    }
+    if (valueDateTime?.value != null) {
+      json['valueDateTime'] = valueDateTime!.value;
+    }
+    if (valueDateTimeElement != null) {
+      json['_valueDateTime'] = valueDateTimeElement!.toJson();
+    }
+    return json;
+  }
 
+  factory ValueSetParameter.fromJson(Map<String, dynamic> json) {
+    return ValueSetParameter(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      name: FhirString(json['name']),
+      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      valueString:
+          json['valueString'] != null ? FhirString(json['valueString']) : null,
+      valueStringElement: json['_valueString'] != null
+          ? Element.fromJson(json['_valueString'] as Map<String, dynamic>)
+          : null,
+      valueBoolean: json['valueBoolean'] != null
+          ? FhirBoolean(json['valueBoolean'])
+          : null,
+      valueBooleanElement: json['_valueBoolean'] != null
+          ? Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>)
+          : null,
+      valueInteger: json['valueInteger'] != null
+          ? FhirInteger(json['valueInteger'])
+          : null,
+      valueIntegerElement: json['_valueInteger'] != null
+          ? Element.fromJson(json['_valueInteger'] as Map<String, dynamic>)
+          : null,
+      valueDecimal: json['valueDecimal'] != null
+          ? FhirDecimal(json['valueDecimal'])
+          : null,
+      valueDecimalElement: json['_valueDecimal'] != null
+          ? Element.fromJson(json['_valueDecimal'] as Map<String, dynamic>)
+          : null,
+      valueUri: json['valueUri'] != null ? FhirUri(json['valueUri']) : null,
+      valueUriElement: json['_valueUri'] != null
+          ? Element.fromJson(json['_valueUri'] as Map<String, dynamic>)
+          : null,
+      valueCode: json['valueCode'] != null ? FhirCode(json['valueCode']) : null,
+      valueCodeElement: json['_valueCode'] != null
+          ? Element.fromJson(json['_valueCode'] as Map<String, dynamic>)
+          : null,
+      valueDateTime: json['valueDateTime'] != null
+          ? FhirDateTime(json['valueDateTime'])
+          : null,
+      valueDateTimeElement: json['_valueDateTime'] != null
+          ? Element.fromJson(json['_valueDateTime'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   ValueSetParameter clone() => throw UnimplementedError();
   @override
@@ -1315,12 +2071,125 @@ class ValueSetContains extends BackboneElement {
   /// [contains] /// Other codes and entries contained under this entry in the hierarchy.
   @JsonKey(name: 'contains')
   final List<ValueSetContains>? contains;
-  factory ValueSetContains.fromJson(Map<String, dynamic> json) =>
-      _$ValueSetContainsFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ValueSetContainsToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (system?.value != null) {
+      json['system'] = system!.value;
+    }
+    if (systemElement != null) {
+      json['_system'] = systemElement!.toJson();
+    }
+    if (abstract_?.value != null) {
+      json['abstract'] = abstract_!.value;
+    }
+    if (abstractElement != null) {
+      json['_abstract'] = abstractElement!.toJson();
+    }
+    if (inactive?.value != null) {
+      json['inactive'] = inactive!.value;
+    }
+    if (inactiveElement != null) {
+      json['_inactive'] = inactiveElement!.toJson();
+    }
+    if (version?.value != null) {
+      json['version'] = version!.value;
+    }
+    if (versionElement != null) {
+      json['_version'] = versionElement!.toJson();
+    }
+    if (code?.value != null) {
+      json['code'] = code!.value;
+    }
+    if (codeElement != null) {
+      json['_code'] = codeElement!.toJson();
+    }
+    if (display?.value != null) {
+      json['display'] = display!.value;
+    }
+    if (displayElement != null) {
+      json['_display'] = displayElement!.toJson();
+    }
+    if (designation != null && designation!.isNotEmpty) {
+      json['designation'] = designation!
+          .map<dynamic>((ValueSetDesignation v) => v.toJson())
+          .toList();
+    }
+    if (contains != null && contains!.isNotEmpty) {
+      json['contains'] =
+          contains!.map<dynamic>((ValueSetContains v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory ValueSetContains.fromJson(Map<String, dynamic> json) {
+    return ValueSetContains(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      system: json['system'] != null ? FhirUri(json['system']) : null,
+      systemElement: json['_system'] != null
+          ? Element.fromJson(json['_system'] as Map<String, dynamic>)
+          : null,
+      abstract_:
+          json['abstract'] != null ? FhirBoolean(json['abstract']) : null,
+      abstractElement: json['_abstract'] != null
+          ? Element.fromJson(json['_abstract'] as Map<String, dynamic>)
+          : null,
+      inactive: json['inactive'] != null ? FhirBoolean(json['inactive']) : null,
+      inactiveElement: json['_inactive'] != null
+          ? Element.fromJson(json['_inactive'] as Map<String, dynamic>)
+          : null,
+      version: json['version'] != null ? FhirString(json['version']) : null,
+      versionElement: json['_version'] != null
+          ? Element.fromJson(json['_version'] as Map<String, dynamic>)
+          : null,
+      code: json['code'] != null ? FhirCode(json['code']) : null,
+      codeElement: json['_code'] != null
+          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
+          : null,
+      display: json['display'] != null ? FhirString(json['display']) : null,
+      displayElement: json['_display'] != null
+          ? Element.fromJson(json['_display'] as Map<String, dynamic>)
+          : null,
+      designation: json['designation'] != null
+          ? (json['designation'] as List<dynamic>)
+              .map<ValueSetDesignation>((dynamic v) =>
+                  ValueSetDesignation.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      contains: json['contains'] != null
+          ? (json['contains'] as List<dynamic>)
+              .map<ValueSetContains>((dynamic v) =>
+                  ValueSetContains.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   ValueSetContains clone() => throw UnimplementedError();
   @override

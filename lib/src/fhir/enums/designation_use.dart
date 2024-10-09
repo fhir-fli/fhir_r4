@@ -19,7 +19,7 @@ enum DesignationUse {
   }
 
   String toJson() => toString();
-  DesignationUse fromString(String str) {
+  static DesignationUse fromString(String str) {
     switch (str) {
       case '900000000000003001':
         return DesignationUse.value900000000000003001;
@@ -30,7 +30,7 @@ enum DesignationUse {
     }
   }
 
-  DesignationUse fromJson(dynamic jsonValue) {
+  static DesignationUse fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

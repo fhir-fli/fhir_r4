@@ -17,7 +17,7 @@ enum CommonTags {
   }
 
   String toJson() => toString();
-  CommonTags fromString(String str) {
+  static CommonTags fromString(String str) {
     switch (str) {
       case 'actionable':
         return CommonTags.actionable;
@@ -26,7 +26,7 @@ enum CommonTags {
     }
   }
 
-  CommonTags fromJson(dynamic jsonValue) {
+  static CommonTags fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

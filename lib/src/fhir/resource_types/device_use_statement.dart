@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'device_use_statement.g.dart';
-
 /// [DeviceUseStatement] /// A record of a device being used by a patient where the record is the result
 /// of a report from the patient or another clinician.
 @JsonSerializable()
@@ -46,8 +44,6 @@ class DeviceUseStatement extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.DeviceUseStatement);
   @override
   String get fhirType => 'DeviceUseStatement';
@@ -130,12 +126,196 @@ class DeviceUseStatement extends DomainResource {
   /// the statement.
   @JsonKey(name: 'note')
   final List<Annotation>? note;
-  factory DeviceUseStatement.fromJson(Map<String, dynamic> json) =>
-      _$DeviceUseStatementFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$DeviceUseStatementToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    if (basedOn != null && basedOn!.isNotEmpty) {
+      json['basedOn'] =
+          basedOn!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    json['status'] = status.toJson();
+    json['subject'] = subject.toJson();
+    if (derivedFrom != null && derivedFrom!.isNotEmpty) {
+      json['derivedFrom'] =
+          derivedFrom!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (timingTiming != null) {
+      json['timingTiming'] = timingTiming!.toJson();
+    }
+    if (timingPeriod != null) {
+      json['timingPeriod'] = timingPeriod!.toJson();
+    }
+    if (timingDateTime?.value != null) {
+      json['timingDateTime'] = timingDateTime!.value;
+    }
+    if (timingDateTimeElement != null) {
+      json['_timingDateTime'] = timingDateTimeElement!.toJson();
+    }
+    if (recordedOn?.value != null) {
+      json['recordedOn'] = recordedOn!.value;
+    }
+    if (recordedOnElement != null) {
+      json['_recordedOn'] = recordedOnElement!.toJson();
+    }
+    if (source != null) {
+      json['source'] = source!.toJson();
+    }
+    json['device'] = device.toJson();
+    if (reasonCode != null && reasonCode!.isNotEmpty) {
+      json['reasonCode'] =
+          reasonCode!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (reasonReference != null && reasonReference!.isNotEmpty) {
+      json['reasonReference'] =
+          reasonReference!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (bodySite != null) {
+      json['bodySite'] = bodySite!.toJson();
+    }
+    if (note != null && note!.isNotEmpty) {
+      json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory DeviceUseStatement.fromJson(Map<String, dynamic> json) {
+    return DeviceUseStatement(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      basedOn: json['basedOn'] != null
+          ? (json['basedOn'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      status: DeviceUseStatementStatus.fromJson(
+          json['status'] as Map<String, dynamic>),
+      subject: Reference.fromJson(json['subject'] as Map<String, dynamic>),
+      derivedFrom: json['derivedFrom'] != null
+          ? (json['derivedFrom'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      timingTiming: json['timingTiming'] != null
+          ? Timing.fromJson(json['timingTiming'] as Map<String, dynamic>)
+          : null,
+      timingPeriod: json['timingPeriod'] != null
+          ? Period.fromJson(json['timingPeriod'] as Map<String, dynamic>)
+          : null,
+      timingDateTime: json['timingDateTime'] != null
+          ? FhirDateTime(json['timingDateTime'])
+          : null,
+      timingDateTimeElement: json['_timingDateTime'] != null
+          ? Element.fromJson(json['_timingDateTime'] as Map<String, dynamic>)
+          : null,
+      recordedOn:
+          json['recordedOn'] != null ? FhirDateTime(json['recordedOn']) : null,
+      recordedOnElement: json['_recordedOn'] != null
+          ? Element.fromJson(json['_recordedOn'] as Map<String, dynamic>)
+          : null,
+      source: json['source'] != null
+          ? Reference.fromJson(json['source'] as Map<String, dynamic>)
+          : null,
+      device: Reference.fromJson(json['device'] as Map<String, dynamic>),
+      reasonCode: json['reasonCode'] != null
+          ? (json['reasonCode'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      reasonReference: json['reasonReference'] != null
+          ? (json['reasonReference'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      bodySite: json['bodySite'] != null
+          ? CodeableConcept.fromJson(json['bodySite'] as Map<String, dynamic>)
+          : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                  (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   DeviceUseStatement clone() => throw UnimplementedError();
   @override

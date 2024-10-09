@@ -15,7 +15,7 @@ enum MaritalStatusCodes {
   }
 
   String toJson() => toString();
-  MaritalStatusCodes fromString(String str) {
+  static MaritalStatusCodes fromString(String str) {
     switch (str) {
       case 'UNK':
         return MaritalStatusCodes.UNK;
@@ -24,7 +24,7 @@ enum MaritalStatusCodes {
     }
   }
 
-  MaritalStatusCodes fromJson(dynamic jsonValue) {
+  static MaritalStatusCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

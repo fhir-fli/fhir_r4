@@ -38,7 +38,7 @@ enum EncounterLocationStatus {
   }
 
   String toJson() => toString();
-  EncounterLocationStatus fromString(String str) {
+  static EncounterLocationStatus fromString(String str) {
     switch (str) {
       case 'planned':
         return EncounterLocationStatus.planned;
@@ -53,7 +53,7 @@ enum EncounterLocationStatus {
     }
   }
 
-  EncounterLocationStatus fromJson(dynamic jsonValue) {
+  static EncounterLocationStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

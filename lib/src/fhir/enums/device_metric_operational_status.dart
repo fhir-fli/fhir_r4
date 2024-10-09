@@ -38,7 +38,7 @@ enum DeviceMetricOperationalStatus {
   }
 
   String toJson() => toString();
-  DeviceMetricOperationalStatus fromString(String str) {
+  static DeviceMetricOperationalStatus fromString(String str) {
     switch (str) {
       case 'on':
         return DeviceMetricOperationalStatus.on_;
@@ -53,7 +53,7 @@ enum DeviceMetricOperationalStatus {
     }
   }
 
-  DeviceMetricOperationalStatus fromJson(dynamic jsonValue) {
+  static DeviceMetricOperationalStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

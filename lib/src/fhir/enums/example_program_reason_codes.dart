@@ -38,7 +38,7 @@ enum ExampleProgramReasonCodes {
   }
 
   String toJson() => toString();
-  ExampleProgramReasonCodes fromString(String str) {
+  static ExampleProgramReasonCodes fromString(String str) {
     switch (str) {
       case 'as':
         return ExampleProgramReasonCodes.as_;
@@ -53,7 +53,7 @@ enum ExampleProgramReasonCodes {
     }
   }
 
-  ExampleProgramReasonCodes fromJson(dynamic jsonValue) {
+  static ExampleProgramReasonCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

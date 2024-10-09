@@ -58,7 +58,7 @@ enum WeightMethod {
   }
 
   String toJson() => toString();
-  WeightMethod fromString(String str) {
+  static WeightMethod fromString(String str) {
     switch (str) {
       case 'SDS-PAGE':
         return WeightMethod.SDS_PAGE;
@@ -81,7 +81,7 @@ enum WeightMethod {
     }
   }
 
-  WeightMethod fromJson(dynamic jsonValue) {
+  static WeightMethod fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

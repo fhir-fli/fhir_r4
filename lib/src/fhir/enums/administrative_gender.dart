@@ -38,7 +38,7 @@ enum AdministrativeGender {
   }
 
   String toJson() => toString();
-  AdministrativeGender fromString(String str) {
+  static AdministrativeGender fromString(String str) {
     switch (str) {
       case 'male':
         return AdministrativeGender.male;
@@ -53,7 +53,7 @@ enum AdministrativeGender {
     }
   }
 
-  AdministrativeGender fromJson(dynamic jsonValue) {
+  static AdministrativeGender fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

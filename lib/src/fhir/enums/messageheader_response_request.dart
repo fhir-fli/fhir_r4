@@ -38,7 +38,7 @@ enum MessageheaderResponseRequest {
   }
 
   String toJson() => toString();
-  MessageheaderResponseRequest fromString(String str) {
+  static MessageheaderResponseRequest fromString(String str) {
     switch (str) {
       case 'always':
         return MessageheaderResponseRequest.always;
@@ -53,7 +53,7 @@ enum MessageheaderResponseRequest {
     }
   }
 
-  MessageheaderResponseRequest fromJson(dynamic jsonValue) {
+  static MessageheaderResponseRequest fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -108,7 +108,7 @@ enum PediatricUse {
   }
 
   String toJson() => toString();
-  PediatricUse fromString(String str) {
+  static PediatricUse fromString(String str) {
     switch (str) {
       case 'InUtero':
         return PediatricUse.InUtero;
@@ -143,7 +143,7 @@ enum PediatricUse {
     }
   }
 
-  PediatricUse fromJson(dynamic jsonValue) {
+  static PediatricUse fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

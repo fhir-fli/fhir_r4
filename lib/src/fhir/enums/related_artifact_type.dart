@@ -66,7 +66,7 @@ enum RelatedArtifactType {
   }
 
   String toJson() => toString();
-  RelatedArtifactType fromString(String str) {
+  static RelatedArtifactType fromString(String str) {
     switch (str) {
       case 'documentation':
         return RelatedArtifactType.documentation;
@@ -89,7 +89,7 @@ enum RelatedArtifactType {
     }
   }
 
-  RelatedArtifactType fromJson(dynamic jsonValue) {
+  static RelatedArtifactType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

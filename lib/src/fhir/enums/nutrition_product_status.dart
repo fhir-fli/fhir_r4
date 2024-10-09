@@ -31,7 +31,7 @@ enum NutritionProductStatus {
   }
 
   String toJson() => toString();
-  NutritionProductStatus fromString(String str) {
+  static NutritionProductStatus fromString(String str) {
     switch (str) {
       case 'active':
         return NutritionProductStatus.active;
@@ -44,7 +44,7 @@ enum NutritionProductStatus {
     }
   }
 
-  NutritionProductStatus fromJson(dynamic jsonValue) {
+  static NutritionProductStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

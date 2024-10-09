@@ -45,7 +45,7 @@ enum ConsentActionCodes {
   }
 
   String toJson() => toString();
-  ConsentActionCodes fromString(String str) {
+  static ConsentActionCodes fromString(String str) {
     switch (str) {
       case 'collect':
         return ConsentActionCodes.collect;
@@ -62,7 +62,7 @@ enum ConsentActionCodes {
     }
   }
 
-  ConsentActionCodes fromJson(dynamic jsonValue) {
+  static ConsentActionCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

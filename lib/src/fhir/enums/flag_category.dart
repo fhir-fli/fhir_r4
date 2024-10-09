@@ -80,7 +80,7 @@ enum FlagCategory {
   }
 
   String toJson() => toString();
-  FlagCategory fromString(String str) {
+  static FlagCategory fromString(String str) {
     switch (str) {
       case 'diet':
         return FlagCategory.diet;
@@ -107,7 +107,7 @@ enum FlagCategory {
     }
   }
 
-  FlagCategory fromJson(dynamic jsonValue) {
+  static FlagCategory fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

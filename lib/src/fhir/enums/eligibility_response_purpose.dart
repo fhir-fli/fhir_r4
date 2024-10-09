@@ -38,7 +38,7 @@ enum EligibilityResponsePurpose {
   }
 
   String toJson() => toString();
-  EligibilityResponsePurpose fromString(String str) {
+  static EligibilityResponsePurpose fromString(String str) {
     switch (str) {
       case 'auth-requirements':
         return EligibilityResponsePurpose.auth_requirements;
@@ -53,7 +53,7 @@ enum EligibilityResponsePurpose {
     }
   }
 
-  EligibilityResponsePurpose fromJson(dynamic jsonValue) {
+  static EligibilityResponsePurpose fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'binary.g.dart';
-
 /// [Binary] /// A resource that represents the data of a single raw artifact as digital
 /// content accessible in its native format. A Binary resource can contain any
 /// content, whether text, image, pdf, zip archive, etc.
@@ -30,8 +28,6 @@ class Binary extends Resource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Binary);
   @override
   String get fhirType => 'Binary';
@@ -63,11 +59,69 @@ class Binary extends Resource {
   final FhirBase64Binary? data;
   @JsonKey(name: '_data')
   final Element? dataElement;
-  factory Binary.fromJson(Map<String, dynamic> json) => _$BinaryFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$BinaryToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    json['contentType'] = contentType.value;
+    if (contentTypeElement != null) {
+      json['_contentType'] = contentTypeElement!.toJson();
+    }
+    if (securityContext != null) {
+      json['securityContext'] = securityContext!.toJson();
+    }
+    if (data?.value != null) {
+      json['data'] = data!.value;
+    }
+    if (dataElement != null) {
+      json['_data'] = dataElement!.toJson();
+    }
+    return json;
+  }
 
+  factory Binary.fromJson(Map<String, dynamic> json) {
+    return Binary(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      contentType: FhirCode(json['contentType']),
+      contentTypeElement:
+          Element.fromJson(json['_contentType'] as Map<String, dynamic>),
+      securityContext: json['securityContext'] != null
+          ? Reference.fromJson(json['securityContext'] as Map<String, dynamic>)
+          : null,
+      data: json['data'] != null ? FhirBase64Binary(json['data']) : null,
+      dataElement: json['_data'] != null
+          ? Element.fromJson(json['_data'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   Binary clone() => throw UnimplementedError();
   @override

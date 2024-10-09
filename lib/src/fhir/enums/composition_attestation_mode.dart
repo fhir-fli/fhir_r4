@@ -38,7 +38,7 @@ enum CompositionAttestationMode {
   }
 
   String toJson() => toString();
-  CompositionAttestationMode fromString(String str) {
+  static CompositionAttestationMode fromString(String str) {
     switch (str) {
       case 'personal':
         return CompositionAttestationMode.personal;
@@ -53,7 +53,7 @@ enum CompositionAttestationMode {
     }
   }
 
-  CompositionAttestationMode fromJson(dynamic jsonValue) {
+  static CompositionAttestationMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

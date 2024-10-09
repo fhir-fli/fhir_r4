@@ -52,7 +52,7 @@ enum CommunicationTopic {
   }
 
   String toJson() => toString();
-  CommunicationTopic fromString(String str) {
+  static CommunicationTopic fromString(String str) {
     switch (str) {
       case 'prescription-refill-request':
         return CommunicationTopic.prescription_refill_request;
@@ -71,7 +71,7 @@ enum CommunicationTopic {
     }
   }
 
-  CommunicationTopic fromJson(dynamic jsonValue) {
+  static CommunicationTopic fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

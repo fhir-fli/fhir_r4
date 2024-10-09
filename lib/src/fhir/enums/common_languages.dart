@@ -346,7 +346,7 @@ enum CommonLanguages {
   }
 
   String toJson() => toString();
-  CommonLanguages fromString(String str) {
+  static CommonLanguages fromString(String str) {
     switch (str) {
       case 'ar':
         return CommonLanguages.ar;
@@ -465,7 +465,7 @@ enum CommonLanguages {
     }
   }
 
-  CommonLanguages fromJson(dynamic jsonValue) {
+  static CommonLanguages fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -24,7 +24,7 @@ enum ProductConfidentiality {
   }
 
   String toJson() => toString();
-  ProductConfidentiality fromString(String str) {
+  static ProductConfidentiality fromString(String str) {
     switch (str) {
       case 'CommerciallySensitive':
         return ProductConfidentiality.CommerciallySensitive;
@@ -35,7 +35,7 @@ enum ProductConfidentiality {
     }
   }
 
-  ProductConfidentiality fromJson(dynamic jsonValue) {
+  static ProductConfidentiality fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

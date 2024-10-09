@@ -22,7 +22,7 @@ enum ConditionStageType {
   }
 
   String toJson() => toString();
-  ConditionStageType fromString(String str) {
+  static ConditionStageType fromString(String str) {
     switch (str) {
       case '261023001':
         return ConditionStageType.value261023001;
@@ -33,7 +33,7 @@ enum ConditionStageType {
     }
   }
 
-  ConditionStageType fromJson(dynamic jsonValue) {
+  static ConditionStageType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

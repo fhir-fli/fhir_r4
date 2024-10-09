@@ -31,7 +31,7 @@ enum SequenceType {
   }
 
   String toJson() => toString();
-  SequenceType fromString(String str) {
+  static SequenceType fromString(String str) {
     switch (str) {
       case 'aa':
         return SequenceType.aa;
@@ -44,7 +44,7 @@ enum SequenceType {
     }
   }
 
-  SequenceType fromJson(dynamic jsonValue) {
+  static SequenceType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

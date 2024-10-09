@@ -52,7 +52,7 @@ enum AdverseEventCausalityAssessment {
   }
 
   String toJson() => toString();
-  AdverseEventCausalityAssessment fromString(String str) {
+  static AdverseEventCausalityAssessment fromString(String str) {
     switch (str) {
       case 'Certain':
         return AdverseEventCausalityAssessment.Certain;
@@ -71,7 +71,7 @@ enum AdverseEventCausalityAssessment {
     }
   }
 
-  AdverseEventCausalityAssessment fromJson(dynamic jsonValue) {
+  static AdverseEventCausalityAssessment fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

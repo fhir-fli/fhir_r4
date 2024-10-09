@@ -31,7 +31,7 @@ enum ResponseType {
   }
 
   String toJson() => toString();
-  ResponseType fromString(String str) {
+  static ResponseType fromString(String str) {
     switch (str) {
       case 'ok':
         return ResponseType.ok;
@@ -44,7 +44,7 @@ enum ResponseType {
     }
   }
 
-  ResponseType fromJson(dynamic jsonValue) {
+  static ResponseType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

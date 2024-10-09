@@ -66,7 +66,7 @@ enum DeviceMetricColor {
   }
 
   String toJson() => toString();
-  DeviceMetricColor fromString(String str) {
+  static DeviceMetricColor fromString(String str) {
     switch (str) {
       case 'black':
         return DeviceMetricColor.black;
@@ -89,7 +89,7 @@ enum DeviceMetricColor {
     }
   }
 
-  DeviceMetricColor fromJson(dynamic jsonValue) {
+  static DeviceMetricColor fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

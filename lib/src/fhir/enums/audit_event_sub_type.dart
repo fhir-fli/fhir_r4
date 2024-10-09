@@ -22189,7 +22189,7 @@ enum AuditEventSubType {
   }
 
   String toJson() => toString();
-  AuditEventSubType fromString(String str) {
+  static AuditEventSubType fromString(String str) {
     switch (str) {
       case 'ARCHIVE':
         return AuditEventSubType.ARCHIVE;
@@ -28542,7 +28542,7 @@ enum AuditEventSubType {
     }
   }
 
-  AuditEventSubType fromJson(dynamic jsonValue) {
+  static AuditEventSubType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

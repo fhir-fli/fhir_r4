@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'measure_report.g.dart';
-
 /// [MeasureReport] /// The MeasureReport resource contains the results of the calculation of a
 /// measure; and optionally a reference to the resources involved in that
 /// calculation.
@@ -44,8 +42,6 @@ class MeasureReport extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.MeasureReport);
   @override
   String get fhirType => 'MeasureReport';
@@ -117,12 +113,156 @@ class MeasureReport extends DomainResource {
   /// calculation of this measure.
   @JsonKey(name: 'evaluatedResource')
   final List<Reference>? evaluatedResource;
-  factory MeasureReport.fromJson(Map<String, dynamic> json) =>
-      _$MeasureReportFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MeasureReportToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    json['status'] = status.toJson();
+    json['type'] = type.toJson();
+    json['measure'] = measure.value;
+    if (measureElement != null) {
+      json['_measure'] = measureElement!.toJson();
+    }
+    if (subject != null) {
+      json['subject'] = subject!.toJson();
+    }
+    if (date?.value != null) {
+      json['date'] = date!.value;
+    }
+    if (dateElement != null) {
+      json['_date'] = dateElement!.toJson();
+    }
+    if (reporter != null) {
+      json['reporter'] = reporter!.toJson();
+    }
+    json['period'] = period.toJson();
+    if (improvementNotation != null) {
+      json['improvementNotation'] = improvementNotation!.toJson();
+    }
+    if (group != null && group!.isNotEmpty) {
+      json['group'] =
+          group!.map<dynamic>((MeasureReportGroup v) => v.toJson()).toList();
+    }
+    if (evaluatedResource != null && evaluatedResource!.isNotEmpty) {
+      json['evaluatedResource'] =
+          evaluatedResource!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory MeasureReport.fromJson(Map<String, dynamic> json) {
+    return MeasureReport(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      status:
+          MeasureReportStatus.fromJson(json['status'] as Map<String, dynamic>),
+      type: MeasureReportType.fromJson(json['type'] as Map<String, dynamic>),
+      measure: FhirCanonical(json['measure']),
+      measureElement:
+          Element.fromJson(json['_measure'] as Map<String, dynamic>),
+      subject: json['subject'] != null
+          ? Reference.fromJson(json['subject'] as Map<String, dynamic>)
+          : null,
+      date: json['date'] != null ? FhirDateTime(json['date']) : null,
+      dateElement: json['_date'] != null
+          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
+          : null,
+      reporter: json['reporter'] != null
+          ? Reference.fromJson(json['reporter'] as Map<String, dynamic>)
+          : null,
+      period: Period.fromJson(json['period'] as Map<String, dynamic>),
+      improvementNotation: json['improvementNotation'] != null
+          ? CodeableConcept.fromJson(
+              json['improvementNotation'] as Map<String, dynamic>)
+          : null,
+      group: json['group'] != null
+          ? (json['group'] as List<dynamic>)
+              .map<MeasureReportGroup>((dynamic v) =>
+                  MeasureReportGroup.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      evaluatedResource: json['evaluatedResource'] != null
+          ? (json['evaluatedResource'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   MeasureReport clone() => throw UnimplementedError();
   @override
@@ -258,12 +398,77 @@ class MeasureReportGroup extends BackboneElement {
   /// group for each stratifier defined by the measure.
   @JsonKey(name: 'stratifier')
   final List<MeasureReportStratifier>? stratifier;
-  factory MeasureReportGroup.fromJson(Map<String, dynamic> json) =>
-      _$MeasureReportGroupFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MeasureReportGroupToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (code != null) {
+      json['code'] = code!.toJson();
+    }
+    if (population != null && population!.isNotEmpty) {
+      json['population'] = population!
+          .map<dynamic>((MeasureReportPopulation v) => v.toJson())
+          .toList();
+    }
+    if (measureScore != null) {
+      json['measureScore'] = measureScore!.toJson();
+    }
+    if (stratifier != null && stratifier!.isNotEmpty) {
+      json['stratifier'] = stratifier!
+          .map<dynamic>((MeasureReportStratifier v) => v.toJson())
+          .toList();
+    }
+    return json;
+  }
 
+  factory MeasureReportGroup.fromJson(Map<String, dynamic> json) {
+    return MeasureReportGroup(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      code: json['code'] != null
+          ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
+          : null,
+      population: json['population'] != null
+          ? (json['population'] as List<dynamic>)
+              .map<MeasureReportPopulation>((dynamic v) =>
+                  MeasureReportPopulation.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      measureScore: json['measureScore'] != null
+          ? Quantity.fromJson(json['measureScore'] as Map<String, dynamic>)
+          : null,
+      stratifier: json['stratifier'] != null
+          ? (json['stratifier'] as List<dynamic>)
+              .map<MeasureReportStratifier>((dynamic v) =>
+                  MeasureReportStratifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   MeasureReportGroup clone() => throw UnimplementedError();
   @override
@@ -358,12 +563,65 @@ class MeasureReportPopulation extends BackboneElement {
   /// for each subject in this population.
   @JsonKey(name: 'subjectResults')
   final Reference? subjectResults;
-  factory MeasureReportPopulation.fromJson(Map<String, dynamic> json) =>
-      _$MeasureReportPopulationFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MeasureReportPopulationToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (code != null) {
+      json['code'] = code!.toJson();
+    }
+    if (count?.value != null) {
+      json['count'] = count!.value;
+    }
+    if (countElement != null) {
+      json['_count'] = countElement!.toJson();
+    }
+    if (subjectResults != null) {
+      json['subjectResults'] = subjectResults!.toJson();
+    }
+    return json;
+  }
 
+  factory MeasureReportPopulation.fromJson(Map<String, dynamic> json) {
+    return MeasureReportPopulation(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      code: json['code'] != null
+          ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
+          : null,
+      count: json['count'] != null ? FhirInteger(json['count']) : null,
+      countElement: json['_count'] != null
+          ? Element.fromJson(json['_count'] as Map<String, dynamic>)
+          : null,
+      subjectResults: json['subjectResults'] != null
+          ? Reference.fromJson(json['subjectResults'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   MeasureReportPopulation clone() => throw UnimplementedError();
   @override
@@ -451,12 +709,64 @@ class MeasureReportStratifier extends BackboneElement {
   /// will be four strata, one for each possible gender value.
   @JsonKey(name: 'stratum')
   final List<MeasureReportStratum>? stratum;
-  factory MeasureReportStratifier.fromJson(Map<String, dynamic> json) =>
-      _$MeasureReportStratifierFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MeasureReportStratifierToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (code != null && code!.isNotEmpty) {
+      json['code'] =
+          code!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (stratum != null && stratum!.isNotEmpty) {
+      json['stratum'] = stratum!
+          .map<dynamic>((MeasureReportStratum v) => v.toJson())
+          .toList();
+    }
+    return json;
+  }
 
+  factory MeasureReportStratifier.fromJson(Map<String, dynamic> json) {
+    return MeasureReportStratifier(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      code: json['code'] != null
+          ? (json['code'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      stratum: json['stratum'] != null
+          ? (json['stratum'] as List<dynamic>)
+              .map<MeasureReportStratum>((dynamic v) =>
+                  MeasureReportStratum.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   MeasureReportStratifier clone() => throw UnimplementedError();
   @override
@@ -554,12 +864,77 @@ class MeasureReportStratum extends BackboneElement {
   /// stratum.
   @JsonKey(name: 'measureScore')
   final Quantity? measureScore;
-  factory MeasureReportStratum.fromJson(Map<String, dynamic> json) =>
-      _$MeasureReportStratumFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MeasureReportStratumToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (value != null) {
+      json['value'] = value!.toJson();
+    }
+    if (component != null && component!.isNotEmpty) {
+      json['component'] = component!
+          .map<dynamic>((MeasureReportComponent v) => v.toJson())
+          .toList();
+    }
+    if (population != null && population!.isNotEmpty) {
+      json['population'] = population!
+          .map<dynamic>((MeasureReportPopulation v) => v.toJson())
+          .toList();
+    }
+    if (measureScore != null) {
+      json['measureScore'] = measureScore!.toJson();
+    }
+    return json;
+  }
 
+  factory MeasureReportStratum.fromJson(Map<String, dynamic> json) {
+    return MeasureReportStratum(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      value: json['value'] != null
+          ? CodeableConcept.fromJson(json['value'] as Map<String, dynamic>)
+          : null,
+      component: json['component'] != null
+          ? (json['component'] as List<dynamic>)
+              .map<MeasureReportComponent>((dynamic v) =>
+                  MeasureReportComponent.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      population: json['population'] != null
+          ? (json['population'] as List<dynamic>)
+              .map<MeasureReportPopulation>((dynamic v) =>
+                  MeasureReportPopulation.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      measureScore: json['measureScore'] != null
+          ? Quantity.fromJson(json['measureScore'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   MeasureReportStratum clone() => throw UnimplementedError();
   @override
@@ -644,12 +1019,47 @@ class MeasureReportComponent extends BackboneElement {
   /// [value] /// The stratum component value.
   @JsonKey(name: 'value')
   final CodeableConcept value;
-  factory MeasureReportComponent.fromJson(Map<String, dynamic> json) =>
-      _$MeasureReportComponentFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MeasureReportComponentToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['code'] = code.toJson();
+    json['value'] = value.toJson();
+    return json;
+  }
 
+  factory MeasureReportComponent.fromJson(Map<String, dynamic> json) {
+    return MeasureReportComponent(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      code: CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
+      value: CodeableConcept.fromJson(json['value'] as Map<String, dynamic>),
+    );
+  }
   @override
   MeasureReportComponent clone() => throw UnimplementedError();
   @override
@@ -740,12 +1150,65 @@ class MeasureReportPopulation1 extends BackboneElement {
   /// for each subject in this population in this stratum.
   @JsonKey(name: 'subjectResults')
   final Reference? subjectResults;
-  factory MeasureReportPopulation1.fromJson(Map<String, dynamic> json) =>
-      _$MeasureReportPopulation1FromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MeasureReportPopulation1ToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (code != null) {
+      json['code'] = code!.toJson();
+    }
+    if (count?.value != null) {
+      json['count'] = count!.value;
+    }
+    if (countElement != null) {
+      json['_count'] = countElement!.toJson();
+    }
+    if (subjectResults != null) {
+      json['subjectResults'] = subjectResults!.toJson();
+    }
+    return json;
+  }
 
+  factory MeasureReportPopulation1.fromJson(Map<String, dynamic> json) {
+    return MeasureReportPopulation1(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      code: json['code'] != null
+          ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
+          : null,
+      count: json['count'] != null ? FhirInteger(json['count']) : null,
+      countElement: json['_count'] != null
+          ? Element.fromJson(json['_count'] as Map<String, dynamic>)
+          : null,
+      subjectResults: json['subjectResults'] != null
+          ? Reference.fromJson(json['subjectResults'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   MeasureReportPopulation1 clone() => throw UnimplementedError();
   @override

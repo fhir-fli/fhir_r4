@@ -115,7 +115,7 @@ enum RequestResourceType {
   }
 
   String toJson() => toString();
-  RequestResourceType fromString(String str) {
+  static RequestResourceType fromString(String str) {
     switch (str) {
       case 'Appointment':
         return RequestResourceType.Appointment;
@@ -152,7 +152,7 @@ enum RequestResourceType {
     }
   }
 
-  RequestResourceType fromJson(dynamic jsonValue) {
+  static RequestResourceType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

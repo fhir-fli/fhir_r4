@@ -66,7 +66,7 @@ enum ListOrderCodes {
   }
 
   String toJson() => toString();
-  ListOrderCodes fromString(String str) {
+  static ListOrderCodes fromString(String str) {
     switch (str) {
       case 'user':
         return ListOrderCodes.user;
@@ -89,7 +89,7 @@ enum ListOrderCodes {
     }
   }
 
-  ListOrderCodes fromJson(dynamic jsonValue) {
+  static ListOrderCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

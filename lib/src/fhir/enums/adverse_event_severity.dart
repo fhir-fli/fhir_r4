@@ -28,7 +28,7 @@ enum AdverseEventSeverity {
   }
 
   String toJson() => toString();
-  AdverseEventSeverity fromString(String str) {
+  static AdverseEventSeverity fromString(String str) {
     switch (str) {
       case 'mild':
         return AdverseEventSeverity.mild;
@@ -41,7 +41,7 @@ enum AdverseEventSeverity {
     }
   }
 
-  AdverseEventSeverity fromJson(dynamic jsonValue) {
+  static AdverseEventSeverity fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

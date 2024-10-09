@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'related_artifact.g.dart';
-
 /// [RelatedArtifact] /// Related artifacts such as additional documentation, justification, or
 /// bibliographic references.
 @JsonSerializable()
@@ -84,12 +82,92 @@ class RelatedArtifact extends DataType {
   final FhirCanonical? resource;
   @JsonKey(name: '_resource')
   final Element? resourceElement;
-  factory RelatedArtifact.fromJson(Map<String, dynamic> json) =>
-      _$RelatedArtifactFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$RelatedArtifactToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    json['type'] = type.toJson();
+    if (label?.value != null) {
+      json['label'] = label!.value;
+    }
+    if (labelElement != null) {
+      json['_label'] = labelElement!.toJson();
+    }
+    if (display?.value != null) {
+      json['display'] = display!.value;
+    }
+    if (displayElement != null) {
+      json['_display'] = displayElement!.toJson();
+    }
+    if (citation?.value != null) {
+      json['citation'] = citation!.value;
+    }
+    if (citationElement != null) {
+      json['_citation'] = citationElement!.toJson();
+    }
+    if (url?.value != null) {
+      json['url'] = url!.value;
+    }
+    if (urlElement != null) {
+      json['_url'] = urlElement!.toJson();
+    }
+    if (document != null) {
+      json['document'] = document!.toJson();
+    }
+    if (resource?.value != null) {
+      json['resource'] = resource!.value;
+    }
+    if (resourceElement != null) {
+      json['_resource'] = resourceElement!.toJson();
+    }
+    return json;
+  }
 
+  factory RelatedArtifact.fromJson(Map<String, dynamic> json) {
+    return RelatedArtifact(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: RelatedArtifactType.fromJson(json['type'] as Map<String, dynamic>),
+      label: json['label'] != null ? FhirString(json['label']) : null,
+      labelElement: json['_label'] != null
+          ? Element.fromJson(json['_label'] as Map<String, dynamic>)
+          : null,
+      display: json['display'] != null ? FhirString(json['display']) : null,
+      displayElement: json['_display'] != null
+          ? Element.fromJson(json['_display'] as Map<String, dynamic>)
+          : null,
+      citation:
+          json['citation'] != null ? FhirMarkdown(json['citation']) : null,
+      citationElement: json['_citation'] != null
+          ? Element.fromJson(json['_citation'] as Map<String, dynamic>)
+          : null,
+      url: json['url'] != null ? FhirUrl(json['url']) : null,
+      urlElement: json['_url'] != null
+          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
+          : null,
+      document: json['document'] != null
+          ? Attachment.fromJson(json['document'] as Map<String, dynamic>)
+          : null,
+      resource:
+          json['resource'] != null ? FhirCanonical(json['resource']) : null,
+      resourceElement: json['_resource'] != null
+          ? Element.fromJson(json['_resource'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   RelatedArtifact clone() => throw UnimplementedError();
   @override

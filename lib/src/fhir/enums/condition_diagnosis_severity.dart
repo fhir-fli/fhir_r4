@@ -23,7 +23,7 @@ enum ConditionDiagnosisSeverity {
   }
 
   String toJson() => toString();
-  ConditionDiagnosisSeverity fromString(String str) {
+  static ConditionDiagnosisSeverity fromString(String str) {
     switch (str) {
       case '24484000':
         return ConditionDiagnosisSeverity.value24484000;
@@ -36,7 +36,7 @@ enum ConditionDiagnosisSeverity {
     }
   }
 
-  ConditionDiagnosisSeverity fromJson(dynamic jsonValue) {
+  static ConditionDiagnosisSeverity fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

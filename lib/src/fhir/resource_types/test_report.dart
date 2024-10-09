@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'test_report.g.dart';
-
 /// [TestReport] /// A summary of information based on the results of executing a TestScript.
 @JsonSerializable()
 class TestReport extends DomainResource {
@@ -45,8 +43,6 @@ class TestReport extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.TestReport);
   @override
   String get fhirType => 'TestReport';
@@ -120,12 +116,170 @@ class TestReport extends DomainResource {
   /// tests were executed (successfully or otherwise).
   @JsonKey(name: 'teardown')
   final TestReportTeardown? teardown;
-  factory TestReport.fromJson(Map<String, dynamic> json) =>
-      _$TestReportFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$TestReportToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null) {
+      json['identifier'] = identifier!.toJson();
+    }
+    if (name?.value != null) {
+      json['name'] = name!.value;
+    }
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    json['status'] = status.toJson();
+    json['testScript'] = testScript.toJson();
+    json['result'] = result.toJson();
+    if (score?.value != null) {
+      json['score'] = score!.value;
+    }
+    if (scoreElement != null) {
+      json['_score'] = scoreElement!.toJson();
+    }
+    if (tester?.value != null) {
+      json['tester'] = tester!.value;
+    }
+    if (testerElement != null) {
+      json['_tester'] = testerElement!.toJson();
+    }
+    if (issued?.value != null) {
+      json['issued'] = issued!.value;
+    }
+    if (issuedElement != null) {
+      json['_issued'] = issuedElement!.toJson();
+    }
+    if (participant != null && participant!.isNotEmpty) {
+      json['participant'] = participant!
+          .map<dynamic>((TestReportParticipant v) => v.toJson())
+          .toList();
+    }
+    if (setup != null) {
+      json['setup'] = setup!.toJson();
+    }
+    if (test != null && test!.isNotEmpty) {
+      json['test'] =
+          test!.map<dynamic>((TestReportTest v) => v.toJson()).toList();
+    }
+    if (teardown != null) {
+      json['teardown'] = teardown!.toJson();
+    }
+    return json;
+  }
 
+  factory TestReport.fromJson(Map<String, dynamic> json) {
+    return TestReport(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? Identifier.fromJson(json['identifier'] as Map<String, dynamic>)
+          : null,
+      name: json['name'] != null ? FhirString(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
+      status: TestReportStatus.fromJson(json['status'] as Map<String, dynamic>),
+      testScript:
+          Reference.fromJson(json['testScript'] as Map<String, dynamic>),
+      result: TestReportResult.fromJson(json['result'] as Map<String, dynamic>),
+      score: json['score'] != null ? FhirDecimal(json['score']) : null,
+      scoreElement: json['_score'] != null
+          ? Element.fromJson(json['_score'] as Map<String, dynamic>)
+          : null,
+      tester: json['tester'] != null ? FhirString(json['tester']) : null,
+      testerElement: json['_tester'] != null
+          ? Element.fromJson(json['_tester'] as Map<String, dynamic>)
+          : null,
+      issued: json['issued'] != null ? FhirDateTime(json['issued']) : null,
+      issuedElement: json['_issued'] != null
+          ? Element.fromJson(json['_issued'] as Map<String, dynamic>)
+          : null,
+      participant: json['participant'] != null
+          ? (json['participant'] as List<dynamic>)
+              .map<TestReportParticipant>((dynamic v) =>
+                  TestReportParticipant.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      setup: json['setup'] != null
+          ? TestReportSetup.fromJson(json['setup'] as Map<String, dynamic>)
+          : null,
+      test: json['test'] != null
+          ? (json['test'] as List<dynamic>)
+              .map<TestReportTest>((dynamic v) =>
+                  TestReportTest.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      teardown: json['teardown'] != null
+          ? TestReportTeardown.fromJson(
+              json['teardown'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   TestReport clone() => throw UnimplementedError();
   @override
@@ -267,12 +421,62 @@ class TestReportParticipant extends BackboneElement {
   final FhirString? display;
   @JsonKey(name: '_display')
   final Element? displayElement;
-  factory TestReportParticipant.fromJson(Map<String, dynamic> json) =>
-      _$TestReportParticipantFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$TestReportParticipantToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['type'] = type.toJson();
+    json['uri'] = uri.value;
+    if (uriElement != null) {
+      json['_uri'] = uriElement!.toJson();
+    }
+    if (display?.value != null) {
+      json['display'] = display!.value;
+    }
+    if (displayElement != null) {
+      json['_display'] = displayElement!.toJson();
+    }
+    return json;
+  }
 
+  factory TestReportParticipant.fromJson(Map<String, dynamic> json) {
+    return TestReportParticipant(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: TestReportParticipantType.fromJson(
+          json['type'] as Map<String, dynamic>),
+      uri: FhirUri(json['uri']),
+      uriElement: Element.fromJson(json['_uri'] as Map<String, dynamic>),
+      display: json['display'] != null ? FhirString(json['display']) : null,
+      displayElement: json['_display'] != null
+          ? Element.fromJson(json['_display'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   TestReportParticipant clone() => throw UnimplementedError();
   @override
@@ -357,12 +561,49 @@ class TestReportSetup extends BackboneElement {
   /// [action] /// Action would contain either an operation or an assertion.
   @JsonKey(name: 'action')
   final List<TestReportAction> action;
-  factory TestReportSetup.fromJson(Map<String, dynamic> json) =>
-      _$TestReportSetupFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$TestReportSetupToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['action'] =
+        action.map<dynamic>((TestReportAction v) => v.toJson()).toList();
+    return json;
+  }
 
+  factory TestReportSetup.fromJson(Map<String, dynamic> json) {
+    return TestReportSetup(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      action: (json['action'] as List<dynamic>)
+          .map<TestReportAction>((dynamic v) =>
+              TestReportAction.fromJson(v as Map<String, dynamic>))
+          .toList(),
+    );
+  }
   @override
   TestReportSetup clone() => throw UnimplementedError();
   @override
@@ -441,12 +682,56 @@ class TestReportAction extends BackboneElement {
   /// [assert_] /// The results of the assertion performed on the previous operations.
   @JsonKey(name: 'assert')
   final TestReportAssert? assert_;
-  factory TestReportAction.fromJson(Map<String, dynamic> json) =>
-      _$TestReportActionFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$TestReportActionToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (operation != null) {
+      json['operation'] = operation!.toJson();
+    }
+    if (assert_ != null) {
+      json['assert'] = assert_!.toJson();
+    }
+    return json;
+  }
 
+  factory TestReportAction.fromJson(Map<String, dynamic> json) {
+    return TestReportAction(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      operation: json['operation'] != null
+          ? TestReportOperation.fromJson(
+              json['operation'] as Map<String, dynamic>)
+          : null,
+      assert_: json['assert'] != null
+          ? TestReportAssert.fromJson(json['assert'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   TestReportAction clone() => throw UnimplementedError();
   @override
@@ -541,12 +826,66 @@ class TestReportOperation extends BackboneElement {
   final FhirUri? detail;
   @JsonKey(name: '_detail')
   final Element? detailElement;
-  factory TestReportOperation.fromJson(Map<String, dynamic> json) =>
-      _$TestReportOperationFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$TestReportOperationToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['result'] = result.toJson();
+    if (message?.value != null) {
+      json['message'] = message!.value;
+    }
+    if (messageElement != null) {
+      json['_message'] = messageElement!.toJson();
+    }
+    if (detail?.value != null) {
+      json['detail'] = detail!.value;
+    }
+    if (detailElement != null) {
+      json['_detail'] = detailElement!.toJson();
+    }
+    return json;
+  }
 
+  factory TestReportOperation.fromJson(Map<String, dynamic> json) {
+    return TestReportOperation(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      result: TestReportActionResult.fromJson(
+          json['result'] as Map<String, dynamic>),
+      message: json['message'] != null ? FhirMarkdown(json['message']) : null,
+      messageElement: json['_message'] != null
+          ? Element.fromJson(json['_message'] as Map<String, dynamic>)
+          : null,
+      detail: json['detail'] != null ? FhirUri(json['detail']) : null,
+      detailElement: json['_detail'] != null
+          ? Element.fromJson(json['_detail'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   TestReportOperation clone() => throw UnimplementedError();
   @override
@@ -649,12 +988,66 @@ class TestReportAssert extends BackboneElement {
   final FhirString? detail;
   @JsonKey(name: '_detail')
   final Element? detailElement;
-  factory TestReportAssert.fromJson(Map<String, dynamic> json) =>
-      _$TestReportAssertFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$TestReportAssertToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['result'] = result.toJson();
+    if (message?.value != null) {
+      json['message'] = message!.value;
+    }
+    if (messageElement != null) {
+      json['_message'] = messageElement!.toJson();
+    }
+    if (detail?.value != null) {
+      json['detail'] = detail!.value;
+    }
+    if (detailElement != null) {
+      json['_detail'] = detailElement!.toJson();
+    }
+    return json;
+  }
 
+  factory TestReportAssert.fromJson(Map<String, dynamic> json) {
+    return TestReportAssert(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      result: TestReportActionResult.fromJson(
+          json['result'] as Map<String, dynamic>),
+      message: json['message'] != null ? FhirMarkdown(json['message']) : null,
+      messageElement: json['_message'] != null
+          ? Element.fromJson(json['_message'] as Map<String, dynamic>)
+          : null,
+      detail: json['detail'] != null ? FhirString(json['detail']) : null,
+      detailElement: json['_detail'] != null
+          ? Element.fromJson(json['_detail'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   TestReportAssert clone() => throw UnimplementedError();
   @override
@@ -755,12 +1148,70 @@ class TestReportTest extends BackboneElement {
   /// [action] /// Action would contain either an operation or an assertion.
   @JsonKey(name: 'action')
   final List<TestReportAction> action;
-  factory TestReportTest.fromJson(Map<String, dynamic> json) =>
-      _$TestReportTestFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$TestReportTestToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (name?.value != null) {
+      json['name'] = name!.value;
+    }
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (description?.value != null) {
+      json['description'] = description!.value;
+    }
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    json['action'] =
+        action.map<dynamic>((TestReportAction v) => v.toJson()).toList();
+    return json;
+  }
 
+  factory TestReportTest.fromJson(Map<String, dynamic> json) {
+    return TestReportTest(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      name: json['name'] != null ? FhirString(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
+      description:
+          json['description'] != null ? FhirString(json['description']) : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
+      action: (json['action'] as List<dynamic>)
+          .map<TestReportAction>((dynamic v) =>
+              TestReportAction.fromJson(v as Map<String, dynamic>))
+          .toList(),
+    );
+  }
   @override
   TestReportTest clone() => throw UnimplementedError();
   @override
@@ -847,12 +1298,56 @@ class TestReportAction1 extends BackboneElement {
   /// [assert_] /// The results of the assertion performed on the previous operations.
   @JsonKey(name: 'assert')
   final TestReportAssert? assert_;
-  factory TestReportAction1.fromJson(Map<String, dynamic> json) =>
-      _$TestReportAction1FromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$TestReportAction1ToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (operation != null) {
+      json['operation'] = operation!.toJson();
+    }
+    if (assert_ != null) {
+      json['assert'] = assert_!.toJson();
+    }
+    return json;
+  }
 
+  factory TestReportAction1.fromJson(Map<String, dynamic> json) {
+    return TestReportAction1(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      operation: json['operation'] != null
+          ? TestReportOperation.fromJson(
+              json['operation'] as Map<String, dynamic>)
+          : null,
+      assert_: json['assert'] != null
+          ? TestReportAssert.fromJson(json['assert'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   TestReportAction1 clone() => throw UnimplementedError();
   @override
@@ -929,12 +1424,49 @@ class TestReportTeardown extends BackboneElement {
   /// [action] /// The teardown action will only contain an operation.
   @JsonKey(name: 'action')
   final List<TestReportAction> action;
-  factory TestReportTeardown.fromJson(Map<String, dynamic> json) =>
-      _$TestReportTeardownFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$TestReportTeardownToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['action'] =
+        action.map<dynamic>((TestReportAction v) => v.toJson()).toList();
+    return json;
+  }
 
+  factory TestReportTeardown.fromJson(Map<String, dynamic> json) {
+    return TestReportTeardown(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      action: (json['action'] as List<dynamic>)
+          .map<TestReportAction>((dynamic v) =>
+              TestReportAction.fromJson(v as Map<String, dynamic>))
+          .toList(),
+    );
+  }
   @override
   TestReportTeardown clone() => throw UnimplementedError();
   @override
@@ -1008,12 +1540,46 @@ class TestReportAction2 extends BackboneElement {
   /// [operation] /// An operation would involve a REST request to a server.
   @JsonKey(name: 'operation')
   final TestReportOperation operation;
-  factory TestReportAction2.fromJson(Map<String, dynamic> json) =>
-      _$TestReportAction2FromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$TestReportAction2ToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['operation'] = operation.toJson();
+    return json;
+  }
 
+  factory TestReportAction2.fromJson(Map<String, dynamic> json) {
+    return TestReportAction2(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      operation: TestReportOperation.fromJson(
+          json['operation'] as Map<String, dynamic>),
+    );
+  }
   @override
   TestReportAction2 clone() => throw UnimplementedError();
   @override

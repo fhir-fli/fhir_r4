@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'dosage.g.dart';
-
 /// [Dosage] /// Indicates how the medication is/was taken or should be taken by the
 /// patient.
 @JsonSerializable()
@@ -117,11 +115,161 @@ class Dosage extends BackboneType {
   /// [maxDosePerLifetime] /// Upper limit on medication per lifetime of the patient.
   @JsonKey(name: 'maxDosePerLifetime')
   final Quantity? maxDosePerLifetime;
-  factory Dosage.fromJson(Map<String, dynamic> json) => _$DosageFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$DosageToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (sequence?.value != null) {
+      json['sequence'] = sequence!.value;
+    }
+    if (sequenceElement != null) {
+      json['_sequence'] = sequenceElement!.toJson();
+    }
+    if (text?.value != null) {
+      json['text'] = text!.value;
+    }
+    if (textElement != null) {
+      json['_text'] = textElement!.toJson();
+    }
+    if (additionalInstruction != null && additionalInstruction!.isNotEmpty) {
+      json['additionalInstruction'] = additionalInstruction!
+          .map<dynamic>((CodeableConcept v) => v.toJson())
+          .toList();
+    }
+    if (patientInstruction?.value != null) {
+      json['patientInstruction'] = patientInstruction!.value;
+    }
+    if (patientInstructionElement != null) {
+      json['_patientInstruction'] = patientInstructionElement!.toJson();
+    }
+    if (timing != null) {
+      json['timing'] = timing!.toJson();
+    }
+    if (asNeededBoolean?.value != null) {
+      json['asNeededBoolean'] = asNeededBoolean!.value;
+    }
+    if (asNeededBooleanElement != null) {
+      json['_asNeededBoolean'] = asNeededBooleanElement!.toJson();
+    }
+    if (asNeededCodeableConcept != null) {
+      json['asNeededCodeableConcept'] = asNeededCodeableConcept!.toJson();
+    }
+    if (site != null) {
+      json['site'] = site!.toJson();
+    }
+    if (route != null) {
+      json['route'] = route!.toJson();
+    }
+    if (method != null) {
+      json['method'] = method!.toJson();
+    }
+    if (doseAndRate != null && doseAndRate!.isNotEmpty) {
+      json['doseAndRate'] = doseAndRate!
+          .map<dynamic>((DosageDoseAndRate v) => v.toJson())
+          .toList();
+    }
+    if (maxDosePerPeriod != null) {
+      json['maxDosePerPeriod'] = maxDosePerPeriod!.toJson();
+    }
+    if (maxDosePerAdministration != null) {
+      json['maxDosePerAdministration'] = maxDosePerAdministration!.toJson();
+    }
+    if (maxDosePerLifetime != null) {
+      json['maxDosePerLifetime'] = maxDosePerLifetime!.toJson();
+    }
+    return json;
+  }
 
+  factory Dosage.fromJson(Map<String, dynamic> json) {
+    return Dosage(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      sequence: json['sequence'] != null ? FhirInteger(json['sequence']) : null,
+      sequenceElement: json['_sequence'] != null
+          ? Element.fromJson(json['_sequence'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null ? FhirString(json['text']) : null,
+      textElement: json['_text'] != null
+          ? Element.fromJson(json['_text'] as Map<String, dynamic>)
+          : null,
+      additionalInstruction: json['additionalInstruction'] != null
+          ? (json['additionalInstruction'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      patientInstruction: json['patientInstruction'] != null
+          ? FhirString(json['patientInstruction'])
+          : null,
+      patientInstructionElement: json['_patientInstruction'] != null
+          ? Element.fromJson(
+              json['_patientInstruction'] as Map<String, dynamic>)
+          : null,
+      timing: json['timing'] != null
+          ? Timing.fromJson(json['timing'] as Map<String, dynamic>)
+          : null,
+      asNeededBoolean: json['asNeededBoolean'] != null
+          ? FhirBoolean(json['asNeededBoolean'])
+          : null,
+      asNeededBooleanElement: json['_asNeededBoolean'] != null
+          ? Element.fromJson(json['_asNeededBoolean'] as Map<String, dynamic>)
+          : null,
+      asNeededCodeableConcept: json['asNeededCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['asNeededCodeableConcept'] as Map<String, dynamic>)
+          : null,
+      site: json['site'] != null
+          ? CodeableConcept.fromJson(json['site'] as Map<String, dynamic>)
+          : null,
+      route: json['route'] != null
+          ? CodeableConcept.fromJson(json['route'] as Map<String, dynamic>)
+          : null,
+      method: json['method'] != null
+          ? CodeableConcept.fromJson(json['method'] as Map<String, dynamic>)
+          : null,
+      doseAndRate: json['doseAndRate'] != null
+          ? (json['doseAndRate'] as List<dynamic>)
+              .map<DosageDoseAndRate>((dynamic v) =>
+                  DosageDoseAndRate.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      maxDosePerPeriod: json['maxDosePerPeriod'] != null
+          ? Ratio.fromJson(json['maxDosePerPeriod'] as Map<String, dynamic>)
+          : null,
+      maxDosePerAdministration: json['maxDosePerAdministration'] != null
+          ? Quantity.fromJson(
+              json['maxDosePerAdministration'] as Map<String, dynamic>)
+          : null,
+      maxDosePerLifetime: json['maxDosePerLifetime'] != null
+          ? Quantity.fromJson(
+              json['maxDosePerLifetime'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   Dosage clone() => throw UnimplementedError();
   @override
@@ -258,12 +406,68 @@ class DosageDoseAndRate extends Element {
   /// [rateQuantity] /// Amount of medication per unit of time.
   @JsonKey(name: 'rateQuantity')
   final Quantity? rateQuantity;
-  factory DosageDoseAndRate.fromJson(Map<String, dynamic> json) =>
-      _$DosageDoseAndRateFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$DosageDoseAndRateToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (type != null) {
+      json['type'] = type!.toJson();
+    }
+    if (doseRange != null) {
+      json['doseRange'] = doseRange!.toJson();
+    }
+    if (doseQuantity != null) {
+      json['doseQuantity'] = doseQuantity!.toJson();
+    }
+    if (rateRatio != null) {
+      json['rateRatio'] = rateRatio!.toJson();
+    }
+    if (rateRange != null) {
+      json['rateRange'] = rateRange!.toJson();
+    }
+    if (rateQuantity != null) {
+      json['rateQuantity'] = rateQuantity!.toJson();
+    }
+    return json;
+  }
 
+  factory DosageDoseAndRate.fromJson(Map<String, dynamic> json) {
+    return DosageDoseAndRate(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
+          : null,
+      doseRange: json['doseRange'] != null
+          ? Range.fromJson(json['doseRange'] as Map<String, dynamic>)
+          : null,
+      doseQuantity: json['doseQuantity'] != null
+          ? Quantity.fromJson(json['doseQuantity'] as Map<String, dynamic>)
+          : null,
+      rateRatio: json['rateRatio'] != null
+          ? Ratio.fromJson(json['rateRatio'] as Map<String, dynamic>)
+          : null,
+      rateRange: json['rateRange'] != null
+          ? Range.fromJson(json['rateRange'] as Map<String, dynamic>)
+          : null,
+      rateQuantity: json['rateQuantity'] != null
+          ? Quantity.fromJson(json['rateQuantity'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   DosageDoseAndRate clone() => throw UnimplementedError();
   @override

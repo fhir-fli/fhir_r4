@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'sampled_data.g.dart';
-
 /// [SampledData] /// A series of measurements taken by a device, with upper and lower limits.
 /// There may be more than one dimension in the data.
 @JsonSerializable()
@@ -88,12 +86,89 @@ class SampledData extends DataType {
   final FhirString? data;
   @JsonKey(name: '_data')
   final Element? dataElement;
-  factory SampledData.fromJson(Map<String, dynamic> json) =>
-      _$SampledDataFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$SampledDataToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    json['origin'] = origin.toJson();
+    json['period'] = period.value;
+    if (periodElement != null) {
+      json['_period'] = periodElement!.toJson();
+    }
+    if (factor?.value != null) {
+      json['factor'] = factor!.value;
+    }
+    if (factorElement != null) {
+      json['_factor'] = factorElement!.toJson();
+    }
+    if (lowerLimit?.value != null) {
+      json['lowerLimit'] = lowerLimit!.value;
+    }
+    if (lowerLimitElement != null) {
+      json['_lowerLimit'] = lowerLimitElement!.toJson();
+    }
+    if (upperLimit?.value != null) {
+      json['upperLimit'] = upperLimit!.value;
+    }
+    if (upperLimitElement != null) {
+      json['_upperLimit'] = upperLimitElement!.toJson();
+    }
+    json['dimensions'] = dimensions.value;
+    if (dimensionsElement != null) {
+      json['_dimensions'] = dimensionsElement!.toJson();
+    }
+    if (data?.value != null) {
+      json['data'] = data!.value;
+    }
+    if (dataElement != null) {
+      json['_data'] = dataElement!.toJson();
+    }
+    return json;
+  }
 
+  factory SampledData.fromJson(Map<String, dynamic> json) {
+    return SampledData(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      origin: Quantity.fromJson(json['origin'] as Map<String, dynamic>),
+      period: FhirDecimal(json['period']),
+      periodElement: Element.fromJson(json['_period'] as Map<String, dynamic>),
+      factor: json['factor'] != null ? FhirDecimal(json['factor']) : null,
+      factorElement: json['_factor'] != null
+          ? Element.fromJson(json['_factor'] as Map<String, dynamic>)
+          : null,
+      lowerLimit:
+          json['lowerLimit'] != null ? FhirDecimal(json['lowerLimit']) : null,
+      lowerLimitElement: json['_lowerLimit'] != null
+          ? Element.fromJson(json['_lowerLimit'] as Map<String, dynamic>)
+          : null,
+      upperLimit:
+          json['upperLimit'] != null ? FhirDecimal(json['upperLimit']) : null,
+      upperLimitElement: json['_upperLimit'] != null
+          ? Element.fromJson(json['_upperLimit'] as Map<String, dynamic>)
+          : null,
+      dimensions: FhirPositiveInt(json['dimensions']),
+      dimensionsElement:
+          Element.fromJson(json['_dimensions'] as Map<String, dynamic>),
+      data: json['data'] != null ? FhirString(json['data']) : null,
+      dataElement: json['_data'] != null
+          ? Element.fromJson(json['_data'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   SampledData clone() => throw UnimplementedError();
   @override

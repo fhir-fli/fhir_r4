@@ -73,7 +73,7 @@ enum TherapyRelationshipType {
   }
 
   String toJson() => toString();
-  TherapyRelationshipType fromString(String str) {
+  static TherapyRelationshipType fromString(String str) {
     switch (str) {
       case 'contraindicated-only-with':
         return TherapyRelationshipType.contraindicated_only_with;
@@ -98,7 +98,7 @@ enum TherapyRelationshipType {
     }
   }
 
-  TherapyRelationshipType fromJson(dynamic jsonValue) {
+  static TherapyRelationshipType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

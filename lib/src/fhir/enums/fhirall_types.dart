@@ -1471,7 +1471,7 @@ enum FHIRAllTypes {
   }
 
   String toJson() => toString();
-  FHIRAllTypes fromString(String str) {
+  static FHIRAllTypes fromString(String str) {
     switch (str) {
       case 'Address':
         return FHIRAllTypes.Address;
@@ -1896,7 +1896,7 @@ enum FHIRAllTypes {
     }
   }
 
-  FHIRAllTypes fromJson(dynamic jsonValue) {
+  static FHIRAllTypes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

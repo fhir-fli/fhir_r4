@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'product_shelf_life.g.dart';
-
 /// [ProductShelfLife] /// The shelf-life and storage information for a medicinal product item or
 /// container can be described using this class.
 @JsonSerializable()
@@ -57,12 +55,65 @@ class ProductShelfLife extends BackboneType {
   /// term identifier shall be specified.
   @JsonKey(name: 'specialPrecautionsForStorage')
   final List<CodeableConcept>? specialPrecautionsForStorage;
-  factory ProductShelfLife.fromJson(Map<String, dynamic> json) =>
-      _$ProductShelfLifeFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ProductShelfLifeToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null) {
+      json['identifier'] = identifier!.toJson();
+    }
+    json['type'] = type.toJson();
+    json['period'] = period.toJson();
+    if (specialPrecautionsForStorage != null &&
+        specialPrecautionsForStorage!.isNotEmpty) {
+      json['specialPrecautionsForStorage'] = specialPrecautionsForStorage!
+          .map<dynamic>((CodeableConcept v) => v.toJson())
+          .toList();
+    }
+    return json;
+  }
 
+  factory ProductShelfLife.fromJson(Map<String, dynamic> json) {
+    return ProductShelfLife(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? Identifier.fromJson(json['identifier'] as Map<String, dynamic>)
+          : null,
+      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      period: Quantity.fromJson(json['period'] as Map<String, dynamic>),
+      specialPrecautionsForStorage: json['specialPrecautionsForStorage'] != null
+          ? (json['specialPrecautionsForStorage'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   ProductShelfLife clone() => throw UnimplementedError();
   @override

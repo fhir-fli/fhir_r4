@@ -17,7 +17,7 @@ enum ContractResourceAssetAvailiabilityCodes {
   }
 
   String toJson() => toString();
-  ContractResourceAssetAvailiabilityCodes fromString(String str) {
+  static ContractResourceAssetAvailiabilityCodes fromString(String str) {
     switch (str) {
       case 'lease':
         return ContractResourceAssetAvailiabilityCodes.lease;
@@ -26,7 +26,7 @@ enum ContractResourceAssetAvailiabilityCodes {
     }
   }
 
-  ContractResourceAssetAvailiabilityCodes fromJson(dynamic jsonValue) {
+  static ContractResourceAssetAvailiabilityCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

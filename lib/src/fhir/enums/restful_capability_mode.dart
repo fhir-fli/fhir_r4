@@ -24,7 +24,7 @@ enum RestfulCapabilityMode {
   }
 
   String toJson() => toString();
-  RestfulCapabilityMode fromString(String str) {
+  static RestfulCapabilityMode fromString(String str) {
     switch (str) {
       case 'client':
         return RestfulCapabilityMode.client;
@@ -35,7 +35,7 @@ enum RestfulCapabilityMode {
     }
   }
 
-  RestfulCapabilityMode fromJson(dynamic jsonValue) {
+  static RestfulCapabilityMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

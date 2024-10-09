@@ -40,7 +40,7 @@ enum ServiceRequestOrderDetailsCodes {
   }
 
   String toJson() => toString();
-  ServiceRequestOrderDetailsCodes fromString(String str) {
+  static ServiceRequestOrderDetailsCodes fromString(String str) {
     switch (str) {
       case '47545007':
         return ServiceRequestOrderDetailsCodes.value47545007;
@@ -57,7 +57,7 @@ enum ServiceRequestOrderDetailsCodes {
     }
   }
 
-  ServiceRequestOrderDetailsCodes fromJson(dynamic jsonValue) {
+  static ServiceRequestOrderDetailsCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

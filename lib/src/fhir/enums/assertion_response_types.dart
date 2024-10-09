@@ -94,7 +94,7 @@ enum AssertionResponseTypes {
   }
 
   String toJson() => toString();
-  AssertionResponseTypes fromString(String str) {
+  static AssertionResponseTypes fromString(String str) {
     switch (str) {
       case 'okay':
         return AssertionResponseTypes.okay;
@@ -125,7 +125,7 @@ enum AssertionResponseTypes {
     }
   }
 
-  AssertionResponseTypes fromJson(dynamic jsonValue) {
+  static AssertionResponseTypes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

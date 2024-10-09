@@ -94,7 +94,7 @@ enum TextureModifiedFoodTypeCodes {
   }
 
   String toJson() => toString();
-  TextureModifiedFoodTypeCodes fromString(String str) {
+  static TextureModifiedFoodTypeCodes fromString(String str) {
     switch (str) {
       case '255620007':
         return TextureModifiedFoodTypeCodes.value255620007;
@@ -129,7 +129,7 @@ enum TextureModifiedFoodTypeCodes {
     }
   }
 
-  TextureModifiedFoodTypeCodes fromJson(dynamic jsonValue) {
+  static TextureModifiedFoodTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

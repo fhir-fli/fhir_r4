@@ -122,7 +122,7 @@ enum ArticleUrlType {
   }
 
   String toJson() => toString();
-  ArticleUrlType fromString(String str) {
+  static ArticleUrlType fromString(String str) {
     switch (str) {
       case 'abstract':
         return ArticleUrlType.abstract_;
@@ -161,7 +161,7 @@ enum ArticleUrlType {
     }
   }
 
-  ArticleUrlType fromJson(dynamic jsonValue) {
+  static ArticleUrlType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

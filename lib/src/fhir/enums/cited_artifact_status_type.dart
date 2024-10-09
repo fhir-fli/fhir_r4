@@ -115,7 +115,7 @@ enum CitedArtifactStatusType {
   }
 
   String toJson() => toString();
-  CitedArtifactStatusType fromString(String str) {
+  static CitedArtifactStatusType fromString(String str) {
     switch (str) {
       case 'created':
         return CitedArtifactStatusType.created;
@@ -152,7 +152,7 @@ enum CitedArtifactStatusType {
     }
   }
 
-  CitedArtifactStatusType fromJson(dynamic jsonValue) {
+  static CitedArtifactStatusType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

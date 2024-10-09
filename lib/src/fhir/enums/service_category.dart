@@ -276,7 +276,7 @@ enum ServiceCategory {
   }
 
   String toJson() => toString();
-  ServiceCategory fromString(String str) {
+  static ServiceCategory fromString(String str) {
     switch (str) {
       case '1':
         return ServiceCategory.value1;
@@ -359,7 +359,7 @@ enum ServiceCategory {
     }
   }
 
-  ServiceCategory fromJson(dynamic jsonValue) {
+  static ServiceCategory fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

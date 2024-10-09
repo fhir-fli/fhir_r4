@@ -34,7 +34,7 @@ enum FluidConsistencyTypeCodes {
   }
 
   String toJson() => toString();
-  FluidConsistencyTypeCodes fromString(String str) {
+  static FluidConsistencyTypeCodes fromString(String str) {
     switch (str) {
       case '439031000124108':
         return FluidConsistencyTypeCodes.value439031000124108;
@@ -49,7 +49,7 @@ enum FluidConsistencyTypeCodes {
     }
   }
 
-  FluidConsistencyTypeCodes fromJson(dynamic jsonValue) {
+  static FluidConsistencyTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

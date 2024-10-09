@@ -80,7 +80,7 @@ enum CoverageCopayTypeCodes {
   }
 
   String toJson() => toString();
-  CoverageCopayTypeCodes fromString(String str) {
+  static CoverageCopayTypeCodes fromString(String str) {
     switch (str) {
       case 'gpvisit':
         return CoverageCopayTypeCodes.gpvisit;
@@ -107,7 +107,7 @@ enum CoverageCopayTypeCodes {
     }
   }
 
-  CoverageCopayTypeCodes fromJson(dynamic jsonValue) {
+  static CoverageCopayTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

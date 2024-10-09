@@ -73,7 +73,7 @@ enum CarePlanActivityStatus {
   }
 
   String toJson() => toString();
-  CarePlanActivityStatus fromString(String str) {
+  static CarePlanActivityStatus fromString(String str) {
     switch (str) {
       case 'not-started':
         return CarePlanActivityStatus.not_started;
@@ -98,7 +98,7 @@ enum CarePlanActivityStatus {
     }
   }
 
-  CarePlanActivityStatus fromJson(dynamic jsonValue) {
+  static CarePlanActivityStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

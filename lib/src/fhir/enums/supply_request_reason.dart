@@ -24,7 +24,7 @@ enum SupplyRequestReason {
   }
 
   String toJson() => toString();
-  SupplyRequestReason fromString(String str) {
+  static SupplyRequestReason fromString(String str) {
     switch (str) {
       case 'patient-care':
         return SupplyRequestReason.patient_care;
@@ -35,7 +35,7 @@ enum SupplyRequestReason {
     }
   }
 
-  SupplyRequestReason fromJson(dynamic jsonValue) {
+  static SupplyRequestReason fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

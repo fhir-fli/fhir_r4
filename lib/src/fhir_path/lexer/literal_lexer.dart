@@ -24,15 +24,15 @@ final Parser<EnvVariableParser> envVariableLexer =
         .flatten()
         .map((String value) => EnvVariableParser(value));
 
-// TODO(Dokotela): unit should be optional
+// TODO(Dokotela): unitLexer should be optional
 final Parser<QuantityParser> quantityLiteral =
-    (NUMBER.flatten() & (char(' ') & unit)).map((List<dynamic> value) {
+    (NUMBER.flatten() & (char(' ') & unitLexer)).map((List<dynamic> value) {
   return QuantityParser(ValidatedQuantity(
       value: UcumDecimal.fromString(value[0] as String),
       unit: value.length > 1 ? value[1].last as String : null));
 });
 
-final Parser<String> unit = (pluralDateTimePrecision |
+final Parser<String> unitLexer = (pluralDateTimePrecision |
         dateTimePrecision |
         STRING
             .where((StringParser value) {

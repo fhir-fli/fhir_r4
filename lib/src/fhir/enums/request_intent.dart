@@ -73,7 +73,7 @@ enum RequestIntent {
   }
 
   String toJson() => toString();
-  RequestIntent fromString(String str) {
+  static RequestIntent fromString(String str) {
     switch (str) {
       case 'proposal':
         return RequestIntent.proposal;
@@ -98,7 +98,7 @@ enum RequestIntent {
     }
   }
 
-  RequestIntent fromJson(dynamic jsonValue) {
+  static RequestIntent fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

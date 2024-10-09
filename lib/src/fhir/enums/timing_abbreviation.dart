@@ -106,7 +106,7 @@ enum TimingAbbreviation {
   }
 
   String toJson() => toString();
-  TimingAbbreviation fromString(String str) {
+  static TimingAbbreviation fromString(String str) {
     switch (str) {
       case 'BID':
         return TimingAbbreviation.BID;
@@ -145,7 +145,7 @@ enum TimingAbbreviation {
     }
   }
 
-  TimingAbbreviation fromJson(dynamic jsonValue) {
+  static TimingAbbreviation fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

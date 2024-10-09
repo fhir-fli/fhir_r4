@@ -38,7 +38,7 @@ enum EvidenceDirectness {
   }
 
   String toJson() => toString();
-  EvidenceDirectness fromString(String str) {
+  static EvidenceDirectness fromString(String str) {
     switch (str) {
       case 'low':
         return EvidenceDirectness.low;
@@ -53,7 +53,7 @@ enum EvidenceDirectness {
     }
   }
 
-  EvidenceDirectness fromJson(dynamic jsonValue) {
+  static EvidenceDirectness fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'molecular_sequence.g.dart';
-
 /// [MolecularSequence] /// Raw data describing a biological sequence.
 @JsonSerializable()
 class MolecularSequence extends DomainResource {
@@ -47,8 +45,6 @@ class MolecularSequence extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.MolecularSequence);
   @override
   String get fhirType => 'MolecularSequence';
@@ -141,12 +137,222 @@ class MolecularSequence extends DomainResource {
   /// [structureVariant] /// Information about chromosome structure variation.
   @JsonKey(name: 'structureVariant')
   final List<MolecularSequenceStructureVariant>? structureVariant;
-  factory MolecularSequence.fromJson(Map<String, dynamic> json) =>
-      _$MolecularSequenceFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MolecularSequenceToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    if (type != null) {
+      json['type'] = type!.toJson();
+    }
+    json['coordinateSystem'] = coordinateSystem.value;
+    if (coordinateSystemElement != null) {
+      json['_coordinateSystem'] = coordinateSystemElement!.toJson();
+    }
+    if (patient != null) {
+      json['patient'] = patient!.toJson();
+    }
+    if (specimen != null) {
+      json['specimen'] = specimen!.toJson();
+    }
+    if (device != null) {
+      json['device'] = device!.toJson();
+    }
+    if (performer != null) {
+      json['performer'] = performer!.toJson();
+    }
+    if (quantity != null) {
+      json['quantity'] = quantity!.toJson();
+    }
+    if (referenceSeq != null) {
+      json['referenceSeq'] = referenceSeq!.toJson();
+    }
+    if (variant != null && variant!.isNotEmpty) {
+      json['variant'] = variant!
+          .map<dynamic>((MolecularSequenceVariant v) => v.toJson())
+          .toList();
+    }
+    if (observedSeq?.value != null) {
+      json['observedSeq'] = observedSeq!.value;
+    }
+    if (observedSeqElement != null) {
+      json['_observedSeq'] = observedSeqElement!.toJson();
+    }
+    if (quality != null && quality!.isNotEmpty) {
+      json['quality'] = quality!
+          .map<dynamic>((MolecularSequenceQuality v) => v.toJson())
+          .toList();
+    }
+    if (readCoverage?.value != null) {
+      json['readCoverage'] = readCoverage!.value;
+    }
+    if (readCoverageElement != null) {
+      json['_readCoverage'] = readCoverageElement!.toJson();
+    }
+    if (repository != null && repository!.isNotEmpty) {
+      json['repository'] = repository!
+          .map<dynamic>((MolecularSequenceRepository v) => v.toJson())
+          .toList();
+    }
+    if (pointer != null && pointer!.isNotEmpty) {
+      json['pointer'] =
+          pointer!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (structureVariant != null && structureVariant!.isNotEmpty) {
+      json['structureVariant'] = structureVariant!
+          .map<dynamic>((MolecularSequenceStructureVariant v) => v.toJson())
+          .toList();
+    }
+    return json;
+  }
 
+  factory MolecularSequence.fromJson(Map<String, dynamic> json) {
+    return MolecularSequence(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? SequenceType.fromJson(json['type'] as Map<String, dynamic>)
+          : null,
+      coordinateSystem: FhirInteger(json['coordinateSystem']),
+      coordinateSystemElement:
+          Element.fromJson(json['_coordinateSystem'] as Map<String, dynamic>),
+      patient: json['patient'] != null
+          ? Reference.fromJson(json['patient'] as Map<String, dynamic>)
+          : null,
+      specimen: json['specimen'] != null
+          ? Reference.fromJson(json['specimen'] as Map<String, dynamic>)
+          : null,
+      device: json['device'] != null
+          ? Reference.fromJson(json['device'] as Map<String, dynamic>)
+          : null,
+      performer: json['performer'] != null
+          ? Reference.fromJson(json['performer'] as Map<String, dynamic>)
+          : null,
+      quantity: json['quantity'] != null
+          ? Quantity.fromJson(json['quantity'] as Map<String, dynamic>)
+          : null,
+      referenceSeq: json['referenceSeq'] != null
+          ? MolecularSequenceReferenceSeq.fromJson(
+              json['referenceSeq'] as Map<String, dynamic>)
+          : null,
+      variant: json['variant'] != null
+          ? (json['variant'] as List<dynamic>)
+              .map<MolecularSequenceVariant>((dynamic v) =>
+                  MolecularSequenceVariant.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      observedSeq:
+          json['observedSeq'] != null ? FhirString(json['observedSeq']) : null,
+      observedSeqElement: json['_observedSeq'] != null
+          ? Element.fromJson(json['_observedSeq'] as Map<String, dynamic>)
+          : null,
+      quality: json['quality'] != null
+          ? (json['quality'] as List<dynamic>)
+              .map<MolecularSequenceQuality>((dynamic v) =>
+                  MolecularSequenceQuality.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      readCoverage: json['readCoverage'] != null
+          ? FhirInteger(json['readCoverage'])
+          : null,
+      readCoverageElement: json['_readCoverage'] != null
+          ? Element.fromJson(json['_readCoverage'] as Map<String, dynamic>)
+          : null,
+      repository: json['repository'] != null
+          ? (json['repository'] as List<dynamic>)
+              .map<MolecularSequenceRepository>((dynamic v) =>
+                  MolecularSequenceRepository.fromJson(
+                      v as Map<String, dynamic>))
+              .toList()
+          : null,
+      pointer: json['pointer'] != null
+          ? (json['pointer'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      structureVariant: json['structureVariant'] != null
+          ? (json['structureVariant'] as List<dynamic>)
+              .map<MolecularSequenceStructureVariant>((dynamic v) =>
+                  MolecularSequenceStructureVariant.fromJson(
+                      v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   MolecularSequence clone() => throw UnimplementedError();
   @override
@@ -348,12 +554,122 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
   final FhirInteger? windowEnd;
   @JsonKey(name: '_windowEnd')
   final Element? windowEndElement;
-  factory MolecularSequenceReferenceSeq.fromJson(Map<String, dynamic> json) =>
-      _$MolecularSequenceReferenceSeqFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MolecularSequenceReferenceSeqToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (chromosome != null) {
+      json['chromosome'] = chromosome!.toJson();
+    }
+    if (genomeBuild?.value != null) {
+      json['genomeBuild'] = genomeBuild!.value;
+    }
+    if (genomeBuildElement != null) {
+      json['_genomeBuild'] = genomeBuildElement!.toJson();
+    }
+    if (orientation != null) {
+      json['orientation'] = orientation!.toJson();
+    }
+    if (referenceSeqId != null) {
+      json['referenceSeqId'] = referenceSeqId!.toJson();
+    }
+    if (referenceSeqPointer != null) {
+      json['referenceSeqPointer'] = referenceSeqPointer!.toJson();
+    }
+    if (referenceSeqString?.value != null) {
+      json['referenceSeqString'] = referenceSeqString!.value;
+    }
+    if (referenceSeqStringElement != null) {
+      json['_referenceSeqString'] = referenceSeqStringElement!.toJson();
+    }
+    if (strand != null) {
+      json['strand'] = strand!.toJson();
+    }
+    if (windowStart?.value != null) {
+      json['windowStart'] = windowStart!.value;
+    }
+    if (windowStartElement != null) {
+      json['_windowStart'] = windowStartElement!.toJson();
+    }
+    if (windowEnd?.value != null) {
+      json['windowEnd'] = windowEnd!.value;
+    }
+    if (windowEndElement != null) {
+      json['_windowEnd'] = windowEndElement!.toJson();
+    }
+    return json;
+  }
 
+  factory MolecularSequenceReferenceSeq.fromJson(Map<String, dynamic> json) {
+    return MolecularSequenceReferenceSeq(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      chromosome: json['chromosome'] != null
+          ? CodeableConcept.fromJson(json['chromosome'] as Map<String, dynamic>)
+          : null,
+      genomeBuild:
+          json['genomeBuild'] != null ? FhirString(json['genomeBuild']) : null,
+      genomeBuildElement: json['_genomeBuild'] != null
+          ? Element.fromJson(json['_genomeBuild'] as Map<String, dynamic>)
+          : null,
+      orientation: json['orientation'] != null
+          ? OrientationType.fromJson(
+              json['orientation'] as Map<String, dynamic>)
+          : null,
+      referenceSeqId: json['referenceSeqId'] != null
+          ? CodeableConcept.fromJson(
+              json['referenceSeqId'] as Map<String, dynamic>)
+          : null,
+      referenceSeqPointer: json['referenceSeqPointer'] != null
+          ? Reference.fromJson(
+              json['referenceSeqPointer'] as Map<String, dynamic>)
+          : null,
+      referenceSeqString: json['referenceSeqString'] != null
+          ? FhirString(json['referenceSeqString'])
+          : null,
+      referenceSeqStringElement: json['_referenceSeqString'] != null
+          ? Element.fromJson(
+              json['_referenceSeqString'] as Map<String, dynamic>)
+          : null,
+      strand: json['strand'] != null
+          ? StrandType.fromJson(json['strand'] as Map<String, dynamic>)
+          : null,
+      windowStart:
+          json['windowStart'] != null ? FhirInteger(json['windowStart']) : null,
+      windowStartElement: json['_windowStart'] != null
+          ? Element.fromJson(json['_windowStart'] as Map<String, dynamic>)
+          : null,
+      windowEnd:
+          json['windowEnd'] != null ? FhirInteger(json['windowEnd']) : null,
+      windowEndElement: json['_windowEnd'] != null
+          ? Element.fromJson(json['_windowEnd'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   MolecularSequenceReferenceSeq clone() => throw UnimplementedError();
   @override
@@ -516,12 +832,103 @@ class MolecularSequenceVariant extends BackboneElement {
   /// [variantPointer] /// A pointer to an Observation containing variant information.
   @JsonKey(name: 'variantPointer')
   final Reference? variantPointer;
-  factory MolecularSequenceVariant.fromJson(Map<String, dynamic> json) =>
-      _$MolecularSequenceVariantFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MolecularSequenceVariantToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (start?.value != null) {
+      json['start'] = start!.value;
+    }
+    if (startElement != null) {
+      json['_start'] = startElement!.toJson();
+    }
+    if (end?.value != null) {
+      json['end'] = end!.value;
+    }
+    if (endElement != null) {
+      json['_end'] = endElement!.toJson();
+    }
+    if (observedAllele?.value != null) {
+      json['observedAllele'] = observedAllele!.value;
+    }
+    if (observedAlleleElement != null) {
+      json['_observedAllele'] = observedAlleleElement!.toJson();
+    }
+    if (referenceAllele?.value != null) {
+      json['referenceAllele'] = referenceAllele!.value;
+    }
+    if (referenceAlleleElement != null) {
+      json['_referenceAllele'] = referenceAlleleElement!.toJson();
+    }
+    if (cigar?.value != null) {
+      json['cigar'] = cigar!.value;
+    }
+    if (cigarElement != null) {
+      json['_cigar'] = cigarElement!.toJson();
+    }
+    if (variantPointer != null) {
+      json['variantPointer'] = variantPointer!.toJson();
+    }
+    return json;
+  }
 
+  factory MolecularSequenceVariant.fromJson(Map<String, dynamic> json) {
+    return MolecularSequenceVariant(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      start: json['start'] != null ? FhirInteger(json['start']) : null,
+      startElement: json['_start'] != null
+          ? Element.fromJson(json['_start'] as Map<String, dynamic>)
+          : null,
+      end: json['end'] != null ? FhirInteger(json['end']) : null,
+      endElement: json['_end'] != null
+          ? Element.fromJson(json['_end'] as Map<String, dynamic>)
+          : null,
+      observedAllele: json['observedAllele'] != null
+          ? FhirString(json['observedAllele'])
+          : null,
+      observedAlleleElement: json['_observedAllele'] != null
+          ? Element.fromJson(json['_observedAllele'] as Map<String, dynamic>)
+          : null,
+      referenceAllele: json['referenceAllele'] != null
+          ? FhirString(json['referenceAllele'])
+          : null,
+      referenceAlleleElement: json['_referenceAllele'] != null
+          ? Element.fromJson(json['_referenceAllele'] as Map<String, dynamic>)
+          : null,
+      cigar: json['cigar'] != null ? FhirString(json['cigar']) : null,
+      cigarElement: json['_cigar'] != null
+          ? Element.fromJson(json['_cigar'] as Map<String, dynamic>)
+          : null,
+      variantPointer: json['variantPointer'] != null
+          ? Reference.fromJson(json['variantPointer'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   MolecularSequenceVariant clone() => throw UnimplementedError();
   @override
@@ -742,12 +1149,171 @@ class MolecularSequenceQuality extends BackboneElement {
   /// sensitivity/specificity tradeoff.
   @JsonKey(name: 'roc')
   final MolecularSequenceRoc? roc;
-  factory MolecularSequenceQuality.fromJson(Map<String, dynamic> json) =>
-      _$MolecularSequenceQualityFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MolecularSequenceQualityToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['type'] = type.toJson();
+    if (standardSequence != null) {
+      json['standardSequence'] = standardSequence!.toJson();
+    }
+    if (start?.value != null) {
+      json['start'] = start!.value;
+    }
+    if (startElement != null) {
+      json['_start'] = startElement!.toJson();
+    }
+    if (end?.value != null) {
+      json['end'] = end!.value;
+    }
+    if (endElement != null) {
+      json['_end'] = endElement!.toJson();
+    }
+    if (score != null) {
+      json['score'] = score!.toJson();
+    }
+    if (method != null) {
+      json['method'] = method!.toJson();
+    }
+    if (truthTP?.value != null) {
+      json['truthTP'] = truthTP!.value;
+    }
+    if (truthTPElement != null) {
+      json['_truthTP'] = truthTPElement!.toJson();
+    }
+    if (queryTP?.value != null) {
+      json['queryTP'] = queryTP!.value;
+    }
+    if (queryTPElement != null) {
+      json['_queryTP'] = queryTPElement!.toJson();
+    }
+    if (truthFN?.value != null) {
+      json['truthFN'] = truthFN!.value;
+    }
+    if (truthFNElement != null) {
+      json['_truthFN'] = truthFNElement!.toJson();
+    }
+    if (queryFP?.value != null) {
+      json['queryFP'] = queryFP!.value;
+    }
+    if (queryFPElement != null) {
+      json['_queryFP'] = queryFPElement!.toJson();
+    }
+    if (gtFP?.value != null) {
+      json['gtFP'] = gtFP!.value;
+    }
+    if (gtFPElement != null) {
+      json['_gtFP'] = gtFPElement!.toJson();
+    }
+    if (precision?.value != null) {
+      json['precision'] = precision!.value;
+    }
+    if (precisionElement != null) {
+      json['_precision'] = precisionElement!.toJson();
+    }
+    if (recall?.value != null) {
+      json['recall'] = recall!.value;
+    }
+    if (recallElement != null) {
+      json['_recall'] = recallElement!.toJson();
+    }
+    if (fScore?.value != null) {
+      json['fScore'] = fScore!.value;
+    }
+    if (fScoreElement != null) {
+      json['_fScore'] = fScoreElement!.toJson();
+    }
+    if (roc != null) {
+      json['roc'] = roc!.toJson();
+    }
+    return json;
+  }
 
+  factory MolecularSequenceQuality.fromJson(Map<String, dynamic> json) {
+    return MolecularSequenceQuality(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: QualityType.fromJson(json['type'] as Map<String, dynamic>),
+      standardSequence: json['standardSequence'] != null
+          ? CodeableConcept.fromJson(
+              json['standardSequence'] as Map<String, dynamic>)
+          : null,
+      start: json['start'] != null ? FhirInteger(json['start']) : null,
+      startElement: json['_start'] != null
+          ? Element.fromJson(json['_start'] as Map<String, dynamic>)
+          : null,
+      end: json['end'] != null ? FhirInteger(json['end']) : null,
+      endElement: json['_end'] != null
+          ? Element.fromJson(json['_end'] as Map<String, dynamic>)
+          : null,
+      score: json['score'] != null
+          ? Quantity.fromJson(json['score'] as Map<String, dynamic>)
+          : null,
+      method: json['method'] != null
+          ? CodeableConcept.fromJson(json['method'] as Map<String, dynamic>)
+          : null,
+      truthTP: json['truthTP'] != null ? FhirDecimal(json['truthTP']) : null,
+      truthTPElement: json['_truthTP'] != null
+          ? Element.fromJson(json['_truthTP'] as Map<String, dynamic>)
+          : null,
+      queryTP: json['queryTP'] != null ? FhirDecimal(json['queryTP']) : null,
+      queryTPElement: json['_queryTP'] != null
+          ? Element.fromJson(json['_queryTP'] as Map<String, dynamic>)
+          : null,
+      truthFN: json['truthFN'] != null ? FhirDecimal(json['truthFN']) : null,
+      truthFNElement: json['_truthFN'] != null
+          ? Element.fromJson(json['_truthFN'] as Map<String, dynamic>)
+          : null,
+      queryFP: json['queryFP'] != null ? FhirDecimal(json['queryFP']) : null,
+      queryFPElement: json['_queryFP'] != null
+          ? Element.fromJson(json['_queryFP'] as Map<String, dynamic>)
+          : null,
+      gtFP: json['gtFP'] != null ? FhirDecimal(json['gtFP']) : null,
+      gtFPElement: json['_gtFP'] != null
+          ? Element.fromJson(json['_gtFP'] as Map<String, dynamic>)
+          : null,
+      precision:
+          json['precision'] != null ? FhirDecimal(json['precision']) : null,
+      precisionElement: json['_precision'] != null
+          ? Element.fromJson(json['_precision'] as Map<String, dynamic>)
+          : null,
+      recall: json['recall'] != null ? FhirDecimal(json['recall']) : null,
+      recallElement: json['_recall'] != null
+          ? Element.fromJson(json['_recall'] as Map<String, dynamic>)
+          : null,
+      fScore: json['fScore'] != null ? FhirDecimal(json['fScore']) : null,
+      fScoreElement: json['_fScore'] != null
+          ? Element.fromJson(json['_fScore'] as Map<String, dynamic>)
+          : null,
+      roc: json['roc'] != null
+          ? MolecularSequenceRoc.fromJson(json['roc'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   MolecularSequenceQuality clone() => throw UnimplementedError();
   @override
@@ -928,12 +1494,166 @@ class MolecularSequenceRoc extends BackboneElement {
   final List<FhirDecimal>? fMeasure;
   @JsonKey(name: '_fMeasure')
   final List<Element>? fMeasureElement;
-  factory MolecularSequenceRoc.fromJson(Map<String, dynamic> json) =>
-      _$MolecularSequenceRocFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MolecularSequenceRocToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (score != null && score!.isNotEmpty) {
+      json['score'] = score!.map((FhirInteger v) => v.value).toList();
+    }
+    if (scoreElement != null && scoreElement!.isNotEmpty) {
+      json['_score'] = scoreElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (numTP != null && numTP!.isNotEmpty) {
+      json['numTP'] = numTP!.map((FhirInteger v) => v.value).toList();
+    }
+    if (numTPElement != null && numTPElement!.isNotEmpty) {
+      json['_numTP'] = numTPElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (numFP != null && numFP!.isNotEmpty) {
+      json['numFP'] = numFP!.map((FhirInteger v) => v.value).toList();
+    }
+    if (numFPElement != null && numFPElement!.isNotEmpty) {
+      json['_numFP'] = numFPElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (numFN != null && numFN!.isNotEmpty) {
+      json['numFN'] = numFN!.map((FhirInteger v) => v.value).toList();
+    }
+    if (numFNElement != null && numFNElement!.isNotEmpty) {
+      json['_numFN'] = numFNElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (precision != null && precision!.isNotEmpty) {
+      json['precision'] = precision!.map((FhirDecimal v) => v.value).toList();
+    }
+    if (precisionElement != null && precisionElement!.isNotEmpty) {
+      json['_precision'] =
+          precisionElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (sensitivity != null && sensitivity!.isNotEmpty) {
+      json['sensitivity'] =
+          sensitivity!.map((FhirDecimal v) => v.value).toList();
+    }
+    if (sensitivityElement != null && sensitivityElement!.isNotEmpty) {
+      json['_sensitivity'] =
+          sensitivityElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (fMeasure != null && fMeasure!.isNotEmpty) {
+      json['fMeasure'] = fMeasure!.map((FhirDecimal v) => v.value).toList();
+    }
+    if (fMeasureElement != null && fMeasureElement!.isNotEmpty) {
+      json['_fMeasure'] =
+          fMeasureElement!.map((Element v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory MolecularSequenceRoc.fromJson(Map<String, dynamic> json) {
+    return MolecularSequenceRoc(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      score: json['score'] != null
+          ? (json['score'] as List<dynamic>)
+              .map<FhirInteger>((dynamic v) => FhirInteger(v))
+              .toList()
+          : null,
+      scoreElement: json['_score'] != null
+          ? (json['_score'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      numTP: json['numTP'] != null
+          ? (json['numTP'] as List<dynamic>)
+              .map<FhirInteger>((dynamic v) => FhirInteger(v))
+              .toList()
+          : null,
+      numTPElement: json['_numTP'] != null
+          ? (json['_numTP'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      numFP: json['numFP'] != null
+          ? (json['numFP'] as List<dynamic>)
+              .map<FhirInteger>((dynamic v) => FhirInteger(v))
+              .toList()
+          : null,
+      numFPElement: json['_numFP'] != null
+          ? (json['_numFP'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      numFN: json['numFN'] != null
+          ? (json['numFN'] as List<dynamic>)
+              .map<FhirInteger>((dynamic v) => FhirInteger(v))
+              .toList()
+          : null,
+      numFNElement: json['_numFN'] != null
+          ? (json['_numFN'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      precision: json['precision'] != null
+          ? (json['precision'] as List<dynamic>)
+              .map<FhirDecimal>((dynamic v) => FhirDecimal(v))
+              .toList()
+          : null,
+      precisionElement: json['_precision'] != null
+          ? (json['_precision'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      sensitivity: json['sensitivity'] != null
+          ? (json['sensitivity'] as List<dynamic>)
+              .map<FhirDecimal>((dynamic v) => FhirDecimal(v))
+              .toList()
+          : null,
+      sensitivityElement: json['_sensitivity'] != null
+          ? (json['_sensitivity'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      fMeasure: json['fMeasure'] != null
+          ? (json['fMeasure'] as List<dynamic>)
+              .map<FhirDecimal>((dynamic v) => FhirDecimal(v))
+              .toList()
+          : null,
+      fMeasureElement: json['_fMeasure'] != null
+          ? (json['_fMeasure'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   MolecularSequenceRoc clone() => throw UnimplementedError();
   @override
@@ -1084,12 +1804,99 @@ class MolecularSequenceRepository extends BackboneElement {
   final FhirString? readsetId;
   @JsonKey(name: '_readsetId')
   final Element? readsetIdElement;
-  factory MolecularSequenceRepository.fromJson(Map<String, dynamic> json) =>
-      _$MolecularSequenceRepositoryFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MolecularSequenceRepositoryToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['type'] = type.toJson();
+    if (url?.value != null) {
+      json['url'] = url!.value;
+    }
+    if (urlElement != null) {
+      json['_url'] = urlElement!.toJson();
+    }
+    if (name?.value != null) {
+      json['name'] = name!.value;
+    }
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (datasetId?.value != null) {
+      json['datasetId'] = datasetId!.value;
+    }
+    if (datasetIdElement != null) {
+      json['_datasetId'] = datasetIdElement!.toJson();
+    }
+    if (variantsetId?.value != null) {
+      json['variantsetId'] = variantsetId!.value;
+    }
+    if (variantsetIdElement != null) {
+      json['_variantsetId'] = variantsetIdElement!.toJson();
+    }
+    if (readsetId?.value != null) {
+      json['readsetId'] = readsetId!.value;
+    }
+    if (readsetIdElement != null) {
+      json['_readsetId'] = readsetIdElement!.toJson();
+    }
+    return json;
+  }
 
+  factory MolecularSequenceRepository.fromJson(Map<String, dynamic> json) {
+    return MolecularSequenceRepository(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: RepositoryType.fromJson(json['type'] as Map<String, dynamic>),
+      url: json['url'] != null ? FhirUri(json['url']) : null,
+      urlElement: json['_url'] != null
+          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
+          : null,
+      name: json['name'] != null ? FhirString(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
+      datasetId:
+          json['datasetId'] != null ? FhirString(json['datasetId']) : null,
+      datasetIdElement: json['_datasetId'] != null
+          ? Element.fromJson(json['_datasetId'] as Map<String, dynamic>)
+          : null,
+      variantsetId: json['variantsetId'] != null
+          ? FhirString(json['variantsetId'])
+          : null,
+      variantsetIdElement: json['_variantsetId'] != null
+          ? Element.fromJson(json['_variantsetId'] as Map<String, dynamic>)
+          : null,
+      readsetId:
+          json['readsetId'] != null ? FhirString(json['readsetId']) : null,
+      readsetIdElement: json['_readsetId'] != null
+          ? Element.fromJson(json['_readsetId'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   MolecularSequenceRepository clone() => throw UnimplementedError();
   @override
@@ -1212,14 +2019,85 @@ class MolecularSequenceStructureVariant extends BackboneElement {
   /// [inner] /// Structural variant inner.
   @JsonKey(name: 'inner')
   final MolecularSequenceInner? inner;
-  factory MolecularSequenceStructureVariant.fromJson(
-          Map<String, dynamic> json) =>
-      _$MolecularSequenceStructureVariantFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() =>
-      _$MolecularSequenceStructureVariantToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (variantType != null) {
+      json['variantType'] = variantType!.toJson();
+    }
+    if (exact?.value != null) {
+      json['exact'] = exact!.value;
+    }
+    if (exactElement != null) {
+      json['_exact'] = exactElement!.toJson();
+    }
+    if (length?.value != null) {
+      json['length'] = length!.value;
+    }
+    if (lengthElement != null) {
+      json['_length'] = lengthElement!.toJson();
+    }
+    if (outer != null) {
+      json['outer'] = outer!.toJson();
+    }
+    if (inner != null) {
+      json['inner'] = inner!.toJson();
+    }
+    return json;
+  }
 
+  factory MolecularSequenceStructureVariant.fromJson(
+      Map<String, dynamic> json) {
+    return MolecularSequenceStructureVariant(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      variantType: json['variantType'] != null
+          ? CodeableConcept.fromJson(
+              json['variantType'] as Map<String, dynamic>)
+          : null,
+      exact: json['exact'] != null ? FhirBoolean(json['exact']) : null,
+      exactElement: json['_exact'] != null
+          ? Element.fromJson(json['_exact'] as Map<String, dynamic>)
+          : null,
+      length: json['length'] != null ? FhirInteger(json['length']) : null,
+      lengthElement: json['_length'] != null
+          ? Element.fromJson(json['_length'] as Map<String, dynamic>)
+          : null,
+      outer: json['outer'] != null
+          ? MolecularSequenceOuter.fromJson(
+              json['outer'] as Map<String, dynamic>)
+          : null,
+      inner: json['inner'] != null
+          ? MolecularSequenceInner.fromJson(
+              json['inner'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   MolecularSequenceStructureVariant clone() => throw UnimplementedError();
   @override
@@ -1320,12 +2198,63 @@ class MolecularSequenceOuter extends BackboneElement {
   final FhirInteger? end;
   @JsonKey(name: '_end')
   final Element? endElement;
-  factory MolecularSequenceOuter.fromJson(Map<String, dynamic> json) =>
-      _$MolecularSequenceOuterFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MolecularSequenceOuterToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (start?.value != null) {
+      json['start'] = start!.value;
+    }
+    if (startElement != null) {
+      json['_start'] = startElement!.toJson();
+    }
+    if (end?.value != null) {
+      json['end'] = end!.value;
+    }
+    if (endElement != null) {
+      json['_end'] = endElement!.toJson();
+    }
+    return json;
+  }
 
+  factory MolecularSequenceOuter.fromJson(Map<String, dynamic> json) {
+    return MolecularSequenceOuter(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      start: json['start'] != null ? FhirInteger(json['start']) : null,
+      startElement: json['_start'] != null
+          ? Element.fromJson(json['_start'] as Map<String, dynamic>)
+          : null,
+      end: json['end'] != null ? FhirInteger(json['end']) : null,
+      endElement: json['_end'] != null
+          ? Element.fromJson(json['_end'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   MolecularSequenceOuter clone() => throw UnimplementedError();
   @override
@@ -1419,12 +2348,63 @@ class MolecularSequenceInner extends BackboneElement {
   final FhirInteger? end;
   @JsonKey(name: '_end')
   final Element? endElement;
-  factory MolecularSequenceInner.fromJson(Map<String, dynamic> json) =>
-      _$MolecularSequenceInnerFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MolecularSequenceInnerToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (start?.value != null) {
+      json['start'] = start!.value;
+    }
+    if (startElement != null) {
+      json['_start'] = startElement!.toJson();
+    }
+    if (end?.value != null) {
+      json['end'] = end!.value;
+    }
+    if (endElement != null) {
+      json['_end'] = endElement!.toJson();
+    }
+    return json;
+  }
 
+  factory MolecularSequenceInner.fromJson(Map<String, dynamic> json) {
+    return MolecularSequenceInner(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      start: json['start'] != null ? FhirInteger(json['start']) : null,
+      startElement: json['_start'] != null
+          ? Element.fromJson(json['_start'] as Map<String, dynamic>)
+          : null,
+      end: json['end'] != null ? FhirInteger(json['end']) : null,
+      endElement: json['_end'] != null
+          ? Element.fromJson(json['_end'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   MolecularSequenceInner clone() => throw UnimplementedError();
   @override

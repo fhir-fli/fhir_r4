@@ -73,7 +73,7 @@ enum ActionCode {
   }
 
   String toJson() => toString();
-  ActionCode fromString(String str) {
+  static ActionCode fromString(String str) {
     switch (str) {
       case 'send-message':
         return ActionCode.send_message;
@@ -98,7 +98,7 @@ enum ActionCode {
     }
   }
 
-  ActionCode fromJson(dynamic jsonValue) {
+  static ActionCode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -178,7 +178,7 @@ enum ArtifactRelationshipType {
   }
 
   String toJson() => toString();
-  ArtifactRelationshipType fromString(String str) {
+  static ArtifactRelationshipType fromString(String str) {
     switch (str) {
       case 'replaces':
         return ArtifactRelationshipType.replaces;
@@ -233,7 +233,7 @@ enum ArtifactRelationshipType {
     }
   }
 
-  ArtifactRelationshipType fromJson(dynamic jsonValue) {
+  static ArtifactRelationshipType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -59,7 +59,7 @@ enum ContactPointSystem {
   }
 
   String toJson() => toString();
-  ContactPointSystem fromString(String str) {
+  static ContactPointSystem fromString(String str) {
     switch (str) {
       case 'phone':
         return ContactPointSystem.phone;
@@ -80,7 +80,7 @@ enum ContactPointSystem {
     }
   }
 
-  ContactPointSystem fromJson(dynamic jsonValue) {
+  static ContactPointSystem fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

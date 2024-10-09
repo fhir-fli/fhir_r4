@@ -31,7 +31,7 @@ enum MessageSignificanceCategory {
   }
 
   String toJson() => toString();
-  MessageSignificanceCategory fromString(String str) {
+  static MessageSignificanceCategory fromString(String str) {
     switch (str) {
       case 'consequence':
         return MessageSignificanceCategory.consequence;
@@ -44,7 +44,7 @@ enum MessageSignificanceCategory {
     }
   }
 
-  MessageSignificanceCategory fromJson(dynamic jsonValue) {
+  static MessageSignificanceCategory fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

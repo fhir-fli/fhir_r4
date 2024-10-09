@@ -31,7 +31,7 @@ enum ActionConditionKind {
   }
 
   String toJson() => toString();
-  ActionConditionKind fromString(String str) {
+  static ActionConditionKind fromString(String str) {
     switch (str) {
       case 'applicability':
         return ActionConditionKind.applicability;
@@ -44,7 +44,7 @@ enum ActionConditionKind {
     }
   }
 
-  ActionConditionKind fromJson(dynamic jsonValue) {
+  static ActionConditionKind fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -45,7 +45,7 @@ enum SubscriptionNotificationType {
   }
 
   String toJson() => toString();
-  SubscriptionNotificationType fromString(String str) {
+  static SubscriptionNotificationType fromString(String str) {
     switch (str) {
       case 'handshake':
         return SubscriptionNotificationType.handshake;
@@ -62,7 +62,7 @@ enum SubscriptionNotificationType {
     }
   }
 
-  SubscriptionNotificationType fromJson(dynamic jsonValue) {
+  static SubscriptionNotificationType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

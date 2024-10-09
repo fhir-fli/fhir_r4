@@ -45,7 +45,7 @@ enum RepositoryType {
   }
 
   String toJson() => toString();
-  RepositoryType fromString(String str) {
+  static RepositoryType fromString(String str) {
     switch (str) {
       case 'directlink':
         return RepositoryType.directlink;
@@ -62,7 +62,7 @@ enum RepositoryType {
     }
   }
 
-  RepositoryType fromJson(dynamic jsonValue) {
+  static RepositoryType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

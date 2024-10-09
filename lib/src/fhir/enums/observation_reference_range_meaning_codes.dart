@@ -101,7 +101,7 @@ enum ObservationReferenceRangeMeaningCodes {
   }
 
   String toJson() => toString();
-  ObservationReferenceRangeMeaningCodes fromString(String str) {
+  static ObservationReferenceRangeMeaningCodes fromString(String str) {
     switch (str) {
       case 'type':
         return ObservationReferenceRangeMeaningCodes.type;
@@ -134,7 +134,7 @@ enum ObservationReferenceRangeMeaningCodes {
     }
   }
 
-  ObservationReferenceRangeMeaningCodes fromJson(dynamic jsonValue) {
+  static ObservationReferenceRangeMeaningCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -325,7 +325,7 @@ enum TestScriptOperationCode {
   }
 
   String toJson() => toString();
-  TestScriptOperationCode fromString(String str) {
+  static TestScriptOperationCode fromString(String str) {
     switch (str) {
       case 'read':
         return TestScriptOperationCode.read;
@@ -422,7 +422,7 @@ enum TestScriptOperationCode {
     }
   }
 
-  TestScriptOperationCode fromJson(dynamic jsonValue) {
+  static TestScriptOperationCode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

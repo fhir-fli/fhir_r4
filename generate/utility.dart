@@ -1,4 +1,6 @@
 // utility.dart
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -43,18 +45,28 @@ String formatComment(String comment) {
   return commentLines.join('\n');
 }
 
-// Write the generated class to a file
 void writeToFile(
     StringBuffer buffer, String className, Map<String, String> nameMap) {
-  String? writeFileName = className.fileNameFromClassName(nameMap);
+  final String? writeFileName = className.fileNameFromClassName(nameMap);
+
+  // Early exit if no valid file name is found
   if (writeFileName == null) {
-    // ignore: avoid_print
-    print('Not writing: $className');
+    print(
+        'Warning: Skipping file generation for class $className, invalid file name.');
     return;
   }
 
-  writeFileName = writeFileName.properFileName;
+  // Prepare the file path based on the class type (resource or data type)
+  final String fileTypeDirectory =
+      className.isResource ? 'resource_types' : 'data_types';
   final String filePath =
-      '$fhirDirectory/${className.isResource ? "resource_types" : "data_types"}/$writeFileName.dart';
-  File(filePath).writeAsStringSync(buffer.toString());
+      '$fhirDirectory/$fileTypeDirectory/${writeFileName.properFileName}.dart';
+
+  try {
+    // Write the buffer content to the specified file path
+    File(filePath).writeAsStringSync(buffer.toString());
+    print('Successfully wrote to: $filePath');
+  } catch (e) {
+    print('Error: Failed to write file for class $className. Error: $e');
+  }
 }

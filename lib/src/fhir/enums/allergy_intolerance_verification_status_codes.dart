@@ -38,7 +38,7 @@ enum AllergyIntoleranceVerificationStatusCodes {
   }
 
   String toJson() => toString();
-  AllergyIntoleranceVerificationStatusCodes fromString(String str) {
+  static AllergyIntoleranceVerificationStatusCodes fromString(String str) {
     switch (str) {
       case 'unconfirmed':
         return AllergyIntoleranceVerificationStatusCodes.unconfirmed;
@@ -53,7 +53,7 @@ enum AllergyIntoleranceVerificationStatusCodes {
     }
   }
 
-  AllergyIntoleranceVerificationStatusCodes fromJson(dynamic jsonValue) {
+  static AllergyIntoleranceVerificationStatusCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

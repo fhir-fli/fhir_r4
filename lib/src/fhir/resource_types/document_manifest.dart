@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'document_manifest.g.dart';
-
 /// [DocumentManifest] /// A collection of documents compiled for a purpose together with metadata
 /// that applies to the collection.
 @JsonSerializable()
@@ -44,8 +42,6 @@ class DocumentManifest extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.DocumentManifest);
   @override
   String get fhirType => 'DocumentManifest';
@@ -122,12 +118,183 @@ class DocumentManifest extends DomainResource {
   /// [related] /// Related identifiers or resources associated with the DocumentManifest.
   @JsonKey(name: 'related')
   final List<DocumentManifestRelated>? related;
-  factory DocumentManifest.fromJson(Map<String, dynamic> json) =>
-      _$DocumentManifestFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$DocumentManifestToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (masterIdentifier != null) {
+      json['masterIdentifier'] = masterIdentifier!.toJson();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    json['status'] = status.toJson();
+    if (type != null) {
+      json['type'] = type!.toJson();
+    }
+    if (subject != null) {
+      json['subject'] = subject!.toJson();
+    }
+    if (created?.value != null) {
+      json['created'] = created!.value;
+    }
+    if (createdElement != null) {
+      json['_created'] = createdElement!.toJson();
+    }
+    if (author != null && author!.isNotEmpty) {
+      json['author'] =
+          author!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (recipient != null && recipient!.isNotEmpty) {
+      json['recipient'] =
+          recipient!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (source?.value != null) {
+      json['source'] = source!.value;
+    }
+    if (sourceElement != null) {
+      json['_source'] = sourceElement!.toJson();
+    }
+    if (description?.value != null) {
+      json['description'] = description!.value;
+    }
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    json['content'] =
+        content.map<dynamic>((Reference v) => v.toJson()).toList();
+    if (related != null && related!.isNotEmpty) {
+      json['related'] = related!
+          .map<dynamic>((DocumentManifestRelated v) => v.toJson())
+          .toList();
+    }
+    return json;
+  }
 
+  factory DocumentManifest.fromJson(Map<String, dynamic> json) {
+    return DocumentManifest(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      masterIdentifier: json['masterIdentifier'] != null
+          ? Identifier.fromJson(
+              json['masterIdentifier'] as Map<String, dynamic>)
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      status: DocumentReferenceStatus.fromJson(
+          json['status'] as Map<String, dynamic>),
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
+          : null,
+      subject: json['subject'] != null
+          ? Reference.fromJson(json['subject'] as Map<String, dynamic>)
+          : null,
+      created: json['created'] != null ? FhirDateTime(json['created']) : null,
+      createdElement: json['_created'] != null
+          ? Element.fromJson(json['_created'] as Map<String, dynamic>)
+          : null,
+      author: json['author'] != null
+          ? (json['author'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      recipient: json['recipient'] != null
+          ? (json['recipient'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      source: json['source'] != null ? FhirUri(json['source']) : null,
+      sourceElement: json['_source'] != null
+          ? Element.fromJson(json['_source'] as Map<String, dynamic>)
+          : null,
+      description:
+          json['description'] != null ? FhirString(json['description']) : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
+      content: (json['content'] as List<dynamic>)
+          .map<Reference>(
+              (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+          .toList(),
+      related: json['related'] != null
+          ? (json['related'] as List<dynamic>)
+              .map<DocumentManifestRelated>((dynamic v) =>
+                  DocumentManifestRelated.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   DocumentManifest clone() => throw UnimplementedError();
   @override
@@ -252,12 +419,55 @@ class DocumentManifestRelated extends BackboneElement {
   /// ServiceRequest, Procedure, EligibilityRequest, etc.
   @JsonKey(name: 'ref')
   final Reference? ref;
-  factory DocumentManifestRelated.fromJson(Map<String, dynamic> json) =>
-      _$DocumentManifestRelatedFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$DocumentManifestRelatedToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null) {
+      json['identifier'] = identifier!.toJson();
+    }
+    if (ref != null) {
+      json['ref'] = ref!.toJson();
+    }
+    return json;
+  }
 
+  factory DocumentManifestRelated.fromJson(Map<String, dynamic> json) {
+    return DocumentManifestRelated(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? Identifier.fromJson(json['identifier'] as Map<String, dynamic>)
+          : null,
+      ref: json['ref'] != null
+          ? Reference.fromJson(json['ref'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   DocumentManifestRelated clone() => throw UnimplementedError();
   @override

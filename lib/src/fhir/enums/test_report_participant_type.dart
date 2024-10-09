@@ -31,7 +31,7 @@ enum TestReportParticipantType {
   }
 
   String toJson() => toString();
-  TestReportParticipantType fromString(String str) {
+  static TestReportParticipantType fromString(String str) {
     switch (str) {
       case 'test-engine':
         return TestReportParticipantType.test_engine;
@@ -44,7 +44,7 @@ enum TestReportParticipantType {
     }
   }
 
-  TestReportParticipantType fromJson(dynamic jsonValue) {
+  static TestReportParticipantType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

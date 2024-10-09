@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'coding.g.dart';
-
 /// [Coding] /// A reference to a code defined by a terminology system.
 @JsonSerializable()
 class Coding extends DataType {
@@ -74,11 +72,84 @@ class Coding extends DataType {
   final FhirBoolean? userSelected;
   @JsonKey(name: '_userSelected')
   final Element? userSelectedElement;
-  factory Coding.fromJson(Map<String, dynamic> json) => _$CodingFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$CodingToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (system?.value != null) {
+      json['system'] = system!.value;
+    }
+    if (systemElement != null) {
+      json['_system'] = systemElement!.toJson();
+    }
+    if (version?.value != null) {
+      json['version'] = version!.value;
+    }
+    if (versionElement != null) {
+      json['_version'] = versionElement!.toJson();
+    }
+    if (code?.value != null) {
+      json['code'] = code!.value;
+    }
+    if (codeElement != null) {
+      json['_code'] = codeElement!.toJson();
+    }
+    if (display?.value != null) {
+      json['display'] = display!.value;
+    }
+    if (displayElement != null) {
+      json['_display'] = displayElement!.toJson();
+    }
+    if (userSelected?.value != null) {
+      json['userSelected'] = userSelected!.value;
+    }
+    if (userSelectedElement != null) {
+      json['_userSelected'] = userSelectedElement!.toJson();
+    }
+    return json;
+  }
 
+  factory Coding.fromJson(Map<String, dynamic> json) {
+    return Coding(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      system: json['system'] != null ? FhirUri(json['system']) : null,
+      systemElement: json['_system'] != null
+          ? Element.fromJson(json['_system'] as Map<String, dynamic>)
+          : null,
+      version: json['version'] != null ? FhirString(json['version']) : null,
+      versionElement: json['_version'] != null
+          ? Element.fromJson(json['_version'] as Map<String, dynamic>)
+          : null,
+      code: json['code'] != null ? FhirCode(json['code']) : null,
+      codeElement: json['_code'] != null
+          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
+          : null,
+      display: json['display'] != null ? FhirString(json['display']) : null,
+      displayElement: json['_display'] != null
+          ? Element.fromJson(json['_display'] as Map<String, dynamic>)
+          : null,
+      userSelected: json['userSelected'] != null
+          ? FhirBoolean(json['userSelected'])
+          : null,
+      userSelectedElement: json['_userSelected'] != null
+          ? Element.fromJson(json['_userSelected'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   Coding clone() => throw UnimplementedError();
   @override

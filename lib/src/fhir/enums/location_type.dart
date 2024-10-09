@@ -108,7 +108,7 @@ enum LocationType {
   }
 
   String toJson() => toString();
-  LocationType fromString(String str) {
+  static LocationType fromString(String str) {
     switch (str) {
       case 'si':
         return LocationType.si;
@@ -143,7 +143,7 @@ enum LocationType {
     }
   }
 
-  LocationType fromJson(dynamic jsonValue) {
+  static LocationType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

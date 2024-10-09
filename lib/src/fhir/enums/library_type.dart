@@ -38,7 +38,7 @@ enum LibraryType {
   }
 
   String toJson() => toString();
-  LibraryType fromString(String str) {
+  static LibraryType fromString(String str) {
     switch (str) {
       case 'logic-library':
         return LibraryType.logic_library;
@@ -53,7 +53,7 @@ enum LibraryType {
     }
   }
 
-  LibraryType fromJson(dynamic jsonValue) {
+  static LibraryType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

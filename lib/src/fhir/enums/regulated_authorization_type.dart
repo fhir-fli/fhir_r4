@@ -28,7 +28,7 @@ enum RegulatedAuthorizationType {
   }
 
   String toJson() => toString();
-  RegulatedAuthorizationType fromString(String str) {
+  static RegulatedAuthorizationType fromString(String str) {
     switch (str) {
       case 'MarketingAuth':
         return RegulatedAuthorizationType.MarketingAuth;
@@ -41,7 +41,7 @@ enum RegulatedAuthorizationType {
     }
   }
 
-  RegulatedAuthorizationType fromJson(dynamic jsonValue) {
+  static RegulatedAuthorizationType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

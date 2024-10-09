@@ -24,7 +24,7 @@ enum MeasureGroupExample {
   }
 
   String toJson() => toString();
-  MeasureGroupExample fromString(String str) {
+  static MeasureGroupExample fromString(String str) {
     switch (str) {
       case 'primary-rate':
         return MeasureGroupExample.primary_rate;
@@ -35,7 +35,7 @@ enum MeasureGroupExample {
     }
   }
 
-  MeasureGroupExample fromJson(dynamic jsonValue) {
+  static MeasureGroupExample fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

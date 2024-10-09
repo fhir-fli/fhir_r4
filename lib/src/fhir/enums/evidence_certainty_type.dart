@@ -73,7 +73,7 @@ enum EvidenceCertaintyType {
   }
 
   String toJson() => toString();
-  EvidenceCertaintyType fromString(String str) {
+  static EvidenceCertaintyType fromString(String str) {
     switch (str) {
       case 'Overall':
         return EvidenceCertaintyType.Overall;
@@ -98,7 +98,7 @@ enum EvidenceCertaintyType {
     }
   }
 
-  EvidenceCertaintyType fromJson(dynamic jsonValue) {
+  static EvidenceCertaintyType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

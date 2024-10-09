@@ -38,7 +38,7 @@ enum BindingStrength {
   }
 
   String toJson() => toString();
-  BindingStrength fromString(String str) {
+  static BindingStrength fromString(String str) {
     switch (str) {
       case 'required':
         return BindingStrength.required_;
@@ -53,7 +53,7 @@ enum BindingStrength {
     }
   }
 
-  BindingStrength fromJson(dynamic jsonValue) {
+  static BindingStrength fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

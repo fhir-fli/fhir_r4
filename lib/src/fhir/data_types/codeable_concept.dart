@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'codeable_concept.g.dart';
-
 /// [CodeableConcept] /// A concept that may be defined by a formal reference to a terminology or
 /// ontology or may be provided by text.
 @JsonSerializable()
@@ -41,12 +39,51 @@ class CodeableConcept extends DataType {
   final FhirString? text;
   @JsonKey(name: '_text')
   final Element? textElement;
-  factory CodeableConcept.fromJson(Map<String, dynamic> json) =>
-      _$CodeableConceptFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$CodeableConceptToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (coding != null && coding!.isNotEmpty) {
+      json['coding'] = coding!.map<dynamic>((Coding v) => v.toJson()).toList();
+    }
+    if (text?.value != null) {
+      json['text'] = text!.value;
+    }
+    if (textElement != null) {
+      json['_text'] = textElement!.toJson();
+    }
+    return json;
+  }
 
+  factory CodeableConcept.fromJson(Map<String, dynamic> json) {
+    return CodeableConcept(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      coding: json['coding'] != null
+          ? (json['coding'] as List<dynamic>)
+              .map<Coding>(
+                  (dynamic v) => Coding.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      text: json['text'] != null ? FhirString(json['text']) : null,
+      textElement: json['_text'] != null
+          ? Element.fromJson(json['_text'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   CodeableConcept clone() => throw UnimplementedError();
   @override

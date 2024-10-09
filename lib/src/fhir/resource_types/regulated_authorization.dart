@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'regulated_authorization.g.dart';
-
 /// [RegulatedAuthorization] /// Regulatory approval, clearance or licencing related to a regulated product,
 /// treatment, facility or activity that is cited in a guidance, regulation,
 /// rule or legislative act. An example is Market Authorization relating to a
@@ -46,8 +44,6 @@ class RegulatedAuthorization extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.RegulatedAuthorization);
   @override
   String get fhirType => 'RegulatedAuthorization';
@@ -130,12 +126,197 @@ class RegulatedAuthorization extends DomainResource {
   /// bottom of page).
   @JsonKey(name: 'case')
   final RegulatedAuthorizationCase? case_;
-  factory RegulatedAuthorization.fromJson(Map<String, dynamic> json) =>
-      _$RegulatedAuthorizationFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$RegulatedAuthorizationToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    if (subject != null && subject!.isNotEmpty) {
+      json['subject'] =
+          subject!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (type != null) {
+      json['type'] = type!.toJson();
+    }
+    if (description?.value != null) {
+      json['description'] = description!.value;
+    }
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    if (region != null && region!.isNotEmpty) {
+      json['region'] =
+          region!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (status != null) {
+      json['status'] = status!.toJson();
+    }
+    if (statusDate?.value != null) {
+      json['statusDate'] = statusDate!.value;
+    }
+    if (statusDateElement != null) {
+      json['_statusDate'] = statusDateElement!.toJson();
+    }
+    if (validityPeriod != null) {
+      json['validityPeriod'] = validityPeriod!.toJson();
+    }
+    if (indication != null) {
+      json['indication'] = indication!.toJson();
+    }
+    if (intendedUse != null) {
+      json['intendedUse'] = intendedUse!.toJson();
+    }
+    if (basis != null && basis!.isNotEmpty) {
+      json['basis'] =
+          basis!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (holder != null) {
+      json['holder'] = holder!.toJson();
+    }
+    if (regulator != null) {
+      json['regulator'] = regulator!.toJson();
+    }
+    if (case_ != null) {
+      json['case'] = case_!.toJson();
+    }
+    return json;
+  }
 
+  factory RegulatedAuthorization.fromJson(Map<String, dynamic> json) {
+    return RegulatedAuthorization(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      subject: json['subject'] != null
+          ? (json['subject'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
+          : null,
+      description: json['description'] != null
+          ? FhirMarkdown(json['description'])
+          : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
+      region: json['region'] != null
+          ? (json['region'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      status: json['status'] != null
+          ? CodeableConcept.fromJson(json['status'] as Map<String, dynamic>)
+          : null,
+      statusDate:
+          json['statusDate'] != null ? FhirDateTime(json['statusDate']) : null,
+      statusDateElement: json['_statusDate'] != null
+          ? Element.fromJson(json['_statusDate'] as Map<String, dynamic>)
+          : null,
+      validityPeriod: json['validityPeriod'] != null
+          ? Period.fromJson(json['validityPeriod'] as Map<String, dynamic>)
+          : null,
+      indication: json['indication'] != null
+          ? CodeableReference.fromJson(
+              json['indication'] as Map<String, dynamic>)
+          : null,
+      intendedUse: json['intendedUse'] != null
+          ? CodeableConcept.fromJson(
+              json['intendedUse'] as Map<String, dynamic>)
+          : null,
+      basis: json['basis'] != null
+          ? (json['basis'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      holder: json['holder'] != null
+          ? Reference.fromJson(json['holder'] as Map<String, dynamic>)
+          : null,
+      regulator: json['regulator'] != null
+          ? Reference.fromJson(json['regulator'] as Map<String, dynamic>)
+          : null,
+      case_: json['case'] != null
+          ? RegulatedAuthorizationCase.fromJson(
+              json['case'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   RegulatedAuthorization clone() => throw UnimplementedError();
   @override
@@ -291,12 +472,91 @@ class RegulatedAuthorizationCase extends BackboneElement {
   /// longer running case or procedure for this authorization process.
   @JsonKey(name: 'application')
   final List<RegulatedAuthorizationCase>? application;
-  factory RegulatedAuthorizationCase.fromJson(Map<String, dynamic> json) =>
-      _$RegulatedAuthorizationCaseFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$RegulatedAuthorizationCaseToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null) {
+      json['identifier'] = identifier!.toJson();
+    }
+    if (type != null) {
+      json['type'] = type!.toJson();
+    }
+    if (status != null) {
+      json['status'] = status!.toJson();
+    }
+    if (datePeriod != null) {
+      json['datePeriod'] = datePeriod!.toJson();
+    }
+    if (dateDateTime?.value != null) {
+      json['dateDateTime'] = dateDateTime!.value;
+    }
+    if (dateDateTimeElement != null) {
+      json['_dateDateTime'] = dateDateTimeElement!.toJson();
+    }
+    if (application != null && application!.isNotEmpty) {
+      json['application'] = application!
+          .map<dynamic>((RegulatedAuthorizationCase v) => v.toJson())
+          .toList();
+    }
+    return json;
+  }
 
+  factory RegulatedAuthorizationCase.fromJson(Map<String, dynamic> json) {
+    return RegulatedAuthorizationCase(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? Identifier.fromJson(json['identifier'] as Map<String, dynamic>)
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
+          : null,
+      status: json['status'] != null
+          ? CodeableConcept.fromJson(json['status'] as Map<String, dynamic>)
+          : null,
+      datePeriod: json['datePeriod'] != null
+          ? Period.fromJson(json['datePeriod'] as Map<String, dynamic>)
+          : null,
+      dateDateTime: json['dateDateTime'] != null
+          ? FhirDateTime(json['dateDateTime'])
+          : null,
+      dateDateTimeElement: json['_dateDateTime'] != null
+          ? Element.fromJson(json['_dateDateTime'] as Map<String, dynamic>)
+          : null,
+      application: json['application'] != null
+          ? (json['application'] as List<dynamic>)
+              .map<RegulatedAuthorizationCase>((dynamic v) =>
+                  RegulatedAuthorizationCase.fromJson(
+                      v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   RegulatedAuthorizationCase clone() => throw UnimplementedError();
   @override

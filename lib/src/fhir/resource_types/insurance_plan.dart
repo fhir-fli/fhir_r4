@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'insurance_plan.g.dart';
-
 /// [InsurancePlan] /// Details of a Health Insurance product/plan provided by an organization.
 @JsonSerializable()
 class InsurancePlan extends DomainResource {
@@ -44,8 +42,6 @@ class InsurancePlan extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.InsurancePlan);
   @override
   String get fhirType => 'InsurancePlan';
@@ -121,12 +117,216 @@ class InsurancePlan extends DomainResource {
   /// [plan] /// Details about an insurance plan.
   @JsonKey(name: 'plan')
   final List<InsurancePlanPlan>? plan;
-  factory InsurancePlan.fromJson(Map<String, dynamic> json) =>
-      _$InsurancePlanFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$InsurancePlanToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    if (status != null) {
+      json['status'] = status!.toJson();
+    }
+    if (type != null && type!.isNotEmpty) {
+      json['type'] =
+          type!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (name?.value != null) {
+      json['name'] = name!.value;
+    }
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (alias != null && alias!.isNotEmpty) {
+      json['alias'] = alias!.map((FhirString v) => v.value).toList();
+    }
+    if (aliasElement != null && aliasElement!.isNotEmpty) {
+      json['_alias'] = aliasElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (period != null) {
+      json['period'] = period!.toJson();
+    }
+    if (ownedBy != null) {
+      json['ownedBy'] = ownedBy!.toJson();
+    }
+    if (administeredBy != null) {
+      json['administeredBy'] = administeredBy!.toJson();
+    }
+    if (coverageArea != null && coverageArea!.isNotEmpty) {
+      json['coverageArea'] =
+          coverageArea!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (contact != null && contact!.isNotEmpty) {
+      json['contact'] = contact!
+          .map<dynamic>((InsurancePlanContact v) => v.toJson())
+          .toList();
+    }
+    if (endpoint != null && endpoint!.isNotEmpty) {
+      json['endpoint'] =
+          endpoint!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (network != null && network!.isNotEmpty) {
+      json['network'] =
+          network!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (coverage != null && coverage!.isNotEmpty) {
+      json['coverage'] = coverage!
+          .map<dynamic>((InsurancePlanCoverage v) => v.toJson())
+          .toList();
+    }
+    if (plan != null && plan!.isNotEmpty) {
+      json['plan'] =
+          plan!.map<dynamic>((InsurancePlanPlan v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory InsurancePlan.fromJson(Map<String, dynamic> json) {
+    return InsurancePlan(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      status: json['status'] != null
+          ? PublicationStatus.fromJson(json['status'] as Map<String, dynamic>)
+          : null,
+      type: json['type'] != null
+          ? (json['type'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      name: json['name'] != null ? FhirString(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
+      alias: json['alias'] != null
+          ? (json['alias'] as List<dynamic>)
+              .map<FhirString>((dynamic v) => FhirString(v))
+              .toList()
+          : null,
+      aliasElement: json['_alias'] != null
+          ? (json['_alias'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      period: json['period'] != null
+          ? Period.fromJson(json['period'] as Map<String, dynamic>)
+          : null,
+      ownedBy: json['ownedBy'] != null
+          ? Reference.fromJson(json['ownedBy'] as Map<String, dynamic>)
+          : null,
+      administeredBy: json['administeredBy'] != null
+          ? Reference.fromJson(json['administeredBy'] as Map<String, dynamic>)
+          : null,
+      coverageArea: json['coverageArea'] != null
+          ? (json['coverageArea'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      contact: json['contact'] != null
+          ? (json['contact'] as List<dynamic>)
+              .map<InsurancePlanContact>((dynamic v) =>
+                  InsurancePlanContact.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      endpoint: json['endpoint'] != null
+          ? (json['endpoint'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      network: json['network'] != null
+          ? (json['network'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      coverage: json['coverage'] != null
+          ? (json['coverage'] as List<dynamic>)
+              .map<InsurancePlanCoverage>((dynamic v) =>
+                  InsurancePlanCoverage.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      plan: json['plan'] != null
+          ? (json['plan'] as List<dynamic>)
+              .map<InsurancePlanPlan>((dynamic v) =>
+                  InsurancePlanPlan.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   InsurancePlan clone() => throw UnimplementedError();
   @override
@@ -262,12 +462,71 @@ class InsurancePlanContact extends BackboneElement {
   /// [address] /// Visiting or postal addresses for the contact.
   @JsonKey(name: 'address')
   final Address? address;
-  factory InsurancePlanContact.fromJson(Map<String, dynamic> json) =>
-      _$InsurancePlanContactFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$InsurancePlanContactToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (purpose != null) {
+      json['purpose'] = purpose!.toJson();
+    }
+    if (name != null) {
+      json['name'] = name!.toJson();
+    }
+    if (telecom != null && telecom!.isNotEmpty) {
+      json['telecom'] =
+          telecom!.map<dynamic>((ContactPoint v) => v.toJson()).toList();
+    }
+    if (address != null) {
+      json['address'] = address!.toJson();
+    }
+    return json;
+  }
 
+  factory InsurancePlanContact.fromJson(Map<String, dynamic> json) {
+    return InsurancePlanContact(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      purpose: json['purpose'] != null
+          ? CodeableConcept.fromJson(json['purpose'] as Map<String, dynamic>)
+          : null,
+      name: json['name'] != null
+          ? HumanName.fromJson(json['name'] as Map<String, dynamic>)
+          : null,
+      telecom: json['telecom'] != null
+          ? (json['telecom'] as List<dynamic>)
+              .map<ContactPoint>((dynamic v) =>
+                  ContactPoint.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      address: json['address'] != null
+          ? Address.fromJson(json['address'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   InsurancePlanContact clone() => throw UnimplementedError();
   @override
@@ -358,12 +617,61 @@ class InsurancePlanCoverage extends BackboneElement {
   /// [benefit] /// Specific benefits under this type of coverage.
   @JsonKey(name: 'benefit')
   final List<InsurancePlanBenefit> benefit;
-  factory InsurancePlanCoverage.fromJson(Map<String, dynamic> json) =>
-      _$InsurancePlanCoverageFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$InsurancePlanCoverageToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['type'] = type.toJson();
+    if (network != null && network!.isNotEmpty) {
+      json['network'] =
+          network!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    json['benefit'] =
+        benefit.map<dynamic>((InsurancePlanBenefit v) => v.toJson()).toList();
+    return json;
+  }
 
+  factory InsurancePlanCoverage.fromJson(Map<String, dynamic> json) {
+    return InsurancePlanCoverage(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      network: json['network'] != null
+          ? (json['network'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      benefit: (json['benefit'] as List<dynamic>)
+          .map<InsurancePlanBenefit>((dynamic v) =>
+              InsurancePlanBenefit.fromJson(v as Map<String, dynamic>))
+          .toList(),
+    );
+  }
   @override
   InsurancePlanCoverage clone() => throw UnimplementedError();
   @override
@@ -454,12 +762,66 @@ class InsurancePlanBenefit extends BackboneElement {
   /// [limit] /// The specific limits on the benefit.
   @JsonKey(name: 'limit')
   final List<InsurancePlanLimit>? limit;
-  factory InsurancePlanBenefit.fromJson(Map<String, dynamic> json) =>
-      _$InsurancePlanBenefitFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$InsurancePlanBenefitToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['type'] = type.toJson();
+    if (requirement?.value != null) {
+      json['requirement'] = requirement!.value;
+    }
+    if (requirementElement != null) {
+      json['_requirement'] = requirementElement!.toJson();
+    }
+    if (limit != null && limit!.isNotEmpty) {
+      json['limit'] =
+          limit!.map<dynamic>((InsurancePlanLimit v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory InsurancePlanBenefit.fromJson(Map<String, dynamic> json) {
+    return InsurancePlanBenefit(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      requirement:
+          json['requirement'] != null ? FhirString(json['requirement']) : null,
+      requirementElement: json['_requirement'] != null
+          ? Element.fromJson(json['_requirement'] as Map<String, dynamic>)
+          : null,
+      limit: json['limit'] != null
+          ? (json['limit'] as List<dynamic>)
+              .map<InsurancePlanLimit>((dynamic v) =>
+                  InsurancePlanLimit.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   InsurancePlanBenefit clone() => throw UnimplementedError();
   @override
@@ -545,12 +907,55 @@ class InsurancePlanLimit extends BackboneElement {
   /// [code] /// The specific limit on the benefit.
   @JsonKey(name: 'code')
   final CodeableConcept? code;
-  factory InsurancePlanLimit.fromJson(Map<String, dynamic> json) =>
-      _$InsurancePlanLimitFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$InsurancePlanLimitToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (value != null) {
+      json['value'] = value!.toJson();
+    }
+    if (code != null) {
+      json['code'] = code!.toJson();
+    }
+    return json;
+  }
 
+  factory InsurancePlanLimit.fromJson(Map<String, dynamic> json) {
+    return InsurancePlanLimit(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      value: json['value'] != null
+          ? Quantity.fromJson(json['value'] as Map<String, dynamic>)
+          : null,
+      code: json['code'] != null
+          ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   InsurancePlanLimit clone() => throw UnimplementedError();
   @override
@@ -652,12 +1057,101 @@ class InsurancePlanPlan extends BackboneElement {
   /// [specificCost] /// Costs associated with the coverage provided by the product.
   @JsonKey(name: 'specificCost')
   final List<InsurancePlanSpecificCost>? specificCost;
-  factory InsurancePlanPlan.fromJson(Map<String, dynamic> json) =>
-      _$InsurancePlanPlanFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$InsurancePlanPlanToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    if (type != null) {
+      json['type'] = type!.toJson();
+    }
+    if (coverageArea != null && coverageArea!.isNotEmpty) {
+      json['coverageArea'] =
+          coverageArea!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (network != null && network!.isNotEmpty) {
+      json['network'] =
+          network!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (generalCost != null && generalCost!.isNotEmpty) {
+      json['generalCost'] = generalCost!
+          .map<dynamic>((InsurancePlanGeneralCost v) => v.toJson())
+          .toList();
+    }
+    if (specificCost != null && specificCost!.isNotEmpty) {
+      json['specificCost'] = specificCost!
+          .map<dynamic>((InsurancePlanSpecificCost v) => v.toJson())
+          .toList();
+    }
+    return json;
+  }
 
+  factory InsurancePlanPlan.fromJson(Map<String, dynamic> json) {
+    return InsurancePlanPlan(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
+          : null,
+      coverageArea: json['coverageArea'] != null
+          ? (json['coverageArea'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      network: json['network'] != null
+          ? (json['network'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      generalCost: json['generalCost'] != null
+          ? (json['generalCost'] as List<dynamic>)
+              .map<InsurancePlanGeneralCost>((dynamic v) =>
+                  InsurancePlanGeneralCost.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      specificCost: json['specificCost'] != null
+          ? (json['specificCost'] as List<dynamic>)
+              .map<InsurancePlanSpecificCost>((dynamic v) =>
+                  InsurancePlanSpecificCost.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   InsurancePlanPlan clone() => throw UnimplementedError();
   @override
@@ -762,12 +1256,76 @@ class InsurancePlanGeneralCost extends BackboneElement {
   final FhirString? comment;
   @JsonKey(name: '_comment')
   final Element? commentElement;
-  factory InsurancePlanGeneralCost.fromJson(Map<String, dynamic> json) =>
-      _$InsurancePlanGeneralCostFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$InsurancePlanGeneralCostToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (type != null) {
+      json['type'] = type!.toJson();
+    }
+    if (groupSize?.value != null) {
+      json['groupSize'] = groupSize!.value;
+    }
+    if (groupSizeElement != null) {
+      json['_groupSize'] = groupSizeElement!.toJson();
+    }
+    if (cost != null) {
+      json['cost'] = cost!.toJson();
+    }
+    if (comment?.value != null) {
+      json['comment'] = comment!.value;
+    }
+    if (commentElement != null) {
+      json['_comment'] = commentElement!.toJson();
+    }
+    return json;
+  }
 
+  factory InsurancePlanGeneralCost.fromJson(Map<String, dynamic> json) {
+    return InsurancePlanGeneralCost(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
+          : null,
+      groupSize:
+          json['groupSize'] != null ? FhirPositiveInt(json['groupSize']) : null,
+      groupSizeElement: json['_groupSize'] != null
+          ? Element.fromJson(json['_groupSize'] as Map<String, dynamic>)
+          : null,
+      cost: json['cost'] != null
+          ? Money.fromJson(json['cost'] as Map<String, dynamic>)
+          : null,
+      comment: json['comment'] != null ? FhirString(json['comment']) : null,
+      commentElement: json['_comment'] != null
+          ? Element.fromJson(json['_comment'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   InsurancePlanGeneralCost clone() => throw UnimplementedError();
   @override
@@ -857,12 +1415,57 @@ class InsurancePlanSpecificCost extends BackboneElement {
   /// [benefit] /// List of the specific benefits under this category of benefit.
   @JsonKey(name: 'benefit')
   final List<InsurancePlanBenefit>? benefit;
-  factory InsurancePlanSpecificCost.fromJson(Map<String, dynamic> json) =>
-      _$InsurancePlanSpecificCostFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$InsurancePlanSpecificCostToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['category'] = category.toJson();
+    if (benefit != null && benefit!.isNotEmpty) {
+      json['benefit'] = benefit!
+          .map<dynamic>((InsurancePlanBenefit v) => v.toJson())
+          .toList();
+    }
+    return json;
+  }
 
+  factory InsurancePlanSpecificCost.fromJson(Map<String, dynamic> json) {
+    return InsurancePlanSpecificCost(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      category:
+          CodeableConcept.fromJson(json['category'] as Map<String, dynamic>),
+      benefit: json['benefit'] != null
+          ? (json['benefit'] as List<dynamic>)
+              .map<InsurancePlanBenefit>((dynamic v) =>
+                  InsurancePlanBenefit.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   InsurancePlanSpecificCost clone() => throw UnimplementedError();
   @override
@@ -944,12 +1547,55 @@ class InsurancePlanBenefit1 extends BackboneElement {
   /// [cost] /// List of the costs associated with a specific benefit.
   @JsonKey(name: 'cost')
   final List<InsurancePlanCost>? cost;
-  factory InsurancePlanBenefit1.fromJson(Map<String, dynamic> json) =>
-      _$InsurancePlanBenefit1FromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$InsurancePlanBenefit1ToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['type'] = type.toJson();
+    if (cost != null && cost!.isNotEmpty) {
+      json['cost'] =
+          cost!.map<dynamic>((InsurancePlanCost v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory InsurancePlanBenefit1.fromJson(Map<String, dynamic> json) {
+    return InsurancePlanBenefit1(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      cost: json['cost'] != null
+          ? (json['cost'] as List<dynamic>)
+              .map<InsurancePlanCost>((dynamic v) =>
+                  InsurancePlanCost.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   InsurancePlanBenefit1 clone() => throw UnimplementedError();
   @override
@@ -1043,12 +1689,68 @@ class InsurancePlanCost extends BackboneElement {
   /// rather than currency, e.g. 10% coinsurance).
   @JsonKey(name: 'value')
   final Quantity? value;
-  factory InsurancePlanCost.fromJson(Map<String, dynamic> json) =>
-      _$InsurancePlanCostFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$InsurancePlanCostToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['type'] = type.toJson();
+    if (applicability != null) {
+      json['applicability'] = applicability!.toJson();
+    }
+    if (qualifiers != null && qualifiers!.isNotEmpty) {
+      json['qualifiers'] =
+          qualifiers!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (value != null) {
+      json['value'] = value!.toJson();
+    }
+    return json;
+  }
 
+  factory InsurancePlanCost.fromJson(Map<String, dynamic> json) {
+    return InsurancePlanCost(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      applicability: json['applicability'] != null
+          ? CodeableConcept.fromJson(
+              json['applicability'] as Map<String, dynamic>)
+          : null,
+      qualifiers: json['qualifiers'] != null
+          ? (json['qualifiers'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      value: json['value'] != null
+          ? Quantity.fromJson(json['value'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   InsurancePlanCost clone() => throw UnimplementedError();
   @override

@@ -24,7 +24,7 @@ enum AdjudicationErrorCodes {
   }
 
   String toJson() => toString();
-  AdjudicationErrorCodes fromString(String str) {
+  static AdjudicationErrorCodes fromString(String str) {
     switch (str) {
       case 'a001':
         return AdjudicationErrorCodes.a001;
@@ -35,7 +35,7 @@ enum AdjudicationErrorCodes {
     }
   }
 
-  AdjudicationErrorCodes fromJson(dynamic jsonValue) {
+  static AdjudicationErrorCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

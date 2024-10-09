@@ -66,7 +66,7 @@ enum ClinicalImpressionStatus {
   }
 
   String toJson() => toString();
-  ClinicalImpressionStatus fromString(String str) {
+  static ClinicalImpressionStatus fromString(String str) {
     switch (str) {
       case 'preparation':
         return ClinicalImpressionStatus.preparation;
@@ -89,7 +89,7 @@ enum ClinicalImpressionStatus {
     }
   }
 
-  ClinicalImpressionStatus fromJson(dynamic jsonValue) {
+  static ClinicalImpressionStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

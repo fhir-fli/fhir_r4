@@ -28,7 +28,7 @@ enum UndesirablEffectFrequency {
   }
 
   String toJson() => toString();
-  UndesirablEffectFrequency fromString(String str) {
+  static UndesirablEffectFrequency fromString(String str) {
     switch (str) {
       case 'Common':
         return UndesirablEffectFrequency.Common;
@@ -41,7 +41,7 @@ enum UndesirablEffectFrequency {
     }
   }
 
-  UndesirablEffectFrequency fromJson(dynamic jsonValue) {
+  static UndesirablEffectFrequency fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -28,7 +28,7 @@ enum Laterality {
   }
 
   String toJson() => toString();
-  Laterality fromString(String str) {
+  static Laterality fromString(String str) {
     switch (str) {
       case '419161000':
         return Laterality.value419161000;
@@ -41,7 +41,7 @@ enum Laterality {
     }
   }
 
-  Laterality fromJson(dynamic jsonValue) {
+  static Laterality fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

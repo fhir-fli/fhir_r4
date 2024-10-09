@@ -52,7 +52,7 @@ enum EndpointStatus {
   }
 
   String toJson() => toString();
-  EndpointStatus fromString(String str) {
+  static EndpointStatus fromString(String str) {
     switch (str) {
       case 'active':
         return EndpointStatus.active;
@@ -71,7 +71,7 @@ enum EndpointStatus {
     }
   }
 
-  EndpointStatus fromJson(dynamic jsonValue) {
+  static EndpointStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

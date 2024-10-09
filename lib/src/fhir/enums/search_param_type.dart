@@ -73,7 +73,7 @@ enum SearchParamType {
   }
 
   String toJson() => toString();
-  SearchParamType fromString(String str) {
+  static SearchParamType fromString(String str) {
     switch (str) {
       case 'number':
         return SearchParamType.number;
@@ -98,7 +98,7 @@ enum SearchParamType {
     }
   }
 
-  SearchParamType fromJson(dynamic jsonValue) {
+  static SearchParamType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -46,7 +46,7 @@ enum AdverseEventOutcome {
   }
 
   String toJson() => toString();
-  AdverseEventOutcome fromString(String str) {
+  static AdverseEventOutcome fromString(String str) {
     switch (str) {
       case 'resolved':
         return AdverseEventOutcome.resolved;
@@ -65,7 +65,7 @@ enum AdverseEventOutcome {
     }
   }
 
-  AdverseEventOutcome fromJson(dynamic jsonValue) {
+  static AdverseEventOutcome fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

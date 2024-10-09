@@ -1216,7 +1216,7 @@ enum AdministrableDoseForm {
   }
 
   String toJson() => toString();
-  AdministrableDoseForm fromString(String str) {
+  static AdministrableDoseForm fromString(String str) {
     switch (str) {
       case '100000073362':
         return AdministrableDoseForm.value100000073362;
@@ -1625,7 +1625,7 @@ enum AdministrableDoseForm {
     }
   }
 
-  AdministrableDoseForm fromJson(dynamic jsonValue) {
+  static AdministrableDoseForm fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

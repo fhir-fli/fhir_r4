@@ -38,7 +38,7 @@ enum DeviceMetricCategory {
   }
 
   String toJson() => toString();
-  DeviceMetricCategory fromString(String str) {
+  static DeviceMetricCategory fromString(String str) {
     switch (str) {
       case 'measurement':
         return DeviceMetricCategory.measurement;
@@ -53,7 +53,7 @@ enum DeviceMetricCategory {
     }
   }
 
-  DeviceMetricCategory fromJson(dynamic jsonValue) {
+  static DeviceMetricCategory fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -38,7 +38,7 @@ enum PublicationStatus {
   }
 
   String toJson() => toString();
-  PublicationStatus fromString(String str) {
+  static PublicationStatus fromString(String str) {
     switch (str) {
       case 'draft':
         return PublicationStatus.draft;
@@ -53,7 +53,7 @@ enum PublicationStatus {
     }
   }
 
-  PublicationStatus fromJson(dynamic jsonValue) {
+  static PublicationStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

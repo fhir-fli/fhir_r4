@@ -150,7 +150,7 @@ enum EventTiming {
   }
 
   String toJson() => toString();
-  EventTiming fromString(String str) {
+  static EventTiming fromString(String str) {
     switch (str) {
       case 'MORN':
         return EventTiming.MORN;
@@ -209,7 +209,7 @@ enum EventTiming {
     }
   }
 
-  EventTiming fromJson(dynamic jsonValue) {
+  static EventTiming fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

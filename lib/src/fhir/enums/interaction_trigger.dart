@@ -129,7 +129,7 @@ enum InteractionTrigger {
   }
 
   String toJson() => toString();
-  InteractionTrigger fromString(String str) {
+  static InteractionTrigger fromString(String str) {
     switch (str) {
       case 'read':
         return InteractionTrigger.read;
@@ -170,7 +170,7 @@ enum InteractionTrigger {
     }
   }
 
-  InteractionTrigger fromJson(dynamic jsonValue) {
+  static InteractionTrigger fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

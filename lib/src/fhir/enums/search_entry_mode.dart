@@ -31,7 +31,7 @@ enum SearchEntryMode {
   }
 
   String toJson() => toString();
-  SearchEntryMode fromString(String str) {
+  static SearchEntryMode fromString(String str) {
     switch (str) {
       case 'match':
         return SearchEntryMode.match;
@@ -44,7 +44,7 @@ enum SearchEntryMode {
     }
   }
 
-  SearchEntryMode fromJson(dynamic jsonValue) {
+  static SearchEntryMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

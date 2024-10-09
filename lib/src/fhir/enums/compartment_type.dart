@@ -45,7 +45,7 @@ enum CompartmentType {
   }
 
   String toJson() => toString();
-  CompartmentType fromString(String str) {
+  static CompartmentType fromString(String str) {
     switch (str) {
       case 'Patient':
         return CompartmentType.Patient;
@@ -62,7 +62,7 @@ enum CompartmentType {
     }
   }
 
-  CompartmentType fromJson(dynamic jsonValue) {
+  static CompartmentType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

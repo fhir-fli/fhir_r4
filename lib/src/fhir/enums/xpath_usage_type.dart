@@ -45,7 +45,7 @@ enum XPathUsageType {
   }
 
   String toJson() => toString();
-  XPathUsageType fromString(String str) {
+  static XPathUsageType fromString(String str) {
     switch (str) {
       case 'normal':
         return XPathUsageType.normal;
@@ -62,7 +62,7 @@ enum XPathUsageType {
     }
   }
 
-  XPathUsageType fromJson(dynamic jsonValue) {
+  static XPathUsageType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -31,7 +31,7 @@ enum ActionRequiredBehavior {
   }
 
   String toJson() => toString();
-  ActionRequiredBehavior fromString(String str) {
+  static ActionRequiredBehavior fromString(String str) {
     switch (str) {
       case 'must':
         return ActionRequiredBehavior.must;
@@ -44,7 +44,7 @@ enum ActionRequiredBehavior {
     }
   }
 
-  ActionRequiredBehavior fromJson(dynamic jsonValue) {
+  static ActionRequiredBehavior fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

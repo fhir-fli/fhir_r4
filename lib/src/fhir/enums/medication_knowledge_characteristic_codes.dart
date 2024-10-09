@@ -59,7 +59,7 @@ enum MedicationKnowledgeCharacteristicCodes {
   }
 
   String toJson() => toString();
-  MedicationKnowledgeCharacteristicCodes fromString(String str) {
+  static MedicationKnowledgeCharacteristicCodes fromString(String str) {
     switch (str) {
       case 'imprintcd':
         return MedicationKnowledgeCharacteristicCodes.imprintcd;
@@ -80,7 +80,7 @@ enum MedicationKnowledgeCharacteristicCodes {
     }
   }
 
-  MedicationKnowledgeCharacteristicCodes fromJson(dynamic jsonValue) {
+  static MedicationKnowledgeCharacteristicCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

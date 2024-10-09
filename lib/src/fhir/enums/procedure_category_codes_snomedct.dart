@@ -39,7 +39,7 @@ enum ProcedureCategoryCodesSNOMEDCT {
   }
 
   String toJson() => toString();
-  ProcedureCategoryCodesSNOMEDCT fromString(String str) {
+  static ProcedureCategoryCodesSNOMEDCT fromString(String str) {
     switch (str) {
       case '24642003':
         return ProcedureCategoryCodesSNOMEDCT.value24642003;
@@ -60,7 +60,7 @@ enum ProcedureCategoryCodesSNOMEDCT {
     }
   }
 
-  ProcedureCategoryCodesSNOMEDCT fromJson(dynamic jsonValue) {
+  static ProcedureCategoryCodesSNOMEDCT fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -38,7 +38,7 @@ enum GuidePageGeneration {
   }
 
   String toJson() => toString();
-  GuidePageGeneration fromString(String str) {
+  static GuidePageGeneration fromString(String str) {
     switch (str) {
       case 'html':
         return GuidePageGeneration.html;
@@ -53,7 +53,7 @@ enum GuidePageGeneration {
     }
   }
 
-  GuidePageGeneration fromJson(dynamic jsonValue) {
+  static GuidePageGeneration fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

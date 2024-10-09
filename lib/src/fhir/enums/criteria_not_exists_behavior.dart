@@ -24,7 +24,7 @@ enum CriteriaNotExistsBehavior {
   }
 
   String toJson() => toString();
-  CriteriaNotExistsBehavior fromString(String str) {
+  static CriteriaNotExistsBehavior fromString(String str) {
     switch (str) {
       case 'test-passes':
         return CriteriaNotExistsBehavior.test_passes;
@@ -35,7 +35,7 @@ enum CriteriaNotExistsBehavior {
     }
   }
 
-  CriteriaNotExistsBehavior fromJson(dynamic jsonValue) {
+  static CriteriaNotExistsBehavior fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

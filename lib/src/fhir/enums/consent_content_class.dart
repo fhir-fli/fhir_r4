@@ -1023,7 +1023,7 @@ enum ConsentContentClass {
   }
 
   String toJson() => toString();
-  ConsentContentClass fromString(String str) {
+  static ConsentContentClass fromString(String str) {
     switch (str) {
       case 'Resource':
         return ConsentContentClass.Resource;
@@ -1321,7 +1321,7 @@ enum ConsentContentClass {
     }
   }
 
-  ConsentContentClass fromJson(dynamic jsonValue) {
+  static ConsentContentClass fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

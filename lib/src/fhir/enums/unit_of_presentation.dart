@@ -346,7 +346,7 @@ enum UnitOfPresentation {
   }
 
   String toJson() => toString();
-  UnitOfPresentation fromString(String str) {
+  static UnitOfPresentation fromString(String str) {
     switch (str) {
       case '200000002108':
         return UnitOfPresentation.value200000002108;
@@ -465,7 +465,7 @@ enum UnitOfPresentation {
     }
   }
 
-  UnitOfPresentation fromJson(dynamic jsonValue) {
+  static UnitOfPresentation fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -31,7 +31,7 @@ enum FlagStatus {
   }
 
   String toJson() => toString();
-  FlagStatus fromString(String str) {
+  static FlagStatus fromString(String str) {
     switch (str) {
       case 'active':
         return FlagStatus.active;
@@ -44,7 +44,7 @@ enum FlagStatus {
     }
   }
 
-  FlagStatus fromJson(dynamic jsonValue) {
+  static FlagStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

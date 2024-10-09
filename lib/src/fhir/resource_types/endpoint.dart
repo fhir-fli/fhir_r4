@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'endpoint.g.dart';
-
 /// [FhirEndpoint] /// The technical details of an endpoint that can be used for electronic
 /// services, such as for web services providing XDS.b or a REST endpoint for
 /// another FHIR server. This may include any security context information.
@@ -45,8 +43,6 @@ class FhirEndpoint extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.FhirEndpoint);
   @override
   String get fhirType => 'FhirEndpoint';
@@ -117,12 +113,180 @@ class FhirEndpoint extends DomainResource {
   final List<FhirString>? header;
   @JsonKey(name: '_header')
   final List<Element>? headerElement;
-  factory FhirEndpoint.fromJson(Map<String, dynamic> json) =>
-      _$FhirEndpointFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$FhirEndpointToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    json['status'] = status.toJson();
+    json['connectionType'] = connectionType.toJson();
+    if (name?.value != null) {
+      json['name'] = name!.value;
+    }
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (managingOrganization != null) {
+      json['managingOrganization'] = managingOrganization!.toJson();
+    }
+    if (contact != null && contact!.isNotEmpty) {
+      json['contact'] =
+          contact!.map<dynamic>((ContactPoint v) => v.toJson()).toList();
+    }
+    if (period != null) {
+      json['period'] = period!.toJson();
+    }
+    json['payloadType'] =
+        payloadType.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    if (payloadMimeType != null && payloadMimeType!.isNotEmpty) {
+      json['payloadMimeType'] =
+          payloadMimeType!.map((FhirCode v) => v.value).toList();
+    }
+    if (payloadMimeTypeElement != null && payloadMimeTypeElement!.isNotEmpty) {
+      json['_payloadMimeType'] =
+          payloadMimeTypeElement!.map((Element v) => v.toJson()).toList();
+    }
+    json['address'] = address.value;
+    if (addressElement != null) {
+      json['_address'] = addressElement!.toJson();
+    }
+    if (header != null && header!.isNotEmpty) {
+      json['header'] = header!.map((FhirString v) => v.value).toList();
+    }
+    if (headerElement != null && headerElement!.isNotEmpty) {
+      json['_header'] = headerElement!.map((Element v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory FhirEndpoint.fromJson(Map<String, dynamic> json) {
+    return FhirEndpoint(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      status: EndpointStatus.fromJson(json['status'] as Map<String, dynamic>),
+      connectionType:
+          Coding.fromJson(json['connectionType'] as Map<String, dynamic>),
+      name: json['name'] != null ? FhirString(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
+      managingOrganization: json['managingOrganization'] != null
+          ? Reference.fromJson(
+              json['managingOrganization'] as Map<String, dynamic>)
+          : null,
+      contact: json['contact'] != null
+          ? (json['contact'] as List<dynamic>)
+              .map<ContactPoint>((dynamic v) =>
+                  ContactPoint.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      period: json['period'] != null
+          ? Period.fromJson(json['period'] as Map<String, dynamic>)
+          : null,
+      payloadType: (json['payloadType'] as List<dynamic>)
+          .map<CodeableConcept>((dynamic v) =>
+              CodeableConcept.fromJson(v as Map<String, dynamic>))
+          .toList(),
+      payloadMimeType: json['payloadMimeType'] != null
+          ? (json['payloadMimeType'] as List<dynamic>)
+              .map<FhirCode>((dynamic v) => FhirCode(v))
+              .toList()
+          : null,
+      payloadMimeTypeElement: json['_payloadMimeType'] != null
+          ? (json['_payloadMimeType'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      address: FhirUrl(json['address']),
+      addressElement:
+          Element.fromJson(json['_address'] as Map<String, dynamic>),
+      header: json['header'] != null
+          ? (json['header'] as List<dynamic>)
+              .map<FhirString>((dynamic v) => FhirString(v))
+              .toList()
+          : null,
+      headerElement: json['_header'] != null
+          ? (json['_header'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   FhirEndpoint clone() => throw UnimplementedError();
   @override

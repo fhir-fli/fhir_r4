@@ -34,7 +34,7 @@ enum EncounterType {
   }
 
   String toJson() => toString();
-  EncounterType fromString(String str) {
+  static EncounterType fromString(String str) {
     switch (str) {
       case 'ADMS':
         return EncounterType.ADMS;
@@ -49,7 +49,7 @@ enum EncounterType {
     }
   }
 
-  EncounterType fromJson(dynamic jsonValue) {
+  static EncounterType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

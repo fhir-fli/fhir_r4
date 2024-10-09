@@ -24,7 +24,7 @@ enum ConditionCategoryCodes {
   }
 
   String toJson() => toString();
-  ConditionCategoryCodes fromString(String str) {
+  static ConditionCategoryCodes fromString(String str) {
     switch (str) {
       case 'problem-list-item':
         return ConditionCategoryCodes.problem_list_item;
@@ -35,7 +35,7 @@ enum ConditionCategoryCodes {
     }
   }
 
-  ConditionCategoryCodes fromJson(dynamic jsonValue) {
+  static ConditionCategoryCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

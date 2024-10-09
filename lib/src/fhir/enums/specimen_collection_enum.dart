@@ -70,7 +70,7 @@ enum SpecimenCollectionEnum {
   }
 
   String toJson() => toString();
-  SpecimenCollectionEnum fromString(String str) {
+  static SpecimenCollectionEnum fromString(String str) {
     switch (str) {
       case '129316008':
         return SpecimenCollectionEnum.value129316008;
@@ -97,7 +97,7 @@ enum SpecimenCollectionEnum {
     }
   }
 
-  SpecimenCollectionEnum fromJson(dynamic jsonValue) {
+  static SpecimenCollectionEnum fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

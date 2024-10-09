@@ -108,7 +108,7 @@ enum AdverseEventCategory {
   }
 
   String toJson() => toString();
-  AdverseEventCategory fromString(String str) {
+  static AdverseEventCategory fromString(String str) {
     switch (str) {
       case 'product-problem':
         return AdverseEventCategory.product_problem;
@@ -143,7 +143,7 @@ enum AdverseEventCategory {
     }
   }
 
-  AdverseEventCategory fromJson(dynamic jsonValue) {
+  static AdverseEventCategory fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

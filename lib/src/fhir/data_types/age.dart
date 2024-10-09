@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'age.g.dart';
-
 /// [Age] /// A duration of time during which an organism (or a process) has existed.
 @JsonSerializable()
 class Age extends Quantity {
@@ -35,11 +33,79 @@ class Age extends Quantity {
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
-  factory Age.fromJson(Map<String, dynamic> json) => _$AgeFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$AgeToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (value?.value != null) {
+      json['value'] = value!.value;
+    }
+    if (valueElement != null) {
+      json['_value'] = valueElement!.toJson();
+    }
+    if (comparator != null) {
+      json['comparator'] = comparator!.toJson();
+    }
+    if (unit?.value != null) {
+      json['unit'] = unit!.value;
+    }
+    if (unitElement != null) {
+      json['_unit'] = unitElement!.toJson();
+    }
+    if (system?.value != null) {
+      json['system'] = system!.value;
+    }
+    if (systemElement != null) {
+      json['_system'] = systemElement!.toJson();
+    }
+    if (code?.value != null) {
+      json['code'] = code!.value;
+    }
+    if (codeElement != null) {
+      json['_code'] = codeElement!.toJson();
+    }
+    return json;
+  }
 
+  factory Age.fromJson(Map<String, dynamic> json) {
+    return Age(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      value: json['value'] != null ? FhirDecimal(json['value']) : null,
+      valueElement: json['_value'] != null
+          ? Element.fromJson(json['_value'] as Map<String, dynamic>)
+          : null,
+      comparator: json['comparator'] != null
+          ? QuantityComparator.fromJson(
+              json['comparator'] as Map<String, dynamic>)
+          : null,
+      unit: json['unit'] != null ? FhirString(json['unit']) : null,
+      unitElement: json['_unit'] != null
+          ? Element.fromJson(json['_unit'] as Map<String, dynamic>)
+          : null,
+      system: json['system'] != null ? FhirUri(json['system']) : null,
+      systemElement: json['_system'] != null
+          ? Element.fromJson(json['_system'] as Map<String, dynamic>)
+          : null,
+      code: json['code'] != null ? FhirCode(json['code']) : null,
+      codeElement: json['_code'] != null
+          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   Age clone() => throw UnimplementedError();
   @override

@@ -289,7 +289,7 @@ enum ObjectLifecycleEvents {
   }
 
   String toJson() => toString();
-  ObjectLifecycleEvents fromString(String str) {
+  static ObjectLifecycleEvents fromString(String str) {
     switch (str) {
       case '1':
         return ObjectLifecycleEvents.value1;
@@ -380,7 +380,7 @@ enum ObjectLifecycleEvents {
     }
   }
 
-  ObjectLifecycleEvents fromJson(dynamic jsonValue) {
+  static ObjectLifecycleEvents fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

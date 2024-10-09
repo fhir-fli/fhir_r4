@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'implementation_guide.g.dart';
-
 /// [ImplementationGuide] /// A set of rules of how a particular interoperability or standards problem is
 /// solved - typically through the use of FHIR resources. This resource is used
 /// to gather all the parts of an implementation guide into a logical whole and
@@ -63,8 +61,6 @@ class ImplementationGuide extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.ImplementationGuide);
   @override
   String get fhirType => 'ImplementationGuide';
@@ -218,12 +214,261 @@ class ImplementationGuide extends DomainResource {
   /// publication tooling.
   @JsonKey(name: 'manifest')
   final ImplementationGuideManifest? manifest;
-  factory ImplementationGuide.fromJson(Map<String, dynamic> json) =>
-      _$ImplementationGuideFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ImplementationGuideToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['url'] = url.value;
+    if (urlElement != null) {
+      json['_url'] = urlElement!.toJson();
+    }
+    if (version?.value != null) {
+      json['version'] = version!.value;
+    }
+    if (versionElement != null) {
+      json['_version'] = versionElement!.toJson();
+    }
+    json['name'] = name.value;
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (title?.value != null) {
+      json['title'] = title!.value;
+    }
+    if (titleElement != null) {
+      json['_title'] = titleElement!.toJson();
+    }
+    json['status'] = status.toJson();
+    if (experimental?.value != null) {
+      json['experimental'] = experimental!.value;
+    }
+    if (experimentalElement != null) {
+      json['_experimental'] = experimentalElement!.toJson();
+    }
+    if (date?.value != null) {
+      json['date'] = date!.value;
+    }
+    if (dateElement != null) {
+      json['_date'] = dateElement!.toJson();
+    }
+    if (publisher?.value != null) {
+      json['publisher'] = publisher!.value;
+    }
+    if (publisherElement != null) {
+      json['_publisher'] = publisherElement!.toJson();
+    }
+    if (contact != null && contact!.isNotEmpty) {
+      json['contact'] =
+          contact!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+    }
+    if (description?.value != null) {
+      json['description'] = description!.value;
+    }
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    if (useContext != null && useContext!.isNotEmpty) {
+      json['useContext'] =
+          useContext!.map<dynamic>((UsageContext v) => v.toJson()).toList();
+    }
+    if (jurisdiction != null && jurisdiction!.isNotEmpty) {
+      json['jurisdiction'] = jurisdiction!
+          .map<dynamic>((CodeableConcept v) => v.toJson())
+          .toList();
+    }
+    if (copyright?.value != null) {
+      json['copyright'] = copyright!.value;
+    }
+    if (copyrightElement != null) {
+      json['_copyright'] = copyrightElement!.toJson();
+    }
+    json['packageId'] = packageId.value;
+    if (packageIdElement != null) {
+      json['_packageId'] = packageIdElement!.toJson();
+    }
+    if (license != null) {
+      json['license'] = license!.toJson();
+    }
+    json['fhirVersion'] =
+        fhirVersion.map<dynamic>((FHIRVersion v) => v.toJson()).toList();
+    if (dependsOn != null && dependsOn!.isNotEmpty) {
+      json['dependsOn'] = dependsOn!
+          .map<dynamic>((ImplementationGuideDependsOn v) => v.toJson())
+          .toList();
+    }
+    if (global != null && global!.isNotEmpty) {
+      json['global'] = global!
+          .map<dynamic>((ImplementationGuideGlobal v) => v.toJson())
+          .toList();
+    }
+    if (definition != null) {
+      json['definition'] = definition!.toJson();
+    }
+    if (manifest != null) {
+      json['manifest'] = manifest!.toJson();
+    }
+    return json;
+  }
 
+  factory ImplementationGuide.fromJson(Map<String, dynamic> json) {
+    return ImplementationGuide(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      url: FhirUri(json['url']),
+      urlElement: Element.fromJson(json['_url'] as Map<String, dynamic>),
+      version: json['version'] != null ? FhirString(json['version']) : null,
+      versionElement: json['_version'] != null
+          ? Element.fromJson(json['_version'] as Map<String, dynamic>)
+          : null,
+      name: FhirString(json['name']),
+      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      title: json['title'] != null ? FhirString(json['title']) : null,
+      titleElement: json['_title'] != null
+          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
+          : null,
+      status:
+          PublicationStatus.fromJson(json['status'] as Map<String, dynamic>),
+      experimental: json['experimental'] != null
+          ? FhirBoolean(json['experimental'])
+          : null,
+      experimentalElement: json['_experimental'] != null
+          ? Element.fromJson(json['_experimental'] as Map<String, dynamic>)
+          : null,
+      date: json['date'] != null ? FhirDateTime(json['date']) : null,
+      dateElement: json['_date'] != null
+          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
+          : null,
+      publisher:
+          json['publisher'] != null ? FhirString(json['publisher']) : null,
+      publisherElement: json['_publisher'] != null
+          ? Element.fromJson(json['_publisher'] as Map<String, dynamic>)
+          : null,
+      contact: json['contact'] != null
+          ? (json['contact'] as List<dynamic>)
+              .map<ContactDetail>((dynamic v) =>
+                  ContactDetail.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      description: json['description'] != null
+          ? FhirMarkdown(json['description'])
+          : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
+      useContext: json['useContext'] != null
+          ? (json['useContext'] as List<dynamic>)
+              .map<UsageContext>((dynamic v) =>
+                  UsageContext.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      jurisdiction: json['jurisdiction'] != null
+          ? (json['jurisdiction'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      copyright:
+          json['copyright'] != null ? FhirMarkdown(json['copyright']) : null,
+      copyrightElement: json['_copyright'] != null
+          ? Element.fromJson(json['_copyright'] as Map<String, dynamic>)
+          : null,
+      packageId: FhirId(json['packageId']),
+      packageIdElement:
+          Element.fromJson(json['_packageId'] as Map<String, dynamic>),
+      license: json['license'] != null
+          ? SPDXLicense.fromJson(json['license'] as Map<String, dynamic>)
+          : null,
+      fhirVersion: (json['fhirVersion'] as List<dynamic>)
+          .map<FHIRVersion>(
+              (dynamic v) => FHIRVersion.fromJson(v as Map<String, dynamic>))
+          .toList(),
+      dependsOn: json['dependsOn'] != null
+          ? (json['dependsOn'] as List<dynamic>)
+              .map<ImplementationGuideDependsOn>((dynamic v) =>
+                  ImplementationGuideDependsOn.fromJson(
+                      v as Map<String, dynamic>))
+              .toList()
+          : null,
+      global: json['global'] != null
+          ? (json['global'] as List<dynamic>)
+              .map<ImplementationGuideGlobal>((dynamic v) =>
+                  ImplementationGuideGlobal.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      definition: json['definition'] != null
+          ? ImplementationGuideDefinition.fromJson(
+              json['definition'] as Map<String, dynamic>)
+          : null,
+      manifest: json['manifest'] != null
+          ? ImplementationGuideManifest.fromJson(
+              json['manifest'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   ImplementationGuide clone() => throw UnimplementedError();
   @override
@@ -397,12 +642,69 @@ class ImplementationGuideDependsOn extends BackboneElement {
   final FhirString? version;
   @JsonKey(name: '_version')
   final Element? versionElement;
-  factory ImplementationGuideDependsOn.fromJson(Map<String, dynamic> json) =>
-      _$ImplementationGuideDependsOnFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ImplementationGuideDependsOnToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['uri'] = uri.value;
+    if (uriElement != null) {
+      json['_uri'] = uriElement!.toJson();
+    }
+    if (packageId?.value != null) {
+      json['packageId'] = packageId!.value;
+    }
+    if (packageIdElement != null) {
+      json['_packageId'] = packageIdElement!.toJson();
+    }
+    if (version?.value != null) {
+      json['version'] = version!.value;
+    }
+    if (versionElement != null) {
+      json['_version'] = versionElement!.toJson();
+    }
+    return json;
+  }
 
+  factory ImplementationGuideDependsOn.fromJson(Map<String, dynamic> json) {
+    return ImplementationGuideDependsOn(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      uri: FhirCanonical(json['uri']),
+      uriElement: Element.fromJson(json['_uri'] as Map<String, dynamic>),
+      packageId: json['packageId'] != null ? FhirId(json['packageId']) : null,
+      packageIdElement: json['_packageId'] != null
+          ? Element.fromJson(json['_packageId'] as Map<String, dynamic>)
+          : null,
+      version: json['version'] != null ? FhirString(json['version']) : null,
+      versionElement: json['_version'] != null
+          ? Element.fromJson(json['_version'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   ImplementationGuideDependsOn clone() => throw UnimplementedError();
   @override
@@ -498,12 +800,56 @@ class ImplementationGuideGlobal extends BackboneElement {
   final FhirCanonical profile;
   @JsonKey(name: '_profile')
   final Element? profileElement;
-  factory ImplementationGuideGlobal.fromJson(Map<String, dynamic> json) =>
-      _$ImplementationGuideGlobalFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ImplementationGuideGlobalToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['type'] = type.value;
+    if (typeElement != null) {
+      json['_type'] = typeElement!.toJson();
+    }
+    json['profile'] = profile.value;
+    if (profileElement != null) {
+      json['_profile'] = profileElement!.toJson();
+    }
+    return json;
+  }
 
+  factory ImplementationGuideGlobal.fromJson(Map<String, dynamic> json) {
+    return ImplementationGuideGlobal(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      type: FhirCode(json['type']),
+      typeElement: Element.fromJson(json['_type'] as Map<String, dynamic>),
+      profile: FhirCanonical(json['profile']),
+      profileElement:
+          Element.fromJson(json['_profile'] as Map<String, dynamic>),
+    );
+  }
   @override
   ImplementationGuideGlobal clone() => throw UnimplementedError();
   @override
@@ -609,12 +955,93 @@ class ImplementationGuideDefinition extends BackboneElement {
   /// [template] /// A template for building resources.
   @JsonKey(name: 'template')
   final List<ImplementationGuideTemplate>? template;
-  factory ImplementationGuideDefinition.fromJson(Map<String, dynamic> json) =>
-      _$ImplementationGuideDefinitionFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ImplementationGuideDefinitionToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (grouping != null && grouping!.isNotEmpty) {
+      json['grouping'] = grouping!
+          .map<dynamic>((ImplementationGuideGrouping v) => v.toJson())
+          .toList();
+    }
+    json['resource'] = resource
+        .map<dynamic>((ImplementationGuideResource v) => v.toJson())
+        .toList();
+    if (page != null) {
+      json['page'] = page!.toJson();
+    }
+    if (parameter != null && parameter!.isNotEmpty) {
+      json['parameter'] = parameter!
+          .map<dynamic>((ImplementationGuideParameter v) => v.toJson())
+          .toList();
+    }
+    if (template != null && template!.isNotEmpty) {
+      json['template'] = template!
+          .map<dynamic>((ImplementationGuideTemplate v) => v.toJson())
+          .toList();
+    }
+    return json;
+  }
 
+  factory ImplementationGuideDefinition.fromJson(Map<String, dynamic> json) {
+    return ImplementationGuideDefinition(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      grouping: json['grouping'] != null
+          ? (json['grouping'] as List<dynamic>)
+              .map<ImplementationGuideGrouping>((dynamic v) =>
+                  ImplementationGuideGrouping.fromJson(
+                      v as Map<String, dynamic>))
+              .toList()
+          : null,
+      resource: (json['resource'] as List<dynamic>)
+          .map<ImplementationGuideResource>((dynamic v) =>
+              ImplementationGuideResource.fromJson(v as Map<String, dynamic>))
+          .toList(),
+      page: json['page'] != null
+          ? ImplementationGuidePage.fromJson(
+              json['page'] as Map<String, dynamic>)
+          : null,
+      parameter: json['parameter'] != null
+          ? (json['parameter'] as List<dynamic>)
+              .map<ImplementationGuideParameter>((dynamic v) =>
+                  ImplementationGuideParameter.fromJson(
+                      v as Map<String, dynamic>))
+              .toList()
+          : null,
+      template: json['template'] != null
+          ? (json['template'] as List<dynamic>)
+              .map<ImplementationGuideTemplate>((dynamic v) =>
+                  ImplementationGuideTemplate.fromJson(
+                      v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   ImplementationGuideDefinition clone() => throw UnimplementedError();
   @override
@@ -709,12 +1136,60 @@ class ImplementationGuideGrouping extends BackboneElement {
   final FhirString? description;
   @JsonKey(name: '_description')
   final Element? descriptionElement;
-  factory ImplementationGuideGrouping.fromJson(Map<String, dynamic> json) =>
-      _$ImplementationGuideGroupingFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ImplementationGuideGroupingToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['name'] = name.value;
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (description?.value != null) {
+      json['description'] = description!.value;
+    }
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    return json;
+  }
 
+  factory ImplementationGuideGrouping.fromJson(Map<String, dynamic> json) {
+    return ImplementationGuideGrouping(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      name: FhirString(json['name']),
+      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      description:
+          json['description'] != null ? FhirString(json['description']) : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   ImplementationGuideGrouping clone() => throw UnimplementedError();
   @override
@@ -853,12 +1328,111 @@ class ImplementationGuideResource extends BackboneElement {
   final FhirId? groupingId;
   @JsonKey(name: '_groupingId')
   final Element? groupingIdElement;
-  factory ImplementationGuideResource.fromJson(Map<String, dynamic> json) =>
-      _$ImplementationGuideResourceFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ImplementationGuideResourceToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['reference'] = reference.toJson();
+    if (fhirVersion != null && fhirVersion!.isNotEmpty) {
+      json['fhirVersion'] =
+          fhirVersion!.map<dynamic>((FHIRVersion v) => v.toJson()).toList();
+    }
+    if (name?.value != null) {
+      json['name'] = name!.value;
+    }
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (description?.value != null) {
+      json['description'] = description!.value;
+    }
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    if (exampleBoolean?.value != null) {
+      json['exampleBoolean'] = exampleBoolean!.value;
+    }
+    if (exampleBooleanElement != null) {
+      json['_exampleBoolean'] = exampleBooleanElement!.toJson();
+    }
+    if (exampleCanonical?.value != null) {
+      json['exampleCanonical'] = exampleCanonical!.value;
+    }
+    if (exampleCanonicalElement != null) {
+      json['_exampleCanonical'] = exampleCanonicalElement!.toJson();
+    }
+    if (groupingId?.value != null) {
+      json['groupingId'] = groupingId!.value;
+    }
+    if (groupingIdElement != null) {
+      json['_groupingId'] = groupingIdElement!.toJson();
+    }
+    return json;
+  }
 
+  factory ImplementationGuideResource.fromJson(Map<String, dynamic> json) {
+    return ImplementationGuideResource(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      reference: Reference.fromJson(json['reference'] as Map<String, dynamic>),
+      fhirVersion: json['fhirVersion'] != null
+          ? (json['fhirVersion'] as List<dynamic>)
+              .map<FHIRVersion>((dynamic v) =>
+                  FHIRVersion.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      name: json['name'] != null ? FhirString(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
+      description:
+          json['description'] != null ? FhirString(json['description']) : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
+      exampleBoolean: json['exampleBoolean'] != null
+          ? FhirBoolean(json['exampleBoolean'])
+          : null,
+      exampleBooleanElement: json['_exampleBoolean'] != null
+          ? Element.fromJson(json['_exampleBoolean'] as Map<String, dynamic>)
+          : null,
+      exampleCanonical: json['exampleCanonical'] != null
+          ? FhirCanonical(json['exampleCanonical'])
+          : null,
+      exampleCanonicalElement: json['_exampleCanonical'] != null
+          ? Element.fromJson(json['_exampleCanonical'] as Map<String, dynamic>)
+          : null,
+      groupingId:
+          json['groupingId'] != null ? FhirId(json['groupingId']) : null,
+      groupingIdElement: json['_groupingId'] != null
+          ? Element.fromJson(json['_groupingId'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   ImplementationGuideResource clone() => throw UnimplementedError();
   @override
@@ -989,12 +1563,79 @@ class ImplementationGuidePage extends BackboneElement {
   /// [page] /// Nested Pages/Sections under this page.
   @JsonKey(name: 'page')
   final List<ImplementationGuidePage>? page;
-  factory ImplementationGuidePage.fromJson(Map<String, dynamic> json) =>
-      _$ImplementationGuidePageFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ImplementationGuidePageToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (nameUrl?.value != null) {
+      json['nameUrl'] = nameUrl!.value;
+    }
+    if (nameUrlElement != null) {
+      json['_nameUrl'] = nameUrlElement!.toJson();
+    }
+    if (nameReference != null) {
+      json['nameReference'] = nameReference!.toJson();
+    }
+    json['title'] = title.value;
+    if (titleElement != null) {
+      json['_title'] = titleElement!.toJson();
+    }
+    json['generation'] = generation.toJson();
+    if (page != null && page!.isNotEmpty) {
+      json['page'] = page!
+          .map<dynamic>((ImplementationGuidePage v) => v.toJson())
+          .toList();
+    }
+    return json;
+  }
 
+  factory ImplementationGuidePage.fromJson(Map<String, dynamic> json) {
+    return ImplementationGuidePage(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      nameUrl: json['nameUrl'] != null ? FhirUrl(json['nameUrl']) : null,
+      nameUrlElement: json['_nameUrl'] != null
+          ? Element.fromJson(json['_nameUrl'] as Map<String, dynamic>)
+          : null,
+      nameReference: json['nameReference'] != null
+          ? Reference.fromJson(json['nameReference'] as Map<String, dynamic>)
+          : null,
+      title: FhirString(json['title']),
+      titleElement: Element.fromJson(json['_title'] as Map<String, dynamic>),
+      generation: GuidePageGeneration.fromJson(
+          json['generation'] as Map<String, dynamic>),
+      page: json['page'] != null
+          ? (json['page'] as List<dynamic>)
+              .map<ImplementationGuidePage>((dynamic v) =>
+                  ImplementationGuidePage.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   ImplementationGuidePage clone() => throw UnimplementedError();
   @override
@@ -1095,12 +1736,51 @@ class ImplementationGuideParameter extends BackboneElement {
   final FhirString value;
   @JsonKey(name: '_value')
   final Element? valueElement;
-  factory ImplementationGuideParameter.fromJson(Map<String, dynamic> json) =>
-      _$ImplementationGuideParameterFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ImplementationGuideParameterToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['code'] = code.toJson();
+    json['value'] = value.value;
+    if (valueElement != null) {
+      json['_value'] = valueElement!.toJson();
+    }
+    return json;
+  }
 
+  factory ImplementationGuideParameter.fromJson(Map<String, dynamic> json) {
+    return ImplementationGuideParameter(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      code: GuideParameterCode.fromJson(json['code'] as Map<String, dynamic>),
+      value: FhirString(json['value']),
+      valueElement: Element.fromJson(json['_value'] as Map<String, dynamic>),
+    );
+  }
   @override
   ImplementationGuideParameter clone() => throw UnimplementedError();
   @override
@@ -1199,12 +1879,65 @@ class ImplementationGuideTemplate extends BackboneElement {
   final FhirString? scope;
   @JsonKey(name: '_scope')
   final Element? scopeElement;
-  factory ImplementationGuideTemplate.fromJson(Map<String, dynamic> json) =>
-      _$ImplementationGuideTemplateFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ImplementationGuideTemplateToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['code'] = code.value;
+    if (codeElement != null) {
+      json['_code'] = codeElement!.toJson();
+    }
+    json['source'] = source.value;
+    if (sourceElement != null) {
+      json['_source'] = sourceElement!.toJson();
+    }
+    if (scope?.value != null) {
+      json['scope'] = scope!.value;
+    }
+    if (scopeElement != null) {
+      json['_scope'] = scopeElement!.toJson();
+    }
+    return json;
+  }
 
+  factory ImplementationGuideTemplate.fromJson(Map<String, dynamic> json) {
+    return ImplementationGuideTemplate(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      code: FhirCode(json['code']),
+      codeElement: Element.fromJson(json['_code'] as Map<String, dynamic>),
+      source: FhirString(json['source']),
+      sourceElement: Element.fromJson(json['_source'] as Map<String, dynamic>),
+      scope: json['scope'] != null ? FhirString(json['scope']) : null,
+      scopeElement: json['_scope'] != null
+          ? Element.fromJson(json['_scope'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   ImplementationGuideTemplate clone() => throw UnimplementedError();
   @override
@@ -1324,12 +2057,105 @@ class ImplementationGuideManifest extends BackboneElement {
   final List<FhirString>? other;
   @JsonKey(name: '_other')
   final List<Element>? otherElement;
-  factory ImplementationGuideManifest.fromJson(Map<String, dynamic> json) =>
-      _$ImplementationGuideManifestFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ImplementationGuideManifestToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (rendering?.value != null) {
+      json['rendering'] = rendering!.value;
+    }
+    if (renderingElement != null) {
+      json['_rendering'] = renderingElement!.toJson();
+    }
+    json['resource'] = resource
+        .map<dynamic>((ImplementationGuideResource v) => v.toJson())
+        .toList();
+    if (page != null && page!.isNotEmpty) {
+      json['page'] = page!
+          .map<dynamic>((ImplementationGuidePage v) => v.toJson())
+          .toList();
+    }
+    if (image != null && image!.isNotEmpty) {
+      json['image'] = image!.map((FhirString v) => v.value).toList();
+    }
+    if (imageElement != null && imageElement!.isNotEmpty) {
+      json['_image'] = imageElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (other != null && other!.isNotEmpty) {
+      json['other'] = other!.map((FhirString v) => v.value).toList();
+    }
+    if (otherElement != null && otherElement!.isNotEmpty) {
+      json['_other'] = otherElement!.map((Element v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory ImplementationGuideManifest.fromJson(Map<String, dynamic> json) {
+    return ImplementationGuideManifest(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      rendering: json['rendering'] != null ? FhirUrl(json['rendering']) : null,
+      renderingElement: json['_rendering'] != null
+          ? Element.fromJson(json['_rendering'] as Map<String, dynamic>)
+          : null,
+      resource: (json['resource'] as List<dynamic>)
+          .map<ImplementationGuideResource>((dynamic v) =>
+              ImplementationGuideResource.fromJson(v as Map<String, dynamic>))
+          .toList(),
+      page: json['page'] != null
+          ? (json['page'] as List<dynamic>)
+              .map<ImplementationGuidePage>((dynamic v) =>
+                  ImplementationGuidePage.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      image: json['image'] != null
+          ? (json['image'] as List<dynamic>)
+              .map<FhirString>((dynamic v) => FhirString(v))
+              .toList()
+          : null,
+      imageElement: json['_image'] != null
+          ? (json['_image'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      other: json['other'] != null
+          ? (json['other'] as List<dynamic>)
+              .map<FhirString>((dynamic v) => FhirString(v))
+              .toList()
+          : null,
+      otherElement: json['_other'] != null
+          ? (json['_other'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   ImplementationGuideManifest clone() => throw UnimplementedError();
   @override
@@ -1448,12 +2274,80 @@ class ImplementationGuideResource1 extends BackboneElement {
   final FhirUrl? relativePath;
   @JsonKey(name: '_relativePath')
   final Element? relativePathElement;
-  factory ImplementationGuideResource1.fromJson(Map<String, dynamic> json) =>
-      _$ImplementationGuideResource1FromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ImplementationGuideResource1ToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['reference'] = reference.toJson();
+    if (exampleBoolean?.value != null) {
+      json['exampleBoolean'] = exampleBoolean!.value;
+    }
+    if (exampleBooleanElement != null) {
+      json['_exampleBoolean'] = exampleBooleanElement!.toJson();
+    }
+    if (exampleCanonical?.value != null) {
+      json['exampleCanonical'] = exampleCanonical!.value;
+    }
+    if (exampleCanonicalElement != null) {
+      json['_exampleCanonical'] = exampleCanonicalElement!.toJson();
+    }
+    if (relativePath?.value != null) {
+      json['relativePath'] = relativePath!.value;
+    }
+    if (relativePathElement != null) {
+      json['_relativePath'] = relativePathElement!.toJson();
+    }
+    return json;
+  }
 
+  factory ImplementationGuideResource1.fromJson(Map<String, dynamic> json) {
+    return ImplementationGuideResource1(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      reference: Reference.fromJson(json['reference'] as Map<String, dynamic>),
+      exampleBoolean: json['exampleBoolean'] != null
+          ? FhirBoolean(json['exampleBoolean'])
+          : null,
+      exampleBooleanElement: json['_exampleBoolean'] != null
+          ? Element.fromJson(json['_exampleBoolean'] as Map<String, dynamic>)
+          : null,
+      exampleCanonical: json['exampleCanonical'] != null
+          ? FhirCanonical(json['exampleCanonical'])
+          : null,
+      exampleCanonicalElement: json['_exampleCanonical'] != null
+          ? Element.fromJson(json['_exampleCanonical'] as Map<String, dynamic>)
+          : null,
+      relativePath:
+          json['relativePath'] != null ? FhirUrl(json['relativePath']) : null,
+      relativePathElement: json['_relativePath'] != null
+          ? Element.fromJson(json['_relativePath'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   ImplementationGuideResource1 clone() => throw UnimplementedError();
   @override
@@ -1560,12 +2454,76 @@ class ImplementationGuidePage1 extends BackboneElement {
   final List<FhirString>? anchor;
   @JsonKey(name: '_anchor')
   final List<Element>? anchorElement;
-  factory ImplementationGuidePage1.fromJson(Map<String, dynamic> json) =>
-      _$ImplementationGuidePage1FromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ImplementationGuidePage1ToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['name'] = name.value;
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (title?.value != null) {
+      json['title'] = title!.value;
+    }
+    if (titleElement != null) {
+      json['_title'] = titleElement!.toJson();
+    }
+    if (anchor != null && anchor!.isNotEmpty) {
+      json['anchor'] = anchor!.map((FhirString v) => v.value).toList();
+    }
+    if (anchorElement != null && anchorElement!.isNotEmpty) {
+      json['_anchor'] = anchorElement!.map((Element v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory ImplementationGuidePage1.fromJson(Map<String, dynamic> json) {
+    return ImplementationGuidePage1(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      name: FhirString(json['name']),
+      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      title: json['title'] != null ? FhirString(json['title']) : null,
+      titleElement: json['_title'] != null
+          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
+          : null,
+      anchor: json['anchor'] != null
+          ? (json['anchor'] as List<dynamic>)
+              .map<FhirString>((dynamic v) => FhirString(v))
+              .toList()
+          : null,
+      anchorElement: json['_anchor'] != null
+          ? (json['_anchor'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   ImplementationGuidePage1 clone() => throw UnimplementedError();
   @override

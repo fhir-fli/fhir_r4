@@ -129,7 +129,7 @@ enum StructureMapTransform {
   }
 
   String toJson() => toString();
-  StructureMapTransform fromString(String str) {
+  static StructureMapTransform fromString(String str) {
     switch (str) {
       case 'create':
         return StructureMapTransform.create;
@@ -170,7 +170,7 @@ enum StructureMapTransform {
     }
   }
 
-  StructureMapTransform fromJson(dynamic jsonValue) {
+  static StructureMapTransform fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

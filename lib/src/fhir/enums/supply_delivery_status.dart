@@ -38,7 +38,7 @@ enum SupplyDeliveryStatus {
   }
 
   String toJson() => toString();
-  SupplyDeliveryStatus fromString(String str) {
+  static SupplyDeliveryStatus fromString(String str) {
     switch (str) {
       case 'in-progress':
         return SupplyDeliveryStatus.in_progress;
@@ -53,7 +53,7 @@ enum SupplyDeliveryStatus {
     }
   }
 
-  SupplyDeliveryStatus fromJson(dynamic jsonValue) {
+  static SupplyDeliveryStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

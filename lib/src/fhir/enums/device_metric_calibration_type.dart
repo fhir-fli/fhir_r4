@@ -38,7 +38,7 @@ enum DeviceMetricCalibrationType {
   }
 
   String toJson() => toString();
-  DeviceMetricCalibrationType fromString(String str) {
+  static DeviceMetricCalibrationType fromString(String str) {
     switch (str) {
       case 'unspecified':
         return DeviceMetricCalibrationType.unspecified;
@@ -53,7 +53,7 @@ enum DeviceMetricCalibrationType {
     }
   }
 
-  DeviceMetricCalibrationType fromJson(dynamic jsonValue) {
+  static DeviceMetricCalibrationType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'medication_statement.g.dart';
-
 /// [MedicationStatement] /// A record of a medication that is being consumed by a patient. A
 /// MedicationStatement may indicate that the patient may be taking the
 /// medication now or has taken the medication in the past or will be taking
@@ -72,8 +70,6 @@ class MedicationStatement extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.MedicationStatement);
   @override
   String get fhirType => 'MedicationStatement';
@@ -187,12 +183,240 @@ class MedicationStatement extends DomainResource {
   /// [dosage] /// Indicates how the medication is/was or should be taken by the patient.
   @JsonKey(name: 'dosage')
   final List<Dosage>? dosage;
-  factory MedicationStatement.fromJson(Map<String, dynamic> json) =>
-      _$MedicationStatementFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MedicationStatementToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    if (basedOn != null && basedOn!.isNotEmpty) {
+      json['basedOn'] =
+          basedOn!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (partOf != null && partOf!.isNotEmpty) {
+      json['partOf'] =
+          partOf!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    json['status'] = status.toJson();
+    if (statusReason != null && statusReason!.isNotEmpty) {
+      json['statusReason'] = statusReason!
+          .map<dynamic>((CodeableConcept v) => v.toJson())
+          .toList();
+    }
+    if (category != null) {
+      json['category'] = category!.toJson();
+    }
+    if (medicationCodeableConcept != null) {
+      json['medicationCodeableConcept'] = medicationCodeableConcept!.toJson();
+    }
+    if (medicationReference != null) {
+      json['medicationReference'] = medicationReference!.toJson();
+    }
+    json['subject'] = subject.toJson();
+    if (context != null) {
+      json['context'] = context!.toJson();
+    }
+    if (effectiveDateTime?.value != null) {
+      json['effectiveDateTime'] = effectiveDateTime!.value;
+    }
+    if (effectiveDateTimeElement != null) {
+      json['_effectiveDateTime'] = effectiveDateTimeElement!.toJson();
+    }
+    if (effectivePeriod != null) {
+      json['effectivePeriod'] = effectivePeriod!.toJson();
+    }
+    if (dateAsserted?.value != null) {
+      json['dateAsserted'] = dateAsserted!.value;
+    }
+    if (dateAssertedElement != null) {
+      json['_dateAsserted'] = dateAssertedElement!.toJson();
+    }
+    if (informationSource != null) {
+      json['informationSource'] = informationSource!.toJson();
+    }
+    if (derivedFrom != null && derivedFrom!.isNotEmpty) {
+      json['derivedFrom'] =
+          derivedFrom!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (reasonCode != null && reasonCode!.isNotEmpty) {
+      json['reasonCode'] =
+          reasonCode!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (reasonReference != null && reasonReference!.isNotEmpty) {
+      json['reasonReference'] =
+          reasonReference!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (note != null && note!.isNotEmpty) {
+      json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
+    }
+    if (dosage != null && dosage!.isNotEmpty) {
+      json['dosage'] = dosage!.map<dynamic>((Dosage v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory MedicationStatement.fromJson(Map<String, dynamic> json) {
+    return MedicationStatement(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      basedOn: json['basedOn'] != null
+          ? (json['basedOn'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      partOf: json['partOf'] != null
+          ? (json['partOf'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      status: MedicationStatementStatusCodes.fromJson(
+          json['status'] as Map<String, dynamic>),
+      statusReason: json['statusReason'] != null
+          ? (json['statusReason'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      category: json['category'] != null
+          ? CodeableConcept.fromJson(json['category'] as Map<String, dynamic>)
+          : null,
+      medicationCodeableConcept: json['medicationCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['medicationCodeableConcept'] as Map<String, dynamic>)
+          : null,
+      medicationReference: json['medicationReference'] != null
+          ? Reference.fromJson(
+              json['medicationReference'] as Map<String, dynamic>)
+          : null,
+      subject: Reference.fromJson(json['subject'] as Map<String, dynamic>),
+      context: json['context'] != null
+          ? Reference.fromJson(json['context'] as Map<String, dynamic>)
+          : null,
+      effectiveDateTime: json['effectiveDateTime'] != null
+          ? FhirDateTime(json['effectiveDateTime'])
+          : null,
+      effectiveDateTimeElement: json['_effectiveDateTime'] != null
+          ? Element.fromJson(json['_effectiveDateTime'] as Map<String, dynamic>)
+          : null,
+      effectivePeriod: json['effectivePeriod'] != null
+          ? Period.fromJson(json['effectivePeriod'] as Map<String, dynamic>)
+          : null,
+      dateAsserted: json['dateAsserted'] != null
+          ? FhirDateTime(json['dateAsserted'])
+          : null,
+      dateAssertedElement: json['_dateAsserted'] != null
+          ? Element.fromJson(json['_dateAsserted'] as Map<String, dynamic>)
+          : null,
+      informationSource: json['informationSource'] != null
+          ? Reference.fromJson(
+              json['informationSource'] as Map<String, dynamic>)
+          : null,
+      derivedFrom: json['derivedFrom'] != null
+          ? (json['derivedFrom'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      reasonCode: json['reasonCode'] != null
+          ? (json['reasonCode'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      reasonReference: json['reasonReference'] != null
+          ? (json['reasonReference'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                  (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      dosage: json['dosage'] != null
+          ? (json['dosage'] as List<dynamic>)
+              .map<Dosage>(
+                  (dynamic v) => Dosage.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   MedicationStatement clone() => throw UnimplementedError();
   @override

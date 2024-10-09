@@ -38,7 +38,7 @@ enum EvidenceVariableHandling {
   }
 
   String toJson() => toString();
-  EvidenceVariableHandling fromString(String str) {
+  static EvidenceVariableHandling fromString(String str) {
     switch (str) {
       case 'continuous':
         return EvidenceVariableHandling.continuous;
@@ -53,7 +53,7 @@ enum EvidenceVariableHandling {
     }
   }
 
-  EvidenceVariableHandling fromJson(dynamic jsonValue) {
+  static EvidenceVariableHandling fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

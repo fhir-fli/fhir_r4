@@ -1011,7 +1011,7 @@ enum ResourceType {
   }
 
   String toJson() => toString();
-  ResourceType fromString(String str) {
+  static ResourceType fromString(String str) {
     switch (str) {
       case 'Resource':
         return ResourceType.Resource;
@@ -1304,7 +1304,7 @@ enum ResourceType {
     }
   }
 
-  ResourceType fromJson(dynamic jsonValue) {
+  static ResourceType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

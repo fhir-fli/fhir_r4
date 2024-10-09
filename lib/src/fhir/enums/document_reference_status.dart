@@ -31,7 +31,7 @@ enum DocumentReferenceStatus {
   }
 
   String toJson() => toString();
-  DocumentReferenceStatus fromString(String str) {
+  static DocumentReferenceStatus fromString(String str) {
     switch (str) {
       case 'current':
         return DocumentReferenceStatus.current;
@@ -44,7 +44,7 @@ enum DocumentReferenceStatus {
     }
   }
 
-  DocumentReferenceStatus fromJson(dynamic jsonValue) {
+  static DocumentReferenceStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

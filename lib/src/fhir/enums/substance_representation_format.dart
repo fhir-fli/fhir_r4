@@ -52,7 +52,7 @@ enum SubstanceRepresentationFormat {
   }
 
   String toJson() => toString();
-  SubstanceRepresentationFormat fromString(String str) {
+  static SubstanceRepresentationFormat fromString(String str) {
     switch (str) {
       case 'InChI':
         return SubstanceRepresentationFormat.InChI;
@@ -73,7 +73,7 @@ enum SubstanceRepresentationFormat {
     }
   }
 
-  SubstanceRepresentationFormat fromJson(dynamic jsonValue) {
+  static SubstanceRepresentationFormat fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

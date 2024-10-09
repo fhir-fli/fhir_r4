@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'enrollment_request.g.dart';
-
 /// [EnrollmentRequest] /// This resource provides the insurance enrollment details to the insurer
 /// regarding a specified coverage.
 @JsonSerializable()
@@ -37,8 +35,6 @@ class EnrollmentRequest extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.EnrollmentRequest);
   @override
   String get fhirType => 'EnrollmentRequest';
@@ -78,12 +74,134 @@ class EnrollmentRequest extends DomainResource {
   /// [coverage] /// Reference to the program or plan identification, underwriter or payor.
   @JsonKey(name: 'coverage')
   final Reference? coverage;
-  factory EnrollmentRequest.fromJson(Map<String, dynamic> json) =>
-      _$EnrollmentRequestFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$EnrollmentRequestToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    if (status != null) {
+      json['status'] = status!.toJson();
+    }
+    if (created?.value != null) {
+      json['created'] = created!.value;
+    }
+    if (createdElement != null) {
+      json['_created'] = createdElement!.toJson();
+    }
+    if (insurer != null) {
+      json['insurer'] = insurer!.toJson();
+    }
+    if (provider != null) {
+      json['provider'] = provider!.toJson();
+    }
+    if (candidate != null) {
+      json['candidate'] = candidate!.toJson();
+    }
+    if (coverage != null) {
+      json['coverage'] = coverage!.toJson();
+    }
+    return json;
+  }
 
+  factory EnrollmentRequest.fromJson(Map<String, dynamic> json) {
+    return EnrollmentRequest(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      status: json['status'] != null
+          ? FinancialResourceStatusCodes.fromJson(
+              json['status'] as Map<String, dynamic>)
+          : null,
+      created: json['created'] != null ? FhirDateTime(json['created']) : null,
+      createdElement: json['_created'] != null
+          ? Element.fromJson(json['_created'] as Map<String, dynamic>)
+          : null,
+      insurer: json['insurer'] != null
+          ? Reference.fromJson(json['insurer'] as Map<String, dynamic>)
+          : null,
+      provider: json['provider'] != null
+          ? Reference.fromJson(json['provider'] as Map<String, dynamic>)
+          : null,
+      candidate: json['candidate'] != null
+          ? Reference.fromJson(json['candidate'] as Map<String, dynamic>)
+          : null,
+      coverage: json['coverage'] != null
+          ? Reference.fromJson(json['coverage'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   EnrollmentRequest clone() => throw UnimplementedError();
   @override

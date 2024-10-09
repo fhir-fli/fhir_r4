@@ -150,7 +150,7 @@ enum USCLSCodes {
   }
 
   String toJson() => toString();
-  USCLSCodes fromString(String str) {
+  static USCLSCodes fromString(String str) {
     switch (str) {
       case '1101':
         return USCLSCodes.value1101;
@@ -197,7 +197,7 @@ enum USCLSCodes {
     }
   }
 
-  USCLSCodes fromJson(dynamic jsonValue) {
+  static USCLSCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

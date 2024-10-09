@@ -45,7 +45,7 @@ enum RiskProbability {
   }
 
   String toJson() => toString();
-  RiskProbability fromString(String str) {
+  static RiskProbability fromString(String str) {
     switch (str) {
       case 'negligible':
         return RiskProbability.negligible;
@@ -62,7 +62,7 @@ enum RiskProbability {
     }
   }
 
-  RiskProbability fromJson(dynamic jsonValue) {
+  static RiskProbability fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

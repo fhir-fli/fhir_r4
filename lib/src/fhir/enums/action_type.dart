@@ -38,7 +38,7 @@ enum ActionType {
   }
 
   String toJson() => toString();
-  ActionType fromString(String str) {
+  static ActionType fromString(String str) {
     switch (str) {
       case 'create':
         return ActionType.create;
@@ -53,7 +53,7 @@ enum ActionType {
     }
   }
 
-  ActionType fromJson(dynamic jsonValue) {
+  static ActionType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

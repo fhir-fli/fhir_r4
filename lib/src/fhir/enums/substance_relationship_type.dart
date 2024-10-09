@@ -40,7 +40,7 @@ enum SubstanceRelationshipType {
   }
 
   String toJson() => toString();
-  SubstanceRelationshipType fromString(String str) {
+  static SubstanceRelationshipType fromString(String str) {
     switch (str) {
       case 'Salt':
         return SubstanceRelationshipType.Salt;
@@ -57,7 +57,7 @@ enum SubstanceRelationshipType {
     }
   }
 
-  SubstanceRelationshipType fromJson(dynamic jsonValue) {
+  static SubstanceRelationshipType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

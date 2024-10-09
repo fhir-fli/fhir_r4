@@ -31,7 +31,7 @@ enum ICD10ProcedureCodes {
   }
 
   String toJson() => toString();
-  ICD10ProcedureCodes fromString(String str) {
+  static ICD10ProcedureCodes fromString(String str) {
     switch (str) {
       case '123001':
         return ICD10ProcedureCodes.value123001;
@@ -44,7 +44,7 @@ enum ICD10ProcedureCodes {
     }
   }
 
-  ICD10ProcedureCodes fromJson(dynamic jsonValue) {
+  static ICD10ProcedureCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

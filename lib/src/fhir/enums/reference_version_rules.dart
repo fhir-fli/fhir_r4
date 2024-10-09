@@ -31,7 +31,7 @@ enum ReferenceVersionRules {
   }
 
   String toJson() => toString();
-  ReferenceVersionRules fromString(String str) {
+  static ReferenceVersionRules fromString(String str) {
     switch (str) {
       case 'either':
         return ReferenceVersionRules.either;
@@ -44,7 +44,7 @@ enum ReferenceVersionRules {
     }
   }
 
-  ReferenceVersionRules fromJson(dynamic jsonValue) {
+  static ReferenceVersionRules fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

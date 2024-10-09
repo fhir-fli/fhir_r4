@@ -55,7 +55,7 @@ enum ProvenanceActivityType {
   }
 
   String toJson() => toString();
-  ProvenanceActivityType fromString(String str) {
+  static ProvenanceActivityType fromString(String str) {
     switch (str) {
       case 'LA':
         return ProvenanceActivityType.LA;
@@ -84,7 +84,7 @@ enum ProvenanceActivityType {
     }
   }
 
-  ProvenanceActivityType fromJson(dynamic jsonValue) {
+  static ProvenanceActivityType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

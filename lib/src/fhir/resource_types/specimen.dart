@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'specimen.g.dart';
-
 /// [Specimen] /// A sample to be used for analysis.
 @JsonSerializable()
 class Specimen extends DomainResource {
@@ -42,8 +40,6 @@ class Specimen extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.Specimen);
   @override
   String get fhirType => 'Specimen';
@@ -114,12 +110,197 @@ class Specimen extends DomainResource {
   /// specimen collection. (for example: broken vial, sent with patient, frozen).
   @JsonKey(name: 'note')
   final List<Annotation>? note;
-  factory Specimen.fromJson(Map<String, dynamic> json) =>
-      _$SpecimenFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$SpecimenToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    if (accessionIdentifier != null) {
+      json['accessionIdentifier'] = accessionIdentifier!.toJson();
+    }
+    if (status != null) {
+      json['status'] = status!.toJson();
+    }
+    if (type != null) {
+      json['type'] = type!.toJson();
+    }
+    if (subject != null) {
+      json['subject'] = subject!.toJson();
+    }
+    if (receivedTime?.value != null) {
+      json['receivedTime'] = receivedTime!.value;
+    }
+    if (receivedTimeElement != null) {
+      json['_receivedTime'] = receivedTimeElement!.toJson();
+    }
+    if (parent != null && parent!.isNotEmpty) {
+      json['parent'] =
+          parent!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (request != null && request!.isNotEmpty) {
+      json['request'] =
+          request!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (collection != null) {
+      json['collection'] = collection!.toJson();
+    }
+    if (processing != null && processing!.isNotEmpty) {
+      json['processing'] = processing!
+          .map<dynamic>((SpecimenProcessing v) => v.toJson())
+          .toList();
+    }
+    if (container != null && container!.isNotEmpty) {
+      json['container'] =
+          container!.map<dynamic>((SpecimenContainer v) => v.toJson()).toList();
+    }
+    if (condition != null && condition!.isNotEmpty) {
+      json['condition'] =
+          condition!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (note != null && note!.isNotEmpty) {
+      json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory Specimen.fromJson(Map<String, dynamic> json) {
+    return Specimen(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      accessionIdentifier: json['accessionIdentifier'] != null
+          ? Identifier.fromJson(
+              json['accessionIdentifier'] as Map<String, dynamic>)
+          : null,
+      status: json['status'] != null
+          ? SpecimenStatus.fromJson(json['status'] as Map<String, dynamic>)
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
+          : null,
+      subject: json['subject'] != null
+          ? Reference.fromJson(json['subject'] as Map<String, dynamic>)
+          : null,
+      receivedTime: json['receivedTime'] != null
+          ? FhirDateTime(json['receivedTime'])
+          : null,
+      receivedTimeElement: json['_receivedTime'] != null
+          ? Element.fromJson(json['_receivedTime'] as Map<String, dynamic>)
+          : null,
+      parent: json['parent'] != null
+          ? (json['parent'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      request: json['request'] != null
+          ? (json['request'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      collection: json['collection'] != null
+          ? SpecimenCollection.fromJson(
+              json['collection'] as Map<String, dynamic>)
+          : null,
+      processing: json['processing'] != null
+          ? (json['processing'] as List<dynamic>)
+              .map<SpecimenProcessing>((dynamic v) =>
+                  SpecimenProcessing.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      container: json['container'] != null
+          ? (json['container'] as List<dynamic>)
+              .map<SpecimenContainer>((dynamic v) =>
+                  SpecimenContainer.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      condition: json['condition'] != null
+          ? (json['condition'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                  (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   Specimen clone() => throw UnimplementedError();
   @override
@@ -286,12 +467,106 @@ class SpecimenCollection extends BackboneElement {
   /// of time prior to sample collection.
   @JsonKey(name: 'fastingStatusDuration')
   final FhirDuration? fastingStatusDuration;
-  factory SpecimenCollection.fromJson(Map<String, dynamic> json) =>
-      _$SpecimenCollectionFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$SpecimenCollectionToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (collector != null) {
+      json['collector'] = collector!.toJson();
+    }
+    if (collectedDateTime?.value != null) {
+      json['collectedDateTime'] = collectedDateTime!.value;
+    }
+    if (collectedDateTimeElement != null) {
+      json['_collectedDateTime'] = collectedDateTimeElement!.toJson();
+    }
+    if (collectedPeriod != null) {
+      json['collectedPeriod'] = collectedPeriod!.toJson();
+    }
+    if (duration != null) {
+      json['duration'] = duration!.toJson();
+    }
+    if (quantity != null) {
+      json['quantity'] = quantity!.toJson();
+    }
+    if (method != null) {
+      json['method'] = method!.toJson();
+    }
+    if (bodySite != null) {
+      json['bodySite'] = bodySite!.toJson();
+    }
+    if (fastingStatusCodeableConcept != null) {
+      json['fastingStatusCodeableConcept'] =
+          fastingStatusCodeableConcept!.toJson();
+    }
+    if (fastingStatusDuration != null) {
+      json['fastingStatusDuration'] = fastingStatusDuration!.toJson();
+    }
+    return json;
+  }
 
+  factory SpecimenCollection.fromJson(Map<String, dynamic> json) {
+    return SpecimenCollection(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      collector: json['collector'] != null
+          ? Reference.fromJson(json['collector'] as Map<String, dynamic>)
+          : null,
+      collectedDateTime: json['collectedDateTime'] != null
+          ? FhirDateTime(json['collectedDateTime'])
+          : null,
+      collectedDateTimeElement: json['_collectedDateTime'] != null
+          ? Element.fromJson(json['_collectedDateTime'] as Map<String, dynamic>)
+          : null,
+      collectedPeriod: json['collectedPeriod'] != null
+          ? Period.fromJson(json['collectedPeriod'] as Map<String, dynamic>)
+          : null,
+      duration: json['duration'] != null
+          ? FhirDuration.fromJson(json['duration'] as Map<String, dynamic>)
+          : null,
+      quantity: json['quantity'] != null
+          ? Quantity.fromJson(json['quantity'] as Map<String, dynamic>)
+          : null,
+      method: json['method'] != null
+          ? CodeableConcept.fromJson(json['method'] as Map<String, dynamic>)
+          : null,
+      bodySite: json['bodySite'] != null
+          ? CodeableConcept.fromJson(json['bodySite'] as Map<String, dynamic>)
+          : null,
+      fastingStatusCodeableConcept: json['fastingStatusCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['fastingStatusCodeableConcept'] as Map<String, dynamic>)
+          : null,
+      fastingStatusDuration: json['fastingStatusDuration'] != null
+          ? FhirDuration.fromJson(
+              json['fastingStatusDuration'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   SpecimenCollection clone() => throw UnimplementedError();
   @override
@@ -416,12 +691,88 @@ class SpecimenProcessing extends BackboneElement {
   /// formalin.
   @JsonKey(name: 'timePeriod')
   final Period? timePeriod;
-  factory SpecimenProcessing.fromJson(Map<String, dynamic> json) =>
-      _$SpecimenProcessingFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$SpecimenProcessingToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (description?.value != null) {
+      json['description'] = description!.value;
+    }
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    if (procedure != null) {
+      json['procedure'] = procedure!.toJson();
+    }
+    if (additive != null && additive!.isNotEmpty) {
+      json['additive'] =
+          additive!.map<dynamic>((Reference v) => v.toJson()).toList();
+    }
+    if (timeDateTime?.value != null) {
+      json['timeDateTime'] = timeDateTime!.value;
+    }
+    if (timeDateTimeElement != null) {
+      json['_timeDateTime'] = timeDateTimeElement!.toJson();
+    }
+    if (timePeriod != null) {
+      json['timePeriod'] = timePeriod!.toJson();
+    }
+    return json;
+  }
 
+  factory SpecimenProcessing.fromJson(Map<String, dynamic> json) {
+    return SpecimenProcessing(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      description:
+          json['description'] != null ? FhirString(json['description']) : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
+      procedure: json['procedure'] != null
+          ? CodeableConcept.fromJson(json['procedure'] as Map<String, dynamic>)
+          : null,
+      additive: json['additive'] != null
+          ? (json['additive'] as List<dynamic>)
+              .map<Reference>(
+                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      timeDateTime: json['timeDateTime'] != null
+          ? FhirDateTime(json['timeDateTime'])
+          : null,
+      timeDateTimeElement: json['_timeDateTime'] != null
+          ? Element.fromJson(json['_timeDateTime'] as Map<String, dynamic>)
+          : null,
+      timePeriod: json['timePeriod'] != null
+          ? Period.fromJson(json['timePeriod'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   SpecimenProcessing clone() => throw UnimplementedError();
   @override
@@ -547,12 +898,96 @@ class SpecimenContainer extends BackboneElement {
   /// Examples: Formalin, Citrate, EDTA.
   @JsonKey(name: 'additiveReference')
   final Reference? additiveReference;
-  factory SpecimenContainer.fromJson(Map<String, dynamic> json) =>
-      _$SpecimenContainerFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$SpecimenContainerToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    if (description?.value != null) {
+      json['description'] = description!.value;
+    }
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    if (type != null) {
+      json['type'] = type!.toJson();
+    }
+    if (capacity != null) {
+      json['capacity'] = capacity!.toJson();
+    }
+    if (specimenQuantity != null) {
+      json['specimenQuantity'] = specimenQuantity!.toJson();
+    }
+    if (additiveCodeableConcept != null) {
+      json['additiveCodeableConcept'] = additiveCodeableConcept!.toJson();
+    }
+    if (additiveReference != null) {
+      json['additiveReference'] = additiveReference!.toJson();
+    }
+    return json;
+  }
 
+  factory SpecimenContainer.fromJson(Map<String, dynamic> json) {
+    return SpecimenContainer(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      description:
+          json['description'] != null ? FhirString(json['description']) : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
+          : null,
+      capacity: json['capacity'] != null
+          ? Quantity.fromJson(json['capacity'] as Map<String, dynamic>)
+          : null,
+      specimenQuantity: json['specimenQuantity'] != null
+          ? Quantity.fromJson(json['specimenQuantity'] as Map<String, dynamic>)
+          : null,
+      additiveCodeableConcept: json['additiveCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['additiveCodeableConcept'] as Map<String, dynamic>)
+          : null,
+      additiveReference: json['additiveReference'] != null
+          ? Reference.fromJson(
+              json['additiveReference'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   SpecimenContainer clone() => throw UnimplementedError();
   @override

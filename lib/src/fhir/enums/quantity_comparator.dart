@@ -38,7 +38,7 @@ enum QuantityComparator {
   }
 
   String toJson() => toString();
-  QuantityComparator fromString(String str) {
+  static QuantityComparator fromString(String str) {
     switch (str) {
       case '<':
         return QuantityComparator.lessThan;
@@ -53,7 +53,7 @@ enum QuantityComparator {
     }
   }
 
-  QuantityComparator fromJson(dynamic jsonValue) {
+  static QuantityComparator fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

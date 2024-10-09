@@ -59,7 +59,7 @@ enum QuestionnaireItemOperator {
   }
 
   String toJson() => toString();
-  QuestionnaireItemOperator fromString(String str) {
+  static QuestionnaireItemOperator fromString(String str) {
     switch (str) {
       case 'exists':
         return QuestionnaireItemOperator.exists;
@@ -80,7 +80,7 @@ enum QuestionnaireItemOperator {
     }
   }
 
-  QuestionnaireItemOperator fromJson(dynamic jsonValue) {
+  static QuestionnaireItemOperator fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -122,7 +122,7 @@ enum ContributorSummaryStyle {
   }
 
   String toJson() => toString();
-  ContributorSummaryStyle fromString(String str) {
+  static ContributorSummaryStyle fromString(String str) {
     switch (str) {
       case 'a1full':
         return ContributorSummaryStyle.a1full;
@@ -161,7 +161,7 @@ enum ContributorSummaryStyle {
     }
   }
 
-  ContributorSummaryStyle fromJson(dynamic jsonValue) {
+  static ContributorSummaryStyle fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

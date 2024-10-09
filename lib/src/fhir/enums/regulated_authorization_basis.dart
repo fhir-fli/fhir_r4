@@ -70,7 +70,7 @@ enum RegulatedAuthorizationBasis {
   }
 
   String toJson() => toString();
-  RegulatedAuthorizationBasis fromString(String str) {
+  static RegulatedAuthorizationBasis fromString(String str) {
     switch (str) {
       case 'Full':
         return RegulatedAuthorizationBasis.Full;
@@ -97,7 +97,7 @@ enum RegulatedAuthorizationBasis {
     }
   }
 
-  RegulatedAuthorizationBasis fromJson(dynamic jsonValue) {
+  static RegulatedAuthorizationBasis fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

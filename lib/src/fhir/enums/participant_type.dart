@@ -37,7 +37,7 @@ enum ParticipantType {
   }
 
   String toJson() => toString();
-  ParticipantType fromString(String str) {
+  static ParticipantType fromString(String str) {
     switch (str) {
       case 'SPRF':
         return ParticipantType.SPRF;
@@ -54,7 +54,7 @@ enum ParticipantType {
     }
   }
 
-  ParticipantType fromJson(dynamic jsonValue) {
+  static ParticipantType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

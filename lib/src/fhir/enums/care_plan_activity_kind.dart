@@ -1011,7 +1011,7 @@ enum CarePlanActivityKind {
   }
 
   String toJson() => toString();
-  CarePlanActivityKind fromString(String str) {
+  static CarePlanActivityKind fromString(String str) {
     switch (str) {
       case 'Resource':
         return CarePlanActivityKind.Resource;
@@ -1304,7 +1304,7 @@ enum CarePlanActivityKind {
     }
   }
 
-  CarePlanActivityKind fromJson(dynamic jsonValue) {
+  static CarePlanActivityKind fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -38,7 +38,7 @@ enum FinancialResourceStatusCodes {
   }
 
   String toJson() => toString();
-  FinancialResourceStatusCodes fromString(String str) {
+  static FinancialResourceStatusCodes fromString(String str) {
     switch (str) {
       case 'active':
         return FinancialResourceStatusCodes.active;
@@ -53,7 +53,7 @@ enum FinancialResourceStatusCodes {
     }
   }
 
-  FinancialResourceStatusCodes fromJson(dynamic jsonValue) {
+  static FinancialResourceStatusCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

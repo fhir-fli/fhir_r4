@@ -192,7 +192,7 @@ enum ConsentPolicyRuleCodes {
   }
 
   String toJson() => toString();
-  ConsentPolicyRuleCodes fromString(String str) {
+  static ConsentPolicyRuleCodes fromString(String str) {
     switch (str) {
       case 'cric':
         return ConsentPolicyRuleCodes.cric;
@@ -251,7 +251,7 @@ enum ConsentPolicyRuleCodes {
     }
   }
 
-  ConsentPolicyRuleCodes fromJson(dynamic jsonValue) {
+  static ConsentPolicyRuleCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

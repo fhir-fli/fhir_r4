@@ -24,7 +24,7 @@ enum ExceptionCodes {
   }
 
   String toJson() => toString();
-  ExceptionCodes fromString(String str) {
+  static ExceptionCodes fromString(String str) {
     switch (str) {
       case 'student':
         return ExceptionCodes.student;
@@ -35,7 +35,7 @@ enum ExceptionCodes {
     }
   }
 
-  ExceptionCodes fromJson(dynamic jsonValue) {
+  static ExceptionCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

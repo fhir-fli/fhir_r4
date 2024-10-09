@@ -38,7 +38,7 @@ enum LinkType {
   }
 
   String toJson() => toString();
-  LinkType fromString(String str) {
+  static LinkType fromString(String str) {
     switch (str) {
       case 'replaced-by':
         return LinkType.replaced_by;
@@ -53,7 +53,7 @@ enum LinkType {
     }
   }
 
-  LinkType fromJson(dynamic jsonValue) {
+  static LinkType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

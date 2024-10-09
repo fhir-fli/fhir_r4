@@ -97,7 +97,7 @@ enum ConsentCategoryCodes {
   }
 
   String toJson() => toString();
-  ConsentCategoryCodes fromString(String str) {
+  static ConsentCategoryCodes fromString(String str) {
     switch (str) {
       case 'acd':
         return ConsentCategoryCodes.acd;
@@ -130,7 +130,7 @@ enum ConsentCategoryCodes {
     }
   }
 
-  ConsentCategoryCodes fromJson(dynamic jsonValue) {
+  static ConsentCategoryCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

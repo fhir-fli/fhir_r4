@@ -38,7 +38,7 @@ enum CompositeMeasureScoring {
   }
 
   String toJson() => toString();
-  CompositeMeasureScoring fromString(String str) {
+  static CompositeMeasureScoring fromString(String str) {
     switch (str) {
       case 'opportunity':
         return CompositeMeasureScoring.opportunity;
@@ -53,7 +53,7 @@ enum CompositeMeasureScoring {
     }
   }
 
-  CompositeMeasureScoring fromJson(dynamic jsonValue) {
+  static CompositeMeasureScoring fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

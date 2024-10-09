@@ -45,7 +45,7 @@ enum ReferralMethod {
   }
 
   String toJson() => toString();
-  ReferralMethod fromString(String str) {
+  static ReferralMethod fromString(String str) {
     switch (str) {
       case 'fax':
         return ReferralMethod.fax;
@@ -62,7 +62,7 @@ enum ReferralMethod {
     }
   }
 
-  ReferralMethod fromJson(dynamic jsonValue) {
+  static ReferralMethod fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

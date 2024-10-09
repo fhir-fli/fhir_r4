@@ -45,7 +45,7 @@ enum BiologicallyDerivedProductCategory {
   }
 
   String toJson() => toString();
-  BiologicallyDerivedProductCategory fromString(String str) {
+  static BiologicallyDerivedProductCategory fromString(String str) {
     switch (str) {
       case 'organ':
         return BiologicallyDerivedProductCategory.organ;
@@ -62,7 +62,7 @@ enum BiologicallyDerivedProductCategory {
     }
   }
 
-  BiologicallyDerivedProductCategory fromJson(dynamic jsonValue) {
+  static BiologicallyDerivedProductCategory fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

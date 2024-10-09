@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'prod_characteristic.g.dart';
-
 /// [ProdCharacteristic] /// The marketing status describes the date when a medicinal product is
 /// actually put on the market or the date as of which it is no longer
 /// available.
@@ -114,12 +112,140 @@ class ProdCharacteristic extends BackboneType {
   /// vocabulary shall be used The term and the term identifier shall be used.
   @JsonKey(name: 'scoring')
   final CodeableConcept? scoring;
-  factory ProdCharacteristic.fromJson(Map<String, dynamic> json) =>
-      _$ProdCharacteristicFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ProdCharacteristicToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (height != null) {
+      json['height'] = height!.toJson();
+    }
+    if (width != null) {
+      json['width'] = width!.toJson();
+    }
+    if (depth != null) {
+      json['depth'] = depth!.toJson();
+    }
+    if (weight != null) {
+      json['weight'] = weight!.toJson();
+    }
+    if (nominalVolume != null) {
+      json['nominalVolume'] = nominalVolume!.toJson();
+    }
+    if (externalDiameter != null) {
+      json['externalDiameter'] = externalDiameter!.toJson();
+    }
+    if (shape?.value != null) {
+      json['shape'] = shape!.value;
+    }
+    if (shapeElement != null) {
+      json['_shape'] = shapeElement!.toJson();
+    }
+    if (color != null && color!.isNotEmpty) {
+      json['color'] = color!.map((FhirString v) => v.value).toList();
+    }
+    if (colorElement != null && colorElement!.isNotEmpty) {
+      json['_color'] = colorElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (imprint != null && imprint!.isNotEmpty) {
+      json['imprint'] = imprint!.map((FhirString v) => v.value).toList();
+    }
+    if (imprintElement != null && imprintElement!.isNotEmpty) {
+      json['_imprint'] =
+          imprintElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (image != null && image!.isNotEmpty) {
+      json['image'] =
+          image!.map<dynamic>((Attachment v) => v.toJson()).toList();
+    }
+    if (scoring != null) {
+      json['scoring'] = scoring!.toJson();
+    }
+    return json;
+  }
 
+  factory ProdCharacteristic.fromJson(Map<String, dynamic> json) {
+    return ProdCharacteristic(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      height: json['height'] != null
+          ? Quantity.fromJson(json['height'] as Map<String, dynamic>)
+          : null,
+      width: json['width'] != null
+          ? Quantity.fromJson(json['width'] as Map<String, dynamic>)
+          : null,
+      depth: json['depth'] != null
+          ? Quantity.fromJson(json['depth'] as Map<String, dynamic>)
+          : null,
+      weight: json['weight'] != null
+          ? Quantity.fromJson(json['weight'] as Map<String, dynamic>)
+          : null,
+      nominalVolume: json['nominalVolume'] != null
+          ? Quantity.fromJson(json['nominalVolume'] as Map<String, dynamic>)
+          : null,
+      externalDiameter: json['externalDiameter'] != null
+          ? Quantity.fromJson(json['externalDiameter'] as Map<String, dynamic>)
+          : null,
+      shape: json['shape'] != null ? FhirString(json['shape']) : null,
+      shapeElement: json['_shape'] != null
+          ? Element.fromJson(json['_shape'] as Map<String, dynamic>)
+          : null,
+      color: json['color'] != null
+          ? (json['color'] as List<dynamic>)
+              .map<FhirString>((dynamic v) => FhirString(v))
+              .toList()
+          : null,
+      colorElement: json['_color'] != null
+          ? (json['_color'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      imprint: json['imprint'] != null
+          ? (json['imprint'] as List<dynamic>)
+              .map<FhirString>((dynamic v) => FhirString(v))
+              .toList()
+          : null,
+      imprintElement: json['_imprint'] != null
+          ? (json['_imprint'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      image: json['image'] != null
+          ? (json['image'] as List<dynamic>)
+              .map<Attachment>(
+                  (dynamic v) => Attachment.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      scoring: json['scoring'] != null
+          ? CodeableConcept.fromJson(json['scoring'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   ProdCharacteristic clone() => throw UnimplementedError();
   @override

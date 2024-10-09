@@ -199,7 +199,7 @@ enum CitationStatusType {
   }
 
   String toJson() => toString();
-  CitationStatusType fromString(String str) {
+  static CitationStatusType fromString(String str) {
     switch (str) {
       case 'pubmed-pubstatus-received':
         return CitationStatusType.pubmed_pubstatus_received;
@@ -260,7 +260,7 @@ enum CitationStatusType {
     }
   }
 
-  CitationStatusType fromJson(dynamic jsonValue) {
+  static CitationStatusType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

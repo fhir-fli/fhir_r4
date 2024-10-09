@@ -38,7 +38,7 @@ enum EligibilityRequestPurpose {
   }
 
   String toJson() => toString();
-  EligibilityRequestPurpose fromString(String str) {
+  static EligibilityRequestPurpose fromString(String str) {
     switch (str) {
       case 'auth-requirements':
         return EligibilityRequestPurpose.auth_requirements;
@@ -53,7 +53,7 @@ enum EligibilityRequestPurpose {
     }
   }
 
-  EligibilityRequestPurpose fromJson(dynamic jsonValue) {
+  static EligibilityRequestPurpose fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

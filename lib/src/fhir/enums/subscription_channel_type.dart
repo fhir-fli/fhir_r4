@@ -45,7 +45,7 @@ enum SubscriptionChannelType {
   }
 
   String toJson() => toString();
-  SubscriptionChannelType fromString(String str) {
+  static SubscriptionChannelType fromString(String str) {
     switch (str) {
       case 'rest-hook':
         return SubscriptionChannelType.rest_hook;
@@ -62,7 +62,7 @@ enum SubscriptionChannelType {
     }
   }
 
-  SubscriptionChannelType fromJson(dynamic jsonValue) {
+  static SubscriptionChannelType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

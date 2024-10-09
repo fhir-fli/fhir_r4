@@ -23,7 +23,7 @@ enum ObservationReferenceRangeAppliesToCodes {
   }
 
   String toJson() => toString();
-  ObservationReferenceRangeAppliesToCodes fromString(String str) {
+  static ObservationReferenceRangeAppliesToCodes fromString(String str) {
     switch (str) {
       case '248153007':
         return ObservationReferenceRangeAppliesToCodes.value248153007;
@@ -36,7 +36,7 @@ enum ObservationReferenceRangeAppliesToCodes {
     }
   }
 
-  ObservationReferenceRangeAppliesToCodes fromJson(dynamic jsonValue) {
+  static ObservationReferenceRangeAppliesToCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

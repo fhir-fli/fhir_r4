@@ -17,7 +17,7 @@ enum ContractResourcePartyRoleCodes {
   }
 
   String toJson() => toString();
-  ContractResourcePartyRoleCodes fromString(String str) {
+  static ContractResourcePartyRoleCodes fromString(String str) {
     switch (str) {
       case 'flunky':
         return ContractResourcePartyRoleCodes.flunky;
@@ -26,7 +26,7 @@ enum ContractResourcePartyRoleCodes {
     }
   }
 
-  ContractResourcePartyRoleCodes fromJson(dynamic jsonValue) {
+  static ContractResourcePartyRoleCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

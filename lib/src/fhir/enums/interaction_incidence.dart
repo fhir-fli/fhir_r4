@@ -22,7 +22,7 @@ enum InteractionIncidence {
   }
 
   String toJson() => toString();
-  InteractionIncidence fromString(String str) {
+  static InteractionIncidence fromString(String str) {
     switch (str) {
       case 'Theoretical':
         return InteractionIncidence.Theoretical;
@@ -33,7 +33,7 @@ enum InteractionIncidence {
     }
   }
 
-  InteractionIncidence fromJson(dynamic jsonValue) {
+  static InteractionIncidence fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -38,7 +38,7 @@ enum FamilyHistoryStatus {
   }
 
   String toJson() => toString();
-  FamilyHistoryStatus fromString(String str) {
+  static FamilyHistoryStatus fromString(String str) {
     switch (str) {
       case 'partial':
         return FamilyHistoryStatus.partial;
@@ -53,7 +53,7 @@ enum FamilyHistoryStatus {
     }
   }
 
-  FamilyHistoryStatus fromJson(dynamic jsonValue) {
+  static FamilyHistoryStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

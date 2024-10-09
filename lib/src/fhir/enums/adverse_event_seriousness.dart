@@ -66,7 +66,7 @@ enum AdverseEventSeriousness {
   }
 
   String toJson() => toString();
-  AdverseEventSeriousness fromString(String str) {
+  static AdverseEventSeriousness fromString(String str) {
     switch (str) {
       case 'Non-serious':
         return AdverseEventSeriousness.Non_serious;
@@ -89,7 +89,7 @@ enum AdverseEventSeriousness {
     }
   }
 
-  AdverseEventSeriousness fromJson(dynamic jsonValue) {
+  static AdverseEventSeriousness fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

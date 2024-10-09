@@ -52,7 +52,7 @@ enum Status {
   }
 
   String toJson() => toString();
-  Status fromString(String str) {
+  static Status fromString(String str) {
     switch (str) {
       case 'attested':
         return Status.attested;
@@ -71,7 +71,7 @@ enum Status {
     }
   }
 
-  Status fromJson(dynamic jsonValue) {
+  static Status fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

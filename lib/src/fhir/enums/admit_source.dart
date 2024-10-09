@@ -80,7 +80,7 @@ enum AdmitSource {
   }
 
   String toJson() => toString();
-  AdmitSource fromString(String str) {
+  static AdmitSource fromString(String str) {
     switch (str) {
       case 'hosp-trans':
         return AdmitSource.hosp_trans;
@@ -107,7 +107,7 @@ enum AdmitSource {
     }
   }
 
-  AdmitSource fromJson(dynamic jsonValue) {
+  static AdmitSource fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

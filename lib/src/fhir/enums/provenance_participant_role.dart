@@ -80,7 +80,7 @@ enum ProvenanceParticipantRole {
   }
 
   String toJson() => toString();
-  ProvenanceParticipantRole fromString(String str) {
+  static ProvenanceParticipantRole fromString(String str) {
     switch (str) {
       case 'enterer':
         return ProvenanceParticipantRole.enterer;
@@ -107,7 +107,7 @@ enum ProvenanceParticipantRole {
     }
   }
 
-  ProvenanceParticipantRole fromJson(dynamic jsonValue) {
+  static ProvenanceParticipantRole fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

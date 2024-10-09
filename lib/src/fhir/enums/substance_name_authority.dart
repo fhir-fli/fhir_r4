@@ -100,7 +100,7 @@ enum SubstanceNameAuthority {
   }
 
   String toJson() => toString();
-  SubstanceNameAuthority fromString(String str) {
+  static SubstanceNameAuthority fromString(String str) {
     switch (str) {
       case 'BAN':
         return SubstanceNameAuthority.BAN;
@@ -137,7 +137,7 @@ enum SubstanceNameAuthority {
     }
   }
 
-  SubstanceNameAuthority fromJson(dynamic jsonValue) {
+  static SubstanceNameAuthority fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

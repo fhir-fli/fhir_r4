@@ -94,7 +94,7 @@ enum SearchModifierCode {
   }
 
   String toJson() => toString();
-  SearchModifierCode fromString(String str) {
+  static SearchModifierCode fromString(String str) {
     switch (str) {
       case 'missing':
         return SearchModifierCode.missing;
@@ -125,7 +125,7 @@ enum SearchModifierCode {
     }
   }
 
-  SearchModifierCode fromJson(dynamic jsonValue) {
+  static SearchModifierCode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

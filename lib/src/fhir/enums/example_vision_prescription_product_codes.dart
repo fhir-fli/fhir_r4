@@ -24,7 +24,7 @@ enum ExampleVisionPrescriptionProductCodes {
   }
 
   String toJson() => toString();
-  ExampleVisionPrescriptionProductCodes fromString(String str) {
+  static ExampleVisionPrescriptionProductCodes fromString(String str) {
     switch (str) {
       case 'lens':
         return ExampleVisionPrescriptionProductCodes.lens;
@@ -35,7 +35,7 @@ enum ExampleVisionPrescriptionProductCodes {
     }
   }
 
-  ExampleVisionPrescriptionProductCodes fromJson(dynamic jsonValue) {
+  static ExampleVisionPrescriptionProductCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

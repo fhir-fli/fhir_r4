@@ -73,7 +73,7 @@ enum GoalLifecycleStatus {
   }
 
   String toJson() => toString();
-  GoalLifecycleStatus fromString(String str) {
+  static GoalLifecycleStatus fromString(String str) {
     switch (str) {
       case 'proposed':
         return GoalLifecycleStatus.proposed;
@@ -98,7 +98,7 @@ enum GoalLifecycleStatus {
     }
   }
 
-  GoalLifecycleStatus fromJson(dynamic jsonValue) {
+  static GoalLifecycleStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

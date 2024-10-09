@@ -73,7 +73,7 @@ enum FilterOperator {
   }
 
   String toJson() => toString();
-  FilterOperator fromString(String str) {
+  static FilterOperator fromString(String str) {
     switch (str) {
       case '=':
         return FilterOperator.equals;
@@ -98,7 +98,7 @@ enum FilterOperator {
     }
   }
 
-  FilterOperator fromJson(dynamic jsonValue) {
+  static FilterOperator fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

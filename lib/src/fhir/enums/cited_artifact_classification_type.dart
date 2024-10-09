@@ -87,7 +87,7 @@ enum CitedArtifactClassificationType {
   }
 
   String toJson() => toString();
-  CitedArtifactClassificationType fromString(String str) {
+  static CitedArtifactClassificationType fromString(String str) {
     switch (str) {
       case 'publication-type':
         return CitedArtifactClassificationType.publication_type;
@@ -116,7 +116,7 @@ enum CitedArtifactClassificationType {
     }
   }
 
-  CitedArtifactClassificationType fromJson(dynamic jsonValue) {
+  static CitedArtifactClassificationType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -24,7 +24,7 @@ enum OperationKind {
   }
 
   String toJson() => toString();
-  OperationKind fromString(String str) {
+  static OperationKind fromString(String str) {
     switch (str) {
       case 'operation':
         return OperationKind.operation;
@@ -35,7 +35,7 @@ enum OperationKind {
     }
   }
 
-  OperationKind fromJson(dynamic jsonValue) {
+  static OperationKind fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

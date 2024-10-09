@@ -52,7 +52,7 @@ enum ModifierTypeCodes {
   }
 
   String toJson() => toString();
-  ModifierTypeCodes fromString(String str) {
+  static ModifierTypeCodes fromString(String str) {
     switch (str) {
       case 'a':
         return ModifierTypeCodes.a;
@@ -71,7 +71,7 @@ enum ModifierTypeCodes {
     }
   }
 
-  ModifierTypeCodes fromJson(dynamic jsonValue) {
+  static ModifierTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

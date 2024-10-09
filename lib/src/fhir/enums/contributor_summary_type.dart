@@ -59,7 +59,7 @@ enum ContributorSummaryType {
   }
 
   String toJson() => toString();
-  ContributorSummaryType fromString(String str) {
+  static ContributorSummaryType fromString(String str) {
     switch (str) {
       case 'author-string':
         return ContributorSummaryType.author_string;
@@ -80,7 +80,7 @@ enum ContributorSummaryType {
     }
   }
 
-  ContributorSummaryType fromJson(dynamic jsonValue) {
+  static ContributorSummaryType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

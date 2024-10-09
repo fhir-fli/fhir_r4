@@ -24,7 +24,7 @@ enum StructureMapContextType {
   }
 
   String toJson() => toString();
-  StructureMapContextType fromString(String str) {
+  static StructureMapContextType fromString(String str) {
     switch (str) {
       case 'type':
         return StructureMapContextType.type;
@@ -35,7 +35,7 @@ enum StructureMapContextType {
     }
   }
 
-  StructureMapContextType fromJson(dynamic jsonValue) {
+  static StructureMapContextType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

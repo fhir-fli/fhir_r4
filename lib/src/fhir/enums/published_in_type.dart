@@ -38,7 +38,7 @@ enum PublishedInType {
   }
 
   String toJson() => toString();
-  PublishedInType fromString(String str) {
+  static PublishedInType fromString(String str) {
     switch (str) {
       case 'D020492':
         return PublishedInType.D020492;
@@ -53,7 +53,7 @@ enum PublishedInType {
     }
   }
 
-  PublishedInType fromJson(dynamic jsonValue) {
+  static PublishedInType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

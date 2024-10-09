@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'research_subject.g.dart';
-
 /// [ResearchSubject] /// A physical entity which is the primary unit of operational and/or
 /// administrative interest in a study.
 @JsonSerializable()
@@ -39,8 +37,6 @@ class ResearchSubject extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.ResearchSubject);
   @override
   String get fhirType => 'ResearchSubject';
@@ -87,12 +83,135 @@ class ResearchSubject extends DomainResource {
   /// [consent] /// A record of the patient's informed agreement to participate in the study.
   @JsonKey(name: 'consent')
   final Reference? consent;
-  factory ResearchSubject.fromJson(Map<String, dynamic> json) =>
-      _$ResearchSubjectFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ResearchSubjectToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    json['status'] = status.toJson();
+    if (period != null) {
+      json['period'] = period!.toJson();
+    }
+    json['study'] = study.toJson();
+    json['individual'] = individual.toJson();
+    if (assignedArm?.value != null) {
+      json['assignedArm'] = assignedArm!.value;
+    }
+    if (assignedArmElement != null) {
+      json['_assignedArm'] = assignedArmElement!.toJson();
+    }
+    if (actualArm?.value != null) {
+      json['actualArm'] = actualArm!.value;
+    }
+    if (actualArmElement != null) {
+      json['_actualArm'] = actualArmElement!.toJson();
+    }
+    if (consent != null) {
+      json['consent'] = consent!.toJson();
+    }
+    return json;
+  }
 
+  factory ResearchSubject.fromJson(Map<String, dynamic> json) {
+    return ResearchSubject(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      status: ResearchSubjectStatus.fromJson(
+          json['status'] as Map<String, dynamic>),
+      period: json['period'] != null
+          ? Period.fromJson(json['period'] as Map<String, dynamic>)
+          : null,
+      study: Reference.fromJson(json['study'] as Map<String, dynamic>),
+      individual:
+          Reference.fromJson(json['individual'] as Map<String, dynamic>),
+      assignedArm:
+          json['assignedArm'] != null ? FhirString(json['assignedArm']) : null,
+      assignedArmElement: json['_assignedArm'] != null
+          ? Element.fromJson(json['_assignedArm'] as Map<String, dynamic>)
+          : null,
+      actualArm:
+          json['actualArm'] != null ? FhirString(json['actualArm']) : null,
+      actualArmElement: json['_actualArm'] != null
+          ? Element.fromJson(json['_actualArm'] as Map<String, dynamic>)
+          : null,
+      consent: json['consent'] != null
+          ? Reference.fromJson(json['consent'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   ResearchSubject clone() => throw UnimplementedError();
   @override

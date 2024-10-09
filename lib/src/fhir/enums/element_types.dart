@@ -52,7 +52,7 @@ enum ElementTypes {
   }
 
   String toJson() => toString();
-  ElementTypes fromString(String str) {
+  static ElementTypes fromString(String str) {
     switch (str) {
       case 'http://hl7.org/fhirpath/System.String':
         return ElementTypes.hl7_org_fhirpath_System_String;
@@ -73,7 +73,7 @@ enum ElementTypes {
     }
   }
 
-  ElementTypes fromJson(dynamic jsonValue) {
+  static ElementTypes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

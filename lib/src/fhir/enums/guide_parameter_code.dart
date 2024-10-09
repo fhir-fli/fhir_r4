@@ -80,7 +80,7 @@ enum GuideParameterCode {
   }
 
   String toJson() => toString();
-  GuideParameterCode fromString(String str) {
+  static GuideParameterCode fromString(String str) {
     switch (str) {
       case 'apply':
         return GuideParameterCode.apply;
@@ -107,7 +107,7 @@ enum GuideParameterCode {
     }
   }
 
-  GuideParameterCode fromJson(dynamic jsonValue) {
+  static GuideParameterCode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

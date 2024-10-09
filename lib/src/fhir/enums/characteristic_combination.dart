@@ -24,7 +24,7 @@ enum CharacteristicCombination {
   }
 
   String toJson() => toString();
-  CharacteristicCombination fromString(String str) {
+  static CharacteristicCombination fromString(String str) {
     switch (str) {
       case 'intersection':
         return CharacteristicCombination.intersection;
@@ -35,7 +35,7 @@ enum CharacteristicCombination {
     }
   }
 
-  CharacteristicCombination fromJson(dynamic jsonValue) {
+  static CharacteristicCombination fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

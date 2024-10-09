@@ -59,7 +59,7 @@ enum DaysOfWeek {
   }
 
   String toJson() => toString();
-  DaysOfWeek fromString(String str) {
+  static DaysOfWeek fromString(String str) {
     switch (str) {
       case 'mon':
         return DaysOfWeek.mon;
@@ -80,7 +80,7 @@ enum DaysOfWeek {
     }
   }
 
-  DaysOfWeek fromJson(dynamic jsonValue) {
+  static DaysOfWeek fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -31,7 +31,7 @@ enum MessageTransport {
   }
 
   String toJson() => toString();
-  MessageTransport fromString(String str) {
+  static MessageTransport fromString(String str) {
     switch (str) {
       case 'http':
         return MessageTransport.http;
@@ -44,7 +44,7 @@ enum MessageTransport {
     }
   }
 
-  MessageTransport fromJson(dynamic jsonValue) {
+  static MessageTransport fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

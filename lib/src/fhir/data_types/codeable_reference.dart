@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'codeable_reference.g.dart';
-
 /// [CodeableReference] /// A reference to a resource (by instance), or instead, a reference to a
 /// concept defined in a terminology or ontology (by class).
 @JsonSerializable()
@@ -38,12 +36,44 @@ class CodeableReference extends DataType {
   /// being referenced.
   @JsonKey(name: 'reference')
   final Reference? reference;
-  factory CodeableReference.fromJson(Map<String, dynamic> json) =>
-      _$CodeableReferenceFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$CodeableReferenceToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (concept != null) {
+      json['concept'] = concept!.toJson();
+    }
+    if (reference != null) {
+      json['reference'] = reference!.toJson();
+    }
+    return json;
+  }
 
+  factory CodeableReference.fromJson(Map<String, dynamic> json) {
+    return CodeableReference(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      concept: json['concept'] != null
+          ? CodeableConcept.fromJson(json['concept'] as Map<String, dynamic>)
+          : null,
+      reference: json['reference'] != null
+          ? Reference.fromJson(json['reference'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   CodeableReference clone() => throw UnimplementedError();
   @override

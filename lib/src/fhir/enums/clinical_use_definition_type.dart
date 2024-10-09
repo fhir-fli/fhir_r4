@@ -45,7 +45,7 @@ enum ClinicalUseDefinitionType {
   }
 
   String toJson() => toString();
-  ClinicalUseDefinitionType fromString(String str) {
+  static ClinicalUseDefinitionType fromString(String str) {
     switch (str) {
       case 'indication':
         return ClinicalUseDefinitionType.indication;
@@ -62,7 +62,7 @@ enum ClinicalUseDefinitionType {
     }
   }
 
-  ClinicalUseDefinitionType fromJson(dynamic jsonValue) {
+  static ClinicalUseDefinitionType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

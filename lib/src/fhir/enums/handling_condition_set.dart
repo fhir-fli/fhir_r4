@@ -31,7 +31,7 @@ enum HandlingConditionSet {
   }
 
   String toJson() => toString();
-  HandlingConditionSet fromString(String str) {
+  static HandlingConditionSet fromString(String str) {
     switch (str) {
       case 'room':
         return HandlingConditionSet.room;
@@ -44,7 +44,7 @@ enum HandlingConditionSet {
     }
   }
 
-  HandlingConditionSet fromJson(dynamic jsonValue) {
+  static HandlingConditionSet fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

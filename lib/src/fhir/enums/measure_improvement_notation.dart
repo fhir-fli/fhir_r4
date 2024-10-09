@@ -24,7 +24,7 @@ enum MeasureImprovementNotation {
   }
 
   String toJson() => toString();
-  MeasureImprovementNotation fromString(String str) {
+  static MeasureImprovementNotation fromString(String str) {
     switch (str) {
       case 'increase':
         return MeasureImprovementNotation.increase;
@@ -35,7 +35,7 @@ enum MeasureImprovementNotation {
     }
   }
 
-  MeasureImprovementNotation fromJson(dynamic jsonValue) {
+  static MeasureImprovementNotation fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -38,7 +38,7 @@ enum MedicationRequestCategoryCodes {
   }
 
   String toJson() => toString();
-  MedicationRequestCategoryCodes fromString(String str) {
+  static MedicationRequestCategoryCodes fromString(String str) {
     switch (str) {
       case 'inpatient':
         return MedicationRequestCategoryCodes.inpatient;
@@ -53,7 +53,7 @@ enum MedicationRequestCategoryCodes {
     }
   }
 
-  MedicationRequestCategoryCodes fromJson(dynamic jsonValue) {
+  static MedicationRequestCategoryCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

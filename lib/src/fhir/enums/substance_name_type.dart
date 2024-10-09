@@ -28,7 +28,7 @@ enum SubstanceNameType {
   }
 
   String toJson() => toString();
-  SubstanceNameType fromString(String str) {
+  static SubstanceNameType fromString(String str) {
     switch (str) {
       case 'Systematic':
         return SubstanceNameType.Systematic;
@@ -41,7 +41,7 @@ enum SubstanceNameType {
     }
   }
 
-  SubstanceNameType fromJson(dynamic jsonValue) {
+  static SubstanceNameType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

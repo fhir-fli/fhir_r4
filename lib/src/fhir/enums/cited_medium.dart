@@ -52,7 +52,7 @@ enum CitedMedium {
   }
 
   String toJson() => toString();
-  CitedMedium fromString(String str) {
+  static CitedMedium fromString(String str) {
     switch (str) {
       case 'internet':
         return CitedMedium.internet;
@@ -71,7 +71,7 @@ enum CitedMedium {
     }
   }
 
-  CitedMedium fromJson(dynamic jsonValue) {
+  static CitedMedium fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

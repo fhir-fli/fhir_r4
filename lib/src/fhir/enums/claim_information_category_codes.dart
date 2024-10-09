@@ -108,7 +108,7 @@ enum ClaimInformationCategoryCodes {
   }
 
   String toJson() => toString();
-  ClaimInformationCategoryCodes fromString(String str) {
+  static ClaimInformationCategoryCodes fromString(String str) {
     switch (str) {
       case 'info':
         return ClaimInformationCategoryCodes.info;
@@ -143,7 +143,7 @@ enum ClaimInformationCategoryCodes {
     }
   }
 
-  ClaimInformationCategoryCodes fromJson(dynamic jsonValue) {
+  static ClaimInformationCategoryCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

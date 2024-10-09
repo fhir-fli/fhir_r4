@@ -59,7 +59,7 @@ enum NameUse {
   }
 
   String toJson() => toString();
-  NameUse fromString(String str) {
+  static NameUse fromString(String str) {
     switch (str) {
       case 'usual':
         return NameUse.usual;
@@ -80,7 +80,7 @@ enum NameUse {
     }
   }
 
-  NameUse fromJson(dynamic jsonValue) {
+  static NameUse fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

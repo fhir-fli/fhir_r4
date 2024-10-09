@@ -34,7 +34,7 @@ enum InteractionType {
   }
 
   String toJson() => toString();
-  InteractionType fromString(String str) {
+  static InteractionType fromString(String str) {
     switch (str) {
       case 'drug-drug':
         return InteractionType.drug_drug;
@@ -49,7 +49,7 @@ enum InteractionType {
     }
   }
 
-  InteractionType fromJson(dynamic jsonValue) {
+  static InteractionType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

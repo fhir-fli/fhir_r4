@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'message_definition.g.dart';
-
 /// [MessageDefinition] /// Defines the characteristics of a message that can be shared between
 /// systems, including the type of event that initiates the message, the
 /// content to be transmitted and what response(s), if any, are permitted.
@@ -72,8 +70,6 @@ class MessageDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-    // ignore: avoid_unused_constructor_parameters
-    R4ResourceType? resourceType,
   }) : super(resourceType: R4ResourceType.MessageDefinition);
   @override
   String get fhirType => 'MessageDefinition';
@@ -253,12 +249,344 @@ class MessageDefinition extends DomainResource {
   final List<FhirCanonical>? graph;
   @JsonKey(name: '_graph')
   final List<Element>? graphElement;
-  factory MessageDefinition.fromJson(Map<String, dynamic> json) =>
-      _$MessageDefinitionFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MessageDefinitionToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['resourceType'] = resourceType.toJson();
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (meta != null) {
+      json['meta'] = meta!.toJson();
+    }
+    if (implicitRules?.value != null) {
+      json['implicitRules'] = implicitRules!.value;
+    }
+    if (implicitRulesElement != null) {
+      json['_implicitRules'] = implicitRulesElement!.toJson();
+    }
+    if (language != null) {
+      json['language'] = language!.toJson();
+    }
+    if (text != null) {
+      json['text'] = text!.toJson();
+    }
+    if (contained != null && contained!.isNotEmpty) {
+      json['contained'] =
+          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    if (url?.value != null) {
+      json['url'] = url!.value;
+    }
+    if (urlElement != null) {
+      json['_url'] = urlElement!.toJson();
+    }
+    if (identifier != null && identifier!.isNotEmpty) {
+      json['identifier'] =
+          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+    }
+    if (version?.value != null) {
+      json['version'] = version!.value;
+    }
+    if (versionElement != null) {
+      json['_version'] = versionElement!.toJson();
+    }
+    if (name?.value != null) {
+      json['name'] = name!.value;
+    }
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    if (title?.value != null) {
+      json['title'] = title!.value;
+    }
+    if (titleElement != null) {
+      json['_title'] = titleElement!.toJson();
+    }
+    if (replaces != null && replaces!.isNotEmpty) {
+      json['replaces'] = replaces!.map((FhirCanonical v) => v.value).toList();
+    }
+    if (replacesElement != null && replacesElement!.isNotEmpty) {
+      json['_replaces'] =
+          replacesElement!.map((Element v) => v.toJson()).toList();
+    }
+    json['status'] = status.toJson();
+    if (experimental?.value != null) {
+      json['experimental'] = experimental!.value;
+    }
+    if (experimentalElement != null) {
+      json['_experimental'] = experimentalElement!.toJson();
+    }
+    json['date'] = date.value;
+    if (dateElement != null) {
+      json['_date'] = dateElement!.toJson();
+    }
+    if (publisher?.value != null) {
+      json['publisher'] = publisher!.value;
+    }
+    if (publisherElement != null) {
+      json['_publisher'] = publisherElement!.toJson();
+    }
+    if (contact != null && contact!.isNotEmpty) {
+      json['contact'] =
+          contact!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+    }
+    if (description?.value != null) {
+      json['description'] = description!.value;
+    }
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    if (useContext != null && useContext!.isNotEmpty) {
+      json['useContext'] =
+          useContext!.map<dynamic>((UsageContext v) => v.toJson()).toList();
+    }
+    if (jurisdiction != null && jurisdiction!.isNotEmpty) {
+      json['jurisdiction'] = jurisdiction!
+          .map<dynamic>((CodeableConcept v) => v.toJson())
+          .toList();
+    }
+    if (purpose?.value != null) {
+      json['purpose'] = purpose!.value;
+    }
+    if (purposeElement != null) {
+      json['_purpose'] = purposeElement!.toJson();
+    }
+    if (copyright?.value != null) {
+      json['copyright'] = copyright!.value;
+    }
+    if (copyrightElement != null) {
+      json['_copyright'] = copyrightElement!.toJson();
+    }
+    if (base?.value != null) {
+      json['base'] = base!.value;
+    }
+    if (baseElement != null) {
+      json['_base'] = baseElement!.toJson();
+    }
+    if (parent != null && parent!.isNotEmpty) {
+      json['parent'] = parent!.map((FhirCanonical v) => v.value).toList();
+    }
+    if (parentElement != null && parentElement!.isNotEmpty) {
+      json['_parent'] = parentElement!.map((Element v) => v.toJson()).toList();
+    }
+    if (eventCoding != null) {
+      json['eventCoding'] = eventCoding!.toJson();
+    }
+    if (eventUri?.value != null) {
+      json['eventUri'] = eventUri!.value;
+    }
+    if (eventUriElement != null) {
+      json['_eventUri'] = eventUriElement!.toJson();
+    }
+    if (category != null) {
+      json['category'] = category!.toJson();
+    }
+    if (focus != null && focus!.isNotEmpty) {
+      json['focus'] = focus!
+          .map<dynamic>((MessageDefinitionFocus v) => v.toJson())
+          .toList();
+    }
+    if (responseRequired != null) {
+      json['responseRequired'] = responseRequired!.toJson();
+    }
+    if (allowedResponse != null && allowedResponse!.isNotEmpty) {
+      json['allowedResponse'] = allowedResponse!
+          .map<dynamic>((MessageDefinitionAllowedResponse v) => v.toJson())
+          .toList();
+    }
+    if (graph != null && graph!.isNotEmpty) {
+      json['graph'] = graph!.map((FhirCanonical v) => v.value).toList();
+    }
+    if (graphElement != null && graphElement!.isNotEmpty) {
+      json['_graph'] = graphElement!.map((Element v) => v.toJson()).toList();
+    }
+    return json;
+  }
 
+  factory MessageDefinition.fromJson(Map<String, dynamic> json) {
+    return MessageDefinition(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
+          : null,
+      implicitRules:
+          json['implicitRules'] != null ? FhirUri(json['implicitRules']) : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      url: json['url'] != null ? FhirUri(json['url']) : null,
+      urlElement: json['_url'] != null
+          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      version: json['version'] != null ? FhirString(json['version']) : null,
+      versionElement: json['_version'] != null
+          ? Element.fromJson(json['_version'] as Map<String, dynamic>)
+          : null,
+      name: json['name'] != null ? FhirString(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
+      title: json['title'] != null ? FhirString(json['title']) : null,
+      titleElement: json['_title'] != null
+          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
+          : null,
+      replaces: json['replaces'] != null
+          ? (json['replaces'] as List<dynamic>)
+              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .toList()
+          : null,
+      replacesElement: json['_replaces'] != null
+          ? (json['_replaces'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      status:
+          PublicationStatus.fromJson(json['status'] as Map<String, dynamic>),
+      experimental: json['experimental'] != null
+          ? FhirBoolean(json['experimental'])
+          : null,
+      experimentalElement: json['_experimental'] != null
+          ? Element.fromJson(json['_experimental'] as Map<String, dynamic>)
+          : null,
+      date: FhirDateTime(json['date']),
+      dateElement: Element.fromJson(json['_date'] as Map<String, dynamic>),
+      publisher:
+          json['publisher'] != null ? FhirString(json['publisher']) : null,
+      publisherElement: json['_publisher'] != null
+          ? Element.fromJson(json['_publisher'] as Map<String, dynamic>)
+          : null,
+      contact: json['contact'] != null
+          ? (json['contact'] as List<dynamic>)
+              .map<ContactDetail>((dynamic v) =>
+                  ContactDetail.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      description: json['description'] != null
+          ? FhirMarkdown(json['description'])
+          : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
+      useContext: json['useContext'] != null
+          ? (json['useContext'] as List<dynamic>)
+              .map<UsageContext>((dynamic v) =>
+                  UsageContext.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      jurisdiction: json['jurisdiction'] != null
+          ? (json['jurisdiction'] as List<dynamic>)
+              .map<CodeableConcept>((dynamic v) =>
+                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      purpose: json['purpose'] != null ? FhirMarkdown(json['purpose']) : null,
+      purposeElement: json['_purpose'] != null
+          ? Element.fromJson(json['_purpose'] as Map<String, dynamic>)
+          : null,
+      copyright:
+          json['copyright'] != null ? FhirMarkdown(json['copyright']) : null,
+      copyrightElement: json['_copyright'] != null
+          ? Element.fromJson(json['_copyright'] as Map<String, dynamic>)
+          : null,
+      base: json['base'] != null ? FhirCanonical(json['base']) : null,
+      baseElement: json['_base'] != null
+          ? Element.fromJson(json['_base'] as Map<String, dynamic>)
+          : null,
+      parent: json['parent'] != null
+          ? (json['parent'] as List<dynamic>)
+              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .toList()
+          : null,
+      parentElement: json['_parent'] != null
+          ? (json['_parent'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      eventCoding: json['eventCoding'] != null
+          ? Coding.fromJson(json['eventCoding'] as Map<String, dynamic>)
+          : null,
+      eventUri: json['eventUri'] != null ? FhirUri(json['eventUri']) : null,
+      eventUriElement: json['_eventUri'] != null
+          ? Element.fromJson(json['_eventUri'] as Map<String, dynamic>)
+          : null,
+      category: json['category'] != null
+          ? MessageSignificanceCategory.fromJson(
+              json['category'] as Map<String, dynamic>)
+          : null,
+      focus: json['focus'] != null
+          ? (json['focus'] as List<dynamic>)
+              .map<MessageDefinitionFocus>((dynamic v) =>
+                  MessageDefinitionFocus.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      responseRequired: json['responseRequired'] != null
+          ? MessageheaderResponseRequest.fromJson(
+              json['responseRequired'] as Map<String, dynamic>)
+          : null,
+      allowedResponse: json['allowedResponse'] != null
+          ? (json['allowedResponse'] as List<dynamic>)
+              .map<MessageDefinitionAllowedResponse>((dynamic v) =>
+                  MessageDefinitionAllowedResponse.fromJson(
+                      v as Map<String, dynamic>))
+              .toList()
+          : null,
+      graph: json['graph'] != null
+          ? (json['graph'] as List<dynamic>)
+              .map<FhirCanonical>((dynamic v) => FhirCanonical(v))
+              .toList()
+          : null,
+      graphElement: json['_graph'] != null
+          ? (json['_graph'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+    );
+  }
   @override
   MessageDefinition clone() => throw UnimplementedError();
   @override
@@ -465,12 +793,75 @@ class MessageDefinitionFocus extends BackboneElement {
   final FhirString? max;
   @JsonKey(name: '_max')
   final Element? maxElement;
-  factory MessageDefinitionFocus.fromJson(Map<String, dynamic> json) =>
-      _$MessageDefinitionFocusFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MessageDefinitionFocusToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['code'] = code.value;
+    if (codeElement != null) {
+      json['_code'] = codeElement!.toJson();
+    }
+    if (profile?.value != null) {
+      json['profile'] = profile!.value;
+    }
+    if (profileElement != null) {
+      json['_profile'] = profileElement!.toJson();
+    }
+    json['min'] = min.value;
+    if (minElement != null) {
+      json['_min'] = minElement!.toJson();
+    }
+    if (max?.value != null) {
+      json['max'] = max!.value;
+    }
+    if (maxElement != null) {
+      json['_max'] = maxElement!.toJson();
+    }
+    return json;
+  }
 
+  factory MessageDefinitionFocus.fromJson(Map<String, dynamic> json) {
+    return MessageDefinitionFocus(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      code: FhirCode(json['code']),
+      codeElement: Element.fromJson(json['_code'] as Map<String, dynamic>),
+      profile: json['profile'] != null ? FhirCanonical(json['profile']) : null,
+      profileElement: json['_profile'] != null
+          ? Element.fromJson(json['_profile'] as Map<String, dynamic>)
+          : null,
+      min: FhirUnsignedInt(json['min']),
+      minElement: Element.fromJson(json['_min'] as Map<String, dynamic>),
+      max: json['max'] != null ? FhirString(json['max']) : null,
+      maxElement: json['_max'] != null
+          ? Element.fromJson(json['_max'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   MessageDefinitionFocus clone() => throw UnimplementedError();
   @override
@@ -572,14 +963,61 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
   final FhirMarkdown? situation;
   @JsonKey(name: '_situation')
   final Element? situationElement;
-  factory MessageDefinitionAllowedResponse.fromJson(
-          Map<String, dynamic> json) =>
-      _$MessageDefinitionAllowedResponseFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() =>
-      _$MessageDefinitionAllowedResponseToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] = modifierExtension!
+          .map<dynamic>((FhirExtension v) => v.toJson())
+          .toList();
+    }
+    json['message'] = message.value;
+    if (messageElement != null) {
+      json['_message'] = messageElement!.toJson();
+    }
+    if (situation?.value != null) {
+      json['situation'] = situation!.value;
+    }
+    if (situationElement != null) {
+      json['_situation'] = situationElement!.toJson();
+    }
+    return json;
+  }
 
+  factory MessageDefinitionAllowedResponse.fromJson(Map<String, dynamic> json) {
+    return MessageDefinitionAllowedResponse(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      message: FhirCanonical(json['message']),
+      messageElement:
+          Element.fromJson(json['_message'] as Map<String, dynamic>),
+      situation:
+          json['situation'] != null ? FhirMarkdown(json['situation']) : null,
+      situationElement: json['_situation'] != null
+          ? Element.fromJson(json['_situation'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   MessageDefinitionAllowedResponse clone() => throw UnimplementedError();
   @override

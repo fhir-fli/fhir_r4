@@ -52,7 +52,7 @@ enum HTTPVerb {
   }
 
   String toJson() => toString();
-  HTTPVerb fromString(String str) {
+  static HTTPVerb fromString(String str) {
     switch (str) {
       case 'GET':
         return HTTPVerb.GET;
@@ -71,7 +71,7 @@ enum HTTPVerb {
     }
   }
 
-  HTTPVerb fromJson(dynamic jsonValue) {
+  static HTTPVerb fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

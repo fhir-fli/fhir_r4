@@ -40,7 +40,7 @@ enum StructureTechnique {
   }
 
   String toJson() => toString();
-  StructureTechnique fromString(String str) {
+  static StructureTechnique fromString(String str) {
     switch (str) {
       case 'X-Ray':
         return StructureTechnique.X_Ray;
@@ -57,7 +57,7 @@ enum StructureTechnique {
     }
   }
 
-  StructureTechnique fromJson(dynamic jsonValue) {
+  static StructureTechnique fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

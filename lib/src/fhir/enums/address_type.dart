@@ -31,7 +31,7 @@ enum AddressType {
   }
 
   String toJson() => toString();
-  AddressType fromString(String str) {
+  static AddressType fromString(String str) {
     switch (str) {
       case 'postal':
         return AddressType.postal;
@@ -44,7 +44,7 @@ enum AddressType {
     }
   }
 
-  AddressType fromJson(dynamic jsonValue) {
+  static AddressType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

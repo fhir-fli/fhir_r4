@@ -35,7 +35,7 @@ enum SpecialCourtesy {
   }
 
   String toJson() => toString();
-  SpecialCourtesy fromString(String str) {
+  static SpecialCourtesy fromString(String str) {
     switch (str) {
       case 'EXT':
         return SpecialCourtesy.EXT;
@@ -54,7 +54,7 @@ enum SpecialCourtesy {
     }
   }
 
-  SpecialCourtesy fromJson(dynamic jsonValue) {
+  static SpecialCourtesy fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

@@ -206,7 +206,7 @@ enum BenefitCategoryCodes {
   }
 
   String toJson() => toString();
-  BenefitCategoryCodes fromString(String str) {
+  static BenefitCategoryCodes fromString(String str) {
     switch (str) {
       case '1':
         return BenefitCategoryCodes.value1;
@@ -269,7 +269,7 @@ enum BenefitCategoryCodes {
     }
   }
 
-  BenefitCategoryCodes fromJson(dynamic jsonValue) {
+  static BenefitCategoryCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

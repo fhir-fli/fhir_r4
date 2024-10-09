@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'money.g.dart';
-
 /// [Money] /// An amount of economic utility in some recognized currency.
 @JsonSerializable()
 class Money extends DataType {
@@ -41,11 +39,52 @@ class Money extends DataType {
   final FhirCode? currency;
   @JsonKey(name: '_currency')
   final Element? currencyElement;
-  factory Money.fromJson(Map<String, dynamic> json) => _$MoneyFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$MoneyToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (value?.value != null) {
+      json['value'] = value!.value;
+    }
+    if (valueElement != null) {
+      json['_value'] = valueElement!.toJson();
+    }
+    if (currency?.value != null) {
+      json['currency'] = currency!.value;
+    }
+    if (currencyElement != null) {
+      json['_currency'] = currencyElement!.toJson();
+    }
+    return json;
+  }
 
+  factory Money.fromJson(Map<String, dynamic> json) {
+    return Money(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      value: json['value'] != null ? FhirDecimal(json['value']) : null,
+      valueElement: json['_value'] != null
+          ? Element.fromJson(json['_value'] as Map<String, dynamic>)
+          : null,
+      currency: json['currency'] != null ? FhirCode(json['currency']) : null,
+      currencyElement: json['_currency'] != null
+          ? Element.fromJson(json['_currency'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   Money clone() => throw UnimplementedError();
   @override

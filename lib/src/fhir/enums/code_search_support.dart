@@ -24,7 +24,7 @@ enum CodeSearchSupport {
   }
 
   String toJson() => toString();
-  CodeSearchSupport fromString(String str) {
+  static CodeSearchSupport fromString(String str) {
     switch (str) {
       case 'explicit':
         return CodeSearchSupport.explicit;
@@ -35,7 +35,7 @@ enum CodeSearchSupport {
     }
   }
 
-  CodeSearchSupport fromJson(dynamic jsonValue) {
+  static CodeSearchSupport fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

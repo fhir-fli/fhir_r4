@@ -115,7 +115,7 @@ enum SubscriptionSearchModifier {
   }
 
   String toJson() => toString();
-  SubscriptionSearchModifier fromString(String str) {
+  static SubscriptionSearchModifier fromString(String str) {
     switch (str) {
       case '=':
         return SubscriptionSearchModifier.equals;
@@ -152,7 +152,7 @@ enum SubscriptionSearchModifier {
     }
   }
 
-  SubscriptionSearchModifier fromJson(dynamic jsonValue) {
+  static SubscriptionSearchModifier fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

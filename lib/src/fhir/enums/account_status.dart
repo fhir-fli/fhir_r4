@@ -45,7 +45,7 @@ enum AccountStatus {
   }
 
   String toJson() => toString();
-  AccountStatus fromString(String str) {
+  static AccountStatus fromString(String str) {
     switch (str) {
       case 'active':
         return AccountStatus.active;
@@ -62,7 +62,7 @@ enum AccountStatus {
     }
   }
 
-  AccountStatus fromJson(dynamic jsonValue) {
+  static AccountStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
     } else {

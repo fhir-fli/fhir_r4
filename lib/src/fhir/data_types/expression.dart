@@ -5,8 +5,6 @@ import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-part 'expression.g.dart';
-
 /// [FhirExpression] /// A expression that is evaluated in a specified context and returns a value.
 /// The context of use of the expression must specify the context in which the
 /// expression is evaluated, and how the result of the expression is used.
@@ -69,12 +67,77 @@ class FhirExpression extends DataType {
   final FhirUri? reference;
   @JsonKey(name: '_reference')
   final Element? referenceElement;
-  factory FhirExpression.fromJson(Map<String, dynamic> json) =>
-      _$FhirExpressionFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$FhirExpressionToJson(this);
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+    }
+    if (description?.value != null) {
+      json['description'] = description!.value;
+    }
+    if (descriptionElement != null) {
+      json['_description'] = descriptionElement!.toJson();
+    }
+    if (name?.value != null) {
+      json['name'] = name!.value;
+    }
+    if (nameElement != null) {
+      json['_name'] = nameElement!.toJson();
+    }
+    json['language'] = language.toJson();
+    if (expression?.value != null) {
+      json['expression'] = expression!.value;
+    }
+    if (expressionElement != null) {
+      json['_expression'] = expressionElement!.toJson();
+    }
+    if (reference?.value != null) {
+      json['reference'] = reference!.value;
+    }
+    if (referenceElement != null) {
+      json['_reference'] = referenceElement!.toJson();
+    }
+    return json;
+  }
 
+  factory FhirExpression.fromJson(Map<String, dynamic> json) {
+    return FhirExpression(
+      id: json['id'] != null
+          ? FhirString.fromJson(json['id'] as Map<String, dynamic>)
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>((dynamic v) =>
+                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
+      description:
+          json['description'] != null ? FhirString(json['description']) : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
+      name: json['name'] != null ? FhirId(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
+      language:
+          ExpressionLanguage.fromJson(json['language'] as Map<String, dynamic>),
+      expression:
+          json['expression'] != null ? FhirString(json['expression']) : null,
+      expressionElement: json['_expression'] != null
+          ? Element.fromJson(json['_expression'] as Map<String, dynamic>)
+          : null,
+      reference: json['reference'] != null ? FhirUri(json['reference']) : null,
+      referenceElement: json['_reference'] != null
+          ? Element.fromJson(json['_reference'] as Map<String, dynamic>)
+          : null,
+    );
+  }
   @override
   FhirExpression clone() => throw UnimplementedError();
   @override
