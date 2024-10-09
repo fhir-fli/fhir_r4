@@ -243,8 +243,11 @@ const _$CommonLanguagesEnumMap = {
 const _$DiagnosticReportStatusEnumMap = {
   DiagnosticReportStatus.registered: 'registered',
   DiagnosticReportStatus.partial: 'partial',
+  DiagnosticReportStatus.preliminary: 'preliminary',
   DiagnosticReportStatus.final_: 'final',
   DiagnosticReportStatus.amended: 'amended',
+  DiagnosticReportStatus.corrected: 'corrected',
+  DiagnosticReportStatus.appended: 'appended',
   DiagnosticReportStatus.cancelled: 'cancelled',
   DiagnosticReportStatus.entered_in_error: 'entered-in-error',
   DiagnosticReportStatus.unknown: 'unknown',

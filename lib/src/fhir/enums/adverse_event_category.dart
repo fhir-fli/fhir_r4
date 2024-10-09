@@ -17,6 +17,46 @@ enum AdverseEventCategory {
   @JsonValue('product-use-error')
   product_use_error,
 
+  /// Display: Wrong Dose
+  /// Definition: The adverse event pertains to a wrong dose.
+  @JsonValue('wrong-dose')
+  wrong_dose,
+
+  /// Display: Incorrect Prescribing Information
+  /// Definition: The adverse event pertains to incorrect perscribing information.
+  @JsonValue('incorrect-prescribing-information')
+  incorrect_prescribing_information,
+
+  /// Display: Wrong Technique
+  /// Definition: The adverse event pertains to a wrong technique.
+  @JsonValue('wrong-technique')
+  wrong_technique,
+
+  /// Display: Wrong Route of Administration
+  /// Definition: The adverse event pertains to a wrong route of administration.
+  @JsonValue('wrong-route-of-administration')
+  wrong_route_of_administration,
+
+  /// Display: Wrong Rate
+  /// Definition: The adverse event pertains to a wrong rate.
+  @JsonValue('wrong-rate')
+  wrong_rate,
+
+  /// Display: Wrong Duration
+  /// Definition: The adverse event pertains to a wrong duration.
+  @JsonValue('wrong-duration')
+  wrong_duration,
+
+  /// Display: Wrong Time
+  /// Definition: The adverse event pertains to a wrong time.
+  @JsonValue('wrong-time')
+  wrong_time,
+
+  /// Display: Expired Drug
+  /// Definition: The adverse event pertains to an expired drug.
+  @JsonValue('expired-drug')
+  expired_drug,
+
   /// Display: Medical Device Use Error
   /// Definition: The adverse event pertains to a medical device use error.
   @JsonValue('medical-device-use-error')
@@ -42,6 +82,22 @@ enum AdverseEventCategory {
         return 'product-quality';
       case product_use_error:
         return 'product-use-error';
+      case wrong_dose:
+        return 'wrong-dose';
+      case incorrect_prescribing_information:
+        return 'incorrect-prescribing-information';
+      case wrong_technique:
+        return 'wrong-technique';
+      case wrong_route_of_administration:
+        return 'wrong-route-of-administration';
+      case wrong_rate:
+        return 'wrong-rate';
+      case wrong_duration:
+        return 'wrong-duration';
+      case wrong_time:
+        return 'wrong-time';
+      case expired_drug:
+        return 'expired-drug';
       case medical_device_use_error:
         return 'medical-device-use-error';
       case problem_different_manufacturer:
@@ -60,6 +116,22 @@ enum AdverseEventCategory {
         return AdverseEventCategory.product_quality;
       case 'product-use-error':
         return AdverseEventCategory.product_use_error;
+      case 'wrong-dose':
+        return AdverseEventCategory.wrong_dose;
+      case 'incorrect-prescribing-information':
+        return AdverseEventCategory.incorrect_prescribing_information;
+      case 'wrong-technique':
+        return AdverseEventCategory.wrong_technique;
+      case 'wrong-route-of-administration':
+        return AdverseEventCategory.wrong_route_of_administration;
+      case 'wrong-rate':
+        return AdverseEventCategory.wrong_rate;
+      case 'wrong-duration':
+        return AdverseEventCategory.wrong_duration;
+      case 'wrong-time':
+        return AdverseEventCategory.wrong_time;
+      case 'expired-drug':
+        return AdverseEventCategory.expired_drug;
       case 'medical-device-use-error':
         return AdverseEventCategory.medical_device_use_error;
       case 'problem-different-manufacturer':

@@ -12,6 +12,11 @@ enum DiagnosticReportStatus {
   @JsonValue('partial')
   partial,
 
+  /// Display: Preliminary
+  /// Definition: Verified early results are available, but not all  results are final.
+  @JsonValue('preliminary')
+  preliminary,
+
   /// Display: Final
   /// Definition: The report is complete and verified by an authorized person.
   @JsonValue('final')
@@ -21,6 +26,16 @@ enum DiagnosticReportStatus {
   /// Definition: Subsequent to being final, the report has been modified.  This includes any change in the results, diagnosis, narrative text, or other content of a report that has been issued.
   @JsonValue('amended')
   amended,
+
+  /// Display: Corrected
+  /// Definition: Subsequent to being final, the report has been modified  to correct an error in the report or referenced results.
+  @JsonValue('corrected')
+  corrected,
+
+  /// Display: Appended
+  /// Definition: Subsequent to being final, the report has been modified by adding new content. The existing content is unchanged.
+  @JsonValue('appended')
+  appended,
 
   /// Display: Cancelled
   /// Definition: The report is unavailable because the measurement was not started or not completed (also sometimes called "aborted").
@@ -45,10 +60,16 @@ enum DiagnosticReportStatus {
         return 'registered';
       case partial:
         return 'partial';
+      case preliminary:
+        return 'preliminary';
       case final_:
         return 'final';
       case amended:
         return 'amended';
+      case corrected:
+        return 'corrected';
+      case appended:
+        return 'appended';
       case cancelled:
         return 'cancelled';
       case entered_in_error:
@@ -65,10 +86,16 @@ enum DiagnosticReportStatus {
         return DiagnosticReportStatus.registered;
       case 'partial':
         return DiagnosticReportStatus.partial;
+      case 'preliminary':
+        return DiagnosticReportStatus.preliminary;
       case 'final':
         return DiagnosticReportStatus.final_;
       case 'amended':
         return DiagnosticReportStatus.amended;
+      case 'corrected':
+        return DiagnosticReportStatus.corrected;
+      case 'appended':
+        return DiagnosticReportStatus.appended;
       case 'cancelled':
         return DiagnosticReportStatus.cancelled;
       case 'entered-in-error':

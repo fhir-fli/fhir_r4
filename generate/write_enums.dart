@@ -77,8 +77,7 @@ List<Map<String, String>> _extractEnumValuesWithComments(
 
       for (final dynamic inclusion in include) {
         // Handle system reference in include
-        final String? systemUrl =
-            (inclusion as Map<String, dynamic>)['system'] as String?;
+        final String? systemUrl = inclusion['system'] as String?;
         if (systemUrl != null) {
           final Map<String, dynamic>? newCodings = codesAndVS[systemUrl];
 
@@ -141,22 +140,31 @@ List<Map<String, String>> _extractEnumValuesWithComments(
   return enumValuesWithComments;
 }
 
-// Extract enum values directly from CodeSystem with comments
 List<Map<String, String>> _extractEnumValuesFromCodeSystemWithComments(
     Map<String, dynamic> codeSystem) {
   final List<Map<String, String>> enumValuesWithComments =
       <Map<String, String>>[];
-  if (codeSystem.containsKey('concept')) {
-    final List<dynamic> concepts = codeSystem['concept'] as List<dynamic>;
+
+  void processConcepts(List<dynamic> concepts) {
     for (final dynamic concept in concepts) {
       final Map<String, String> conceptDetails = <String, String>{
         'code': (concept as Map<String, dynamic>)['code'] as String,
         'display': concept['display'] as String? ?? '',
-        'definition': concept['definition'] as String? ?? ''
+        'definition': concept['definition'] as String? ?? '',
       };
       enumValuesWithComments.add(conceptDetails);
+
+      // Recursively process nested concepts
+      if (concept.containsKey('concept')) {
+        processConcepts(concept['concept'] as List<dynamic>);
+      }
     }
   }
+
+  if (codeSystem.containsKey('concept')) {
+    processConcepts(codeSystem['concept'] as List<dynamic>);
+  }
+
   return enumValuesWithComments;
 }
 

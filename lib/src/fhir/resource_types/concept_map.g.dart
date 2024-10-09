@@ -663,7 +663,15 @@ Map<String, dynamic> _$ConceptMapTargetToJson(ConceptMapTarget instance) {
 
 const _$ConceptMapEquivalenceEnumMap = {
   ConceptMapEquivalence.relatedto: 'relatedto',
+  ConceptMapEquivalence.equivalent: 'equivalent',
+  ConceptMapEquivalence.equal: 'equal',
+  ConceptMapEquivalence.wider: 'wider',
+  ConceptMapEquivalence.subsumes: 'subsumes',
+  ConceptMapEquivalence.narrower: 'narrower',
+  ConceptMapEquivalence.specializes: 'specializes',
+  ConceptMapEquivalence.inexact: 'inexact',
   ConceptMapEquivalence.unmatched: 'unmatched',
+  ConceptMapEquivalence.disjoint: 'disjoint',
 };
 
 ConceptMapDependsOn _$ConceptMapDependsOnFromJson(Map<String, dynamic> json) =>

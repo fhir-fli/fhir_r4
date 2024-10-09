@@ -17,6 +17,21 @@ enum GoalLifecycleStatus {
   @JsonValue('accepted')
   accepted,
 
+  /// Display: Active
+  /// Definition: The goal is being sought actively.
+  @JsonValue('active')
+  active,
+
+  /// Display: On Hold
+  /// Definition: The goal remains a long term objective but is no longer being actively pursued for a temporary period of time.
+  @JsonValue('on-hold')
+  on_hold,
+
+  /// Display: Completed
+  /// Definition: The goal is no longer being sought.
+  @JsonValue('completed')
+  completed,
+
   /// Display: Cancelled
   /// Definition: The goal has been abandoned.
   @JsonValue('cancelled')
@@ -42,6 +57,12 @@ enum GoalLifecycleStatus {
         return 'planned';
       case accepted:
         return 'accepted';
+      case active:
+        return 'active';
+      case on_hold:
+        return 'on-hold';
+      case completed:
+        return 'completed';
       case cancelled:
         return 'cancelled';
       case entered_in_error:
@@ -60,6 +81,12 @@ enum GoalLifecycleStatus {
         return GoalLifecycleStatus.planned;
       case 'accepted':
         return GoalLifecycleStatus.accepted;
+      case 'active':
+        return GoalLifecycleStatus.active;
+      case 'on-hold':
+        return GoalLifecycleStatus.on_hold;
+      case 'completed':
+        return GoalLifecycleStatus.completed;
       case 'cancelled':
         return GoalLifecycleStatus.cancelled;
       case 'entered-in-error':

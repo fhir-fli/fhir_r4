@@ -11,6 +11,11 @@ enum AggregationMode {
   /// Definition: The reference to a resource that has to be resolved externally to the resource that includes the reference.
   @JsonValue('referenced')
   referenced,
+
+  /// Display: Bundled
+  /// Definition: The resource the reference points to will be found in the same bundle as the resource that includes the reference.
+  @JsonValue('bundled')
+  bundled,
   ;
 
   @override
@@ -20,6 +25,8 @@ enum AggregationMode {
         return 'contained';
       case referenced:
         return 'referenced';
+      case bundled:
+        return 'bundled';
     }
   }
 
@@ -30,6 +37,8 @@ enum AggregationMode {
         return AggregationMode.contained;
       case 'referenced':
         return AggregationMode.referenced;
+      case 'bundled':
+        return AggregationMode.bundled;
       default:
         throw ArgumentError('Unknown enum value: $str');
     }

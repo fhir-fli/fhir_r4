@@ -22,6 +22,11 @@ enum ObservationStatus {
   @JsonValue('amended')
   amended,
 
+  /// Display: Corrected
+  /// Definition: Subsequent to being Final, the observation has been modified to correct an error in the test result.
+  @JsonValue('corrected')
+  corrected,
+
   /// Display: Cancelled
   /// Definition: The observation is unavailable because the measurement was not started or not completed (also sometimes called "aborted").
   @JsonValue('cancelled')
@@ -49,6 +54,8 @@ enum ObservationStatus {
         return 'final';
       case amended:
         return 'amended';
+      case corrected:
+        return 'corrected';
       case cancelled:
         return 'cancelled';
       case entered_in_error:
@@ -69,6 +76,8 @@ enum ObservationStatus {
         return ObservationStatus.final_;
       case 'amended':
         return ObservationStatus.amended;
+      case 'corrected':
+        return ObservationStatus.corrected;
       case 'cancelled':
         return ObservationStatus.cancelled;
       case 'entered-in-error':

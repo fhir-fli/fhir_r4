@@ -97,6 +97,9 @@ const _$TriggerTypeEnumMap = {
   TriggerType.named_event: 'named-event',
   TriggerType.periodic: 'periodic',
   TriggerType.data_changed: 'data-changed',
+  TriggerType.data_added: 'data-added',
+  TriggerType.data_modified: 'data-modified',
+  TriggerType.data_removed: 'data-removed',
   TriggerType.data_accessed: 'data-accessed',
   TriggerType.data_access_ended: 'data-access-ended',
 };

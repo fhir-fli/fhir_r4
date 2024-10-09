@@ -22,6 +22,11 @@ enum ProvenanceParticipantRole {
   @JsonValue('verifier')
   verifier,
 
+  /// Display: Legal Authenticator
+  /// Definition: The person authenticated the content and accepted legal responsibility for its content
+  @JsonValue('legal')
+  legal,
+
   /// Display: Attester
   /// Definition: A verifier who attests to the accuracy of the resource
   @JsonValue('attester')
@@ -59,6 +64,8 @@ enum ProvenanceParticipantRole {
         return 'author';
       case verifier:
         return 'verifier';
+      case legal:
+        return 'legal';
       case attester:
         return 'attester';
       case informant:
@@ -83,6 +90,8 @@ enum ProvenanceParticipantRole {
         return ProvenanceParticipantRole.author;
       case 'verifier':
         return ProvenanceParticipantRole.verifier;
+      case 'legal':
+        return ProvenanceParticipantRole.legal;
       case 'attester':
         return ProvenanceParticipantRole.attester;
       case 'informant':

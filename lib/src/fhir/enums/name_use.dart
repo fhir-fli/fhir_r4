@@ -31,6 +31,11 @@ enum NameUse {
   /// Definition: This name is no longer in use (or was never correct, but retained for records).
   @JsonValue('old')
   old,
+
+  /// Display: Name changed for Marriage
+  /// Definition: A name used prior to changing name because of marriage. This name use is for use by applications that collect and store names that were used prior to a marriage. Marriage naming customs vary greatly around the world, and are constantly changing. This term is not gender specific. The use of this term does not imply any particular history for a person's name.
+  @JsonValue('maiden')
+  maiden,
   ;
 
   @override
@@ -48,6 +53,8 @@ enum NameUse {
         return 'anonymous';
       case old:
         return 'old';
+      case maiden:
+        return 'maiden';
     }
   }
 
@@ -66,6 +73,8 @@ enum NameUse {
         return NameUse.anonymous;
       case 'old':
         return NameUse.old;
+      case 'maiden':
+        return NameUse.maiden;
       default:
         throw ArgumentError('Unknown enum value: $str');
     }

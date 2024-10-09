@@ -15780,6 +15780,21 @@ enum AuditEventSubType {
   @JsonValue('history')
   history,
 
+  /// Display: history-instance
+  /// Definition: Retrieve the change history for a particular resource.
+  @JsonValue('history-instance')
+  history_instance,
+
+  /// Display: history-type
+  /// Definition: Retrieve the change history for all resources of a particular type.
+  @JsonValue('history-type')
+  history_type,
+
+  /// Display: history-system
+  /// Definition: Retrieve the change history for all resources on a system.
+  @JsonValue('history-system')
+  history_system,
+
   /// Display: create
   /// Definition: Create a new resource with a server assigned id.
   @JsonValue('create')
@@ -15789,6 +15804,16 @@ enum AuditEventSubType {
   /// Definition: Search a resource type or all resources based on some filter criteria.
   @JsonValue('search')
   search,
+
+  /// Display: search-type
+  /// Definition: Search all resources of the specified type based on some filter criteria.
+  @JsonValue('search-type')
+  search_type,
+
+  /// Display: search-system
+  /// Definition: Search all resources based on some filter criteria.
+  @JsonValue('search-system')
+  search_system,
 
   /// Display: capabilities
   /// Definition: Get a Capability Statement for the system.
@@ -22138,10 +22163,20 @@ enum AuditEventSubType {
         return 'delete';
       case history:
         return 'history';
+      case history_instance:
+        return 'history-instance';
+      case history_type:
+        return 'history-type';
+      case history_system:
+        return 'history-system';
       case create:
         return 'create';
       case search:
         return 'search';
+      case search_type:
+        return 'search-type';
+      case search_system:
+        return 'search-system';
       case capabilities:
         return 'capabilities';
       case transaction:
@@ -28480,10 +28515,20 @@ enum AuditEventSubType {
         return AuditEventSubType.delete;
       case 'history':
         return AuditEventSubType.history;
+      case 'history-instance':
+        return AuditEventSubType.history_instance;
+      case 'history-type':
+        return AuditEventSubType.history_type;
+      case 'history-system':
+        return AuditEventSubType.history_system;
       case 'create':
         return AuditEventSubType.create;
       case 'search':
         return AuditEventSubType.search;
+      case 'search-type':
+        return AuditEventSubType.search_type;
+      case 'search-system':
+        return AuditEventSubType.search_system;
       case 'capabilities':
         return AuditEventSubType.capabilities;
       case 'transaction':

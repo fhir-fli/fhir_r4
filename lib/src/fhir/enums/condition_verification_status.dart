@@ -7,6 +7,16 @@ enum ConditionVerificationStatus {
   @JsonValue('unconfirmed')
   unconfirmed,
 
+  /// Display: Provisional
+  /// Definition: This is a tentative diagnosis - still a candidate that is under consideration.
+  @JsonValue('provisional')
+  provisional,
+
+  /// Display: Differential
+  /// Definition: One of a set of potential (and typically mutually exclusive) diagnoses asserted to further guide the diagnostic process and preliminary treatment.
+  @JsonValue('differential')
+  differential,
+
   /// Display: Confirmed
   /// Definition: There is sufficient diagnostic and/or clinical evidence to treat this as a confirmed condition.
   @JsonValue('confirmed')
@@ -28,6 +38,10 @@ enum ConditionVerificationStatus {
     switch (this) {
       case unconfirmed:
         return 'unconfirmed';
+      case provisional:
+        return 'provisional';
+      case differential:
+        return 'differential';
       case confirmed:
         return 'confirmed';
       case refuted:
@@ -42,6 +56,10 @@ enum ConditionVerificationStatus {
     switch (str) {
       case 'unconfirmed':
         return ConditionVerificationStatus.unconfirmed;
+      case 'provisional':
+        return ConditionVerificationStatus.provisional;
+      case 'differential':
+        return ConditionVerificationStatus.differential;
       case 'confirmed':
         return ConditionVerificationStatus.confirmed;
       case 'refuted':

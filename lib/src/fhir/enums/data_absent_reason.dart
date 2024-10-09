@@ -7,6 +7,26 @@ enum DataAbsentReason {
   @JsonValue('unknown')
   unknown,
 
+  /// Display: Asked But Unknown
+  /// Definition: The source was asked but does not know the value.
+  @JsonValue('asked-unknown')
+  asked_unknown,
+
+  /// Display: Temporarily Unknown
+  /// Definition: There is reason to expect (from the workflow) that the value may become known.
+  @JsonValue('temp-unknown')
+  temp_unknown,
+
+  /// Display: Not Asked
+  /// Definition: The workflow didn't lead to this value being known.
+  @JsonValue('not-asked')
+  not_asked,
+
+  /// Display: Asked But Declined
+  /// Definition: The source was asked but declined to answer.
+  @JsonValue('asked-declined')
+  asked_declined,
+
   /// Display: Masked
   /// Definition: The information is not available due to security, privacy or related reasons.
   @JsonValue('masked')
@@ -32,6 +52,21 @@ enum DataAbsentReason {
   @JsonValue('error')
   error,
 
+  /// Display: Not a Number (NaN)
+  /// Definition: The numeric value is undefined or unrepresentable due to a floating point processing error.
+  @JsonValue('not-a-number')
+  not_a_number,
+
+  /// Display: Negative Infinity (NINF)
+  /// Definition: The numeric value is excessively low and unrepresentable due to a floating point processing error.
+  @JsonValue('negative-infinity')
+  negative_infinity,
+
+  /// Display: Positive Infinity (PINF)
+  /// Definition: The numeric value is excessively high and unrepresentable due to a floating point processing error.
+  @JsonValue('positive-infinity')
+  positive_infinity,
+
   /// Display: Not Performed
   /// Definition: The value is not available because the observation procedure (test, etc.) was not performed.
   @JsonValue('not-performed')
@@ -48,6 +83,14 @@ enum DataAbsentReason {
     switch (this) {
       case unknown:
         return 'unknown';
+      case asked_unknown:
+        return 'asked-unknown';
+      case temp_unknown:
+        return 'temp-unknown';
+      case not_asked:
+        return 'not-asked';
+      case asked_declined:
+        return 'asked-declined';
       case masked:
         return 'masked';
       case not_applicable:
@@ -58,6 +101,12 @@ enum DataAbsentReason {
         return 'as-text';
       case error:
         return 'error';
+      case not_a_number:
+        return 'not-a-number';
+      case negative_infinity:
+        return 'negative-infinity';
+      case positive_infinity:
+        return 'positive-infinity';
       case not_performed:
         return 'not-performed';
       case not_permitted:
@@ -70,6 +119,14 @@ enum DataAbsentReason {
     switch (str) {
       case 'unknown':
         return DataAbsentReason.unknown;
+      case 'asked-unknown':
+        return DataAbsentReason.asked_unknown;
+      case 'temp-unknown':
+        return DataAbsentReason.temp_unknown;
+      case 'not-asked':
+        return DataAbsentReason.not_asked;
+      case 'asked-declined':
+        return DataAbsentReason.asked_declined;
       case 'masked':
         return DataAbsentReason.masked;
       case 'not-applicable':
@@ -80,6 +137,12 @@ enum DataAbsentReason {
         return DataAbsentReason.as_text;
       case 'error':
         return DataAbsentReason.error;
+      case 'not-a-number':
+        return DataAbsentReason.not_a_number;
+      case 'negative-infinity':
+        return DataAbsentReason.negative_infinity;
+      case 'positive-infinity':
+        return DataAbsentReason.positive_infinity;
       case 'not-performed':
         return DataAbsentReason.not_performed;
       case 'not-permitted':

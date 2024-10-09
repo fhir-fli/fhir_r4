@@ -1106,15 +1106,17 @@ const _$TypeRestfulInteractionEnumMap = {
   TypeRestfulInteraction.patch: 'patch',
   TypeRestfulInteraction.delete: 'delete',
   TypeRestfulInteraction.history: 'history',
+  TypeRestfulInteraction.history_instance: 'history-instance',
+  TypeRestfulInteraction.history_type: 'history-type',
+  TypeRestfulInteraction.history_system: 'history-system',
   TypeRestfulInteraction.create: 'create',
   TypeRestfulInteraction.search: 'search',
+  TypeRestfulInteraction.search_type: 'search-type',
+  TypeRestfulInteraction.search_system: 'search-system',
   TypeRestfulInteraction.capabilities: 'capabilities',
   TypeRestfulInteraction.transaction: 'transaction',
   TypeRestfulInteraction.batch: 'batch',
   TypeRestfulInteraction.operation: 'operation',
-  TypeRestfulInteraction.history_instance: 'history-instance',
-  TypeRestfulInteraction.history_type: 'history-type',
-  TypeRestfulInteraction.search_type: 'search-type',
 };
 
 CapabilityStatementSearchParam _$CapabilityStatementSearchParamFromJson(
@@ -1348,14 +1350,17 @@ const _$SystemRestfulInteractionEnumMap = {
   SystemRestfulInteraction.patch: 'patch',
   SystemRestfulInteraction.delete: 'delete',
   SystemRestfulInteraction.history: 'history',
+  SystemRestfulInteraction.history_instance: 'history-instance',
+  SystemRestfulInteraction.history_type: 'history-type',
+  SystemRestfulInteraction.history_system: 'history-system',
   SystemRestfulInteraction.create: 'create',
   SystemRestfulInteraction.search: 'search',
+  SystemRestfulInteraction.search_type: 'search-type',
+  SystemRestfulInteraction.search_system: 'search-system',
   SystemRestfulInteraction.capabilities: 'capabilities',
   SystemRestfulInteraction.transaction: 'transaction',
   SystemRestfulInteraction.batch: 'batch',
   SystemRestfulInteraction.operation: 'operation',
-  SystemRestfulInteraction.search_system: 'search-system',
-  SystemRestfulInteraction.history_system: 'history-system',
 };
 
 CapabilityStatementMessaging _$CapabilityStatementMessagingFromJson(

@@ -32,6 +32,21 @@ enum SystemRestfulInteraction {
   @JsonValue('history')
   history,
 
+  /// Display: history-instance
+  /// Definition: Retrieve the change history for a particular resource.
+  @JsonValue('history-instance')
+  history_instance,
+
+  /// Display: history-type
+  /// Definition: Retrieve the change history for all resources of a particular type.
+  @JsonValue('history-type')
+  history_type,
+
+  /// Display: history-system
+  /// Definition: Retrieve the change history for all resources on a system.
+  @JsonValue('history-system')
+  history_system,
+
   /// Display: create
   /// Definition: Create a new resource with a server assigned id.
   @JsonValue('create')
@@ -41,6 +56,16 @@ enum SystemRestfulInteraction {
   /// Definition: Search a resource type or all resources based on some filter criteria.
   @JsonValue('search')
   search,
+
+  /// Display: search-type
+  /// Definition: Search all resources of the specified type based on some filter criteria.
+  @JsonValue('search-type')
+  search_type,
+
+  /// Display: search-system
+  /// Definition: Search all resources based on some filter criteria.
+  @JsonValue('search-system')
+  search_system,
 
   /// Display: capabilities
   /// Definition: Get a Capability Statement for the system.
@@ -61,10 +86,6 @@ enum SystemRestfulInteraction {
   /// Definition: Perform an operation as defined by an OperationDefinition.
   @JsonValue('operation')
   operation,
-  @JsonValue('search-system')
-  search_system,
-  @JsonValue('history-system')
-  history_system,
   ;
 
   @override
@@ -82,10 +103,20 @@ enum SystemRestfulInteraction {
         return 'delete';
       case history:
         return 'history';
+      case history_instance:
+        return 'history-instance';
+      case history_type:
+        return 'history-type';
+      case history_system:
+        return 'history-system';
       case create:
         return 'create';
       case search:
         return 'search';
+      case search_type:
+        return 'search-type';
+      case search_system:
+        return 'search-system';
       case capabilities:
         return 'capabilities';
       case transaction:
@@ -94,10 +125,6 @@ enum SystemRestfulInteraction {
         return 'batch';
       case operation:
         return 'operation';
-      case search_system:
-        return 'search-system';
-      case history_system:
-        return 'history-system';
     }
   }
 
@@ -116,10 +143,20 @@ enum SystemRestfulInteraction {
         return SystemRestfulInteraction.delete;
       case 'history':
         return SystemRestfulInteraction.history;
+      case 'history-instance':
+        return SystemRestfulInteraction.history_instance;
+      case 'history-type':
+        return SystemRestfulInteraction.history_type;
+      case 'history-system':
+        return SystemRestfulInteraction.history_system;
       case 'create':
         return SystemRestfulInteraction.create;
       case 'search':
         return SystemRestfulInteraction.search;
+      case 'search-type':
+        return SystemRestfulInteraction.search_type;
+      case 'search-system':
+        return SystemRestfulInteraction.search_system;
       case 'capabilities':
         return SystemRestfulInteraction.capabilities;
       case 'transaction':
@@ -128,10 +165,6 @@ enum SystemRestfulInteraction {
         return SystemRestfulInteraction.batch;
       case 'operation':
         return SystemRestfulInteraction.operation;
-      case 'search-system':
-        return SystemRestfulInteraction.search_system;
-      case 'history-system':
-        return SystemRestfulInteraction.history_system;
       default:
         throw ArgumentError('Unknown enum value: $str');
     }

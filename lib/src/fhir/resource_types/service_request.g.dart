@@ -364,6 +364,10 @@ const _$RequestIntentEnumMap = {
   RequestIntent.plan: 'plan',
   RequestIntent.directive: 'directive',
   RequestIntent.order: 'order',
+  RequestIntent.original_order: 'original-order',
+  RequestIntent.reflex_order: 'reflex-order',
+  RequestIntent.filler_order: 'filler-order',
+  RequestIntent.instance_order: 'instance-order',
   RequestIntent.option: 'option',
 };
 

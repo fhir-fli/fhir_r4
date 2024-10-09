@@ -32,6 +32,21 @@ enum InteractionTrigger {
   @JsonValue('history')
   history,
 
+  /// Display: history-instance
+  /// Definition: Retrieve the change history for a particular resource.
+  @JsonValue('history-instance')
+  history_instance,
+
+  /// Display: history-type
+  /// Definition: Retrieve the change history for all resources of a particular type.
+  @JsonValue('history-type')
+  history_type,
+
+  /// Display: history-system
+  /// Definition: Retrieve the change history for all resources on a system.
+  @JsonValue('history-system')
+  history_system,
+
   /// Display: create
   /// Definition: Create a new resource with a server assigned id.
   @JsonValue('create')
@@ -41,6 +56,16 @@ enum InteractionTrigger {
   /// Definition: Search a resource type or all resources based on some filter criteria.
   @JsonValue('search')
   search,
+
+  /// Display: search-type
+  /// Definition: Search all resources of the specified type based on some filter criteria.
+  @JsonValue('search-type')
+  search_type,
+
+  /// Display: search-system
+  /// Definition: Search all resources based on some filter criteria.
+  @JsonValue('search-system')
+  search_system,
 
   /// Display: capabilities
   /// Definition: Get a Capability Statement for the system.
@@ -78,10 +103,20 @@ enum InteractionTrigger {
         return 'delete';
       case history:
         return 'history';
+      case history_instance:
+        return 'history-instance';
+      case history_type:
+        return 'history-type';
+      case history_system:
+        return 'history-system';
       case create:
         return 'create';
       case search:
         return 'search';
+      case search_type:
+        return 'search-type';
+      case search_system:
+        return 'search-system';
       case capabilities:
         return 'capabilities';
       case transaction:
@@ -108,10 +143,20 @@ enum InteractionTrigger {
         return InteractionTrigger.delete;
       case 'history':
         return InteractionTrigger.history;
+      case 'history-instance':
+        return InteractionTrigger.history_instance;
+      case 'history-type':
+        return InteractionTrigger.history_type;
+      case 'history-system':
+        return InteractionTrigger.history_system;
       case 'create':
         return InteractionTrigger.create;
       case 'search':
         return InteractionTrigger.search;
+      case 'search-type':
+        return InteractionTrigger.search_type;
+      case 'search-system':
+        return InteractionTrigger.search_system;
       case 'capabilities':
         return InteractionTrigger.capabilities;
       case 'transaction':

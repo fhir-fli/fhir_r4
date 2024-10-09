@@ -1669,6 +1669,7 @@ Map<String, dynamic> _$ElementDefinitionTypeToJson(
 const _$AggregationModeEnumMap = {
   AggregationMode.contained: 'contained',
   AggregationMode.referenced: 'referenced',
+  AggregationMode.bundled: 'bundled',
 };
 
 const _$ReferenceVersionRulesEnumMap = {

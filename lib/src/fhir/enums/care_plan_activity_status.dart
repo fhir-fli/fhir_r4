@@ -32,6 +32,11 @@ enum CarePlanActivityStatus {
   @JsonValue('cancelled')
   cancelled,
 
+  /// Display: Stopped
+  /// Definition: The planned care plan activity has been ended prior to completion after the activity was started.
+  @JsonValue('stopped')
+  stopped,
+
   /// Display: Unknown
   /// Definition: The current state of the care plan activity is not known.  Note: This concept is not to be used for "other" - one of the listed statuses is presumed to apply, but the authoring/source system does not know which one.
   @JsonValue('unknown')
@@ -58,6 +63,8 @@ enum CarePlanActivityStatus {
         return 'completed';
       case cancelled:
         return 'cancelled';
+      case stopped:
+        return 'stopped';
       case unknown:
         return 'unknown';
       case entered_in_error:
@@ -80,6 +87,8 @@ enum CarePlanActivityStatus {
         return CarePlanActivityStatus.completed;
       case 'cancelled':
         return CarePlanActivityStatus.cancelled;
+      case 'stopped':
+        return CarePlanActivityStatus.stopped;
       case 'unknown':
         return CarePlanActivityStatus.unknown;
       case 'entered-in-error':

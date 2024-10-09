@@ -223,6 +223,7 @@ const _$ObservationStatusEnumMap = {
   ObservationStatus.preliminary: 'preliminary',
   ObservationStatus.final_: 'final',
   ObservationStatus.amended: 'amended',
+  ObservationStatus.corrected: 'corrected',
   ObservationStatus.cancelled: 'cancelled',
   ObservationStatus.entered_in_error: 'entered-in-error',
   ObservationStatus.unknown: 'unknown',

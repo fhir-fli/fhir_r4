@@ -466,4 +466,8 @@ Map<String, dynamic> _$ProvenanceEntityToJson(ProvenanceEntity instance) {
 
 const _$ProvenanceEntityRoleEnumMap = {
   ProvenanceEntityRole.derivation: 'derivation',
+  ProvenanceEntityRole.revision: 'revision',
+  ProvenanceEntityRole.quotation: 'quotation',
+  ProvenanceEntityRole.source: 'source',
+  ProvenanceEntityRole.removal: 'removal',
 };

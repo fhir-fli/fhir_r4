@@ -102,4 +102,5 @@ const _$NameUseEnumMap = {
   NameUse.nickname: 'nickname',
   NameUse.anonymous: 'anonymous',
   NameUse.old: 'old',
+  NameUse.maiden: 'maiden',
 };

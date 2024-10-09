@@ -27,18 +27,30 @@ enum TaskIntent {
   @JsonValue('order')
   order,
 
+  /// Display: Original Order
+  /// Definition: The request represents an original authorization for action.
+  @JsonValue('original-order')
+  original_order,
+
+  /// Display: Reflex Order
+  /// Definition: The request represents an automatically generated supplemental authorization for action based on a parent authorization together with initial results of the action taken against that parent authorization.
+  @JsonValue('reflex-order')
+  reflex_order,
+
+  /// Display: Filler Order
+  /// Definition: The request represents the view of an authorization instantiated by a fulfilling system representing the details of the fulfiller's intention to act upon a submitted order.
+  @JsonValue('filler-order')
+  filler_order,
+
+  /// Display: Instance Order
+  /// Definition: An order created in fulfillment of a broader order that represents the authorization for a single activity occurrence.  E.g. The administration of a single dose of a drug.
+  @JsonValue('instance-order')
+  instance_order,
+
   /// Display: Option
   /// Definition: The request represents a component or option for a RequestGroup that establishes timing, conditionality and/or other constraints among a set of requests.  Refer to [[[RequestGroup]]] for additional information on how this status is used.
   @JsonValue('option')
   option,
-  @JsonValue('original-order')
-  original_order,
-  @JsonValue('reflex-order')
-  reflex_order,
-  @JsonValue('filler-order')
-  filler_order,
-  @JsonValue('instance-order')
-  instance_order,
   ;
 
   @override
@@ -54,8 +66,6 @@ enum TaskIntent {
         return 'directive';
       case order:
         return 'order';
-      case option:
-        return 'option';
       case original_order:
         return 'original-order';
       case reflex_order:
@@ -64,6 +74,8 @@ enum TaskIntent {
         return 'filler-order';
       case instance_order:
         return 'instance-order';
+      case option:
+        return 'option';
     }
   }
 
@@ -80,8 +92,6 @@ enum TaskIntent {
         return TaskIntent.directive;
       case 'order':
         return TaskIntent.order;
-      case 'option':
-        return TaskIntent.option;
       case 'original-order':
         return TaskIntent.original_order;
       case 'reflex-order':
@@ -90,6 +100,8 @@ enum TaskIntent {
         return TaskIntent.filler_order;
       case 'instance-order':
         return TaskIntent.instance_order;
+      case 'option':
+        return TaskIntent.option;
       default:
         throw ArgumentError('Unknown enum value: $str');
     }

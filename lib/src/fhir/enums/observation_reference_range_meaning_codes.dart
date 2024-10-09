@@ -7,10 +7,65 @@ enum ObservationReferenceRangeMeaningCodes {
   @JsonValue('type')
   type,
 
+  /// Display: Normal Range
+  /// Definition: Values expected for a normal member of the relevant control population being measured. Typically each results producer such as a laboratory has specific normal ranges and they are usually defined as within two standard deviations from the mean and account for 95.45% of this population.
+  @JsonValue('normal')
+  normal,
+
+  /// Display: Recommended Range
+  /// Definition: The range that is recommended by a relevant professional body.
+  @JsonValue('recommended')
+  recommended,
+
+  /// Display: Treatment Range
+  /// Definition: The range at which treatment would/should be considered.
+  @JsonValue('treatment')
+  treatment,
+
+  /// Display: Therapeutic Desired Level
+  /// Definition: The optimal range for best therapeutic outcomes.
+  @JsonValue('therapeutic')
+  therapeutic,
+
+  /// Display: Pre Therapeutic Desired Level
+  /// Definition: The optimal range for best therapeutic outcomes for a specimen taken immediately before administration.
+  @JsonValue('pre')
+  pre,
+
+  /// Display: Post Therapeutic Desired Level
+  /// Definition: The optimal range for best therapeutic outcomes for a specimen taken immediately after administration.
+  @JsonValue('post')
+  post,
+
   /// Display: Endocrine
   /// Definition: Endocrine related states that change the expected value.
   @JsonValue('endocrine')
   endocrine,
+
+  /// Display: Pre-Puberty
+  /// Definition: An expected range in an individual prior to puberty.
+  @JsonValue('pre-puberty')
+  pre_puberty,
+
+  /// Display: Follicular Stage
+  /// Definition: An expected range in an individual during the follicular stage of the cycle.
+  @JsonValue('follicular')
+  follicular,
+
+  /// Display: MidCycle
+  /// Definition: An expected range in an individual during the midcycle stage of the cycle.
+  @JsonValue('midcycle')
+  midcycle,
+
+  /// Display: Luteal
+  /// Definition: An expected range in an individual during the luteal stage of the cycle.
+  @JsonValue('luteal')
+  luteal,
+
+  /// Display: Post-Menopause
+  /// Definition: An expected range in an individual post-menopause.
+  @JsonValue('postmenopausal')
+  postmenopausal,
   ;
 
   @override
@@ -18,8 +73,30 @@ enum ObservationReferenceRangeMeaningCodes {
     switch (this) {
       case type:
         return 'type';
+      case normal:
+        return 'normal';
+      case recommended:
+        return 'recommended';
+      case treatment:
+        return 'treatment';
+      case therapeutic:
+        return 'therapeutic';
+      case pre:
+        return 'pre';
+      case post:
+        return 'post';
       case endocrine:
         return 'endocrine';
+      case pre_puberty:
+        return 'pre-puberty';
+      case follicular:
+        return 'follicular';
+      case midcycle:
+        return 'midcycle';
+      case luteal:
+        return 'luteal';
+      case postmenopausal:
+        return 'postmenopausal';
     }
   }
 
@@ -28,8 +105,30 @@ enum ObservationReferenceRangeMeaningCodes {
     switch (str) {
       case 'type':
         return ObservationReferenceRangeMeaningCodes.type;
+      case 'normal':
+        return ObservationReferenceRangeMeaningCodes.normal;
+      case 'recommended':
+        return ObservationReferenceRangeMeaningCodes.recommended;
+      case 'treatment':
+        return ObservationReferenceRangeMeaningCodes.treatment;
+      case 'therapeutic':
+        return ObservationReferenceRangeMeaningCodes.therapeutic;
+      case 'pre':
+        return ObservationReferenceRangeMeaningCodes.pre;
+      case 'post':
+        return ObservationReferenceRangeMeaningCodes.post;
       case 'endocrine':
         return ObservationReferenceRangeMeaningCodes.endocrine;
+      case 'pre-puberty':
+        return ObservationReferenceRangeMeaningCodes.pre_puberty;
+      case 'follicular':
+        return ObservationReferenceRangeMeaningCodes.follicular;
+      case 'midcycle':
+        return ObservationReferenceRangeMeaningCodes.midcycle;
+      case 'luteal':
+        return ObservationReferenceRangeMeaningCodes.luteal;
+      case 'postmenopausal':
+        return ObservationReferenceRangeMeaningCodes.postmenopausal;
       default:
         throw ArgumentError('Unknown enum value: $str');
     }

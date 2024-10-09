@@ -17,6 +17,21 @@ enum TriggerType {
   @JsonValue('data-changed')
   data_changed,
 
+  /// Display: Data Added
+  /// Definition: The trigger occurs whenever data of a particular type is added.
+  @JsonValue('data-added')
+  data_added,
+
+  /// Display: Data Updated
+  /// Definition: The trigger occurs whenever data of a particular type is modified.
+  @JsonValue('data-modified')
+  data_modified,
+
+  /// Display: Data Removed
+  /// Definition: The trigger occurs whenever data of a particular type is removed.
+  @JsonValue('data-removed')
+  data_removed,
+
   /// Display: Data Accessed
   /// Definition: The trigger occurs whenever data of a particular type is accessed.
   @JsonValue('data-accessed')
@@ -37,6 +52,12 @@ enum TriggerType {
         return 'periodic';
       case data_changed:
         return 'data-changed';
+      case data_added:
+        return 'data-added';
+      case data_modified:
+        return 'data-modified';
+      case data_removed:
+        return 'data-removed';
       case data_accessed:
         return 'data-accessed';
       case data_access_ended:
@@ -53,6 +74,12 @@ enum TriggerType {
         return TriggerType.periodic;
       case 'data-changed':
         return TriggerType.data_changed;
+      case 'data-added':
+        return TriggerType.data_added;
+      case 'data-modified':
+        return TriggerType.data_modified;
+      case 'data-removed':
+        return TriggerType.data_removed;
       case 'data-accessed':
         return TriggerType.data_accessed;
       case 'data-access-ended':
