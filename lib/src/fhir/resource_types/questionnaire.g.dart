@@ -597,6 +597,19 @@ const _$QuestionnaireItemTypeEnumMap = {
   QuestionnaireItemType.group: 'group',
   QuestionnaireItemType.display: 'display',
   QuestionnaireItemType.question: 'question',
+  QuestionnaireItemType.boolean: 'boolean',
+  QuestionnaireItemType.decimal: 'decimal',
+  QuestionnaireItemType.integer: 'integer',
+  QuestionnaireItemType.date: 'date',
+  QuestionnaireItemType.dateTime: 'dateTime',
+  QuestionnaireItemType.time: 'time',
+  QuestionnaireItemType.string: 'string',
+  QuestionnaireItemType.text: 'text',
+  QuestionnaireItemType.url: 'url',
+  QuestionnaireItemType.coding: 'coding',
+  QuestionnaireItemType.attachment: 'attachment',
+  QuestionnaireItemType.reference: 'reference',
+  QuestionnaireItemType.quantity: 'quantity',
 };
 
 const _$EnableWhenBehaviorEnumMap = {

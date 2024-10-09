@@ -20,7 +20,7 @@ final Set<String> _valueSets = <String>{};
 
 Future<void> main() async {
   await extract();
-  _codesAndVS.addAll(codesAndValueSets(valueSetPath));
+  _codesAndVS.addAll(codesAndValueSets(valueSetPath, examplesPath));
   _nameMap.addAll(populateNameMap(fhirSchemaPath));
   _classesFromStructureDefinitions();
   exportFiles();
@@ -28,6 +28,20 @@ Future<void> main() async {
   generateResourceUtils();
   parseSearchParameters();
   deleteDirectories();
+  _copyFiles();
+}
+
+void _copyFiles() {
+  final Directory source = Directory('copy_files');
+  if (source.existsSync()) {
+    final List<FileSystemEntity> files = source.listSync(recursive: true);
+    for (final FileSystemEntity file in files) {
+      if (file is File) {
+        final String fileName = file.path.split('copy_files').last;
+        file.copySync('$fhirDirectory$fileName');
+      }
+    }
+  }
 }
 
 void _classesFromStructureDefinitions() {
@@ -347,7 +361,7 @@ void _writeFields(StringBuffer buffer, WritableClass writableClass,
         .writeln("'${field.name}': const FhirField($isList, '$fieldType'),");
     if (field.needsElement && field.name != 'id') {
       fhirFieldMapBuffer
-          .writeln("'_${field.name}': const FhirField($isList, '$fieldType'),");
+          .writeln("'_${field.name}': const FhirField($isList, 'Element'),");
     }
     // Handle fields that are not super fields
     if (!field.isSuper) {
@@ -568,7 +582,10 @@ void writeToFile(
   File(filePath).writeAsStringSync(buffer.toString());
 }
 
-Map<String, Map<String, dynamic>> codesAndValueSets(String valueSetPath) {
+Map<String, Map<String, dynamic>> codesAndValueSets(
+  String valueSetPath,
+  String examplesPath,
+) {
   final Map<String, Map<String, dynamic>> codesAndVS =
       <String, Map<String, dynamic>>{};
 
@@ -586,6 +603,24 @@ Map<String, Map<String, dynamic>> codesAndValueSets(String valueSetPath) {
       codesAndVS[(entry['resource'] as Map<String, dynamic>)['url'] as String] =
           entry['resource'] as Map<String, dynamic>;
       codesAndVS[(entry['fullUrl'] as String).splitOffVersion] =
+          entry['resource'] as Map<String, dynamic>;
+    }
+  }
+  final List<File> files = Directory(examplesPath)
+      .listSync()
+      .whereType<File>()
+      .where((File file) =>
+          file.path.endsWith('.json') &&
+          (file.path.contains('valueset') || file.path.contains('codesystem')))
+      .toList();
+  for (final File file in files) {
+    final String examplesString = file.readAsStringSync();
+    final Map<String, dynamic> entry =
+        jsonDecode(examplesString) as Map<String, dynamic>;
+    if ((entry['resourceType'] == 'ValueSet' ||
+            entry['resourceType'] == 'CodeSystem') &&
+        !codesAndVS.keys.contains(entry['url'] as String)) {
+      codesAndVS[entry['url'] as String] =
           entry['resource'] as Map<String, dynamic>;
     }
   }

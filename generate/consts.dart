@@ -135,4 +135,5 @@ final List<String> badValueSets = <String>[
   'Currencies',
   'ContextOfUseValueSet',
   'ResourceType',
+  // 'ElementTypes',
 ];
