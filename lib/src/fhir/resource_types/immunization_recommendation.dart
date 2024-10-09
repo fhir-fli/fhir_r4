@@ -34,10 +34,11 @@ class ImmunizationRecommendation extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.ImmunizationRecommendation,
-            fhirType: 'ImmunizationRecommendation');
+  }) : super(resourceType: R4ResourceType.ImmunizationRecommendation);
+  @override
+  String get fhirType => 'ImmunizationRecommendation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -175,7 +176,9 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ImmunizationRecommendationRecommendation');
+  });
+  @override
+  String get fhirType => 'ImmunizationRecommendationRecommendation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -380,7 +383,9 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ImmunizationRecommendationDateCriterion');
+  });
+  @override
+  String get fhirType => 'ImmunizationRecommendationDateCriterion';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

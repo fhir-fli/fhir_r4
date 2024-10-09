@@ -51,10 +51,11 @@ class NutritionOrder extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.NutritionOrder,
-            fhirType: 'NutritionOrder');
+  }) : super(resourceType: R4ResourceType.NutritionOrder);
+  @override
+  String get fhirType => 'NutritionOrder';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -301,7 +302,9 @@ class NutritionOrderOralDiet extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'NutritionOrderOralDiet');
+  });
+  @override
+  String get fhirType => 'NutritionOrderOralDiet';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -421,7 +424,9 @@ class NutritionOrderNutrient extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'NutritionOrderNutrient');
+  });
+  @override
+  String get fhirType => 'NutritionOrderNutrient';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -506,7 +511,9 @@ class NutritionOrderTexture extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'NutritionOrderTexture');
+  });
+  @override
+  String get fhirType => 'NutritionOrderTexture';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -598,7 +605,9 @@ class NutritionOrderSupplement extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'NutritionOrderSupplement');
+  });
+  @override
+  String get fhirType => 'NutritionOrderSupplement';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -722,7 +731,9 @@ class NutritionOrderEnteralFormula extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'NutritionOrderEnteralFormula');
+  });
+  @override
+  String get fhirType => 'NutritionOrderEnteralFormula';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -874,7 +885,9 @@ class NutritionOrderAdministration extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'NutritionOrderAdministration');
+  });
+  @override
+  String get fhirType => 'NutritionOrderAdministration';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

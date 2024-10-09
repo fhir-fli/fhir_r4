@@ -59,8 +59,11 @@ class Media extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Media, fhirType: 'Media');
+  }) : super(resourceType: R4ResourceType.Media);
+  @override
+  String get fhirType => 'Media';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

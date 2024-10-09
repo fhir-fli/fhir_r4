@@ -59,10 +59,11 @@ class ResearchStudy extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.ResearchStudy,
-            fhirType: 'ResearchStudy');
+  }) : super(resourceType: R4ResourceType.ResearchStudy);
+  @override
+  String get fhirType => 'ResearchStudy';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -334,7 +335,9 @@ class ResearchStudyArm extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ResearchStudyArm');
+  });
+  @override
+  String get fhirType => 'ResearchStudyArm';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -436,7 +439,9 @@ class ResearchStudyObjective extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ResearchStudyObjective');
+  });
+  @override
+  String get fhirType => 'ResearchStudyObjective';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

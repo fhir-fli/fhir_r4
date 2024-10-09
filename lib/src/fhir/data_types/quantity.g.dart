@@ -45,13 +45,10 @@ Quantity _$QuantityFromJson(Map<String, dynamic> json) => Quantity(
       namedChildren: (json['namedChildren'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, FhirBase.fromJson(e)),
       ),
-      fhirType: json['fhirType'] as String? ?? 'Quantity',
     );
 
 Map<String, dynamic> _$QuantityToJson(Quantity instance) {
-  final val = <String, dynamic>{
-    'fhirType': instance.fhirType,
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {

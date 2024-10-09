@@ -56,10 +56,11 @@ class ImagingStudy extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.ImagingStudy,
-            fhirType: 'ImagingStudy');
+  }) : super(resourceType: R4ResourceType.ImagingStudy);
+  @override
+  String get fhirType => 'ImagingStudy';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -322,7 +323,9 @@ class ImagingStudySeries extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ImagingStudySeries');
+  });
+  @override
+  String get fhirType => 'ImagingStudySeries';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -501,7 +504,9 @@ class ImagingStudyPerformer extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ImagingStudyPerformer');
+  });
+  @override
+  String get fhirType => 'ImagingStudyPerformer';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -591,7 +596,9 @@ class ImagingStudyInstance extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ImagingStudyInstance');
+  });
+  @override
+  String get fhirType => 'ImagingStudyInstance';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

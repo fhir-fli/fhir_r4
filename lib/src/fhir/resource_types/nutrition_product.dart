@@ -38,10 +38,11 @@ class NutritionProduct extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.NutritionProduct,
-            fhirType: 'NutritionProduct');
+  }) : super(resourceType: R4ResourceType.NutritionProduct);
+  @override
+  String get fhirType => 'NutritionProduct';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -197,7 +198,9 @@ class NutritionProductNutrient extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'NutritionProductNutrient');
+  });
+  @override
+  String get fhirType => 'NutritionProductNutrient';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -282,7 +285,9 @@ class NutritionProductIngredient extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'NutritionProductIngredient');
+  });
+  @override
+  String get fhirType => 'NutritionProductIngredient';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -374,7 +379,9 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'NutritionProductProductCharacteristic');
+  });
+  @override
+  String get fhirType => 'NutritionProductProductCharacteristic';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -512,7 +519,9 @@ class NutritionProductInstance extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'NutritionProductInstance');
+  });
+  @override
+  String get fhirType => 'NutritionProductInstance';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

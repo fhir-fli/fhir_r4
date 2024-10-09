@@ -41,10 +41,11 @@ class ClinicalUseDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.ClinicalUseDefinition,
-            fhirType: 'ClinicalUseDefinition');
+  }) : super(resourceType: R4ResourceType.ClinicalUseDefinition);
+  @override
+  String get fhirType => 'ClinicalUseDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -209,7 +210,9 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ClinicalUseDefinitionContraindication');
+  });
+  @override
+  String get fhirType => 'ClinicalUseDefinitionContraindication';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -319,7 +322,9 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ClinicalUseDefinitionOtherTherapy');
+  });
+  @override
+  String get fhirType => 'ClinicalUseDefinitionOtherTherapy';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -415,7 +420,9 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ClinicalUseDefinitionIndication');
+  });
+  @override
+  String get fhirType => 'ClinicalUseDefinitionIndication';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -556,7 +563,9 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ClinicalUseDefinitionInteraction');
+  });
+  @override
+  String get fhirType => 'ClinicalUseDefinitionInteraction';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -663,7 +672,9 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ClinicalUseDefinitionInteractant');
+  });
+  @override
+  String get fhirType => 'ClinicalUseDefinitionInteractant';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -752,7 +763,9 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ClinicalUseDefinitionUndesirableEffect');
+  });
+  @override
+  String get fhirType => 'ClinicalUseDefinitionUndesirableEffect';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -851,7 +864,9 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ClinicalUseDefinitionWarning');
+  });
+  @override
+  String get fhirType => 'ClinicalUseDefinitionWarning';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -45,10 +45,11 @@ class MessageHeader extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.MessageHeader,
-            fhirType: 'MessageHeader');
+  }) : super(resourceType: R4ResourceType.MessageHeader);
+  @override
+  String get fhirType => 'MessageHeader';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -234,7 +235,9 @@ class MessageHeaderDestination extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MessageHeaderDestination');
+  });
+  @override
+  String get fhirType => 'MessageHeaderDestination';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -347,7 +350,9 @@ class MessageHeaderSource extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MessageHeaderSource');
+  });
+  @override
+  String get fhirType => 'MessageHeaderSource';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -471,7 +476,9 @@ class MessageHeaderResponse extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MessageHeaderResponse');
+  });
+  @override
+  String get fhirType => 'MessageHeaderResponse';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

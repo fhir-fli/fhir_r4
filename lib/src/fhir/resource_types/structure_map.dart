@@ -58,10 +58,11 @@ class StructureMap extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.StructureMap,
-            fhirType: 'StructureMap');
+  }) : super(resourceType: R4ResourceType.StructureMap);
+  @override
+  String get fhirType => 'StructureMap';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -344,7 +345,9 @@ class StructureMapStructure extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'StructureMapStructure');
+  });
+  @override
+  String get fhirType => 'StructureMapStructure';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -465,7 +468,9 @@ class StructureMapGroup extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'StructureMapGroup');
+  });
+  @override
+  String get fhirType => 'StructureMapGroup';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -599,7 +604,9 @@ class StructureMapInput extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'StructureMapInput');
+  });
+  @override
+  String get fhirType => 'StructureMapInput';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -717,7 +724,9 @@ class StructureMapRule extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'StructureMapRule');
+  });
+  @override
+  String get fhirType => 'StructureMapRule';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -920,7 +929,9 @@ class StructureMapSource extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'StructureMapSource');
+  });
+  @override
+  String get fhirType => 'StructureMapSource';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1527,7 +1538,9 @@ class StructureMapTarget extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'StructureMapTarget');
+  });
+  @override
+  String get fhirType => 'StructureMapTarget';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1683,7 +1696,9 @@ class StructureMapParameter extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'StructureMapParameter');
+  });
+  @override
+  String get fhirType => 'StructureMapParameter';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1807,7 +1822,9 @@ class StructureMapDependent extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'StructureMapDependent');
+  });
+  @override
+  String get fhirType => 'StructureMapDependent';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

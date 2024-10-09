@@ -76,10 +76,11 @@ class SearchParameter extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.SearchParameter,
-            fhirType: 'SearchParameter');
+  }) : super(resourceType: R4ResourceType.SearchParameter);
+  @override
+  String get fhirType => 'SearchParameter';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -456,7 +457,9 @@ class SearchParameterComponent extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SearchParameterComponent');
+  });
+  @override
+  String get fhirType => 'SearchParameterComponent';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -63,10 +63,11 @@ class ImplementationGuide extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.ImplementationGuide,
-            fhirType: 'ImplementationGuide');
+  }) : super(resourceType: R4ResourceType.ImplementationGuide);
+  @override
+  String get fhirType => 'ImplementationGuide';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -371,7 +372,9 @@ class ImplementationGuideDependsOn extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ImplementationGuideDependsOn');
+  });
+  @override
+  String get fhirType => 'ImplementationGuideDependsOn';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -477,7 +480,9 @@ class ImplementationGuideGlobal extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ImplementationGuideGlobal');
+  });
+  @override
+  String get fhirType => 'ImplementationGuideGlobal';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -573,7 +578,9 @@ class ImplementationGuideDefinition extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ImplementationGuideDefinition');
+  });
+  @override
+  String get fhirType => 'ImplementationGuideDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -683,7 +690,9 @@ class ImplementationGuideGrouping extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ImplementationGuideGrouping');
+  });
+  @override
+  String get fhirType => 'ImplementationGuideGrouping';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -790,7 +799,9 @@ class ImplementationGuideResource extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ImplementationGuideResource');
+  });
+  @override
+  String get fhirType => 'ImplementationGuideResource';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -945,7 +956,9 @@ class ImplementationGuidePage extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ImplementationGuidePage');
+  });
+  @override
+  String get fhirType => 'ImplementationGuidePage';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1062,7 +1075,9 @@ class ImplementationGuideParameter extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ImplementationGuideParameter');
+  });
+  @override
+  String get fhirType => 'ImplementationGuideParameter';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1160,7 +1175,9 @@ class ImplementationGuideTemplate extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ImplementationGuideTemplate');
+  });
+  @override
+  String get fhirType => 'ImplementationGuideTemplate';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1269,7 +1286,9 @@ class ImplementationGuideManifest extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ImplementationGuideManifest');
+  });
+  @override
+  String get fhirType => 'ImplementationGuideManifest';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1397,7 +1416,9 @@ class ImplementationGuideResource1 extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ImplementationGuideResource1');
+  });
+  @override
+  String get fhirType => 'ImplementationGuideResource1';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1515,7 +1536,9 @@ class ImplementationGuidePage1 extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ImplementationGuidePage1');
+  });
+  @override
+  String get fhirType => 'ImplementationGuidePage1';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

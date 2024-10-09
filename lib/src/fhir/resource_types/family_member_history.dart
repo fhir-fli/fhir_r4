@@ -66,10 +66,11 @@ class FamilyMemberHistory extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.FamilyMemberHistory,
-            fhirType: 'FamilyMemberHistory');
+  }) : super(resourceType: R4ResourceType.FamilyMemberHistory);
+  @override
+  String get fhirType => 'FamilyMemberHistory';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -396,7 +397,9 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'FamilyMemberHistoryCondition');
+  });
+  @override
+  String get fhirType => 'FamilyMemberHistoryCondition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

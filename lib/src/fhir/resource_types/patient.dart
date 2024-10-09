@@ -53,8 +53,11 @@ class Patient extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Patient, fhirType: 'Patient');
+  }) : super(resourceType: R4ResourceType.Patient);
+  @override
+  String get fhirType => 'Patient';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -299,7 +302,9 @@ class PatientContact extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'PatientContact');
+  });
+  @override
+  String get fhirType => 'PatientContact';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -423,7 +428,9 @@ class PatientCommunication extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'PatientCommunication');
+  });
+  @override
+  String get fhirType => 'PatientCommunication';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -516,7 +523,9 @@ class PatientLink extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'PatientLink');
+  });
+  @override
+  String get fhirType => 'PatientLink';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

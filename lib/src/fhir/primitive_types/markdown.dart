@@ -9,7 +9,7 @@ extension FhirMarkdownExtension on String {
 class FhirMarkdown extends PrimitiveType<String> {
   FhirMarkdown._(this._valueString, this._valueMarkdown, this._isValid,
       [Element? element])
-      : super(fhirType: 'markdown', element: element);
+      : super(element: element);
 
   factory FhirMarkdown(dynamic inValue, [Element? element]) =>
       inValue is String && RegExp(r'[ \r\n\t\S]+').hasMatch(inValue)
@@ -24,6 +24,9 @@ class FhirMarkdown extends PrimitiveType<String> {
           ? FhirMarkdown.fromJson(jsonDecode(jsonEncode(yaml)))
           : throw YamlFormatException<FhirMarkdown>(
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
+
+  @override
+  String get fhirType => 'markdown';
 
   final String _valueString;
   final String? _valueMarkdown;

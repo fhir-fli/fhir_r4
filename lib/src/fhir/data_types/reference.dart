@@ -26,7 +26,9 @@ class Reference extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'Reference');
+  });
+  @override
+  String get fhirType => 'Reference';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

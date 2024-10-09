@@ -31,7 +31,9 @@ class FhirExpression extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'FhirExpression');
+  });
+  @override
+  String get fhirType => 'FhirExpression';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

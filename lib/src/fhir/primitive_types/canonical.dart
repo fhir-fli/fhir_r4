@@ -13,7 +13,7 @@ extension FhirCanonicalUriExtension on Uri {
 class FhirCanonical extends PrimitiveType<Uri> {
   FhirCanonical._(this._valueString, this._valueCanonical, this._isValid,
       [Element? element])
-      : super(fhirType: 'canonical', element: element);
+      : super(element: element);
 
   factory FhirCanonical(dynamic inValue, [Element? element]) {
     if (inValue is Uri) {
@@ -35,6 +35,8 @@ class FhirCanonical extends PrimitiveType<Uri> {
           : throw YamlFormatException<FhirCanonical>(
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
 
+  @override
+  String get fhirType => 'canonical';
   final String _valueString;
   final Uri? _valueCanonical;
   final bool _isValid;

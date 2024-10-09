@@ -56,10 +56,11 @@ class DeviceDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.DeviceDefinition,
-            fhirType: 'DeviceDefinition');
+  }) : super(resourceType: R4ResourceType.DeviceDefinition);
+  @override
+  String get fhirType => 'DeviceDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -326,7 +327,9 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'DeviceDefinitionUdiDeviceIdentifier');
+  });
+  @override
+  String get fhirType => 'DeviceDefinitionUdiDeviceIdentifier';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -436,7 +439,9 @@ class DeviceDefinitionDeviceName extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'DeviceDefinitionDeviceName');
+  });
+  @override
+  String get fhirType => 'DeviceDefinitionDeviceName';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -533,7 +538,9 @@ class DeviceDefinitionSpecialization extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'DeviceDefinitionSpecialization');
+  });
+  @override
+  String get fhirType => 'DeviceDefinitionSpecialization';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -626,7 +633,9 @@ class DeviceDefinitionCapability extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'DeviceDefinitionCapability');
+  });
+  @override
+  String get fhirType => 'DeviceDefinitionCapability';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -712,7 +721,9 @@ class DeviceDefinitionProperty extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'DeviceDefinitionProperty');
+  });
+  @override
+  String get fhirType => 'DeviceDefinitionProperty';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -805,7 +816,9 @@ class DeviceDefinitionMaterial extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'DeviceDefinitionMaterial');
+  });
+  @override
+  String get fhirType => 'DeviceDefinitionMaterial';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

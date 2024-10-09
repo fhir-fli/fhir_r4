@@ -39,10 +39,11 @@ class ResearchSubject extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.ResearchSubject,
-            fhirType: 'ResearchSubject');
+  }) : super(resourceType: R4ResourceType.ResearchSubject);
+  @override
+  String get fhirType => 'ResearchSubject';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

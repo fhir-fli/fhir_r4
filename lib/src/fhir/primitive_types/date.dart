@@ -25,7 +25,6 @@ class FhirDate extends FhirDateTimeBase {
     required super.microsecond,
     required super.timeZoneOffset,
     required super.isUtc,
-    super.fhirType = 'date',
     super.element,
   });
 
@@ -59,6 +58,9 @@ class FhirDate extends FhirDateTimeBase {
           day: day,
           isUtc: isUtc ?? false,
           element: element) as FhirDate;
+
+  @override
+  String get fhirType => 'date';
 
   @override
   String toJson() => input.toString();

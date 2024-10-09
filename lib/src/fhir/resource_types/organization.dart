@@ -43,10 +43,11 @@ class Organization extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.Organization,
-            fhirType: 'Organization');
+  }) : super(resourceType: R4ResourceType.Organization);
+  @override
+  String get fhirType => 'Organization';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -209,7 +210,9 @@ class OrganizationContact extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'OrganizationContact');
+  });
+  @override
+  String get fhirType => 'OrganizationContact';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

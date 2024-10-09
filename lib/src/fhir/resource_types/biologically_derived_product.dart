@@ -43,10 +43,11 @@ class BiologicallyDerivedProduct extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.BiologicallyDerivedProduct,
-            fhirType: 'BiologicallyDerivedProduct');
+  }) : super(resourceType: R4ResourceType.BiologicallyDerivedProduct);
+  @override
+  String get fhirType => 'BiologicallyDerivedProduct';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -222,7 +223,9 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'BiologicallyDerivedProductCollection');
+  });
+  @override
+  String get fhirType => 'BiologicallyDerivedProductCollection';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -334,7 +337,9 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'BiologicallyDerivedProductProcessing');
+  });
+  @override
+  String get fhirType => 'BiologicallyDerivedProductProcessing';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -452,7 +457,9 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'BiologicallyDerivedProductManipulation');
+  });
+  @override
+  String get fhirType => 'BiologicallyDerivedProductManipulation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -558,7 +565,9 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'BiologicallyDerivedProductStorage');
+  });
+  @override
+  String get fhirType => 'BiologicallyDerivedProductStorage';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

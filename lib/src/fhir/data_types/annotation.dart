@@ -27,7 +27,9 @@ class Annotation extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'Annotation');
+  });
+  @override
+  String get fhirType => 'Annotation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

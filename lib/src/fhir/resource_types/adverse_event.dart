@@ -54,10 +54,11 @@ class AdverseEvent extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.AdverseEvent,
-            fhirType: 'AdverseEvent');
+  }) : super(resourceType: R4ResourceType.AdverseEvent);
+  @override
+  String get fhirType => 'AdverseEvent';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -297,7 +298,9 @@ class AdverseEventSuspectEntity extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'AdverseEventSuspectEntity');
+  });
+  @override
+  String get fhirType => 'AdverseEventSuspectEntity';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -386,7 +389,9 @@ class AdverseEventCausality extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'AdverseEventCausality');
+  });
+  @override
+  String get fhirType => 'AdverseEventCausality';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -34,10 +34,11 @@ class SpecimenDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.SpecimenDefinition,
-            fhirType: 'SpecimenDefinition');
+  }) : super(resourceType: R4ResourceType.SpecimenDefinition);
+  @override
+  String get fhirType => 'SpecimenDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -172,7 +173,9 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SpecimenDefinitionTypeTested');
+  });
+  @override
+  String get fhirType => 'SpecimenDefinitionTypeTested';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -317,7 +320,9 @@ class SpecimenDefinitionContainer extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SpecimenDefinitionContainer');
+  });
+  @override
+  String get fhirType => 'SpecimenDefinitionContainer';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -460,7 +465,9 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SpecimenDefinitionAdditive');
+  });
+  @override
+  String get fhirType => 'SpecimenDefinitionAdditive';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -551,7 +558,9 @@ class SpecimenDefinitionHandling extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SpecimenDefinitionHandling');
+  });
+  @override
+  String get fhirType => 'SpecimenDefinitionHandling';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

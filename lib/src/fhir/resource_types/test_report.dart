@@ -45,8 +45,11 @@ class TestReport extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.TestReport, fhirType: 'TestReport');
+  }) : super(resourceType: R4ResourceType.TestReport);
+  @override
+  String get fhirType => 'TestReport';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -240,7 +243,9 @@ class TestReportParticipant extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestReportParticipant');
+  });
+  @override
+  String get fhirType => 'TestReportParticipant';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -342,7 +347,9 @@ class TestReportSetup extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestReportSetup');
+  });
+  @override
+  String get fhirType => 'TestReportSetup';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -420,7 +427,9 @@ class TestReportAction extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestReportAction');
+  });
+  @override
+  String get fhirType => 'TestReportAction';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -508,7 +517,9 @@ class TestReportOperation extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestReportOperation');
+  });
+  @override
+  String get fhirType => 'TestReportOperation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -614,7 +625,9 @@ class TestReportAssert extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestReportAssert');
+  });
+  @override
+  String get fhirType => 'TestReportAssert';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -719,7 +732,9 @@ class TestReportTest extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestReportTest');
+  });
+  @override
+  String get fhirType => 'TestReportTest';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -818,7 +833,9 @@ class TestReportAction1 extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestReportAction1');
+  });
+  @override
+  String get fhirType => 'TestReportAction1';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -902,7 +919,9 @@ class TestReportTeardown extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestReportTeardown');
+  });
+  @override
+  String get fhirType => 'TestReportTeardown';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -979,7 +998,9 @@ class TestReportAction2 extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestReportAction2');
+  });
+  @override
+  String get fhirType => 'TestReportAction2';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

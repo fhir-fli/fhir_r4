@@ -10,7 +10,6 @@ import '../../../fhir_r4.dart';
 abstract class Resource extends FhirBase {
   const Resource({
     required this.resourceType,
-    required super.fhirType,
     this.id,
     this.meta,
     this.implicitRules,
@@ -24,6 +23,9 @@ abstract class Resource extends FhirBase {
     super.children,
     super.namedChildren,
   });
+
+  @override
+  String get fhirType => 'Resource';
 
   @JsonKey(name: 'resourceType')
   final R4ResourceType resourceType;

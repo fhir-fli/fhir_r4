@@ -23,7 +23,9 @@ class CodeableConcept extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CodeableConcept');
+  });
+  @override
+  String get fhirType => 'CodeableConcept';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

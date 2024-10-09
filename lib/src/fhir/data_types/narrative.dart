@@ -23,7 +23,9 @@ class Narrative extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'Narrative');
+  });
+  @override
+  String get fhirType => 'Narrative';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

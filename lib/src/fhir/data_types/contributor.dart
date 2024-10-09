@@ -25,7 +25,9 @@ class Contributor extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'Contributor');
+  });
+  @override
+  String get fhirType => 'Contributor';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

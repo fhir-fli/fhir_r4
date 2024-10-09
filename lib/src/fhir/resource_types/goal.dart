@@ -51,8 +51,11 @@ class Goal extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Goal, fhirType: 'Goal');
+  }) : super(resourceType: R4ResourceType.Goal);
+  @override
+  String get fhirType => 'Goal';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -277,7 +280,9 @@ class GoalTarget extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'GoalTarget');
+  });
+  @override
+  String get fhirType => 'GoalTarget';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

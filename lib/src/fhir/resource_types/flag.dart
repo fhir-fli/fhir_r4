@@ -37,8 +37,11 @@ class Flag extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Flag, fhirType: 'Flag');
+  }) : super(resourceType: R4ResourceType.Flag);
+  @override
+  String get fhirType => 'Flag';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

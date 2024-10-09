@@ -41,10 +41,11 @@ class DeviceMetric extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.DeviceMetric,
-            fhirType: 'DeviceMetric');
+  }) : super(resourceType: R4ResourceType.DeviceMetric);
+  @override
+  String get fhirType => 'DeviceMetric';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -233,7 +234,9 @@ class DeviceMetricCalibration extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'DeviceMetricCalibration');
+  });
+  @override
+  String get fhirType => 'DeviceMetricCalibration';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

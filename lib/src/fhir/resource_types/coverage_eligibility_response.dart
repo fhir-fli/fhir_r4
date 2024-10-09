@@ -51,10 +51,11 @@ class CoverageEligibilityResponse extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.CoverageEligibilityResponse,
-            fhirType: 'CoverageEligibilityResponse');
+  }) : super(resourceType: R4ResourceType.CoverageEligibilityResponse);
+  @override
+  String get fhirType => 'CoverageEligibilityResponse';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -278,7 +279,9 @@ class CoverageEligibilityResponseInsurance extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CoverageEligibilityResponseInsurance');
+  });
+  @override
+  String get fhirType => 'CoverageEligibilityResponseInsurance';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -403,7 +406,9 @@ class CoverageEligibilityResponseItem extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CoverageEligibilityResponseItem');
+  });
+  @override
+  String get fhirType => 'CoverageEligibilityResponseItem';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -605,7 +610,9 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CoverageEligibilityResponseBenefit');
+  });
+  @override
+  String get fhirType => 'CoverageEligibilityResponseBenefit';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -739,7 +746,9 @@ class CoverageEligibilityResponseError extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CoverageEligibilityResponseError');
+  });
+  @override
+  String get fhirType => 'CoverageEligibilityResponseError';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

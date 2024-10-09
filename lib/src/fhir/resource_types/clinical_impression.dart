@@ -60,10 +60,11 @@ class ClinicalImpression extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.ClinicalImpression,
-            fhirType: 'ClinicalImpression');
+  }) : super(resourceType: R4ResourceType.ClinicalImpression);
+  @override
+  String get fhirType => 'ClinicalImpression';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -321,7 +322,9 @@ class ClinicalImpressionInvestigation extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ClinicalImpressionInvestigation');
+  });
+  @override
+  String get fhirType => 'ClinicalImpressionInvestigation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -413,7 +416,9 @@ class ClinicalImpressionFinding extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ClinicalImpressionFinding');
+  });
+  @override
+  String get fhirType => 'ClinicalImpressionFinding';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

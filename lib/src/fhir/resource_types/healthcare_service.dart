@@ -57,10 +57,11 @@ class HealthcareService extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.HealthcareService,
-            fhirType: 'HealthcareService');
+  }) : super(resourceType: R4ResourceType.HealthcareService);
+  @override
+  String get fhirType => 'HealthcareService';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -340,7 +341,9 @@ class HealthcareServiceEligibility extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'HealthcareServiceEligibility');
+  });
+  @override
+  String get fhirType => 'HealthcareServiceEligibility';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -434,7 +437,9 @@ class HealthcareServiceAvailableTime extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'HealthcareServiceAvailableTime');
+  });
+  @override
+  String get fhirType => 'HealthcareServiceAvailableTime';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -555,7 +560,9 @@ class HealthcareServiceNotAvailable extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'HealthcareServiceNotAvailable');
+  });
+  @override
+  String get fhirType => 'HealthcareServiceNotAvailable';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

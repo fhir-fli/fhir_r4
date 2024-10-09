@@ -44,8 +44,11 @@ class Slot extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Slot, fhirType: 'Slot');
+  }) : super(resourceType: R4ResourceType.Slot);
+  @override
+  String get fhirType => 'Slot';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

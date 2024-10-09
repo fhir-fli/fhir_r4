@@ -35,8 +35,11 @@ class Basic extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Basic, fhirType: 'Basic');
+  }) : super(resourceType: R4ResourceType.Basic);
+  @override
+  String get fhirType => 'Basic';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

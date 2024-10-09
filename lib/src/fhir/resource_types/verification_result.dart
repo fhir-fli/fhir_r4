@@ -47,10 +47,11 @@ class VerificationResult extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.VerificationResult,
-            fhirType: 'VerificationResult');
+  }) : super(resourceType: R4ResourceType.VerificationResult);
+  @override
+  String get fhirType => 'VerificationResult';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -251,7 +252,9 @@ class VerificationResultPrimarySource extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'VerificationResultPrimarySource');
+  });
+  @override
+  String get fhirType => 'VerificationResultPrimarySource';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -386,7 +389,9 @@ class VerificationResultAttestation extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'VerificationResultAttestation');
+  });
+  @override
+  String get fhirType => 'VerificationResultAttestation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -529,7 +534,9 @@ class VerificationResultValidator extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'VerificationResultValidator');
+  });
+  @override
+  String get fhirType => 'VerificationResultValidator';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

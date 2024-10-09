@@ -9,7 +9,6 @@ class Element extends FhirBase {
   const Element({
     this.id,
     this.extension_,
-    super.fhirType = 'Element',
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -17,6 +16,9 @@ class Element extends FhirBase {
     super.children,
     super.namedChildren,
   });
+
+  @override
+  String get fhirType => 'Element';
 
   // Unique id for the element within a resource
   final FhirString? id;

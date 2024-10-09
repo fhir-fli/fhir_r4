@@ -74,8 +74,11 @@ class Observation extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Observation, fhirType: 'Observation');
+  }) : super(resourceType: R4ResourceType.Observation);
+  @override
+  String get fhirType => 'Observation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -488,7 +491,9 @@ class ObservationReferenceRange extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ObservationReferenceRange');
+  });
+  @override
+  String get fhirType => 'ObservationReferenceRange';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -637,7 +642,9 @@ class ObservationComponent extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ObservationComponent');
+  });
+  @override
+  String get fhirType => 'ObservationComponent';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

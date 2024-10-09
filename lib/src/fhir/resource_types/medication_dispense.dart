@@ -60,10 +60,11 @@ class MedicationDispense extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.MedicationDispense,
-            fhirType: 'MedicationDispense');
+  }) : super(resourceType: R4ResourceType.MedicationDispense);
+  @override
+  String get fhirType => 'MedicationDispense';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -351,7 +352,9 @@ class MedicationDispensePerformer extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicationDispensePerformer');
+  });
+  @override
+  String get fhirType => 'MedicationDispensePerformer';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -444,7 +447,9 @@ class MedicationDispenseSubstitution extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicationDispenseSubstitution');
+  });
+  @override
+  String get fhirType => 'MedicationDispenseSubstitution';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

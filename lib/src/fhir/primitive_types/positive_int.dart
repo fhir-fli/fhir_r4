@@ -8,8 +8,7 @@ extension FhirPositiveIntExtension on num {
 
 class FhirPositiveInt extends FhirNumber {
   FhirPositiveInt._(super.valueString, super.valueNumber, super.isValid,
-      {super.element})
-      : super(fhirType: 'positiveInt');
+      {super.element});
 
   factory FhirPositiveInt(dynamic inValue, {Element? element}) {
     if (inValue is int) {
@@ -40,6 +39,9 @@ class FhirPositiveInt extends FhirNumber {
           ? FhirPositiveInt.fromJson(jsonDecode(jsonEncode(yaml)))
           : throw YamlFormatException<FhirPositiveInt>(
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
+
+  @override
+  String get fhirType => 'positiveInt';
 
   @override
   int? get value => valueNumber as int?;

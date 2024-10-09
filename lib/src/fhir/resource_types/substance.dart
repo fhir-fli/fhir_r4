@@ -36,8 +36,11 @@ class Substance extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Substance, fhirType: 'Substance');
+  }) : super(resourceType: R4ResourceType.Substance);
+  @override
+  String get fhirType => 'Substance';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -179,7 +182,9 @@ class SubstanceInstance extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SubstanceInstance');
+  });
+  @override
+  String get fhirType => 'SubstanceInstance';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -276,7 +281,9 @@ class SubstanceIngredient extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SubstanceIngredient');
+  });
+  @override
+  String get fhirType => 'SubstanceIngredient';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

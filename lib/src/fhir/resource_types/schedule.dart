@@ -38,8 +38,11 @@ class Schedule extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Schedule, fhirType: 'Schedule');
+  }) : super(resourceType: R4ResourceType.Schedule);
+  @override
+  String get fhirType => 'Schedule';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

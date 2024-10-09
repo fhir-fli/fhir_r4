@@ -22,7 +22,9 @@ class CodeableReference extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CodeableReference');
+  });
+  @override
+  String get fhirType => 'CodeableReference';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

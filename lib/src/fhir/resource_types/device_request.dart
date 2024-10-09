@@ -63,10 +63,11 @@ class DeviceRequest extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.DeviceRequest,
-            fhirType: 'DeviceRequest');
+  }) : super(resourceType: R4ResourceType.DeviceRequest);
+  @override
+  String get fhirType => 'DeviceRequest';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -375,7 +376,9 @@ class DeviceRequestParameter extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'DeviceRequestParameter');
+  });
+  @override
+  String get fhirType => 'DeviceRequestParameter';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

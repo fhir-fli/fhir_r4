@@ -36,7 +36,9 @@ class ParameterDefinition extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ParameterDefinition');
+  });
+  @override
+  String get fhirType => 'ParameterDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -39,10 +39,11 @@ class VisionPrescription extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.VisionPrescription,
-            fhirType: 'VisionPrescription');
+  }) : super(resourceType: R4ResourceType.VisionPrescription);
+  @override
+  String get fhirType => 'VisionPrescription';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -214,7 +215,9 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'VisionPrescriptionLensSpecification');
+  });
+  @override
+  String get fhirType => 'VisionPrescriptionLensSpecification';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -416,7 +419,9 @@ class VisionPrescriptionPrism extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'VisionPrescriptionPrism');
+  });
+  @override
+  String get fhirType => 'VisionPrescriptionPrism';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

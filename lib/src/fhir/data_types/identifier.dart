@@ -29,7 +29,9 @@ class Identifier extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'Identifier');
+  });
+  @override
+  String get fhirType => 'Identifier';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

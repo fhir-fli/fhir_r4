@@ -107,10 +107,11 @@ class ActivityDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.ActivityDefinition,
-            fhirType: 'ActivityDefinition');
+  }) : super(resourceType: R4ResourceType.ActivityDefinition);
+  @override
+  String get fhirType => 'ActivityDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -722,7 +723,9 @@ class ActivityDefinitionParticipant extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ActivityDefinitionParticipant');
+  });
+  @override
+  String get fhirType => 'ActivityDefinitionParticipant';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -815,7 +818,9 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ActivityDefinitionDynamicValue');
+  });
+  @override
+  String get fhirType => 'ActivityDefinitionDynamicValue';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

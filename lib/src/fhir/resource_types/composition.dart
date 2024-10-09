@@ -54,8 +54,11 @@ class Composition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Composition, fhirType: 'Composition');
+  }) : super(resourceType: R4ResourceType.Composition);
+  @override
+  String get fhirType => 'Composition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -266,7 +269,9 @@ class CompositionAttester extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CompositionAttester');
+  });
+  @override
+  String get fhirType => 'CompositionAttester';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -367,7 +372,9 @@ class CompositionRelatesTo extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CompositionRelatesTo');
+  });
+  @override
+  String get fhirType => 'CompositionRelatesTo';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -464,7 +471,9 @@ class CompositionEvent extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CompositionEvent');
+  });
+  @override
+  String get fhirType => 'CompositionEvent';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -571,7 +580,9 @@ class CompositionSection extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CompositionSection');
+  });
+  @override
+  String get fhirType => 'CompositionSection';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

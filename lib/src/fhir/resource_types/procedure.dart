@@ -66,8 +66,11 @@ class Procedure extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Procedure, fhirType: 'Procedure');
+  }) : super(resourceType: R4ResourceType.Procedure);
+  @override
+  String get fhirType => 'Procedure';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -410,7 +413,9 @@ class ProcedurePerformer extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ProcedurePerformer');
+  });
+  @override
+  String get fhirType => 'ProcedurePerformer';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -503,7 +508,9 @@ class ProcedureFocalDevice extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ProcedureFocalDevice');
+  });
+  @override
+  String get fhirType => 'ProcedureFocalDevice';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

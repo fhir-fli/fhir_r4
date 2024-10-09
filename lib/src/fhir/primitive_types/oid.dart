@@ -9,7 +9,7 @@ extension FhirOidExtension on String {
 class FhirOid extends PrimitiveType<String> {
   FhirOid._(this._valueString, this._valueOid, this._isValid,
       [Element? element])
-      : super(fhirType: 'oid', element: element);
+      : super(element: element);
 
   factory FhirOid(dynamic inValue, [Element? element]) => inValue is String &&
           RegExp(r'^urn:oid:[0-2](\.(0|[1-9][0-9]*))+$').hasMatch(inValue)
@@ -24,6 +24,9 @@ class FhirOid extends PrimitiveType<String> {
           ? FhirOid.fromJson(jsonDecode(jsonEncode(yaml)))
           : throw YamlFormatException<FhirOid>(
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
+
+  @override
+  String get fhirType => 'oid';
 
   final String _valueString;
   final String? _valueOid;

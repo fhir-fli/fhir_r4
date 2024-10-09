@@ -28,7 +28,9 @@ class Timing extends BackboneType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'Timing');
+  });
+  @override
+  String get fhirType => 'Timing';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -155,7 +157,9 @@ class TimingRepeat extends Element {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TimingRepeat');
+  });
+  @override
+  String get fhirType => 'TimingRepeat';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -70,8 +70,11 @@ class Contract extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Contract, fhirType: 'Contract');
+  }) : super(resourceType: R4ResourceType.Contract);
+  @override
+  String get fhirType => 'Contract';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -456,7 +459,9 @@ class ContractContentDefinition extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ContractContentDefinition');
+  });
+  @override
+  String get fhirType => 'ContractContentDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -602,7 +607,9 @@ class ContractTerm extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ContractTerm');
+  });
+  @override
+  String get fhirType => 'ContractTerm';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -769,7 +776,9 @@ class ContractSecurityLabel extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ContractSecurityLabel');
+  });
+  @override
+  String get fhirType => 'ContractSecurityLabel';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -884,7 +893,9 @@ class ContractOffer extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ContractOffer');
+  });
+  @override
+  String get fhirType => 'ContractOffer';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1034,7 +1045,9 @@ class ContractParty extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ContractParty');
+  });
+  @override
+  String get fhirType => 'ContractParty';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1136,7 +1149,9 @@ class ContractAnswer extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ContractAnswer');
+  });
+  @override
+  String get fhirType => 'ContractAnswer';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1365,7 +1380,9 @@ class ContractAsset extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ContractAsset');
+  });
+  @override
+  String get fhirType => 'ContractAsset';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1552,7 +1569,9 @@ class ContractContext extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ContractContext');
+  });
+  @override
+  String get fhirType => 'ContractContext';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1669,7 +1688,9 @@ class ContractValuedItem extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ContractValuedItem');
+  });
+  @override
+  String get fhirType => 'ContractValuedItem';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1905,7 +1926,9 @@ class ContractAction extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ContractAction');
+  });
+  @override
+  String get fhirType => 'ContractAction';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2169,7 +2192,9 @@ class ContractSubject extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ContractSubject');
+  });
+  @override
+  String get fhirType => 'ContractSubject';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2257,7 +2282,9 @@ class ContractSigner extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ContractSigner');
+  });
+  @override
+  String get fhirType => 'ContractSigner';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2353,7 +2380,9 @@ class ContractFriendly extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ContractFriendly');
+  });
+  @override
+  String get fhirType => 'ContractFriendly';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2441,7 +2470,9 @@ class ContractLegal extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ContractLegal');
+  });
+  @override
+  String get fhirType => 'ContractLegal';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2545,7 +2576,9 @@ class ContractRule extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ContractRule');
+  });
+  @override
+  String get fhirType => 'ContractRule';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

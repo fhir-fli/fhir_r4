@@ -44,8 +44,11 @@ class Consent extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Consent, fhirType: 'Consent');
+  }) : super(resourceType: R4ResourceType.Consent);
+  @override
+  String get fhirType => 'Consent';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -239,7 +242,9 @@ class ConsentPolicy extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ConsentPolicy');
+  });
+  @override
+  String get fhirType => 'ConsentPolicy';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -344,7 +349,9 @@ class ConsentVerification extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ConsentVerification');
+  });
+  @override
+  String get fhirType => 'ConsentVerification';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -455,7 +462,9 @@ class ConsentProvision extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ConsentProvision');
+  });
+  @override
+  String get fhirType => 'ConsentProvision';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -605,7 +614,9 @@ class ConsentActor extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ConsentActor');
+  });
+  @override
+  String get fhirType => 'ConsentActor';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -693,7 +704,9 @@ class ConsentData extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ConsentData');
+  });
+  @override
+  String get fhirType => 'ConsentData';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -8,8 +8,7 @@ extension FhirUnsignedIntExtension on num {
 
 class FhirUnsignedInt extends FhirNumber {
   FhirUnsignedInt._(super.valueString, super.valueNumber, super.isValid,
-      {super.element})
-      : super(fhirType: 'unsignedInt');
+      {super.element});
 
   factory FhirUnsignedInt(dynamic inValue, {Element? element}) {
     if (inValue is int) {
@@ -40,6 +39,9 @@ class FhirUnsignedInt extends FhirNumber {
           ? FhirUnsignedInt.fromJson(jsonDecode(jsonEncode(yaml)))
           : throw YamlFormatException<FhirUnsignedInt>(
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
+
+  @override
+  String get fhirType => 'unsignedInt';
 
   @override
   int? get value => valueNumber as int?;

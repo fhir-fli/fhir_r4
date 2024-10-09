@@ -44,10 +44,11 @@ class DocumentManifest extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.DocumentManifest,
-            fhirType: 'DocumentManifest');
+  }) : super(resourceType: R4ResourceType.DocumentManifest);
+  @override
+  String get fhirType => 'DocumentManifest';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -235,7 +236,9 @@ class DocumentManifestRelated extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'DocumentManifestRelated');
+  });
+  @override
+  String get fhirType => 'DocumentManifestRelated';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

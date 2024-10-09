@@ -37,10 +37,11 @@ class EnrollmentRequest extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.EnrollmentRequest,
-            fhirType: 'EnrollmentRequest');
+  }) : super(resourceType: R4ResourceType.EnrollmentRequest);
+  @override
+  String get fhirType => 'EnrollmentRequest';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

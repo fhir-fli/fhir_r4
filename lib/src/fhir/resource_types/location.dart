@@ -52,8 +52,11 @@ class Location extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Location, fhirType: 'Location');
+  }) : super(resourceType: R4ResourceType.Location);
+  @override
+  String get fhirType => 'Location';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -287,7 +290,9 @@ class LocationPosition extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'LocationPosition');
+  });
+  @override
+  String get fhirType => 'LocationPosition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -398,7 +403,9 @@ class LocationHoursOfOperation extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'LocationHoursOfOperation');
+  });
+  @override
+  String get fhirType => 'LocationHoursOfOperation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

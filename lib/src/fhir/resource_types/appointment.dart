@@ -60,8 +60,11 @@ class Appointment extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Appointment, fhirType: 'Appointment');
+  }) : super(resourceType: R4ResourceType.Appointment);
+  @override
+  String get fhirType => 'Appointment';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -362,7 +365,9 @@ class AppointmentParticipant extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'AppointmentParticipant');
+  });
+  @override
+  String get fhirType => 'AppointmentParticipant';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

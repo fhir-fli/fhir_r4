@@ -9,7 +9,7 @@ extension FhirBooleanExtension on bool {
 class FhirBoolean extends PrimitiveType<bool> {
   FhirBoolean._(this._valueString, this._valueBoolean, this._isValid,
       [Element? element])
-      : super(fhirType: 'boolean', element: element);
+      : super(element: element);
 
   factory FhirBoolean(dynamic inValue, [Element? element]) {
     if (inValue is bool) {
@@ -35,6 +35,8 @@ class FhirBoolean extends PrimitiveType<bool> {
           : throw YamlFormatException<FhirBoolean>(
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
 
+  @override
+  String get fhirType => 'boolean';
   final String _valueString;
   final bool? _valueBoolean;
   final bool _isValid;

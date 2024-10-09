@@ -44,10 +44,11 @@ class MeasureReport extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.MeasureReport,
-            fhirType: 'MeasureReport');
+  }) : super(resourceType: R4ResourceType.MeasureReport);
+  @override
+  String get fhirType => 'MeasureReport';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -231,7 +232,9 @@ class MeasureReportGroup extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MeasureReportGroup');
+  });
+  @override
+  String get fhirType => 'MeasureReportGroup';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -334,7 +337,9 @@ class MeasureReportPopulation extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MeasureReportPopulation');
+  });
+  @override
+  String get fhirType => 'MeasureReportPopulation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -430,7 +435,9 @@ class MeasureReportStratifier extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MeasureReportStratifier');
+  });
+  @override
+  String get fhirType => 'MeasureReportStratifier';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -520,7 +527,9 @@ class MeasureReportStratum extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MeasureReportStratum');
+  });
+  @override
+  String get fhirType => 'MeasureReportStratum';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -621,7 +630,9 @@ class MeasureReportComponent extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MeasureReportComponent');
+  });
+  @override
+  String get fhirType => 'MeasureReportComponent';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -708,7 +719,9 @@ class MeasureReportPopulation1 extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MeasureReportPopulation1');
+  });
+  @override
+  String get fhirType => 'MeasureReportPopulation1';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

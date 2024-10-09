@@ -52,10 +52,11 @@ class EvidenceReport extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.EvidenceReport,
-            fhirType: 'EvidenceReport');
+  }) : super(resourceType: R4ResourceType.EvidenceReport);
+  @override
+  String get fhirType => 'EvidenceReport';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -295,7 +296,9 @@ class EvidenceReportSubject extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'EvidenceReportSubject');
+  });
+  @override
+  String get fhirType => 'EvidenceReportSubject';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -387,7 +390,9 @@ class EvidenceReportCharacteristic extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'EvidenceReportCharacteristic');
+  });
+  @override
+  String get fhirType => 'EvidenceReportCharacteristic';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -518,7 +523,9 @@ class EvidenceReportRelatesTo extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'EvidenceReportRelatesTo');
+  });
+  @override
+  String get fhirType => 'EvidenceReportRelatesTo';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -625,7 +632,9 @@ class EvidenceReportSection extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'EvidenceReportSection');
+  });
+  @override
+  String get fhirType => 'EvidenceReportSection';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

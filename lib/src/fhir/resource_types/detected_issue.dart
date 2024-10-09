@@ -48,10 +48,11 @@ class DetectedIssue extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.DetectedIssue,
-            fhirType: 'DetectedIssue');
+  }) : super(resourceType: R4ResourceType.DetectedIssue);
+  @override
+  String get fhirType => 'DetectedIssue';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -246,7 +247,9 @@ class DetectedIssueEvidence extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'DetectedIssueEvidence');
+  });
+  @override
+  String get fhirType => 'DetectedIssueEvidence';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -336,7 +339,9 @@ class DetectedIssueMitigation extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'DetectedIssueMitigation');
+  });
+  @override
+  String get fhirType => 'DetectedIssueMitigation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

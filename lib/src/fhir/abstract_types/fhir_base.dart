@@ -6,7 +6,6 @@ import '../../../fhir_r4.dart';
 
 abstract class FhirBase {
   const FhirBase({
-    required this.fhirType,
     this.userData,
     this.formatCommentsPre,
     this.formatCommentsPost,
@@ -15,7 +14,7 @@ abstract class FhirBase {
     this.namedChildren,
   });
 
-  final String fhirType;
+  String get fhirType => 'FhirBase';
   final Map<String, Object?>? userData;
   final List<String>? formatCommentsPre;
   final List<String>? formatCommentsPost;

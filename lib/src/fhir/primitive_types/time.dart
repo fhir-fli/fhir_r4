@@ -11,8 +11,8 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
   final String? _valueTime;
   final bool _isValid;
 
-  FhirTime._(this._valueString, this._valueTime, this._isValid, {super.element})
-      : super(fhirType: 'time');
+  FhirTime._(this._valueString, this._valueTime, this._isValid,
+      {super.element});
 
   factory FhirTime(dynamic inValue, [Element? element]) {
     if (inValue is String &&
@@ -56,6 +56,9 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
       );
     }
   }
+
+  @override
+  String get fhirType => 'time';
 
   @override
   bool get isValid => _isValid;

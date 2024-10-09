@@ -35,9 +35,11 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     required this.microsecond,
     required this.timeZoneOffset,
     required this.isUtc,
-    super.fhirType = 'dateTime',
     super.element,
   });
+
+  @override
+  String get fhirType => 'dateTimeBase';
 
   @override
   DateTime get value => valueDateTime;

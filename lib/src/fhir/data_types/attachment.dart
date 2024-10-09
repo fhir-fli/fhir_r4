@@ -35,7 +35,9 @@ class Attachment extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'Attachment');
+  });
+  @override
+  String get fhirType => 'Attachment';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

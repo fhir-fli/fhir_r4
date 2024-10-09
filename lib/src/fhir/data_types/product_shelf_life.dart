@@ -25,7 +25,9 @@ class ProductShelfLife extends BackboneType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ProductShelfLife');
+  });
+  @override
+  String get fhirType => 'ProductShelfLife';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

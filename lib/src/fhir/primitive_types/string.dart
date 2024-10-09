@@ -13,7 +13,7 @@ class FhirString extends PrimitiveType<String> {
 
   FhirString._(this._valueString, this._value, this._isValid,
       [Element? element])
-      : super(fhirType: 'string', element: element);
+      : super(element: element);
 
   factory FhirString(dynamic inValue, [Element? element]) => inValue is String
       ? FhirString._(inValue, inValue, true, element)
@@ -27,6 +27,9 @@ class FhirString extends PrimitiveType<String> {
           ? FhirString.fromJson(jsonDecode(jsonEncode(yaml)))
           : throw YamlFormatException<FhirString>(
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
+
+  @override
+  String get fhirType => 'string';
 
   @override
   bool get isValid => _isValid;

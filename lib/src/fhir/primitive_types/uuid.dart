@@ -13,7 +13,7 @@ extension FhirUUidValueExtension on UuidValue {
 
 class FhirUuid extends PrimitiveType<UuidValue> {
   FhirUuid._(this._valueUuid, this._isValid, [Element? element])
-      : super(fhirType: 'uuid', element: element);
+      : super(element: element);
 
   /// Factory constructor to create FhirUuid from a dynamic input.
   factory FhirUuid(dynamic inValue, [Element? element]) {
@@ -34,6 +34,9 @@ class FhirUuid extends PrimitiveType<UuidValue> {
           ? FhirUuid.fromJson(jsonDecode(jsonEncode(yaml)))
           : throw YamlFormatException<FhirUuid>(
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
+
+  @override
+  String get fhirType => 'uuid';
 
   final UuidValue _valueUuid;
   final bool _isValid;

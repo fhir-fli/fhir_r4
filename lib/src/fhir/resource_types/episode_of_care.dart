@@ -43,10 +43,11 @@ class EpisodeOfCare extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.EpisodeOfCare,
-            fhirType: 'EpisodeOfCare');
+  }) : super(resourceType: R4ResourceType.EpisodeOfCare);
+  @override
+  String get fhirType => 'EpisodeOfCare';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -219,7 +220,9 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'EpisodeOfCareStatusHistory');
+  });
+  @override
+  String get fhirType => 'EpisodeOfCareStatusHistory';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -309,7 +312,9 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'EpisodeOfCareDiagnosis');
+  });
+  @override
+  String get fhirType => 'EpisodeOfCareDiagnosis';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

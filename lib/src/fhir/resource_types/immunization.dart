@@ -65,10 +65,11 @@ class Immunization extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.Immunization,
-            fhirType: 'Immunization');
+  }) : super(resourceType: R4ResourceType.Immunization);
+  @override
+  String get fhirType => 'Immunization';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -377,7 +378,9 @@ class ImmunizationPerformer extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ImmunizationPerformer');
+  });
+  @override
+  String get fhirType => 'ImmunizationPerformer';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -469,7 +472,9 @@ class ImmunizationEducation extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ImmunizationEducation');
+  });
+  @override
+  String get fhirType => 'ImmunizationEducation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -588,7 +593,9 @@ class ImmunizationReaction extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ImmunizationReaction');
+  });
+  @override
+  String get fhirType => 'ImmunizationReaction';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -697,7 +704,9 @@ class ImmunizationProtocolApplied extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ImmunizationProtocolApplied');
+  });
+  @override
+  String get fhirType => 'ImmunizationProtocolApplied';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

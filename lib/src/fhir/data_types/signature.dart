@@ -34,7 +34,9 @@ class Signature extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'Signature');
+  });
+  @override
+  String get fhirType => 'Signature';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -43,10 +43,11 @@ class QuestionnaireResponse extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.QuestionnaireResponse,
-            fhirType: 'QuestionnaireResponse');
+  }) : super(resourceType: R4ResourceType.QuestionnaireResponse);
+  @override
+  String get fhirType => 'QuestionnaireResponse';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -229,7 +230,9 @@ class QuestionnaireResponseItem extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'QuestionnaireResponseItem');
+  });
+  @override
+  String get fhirType => 'QuestionnaireResponseItem';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -365,7 +368,9 @@ class QuestionnaireResponseAnswer extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'QuestionnaireResponseAnswer');
+  });
+  @override
+  String get fhirType => 'QuestionnaireResponseAnswer';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

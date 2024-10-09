@@ -9,7 +9,6 @@ abstract class BackboneElement extends DataType {
     super.id,
     super.extension_,
     this.modifierExtension,
-    super.fhirType = 'BackboneElement',
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -17,6 +16,9 @@ abstract class BackboneElement extends DataType {
     super.children,
     super.namedChildren,
   });
+
+  @override
+  String get fhirType => 'BackboneElement';
 
   /// List of modifier extensions for additional, non-core information
   final List<FhirExtension>? modifierExtension;

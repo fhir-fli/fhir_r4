@@ -44,10 +44,11 @@ class InsurancePlan extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.InsurancePlan,
-            fhirType: 'InsurancePlan');
+  }) : super(resourceType: R4ResourceType.InsurancePlan);
+  @override
+  String get fhirType => 'InsurancePlan';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -238,7 +239,9 @@ class InsurancePlanContact extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'InsurancePlanContact');
+  });
+  @override
+  String get fhirType => 'InsurancePlanContact';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -336,7 +339,9 @@ class InsurancePlanCoverage extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'InsurancePlanCoverage');
+  });
+  @override
+  String get fhirType => 'InsurancePlanCoverage';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -429,7 +434,9 @@ class InsurancePlanBenefit extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'InsurancePlanBenefit');
+  });
+  @override
+  String get fhirType => 'InsurancePlanBenefit';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -523,7 +530,9 @@ class InsurancePlanLimit extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'InsurancePlanLimit');
+  });
+  @override
+  String get fhirType => 'InsurancePlanLimit';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -612,7 +621,9 @@ class InsurancePlanPlan extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'InsurancePlanPlan');
+  });
+  @override
+  String get fhirType => 'InsurancePlanPlan';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -725,7 +736,9 @@ class InsurancePlanGeneralCost extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'InsurancePlanGeneralCost');
+  });
+  @override
+  String get fhirType => 'InsurancePlanGeneralCost';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -829,7 +842,9 @@ class InsurancePlanSpecificCost extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'InsurancePlanSpecificCost');
+  });
+  @override
+  String get fhirType => 'InsurancePlanSpecificCost';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -914,7 +929,9 @@ class InsurancePlanBenefit1 extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'InsurancePlanBenefit1');
+  });
+  @override
+  String get fhirType => 'InsurancePlanBenefit1';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1001,7 +1018,9 @@ class InsurancePlanCost extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'InsurancePlanCost');
+  });
+  @override
+  String get fhirType => 'InsurancePlanCost';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

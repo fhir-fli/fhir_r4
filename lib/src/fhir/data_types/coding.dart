@@ -29,7 +29,9 @@ class Coding extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'Coding');
+  });
+  @override
+  String get fhirType => 'Coding';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

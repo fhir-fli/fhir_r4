@@ -43,8 +43,11 @@ class CareTeam extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.CareTeam, fhirType: 'CareTeam');
+  }) : super(resourceType: R4ResourceType.CareTeam);
+  @override
+  String get fhirType => 'CareTeam';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -226,7 +229,9 @@ class CareTeamParticipant extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CareTeamParticipant');
+  });
+  @override
+  String get fhirType => 'CareTeamParticipant';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

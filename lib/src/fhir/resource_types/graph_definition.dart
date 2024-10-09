@@ -55,10 +55,11 @@ class GraphDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.GraphDefinition,
-            fhirType: 'GraphDefinition');
+  }) : super(resourceType: R4ResourceType.GraphDefinition);
+  @override
+  String get fhirType => 'GraphDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -316,7 +317,9 @@ class GraphDefinitionLink extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'GraphDefinitionLink');
+  });
+  @override
+  String get fhirType => 'GraphDefinitionLink';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -451,7 +454,9 @@ class GraphDefinitionTarget extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'GraphDefinitionTarget');
+  });
+  @override
+  String get fhirType => 'GraphDefinitionTarget';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -573,7 +578,9 @@ class GraphDefinitionCompartment extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'GraphDefinitionCompartment');
+  });
+  @override
+  String get fhirType => 'GraphDefinitionCompartment';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

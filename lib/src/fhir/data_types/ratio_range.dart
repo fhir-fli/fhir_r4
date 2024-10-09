@@ -22,7 +22,9 @@ class RatioRange extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'RatioRange');
+  });
+  @override
+  String get fhirType => 'RatioRange';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

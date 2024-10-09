@@ -45,10 +45,11 @@ class FhirEndpoint extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.FhirEndpoint,
-            fhirType: 'FhirEndpoint');
+  }) : super(resourceType: R4ResourceType.FhirEndpoint);
+  @override
+  String get fhirType => 'FhirEndpoint';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

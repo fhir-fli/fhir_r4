@@ -66,8 +66,11 @@ class Task extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Task, fhirType: 'Task');
+  }) : super(resourceType: R4ResourceType.Task);
+  @override
+  String get fhirType => 'Task';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -397,7 +400,9 @@ class TaskRestriction extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TaskRestriction');
+  });
+  @override
+  String get fhirType => 'TaskRestriction';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -560,7 +565,9 @@ class TaskInput extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TaskInput');
+  });
+  @override
+  String get fhirType => 'TaskInput';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1089,7 +1096,9 @@ class TaskOutput extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TaskOutput');
+  });
+  @override
+  String get fhirType => 'TaskOutput';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

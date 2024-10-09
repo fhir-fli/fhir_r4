@@ -53,8 +53,11 @@ class Encounter extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Encounter, fhirType: 'Encounter');
+  }) : super(resourceType: R4ResourceType.Encounter);
+  @override
+  String get fhirType => 'Encounter';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -315,7 +318,9 @@ class EncounterStatusHistory extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'EncounterStatusHistory');
+  });
+  @override
+  String get fhirType => 'EncounterStatusHistory';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -410,7 +415,9 @@ class EncounterClassHistory extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'EncounterClassHistory');
+  });
+  @override
+  String get fhirType => 'EncounterClassHistory';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -495,7 +502,9 @@ class EncounterParticipant extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'EncounterParticipant');
+  });
+  @override
+  String get fhirType => 'EncounterParticipant';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -589,7 +598,9 @@ class EncounterDiagnosis extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'EncounterDiagnosis');
+  });
+  @override
+  String get fhirType => 'EncounterDiagnosis';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -694,7 +705,9 @@ class EncounterHospitalization extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'EncounterHospitalization');
+  });
+  @override
+  String get fhirType => 'EncounterHospitalization';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -825,7 +838,9 @@ class EncounterLocation extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'EncounterLocation');
+  });
+  @override
+  String get fhirType => 'EncounterLocation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

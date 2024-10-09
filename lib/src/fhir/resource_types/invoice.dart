@@ -48,8 +48,11 @@ class Invoice extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Invoice, fhirType: 'Invoice');
+  }) : super(resourceType: R4ResourceType.Invoice);
+  @override
+  String get fhirType => 'Invoice';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -259,7 +262,9 @@ class InvoiceParticipant extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'InvoiceParticipant');
+  });
+  @override
+  String get fhirType => 'InvoiceParticipant';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -351,7 +356,9 @@ class InvoiceLineItem extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'InvoiceLineItem');
+  });
+  @override
+  String get fhirType => 'InvoiceLineItem';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -472,7 +479,9 @@ class InvoicePriceComponent extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'InvoicePriceComponent');
+  });
+  @override
+  String get fhirType => 'InvoicePriceComponent';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

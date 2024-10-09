@@ -26,8 +26,11 @@ class Parameters extends Resource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Parameters, fhirType: 'Parameters');
+  }) : super(resourceType: R4ResourceType.Parameters);
+  @override
+  String get fhirType => 'Parameters';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -182,7 +185,9 @@ class ParametersParameter extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ParametersParameter');
+  });
+  @override
+  String get fhirType => 'ParametersParameter';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

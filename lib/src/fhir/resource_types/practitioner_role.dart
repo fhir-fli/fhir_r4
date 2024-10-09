@@ -44,10 +44,11 @@ class PractitionerRole extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.PractitionerRole,
-            fhirType: 'PractitionerRole');
+  }) : super(resourceType: R4ResourceType.PractitionerRole);
+  @override
+  String get fhirType => 'PractitionerRole';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -243,7 +244,9 @@ class PractitionerRoleAvailableTime extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'PractitionerRoleAvailableTime');
+  });
+  @override
+  String get fhirType => 'PractitionerRoleAvailableTime';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -363,7 +366,9 @@ class PractitionerRoleNotAvailable extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'PractitionerRoleNotAvailable');
+  });
+  @override
+  String get fhirType => 'PractitionerRoleNotAvailable';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

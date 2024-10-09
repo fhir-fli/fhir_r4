@@ -49,10 +49,11 @@ class SubstanceDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.SubstanceDefinition,
-            fhirType: 'SubstanceDefinition');
+  }) : super(resourceType: R4ResourceType.SubstanceDefinition);
+  @override
+  String get fhirType => 'SubstanceDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -278,7 +279,9 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SubstanceDefinitionMoiety');
+  });
+  @override
+  String get fhirType => 'SubstanceDefinitionMoiety';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -427,7 +430,9 @@ class SubstanceDefinitionProperty extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SubstanceDefinitionProperty');
+  });
+  @override
+  String get fhirType => 'SubstanceDefinitionProperty';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -545,7 +550,9 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SubstanceDefinitionMolecularWeight');
+  });
+  @override
+  String get fhirType => 'SubstanceDefinitionMolecularWeight';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -650,7 +657,9 @@ class SubstanceDefinitionStructure extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SubstanceDefinitionStructure');
+  });
+  @override
+  String get fhirType => 'SubstanceDefinitionStructure';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -788,7 +797,9 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SubstanceDefinitionRepresentation');
+  });
+  @override
+  String get fhirType => 'SubstanceDefinitionRepresentation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -900,7 +911,9 @@ class SubstanceDefinitionCode extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SubstanceDefinitionCode');
+  });
+  @override
+  String get fhirType => 'SubstanceDefinitionCode';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1018,7 +1031,9 @@ class SubstanceDefinitionName extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SubstanceDefinitionName');
+  });
+  @override
+  String get fhirType => 'SubstanceDefinitionName';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1167,7 +1182,9 @@ class SubstanceDefinitionOfficial extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SubstanceDefinitionOfficial');
+  });
+  @override
+  String get fhirType => 'SubstanceDefinitionOfficial';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1272,7 +1289,9 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SubstanceDefinitionRelationship');
+  });
+  @override
+  String get fhirType => 'SubstanceDefinitionRelationship';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1431,7 +1450,9 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SubstanceDefinitionSourceMaterial');
+  });
+  @override
+  String get fhirType => 'SubstanceDefinitionSourceMaterial';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

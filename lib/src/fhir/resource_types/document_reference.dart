@@ -51,10 +51,11 @@ class DocumentReference extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.DocumentReference,
-            fhirType: 'DocumentReference');
+  }) : super(resourceType: R4ResourceType.DocumentReference);
+  @override
+  String get fhirType => 'DocumentReference';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -271,7 +272,9 @@ class DocumentReferenceRelatesTo extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'DocumentReferenceRelatesTo');
+  });
+  @override
+  String get fhirType => 'DocumentReferenceRelatesTo';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -360,7 +363,9 @@ class DocumentReferenceContent extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'DocumentReferenceContent');
+  });
+  @override
+  String get fhirType => 'DocumentReferenceContent';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -451,7 +456,9 @@ class DocumentReferenceContext extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'DocumentReferenceContext');
+  });
+  @override
+  String get fhirType => 'DocumentReferenceContext';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

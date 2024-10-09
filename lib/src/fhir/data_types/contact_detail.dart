@@ -22,7 +22,9 @@ class ContactDetail extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ContactDetail');
+  });
+  @override
+  String get fhirType => 'ContactDetail';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -67,10 +67,11 @@ class Questionnaire extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.Questionnaire,
-            fhirType: 'Questionnaire');
+  }) : super(resourceType: R4ResourceType.Questionnaire);
+  @override
+  String get fhirType => 'Questionnaire';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -413,7 +414,9 @@ class QuestionnaireItem extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'QuestionnaireItem');
+  });
+  @override
+  String get fhirType => 'QuestionnaireItem';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -681,7 +684,9 @@ class QuestionnaireEnableWhen extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'QuestionnaireEnableWhen');
+  });
+  @override
+  String get fhirType => 'QuestionnaireEnableWhen';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -883,7 +888,9 @@ class QuestionnaireAnswerOption extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'QuestionnaireAnswerOption');
+  });
+  @override
+  String get fhirType => 'QuestionnaireAnswerOption';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1038,7 +1045,9 @@ class QuestionnaireInitial extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'QuestionnaireInitial');
+  });
+  @override
+  String get fhirType => 'QuestionnaireInitial';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -13,7 +13,7 @@ extension FhirUrlUriExtension on Uri {
 class FhirUrl extends PrimitiveType<Uri> {
   FhirUrl._(this._valueString, this._valueUri, this._isValid,
       [Element? element])
-      : super(fhirType: 'url', element: element);
+      : super(element: element);
 
   factory FhirUrl(dynamic inValue, [Element? element]) {
     if (inValue is Uri) {
@@ -33,6 +33,8 @@ class FhirUrl extends PrimitiveType<Uri> {
           ? FhirUrl.fromJson(jsonDecode(jsonEncode(yaml)))
           : throw YamlFormatException<FhirUrl>(
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
+  @override
+  String get fhirType => 'url';
 
   final String _valueString;
   final Uri? _valueUri;

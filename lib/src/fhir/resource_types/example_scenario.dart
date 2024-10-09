@@ -54,10 +54,11 @@ class ExampleScenario extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.ExampleScenario,
-            fhirType: 'ExampleScenario');
+  }) : super(resourceType: R4ResourceType.ExampleScenario);
+  @override
+  String get fhirType => 'ExampleScenario';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -325,7 +326,9 @@ class ExampleScenarioActor extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExampleScenarioActor');
+  });
+  @override
+  String get fhirType => 'ExampleScenarioActor';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -445,7 +448,9 @@ class ExampleScenarioInstance extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExampleScenarioInstance');
+  });
+  @override
+  String get fhirType => 'ExampleScenarioInstance';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -572,7 +577,9 @@ class ExampleScenarioVersion extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExampleScenarioVersion');
+  });
+  @override
+  String get fhirType => 'ExampleScenarioVersion';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -667,7 +674,9 @@ class ExampleScenarioContainedInstance extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExampleScenarioContainedInstance');
+  });
+  @override
+  String get fhirType => 'ExampleScenarioContainedInstance';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -769,7 +778,9 @@ class ExampleScenarioProcess extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExampleScenarioProcess');
+  });
+  @override
+  String get fhirType => 'ExampleScenarioProcess';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -891,7 +902,9 @@ class ExampleScenarioStep extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExampleScenarioStep');
+  });
+  @override
+  String get fhirType => 'ExampleScenarioStep';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1008,7 +1021,9 @@ class ExampleScenarioOperation extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExampleScenarioOperation');
+  });
+  @override
+  String get fhirType => 'ExampleScenarioOperation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1178,7 +1193,9 @@ class ExampleScenarioAlternative extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExampleScenarioAlternative');
+  });
+  @override
+  String get fhirType => 'ExampleScenarioAlternative';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

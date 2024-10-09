@@ -68,10 +68,11 @@ class TerminologyCapabilities extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.TerminologyCapabilities,
-            fhirType: 'TerminologyCapabilities');
+  }) : super(resourceType: R4ResourceType.TerminologyCapabilities);
+  @override
+  String get fhirType => 'TerminologyCapabilities';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -406,7 +407,9 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TerminologyCapabilitiesSoftware');
+  });
+  @override
+  String get fhirType => 'TerminologyCapabilitiesSoftware';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -504,7 +507,9 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TerminologyCapabilitiesImplementation');
+  });
+  @override
+  String get fhirType => 'TerminologyCapabilitiesImplementation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -605,7 +610,9 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TerminologyCapabilitiesCodeSystem');
+  });
+  @override
+  String get fhirType => 'TerminologyCapabilitiesCodeSystem';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -715,7 +722,9 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TerminologyCapabilitiesVersion');
+  });
+  @override
+  String get fhirType => 'TerminologyCapabilitiesVersion';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -847,7 +856,9 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TerminologyCapabilitiesFilter');
+  });
+  @override
+  String get fhirType => 'TerminologyCapabilitiesFilter';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -947,7 +958,9 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TerminologyCapabilitiesExpansion');
+  });
+  @override
+  String get fhirType => 'TerminologyCapabilitiesExpansion';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1070,7 +1083,9 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TerminologyCapabilitiesParameter');
+  });
+  @override
+  String get fhirType => 'TerminologyCapabilitiesParameter';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1166,7 +1181,9 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TerminologyCapabilitiesValidateCode');
+  });
+  @override
+  String get fhirType => 'TerminologyCapabilitiesValidateCode';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1252,7 +1269,9 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TerminologyCapabilitiesTranslation');
+  });
+  @override
+  String get fhirType => 'TerminologyCapabilitiesTranslation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1337,7 +1356,9 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TerminologyCapabilitiesClosure');
+  });
+  @override
+  String get fhirType => 'TerminologyCapabilitiesClosure';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

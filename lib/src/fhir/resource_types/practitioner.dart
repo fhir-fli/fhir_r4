@@ -41,10 +41,11 @@ class Practitioner extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.Practitioner,
-            fhirType: 'Practitioner');
+  }) : super(resourceType: R4ResourceType.Practitioner);
+  @override
+  String get fhirType => 'Practitioner';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -214,7 +215,9 @@ class PractitionerQualification extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'PractitionerQualification');
+  });
+  @override
+  String get fhirType => 'PractitionerQualification';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -50,10 +50,11 @@ class CoverageEligibilityRequest extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.CoverageEligibilityRequest,
-            fhirType: 'CoverageEligibilityRequest');
+  }) : super(resourceType: R4ResourceType.CoverageEligibilityRequest);
+  @override
+  String get fhirType => 'CoverageEligibilityRequest';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -260,7 +261,9 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CoverageEligibilityRequestSupportingInfo');
+  });
+  @override
+  String get fhirType => 'CoverageEligibilityRequestSupportingInfo';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -369,7 +372,9 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CoverageEligibilityRequestInsurance');
+  });
+  @override
+  String get fhirType => 'CoverageEligibilityRequestInsurance';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -485,7 +490,9 @@ class CoverageEligibilityRequestItem extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CoverageEligibilityRequestItem');
+  });
+  @override
+  String get fhirType => 'CoverageEligibilityRequestItem';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -629,7 +636,9 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CoverageEligibilityRequestDiagnosis');
+  });
+  @override
+  String get fhirType => 'CoverageEligibilityRequestDiagnosis';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -407,15 +407,22 @@ void _writeConstructor(StringBuffer buffer, WritableClass writableClass) {
 
   // Close constructor
   if (writableName.isResource && writableClass.isResource) {
+    buffer.writeln('    // ignore: avoid_unused_constructor_parameters');
     buffer.writeln('R4ResourceType? resourceType,');
     buffer.writeln(
-        '  }) : super(resourceType: R4ResourceType.${writableName.fhirToDartTypes},');
-    buffer.writeln("      fhirType: '${writableName.fhirToDartTypes}');");
+        '  }) : super(resourceType: R4ResourceType.${writableName.fhirToDartTypes});');
+    buffer.writeln('@override');
+    buffer.writeln(
+        "      String get fhirType => '${writableName.fhirToDartTypes}';");
   } else if (writableName == 'Quantity') {
-    buffer.writeln(" super.fhirType = 'Quantity' });");
+    buffer.writeln('});');
+    buffer.writeln('@override');
+    buffer.writeln("String get fhirType => 'Quantity';");
   } else {
+    buffer.writeln('  });');
+    buffer.writeln('@override');
     buffer
-        .writeln("  }) : super(fhirType: '${writableName.fhirToDartTypes}');");
+        .writeln("  String get fhirType => '${writableName.fhirToDartTypes}';");
   }
 }
 

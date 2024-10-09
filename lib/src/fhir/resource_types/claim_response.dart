@@ -61,10 +61,11 @@ class ClaimResponse extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.ClaimResponse,
-            fhirType: 'ClaimResponse');
+  }) : super(resourceType: R4ResourceType.ClaimResponse);
+  @override
+  String get fhirType => 'ClaimResponse';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -358,7 +359,9 @@ class ClaimResponseItem extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ClaimResponseItem');
+  });
+  @override
+  String get fhirType => 'ClaimResponseItem';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -471,7 +474,9 @@ class ClaimResponseAdjudication extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ClaimResponseAdjudication');
+  });
+  @override
+  String get fhirType => 'ClaimResponseAdjudication';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -582,7 +587,9 @@ class ClaimResponseDetail extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ClaimResponseDetail');
+  });
+  @override
+  String get fhirType => 'ClaimResponseDetail';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -691,7 +698,9 @@ class ClaimResponseSubDetail extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ClaimResponseSubDetail');
+  });
+  @override
+  String get fhirType => 'ClaimResponseSubDetail';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -817,7 +826,9 @@ class ClaimResponseAddItem extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ClaimResponseAddItem');
+  });
+  @override
+  String get fhirType => 'ClaimResponseAddItem';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1064,7 +1075,9 @@ class ClaimResponseDetail1 extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ClaimResponseDetail1');
+  });
+  @override
+  String get fhirType => 'ClaimResponseDetail1';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1215,7 +1228,9 @@ class ClaimResponseSubDetail1 extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ClaimResponseSubDetail1');
+  });
+  @override
+  String get fhirType => 'ClaimResponseSubDetail1';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1352,7 +1367,9 @@ class ClaimResponseTotal extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ClaimResponseTotal');
+  });
+  @override
+  String get fhirType => 'ClaimResponseTotal';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1445,7 +1462,9 @@ class ClaimResponsePayment extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ClaimResponsePayment');
+  });
+  @override
+  String get fhirType => 'ClaimResponsePayment';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1566,7 +1585,9 @@ class ClaimResponseProcessNote extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ClaimResponseProcessNote');
+  });
+  @override
+  String get fhirType => 'ClaimResponseProcessNote';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1681,7 +1702,9 @@ class ClaimResponseInsurance extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ClaimResponseInsurance');
+  });
+  @override
+  String get fhirType => 'ClaimResponseInsurance';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1807,7 +1830,9 @@ class ClaimResponseError extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ClaimResponseError');
+  });
+  @override
+  String get fhirType => 'ClaimResponseError';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

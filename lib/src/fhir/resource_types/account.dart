@@ -43,8 +43,11 @@ class Account extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Account, fhirType: 'Account');
+  }) : super(resourceType: R4ResourceType.Account);
+  @override
+  String get fhirType => 'Account';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -217,7 +220,9 @@ class AccountCoverage extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'AccountCoverage');
+  });
+  @override
+  String get fhirType => 'AccountCoverage';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -313,7 +318,9 @@ class AccountGuarantor extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'AccountGuarantor');
+  });
+  @override
+  String get fhirType => 'AccountGuarantor';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

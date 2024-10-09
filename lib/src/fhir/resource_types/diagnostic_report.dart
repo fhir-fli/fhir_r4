@@ -54,10 +54,11 @@ class DiagnosticReport extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.DiagnosticReport,
-            fhirType: 'DiagnosticReport');
+  }) : super(resourceType: R4ResourceType.DiagnosticReport);
+  @override
+  String get fhirType => 'DiagnosticReport';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -299,7 +300,9 @@ class DiagnosticReportMedia extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'DiagnosticReportMedia');
+  });
+  @override
+  String get fhirType => 'DiagnosticReportMedia';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

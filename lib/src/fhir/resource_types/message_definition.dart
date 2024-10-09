@@ -72,10 +72,11 @@ class MessageDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.MessageDefinition,
-            fhirType: 'MessageDefinition');
+  }) : super(resourceType: R4ResourceType.MessageDefinition);
+  @override
+  String get fhirType => 'MessageDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -429,7 +430,9 @@ class MessageDefinitionFocus extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MessageDefinitionFocus');
+  });
+  @override
+  String get fhirType => 'MessageDefinitionFocus';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -549,7 +552,9 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MessageDefinitionAllowedResponse');
+  });
+  @override
+  String get fhirType => 'MessageDefinitionAllowedResponse';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -40,10 +40,11 @@ class AdministrableProductDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.AdministrableProductDefinition,
-            fhirType: 'AdministrableProductDefinition');
+  }) : super(resourceType: R4ResourceType.AdministrableProductDefinition);
+  @override
+  String get fhirType => 'AdministrableProductDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -238,7 +239,9 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'AdministrableProductDefinitionProperty');
+  });
+  @override
+  String get fhirType => 'AdministrableProductDefinitionProperty';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -372,7 +375,9 @@ class AdministrableProductDefinitionRouteOfAdministration
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'AdministrableProductDefinitionRouteOfAdministration');
+  });
+  @override
+  String get fhirType => 'AdministrableProductDefinitionRouteOfAdministration';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -496,7 +501,9 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'AdministrableProductDefinitionTargetSpecies');
+  });
+  @override
+  String get fhirType => 'AdministrableProductDefinitionTargetSpecies';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -589,7 +596,9 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'AdministrableProductDefinitionWithdrawalPeriod');
+  });
+  @override
+  String get fhirType => 'AdministrableProductDefinitionWithdrawalPeriod';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

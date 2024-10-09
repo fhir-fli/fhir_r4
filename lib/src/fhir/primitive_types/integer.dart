@@ -8,8 +8,7 @@ extension FhirIntegerExtension on num {
 
 class FhirInteger extends FhirNumber {
   FhirInteger._(super.valueString, super.valueNumber, super.isValid,
-      {super.element})
-      : super(fhirType: 'integer');
+      {super.element});
 
   factory FhirInteger(dynamic inValue, {Element? element}) {
     if (inValue is int) {
@@ -31,6 +30,9 @@ class FhirInteger extends FhirNumber {
           ? FhirInteger.fromJson(jsonDecode(jsonEncode(yaml)))
           : throw YamlFormatException<FhirInteger>(
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
+
+  @override
+  String get fhirType => 'integer';
 
   @override
   int? get value => valueNumber as int?;

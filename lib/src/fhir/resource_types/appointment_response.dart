@@ -40,10 +40,11 @@ class AppointmentResponse extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.AppointmentResponse,
-            fhirType: 'AppointmentResponse');
+  }) : super(resourceType: R4ResourceType.AppointmentResponse);
+  @override
+  String get fhirType => 'AppointmentResponse';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -41,10 +41,11 @@ class OrganizationAffiliation extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.OrganizationAffiliation,
-            fhirType: 'OrganizationAffiliation');
+  }) : super(resourceType: R4ResourceType.OrganizationAffiliation);
+  @override
+  String get fhirType => 'OrganizationAffiliation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

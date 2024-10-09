@@ -68,8 +68,11 @@ class ChargeItem extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.ChargeItem, fhirType: 'ChargeItem');
+  }) : super(resourceType: R4ResourceType.ChargeItem);
+  @override
+  String get fhirType => 'ChargeItem';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -376,7 +379,9 @@ class ChargeItemPerformer extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ChargeItemPerformer');
+  });
+  @override
+  String get fhirType => 'ChargeItemPerformer';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -68,10 +68,11 @@ class ChargeItemDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.ChargeItemDefinition,
-            fhirType: 'ChargeItemDefinition');
+  }) : super(resourceType: R4ResourceType.ChargeItemDefinition);
+  @override
+  String get fhirType => 'ChargeItemDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -400,7 +401,9 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ChargeItemDefinitionApplicability');
+  });
+  @override
+  String get fhirType => 'ChargeItemDefinitionApplicability';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -513,7 +516,9 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ChargeItemDefinitionPropertyGroup');
+  });
+  @override
+  String get fhirType => 'ChargeItemDefinitionPropertyGroup';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -614,7 +619,9 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ChargeItemDefinitionPriceComponent');
+  });
+  @override
+  String get fhirType => 'ChargeItemDefinitionPriceComponent';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

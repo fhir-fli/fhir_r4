@@ -29,7 +29,9 @@ class Distance extends Quantity {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'Distance');
+  });
+  @override
+  String get fhirType => 'Distance';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -42,10 +42,11 @@ class SupplyDelivery extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.SupplyDelivery,
-            fhirType: 'SupplyDelivery');
+  }) : super(resourceType: R4ResourceType.SupplyDelivery);
+  @override
+  String get fhirType => 'SupplyDelivery';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -226,7 +227,9 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SupplyDeliverySuppliedItem');
+  });
+  @override
+  String get fhirType => 'SupplyDeliverySuppliedItem';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -59,8 +59,11 @@ class CarePlan extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.CarePlan, fhirType: 'CarePlan');
+  }) : super(resourceType: R4ResourceType.CarePlan);
+  @override
+  String get fhirType => 'CarePlan';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -342,7 +345,9 @@ class CarePlanActivity extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CarePlanActivity');
+  });
+  @override
+  String get fhirType => 'CarePlanActivity';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -480,7 +485,9 @@ class CarePlanDetail extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CarePlanDetail');
+  });
+  @override
+  String get fhirType => 'CarePlanDetail';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

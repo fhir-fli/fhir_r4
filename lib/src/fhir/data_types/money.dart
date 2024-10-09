@@ -23,7 +23,9 @@ class Money extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'Money');
+  });
+  @override
+  String get fhirType => 'Money';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

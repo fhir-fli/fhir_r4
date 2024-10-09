@@ -75,10 +75,11 @@ class OperationDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.OperationDefinition,
-            fhirType: 'OperationDefinition');
+  }) : super(resourceType: R4ResourceType.OperationDefinition);
+  @override
+  String get fhirType => 'OperationDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -463,7 +464,9 @@ class OperationDefinitionParameter extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'OperationDefinitionParameter');
+  });
+  @override
+  String get fhirType => 'OperationDefinitionParameter';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -648,7 +651,9 @@ class OperationDefinitionBinding extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'OperationDefinitionBinding');
+  });
+  @override
+  String get fhirType => 'OperationDefinitionBinding';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -746,7 +751,9 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'OperationDefinitionReferencedFrom');
+  });
+  @override
+  String get fhirType => 'OperationDefinitionReferencedFrom';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -848,7 +855,9 @@ class OperationDefinitionOverload extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'OperationDefinitionOverload');
+  });
+  @override
+  String get fhirType => 'OperationDefinitionOverload';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -76,10 +76,11 @@ class ServiceRequest extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.ServiceRequest,
-            fhirType: 'ServiceRequest');
+  }) : super(resourceType: R4ResourceType.ServiceRequest);
+  @override
+  String get fhirType => 'ServiceRequest';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

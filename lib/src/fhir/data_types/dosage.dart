@@ -39,7 +39,9 @@ class Dosage extends BackboneType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'Dosage');
+  });
+  @override
+  String get fhirType => 'Dosage';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -226,7 +228,9 @@ class DosageDoseAndRate extends Element {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'DosageDoseAndRate');
+  });
+  @override
+  String get fhirType => 'DosageDoseAndRate';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

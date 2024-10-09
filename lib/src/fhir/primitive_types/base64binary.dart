@@ -10,7 +10,7 @@ class FhirBase64Binary extends PrimitiveType<String> {
   const FhirBase64Binary._(
       this._valueString, this._valueBase64Binary, this._isValid,
       [Element? element])
-      : super(fhirType: 'base64Binary', element: element);
+      : super(element: element);
 
   factory FhirBase64Binary(dynamic inValue, [Element? element]) {
     try {
@@ -32,7 +32,8 @@ class FhirBase64Binary extends PrimitiveType<String> {
           ? FhirBase64Binary.fromJson(jsonDecode(jsonEncode(yaml)))
           : throw YamlFormatException<FhirBase64Binary>(
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
-
+  @override
+  String get fhirType => 'base64Binary';
   final String _valueString;
   final String? _valueBase64Binary;
   final bool _isValid;

@@ -10,7 +10,6 @@ abstract class DataType extends Element {
   const DataType({
     super.id,
     super.extension_,
-    super.fhirType = 'DataType',
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -18,6 +17,9 @@ abstract class DataType extends Element {
     super.children,
     super.namedChildren,
   });
+
+  @override
+  String get fhirType => 'DataType';
 
   @override
   Map<String, Object?> toJson() {

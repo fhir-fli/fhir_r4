@@ -25,7 +25,9 @@ class Population extends BackboneType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'Population');
+  });
+  @override
+  String get fhirType => 'Population';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

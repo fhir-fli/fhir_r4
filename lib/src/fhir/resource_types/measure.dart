@@ -92,8 +92,11 @@ class Measure extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Measure, fhirType: 'Measure');
+  }) : super(resourceType: R4ResourceType.Measure);
+  @override
+  String get fhirType => 'Measure';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -597,7 +600,9 @@ class MeasureGroup extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MeasureGroup');
+  });
+  @override
+  String get fhirType => 'MeasureGroup';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -703,7 +708,9 @@ class MeasurePopulation extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MeasurePopulation');
+  });
+  @override
+  String get fhirType => 'MeasurePopulation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -803,7 +810,9 @@ class MeasureStratifier extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MeasureStratifier');
+  });
+  @override
+  String get fhirType => 'MeasureStratifier';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -913,7 +922,9 @@ class MeasureComponent extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MeasureComponent');
+  });
+  @override
+  String get fhirType => 'MeasureComponent';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1017,7 +1028,9 @@ class MeasureSupplementalData extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MeasureSupplementalData');
+  });
+  @override
+  String get fhirType => 'MeasureSupplementalData';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

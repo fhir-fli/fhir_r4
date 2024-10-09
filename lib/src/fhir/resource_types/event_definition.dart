@@ -72,10 +72,11 @@ class EventDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.EventDefinition,
-            fhirType: 'EventDefinition');
+  }) : super(resourceType: R4ResourceType.EventDefinition);
+  @override
+  String get fhirType => 'EventDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

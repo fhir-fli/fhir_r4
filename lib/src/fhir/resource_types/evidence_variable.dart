@@ -65,10 +65,11 @@ class EvidenceVariable extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.EvidenceVariable,
-            fhirType: 'EvidenceVariable');
+  }) : super(resourceType: R4ResourceType.EvidenceVariable);
+  @override
+  String get fhirType => 'EvidenceVariable';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -406,7 +407,9 @@ class EvidenceVariableCharacteristic extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'EvidenceVariableCharacteristic');
+  });
+  @override
+  String get fhirType => 'EvidenceVariableCharacteristic';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -575,7 +578,9 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'EvidenceVariableTimeFromStart');
+  });
+  @override
+  String get fhirType => 'EvidenceVariableTimeFromStart';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -680,7 +685,9 @@ class EvidenceVariableCategory extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'EvidenceVariableCategory');
+  });
+  @override
+  String get fhirType => 'EvidenceVariableCategory';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

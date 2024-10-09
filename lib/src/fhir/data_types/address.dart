@@ -42,7 +42,9 @@ class Address extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'Address');
+  });
+  @override
+  String get fhirType => 'Address';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -72,10 +72,11 @@ class MedicationStatement extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.MedicationStatement,
-            fhirType: 'MedicationStatement');
+  }) : super(resourceType: R4ResourceType.MedicationStatement);
+  @override
+  String get fhirType => 'MedicationStatement';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

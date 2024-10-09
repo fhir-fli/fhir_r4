@@ -29,7 +29,9 @@ class FhirDuration extends Quantity {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'FhirDuration');
+  });
+  @override
+  String get fhirType => 'FhirDuration';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

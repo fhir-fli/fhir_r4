@@ -72,10 +72,11 @@ class StructureDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.StructureDefinition,
-            fhirType: 'StructureDefinition');
+  }) : super(resourceType: R4ResourceType.StructureDefinition);
+  @override
+  String get fhirType => 'StructureDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -444,7 +445,9 @@ class StructureDefinitionMapping extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'StructureDefinitionMapping');
+  });
+  @override
+  String get fhirType => 'StructureDefinitionMapping';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -564,7 +567,9 @@ class StructureDefinitionContext extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'StructureDefinitionContext');
+  });
+  @override
+  String get fhirType => 'StructureDefinitionContext';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -670,7 +675,9 @@ class StructureDefinitionSnapshot extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'StructureDefinitionSnapshot');
+  });
+  @override
+  String get fhirType => 'StructureDefinitionSnapshot';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -748,7 +755,9 @@ class StructureDefinitionDifferential extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'StructureDefinitionDifferential');
+  });
+  @override
+  String get fhirType => 'StructureDefinitionDifferential';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

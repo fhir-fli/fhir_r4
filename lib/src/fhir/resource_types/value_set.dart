@@ -60,8 +60,11 @@ class ValueSet extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.ValueSet, fhirType: 'ValueSet');
+  }) : super(resourceType: R4ResourceType.ValueSet);
+  @override
+  String get fhirType => 'ValueSet';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -346,7 +349,9 @@ class ValueSetCompose extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ValueSetCompose');
+  });
+  @override
+  String get fhirType => 'ValueSetCompose';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -464,7 +469,9 @@ class ValueSetInclude extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ValueSetInclude');
+  });
+  @override
+  String get fhirType => 'ValueSetInclude';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -588,7 +595,9 @@ class ValueSetConcept extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ValueSetConcept');
+  });
+  @override
+  String get fhirType => 'ValueSetConcept';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -695,7 +704,9 @@ class ValueSetDesignation extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ValueSetDesignation');
+  });
+  @override
+  String get fhirType => 'ValueSetDesignation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -799,7 +810,9 @@ class ValueSetFilter extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ValueSetFilter');
+  });
+  @override
+  String get fhirType => 'ValueSetFilter';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -916,7 +929,9 @@ class ValueSetExpansion extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ValueSetExpansion');
+  });
+  @override
+  String get fhirType => 'ValueSetExpansion';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1067,7 +1082,9 @@ class ValueSetParameter extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ValueSetParameter');
+  });
+  @override
+  String get fhirType => 'ValueSetParameter';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1233,7 +1250,9 @@ class ValueSetContains extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ValueSetContains');
+  });
+  @override
+  String get fhirType => 'ValueSetContains';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

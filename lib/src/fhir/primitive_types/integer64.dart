@@ -17,8 +17,7 @@ extension FhirInteger64BigIntExtension on BigInt {
 class FhirInteger64 extends PrimitiveType<BigInt>
     implements Comparable<FhirInteger64> {
   FhirInteger64._(this.valueString, this.valueNumber, this.isValid,
-      {super.element})
-      : super(fhirType: 'integer64');
+      {super.element});
 
   // Factory constructors
   factory FhirInteger64(dynamic inValue, [Element? element]) {
@@ -57,6 +56,9 @@ class FhirInteger64 extends PrimitiveType<BigInt>
           ? FhirInteger64.fromJson(jsonDecode(jsonEncode(yaml)))
           : throw YamlFormatException<FhirInteger64>(
               'Invalid Yaml format for FhirInteger64: "$yaml".');
+
+  @override
+  String get fhirType => 'integer64';
 
   // Overriding necessary fields and methods
   @override

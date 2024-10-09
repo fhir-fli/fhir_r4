@@ -33,7 +33,9 @@ class RelatedArtifact extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'RelatedArtifact');
+  });
+  @override
+  String get fhirType => 'RelatedArtifact';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

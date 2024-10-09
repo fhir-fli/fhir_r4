@@ -33,8 +33,11 @@ class Bundle extends Resource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Bundle, fhirType: 'Bundle');
+  }) : super(resourceType: R4ResourceType.Bundle);
+  @override
+  String get fhirType => 'Bundle';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -173,7 +176,9 @@ class BundleLink extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'BundleLink');
+  });
+  @override
+  String get fhirType => 'BundleLink';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -272,7 +277,9 @@ class BundleEntry extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'BundleEntry');
+  });
+  @override
+  String get fhirType => 'BundleEntry';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -400,7 +407,9 @@ class BundleSearch extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'BundleSearch');
+  });
+  @override
+  String get fhirType => 'BundleSearch';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -506,7 +515,9 @@ class BundleRequest extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'BundleRequest');
+  });
+  @override
+  String get fhirType => 'BundleRequest';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -657,7 +668,9 @@ class BundleResponse extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'BundleResponse');
+  });
+  @override
+  String get fhirType => 'BundleResponse';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -63,8 +63,11 @@ class TestScript extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.TestScript, fhirType: 'TestScript');
+  }) : super(resourceType: R4ResourceType.TestScript);
+  @override
+  String get fhirType => 'TestScript';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -377,7 +380,9 @@ class TestScriptOrigin extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestScriptOrigin');
+  });
+  @override
+  String get fhirType => 'TestScriptOrigin';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -468,7 +473,9 @@ class TestScriptDestination extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestScriptDestination');
+  });
+  @override
+  String get fhirType => 'TestScriptDestination';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -558,7 +565,9 @@ class TestScriptMetadata extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestScriptMetadata');
+  });
+  @override
+  String get fhirType => 'TestScriptMetadata';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -645,7 +654,9 @@ class TestScriptLink extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestScriptLink');
+  });
+  @override
+  String get fhirType => 'TestScriptLink';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -750,7 +761,9 @@ class TestScriptCapability extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestScriptCapability');
+  });
+  @override
+  String get fhirType => 'TestScriptCapability';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -902,7 +915,9 @@ class TestScriptFixture extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestScriptFixture');
+  });
+  @override
+  String get fhirType => 'TestScriptFixture';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1022,7 +1037,9 @@ class TestScriptVariable extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestScriptVariable');
+  });
+  @override
+  String get fhirType => 'TestScriptVariable';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1180,7 +1197,9 @@ class TestScriptSetup extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestScriptSetup');
+  });
+  @override
+  String get fhirType => 'TestScriptSetup';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1258,7 +1277,9 @@ class TestScriptAction extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestScriptAction');
+  });
+  @override
+  String get fhirType => 'TestScriptAction';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1373,7 +1394,9 @@ class TestScriptOperation extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestScriptOperation');
+  });
+  @override
+  String get fhirType => 'TestScriptOperation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1618,7 +1641,9 @@ class TestScriptRequestHeader extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestScriptRequestHeader');
+  });
+  @override
+  String get fhirType => 'TestScriptRequestHeader';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1753,7 +1778,9 @@ class TestScriptAssert extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestScriptAssert');
+  });
+  @override
+  String get fhirType => 'TestScriptAssert';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2070,7 +2097,9 @@ class TestScriptTest extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestScriptTest');
+  });
+  @override
+  String get fhirType => 'TestScriptTest';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2169,7 +2198,9 @@ class TestScriptAction1 extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestScriptAction1');
+  });
+  @override
+  String get fhirType => 'TestScriptAction1';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2254,7 +2285,9 @@ class TestScriptTeardown extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestScriptTeardown');
+  });
+  @override
+  String get fhirType => 'TestScriptTeardown';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2331,7 +2364,9 @@ class TestScriptAction2 extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TestScriptAction2');
+  });
+  @override
+  String get fhirType => 'TestScriptAction2';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

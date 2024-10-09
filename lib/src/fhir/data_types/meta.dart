@@ -31,7 +31,9 @@ class FhirMeta extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'FhirMeta');
+  });
+  @override
+  String get fhirType => 'FhirMeta';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

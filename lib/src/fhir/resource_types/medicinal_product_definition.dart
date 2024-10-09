@@ -64,10 +64,11 @@ class MedicinalProductDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.MedicinalProductDefinition,
-            fhirType: 'MedicinalProductDefinition');
+  }) : super(resourceType: R4ResourceType.MedicinalProductDefinition);
+  @override
+  String get fhirType => 'MedicinalProductDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -389,7 +390,9 @@ class MedicinalProductDefinitionContact extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicinalProductDefinitionContact');
+  });
+  @override
+  String get fhirType => 'MedicinalProductDefinitionContact';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -480,7 +483,9 @@ class MedicinalProductDefinitionName extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicinalProductDefinitionName');
+  });
+  @override
+  String get fhirType => 'MedicinalProductDefinitionName';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -582,7 +587,9 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicinalProductDefinitionNamePart');
+  });
+  @override
+  String get fhirType => 'MedicinalProductDefinitionNamePart';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -674,7 +681,9 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicinalProductDefinitionCountryLanguage');
+  });
+  @override
+  String get fhirType => 'MedicinalProductDefinitionCountryLanguage';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -771,7 +780,9 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicinalProductDefinitionCrossReference');
+  });
+  @override
+  String get fhirType => 'MedicinalProductDefinitionCrossReference';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -866,7 +877,9 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicinalProductDefinitionOperation');
+  });
+  @override
+  String get fhirType => 'MedicinalProductDefinitionOperation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -978,7 +991,9 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicinalProductDefinitionCharacteristic');
+  });
+  @override
+  String get fhirType => 'MedicinalProductDefinitionCharacteristic';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

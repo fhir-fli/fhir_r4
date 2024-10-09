@@ -79,10 +79,11 @@ class ExplanationOfBenefit extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.ExplanationOfBenefit,
-            fhirType: 'ExplanationOfBenefit');
+  }) : super(resourceType: R4ResourceType.ExplanationOfBenefit);
+  @override
+  String get fhirType => 'ExplanationOfBenefit';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -487,7 +488,9 @@ class ExplanationOfBenefitRelated extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExplanationOfBenefitRelated');
+  });
+  @override
+  String get fhirType => 'ExplanationOfBenefitRelated';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -579,7 +582,9 @@ class ExplanationOfBenefitPayee extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExplanationOfBenefitPayee');
+  });
+  @override
+  String get fhirType => 'ExplanationOfBenefitPayee';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -669,7 +674,9 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExplanationOfBenefitCareTeam');
+  });
+  @override
+  String get fhirType => 'ExplanationOfBenefitCareTeam';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -795,7 +802,9 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExplanationOfBenefitSupportingInfo');
+  });
+  @override
+  String get fhirType => 'ExplanationOfBenefitSupportingInfo';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -966,7 +975,9 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExplanationOfBenefitDiagnosis');
+  });
+  @override
+  String get fhirType => 'ExplanationOfBenefitDiagnosis';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1090,7 +1101,9 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExplanationOfBenefitProcedure');
+  });
+  @override
+  String get fhirType => 'ExplanationOfBenefitProcedure';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1213,7 +1226,9 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExplanationOfBenefitInsurance');
+  });
+  @override
+  String get fhirType => 'ExplanationOfBenefitInsurance';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1320,7 +1335,9 @@ class ExplanationOfBenefitAccident extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExplanationOfBenefitAccident');
+  });
+  @override
+  String get fhirType => 'ExplanationOfBenefitAccident';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1456,7 +1473,9 @@ class ExplanationOfBenefitItem extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExplanationOfBenefitItem');
+  });
+  @override
+  String get fhirType => 'ExplanationOfBenefitItem';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1742,7 +1761,9 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExplanationOfBenefitAdjudication');
+  });
+  @override
+  String get fhirType => 'ExplanationOfBenefitAdjudication';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1866,7 +1887,9 @@ class ExplanationOfBenefitDetail extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExplanationOfBenefitDetail');
+  });
+  @override
+  String get fhirType => 'ExplanationOfBenefitDetail';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2059,7 +2082,9 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExplanationOfBenefitSubDetail');
+  });
+  @override
+  String get fhirType => 'ExplanationOfBenefitSubDetail';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2258,7 +2283,9 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExplanationOfBenefitAddItem');
+  });
+  @override
+  String get fhirType => 'ExplanationOfBenefitAddItem';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2505,7 +2532,9 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExplanationOfBenefitDetail1');
+  });
+  @override
+  String get fhirType => 'ExplanationOfBenefitDetail1';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2656,7 +2685,9 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExplanationOfBenefitSubDetail1');
+  });
+  @override
+  String get fhirType => 'ExplanationOfBenefitSubDetail1';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2794,7 +2825,9 @@ class ExplanationOfBenefitTotal extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExplanationOfBenefitTotal');
+  });
+  @override
+  String get fhirType => 'ExplanationOfBenefitTotal';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2887,7 +2920,9 @@ class ExplanationOfBenefitPayment extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExplanationOfBenefitPayment');
+  });
+  @override
+  String get fhirType => 'ExplanationOfBenefitPayment';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -3008,7 +3043,9 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExplanationOfBenefitProcessNote');
+  });
+  @override
+  String get fhirType => 'ExplanationOfBenefitProcessNote';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -3127,7 +3164,9 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExplanationOfBenefitBenefitBalance');
+  });
+  @override
+  String get fhirType => 'ExplanationOfBenefitBenefitBalance';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -3273,7 +3312,9 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ExplanationOfBenefitFinancial');
+  });
+  @override
+  String get fhirType => 'ExplanationOfBenefitFinancial';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

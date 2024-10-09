@@ -73,8 +73,11 @@ class Citation extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Citation, fhirType: 'Citation');
+  }) : super(resourceType: R4ResourceType.Citation);
+  @override
+  String get fhirType => 'Citation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -419,7 +422,9 @@ class CitationSummary extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CitationSummary');
+  });
+  @override
+  String get fhirType => 'CitationSummary';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -507,7 +512,9 @@ class CitationClassification extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CitationClassification');
+  });
+  @override
+  String get fhirType => 'CitationClassification';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -593,7 +600,9 @@ class CitationStatusDate extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CitationStatusDate');
+  });
+  @override
+  String get fhirType => 'CitationStatusDate';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -692,7 +701,9 @@ class CitationRelatesTo extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CitationRelatesTo');
+  });
+  @override
+  String get fhirType => 'CitationRelatesTo';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -818,7 +829,9 @@ class CitationCitedArtifact extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CitationCitedArtifact');
+  });
+  @override
+  String get fhirType => 'CitationCitedArtifact';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -990,7 +1003,9 @@ class CitationVersion extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CitationVersion');
+  });
+  @override
+  String get fhirType => 'CitationVersion';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1080,7 +1095,9 @@ class CitationStatusDate1 extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CitationStatusDate1');
+  });
+  @override
+  String get fhirType => 'CitationStatusDate1';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1176,7 +1193,9 @@ class CitationTitle extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CitationTitle');
+  });
+  @override
+  String get fhirType => 'CitationTitle';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1274,7 +1293,9 @@ class CitationAbstract extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CitationAbstract');
+  });
+  @override
+  String get fhirType => 'CitationAbstract';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1380,7 +1401,9 @@ class CitationPart extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CitationPart');
+  });
+  @override
+  String get fhirType => 'CitationPart';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1479,7 +1502,9 @@ class CitationRelatesTo1 extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CitationRelatesTo1');
+  });
+  @override
+  String get fhirType => 'CitationRelatesTo1';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1609,7 +1634,9 @@ class CitationPublicationForm extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CitationPublicationForm');
+  });
+  @override
+  String get fhirType => 'CitationPublicationForm';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1787,7 +1814,9 @@ class CitationPublishedIn extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CitationPublishedIn');
+  });
+  @override
+  String get fhirType => 'CitationPublishedIn';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1903,7 +1932,9 @@ class CitationPeriodicRelease extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CitationPeriodicRelease');
+  });
+  @override
+  String get fhirType => 'CitationPeriodicRelease';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2018,7 +2049,9 @@ class CitationDateOfPublication extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CitationDateOfPublication');
+  });
+  @override
+  String get fhirType => 'CitationDateOfPublication';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2152,7 +2185,9 @@ class CitationWebLocation extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CitationWebLocation');
+  });
+  @override
+  String get fhirType => 'CitationWebLocation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2241,7 +2276,9 @@ class CitationClassification1 extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CitationClassification1');
+  });
+  @override
+  String get fhirType => 'CitationClassification1';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2336,7 +2373,9 @@ class CitationWhoClassified extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CitationWhoClassified');
+  });
+  @override
+  String get fhirType => 'CitationWhoClassified';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2451,7 +2490,9 @@ class CitationContributorship extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CitationContributorship');
+  });
+  @override
+  String get fhirType => 'CitationContributorship';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2560,7 +2601,9 @@ class CitationEntry extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CitationEntry');
+  });
+  @override
+  String get fhirType => 'CitationEntry';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2727,7 +2770,9 @@ class CitationAffiliationInfo extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CitationAffiliationInfo');
+  });
+  @override
+  String get fhirType => 'CitationAffiliationInfo';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2826,7 +2871,9 @@ class CitationContributionInstance extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CitationContributionInstance');
+  });
+  @override
+  String get fhirType => 'CitationContributionInstance';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -2918,7 +2965,9 @@ class CitationSummary1 extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CitationSummary1');
+  });
+  @override
+  String get fhirType => 'CitationSummary1';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -8,7 +8,7 @@ extension FhirIdExtension on String {
 
 class FhirId extends PrimitiveType<String> {
   FhirId._(this._valueString, this._valueId, this._isValid, [Element? element])
-      : super(fhirType: 'id', element: element);
+      : super(element: element);
 
   factory FhirId(dynamic inValue, [Element? element]) =>
       inValue is String && RegExp(r'^[A-Za-z0-9\-\.]{1,64}$').hasMatch(inValue)
@@ -23,6 +23,8 @@ class FhirId extends PrimitiveType<String> {
           ? FhirId.fromJson(jsonDecode(jsonEncode(yaml)))
           : throw YamlFormatException<FhirId>(
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
+  @override
+  String get fhirType => 'id';
 
   final String _valueString;
   final String? _valueId;

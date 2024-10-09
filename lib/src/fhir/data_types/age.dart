@@ -29,7 +29,9 @@ class Age extends Quantity {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'Age');
+  });
+  @override
+  String get fhirType => 'Age';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

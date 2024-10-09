@@ -43,10 +43,11 @@ class Subscription extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.Subscription,
-            fhirType: 'Subscription');
+  }) : super(resourceType: R4ResourceType.Subscription);
+  @override
+  String get fhirType => 'Subscription';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -206,7 +207,9 @@ class SubscriptionChannel extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SubscriptionChannel');
+  });
+  @override
+  String get fhirType => 'SubscriptionChannel';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

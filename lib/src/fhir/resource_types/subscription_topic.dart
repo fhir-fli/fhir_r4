@@ -63,10 +63,11 @@ class SubscriptionTopic extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.SubscriptionTopic,
-            fhirType: 'SubscriptionTopic');
+  }) : super(resourceType: R4ResourceType.SubscriptionTopic);
+  @override
+  String get fhirType => 'SubscriptionTopic';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -384,7 +385,9 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SubscriptionTopicResourceTrigger');
+  });
+  @override
+  String get fhirType => 'SubscriptionTopicResourceTrigger';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -528,7 +531,9 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SubscriptionTopicQueryCriteria');
+  });
+  @override
+  String get fhirType => 'SubscriptionTopicQueryCriteria';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -662,7 +667,9 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SubscriptionTopicEventTrigger');
+  });
+  @override
+  String get fhirType => 'SubscriptionTopicEventTrigger';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -780,7 +787,9 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SubscriptionTopicCanFilterBy');
+  });
+  @override
+  String get fhirType => 'SubscriptionTopicCanFilterBy';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -920,7 +929,9 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SubscriptionTopicNotificationShape');
+  });
+  @override
+  String get fhirType => 'SubscriptionTopicNotificationShape';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

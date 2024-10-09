@@ -51,8 +51,11 @@ class Coverage extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Coverage, fhirType: 'Coverage');
+  }) : super(resourceType: R4ResourceType.Coverage);
+  @override
+  String get fhirType => 'Coverage';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -284,7 +287,9 @@ class CoverageClass extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CoverageClass');
+  });
+  @override
+  String get fhirType => 'CoverageClass';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -388,7 +393,9 @@ class CoverageCostToBeneficiary extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CoverageCostToBeneficiary');
+  });
+  @override
+  String get fhirType => 'CoverageCostToBeneficiary';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -486,7 +493,9 @@ class CoverageException extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CoverageException');
+  });
+  @override
+  String get fhirType => 'CoverageException';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

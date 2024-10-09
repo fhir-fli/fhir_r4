@@ -83,10 +83,11 @@ class ResearchDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.ResearchDefinition,
-            fhirType: 'ResearchDefinition');
+  }) : super(resourceType: R4ResourceType.ResearchDefinition);
+  @override
+  String get fhirType => 'ResearchDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

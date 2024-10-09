@@ -315,7 +315,9 @@ class ElementDefinition extends BackboneType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ElementDefinition');
+  });
+  @override
+  String get fhirType => 'ElementDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -3224,7 +3226,9 @@ class ElementDefinitionSlicing extends Element {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ElementDefinitionSlicing');
+  });
+  @override
+  String get fhirType => 'ElementDefinitionSlicing';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -3344,7 +3348,9 @@ class ElementDefinitionDiscriminator extends Element {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ElementDefinitionDiscriminator');
+  });
+  @override
+  String get fhirType => 'ElementDefinitionDiscriminator';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -3447,7 +3453,9 @@ class ElementDefinitionBase extends Element {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ElementDefinitionBase');
+  });
+  @override
+  String get fhirType => 'ElementDefinitionBase';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -3559,7 +3567,9 @@ class ElementDefinitionType extends Element {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ElementDefinitionType');
+  });
+  @override
+  String get fhirType => 'ElementDefinitionType';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -3769,7 +3779,9 @@ class ElementDefinitionExample extends Element {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ElementDefinitionExample');
+  });
+  @override
+  String get fhirType => 'ElementDefinitionExample';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -4301,7 +4313,9 @@ class ElementDefinitionConstraint extends Element {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ElementDefinitionConstraint');
+  });
+  @override
+  String get fhirType => 'ElementDefinitionConstraint';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -4452,7 +4466,9 @@ class ElementDefinitionBinding extends Element {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ElementDefinitionBinding');
+  });
+  @override
+  String get fhirType => 'ElementDefinitionBinding';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -4561,7 +4577,9 @@ class ElementDefinitionMapping extends Element {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ElementDefinitionMapping');
+  });
+  @override
+  String get fhirType => 'ElementDefinitionMapping';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

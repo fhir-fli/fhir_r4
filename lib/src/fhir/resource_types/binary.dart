@@ -30,8 +30,11 @@ class Binary extends Resource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Binary, fhirType: 'Binary');
+  }) : super(resourceType: R4ResourceType.Binary);
+  @override
+  String get fhirType => 'Binary';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

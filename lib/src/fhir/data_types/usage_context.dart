@@ -27,7 +27,9 @@ class UsageContext extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'UsageContext');
+  });
+  @override
+  String get fhirType => 'UsageContext';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

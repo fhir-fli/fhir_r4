@@ -44,10 +44,11 @@ class ObservationDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.ObservationDefinition,
-            fhirType: 'ObservationDefinition');
+  }) : super(resourceType: R4ResourceType.ObservationDefinition);
+  @override
+  String get fhirType => 'ObservationDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -242,7 +243,9 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ObservationDefinitionQuantitativeDetails');
+  });
+  @override
+  String get fhirType => 'ObservationDefinitionQuantitativeDetails';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -367,7 +370,9 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ObservationDefinitionQualifiedInterval');
+  });
+  @override
+  String get fhirType => 'ObservationDefinitionQualifiedInterval';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

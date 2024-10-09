@@ -10,7 +10,7 @@ extension FhirXhtmlExtension on String {
 class FhirXhtml extends PrimitiveType<String> {
   FhirXhtml._(this._valueString, this._valueXhtml, this._isValid,
       [Element? element])
-      : super(fhirType: 'xhtml', element: element);
+      : super(element: element);
 
   factory FhirXhtml(dynamic inValue, [Element? element]) =>
       inValue is String && _validateXhtml(inValue)
@@ -25,6 +25,9 @@ class FhirXhtml extends PrimitiveType<String> {
           ? FhirXhtml.fromJson(jsonDecode(jsonEncode(yaml)))
           : throw YamlFormatException<FhirXhtml>(
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
+
+  @override
+  String get fhirType => 'xhtml';
 
   final String _valueString;
   final String? _valueXhtml;

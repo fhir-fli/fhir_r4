@@ -74,10 +74,11 @@ class MedicationRequest extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.MedicationRequest,
-            fhirType: 'MedicationRequest');
+  }) : super(resourceType: R4ResourceType.MedicationRequest);
+  @override
+  String get fhirType => 'MedicationRequest';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -465,7 +466,9 @@ class MedicationRequestDispenseRequest extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicationRequestDispenseRequest');
+  });
+  @override
+  String get fhirType => 'MedicationRequestDispenseRequest';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -600,7 +603,9 @@ class MedicationRequestInitialFill extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicationRequestInitialFill');
+  });
+  @override
+  String get fhirType => 'MedicationRequestInitialFill';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -689,7 +694,9 @@ class MedicationRequestSubstitution extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicationRequestSubstitution');
+  });
+  @override
+  String get fhirType => 'MedicationRequestSubstitution';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

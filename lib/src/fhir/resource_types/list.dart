@@ -44,8 +44,11 @@ class FhirList extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.FhirList, fhirType: 'FhirList');
+  }) : super(resourceType: R4ResourceType.FhirList);
+  @override
+  String get fhirType => 'FhirList';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -236,7 +239,9 @@ class ListEntry extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ListEntry');
+  });
+  @override
+  String get fhirType => 'ListEntry';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

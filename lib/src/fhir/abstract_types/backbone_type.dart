@@ -9,7 +9,6 @@ abstract class BackboneType extends DataType {
     super.id,
     super.extension_,
     this.modifierExtension,
-    super.fhirType = 'BackboneType',
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -17,6 +16,9 @@ abstract class BackboneType extends DataType {
     super.children,
     super.namedChildren,
   });
+
+  @override
+  String get fhirType => 'BackboneType';
 
   /// List of modifier extensions for additional, non-core information
   final List<FhirExtension>? modifierExtension;

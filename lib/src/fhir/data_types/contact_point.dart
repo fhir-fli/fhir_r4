@@ -29,7 +29,9 @@ class ContactPoint extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ContactPoint');
+  });
+  @override
+  String get fhirType => 'ContactPoint';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

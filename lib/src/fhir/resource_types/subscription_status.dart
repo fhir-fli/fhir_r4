@@ -39,10 +39,11 @@ class SubscriptionStatus extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.SubscriptionStatus,
-            fhirType: 'SubscriptionStatus');
+  }) : super(resourceType: R4ResourceType.SubscriptionStatus);
+  @override
+  String get fhirType => 'SubscriptionStatus';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -200,7 +201,9 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SubscriptionStatusNotificationEvent');
+  });
+  @override
+  String get fhirType => 'SubscriptionStatusNotificationEvent';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

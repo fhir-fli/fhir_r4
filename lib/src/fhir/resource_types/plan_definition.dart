@@ -81,10 +81,11 @@ class PlanDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.PlanDefinition,
-            fhirType: 'PlanDefinition');
+  }) : super(resourceType: R4ResourceType.PlanDefinition);
+  @override
+  String get fhirType => 'PlanDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -525,7 +526,9 @@ class PlanDefinitionGoal extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'PlanDefinitionGoal');
+  });
+  @override
+  String get fhirType => 'PlanDefinitionGoal';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -648,7 +651,9 @@ class PlanDefinitionTarget extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'PlanDefinitionTarget');
+  });
+  @override
+  String get fhirType => 'PlanDefinitionTarget';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -824,7 +829,9 @@ class PlanDefinitionAction extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'PlanDefinitionAction');
+  });
+  @override
+  String get fhirType => 'PlanDefinitionAction';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1231,7 +1238,9 @@ class PlanDefinitionCondition extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'PlanDefinitionCondition');
+  });
+  @override
+  String get fhirType => 'PlanDefinitionCondition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1325,7 +1334,9 @@ class PlanDefinitionRelatedAction extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'PlanDefinitionRelatedAction');
+  });
+  @override
+  String get fhirType => 'PlanDefinitionRelatedAction';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1432,7 +1443,9 @@ class PlanDefinitionParticipant extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'PlanDefinitionParticipant');
+  });
+  @override
+  String get fhirType => 'PlanDefinitionParticipant';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1525,7 +1538,9 @@ class PlanDefinitionDynamicValue extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'PlanDefinitionDynamicValue');
+  });
+  @override
+  String get fhirType => 'PlanDefinitionDynamicValue';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -90,7 +90,9 @@ class FhirExtension extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'FhirExtension');
+  });
+  @override
+  String get fhirType => 'FhirExtension';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -28,7 +28,9 @@ class MarketingStatus extends BackboneType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MarketingStatus');
+  });
+  @override
+  String get fhirType => 'MarketingStatus';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

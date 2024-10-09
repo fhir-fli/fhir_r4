@@ -9,8 +9,7 @@ extension FhirDecimalExtension on num {
 
 class FhirDecimal extends FhirNumber {
   FhirDecimal._(super.valueString, super.valueNumber, super.isValid, this.isInt,
-      {super.element})
-      : super(fhirType: 'decimal');
+      {super.element});
 
   factory FhirDecimal(dynamic inValue, {Element? element}) {
     if (inValue is FhirDecimal) {
@@ -45,6 +44,8 @@ class FhirDecimal extends FhirNumber {
           : throw YamlFormatException<FhirDecimal>(
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
 
+  @override
+  String get fhirType => 'decimal';
   final bool isInt;
   @override
   double? get value => valueNumber as double?;

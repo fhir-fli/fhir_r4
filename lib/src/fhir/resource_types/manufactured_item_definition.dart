@@ -36,10 +36,11 @@ class ManufacturedItemDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.ManufacturedItemDefinition,
-            fhirType: 'ManufacturedItemDefinition');
+  }) : super(resourceType: R4ResourceType.ManufacturedItemDefinition);
+  @override
+  String get fhirType => 'ManufacturedItemDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -182,7 +183,9 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ManufacturedItemDefinitionProperty');
+  });
+  @override
+  String get fhirType => 'ManufacturedItemDefinitionProperty';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

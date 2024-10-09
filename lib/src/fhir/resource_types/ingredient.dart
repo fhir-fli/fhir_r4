@@ -37,8 +37,11 @@ class Ingredient extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Ingredient, fhirType: 'Ingredient');
+  }) : super(resourceType: R4ResourceType.Ingredient);
+  @override
+  String get fhirType => 'Ingredient';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -199,7 +202,9 @@ class IngredientManufacturer extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'IngredientManufacturer');
+  });
+  @override
+  String get fhirType => 'IngredientManufacturer';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -290,7 +295,9 @@ class IngredientSubstance extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'IngredientSubstance');
+  });
+  @override
+  String get fhirType => 'IngredientSubstance';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -390,7 +397,9 @@ class IngredientStrength extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'IngredientStrength');
+  });
+  @override
+  String get fhirType => 'IngredientStrength';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -562,7 +571,9 @@ class IngredientReferenceStrength extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'IngredientReferenceStrength');
+  });
+  @override
+  String get fhirType => 'IngredientReferenceStrength';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

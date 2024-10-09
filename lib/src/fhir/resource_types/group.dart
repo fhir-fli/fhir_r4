@@ -45,8 +45,11 @@ class FhirGroup extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.FhirGroup, fhirType: 'FhirGroup');
+  }) : super(resourceType: R4ResourceType.FhirGroup);
+  @override
+  String get fhirType => 'FhirGroup';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -227,7 +230,9 @@ class GroupCharacteristic extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'GroupCharacteristic');
+  });
+  @override
+  String get fhirType => 'GroupCharacteristic';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -364,7 +369,9 @@ class GroupMember extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'GroupMember');
+  });
+  @override
+  String get fhirType => 'GroupMember';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

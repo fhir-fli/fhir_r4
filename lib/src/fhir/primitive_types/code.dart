@@ -9,7 +9,7 @@ extension FhirCodeExtension on String {
 class FhirCode extends PrimitiveType<String> {
   FhirCode._(this._valueString, this._valueCode, this._isValid,
       [Element? element])
-      : super(fhirType: 'code', element: element);
+      : super(element: element);
 
   factory FhirCode(dynamic inValue, [Element? element]) =>
       inValue is String && RegExp(r'^[^\s]+(\s[^\s]+)*$').hasMatch(inValue)
@@ -25,6 +25,8 @@ class FhirCode extends PrimitiveType<String> {
           : throw YamlFormatException<FhirCode>(
               'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
 
+  @override
+  String get fhirType => 'code';
   final String _valueString;
   final String? _valueCode;
   final bool _isValid;

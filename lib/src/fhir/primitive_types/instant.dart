@@ -26,7 +26,6 @@ class FhirInstant extends FhirDateTimeBase {
     required super.microsecond,
     required super.timeZoneOffset,
     required super.isUtc,
-    super.fhirType = 'instant',
     super.element,
   });
 
@@ -73,6 +72,9 @@ class FhirInstant extends FhirDateTimeBase {
         isUtc: isUtc ?? false,
         element: element,
       ) as FhirInstant;
+
+  @override
+  String get fhirType => 'instant';
 
   @override
   String toJson() => input.toString();

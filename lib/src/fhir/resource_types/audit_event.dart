@@ -44,8 +44,11 @@ class AuditEvent extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.AuditEvent, fhirType: 'AuditEvent');
+  }) : super(resourceType: R4ResourceType.AuditEvent);
+  @override
+  String get fhirType => 'AuditEvent';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -229,7 +232,9 @@ class AuditEventAgent extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'AuditEventAgent');
+  });
+  @override
+  String get fhirType => 'AuditEventAgent';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -398,7 +403,9 @@ class AuditEventNetwork extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'AuditEventNetwork');
+  });
+  @override
+  String get fhirType => 'AuditEventNetwork';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -494,7 +501,9 @@ class AuditEventSource extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'AuditEventSource');
+  });
+  @override
+  String get fhirType => 'AuditEventSource';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -600,7 +609,9 @@ class AuditEventEntity extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'AuditEventEntity');
+  });
+  @override
+  String get fhirType => 'AuditEventEntity';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -743,7 +754,9 @@ class AuditEventDetail extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'AuditEventDetail');
+  });
+  @override
+  String get fhirType => 'AuditEventDetail';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

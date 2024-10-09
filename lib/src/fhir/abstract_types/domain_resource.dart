@@ -10,7 +10,6 @@ import '../../../fhir_r4.dart';
 abstract class DomainResource extends Resource {
   const DomainResource({
     required super.resourceType,
-    required super.fhirType,
     super.id,
     super.meta,
     super.implicitRules,
@@ -28,6 +27,9 @@ abstract class DomainResource extends Resource {
     super.children,
     super.namedChildren,
   });
+
+  @override
+  String get fhirType => 'DomainResource';
 
   @JsonKey(name: 'text')
   final Narrative? text;

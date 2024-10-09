@@ -50,10 +50,11 @@ class NamingSystem extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.NamingSystem,
-            fhirType: 'NamingSystem');
+  }) : super(resourceType: R4ResourceType.NamingSystem);
+  @override
+  String get fhirType => 'NamingSystem';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -277,7 +278,9 @@ class NamingSystemUniqueId extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'NamingSystemUniqueId');
+  });
+  @override
+  String get fhirType => 'NamingSystemUniqueId';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

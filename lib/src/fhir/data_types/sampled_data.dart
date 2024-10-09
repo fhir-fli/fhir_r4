@@ -33,7 +33,9 @@ class SampledData extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'SampledData');
+  });
+  @override
+  String get fhirType => 'SampledData';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

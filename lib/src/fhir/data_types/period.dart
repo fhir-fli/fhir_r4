@@ -23,7 +23,9 @@ class Period extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'Period');
+  });
+  @override
+  String get fhirType => 'Period';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

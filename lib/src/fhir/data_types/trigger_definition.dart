@@ -32,7 +32,9 @@ class TriggerDefinition extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'TriggerDefinition');
+  });
+  @override
+  String get fhirType => 'TriggerDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -50,8 +50,11 @@ class Provenance extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Provenance, fhirType: 'Provenance');
+  }) : super(resourceType: R4ResourceType.Provenance);
+  @override
+  String get fhirType => 'Provenance';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -227,7 +230,9 @@ class ProvenanceAgent extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ProvenanceAgent');
+  });
+  @override
+  String get fhirType => 'ProvenanceAgent';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -326,7 +331,9 @@ class ProvenanceEntity extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ProvenanceEntity');
+  });
+  @override
+  String get fhirType => 'ProvenanceEntity';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

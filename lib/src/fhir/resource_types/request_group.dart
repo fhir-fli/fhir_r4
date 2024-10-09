@@ -52,10 +52,11 @@ class RequestGroup extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.RequestGroup,
-            fhirType: 'RequestGroup');
+  }) : super(resourceType: R4ResourceType.RequestGroup);
+  @override
+  String get fhirType => 'RequestGroup';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -319,7 +320,9 @@ class RequestGroupAction extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'RequestGroupAction');
+  });
+  @override
+  String get fhirType => 'RequestGroupAction';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -598,7 +601,9 @@ class RequestGroupCondition extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'RequestGroupCondition');
+  });
+  @override
+  String get fhirType => 'RequestGroupCondition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -692,7 +697,9 @@ class RequestGroupRelatedAction extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'RequestGroupRelatedAction');
+  });
+  @override
+  String get fhirType => 'RequestGroupRelatedAction';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

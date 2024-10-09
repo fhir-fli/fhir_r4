@@ -48,10 +48,11 @@ class PaymentReconciliation extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.PaymentReconciliation,
-            fhirType: 'PaymentReconciliation');
+  }) : super(resourceType: R4ResourceType.PaymentReconciliation);
+  @override
+  String get fhirType => 'PaymentReconciliation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -259,7 +260,9 @@ class PaymentReconciliationDetail extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'PaymentReconciliationDetail');
+  });
+  @override
+  String get fhirType => 'PaymentReconciliationDetail';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -399,7 +402,9 @@ class PaymentReconciliationProcessNote extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'PaymentReconciliationProcessNote');
+  });
+  @override
+  String get fhirType => 'PaymentReconciliationProcessNote';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

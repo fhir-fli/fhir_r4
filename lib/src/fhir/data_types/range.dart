@@ -21,7 +21,9 @@ class Range extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'Range');
+  });
+  @override
+  String get fhirType => 'Range';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

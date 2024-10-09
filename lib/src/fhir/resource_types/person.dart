@@ -41,8 +41,11 @@ class Person extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Person, fhirType: 'Person');
+  }) : super(resourceType: R4ResourceType.Person);
+  @override
+  String get fhirType => 'Person';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -202,7 +205,9 @@ class PersonLink extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'PersonLink');
+  });
+  @override
+  String get fhirType => 'PersonLink';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -31,7 +31,9 @@ class Count extends Quantity {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'Count');
+  });
+  @override
+  String get fhirType => 'Count';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -44,10 +44,11 @@ class RelatedPerson extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.RelatedPerson,
-            fhirType: 'RelatedPerson');
+  }) : super(resourceType: R4ResourceType.RelatedPerson);
+  @override
+  String get fhirType => 'RelatedPerson';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -223,7 +224,9 @@ class RelatedPersonCommunication extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'RelatedPersonCommunication');
+  });
+  @override
+  String get fhirType => 'RelatedPersonCommunication';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

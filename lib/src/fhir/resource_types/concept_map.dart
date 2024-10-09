@@ -64,8 +64,11 @@ class ConceptMap extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.ConceptMap, fhirType: 'ConceptMap');
+  }) : super(resourceType: R4ResourceType.ConceptMap);
+  @override
+  String get fhirType => 'ConceptMap';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -378,7 +381,9 @@ class ConceptMapGroup extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ConceptMapGroup');
+  });
+  @override
+  String get fhirType => 'ConceptMapGroup';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -513,7 +518,9 @@ class ConceptMapElement extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ConceptMapElement');
+  });
+  @override
+  String get fhirType => 'ConceptMapElement';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -620,7 +627,9 @@ class ConceptMapTarget extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ConceptMapTarget');
+  });
+  @override
+  String get fhirType => 'ConceptMapTarget';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -762,7 +771,9 @@ class ConceptMapDependsOn extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ConceptMapDependsOn');
+  });
+  @override
+  String get fhirType => 'ConceptMapDependsOn';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -888,7 +899,9 @@ class ConceptMapUnmapped extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ConceptMapUnmapped');
+  });
+  @override
+  String get fhirType => 'ConceptMapUnmapped';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

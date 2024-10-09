@@ -46,10 +46,11 @@ class RegulatedAuthorization extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.RegulatedAuthorization,
-            fhirType: 'RegulatedAuthorization');
+  }) : super(resourceType: R4ResourceType.RegulatedAuthorization);
+  @override
+  String get fhirType => 'RegulatedAuthorization';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -254,7 +255,9 @@ class RegulatedAuthorizationCase extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'RegulatedAuthorizationCase');
+  });
+  @override
+  String get fhirType => 'RegulatedAuthorizationCase';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -47,10 +47,11 @@ class MolecularSequence extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.MolecularSequence,
-            fhirType: 'MolecularSequence');
+  }) : super(resourceType: R4ResourceType.MolecularSequence);
+  @override
+  String get fhirType => 'MolecularSequence';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -277,7 +278,9 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MolecularSequenceReferenceSeq');
+  });
+  @override
+  String get fhirType => 'MolecularSequenceReferenceSeq';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -457,7 +460,9 @@ class MolecularSequenceVariant extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MolecularSequenceVariant');
+  });
+  @override
+  String get fhirType => 'MolecularSequenceVariant';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -629,7 +634,9 @@ class MolecularSequenceQuality extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MolecularSequenceQuality');
+  });
+  @override
+  String get fhirType => 'MolecularSequenceQuality';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -868,7 +875,9 @@ class MolecularSequenceRoc extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MolecularSequenceRoc');
+  });
+  @override
+  String get fhirType => 'MolecularSequenceRoc';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1026,7 +1035,9 @@ class MolecularSequenceRepository extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MolecularSequenceRepository');
+  });
+  @override
+  String get fhirType => 'MolecularSequenceRepository';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1170,7 +1181,9 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MolecularSequenceStructureVariant');
+  });
+  @override
+  String get fhirType => 'MolecularSequenceStructureVariant';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1286,7 +1299,9 @@ class MolecularSequenceOuter extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MolecularSequenceOuter');
+  });
+  @override
+  String get fhirType => 'MolecularSequenceOuter';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1383,7 +1398,9 @@ class MolecularSequenceInner extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MolecularSequenceInner');
+  });
+  @override
+  String get fhirType => 'MolecularSequenceInner';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

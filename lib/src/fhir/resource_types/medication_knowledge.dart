@@ -52,10 +52,11 @@ class MedicationKnowledge extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.MedicationKnowledge,
-            fhirType: 'MedicationKnowledge');
+  }) : super(resourceType: R4ResourceType.MedicationKnowledge);
+  @override
+  String get fhirType => 'MedicationKnowledge';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -314,7 +315,9 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicationKnowledgeRelatedMedicationKnowledge');
+  });
+  @override
+  String get fhirType => 'MedicationKnowledgeRelatedMedicationKnowledge';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -404,7 +407,9 @@ class MedicationKnowledgeMonograph extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicationKnowledgeMonograph');
+  });
+  @override
+  String get fhirType => 'MedicationKnowledgeMonograph';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -492,7 +497,9 @@ class MedicationKnowledgeIngredient extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicationKnowledgeIngredient');
+  });
+  @override
+  String get fhirType => 'MedicationKnowledgeIngredient';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -599,7 +606,9 @@ class MedicationKnowledgeCost extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicationKnowledgeCost');
+  });
+  @override
+  String get fhirType => 'MedicationKnowledgeCost';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -695,7 +704,9 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicationKnowledgeMonitoringProgram');
+  });
+  @override
+  String get fhirType => 'MedicationKnowledgeMonitoringProgram';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -788,7 +799,9 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicationKnowledgeAdministrationGuidelines');
+  });
+  @override
+  String get fhirType => 'MedicationKnowledgeAdministrationGuidelines';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -892,7 +905,9 @@ class MedicationKnowledgeDosage extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicationKnowledgeDosage');
+  });
+  @override
+  String get fhirType => 'MedicationKnowledgeDosage';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -980,7 +995,9 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicationKnowledgePatientCharacteristics');
+  });
+  @override
+  String get fhirType => 'MedicationKnowledgePatientCharacteristics';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1084,7 +1101,9 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicationKnowledgeMedicineClassification');
+  });
+  @override
+  String get fhirType => 'MedicationKnowledgeMedicineClassification';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1175,7 +1194,9 @@ class MedicationKnowledgePackaging extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicationKnowledgePackaging');
+  });
+  @override
+  String get fhirType => 'MedicationKnowledgePackaging';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1266,7 +1287,9 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicationKnowledgeDrugCharacteristic');
+  });
+  @override
+  String get fhirType => 'MedicationKnowledgeDrugCharacteristic';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1383,7 +1406,9 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicationKnowledgeRegulatory');
+  });
+  @override
+  String get fhirType => 'MedicationKnowledgeRegulatory';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1483,7 +1508,9 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicationKnowledgeSubstitution');
+  });
+  @override
+  String get fhirType => 'MedicationKnowledgeSubstitution';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1573,7 +1600,9 @@ class MedicationKnowledgeSchedule extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicationKnowledgeSchedule');
+  });
+  @override
+  String get fhirType => 'MedicationKnowledgeSchedule';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1652,7 +1681,9 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicationKnowledgeMaxDispense');
+  });
+  @override
+  String get fhirType => 'MedicationKnowledgeMaxDispense';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1739,7 +1770,9 @@ class MedicationKnowledgeKinetics extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'MedicationKnowledgeKinetics');
+  });
+  @override
+  String get fhirType => 'MedicationKnowledgeKinetics';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

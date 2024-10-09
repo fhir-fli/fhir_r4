@@ -46,10 +46,11 @@ class DeviceUseStatement extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.DeviceUseStatement,
-            fhirType: 'DeviceUseStatement');
+  }) : super(resourceType: R4ResourceType.DeviceUseStatement);
+  @override
+  String get fhirType => 'DeviceUseStatement';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

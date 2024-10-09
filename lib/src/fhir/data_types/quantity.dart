@@ -12,26 +12,28 @@ part 'quantity.g.dart';
 /// including amounts involving arbitrary units and floating currencies.
 @JsonSerializable()
 class Quantity extends DataType {
-  Quantity(
-      {super.id,
-      super.extension_,
-      this.value,
-      this.valueElement,
-      this.comparator,
-      this.comparatorElement,
-      this.unit,
-      this.unitElement,
-      this.system,
-      this.systemElement,
-      this.code,
-      this.codeElement,
-      super.userData,
-      super.formatCommentsPre,
-      super.formatCommentsPost,
-      super.annotations,
-      super.children,
-      super.namedChildren,
-      super.fhirType = 'Quantity'});
+  Quantity({
+    super.id,
+    super.extension_,
+    this.value,
+    this.valueElement,
+    this.comparator,
+    this.comparatorElement,
+    this.unit,
+    this.unitElement,
+    this.system,
+    this.systemElement,
+    this.code,
+    this.codeElement,
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
+    super.children,
+    super.namedChildren,
+  });
+  @override
+  String get fhirType => 'Quantity';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

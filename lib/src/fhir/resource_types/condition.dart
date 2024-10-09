@@ -58,8 +58,11 @@ class Condition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Condition, fhirType: 'Condition');
+  }) : super(resourceType: R4ResourceType.Condition);
+  @override
+  String get fhirType => 'Condition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -350,7 +353,9 @@ class ConditionStage extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ConditionStage');
+  });
+  @override
+  String get fhirType => 'ConditionStage';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -444,7 +449,9 @@ class ConditionEvidence extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ConditionEvidence');
+  });
+  @override
+  String get fhirType => 'ConditionEvidence';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -39,10 +39,11 @@ class BodyStructure extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.BodyStructure,
-            fhirType: 'BodyStructure');
+  }) : super(resourceType: R4ResourceType.BodyStructure);
+  @override
+  String get fhirType => 'BodyStructure';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

@@ -49,10 +49,11 @@ class RiskAssessment extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.RiskAssessment,
-            fhirType: 'RiskAssessment');
+  }) : super(resourceType: R4ResourceType.RiskAssessment);
+  @override
+  String get fhirType => 'RiskAssessment';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -273,7 +274,9 @@ class RiskAssessmentPrediction extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'RiskAssessmentPrediction');
+  });
+  @override
+  String get fhirType => 'RiskAssessmentPrediction';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

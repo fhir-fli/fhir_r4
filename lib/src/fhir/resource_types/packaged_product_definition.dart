@@ -45,10 +45,11 @@ class PackagedProductDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.PackagedProductDefinition,
-            fhirType: 'PackagedProductDefinition');
+  }) : super(resourceType: R4ResourceType.PackagedProductDefinition);
+  @override
+  String get fhirType => 'PackagedProductDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -263,7 +264,9 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'PackagedProductDefinitionLegalStatusOfSupply');
+  });
+  @override
+  String get fhirType => 'PackagedProductDefinitionLegalStatusOfSupply';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -365,7 +368,9 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'PackagedProductDefinitionPackage');
+  });
+  @override
+  String get fhirType => 'PackagedProductDefinitionPackage';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -514,7 +519,9 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'PackagedProductDefinitionShelfLifeStorage');
+  });
+  @override
+  String get fhirType => 'PackagedProductDefinitionShelfLifeStorage';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -639,7 +646,9 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'PackagedProductDefinitionProperty');
+  });
+  @override
+  String get fhirType => 'PackagedProductDefinitionProperty';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -758,7 +767,9 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'PackagedProductDefinitionContainedItem');
+  });
+  @override
+  String get fhirType => 'PackagedProductDefinitionContainedItem';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

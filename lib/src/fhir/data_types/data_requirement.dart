@@ -33,7 +33,9 @@ class DataRequirement extends DataType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'DataRequirement');
+  });
+  @override
+  String get fhirType => 'DataRequirement';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -201,7 +203,9 @@ class DataRequirementCodeFilter extends Element {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'DataRequirementCodeFilter');
+  });
+  @override
+  String get fhirType => 'DataRequirementCodeFilter';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -330,7 +334,9 @@ class DataRequirementDateFilter extends Element {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'DataRequirementDateFilter');
+  });
+  @override
+  String get fhirType => 'DataRequirementDateFilter';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -467,7 +473,9 @@ class DataRequirementSort extends Element {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'DataRequirementSort');
+  });
+  @override
+  String get fhirType => 'DataRequirementSort';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

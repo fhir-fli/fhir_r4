@@ -58,10 +58,11 @@ class Communication extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.Communication,
-            fhirType: 'Communication');
+  }) : super(resourceType: R4ResourceType.Communication);
+  @override
+  String get fhirType => 'Communication';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -332,7 +333,9 @@ class CommunicationPayload extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CommunicationPayload');
+  });
+  @override
+  String get fhirType => 'CommunicationPayload';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

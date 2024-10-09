@@ -36,7 +36,9 @@ class ProdCharacteristic extends BackboneType {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'ProdCharacteristic');
+  });
+  @override
+  String get fhirType => 'ProdCharacteristic';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

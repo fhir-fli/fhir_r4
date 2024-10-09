@@ -72,10 +72,11 @@ class CapabilityStatement extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.CapabilityStatement,
-            fhirType: 'CapabilityStatement');
+  }) : super(resourceType: R4ResourceType.CapabilityStatement);
+  @override
+  String get fhirType => 'CapabilityStatement';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -436,7 +437,9 @@ class CapabilityStatementSoftware extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CapabilityStatementSoftware');
+  });
+  @override
+  String get fhirType => 'CapabilityStatementSoftware';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -545,7 +548,9 @@ class CapabilityStatementImplementation extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CapabilityStatementImplementation');
+  });
+  @override
+  String get fhirType => 'CapabilityStatementImplementation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -670,7 +675,9 @@ class CapabilityStatementRest extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CapabilityStatementRest');
+  });
+  @override
+  String get fhirType => 'CapabilityStatementRest';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -816,7 +823,9 @@ class CapabilityStatementSecurity extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CapabilityStatementSecurity');
+  });
+  @override
+  String get fhirType => 'CapabilityStatementSecurity';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -945,7 +954,9 @@ class CapabilityStatementResource extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CapabilityStatementResource');
+  });
+  @override
+  String get fhirType => 'CapabilityStatementResource';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1207,7 +1218,9 @@ class CapabilityStatementInteraction extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CapabilityStatementInteraction');
+  });
+  @override
+  String get fhirType => 'CapabilityStatementInteraction';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1310,7 +1323,9 @@ class CapabilityStatementSearchParam extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CapabilityStatementSearchParam');
+  });
+  @override
+  String get fhirType => 'CapabilityStatementSearchParam';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1437,7 +1452,9 @@ class CapabilityStatementOperation extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CapabilityStatementOperation');
+  });
+  @override
+  String get fhirType => 'CapabilityStatementOperation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1552,7 +1569,9 @@ class CapabilityStatementInteraction1 extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CapabilityStatementInteraction1');
+  });
+  @override
+  String get fhirType => 'CapabilityStatementInteraction1';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1652,7 +1671,9 @@ class CapabilityStatementMessaging extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CapabilityStatementMessaging');
+  });
+  @override
+  String get fhirType => 'CapabilityStatementMessaging';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1764,7 +1785,9 @@ class CapabilityStatementEndpoint extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CapabilityStatementEndpoint');
+  });
+  @override
+  String get fhirType => 'CapabilityStatementEndpoint';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1857,7 +1880,9 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CapabilityStatementSupportedMessage');
+  });
+  @override
+  String get fhirType => 'CapabilityStatementSupportedMessage';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -1958,7 +1983,9 @@ class CapabilityStatementDocument extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CapabilityStatementDocument');
+  });
+  @override
+  String get fhirType => 'CapabilityStatementDocument';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

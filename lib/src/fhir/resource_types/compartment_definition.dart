@@ -53,10 +53,11 @@ class CompartmentDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.CompartmentDefinition,
-            fhirType: 'CompartmentDefinition');
+  }) : super(resourceType: R4ResourceType.CompartmentDefinition);
+  @override
+  String get fhirType => 'CompartmentDefinition';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -302,7 +303,9 @@ class CompartmentDefinitionResource extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CompartmentDefinitionResource');
+  });
+  @override
+  String get fhirType => 'CompartmentDefinitionResource';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

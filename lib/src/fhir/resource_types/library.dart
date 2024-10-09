@@ -77,8 +77,11 @@ class Library extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Library, fhirType: 'Library');
+  }) : super(resourceType: R4ResourceType.Library);
+  @override
+  String get fhirType => 'Library';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

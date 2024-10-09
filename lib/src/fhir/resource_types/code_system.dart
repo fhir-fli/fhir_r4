@@ -74,8 +74,11 @@ class CodeSystem extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.CodeSystem, fhirType: 'CodeSystem');
+  }) : super(resourceType: R4ResourceType.CodeSystem);
+  @override
+  String get fhirType => 'CodeSystem';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -444,7 +447,9 @@ class CodeSystemFilter extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CodeSystemFilter');
+  });
+  @override
+  String get fhirType => 'CodeSystemFilter';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -564,7 +569,9 @@ class CodeSystemProperty extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CodeSystemProperty');
+  });
+  @override
+  String get fhirType => 'CodeSystemProperty';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -691,7 +698,9 @@ class CodeSystemConcept extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CodeSystemConcept');
+  });
+  @override
+  String get fhirType => 'CodeSystemConcept';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -823,7 +832,9 @@ class CodeSystemDesignation extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CodeSystemDesignation');
+  });
+  @override
+  String get fhirType => 'CodeSystemDesignation';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -934,7 +945,9 @@ class CodeSystemProperty1 extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'CodeSystemProperty1');
+  });
+  @override
+  String get fhirType => 'CodeSystemProperty1';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

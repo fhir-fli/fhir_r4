@@ -32,8 +32,11 @@ class Linkage extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(resourceType: R4ResourceType.Linkage, fhirType: 'Linkage');
+  }) : super(resourceType: R4ResourceType.Linkage);
+  @override
+  String get fhirType => 'Linkage';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
@@ -149,7 +152,9 @@ class LinkageItem extends BackboneElement {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(fhirType: 'LinkageItem');
+  });
+  @override
+  String get fhirType => 'LinkageItem';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;

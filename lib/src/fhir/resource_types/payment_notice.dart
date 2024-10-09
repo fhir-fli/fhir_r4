@@ -43,10 +43,11 @@ class PaymentNotice extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
+    // ignore: avoid_unused_constructor_parameters
     R4ResourceType? resourceType,
-  }) : super(
-            resourceType: R4ResourceType.PaymentNotice,
-            fhirType: 'PaymentNotice');
+  }) : super(resourceType: R4ResourceType.PaymentNotice);
+  @override
+  String get fhirType => 'PaymentNotice';
   @Id()
   @JsonKey(ignore: true)
   int dbId = 0;
