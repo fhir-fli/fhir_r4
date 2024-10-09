@@ -262,7 +262,11 @@ Map<String, WritableClass> _buildWritableClasses(
     } else {
       String fieldType =
           (types.first as Map<String, dynamic>)['code'] as String;
-      if (fieldType == 'BackboneElement') {
+      if ((className.isResource && fieldType == 'BackboneElement') ||
+          ((className.isBackboneType ||
+                  className.isDataType ||
+                  className.isQuantity) &&
+              fieldType == 'Element')) {
         fieldType = path.split('.').first + path.split('.').last.capitalize;
       }
       classes[classPath]!.addField(Field(

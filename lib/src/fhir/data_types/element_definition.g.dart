@@ -47,7 +47,8 @@ ElementDefinition _$ElementDefinitionFromJson(Map<String, dynamic> json) =>
           .toList(),
       slicing: json['slicing'] == null
           ? null
-          : Element.fromJson(json['slicing'] as Map<String, dynamic>),
+          : ElementDefinitionSlicing.fromJson(
+              json['slicing'] as Map<String, dynamic>),
       short: json['short'] == null ? null : FhirString.fromJson(json['short']),
       shortElement: json['_short'] == null
           ? null
@@ -85,7 +86,8 @@ ElementDefinition _$ElementDefinitionFromJson(Map<String, dynamic> json) =>
           : Element.fromJson(json['_max'] as Map<String, dynamic>),
       base: json['base'] == null
           ? null
-          : Element.fromJson(json['base'] as Map<String, dynamic>),
+          : ElementDefinitionBase.fromJson(
+              json['base'] as Map<String, dynamic>),
       contentReference: json['contentReference'] == null
           ? null
           : FhirUri.fromJson(json['contentReference']),
@@ -93,7 +95,8 @@ ElementDefinition _$ElementDefinitionFromJson(Map<String, dynamic> json) =>
           ? null
           : Element.fromJson(json['_contentReference'] as Map<String, dynamic>),
       type: (json['type'] as List<dynamic>?)
-          ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
+          ?.map(
+              (e) => ElementDefinitionType.fromJson(e as Map<String, dynamic>))
           .toList(),
       defaultValueBase64Binary: json['defaultValueBase64Binary'] == null
           ? null
@@ -813,7 +816,8 @@ ElementDefinition _$ElementDefinitionFromJson(Map<String, dynamic> json) =>
           ? null
           : Dosage.fromJson(json['patternDosage'] as Map<String, dynamic>),
       example: (json['example'] as List<dynamic>?)
-          ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) =>
+              ElementDefinitionExample.fromJson(e as Map<String, dynamic>))
           .toList(),
       minValueDate: json['minValueDate'] == null
           ? null
@@ -933,7 +937,8 @@ ElementDefinition _$ElementDefinitionFromJson(Map<String, dynamic> json) =>
           ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
           .toList(),
       constraint: (json['constraint'] as List<dynamic>?)
-          ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) =>
+              ElementDefinitionConstraint.fromJson(e as Map<String, dynamic>))
           .toList(),
       mustSupport: json['mustSupport'] == null
           ? null
@@ -961,9 +966,11 @@ ElementDefinition _$ElementDefinitionFromJson(Map<String, dynamic> json) =>
           : Element.fromJson(json['_isSummary'] as Map<String, dynamic>),
       binding: json['binding'] == null
           ? null
-          : Element.fromJson(json['binding'] as Map<String, dynamic>),
+          : ElementDefinitionBinding.fromJson(
+              json['binding'] as Map<String, dynamic>),
       mapping: (json['mapping'] as List<dynamic>?)
-          ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) =>
+              ElementDefinitionMapping.fromJson(e as Map<String, dynamic>))
           .toList(),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)
@@ -1373,7 +1380,8 @@ ElementDefinitionSlicing _$ElementDefinitionSlicingFromJson(
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
       discriminator: (json['discriminator'] as List<dynamic>?)
-          ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ElementDefinitionDiscriminator.fromJson(
+              e as Map<String, dynamic>))
           .toList(),
       description: json['description'] == null
           ? null

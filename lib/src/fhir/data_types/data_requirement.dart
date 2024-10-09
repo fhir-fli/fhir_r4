@@ -83,13 +83,13 @@ class DataRequirement extends DataType {
   /// filter defines an additional constraint on the data, i.e. code filters are
   /// AND'ed, not OR'ed.
   @JsonKey(name: 'codeFilter')
-  final List<Element>? codeFilter;
+  final List<DataRequirementCodeFilter>? codeFilter;
 
   /// [dateFilter] /// Date filters specify additional constraints on the data in terms of the
   /// applicable date range for specific elements. Each date filter specifies an
   /// additional constraint on the data, i.e. date filters are AND'ed, not OR'ed.
   @JsonKey(name: 'dateFilter')
-  final List<Element>? dateFilter;
+  final List<DataRequirementDateFilter>? dateFilter;
 
   /// [limit] /// Specifies a maximum number of results that are required (uses the _count
   /// search parameter).
@@ -100,7 +100,7 @@ class DataRequirement extends DataType {
 
   /// [sort] /// Specifies the order of the results to be returned.
   @JsonKey(name: 'sort')
-  final List<Element>? sort;
+  final List<DataRequirementSort>? sort;
   factory DataRequirement.fromJson(Map<String, dynamic> json) =>
       _$DataRequirementFromJson(json);
 
@@ -121,11 +121,11 @@ class DataRequirement extends DataType {
     SubjectType? subjectReference,
     List<FhirString>? mustSupport,
     List<Element>? mustSupportElement,
-    List<Element>? codeFilter,
-    List<Element>? dateFilter,
+    List<DataRequirementCodeFilter>? codeFilter,
+    List<DataRequirementDateFilter>? dateFilter,
     FhirPositiveInt? limit,
     Element? limitElement,
-    List<Element>? sort,
+    List<DataRequirementSort>? sort,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

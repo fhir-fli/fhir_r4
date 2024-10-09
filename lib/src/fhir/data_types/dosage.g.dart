@@ -57,7 +57,7 @@ Dosage _$DosageFromJson(Map<String, dynamic> json) => Dosage(
           ? null
           : CodeableConcept.fromJson(json['method'] as Map<String, dynamic>),
       doseAndRate: (json['doseAndRate'] as List<dynamic>?)
-          ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => DosageDoseAndRate.fromJson(e as Map<String, dynamic>))
           .toList(),
       maxDosePerPeriod: json['maxDosePerPeriod'] == null
           ? null

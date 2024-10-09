@@ -41,7 +41,7 @@ class Timing extends BackboneType {
 
   /// [repeat] /// A set of rules that describe when the event is scheduled.
   @JsonKey(name: 'repeat')
-  final Element? repeat;
+  final TimingRepeat? repeat;
 
   /// [code] /// A code for the timing schedule (or just text in code.text). Some codes such
   /// as BID are ubiquitous, but many institutions define their own additional
@@ -66,7 +66,7 @@ class Timing extends BackboneType {
     List<FhirExtension>? modifierExtension,
     List<FhirDateTime>? event,
     List<Element>? eventElement,
-    Element? repeat,
+    TimingRepeat? repeat,
     TimingAbbreviation? code,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

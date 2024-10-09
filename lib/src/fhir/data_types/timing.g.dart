@@ -22,7 +22,7 @@ Timing _$TimingFromJson(Map<String, dynamic> json) => Timing(
           .toList(),
       repeat: json['repeat'] == null
           ? null
-          : Element.fromJson(json['repeat'] as Map<String, dynamic>),
+          : TimingRepeat.fromJson(json['repeat'] as Map<String, dynamic>),
       code: $enumDecodeNullable(_$TimingAbbreviationEnumMap, json['code']),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)

@@ -33,10 +33,12 @@ DataRequirement _$DataRequirementFromJson(Map<String, dynamic> json) =>
           ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
           .toList(),
       codeFilter: (json['codeFilter'] as List<dynamic>?)
-          ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) =>
+              DataRequirementCodeFilter.fromJson(e as Map<String, dynamic>))
           .toList(),
       dateFilter: (json['dateFilter'] as List<dynamic>?)
-          ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) =>
+              DataRequirementDateFilter.fromJson(e as Map<String, dynamic>))
           .toList(),
       limit: json['limit'] == null
           ? null
@@ -45,7 +47,7 @@ DataRequirement _$DataRequirementFromJson(Map<String, dynamic> json) =>
           ? null
           : Element.fromJson(json['_limit'] as Map<String, dynamic>),
       sort: (json['sort'] as List<dynamic>?)
-          ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => DataRequirementSort.fromJson(e as Map<String, dynamic>))
           .toList(),
       userData: json['userData'] as Map<String, dynamic>?,
       formatCommentsPre: (json['formatCommentsPre'] as List<dynamic>?)

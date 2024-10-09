@@ -102,7 +102,7 @@ class Dosage extends BackboneType {
 
   /// [doseAndRate] /// The amount of medication administered.
   @JsonKey(name: 'doseAndRate')
-  final List<Element>? doseAndRate;
+  final List<DosageDoseAndRate>? doseAndRate;
 
   /// [maxDosePerPeriod] /// Upper limit on medication per unit of time.
   @JsonKey(name: 'maxDosePerPeriod')
@@ -141,7 +141,7 @@ class Dosage extends BackboneType {
     CodeableConcept? site,
     CodeableConcept? route,
     CodeableConcept? method,
-    List<Element>? doseAndRate,
+    List<DosageDoseAndRate>? doseAndRate,
     Ratio? maxDosePerPeriod,
     Quantity? maxDosePerAdministration,
     Quantity? maxDosePerLifetime,
