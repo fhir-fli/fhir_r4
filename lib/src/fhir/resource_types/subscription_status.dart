@@ -393,8 +393,9 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
               .toList()
           : null,
       eventNumber: FhirString(json['eventNumber']),
-      eventNumberElement:
-          Element.fromJson(json['_eventNumber'] as Map<String, dynamic>),
+      eventNumberElement: json['_eventNumber'] != null
+          ? Element.fromJson(json['_eventNumber'] as Map<String, dynamic>)
+          : null,
       timestamp:
           json['timestamp'] != null ? FhirInstant(json['timestamp']) : null,
       timestampElement: json['_timestamp'] != null

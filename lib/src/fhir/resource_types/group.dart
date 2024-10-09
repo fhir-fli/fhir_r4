@@ -216,7 +216,9 @@ class FhirGroup extends DomainResource {
           : null,
       type: GroupType.fromJson(json['type'] as Map<String, dynamic>),
       actual: FhirBoolean(json['actual']),
-      actualElement: Element.fromJson(json['_actual'] as Map<String, dynamic>),
+      actualElement: json['_actual'] != null
+          ? Element.fromJson(json['_actual'] as Map<String, dynamic>)
+          : null,
       code: json['code'] != null
           ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
           : null,
@@ -480,8 +482,9 @@ class GroupCharacteristic extends BackboneElement {
           ? Reference.fromJson(json['valueReference'] as Map<String, dynamic>)
           : null,
       exclude: FhirBoolean(json['exclude']),
-      excludeElement:
-          Element.fromJson(json['_exclude'] as Map<String, dynamic>),
+      excludeElement: json['_exclude'] != null
+          ? Element.fromJson(json['_exclude'] as Map<String, dynamic>)
+          : null,
       period: json['period'] != null
           ? Period.fromJson(json['period'] as Map<String, dynamic>)
           : null,

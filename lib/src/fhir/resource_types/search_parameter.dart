@@ -421,13 +421,17 @@ class SearchParameter extends DomainResource {
               .toList()
           : null,
       url: FhirUri(json['url']),
-      urlElement: Element.fromJson(json['_url'] as Map<String, dynamic>),
+      urlElement: json['_url'] != null
+          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
+          : null,
       version: json['version'] != null ? FhirString(json['version']) : null,
       versionElement: json['_version'] != null
           ? Element.fromJson(json['_version'] as Map<String, dynamic>)
           : null,
       name: FhirString(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       derivedFrom: json['derivedFrom'] != null
           ? FhirCanonical(json['derivedFrom'])
           : null,
@@ -458,8 +462,9 @@ class SearchParameter extends DomainResource {
               .toList()
           : null,
       description: FhirMarkdown(json['description']),
-      descriptionElement:
-          Element.fromJson(json['_description'] as Map<String, dynamic>),
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
       useContext: json['useContext'] != null
           ? (json['useContext'] as List<dynamic>)
               .map<UsageContext>((dynamic v) =>
@@ -477,7 +482,9 @@ class SearchParameter extends DomainResource {
           ? Element.fromJson(json['_purpose'] as Map<String, dynamic>)
           : null,
       code: FhirCode(json['code']),
-      codeElement: Element.fromJson(json['_code'] as Map<String, dynamic>),
+      codeElement: json['_code'] != null
+          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
+          : null,
       base: (json['base'] as List<dynamic>)
           .map<FhirCode>((dynamic v) => FhirCode.fromJson(v as dynamic))
           .toList(),
@@ -783,11 +790,13 @@ class SearchParameterComponent extends BackboneElement {
               .toList()
           : null,
       definition: FhirCanonical(json['definition']),
-      definitionElement:
-          Element.fromJson(json['_definition'] as Map<String, dynamic>),
+      definitionElement: json['_definition'] != null
+          ? Element.fromJson(json['_definition'] as Map<String, dynamic>)
+          : null,
       expression: FhirString(json['expression']),
-      expressionElement:
-          Element.fromJson(json['_expression'] as Map<String, dynamic>),
+      expressionElement: json['_expression'] != null
+          ? Element.fromJson(json['_expression'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override

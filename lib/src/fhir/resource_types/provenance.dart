@@ -224,8 +224,9 @@ class Provenance extends DomainResource {
           ? Element.fromJson(json['_occurredDateTime'] as Map<String, dynamic>)
           : null,
       recorded: FhirInstant(json['recorded']),
-      recordedElement:
-          Element.fromJson(json['_recorded'] as Map<String, dynamic>),
+      recordedElement: json['_recorded'] != null
+          ? Element.fromJson(json['_recorded'] as Map<String, dynamic>)
+          : null,
       policy: json['policy'] != null
           ? (json['policy'] as List<dynamic>)
               .map<FhirUri>((dynamic v) => FhirUri.fromJson(v as dynamic))

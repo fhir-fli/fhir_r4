@@ -489,8 +489,9 @@ class ExplanationOfBenefit extends DomainResource {
           ? Period.fromJson(json['billablePeriod'] as Map<String, dynamic>)
           : null,
       created: FhirDateTime(json['created']),
-      createdElement:
-          Element.fromJson(json['_created'] as Map<String, dynamic>),
+      createdElement: json['_created'] != null
+          ? Element.fromJson(json['_created'] as Map<String, dynamic>)
+          : null,
       enterer: json['enterer'] != null
           ? Reference.fromJson(json['enterer'] as Map<String, dynamic>)
           : null,
@@ -1183,8 +1184,9 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
               .toList()
           : null,
       sequence: FhirPositiveInt(json['sequence']),
-      sequenceElement:
-          Element.fromJson(json['_sequence'] as Map<String, dynamic>),
+      sequenceElement: json['_sequence'] != null
+          ? Element.fromJson(json['_sequence'] as Map<String, dynamic>)
+          : null,
       provider: Reference.fromJson(json['provider'] as Map<String, dynamic>),
       responsible:
           json['responsible'] != null ? FhirBoolean(json['responsible']) : null,
@@ -1418,8 +1420,9 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
               .toList()
           : null,
       sequence: FhirPositiveInt(json['sequence']),
-      sequenceElement:
-          Element.fromJson(json['_sequence'] as Map<String, dynamic>),
+      sequenceElement: json['_sequence'] != null
+          ? Element.fromJson(json['_sequence'] as Map<String, dynamic>)
+          : null,
       category:
           CodeableConcept.fromJson(json['category'] as Map<String, dynamic>),
       code: json['code'] != null
@@ -1639,8 +1642,9 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
               .toList()
           : null,
       sequence: FhirPositiveInt(json['sequence']),
-      sequenceElement:
-          Element.fromJson(json['_sequence'] as Map<String, dynamic>),
+      sequenceElement: json['_sequence'] != null
+          ? Element.fromJson(json['_sequence'] as Map<String, dynamic>)
+          : null,
       diagnosisCodeableConcept: json['diagnosisCodeableConcept'] != null
           ? CodeableConcept.fromJson(
               json['diagnosisCodeableConcept'] as Map<String, dynamic>)
@@ -1834,8 +1838,9 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
               .toList()
           : null,
       sequence: FhirPositiveInt(json['sequence']),
-      sequenceElement:
-          Element.fromJson(json['_sequence'] as Map<String, dynamic>),
+      sequenceElement: json['_sequence'] != null
+          ? Element.fromJson(json['_sequence'] as Map<String, dynamic>)
+          : null,
       type: json['type'] != null
           ? (json['type'] as List<dynamic>)
               .map<CodeableConcept>((dynamic v) =>
@@ -2013,7 +2018,9 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
               .toList()
           : null,
       focal: FhirBoolean(json['focal']),
-      focalElement: Element.fromJson(json['_focal'] as Map<String, dynamic>),
+      focalElement: json['_focal'] != null
+          ? Element.fromJson(json['_focal'] as Map<String, dynamic>)
+          : null,
       coverage: Reference.fromJson(json['coverage'] as Map<String, dynamic>),
       preAuthRef: json['preAuthRef'] != null
           ? (json['preAuthRef'] as List<dynamic>)
@@ -2557,8 +2564,9 @@ class ExplanationOfBenefitItem extends BackboneElement {
               .toList()
           : null,
       sequence: FhirPositiveInt(json['sequence']),
-      sequenceElement:
-          Element.fromJson(json['_sequence'] as Map<String, dynamic>),
+      sequenceElement: json['_sequence'] != null
+          ? Element.fromJson(json['_sequence'] as Map<String, dynamic>)
+          : null,
       careTeamSequence: json['careTeamSequence'] != null
           ? (json['careTeamSequence'] as List<dynamic>)
               .map<FhirPositiveInt>(
@@ -3172,8 +3180,9 @@ class ExplanationOfBenefitDetail extends BackboneElement {
               .toList()
           : null,
       sequence: FhirPositiveInt(json['sequence']),
-      sequenceElement:
-          Element.fromJson(json['_sequence'] as Map<String, dynamic>),
+      sequenceElement: json['_sequence'] != null
+          ? Element.fromJson(json['_sequence'] as Map<String, dynamic>)
+          : null,
       revenue: json['revenue'] != null
           ? CodeableConcept.fromJson(json['revenue'] as Map<String, dynamic>)
           : null,
@@ -3494,8 +3503,9 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
               .toList()
           : null,
       sequence: FhirPositiveInt(json['sequence']),
-      sequenceElement:
-          Element.fromJson(json['_sequence'] as Map<String, dynamic>),
+      sequenceElement: json['_sequence'] != null
+          ? Element.fromJson(json['_sequence'] as Map<String, dynamic>)
+          : null,
       revenue: json['revenue'] != null
           ? CodeableConcept.fromJson(json['revenue'] as Map<String, dynamic>)
           : null,

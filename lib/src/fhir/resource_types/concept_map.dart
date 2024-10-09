@@ -1285,14 +1285,17 @@ class ConceptMapDependsOn extends BackboneElement {
               .toList()
           : null,
       property: FhirUri(json['property']),
-      propertyElement:
-          Element.fromJson(json['_property'] as Map<String, dynamic>),
+      propertyElement: json['_property'] != null
+          ? Element.fromJson(json['_property'] as Map<String, dynamic>)
+          : null,
       system: json['system'] != null ? FhirCanonical(json['system']) : null,
       systemElement: json['_system'] != null
           ? Element.fromJson(json['_system'] as Map<String, dynamic>)
           : null,
       value: FhirString(json['value']),
-      valueElement: Element.fromJson(json['_value'] as Map<String, dynamic>),
+      valueElement: json['_value'] != null
+          ? Element.fromJson(json['_value'] as Map<String, dynamic>)
+          : null,
       display: json['display'] != null ? FhirString(json['display']) : null,
       displayElement: json['_display'] != null
           ? Element.fromJson(json['_display'] as Map<String, dynamic>)

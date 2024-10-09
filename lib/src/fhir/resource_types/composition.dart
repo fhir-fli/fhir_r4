@@ -264,13 +264,17 @@ class Composition extends DomainResource {
           ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
           : null,
       date: FhirDateTime(json['date']),
-      dateElement: Element.fromJson(json['_date'] as Map<String, dynamic>),
+      dateElement: json['_date'] != null
+          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
+          : null,
       author: (json['author'] as List<dynamic>)
           .map<Reference>(
               (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
           .toList(),
       title: FhirString(json['title']),
-      titleElement: Element.fromJson(json['_title'] as Map<String, dynamic>),
+      titleElement: json['_title'] != null
+          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
+          : null,
       confidentiality: json['confidentiality'] != null
           ? FhirCode(json['confidentiality'])
           : null,

@@ -2395,8 +2395,9 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
           : null,
       type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       allowed: FhirBoolean(json['allowed']),
-      allowedElement:
-          Element.fromJson(json['_allowed'] as Map<String, dynamic>),
+      allowedElement: json['_allowed'] != null
+          ? Element.fromJson(json['_allowed'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override

@@ -129,7 +129,9 @@ class SampledData extends DataType {
           : null,
       origin: Quantity.fromJson(json['origin'] as Map<String, dynamic>),
       period: FhirDecimal(json['period']),
-      periodElement: Element.fromJson(json['_period'] as Map<String, dynamic>),
+      periodElement: json['_period'] != null
+          ? Element.fromJson(json['_period'] as Map<String, dynamic>)
+          : null,
       factor: json['factor'] != null ? FhirDecimal(json['factor']) : null,
       factorElement: json['_factor'] != null
           ? Element.fromJson(json['_factor'] as Map<String, dynamic>)
@@ -145,8 +147,9 @@ class SampledData extends DataType {
           ? Element.fromJson(json['_upperLimit'] as Map<String, dynamic>)
           : null,
       dimensions: FhirPositiveInt(json['dimensions']),
-      dimensionsElement:
-          Element.fromJson(json['_dimensions'] as Map<String, dynamic>),
+      dimensionsElement: json['_dimensions'] != null
+          ? Element.fromJson(json['_dimensions'] as Map<String, dynamic>)
+          : null,
       data: json['data'] != null ? FhirString(json['data']) : null,
       dataElement: json['_data'] != null
           ? Element.fromJson(json['_data'] as Map<String, dynamic>)

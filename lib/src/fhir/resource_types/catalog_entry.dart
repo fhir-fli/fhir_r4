@@ -235,8 +235,9 @@ class CatalogEntry extends DomainResource {
           ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
           : null,
       orderable: FhirBoolean(json['orderable']),
-      orderableElement:
-          Element.fromJson(json['_orderable'] as Map<String, dynamic>),
+      orderableElement: json['_orderable'] != null
+          ? Element.fromJson(json['_orderable'] as Map<String, dynamic>)
+          : null,
       referencedItem:
           Reference.fromJson(json['referencedItem'] as Map<String, dynamic>),
       additionalIdentifier: json['additionalIdentifier'] != null

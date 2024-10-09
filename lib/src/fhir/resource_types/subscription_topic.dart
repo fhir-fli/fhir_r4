@@ -368,7 +368,9 @@ class SubscriptionTopic extends DomainResource {
               .toList()
           : null,
       url: FhirUri(json['url']),
-      urlElement: Element.fromJson(json['_url'] as Map<String, dynamic>),
+      urlElement: json['_url'] != null
+          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
+          : null,
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
@@ -1321,8 +1323,9 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
           ? FHIRDefinedType.fromJson(json['resource'] as Map<String, dynamic>)
           : null,
       filterParameter: FhirString(json['filterParameter']),
-      filterParameterElement:
-          Element.fromJson(json['_filterParameter'] as Map<String, dynamic>),
+      filterParameterElement: json['_filterParameter'] != null
+          ? Element.fromJson(json['_filterParameter'] as Map<String, dynamic>)
+          : null,
       filterDefinition: json['filterDefinition'] != null
           ? FhirUri(json['filterDefinition'])
           : null,

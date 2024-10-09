@@ -299,7 +299,9 @@ class GraphDefinition extends DomainResource {
           ? Element.fromJson(json['_version'] as Map<String, dynamic>)
           : null,
       name: FhirString(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       status:
           PublicationStatus.fromJson(json['status'] as Map<String, dynamic>),
       experimental: json['experimental'] != null
@@ -346,7 +348,9 @@ class GraphDefinition extends DomainResource {
           ? Element.fromJson(json['_purpose'] as Map<String, dynamic>)
           : null,
       start: FhirCode(json['start']),
-      startElement: Element.fromJson(json['_start'] as Map<String, dynamic>),
+      startElement: json['_start'] != null
+          ? Element.fromJson(json['_start'] as Map<String, dynamic>)
+          : null,
       profile: json['profile'] != null ? FhirCanonical(json['profile']) : null,
       profileElement: json['_profile'] != null
           ? Element.fromJson(json['_profile'] as Map<String, dynamic>)
@@ -797,7 +801,9 @@ class GraphDefinitionTarget extends BackboneElement {
               .toList()
           : null,
       type: FhirCode(json['type']),
-      typeElement: Element.fromJson(json['_type'] as Map<String, dynamic>),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
+          : null,
       params: json['params'] != null ? FhirString(json['params']) : null,
       paramsElement: json['_params'] != null
           ? Element.fromJson(json['_params'] as Map<String, dynamic>)

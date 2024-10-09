@@ -437,7 +437,9 @@ class CapabilityStatement extends DomainResource {
           ? Element.fromJson(json['_experimental'] as Map<String, dynamic>)
           : null,
       date: FhirDateTime(json['date']),
-      dateElement: Element.fromJson(json['_date'] as Map<String, dynamic>),
+      dateElement: json['_date'] != null
+          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
+          : null,
       publisher:
           json['publisher'] != null ? FhirString(json['publisher']) : null,
       publisherElement: json['_publisher'] != null
@@ -788,7 +790,9 @@ class CapabilityStatementSoftware extends BackboneElement {
               .toList()
           : null,
       name: FhirString(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       version: json['version'] != null ? FhirString(json['version']) : null,
       versionElement: json['_version'] != null
           ? Element.fromJson(json['_version'] as Map<String, dynamic>)
@@ -964,8 +968,9 @@ class CapabilityStatementImplementation extends BackboneElement {
               .toList()
           : null,
       description: FhirString(json['description']),
-      descriptionElement:
-          Element.fromJson(json['_description'] as Map<String, dynamic>),
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
       url: json['url'] != null ? FhirUrl(json['url']) : null,
       urlElement: json['_url'] != null
           ? Element.fromJson(json['_url'] as Map<String, dynamic>)
@@ -1740,7 +1745,9 @@ class CapabilityStatementResource extends BackboneElement {
               .toList()
           : null,
       type: FhirCode(json['type']),
-      typeElement: Element.fromJson(json['_type'] as Map<String, dynamic>),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
+          : null,
       profile: json['profile'] != null ? FhirCanonical(json['profile']) : null,
       profileElement: json['_profile'] != null
           ? Element.fromJson(json['_profile'] as Map<String, dynamic>)
@@ -2208,7 +2215,9 @@ class CapabilityStatementSearchParam extends BackboneElement {
               .toList()
           : null,
       name: FhirString(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       definition:
           json['definition'] != null ? FhirCanonical(json['definition']) : null,
       definitionElement: json['_definition'] != null
@@ -2385,10 +2394,13 @@ class CapabilityStatementOperation extends BackboneElement {
               .toList()
           : null,
       name: FhirString(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       definition: FhirCanonical(json['definition']),
-      definitionElement:
-          Element.fromJson(json['_definition'] as Map<String, dynamic>),
+      definitionElement: json['_definition'] != null
+          ? Element.fromJson(json['_definition'] as Map<String, dynamic>)
+          : null,
       documentation: json['documentation'] != null
           ? FhirMarkdown(json['documentation'])
           : null,
@@ -2854,8 +2866,9 @@ class CapabilityStatementEndpoint extends BackboneElement {
           : null,
       protocol: Coding.fromJson(json['protocol'] as Map<String, dynamic>),
       address: FhirUrl(json['address']),
-      addressElement:
-          Element.fromJson(json['_address'] as Map<String, dynamic>),
+      addressElement: json['_address'] != null
+          ? Element.fromJson(json['_address'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
@@ -2986,8 +2999,9 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
           : null,
       mode: EventCapabilityMode.fromJson(json['mode'] as Map<String, dynamic>),
       definition: FhirCanonical(json['definition']),
-      definitionElement:
-          Element.fromJson(json['_definition'] as Map<String, dynamic>),
+      definitionElement: json['_definition'] != null
+          ? Element.fromJson(json['_definition'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
@@ -3139,8 +3153,9 @@ class CapabilityStatementDocument extends BackboneElement {
           ? Element.fromJson(json['_documentation'] as Map<String, dynamic>)
           : null,
       profile: FhirCanonical(json['profile']),
-      profileElement:
-          Element.fromJson(json['_profile'] as Map<String, dynamic>),
+      profileElement: json['_profile'] != null
+          ? Element.fromJson(json['_profile'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override

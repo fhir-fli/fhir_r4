@@ -951,7 +951,9 @@ class DeviceDeviceName extends BackboneElement {
               .toList()
           : null,
       name: FhirString(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       type: DeviceNameType.fromJson(json['type'] as Map<String, dynamic>),
     );
   }
@@ -1224,7 +1226,9 @@ class DeviceVersion extends BackboneElement {
           ? Identifier.fromJson(json['component'] as Map<String, dynamic>)
           : null,
       value: FhirString(json['value']),
-      valueElement: Element.fromJson(json['_value'] as Map<String, dynamic>),
+      valueElement: json['_value'] != null
+          ? Element.fromJson(json['_value'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override

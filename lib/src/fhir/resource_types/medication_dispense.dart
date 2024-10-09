@@ -804,8 +804,9 @@ class MedicationDispenseSubstitution extends BackboneElement {
               .toList()
           : null,
       wasSubstituted: FhirBoolean(json['wasSubstituted']),
-      wasSubstitutedElement:
-          Element.fromJson(json['_wasSubstituted'] as Map<String, dynamic>),
+      wasSubstitutedElement: json['_wasSubstituted'] != null
+          ? Element.fromJson(json['_wasSubstituted'] as Map<String, dynamic>)
+          : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
           : null,

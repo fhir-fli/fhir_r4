@@ -610,8 +610,9 @@ class ConsentVerification extends BackboneElement {
               .toList()
           : null,
       verified: FhirBoolean(json['verified']),
-      verifiedElement:
-          Element.fromJson(json['_verified'] as Map<String, dynamic>),
+      verifiedElement: json['_verified'] != null
+          ? Element.fromJson(json['_verified'] as Map<String, dynamic>)
+          : null,
       verifiedWith: json['verifiedWith'] != null
           ? Reference.fromJson(json['verifiedWith'] as Map<String, dynamic>)
           : null,

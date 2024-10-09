@@ -343,13 +343,17 @@ class ImplementationGuide extends DomainResource {
               .toList()
           : null,
       url: FhirUri(json['url']),
-      urlElement: Element.fromJson(json['_url'] as Map<String, dynamic>),
+      urlElement: json['_url'] != null
+          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
+          : null,
       version: json['version'] != null ? FhirString(json['version']) : null,
       versionElement: json['_version'] != null
           ? Element.fromJson(json['_version'] as Map<String, dynamic>)
           : null,
       name: FhirString(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       title: json['title'] != null ? FhirString(json['title']) : null,
       titleElement: json['_title'] != null
           ? Element.fromJson(json['_title'] as Map<String, dynamic>)
@@ -401,8 +405,9 @@ class ImplementationGuide extends DomainResource {
           ? Element.fromJson(json['_copyright'] as Map<String, dynamic>)
           : null,
       packageId: FhirId(json['packageId']),
-      packageIdElement:
-          Element.fromJson(json['_packageId'] as Map<String, dynamic>),
+      packageIdElement: json['_packageId'] != null
+          ? Element.fromJson(json['_packageId'] as Map<String, dynamic>)
+          : null,
       license: json['license'] != null
           ? SPDXLicense.fromJson(json['license'] as Map<String, dynamic>)
           : null,
@@ -650,7 +655,9 @@ class ImplementationGuideDependsOn extends BackboneElement {
               .toList()
           : null,
       uri: FhirCanonical(json['uri']),
-      uriElement: Element.fromJson(json['_uri'] as Map<String, dynamic>),
+      uriElement: json['_uri'] != null
+          ? Element.fromJson(json['_uri'] as Map<String, dynamic>)
+          : null,
       packageId: json['packageId'] != null ? FhirId(json['packageId']) : null,
       packageIdElement: json['_packageId'] != null
           ? Element.fromJson(json['_packageId'] as Map<String, dynamic>)
@@ -794,10 +801,13 @@ class ImplementationGuideGlobal extends BackboneElement {
               .toList()
           : null,
       type: FhirCode(json['type']),
-      typeElement: Element.fromJson(json['_type'] as Map<String, dynamic>),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
+          : null,
       profile: FhirCanonical(json['profile']),
-      profileElement:
-          Element.fromJson(json['_profile'] as Map<String, dynamic>),
+      profileElement: json['_profile'] != null
+          ? Element.fromJson(json['_profile'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
@@ -1119,7 +1129,9 @@ class ImplementationGuideGrouping extends BackboneElement {
               .toList()
           : null,
       name: FhirString(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       description:
           json['description'] != null ? FhirString(json['description']) : null,
       descriptionElement: json['_description'] != null
@@ -1537,7 +1549,9 @@ class ImplementationGuidePage extends BackboneElement {
           ? Reference.fromJson(json['nameReference'] as Map<String, dynamic>)
           : null,
       title: FhirString(json['title']),
-      titleElement: Element.fromJson(json['_title'] as Map<String, dynamic>),
+      titleElement: json['_title'] != null
+          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
+          : null,
       generation: GuidePageGeneration.fromJson(
           json['generation'] as Map<String, dynamic>),
       page: json['page'] != null
@@ -1684,7 +1698,9 @@ class ImplementationGuideParameter extends BackboneElement {
           : null,
       code: GuideParameterCode.fromJson(json['code'] as Map<String, dynamic>),
       value: FhirString(json['value']),
-      valueElement: Element.fromJson(json['_value'] as Map<String, dynamic>),
+      valueElement: json['_value'] != null
+          ? Element.fromJson(json['_value'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
@@ -1827,9 +1843,13 @@ class ImplementationGuideTemplate extends BackboneElement {
               .toList()
           : null,
       code: FhirCode(json['code']),
-      codeElement: Element.fromJson(json['_code'] as Map<String, dynamic>),
+      codeElement: json['_code'] != null
+          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
+          : null,
       source: FhirString(json['source']),
-      sourceElement: Element.fromJson(json['_source'] as Map<String, dynamic>),
+      sourceElement: json['_source'] != null
+          ? Element.fromJson(json['_source'] as Map<String, dynamic>)
+          : null,
       scope: json['scope'] != null ? FhirString(json['scope']) : null,
       scopeElement: json['_scope'] != null
           ? Element.fromJson(json['_scope'] as Map<String, dynamic>)
@@ -2377,7 +2397,9 @@ class ImplementationGuidePage1 extends BackboneElement {
               .toList()
           : null,
       name: FhirString(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       title: json['title'] != null ? FhirString(json['title']) : null,
       titleElement: json['_title'] != null
           ? Element.fromJson(json['_title'] as Map<String, dynamic>)

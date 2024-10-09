@@ -189,10 +189,13 @@ class Subscription extends DomainResource {
           ? Element.fromJson(json['_end'] as Map<String, dynamic>)
           : null,
       reason: FhirString(json['reason']),
-      reasonElement: Element.fromJson(json['_reason'] as Map<String, dynamic>),
+      reasonElement: json['_reason'] != null
+          ? Element.fromJson(json['_reason'] as Map<String, dynamic>)
+          : null,
       criteria: FhirString(json['criteria']),
-      criteriaElement:
-          Element.fromJson(json['_criteria'] as Map<String, dynamic>),
+      criteriaElement: json['_criteria'] != null
+          ? Element.fromJson(json['_criteria'] as Map<String, dynamic>)
+          : null,
       error: json['error'] != null ? FhirString(json['error']) : null,
       errorElement: json['_error'] != null
           ? Element.fromJson(json['_error'] as Map<String, dynamic>)

@@ -388,7 +388,9 @@ class ChargeItemDefinition extends DomainResource {
               .toList()
           : null,
       url: FhirUri(json['url']),
-      urlElement: Element.fromJson(json['_url'] as Map<String, dynamic>),
+      urlElement: json['_url'] != null
+          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
+          : null,
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(

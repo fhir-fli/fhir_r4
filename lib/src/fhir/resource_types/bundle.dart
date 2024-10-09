@@ -305,10 +305,13 @@ class BundleLink extends BackboneElement {
               .toList()
           : null,
       relation: FhirString(json['relation']),
-      relationElement:
-          Element.fromJson(json['_relation'] as Map<String, dynamic>),
+      relationElement: json['_relation'] != null
+          ? Element.fromJson(json['_relation'] as Map<String, dynamic>)
+          : null,
       url: FhirUri(json['url']),
-      urlElement: Element.fromJson(json['_url'] as Map<String, dynamic>),
+      urlElement: json['_url'] != null
+          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
@@ -834,7 +837,9 @@ class BundleRequest extends BackboneElement {
           : null,
       method: HTTPVerb.fromJson(json['method'] as Map<String, dynamic>),
       url: FhirUri(json['url']),
-      urlElement: Element.fromJson(json['_url'] as Map<String, dynamic>),
+      urlElement: json['_url'] != null
+          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
+          : null,
       ifNoneMatch:
           json['ifNoneMatch'] != null ? FhirString(json['ifNoneMatch']) : null,
       ifNoneMatchElement: json['_ifNoneMatch'] != null
@@ -1044,7 +1049,9 @@ class BundleResponse extends BackboneElement {
               .toList()
           : null,
       status: FhirString(json['status']),
-      statusElement: Element.fromJson(json['_status'] as Map<String, dynamic>),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
+          : null,
       location: json['location'] != null ? FhirUri(json['location']) : null,
       locationElement: json['_location'] != null
           ? Element.fromJson(json['_location'] as Map<String, dynamic>)

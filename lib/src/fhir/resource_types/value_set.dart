@@ -1013,7 +1013,9 @@ class ValueSetConcept extends BackboneElement {
               .toList()
           : null,
       code: FhirCode(json['code']),
-      codeElement: Element.fromJson(json['_code'] as Map<String, dynamic>),
+      codeElement: json['_code'] != null
+          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
+          : null,
       display: json['display'] != null ? FhirString(json['display']) : null,
       displayElement: json['_display'] != null
           ? Element.fromJson(json['_display'] as Map<String, dynamic>)
@@ -1170,7 +1172,9 @@ class ValueSetDesignation extends BackboneElement {
           ? Coding.fromJson(json['use'] as Map<String, dynamic>)
           : null,
       value: FhirString(json['value']),
-      valueElement: Element.fromJson(json['_value'] as Map<String, dynamic>),
+      valueElement: json['_value'] != null
+          ? Element.fromJson(json['_value'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
@@ -1317,11 +1321,14 @@ class ValueSetFilter extends BackboneElement {
               .toList()
           : null,
       property: FhirCode(json['property']),
-      propertyElement:
-          Element.fromJson(json['_property'] as Map<String, dynamic>),
+      propertyElement: json['_property'] != null
+          ? Element.fromJson(json['_property'] as Map<String, dynamic>)
+          : null,
       op: FilterOperator.fromJson(json['op'] as Map<String, dynamic>),
       value: FhirString(json['value']),
-      valueElement: Element.fromJson(json['_value'] as Map<String, dynamic>),
+      valueElement: json['_value'] != null
+          ? Element.fromJson(json['_value'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
@@ -1516,8 +1523,9 @@ class ValueSetExpansion extends BackboneElement {
           ? Element.fromJson(json['_identifier'] as Map<String, dynamic>)
           : null,
       timestamp: FhirDateTime(json['timestamp']),
-      timestampElement:
-          Element.fromJson(json['_timestamp'] as Map<String, dynamic>),
+      timestampElement: json['_timestamp'] != null
+          ? Element.fromJson(json['_timestamp'] as Map<String, dynamic>)
+          : null,
       total: json['total'] != null ? FhirInteger(json['total']) : null,
       totalElement: json['_total'] != null
           ? Element.fromJson(json['_total'] as Map<String, dynamic>)
@@ -1758,7 +1766,9 @@ class ValueSetParameter extends BackboneElement {
               .toList()
           : null,
       name: FhirString(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       valueString:
           json['valueString'] != null ? FhirString(json['valueString']) : null,
       valueStringElement: json['_valueString'] != null

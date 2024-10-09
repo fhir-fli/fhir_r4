@@ -441,7 +441,9 @@ class TestReportParticipant extends BackboneElement {
       type: TestReportParticipantType.fromJson(
           json['type'] as Map<String, dynamic>),
       uri: FhirUri(json['uri']),
-      uriElement: Element.fromJson(json['_uri'] as Map<String, dynamic>),
+      uriElement: json['_uri'] != null
+          ? Element.fromJson(json['_uri'] as Map<String, dynamic>)
+          : null,
       display: json['display'] != null ? FhirString(json['display']) : null,
       displayElement: json['_display'] != null
           ? Element.fromJson(json['_display'] as Map<String, dynamic>)

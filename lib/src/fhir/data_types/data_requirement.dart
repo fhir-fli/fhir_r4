@@ -723,7 +723,9 @@ class DataRequirementSort extends Element {
               .toList()
           : null,
       path: FhirString(json['path']),
-      pathElement: Element.fromJson(json['_path'] as Map<String, dynamic>),
+      pathElement: json['_path'] != null
+          ? Element.fromJson(json['_path'] as Map<String, dynamic>)
+          : null,
       direction:
           SortDirection.fromJson(json['direction'] as Map<String, dynamic>),
     );

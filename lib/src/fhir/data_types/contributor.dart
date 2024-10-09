@@ -74,7 +74,9 @@ class Contributor extends DataType {
           : null,
       type: ContributorType.fromJson(json['type'] as Map<String, dynamic>),
       name: FhirString(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       contact: json['contact'] != null
           ? (json['contact'] as List<dynamic>)
               .map<ContactDetail>((dynamic v) =>

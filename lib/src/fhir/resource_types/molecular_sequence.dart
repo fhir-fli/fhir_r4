@@ -264,8 +264,9 @@ class MolecularSequence extends DomainResource {
           ? SequenceType.fromJson(json['type'] as Map<String, dynamic>)
           : null,
       coordinateSystem: FhirInteger(json['coordinateSystem']),
-      coordinateSystemElement:
-          Element.fromJson(json['_coordinateSystem'] as Map<String, dynamic>),
+      coordinateSystemElement: json['_coordinateSystem'] != null
+          ? Element.fromJson(json['_coordinateSystem'] as Map<String, dynamic>)
+          : null,
       patient: json['patient'] != null
           ? Reference.fromJson(json['patient'] as Map<String, dynamic>)
           : null,

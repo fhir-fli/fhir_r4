@@ -451,8 +451,9 @@ class MessageHeaderDestination extends BackboneElement {
           ? Reference.fromJson(json['target'] as Map<String, dynamic>)
           : null,
       endpoint: FhirUrl(json['endpoint']),
-      endpointElement:
-          Element.fromJson(json['_endpoint'] as Map<String, dynamic>),
+      endpointElement: json['_endpoint'] != null
+          ? Element.fromJson(json['_endpoint'] as Map<String, dynamic>)
+          : null,
       receiver: json['receiver'] != null
           ? Reference.fromJson(json['receiver'] as Map<String, dynamic>)
           : null,
@@ -640,8 +641,9 @@ class MessageHeaderSource extends BackboneElement {
           ? ContactPoint.fromJson(json['contact'] as Map<String, dynamic>)
           : null,
       endpoint: FhirUrl(json['endpoint']),
-      endpointElement:
-          Element.fromJson(json['_endpoint'] as Map<String, dynamic>),
+      endpointElement: json['_endpoint'] != null
+          ? Element.fromJson(json['_endpoint'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
@@ -788,8 +790,9 @@ class MessageHeaderResponse extends BackboneElement {
               .toList()
           : null,
       identifier: FhirId(json['identifier']),
-      identifierElement:
-          Element.fromJson(json['_identifier'] as Map<String, dynamic>),
+      identifierElement: json['_identifier'] != null
+          ? Element.fromJson(json['_identifier'] as Map<String, dynamic>)
+          : null,
       code: ResponseType.fromJson(json['code'] as Map<String, dynamic>),
       details: json['details'] != null
           ? Reference.fromJson(json['details'] as Map<String, dynamic>)

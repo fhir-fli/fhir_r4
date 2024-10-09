@@ -660,7 +660,7 @@ void _writeFromJson(StringBuffer buffer, WritableClass writableClass) {
             field.needsElement &&
             fieldName != 'id') {
           buffer.writeln(
-              "    ${jsonFieldName}Element: Element.fromJson(json['$jsonElementFieldName'] as Map<String, dynamic>),");
+              "    ${jsonFieldName}Element: json['$jsonElementFieldName'] != null ? Element.fromJson(json['$jsonElementFieldName'] as Map<String, dynamic>) : null,");
         }
       } else {
         if (field.type.isPrimitiveType ||

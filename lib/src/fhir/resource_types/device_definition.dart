@@ -663,13 +663,17 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
               .toList()
           : null,
       deviceIdentifier: FhirString(json['deviceIdentifier']),
-      deviceIdentifierElement:
-          Element.fromJson(json['_deviceIdentifier'] as Map<String, dynamic>),
+      deviceIdentifierElement: json['_deviceIdentifier'] != null
+          ? Element.fromJson(json['_deviceIdentifier'] as Map<String, dynamic>)
+          : null,
       issuer: FhirUri(json['issuer']),
-      issuerElement: Element.fromJson(json['_issuer'] as Map<String, dynamic>),
+      issuerElement: json['_issuer'] != null
+          ? Element.fromJson(json['_issuer'] as Map<String, dynamic>)
+          : null,
       jurisdiction: FhirUri(json['jurisdiction']),
-      jurisdictionElement:
-          Element.fromJson(json['_jurisdiction'] as Map<String, dynamic>),
+      jurisdictionElement: json['_jurisdiction'] != null
+          ? Element.fromJson(json['_jurisdiction'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
@@ -805,7 +809,9 @@ class DeviceDefinitionDeviceName extends BackboneElement {
               .toList()
           : null,
       name: FhirString(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       type: DeviceNameType.fromJson(json['type'] as Map<String, dynamic>),
     );
   }
@@ -940,8 +946,9 @@ class DeviceDefinitionSpecialization extends BackboneElement {
               .toList()
           : null,
       systemType: FhirString(json['systemType']),
-      systemTypeElement:
-          Element.fromJson(json['_systemType'] as Map<String, dynamic>),
+      systemTypeElement: json['_systemType'] != null
+          ? Element.fromJson(json['_systemType'] as Map<String, dynamic>)
+          : null,
       version: json['version'] != null ? FhirString(json['version']) : null,
       versionElement: json['_version'] != null
           ? Element.fromJson(json['_version'] as Map<String, dynamic>)

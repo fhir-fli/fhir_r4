@@ -447,7 +447,9 @@ class MessageDefinition extends DomainResource {
           ? Element.fromJson(json['_experimental'] as Map<String, dynamic>)
           : null,
       date: FhirDateTime(json['date']),
-      dateElement: Element.fromJson(json['_date'] as Map<String, dynamic>),
+      dateElement: json['_date'] != null
+          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
+          : null,
       publisher:
           json['publisher'] != null ? FhirString(json['publisher']) : null,
       publisherElement: json['_publisher'] != null
@@ -796,13 +798,17 @@ class MessageDefinitionFocus extends BackboneElement {
               .toList()
           : null,
       code: FhirCode(json['code']),
-      codeElement: Element.fromJson(json['_code'] as Map<String, dynamic>),
+      codeElement: json['_code'] != null
+          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
+          : null,
       profile: json['profile'] != null ? FhirCanonical(json['profile']) : null,
       profileElement: json['_profile'] != null
           ? Element.fromJson(json['_profile'] as Map<String, dynamic>)
           : null,
       min: FhirUnsignedInt(json['min']),
-      minElement: Element.fromJson(json['_min'] as Map<String, dynamic>),
+      minElement: json['_min'] != null
+          ? Element.fromJson(json['_min'] as Map<String, dynamic>)
+          : null,
       max: json['max'] != null ? FhirString(json['max']) : null,
       maxElement: json['_max'] != null
           ? Element.fromJson(json['_max'] as Map<String, dynamic>)
@@ -950,8 +956,9 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
               .toList()
           : null,
       message: FhirCanonical(json['message']),
-      messageElement:
-          Element.fromJson(json['_message'] as Map<String, dynamic>),
+      messageElement: json['_message'] != null
+          ? Element.fromJson(json['_message'] as Map<String, dynamic>)
+          : null,
       situation:
           json['situation'] != null ? FhirMarkdown(json['situation']) : null,
       situationElement: json['_situation'] != null

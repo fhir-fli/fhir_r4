@@ -262,8 +262,9 @@ class CoverageEligibilityRequest extends DomainResource {
           ? Period.fromJson(json['servicedPeriod'] as Map<String, dynamic>)
           : null,
       created: FhirDateTime(json['created']),
-      createdElement:
-          Element.fromJson(json['_created'] as Map<String, dynamic>),
+      createdElement: json['_created'] != null
+          ? Element.fromJson(json['_created'] as Map<String, dynamic>)
+          : null,
       enterer: json['enterer'] != null
           ? Reference.fromJson(json['enterer'] as Map<String, dynamic>)
           : null,
@@ -480,8 +481,9 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
               .toList()
           : null,
       sequence: FhirPositiveInt(json['sequence']),
-      sequenceElement:
-          Element.fromJson(json['_sequence'] as Map<String, dynamic>),
+      sequenceElement: json['_sequence'] != null
+          ? Element.fromJson(json['_sequence'] as Map<String, dynamic>)
+          : null,
       information:
           Reference.fromJson(json['information'] as Map<String, dynamic>),
       appliesToAll: json['appliesToAll'] != null

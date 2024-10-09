@@ -530,7 +530,9 @@ class CoverageClass extends BackboneElement {
           : null,
       type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
       value: FhirString(json['value']),
-      valueElement: Element.fromJson(json['_value'] as Map<String, dynamic>),
+      valueElement: json['_value'] != null
+          ? Element.fromJson(json['_value'] as Map<String, dynamic>)
+          : null,
       name: json['name'] != null ? FhirString(json['name']) : null,
       nameElement: json['_name'] != null
           ? Element.fromJson(json['_name'] as Map<String, dynamic>)

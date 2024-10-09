@@ -431,7 +431,9 @@ class OperationDefinition extends DomainResource {
           ? Element.fromJson(json['_version'] as Map<String, dynamic>)
           : null,
       name: FhirString(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       title: json['title'] != null ? FhirString(json['title']) : null,
       titleElement: json['_title'] != null
           ? Element.fromJson(json['_title'] as Map<String, dynamic>)
@@ -489,7 +491,9 @@ class OperationDefinition extends DomainResource {
           ? Element.fromJson(json['_affectsState'] as Map<String, dynamic>)
           : null,
       code: FhirCode(json['code']),
-      codeElement: Element.fromJson(json['_code'] as Map<String, dynamic>),
+      codeElement: json['_code'] != null
+          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
+          : null,
       comment: json['comment'] != null ? FhirMarkdown(json['comment']) : null,
       commentElement: json['_comment'] != null
           ? Element.fromJson(json['_comment'] as Map<String, dynamic>)
@@ -510,12 +514,17 @@ class OperationDefinition extends DomainResource {
               .toList()
           : null,
       system: FhirBoolean(json['system']),
-      systemElement: Element.fromJson(json['_system'] as Map<String, dynamic>),
+      systemElement: json['_system'] != null
+          ? Element.fromJson(json['_system'] as Map<String, dynamic>)
+          : null,
       type: FhirBoolean(json['type']),
-      typeElement: Element.fromJson(json['_type'] as Map<String, dynamic>),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
+          : null,
       instance: FhirBoolean(json['instance']),
-      instanceElement:
-          Element.fromJson(json['_instance'] as Map<String, dynamic>),
+      instanceElement: json['_instance'] != null
+          ? Element.fromJson(json['_instance'] as Map<String, dynamic>)
+          : null,
       inputProfile: json['inputProfile'] != null
           ? FhirCanonical(json['inputProfile'])
           : null,
@@ -870,12 +879,18 @@ class OperationDefinitionParameter extends BackboneElement {
               .toList()
           : null,
       name: FhirCode(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       use: OperationParameterUse.fromJson(json['use'] as Map<String, dynamic>),
       min: FhirInteger(json['min']),
-      minElement: Element.fromJson(json['_min'] as Map<String, dynamic>),
+      minElement: json['_min'] != null
+          ? Element.fromJson(json['_min'] as Map<String, dynamic>)
+          : null,
       max: FhirString(json['max']),
-      maxElement: Element.fromJson(json['_max'] as Map<String, dynamic>),
+      maxElement: json['_max'] != null
+          ? Element.fromJson(json['_max'] as Map<String, dynamic>)
+          : null,
       documentation: json['documentation'] != null
           ? FhirString(json['documentation'])
           : null,
@@ -1081,8 +1096,9 @@ class OperationDefinitionBinding extends BackboneElement {
       strength:
           BindingStrength.fromJson(json['strength'] as Map<String, dynamic>),
       valueSet: FhirCanonical(json['valueSet']),
-      valueSetElement:
-          Element.fromJson(json['_valueSet'] as Map<String, dynamic>),
+      valueSetElement: json['_valueSet'] != null
+          ? Element.fromJson(json['_valueSet'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
@@ -1220,7 +1236,9 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
               .toList()
           : null,
       source: FhirString(json['source']),
-      sourceElement: Element.fromJson(json['_source'] as Map<String, dynamic>),
+      sourceElement: json['_source'] != null
+          ? Element.fromJson(json['_source'] as Map<String, dynamic>)
+          : null,
       sourceId: json['sourceId'] != null ? FhirString(json['sourceId']) : null,
       sourceIdElement: json['_sourceId'] != null
           ? Element.fromJson(json['_sourceId'] as Map<String, dynamic>)

@@ -3111,7 +3111,9 @@ class ElementDefinition extends BackboneType {
               .toList()
           : null,
       path: FhirString(json['path']),
-      pathElement: Element.fromJson(json['_path'] as Map<String, dynamic>),
+      pathElement: json['_path'] != null
+          ? Element.fromJson(json['_path'] as Map<String, dynamic>)
+          : null,
       representation: json['representation'] != null
           ? (json['representation'] as List<dynamic>)
               .map<PropertyRepresentation>((dynamic v) =>
@@ -5003,7 +5005,9 @@ class ElementDefinitionDiscriminator extends Element {
           : null,
       type: DiscriminatorType.fromJson(json['type'] as Map<String, dynamic>),
       path: FhirString(json['path']),
-      pathElement: Element.fromJson(json['_path'] as Map<String, dynamic>),
+      pathElement: json['_path'] != null
+          ? Element.fromJson(json['_path'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
@@ -5142,11 +5146,17 @@ class ElementDefinitionBase extends Element {
               .toList()
           : null,
       path: FhirString(json['path']),
-      pathElement: Element.fromJson(json['_path'] as Map<String, dynamic>),
+      pathElement: json['_path'] != null
+          ? Element.fromJson(json['_path'] as Map<String, dynamic>)
+          : null,
       min: FhirUnsignedInt(json['min']),
-      minElement: Element.fromJson(json['_min'] as Map<String, dynamic>),
+      minElement: json['_min'] != null
+          ? Element.fromJson(json['_min'] as Map<String, dynamic>)
+          : null,
       max: FhirString(json['max']),
-      maxElement: Element.fromJson(json['_max'] as Map<String, dynamic>),
+      maxElement: json['_max'] != null
+          ? Element.fromJson(json['_max'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
@@ -5324,7 +5334,9 @@ class ElementDefinitionType extends Element {
               .toList()
           : null,
       code: FhirUri(json['code']),
-      codeElement: Element.fromJson(json['_code'] as Map<String, dynamic>),
+      codeElement: json['_code'] != null
+          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
+          : null,
       profile: json['profile'] != null
           ? (json['profile'] as List<dynamic>)
               .map<FhirCanonical>(
@@ -5981,7 +5993,9 @@ class ElementDefinitionExample extends Element {
               .toList()
           : null,
       label: FhirString(json['label']),
-      labelElement: Element.fromJson(json['_label'] as Map<String, dynamic>),
+      labelElement: json['_label'] != null
+          ? Element.fromJson(json['_label'] as Map<String, dynamic>)
+          : null,
       valueBase64Binary: json['valueBase64Binary'] != null
           ? FhirBase64Binary(json['valueBase64Binary'])
           : null,
@@ -6509,7 +6523,9 @@ class ElementDefinitionConstraint extends Element {
               .toList()
           : null,
       key: FhirId(json['key']),
-      keyElement: Element.fromJson(json['_key'] as Map<String, dynamic>),
+      keyElement: json['_key'] != null
+          ? Element.fromJson(json['_key'] as Map<String, dynamic>)
+          : null,
       requirements: json['requirements'] != null
           ? FhirString(json['requirements'])
           : null,
@@ -6519,7 +6535,9 @@ class ElementDefinitionConstraint extends Element {
       severity:
           ConstraintSeverity.fromJson(json['severity'] as Map<String, dynamic>),
       human: FhirString(json['human']),
-      humanElement: Element.fromJson(json['_human'] as Map<String, dynamic>),
+      humanElement: json['_human'] != null
+          ? Element.fromJson(json['_human'] as Map<String, dynamic>)
+          : null,
       expression:
           json['expression'] != null ? FhirString(json['expression']) : null,
       expressionElement: json['_expression'] != null
@@ -6841,14 +6859,17 @@ class ElementDefinitionMapping extends Element {
               .toList()
           : null,
       identity: FhirId(json['identity']),
-      identityElement:
-          Element.fromJson(json['_identity'] as Map<String, dynamic>),
+      identityElement: json['_identity'] != null
+          ? Element.fromJson(json['_identity'] as Map<String, dynamic>)
+          : null,
       language: json['language'] != null ? FhirCode(json['language']) : null,
       languageElement: json['_language'] != null
           ? Element.fromJson(json['_language'] as Map<String, dynamic>)
           : null,
       map: FhirString(json['map']),
-      mapElement: Element.fromJson(json['_map'] as Map<String, dynamic>),
+      mapElement: json['_map'] != null
+          ? Element.fromJson(json['_map'] as Map<String, dynamic>)
+          : null,
       comment: json['comment'] != null ? FhirString(json['comment']) : null,
       commentElement: json['_comment'] != null
           ? Element.fromJson(json['_comment'] as Map<String, dynamic>)

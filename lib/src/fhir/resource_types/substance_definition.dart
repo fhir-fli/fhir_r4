@@ -1794,7 +1794,9 @@ class SubstanceDefinitionName extends BackboneElement {
               .toList()
           : null,
       name: FhirString(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
           : null,

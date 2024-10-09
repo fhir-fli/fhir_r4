@@ -1399,7 +1399,9 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
               .toList()
           : null,
       path: FhirString(json['path']),
-      pathElement: Element.fromJson(json['_path'] as Map<String, dynamic>),
+      pathElement: json['_path'] != null
+          ? Element.fromJson(json['_path'] as Map<String, dynamic>)
+          : null,
       expression:
           FhirExpression.fromJson(json['expression'] as Map<String, dynamic>),
     );

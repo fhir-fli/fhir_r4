@@ -454,7 +454,9 @@ class QuestionnaireResponseItem extends BackboneElement {
               .toList()
           : null,
       linkId: FhirString(json['linkId']),
-      linkIdElement: Element.fromJson(json['_linkId'] as Map<String, dynamic>),
+      linkIdElement: json['_linkId'] != null
+          ? Element.fromJson(json['_linkId'] as Map<String, dynamic>)
+          : null,
       definition:
           json['definition'] != null ? FhirUri(json['definition']) : null,
       definitionElement: json['_definition'] != null

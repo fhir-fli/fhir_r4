@@ -615,8 +615,9 @@ class ExampleScenarioActor extends BackboneElement {
               .toList()
           : null,
       actorId: FhirString(json['actorId']),
-      actorIdElement:
-          Element.fromJson(json['_actorId'] as Map<String, dynamic>),
+      actorIdElement: json['_actorId'] != null
+          ? Element.fromJson(json['_actorId'] as Map<String, dynamic>)
+          : null,
       type: ExampleScenarioActorType.fromJson(
           json['type'] as Map<String, dynamic>),
       name: json['name'] != null ? FhirString(json['name']) : null,
@@ -810,11 +811,13 @@ class ExampleScenarioInstance extends BackboneElement {
               .toList()
           : null,
       resourceId: FhirString(json['resourceId']),
-      resourceIdElement:
-          Element.fromJson(json['_resourceId'] as Map<String, dynamic>),
+      resourceIdElement: json['_resourceId'] != null
+          ? Element.fromJson(json['_resourceId'] as Map<String, dynamic>)
+          : null,
       resourceType: FhirCode(json['resourceType']),
-      resourceTypeElement:
-          Element.fromJson(json['_resourceType'] as Map<String, dynamic>),
+      resourceTypeElement: json['_resourceType'] != null
+          ? Element.fromJson(json['_resourceType'] as Map<String, dynamic>)
+          : null,
       name: json['name'] != null ? FhirString(json['name']) : null,
       nameElement: json['_name'] != null
           ? Element.fromJson(json['_name'] as Map<String, dynamic>)
@@ -980,11 +983,13 @@ class ExampleScenarioVersion extends BackboneElement {
               .toList()
           : null,
       versionId: FhirString(json['versionId']),
-      versionIdElement:
-          Element.fromJson(json['_versionId'] as Map<String, dynamic>),
+      versionIdElement: json['_versionId'] != null
+          ? Element.fromJson(json['_versionId'] as Map<String, dynamic>)
+          : null,
       description: FhirMarkdown(json['description']),
-      descriptionElement:
-          Element.fromJson(json['_description'] as Map<String, dynamic>),
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
@@ -1118,8 +1123,9 @@ class ExampleScenarioContainedInstance extends BackboneElement {
               .toList()
           : null,
       resourceId: FhirString(json['resourceId']),
-      resourceIdElement:
-          Element.fromJson(json['_resourceId'] as Map<String, dynamic>),
+      resourceIdElement: json['_resourceId'] != null
+          ? Element.fromJson(json['_resourceId'] as Map<String, dynamic>)
+          : null,
       versionId:
           json['versionId'] != null ? FhirString(json['versionId']) : null,
       versionIdElement: json['_versionId'] != null
@@ -1290,7 +1296,9 @@ class ExampleScenarioProcess extends BackboneElement {
               .toList()
           : null,
       title: FhirString(json['title']),
-      titleElement: Element.fromJson(json['_title'] as Map<String, dynamic>),
+      titleElement: json['_title'] != null
+          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
+          : null,
       description: json['description'] != null
           ? FhirMarkdown(json['description'])
           : null,
@@ -1714,7 +1722,9 @@ class ExampleScenarioOperation extends BackboneElement {
               .toList()
           : null,
       number: FhirString(json['number']),
-      numberElement: Element.fromJson(json['_number'] as Map<String, dynamic>),
+      numberElement: json['_number'] != null
+          ? Element.fromJson(json['_number'] as Map<String, dynamic>)
+          : null,
       type: json['type'] != null ? FhirString(json['type']) : null,
       typeElement: json['_type'] != null
           ? Element.fromJson(json['_type'] as Map<String, dynamic>)
@@ -1931,7 +1941,9 @@ class ExampleScenarioAlternative extends BackboneElement {
               .toList()
           : null,
       title: FhirString(json['title']),
-      titleElement: Element.fromJson(json['_title'] as Map<String, dynamic>),
+      titleElement: json['_title'] != null
+          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
+          : null,
       description: json['description'] != null
           ? FhirMarkdown(json['description'])
           : null,

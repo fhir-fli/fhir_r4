@@ -150,7 +150,9 @@ class ImmunizationRecommendation extends DomainResource {
           : null,
       patient: Reference.fromJson(json['patient'] as Map<String, dynamic>),
       date: FhirDateTime(json['date']),
-      dateElement: Element.fromJson(json['_date'] as Map<String, dynamic>),
+      dateElement: json['_date'] != null
+          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
+          : null,
       authority: json['authority'] != null
           ? Reference.fromJson(json['authority'] as Map<String, dynamic>)
           : null,
@@ -687,7 +689,9 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
           : null,
       code: CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
       value: FhirDateTime(json['value']),
-      valueElement: Element.fromJson(json['_value'] as Map<String, dynamic>),
+      valueElement: json['_value'] != null
+          ? Element.fromJson(json['_value'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override

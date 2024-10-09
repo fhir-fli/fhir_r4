@@ -367,7 +367,9 @@ class TestScript extends DomainResource {
               .toList()
           : null,
       url: FhirUri(json['url']),
-      urlElement: Element.fromJson(json['_url'] as Map<String, dynamic>),
+      urlElement: json['_url'] != null
+          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
+          : null,
       identifier: json['identifier'] != null
           ? Identifier.fromJson(json['identifier'] as Map<String, dynamic>)
           : null,
@@ -376,7 +378,9 @@ class TestScript extends DomainResource {
           ? Element.fromJson(json['_version'] as Map<String, dynamic>)
           : null,
       name: FhirString(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       title: json['title'] != null ? FhirString(json['title']) : null,
       titleElement: json['_title'] != null
           ? Element.fromJson(json['_title'] as Map<String, dynamic>)
@@ -681,7 +685,9 @@ class TestScriptOrigin extends BackboneElement {
               .toList()
           : null,
       index: FhirInteger(json['index']),
-      indexElement: Element.fromJson(json['_index'] as Map<String, dynamic>),
+      indexElement: json['_index'] != null
+          ? Element.fromJson(json['_index'] as Map<String, dynamic>)
+          : null,
       profile: Coding.fromJson(json['profile'] as Map<String, dynamic>),
     );
   }
@@ -808,7 +814,9 @@ class TestScriptDestination extends BackboneElement {
               .toList()
           : null,
       index: FhirInteger(json['index']),
-      indexElement: Element.fromJson(json['_index'] as Map<String, dynamic>),
+      indexElement: json['_index'] != null
+          ? Element.fromJson(json['_index'] as Map<String, dynamic>)
+          : null,
       profile: Coding.fromJson(json['profile'] as Map<String, dynamic>),
     );
   }
@@ -1072,7 +1080,9 @@ class TestScriptLink extends BackboneElement {
               .toList()
           : null,
       url: FhirUri(json['url']),
-      urlElement: Element.fromJson(json['_url'] as Map<String, dynamic>),
+      urlElement: json['_url'] != null
+          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
+          : null,
       description:
           json['description'] != null ? FhirString(json['description']) : null,
       descriptionElement: json['_description'] != null
@@ -1273,11 +1283,13 @@ class TestScriptCapability extends BackboneElement {
               .toList()
           : null,
       required_: FhirBoolean(json['required']),
-      requiredElement:
-          Element.fromJson(json['_required'] as Map<String, dynamic>),
+      requiredElement: json['_required'] != null
+          ? Element.fromJson(json['_required'] as Map<String, dynamic>)
+          : null,
       validated: FhirBoolean(json['validated']),
-      validatedElement:
-          Element.fromJson(json['_validated'] as Map<String, dynamic>),
+      validatedElement: json['_validated'] != null
+          ? Element.fromJson(json['_validated'] as Map<String, dynamic>)
+          : null,
       description:
           json['description'] != null ? FhirString(json['description']) : null,
       descriptionElement: json['_description'] != null
@@ -1312,8 +1324,9 @@ class TestScriptCapability extends BackboneElement {
               .toList()
           : null,
       capabilities: FhirCanonical(json['capabilities']),
-      capabilitiesElement:
-          Element.fromJson(json['_capabilities'] as Map<String, dynamic>),
+      capabilitiesElement: json['_capabilities'] != null
+          ? Element.fromJson(json['_capabilities'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
@@ -1479,11 +1492,13 @@ class TestScriptFixture extends BackboneElement {
               .toList()
           : null,
       autocreate: FhirBoolean(json['autocreate']),
-      autocreateElement:
-          Element.fromJson(json['_autocreate'] as Map<String, dynamic>),
+      autocreateElement: json['_autocreate'] != null
+          ? Element.fromJson(json['_autocreate'] as Map<String, dynamic>)
+          : null,
       autodelete: FhirBoolean(json['autodelete']),
-      autodeleteElement:
-          Element.fromJson(json['_autodelete'] as Map<String, dynamic>),
+      autodeleteElement: json['_autodelete'] != null
+          ? Element.fromJson(json['_autodelete'] as Map<String, dynamic>)
+          : null,
       resource: json['resource'] != null
           ? Reference.fromJson(json['resource'] as Map<String, dynamic>)
           : null,
@@ -1701,7 +1716,9 @@ class TestScriptVariable extends BackboneElement {
               .toList()
           : null,
       name: FhirString(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       defaultValue: json['defaultValue'] != null
           ? FhirString(json['defaultValue'])
           : null,
@@ -2334,8 +2351,9 @@ class TestScriptOperation extends BackboneElement {
           ? Element.fromJson(json['_destination'] as Map<String, dynamic>)
           : null,
       encodeRequestUrl: FhirBoolean(json['encodeRequestUrl']),
-      encodeRequestUrlElement:
-          Element.fromJson(json['_encodeRequestUrl'] as Map<String, dynamic>),
+      encodeRequestUrlElement: json['_encodeRequestUrl'] != null
+          ? Element.fromJson(json['_encodeRequestUrl'] as Map<String, dynamic>)
+          : null,
       method: json['method'] != null
           ? TestScriptRequestMethodCode.fromJson(
               json['method'] as Map<String, dynamic>)
@@ -2562,9 +2580,13 @@ class TestScriptRequestHeader extends BackboneElement {
               .toList()
           : null,
       field: FhirString(json['field']),
-      fieldElement: Element.fromJson(json['_field'] as Map<String, dynamic>),
+      fieldElement: json['_field'] != null
+          ? Element.fromJson(json['_field'] as Map<String, dynamic>)
+          : null,
       value: FhirString(json['value']),
-      valueElement: Element.fromJson(json['_value'] as Map<String, dynamic>),
+      valueElement: json['_value'] != null
+          ? Element.fromJson(json['_value'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
@@ -3044,8 +3066,9 @@ class TestScriptAssert extends BackboneElement {
           ? Element.fromJson(json['_value'] as Map<String, dynamic>)
           : null,
       warningOnly: FhirBoolean(json['warningOnly']),
-      warningOnlyElement:
-          Element.fromJson(json['_warningOnly'] as Map<String, dynamic>),
+      warningOnlyElement: json['_warningOnly'] != null
+          ? Element.fromJson(json['_warningOnly'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override

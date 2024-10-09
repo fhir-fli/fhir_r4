@@ -405,7 +405,9 @@ class TerminologyCapabilities extends DomainResource {
           ? Element.fromJson(json['_experimental'] as Map<String, dynamic>)
           : null,
       date: FhirDateTime(json['date']),
-      dateElement: Element.fromJson(json['_date'] as Map<String, dynamic>),
+      dateElement: json['_date'] != null
+          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
+          : null,
       publisher:
           json['publisher'] != null ? FhirString(json['publisher']) : null,
       publisherElement: json['_publisher'] != null
@@ -702,7 +704,9 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
               .toList()
           : null,
       name: FhirString(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       version: json['version'] != null ? FhirString(json['version']) : null,
       versionElement: json['_version'] != null
           ? Element.fromJson(json['_version'] as Map<String, dynamic>)
@@ -844,8 +848,9 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
               .toList()
           : null,
       description: FhirString(json['description']),
-      descriptionElement:
-          Element.fromJson(json['_description'] as Map<String, dynamic>),
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
       url: json['url'] != null ? FhirUrl(json['url']) : null,
       urlElement: json['_url'] != null
           ? Element.fromJson(json['_url'] as Map<String, dynamic>)
@@ -1385,7 +1390,9 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
               .toList()
           : null,
       code: FhirCode(json['code']),
-      codeElement: Element.fromJson(json['_code'] as Map<String, dynamic>),
+      codeElement: json['_code'] != null
+          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
+          : null,
       op: (json['op'] as List<dynamic>)
           .map<FhirCode>((dynamic v) => FhirCode.fromJson(v as dynamic))
           .toList(),
@@ -1732,7 +1739,9 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
               .toList()
           : null,
       name: FhirCode(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       documentation: json['documentation'] != null
           ? FhirString(json['documentation'])
           : null,
@@ -1862,8 +1871,9 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
               .toList()
           : null,
       translations: FhirBoolean(json['translations']),
-      translationsElement:
-          Element.fromJson(json['_translations'] as Map<String, dynamic>),
+      translationsElement: json['_translations'] != null
+          ? Element.fromJson(json['_translations'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
@@ -1983,8 +1993,9 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
               .toList()
           : null,
       needsMap: FhirBoolean(json['needsMap']),
-      needsMapElement:
-          Element.fromJson(json['_needsMap'] as Map<String, dynamic>),
+      needsMapElement: json['_needsMap'] != null
+          ? Element.fromJson(json['_needsMap'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override

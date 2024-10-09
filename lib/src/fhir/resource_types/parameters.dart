@@ -659,7 +659,9 @@ class ParametersParameter extends BackboneElement {
               .toList()
           : null,
       name: FhirString(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       valueBase64Binary: json['valueBase64Binary'] != null
           ? FhirBase64Binary(json['valueBase64Binary'])
           : null,

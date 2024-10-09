@@ -322,7 +322,9 @@ class StructureMap extends DomainResource {
               .toList()
           : null,
       url: FhirUri(json['url']),
-      urlElement: Element.fromJson(json['_url'] as Map<String, dynamic>),
+      urlElement: json['_url'] != null
+          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
+          : null,
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
@@ -334,7 +336,9 @@ class StructureMap extends DomainResource {
           ? Element.fromJson(json['_version'] as Map<String, dynamic>)
           : null,
       name: FhirString(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       title: json['title'] != null ? FhirString(json['title']) : null,
       titleElement: json['_title'] != null
           ? Element.fromJson(json['_title'] as Map<String, dynamic>)
@@ -629,7 +633,9 @@ class StructureMapStructure extends BackboneElement {
               .toList()
           : null,
       url: FhirCanonical(json['url']),
-      urlElement: Element.fromJson(json['_url'] as Map<String, dynamic>),
+      urlElement: json['_url'] != null
+          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
+          : null,
       mode:
           StructureMapModelMode.fromJson(json['mode'] as Map<String, dynamic>),
       alias: json['alias'] != null ? FhirString(json['alias']) : null,
@@ -817,7 +823,9 @@ class StructureMapGroup extends BackboneElement {
               .toList()
           : null,
       name: FhirId(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       extends_: json['extends'] != null ? FhirId(json['extends']) : null,
       extendsElement: json['_extends'] != null
           ? Element.fromJson(json['_extends'] as Map<String, dynamic>)
@@ -1002,7 +1010,9 @@ class StructureMapInput extends BackboneElement {
               .toList()
           : null,
       name: FhirId(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       type: json['type'] != null ? FhirString(json['type']) : null,
       typeElement: json['_type'] != null
           ? Element.fromJson(json['_type'] as Map<String, dynamic>)
@@ -1186,7 +1196,9 @@ class StructureMapRule extends BackboneElement {
               .toList()
           : null,
       name: FhirId(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       source: (json['source'] as List<dynamic>)
           .map<StructureMapSource>((dynamic v) =>
               StructureMapSource.fromJson(v as Map<String, dynamic>))
@@ -1907,8 +1919,9 @@ class StructureMapSource extends BackboneElement {
               .toList()
           : null,
       context: FhirId(json['context']),
-      contextElement:
-          Element.fromJson(json['_context'] as Map<String, dynamic>),
+      contextElement: json['_context'] != null
+          ? Element.fromJson(json['_context'] as Map<String, dynamic>)
+          : null,
       min: json['min'] != null ? FhirInteger(json['min']) : null,
       minElement: json['_min'] != null
           ? Element.fromJson(json['_min'] as Map<String, dynamic>)
@@ -2993,7 +3006,9 @@ class StructureMapDependent extends BackboneElement {
               .toList()
           : null,
       name: FhirId(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       variable: (json['variable'] as List<dynamic>)
           .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
           .toList(),

@@ -798,7 +798,9 @@ class CodeSystemFilter extends BackboneElement {
               .toList()
           : null,
       code: FhirCode(json['code']),
-      codeElement: Element.fromJson(json['_code'] as Map<String, dynamic>),
+      codeElement: json['_code'] != null
+          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
+          : null,
       description:
           json['description'] != null ? FhirString(json['description']) : null,
       descriptionElement: json['_description'] != null
@@ -809,7 +811,9 @@ class CodeSystemFilter extends BackboneElement {
               (dynamic v) => FilterOperator.fromJson(v as Map<String, dynamic>))
           .toList(),
       value: FhirString(json['value']),
-      valueElement: Element.fromJson(json['_value'] as Map<String, dynamic>),
+      valueElement: json['_value'] != null
+          ? Element.fromJson(json['_value'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
@@ -976,7 +980,9 @@ class CodeSystemProperty extends BackboneElement {
               .toList()
           : null,
       code: FhirCode(json['code']),
-      codeElement: Element.fromJson(json['_code'] as Map<String, dynamic>),
+      codeElement: json['_code'] != null
+          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
+          : null,
       uri: json['uri'] != null ? FhirUri(json['uri']) : null,
       uriElement: json['_uri'] != null
           ? Element.fromJson(json['_uri'] as Map<String, dynamic>)
@@ -1174,7 +1180,9 @@ class CodeSystemConcept extends BackboneElement {
               .toList()
           : null,
       code: FhirCode(json['code']),
-      codeElement: Element.fromJson(json['_code'] as Map<String, dynamic>),
+      codeElement: json['_code'] != null
+          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
+          : null,
       display: json['display'] != null ? FhirString(json['display']) : null,
       displayElement: json['_display'] != null
           ? Element.fromJson(json['_display'] as Map<String, dynamic>)
@@ -1355,7 +1363,9 @@ class CodeSystemDesignation extends BackboneElement {
           ? Coding.fromJson(json['use'] as Map<String, dynamic>)
           : null,
       value: FhirString(json['value']),
-      valueElement: Element.fromJson(json['_value'] as Map<String, dynamic>),
+      valueElement: json['_value'] != null
+          ? Element.fromJson(json['_value'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
@@ -1557,7 +1567,9 @@ class CodeSystemProperty1 extends BackboneElement {
               .toList()
           : null,
       code: FhirCode(json['code']),
-      codeElement: Element.fromJson(json['_code'] as Map<String, dynamic>),
+      codeElement: json['_code'] != null
+          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
+          : null,
       valueCode: json['valueCode'] != null ? FhirCode(json['valueCode']) : null,
       valueCodeElement: json['_valueCode'] != null
           ? Element.fromJson(json['_valueCode'] as Map<String, dynamic>)

@@ -552,11 +552,13 @@ class LocationPosition extends BackboneElement {
               .toList()
           : null,
       longitude: FhirDecimal(json['longitude']),
-      longitudeElement:
-          Element.fromJson(json['_longitude'] as Map<String, dynamic>),
+      longitudeElement: json['_longitude'] != null
+          ? Element.fromJson(json['_longitude'] as Map<String, dynamic>)
+          : null,
       latitude: FhirDecimal(json['latitude']),
-      latitudeElement:
-          Element.fromJson(json['_latitude'] as Map<String, dynamic>),
+      latitudeElement: json['_latitude'] != null
+          ? Element.fromJson(json['_latitude'] as Map<String, dynamic>)
+          : null,
       altitude: json['altitude'] != null ? FhirDecimal(json['altitude']) : null,
       altitudeElement: json['_altitude'] != null
           ? Element.fromJson(json['_altitude'] as Map<String, dynamic>)

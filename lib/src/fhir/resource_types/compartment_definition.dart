@@ -274,13 +274,17 @@ class CompartmentDefinition extends DomainResource {
               .toList()
           : null,
       url: FhirUri(json['url']),
-      urlElement: Element.fromJson(json['_url'] as Map<String, dynamic>),
+      urlElement: json['_url'] != null
+          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
+          : null,
       version: json['version'] != null ? FhirString(json['version']) : null,
       versionElement: json['_version'] != null
           ? Element.fromJson(json['_version'] as Map<String, dynamic>)
           : null,
       name: FhirString(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       status:
           PublicationStatus.fromJson(json['status'] as Map<String, dynamic>),
       experimental: json['experimental'] != null
@@ -322,7 +326,9 @@ class CompartmentDefinition extends DomainResource {
           : null,
       code: CompartmentType.fromJson(json['code'] as Map<String, dynamic>),
       search: FhirBoolean(json['search']),
-      searchElement: Element.fromJson(json['_search'] as Map<String, dynamic>),
+      searchElement: json['_search'] != null
+          ? Element.fromJson(json['_search'] as Map<String, dynamic>)
+          : null,
       resource: json['resource'] != null
           ? (json['resource'] as List<dynamic>)
               .map<CompartmentDefinitionResource>((dynamic v) =>
@@ -532,7 +538,9 @@ class CompartmentDefinitionResource extends BackboneElement {
               .toList()
           : null,
       code: FhirCode(json['code']),
-      codeElement: Element.fromJson(json['_code'] as Map<String, dynamic>),
+      codeElement: json['_code'] != null
+          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
+          : null,
       param: json['param'] != null
           ? (json['param'] as List<dynamic>)
               .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))

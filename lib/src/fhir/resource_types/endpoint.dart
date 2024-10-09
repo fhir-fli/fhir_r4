@@ -253,8 +253,9 @@ class FhirEndpoint extends DomainResource {
               .toList()
           : null,
       address: FhirUrl(json['address']),
-      addressElement:
-          Element.fromJson(json['_address'] as Map<String, dynamic>),
+      addressElement: json['_address'] != null
+          ? Element.fromJson(json['_address'] as Map<String, dynamic>)
+          : null,
       header: json['header'] != null
           ? (json['header'] as List<dynamic>)
               .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))

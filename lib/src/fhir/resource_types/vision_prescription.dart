@@ -175,15 +175,17 @@ class VisionPrescription extends DomainResource {
       status: FinancialResourceStatusCodes.fromJson(
           json['status'] as Map<String, dynamic>),
       created: FhirDateTime(json['created']),
-      createdElement:
-          Element.fromJson(json['_created'] as Map<String, dynamic>),
+      createdElement: json['_created'] != null
+          ? Element.fromJson(json['_created'] as Map<String, dynamic>)
+          : null,
       patient: Reference.fromJson(json['patient'] as Map<String, dynamic>),
       encounter: json['encounter'] != null
           ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
           : null,
       dateWritten: FhirDateTime(json['dateWritten']),
-      dateWrittenElement:
-          Element.fromJson(json['_dateWritten'] as Map<String, dynamic>),
+      dateWrittenElement: json['_dateWritten'] != null
+          ? Element.fromJson(json['_dateWritten'] as Map<String, dynamic>)
+          : null,
       prescriber:
           Reference.fromJson(json['prescriber'] as Map<String, dynamic>),
       lensSpecification: (json['lensSpecification'] as List<dynamic>)
@@ -697,7 +699,9 @@ class VisionPrescriptionPrism extends BackboneElement {
               .toList()
           : null,
       amount: FhirDecimal(json['amount']),
-      amountElement: Element.fromJson(json['_amount'] as Map<String, dynamic>),
+      amountElement: json['_amount'] != null
+          ? Element.fromJson(json['_amount'] as Map<String, dynamic>)
+          : null,
       base: VisionBase.fromJson(json['base'] as Map<String, dynamic>),
     );
   }

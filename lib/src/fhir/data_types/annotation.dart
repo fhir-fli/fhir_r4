@@ -100,7 +100,9 @@ class Annotation extends DataType {
           ? Element.fromJson(json['_time'] as Map<String, dynamic>)
           : null,
       text: FhirMarkdown(json['text']),
-      textElement: Element.fromJson(json['_text'] as Map<String, dynamic>),
+      textElement: json['_text'] != null
+          ? Element.fromJson(json['_text'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override

@@ -103,8 +103,9 @@ class Binary extends Resource {
           ? CommonLanguages.fromJson(json['language'] as Map<String, dynamic>)
           : null,
       contentType: FhirCode(json['contentType']),
-      contentTypeElement:
-          Element.fromJson(json['_contentType'] as Map<String, dynamic>),
+      contentTypeElement: json['_contentType'] != null
+          ? Element.fromJson(json['_contentType'] as Map<String, dynamic>)
+          : null,
       securityContext: json['securityContext'] != null
           ? Reference.fromJson(json['securityContext'] as Map<String, dynamic>)
           : null,

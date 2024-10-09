@@ -240,8 +240,9 @@ class PaymentReconciliation extends DomainResource {
           ? Period.fromJson(json['period'] as Map<String, dynamic>)
           : null,
       created: FhirDateTime(json['created']),
-      createdElement:
-          Element.fromJson(json['_created'] as Map<String, dynamic>),
+      createdElement: json['_created'] != null
+          ? Element.fromJson(json['_created'] as Map<String, dynamic>)
+          : null,
       paymentIssuer: json['paymentIssuer'] != null
           ? Reference.fromJson(json['paymentIssuer'] as Map<String, dynamic>)
           : null,
@@ -260,8 +261,9 @@ class PaymentReconciliation extends DomainResource {
           ? Element.fromJson(json['_disposition'] as Map<String, dynamic>)
           : null,
       paymentDate: FhirDate(json['paymentDate']),
-      paymentDateElement:
-          Element.fromJson(json['_paymentDate'] as Map<String, dynamic>),
+      paymentDateElement: json['_paymentDate'] != null
+          ? Element.fromJson(json['_paymentDate'] as Map<String, dynamic>)
+          : null,
       paymentAmount:
           Money.fromJson(json['paymentAmount'] as Map<String, dynamic>),
       paymentIdentifier: json['paymentIdentifier'] != null

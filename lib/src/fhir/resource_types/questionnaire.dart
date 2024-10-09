@@ -887,7 +887,9 @@ class QuestionnaireItem extends BackboneElement {
               .toList()
           : null,
       linkId: FhirString(json['linkId']),
-      linkIdElement: Element.fromJson(json['_linkId'] as Map<String, dynamic>),
+      linkIdElement: json['_linkId'] != null
+          ? Element.fromJson(json['_linkId'] as Map<String, dynamic>)
+          : null,
       definition:
           json['definition'] != null ? FhirUri(json['definition']) : null,
       definitionElement: json['_definition'] != null
@@ -1254,8 +1256,9 @@ class QuestionnaireEnableWhen extends BackboneElement {
               .toList()
           : null,
       question: FhirString(json['question']),
-      questionElement:
-          Element.fromJson(json['_question'] as Map<String, dynamic>),
+      questionElement: json['_question'] != null
+          ? Element.fromJson(json['_question'] as Map<String, dynamic>)
+          : null,
       operator_: QuestionnaireItemOperator.fromJson(
           json['operator'] as Map<String, dynamic>),
       answerBoolean: json['answerBoolean'] != null

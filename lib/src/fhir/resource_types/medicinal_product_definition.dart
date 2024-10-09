@@ -896,8 +896,9 @@ class MedicinalProductDefinitionName extends BackboneElement {
               .toList()
           : null,
       productName: FhirString(json['productName']),
-      productNameElement:
-          Element.fromJson(json['_productName'] as Map<String, dynamic>),
+      productNameElement: json['_productName'] != null
+          ? Element.fromJson(json['_productName'] as Map<String, dynamic>)
+          : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
           : null,
@@ -1044,7 +1045,9 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
               .toList()
           : null,
       part_: FhirString(json['part']),
-      partElement: Element.fromJson(json['_part'] as Map<String, dynamic>),
+      partElement: json['_part'] != null
+          ? Element.fromJson(json['_part'] as Map<String, dynamic>)
+          : null,
       type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
     );
   }

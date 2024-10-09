@@ -327,8 +327,9 @@ class NutritionOrder extends DomainResource {
           ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
           : null,
       dateTime: FhirDateTime(json['dateTime']),
-      dateTimeElement:
-          Element.fromJson(json['_dateTime'] as Map<String, dynamic>),
+      dateTimeElement: json['_dateTime'] != null
+          ? Element.fromJson(json['_dateTime'] as Map<String, dynamic>)
+          : null,
       orderer: json['orderer'] != null
           ? Reference.fromJson(json['orderer'] as Map<String, dynamic>)
           : null,

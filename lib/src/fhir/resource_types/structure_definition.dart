@@ -408,7 +408,9 @@ class StructureDefinition extends DomainResource {
               .toList()
           : null,
       url: FhirUri(json['url']),
-      urlElement: Element.fromJson(json['_url'] as Map<String, dynamic>),
+      urlElement: json['_url'] != null
+          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
+          : null,
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
@@ -420,7 +422,9 @@ class StructureDefinition extends DomainResource {
           ? Element.fromJson(json['_version'] as Map<String, dynamic>)
           : null,
       name: FhirString(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       title: json['title'] != null ? FhirString(json['title']) : null,
       titleElement: json['_title'] != null
           ? Element.fromJson(json['_title'] as Map<String, dynamic>)
@@ -494,8 +498,9 @@ class StructureDefinition extends DomainResource {
       kind: StructureDefinitionKind.fromJson(
           json['kind'] as Map<String, dynamic>),
       abstract_: FhirBoolean(json['abstract']),
-      abstractElement:
-          Element.fromJson(json['_abstract'] as Map<String, dynamic>),
+      abstractElement: json['_abstract'] != null
+          ? Element.fromJson(json['_abstract'] as Map<String, dynamic>)
+          : null,
       context: json['context'] != null
           ? (json['context'] as List<dynamic>)
               .map<StructureDefinitionContext>((dynamic v) =>
@@ -774,8 +779,9 @@ class StructureDefinitionMapping extends BackboneElement {
               .toList()
           : null,
       identity: FhirId(json['identity']),
-      identityElement:
-          Element.fromJson(json['_identity'] as Map<String, dynamic>),
+      identityElement: json['_identity'] != null
+          ? Element.fromJson(json['_identity'] as Map<String, dynamic>)
+          : null,
       uri: json['uri'] != null ? FhirUri(json['uri']) : null,
       uriElement: json['_uri'] != null
           ? Element.fromJson(json['_uri'] as Map<String, dynamic>)
@@ -943,8 +949,9 @@ class StructureDefinitionContext extends BackboneElement {
           : null,
       type: ExtensionContextType.fromJson(json['type'] as Map<String, dynamic>),
       expression: FhirString(json['expression']),
-      expressionElement:
-          Element.fromJson(json['_expression'] as Map<String, dynamic>),
+      expressionElement: json['_expression'] != null
+          ? Element.fromJson(json['_expression'] as Map<String, dynamic>)
+          : null,
       contextInvariant: json['contextInvariant'] != null
           ? (json['contextInvariant'] as List<dynamic>)
               .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))

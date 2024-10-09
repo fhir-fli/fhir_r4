@@ -685,7 +685,9 @@ class ImagingStudySeries extends BackboneElement {
               .toList()
           : null,
       uid: FhirId(json['uid']),
-      uidElement: Element.fromJson(json['_uid'] as Map<String, dynamic>),
+      uidElement: json['_uid'] != null
+          ? Element.fromJson(json['_uid'] as Map<String, dynamic>)
+          : null,
       number: json['number'] != null ? FhirUnsignedInt(json['number']) : null,
       numberElement: json['_number'] != null
           ? Element.fromJson(json['_number'] as Map<String, dynamic>)
@@ -1034,7 +1036,9 @@ class ImagingStudyInstance extends BackboneElement {
               .toList()
           : null,
       uid: FhirId(json['uid']),
-      uidElement: Element.fromJson(json['_uid'] as Map<String, dynamic>),
+      uidElement: json['_uid'] != null
+          ? Element.fromJson(json['_uid'] as Map<String, dynamic>)
+          : null,
       sopClass: Coding.fromJson(json['sopClass'] as Map<String, dynamic>),
       number: json['number'] != null ? FhirUnsignedInt(json['number']) : null,
       numberElement: json['_number'] != null

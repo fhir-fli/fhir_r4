@@ -246,12 +246,16 @@ class NamingSystem extends DomainResource {
               .toList()
           : null,
       name: FhirString(json['name']),
-      nameElement: Element.fromJson(json['_name'] as Map<String, dynamic>),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
+          : null,
       status:
           PublicationStatus.fromJson(json['status'] as Map<String, dynamic>),
       kind: NamingSystemType.fromJson(json['kind'] as Map<String, dynamic>),
       date: FhirDateTime(json['date']),
-      dateElement: Element.fromJson(json['_date'] as Map<String, dynamic>),
+      dateElement: json['_date'] != null
+          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
+          : null,
       publisher:
           json['publisher'] != null ? FhirString(json['publisher']) : null,
       publisherElement: json['_publisher'] != null
@@ -511,7 +515,9 @@ class NamingSystemUniqueId extends BackboneElement {
       type: NamingSystemIdentifierType.fromJson(
           json['type'] as Map<String, dynamic>),
       value: FhirString(json['value']),
-      valueElement: Element.fromJson(json['_value'] as Map<String, dynamic>),
+      valueElement: json['_value'] != null
+          ? Element.fromJson(json['_value'] as Map<String, dynamic>)
+          : null,
       preferred:
           json['preferred'] != null ? FhirBoolean(json['preferred']) : null,
       preferredElement: json['_preferred'] != null

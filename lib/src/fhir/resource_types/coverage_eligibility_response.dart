@@ -267,8 +267,9 @@ class CoverageEligibilityResponse extends DomainResource {
           ? Period.fromJson(json['servicedPeriod'] as Map<String, dynamic>)
           : null,
       created: FhirDateTime(json['created']),
-      createdElement:
-          Element.fromJson(json['_created'] as Map<String, dynamic>),
+      createdElement: json['_created'] != null
+          ? Element.fromJson(json['_created'] as Map<String, dynamic>)
+          : null,
       requestor: json['requestor'] != null
           ? Reference.fromJson(json['requestor'] as Map<String, dynamic>)
           : null,

@@ -1194,8 +1194,9 @@ class RequestGroupRelatedAction extends BackboneElement {
               .toList()
           : null,
       actionId: FhirId(json['actionId']),
-      actionIdElement:
-          Element.fromJson(json['_actionId'] as Map<String, dynamic>),
+      actionIdElement: json['_actionId'] != null
+          ? Element.fromJson(json['_actionId'] as Map<String, dynamic>)
+          : null,
       relationship: ActionRelationshipType.fromJson(
           json['relationship'] as Map<String, dynamic>),
       offsetDuration: json['offsetDuration'] != null

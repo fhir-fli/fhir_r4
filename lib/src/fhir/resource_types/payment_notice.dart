@@ -208,8 +208,9 @@ class PaymentNotice extends DomainResource {
           ? Reference.fromJson(json['response'] as Map<String, dynamic>)
           : null,
       created: FhirDateTime(json['created']),
-      createdElement:
-          Element.fromJson(json['_created'] as Map<String, dynamic>),
+      createdElement: json['_created'] != null
+          ? Element.fromJson(json['_created'] as Map<String, dynamic>)
+          : null,
       provider: json['provider'] != null
           ? Reference.fromJson(json['provider'] as Map<String, dynamic>)
           : null,

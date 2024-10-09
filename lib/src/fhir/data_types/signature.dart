@@ -125,7 +125,9 @@ class Signature extends DataType {
               (dynamic v) => Coding.fromJson(v as Map<String, dynamic>))
           .toList(),
       when: FhirInstant(json['when']),
-      whenElement: Element.fromJson(json['_when'] as Map<String, dynamic>),
+      whenElement: json['_when'] != null
+          ? Element.fromJson(json['_when'] as Map<String, dynamic>)
+          : null,
       who: Reference.fromJson(json['who'] as Map<String, dynamic>),
       onBehalfOf: json['onBehalfOf'] != null
           ? Reference.fromJson(json['onBehalfOf'] as Map<String, dynamic>)

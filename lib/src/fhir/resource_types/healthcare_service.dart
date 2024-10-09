@@ -1008,8 +1008,9 @@ class HealthcareServiceNotAvailable extends BackboneElement {
               .toList()
           : null,
       description: FhirString(json['description']),
-      descriptionElement:
-          Element.fromJson(json['_description'] as Map<String, dynamic>),
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
+          : null,
       during: json['during'] != null
           ? Period.fromJson(json['during'] as Map<String, dynamic>)
           : null,

@@ -214,8 +214,9 @@ class MeasureReport extends DomainResource {
           MeasureReportStatus.fromJson(json['status'] as Map<String, dynamic>),
       type: MeasureReportType.fromJson(json['type'] as Map<String, dynamic>),
       measure: FhirCanonical(json['measure']),
-      measureElement:
-          Element.fromJson(json['_measure'] as Map<String, dynamic>),
+      measureElement: json['_measure'] != null
+          ? Element.fromJson(json['_measure'] as Map<String, dynamic>)
+          : null,
       subject: json['subject'] != null
           ? Reference.fromJson(json['subject'] as Map<String, dynamic>)
           : null,

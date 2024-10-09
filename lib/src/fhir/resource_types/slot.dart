@@ -240,9 +240,13 @@ class Slot extends DomainResource {
       schedule: Reference.fromJson(json['schedule'] as Map<String, dynamic>),
       status: SlotStatus.fromJson(json['status'] as Map<String, dynamic>),
       start: FhirInstant(json['start']),
-      startElement: Element.fromJson(json['_start'] as Map<String, dynamic>),
+      startElement: json['_start'] != null
+          ? Element.fromJson(json['_start'] as Map<String, dynamic>)
+          : null,
       end: FhirInstant(json['end']),
-      endElement: Element.fromJson(json['_end'] as Map<String, dynamic>),
+      endElement: json['_end'] != null
+          ? Element.fromJson(json['_end'] as Map<String, dynamic>)
+          : null,
       overbooked:
           json['overbooked'] != null ? FhirBoolean(json['overbooked']) : null,
       overbookedElement: json['_overbooked'] != null

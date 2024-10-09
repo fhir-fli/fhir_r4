@@ -789,7 +789,9 @@ class CitationSummary extends BackboneElement {
           ? CodeableConcept.fromJson(json['style'] as Map<String, dynamic>)
           : null,
       text: FhirMarkdown(json['text']),
-      textElement: Element.fromJson(json['_text'] as Map<String, dynamic>),
+      textElement: json['_text'] != null
+          ? Element.fromJson(json['_text'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
@@ -1713,7 +1715,9 @@ class CitationVersion extends BackboneElement {
               .toList()
           : null,
       value: FhirString(json['value']),
-      valueElement: Element.fromJson(json['_value'] as Map<String, dynamic>),
+      valueElement: json['_value'] != null
+          ? Element.fromJson(json['_value'] as Map<String, dynamic>)
+          : null,
       baseCitation: json['baseCitation'] != null
           ? Reference.fromJson(json['baseCitation'] as Map<String, dynamic>)
           : null,
@@ -1997,7 +2001,9 @@ class CitationTitle extends BackboneElement {
           ? CodeableConcept.fromJson(json['language'] as Map<String, dynamic>)
           : null,
       text: FhirMarkdown(json['text']),
-      textElement: Element.fromJson(json['_text'] as Map<String, dynamic>),
+      textElement: json['_text'] != null
+          ? Element.fromJson(json['_text'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
@@ -2150,7 +2156,9 @@ class CitationAbstract extends BackboneElement {
           ? CodeableConcept.fromJson(json['language'] as Map<String, dynamic>)
           : null,
       text: FhirMarkdown(json['text']),
-      textElement: Element.fromJson(json['_text'] as Map<String, dynamic>),
+      textElement: json['_text'] != null
+          ? Element.fromJson(json['_text'] as Map<String, dynamic>)
+          : null,
       copyright:
           json['copyright'] != null ? FhirMarkdown(json['copyright']) : null,
       copyrightElement: json['_copyright'] != null
@@ -4750,7 +4758,9 @@ class CitationSummary1 extends BackboneElement {
           ? CodeableConcept.fromJson(json['source'] as Map<String, dynamic>)
           : null,
       value: FhirMarkdown(json['value']),
-      valueElement: Element.fromJson(json['_value'] as Map<String, dynamic>),
+      valueElement: json['_value'] != null
+          ? Element.fromJson(json['_value'] as Map<String, dynamic>)
+          : null,
     );
   }
   @override
