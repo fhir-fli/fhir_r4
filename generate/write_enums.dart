@@ -70,6 +70,9 @@ List<Map<String, String>> _extractEnumValuesWithComments(
 
   // Handle ValueSet first
   if (resource['resourceType'] == 'ValueSet') {
+    // if (resource.containsKey('compose')) {
+    //   print(resource['compose']);
+    // }
     if (resource.containsKey('expansion')) {
       final List<dynamic> contains = (resource['expansion']
           as Map<String, dynamic>)['contains'] as List<dynamic>;

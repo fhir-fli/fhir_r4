@@ -11836,7 +11836,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
   'ElementDefinitionType': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
     'extension': const FhirField(true, 'FhirExtension'),
-    'code': const FhirField(false, 'ElementTypes'),
+    'code': const FhirField(false, 'FhirUri'),
     '_code': const FhirField(false, 'Element'),
     'profile': const FhirField(true, 'FhirCanonical'),
     '_profile': const FhirField(true, 'Element'),

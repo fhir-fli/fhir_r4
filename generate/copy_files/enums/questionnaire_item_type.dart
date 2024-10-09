@@ -65,9 +65,15 @@ enum QuestionnaireItemType {
   @JsonValue('url')
   url,
 
-  /// Question with a Coding - generally drawn from a list of possible answers (valueCoding).
-  @JsonValue('coding')
-  coding,
+  /// Question with a Coding drawn from a list of possible answers
+  /// (specified in either the answerOption property or via the valueset referenced in the answerValueSet property) as an answer (valueCoding).
+  @JsonValue('choice')
+  choice,
+
+  /// Answer is a Coding drawn from a list of possible answers (as with the choice type)
+  /// or a free-text entry in a string (valueCoding or valueString).
+  @JsonValue('open-choice')
+  openChoice,
 
   /// Question with binary content such as an image, PDF, etc., as an answer (valueAttachment).
   @JsonValue('attachment')
@@ -77,14 +83,14 @@ enum QuestionnaireItemType {
   @JsonValue('reference')
   reference,
 
-  /// Question with a combination of a numeric value and unit as an answer (valueSimpleQuantity).
+  /// Question with a combination of a numeric value and unit, potentially with a comparator (<, >, etc.) as an answer.
   ///
-  /// There are two extensions ('http://hl7.org/fhir/StructureDefinition/questionnaire-unitOption'
-  /// and 'http://hl7.org/fhir/StructureDefinition/questionnaire-unitValueSet') that can be used
-  /// to define what unit should be selected for the Quantity.code and Quantity.system.
+  /// There is an extension ('http://hl7.org/fhir/StructureDefinition/questionnaire-unit')
+  /// that can be used to define what unit should be captured (or the unit that has a ucum conversion from the provided unit).
   @JsonValue('quantity')
   quantity;
 
+  /// Convert a string to a corresponding `QuestionnaireItemType` enum value.
   QuestionnaireItemType? fromString(String str) {
     switch (str) {
       case 'group':
@@ -111,8 +117,10 @@ enum QuestionnaireItemType {
         return QuestionnaireItemType.text;
       case 'url':
         return QuestionnaireItemType.url;
-      case 'coding':
-        return QuestionnaireItemType.coding;
+      case 'choice':
+        return QuestionnaireItemType.choice;
+      case 'open-choice':
+        return QuestionnaireItemType.openChoice;
       case 'attachment':
         return QuestionnaireItemType.attachment;
       case 'reference':
@@ -124,6 +132,7 @@ enum QuestionnaireItemType {
     }
   }
 
+  /// Convert a JSON dynamic value to a corresponding `QuestionnaireItemType` enum value.
   QuestionnaireItemType? fromJson(dynamic json) {
     if (json is String) {
       return fromString(json);
@@ -132,6 +141,7 @@ enum QuestionnaireItemType {
     }
   }
 
+  /// Convert this `QuestionnaireItemType` enum value to a string.
   @override
   String toString() {
     switch (this) {
@@ -159,8 +169,10 @@ enum QuestionnaireItemType {
         return 'text';
       case url:
         return 'url';
-      case coding:
-        return 'coding';
+      case choice:
+        return 'choice';
+      case openChoice:
+        return 'open-choice';
       case attachment:
         return 'attachment';
       case reference:
@@ -170,5 +182,6 @@ enum QuestionnaireItemType {
     }
   }
 
+  /// Convert this `QuestionnaireItemType` enum value to a JSON-compatible string.
   String toJson() => toString();
 }

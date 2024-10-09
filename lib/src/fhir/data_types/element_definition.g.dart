@@ -1586,7 +1586,7 @@ ElementDefinitionType _$ElementDefinitionTypeFromJson(
       extension_: (json['extension'] as List<dynamic>?)
           ?.map((e) => FhirExtension.fromJson(e as Map<String, dynamic>))
           .toList(),
-      code: $enumDecode(_$ElementTypesEnumMap, json['code']),
+      code: FhirUri.fromJson(json['code']),
       codeElement: json['_code'] == null
           ? null
           : Element.fromJson(json['_code'] as Map<String, dynamic>),
@@ -1665,23 +1665,6 @@ Map<String, dynamic> _$ElementDefinitionTypeToJson(
   writeNotNull('_versioning', instance.versioningElement?.toJson());
   return val;
 }
-
-const _$ElementTypesEnumMap = {
-  ElementTypes.hl7_org_fhirpath_System_String:
-      'http://hl7.org/fhirpath/System.String',
-  ElementTypes.hl7_org_fhirpath_System_Boolean:
-      'http://hl7.org/fhirpath/System.Boolean',
-  ElementTypes.hl7_org_fhirpath_System_Date:
-      'http://hl7.org/fhirpath/System.Date',
-  ElementTypes.hl7_org_fhirpath_System_DateTime:
-      'http://hl7.org/fhirpath/System.DateTime',
-  ElementTypes.hl7_org_fhirpath_System_Decimal:
-      'http://hl7.org/fhirpath/System.Decimal',
-  ElementTypes.hl7_org_fhirpath_System_Integer:
-      'http://hl7.org/fhirpath/System.Integer',
-  ElementTypes.hl7_org_fhirpath_System_Time:
-      'http://hl7.org/fhirpath/System.Time',
-};
 
 const _$AggregationModeEnumMap = {
   AggregationMode.contained: 'contained',

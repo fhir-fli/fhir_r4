@@ -175,6 +175,7 @@ export 'discharge_disposition.dart';
 export 'discriminator_type.dart';
 export 'document_class_value_set.dart';
 export 'document_mode.dart';
+export 'document_reference_format_code_set.dart';
 export 'document_reference_status.dart';
 export 'document_relationship_type.dart';
 export 'document_section_codes.dart';

@@ -607,11 +607,12 @@ Map<String, Map<String, dynamic>> codesAndValueSets(
     }
   }
   final List<File> files = Directory(examplesPath)
-      .listSync()
+      .listSync(recursive: true)
       .whereType<File>()
       .where((File file) =>
           file.path.endsWith('.json') &&
-          (file.path.contains('valueset') || file.path.contains('codesystem')))
+          (file.path.toLowerCase().contains('valueset') ||
+              file.path.toLowerCase().contains('codesystem')))
       .toList();
   for (final File file in files) {
     final String examplesString = file.readAsStringSync();
@@ -620,8 +621,29 @@ Map<String, Map<String, dynamic>> codesAndValueSets(
     if ((entry['resourceType'] == 'ValueSet' ||
             entry['resourceType'] == 'CodeSystem') &&
         !codesAndVS.keys.contains(entry['url'] as String)) {
-      codesAndVS[entry['url'] as String] =
-          entry['resource'] as Map<String, dynamic>;
+      codesAndVS[entry['url'] as String] = entry;
+    }
+  }
+  final List<File> ndfiles = Directory(ndJsonExamplesPath)
+      .listSync(recursive: true)
+      .whereType<File>()
+      .where((File file) =>
+          file.path.endsWith('.ndjson') &&
+          (file.path.toLowerCase().contains('valueset') ||
+              file.path.toLowerCase().contains('codesystem')))
+      .toList();
+  for (final File file in ndfiles) {
+    final String examplesString = file.readAsStringSync();
+    final List<String> entries = examplesString.split('\n');
+    for (final String entryString in entries) {
+      final Map<String, dynamic> entry =
+          jsonDecode(entryString) as Map<String, dynamic>;
+      if ((entry['resourceType'] == 'ValueSet' ||
+              entry['resourceType'] == 'CodeSystem') &&
+          (entry['url'] is String) &&
+          !codesAndVS.keys.contains(entry['url'] as String)) {
+        codesAndVS[entry['url'] as String] = entry;
+      }
     }
   }
   return codesAndVS;

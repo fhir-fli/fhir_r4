@@ -3580,7 +3580,7 @@ class ElementDefinitionType extends Element {
   /// http://hl7.org/fhir/StructureDefinition/string. Absolute URLs are only
   /// allowed in logical models.
   @JsonKey(name: 'code')
-  final ElementTypes code;
+  final FhirUri code;
   @JsonKey(name: '_code')
   final Element? codeElement;
 
@@ -3635,7 +3635,7 @@ class ElementDefinitionType extends Element {
   ElementDefinitionType copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
-    ElementTypes? code,
+    FhirUri? code,
     Element? codeElement,
     List<FhirCanonical>? profile,
     List<Element>? profileElement,
