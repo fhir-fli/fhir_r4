@@ -829,10 +829,12 @@ class CodeSystemFilter extends BackboneElement {
           .map<FilterOperator>(
               (dynamic v) => FilterOperator.fromJson(v as dynamic))
           .toList(),
-      operatorElement: (json['_operator'] as List<dynamic>)
-          .map<Element>(
-              (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      operatorElement: json['_operator'] != null
+          ? (json['_operator'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
       value: FhirString.fromJson(json['value']),
       valueElement: json['_value'] != null
           ? Element.fromJson(json['_value'] as Map<String, dynamic>)

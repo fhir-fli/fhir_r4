@@ -3051,10 +3051,12 @@ class StructureMapDependent extends BackboneElement {
       variable: (json['variable'] as List<dynamic>)
           .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
           .toList(),
-      variableElement: (json['_variable'] as List<dynamic>)
-          .map<Element>(
-              (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      variableElement: json['_variable'] != null
+          ? (json['_variable'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
     );
   }
   @override

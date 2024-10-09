@@ -426,10 +426,12 @@ class ImplementationGuide extends DomainResource {
       fhirVersion: (json['fhirVersion'] as List<dynamic>)
           .map<FHIRVersion>((dynamic v) => FHIRVersion.fromJson(v as dynamic))
           .toList(),
-      fhirVersionElement: (json['_fhirVersion'] as List<dynamic>)
-          .map<Element>(
-              (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      fhirVersionElement: json['_fhirVersion'] != null
+          ? (json['_fhirVersion'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
       dependsOn: json['dependsOn'] != null
           ? (json['dependsOn'] as List<dynamic>)
               .map<ImplementationGuideDependsOn>((dynamic v) =>

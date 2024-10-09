@@ -29,20 +29,6 @@ Future<void> main() async {
   generateResourceUtils();
   parseSearchParameters();
   deleteDirectories();
-  _copyFiles();
-}
-
-void _copyFiles() {
-  final Directory source = Directory('copy_files');
-  if (source.existsSync()) {
-    final List<FileSystemEntity> files = source.listSync(recursive: true);
-    for (final FileSystemEntity file in files) {
-      if (file is File) {
-        final String fileName = file.path.split('copy_files').last;
-        file.copySync('$fhirDirectory$fileName');
-      }
-    }
-  }
 }
 
 void _classesFromStructureDefinitions() {
@@ -622,7 +608,7 @@ void _writeFromJson(StringBuffer buffer, WritableClass writableClass) {
             field.needsElement &&
             fieldName != 'id') {
           buffer.writeln(
-              "    ${jsonFieldName}Element: (json['$jsonElementFieldName'] as List<dynamic>).map<Element>((dynamic v) => Element.fromJson(v as Map<String, dynamic>)).toList(),");
+              "    ${jsonFieldName}Element: json['$jsonElementFieldName'] != null ? (json['$jsonElementFieldName'] as List<dynamic>).map<Element>((dynamic v) => Element.fromJson(v as Map<String, dynamic>)).toList() : null,");
         }
       } else {
         buffer.writeln(
@@ -645,15 +631,6 @@ void _writeFromJson(StringBuffer buffer, WritableClass writableClass) {
           buffer.writeln(
               "    $fieldName: ${field.type.fhirToDartTypes}.fromJson(json['$jsonFieldName']),");
         } else {
-          if (fieldName == 'div') {
-            print('fieldName: $fieldName');
-            print(field.isList);
-            print(field.isRequired);
-            print(field.type);
-            print(field.needsElement);
-            print(field.isEnum);
-            print(field.path);
-          }
           buffer.writeln(
               "    $fieldName: ${field.type.fhirToDartTypes}.fromJson(json['$jsonFieldName'] as Map<String, dynamic>),");
         }

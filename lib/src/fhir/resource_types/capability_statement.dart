@@ -533,10 +533,12 @@ class CapabilityStatement extends DomainResource {
       format: (json['format'] as List<dynamic>)
           .map<FhirCode>((dynamic v) => FhirCode.fromJson(v as dynamic))
           .toList(),
-      formatElement: (json['_format'] as List<dynamic>)
-          .map<Element>(
-              (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      formatElement: json['_format'] != null
+          ? (json['_format'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
       patchFormat: json['patchFormat'] != null
           ? (json['patchFormat'] as List<dynamic>)
               .map<FhirCode>((dynamic v) => FhirCode.fromJson(v as dynamic))

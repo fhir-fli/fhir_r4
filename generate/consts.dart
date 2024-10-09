@@ -36,7 +36,7 @@ const List<String> noParameters = <String>[
   'SearchLinkage',
   'SearchVerificationResult',
 ];
-final List<String> badValueSets = <String>[
+const List<String> badValueSets = <String>[
   'AccountTypes',
   'JurisdictionValueSet',
   'ProcedureCodesSNOMEDCT',
@@ -141,4 +141,7 @@ final List<String> badValueSets = <String>[
   'ContextOfUseValueSet',
   'ResourceType',
   'ElementTypes',
+];
+const List<String> testsToRemove = <String>[
+  'StructureDefinition799.json',
 ];

@@ -1415,10 +1415,12 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
       op: (json['op'] as List<dynamic>)
           .map<FhirCode>((dynamic v) => FhirCode.fromJson(v as dynamic))
           .toList(),
-      opElement: (json['_op'] as List<dynamic>)
-          .map<Element>(
-              (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      opElement: json['_op'] != null
+          ? (json['_op'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
     );
   }
   @override

@@ -263,10 +263,12 @@ class CoverageEligibilityResponse extends DomainResource {
           .map<EligibilityResponsePurpose>(
               (dynamic v) => EligibilityResponsePurpose.fromJson(v as dynamic))
           .toList(),
-      purposeElement: (json['_purpose'] as List<dynamic>)
-          .map<Element>(
-              (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      purposeElement: json['_purpose'] != null
+          ? (json['_purpose'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
       patient: Reference.fromJson(json['patient'] as Map<String, dynamic>),
       servicedDate: json['servicedDate'] != null
           ? FhirDate.fromJson(json['servicedDate'])

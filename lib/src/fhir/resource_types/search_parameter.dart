@@ -498,10 +498,12 @@ class SearchParameter extends DomainResource {
       base: (json['base'] as List<dynamic>)
           .map<FhirCode>((dynamic v) => FhirCode.fromJson(v as dynamic))
           .toList(),
-      baseElement: (json['_base'] as List<dynamic>)
-          .map<Element>(
-              (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      baseElement: json['_base'] != null
+          ? (json['_base'] as List<dynamic>)
+              .map<Element>(
+                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
+              .toList()
+          : null,
       type: SearchParamType.fromJson(json['type']),
       typeElement: json['_type'] != null
           ? Element.fromJson(json['_type'] as Map<String, dynamic>)
