@@ -9,6 +9,7 @@ import 'class_buffer.dart';
 import 'consts.dart';
 import 'fhir_generate_extension.dart';
 import 'file_io.dart';
+import 'object_box.dart';
 import 'parse_search_parameters.dart';
 import 'resource_utils.dart';
 import 'utility.dart';
@@ -24,7 +25,10 @@ Future<void> main() async {
   await extract();
   _codesAndVS.addAll(codesAndValueSets(valueSetPath, examplesPath));
   _nameMap.addAll(populateNameMap(fhirSchemaPath));
+
+  // Generate resource and data classes from StructureDefinitions
   _classesFromStructureDefinitions();
+
   exportFiles();
   writeEnums(_valueSets, _codesAndVS, _nameMap);
   generateResourceUtils();
@@ -138,6 +142,7 @@ void _generateFromSd(Map<String, dynamic> sd, StringBuffer fhirFieldMapBuffer) {
   }
   final Map<String, WritableClass> classes =
       _buildWritableClasses(sd, className);
+  generateObjectBoxClasses(classes);
   final StringBuffer buffer = generateClassBuffer(classes, fhirFieldMapBuffer);
 
   writeToFile(buffer, className, _nameMap);

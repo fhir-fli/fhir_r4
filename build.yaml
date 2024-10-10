@@ -1,0 +1,26 @@
+targets:
+  drift:
+    auto_apply_builders: false
+    builders:
+      drift_dev:analyzer:
+        enabled: true
+        options: &options
+          # Modular build options, configure them as per your needs
+          store_date_time_values_as_text: true
+          named_parameters: true
+          sql:
+            dialect: sqlite
+            options:
+              version: "3.39"
+              modules: [fts5]
+      drift_dev:modular:
+        enabled: true
+        options: *options
+
+  $default:
+    dependencies:
+      - ":drift" # Ensure drift's builder runs first
+    builders:
+      # Disable default drift builder, we're using modular mode instead
+      drift_dev:
+        enabled: false
