@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
+
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
@@ -11,7 +11,6 @@ extension FhirInstantStringExtension on String {
   FhirInstant get toFhirInstant => FhirInstant.fromString(this);
 }
 
-@Entity()
 class FhirInstant extends FhirDateTimeBase {
   FhirInstant.fromBase({
     required super.precision,
@@ -99,10 +98,6 @@ class FhirInstant extends FhirDateTimeBase {
         isUtc: isUtc ?? false,
         element: element,
       ) as FhirInstant;
-
-  @override
-  @Id()
-  int dbId = 0;
 
   @override
   String get fhirType => 'instant';

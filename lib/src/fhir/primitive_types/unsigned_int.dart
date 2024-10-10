@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
+
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
@@ -11,7 +11,6 @@ extension FhirUnsignedIntExtension on num {
           : throw FormatException('Invalid input for FhirInteger: $this');
 }
 
-@Entity()
 class FhirUnsignedInt extends FhirNumber {
   @override
   final int value;
@@ -50,10 +49,6 @@ class FhirUnsignedInt extends FhirNumber {
           ? FhirUnsignedInt.fromJson(jsonDecode(jsonEncode(yaml)))
           : throw const FormatException(
               'Invalid Yaml format for FhirUnsignedInt');
-
-  @override
-  @Id()
-  int dbId = 0;
 
   @override
   String get fhirType => 'unsignedInt';

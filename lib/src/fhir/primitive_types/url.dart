@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
+
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
@@ -11,7 +11,6 @@ extension FhirUrlUriExtension on Uri {
   FhirUrl get toFhirUrl => FhirUrl.fromUri(this);
 }
 
-@Entity()
 class FhirUrl extends PrimitiveType<Uri> {
   @override
   final Uri value;
@@ -58,10 +57,6 @@ class FhirUrl extends PrimitiveType<Uri> {
 
   factory FhirUrl.fromYaml(String yaml) =>
       FhirUrl.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))) as String);
-
-  @override
-  @Id()
-  int dbId = 0;
 
   @override
   String get fhirType => 'url';

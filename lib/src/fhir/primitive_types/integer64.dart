@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
+
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
@@ -15,7 +15,6 @@ extension FhirInteger64BigIntExtension on BigInt {
   FhirInteger64 get toFhirInteger64 => FhirInteger64(this);
 }
 
-@Entity()
 class FhirInteger64 extends PrimitiveType<BigInt>
     implements Comparable<FhirInteger64> {
   @override
@@ -67,10 +66,6 @@ class FhirInteger64 extends PrimitiveType<BigInt>
   // YAML conversion
   factory FhirInteger64.fromYaml(String yaml) =>
       FhirInteger64.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))) as String);
-
-  @override
-  @Id()
-  int dbId = 0;
 
   @override
   String get fhirType => 'integer64';

@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
+
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
@@ -7,7 +7,6 @@ extension FhirCodeExtension on String {
   FhirCode get toFhirCode => FhirCode(this);
 }
 
-@Entity()
 class FhirCode extends PrimitiveType<String> {
   @override
   final String value;
@@ -51,10 +50,6 @@ class FhirCode extends PrimitiveType<String> {
   factory FhirCode.fromYaml(dynamic yaml) => yaml is String
       ? FhirCode.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
       : throw const FormatException('Invalid Yaml format for FhirCode');
-
-  @override
-  @Id()
-  int dbId = 0;
 
   @override
   String get fhirType => 'code';

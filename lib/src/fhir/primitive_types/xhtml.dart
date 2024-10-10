@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
+
 import 'package:xml/xml.dart';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
@@ -8,7 +8,6 @@ extension FhirXhtmlExtension on String {
   FhirXhtml get toFhirXhtml => FhirXhtml(this);
 }
 
-@Entity()
 class FhirXhtml extends PrimitiveType<String> {
   @override
   final String value; // Store the validated XHTML value
@@ -101,10 +100,6 @@ class FhirXhtml extends PrimitiveType<String> {
 
   factory FhirXhtml.fromYaml(String yaml) =>
       FhirXhtml.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))) as String);
-
-  @override
-  @Id()
-  int dbId = 0;
 
   @override
   String get fhirType => 'xhtml';

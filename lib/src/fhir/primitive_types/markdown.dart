@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
+
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
@@ -7,7 +7,6 @@ extension FhirMarkdownExtension on String {
   FhirMarkdown get toFhirMarkdown => FhirMarkdown(this);
 }
 
-@Entity()
 class FhirMarkdown extends PrimitiveType<String> {
   @override
   final String value;
@@ -45,10 +44,6 @@ class FhirMarkdown extends PrimitiveType<String> {
   factory FhirMarkdown.fromYaml(dynamic yaml) => yaml is String
       ? FhirMarkdown.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
       : throw const FormatException('Invalid YAML format for FhirMarkdown');
-
-  @override
-  @Id()
-  int dbId = 0;
 
   @override
   String get fhirType => 'markdown';

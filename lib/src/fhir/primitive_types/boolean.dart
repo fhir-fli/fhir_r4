@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
+
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
@@ -7,7 +7,6 @@ extension FhirBooleanExtension on bool {
   FhirBoolean get toFhirBoolean => FhirBoolean(this);
 }
 
-@Entity()
 class FhirBoolean extends PrimitiveType<bool> {
   @override
   final bool value;
@@ -43,10 +42,6 @@ class FhirBoolean extends PrimitiveType<bool> {
   factory FhirBoolean.fromYaml(dynamic yaml) => yaml is String
       ? FhirBoolean.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
       : throw const FormatException('Invalid Yaml format for FhirBoolean');
-
-  @override
-  @Id()
-  int dbId = 0;
 
   @override
   String get fhirType => 'boolean';

@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
+
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
@@ -7,7 +7,6 @@ extension FhirTimeExtension on String {
   FhirTime get toFhirTime => FhirTime(this);
 }
 
-@Entity()
 class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
   @override
   final String value; // Single field to store the validated time string
@@ -71,10 +70,6 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
 
   factory FhirTime.fromYaml(String yaml) =>
       FhirTime.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))) as String);
-
-  @override
-  @Id()
-  int dbId = 0;
 
   @override
   String get fhirType => 'time';

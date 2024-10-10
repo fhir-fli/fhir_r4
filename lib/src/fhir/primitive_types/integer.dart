@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
+
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
@@ -11,7 +11,6 @@ extension FhirIntegerExtension on num {
           : throw FormatException('Invalid input for FhirInteger: $this');
 }
 
-@Entity()
 class FhirInteger extends FhirNumber {
   @override
   final int value;
@@ -47,10 +46,6 @@ class FhirInteger extends FhirNumber {
       : yaml is YamlMap
           ? FhirInteger.fromJson(jsonDecode(jsonEncode(yaml)))
           : throw const FormatException('Invalid Yaml format for FhirInteger');
-
-  @override
-  @Id()
-  int dbId = 0;
 
   @override
   String get fhirType => 'integer';

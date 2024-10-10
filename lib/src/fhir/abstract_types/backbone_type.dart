@@ -1,10 +1,9 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
+
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
 /// Base class for the few data types that are allowed to carry modifier extensions.
-@Entity()
 abstract class BackboneType extends DataType {
   /// Constructor for BackboneType
   BackboneType({
@@ -18,11 +17,6 @@ abstract class BackboneType extends DataType {
     super.children,
     super.namedChildren,
   });
-
-  @override
-  @Id()
-  // ignore: overridden_fields
-  int dbId = 0;
 
   @override
   String get fhirType => 'BackboneType';

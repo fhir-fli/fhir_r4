@@ -1,10 +1,9 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
+
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
 /// Base class for elements inside a resource but not those in a data type.
-@Entity()
 abstract class BackboneElement extends DataType {
   /// Constructor for BackboneElement
   BackboneElement({
@@ -18,11 +17,6 @@ abstract class BackboneElement extends DataType {
     super.children,
     super.namedChildren,
   });
-
-  @override
-  @Id()
-  // ignore: overridden_fields
-  int dbId = 0;
 
   @override
   String get fhirType => 'BackboneElement';

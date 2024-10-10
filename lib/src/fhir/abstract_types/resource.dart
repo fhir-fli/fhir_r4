@@ -1,12 +1,10 @@
 import 'dart:convert';
 
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
 /// [Resource] Base definition for all FHIR elements.
-@Entity()
 abstract class Resource extends FhirBase {
   Resource({
     required this.resourceType,
@@ -23,11 +21,6 @@ abstract class Resource extends FhirBase {
     super.children,
     super.namedChildren,
   });
-
-  @override
-  @Id()
-  // ignore: overridden_fields
-  int dbId = 0;
 
   @override
   String get fhirType => 'Resource';

@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
+
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
@@ -7,7 +7,6 @@ extension FhirDecimalExtension on num {
   FhirDecimal get toFhirDecimal => FhirDecimal(this);
 }
 
-@Entity()
 class FhirDecimal extends FhirNumber {
   @override
   final double value;
@@ -57,10 +56,6 @@ class FhirDecimal extends FhirNumber {
       throw const FormatException('Invalid Yaml format for FhirDecimal');
     }
   }
-
-  @override
-  @Id()
-  int dbId = 0;
 
   @override
   String get fhirType => 'decimal';

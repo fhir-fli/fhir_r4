@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
+
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
@@ -11,7 +11,6 @@ extension FhirDateTimeStringExtension on String {
   FhirDateTime get toFhirDateTime => FhirDateTime.fromString(this);
 }
 
-@Entity()
 class FhirDateTime extends FhirDateTimeBase {
   FhirDateTime.fromBase({
     required super.precision,
@@ -103,10 +102,6 @@ class FhirDateTime extends FhirDateTimeBase {
         isUtc: isUtc ?? false,
         element: element,
       ) as FhirDateTime;
-
-  @override
-  @Id()
-  int dbId = 0;
 
   @override
   String get fhirType => 'dateTime';

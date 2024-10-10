@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
+
 import 'package:uuid/uuid.dart';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
@@ -12,7 +12,6 @@ extension FhirUuidValueExtension on UuidValue {
   FhirUuid get toFhirUuid => FhirUuid.fromUuid(this);
 }
 
-@Entity()
 class FhirUuid extends PrimitiveType<UuidValue> {
   @override
   final UuidValue value;
@@ -59,10 +58,6 @@ class FhirUuid extends PrimitiveType<UuidValue> {
 
   factory FhirUuid.fromYaml(String yaml) =>
       FhirUuid.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))) as String);
-
-  @override
-  @Id()
-  int dbId = 0;
 
   @override
   String get fhirType => 'uuid';

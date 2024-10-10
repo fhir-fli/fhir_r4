@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
+
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
@@ -7,7 +7,6 @@ extension FhirBase64BinaryExtension on String {
   FhirBase64Binary get toFhirBase64Binary => FhirBase64Binary(this);
 }
 
-@Entity()
 class FhirBase64Binary extends PrimitiveType<String> {
   @override
   final String value;
@@ -60,11 +59,6 @@ class FhirBase64Binary extends PrimitiveType<String> {
   factory FhirBase64Binary.fromYaml(dynamic yaml) => yaml is String
       ? FhirBase64Binary.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
       : throw const FormatException('Invalid Yaml format for FhirBase64Binary');
-
-  @override
-  @Id()
-  // ignore: overridden_fields
-  int dbId = 0;
 
   @override
   String toJson() => value;
